@@ -375,7 +375,8 @@ class CompositionRPC:
     """Static source-ABI mock for the complete gate fixture, not a live node."""
     def __init__(self, config):
         self.chain = config['chains'][0]
-        self.expected = P.expected_bindings(self.chain,range_policy_version=config.get('range_policy_version',0))
+        self.expected = P.expected_bindings(self.chain,range_policy_version=config.get('range_policy_version',0),
+            fee_intake_version=config.get('fee_intake_version',0))
         self.calls = []
         self.bad = None
         self.overrides = {}
@@ -398,6 +399,9 @@ class CompositionRPC:
             for role,record in chain[group].items():
                 if record['address']!=target: continue
                 for getter,value in self.expected[group][role].items():
+                    if getter=='assetsOfRegistry':
+                        if data==selector('assetsOf(address)')+O._word(mods['pools']['address']):return encoded(value)
+                        continue
                     if data!=selector(getter+'()'): continue
                     if getter=='artworkBaseURI':
                         raw=value.encode(); return encoded(32,len(raw))+raw.hex()+'00'*((-len(raw))%32)

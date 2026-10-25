@@ -170,8 +170,11 @@ contract DualOracleSecurityTest is Test {
     function testUnknownAssetAndLegacySingleFeedAreExplicitlyRejected() public {
         vm.expectRevert(abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector, address(77)));
         oracle.price(address(77));
-        vm.expectRevert(ZZZOracle.SingleSourceUnsupported.selector);
-        oracle.setFeed(address(token), address(first), 3600);
+        // Retired single-source calldata stays unsupported without keeping a
+        // callable compatibility shim in the production ABI.
+        (bool accepted,) = address(oracle).call(abi.encodeWithSignature(
+            "setFeed(address,address,uint32)",address(token),address(first),uint32(3600)));
+        assertFalse(accepted);
         assertEq(oracle.policyCount(), 1);
     }
     function testPolicyRejectsSameAddressOrSameIndependenceIdentity() public {

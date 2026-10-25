@@ -1,0 +1,39 @@
+REASON: Unused retired transport fixture.
+contract MockRoutes {
+    mapping(bytes32=>Route) private routes;mapping(bytes32=>bool) private exists;
+    function set(bytes32 id,Route memory r) external {routes[id]=r;exists[id]=true;}
+    function get(bytes32 id) external view returns(Route memory,bool){require(exists[id]);return(routes[id],true);}
+}
+
+
+REASON: Unused retired transport fixture.
+contract MockMessageReceiver {
+    using SafeERC20 for IERC20;
+    address public token;uint256 public received;bool public fail;
+    function configure(address t,bool f) external {token=t;fail=f;}
+    function receiveMessage(uint256,address,BridgeMessage calldata m) external {
+        require(!fail,"receiver failed");
+        if(m.amount0>0)IERC20(token).safeTransferFrom(msg.sender,address(this),m.amount0);
+        received++;
+    }
+}
+
+
+REASON: Unused retired transport fixture.
+contract MockTransport {
+    using SafeERC20 for IERC20;
+    uint256 private nonce;
+    function send(uint256,address,address[] calldata ts,uint256[] calldata amounts,bytes calldata) external payable returns(bytes32){
+        for(uint256 i;i<ts.length;i++)IERC20(ts[i]).safeTransferFrom(msg.sender,address(this),amounts[i]);
+        return bytes32(++nonce);
+    }
+    function deliver(address adapter,uint256 source,address sender,bytes memory message,address token,uint256 amount) external {
+        if(token!=address(0))IERC20(token).forceApprove(adapter,amount);
+        IZZZTransportReceiver(adapter).onMessage(source,sender,message);
+        if(token!=address(0))IERC20(token).forceApprove(adapter,0);
+    }
+}
+
+
+REASON: Unused retired transport fixture.
+contract MockReadyRouter { function canSend(bytes32) external pure returns(bool){return true;} }

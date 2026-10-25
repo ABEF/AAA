@@ -1,3 +1,10 @@
+# Historical creator-payment intake (removed)
+
+The current candidate removes this feature. Use [current scope](SIMPLIFIED_RELEASE.md).
+The following specification describes the prior source-bound implementation only;
+its calls, addresses and tests are not current operator instructions. Historical
+reader/event support is retained without admitting creator funding to new Fees.
+
 # Creator-funded LP rewards
 
 The creator can send payments directly to an immutable per-bucket `ZZZRewardReceiver`. This is an undeployed intake candidate, not a deployed receiver or guaranteed payment agreement. NFT-sale royalties use a different receiver and allocation; see [NFT metadata](NFT_METADATA.md).

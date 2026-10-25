@@ -136,6 +136,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
     }
     function addV4Route(ZZZV4RouteExecutor.Policy calldata policy)
         external onlyGovernance operating nonReentrant returns (bytes32 id) {
+        if (!activationAssets.isContributionAsset(policy.source)) revert InvalidConfiguration();
         id = v4Executor.addRoute(policy);
         if (v3RouteExists[id]) revert InvalidConfiguration();
         emit RouteEnabled(id, true);
@@ -149,6 +150,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
             if (enabled) _checkRoute(routes[id]);
             v3RouteEnabled[id] = enabled;
         } else {
+            if (enabled && !activationAssets.isContributionAsset(v4Executor.route(id).source)) revert InvalidConfiguration();
             v4Executor.setRouteEnabled(id, enabled);
         }
         emit RouteEnabled(id, enabled);
@@ -158,6 +160,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
     }
     function _checkRoute(RoutePolicy memory p) private view {
         if (p.source == address(0) || p.output == address(0) || p.source == p.output ||
+            !activationAssets.isContributionAsset(p.source) ||
             p.reviewHash == bytes32(0) || p.fee >= 1_000_000) revert InvalidConfiguration();
         _pin(p.source, p.sourceCodeHash); _pin(p.output, p.outputCodeHash);
         _pin(p.router, p.routerCodeHash); _pin(p.factory, p.factoryCodeHash); _pin(p.pool, p.poolCodeHash);
@@ -221,9 +224,6 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         nativeReceived = 0;
     }
 
-    /// @notice Retired selector. Old reviews cannot silently use a newer governed cap.
-    function execute(Request calldata) external payable { revert InvalidState(); }
-
     /// @notice The signed maximum includes conversion and placement loss; gas is separate.
     /// A tighter execution-time policy is allowed, but never a wider one than reviewed.
     function executeReviewed(Request calldata request, uint16 maximumLossBps)
@@ -235,6 +235,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         if (!pool.depositsEnabled || !pool.operationsEnabled ||
             pool.key.currency0 == pool.key.currency1) revert InvalidConfiguration();
         address source = request.sourceAsset;
+        if (!activationAssets.isContributionAsset(source)) revert InvalidConfiguration();
         address output;
         RoutePolicy memory policy;
         uint8 kind;

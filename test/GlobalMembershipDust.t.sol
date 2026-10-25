@@ -21,11 +21,11 @@ contract GlobalMembershipDustTest is PooledVaultFixture {
     function testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool() public {
         uint256 first = activatedPosition(); uint256 firstBucket = vault.nftBucket(first);
         venue.setFees(19, 19); vault.collectFees(firstBucket, block.timestamp + 100);
-        assertEq(fees.rewardReceiverCount(), 0); assertEq(fees.dust(firstBucket, address(t0)), 19);
+        assertEq(fees.dust(firstBucket, address(t0)), 19);
         assertEq(fees.dust(firstBucket, address(t1)), 19); assertEq(rewards.claimable(first, address(t0)), 0);
         uint256 second = _mint(bob); _activateSecond(second, _secondPool());
         assertTrue(vault.nftBucket(second) != firstBucket); assertEq(vault.bucketCount(), 2);
-        assertEq(membership.totalEligible(), 2); assertEq(fees.rewardReceiverCount(), 0);
+        assertEq(membership.totalEligible(), 2);
         assertEq(fees.dust(firstBucket, address(t0)), 0); assertEq(fees.dust(firstBucket, address(t1)), 0);
         assertEq(rewards.claimable(first, address(t0)), 19); assertEq(rewards.claimable(first, address(t1)), 19);
         assertEq(rewards.claimable(second, address(t0)), 0); assertEq(rewards.claimable(second, address(t1)), 0);
@@ -53,31 +53,19 @@ contract GlobalMembershipDustTest is PooledVaultFixture {
         assertEq(rewards.claimable(second, address(t0)), 0);
     }
 
-    function testCanonicalOutboundBucketDustAlsoSettlesBeforeNewMembership() public {
-        uint256 first = activatedPosition(); uint256 bucket = vault.nftBucket(first);
-        address inbox = fees.createRewardReceiver(bucket, address(0));
-        ac.setPaused(true);vault.park(bucket,block.timestamp+100);ac.setPaused(false);
-        vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
-        assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Outbound));
-        t0.mint(inbox, 19); fees.syncExternal(bucket); assertEq(fees.dust(bucket, address(t0)), 19);
-        uint256 second = _mint(bob); _activateSecond(second, _secondPool());
-        assertEq(fees.dust(bucket, address(t0)), 0); assertEq(rewards.claimable(first, address(t0)), 19);
-        assertEq(rewards.claimable(second, address(t0)), 0); assertTrue(membership.eligible(first));
-    }
-
-    function testGlobalSettlementOnlyFeesAndDustFlushOnlyAuthorizedModules() public {
+    function testGlobalSettlementOnlyVaultAndDustFlushOnlyAuthorizedModules() public {
         uint256 first = activatedPosition(); uint256 bucket = vault.nftBucket(first);
         vm.expectRevert(); membership.settleDust();
         vm.prank(bob); vm.expectRevert(); membership.settleDust();
         vm.prank(bob); vm.expectRevert(); fees.flushDust(bucket, address(t0));
-        vm.prank(address(fees)); membership.settleDust();
+        vm.prank(address(vault)); membership.settleDust();
     }
 
     function testMembershipCannotFlushForeignCustodyDust() public {
         uint256 first = activatedPosition(); uint256 bucket = vault.nftBucket(first);
         venue.setFees(19, 0); vault.collectFees(bucket, block.timestamp + 100);
         vm.chainId(block.chainid + 1);
-        vm.prank(address(fees)); membership.settleDust();
+        vm.prank(address(vault)); membership.settleDust();
         assertEq(fees.dust(bucket, address(t0)), 19);
         vm.prank(address(membership)); vm.expectRevert(); fees.flushDust(bucket, address(t0));
         assertEq(fees.dust(bucket, address(t0)), 19); assertEq(rewards.liabilities(address(t0)), 0);

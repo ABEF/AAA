@@ -72,7 +72,10 @@ contract TypedV4EntryTest is Test {
         oracle.setTestFeed(address(0), address(feed), 1 hours); oracle.setTestFeed(address(zzz), address(feed), 1 hours);
         oracle.setTestFeed(address(source), address(feed), 1 hours); access.bind(Ids.ORACLE, address(oracle));
         registry = new NativeFlowRegistry(address(access), oracle, address(zzz)); entry = registry.activationEntry();
-        registry.activationAssets().setAsset(address(source), true, address(source).codehash, keccak256("source fixture admission"));
+        // The generic local source stands for the fixed reviewed fixture ZZZ;
+        // it is not a third user input. The LP pair remains a local substitute.
+        registry.activationAssets().configureZZZ(address(source),address(source).codehash,
+            keccak256("explicit reviewed fixture ZZZ identity, not stablecoin support"));
         BoundaryCore lpCore = new BoundaryCore(); FakePermit2 permit = new FakePermit2();
         positions = new BoundaryPositions(address(lpCore), address(permit), address(brokenWrapper)); lpCore.setPositions(address(positions));
         FakeState lpState = new FakeState(address(lpCore));

@@ -1,0 +1,3030 @@
+{
+  "schema": 1,
+  "purpose": "Bounded AST-selected execution, not full regression.",
+  "compiler_input_sha256": "7c94f378858fa4c994cd9a7f6aaf4da52cda42fbc010a1618d4e9c57ed971b1d",
+  "compiler_output_sha256": "b0b45efce8d5395fc1b9ca5be4d6301c33367873b1bfa3f2358240801897236a",
+  "size_evidence_sha256": "32f3e35edb025afc95b5820baf8fe3f00fc302a4e5440bb42f16809cd77f8c7a",
+  "production_sources": {
+    "src/ZZZAccessController.sol": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+    "src/ZZZBuyback.sol": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+    "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZContributionPricing.sol": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+    "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+    "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+    "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+    "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+    "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+    "src/ZZZMembership.sol": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
+    "src/ZZZMigration.sol": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+    "src/ZZZMigrationBudget.sol": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+    "src/ZZZNFT.sol": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+    "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+    "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+    "src/ZZZOracle.sol": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+    "src/ZZZPoolRegistry.sol": "10c776bd25b7308aa821615bc11672795aede856ef2be197532c452d26fec3af",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "70f27b707ac269d5f8ef06460d21d6d54561af4830f57e1ec116873ef1463b96",
+    "src/ZZZVaultCanonical.sol": "735010a389b2c6d8c6e9dc80170635bebb64586291e7671a56e5e104e23e3a48",
+    "src/base/ZZZCanonicalLedger.sol": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+    "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+    "src/interfaces/IZZZ.sol": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+    "src/interfaces/IZZZCanonical.sol": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e"
+  },
+  "selection": {
+    "AccessControllerTest": {
+      "source": "test/AccessController.t.sol",
+      "methods": [
+        "testCanonicalZZZIdentityMustBeBoundBeforeSeal",
+        "testFuzzTerminalCanonicalStateCannotReopen",
+        "testMissingOrMismatchedExitZZZCannotPermanentlySeal",
+        "testRetiredBridgeModulesCannotBeBoundEvenBeforeSeal",
+        "testSealErasesBootstrap"
+      ]
+    },
+    "CanonicalHandoffTest": {
+      "source": "test/CanonicalHandoff.t.sol",
+      "methods": [
+        "testRetiredSourceCannotAbortRecommitOrReopenThroughUnpause"
+      ]
+    }
+  },
+  "selected_methods": 6,
+  "omitted_methods": [
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testIncompleteDeploymentCannotSeal",
+      "ast_id": 45529,
+      "start": 1182,
+      "length": 83,
+      "original_sha256": "0a32a9e093a548a0255ad13f7747001c3bb6c49e18ba8136314011eae40596c4"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testAllCoreModulesWithoutCanonicalCompanionsCannotSeal",
+      "ast_id": 45565,
+      "start": 1270,
+      "length": 256,
+      "original_sha256": "b3bb7ae7964c5b69f15fe3d5913e19eb27c0d9bf4f029c4e8f8f706d22c4787a"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testNFTCompanionMustBelongToBoundCollection",
+      "ast_id": 45633,
+      "start": 1531,
+      "length": 396,
+      "original_sha256": "9e80bc0779faa24605b2f220ff28e02c990abe4f692e32dc711c75fb7e3c08a3"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testFeeCompanionMustBelongToBoundFeeController",
+      "ast_id": 45701,
+      "start": 1932,
+      "length": 401,
+      "original_sha256": "5b11de310423352009dd9debedb7d310e2eb83684818440d4444d159dadd87a4"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testCanonicalRandomnessMustBeConfiguredBeforeSeal",
+      "ast_id": 45768,
+      "start": 2338,
+      "length": 354,
+      "original_sha256": "46d4eda20b4c2e288ff89b5e8a9255475990812beb6b6117848f296ebf523754"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testCannotReplaceModules",
+      "ast_id": 46110,
+      "start": 4442,
+      "length": 173,
+      "original_sha256": "5a0b29e830074e80d1b3e60851af3663e061d00ee33934cf76f3c32c0f6307bd"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testGuardianCanPauseNotUnpause",
+      "ast_id": 46157,
+      "start": 4620,
+      "length": 210,
+      "original_sha256": "b94fa34ac5360c9aee586135c3ccb67768107acd73a9f2c3378dff96f83a4825"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testZeroDelayCannotBeChanged",
+      "ast_id": 46172,
+      "start": 4835,
+      "length": 85,
+      "original_sha256": "3a74efc2f9d26b8ef5668970f11156e36745db33da9b2ac497b19b029cffeca2"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testImmediateGovernanceKeeperChange",
+      "ast_id": 46247,
+      "start": 4925,
+      "length": 347,
+      "original_sha256": "799185be2a2c86e2ae784b59a33c801095f90e7325321b53b2dbaa455ecb87fd"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testBootstrapCannotConfigureAfterSeal",
+      "ast_id": 46274,
+      "start": 5277,
+      "length": 127,
+      "original_sha256": "720a9017c0723b3efa95ef1076036b2828ef9698ec681cd852efd74c265b2d5b"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testWrongControllerBindingRejected",
+      "ast_id": 46306,
+      "start": 5409,
+      "length": 169,
+      "original_sha256": "ce9a88d18d696f39480d6417ce19202379d6c1738ebf351cd1fede267b930baf"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testFuzzNonzeroConstructorAndOperationDelayRejected",
+      "ast_id": 46454,
+      "start": 5583,
+      "length": 804,
+      "original_sha256": "ae5d62af24ad13f75125a6d72f4a6baf2c700aa9221ae450b9dcb46c23842584"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testAuthorizedGovernanceCannotIntroduceDelay",
+      "ast_id": 46530,
+      "start": 6392,
+      "length": 409,
+      "original_sha256": "1e517c3c54ff01ce2289ab932de6786f55d3ce2ab48cac252b9e1f8296cd85e1"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testNoUnscheduledAlteredCancelledOrRepeatedExecution",
+      "ast_id": 46772,
+      "start": 6806,
+      "length": 999,
+      "original_sha256": "034e0a146a5b478f981cb21bc402645272536acf84605163a1d9e3291a62e0a0"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testProposerAndExecutorPermissionsRemainSeparate",
+      "ast_id": 46999,
+      "start": 7810,
+      "length": 1061,
+      "original_sha256": "38ef533f581a90e0bc77f2e9353ad3f00bad3c6dbf0c446454afaa33830512b0"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testImmediateBatchIsAtomicAndRoleGated",
+      "ast_id": 47304,
+      "start": 8876,
+      "length": 1383,
+      "original_sha256": "12e4d15c6966b8ecb9f2a9cc8f509dd5b5af43b0c50edeac4fe8331ef9bff238"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testPredecessorStillRequiresCompletionNotElapsedTime",
+      "ast_id": 47455,
+      "start": 10264,
+      "length": 716,
+      "original_sha256": "356634f80027c1eb6ca54eb7c5934d2a9dd1f31d16b29e6868db2fb1c680b71d"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testReservedTimestampCannotMislabelZeroDelayOperation",
+      "ast_id": 47496,
+      "start": 10985,
+      "length": 236,
+      "original_sha256": "e8a9622b92ab37d1688fc6bb822080d5570a77652b883b3a33ca119f12c55254"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testImportingDestinationCannotMintOrAllocateRights",
+      "ast_id": 63658,
+      "start": 19275,
+      "length": 380,
+      "original_sha256": "21f3d97666b3910215fc409358a8910d4bdeb5a216271a0479fee334a2236f5a"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testFullHandoffCarriesConvertedNativeLPRewardsToCurrentOwner",
+      "ast_id": 64093,
+      "start": 19661,
+      "length": 2153,
+      "original_sha256": "7af884403e0f4c431ab52651fa88cf284b311632adc0f1f2b02511ce0111e9b9"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testFreezeRequiresTimelockAndFullyRevealedMintInventory",
+      "ast_id": 64167,
+      "start": 21820,
+      "length": 454,
+      "original_sha256": "60793a2895ad7fc1e12a286bb733263e2d2aba5df98a5bbc8b9dcbe5c1979900"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testFreezeRejectsLiveLiquidityAndPreservesItsCustody",
+      "ast_id": 64242,
+      "start": 22280,
+      "length": 472,
+      "original_sha256": "8e2c3d9dad79636cff1bae3fce49cca8b762ba385f0db867ff87a235b218ac4e"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testFrozenSourceBlocksTransfersClaimsAndOrdinarySync",
+      "ast_id": 64355,
+      "start": 22758,
+      "length": 559,
+      "original_sha256": "6cf845fa6be2b5584e0579f4b11250e0e40783ec0a9cca6e82d86966b7cd7ffa"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testCompleteHandoffPreservesOwnersSharesTraitsAndBothRewardLedgers",
+      "ast_id": 64837,
+      "start": 23323,
+      "length": 2965,
+      "original_sha256": "5ea9fee7c32f4f56de1ca591421034752b365d8b87ca29fb76b67bb4e580f603"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testDestinationNeverCopiesOldOperatorApprovalsAndRightsFollowNewOwner",
+      "ast_id": 64996,
+      "start": 26294,
+      "length": 879,
+      "original_sha256": "0f803f869e4a696804dd0abbd8f61a8ca5de914fdc36ff9b151a84cc9908ed9c"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testMalformedRecordAndIncompleteImportCannotActivate",
+      "ast_id": 65087,
+      "start": 27179,
+      "length": 544,
+      "original_sha256": "b64756ed2991c19aac93db8e35781347da9d731f1b11b9c67f2e5d7550114cce"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testPartialFundingCannotActivateAndFundingCannotReplay",
+      "ast_id": 65161,
+      "start": 27729,
+      "length": 510,
+      "original_sha256": "c181baf4c026d34228bd62e2bf798ed9aac38bb7d15f4206eb705202e0d42290"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testAbortBeforeFundingRestoresOnlySourceAndPermanentlyCancelsDestination",
+      "ast_id": 65275,
+      "start": 28245,
+      "length": 680,
+      "original_sha256": "01d85cadd1d6b1f2e83bb12a6bf042af4fb7d2547375e37c7e489e4686b0278f"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testAbortAfterFundingRequiresExactReturnedBacking",
+      "ast_id": 65433,
+      "start": 28931,
+      "length": 884,
+      "original_sha256": "dc3fd7cdff7e8cfb028c83ad2461cedb526fd1808d19d6194e1eb2efa5ea3304"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testRemainingRarityAndArtworkInventoryContinueAfterMigration",
+      "ast_id": 65805,
+      "start": 30820,
+      "length": 1071,
+      "original_sha256": "8abaa66b5cf548a00d1a561728562b52533fa1dfc7ead873c74b24285bd1ffe0"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testDestinationRoyaltyPrefundsCannotSubstituteForHandoffFundingOrRewardUsers",
+      "ast_id": 65957,
+      "start": 31897,
+      "length": 1123,
+      "original_sha256": "723e983258f51924f382a95bf3df613a4d55880b4133d756cb28725f757827c6"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testPostFreezeSourceDonationDoesNotAlterStateCommitmentOrBaseBacking",
+      "ast_id": 66135,
+      "start": 33026,
+      "length": 1183,
+      "original_sha256": "0cca1905e4110c54eb5902a757026faa4b4bb7781013977524240d04f4f0f8e6"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testInterruptedSettlementKeepsCutoffsAndBlocksEarlyImportFundingAndClaims",
+      "ast_id": 66454,
+      "start": 34215,
+      "length": 1635,
+      "original_sha256": "2cc5eb97cd9546834ac1f3cb9b58eadc3c6265599cb49b53211f318bc41451cb"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testAbortBeforeSettlementPreservesLPAndPendingRoyaltyReceipts",
+      "ast_id": 66462,
+      "start": 35856,
+      "length": 122,
+      "original_sha256": "4fa7ba95909a114aa60631f1e2bd79bb82cd8d516cc4067b6b15d3e1e32aa2bf"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testAbortAfterRoyaltySettlementReopensWithoutDoubleCrediting",
+      "ast_id": 66470,
+      "start": 35983,
+      "length": 121,
+      "original_sha256": "36c55bd39074bcdb1bde22ce0c0743188ea8d3a5a259de4ea58d8e5a3833e406"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testFullThousandNFTInventoryImportsExactlyOnceWithCompleteDenominators",
+      "ast_id": 67015,
+      "start": 37679,
+      "length": 1832,
+      "original_sha256": "fd4fe918e6c1c26b35729c3accc9255e26a640050dd99f4563a35999845ff632"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testDormantImportedNFTCanActivateIntoExistingSharedBucket",
+      "ast_id": 67103,
+      "start": 39517,
+      "length": 654,
+      "original_sha256": "fe1851900d67e6ed647b40dbc1f71525899286cba83f5016b45a1e034e726759"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testActivatedSuccessorCanLaterMigrateAgainAfterNewMintsAndContributions",
+      "ast_id": 67281,
+      "start": 40177,
+      "length": 1179,
+      "original_sha256": "4656e965daf16f5ffd1fbcb4fe8e7e1ce869bb187ade1a714033d0a5e4d80018"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testCrossChainNoticeDoesNotAuthorizeUnverifiedFreezeOrExport",
+      "ast_id": 67380,
+      "start": 41362,
+      "length": 692,
+      "original_sha256": "91351e0f073c123a27cadf14900cd3af1947e11d5d292f4b7a126cd61dc82efb"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testUnsealedSameChainDestinationCannotBeAnnouncedAsExecutableHandoff",
+      "ast_id": 67457,
+      "start": 42062,
+      "length": 625,
+      "original_sha256": "8460e165d6005b45c1592bcf5823b95ff840b6fc0a951c4459771dce389b2261"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testAbortedSourceCanUseFreshDestinationWithoutReusingOldRootsOrFundingFlags",
+      "ast_id": 67610,
+      "start": 42693,
+      "length": 947,
+      "original_sha256": "034e837b4be4864c07fa296afdb9a0dcb50f5a3c7eb6173d37d729e9424ac812"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testEmptyCollectionWithRequiredETHAndZZZCanMigrateWithoutInventingBacking",
+      "ast_id": 67771,
+      "start": 43646,
+      "length": 1227,
+      "original_sha256": "8593744a9309de11cec321e7fcc93661503c97ab312e6f169943bf3b6d7ddcfa"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testSatelliteConfiguredDestinationCannotPrepareCanonicalImport",
+      "ast_id": 67836,
+      "start": 44879,
+      "length": 434,
+      "original_sha256": "107619043b5a9a591965848eabb09063193d32924930b823be0e3aff123ae07f"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testPartialFundingAbortReturnsOnlyTransferredBacking",
+      "ast_id": 67993,
+      "start": 45319,
+      "length": 922,
+      "original_sha256": "b28da2dcd13801d488233765ba02d44ee7c2ad37ec7e7be9bfbbb3cf630d6ed8"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer",
+      "ast_id": 68212,
+      "start": 46247,
+      "length": 1258,
+      "original_sha256": "7523b87fd786e5de8890d6c195225ead7a0d6f48bda0e1911b42ec841287944a"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testRetiredRoyaltyInboxForwardsOnlyRemainingReceiptsWithoutDuplicatingClaims",
+      "ast_id": 68443,
+      "start": 47511,
+      "length": 1343,
+      "original_sha256": "7b62b8ce1a691ba7ce7a4ed3333790bea57c80ff4433acc7d3165089f4b12029"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testMaximumLocalAssetAndBucketDomainsPreserveEveryImportedLedger",
+      "ast_id": 69000,
+      "start": 48860,
+      "length": 3187,
+      "original_sha256": "1a8251ae94742aa48bfd6e1400e4685135c6ecafad93eba79b7e1074eb6c119f"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testMaximumPrefundedCompanionDomainsFitBudgetAndAbortPreservesAllPrefunds",
+      "ast_id": 69672,
+      "start": 52053,
+      "length": 4073,
+      "original_sha256": "b229b3d00b179460b6d2b6d3fb808bbe789b1735a840b82e78e0d41420f92230"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testLegacyRoyaltyReceiptsQueuedWhileSuccessorFrozenRemainBackedAcrossNextHandoff",
+      "ast_id": 69856,
+      "start": 56132,
+      "length": 1133,
+      "original_sha256": "80c0d53385da952a5dbda01c5d212472148177794dd21225e1c23a6eb2a7503f"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "testImmediatePreparationAndCancellationRequireGovernanceAndExactNotice",
+      "ast_id": 71338,
+      "start": 8308,
+      "length": 1617,
+      "original_sha256": "29b88dc9dfb43bd243d9a0bed51dd44b84fddeccaf065d8ba6bf3cde6c3fa7de"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "testPreparationIsCanonicalOnlyAndDoesNotAcceptAnEmptyNotice",
+      "ast_id": 71475,
+      "start": 9930,
+      "length": 785,
+      "original_sha256": "b3849c7a1acbb20057638d8117110002007ee2df7a4e2b2d655b962e8e4fddb1"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "testClaimsTransfersPendingRevealAndLPFeeCollectionStayAvailable",
+      "ast_id": 71757,
+      "start": 10721,
+      "length": 1525,
+      "original_sha256": "3d56f1451c7bff7a60ddd1e2e916b0c192dd4bc29092f19204b14ee2c736565c"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "testQueuedConfigurationCannotBypassPreparationButPauseControlRemains",
+      "ast_id": 71905,
+      "start": 12251,
+      "length": 821,
+      "original_sha256": "cf8c54a006e9603787299a5869c1513afaafd56e9a33a82ea6ddf73b76654bc1"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "testMaturedAnnouncementInNFTCallbackRollsBackTheEntireMint",
+      "ast_id": 72044,
+      "start": 13077,
+      "length": 823,
+      "original_sha256": "4e690f6d6170c4f480a47b28968c1af3948866c8b8316004e4ae22ab941f9530"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "testMaturedAnnouncementInFinalTreasuryCallbackCannotBypassVaultEndGuard",
+      "ast_id": 72163,
+      "start": 13905,
+      "length": 696,
+      "original_sha256": "72f8fa24dfb6f328bba4bd56e9a91b5045bf9d4572b451477a45d9c956fa07c4"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "testHarvestAndTimelockedParkingRemainAvailableWithoutSourcePrice",
+      "ast_id": 72337,
+      "start": 14607,
+      "length": 1062,
+      "original_sha256": "99c143152594c451a1574b4a8cde10073253d88345fe5ab84f316b18bfd58379"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationLeavesExactAttributedIdle",
+      "ast_id": 194772,
+      "start": 10210,
+      "length": 458,
+      "original_sha256": "8537393ff4ecfcfa3b0d690e8d6f9b51f694c255e2ddcf89765f56742292beb8"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testMostlyIdleActivationRejected",
+      "ast_id": 194843,
+      "start": 10673,
+      "length": 351,
+      "original_sha256": "a5d9844467496cd96e1f86156b84a463bc42bf0e377ce127ce71bed85da3e92b"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testVenueFailureRollsBackActivationKeepsPaidDormantNFT",
+      "ast_id": 194970,
+      "start": 11029,
+      "length": 635,
+      "original_sha256": "77995c13878f06cef11fe0fd35ac9daed42137f7bd6b645a79ee27ab2879ca44"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testDonationNeverBecomesAnotherNFTPrincipal",
+      "ast_id": 195025,
+      "start": 11669,
+      "length": 295,
+      "original_sha256": "cc6161ccadf86592e341d3fabbfa55d5f8c9eca42b9cbf4e48d6a71ceb084ade"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testFeesNotPrincipal",
+      "ast_id": 195091,
+      "start": 11969,
+      "length": 334,
+      "original_sha256": "3989ec2fcc615a5504c81dad2ffb659140ed387496f1e90e32f1baf354e442b0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testCompoundingAddsOnlyDesignatedShare",
+      "ast_id": 195176,
+      "start": 12308,
+      "length": 445,
+      "original_sha256": "7e9c5665c970f4ee3daafefd6434c1b58946e1ad5d7ab595f7f5a3cd2ea0ee41"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testRebalanceReplacesLPButPreservesEconomicNFT",
+      "ast_id": 195249,
+      "start": 12758,
+      "length": 386,
+      "original_sha256": "4f348d3bb5a268b0ed3642816827724fdf9bdb412eff16a1319ccf2ff435dc35"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testOnlyKeeperCanRebalance",
+      "ast_id": 195281,
+      "start": 13149,
+      "length": 161,
+      "original_sha256": "acd1b2e58bef4b3aeee575d39c01ddeafd344fcbd1e62a110253887322be3fda"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testNoOwnerWithdrawalEntrypoint",
+      "ast_id": 195314,
+      "start": 13315,
+      "length": 209,
+      "original_sha256": "6bcd52352e425d8c7a1ffbd419fb372afb8ca22a8806043e3a09eb3620856a7a"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testNFTUserCannotTransferUnderlyingLP",
+      "ast_id": 195352,
+      "start": 13529,
+      "length": 223,
+      "original_sha256": "fd64e1e9bc7adcdab1fa4e50b0a1a9523c6cac06c199914e0470642a8849f1a9"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testTopUpKeepsBothNFTsAndCheckpointsFees",
+      "ast_id": 195429,
+      "start": 13757,
+      "length": 407,
+      "original_sha256": "2477ceca5abe9ff9654b933aef85170c5d9d94c9edaaa21053b956f670dd7dc2"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testMigrationReleaseOnlyGoesToBoundModule",
+      "ast_id": 195549,
+      "start": 14169,
+      "length": 592,
+      "original_sha256": "90cbd8e2cecd413e259b684f2752865894be828a1d6254487699815c5c39cb71"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testSatelliteCannotIssueAnotherCollection",
+      "ast_id": 195587,
+      "start": 14766,
+      "length": 214,
+      "original_sha256": "8477ad1d476980106930fa75f6be5d99d823fa9a7d9a78b5f6fe42ae7fd1baad"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testPauseBlocksMint",
+      "ast_id": 195622,
+      "start": 14985,
+      "length": 183,
+      "original_sha256": "d61cac05498bbdc36e8fef320ecedcd36f3c079efe04737289622dbf8f502f47"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testDormantMintForwardsPriceWithoutLiquidityOrRewards",
+      "ast_id": 195865,
+      "start": 15173,
+      "length": 1315,
+      "original_sha256": "80015669951b110df68f995c93578617af479bd5b898cb4e3f77603f32995199"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testFuzzMintRejectsAnyUnderpayment",
+      "ast_id": 195928,
+      "start": 16493,
+      "length": 390,
+      "original_sha256": "cc703eae48181cbd2ade21a2d8d2b3ccf35934fe2b52bc8809ff59d20fe5e3a5"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testFuzzMintRejectsAnyOverpayment",
+      "ast_id": 195991,
+      "start": 16888,
+      "length": 395,
+      "original_sha256": "37af30cb4150796d19ec6c42da477700469912af36bd700812e9698271a7cd02"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testRejectingNFTReceiverRollsBackMintAndPayment",
+      "ast_id": 196090,
+      "start": 17288,
+      "length": 588,
+      "original_sha256": "9a0ac0799c4e4dec042dc6623e062e5229bb402453cc31e7a6292b7eee1f195f"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testRejectingTreasuryRollsBackNFTAndPayment",
+      "ast_id": 196213,
+      "start": 17881,
+      "length": 662,
+      "original_sha256": "bdbd431163c57983763d550bb3b219fd8db6283982ef54191821c81e4e15d380"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testReceiverReentrancyCannotMintSecondNFT",
+      "ast_id": 196295,
+      "start": 18548,
+      "length": 524,
+      "original_sha256": "4f891caf1dc115ed0bdb86e4dd27cc169aaf196ba34c1960d43aa39716c5a7df"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testTreasuryReentrancyCannotMintSecondNFT",
+      "ast_id": 196386,
+      "start": 19077,
+      "length": 552,
+      "original_sha256": "f43b0d05db162f3763e8fc616c7899c415c0826eb3c5ba51f719e751a1ec167a"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testZeroProceedsRecipientRejected",
+      "ast_id": 196413,
+      "start": 19634,
+      "length": 146,
+      "original_sha256": "37bb4e1d1d8c75cdc5a0e3a0b1f564b740ff93f303ed43201d3df8323fbc0b12"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testSelfProceedsRecipientRejected",
+      "ast_id": 196454,
+      "start": 19785,
+      "length": 238,
+      "original_sha256": "579e4de724b380c2a2c4cdddf326a338e7c8b4e2e132a100433f5db7ac050f94"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testUnsealedSystemCannotMint",
+      "ast_id": 196506,
+      "start": 20028,
+      "length": 292,
+      "original_sha256": "924c58605b8133adc4b1edf666f68ba58fa8365451816fcfd3b49452ff17542c"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testDormantTransferOnlyNewOwnerCanActivate",
+      "ast_id": 196607,
+      "start": 20325,
+      "length": 503,
+      "original_sha256": "f6fbddebf315b31168808cafa6552ea5e42f1acc06db162e6f400f31940bc8fa"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationCannotIssueSecondNFTOrChargeAnotherMintFee",
+      "ast_id": 196709,
+      "start": 20833,
+      "length": 558,
+      "original_sha256": "2d5c4969903cf0a8d93e0aed12783734e53bb70d411ab2d88c00f1716b797b87"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testDormantCannotTopUpCollectCompoundRebalanceOrMigrate",
+      "ast_id": 196831,
+      "start": 21396,
+      "length": 626,
+      "original_sha256": "564d6d644d3f5e0f63341bfced52a5e56b3bef9590f68692e69301f89e112493"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationRequiresAtLeast100USDInput",
+      "ast_id": 196895,
+      "start": 22027,
+      "length": 337,
+      "original_sha256": "8a375c6a6adfa5f18ce68c62c9fa8fcbd5ed4334c6c53195a37cf86c7fb677bf"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationRejects100InputWhenActualLPIsBelow99",
+      "ast_id": 196984,
+      "start": 22369,
+      "length": 554,
+      "original_sha256": "d6d2e1e54e9d93eaefe96be83de68ae9e95727ccf1572149ec8e6990de75a8a2"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testExactly100ActualLPActivates",
+      "ast_id": 197059,
+      "start": 22928,
+      "length": 384,
+      "original_sha256": "5988b8e9cdf5ec724ea3d7a444115b62d768f3b266f1ca4ce0107f43927fe152"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationHonorsStricterPoolMinimum",
+      "ast_id": 197130,
+      "start": 23317,
+      "length": 358,
+      "original_sha256": "dcdd9dbc8ab81dade3103e22ad766d299cc5243e6d07525ec0584c5c2f90c3d0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testPauseBlocksActivationKeepsDormantNFT",
+      "ast_id": 197194,
+      "start": 23680,
+      "length": 330,
+      "original_sha256": "889e7c53c01e0aa35eb13412cd29e100b6088095605fb611f40d5c3d25eb83e0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testWrongChainCannotActivateCanonicalDormantNFT",
+      "ast_id": 197260,
+      "start": 24015,
+      "length": 351,
+      "original_sha256": "0140e2558e9a2c9de04ab03639c336e6c9753d1da4a05702838fb6df2cd27291"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testOldDepositSelectorCannotBypassPaidMint",
+      "ast_id": 197321,
+      "start": 24371,
+      "length": 373,
+      "original_sha256": "100d3437570cbc322c8461b72acd0e9be6322a5ba7da740cc9bcaf6e17397df0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationCannotCollectHistoricalSharedRewards",
+      "ast_id": 197483,
+      "start": 24749,
+      "length": 841,
+      "original_sha256": "63683fe800bcf2193504a42525ee8ef33c9cc599b220fbedf9b79dfd6e09f9d0"
+    }
+  ],
+  "retained_function_bodies_and_helpers": [
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "setUp",
+      "ast_id": 45433,
+      "start": 583,
+      "length": 171,
+      "original_sha256": "1ea7f6d24e3b02d2ce624d8c06412897d5a882c8071041b36b231764f71411ed",
+      "selected_test": false,
+      "body_sha256": "af6494d3231feef175ba2af1d5ca993342c4926b481544ce68363ac5ae81ebef"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "fill",
+      "ast_id": 45449,
+      "start": 759,
+      "length": 95,
+      "original_sha256": "93d05ad7e63404db8db770e782210567de368a358a33b0ea6d1bf9c79c8d08d1",
+      "selected_test": false,
+      "body_sha256": "c1b49ad20761649e4b630a2ca18e44368f8afe877f4385e008e32620f7535390"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "fillCore",
+      "ast_id": 45515,
+      "start": 859,
+      "length": 318,
+      "original_sha256": "c40ba67e9ad5c607b92e5de13c70d73e4629822da1a55b28db8cf7087b647dea",
+      "selected_test": false,
+      "body_sha256": "4310733108c78baa3f36f581f9a02b06cab739051c2edfedcfe83f7109e1bc5e"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testCanonicalZZZIdentityMustBeBoundBeforeSeal",
+      "ast_id": 45844,
+      "start": 2697,
+      "length": 443,
+      "original_sha256": "31c26312d5bbdde65177ca73c186b110263931cb6969b43d368b5a0ffee8ee5d",
+      "selected_test": true,
+      "body_sha256": "1128162b9d3885753f35bc650a317f85a1d515fd5cc8aa6bd05f8bc42f11467d"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testMissingOrMismatchedExitZZZCannotPermanentlySeal",
+      "ast_id": 45956,
+      "start": 3145,
+      "length": 660,
+      "original_sha256": "670b2913929efce19b18910815d3ac9b25e0ebad783bea717394c6fdea5008d2",
+      "selected_test": true,
+      "body_sha256": "e4f50a429997d448a58a563f802cf162136acc6c89528705c019053dc2f3eaa8"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testSealErasesBootstrap",
+      "ast_id": 45984,
+      "start": 3810,
+      "length": 123,
+      "original_sha256": "f2fe7ff4e58116ab119030f1206b0ef4d5095cb9e0c1db911c06acffb71f7cab",
+      "selected_test": true,
+      "body_sha256": "cd417d41c9680ca5bacadb9b07cf15327b9af9c6c57e6bb69626625b7b7ed077"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testFuzzTerminalCanonicalStateCannotReopen",
+      "ast_id": 46070,
+      "start": 3938,
+      "length": 499,
+      "original_sha256": "fe3bc4f5b7ea00da306503b4a4013797a654e161965cfaa0ec7911857e33269a",
+      "selected_test": true,
+      "body_sha256": "e638a74d5b1e19b2b0f7378855989671ec73133d0479d743d5281c229c4f0e8f"
+    },
+    {
+      "source": "test/AccessController.t.sol",
+      "contract": "AccessControllerTest",
+      "function": "testRetiredBridgeModulesCannotBeBoundEvenBeforeSeal",
+      "ast_id": 47572,
+      "start": 11226,
+      "length": 397,
+      "original_sha256": "633d22246b9d0467e2fb763db8cdd7a1833810bf9edf9979cbe7d7a8edb93a4d",
+      "selected_test": true,
+      "body_sha256": "bc034b4f5f331a4f298fa4a03736faaf61d292c007a85fedca0f13d22185af96"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "prepareImport",
+      "ast_id": 60948,
+      "start": 1495,
+      "length": 58,
+      "original_sha256": "c4091e31d821e25d54e6dd5bc24abd163d9a9f9e9d7e05afc0aa72f22c0fb577",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "deploymentCommitment",
+      "ast_id": 60953,
+      "start": 1558,
+      "length": 64,
+      "original_sha256": "2d86143a11a7bed14b801d7f3cba8b9ee8f47cab15829f769f1c639a65cb9e1b",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "freeze",
+      "ast_id": 60956,
+      "start": 1627,
+      "length": 27,
+      "original_sha256": "585d18bea3cd74e7e71e9457b134a0a2307d112e8e218b08d9715230af5fd5d4",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "settle",
+      "ast_id": 60961,
+      "start": 1659,
+      "length": 37,
+      "original_sha256": "0ffc901700c4dca8020c43dab97cd16fbd2b6750443411aa4edc8c78574d42c8",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "settlementCursor",
+      "ast_id": 60966,
+      "start": 1701,
+      "length": 58,
+      "original_sha256": "dd75ea595400363e7aaa0460fd1430a547f7a3c7eedcbb7f40bedcc75b574dfb",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "phase",
+      "ast_id": 60971,
+      "start": 1764,
+      "length": 47,
+      "original_sha256": "1d3e64b6579ea30962e67f7a49cbbb48927bba42b824d57f1fe92c1e98697f47",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "moduleAt",
+      "ast_id": 60978,
+      "start": 1816,
+      "length": 62,
+      "original_sha256": "cf0d5fa435a5361c39a452aa725f182c0d228ebe1017c5d1921b6336269e4692",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "recordCount",
+      "ast_id": 60985,
+      "start": 1883,
+      "length": 67,
+      "original_sha256": "6ffa18e4daaebe26508c2a77b8601b5867863ee4040850bb1b49d9fd3fd367dc",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "assetCount",
+      "ast_id": 60992,
+      "start": 1955,
+      "length": 66,
+      "original_sha256": "d90c1d73db8b85b20a17a7c2547bc94f5d4f8543d944ad5d8ea17bfbbd35a4e2",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "exportRows",
+      "ast_id": 60999,
+      "start": 2026,
+      "length": 56,
+      "original_sha256": "d5ed240cbe0858d64737ddcd6af925733d6cb4ebfee657b8440f507af83b2135",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "importRows",
+      "ast_id": 61007,
+      "start": 2087,
+      "length": 67,
+      "original_sha256": "c96a18f547a15ddf9f15694810c6d60d9e58a91876d2204ede43a794456ea23a",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "completeImport",
+      "ast_id": 61010,
+      "start": 2159,
+      "length": 35,
+      "original_sha256": "aff59a58b065f19acea54c06566ea2577b2a4fe7c8812369f809c364ff69a684",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "fund",
+      "ast_id": 61017,
+      "start": 2199,
+      "length": 50,
+      "original_sha256": "3b974c4ce9d391627138f8f02fb4e6bd5e422b9b7646c4b18de8529147ce791d",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "commit",
+      "ast_id": 61020,
+      "start": 2254,
+      "length": 27,
+      "original_sha256": "b211d10141866c31fbc34bfc3c66c3e31f7f710f75ba3b284d3402f98056eb30",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "abort",
+      "ast_id": 61023,
+      "start": 2286,
+      "length": 26,
+      "original_sha256": "fbdbcc3ba1b9931e32f8f5c22ec37d84f84900186b80d9c4fe48dfc7e43c014f",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "returnFunds",
+      "ast_id": 61030,
+      "start": 2317,
+      "length": 57,
+      "original_sha256": "886739d207a09aa8f6d573f235916fa16aa010504d83bf37e8b5b087c40c7d4d",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "finishAbort",
+      "ast_id": 61033,
+      "start": 2379,
+      "length": 32,
+      "original_sha256": "2efeee7fd89099d713437d6c683c2971b1ad1b1a24bd8192344cc7bbc870d75b",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "stateRoot",
+      "ast_id": 61038,
+      "start": 2416,
+      "length": 53,
+      "original_sha256": "fe9a2bee0fef52cd4dfcf1f16e4243a2cb8dda8e414bea23efd426fb281c8a5b",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "ICanonicalHandoffTest",
+      "function": "funded",
+      "ast_id": 61047,
+      "start": 2474,
+      "length": 72,
+      "original_sha256": "32529ef3ab7a9d5033c607a8932a438e4757ed26826116b4f6e22d3bc90a8e81",
+      "selected_test": false
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "HandoffTransitionToken",
+      "function": "",
+      "ast_id": 61073,
+      "start": 3002,
+      "length": 29,
+      "original_sha256": "1aaf5a4a92022df1dc0ffb6de2099968802272ed8223653a732da795cc3f3750",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "HandoffTransitionToken",
+      "function": "arm",
+      "ast_id": 61118,
+      "start": 3036,
+      "length": 312,
+      "original_sha256": "dc0bf22eae190d82b1aa69e74335a166e43f642ddadf797cd52fbac24b68feb6",
+      "selected_test": false,
+      "body_sha256": "98cb9e77b07773f408e07b2bcd772486cfa8c4b93c8e50cba0e30d065105a282"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "HandoffTransitionToken",
+      "function": "_update",
+      "ast_id": 61165,
+      "start": 3353,
+      "length": 324,
+      "original_sha256": "719b3dd7b146e6a78bd42f7ee614e65ebba86e350ae92834598ed2b19bd35f2d",
+      "selected_test": false,
+      "body_sha256": "cef7b31e4cfb4369bcc8a63bf81aa3c65d8ea0115de18da6ea3e180b7f7fe027"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "HandoffNativeWrapper",
+      "function": "",
+      "ast_id": 61176,
+      "start": 3805,
+      "length": 30,
+      "original_sha256": "6180541500680e0f5093bea7532511774087fd6ff31130d54edc22367dc036fb",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "HandoffNativeWrapper",
+      "function": "deposit",
+      "ast_id": 61187,
+      "start": 3840,
+      "length": 69,
+      "original_sha256": "c11c0d8022c456764f31b72e2c5d22af3c8b5b7bb10f0cef52ad80220ea0d42a",
+      "selected_test": false,
+      "body_sha256": "cd6060336d8b7923cd6aebc146bceec8cf14e7f95c41705e7b53c7aa87f359ad"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "HandoffNativeWrapper",
+      "function": "withdraw",
+      "ast_id": 61213,
+      "start": 3914,
+      "length": 129,
+      "original_sha256": "e777511f1984f87cce567771afb2dfc5272fae10bc028b16e20372e87a1612cb",
+      "selected_test": false,
+      "body_sha256": "b8982bf9396b78f6f5b421d26de8ed746bc529862d6dde8f44eac38a8364b079"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "setUp",
+      "ast_id": 61434,
+      "start": 5518,
+      "length": 550,
+      "original_sha256": "850daee0d7b55ea6f8bc564e77f316600fddab97cdf00aed2f3d7a83f8968ed8",
+      "selected_test": false,
+      "body_sha256": "b522b0c8301bdf53adea8e6872337f97db6ee648849422bdd2ddb3559a47864c"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_deploySystem",
+      "ast_id": 61448,
+      "start": 6074,
+      "length": 133,
+      "original_sha256": "ad52293dbd21f061db45f40416820ada6e3098c22fa1fbf5b5f96a44b6eee877",
+      "selected_test": false,
+      "body_sha256": "1e00241df008f63731206bc775cb701e2e85683726599b1318a760b1561aa785"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_deploySystemWithAssets",
+      "ast_id": 61466,
+      "start": 6212,
+      "length": 182,
+      "original_sha256": "095cff61ef6b51d9b4b1c9c29b4cac5b049fe338640fed909f0ff04fdc4863d2",
+      "selected_test": false,
+      "body_sha256": "776b2b8781635713585c443822e54ae79eb1388c9b4288d58d8c53cb5b5bd148"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_deploySystemWithChain",
+      "ast_id": 62111,
+      "start": 6399,
+      "length": 2855,
+      "original_sha256": "9a586d719f3e576d38a1cdf9644288a79bcb76eee894aa9905a511fd8eb3521f",
+      "selected_test": false,
+      "body_sha256": "123e4186302e2995c4563d968be79091f088b419450104461b53c106ab8161e3"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_approve",
+      "ast_id": 62159,
+      "start": 9260,
+      "length": 226,
+      "original_sha256": "55a9289a6a64f6fea9b0f9670461a7df1aa492ad6adc8f9bbfc08ebff0fc9fee",
+      "selected_test": false,
+      "body_sha256": "31b36383739d83a5e094817437e121f01128a2bbbd9a39e409a1c31183af4077"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_govern",
+      "ast_id": 62282,
+      "start": 9491,
+      "length": 804,
+      "original_sha256": "d68be5e1def26e6506759d26face6a049a3c5170491e430e4ebaf76f0b579829",
+      "selected_test": false,
+      "body_sha256": "5f238ab07cffe3fbcc3859fd01b445c2557ac2761751114c676a6f3e31db3a5d"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_governReject",
+      "ast_id": 62346,
+      "start": 10300,
+      "length": 321,
+      "original_sha256": "4dd5e98ef5061283a0c44b04730bdfb5058142e0243065bfb9c3d689d771ff54",
+      "selected_test": false,
+      "body_sha256": "65a9d899dc7c2d0f4b43b3a337959faba6123ce2bdcd4dbbde9f7cb1031bec15"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_fresh",
+      "ast_id": 62360,
+      "start": 10626,
+      "length": 78,
+      "original_sha256": "ccc412f53898550f20eb8dfaa4da9bf5bca41803d99ca96477cc354fb32697e8",
+      "selected_test": false,
+      "body_sha256": "70fc39ddd490e382d3d61e86917faf2e6119b8ba65eaa617540888d53d83d498"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_mint",
+      "ast_id": 62410,
+      "start": 10709,
+      "length": 276,
+      "original_sha256": "227365339a4ed1224c49975fa5f4e8c7ed53340808476dab8072e3cf5dfb5b25",
+      "selected_test": false,
+      "body_sha256": "fd5b1853e0be5f08b050824505070d543c20d21842ee9022fbfa916dbde53052"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_activate",
+      "ast_id": 62446,
+      "start": 10990,
+      "length": 186,
+      "original_sha256": "f86f329b307860fd5194a656a4fe0c519bad22bb6eabc6fb2e37ea9906f85a1e",
+      "selected_test": false,
+      "body_sha256": "f57aedf295b09e0fb6695790fffb5540f597a70048fb294d1cbb66c01112ea5a"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_seed",
+      "ast_id": 62552,
+      "start": 11181,
+      "length": 569,
+      "original_sha256": "39a52e7b5f908fd0b6e19865b7227bb9564d1317c109c5eebfe7a9c584e8307a",
+      "selected_test": false,
+      "body_sha256": "4aba2fd53e6af3eec442aac19b0e195c91980d77d4bf21f2f6e5386f31735452"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_prepare",
+      "ast_id": 62596,
+      "start": 11755,
+      "length": 369,
+      "original_sha256": "36a50ab26ea0fac9705cfa6001825791b08db4283d29e36e052f592ab03d42ff",
+      "selected_test": false,
+      "body_sha256": "2d2ba22c891cb15c3af84320ce949f51b77f50ba808074ddf4b1920d2e9f9e1b"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_park",
+      "ast_id": 62692,
+      "start": 12129,
+      "length": 650,
+      "original_sha256": "e55b137ae444095ddee54e576469912db233385fe1fa99353badbb8f705c5925",
+      "selected_test": false,
+      "body_sha256": "e3d93603297ee71d643da48ff376e5c2f06ca0ff8220056cde9fffd1b7600270"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_freeze",
+      "ast_id": 62747,
+      "start": 12784,
+      "length": 365,
+      "original_sha256": "3f8616dfa19a90d74b152d9a77063d83c4c3793021c428e85e8fd7803e95205d",
+      "selected_test": false,
+      "body_sha256": "93b38e7e3f11f9f17fbf7da798a28a03f89e0560a52d05a89f4631915eee6c90"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_settleAll",
+      "ast_id": 62804,
+      "start": 13154,
+      "length": 464,
+      "original_sha256": "8a38c0e2106674fb8f6a0e59a0e40bcd2ee162ff8b43ffd00bb0a4738789c0c5",
+      "selected_test": false,
+      "body_sha256": "f7c0bac8cd08aed37fd4c2edec4389010ee152ce5d236031151a2f4486d5814a"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_exportAll",
+      "ast_id": 62901,
+      "start": 13623,
+      "length": 873,
+      "original_sha256": "8a7f43755dc4047618f7995d41aea314cc874378a407c1b3d1f0cc26f8237e14",
+      "selected_test": false,
+      "body_sha256": "dd94c7dfbe4d0afbe1abbd3e0b8cd09ae4346402a74d9aa956b2fc2b9bd94e00"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_importAll",
+      "ast_id": 63055,
+      "start": 14501,
+      "length": 1152,
+      "original_sha256": "02a848df220b46166fdc91d29c0188234d6e5b5e66744e8a7b019e434e7bc3df",
+      "selected_test": false,
+      "body_sha256": "8092de4a195a77049c55920a094ec373f047235dba252f5298423961d43681c0"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_fundAll",
+      "ast_id": 63120,
+      "start": 15658,
+      "length": 480,
+      "original_sha256": "9591df8764a79de7c601dc2c4327366df9a341a450d1351a96476c8ef2383e72",
+      "selected_test": false,
+      "body_sha256": "a9945dba04ce74a03b57d29e245c15241e00ad8f7929d349a9555e15b6a765e5"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_commit",
+      "ast_id": 63156,
+      "start": 16143,
+      "length": 222,
+      "original_sha256": "fa195b866a624aa5b09a1a8d5fdf28bb2b36cf749b7f945d7527fbad169b02f5",
+      "selected_test": false,
+      "body_sha256": "3d0c617918efb3f63d29cc3cab3f366481ef74dbb9a086c77fe651c7d6c51f9d"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_migrate",
+      "ast_id": 63178,
+      "start": 16370,
+      "length": 117,
+      "original_sha256": "a2eb4f2b39da101e297c75977b5b6af60b996732073cbefae8b6a9a0f94c996d",
+      "selected_test": false,
+      "body_sha256": "d62019e0e8923bb5f13b312536ba22af307c7d2878196de199956b7401814c04"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_logGasPeaks",
+      "ast_id": 63212,
+      "start": 16492,
+      "length": 497,
+      "original_sha256": "621a401cd898b443398ca18d94fa30028b1dc880de299c0e6f2ff23a9c853e31",
+      "selected_test": false,
+      "body_sha256": "e3598e84c151072ab0b13a77aeb3b6fe0b8e71f39626bd7a108b52b51e919085"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_coolSystem",
+      "ast_id": 63415,
+      "start": 16994,
+      "length": 1001,
+      "original_sha256": "64fc84c664d9157e470d324e7dd1c828bc726746f9e2c9b6f340a585801fa642",
+      "selected_test": false,
+      "body_sha256": "7802514d1bdf178d3d74509e283e1ff42d27afac871b1cc6d9a14631438df27a"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_governColdHandoff",
+      "ast_id": 63515,
+      "start": 18000,
+      "length": 634,
+      "original_sha256": "0a09ae97b249f1299a29d6b0e45f7bb19e492cb9b8c21bd8f55e40f38113f4d7",
+      "selected_test": false,
+      "body_sha256": "4879cb42a18a4dbec5a08d2bb67c0548c69d65e244a15fd0a89ca772196ed959"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_rewardRowHash",
+      "ast_id": 63564,
+      "start": 18639,
+      "length": 354,
+      "original_sha256": "cf57c3d3f72139a1ab76b1526715a39bc894d774707b6adba5521f5bbe948d0b",
+      "selected_test": false,
+      "body_sha256": "b14ec058cf682706438797b4afb48acaf2ffb6e5baf3b4636aca776f197bf3fc"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_royaltyRowHash",
+      "ast_id": 63602,
+      "start": 18998,
+      "length": 271,
+      "original_sha256": "d8ce25bb35cbd8ee3d320d1adf995d1f45d579e565e5d149a0a46321dab6701d",
+      "selected_test": false,
+      "body_sha256": "8d723c620e9a0184a1df3dd196ac44686d36fa9019dad991aa40485dd2715a88"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "testRetiredSourceCannotAbortRecommitOrReopenThroughUnpause",
+      "ast_id": 65596,
+      "start": 29821,
+      "length": 993,
+      "original_sha256": "e6f313b24973981cac2f0023f3356c1121c249f7d8d596d567fb32b4811034e2",
+      "selected_test": true,
+      "body_sha256": "f8aa54ee2787ff90e452e486ac3fb497554170b24acab35640215a3d87135f0c"
+    },
+    {
+      "source": "test/CanonicalHandoff.t.sol",
+      "contract": "CanonicalHandoffTest",
+      "function": "_abortDuringSettlement",
+      "ast_id": 66756,
+      "start": 36109,
+      "length": 1564,
+      "original_sha256": "deee7b8df7ff30015c689480cba486c4618474bab8c8329f4b95aa68ff388354",
+      "selected_test": false,
+      "body_sha256": "f462c07ac577aed733897f573f94127361c8bd8f835867c9e06d36148be51458"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationPools",
+      "function": "",
+      "ast_id": 69940,
+      "start": 1683,
+      "length": 100,
+      "original_sha256": "d79797d54658e82c1e06adec76272b2b1b0152d886dc9e164de8343e33a57d87",
+      "selected_test": false,
+      "body_sha256": "519ea50dd6e4a761dc3d52ac75a206161fde9c639cc82220ce5153fabb2fad35"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationPools",
+      "function": "setTestZZZIdentity",
+      "ast_id": 69952,
+      "start": 1891,
+      "length": 66,
+      "original_sha256": "93fd87cda64fa788014308c302d74b78a828008db950049954961b14f2e1835d",
+      "selected_test": false,
+      "body_sha256": "0d4220cb9f024ea2f08410e526936c0beda5d08089901ec9d7e7107e4c9f226a"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationPolicy",
+      "function": "",
+      "ast_id": 69970,
+      "start": 2052,
+      "length": 68,
+      "original_sha256": "47d9098ed650de313858ee0bd7267b042078ae072f33141bf35b4f5fb25b4eea",
+      "selected_test": false,
+      "body_sha256": "5592e375d805a676d8c5735c4c03aede7cb3bc118896a34e32762c45d8d5480d"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationVenue",
+      "function": "",
+      "ast_id": 69996,
+      "start": 2217,
+      "length": 115,
+      "original_sha256": "02fc06cce58882af5192cc376fa3f5a112cfe7f914ff4b31337713d43dcbac1b",
+      "selected_test": false,
+      "body_sha256": "5592e375d805a676d8c5735c4c03aede7cb3bc118896a34e32762c45d8d5480d"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationMintCallback",
+      "function": "",
+      "ast_id": 70039,
+      "start": 2541,
+      "length": 174,
+      "original_sha256": "1e6f57d68dfcb3a90f96776211fa914d847ea4591a3ef70f7f2ab6d588fca5e2",
+      "selected_test": false,
+      "body_sha256": "f22fa60da4ec90f8311b13a110fab37c8b954ed4d97e356d65077522350c37bb"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationMintCallback",
+      "function": "mint",
+      "ast_id": 70051,
+      "start": 2720,
+      "length": 75,
+      "original_sha256": "0ec508a1bcd525dede5d8ab671c5b7120983507ac535fe09b94fd3d2406060a2",
+      "selected_test": false,
+      "body_sha256": "af6eee4646cb655525c85d7d258bf5fd294d4d1d94fc90dd187e0dff3284695a"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationMintCallback",
+      "function": "onERC721Received",
+      "ast_id": 70085,
+      "start": 2800,
+      "length": 244,
+      "original_sha256": "18d73f1d251288b8cb87df41e4a32bc8696e7eb0e28a902139eaae32dac9f441",
+      "selected_test": false,
+      "body_sha256": "d0180f38980e30e407563077949afd742514491f5075400291fdf59e2fd67e1e"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationTreasuryCallback",
+      "function": "arm",
+      "ast_id": 70116,
+      "start": 3192,
+      "length": 161,
+      "original_sha256": "33fef578fa2ab5b6db1c17991e0bbd7394f7b1c680b02e6b6665e226eca6516e",
+      "selected_test": false,
+      "body_sha256": "d045c1dc6dfbd25a014f1b4008062bc77319b34263cdc6ee1f4c060797084e12"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "PreparationTreasuryCallback",
+      "function": "",
+      "ast_id": 70146,
+      "start": 3358,
+      "length": 157,
+      "original_sha256": "81c457d3725419d5ae0694ab62857bd34d6cebc5c03245d47fa35dbe5c5b54c8",
+      "selected_test": false,
+      "body_sha256": "d2ad0664e1dc17e8656e80d10153ba15467a1c3722af1b6b9fb24b803e744eb2"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "setUp",
+      "ast_id": 70861,
+      "start": 4351,
+      "length": 2686,
+      "original_sha256": "b9889e2f6e9bc3b61b31e1167c1de7b6ac4f9e8430423d3d43b1c84bf0c068d0",
+      "selected_test": false,
+      "body_sha256": "e28a930c03822e4c41f663f64e30700a499ec1a41c8e50d4ee87cef51993abcb"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "_notice",
+      "ast_id": 70886,
+      "start": 7042,
+      "length": 274,
+      "original_sha256": "f0b872221ac11f1e761f4129bbe6445dbaf64620c16c19ed436bd0bfa78910e7",
+      "selected_test": false,
+      "body_sha256": "30bc53fff6e243e2c60e8ab8b271e0dca9c072e2216e7bf8b621d2a41c7137c3"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "_schedule",
+      "ast_id": 70918,
+      "start": 7321,
+      "length": 186,
+      "original_sha256": "20bafd884a368c2ff020dd58e22039b3ce3f61677e0fc41cf774172b84f952f4",
+      "selected_test": false,
+      "body_sha256": "e3cd5981f97f46104bfd505de0d2f772a254e627d69d985cf0129171327a650c"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "_govern",
+      "ast_id": 70955,
+      "start": 7512,
+      "length": 205,
+      "original_sha256": "98fb37ba2417121c24cbfea817151654b30b354297225e7cdbfe37b8631f3de6",
+      "selected_test": false,
+      "body_sha256": "9181fadfd1c1d8320a90d81f691fa86a7d6afb20a697465d84a2e44daaa6917b"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "_prepare",
+      "ast_id": 70974,
+      "start": 7722,
+      "length": 103,
+      "original_sha256": "18492e789717b9d2e82a8baaecdd305b2a12b4336e8bcf4db023395c3f766721",
+      "selected_test": false,
+      "body_sha256": "1d798b849116fdfd9ad00801ee17723af6d4dd435cee87f2c4858f5a01769c86"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "_fresh",
+      "ast_id": 70988,
+      "start": 7830,
+      "length": 78,
+      "original_sha256": "ccc412f53898550f20eb8dfaa4da9bf5bca41803d99ca96477cc354fb32697e8",
+      "selected_test": false,
+      "body_sha256": "70fc39ddd490e382d3d61e86917faf2e6119b8ba65eaa617540888d53d83d498"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "_mint",
+      "ast_id": 71030,
+      "start": 7913,
+      "length": 220,
+      "original_sha256": "d2aed433af1ab39ddddffc22e93b3189ca4fd5c5ce2cfd956f563a69e9104931",
+      "selected_test": false,
+      "body_sha256": "9212c43ca9d59c72059ae072939146261bcdadcf9d538687c90b50a34c0ed82f"
+    },
+    {
+      "source": "test/CanonicalPreparation.t.sol",
+      "contract": "CanonicalPreparationTest",
+      "function": "_active",
+      "ast_id": 71062,
+      "start": 8138,
+      "length": 164,
+      "original_sha256": "c9efc3d39ad195a917774d19362af5e5abf2a3de3ed376272a545ceb96e59c96",
+      "selected_test": false,
+      "body_sha256": "e3209c957b15119e0ce1bb1191554b45df8455f3df3186ac689fc1e2f9d07de2"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "setSwapAmount",
+      "ast_id": 193072,
+      "start": 1334,
+      "length": 68,
+      "original_sha256": "4b39f974954836642de1b449d9d397983c1933d235031fa1b91689250f1d3770",
+      "selected_test": false,
+      "body_sha256": "bd245cd468e1c7d29aa4bdfc189735d6a4247f0a0aa54841faadd346898dea81"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "setNeed",
+      "ast_id": 193082,
+      "start": 1407,
+      "length": 43,
+      "original_sha256": "3ebe6c21469ea7da22d00dbe0bd6f361aa25d707f7936e9f6784d2aaedc6d18f",
+      "selected_test": false,
+      "body_sha256": "29ae41c07d29a8e362bcea766cd134b5b4658a74d25b558f56b1794c1a48d24d"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "needsRebalance",
+      "ast_id": 193092,
+      "start": 1455,
+      "length": 74,
+      "original_sha256": "56054ca441b45fda02cc4ba4102948b2e26ce44aad2e1f4dade60ce6560f4365",
+      "selected_test": false,
+      "body_sha256": "64e8917c9ade3c74485aa26235c6aa940363302bd7fe794999dec60fa794c8be"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "target",
+      "ast_id": 193115,
+      "start": 1534,
+      "length": 101,
+      "original_sha256": "684ed2ba521c1857fbe8c461a422fd5c02f785dae8a0887f322f173257387e80",
+      "selected_test": false,
+      "body_sha256": "12547fa1265fe570a6166d110a2962c283fb8cbb0af3d2e99f38944d0936ec85"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "validatePrice",
+      "ast_id": 193130,
+      "start": 1640,
+      "length": 86,
+      "original_sha256": "a39e00d82a7da391839def03b0fa7b9e80c60c26d576d1e1b8ee00b83b1384d3",
+      "selected_test": false,
+      "body_sha256": "8a975eb7833e2ddc5838960747bd69407d3db2e17e0b4bc7c4dfd935edaf1a0d"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "validateExitPrice",
+      "ast_id": 193145,
+      "start": 1731,
+      "length": 90,
+      "original_sha256": "e8cbc2e381b73b36150697a4ebfbd525adbdacb2c81b8f39e8c59482e5663115",
+      "selected_test": false,
+      "body_sha256": "8a975eb7833e2ddc5838960747bd69407d3db2e17e0b4bc7c4dfd935edaf1a0d"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "compoundPlan",
+      "ast_id": 193166,
+      "start": 1826,
+      "length": 127,
+      "original_sha256": "37f907930483e2014f8489e37eb3ea9c783d65463c3d5321685e71c9645d6be9",
+      "selected_test": false,
+      "body_sha256": "8d9acc4dcd6505ec90a0925d714e17e67f49c8ada459ab3e73a756db1a752aca"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "swapPlan",
+      "ast_id": 193187,
+      "start": 1958,
+      "length": 106,
+      "original_sha256": "1494c730e060c8abbff2cb9b801393fffc2bd4dd892aafaeb0dd43528459b292",
+      "selected_test": false,
+      "body_sha256": "9e98ed52054da9adcdc9de820eb644dd711a0f88eb8b38d69d262d2d6c6b3d87"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setCloseLossBps",
+      "ast_id": 193230,
+      "start": 2609,
+      "length": 92,
+      "original_sha256": "02b788733f655a29665a429e0df2cae03b10c7d238125e016eaf49b877629bd8",
+      "selected_test": false,
+      "body_sha256": "38f5dd448a12201af81b5561a9fbefb9651d7d3de0d0d67f8b7da88be25002c0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "",
+      "ast_id": 193262,
+      "start": 2783,
+      "length": 91,
+      "original_sha256": "5f1ce018d7358abeeb266f330e02928a4c9dc67125b23735cac15ea73dc4514b",
+      "selected_test": false,
+      "body_sha256": "9fc4e2d1d8f6422dd0522137d4e382c1cf9869f771c00808cbcd139b9b83fa5d"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "positionManager",
+      "ast_id": 193273,
+      "start": 2879,
+      "length": 80,
+      "original_sha256": "327afd76ac9e14a49cc6633327c963d681d2384496a913be8e983ee15657e821",
+      "selected_test": false,
+      "body_sha256": "603ccb3f2d25561b841a76a1ec851351be93d31307b2407a32a8ef65d5ab9519"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setFees",
+      "ast_id": 193289,
+      "start": 2964,
+      "length": 63,
+      "original_sha256": "7a4cf8ce340ed187be3c7487bd7ad9f565c87bb824c619c708baddb6981659be",
+      "selected_test": false,
+      "body_sha256": "abe0ac91616eeec210ab8ebb046a8fd5b361f58ec07d80b96e8bd7f21c666d35"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setSpendBps",
+      "ast_id": 193299,
+      "start": 3032,
+      "length": 54,
+      "original_sha256": "30863faa1d29433cdbde5c21adf6ceedee21182fcce09d23ccbcff832f021582",
+      "selected_test": false,
+      "body_sha256": "7debfdc5699797ff9b5a24add7adc061d385505f675e6a711fedc60461aa3ce4"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setRepricing",
+      "ast_id": 193315,
+      "start": 3091,
+      "length": 92,
+      "original_sha256": "14cf957129e4ea1dbf629a64acaad4a9f8029adfd1e732acde7b94b18a34e7f1",
+      "selected_test": false,
+      "body_sha256": "748531fd41bc7941e87017c996bd677ac66ecb5786eaa518b8b903b20e3c3229"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "swap",
+      "ast_id": 193400,
+      "start": 3351,
+      "length": 433,
+      "original_sha256": "a9fbad817422fbabaf16dc9557e05905b8dea0510abb7933d03cfc2b18abb24e",
+      "selected_test": false,
+      "body_sha256": "f61606d1b3dd771c0f26c493081492b78149bd5c64d8518acfa232081ae1a88e"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "amounts",
+      "ast_id": 193418,
+      "start": 3789,
+      "length": 91,
+      "original_sha256": "70a4075f6830e089f79cd7cd1b1f48abb7c8c051443f74b1bf8e53b3c073f074",
+      "selected_test": false,
+      "body_sha256": "3dad3673ec75f5a309f431f9dad7cc60c8f0fa81e65e3e0f24c7778e46ae9ccb"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setFail",
+      "ast_id": 193428,
+      "start": 3885,
+      "length": 47,
+      "original_sha256": "a46535c021f8e9f85382fd910a4e2cf3a263ddcf1493e4426958fc915b4b59bf",
+      "selected_test": false,
+      "body_sha256": "36f7acd3166c0ca709cee105ac3d6c25dbf591fdc9c2d2c6289d806de6dddee3"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "mint",
+      "ast_id": 193478,
+      "start": 3937,
+      "length": 208,
+      "original_sha256": "b7006d62033ce14415b7977ad859203e2c3976ac609901da1b0e81f93e3f95e9",
+      "selected_test": false,
+      "body_sha256": "e799657a77bad56166177c74cce16b6bff0440aab936e5eaeb4dcaa5dcff8c8a"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "increase",
+      "ast_id": 193504,
+      "start": 4150,
+      "length": 130,
+      "original_sha256": "13f607ffad9e7dcee9a83f5f91107df2bfae4629b98a262cb3728ae04827b2fa",
+      "selected_test": false,
+      "body_sha256": "2e4c6d6c527e38011fafd134465885723298ef09294d8e32b933d5fdcf5186a7"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "_fund",
+      "ast_id": 193572,
+      "start": 4285,
+      "length": 280,
+      "original_sha256": "ecaa778e82110b3fb55a5221ff927108c28282d6891a5bdd47d3b0b8d2fddbab",
+      "selected_test": false,
+      "body_sha256": "d6a46f1900c2be2d093d647c7adb4c3a60d64d1c11df41c185b83947b48ecfd0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "collect",
+      "ast_id": 193614,
+      "start": 4570,
+      "length": 141,
+      "original_sha256": "5310eb7902aa8007961a1beaa919c77c8f51692e082f5438c78a881b837d204e",
+      "selected_test": false,
+      "body_sha256": "ca028d7c0c862305bad2487dfb198eefaf4313faa0e53b3bc3100ba34ffa962f"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "close",
+      "ast_id": 193682,
+      "start": 4716,
+      "length": 250,
+      "original_sha256": "1cefd14a25db4a5453d5ce2a3e81c45490050a03fa085016bb2592aad06f54af",
+      "selected_test": false,
+      "body_sha256": "d9df9e15ec9081f61803d56c9498215c74fef44f09d0aa30d36b4c6f2b161bd8"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "RejectingMintReceiver",
+      "function": "mint",
+      "ast_id": 193699,
+      "start": 5006,
+      "length": 112,
+      "original_sha256": "f959b07e5d2aa6230f5d0c49376fb6ac991c8ddd016b56d9a7c9431f1a18b55a",
+      "selected_test": false,
+      "body_sha256": "c4747e0a701a353d10272f2d89ccf1131d802856a08ee2586adc38a661afeddb"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "RejectingMintTreasury",
+      "function": "",
+      "ast_id": 193708,
+      "start": 5154,
+      "length": 55,
+      "original_sha256": "c62cbec23435caf30854e0618918570c1daf7ad186fdf2c40f115b33d0906428",
+      "selected_test": false,
+      "body_sha256": "29044332f44b5dccded957fd81ab08463633acbab3d960257d49a20bc256d2bb"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintReceiver",
+      "function": "",
+      "ast_id": 193731,
+      "start": 5383,
+      "length": 43,
+      "original_sha256": "e10e9d4df57aa23d2e6b6629d1ecab391d60e403263caf1c2274f6144b47262f",
+      "selected_test": false,
+      "body_sha256": "04407ebb72099508762648e2e895a00ee72721a0b4a84533a17c905e28f8b838"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintReceiver",
+      "function": "mint",
+      "ast_id": 193744,
+      "start": 5431,
+      "length": 95,
+      "original_sha256": "811fcc2180bcb903b3157fef6bdafa3ee9d917a0aaf378699b57c0495fdec5fa",
+      "selected_test": false,
+      "body_sha256": "977cb7d03a94c4966a70272d42ab1c90217b7c4e7b81e2c91279c5b5609fb41e"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintReceiver",
+      "function": "onERC721Received",
+      "ast_id": 193805,
+      "start": 5531,
+      "length": 423,
+      "original_sha256": "3b22801db962ffa0494457b4b3df5ce501cf9920d8ef49893ecaf4a6187bc165",
+      "selected_test": false,
+      "body_sha256": "df4a7160fc8135743a64f16fb5c1ceb737db715a7533038cf1358aac4766e4c0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintTreasury",
+      "function": "configure",
+      "ast_id": 193828,
+      "start": 6118,
+      "length": 60,
+      "original_sha256": "d7aa2d440bdce92041c03256074cdb8230113886465a2ab87fda625177d9e08d",
+      "selected_test": false,
+      "body_sha256": "04407ebb72099508762648e2e895a00ee72721a0b4a84533a17c905e28f8b838"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintTreasury",
+      "function": "",
+      "ast_id": 193875,
+      "start": 6183,
+      "length": 301,
+      "original_sha256": "ef437749803121ef01a1428ac42c690518af9af71ed7480541c87dd1d7a67174",
+      "selected_test": false,
+      "body_sha256": "80309f7cae007e0a869f5e1c480c7bd59e28d0e6578604d77bef33b6de6e8925"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintTreasury",
+      "function": "onERC721Received",
+      "ast_id": 193893,
+      "start": 6489,
+      "length": 161,
+      "original_sha256": "91fb72fb054f3b0a59cae6f19628a090e1a5fab0a1f762c3ac479626e481b482",
+      "selected_test": false,
+      "body_sha256": "7d5b1b837979faacf968590eecdd72b8641457bfd18ee357fe1efda1eefb5cd3"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_record",
+      "ast_id": 194006,
+      "start": 7092,
+      "length": 243,
+      "original_sha256": "521907768d756c9cab0de1cf688ba5dc224745b2bb3656c59b645658d8eedd66",
+      "selected_test": false,
+      "body_sha256": "ca2f1bb61f269adddc9355cc7be4d916b5983b64b5cd107f72b14c9d1e96ac0f"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_bucket",
+      "ast_id": 194028,
+      "start": 7340,
+      "length": 127,
+      "original_sha256": "3f2c2709964530e558bdb055fb1e4055c544a2023e3b5cef5fdb6e9bc0f0fab1",
+      "selected_test": false,
+      "body_sha256": "25538d1eeef5c5ba09cf5e23c60823278e5ae072c003eeba5da46c4c996c12c4"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "activePlan",
+      "ast_id": 194041,
+      "start": 7472,
+      "length": 80,
+      "original_sha256": "479b4cb876d82a7ef5948d0695543034a1ab9653aea3ea358019f1b62bc29dc6",
+      "selected_test": false,
+      "body_sha256": "37d52ff4b84966fe795610c00af5d5a58aea379c4879e8af7520d317c0a67e8c"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "setUp",
+      "ast_id": 194049,
+      "start": 7557,
+      "length": 55,
+      "original_sha256": "556d7f40a67f95628e8767dc07f0da201aa6c7b58e04e0a81f99bcfbc3408865",
+      "selected_test": false,
+      "body_sha256": "902125c8a22df349bf164b164d9c528670e2dfd629e59081ff19ed11674afac5"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_fixture",
+      "ast_id": 194527,
+      "start": 7617,
+      "length": 1790,
+      "original_sha256": "9f53b74c3a4aefa6619ec7d491d4791245b86f5810e63f99dedb73b12357a7fa",
+      "selected_test": false,
+      "body_sha256": "f3e2ef4a028e0a06e149b4f5f31173434ca6a4f06cc3b6b99495d89b31855030"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_fundUser",
+      "ast_id": 194593,
+      "start": 9412,
+      "length": 261,
+      "original_sha256": "645649e48e05db5cd93eb83517dd157ccdb4d89e508569a5761a96c47bc49c5c",
+      "selected_test": false,
+      "body_sha256": "2408a7d6a4edfc58dc33c18267f1507239e6b9a9322e6f0c0bce9e5af3cc68bf"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_mint",
+      "ast_id": 194632,
+      "start": 9678,
+      "length": 175,
+      "original_sha256": "50e54f3f23707a518400565240a654c3c42848e7fc6d6400d4e0c1fc760b5d6b",
+      "selected_test": false,
+      "body_sha256": "348ce911935bd49d900d2bbc9bdd0d9b4785892dc0176a848124c1b795f3430a"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_activate",
+      "ast_id": 194664,
+      "start": 9858,
+      "length": 182,
+      "original_sha256": "ff0f45dd077970750a26fa04bae2bb5ea481457afb2f892e39158e496699a4f9",
+      "selected_test": false,
+      "body_sha256": "494c5e0b59a1fa790e34de2ce03b067e48f3f060844cab3f4d94ed48624b4a53"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "activatedPosition",
+      "ast_id": 194683,
+      "start": 10045,
+      "length": 105,
+      "original_sha256": "0ff916f1e27a79bfbfc88e4832376801c818a9f03499a00825884e0ff7ab9c79",
+      "selected_test": false,
+      "body_sha256": "1ae1478202167cbfcd2e10a12c6c4520a22037e8a6f50367eb75d8adc561c1ff"
+    },
+    {
+      "source": "test/helpers/CanonicalFixture.sol",
+      "contract": "ICanonicalFixtureBinder",
+      "function": "bind",
+      "ast_id": 197578,
+      "start": 487,
+      "length": 59,
+      "original_sha256": "10b3f9128b5589d67ac69edc70a9ae6bb26325914788a14d6e2d91768ab8e5f6",
+      "selected_test": false
+    },
+    {
+      "source": "test/helpers/CanonicalFixture.sol",
+      "contract": "CanonicalFixture",
+      "function": "bind",
+      "ast_id": 197732,
+      "start": 820,
+      "length": 980,
+      "original_sha256": "81710dd10e8e8d35f925ee73b0fd458cc73f92c2d5554034b4934ceb30b1cde8",
+      "selected_test": false,
+      "body_sha256": "f1c02bbe7656223a077c9c7f4f4c36f813a0845ab974c5640bea51c1bd612489"
+    },
+    {
+      "source": "test/helpers/DualOracleFixture.sol",
+      "contract": "CorrelatedFixtureFeed",
+      "function": "",
+      "ast_id": 197755,
+      "start": 535,
+      "length": 62,
+      "original_sha256": "59b1d2bf861ab200ab16bf0dca45d8ccb1277bab1b5a4ca0247b1c61cf212e4e",
+      "selected_test": false,
+      "body_sha256": "feab8105297887f02224def71d58ec730717d8d9cd8db45d644e937b7dd31d22"
+    },
+    {
+      "source": "test/helpers/DualOracleFixture.sol",
+      "contract": "CorrelatedFixtureFeed",
+      "function": "decimals",
+      "ast_id": 197765,
+      "start": 602,
+      "length": 80,
+      "original_sha256": "2fcd9d261efba079d38b6ef92a40210b9c3fa287d965345cc47784f379156197",
+      "selected_test": false,
+      "body_sha256": "af4061de946699b4274191909faf4f3497d58bfc7c522c18927bb9b705067f51"
+    },
+    {
+      "source": "test/helpers/DualOracleFixture.sol",
+      "contract": "CorrelatedFixtureFeed",
+      "function": "latestRoundData",
+      "ast_id": 197783,
+      "start": 687,
+      "length": 137,
+      "original_sha256": "1d311c3c6fc133aadcfa509183e48cd68164f4b5eaf49d5f98e51e543865ce5a",
+      "selected_test": false,
+      "body_sha256": "ef1e7d111699c7b753a3fef18c1e0b52622ca5bec3694991597c91d5dece9cd7"
+    },
+    {
+      "source": "test/helpers/DualOracleFixture.sol",
+      "contract": "DualOracleFixture",
+      "function": "setTestFeed",
+      "ast_id": 197856,
+      "start": 859,
+      "length": 594,
+      "original_sha256": "ea621a0357a915c2fd359047b9aaf2bfc288af8b3c6969fa86de659557e7482f",
+      "selected_test": false,
+      "body_sha256": "420c8e9d5a766f93f6aad132b8035ed0146dcd4b5de71813de18c9be48e561ea"
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "IMockVRFConsumer",
+      "function": "rawFulfillRandomWords",
+      "ast_id": 200844,
+      "start": 147,
+      "length": 85,
+      "original_sha256": "f614f148e92a1834f3b713b229438bab314e75e16da4a83489086bc4d98ea25c",
+      "selected_test": false
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "MockVRF",
+      "function": "setFailRequests",
+      "ast_id": 200878,
+      "start": 727,
+      "length": 69,
+      "original_sha256": "1f16a7a0783dff03715f20c6804a89ab629d4983e2decb95c1fbc19ae7acd898",
+      "selected_test": false,
+      "body_sha256": "d3345a96cc2d1d0b9f837d28c79a4b6f5919bcb97c6a324b55c0e93611ab5b77"
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "MockVRF",
+      "function": "requestRandomWords",
+      "ast_id": 200935,
+      "start": 801,
+      "length": 490,
+      "original_sha256": "109798b0578972f3675bcb00d1b12ce7ff7b5f245f3432509a05d3900ce6d8d5",
+      "selected_test": false,
+      "body_sha256": "c6f7512e4343f0ea361f023552221722c00645a8cb5408b019d45dbab2653b06"
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "MockVRF",
+      "function": "fulfill",
+      "ast_id": 200978,
+      "start": 1296,
+      "length": 256,
+      "original_sha256": "0f2f77ab8aa0adfcabc70be47b1760458f0b6fcc1c31fc002a78ff7eeb8f7c49",
+      "selected_test": false,
+      "body_sha256": "00f20ae08fabdf991fa361c3311b6f705a27100310c7f7a9275b95b6e9f0fb8d"
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "MockVRF",
+      "function": "fulfillMalformed",
+      "ast_id": 201000,
+      "start": 1557,
+      "length": 180,
+      "original_sha256": "177a615a2d3beb73e57e0dd1c916f3fe9d08297e78c1995436e8a713f7b6176b",
+      "selected_test": false,
+      "body_sha256": "34f6aa4760e070d380d2b2359e368ae4dc60f2d8308fedd59974af88d11d21a7"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "IMockCallerAccess",
+      "function": "access",
+      "ast_id": 201028,
+      "start": 761,
+      "length": 50,
+      "original_sha256": "ad46054df4ee1b02619f93c232bca2fafb47f65659f60e1c972a4d62b1b3ef48",
+      "selected_test": false
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "IMockSealRegistry",
+      "function": "activationAssets",
+      "ast_id": 201034,
+      "start": 844,
+      "length": 59,
+      "original_sha256": "9e67414e9c8637e6907a03253e134f64a12c59d96c8c540318b3a30dfd4ea0d0",
+      "selected_test": false
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "IMockSealIdentity",
+      "function": "zzz",
+      "ast_id": 201040,
+      "start": 936,
+      "length": 46,
+      "original_sha256": "c6ac57caed6634fb8eba57494bce7a32df44d2288e042f5b31d6125dcc87b158",
+      "selected_test": false
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "",
+      "ast_id": 201094,
+      "start": 1372,
+      "length": 149,
+      "original_sha256": "e153f17deaf4b84e6805219f90e91e0580e00b02946e94c3e116ebf40e610f3b",
+      "selected_test": false,
+      "body_sha256": "66159c62b6d435ae14e97b79c826001189c4ba9262d05df453e3929b08388e4a"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "canonicalHandoff",
+      "ast_id": 201105,
+      "start": 1526,
+      "length": 89,
+      "original_sha256": "474dd0fb36fc69812e90ff1222a840a2ab94435cf75d089d4baa118a24ea3601",
+      "selected_test": false,
+      "body_sha256": "ff0ced310a50e8ff2f021f638b80715cc3f262a8bc588ee18cbef7d55f38f488"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "moduleAuthorized",
+      "ast_id": 201127,
+      "start": 1620,
+      "length": 155,
+      "original_sha256": "b53d5cdc0bbc11cc69929ecb50a02bba984a1fe09006488585451dd0631dc2e4",
+      "selected_test": false,
+      "body_sha256": "c08f704f8c93f0c645b542c0d282c9f1a792f3b5a7a1bb8a9b3901dcd1b832ea"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "keeperAuthorized",
+      "ast_id": 201145,
+      "start": 1780,
+      "length": 141,
+      "original_sha256": "b496e15cc74a014b4c0b5b5c36fcb42acb92e90446f9a4629ebec348f266b735",
+      "selected_test": false,
+      "body_sha256": "3d519c5fd84e1c58bceef4639ce1c9813f8b1727502c3dabc88915e805052a7d"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "canConfigure",
+      "ast_id": 201160,
+      "start": 1926,
+      "length": 103,
+      "original_sha256": "61263b5fb6a217aefe02e08ee992a088bb452813e4ae0f97def0d8dbe5a02c33",
+      "selected_test": false,
+      "body_sha256": "5138f94e6bc3418c143ea69b1b2303f68027694f10d48b651f48951208ef26d9"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "setPreparation",
+      "ast_id": 201170,
+      "start": 2034,
+      "length": 73,
+      "original_sha256": "233ef6bee25f9e95950e909051b9559f895e5953edc9a3e480c6b25de8992468",
+      "selected_test": false,
+      "body_sha256": "aba6ded9a56cd7f964ec8a1f789e58c0b2c6aceec5d30601363896fc51a6d096"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "setCanonicalState",
+      "ast_id": 201180,
+      "start": 2112,
+      "length": 72,
+      "original_sha256": "073d8ff0b2eb27b342a01ab04b7a920b9d93a579f72fdb8693e01d8babdb32da",
+      "selected_test": false,
+      "body_sha256": "7c277b3ba9ed8537b1fb779415f250b985d7654c1631fe8e5d920bcc266acbcc"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "bind",
+      "ast_id": 201194,
+      "start": 2189,
+      "length": 60,
+      "original_sha256": "864363061e45f8ac6e12895d44da0481537d6747b6fd4ffe16317bfd1b304813",
+      "selected_test": false,
+      "body_sha256": "77964d9cdeb7000f5bcb610dbed370f670b8e2c49a4c30b24a342ffeea9ae28f"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "seal",
+      "ast_id": 201202,
+      "start": 2254,
+      "length": 41,
+      "original_sha256": "084344cbb16ffa2c96fed9eba3f5702bef4c49184cd5aca0f826f4b9d17d8656",
+      "selected_test": false,
+      "body_sha256": "2511ab2f0218e8ea740e6d627700536a7fabda502fc5e88108968bb0ced268e9"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "beginBootstrap",
+      "ast_id": 201210,
+      "start": 2446,
+      "length": 52,
+      "original_sha256": "a077cb24542d6766e5632b1f41ad4e2aac70cb8bba8f4d4d76b8b171d4899b33",
+      "selected_test": false,
+      "body_sha256": "da97f50192c9f0cccc3f5d782d426197f5d84437b56cdba575cca04fe48e8a25"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "setPaused",
+      "ast_id": 201220,
+      "start": 2503,
+      "length": 47,
+      "original_sha256": "5d83ea67d9a6790164332011f8c7d10c2baf0d5e0f9f10d7781455484dba0acf",
+      "selected_test": false,
+      "body_sha256": "b5d476218f6e9084b196719b2b76c4c4ab4e47c72d2f831099d5fbde1d5e8b21"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "setKeeper",
+      "ast_id": 201234,
+      "start": 2555,
+      "length": 61,
+      "original_sha256": "6c09f9e733397909cbd8c9e0c36449ed35e94a94afe9d047394c02a10d7db830",
+      "selected_test": false,
+      "body_sha256": "5c351dadef47638379e4f5a9ef2ac7ebf5346f989be1c01d398b6fb509ff30e4"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockToken",
+      "function": "",
+      "ast_id": 201253,
+      "start": 2689,
+      "length": 52,
+      "original_sha256": "0a48e296055cee2e3c0400f228ff75129dda2edd66d11b81e58fbb71e90ed180",
+      "selected_test": false,
+      "body_sha256": "2d2fac52f5288cd0d2d1a25bc597070559d99d1b8abe57134c9918de6ead34ef"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockToken",
+      "function": "decimals",
+      "ast_id": 201262,
+      "start": 2746,
+      "length": 71,
+      "original_sha256": "940b9f990efe5922f3b6a9ce952bb1ac2b3a73ffd11fbe7d0261f2d7a2253b1b",
+      "selected_test": false,
+      "body_sha256": "4e6b3e413ee48e67dacceb6b7740ce6e991bd0f0ca92ec3a242129d38ffe0144"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockToken",
+      "function": "mint",
+      "ast_id": 201275,
+      "start": 2822,
+      "length": 57,
+      "original_sha256": "b5cd9c7ba7a178ae29c0107e236001604d782f5dfa27ed3eacf542f91b4712d8",
+      "selected_test": false,
+      "body_sha256": "e02034b3daa8c239ce1226bee9094402f63b7f73d4ba4714b7b9feb2e0182f4e"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockToken",
+      "function": "burn",
+      "ast_id": 201287,
+      "start": 2884,
+      "length": 56,
+      "original_sha256": "eee8262a99a3d9a213d0a5965b84dc369650ebdc503cc12c8ba3358c42ab55d3",
+      "selected_test": false,
+      "body_sha256": "c176e1c303973ae45c925f991a554a0f82abceda22e77be2dc3e8849b0a7627e"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "TaxToken",
+      "function": "",
+      "ast_id": 201297,
+      "start": 2980,
+      "length": 29,
+      "original_sha256": "8175a225388ade020a5215f8a7c46a6c859196689d404c78d48c4801ece8456a",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "TaxToken",
+      "function": "_update",
+      "ast_id": 201354,
+      "start": 3014,
+      "length": 194,
+      "original_sha256": "dcf8c293e0029f88a92483dfff21499fdfe30bbb418c3ec5e583b373c75204b6",
+      "selected_test": false,
+      "body_sha256": "da2eeae54ba741684ca050c243e1df96136d003f03e964c87e16c87c6606ba94"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "ExtraTaxToken",
+      "function": "",
+      "ast_id": 201364,
+      "start": 3253,
+      "length": 29,
+      "original_sha256": "8175a225388ade020a5215f8a7c46a6c859196689d404c78d48c4801ece8456a",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "ExtraTaxToken",
+      "function": "_update",
+      "ast_id": 201414,
+      "start": 3287,
+      "length": 184,
+      "original_sha256": "54885fa40c4d6fe9448d943261432e12a13a9718fc81b650ac197f359f539183",
+      "selected_test": false,
+      "body_sha256": "418da4eb32f00925638ae416780dfb032a01a51e4a14ff44e96d54a520d46813"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockFeed",
+      "function": "",
+      "ast_id": 201449,
+      "start": 3660,
+      "length": 81,
+      "original_sha256": "ecb752356cc452e8f9449d26e41b9f9b19a2bcfb2e74ffa5b76e465978d920f9",
+      "selected_test": false,
+      "body_sha256": "d9b0a914f788bda8a18c98b1aa85cf14c94d42a3e833d23afe0fd278540c72e3"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockFeed",
+      "function": "set",
+      "ast_id": 201471,
+      "start": 3746,
+      "length": 81,
+      "original_sha256": "0123a54315e8e2925e1ee3e3764678872ad75ba554f6d39f3a33370f7df6cf1e",
+      "selected_test": false,
+      "body_sha256": "ff4c65478e17c94b79e08f76d71d1ad20e85f33407654890b80267b2bf9a00d1"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockFeed",
+      "function": "rounds",
+      "ast_id": 201487,
+      "start": 3832,
+      "length": 72,
+      "original_sha256": "f2b625db0f572c446cbfb461a6733f4975270883e32e5b217fdabe4a8b16d43b",
+      "selected_test": false,
+      "body_sha256": "9ace845870645705d6770547866e8af8dd7edfca6b55cf2d33132a10bab85c3c"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockFeed",
+      "function": "latestRoundData",
+      "ast_id": 201508,
+      "start": 3909,
+      "length": 139,
+      "original_sha256": "7a3ec2c681808f065b1945591a8830d1b900a7fa4cb6444f762cadd49e0b0c5a",
+      "selected_test": false,
+      "body_sha256": "537878c8f7d495fa4bdacc17c6c5623d89ca0a72bc9ffa9969ef0ed859c9c7c7"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "setActivationAssets",
+      "ast_id": 201523,
+      "start": 4149,
+      "length": 80,
+      "original_sha256": "33ef757b7dd71b2215c6199bcb87b7ef9aa68352f2d7abb1d13c03e75a3f98e8",
+      "selected_test": false,
+      "body_sha256": "3e225bb67862b943e9cf93db83e1e400735f58da0bd393690f6d6d7aa91adcee"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "set",
+      "ast_id": 201543,
+      "start": 4284,
+      "length": 70,
+      "original_sha256": "1b9be72ddb35a57733dde87997622177276910f0956ed62f6ac02acad09ca653",
+      "selected_test": false,
+      "body_sha256": "ba290009c7fc6717e93fd9ae575ceead31f1247c721ef550d453eed1f564458f"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "get",
+      "ast_id": 201556,
+      "start": 4359,
+      "length": 86,
+      "original_sha256": "376c1b465b79e51c795a1aed82d1890faab31e263f4484afc0aaf98d7f8613fa",
+      "selected_test": false,
+      "body_sha256": "56a54f678ff1d067b024506ed263fc1a791597dd850577544fccefd41ba11170"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "accounting",
+      "ast_id": 201569,
+      "start": 4450,
+      "length": 93,
+      "original_sha256": "ba617a94cf8ed92adb135aed62a529e92ec06439940b087450beb65b16a92f79",
+      "selected_test": false,
+      "body_sha256": "56a54f678ff1d067b024506ed263fc1a791597dd850577544fccefd41ba11170"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "contributionValue",
+      "ast_id": 201627,
+      "start": 4548,
+      "length": 383,
+      "original_sha256": "03bdf2be4c4445d21c2f8a282d74e7ea2a8f419873d9c7f94186e3e8f4bced70",
+      "selected_test": false,
+      "body_sha256": "b801c9a847dc5d8d22bf1a8622ff4df9462aab8ef8c22461823b89c9a24162ed"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockVaultRecord",
+      "function": "set",
+      "ast_id": 201642,
+      "start": 4989,
+      "length": 47,
+      "original_sha256": "02a0a8e7fdde7fc4a32850194b378d5522591c94cb122699c0871b3d8ff2ddc3",
+      "selected_test": false,
+      "body_sha256": "23960daaf069d3825318c4dbc1485151d764ede7dd8c02c74f0f1020a15f2edc"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockVaultRecord",
+      "function": "position",
+      "ast_id": 201653,
+      "start": 5041,
+      "length": 76,
+      "original_sha256": "f33dd63f8d00bd448f2deb4fa47ed66c5c80ba95536f16ffac06f75bac4d21b4",
+      "selected_test": false,
+      "body_sha256": "570b2945e13b506061da281cdf0354f7b36087e60c093307ba15c14fa9102ee1"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "",
+      "ast_id": 201681,
+      "start": 5255,
+      "length": 63,
+      "original_sha256": "a07b1ab015c7e02c3115ce259ee587479528b7f55e2202922dcdd44cd3ab5736",
+      "selected_test": false,
+      "body_sha256": "61cf9fecbf0e36a024465fee61f761abf86dcebefe882d3bdb53b189e5591e92"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "FEE_INTAKE_VERSION",
+      "ast_id": 201689,
+      "start": 5400,
+      "length": 71,
+      "original_sha256": "ab35ff05360f813bbe4fae49357b1a4545189c691d157ec869fd61bce5b8d053",
+      "selected_test": false,
+      "body_sha256": "b3ec6e23aa03d9dc1b6b6d6ebc42a97d8a74c729dcfc8073c9836ff8a22c6956"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "activationAssets",
+      "ast_id": 201700,
+      "start": 5476,
+      "length": 81,
+      "original_sha256": "070bdcc1b492866a0bbcda0dabc899c8d01b3a025a4529f65a04e9fac0c033eb",
+      "selected_test": false,
+      "body_sha256": "603ccb3f2d25561b841a76a1ec851351be93d31307b2407a32a8ef65d5ab9519"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "setTestZZZIdentity",
+      "ast_id": 201710,
+      "start": 5562,
+      "length": 64,
+      "original_sha256": "7f246f0e8986e2673bf4e2f5ac902397b9a9178adf49e58af99bb2874d778c23",
+      "selected_test": false,
+      "body_sha256": "39b67c6a097ea2ed64efced2b7d413de77149bafd46f8c9d770d41cd602e6b5a"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "currentZZZ",
+      "ast_id": 201730,
+      "start": 5631,
+      "length": 164,
+      "original_sha256": "6aed1dfee51b130c6a3293df62527277785dc1ae2a5d87f82b515781207e392c",
+      "selected_test": false,
+      "body_sha256": "90ef43416cc86a69cfc589b57ea5025fbd33a34f44984763cc57706f5ff073cd"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "transport",
+      "ast_id": 201742,
+      "start": 5800,
+      "length": 89,
+      "original_sha256": "acba930c60538427228b710112409b383bbf9481684cd3fe4a56f22cf95df6d9",
+      "selected_test": false,
+      "body_sha256": "589e86143a01fd40427bd05881d3fe5ba534cb53eb49cf6ababf175a51f33279"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "canonicalChainId",
+      "ast_id": 201751,
+      "start": 5894,
+      "length": 81,
+      "original_sha256": "224797c8cb405ebed5b3e8253174a976dc74a25db543a8d6fd1089affc3e3800",
+      "selected_test": false,
+      "body_sha256": "ebd092ddcec03f47136faf6aa54a2414c092f595374342cc04360bcf52ab9fac"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "setRandomnessConfigured",
+      "ast_id": 201761,
+      "start": 5980,
+      "length": 83,
+      "original_sha256": "a97a36e45f14091e8657ea79efbbf0ec75e632663867346914f6ebaa4fd5556d",
+      "selected_test": false,
+      "body_sha256": "c29a04ed2c21803350c34797acd56ddbd540bcbe616e5002cfda6ff92f6f6a3f"
+    }
+  ],
+  "profile": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\simplification-audit-20261025\\solidity\\terminal-guard\\ast-focused-profile-eoookjn2",
+  "sources": {
+    "src/ZZZAccessController.sol": {
+      "original_sha256": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+      "transformed_sha256": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+      "bytes": 11886,
+      "changed": false
+    },
+    "src/ZZZActivationAssets.sol": {
+      "original_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "transformed_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "bytes": 7913,
+      "changed": false
+    },
+    "src/ZZZActivationAssetsFactory.sol": {
+      "original_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "transformed_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "bytes": 707,
+      "changed": false
+    },
+    "src/ZZZActivationEntry.sol": {
+      "original_sha256": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+      "transformed_sha256": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+      "bytes": 16955,
+      "changed": false
+    },
+    "src/ZZZBuyback.sol": {
+      "original_sha256": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+      "transformed_sha256": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+      "bytes": 5037,
+      "changed": false
+    },
+    "src/ZZZCanonicalHandoff.sol": {
+      "original_sha256": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+      "transformed_sha256": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+      "bytes": 19095,
+      "changed": false
+    },
+    "src/ZZZClaimRouter.sol": {
+      "original_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "transformed_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "bytes": 3490,
+      "changed": false
+    },
+    "src/ZZZCompounder.sol": {
+      "original_sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "transformed_sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "bytes": 668,
+      "changed": false
+    },
+    "src/ZZZContributionPricing.sol": {
+      "original_sha256": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+      "transformed_sha256": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+      "bytes": 13591,
+      "changed": false
+    },
+    "src/ZZZCustodyValidation.sol": {
+      "original_sha256": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+      "transformed_sha256": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+      "bytes": 5354,
+      "changed": false
+    },
+    "src/ZZZFeeController.sol": {
+      "original_sha256": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+      "transformed_sha256": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+      "bytes": 9149,
+      "changed": false
+    },
+    "src/ZZZFeesCanonical.sol": {
+      "original_sha256": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+      "transformed_sha256": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+      "bytes": 7802,
+      "changed": false
+    },
+    "src/ZZZLPRewardConverter.sol": {
+      "original_sha256": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+      "transformed_sha256": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+      "bytes": 482,
+      "changed": false
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "original_sha256": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+      "transformed_sha256": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+      "bytes": 18303,
+      "changed": false
+    },
+    "src/ZZZMembership.sol": {
+      "original_sha256": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
+      "transformed_sha256": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
+      "bytes": 5132,
+      "changed": false
+    },
+    "src/ZZZMigration.sol": {
+      "original_sha256": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+      "transformed_sha256": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+      "bytes": 17275,
+      "changed": false
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "original_sha256": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+      "transformed_sha256": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+      "bytes": 18174,
+      "changed": false
+    },
+    "src/ZZZNFT.sol": {
+      "original_sha256": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+      "transformed_sha256": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+      "bytes": 19716,
+      "changed": false
+    },
+    "src/ZZZNFTCanonical.sol": {
+      "original_sha256": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "transformed_sha256": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "bytes": 5434,
+      "changed": false
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "original_sha256": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+      "transformed_sha256": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+      "bytes": 8883,
+      "changed": false
+    },
+    "src/ZZZOracle.sol": {
+      "original_sha256": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+      "transformed_sha256": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+      "bytes": 14298,
+      "changed": false
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "original_sha256": "10c776bd25b7308aa821615bc11672795aede856ef2be197532c452d26fec3af",
+      "transformed_sha256": "10c776bd25b7308aa821615bc11672795aede856ef2be197532c452d26fec3af",
+      "bytes": 13611,
+      "changed": false
+    },
+    "src/ZZZPythPriceFeed.sol": {
+      "original_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "transformed_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "bytes": 3558,
+      "changed": false
+    },
+    "src/ZZZRewards.sol": {
+      "original_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "transformed_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "bytes": 18858,
+      "changed": false
+    },
+    "src/ZZZRoyaltyConverter.sol": {
+      "original_sha256": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+      "transformed_sha256": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+      "bytes": 12563,
+      "changed": false
+    },
+    "src/ZZZRoyaltyFactory.sol": {
+      "original_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "transformed_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "bytes": 583,
+      "changed": false
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "original_sha256": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+      "transformed_sha256": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+      "bytes": 29159,
+      "changed": false
+    },
+    "src/ZZZStrategy.sol": {
+      "original_sha256": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+      "transformed_sha256": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+      "bytes": 16867,
+      "changed": false
+    },
+    "src/ZZZV4RouteExecutor.sol": {
+      "original_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "transformed_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "bytes": 9694,
+      "changed": false
+    },
+    "src/ZZZVault.sol": {
+      "original_sha256": "70f27b707ac269d5f8ef06460d21d6d54561af4830f57e1ec116873ef1463b96",
+      "transformed_sha256": "70f27b707ac269d5f8ef06460d21d6d54561af4830f57e1ec116873ef1463b96",
+      "bytes": 28553,
+      "changed": false
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "original_sha256": "735010a389b2c6d8c6e9dc80170635bebb64586291e7671a56e5e104e23e3a48",
+      "transformed_sha256": "735010a389b2c6d8c6e9dc80170635bebb64586291e7671a56e5e104e23e3a48",
+      "bytes": 15579,
+      "changed": false
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "original_sha256": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+      "transformed_sha256": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+      "bytes": 4254,
+      "changed": false
+    },
+    "src/base/ZZZModule.sol": {
+      "original_sha256": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "transformed_sha256": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "bytes": 2801,
+      "changed": false
+    },
+    "src/interfaces/IZZZ.sol": {
+      "original_sha256": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+      "transformed_sha256": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+      "bytes": 9313,
+      "changed": false
+    },
+    "src/interfaces/IZZZCanonical.sol": {
+      "original_sha256": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "transformed_sha256": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "bytes": 1782,
+      "changed": false
+    },
+    "src/interfaces/IZZZNFTCanonical.sol": {
+      "original_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "transformed_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "bytes": 1872,
+      "changed": false
+    },
+    "src/libraries/ExactAsset.sol": {
+      "original_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "transformed_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "bytes": 1265,
+      "changed": false
+    },
+    "src/libraries/ExactToken.sol": {
+      "original_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "transformed_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "bytes": 1437,
+      "changed": false
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "original_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "transformed_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "bytes": 5570,
+      "changed": false
+    },
+    "src/libraries/ZZZPriceMath.sol": {
+      "original_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "transformed_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "bytes": 830,
+      "changed": false
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "original_sha256": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e",
+      "transformed_sha256": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e",
+      "bytes": 2496,
+      "changed": false
+    },
+    "test/AccessController.t.sol": {
+      "original_sha256": "421a35c2ff3368e13bc86e1cfea7661439678693ea1bff01e8490522355b867a",
+      "transformed_sha256": "06f1a13056df0eeea4b40640dc1f2c8189bb6f7957068724bb61bb0b660723c2",
+      "bytes": 11626,
+      "changed": true
+    },
+    "test/CanonicalHandoff.t.sol": {
+      "original_sha256": "e41d62feb2e5a7032b5fb467e9bbe520d4eabc2c789a44d27ed8473744a46943",
+      "transformed_sha256": "6cf25f22a20c9760d7a636c4876e5a5962bd31d7a5ac57373d6d2fc2de89e64c",
+      "bytes": 57268,
+      "changed": true
+    },
+    "test/CanonicalPreparation.t.sol": {
+      "original_sha256": "7fd631db160c9b08075c5f11e1da7837ba6e994c2d3c016bd08c4aa850bc5518",
+      "transformed_sha256": "109636c3e4c5bf762007de53ddf5dc3f2bd77a53038ec3bca750fb240b8d7eae",
+      "bytes": 15673,
+      "changed": true
+    },
+    "test/VaultAccounting.t.sol": {
+      "original_sha256": "527ba1877ba7d7fc17a983eb205a33e69cc29a57fd679a33aac654c88b39ba90",
+      "transformed_sha256": "ac920f0c1187e2517abcc9afeb7fddb4e1f54e4c7a814a845b96c05abce36f6a",
+      "bytes": 25593,
+      "changed": true
+    },
+    "test/helpers/CanonicalFixture.sol": {
+      "original_sha256": "11083c645d87fafb92700c5dceb186aea2794c4f80b3fccefb58b093c97e4ec2",
+      "transformed_sha256": "11083c645d87fafb92700c5dceb186aea2794c4f80b3fccefb58b093c97e4ec2",
+      "bytes": 1803,
+      "changed": false
+    },
+    "test/helpers/DualOracleFixture.sol": {
+      "original_sha256": "bbc2c9f9a6395ca68a1f9855edf34872374c6691541a23ea7dfc111f9a6a54a0",
+      "transformed_sha256": "bbc2c9f9a6395ca68a1f9855edf34872374c6691541a23ea7dfc111f9a6a54a0",
+      "bytes": 1456,
+      "changed": false
+    },
+    "test/mocks/MockVRF.sol": {
+      "original_sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "transformed_sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "bytes": 1740,
+      "changed": false
+    },
+    "test/mocks/Mocks.sol": {
+      "original_sha256": "4f3d97e9f19fda0103b088213f2537dcd4192a2c0ec7c5ed0ff47578af98d876",
+      "transformed_sha256": "4f3d97e9f19fda0103b088213f2537dcd4192a2c0ec7c5ed0ff47578af98d876",
+      "bytes": 6221,
+      "changed": false
+    }
+  },
+  "limitations": [
+    "Only unselected project test function/attached-documentation spans are whitespace omitted.",
+    "Every selected method and retained helper is byte-identical, but unexecuted tests are not verified.",
+    "No compiler/optimizer/gas/size limit is relaxed; normal production gates are separate reused evidence.",
+    "No real provider, live market, wallet or service qualification is inferred."
+  ]
+}

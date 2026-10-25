@@ -55,11 +55,13 @@ UINT_GETTERS = frozenset(('getMinDelay', 'canonicalState', 'ACCOUNTING_VERSION',
     'maxTradeUSD', 'operatingTradeUSD', 'phase', 'originChain', 'MAX_LOSS_BPS',
     'contributionLossBps', 'maintenanceLossBps', 'MAX_CLAIMS', 'conversionLossBps',
     'rewardReceiverCount', 'custodyCount', 'PRICING_VERSION', 'RANGE_POLICY_VERSION',
-    'REVIEW_POLICY_VERSION', 'ENTRY_REVIEW_VERSION'))
+    'REVIEW_POLICY_VERSION', 'ENTRY_REVIEW_VERSION', 'FEE_INTAKE_VERSION', 'CUSTODY_VERSION',
+    'SOURCE_POLICY_VERSION'))
 HASH_GETTERS = frozenset(('keyHash', 'zzzCodeHash', 'contributionPool', 'SCHEMA'))
 ADDRESS_GETTERS = frozenset(('access', 'canonicalHandoff', 'bootstrap', 'royaltyFactory',
     'migrationBudget', 'mintProceedsRecipient', 'royaltyRewards', 'claimRouter', 'metadataRenderer',
     'randomnessCoordinator', 'positionManager', 'stateView', 'poolManager', 'permit2', 'converter',
+    'activationAssetsFactory',
     'receiverFactory', 'validation', 'currentZZZ', 'activationAssets', 'activationEntry', 'sequencerFeed',
     'zzz', 'incomingSource', 'nft', 'vault', 'originVault', 'fees', 'registry', 'v4Executor',
     'migration', 'canonicalController', 'royalties', 'controller', 'parent', 'ledger', 'wrapper',
@@ -233,6 +235,9 @@ class Observer:
     def typed(self, target, getter, expected):
         # Decode types are code-owned even when an intended value is missing;
         # absent pins must not change which ABI is interpreted.
+        if getter == 'assetsOfRegistry':
+            registry = self.chain['modules']['pools']['address']
+            return _decode(self.read(target,'assetsOf(address)',registry)[0],ZERO)
         if getter == 'artworkBaseURI':
             return self.read(target, getter+'()', count='string')
         if getter in BOOL_GETTERS:
@@ -684,7 +689,13 @@ def observe(config, rpc):
     range_version = config.get('range_policy_version',0)
     if type(range_version) is not int or range_version not in (0,1):
         raise ValueError('Unsupported explicit range-policy observation profile')
-    expected = expected_bindings(chain,range_policy_version=range_version)
+    fee_version = config.get('fee_intake_version',0)
+    if type(fee_version) is not int or fee_version not in (0,1):
+        raise ValueError('Unsupported explicit fee-intake observation profile')
+    expected = expected_bindings(chain,range_policy_version=range_version,
+        fee_intake_version=fee_version)
+    if fee_version == 1 and set(chain['helpers']) != set(expected['helpers']):
+        raise ValueError('LP-only fee-intake observation requires the exact 15-helper inventory')
     for field, limit in (('dependencies', 32), ('tokens', 33), ('pools', 16),
                          ('activation_sources', 64), ('conversion_routes', 64)):
         value = chain.get(field)

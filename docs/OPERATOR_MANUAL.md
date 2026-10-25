@@ -1,5 +1,14 @@
 # PoPL operator manual
 
+
+## Current release simplification - 2026-10-25
+
+[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
+fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
+pool moves, external custody exit/recovery, royalty currencies and complete
+collection handoff. Current fee/custody profiles and canonical schema are
+explicit; old deployments/journals keep historical profiles.
+
 ## Current service and mint qualification procedures - 2026-10-25
 
 - [Optional Pyth source setup](PYTH_PRICE_SOURCE.md): exact identity, age/confidence,
@@ -307,8 +316,8 @@ helpers to the existing WETH-accounted local deployment or reset its journals.
   native amount as call value and approve only the ERC20 amount. Normal exit keeps
   its captured `minimumRetainedUSD(id)`; raw mode retains explicit raw minima
   and no USD guarantee.
-- **Optional funding inbox:** `Fees.createRewardReceiver(nativeBucket,address(0))`
-  creates a native inbox with one ETH protection slot; do not supply a wrapper.
+- Creator-payment inboxes are removed; harvest actual local LP fees.
+
 - **Services and replacement:** API and keeper configurations explicitly select
   `accounting_version: 2`; keeper configuration requires the reviewed deployed
   runtime hash at `code_hashes.vault` and its actual `contracts.vault`. Review
@@ -456,16 +465,16 @@ Use `scripts/verify-hookless-pool.py --block <confirmed-number> --expected-hash 
 
 ## Activation assets and routes
 
-An **activation route** converts a user's contribution into the LP pair. It is distinct from moving the Vault's already-held LP to another pool. Changing a USDG conversion pool does not migrate the attached LP or change its owners.
+An **activation route** converts a user's contribution into the LP pair. It is distinct from moving the Vault's already-held LP to another pool. Changing an ETH/ZZZ source conversion route does not migrate attached LP or change its owners.
 
 ### Add or re-enable an input token
 
-1. Review its exact chain/address, runtime and proxy authorities, decimals, transfers, liquidity, fees and price source. A symbol such as USDC does not identify an asset. Fee-on-transfer/rebasing/blacklisting or malicious callbacks can make an asset incompatible; permission to admit is not proof of compatibility.
-2. Governance configures the reviewed two-source `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`. Independently verify both raw rounds, policy identity, `priceBounds(token)`, decimals and source/proxy independence under [pricing operations](#configure-stop-and-recover-usd-pricing---2026-10-24). Admit the source with `ActivationAssets.setAsset(token,true,expectedCodeHash,reviewHash)` at the registry's immutable `activationAssets()` child.
-3. If conversion is needed, governance calls `ActivationEntry.addRoute(RoutePolicy)`. The legacy supported path is typed **single-hop V3** into one accounting-pair asset, with pinned source/output/router/factory/pool code and fee; direct ERC20/native input is separate. Typed hookless v4 policies are also implemented through `addV4Route(Policy)`; follow [typed route setup](TYPED_V4_ROUTES.md), including explicit version/profile pins. It is not a general multi-hop router or arbitrary external executor.
-4. Verify route ID, enabled status and exact factory/pool/token bindings; update reviewed backend route/feed pins and available UI choices. Simulate the complete input-to-LP operation against the current captured contribution-loss limit (2% by default), stronger route/venue minima and separate gas. Qualify actual execution before enabling real users.
+1. Only ETH and the reviewed ZZZ identity are contribution inputs. Do not add USDC, USDG or WETH as user sources. Marketplace royalty currencies are a separate policy.
+2. Bind the initial ZZZ identity once before sealing using `ActivationAssets.configureZZZ(token,codeHash,reviewHash)` after reviewing its exact runtime, decimals, transfer behavior and two independent USD sources. The deployed identity cannot be replaced. An issuer migration uses custody exit and a fresh deployment; old ownership/reward records are not erased.
+3. To stop either input, append its disabled `setAsset` policy; this stop requires no healthy token/feed. Re-enabling requires full review/validation. The helper cannot enable a third contribution currency.
+4. A supported future target pair can need an internal conversion route even though user inputs remain ETH/ZZZ. Pin its exact venue, code, route and prices, simulate the full Entry operation and verify its captured contribution floor before admission. Pool/route reconfiguration does not reopen a disabled source.
 
-Native V2 uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Actual production ETH/ZZZ/USDG/USDC routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
+Native V2 uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Only native ETH and the explicitly reviewed ZZZ identity may be user inputs. Actual ETH/ZZZ routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
 
 ### Replace a swap route when market liquidity moves
 
@@ -543,11 +552,11 @@ ownership/reward handoff below is a separate retained feature.
 
 | Need | Exact control and verification |
 | --- | --- |
-| Normal exit, all principal to ZZZ | Configure reviewed `Migration.configureZZZ`; read Budget `maintenanceLossBps()` as `L`. For reviewed pre-parking value `V`, preserve `F = V - floor(V * L / 10000)` and raw ZZZ minimum `ceil(F * 10**decimals / lowerZZZPrice)`. Pause and cancel any unsent plan before reviewed `park(ParkingRequest)`. Verify parked principal, read its stable `sourceSnapshot`, approve the exact `rawExit=false` request and verify `minimumRetainedUSD(id)`. Call `exit(id)` while paused before its ten-minute deadline. Use the greater of the preserved pre-parking raw minimum and the parked approval's required minimum; never loosen it. Parking has separate raw close minima; gas is separate. |
+| Normal exit, all principal to ZZZ | Verify the fixed pre-seal `Migration.currentZZZ()` binding matches `ActivationAssets.zzz()`; it cannot be changed after sealing. Read Budget `maintenanceLossBps()` as `L`. For reviewed pre-parking value `V`, preserve `F = V - floor(V * L / 10000)` and raw ZZZ minimum `ceil(F * 10**decimals / lowerZZZPrice)`. Pause and cancel any unsent plan before reviewed `park(ParkingRequest)`. Verify parked principal, read its stable `sourceSnapshot`, approve the exact `rawExit=false` request and verify `minimumRetainedUSD(id)`. Call `exit(id)` while paused before its ten-minute deadline. Use the greater of the preserved pre-parking raw minimum and the parked approval's required minimum; never loosen it. Parking has separate raw close minima; gas is separate. |
 | Unsafe or missing swap route | Cancel an unsent normal request before parking/reapproval. Use the same reviewed parking and stable-snapshot sequence, then separately approve `rawExit=true` with exact outgoing raw minima. Both attributed assets are sent without a swap. This mode deliberately has no USD-loss guarantee and never activates automatically. |
 | Failed close/swap/transfer | Inspect the reverted receipt: that transaction's custody, balances, epoch and send changes roll back. Separately confirmed parking remains parked. Fix the cause and prepare a fresh approved snapshot if it changed. Never repeat a successful send. |
 | New local pool/token | Approve ordered destination currencies and minima. Recipient performs any issuer exchange externally. If the plan initially selected local holding without a pool, admit/reserve a target for the same bucket and call the one-time `bindLocalDestination(id,pool,min0,min1,reviewHash)`. It preserves the original loss budget and departure. `completeLocal` must actually fund/mint the target LP and preserve shares. Then deliberately switch the sole contribution pool/input routes. |
-| New chain through your custodian | Approve source-chain custody only: `destinationChain=block.chainid`, `destinationPool=0`, `destinationCustody=recipient`, `verifier=0`, `verifierCodeHash=0`. The recipient performs any bridge/token migration externally. No on-protocol bridge is required; source principal remains outstanding/unavailable until a supported funded return/completion. This does not relocate NFTs/reward ledgers or promise remote accrual. See the runbook for exact request/approval fields. |
+| New chain through your custodian | Approve source-chain custody only: `destinationPool=0`, `destinationCustody=recipient` in the current local-only request. The recipient performs any bridge/token migration externally. No on-protocol bridge is required; source principal remains outstanding/unavailable until a supported funded return/completion. This does not relocate NFTs/reward ledgers or promise remote accrual. See the runbook for exact request/approval fields. |
 | Recover principal | In the current source-chain custody workflow, `recover(id,deadline,proof)` returns every actual sent asset and restores parked custody; use the local proof form from the runbook. No timeout, partial funding, balance write-off or resend. Optional direct remote-proof paths remain disabled/unqualified. |
 | Restart recovered/parked LP | Revalidate prices, venue, policy and current snapshot. Unpause and govern `Migration.resume(bucket,pool,minLP,deadline)`; verify actual active LP and unchanged shares. Ordinary supported same-pair `movePool` remains in this one module. |
 | Park without sending | Pause, verify `activePlan(bucket)=0`, then use exact `Migration.park(ParkingRequest)` with current pool/LP/shares/recorded contribution value/custody epoch/parking nonce/accounting currencies and raw close minima. At least one minimum must be positive; deadline is at most ten minutes. It omits source USD/inbox sync but cannot bypass an unusable venue/token or changed core/runtime binding. Native V2 parking does not call WETH or its policy. Invalidate unused parking authorization with `invalidateParking`. |
@@ -593,11 +602,9 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 
 | Operation | Entry point / owner of action | Verify and recover |
 | --- | --- | --- |
-| Receive optional/historical creator revenue | If separately agreed, governance creates the bucket's immutable inbox via `Fees.createRewardReceiver(bucketId,wrapper)`; give the creator the verified `rewardReceiver(bucketId)` | Not required by the selected hookless pool. For native V2 use wrapper `address(0)`; qualify payout assets, percentage basis, frequency and payer agreement. Receiver is append-only, not an operator wallet or the mint recipient. Unsupported/donated tokens do not automatically become rewards. |
-| Process optional/historical creator payment | Permissionless `Fees.syncExternal(bucketId)` through its bound inbox, if one exists | Compare actual received funds, allocated ledgers and reserves. Missing optional creator payments cannot be fixed by calling sync more often. No automatic debit of creator funds. |
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
 | Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)` | Uses classified reserve, actual pool and guards; funds never pass through keeper. Poll/threshold changes are off-chain; insufficient funds or unsafe execution waits/reverts. |
-| Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. Governance can update the reviewed target with `Buyback.setZZZ(token,codeHash,reviewHash)` after new-token/feed/burn qualification; coordinate with `Migration.configureZZZ` and current pools/routes. |
+| Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. Governance can update the reviewed target with `Buyback.setZZZ(token,codeHash,reviewHash)` after new-token/feed/burn qualification; this separate buyback target does not change the fixed contribution/normal-exit ZZZ identity. Verify current pools/routes. Token migration requires custody exit and a fresh deployment. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
 | Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Initial scope is native ETH plus the independently verified Robinhood WETH wrapper; stablecoin conversion depends on marketplace qualification. Admission does not restrict sales or convert payouts. Separate bounded ledger (17 total including native); no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay quarantined. |
@@ -800,7 +807,7 @@ A successful same-chain handoff does not qualify cross-chain finality, transport
 | `AccessController.setPaused(true)` | Live mint, contributions, ordinary rebalance/compound/buyback, atomic pool moves/resume and local LP completion | Operating-state transfers/claims and supported incoming returns remain. Governance-approved `Migration.park`, normal or raw `Migration.exit`, and `RoyaltyRewards.exitCustody` deliberately remain possible while paused under their own exact guards. Pause does not revoke governance custody authority or trigger raw fallback. Only governance unpauses; preparation/canonical locks remain. |
 | Canonical preparation | New economic work and normal protocol configuration | Existing claims/transfers/reveal/permitted drains; exact notice can be cancelled before freeze. Not a generic pause toggle. |
 | Canonical freeze | Ownership and ordinary reward/accounting operations | Only handoff settlement/export/funding/abort path. Fully restore abort or complete one successor; no guardian unlock. |
-| `Migration.cancel(id)` / `Migration.invalidateParking(bucket)` | That approved but unsent custody plan / unused parking authorization at its current nonce | Neither moves funds or erases history. A sent plan cannot be cancelled: use actual full `recover` or qualified `completeLocal`; remote recovery needs the pinned closure proof. The retired bridge stack has no active outbound switch. |
+| `Migration.cancel(id)` / `Migration.invalidateParking(bucket)` | That approved but unsent custody plan / unused parking authorization at its current nonce | Neither moves funds or erases history. A sent plan cannot be cancelled: use actual full `recover` or qualified `completeLocal`; `recover(id,deadline)` requires the full original sent assets; there is no remote-proof API. The retired bridge stack has no active outbound switch. |
 
 There is no independent pause for every individual feature/asset payout. Do not invent one in an incident. Source: [module guards](../src/base/ZZZModule.sol), [controller](../src/ZZZAccessController.sol), [recovery matrix](CHANGE_AND_RECOVERY.md).
 

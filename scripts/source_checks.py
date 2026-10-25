@@ -1,18 +1,21 @@
 """Narrow source consistency checks. NOT a Solidity parser/compiler or security analyzer."""
-import json,re,sys
+import argparse,json,re,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 EXPECTED=['ZZZVault','ZZZNFT','ZZZLiquidityManager','ZZZRewards','ZZZMembership','ZZZFeeController','ZZZStrategy',
 'ZZZCompounder','ZZZBuyback','ZZZMigration','ZZZAccessController',
 'ZZZOracle','ZZZPoolRegistry',
 'ZZZCanonicalHandoff','ZZZNFTCanonical','ZZZVaultCanonical','ZZZFeesCanonical']
-HELPERS=['ZZZRewardReceiver','ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAssets','ZZZActivationEntry',
-'ZZZMigrationBudget','ZZZCustodyValidation','ZZZRoyaltyFactory','ZZZRewardReceiverFactory','ZZZRoyaltyConverter','ZZZLPRewardConverter',
+HELPERS=['ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAssets','ZZZActivationEntry',
+'ZZZMigrationBudget','ZZZCustodyValidation','ZZZRoyaltyFactory','ZZZActivationAssetsFactory','ZZZRoyaltyConverter','ZZZLPRewardConverter',
 'ZZZV4RouteExecutor','ZZZContributionPricing']
 def sanitized(text):
     return re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
         lambda m:'\n'*m.group(0).count('\n')+' '*len(m.group(0)),text)
-def main():
+def main(argv=None):
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path,default=ROOT/'reports/source-checks.json')
+    args=parser.parse_args(argv)
     errors=[];external=set();inventory=[]
     for name in EXPECTED+HELPERS:
         p=ROOT/'src'/f'{name}.sol'
@@ -35,8 +38,8 @@ def main():
     report={'kind':'source_consistency_only','solidity_compiled':False,'security_audit_pass':False,
       'modules':len(EXPECTED),'standalone_helpers':HELPERS,'source_files':inventory,'external_imports':sorted(external),'errors':errors,
       'limitations':['Balanced delimiters do not prove valid Solidity','No type checking, EVM execution or exploit analysis']}
-    (ROOT/'reports').mkdir(exist_ok=True)
-    (ROOT/'reports/source-checks.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8',newline='\n')
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    args.output.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps({'source_files':len(sources),'errors':errors,'scope':'consistency only'}))
     return bool(errors)
 if __name__=='__main__':sys.exit(main())

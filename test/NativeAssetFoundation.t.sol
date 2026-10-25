@@ -9,6 +9,7 @@ import {Test} from "forge-std/Test.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
+import {ZZZActivationAssetsFactory} from "../src/ZZZActivationAssetsFactory.sol";
 import {Ids, PoolKey, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 import {MockAccess, MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {FakePermit2, FakeState, FakePolicy} from "./LiquidityEncoding.t.sol";
@@ -174,7 +175,7 @@ contract NativeAssetFoundationTest is Test {
         oracle.setTestFeed(address(brokenWrapper), address(wrappedFeed), 1 hours);
         assertEq(oracle.tokenDecimals(address(0)), 18); assertEq(oracle.value(address(0), 1 ether), 2000 ether);
         assertEq(oracle.value(address(brokenWrapper), 1 ether), 999 ether);
-        ZZZActivationAssets assets = new ZZZActivationAssets(address(access), address(this));
+        ZZZActivationAssets assets = ZZZActivationAssets(ZZZActivationAssetsFactory(access.activationAssetsFactory()).create());
         vm.expectRevert(); assets.setAsset(address(0), true, bytes32(0), keccak256("review"));
         assets.setAsset(address(0), true, assets.NATIVE_ASSET_CODE_HASH(), keccak256("review"));
         assertEq(assets.value(address(0), 0.05 ether), 100 ether);

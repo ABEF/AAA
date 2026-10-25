@@ -85,6 +85,10 @@ class Keeper:
         self.accounting_version = config.get('accounting_version',1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2):
             raise ValueError('Unsupported keeper accounting version')
+        self.fee_intake_version = config.get('fee_intake_version',0)
+        if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0,1) or \
+                (self.fee_intake_version == 1 and self.accounting_version != 2):
+            raise ValueError('Unsupported keeper fee-intake profile')
         self.chain = positive(config['chain_id'],'chain_id')
         self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
         self.sender = address(config['sender'])
@@ -122,7 +126,7 @@ class Keeper:
         if len(set(paths)) != len(paths): raise ValueError('State, health and lock paths must be distinct')
         if live and not self.path.is_file():
             raise ValueError('Live state is missing; restore a verified backup or initialize an unused keeper')
-        self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,'accounting_version':self.accounting_version,
+        self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,'accounting_version':self.accounting_version,'fee_intake_version':self.fee_intake_version,
             'bucket_cursor':0,'last':{},'spent':{},'pending':None,'next_nonce':None,'receipt_anchor':None})
         if not isinstance(self.state,dict): raise ValueError('Malformed persistent state')
         if self.state['chain_id'] != self.chain or self.state['sender'] != self.sender:
@@ -133,6 +137,8 @@ class Keeper:
         # implicit native port. No pending intent, nonce or receipt is rewritten.
         if self.state.get('accounting_version',1) != self.accounting_version or type(self.state.get('accounting_version',1)) is not int:
             raise ValueError('Persistent keeper state belongs to another accounting version; preserve recovery records')
+        if type(self.state.get('fee_intake_version',0)) is not int or self.state.get('fee_intake_version',0) != self.fee_intake_version:
+            raise ValueError('Persistent keeper state belongs to another fee-intake version; preserve recovery records')
         if self.state.get('contracts') != self.contracts:
             raise ValueError('Persistent keeper state belongs to another deployment')
         positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
@@ -316,6 +322,8 @@ class Keeper:
 
     def _validate_maintenance_settings(self,settings: dict[str,Any],*,allow_retired: bool = False) -> None:
         if not isinstance(settings,dict): raise ValueError('Maintenance settings must be an object')
+        if self.fee_intake_version == 1 and settings.get('sync_external_rewards',False) and not allow_retired:
+            raise ValueError('LP-only fee intake has no creator-payment synchronization job')
         for name in ('compound','compound_idle','harvest','sync_external_rewards'):
             if name in settings and type(settings[name]) is not bool:
                 raise ValueError(f'{name} must be an explicit boolean')
@@ -461,6 +469,16 @@ class Keeper:
         try: version = self.view('vault','ACCOUNTING_VERSION()')
         except (ValueError,RpcError) as exc: raise RpcError('Native accounting version is unavailable') from exc
         if version != self.accounting_version: raise RpcError('Vault accounting version differs from the reviewed keeper profile')
+        if self.fee_intake_version == 1:
+            pin = self.config.get('code_hashes',{}).get('fees','')
+            if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin):
+                raise RpcError('LP-only fee intake requires a reviewed fee-controller runtime pin')
+            code = self.rpc.call('eth_getCode',[self.contracts['fees'],'latest'])
+            if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower():
+                raise RpcError('LP-only fee-controller runtime differs from the reviewed keeper profile')
+            if self.view('fees','FEE_INTAKE_VERSION()') != 1:
+                raise RpcError('LP-only fee-intake version differs from the reviewed keeper profile')
 
     def preparation_active(self) -> bool:
         """Current deployments must expose this strict ABI; no legacy fallback."""
@@ -676,6 +694,8 @@ class Keeper:
         if self.state.get('pending'): return False
         if signature == 'bridgeRewards(uint256,address,bytes32)':
             raise ValueError('Reward bridge scheduling is retired')
+        if self.fee_intake_version == 1 and signature in ('syncExternal(uint256)','syncAllExternal()'):
+            raise ValueError('Creator-payment synchronization is retired in the LP-only profile')
         self._validate_maintenance_config()
         if self.stop_requested():
             log('shutdown_before_submission',action=key); return False
@@ -1063,6 +1083,8 @@ class Keeper:
         return fields,tokens
 
     def _sync_external(self, bucket: int) -> bool:
+        if self.fee_intake_version == 1:
+            raise RpcError('Creator-payment synchronization is retired in the LP-only profile')
         receiver = self.view('fees','rewardReceiver(uint256)',bucket)
         if receiver == 0: return False
         if receiver >= 1 << 160: raise RpcError('Noncanonical reward receiver address')
@@ -1126,7 +1148,7 @@ class Keeper:
                 if status not in (1,2,3,4,6): continue
                 # Canonical funded revenue and claims remain available during
                 # pauses and while the physical LP is away. No principal moves.
-                if item.get('sync_external_rewards',True) and self._sync_external(bucket): return
+                if self.fee_intake_version == 0 and item.get('sync_external_rewards',True) and self._sync_external(bucket): return
                 if paused: continue
                 if status == 1:
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')

@@ -123,6 +123,13 @@ class ActivationConfig:
                 raise ValueError('Ambiguous or unsupported source route')
             self.sources[(pool, source)] = (route, _hash(item['asset_policy_id']))
             self.route_kinds[(pool, source)] = kind
+        self.fee_intake_version = getattr(projection, 'fee_intake_version', 0)
+        self.zzz_input = None
+        if self.fee_intake_version == 1:
+            currencies = {source for _pool, source in self.sources}
+            if ZERO not in currencies or len(currencies) != 2:
+                raise ValueError('Current activation sources must contain only native ETH and one reviewed ZZZ identity')
+            self.zzz_input = next(source for source in currencies if source != ZERO)
         self.range_policies = {}
         if self.range_policy_version == 1:
             from zzz_ops.range_policy import intended
@@ -184,6 +191,13 @@ class ActivationConfig:
             bindings += [('entry', 'v4Executor()', 'v4_executor'), ('v4_executor', 'parent()', 'entry')]
         for role, method, expected in bindings:
             if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Activation helper binding changed')
+        if self.fee_intake_version == 1:
+            if int(read('activation_assets', 'SOURCE_POLICY_VERSION()')[0],16) != 1 or \
+                    _address_word(read('activation_assets', 'zzz()')[0]) != self.zzz_input:
+                raise ProjectionError('ETH/ZZZ contribution identity differs from the reviewed source policy')
+            for token in {source for _pool, source in self.sources}:
+                if not _bool(read('activation_assets', 'isContributionAsset(address)',token)[0]):
+                    raise ProjectionError('Contribution currency is not admitted by the ETH/ZZZ-only policy')
         for target, digest in self.dependencies.items(): p._code(target, digest, block)
         for method, label in (('positionManager()','position_manager'), ('poolManager()','pool_manager'),
                               ('stateView()','state_view'), ('permit2()','permit2')):

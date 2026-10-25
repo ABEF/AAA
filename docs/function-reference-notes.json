@@ -304,7 +304,7 @@
           }
         },
         "seal()": {
-          "purpose": "Permanently end bootstrap binding and activate fixed-module operation. Irreversible: validates required distinct module/companion bindings and home NFT randomness, then clears bootstrap. Seal is not production approval or an upgrade mechanism.",
+          "purpose": "Irreversibly close bootstrap after complete unique module/companion, randomness and matching nonzero fixed contribution/exit ZZZ bindings are validated.",
           "access": "Bootstrap only, once."
         },
         "setKeeper(address,bool)": {
@@ -345,7 +345,7 @@
           }
         },
         "canonicalTransition(uint8,bool,bool)": {
-          "purpose": "Apply a canonical lifecycle transition requested by the fixed handoff coordinator. Terminal retired/cancelled states cannot transition again. settling=true is accepted only with frozen state 1.",
+          "purpose": "Allow only the bound coordinator to change canonical lifecycle; terminal retired/cancelled states and impossible higher states cannot reopen.",
           "access": "Bound canonicalHandoff only; internal protocol endpoint, not an operator shortcut.",
           "inputs": {
             "state": "Canonical lifecycle code 0 operating / 1 frozen / 2 importing / 3 retired / 4 cancelled.",
@@ -409,6 +409,13 @@
           },
           "outputs": {
             "0": "Boolean interface support, not service/security qualification."
+          }
+        },
+        "activationAssetsFactory()": {
+          "purpose": "Return the immutable noncustodial ActivationAssets factory created by this controller.",
+          "access": "Read-only; any caller.",
+          "outputs": {
+            "0": "Fixed factory address. Its access() must equal this controller, and assetsOf(Registry) must equal the Registry's bound ActivationAssets child."
           }
         }
       },
@@ -596,7 +603,7 @@
       }
     },
     "ZZZActivationAssets": {
-      "purpose": "Append-only admission of assets supplied for activation/growth, separate from existing LP/reward custody and exits.",
+      "purpose": "Fixed ETH/ZZZ-only contribution-source policy. ZZZ identity is selected once before sealing; same-token admission/pins remain governed. Pair accounting and NFT marketplace royalty currencies are separate.",
       "functions": {
         "access()": {
           "purpose": "Read the immutable controller binding.",
@@ -639,46 +646,82 @@
           "access": "Anyone; read-only."
         },
         "setAsset(address,bool,bytes32,bytes32)": {
-          "purpose": "Append and activate an enabled/disabled source-contribution policy. Disabling needs no healthy token/price read and does not disable existing LP, rewards or exits. Enabling validates runtime, <=18 decimals and current Oracle price/decimals. Review hash is provenance, not an audit.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "purpose": "Append and activate same-identity source enablement/runtime policy. Cannot introduce a third input currency or change the fixed ZZZ address. Disabling deliberately avoids failed token and price reads.",
+          "access": "Immediate controller governance or unsealed bootstrap under existing configuration/lifecycle rules; no additional waiting period.",
           "inputs": {
-            "token": "Actual input asset address; zero is native ETH.",
-            "enabled": "True admits a validated source; false stops new source contributions without an external dependency read.",
-            "expectedCodeHash": "Exact ERC20 runtime hash, or the explicit NATIVE_ASSET_CODE_HASH sentinel for ETH.",
-            "reviewHash": "Nonzero actual review commitment; not an independent-audit declaration."
+            "token": "Native ETH zero or fixed ZZZ when enabling; another historical token may only be disabled, not admitted as a third source.",
+            "enabled": "True validates and enables the permitted source identity; false stops future nonzero contributions without changing existing LP or claims.",
+            "expectedCodeHash": "Current reviewed token runtime hash, or NATIVE_ASSET_CODE_HASH for ETH. Disable paths record the supplied pin without querying a failing dependency.",
+            "reviewHash": "Nonzero commitment documenting this source-policy change."
           },
           "outputs": {
-            "id": "New append-only policy ID, including history ordinal."
+            "id": "New immutable policy ID; prior history is preserved."
           }
         },
         "admitPoolAsset(address)": {
-          "purpose": "Initially admit a pool currency without overwriting a known source policy. A previously disabled policy stays disabled; pool reconfiguration cannot silently restore it.",
-          "access": "Fixed parent Registry only.",
+          "purpose": "Initially record a target-pair currency without widening contribution inputs. Known policies are returned unchanged; a different accounting currency is recorded contribution-disabled.",
+          "access": "Only the immutable Registry. Pool admission does not grant a new external input or override a disabled source.",
           "inputs": {
-            "token": "token is the actual accounting currency (zero means ETH)."
+            "token": "Actual target-pair accounting currency; zero is native ETH. Other pair currencies may be priced/accounted while remaining invalid user sources."
           },
           "outputs": {
-            "id": "Existing active policy ID or newly recorded validated pool-admission policy."
+            "id": "Existing policy ID unchanged, or new pool-admission ID enabled only when the currency is ETH or the fixed ZZZ identity."
           }
         },
         "value(address,uint256)": {
-          "purpose": "Value newly supplied raw input using its current enabled policy and Oracle. Zero amount returns zero without consulting the currency. Disabled, changed-runtime or bad-price inputs revert.",
-          "access": "Anyone; read-only.",
+          "purpose": "Return conservative USD18 value of actual original input under enabled source/runtime/precision/dual-price checks. Nonzero unsupported input reverts, including the direct-Vault valuation path.",
+          "access": "Read-only; any caller. Pair admission alone is insufficient. A zero amount returns zero without reading that currency's dependencies.",
           "inputs": {
-            "token": "Actual source asset address; zero is native ETH.",
-            "amount": "Raw source-token units, or wei for ETH. Zero skips dependency checks and returns zero value."
+            "token": "Original input identity; native ETH zero or the fixed ZZZ contract for a nonzero amount.",
+            "amount": "Raw original input units: wei for ETH or the token's validated decimals for ZZZ."
           },
           "outputs": {
-            "0": "USD18 lower-bound contribution value; not a stablecoin peg assumption."
+            "0": "Conservative lower-bound USD value in18decimals, or zero for zero input; never an assumed stablecoin peg."
+          }
+        },
+        "SOURCE_POLICY_VERSION()": {
+          "purpose": "Return the explicit fixed ETH/ZZZ input-policy profile version.",
+          "access": "Read-only; any caller.",
+          "outputs": {
+            "0": "Version1: native ETH plus the one pre-seal ZZZ identity, with no third user contribution currency."
+          }
+        },
+        "zzz()": {
+          "purpose": "Return the fixed reviewed ZZZ contribution identity. It is not a mutable migration target.",
+          "access": "Read-only; any caller.",
+          "outputs": {
+            "0": "Configured ERC20 ZZZ address, or zero before the one-time bootstrap configuration. A valid production Registry must configure it before sealing."
+          }
+        },
+        "isContributionAsset(address)": {
+          "purpose": "Check permitted source identity only: native ETH or the configured ZZZ. Does not itself check enablement, runtime, price or precision.",
+          "access": "Read-only; any caller.",
+          "inputs": {
+            "token": "Candidate original user-supplied currency; zero means native ETH."
+          },
+          "outputs": {
+            "0": "True for native ETH or the fixed nonzero ZZZ identity, even when that identity's current source policy is disabled. value(nonzero) enforces the additional live policy checks."
+          }
+        },
+        "configureZZZ(address,bytes32,bytes32)": {
+          "purpose": "Configure the ZZZ ERC20 identity exactly once before sealing and record its validated initial source policy. Reconfiguration, even to the same address, is rejected. New-token migration uses custody exit and a separately reviewed deployment.",
+          "access": "Bootstrap governance only, before access.isSealed(), while zzz is unset. It requires current code, decimals and valid dual-price admission; live contributions cannot run before sealing.",
+          "inputs": {
+            "token": "Nonzero ERC20 contract to serve as this deployment's fixed ZZZ source.",
+            "expectedCodeHash": "Reviewed nonzero runtime hash that must match token.codehash.",
+            "reviewHash": "Nonzero provenance commitment for this explicit token/code/price-policy review; not an independent-audit claim."
+          },
+          "outputs": {
+            "id": "Append-only activated policy ID for the enabled fixed ZZZ identity."
           }
         }
       },
       "constructor": {
-        "purpose": "Create the parent-bound source-admission helper.",
-        "access": "Fixed Registry constructor only; standalone operator deployment fails parent-sender binding.",
+        "purpose": "Bind the immutable controller and Registry through the controller's fixed factory, without an arbitrary direct-construction bypass.",
+        "access": "Only controller.activationAssetsFactory(); that factory's access() must equal controller. The fixed factory derives poolRegistry from its own create() caller.",
         "inputs": {
-          "controller": "Same controller as Registry.",
-          "poolRegistry": "Creating Registry address; must equal constructor msg.sender."
+          "controller": "Existing AccessController contract; must be the factory's immutable controller.",
+          "poolRegistry": "Nonzero Registry/caller address bound to this unique child by the factory."
         }
       }
     },
@@ -744,8 +787,8 @@
           }
         },
         "addRoute((address,address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32))": {
-          "purpose": "Append and enable an immutable reviewed single-hop ERC20 v3 input route. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Requires distinct nonzero source/output, exact runtime pins and matching router/factory/pool/currencies/fee. No arbitrary recipient or router calldata.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "purpose": "Append and enable an immutable typed-v3 route whose original source is the fixed reviewed ZZZ. Native ETH uses direct/native-v4 paths; no stablecoin or WETH source is admitted by recording a target-pair route.",
+          "access": "Immediate governance, operating state, nonReentrant; complete existing router/factory/pool/token runtime and identity checks still apply.",
           "inputs": {
             "policy": "RoutePolicy(source,output,router,factory,pool,fee,routerCodeHash,factoryCodeHash,poolCodeHash,sourceCodeHash,outputCodeHash,reviewHash). Fee is millionths; reviewHash nonzero."
           },
@@ -754,8 +797,8 @@
           }
         },
         "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": {
-          "purpose": "Append and enable an immutable typed hookless static-v4 input route, including native ETH. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Parent/domain/chain and actual PoolKey/runtime bindings are validated; native zero uses its explicit identity hash.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "purpose": "Append and enable a reviewed hookless typed-v4 route for an original ETH/ZZZ source. Target output may be an admitted accounting currency without becoming a third user input.",
+          "access": "Immediate governance, operating state and nonReentrant; fixed executor validates exact policy/runtime/venue identities.",
           "inputs": {
             "policy": "Policy(source,output,key(currency0,currency1,fee,tickSpacing,hooks),poolManager,stateView,sourceCodeHash,outputCodeHash,poolManagerCodeHash,stateViewCodeHash,reviewHash)."
           },
@@ -764,24 +807,16 @@
           }
         },
         "setRouteEnabled(bytes32,bool)": {
-          "purpose": "Enable or disable an existing typed input-conversion route. Disabling reads no failing token/router/pool; enabling fully revalidates the existing immutable policy. It does not create a route or change its contents.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "purpose": "Enable a reviewed route only for an allowed ETH/ZZZ source, or disable it without calling a failing token/router/pool. This never changes immutable route contents.",
+          "access": "Immediate governance, operating state and nonReentrant. Re-enable revalidates the existing typed route and allowed source.",
           "inputs": {
             "id": "Existing immutable v3 or v4 route ID.",
             "enabled": "False stops new uses without dependency reads; true revalidates and re-enables the same immutable policy."
           }
         },
-        "execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))": {
-          "purpose": "Retired unsigned-cap contribution selector; always reverts. Prepare executeReviewed instead; old calldata must not silently inherit a newer governance loss cap.",
-          "access": "No caller can use it successfully.",
-          "value": "Every value and request reverts under this retired selector. No ETH is forwarded or accepted on success; there is no successful call. Reverted transaction gas can still be spent.",
-          "inputs": {
-            "0": "Legacy Request(nftId,poolId,sourceAsset,amountIn,routeId,minimumOut,minimumLiquidity,deadline,increase). The selector is retired: all values revert; prepare executeReviewed instead."
-          }
-        },
         "executeReviewed((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool),uint16)": {
-          "purpose": "Atomically convert an owner’s selected input and activate or grow that same NFT’s actual LP. Requires sealed/unpaused normal operation, an enabled sole contribution pool, fresh dual prices/routes and factual marginal LP/deployed-value guards. Original activation >=$100; growth >=$5. A failed swap/deployment/check reverts this operation; an earlier approval and spent gas are separate. No automatic resend.",
-          "access": "Current NFT owner only; ERC721 operator approvals do not grant contribution authority. Exact ERC20 allowance to Entry or exact native msg.value is required.",
+          "purpose": "Atomically contribute actual owner-supplied ETH or fixed ZZZ, enforce the signed maximum-loss budget and attach verified LP before confirming activation/growth. Unsupported source identity is rejected before pulls or conversion.",
+          "access": "Current NFT owner only, sealed/live/operating and nonReentrant; current source policy, route, dual-price context and exact Vault call must all validate. ERC721 operator approval is not funding authority.",
           "inputs": {
             "request": "Request tuple: nftId actual canonical NFT ID; poolId exact admitted PoolKey hash; sourceAsset zero for native ETH or approved ERC20; amountIn raw source units/wei; routeId zero only for direct accounting input; minimumOut raw converted output (must be zero for direct route); minimumLiquidity actual positive v4 liquidity units; deadline Unix seconds from now through +600; increase false activation / true growth.",
             "maximumLossBps": "Signed maximum combined conversion/placement/undeployed-value loss in basis points, 0..1000. Captured execution policy may be tighter, never wider; gas excluded."
@@ -1426,15 +1461,6 @@
             "token": "Actual admitted asset address; zero means native ETH with 18 decimals."
           }
         },
-        "setFeed(address,address,uint32)": {
-          "purpose": "Retired single-source configuration selector; always reverts SingleSourceUnsupported. Use reviewed setDualFeed; bootstrap is not allowed to bypass the dual-source requirement.",
-          "access": "No caller can use it successfully.",
-          "inputs": {
-            "0": "Retired legacy token-address argument; never admits a single-source policy.",
-            "1": "Retired legacy price-feed address argument; every call reverts.",
-            "2": "Retired legacy maximum age in seconds; ignored because SingleSourceUnsupported always reverts."
-          }
-        },
         "setDualFeed(address,(address,bytes32,bytes32,uint32,uint8),(address,bytes32,bytes32,uint32,uint8),uint16,bytes32)": {
           "purpose": "Append and immediately activate a fully reviewed independent two-source USD policy for an asset. Both current positive fresh rounds, runtime/decimals, distinct source/independence IDs and agreement are checked. Two addresses or IDs do not prove independence. Bad/stale/divergent sources fail closed; no peg/pool-spot/single-source fallback.",
           "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
@@ -1884,7 +1910,7 @@
           }
         },
         "collectFees(uint256,uint256)": {
-          "purpose": "Harvest the shared physical LP’s actual fees into the funded allocation ledgers.",
+          "purpose": "Harvest physically received local venue LP fees and fund their allocation; creator inbox synchronization is removed.",
           "access": "Permissionless while live and canonical accounting is active.",
           "notes": "One bucket harvest serves all its NFTs. This is not a holder payout and cannot withdraw principal. Inputs: id is the shared bucket ID; deadline is a Unix timestamp.",
           "inputs": {
@@ -1943,20 +1969,6 @@
           },
           "outputs": {
             "0": "The bucket’s original canonical home-pool identity, preserved across supported moves."
-          }
-        },
-        "importPending(uint256,bytes32,(bytes32,uint256,uint256,uint256,uint256,uint160,uint64,uint8,uint256,address,address,address,address,uint256,address),uint256,bytes32,uint256,uint256)": {
-          "purpose": "Reject the retired v3 principal-import ABI.",
-          "access": "No successful caller; always reverts.",
-          "notes": "Retained selector does not enable an old receiver or bridge.",
-          "inputs": {
-            "0": "Unused retired ABI argument at position0; this selector always reverts before processing any input.",
-            "1": "Unused retired ABI argument at position1; this selector always reverts before processing any input.",
-            "2": "Unused retired ABI argument at position2; this selector always reverts before processing any input.",
-            "3": "Unused retired ABI argument at position3; this selector always reverts before processing any input.",
-            "4": "Unused retired ABI argument at position4; this selector always reverts before processing any input.",
-            "5": "Unused retired ABI argument at position5; this selector always reverts before processing any input.",
-            "6": "Unused retired ABI argument at position6; this selector always reverts before processing any input."
           }
         },
         "increase(uint256,uint256,uint256,uint128,uint256)": {
@@ -2328,26 +2340,8 @@
       }
     },
     "ZZZFeeController": {
-      "purpose": "Funded 80/10/5/5 allocation, segregated compound/buyback reserves and optional creator-inbox continuity.",
+      "purpose": "Allocate physically received local LP fees at 80/10/5/5 into backed holder, collective, compound and buyback ledgers; no creator inbox or remote intake.",
       "functions": {
-        "MAX_REWARD_RECEIVERS()": {
-          "purpose": "Read the immutable maximum number of optional creator inboxes.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable maximum number of optional creator inboxes."
-          }
-        },
-        "acceptLegacyGross(uint256,address,uint256)": {
-          "purpose": "Accept exact unsplit receipts forwarded by the authenticated immediate predecessor.",
-          "access": "Only the predecessor’s bound FeeController.",
-          "notes": "Active successors allocate once; inert/retired successors retain a late queue.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH only in native-aware paths.",
-            "2": "Raw units of the actual specified currency; not its USD value."
-          },
-          "value": "Exactly the forwarded amount for native currency zero, otherwise zero with exact ERC20 transfer."
-        },
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
@@ -2378,51 +2372,6 @@
           },
           "value": "Exactly amount when token is native zero; zero when token is ERC20 and the exact amount is pulled."
         },
-        "allocateExternal(uint256,address,uint256)": {
-          "purpose": "Receive funded optional creator-inbox receipts and allocate or queue them under canonical lifecycle.",
-          "access": "Only the registered immutable receiver for that bucket.",
-          "notes": "Actual received value is required. Late retired receipts remain gross until the active successor allocates them.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH only in native-aware paths.",
-            "2": "Raw units of the actual specified currency; not its USD value."
-          },
-          "value": "Exactly the declared native amount, or zero for ERC20; only its immutable receiver may fund this ingress."
-        },
-        "allocated(uint256,address)": {
-          "purpose": "Read cumulative personal and collective allocation accounting for a bucket/canonical currency.",
-          "access": "Anyone; read-only.",
-          "notes": "These already-allocated counters are not the current owner’s unclaimed NFT balance. Returns: Personal and shared totals in raw currency units.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Original canonical currency identity, not an arbitrary replacement ticker."
-          },
-          "outputs": {
-            "0": "Cumulative already-allocated personal amount in raw requested currency units.",
-            "1": "Cumulative already-allocated collective amount in raw requested currency units."
-          }
-        },
-        "bindRemoteAsset(uint256,address,address)": {
-          "purpose": "Retained legacy remote-asset mapping hook; not an enabled bridge feature.",
-          "access": "Only the RECEIVER module, which cannot be bound in the current release.",
-          "notes": "Do not call or qualify this as a supported production route.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH only in native-aware paths.",
-            "2": "Original canonical currency identity, not an arbitrary replacement ticker."
-          }
-        },
-        "bridgeRewards(uint256,address,bytes32)": {
-          "purpose": "Retained legacy reward-transport entrypoint, unsupported in the current deployment.",
-          "access": "No supported current caller path; retired bridge bindings must be zero.",
-          "notes": "Cannot be used as the current custody exit or as proof of working cross-chain rewards.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH only in native-aware paths.",
-            "2": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked."
-          },
-          "value": "Legacy transport fee forwarded as msg.value; there is no supported current bridge module/route and this is not a principal exit."
-        },
         "buybackBalance(address)": {
           "purpose": "Read the currency amount reserved solely for checked buyback/burn.",
           "access": "Anyone; read-only.",
@@ -2434,7 +2383,7 @@
           }
         },
         "canonicalBucketRecord(uint256,address)": {
-          "purpose": "Encode one bucket/currency’s original allocation, reserve and dust record for handoff.",
+          "purpose": "Export the four-word bucket/asset/dust/compound reserve row for the LP-only V3 handoff.",
           "access": "Anyone; read-only.",
           "notes": "Returns: Version-specific ABI bytes, not arbitrary callable data.",
           "inputs": {
@@ -2445,38 +2394,12 @@
             "0": "Version-specific ABI bytes, not arbitrary callable data."
           }
         },
-        "canonicalCaptureReceivers()": {
-          "purpose": "Capture every optional receiver’s pre-freeze cutoff before callbacks or wrapping.",
-          "access": "Only fixed FeesCanonical."
-        },
         "canonicalFlush(uint256,address)": {
           "purpose": "Settle captured home-bucket fee dust as part of canonical export preparation.",
           "access": "Only fixed FeesCanonical.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Actual currency address; zero denotes native ETH in native-aware paths."
-          }
-        },
-        "canonicalFundReceiver(uint256,uint8,uint256,bool)": {
-          "purpose": "Fund or restore an exact exported receiver protection slot.",
-          "access": "Only fixed FeesCanonical.",
-          "notes": "Separates token0, token1 and legacy native protection; native V2 must not count ETH twice.",
-          "inputs": {
-            "0": "Zero-based registered optional inbox index.",
-            "1": "Fixed domain/protection slot; use this component’s declared slot ordering.",
-            "2": "Raw units of the actual specified currency; not its USD value.",
-            "3": "True classifies a returning original protection amount rather than a fresh receipt."
-          },
-          "value": "Exactly amount for native receiver slot, otherwise zero; actual ERC20 funding is checked by the surrounding canonical path."
-        },
-        "canonicalLateTotal(address)": {
-          "purpose": "Read unsplit queued late receipts in one currency across bucket records.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in native-aware paths."
-          },
-          "outputs": {
-            "0": "Unsplit queued late receipts in one currency across bucket records."
           }
         },
         "canonicalModule()": {
@@ -2486,27 +2409,6 @@
             "0": "The fixed companion that exports/imports this component’s canonical accounting."
           }
         },
-        "canonicalQuarantineReceivers()": {
-          "purpose": "Quarantine inert-successor receiver donations before activation.",
-          "access": "Only fixed FeesCanonical.",
-          "notes": "Prefunding cannot become imported holders’ initial revenue."
-        },
-        "canonicalSend(address,uint256,uint8,address,uint256)": {
-          "purpose": "Move one exact classified FeeController/receiver backing leg under canonical control.",
-          "access": "Only fixed FeesCanonical.",
-          "notes": "Recipient and amount come from the captured handoff manifest, not an admin sweep.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in native-aware paths.",
-            "1": "Receiver index or component-defined sentinel in an authenticated canonical operation.",
-            "2": "Fixed domain/protection slot; use this component’s declared slot ordering.",
-            "3": "Exact module/backing destination selected by authenticated canonical logic.",
-            "4": "Raw units of the actual specified currency; not its USD value."
-          }
-        },
-        "canonicalSettleReceivers()": {
-          "purpose": "Process only the captured receiver cutoffs during ordered handoff settlement.",
-          "access": "Only fixed FeesCanonical."
-        },
         "canonicalState()": {
           "purpose": "Read the controller’s current canonical lifecycle state used by funding/forwarding guards.",
           "access": "Anyone; read-only.",
@@ -2515,7 +2417,7 @@
           }
         },
         "canonicalWrite(uint8,bytes)": {
-          "purpose": "Import typed FeeController reserves, counters and receiver identities into an inert successor.",
+          "purpose": "Import exact LP-only V3 asset or bucket rows under the fixed companion; old receiver/remote codecs are rejected.",
           "access": "Only fixed FeesCanonical.",
           "notes": "No arbitrary storage or allocation rewrite.",
           "inputs": {
@@ -2534,30 +2436,6 @@
             "0": "One bucket/currency amount reserved solely for permanent LP compounding."
           }
         },
-        "createRewardReceiver(uint256,address)": {
-          "purpose": "Create one immutable optional external-funding inbox for a valid home bucket.",
-          "access": "Governance via controller after sealing.",
-          "notes": "No replacement/sweep; selected hookless LP fees do not require a creator inbox. Native V2 uses wrapper zero for ETH buckets. Returns: New fixed receiver address.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Optional fixed legacy native wrapper; zero for the native-ETH V2 inbox path."
-          },
-          "outputs": {
-            "0": "New fixed receiver address."
-          }
-        },
-        "creditRemote(uint256,address,uint256,uint256)": {
-          "purpose": "Retained legacy authenticated remote personal/collective receipt hook.",
-          "access": "Only the disabled RECEIVER module.",
-          "notes": "No remote funding or bridge is enabled by the presence of this ABI.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH only in native-aware paths.",
-            "2": "Raw already-allocated owner LP reward amount.",
-            "3": "Raw already-allocated collective reward amount."
-          },
-          "value": "Exactly personal+shared for native currency zero, otherwise zero; retained disabled RECEIVER authority still applies."
-        },
         "dust(uint256,address)": {
           "purpose": "Read one bucket/currency’s unsplit fee remainder awaiting a valid allocation boundary.",
           "access": "Anyone; read-only.",
@@ -2569,28 +2447,6 @@
             "0": "One bucket/currency’s unsplit fee remainder awaiting a valid allocation boundary."
           }
         },
-        "expectedCollective(uint256,address)": {
-          "purpose": "Read the retained legacy expected collective-receipt counter for a bucket/currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "The retained legacy expected collective-receipt counter for a bucket/currency."
-          }
-        },
-        "expectedIndividual(uint256,address)": {
-          "purpose": "Read the retained legacy expected personal-receipt counter for a bucket/currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "The retained legacy expected personal-receipt counter for a bucket/currency."
-          }
-        },
         "flushDust(uint256,address)": {
           "purpose": "Assign tracked sub-20-unit fee dust before a relevant membership/share boundary.",
           "access": "Only sealed Vault or Membership.",
@@ -2598,80 +2454,6 @@
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Actual currency address; zero denotes native ETH only in native-aware paths."
-          }
-        },
-        "forwardLate(uint256,address)": {
-          "purpose": "Forward unsplit post-retirement bucket receipts to the one immediate successor.",
-          "access": "Permissionless only after canonical retirement.",
-          "notes": "Exact one-hop forwarding; avoids applying the allocation twice.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH only in native-aware paths."
-          }
-        },
-        "hasPendingExternal()": {
-          "purpose": "Check whether actual external receipts or tracked funding dust still need settlement.",
-          "access": "Anyone; read-only.",
-          "notes": "Used as a final entry barrier; true is not an ETH amount.",
-          "outputs": {
-            "0": "Whether actual external receipts or tracked funding dust still need settlement."
-          }
-        },
-        "importAccounting((uint8,uint8,bytes32,uint256,uint256,bytes32,uint256,address,address,uint256,uint256,uint256,uint256,uint256,uint64,bytes32,uint256,address,address,address,address,uint8,bytes32,uint256,uint256,uint256,uint256,uint256))": {
-          "purpose": "Retained legacy remote accounting import hook.",
-          "access": "Only the disabled RECEIVER module.",
-          "notes": "Current same-chain canonical handoff uses the dedicated codecs instead.",
-          "inputs": {
-            "0": "Retained versioned legacy BridgeMessage tuple; no transport capability is implied."
-          }
-        },
-        "lateGross(uint256,address)": {
-          "purpose": "Read unsplit post-cutoff/predecessor receipts queued for one bucket/currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "Unsplit post-cutoff/predecessor receipts queued for one bucket/currency."
-          }
-        },
-        "processLate(uint256,address)": {
-          "purpose": "Allocate a queued late gross receipt once the receiving canonical deployment is active.",
-          "access": "Permissionless in active canonical accounting.",
-          "notes": "Not a claim and not fresh principal.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH only in native-aware paths."
-          }
-        },
-        "receivedCollective(uint256,address)": {
-          "purpose": "Read the cumulative funded collective receipts recognized for a bucket/currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "The cumulative funded collective receipts recognized for a bucket/currency."
-          }
-        },
-        "receivedIndividual(uint256,address)": {
-          "purpose": "Read the cumulative funded personal receipts recognized for a bucket/currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "The cumulative funded personal receipts recognized for a bucket/currency."
-          }
-        },
-        "receiverFactory()": {
-          "purpose": "Locate the immutable factory that creates and inspects this controller’s optional inboxes.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable factory that creates and inspects this controller’s optional inboxes."
           }
         },
         "releaseBuyback(address,uint256)": {
@@ -2695,100 +2477,21 @@
             "0": "Raw reserve amount released; may be zero."
           }
         },
-        "remoteCanonicalToken(uint256,address)": {
-          "purpose": "Read a retained legacy remote-to-canonical currency mapping; no new bridge is enabled.",
-          "access": "Anyone; read-only.",
+        "FEE_INTAKE_VERSION()": {
+          "purpose": "Read the explicit LP-only fee intake version, currently 1.",
+          "access": "Anyone; read-only."
+        },
+        "canonicalBarrier()": {
+          "purpose": "Reject a handoff capture from inside an allocation/reserve callback; no balance or entitlement is changed.",
+          "access": "Only the fixed FeesCanonical companion, within its lifecycle guards."
+        },
+        "canonicalSend(address,address,uint256)": {
+          "purpose": "Transfer the exact asset amount during the fixed companion's classified handoff funding/abort procedure; no administrator sweep or arbitrary call.",
+          "access": "Only the immutable FeesCanonical companion; its coordinator/lifecycle and exact-backing guards apply.",
           "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "A retained legacy remote-to-canonical currency mapping; no new bridge is enabled."
-          }
-        },
-        "remoteCollective(uint256,address)": {
-          "purpose": "Read retained classified collective amounts awaiting legacy remote settlement.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "Retained classified collective amounts awaiting legacy remote settlement."
-          }
-        },
-        "remoteIndividual(uint256,address)": {
-          "purpose": "Read retained classified personal amounts awaiting legacy remote settlement.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "Retained classified personal amounts awaiting legacy remote settlement."
-          }
-        },
-        "remoteSettled(uint256)": {
-          "purpose": "Check legacy expected-versus-received reward accounting before a home-bucket change.",
-          "access": "Anyone; read-only.",
-          "notes": "Compatibility/accounting barrier; does not attest remote NAV, transport finality or enabled bridging.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
-          },
-          "outputs": {
-            "0": "Legacy expected-versus-received reward accounting before a home-bucket change."
-          }
-        },
-        "rewardReceiver(uint256)": {
-          "purpose": "Locate the fixed optional external-payment receiver registered for a bucket.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID."
-          },
-          "outputs": {
-            "0": "The fixed optional external-payment receiver registered for a bucket."
-          }
-        },
-        "rewardReceiverCount()": {
-          "purpose": "Count optional registered external-funding inboxes, not NFTs or LP pools.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "Optional registered external-funding inboxes, not NFTs or LP pools."
-          }
-        },
-        "rewardReceivers(uint256)": {
-          "purpose": "Enumerate registered optional inbox addresses by zero-based index.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Zero-based list index; not a token/NFT identifier."
-          },
-          "outputs": {
-            "0": "Enumerate registered optional inbox addresses by zero-based index."
-          }
-        },
-        "syncAllExternal()": {
-          "purpose": "Settle bounded inboxes and old dust before an NFT membership/share change.",
-          "access": "Only fixed Vault.",
-          "notes": "Protects incumbent collective/owner accounting; not a public holder claim."
-        },
-        "syncExternal(uint256)": {
-          "purpose": "Ask a bucket’s optional inbox to process its actual pending receipts.",
-          "access": "Permissionless; inbox lifecycle rules determine whether settlement succeeds.",
-          "notes": "No-op when no inbox exists; does not invent revenue from an agreement.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
-          }
-        },
-        "totalExternalFunded(uint256,address)": {
-          "purpose": "Read cumulative actual external funding recognized for a bucket/currency.",
-          "access": "Anyone; read-only.",
-          "notes": "Selected venue LP fees and NFT royalties use their own paths.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH in V2."
-          },
-          "outputs": {
-            "0": "Cumulative actual external funding recognized for a bucket/currency."
+            "asset": "Actual admitted reserve currency; address zero means native ETH.",
+            "destination": "The exact destination chosen by the authenticated canonical funding/abort procedure.",
+            "amount": "Exact raw units assigned to this backing transfer; not an amount fabricated from USD."
           }
         }
       },
@@ -3332,8 +3035,8 @@
           }
         },
         "settleDust()": {
-          "purpose": "Flush bounded bucket/currency dust to incumbent members before a new NFT joins.",
-          "access": "Only fixed FeeController in active economic state.",
+          "purpose": "Flush already-funded local and historical-currency bucket dust to incumbents in one bounded pre-entry pass.",
+          "access": "Only the bound Vault while economic lifecycle permits; before issuing new membership or shares.",
           "notes": "Not an administrator sweep or an allocation to dormant NFTs."
         },
         "totalEligible()": {
@@ -4471,7 +4174,7 @@
       }
     },
     "ZZZMigration": {
-      "purpose": "Governed atomic same-pair pool movement and separately approved trusted external-custody exit/completion/recovery.",
+      "purpose": "Source-chain pool movement, approved all-ZZZ/raw custody exit, exact funded recovery/local LP return; no remote-proof or integrated bridge path.",
       "functions": {
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
@@ -4489,17 +4192,6 @@
           },
           "outputs": {
             "0": "The outstanding plan ID associated with a shared bucket."
-          }
-        },
-        "approve((uint256,bytes32,address,bytes32,uint256,address,bytes32,address,address,uint256,uint256,bool,uint256,uint256,uint256,address,bytes32,uint256,bytes32))": {
-          "purpose": "Approve one exact principal-custody plan, recipient and source snapshot.",
-          "access": "Governance via controller; operating lifecycle.",
-          "notes": "Normal mode captures the absolute retained-USD floor; raw mode explicitly accepts token minima without a USD guarantee. Custodian return is trusted, not enforced. Inputs: Request tuple binds bucket, snapshot, recipient/code pin, destination, currencies/minima, rawExit mode, deadline and review hash. Returns: Unique plan ID; no principal moves at approval.",
-          "inputs": {
-            "0": "Exact reviewed parking/request tuple with snapshot, minima, recipients and lifecycle identity."
-          },
-          "outputs": {
-            "0": "Unique plan ID; no principal moves at approval."
           }
         },
         "bindLocalDestination(bytes32,bytes32,uint256,uint256,bytes32)": {
@@ -4536,7 +4228,7 @@
           "value": "Exactly the approved local destination’s native component in a0/a1, otherwise zero; ERC20 backing is actually pulled."
         },
         "configureZZZ(address,bytes32,bytes32)": {
-          "purpose": "Set the reviewed token used by future normal all-ZZZ custody exits.",
+          "purpose": "Bind the fixed normal-exit ZZZ once before sealing, matching the contribution identity and reviewed runtime. Later replacement is rejected.",
           "access": "Governance via controller; no outstanding custody plans.",
           "notes": "Cannot relabel in-flight assets. Buyback has a separate governed target setter.",
           "inputs": {
@@ -4636,29 +4328,6 @@
             "0": "The next anti-replay parking authorization nonce for a bucket."
           }
         },
-        "proofCommitment(bytes32,uint8)": {
-          "purpose": "Compute the authenticated domain-separated custody/finality or return-closure commitment.",
-          "access": "Anyone; valid sent plan and proof kind required.",
-          "notes": "Does not verify a proof or authorize a custodian. Inputs: kind 1 is remote custody evidence; kind 2 is return/channel closure.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID.",
-            "1": "Explicit versioned record/proof type; unsupported values revert."
-          },
-          "outputs": {
-            "0": "The authenticated domain-separated custody/finality or return-closure commitment."
-          }
-        },
-        "recover(bytes32,uint256,bytes)": {
-          "purpose": "Restore every actual asset originally sent by an outstanding plan into parked local custody.",
-          "access": "Any exact funder; valid plan/lifecycle and any required authenticated closure proof.",
-          "notes": "Normal mode restores sent ZZZ; raw mode restores both actual currencies. No partial funding, timeout unlock, haircut or new income. Inputs: Plan ID, deadline and proof; source-chain custody uses its reviewed local proof form, native funding must match exactly.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID.",
-            "1": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards.",
-            "2": "Bounded proof bytes for the exact approved commitment; no multisig/timeout substitute."
-          },
-          "value": "Exactly the originally sent native component, otherwise zero; complete original raw-asset funding is required."
-        },
         "request(bytes32)": {
           "purpose": "Read the full request bound to an approved custody plan.",
           "access": "Anyone; read-only.",
@@ -4700,7 +4369,7 @@
           }
         },
         "state(bytes32)": {
-          "purpose": "Read plan status and actual departure/funding accounting.",
+          "purpose": "Read custody V2 status (0 none, 1 approved, 2 sent, 3 completed, 4 recovered, 5 cancelled), actual sent amounts, starting USD and departure block.",
           "access": "Anyone; read-only.",
           "notes": "Returns: Status, actual sent0, sent1, startingUSD and departure block; startingUSD is USD18, not sentZZZ, and status is not proof of recoverability.",
           "inputs": {
@@ -4721,21 +4390,37 @@
             "0": "The immutable read-only companion that validates parking, requests and destinations."
           }
         },
-        "verifyRemote(bytes32,bytes)": {
-          "purpose": "Verify a remote plan’s pinned proof of custody/backing under its approved commitment.",
-          "access": "Permissionless for a valid Sent remote plan.",
-          "notes": "Optional unqualified proof surface, not an enabled bridge or remote NFT/reward ledger; no invented home-chain NAV.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID.",
-            "1": "Bounded proof bytes for the exact approved commitment; no multisig/timeout substitute."
-          }
-        },
         "zzzCodeHash()": {
           "purpose": "Read the approved runtime pin for the current future-exit ZZZ target.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "The approved runtime pin for the current future-exit ZZZ target."
           }
+        },
+        "approve((uint256,bytes32,address,bytes32,address,bytes32,address,address,uint256,uint256,bool,uint256,uint256,uint256,uint256,bytes32))": {
+          "purpose": "Approve an exact source-chain custody V2 request: bucket/source snapshot, recipient/runtime, local destination/assets/raw minima, exit mode, normal ZZZ minimum, deadline and review. It authorizes no remote ledger or bridge.",
+          "access": "Governance via controller; operating lifecycle.",
+          "notes": "Normal mode captures the absolute retained-USD floor; raw mode explicitly accepts token minima without a USD guarantee. Custodian return is trusted, not enforced. Inputs: Request tuple binds bucket, snapshot, recipient/code pin, destination, currencies/minima, rawExit mode, deadline and review hash. Returns: Unique plan ID; no principal moves at approval.",
+          "inputs": {
+            "0": "Exact reviewed parking/request tuple with snapshot, minima, recipients and lifecycle identity."
+          },
+          "outputs": {
+            "0": "Unique plan ID; no principal moves at approval."
+          }
+        },
+        "recover(bytes32,uint256)": {
+          "purpose": "Restore all actually sent assets under the original custody plan, preserving NFT shares and earned rights. No proof argument or remote completion exists.",
+          "access": "Any exact funder; valid plan/lifecycle and any required authenticated closure proof.",
+          "notes": "Normal mode restores sent ZZZ; raw mode restores both actual currencies. No partial funding, timeout unlock, haircut or new income. Inputs: Plan ID, deadline and proof; source-chain custody uses its reviewed local proof form, native funding must match exactly.",
+          "inputs": {
+            "id": "Exact sent custody plan identifier.",
+            "deadline": "Inclusive Unix transaction deadline within the existing bounded window."
+          },
+          "value": "Exactly the originally sent native component, otherwise zero; complete original raw-asset funding is required."
+        },
+        "CUSTODY_VERSION()": {
+          "purpose": "Read the explicit local-only request/status ABI version, currently 2.",
+          "access": "Anyone; read-only."
         }
       },
       "constructor": {
@@ -5222,7 +4907,7 @@
           }
         },
         "SCHEMA()": {
-          "purpose": "Read the native same-chain canonical encoding/compatibility domain hash.",
+          "purpose": "Read ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3; incompatible older inbox/remote fee snapshots cannot import.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "The native same-chain canonical encoding/compatibility domain hash."
@@ -5886,7 +5571,7 @@
       }
     },
     "ZZZFeesCanonical": {
-      "purpose": "Fixed codec for fee reserves, indices/counters, optional inbox protection and exact funding/restoration.",
+      "purpose": "Bounded LP-only V3 fee reserve/donation-quarantine export, exact funding and complete abort restoration. No receiver or remote accounting rows.",
       "functions": {
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
@@ -6039,205 +5724,6 @@
         "inputs": {}
       }
     },
-    "ZZZRewardReceiverFactory": {
-      "purpose": "FeeController-bound factory for immutable optional external-payment inboxes and bounded pending checks.",
-      "functions": {
-        "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
-          "access": "Anyone; read-only.",
-          "notes": "Reading the controller address grants no authority.",
-          "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
-          }
-        },
-        "create(uint256,address,address,address)": {
-          "purpose": "Deploy an immutable optional external-revenue inbox for the specified bucket and pair.",
-          "access": "Only the creating fixed FeeController.",
-          "notes": "No post-creation recipient, pair or wrapper replacement. Returns: New fixed receiver address.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an NFT ordinal.",
-            "1": "Actual ordered first currency; zero is native ETH in V2.",
-            "2": "Actual ordered second currency; an admitted ERC20.",
-            "3": "Optional fixed legacy native wrapper; zero for the native-ETH V2 inbox path."
-          },
-          "outputs": {
-            "0": "New fixed receiver address."
-          }
-        },
-        "fees()": {
-          "purpose": "Identify the immutable FeeController permitted to create inboxes through this factory.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable FeeController permitted to create inboxes through this factory."
-          }
-        },
-        "hasPendingExternal()": {
-          "purpose": "Inspect actual receiver receipts and bounded dust for unresolved entry-settlement work.",
-          "access": "Anyone; read-only.",
-          "notes": "Not a promise that a creator will pay or a holder claimable balance.",
-          "outputs": {
-            "0": "Inspect actual receiver receipts and bounded dust for unresolved entry-settlement work."
-          }
-        },
-        "rewardMessage(uint256,address,bytes32)": {
-          "purpose": "Build a retained legacy remote-reward accounting message.",
-          "access": "Anyone; read-only and legacy state checks apply.",
-          "notes": "Current integrated bridge routes are retired; constructing a message does not send funds or qualify transport.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual currency address; zero denotes native ETH only in native-aware paths.",
-            "2": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked."
-          },
-          "outputs": {
-            "0": "Build a retained legacy remote-reward accounting message."
-          }
-        }
-      },
-      "constructor": {
-        "purpose": "Deploy and bind FeeController-bound factory for immutable optional external-payment inboxes and bounded pending checks.",
-        "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
-        "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
-        }
-      }
-    },
-    "ZZZRewardReceiver": {
-      "purpose": "Immutable bucket/pair inbox that quarantines prefunds and forwards actual optional revenue without choosing its beneficiaries.",
-      "functions": {
-        "bucketId()": {
-          "purpose": "Read the immutable shared bucket for whose optional receipts this inbox exists.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable shared bucket for whose optional receipts this inbox exists."
-          }
-        },
-        "canonicalCapture()": {
-          "purpose": "Capture exact pre-freeze pair/native receipt cutoffs before any wrapping or callbacks.",
-          "access": "Only immutable FeeController.",
-          "notes": "Native-pair ETH is not counted again as legacy native protection."
-        },
-        "canonicalNative()": {
-          "purpose": "Receive exact canonical native quarantine funding even when no legacy wrapper is used.",
-          "access": "Only immutable FeeController during frozen/importer lifecycle.",
-          "value": "Native quarantine amount supplied by fixed FeeController during frozen/importer lifecycle; not a holder payment."
-        },
-        "canonicalProtection(uint256,uint256,uint256)": {
-          "purpose": "Add imported token/native quarantine to the receiver’s protected balances.",
-          "access": "Only immutable FeeController in frozen/importer lifecycle.",
-          "notes": "Rejects duplicated native protection for native token0.",
-          "inputs": {
-            "0": "Exact raw amount of actual ordered currency0.",
-            "1": "Exact raw amount of actual ordered currency1.",
-            "2": "Native protection/funding in wei; must not duplicate native pair-slot backing."
-          }
-        },
-        "canonicalQuarantinePending()": {
-          "purpose": "Protect every pre-activation successor donation before ordinary receipts begin.",
-          "access": "Only immutable FeeController while importing.",
-          "notes": "Prevents prefunds from becoming imported holders’ new earnings."
-        },
-        "canonicalRelease(uint8,address,uint256)": {
-          "purpose": "Transfer one exact protected receiver slot under canonical backing control.",
-          "access": "Only immutable FeeController.",
-          "notes": "Slots0/1 are actual pair currencies; slot2 is legacy native only. Not a public rescue.",
-          "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering.",
-            "1": "Exact module/backing destination selected by authenticated canonical logic.",
-            "2": "Raw units of the actual specified currency; not its USD value."
-          }
-        },
-        "canonicalSettle()": {
-          "purpose": "Process only previously captured pair/native receipts into the source accounting.",
-          "access": "Only immutable FeeController.",
-          "notes": "One captured cutoff settles once; later donations remain outside it."
-        },
-        "fees()": {
-          "purpose": "Identify the immutable FeeController that alone classifies this receiver’s funds.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable FeeController that alone classifies this receiver’s funds."
-          }
-        },
-        "pending()": {
-          "purpose": "Read pair receipts above quarantined/protected balances awaiting processing.",
-          "access": "Anyone; read-only.",
-          "notes": "Legacy wrapper-compatible native receipts are included only in their matching pair side.",
-          "outputs": {
-            "0": "Raw pending token0 receipts above protected balance, including eligible legacy wrapping if configured.",
-            "1": "Raw pending token1 receipts above protected balance."
-          }
-        },
-        "protected0()": {
-          "purpose": "Read quarantined/protected raw token0 backing excluded from normal income processing.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "Quarantined/protected raw token0 backing excluded from normal income processing."
-          }
-        },
-        "protected1()": {
-          "purpose": "Read quarantined/protected raw token1 backing excluded from normal income processing.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "Quarantined/protected raw token1 backing excluded from normal income processing."
-          }
-        },
-        "protectedNative()": {
-          "purpose": "Read legacy native quarantine distinct from pair-asset protection.",
-          "access": "Anyone; read-only.",
-          "notes": "Zero for native token0 so the same ETH cannot be protected/exported twice.",
-          "outputs": {
-            "0": "Legacy native quarantine distinct from pair-asset protection."
-          }
-        },
-        "sync()": {
-          "purpose": "Forward actual unprotected pair receipts to FeeController for one funded allocation.",
-          "access": "Permissionless in active or retired forwarding state.",
-          "notes": "Native ETH stays native for V2; optional legacy wrapper converts exact unprotected ETH only. Prefunds/quarantine stay excluded. Returns: Actual raw amount0 and amount1 processed.",
-          "outputs": {
-            "0": "Actual raw token0 forwarded to FeeController.",
-            "1": "Actual raw token1 forwarded to FeeController."
-          }
-        },
-        "token0()": {
-          "purpose": "Identify the immutable first actual pair currency; zero means native ETH.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable first actual pair currency; zero means native ETH."
-          }
-        },
-        "token1()": {
-          "purpose": "Identify the immutable second actual pair currency, a conventional admitted ERC20.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable second actual pair currency, a conventional admitted ERC20."
-          }
-        },
-        "wrappedNative()": {
-          "purpose": "Identify an optional legacy exact native wrapper, or zero for native V2.",
-          "access": "Anyone; read-only.",
-          "notes": "Does not change the actual pair or permit arbitrary token conversion.",
-          "outputs": {
-            "0": "An optional legacy exact native wrapper, or zero for native V2."
-          }
-        }
-      },
-      "constructor": {
-        "purpose": "Deploy and bind Immutable bucket/pair inbox that quarantines prefunds and forwards actual optional revenue without choosing its beneficiaries.",
-        "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
-        "inputs": {
-          "0": "Canonical shared bucket ID, not an NFT ordinal.",
-          "1": "Immutable actual ordered pair currency0; zero means native ETH.",
-          "2": "Immutable ordered currency1 ERC20 address.",
-          "3": "Optional fixed legacy native wrapper; zero for the native-ETH V2 inbox path.",
-          "4": "Existing FeeController with matching controller binding."
-        }
-      },
-      "receive": {
-        "purpose": "Accept an optional pair-compatible native revenue receipt without storage writes.",
-        "access": "Permissionless if token0 is native or a matching legacy wrapper is configured; otherwise rejects.",
-        "value": "Any accepted msg.value becomes pending under normal receipt policy; constructor/unsupported prefunds stay protected."
-      }
-    },
     "ZZZContributionPricing": {
       "purpose": "Fixed Oracle-created accounting companion: freeze contribution prices/caps, check actual marginal LP and preserve incumbent NAV. Holds no funds; parent-module calls are not operator entry points.",
       "functions": {
@@ -6268,20 +5754,6 @@
           "outputs": {
             "0": "True when the pricing phase is nonzero; not proof that an NFT is activated."
           }
-        },
-        "beginEntry(uint256,bytes32,address,uint256)": {
-          "purpose": "Retired initializer: always reverts. Use the reviewed Entry path; no successful return exists.",
-          "access": "No caller can use this initializer successfully.",
-          "inputs": {
-            "0": "Retired NFT argument; ignored.",
-            "1": "Retired pool argument; ignored.",
-            "2": "Retired source argument; ignored.",
-            "3": "Retired amount argument; ignored."
-          },
-          "outputs": {
-            "0": "Never returned: this selector always reverts."
-          },
-          "status": "retired"
         },
         "beginEntryReviewed(uint256,bytes32,address,uint256,uint16)": {
           "purpose": "Freeze original-source and LP-pair prices and operating caps before any pull/conversion. Reject a live cap above the caller maximum.",
@@ -6499,6 +5971,39 @@
         "purpose": "Accept only the expected native swap output during the active PoolManager callback.",
         "access": "Only the temporarily recorded nonzero nativeSender; arbitrary donations revert.",
         "value": "Exact expected native output is accumulated and verified by the active swap; never a user contribution entry point."
+      }
+    },
+    "ZZZActivationAssetsFactory": {
+      "purpose": "Fixed noncustodial deployment factory that splits Registry initcode and creates one immutable source-policy child for each caller; no policy, custody or execution authority.",
+      "constructor": {
+        "purpose": "Capture the creating AccessController as the immutable controller for every child.",
+        "access": "Deployment only; the production AccessController constructor deploys this fixed factory."
+      },
+      "functions": {
+        "access()": {
+          "purpose": "Return the immutable controller whose source-policy children this factory deploys.",
+          "access": "Read-only; any caller.",
+          "outputs": {
+            "0": "AccessController address captured as msg.sender when the factory was constructed."
+          }
+        },
+        "assetsOf(address)": {
+          "purpose": "Return the unique already-created ActivationAssets child for a Registry/caller.",
+          "access": "Read-only; any caller.",
+          "inputs": {
+            "0": "Registry or other caller address whose create() invocation is being inspected."
+          },
+          "outputs": {
+            "0": "Bound child address, or zero if this caller has not created one."
+          }
+        },
+        "create()": {
+          "purpose": "Deploy and permanently bind exactly one ActivationAssets child to this caller. Cannot replace a previously created child.",
+          "access": "Permissionless deployment paid by the caller; production Registry invokes it during construction. This gives no right to configure another Registry or move funds.",
+          "outputs": {
+            "child": "New ActivationAssets address with registry=msg.sender and access=this factory's immutable controller."
+          }
+        }
       }
     }
   }

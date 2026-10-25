@@ -1,0 +1,33 @@
+{
+  "scope": "Necessary fork-fixture retirement integration only. No fork assertion execution, real upstream RPC, Forge build, financial transaction or production qualification. Unrelated existing timeout/process-tree drafts are excluded from HEAD-only publication blobs.",
+  "worktree_selected_unit_run": {
+    "methods": 21,
+    "elapsed_seconds": 1.532,
+    "status": "PASS",
+    "classes": [
+      "tests_python.test_fork_runner.RetiredForkQualificationTests",
+      "tests_python.test_fork_runner.ForkCoverageTests",
+      "tests_python.test_fork_runner.ForkProcessTests"
+    ],
+    "evidence": "Captured tool execution preceding this receipt; 21 current affected unit methods passed. This includes unrelated existing methods only as affected guard/fixture regression, not claimed as newly implemented."
+  },
+  "head_owned_selected_unit_run": {
+    "methods": 16,
+    "elapsed_seconds": 0.151,
+    "status": "PASS",
+    "classes": [
+      "tests_python.test_fork_runner.RetiredForkQualificationTests",
+      "tests_python.test_fork_runner.ForkCoverageTests",
+      "tests_python.test_fork_runner.ForkProcessTests"
+    ],
+    "stdout": "head-owned-unit.stdout.log",
+    "stderr": "head-owned-unit.stderr.log"
+  },
+  "real_current_cli_missing_fixture": {
+    "status": "expected blocked failure",
+    "exit_code": 2,
+    "stdout": "current-cli-block.stdout.log",
+    "stderr": "current-cli-block.stderr.log"
+  },
+  "publication_manifest_sha256": "9baacb910960a40fff7b8cd34171b13084140b280cae15fef456ac8a13cba452"
+}

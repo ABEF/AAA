@@ -22,6 +22,7 @@ ZERO_HASH = '0x' + '00' * 32
 NATIVE_HASH = '0x' + keccak256(b'ZZZ_NATIVE_ETH_V1').hex()
 V4_DOMAIN = '0x' + keccak256(b'ZZZ_TYPED_V4_ROUTE_V1').hex()
 CANONICAL_SCHEMA = '0x' + keccak256(b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2').hex()
+LP_ONLY_CANONICAL_SCHEMA = '0x' + keccak256(b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3').hex()
 MODULES = ('access', 'vault', 'nft', 'liquidity', 'rewards', 'membership', 'fees',
            'strategy', 'compounder', 'buyback', 'migration', 'oracle', 'pools',
            'canonical', 'nft_canonical', 'vault_canonical', 'fees_canonical')
@@ -31,6 +32,7 @@ HELPERS = ('activation_assets', 'activation_entry', 'migration_budget',
            'claim_router', 'royalty_factory', 'reward_receiver_factory',
            'lp_converter', 'royalty_converter', 'entry_v4_executor',
            'lp_v4_executor', 'royalty_v4_executor', 'contribution_pricing')
+LP_ONLY_HELPERS = tuple(role for role in HELPERS if role != 'reward_receiver_factory') + ('activation_assets_factory',)
 MODULE_IDENTITIES = dict(zip(MODULES[1:], ('ZZZVault', 'ZZZNFT', 'ZZZLiquidityManager',
     'ZZZRewards', 'ZZZMembership', 'ZZZFeeController', 'ZZZStrategy', 'ZZZCompounder',
     'ZZZBuyback', 'ZZZMigration', 'ZZZOracle', 'ZZZPoolRegistry', 'ZZZCanonicalHandoff',
@@ -139,13 +141,22 @@ def governance_configuration(chain):
             'executors','keeper','guardian','timelock_seconds','sealed','bootstrap')}}
 
 
-def expected_bindings(chain: dict[str, Any], *, range_policy_version=0) -> dict[str, dict[str, dict[str, Any]]]:
+def fee_intake_profile(version):
+    """Explicit codec/helper boundary; absent version zero is historical only."""
+    if type(version) is not int or version not in (0, 1):
+        raise ValueError('Unsupported explicit fee-intake profile')
+    return (HELPERS, CANONICAL_SCHEMA) if version == 0 else (LP_ONLY_HELPERS, LP_ONLY_CANONICAL_SCHEMA)
+
+
+def expected_bindings(chain: dict[str, Any], *, range_policy_version=0,
+                      fee_intake_version=0) -> dict[str, dict[str, dict[str, Any]]]:
     """Finite reviewed zero-argument getter inventory, shared with the observer.
 
     Getter names are code-owned, never supplied as arbitrary RPC methods. Missing
     intended addresses stay None; the observer must not turn observations into
     approvals. Access.module(bytes32) is inventoried separately.
     """
+    helper_roles, canonical_schema = fee_intake_profile(fee_intake_version)
     chain = _obj(chain)
     modules, helpers, deps = (_obj(chain.get(k)) for k in ('modules','helpers','dependencies'))
     def m(role): return _obj(modules.get(role)).get('address')
@@ -159,6 +170,8 @@ def expected_bindings(chain: dict[str, Any], *, range_policy_version=0) -> dict[
         'bootstrap':ZERO, 'getMinDelay':0, 'canonicalState':0,
         'canonicalSettling':False, 'preparationActive':False, 'paused':False,
         'royaltyFactory':h('royalty_factory')}
+    if fee_intake_version == 1:
+        result['access']['activationAssetsFactory'] = h('activation_assets_factory')
     result['vault'].update(ACCOUNTING_VERSION=2, migrationBudget=h('migration_budget'),
         canonicalChainId=chain.get('chain_id'),mintProceedsRecipient=ctor.get('mint_proceeds_recipient'))
     result['nft'].update(royaltyRewards=h('royalty_rewards'), claimRouter=h('claim_router'),
@@ -170,15 +183,20 @@ def expected_bindings(chain: dict[str, Any], *, range_policy_version=0) -> dict[
     result['liquidity'].update(positionManager=d('position_manager'),stateView=d('state_view'),
         poolManager=d('pool_manager'),permit2=d('permit2'))
     result['rewards']['converter'] = h('lp_converter')
-    result['fees'].update(receiverFactory=h('reward_receiver_factory'),rewardReceiverCount=0)
+    if fee_intake_version == 1:
+        result['fees']['FEE_INTAKE_VERSION'] = 1
+    else:
+        result['fees'].update(receiverFactory=h('reward_receiver_factory'),rewardReceiverCount=0)
     result['migration'].update(validation=h('custody_validation'),currentZZZ=d('zzz'),
         zzzCodeHash=_obj(deps.get('zzz')).get('runtime_hash'),outstandingCount=0)
+    if fee_intake_version == 1:
+        result['migration']['CUSTODY_VERSION'] = 2
     result['pools'].update(activationAssets=h('activation_assets'),activationEntry=h('activation_entry'),
         contributionPool=chain.get('contribution_pool'))
     result['oracle'].update(sequencerFeed=seq.get('address'),PRICING_VERSION=2,contributionPricing=h('contribution_pricing'))
     result['buyback'].update(zzz=d('zzz'),maxTradeUSD=_numeric(ctor.get('maximum_buyback_usd18')),
         operatingTradeUSD=_numeric(chain.get('operating_buyback_usd18')))
-    result['canonical'].update(SCHEMA=CANONICAL_SCHEMA,phase=canonical.get('phase'),
+    result['canonical'].update(SCHEMA=canonical_schema,phase=canonical.get('phase'),
         incomingSource=canonical.get('incoming_source'))
     result['nft_canonical']['nft'] = m('nft')
     if range_policy_version == 1: result['strategy']['RANGE_POLICY_VERSION'] = 1
@@ -205,13 +223,19 @@ def expected_bindings(chain: dict[str, Any], *, range_policy_version=0) -> dict[
         'royalty_v4_executor': {'parent':h('royalty_converter')}}
     helper['activation_entry']['REVIEW_POLICY_VERSION'] = 1
     helper['contribution_pricing']['ENTRY_REVIEW_VERSION'] = 1
+    if fee_intake_version == 1:
+        helper['activation_assets'].update(SOURCE_POLICY_VERSION=1,zzz=d('zzz'))
+        # assetsOfRegistry is the code-owned assetsOf(address Registry) read,
+        # never a nonexistent zero-argument getter or user-selected ABI call.
+        helper['activation_assets_factory'] = {'access':m('access'),
+            'assetsOfRegistry':h('activation_assets')}
     for role, ledger in (('lp','rewards'),('royalty','royalty_rewards')):
         name = role + '_converter'
         bindings = _obj(_obj(helpers.get(name)).get('bindings'))
         helper[name] = {'access':m('access'),'ledger':m(ledger) if ledger == 'rewards' else h(ledger),
             'v4Executor':h(role+'_v4_executor'),'wrapper':bindings.get('wrapper'),
             'MAX_LOSS_BPS':1000,'conversionLossBps':limits.get(role+'_conversion_bps'),'enabled':True}
-    return {'modules':result,'helpers':helper}
+    return {'modules':result,'helpers':{role:helper[role] for role in helper_roles}}
 
 
 class Gate:
@@ -354,7 +378,8 @@ def _policies(g, config):
     g.proof(nft.get('economic_review_evidence'),'nft_policy.economic_review_evidence')
 
 
-def _chain(g, chain, path, home, now, range_policy_version=0):
+def _chain(g, chain, path, home, now, range_policy_version=0, fee_intake_version=0):
+    helper_roles, canonical_schema = fee_intake_profile(fee_intake_version)
     g.check(set(chain)-{'_notes'} == set(CHAIN_FIELDS),path,'schema.keys',
         'Use the exact current chain inventory; remove retired transport, pair-migration and legacy-only fields.')
     cid = g.num(chain.get('chain_id'),path+'.chain_id',1)
@@ -380,9 +405,9 @@ def _chain(g, chain, path, home, now, range_policy_version=0):
         'Use one reviewed chain/genesis and confirmed canonical block; resolve every failed observation.','bindings')
     modules = g.obj(chain.get('modules'),path+'.modules')
     helpers = g.obj(chain.get('helpers'),path+'.helpers')
-    g.keys(modules,MODULES,path+'.modules'); g.keys(helpers,HELPERS,path+'.helpers')
+    g.keys(modules,MODULES,path+'.modules'); g.keys(helpers,helper_roles,path+'.helpers')
     addresses = []
-    for category, roles in (('modules',MODULES),('helpers',HELPERS)):
+    for category, roles in (('modules',MODULES),('helpers',helper_roles)):
         records = modules if category == 'modules' else helpers
         for role in roles:
             rp = path+'.'+category+'.'+role
@@ -395,14 +420,16 @@ def _chain(g, chain, path, home, now, range_policy_version=0):
             g.proof(record.get('review_evidence'),rp+'.review_evidence',independent=True)
     g.check(len(addresses) == len(set(addresses)),path+'.modules','binding.alias',
         'Use distinct module/helper deployments; no ledger, executor, controller or principal recipient may alias.','bindings')
-    expected = expected_bindings(chain,range_policy_version=range_policy_version)
+    expected = expected_bindings(chain,range_policy_version=range_policy_version,
+        fee_intake_version=fee_intake_version)
     for category in ('modules','helpers'):
         for role, values in expected[category].items():
             _bindings(g,_obj((modules if category == 'modules' else helpers).get(role)),values,
                 path+'.'+category+'.'+role,helper=category == 'helpers')
-    g.check(_obj(_obj(modules.get('fees')).get('observed_bindings')).get('rewardReceiverCount') == 0,
-        path+'.modules.fees.observed_bindings.rewardReceiverCount','inbox.inventory_unsupported',
-        'This release profile requires zero external-revenue inboxes; independently inventory receiver identities/protected balances before qualifying a deployment that has them.','bindings')
+    if fee_intake_version == 0:
+        g.check(_obj(_obj(modules.get('fees')).get('observed_bindings')).get('rewardReceiverCount') == 0,
+            path+'.modules.fees.observed_bindings.rewardReceiverCount','inbox.inventory_unsupported',
+            'This historical release profile requires zero external-revenue inboxes; independently inventory receiver identities/protected balances before qualifying a deployment that has them.','bindings')
     observed_modules = g.obj(chain.get('observed_modules'),path+'.observed_modules')
     wanted = {name:_obj(modules.get(name)).get('address') for name in MODULES if name != 'access'}
     wanted.update({name:ZERO for name in RETIRED_MODULES})
@@ -421,7 +448,7 @@ def _chain(g, chain, path, home, now, range_policy_version=0):
             path+'.helpers.'+role+'.bindings.wrapper',20,zero=True)
     native = g.obj(chain.get('native_accounting'),path+'.native_accounting')
     g.check(_equal(native,{'version':2,'asset':ZERO,'decimals':18,'runtime_hash':None,
-        'canonical_schema':CANONICAL_SCHEMA,'wrapper_independent':True,
+        'canonical_schema':canonical_schema,'wrapper_independent':True,
         'eth_weth_principal_boundary':False,'legacy_v1_import':False}),path+'.native_accounting',
         'native.profile','Review actual ETH currency zero/native V2; do not substitute WETH, legacy ledgers or unsupported principal conversions.','native')
     ctor = g.obj(chain.get('constructor'),path+'.constructor')
@@ -438,7 +465,7 @@ def _chain(g, chain, path, home, now, range_policy_version=0):
     deps = _dependencies(g,chain,path,addresses)
     tokens = _tokens(g,chain,path,now,addresses)
     pools = _pools(g,chain,path,tokens,deps,range_policy_version)
-    _routes(g,chain,path,tokens,deps,pools,limits)
+    _routes(g,chain,path,tokens,deps,pools,limits,fee_intake_version)
     _authority(g,chain,path)
     _canonical(g,chain,path,home)
     _nft(g,chain,path,tokens)
@@ -674,7 +701,7 @@ def _pools(g,chain,path,tokens,deps,range_policy_version=0):
     return result
 
 
-def _routes(g,chain,path,tokens,deps,pools,limits):
+def _routes(g,chain,path,tokens,deps,pools,limits,fee_intake_version=0):
     helpers = _obj(chain.get('helpers'))
     parent_roles = {'entry':'activation_entry','lp':'lp_converter','royalty':'royalty_converter'}
     executor_roles = {'entry':'entry_v4_executor','lp':'lp_v4_executor','royalty':'royalty_v4_executor'}
@@ -799,7 +826,7 @@ def _routes(g,chain,path,tokens,deps,pools,limits):
                     'protocol_fee':fee_state.get('protocol_fee')}),rp+'.execution_evidence.fee_configuration',
                     'route.fee_qualification','Requalify an enabled route after its actual LP/protocol fee configuration changes.','routes')
         routes[key] = record
-    sources = set()
+    sources = set(); enabled_sources = set()
     selected_id = chain.get('contribution_pool')
     if not isinstance(selected_id,str): selected_id = None
     else: selected_id = selected_id.lower()
@@ -848,6 +875,7 @@ def _routes(g,chain,path,tokens,deps,pools,limits):
                 (enabled is not True or route.get('enabled') is True) and output in selected_pair,
                 sp+'.route_id','source.route','Bind this input to a qualified matching Entry route into the actual selected LP pair.','routes')
         if enabled is True:
+            enabled_sources.add(asset)
             g.check(pid == chain.get('contribution_pool'),sp+'.pool_id','source.pool',
                 'Only the selected contribution pool may accept enabled activation/top-up routes.','routes')
         source_review = _bound_proof(g,source.get('review_evidence'),sp+'.review_evidence',chain,kind='activation_source_qualification')
@@ -860,11 +888,15 @@ def _routes(g,chain,path,tokens,deps,pools,limits):
             source_review.get('current_loss_bps') == limits.get('contribution_bps'),
             sp+'.review_evidence','source.qualification_scope',
             'Qualify this exact source, pool, admission policy, Entry/helper, typed route and current contribution cap.','routes')
-    for asset in selected_pair:
+    zzz = _obj(deps.get('zzz')).get('address') if fee_intake_version == 1 else NATIVE_DEPENDENCIES['zzz'][0]
+    required_sources = {ZERO,zzz} if fee_intake_version == 1 else selected_pair
+    if fee_intake_version == 1:
+        g.check(enabled_sources == required_sources,path+'.activation_sources','source.contribution_assets',
+            'Enable exactly native ETH and the reviewed current ZZZ as contribution inputs; target-pair currencies and marketplace royalty assets do not extend this source policy.','routes')
+    for asset in required_sources:
         g.check(any(isinstance(s,dict) and s.get('source_asset') == asset and s.get('enabled') is True
             for s in _obj_list(chain.get('activation_sources'))),path+'.activation_sources','source.pair_required',
-            'Qualify direct activation from both actual ETH/ZZZ pool currencies.','routes')
-    zzz = NATIVE_DEPENDENCIES['zzz'][0]
+            'Qualify enabled activation from each required contribution currency.','routes')
     g.check(any(role == 'lp' and r.get('enabled') is True and r.get('source_asset') == zzz
         for (role,_),r in routes.items()),path+'.conversion_routes','route.lp_eth_required',
         'Qualify an enabled ZZZ LP-fee conversion route and worker into ETH; native fees require no conversion.','routes')
@@ -1164,7 +1196,7 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     """Validate explicit schema 5 only, preserving every legacy schema boundary."""
     config = copy.deepcopy(config) if isinstance(config,dict) else {}
     g = Gate(config.get('release_commit'))
-    g.check(set(config)-{'_notes','range_policy_version','mint_integration_version'} == set(TOP_FIELDS),'config','schema.keys',
+    g.check(set(config)-{'_notes','range_policy_version','mint_integration_version','fee_intake_version'} == set(TOP_FIELDS),'config','schema.keys',
         'Use only explicit schema-5 fields; obsolete bridge approvals cannot accompany this release inventory.')
     g.commit = g.hex(g.commit,'release_commit',20,prefix=False)
     now = int(time.time()) if now is None else now
@@ -1182,6 +1214,10 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     mint_profile_valid = type(mint_version) is int and mint_version in (0,1)
     g.check(mint_profile_valid,'mint_integration_version','mint.profile',
         'Use explicit mint-integration profile 1 for current release qualification. Absent/zero is historical schema-5 consistency only.','services')
+    fee_version = config.get('fee_intake_version',0)
+    fee_profile_valid = type(fee_version) is int and fee_version in (0,1)
+    g.check(fee_profile_valid,'fee_intake_version','fees.profile',
+        'Use explicit fee-intake profile 1 for the LP-only controller and canonical codec. Absent/zero retains only the historical inbox-capable native-V2 layout.','bindings')
     _policies(g,config)
     evidence = g.obj(config.get('evidence'),'evidence')
     for name in EVIDENCE: g.proof(evidence.get(name),'evidence.'+name)
@@ -1207,7 +1243,8 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     chains = g.items(config.get('chains'),'chains',1,1)
     for index, value in enumerate(chains):
         chain = g.obj(value,f'chains[{index}]')
-        _chain(g,chain,f'chains[{index}]',home,now,range_version)
+        _chain(g,chain,f'chains[{index}]',home,now,range_version,
+            fee_version if fee_profile_valid else 0)
         if mint_version == 1 and mint_profile_valid:
             _mint_integration(g,chain,f'chains[{index}]')
     groups = {}
@@ -1217,14 +1254,16 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     return {'schema_version':5,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
         'release_commit':g.commit,'deployment_authorized':False,'issues':g.issues,
         'mint_integration_version':mint_version,
-        'approval_scope':'current_native_v2_mint_integration_v1' if mint_version == 1 and mint_profile_valid else 'legacy_manifest_consistency_only',
-        'production_qualification_supported':mint_version == 1 and mint_profile_valid,
+        'fee_intake_version':fee_version,
+        'approval_scope':'current_native_v2_lp_only_mint_integration_v1' if mint_version == 1 and mint_profile_valid and fee_version == 1 and fee_profile_valid else 'legacy_manifest_consistency_only',
+        'production_qualification_supported':mint_version == 1 and mint_profile_valid and fee_version == 1 and fee_profile_valid,
         'primary_mint_implementation':MINT_IMPLEMENTATION_PROFILE,
         'opensea_primary_mint_supported':False,
         'blockers':groups,'migration_enabled':False,'protocol_bridge_enabled':False,
         'local_pool_move_supported':True,'source_chain_custody_handoff_supported':True,
         'limitations':['Offline checks cannot authenticate supplied evidence or authorize deployment, sealing, signing, or spending.',
-            'Historical mint profile zero may be internally consistent but is not current production qualification; current release runners must require explicit mint profile one.',
+            'Historical mint/fee-intake profile zero may be internally consistent but is not current production qualification; current release runners require explicit mint and fee-intake profile one.',
+            'Fee-intake profile one removes creator inboxes and uses the LP-only V3 canonical schema; old inbox-capable snapshots keep their original schema and are not reinterpreted.',
             'Current source supports paid Vault direct mint only. OpenSea primary-drop integration is not implemented, regardless of supplied staged proof flags.',
             'migration_enabled is the legacy protocol-bridge flag. Supported local pool moves and source-chain custody handoffs are code capabilities, not transaction authorization.',
             'Local pool moves require the same ordered actual currencies. Source-chain custody supports normal all-ZZZ or explicit raw exit to a reviewed recipient, with no forced return and no remote NFT/reward ledger.',

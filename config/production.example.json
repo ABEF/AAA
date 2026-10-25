@@ -12,8 +12,8 @@
     "A 3% agreement tolerance does not raise the separate default 2% contribution and 1% conversion loss caps. Upper-input/lower-output conservative valuation can reject an operation within 3% agreement; there is no averaging, one-source fallback or automatic cap increase.",
     "One ETH/ZZZ contribution pool at a time. The selected static hookless pool is 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b, fee 10020 pips, spacing 200. Actual fees/state/liquidity must be read and independently qualified.",
     "Current policy defaults shown are contribution 2%, LP/royalty conversion 1%, maintenance 3%, each governance-configurable up to 10%. Observe and review actual values; do not assume defaults or raise caps automatically. Gas is separate.",
-    "A cheaper independently qualified ZZZ-to-ETH route is still required at the default 1% limit. Empty conversion routes, missing source policies or unknown prices block this example. Add USDC/USDG only with reviewed exact addresses, feeds and routes; no stable peg is assumed.",
-    "Current qualification scope excludes cross-chain canonical import, legacy V1 ledgers and external creator-reward inboxes. Every omitted or unsupported configuration must stay blocked, not silently treated as empty.",
+    "A cheaper independently qualified ZZZ-to-ETH route is still required at the default 1% limit. Empty conversion routes, missing source policies or unknown prices block this example. Activation and LP growth accept only native ETH or the reviewed current ZZZ. Marketplace royalty currencies and their separate conversions do not add user contribution inputs.",
+    "Current fee_intake_version 1 uses the LP-only controller and 15 current helpers (including ActivationAssetsFactory, with no RewardReceiverFactory) and the Native LP-only V3 canonical schema. Creator-payment inboxes and remote-fee intake are removed. Absent/zero is a historical 15-helper Native V2 layout only; never reinterpret its snapshots. Cross-chain canonical import and legacy V1 ledgers remain unsupported.",
     "Production minting is intended for OpenSea but chain/product/recipient/VRF compatibility is unqualified. ERC-2981 requests 5%; only royalties actually received can be distributed.",
     "Publish and review the complete 2784-asset content-addressed artwork root. No new artwork generation is implied. Exact quota draw uses verified randomness; live coordinator/subscription/provider qualification remains open.",
     "Keep credentials and private material outside this inventory. The observer performs only bounded read-only RPC calls and does not set approved pins or evidence. Offline ready means declared inventory consistency only and never authorizes deployment, sealing or spending.",
@@ -247,7 +247,9 @@
           "observed_bindings": null,
           "bindings": {
             "access": null,
-            "registry": null
+            "registry": null,
+            "SOURCE_POLICY_VERSION": 1,
+            "zzz": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
           }
         },
         "activation_entry": {
@@ -342,18 +344,6 @@
             "controller": null
           }
         },
-        "reward_receiver_factory": {
-          "address": null,
-          "runtime_hash": null,
-          "observed_runtime_hash": null,
-          "immutable": true,
-          "review_evidence": null,
-          "observed_bindings": null,
-          "bindings": {
-            "access": null,
-            "fees": null
-          }
-        },
         "lp_converter": {
           "address": null,
           "runtime_hash": null,
@@ -434,6 +424,18 @@
             "active": false,
             "ENTRY_REVIEW_VERSION": 1
           }
+        },
+        "activation_assets_factory": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "assetsOfRegistry": null
+          }
         }
       },
       "dependencies": {
@@ -499,7 +501,7 @@
         "decimals": 18,
         "runtime_hash": null,
         "version": 2,
-        "canonical_schema": "0xd8234905cc1f62a1bbc2e8da6b748dbbe4fd69a2f258f14d1d4ef98afeddbad4",
+        "canonical_schema": "0x5087292a4ba3332c54b7ac9a5c9a25ff5fdb6d9f8891551f11c25925b97cf6ef",
         "wrapper_independent": true,
         "eth_weth_principal_boundary": false,
         "legacy_v1_import": false
@@ -849,5 +851,6 @@
   "pricing_version": 2,
   "review_policy_version": 1,
   "range_policy_version": 1,
-  "mint_integration_version": 1
+  "mint_integration_version": 1,
+  "fee_intake_version": 1
 }

@@ -3,8 +3,8 @@ pragma solidity 0.8.26;
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {Ids, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 
-/// @notice Local real-module regression; the LP venue, feeds and transport
-/// authority are fixture mocks. This is not a production chain gas measurement.
+/// @notice Local real-module regression; the LP venue, feeds and authority
+/// are fixture mocks. This is not a production chain gas measurement.
 contract BucketCapacityTest is PooledVaultFixture {
     function _poolAt(uint256 index) private returns (bytes32 other) {
         if (index == 0) return poolId;
@@ -36,22 +36,6 @@ contract BucketCapacityTest is PooledVaultFixture {
         assertEq(vault.bucketCount(), 4); assertEq(membership.totalEligible(), 5);
     }
 
-
-
-    function _remoteOrigin(uint256 index) private view returns (uint256 bucket, Position memory origin) {
-        origin.homeChain = vault.canonicalChainId(); origin.homeVault = address(uint160(0x10000 + index));
-        origin.homeReceiver = address(0xABCD); origin.homeToken0 = address(t0); origin.homeToken1 = address(t1);
-        origin.depositUSD = 2000e18;
-        bucket = uint256(keccak256(abi.encode(origin.homeChain, origin.homeVault, poolId)));
-    }
-
-    function _importRemote(uint256 index) private returns (uint256 bucket) {
-        Position memory origin; (bucket, origin) = _remoteOrigin(index); bytes32 destination = _poolAt(index);
-        vault.reservePool(destination, bucket);
-        address receiver = ac.module(Ids.RECEIVER); t0.mint(receiver, 1000); t1.mint(receiver, 1000);
-        vm.startPrank(receiver); t0.approve(address(vault), 1000); t1.approve(address(vault), 1000);
-        vault.importPending(bucket, destination, origin, 2000e18, poolId, 1000, 1000); vm.stopPrank();
-    }
 
 
 

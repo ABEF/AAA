@@ -1,5 +1,14 @@
 # Native-V2 website read and unsigned reviews
 
+
+## Current release simplification - 2026-10-25
+
+[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
+fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
+pool moves, external custody exit/recovery, royalty currencies and complete
+collection handoff. Current fee/custody profiles and canonical schema are
+explicit; old deployments/journals keep historical profiles.
+
 The website has an explicit **schema-2 manifest** for accounting2, pricing2,
 routing2 and reviewed Entry1. It is locally implemented; the public configuration
 remains null. Nonlocal submission is disabled. The shared signer, browser client

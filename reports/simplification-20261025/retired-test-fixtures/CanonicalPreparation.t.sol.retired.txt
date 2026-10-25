@@ -1,0 +1,20 @@
+REASON: Unused transport fixture after local custody handoff superseded bridge integration.
+contract PreparationRoutes is MockRoutes {
+    IZZZAccess public immutable access;
+    constructor(address controller) { access = IZZZAccess(controller); }
+}
+
+
+REASON: Unused transport fixture after local custody handoff superseded bridge integration.
+contract PreparationTransport is MockTransport {
+    IZZZAccess public immutable access;
+    constructor(address controller) { access = IZZZAccess(controller); }
+    function canSend(bytes32) external pure returns (bool) { return true; }
+}
+
+
+REASON: Unused transport fixture after local custody handoff superseded bridge integration.
+contract PreparationReceiver is MockMessageReceiver {
+    IZZZAccess public immutable access;
+    constructor(address controller) { access = IZZZAccess(controller); }
+}

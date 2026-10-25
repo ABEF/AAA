@@ -1,5 +1,14 @@
 # Activation and top-up preparation
 
+
+## Current release simplification - 2026-10-25
+
+[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
+fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
+pool moves, external custody exit/recovery, royalty currencies and complete
+collection handoff. Current fee/custody profiles and canonical schema are
+explicit; old deployments/journals keep historical profiles.
+
 The current native service profile is
 `accounting_v2_routing_v2_pricing_v2_review_v1`. Reviewed responses include
 `reviewed_maximum_loss_bps` and `provenance.review_policy_version`; existing

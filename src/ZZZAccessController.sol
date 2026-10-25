@@ -1,16 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {TimelockController} from "@openzeppelin/contracts/governance/TimelockController.sol";
-import {IZZZBound, IZZZAccess, IZZZBridgeEndpoint, IZZZVault, IZZZNFT} from "./interfaces/IZZZ.sol";
+import {IZZZBound, IZZZAccess, IZZZVault, IZZZNFT} from "./interfaces/IZZZ.sol";
 import {Ids} from "./libraries/ZZZTypes.sol";
 import {ZZZCanonicalHandoff} from "./ZZZCanonicalHandoff.sol";
 import {ZZZRoyaltyFactory} from "./ZZZRoyaltyFactory.sol";
+import {ZZZActivationAssetsFactory} from "./ZZZActivationAssetsFactory.sol";
 
 interface ICanonicalOwnerBinding {
     function nft() external view returns (address);
     function vault() external view returns (address);
     function fees() external view returns (address);
 }
+interface IContributionIdentity { function zzz() external view returns (address); }
+interface IContributionRegistry { function activationAssets() external view returns (IContributionIdentity); }
+interface IExitIdentity { function currentZZZ() external view returns (address); }
 
 /// @notice Immediate role-authorized governance; module bindings are fixed at seal().
 /// OpenZeppelin's operation hashes, roles, replay and predecessor checks remain,
@@ -24,6 +28,7 @@ contract ZZZAccessController is TimelockController {
     bool public paused;
     bool public preparationActive;
     address public immutable royaltyFactory;
+    address public immutable activationAssetsFactory;
     uint8 public canonicalState;
     bool public canonicalSettling;
     bool public preparationReadyDestination;
@@ -58,6 +63,7 @@ contract ZZZAccessController is TimelockController {
         }
         bootstrap = msg.sender;
         royaltyFactory = address(new ZZZRoyaltyFactory());
+        activationAssetsFactory = address(new ZZZActivationAssetsFactory());
         keepers[initialKeeper] = true;
         guardians[initialGuardian] = true;
     }
@@ -90,7 +96,8 @@ contract ZZZAccessController is TimelockController {
     /// Pause/unpause and ordinary governance never bypass terminal retirement.
     function canonicalTransition(uint8 state, bool settling, bool clearPreparation) external {
         if (msg.sender != canonicalHandoff() || msg.sender == address(0) || state > 4 || (settling && state != 1)) revert Unauthorized();
-        if (canonicalState == 3 || canonicalState == 4) revert InvalidConfiguration();
+        // States 3/4 are terminal; any impossible higher state also fails closed.
+        if (canonicalState > 2) revert InvalidConfiguration();
         canonicalState = state;
         canonicalSettling = settling;
         if (clearPreparation) preparationActive = false;
@@ -156,6 +163,11 @@ contract ZZZAccessController is TimelockController {
         if (ICanonicalOwnerBinding(module[Ids.NFT_CANONICAL]).nft() != module[Ids.NFT] ||
             ICanonicalOwnerBinding(module[Ids.VAULT_CANONICAL]).vault() != module[Ids.VAULT] ||
             ICanonicalOwnerBinding(module[Ids.FEES_CANONICAL]).fees() != module[Ids.FEES]) revert InvalidConfiguration();
+
+        // The source identity is bootstrap-only. Never seal an unset token and
+        // leave a deployment unable to accept its intended ZZZ contributions.
+        address sourceZZZ = IContributionRegistry(module[Ids.POOLS]).activationAssets().zzz();
+        if (sourceZZZ == address(0) || IExitIdentity(module[Ids.MIGRATION]).currentZZZ() != sourceZZZ) revert InvalidConfiguration();
 
         // NFT randomness is configured only before sealing. Do not irreversibly
         // lock the canonical collection while its mint configuration is absent.

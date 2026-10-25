@@ -46,7 +46,33 @@ contract AccessControllerTest is Test {
         vm.expectRevert();ac.seal();assertFalse(ac.isSealed());assertEq(ac.bootstrap(),address(this));
         nft.setRandomnessConfigured(true);ac.seal();assertTrue(ac.isSealed());
     }
+    function testCanonicalZZZIdentityMustBeBoundBeforeSeal() public {
+        fill(); BoundDummy identity=BoundDummy(ac.module(Ids.POOLS));
+        identity.setTestZZZIdentity(address(0));
+        vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector);ac.seal();
+        assertFalse(ac.isSealed());assertEq(ac.bootstrap(),address(this));
+        identity.setTestZZZIdentity(address(identity));ac.seal();assertTrue(ac.isSealed());
+    }
+    function testMissingOrMismatchedExitZZZCannotPermanentlySeal() public {
+        fill();address exit=ac.module(Ids.MIGRATION);
+        vm.mockCall(exit,abi.encodeWithSignature("currentZZZ()"),abi.encode(address(0)));
+        vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector);ac.seal();
+        assertFalse(ac.isSealed());assertEq(ac.bootstrap(),address(this));
+        vm.clearMockedCalls();
+        vm.mockCall(exit,abi.encodeWithSignature("currentZZZ()"),abi.encode(address(0xBAD)));
+        vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector);ac.seal();
+        vm.clearMockedCalls();ac.seal();assertTrue(ac.isSealed());
+    }
     function testSealErasesBootstrap() public {fill();ac.seal();assertEq(ac.bootstrap(),address(0));assertTrue(ac.isSealed());}
+    function testFuzzTerminalCanonicalStateCannotReopen(uint8 seed) public {
+        fill();ac.seal();address handoff=ac.canonicalHandoff();uint8 terminal=uint8(3+(seed%2));
+        vm.prank(handoff);ac.canonicalTransition(terminal,false,false);
+        for(uint8 next;next<5;++next){
+            vm.prank(handoff);vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector);
+            ac.canonicalTransition(next,false,true);
+            assertEq(ac.canonicalState(),terminal);
+        }
+    }
     function testCannotReplaceModules() public {
         fill();ac.seal();BoundDummy other=new BoundDummy(address(ac));vm.expectRevert();ac.bind(Ids.VAULT,address(other));
     }

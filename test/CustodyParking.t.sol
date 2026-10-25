@@ -10,28 +10,12 @@ import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
-import {Ids, Position, PositionStatus, PoolConfig, Route, BridgeMessage, MessageKind} from "../src/libraries/ZZZTypes.sol";
+import {Ids, Position, PositionStatus, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
-import {MockRoutes, MockReadyRouter, MockFeed, BoundDummy} from "./mocks/Mocks.sol";
-
-/// @dev TEST ONLY: custody sink for a local migration-state-machine test. This
-/// does not model bridge backing, finality or cross-chain authentication.
-contract ParkingBridgeCapture {
-    address immutable token0;
-    address immutable token1;
-    uint256 public received0;
-    uint256 public received1;
-    constructor(address a, address b) { token0 = a; token1 = b; }
-    function send(BridgeMessage calldata m) external payable returns (bytes32) {
-        received0 += m.amount0; received1 += m.amount1;
-        require(IERC20(token0).transferFrom(msg.sender, address(this), m.amount0));
-        require(IERC20(token1).transferFrom(msg.sender, address(this), m.amount1));
-        return keccak256(abi.encode(m));
-    }
-}
+import {MockFeed, BoundDummy} from "./mocks/Mocks.sol";
 
 /// @notice Real Vault/Migration/reward accounting, but a fake LP venue and mock
-/// authority. The separate timelock test below covers actual governance delay.
+/// authority. The separate governance test below covers actual authorization.
 contract CustodyParkingTest is PooledVaultFixture {
     function _migration() private returns (ZZZMigration migration) {
         migration = new ZZZMigration(address(ac)); ac.bind(Ids.MIGRATION, address(migration));
@@ -48,33 +32,21 @@ contract CustodyParkingTest is PooledVaultFixture {
     function _park(ZZZMigration migration) private {
         ac.setPaused(true); migration.park(_request(migration, _bucket()));
     }
-    function _route() private returns (bytes32 routeId, ParkingBridgeCapture bridge) {
-        MockRoutes routes = new MockRoutes(); ac.bind(Ids.ROUTES, address(routes));
-        ac.bind(Ids.TRANSPORT, address(new MockReadyRouter()));
-        bridge = new ParkingBridgeCapture(address(t0), address(t1)); ac.bind(Ids.BRIDGE, address(bridge));
-        Route memory r; r.sourceChain = block.chainid; r.sourceVault = address(vault);
-        r.sourceReceiver = ac.module(Ids.RECEIVER); r.sourceToken0 = address(t0); r.sourceToken1 = address(t1);
-        r.destinationChain = block.chainid + 1; r.destinationVault = address(0xD357);
-        r.destinationReceiver = address(0xD358); r.destinationToken0 = address(t0); r.destinationToken1 = address(t1);
-        routeId = keccak256("parking-test-only-route"); routes.set(routeId, r);
-    }
     function _refresh() private {
         MockFeed fresh = new MockFeed(8, 1e8);
         oracle.setTestFeed(address(t0), address(fresh), 3600); oracle.setTestFeed(address(t1), address(fresh), 3600);
     }
-    function testParkingStaleOracleAndBrokenInboxKeepsPrincipalAndFundedClaimRights() public {
+    function testParkingStaleOracleKeepsPrincipalAndFundedLPClaimRights() public {
         uint256 id = activatedPosition(); ZZZMigration migration = _migration(); uint256 bucket = _bucket();
         Position memory beforePosition = vault.group(bucket); uint256 shares = vault.sharesOf(id);
-        address inbox = fees.createRewardReceiver(bucket, address(0));
-        t0.mint(inbox, 100); fees.syncExternal(bucket); uint256 funded = rewards.claimable(id, address(t0));
-        t0.mint(inbox, 200); vm.mockCallRevert(inbox, abi.encodeWithSignature("sync()"), abi.encodePacked("inbox unavailable"));
+        venue.setFees(100, 0); vault.collectFees(bucket, block.timestamp + 100);
+        uint256 funded = rewards.claimable(id, address(t0));
         vm.warp(block.timestamp + 3601); vm.expectRevert(); oracle.price(address(t0));
         venue.setFees(100, 100); _park(migration);
         Position memory parked = vault.group(bucket);
         assertEq(uint8(parked.status), uint8(PositionStatus.Parked)); assertEq(parked.lpTokenId, 0);
         assertEq(parked.idle0, beforePosition.idle0 + 1000); assertEq(parked.idle1, beforePosition.idle1 + 1000);
-        assertEq(vault.totalIdle(address(t0)), parked.idle0); assertEq(t0.balanceOf(inbox), 200);
-        assertEq(fees.totalExternalFunded(bucket, address(t0)), 100);
+        assertEq(vault.totalIdle(address(t0)), parked.idle0);
         assertEq(fees.compoundBalance(bucket, address(t0)), 10); assertEq(fees.compoundBalance(bucket, address(t1)), 5);
         assertEq(vault.sharesOf(id), shares); assertTrue(membership.eligible(id)); assertEq(nft.ownerOf(id), alice);
         vm.prank(alice); assertEq(rewards.claim(id, address(t0)), funded + 90);

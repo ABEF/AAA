@@ -80,7 +80,6 @@ contract ZZZVaultCanonical {
         uint128 minimumLiquidity,bool activation) external view onlyBudget returns(address,address,uint16) {
         Position memory p = vault.group(bucket);
         if (p.status != PositionStatus.Active || p.homeChain != block.chainid || p.homeVault != address(vault) ||
-            !IZZZFees(access.module(Ids.FEES)).remoteSettled(bucket) ||
             IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (!c.depositsEnabled || inputTotal == 0 || minimumLiquidity == 0 ||
@@ -119,8 +118,7 @@ contract ZZZVaultCanonical {
             if (p.status == PositionStatus.None) {
                 if (p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0 || vault.bucketTotalShares(id) != 0) revert InvalidState();
             } else if (p.status != PositionStatus.Parked || p.lpTokenId != 0 || p.homeChain != block.chainid ||
-                p.homeVault != address(vault) || p.locationChain != block.chainid || p.locationVault != address(vault) ||
-                !IZZZFees(access.module(Ids.FEES)).remoteSettled(id)) revert InvalidState();
+                p.homeVault != address(vault) || p.locationChain != block.chainid || p.locationVault != address(vault)) revert InvalidState();
             if (IZZZMigration(access.module(Ids.MIGRATION)).activePlan(id) != bytes32(0)) revert InvalidState();
         }
         ICanonicalVaultRewards rewards = ICanonicalVaultRewards(access.module(Ids.REWARDS));
@@ -185,7 +183,7 @@ contract ZZZVaultCanonical {
             if (p.status == PositionStatus.Parked) {
                 PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
                 if ((epoch == 0 && (c.key.currency0 != p.homeToken0 || c.key.currency1 != p.homeToken1)) || p.lpTokenId != 0) revert InvalidState();
-                p.homeChain = block.chainid; p.homeVault = address(vault); p.homeReceiver = access.module(Ids.RECEIVER);
+                p.homeChain = block.chainid; p.homeVault = address(vault); p.homeReceiver = access.module(Ids.MIGRATION);
                 p.locationChain = block.chainid; p.locationVault = address(vault);
             }
             vault.canonicalWrite(2, abi.encode(id, p, shares, homePool));

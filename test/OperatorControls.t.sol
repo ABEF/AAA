@@ -56,6 +56,7 @@ contract OperatorControlsTest is Test, IERC721Receiver {
         config.depositsEnabled=true;config.operationsEnabled=true;config.rangeBps=2000;
         config.triggerBps=500;config.maxSpotDeviationBps=100;config.maxSlippageBps=100;
         config.minRebalanceInterval=600;config.minDepositUSD=1e18;config.maxPositionUSD=1e30;
+        registry.activationAssets().configureZZZ(address(t1),address(t1).codehash,keccak256("operator fixture ZZZ"));
         pool=registry.configure(config);
         CanonicalFixture.bind(address(ac)); ac.seal();
     }

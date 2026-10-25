@@ -14,7 +14,7 @@ import {ZZZActivationEntry, IActivationV3Router} from "../src/ZZZActivationEntry
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {PooledVaultFixture, VaultLiquidityMock} from "./VaultAccounting.t.sol";
-import {EntryFactoryFixture, EntryPoolFixture} from "./ActivationEntry.t.sol";
+import {EntryFactoryFixture, EntryPoolFixture} from "./helpers/ActivationRouteFixture.sol";
 
 /// @dev TEST ONLY: a typed SwapRouter02 boundary with deterministic 6-to-18
 /// decimal output and optional transfer callback. This is not live routing,
@@ -61,8 +61,13 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
     // Foundry first runs the inherited, non-virtual PooledVaultFixture.setUp.
     // This modifier then assembles the real Registry/Entry integration for each
     // test without changing the shared fixture or its authority semantics.
-    modifier realIntegration() { _integrationFixture(); _; }
-    function _integrationFixture() private {
+    modifier realIntegration() { _integrationFixture(false); _; }
+    modifier directIntegration() { _integrationFixture(true); _; }
+    function _integrationFixture(bool directSource) private {
+        // This controller is intentionally a rebindable TEST mock. Assemble
+        // these additional dependencies before its tested sealed phase; the
+        // production AccessController has no unseal/bootstrap-reset function.
+        ac.beginBootstrap();
         // This historical boundary suite deliberately exercises a stricter 1%
         // contribution policy; the production default is independently tested at 2%.
         vault.migrationBudget().setLossLimits(100,300);
@@ -84,16 +89,20 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         poolId = registry.configure(config);
         assertEq(assets.policyCount(), 2);
         assertEq(entry.registry(), address(registry)); assertEq(address(entry.activationAssets()), address(assets));
+        // Historical variable name only: this six-decimal token is explicitly
+        // the fixture's reviewed ZZZ identity, not an admitted stablecoin input.
         stable = new MockToken(6); stableFeed = new MockFeed(8, 1e8);
         oracle.setTestFeed(address(stable), address(stableFeed), 3600);
-        assets.setAsset(address(stable), true, address(stable).codehash, REVIEW);
+        MockToken reviewed=directSource?t0:stable;
+        assets.configureZZZ(address(reviewed),address(reviewed).codehash,REVIEW);
         factory = new EntryFactoryFixture(); router = new AtomicIntegrationRouter(address(factory));
         conversionPool = new EntryPoolFixture(address(factory), address(stable), address(t0)); factory.set(address(conversionPool));
-        routeId = entry.addRoute(ZZZActivationEntry.RoutePolicy(address(stable), address(t0), address(router),
+        if (!directSource) routeId = entry.addRoute(ZZZActivationEntry.RoutePolicy(address(stable), address(t0), address(router),
             address(factory), address(conversionPool), 500, address(router).codehash, address(factory).codehash,
             address(conversionPool).codehash, address(stable).codehash, address(t0).codehash, REVIEW));
         t0.mint(address(router), 100000e18);
         _fundIntegrationOwner(alice); _fundIntegrationOwner(bob);
+        ac.seal();
     }
     function _fundIntegrationOwner(address owner) private {
         stable.mint(owner, 10000e6); t0.mint(owner, 10000e18); t1.mint(owner, 10000e18);
@@ -119,7 +128,14 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
     }
     function _cleanContextAndApprovals() private {
         _cleanEntry();
-        vm.prank(address(vault)); assertEq(registry.contributionValue(poolId, 99e18, 0), 99e18);
+        (,bool enabled,,,,)=assets.policies(assets.activePolicy(address(t0)));
+        if (assets.isContributionAsset(address(t0)) && enabled) {
+            vm.prank(address(vault)); assertEq(registry.contributionValue(poolId,99e18,0),99e18);
+        } else {
+            // Once the Entry context is disarmed, a target-pair currency is
+            // not a permitted original source merely because it is accounted.
+            vm.prank(address(vault));vm.expectRevert();registry.contributionValue(poolId,99e18,0);
+        }
     }
     function _assertDormantAndUnspent(uint256 id) private {
         assertEq(stable.balanceOf(alice), 10000e6); assertEq(stable.balanceOf(address(router)), 0);
@@ -163,8 +179,9 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         assertEq(vault.contributionUSD(id), 105e18); _cleanEntry();
     }
 
-    function testDirectVaultTopUpCannotBypassFiveDollarMinimum() public realIntegration {
-        uint256 id = _mint(alice); _execute(alice, _request(id, false));
+    function testDirectVaultTopUpCannotBypassFiveDollarMinimum() public directIntegration {
+        uint256 id = _mint(alice);
+        vm.prank(alice);vault.activate(id,poolId,100e18,0,1,block.timestamp+100);
         uint256 balance = t0.balanceOf(alice); uint256 shares = vault.sharesOf(id);
         vm.prank(alice); vm.expectRevert(); vault.increase(id, 5e18 - 1, 0, 1, block.timestamp + 100);
         assertEq(t0.balanceOf(alice), balance); assertEq(vault.sharesOf(id), shares);
@@ -210,7 +227,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         assertEq(t0.balanceOf(address(router)), routeOutputBefore);
         assertEq(t0.balanceOf(address(venue)), 0); assertEq(t0.balanceOf(address(vault)), 0);
     }
-    function testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor() public realIntegration {
+    function testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor() public directIntegration {
         uint256 id = _mint(alice); uint256 original = t0.balanceOf(alice);
         vm.prank(alice); vm.expectRevert(); vault.activate(id, poolId, 99e18, 0, 1, block.timestamp + 100);
         assertEq(t0.balanceOf(alice), original); assertEq(vault.sharesOf(id), 0);
@@ -277,7 +294,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         vm.expectRevert(); entry.sourceValue(poolId, 100e18, 0);
         vm.prank(address(entry)); vm.expectRevert(); vault.activate(id, poolId, 100e18, 0, 1, block.timestamp + 100);
         vm.prank(address(vault)); vm.expectRevert(); entry.validateOwner(id, bytes32(0));
-        vm.prank(address(vault)); assertEq(registry.contributionValue(poolId, 1e18, 0), 1e18);
+        vm.prank(address(vault));vm.expectRevert();registry.contributionValue(poolId,1e18,0);
         _assertDormantAndUnspent(id);
     }
     function testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar() public realIntegration {
@@ -301,15 +318,9 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         assertFalse(membership.eligible(dormant)); assertEq(nft.royaltyRewards().weightOf(dormant), 0);
         assertEq(membership.totalEligible(), 1); assertEq(vault.bucketCount(), 1); _cleanContextAndApprovals();
 
-        // Removing one original input does not disable other admitted inputs.
-        ZZZActivationEntry.Request memory direct = _request(active, true);
-        direct.sourceAsset = address(t1); direct.amountIn = 100e18; direct.routeId = 0; direct.minimumOut = 0;
-        vm.prank(alice); t1.approve(address(entry), 100e18); _execute(alice, direct);
-        assertEq(vault.group(bucket).lpTokenId, lp); assertEq(venue.a1(lp), 100e18);
-        assertEq(vault.contributionUSD(active), 200e18); assertEq(membership.totalEligible(), 1);
-        assertEq(assets.activePolicy(address(stable)), disabled); _cleanContextAndApprovals();
-
-        bytes32 enabled = assets.setAsset(address(stable), true, address(stable).codehash, REVIEW);
+        // Same-token re-admission is permitted after sealing; token identity
+        // itself is fixed and no replacement asset is introduced by this test.
+        bytes32 enabled = assets.setAsset(address(stable),true,address(stable).codehash,REVIEW);
         assertTrue(enabled != disabled); (, bool oldEnabled,,,,) = assets.policies(disabled); assertFalse(oldEnabled);
         _execute(alice, _request(dormant, false));
         assertEq(vault.nftBucket(dormant), bucket); assertEq(vault.group(bucket).lpTokenId, lp);
@@ -354,6 +365,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         uint256 weight = royalties.weightOf(id);
 
         assets.setAsset(address(stable), false, bytes32(0), REVIEW);
+        assets.setAsset(address(0),false,assets.NATIVE_ASSET_CODE_HASH(),REVIEW);
         assets.setAsset(address(t0), false, bytes32(0), REVIEW);
         assets.setAsset(address(t1), false, bytes32(0), REVIEW); entry.setRouteEnabled(routeId, false);
         vm.prank(alice); nft.transferFrom(alice, bob, id);

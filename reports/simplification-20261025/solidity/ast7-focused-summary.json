@@ -1,0 +1,1083 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 495.766,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\simplification-audit-20261025\\solidity\\ast-focused-profile-hm91uxae",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(ContributionSourcePolicyTest|NativeFeeRewardsTest|NativeCustodyTest|NativeCanonicalFundingTest|CustodyHandoffTest|GlobalMembershipDustTest|LPOnlyEntryBoundaryTest|EntryReviewPolicyTest|AccessControllerTest|CanonicalHandoffTest)$",
+    "--json"
+  ],
+  "selected_methods": 87,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testCanonicalZZZIdentityMustBeBoundBeforeSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17719363
+        }
+      }
+    },
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testMissingOrMismatchedExitZZZCannotPermanentlySeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17865236
+        }
+      }
+    },
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testRetiredBridgeModulesCannotBeBoundEvenBeforeSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 423959
+        }
+      }
+    },
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testSealErasesBootstrap()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17567840
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testAbortAfterFundingRequiresExactReturnedBacking()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 112580921
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testCompleteHandoffPreservesOwnersSharesTraitsAndBothRewardLedgers()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 111951434
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testDormantImportedNFTCanActivateIntoExistingSharedBucket()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 114655053
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testFullThousandNFTInventoryImportsExactlyOnceWithCompleteDenominators()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 63697859
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testMaximumLocalAssetAndBucketDomainsPreserveEveryImportedLedger()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 351950104
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testDisabledZZZStillRejectsValueAndPoolReconfigurationCannotReenableIt()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 681189
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testEntryRejectsUnsupportedOriginalInputBeforePullOrConversion()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 478883
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testFixedFactoryAuthenticatesConstructionAndNeverReplacesRegistryChild()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1322482
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testInvalidIdentityReviewRuntimePriceAndAuthorityDoNotChangePolicy()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 462228
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testOnlyNativeETHAndExplicitReviewedZZZCanBeSupplied()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 640896
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testPairAdmissionCannotEnableAThirdContributionCurrency()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 560586
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testRealRegistryDirectVaultValueCannotBypassSourceRestriction()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 10664063
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testSealedIdentityCannotInitializeOrChangeButSameTokenCanBeDisabledAndEnabled()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 8257424
+        }
+      }
+    },
+    {
+      "suite": "test/ContributionSourcePolicy.t.sol:ContributionSourcePolicyTest",
+      "method": "testZZZIdentityCannotBeReplacedEvenBeforeSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 502775
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testApprovalCanBeCancelledWithoutMovingFunds()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4256879
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testApprovalRejectsInvalidSnapshotAndCompanionAsRecipient()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3440506
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testCompleteRequiresActualLPAndPreservesNFTAndLedgers()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6045483
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testCustodyRequestUsesVersionTwoDomain()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4278986
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testCustodyV2RemovesRemoteProofAndLegacyRecoverySelectors()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4887254
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testDestinationValidationRejectsUnreservedPoolAndWrongCustody()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6132159
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testEmergencyCanMoveToCustodyBeforeChoosingAnyNewPoolWithStoppedSourceAndStaleFeed()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4335955
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testEmergencyRawExitWorksWithFailedSwapAndStalePrices()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4419886
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4994639
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testFundedLocalFeesAndUnclaimedRightsFollowNFTDuringCustody()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 5372277
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testFuzzExitSwapLossLimit(uint16)",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x32dc9541000000000000000000000000000000000000000000000000000000000000279a",
+            "gas": 4785263,
+            "stipend": 21216
+          },
+          "runs": 1001,
+          "mean_gas": 4801026,
+          "median_gas": 4764047,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testHoldingCanBindNewDestinationExactlyOnceWithoutChangingSourceBudget()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 7183504
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testLocalEndToEndBudgetIncludesExitAndRedeployment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 7135743
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testNoTimeoutCancellationAfterSending()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4878711
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testNormalModeRejectsAnUnpricedOrUnswappableExit()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3872270
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testOneToTenReplacementWithDifferentDecimalsPreservesSharesAndValue()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 8083482
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testRawExitMinimumProtectsCloseAndRollsBack()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4282137
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testRecoveredCustodyNeedsFullActualSentZZZAndCanRemainPaused()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 5163403
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testSentCustodyCannotChangeZZZOrAcceptInventedCompletion()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4937074
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testStateDriftAndDuplicateApprovalsFailClosed()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4924760
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4751763
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testThreePercentBudgetCannotBeRelaxedByRequest()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4015515
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testUnauthorizedExitAndConfigurationAreRejected()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3258355
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testValidationCompanionCannotBeCalledByUnprivilegedAccounts()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3257582
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testZZZTargetIsBootstrapOnlyOnceAndMatchesTheFixedSourceIdentity()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 12606113
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testGrowthReviewRejectsWideningAndPreservesExistingSharesAndClaims()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 24927979
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testMalformedMaximumABIRevertsWithoutSpendingPrefundsOrUserAllowance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 19515731
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testMaximumAboveTenPercentAndLegacySelectorsFailClosed()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 19764642
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testReviewVersionsAndUnsetWrapperMetadataAreExplicit()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 18720489
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testReviewedMaximumRejectsRaisedGovernedCapBeforeSourcePullAndSwap()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 22901687
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testSignedMaximumAllowsTighterGovernedPolicyButNeverWidensActualFloor()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 25219401
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testTenPercentMaximumCannotOverrideStrongerPhysicalVenueMinimum()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 25230301
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testZeroMaximumRequiresZeroGovernedCapAndLosslessActualDeployment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 25822872
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 7147941
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testGlobalSettlementOnlyVaultAndDustFlushOnlyAuthorizedModules()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3318792
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testMembershipCannotFlushForeignCustodyDust()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3481759
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testRevertedEntryRollsBackGlobalDustSettlementAndMembershipAtomically()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 8369021
+        }
+      }
+    },
+    {
+      "suite": "test/LPOnlyEntryBoundary.t.sol:LPOnlyEntryBoundaryTest",
+      "method": "testLPPlacementDonationAndCallbackCannotCreateCrossBucketRevenue()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 7425044
+        }
+      }
+    },
+    {
+      "suite": "test/LPOnlyEntryBoundary.t.sol:LPOnlyEntryBoundaryTest",
+      "method": "testTokenPullDonationAndCallbackCannotCreateCrossBucketRevenue()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 7424319
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testCanonicalLedgerNativeTwoStageFundingPartialAbortAndPrefund()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 16406158
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testCanonicalSchemaNamesNativeAccountingVersion()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 11252270
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testDuplicateNativeBackingCannotCreateTwoLiabilityRows()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 8123973
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testImportedVaultCompanionCanBecomeSourceAndRestoreWithoutOldImporterBaseline()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 24253014
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testLPOnlyImporterRejectsTheOldNativeFeeCodec()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 18855167
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testNativeImporterRejectsAnOldAccountingSchema()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 18855035
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testVaultCanonicalNativeForwardAndAbortUseZeroValueAcknowledgment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 23830906
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testLocalCompletionForwardsExactNativeBudgetAndPreservesShares()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1225956
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testRawNativeExitHasNoZZZOrWrapperDependencyAndPreservesPrefund()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 887382
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testRecoveryFailureRollsBackETHAndTokens()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1041462
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testRecoveryRequiresExactNativeValueDespitePrefunds()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1057120
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testRejectingRecipientRollsBackWholeNativeExit()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 912406
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testUnsolicitedNativeTransferToMigrationFails()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 22986
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testCanonical33CurrencySourceCompanionPrefundsSurviveAbortAndRecapture()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 48521520
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testCanonicalCaptureBarrierRejectsMidReceiptCallbackWithoutBlockingTheFee()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1858823
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testCanonicalLPOnlyReservesAndDonationQuarantineMigrateThenRestore()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 13511882
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testConvertedNativeCreditsCoexistWithoutReindexing()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1044297
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testFuzzNativeFeeChunkingPreservesFundsAndAllocation(uint96,uint96)",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xcb7476ce00000000000000000000000000000000000000000000000000000000000020d20000000000000000000000000000000000000000000000000000000000004773",
+            "gas": 1177758,
+            "stipend": 21368
+          },
+          "runs": 1000,
+          "mean_gas": 1149430,
+          "median_gas": 1156390,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testHistoricalNativeDustIsFlushedWithAll33Currencies()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 22249456
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testLPOnlyFeeCodecRejectsOlderHeadersAndExpandedBucketRows()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 399968
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testLPOnlyFeesRejectForeignHomeIdentityAndRetiredIntakeSelectors()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 801162
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testNativeFeeSplitIsIndexedAndSeparatelyBacked()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1341628
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testNativeFractionsSurviveClaimsAndShareChanges()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1286627
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testNativeIngressRequiresExactValueAndRejectsTokenValueEvenWithPrefunds()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 996754
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testNativeOrphansAndDonationsCannotRewardFutureMembership()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 775465
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testNativeReservesReleaseOnlyTheirClassifiedBacking()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 890543
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testNativeRewardCanonicalCodecPreservesIndicesFractionsOrphansAndConvertedCredits()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 15458340
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testNativeTopUpAndLaterActivationExcludeHistoricalIncome()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1642607
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testNativeTransferCarriesUnclaimedRightsAndClaimStillWorksPaused()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1094399
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testRejectingNativeOwnerRevertsWholeClaim()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1238673
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "dfd83ed014cd5d61b30c52b0300daa98210db16500fa86bbcd69515becb3d148"
+}

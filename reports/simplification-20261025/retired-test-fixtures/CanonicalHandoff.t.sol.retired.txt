@@ -1,0 +1,83 @@
+RETIRED: testFreezeInsideLegacyFundingCallbackCannotCountOnePaymentTwice (removed creator-payment/bridge-only behavior)
+
+    function testFreezeInsideLegacyFundingCallbackCannotCountOnePaymentTwice() public {
+        (uint256 first,,) = _seed(); uint256 bucket = source.vault.nftBucket(first);
+        _govern(source, address(source.fees), abi.encodeCall(source.fees.createRewardReceiver, (bucket, address(0))));
+        _migrate(first); System memory retired = source;
+        address legacyInbox = retired.fees.rewardReceiver(bucket);
+        token0.mint(legacyInbox, 100); retired.fees.syncExternal(bucket);
+        assertEq(retired.fees.lateGross(bucket, address(token0)), 100);
+        source = destination; destination = _deploySystem(false);
+        destination.handoff.prepareImport(address(source.ac)); destination.ac.seal();
+        _prepare();
+        bytes memory data = abi.encodeCall(source.handoff.freeze, ()); bytes32 salt = bytes32(++governanceNonce);
+        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 0);
+        vm.warp(block.timestamp + 1 days);
+        HandoffTransitionToken(address(token0)).arm(source.ac, address(source.handoff), data, salt,
+            address(retired.fees), address(source.fees));
+        vm.expectRevert(); retired.fees.forwardLate(bucket, address(token0));
+        assertEq(source.ac.canonicalState(), 0);
+        assertEq(retired.fees.lateGross(bucket, address(token0)), 100);
+        assertEq(source.fees.lateGross(bucket, address(token0)), 0);
+        assertEq(destination.ac.canonicalState(), 2);
+    }
+
+
+RETIRED: testProtectedInboxTokensNativeAndSuccessorPrefundsStayQuarantined (removed creator-payment/bridge-only behavior)
+
+    function testProtectedInboxTokensNativeAndSuccessorPrefundsStayQuarantined() public {
+        (uint256 first,,) = _seed(); uint256 bucket = source.vault.nftBucket(first);
+        address factory = address(source.fees.receiverFactory());
+        address predicted = vm.computeCreateAddress(factory, vm.getNonce(factory));
+        token0.mint(predicted, 11); token1.mint(predicted, 13); vm.deal(predicted, 17);
+        _govern(source, address(source.fees), abi.encodeCall(source.fees.createRewardReceiver, (bucket, address(0))));
+        assertEq(source.fees.rewardReceiver(bucket), predicted);
+        token0.mint(predicted, 100); token1.mint(predicted, 120);
+        factory = address(destination.fees.receiverFactory());
+        address successorInbox = vm.computeCreateAddress(factory, vm.getNonce(factory));
+        token0.mint(successorInbox, 19); token1.mint(successorInbox, 23); vm.deal(successorInbox, 29);
+        _freeze(first);
+        assertEq(source.fees.totalExternalFunded(bucket, address(token0)), 100);
+        assertEq(source.fees.totalExternalFunded(bucket, address(token1)), 120);
+        token0.mint(predicted, 40); // Arrives after the frozen cutoff.
+        _exportAll(); _importAll(); _fundAll(); _commit();
+        assertEq(destination.fees.rewardReceiver(bucket), successorInbox);
+        ZZZRewardReceiver inbox = ZZZRewardReceiver(payable(successorInbox));
+        assertEq(inbox.protected0(), 30); assertEq(inbox.protected1(), 36); assertEq(inbox.protectedNative(), 46);
+        assertEq(token0.balanceOf(successorInbox), 30); assertEq(token1.balanceOf(successorInbox), 36);
+        assertEq(successorInbox.balance, 46);
+        (uint256 pending0, uint256 pending1) = inbox.pending(); assertEq(pending0, 0); assertEq(pending1, 0);
+        assertEq(token0.balanceOf(predicted), 40); assertEq(predicted.balance, 0);
+        source.fees.syncExternal(bucket); assertEq(source.fees.lateGross(bucket, address(token0)), 40);
+        source.fees.forwardLate(bucket, address(token0));
+        assertEq(destination.fees.totalExternalFunded(bucket, address(token0)), 140);
+        assertEq(source.fees.lateGross(bucket, address(token0)), 0);
+        vm.expectRevert(); source.fees.forwardLate(bucket, address(token0));
+        assertEq(inbox.protected0(), 30); assertEq(inbox.protectedNative(), 46);
+    }
+
+
+RETIRED: testPendingNativeCreatorPaymentIsWrappedAndAllocatedOnceAtFreeze (removed creator-payment/bridge-only behavior)
+
+    function testPendingNativeCreatorPaymentIsWrappedAndAllocatedOnceAtFreeze() public {
+        token0 = new HandoffNativeWrapper();
+        source = _deploySystem(true); destination = _deploySystem(false);
+        destination.handoff.prepareImport(address(source.ac)); destination.ac.seal();
+        token0.mint(ALICE, 10000000); _approve(source); _approve(destination);
+        (uint256 first,,) = _seed(); uint256 bucket = source.vault.nftBucket(first);
+        _govern(source, address(source.fees), abi.encodeCall(source.fees.createRewardReceiver, (bucket, address(token0))));
+        address inbox = source.fees.rewardReceiver(bucket);
+        (bool ok,) = inbox.call{value: 1 ether + 7}(""); assertTrue(ok);
+        _freeze(first);
+        assertEq(inbox.balance, 0); assertEq(token0.balanceOf(inbox), 0);
+        assertEq(address(token0).balance, 1 ether + 7);
+        assertEq(source.fees.totalExternalFunded(bucket, address(token0)), 1 ether + 7);
+        uint256 expected = source.rewards.claimable(first, address(token0));
+        _exportAll(); _importAll(); _fundAll(); _commit();
+        assertEq(destination.rewards.claimable(first, address(token0)), expected);
+        assertEq(destination.fees.totalExternalFunded(bucket, address(token0)), 1 ether + 7);
+        destination.fees.syncExternal(bucket);
+        assertEq(destination.fees.totalExternalFunded(bucket, address(token0)), 1 ether + 7);
+        vm.prank(ALICE); assertEq(destination.rewards.claim(first, address(token0)), expected);
+        assertEq(destination.rewards.claimable(first, address(token0)), 0);
+    }

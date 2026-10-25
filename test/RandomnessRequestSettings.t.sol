@@ -47,6 +47,10 @@ contract RecordedRequestCoordinator is IZZZVRFCoordinator {
 contract RequestSettingsBound {
     IZZZAccess public immutable access;
     constructor(address controller) { access = IZZZAccess(controller); }
+    // TEST ONLY identity for seal; this VRF fixture has no LP/source admission.
+    function activationAssets() external view returns(address) { return address(this); }
+    function zzz() external pure returns(address) { return address(0x7A7A); }
+    function currentZZZ() external pure returns(address) { return address(0x7A7A); }
 }
 contract RequestSettingsVault is RequestSettingsBound {
     ZZZNFT private immutable nft;

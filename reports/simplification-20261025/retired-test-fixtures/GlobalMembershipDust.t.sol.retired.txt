@@ -1,0 +1,13 @@
+REASON: Only creator payments could create fresh fee dust after Outbound; already-collected dust settles before departure and there is no late external intake.
+
+    function testCanonicalOutboundBucketDustAlsoSettlesBeforeNewMembership() public {
+        uint256 first = activatedPosition(); uint256 bucket = vault.nftBucket(first);
+        address inbox = fees.createRewardReceiver(bucket, address(0));
+        ac.setPaused(true);vault.park(bucket,block.timestamp+100);ac.setPaused(false);
+        vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
+        assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Outbound));
+        t0.mint(inbox, 19); fees.syncExternal(bucket); assertEq(fees.dust(bucket, address(t0)), 19);
+        uint256 second = _mint(bob); _activateSecond(second, _secondPool());
+        assertEq(fees.dust(bucket, address(t0)), 0); assertEq(rewards.claimable(first, address(t0)), 19);
+        assertEq(rewards.claimable(second, address(t0)), 0); assertTrue(membership.eligible(first));
+    }

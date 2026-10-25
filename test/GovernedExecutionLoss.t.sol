@@ -2,7 +2,7 @@
 pragma solidity 0.8.26;
 
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
-import {HandoffVenue} from "./CustodyHandoff.t.sol";
+import {HandoffVenue,CustodySourceIdentity} from "./CustodyHandoff.t.sol";
 import {BudgetAdversarialVenue} from "./MigrationBudgetAdversarial.t.sol";
 import {RebalanceBudgetPolicy} from "./RebalanceBudget.t.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
@@ -62,11 +62,14 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
     function _rebalance() private {vault.rebalance(_bucket(),1,block.timestamp+100);}
     function _custody() private returns(ZZZMigration m){
         ac.bind(Ids.LIQUIDITY,address(new HandoffVenue(pools)));m=_migration();
-        m.configureZZZ(address(t1),address(t1).codehash,REVIEW);activatedPosition();
+        pools.setActivationAssets(address(new CustodySourceIdentity(address(t1))));
+        // TEST ONLY: restore initial bootstrap for the newly installed custody module.
+        vm.mockCall(address(ac),abi.encodeWithSignature("isSealed()"),abi.encode(false));
+        m.configureZZZ(address(t1),address(t1).codehash,REVIEW);vm.clearMockedCalls();activatedPosition();
     }
     function _request(ZZZMigration m,bool raw,uint256 minimum) private view returns(ZZZMigration.Request memory r){
         r.bucket=_bucket();r.sourceSnapshot=m.sourceSnapshot(r.bucket);r.recipient=bob;r.recipientCodeHash=bob.codehash;
-        r.destinationChain=block.chainid;r.destinationCustody=address(vault);r.destinationPool=poolId;
+        r.destinationCustody=address(vault);r.destinationPool=poolId;
         r.output0=address(t0);r.output1=address(t1);r.minimum0=1;r.minimum1=1;r.minimumZZZ=minimum;
         r.rawExit=raw;r.exitMinimum0=1000;r.exitMinimum1=1000;r.deadline=block.timestamp+100;r.reviewHash=REVIEW;
     }
@@ -192,8 +195,8 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
     function testNormalCustodyApprovalCannotBeWeakenedAfterPolicyIncrease() public {
         ZZZMigration m=_custody();bytes32 id=m.approve(_request(m,false,1940));
         assertEq(m.minimumRetainedUSD(id),1940e18);ac.setPaused(true);m.exit(id);
-        bytes32 commitment=m.proofCommitment(id,1);_budget().setLossLimits(100,1000);
-        assertEq(m.proofCommitment(id,1),commitment);ac.setPaused(false);
+        bytes32 commitment=keccak256(abi.encode(m.request(id)));uint256 retained=m.minimumRetainedUSD(id);_budget().setLossLimits(100,1000);
+        assertEq(keccak256(abi.encode(m.request(id))),commitment);assertEq(m.minimumRetainedUSD(id),retained);ac.setPaused(false);
         t0.mint(address(this),900);t1.mint(address(this),900);t0.approve(address(m),900);t1.approve(address(m),900);
         vm.expectRevert(ZZZModule.Slippage.selector);m.completeLocal(id,900,900,1,block.timestamp+100);
         assertEq(uint256(vault.group(_bucket()).status),uint256(PositionStatus.Outbound));

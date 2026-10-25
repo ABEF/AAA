@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import {PoolKey, PoolConfig, Position, PositionStatus, Route, BridgeMessage, TransportPolicy} from "../libraries/ZZZTypes.sol";
+import {PoolKey, PoolConfig, Position, PositionStatus} from "../libraries/ZZZTypes.sol";
 
 interface IZZZAccess {
     function module(bytes32 key) external view returns (address);
@@ -9,6 +9,7 @@ interface IZZZAccess {
     function preparationActive() external view returns (bool);
     function canonicalHandoff() external view returns (address);
     function royaltyFactory() external view returns (address);
+    function activationAssetsFactory() external view returns (address);
     function canonicalState() external view returns (uint8);
     function canonicalSettling() external view returns (bool);
     function keepers(address who) external view returns (bool);
@@ -39,18 +40,11 @@ interface IZZZRewards {
 }
 interface IZZZFees {
     function allocate(uint256 id, address token, uint256 amount) external payable;
-    function syncExternal(uint256 bucketId) external;
-    function syncAllExternal() external;
-    function hasPendingExternal() external view returns (bool);
     function compoundBalance(uint256 id, address token) external view returns (uint256);
     function releaseCompound(uint256 id, address token) external returns (uint256);
     function flushDust(uint256 id, address token) external;
     function releaseBuyback(address token, uint256 amount) external;
-    function creditRemote(uint256 id, address token, uint256 individual, uint256 collective) external payable;
-    function bindRemoteAsset(uint256 id, address token, address canonicalToken) external;
-    function allocated(uint256 bucketId, address canonicalToken) external view returns (uint256, uint256);
-    function importAccounting(BridgeMessage calldata message) external;
-    function remoteSettled(uint256 bucketId) external view returns (bool);
+
 }
 interface IZZZPools {
     function activationEntry() external view returns (address);
@@ -117,61 +111,11 @@ interface IZZZVault {
     function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external;
     function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
         external returns (uint256 amount0, uint256 amount1);
-    function importPending(uint256 id, bytes32 poolId, Position calldata origin, uint256 shares, bytes32 homePool,
-        uint256 amount0, uint256 amount1) external;
     function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) external;
-}
-interface IZZZRoutes {
-    function get(bytes32 id) external view returns (Route memory route, bool enabled);
-    function transportPolicyId(bytes32 id) external view returns (bytes32);
-}
-interface IZZZBridge {
-    function send(BridgeMessage calldata message) external payable returns (bytes32 transportId);
 }
 interface IZZZMigration {
     function activePlan(uint256 bucketId) external view returns (bytes32);
-    function authorizedRemote(uint256 id, uint256 chainId, address vault) external view returns (bool);
     function custodyEpoch(uint256 id) external view returns (uint64);
-    function registerImport(BridgeMessage calldata message) external;
-    function confirm(BridgeMessage calldata message, uint256 chainId, address vault) external;
-    function authorizedReward(uint256 id, uint256 chainId, address vault, address remoteToken, address homeToken) external view returns (bool);
-}
-interface IZZZReceiver {
-    function receiveMessage(uint256 sourceChain, address sourceAdapter, BridgeMessage calldata message) external;
-}
-
-/// @notice Transport implementers MUST authenticate the origin chain and sender,
-/// enforce finality, and atomically deliver EXACT token amounts to the adapter.
-/// No particular production bridge is implied by this interface.
-interface IZZZTransport {
-    function send(uint256 destinationChain, address destinationAdapter, address[] calldata tokens,
-        uint256[] calldata amounts, bytes calldata payload) external payable returns (bytes32);
-}
-interface IZZZTransportReceiver {
-    function onMessage(uint256 sourceChain, address sourceAdapter, bytes calldata payload) external;
-}
-
-interface IZZZBridgeEndpoint { function transport() external view returns (address); }
-interface IZZZBridgeRouter {
-    function registerPolicy(TransportPolicy calldata policy) external returns (bytes32);
-    function matchesRoute(bytes32 policyId, Route calldata route) external view returns (bool);
-    function canSend(bytes32 routeId) external view returns (bool);
-}
-/// @notice A separately reviewed, router-bound SDK wrapper. The wrapper MUST
-/// authenticate the physical source router/chain, finality and exact backed
-/// destination assets before calling onProviderMessage. configurationHash must
-/// commit to all channel security/asset settings; a getter alone proves nothing.
-interface IZZZTransportProvider {
-    function router() external view returns (address);
-    function configurationHash(bytes32 channelId) external view returns (bytes32);
-    function send(bytes32 policyId, uint256 destinationChain, address destinationProvider,
-        address destinationRouter, address[] calldata tokens, uint256[] calldata amounts,
-        bytes calldata envelope) external payable returns (bytes32);
-}
-interface IZZZBridgeRouterReceiver {
-    function onProviderMessage(uint256 authenticatedSourceChain, address authenticatedSourceRouter,
-        address[] calldata actualDestinationTokens, uint256[] calldata actualAmounts,
-        bytes calldata envelope) external;
 }
 
 /// @dev Minimal external ABIs, checked against the official Uniswap v4 sources.

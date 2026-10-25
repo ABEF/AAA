@@ -1,3 +1,11 @@
+# Current and historical contribution routing
+
+Current source inputs are native ETH and explicitly reviewed ZZZ only.
+USDC/USDG/WETH are not contribution options. See [current scope](SIMPLIFIED_RELEASE.md)
+and [Entry](ACTIVATION_ENTRY.md). The research and addresses below are historical
+or optional internal/royalty-market observations, not admission of user currencies
+or qualification of a production route.
+
 ## Reviewed Entry policy V1 - 2026-10-25
 
 The current undeployed pricing-V2 candidate uses

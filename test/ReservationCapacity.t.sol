@@ -54,7 +54,7 @@ contract ReservationCapacityTest is PooledVaultFixture {
         vault.reservePool(poolId, bucket);
         assertEq(vault.bucketCount(), 1); assertEq(vault.bucketAt(0), bucket);
         _assertEmptyReservation(poolId, bucket);
-        assertEq(membership.totalEligible(), 0); assertEq(fees.rewardReceiverCount(), 0);
+        assertEq(membership.totalEligible(), 0);
         assertEq(venue.next(), 1); assertEq(vault.totalIdle(address(t0)), 0);
         assertEq(vault.totalIdle(address(t1)), 0); assertEq(address(vault).balance, 0);
     }
@@ -153,11 +153,10 @@ contract ReservationCapacityTest is PooledVaultFixture {
         }
         vm.mockCallRevert(address(pools), abi.encodeWithSignature("accounting(bytes32)", bytes32(0)), abi.encodePacked("None has no pool"));
         vm.warp(block.timestamp + 3601); // Both fixture feeds are also stale.
-        vm.prank(address(fees)); membership.settleDust();
-        vm.prank(address(vault)); fees.syncAllExternal();
+        vm.prank(address(vault)); membership.settleDust();
         vm.clearMockedCalls();
         assertEq(vault.bucketCount(), 4); assertEq(membership.totalEligible(), 0);
-        assertEq(fees.rewardReceiverCount(), 0); assertEq(rewards.liabilities(address(t0)), 0);
+        assertEq(rewards.liabilities(address(t0)), 0);
     }
 
     function testTimeoutAndDisabledPoolDoNotReleaseOrReassignReservation() public {

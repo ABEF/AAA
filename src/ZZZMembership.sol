@@ -21,10 +21,10 @@ contract ZZZMembership is ZZZModule, ZZZCanonicalLedger {
     function _canonicalAccess() internal view override returns (address) { return address(access); }
     /// @notice Settle funded fee dust in every canonical bucket before an entry.
     /// The Vault caps all historical local buckets, including imported custody.
-    /// Unharvested fees and undelivered remote rewards retain receipt-time policy.
-    function settleDust() external onlyModule(Ids.FEES) economic {
+    /// Unharvested venue fees retain receipt-time policy.
+    function settleDust() external onlyModule(Ids.VAULT) economic {
         IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
-        IZZZFees fees = IZZZFees(msg.sender);
+        IZZZFees fees = IZZZFees(access.module(Ids.FEES));
         IZZZPools pools = IZZZPools(access.module(Ids.POOLS));
         uint256 count = vault.bucketCount();
         if (count > vault.MAX_BUCKETS()) revert InvalidState();

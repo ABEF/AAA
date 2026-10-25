@@ -6,7 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock,patch
 
 SPEC=importlib.util.spec_from_file_location('fork_runner',Path(__file__).resolve().parents[1]/'scripts/run-fork-checks.py')
 RUNNER=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(RUNNER)
@@ -93,8 +93,64 @@ class ForkRelayTests(unittest.TestCase):
         for interval in (0,1.0,True,float('nan')):
             with self.subTest(interval=interval),self.assertRaises(ValueError):RUNNER.Relay(UPSTREAM,interval=interval)
 
-class ForkProcessTests(unittest.TestCase):
+# Parser/status tests use historical signature-only data in an isolated TEMP root.
+# These empty declarations are unit-test inputs, never runnable fork assertions or
+# current candidate qualification. They do not restore a retired repository suite.
+HISTORICAL_FORK_UNIT_NAMES = {'test/UniswapV4Fork.t.sol': ['testPinnedSelectedPoolIdentityAndZeroCoreFees',
+                              'testCurrentRegistryRejectsSelectedNativeAndHookedPool',
+                              'testRealPositionMintIncreaseAndApprovalReset',
+                              'testRealSwapFeeCollectionAndPositionBurn',
+                              'testActualTokenTransferBurnAndNativeWrapRoundTrip',
+                              'testActualETHUSDFeedIsPositiveAndCurrentAtPinnedBlock',
+                              'testRealNativeAndZZZPaymentsFundNFTClaimsWithoutChangingLP',
+                              'testRealSharedPoolEntryUsesOneLPAndPostSwapSharePricing',
+                              'testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares'],
+ 'test/NativePoolFork.t.sol': ['testSelectedNativeAccountingKeepsRealPoolKey',
+                               'testSelectedNativeMintIncreaseAndClose',
+                               'testSelectedNativeBothSwapDirectionsUseNetOutput',
+                               'testSelectedNativeSwapAccruesActualLPFeesWithoutCreatorPayments',
+                               'testSelectedNativePrefundsCannotBecomePrincipalOrFees',
+                               'testSelectedNativeReopenAtAnotherRangeKeepsPoolIdentity',
+                               'testSelectedNativeChangedRuntimeDisablesAdmissionAndAccounting',
+                               'testSelectedNativeNoLongerDependsOnPonsHookOrItsPayoutSettings',
+                               'testSelectedNativeProtocolFeeObservationDoesNotTrapCustody',
+                               'testSelectedNativeReportedWrapperImplementationChangeFailsClosed',
+                               'testSelectedNativeWrapperAdminOwnershipChangeFailsClosed',
+                               'testSelectedNativeReviewedWrapperUpgradeRestoresSameAssetAndCustody',
+                               'testSelectedNativeReviewedRenouncedWrapperAdminRestoresCustody',
+                               'testSelectedNativeEntryETHActivationBindsOriginalOwnerAndGrossBudget',
+                               'testSelectedNativeEntryZZZActivationDeploysAtLeastNinetyNinePercent',
+                               'testSelectedNativeEntryNativeAndZZZTopUpsPreserveOneLPAndMarginalBudget',
+                               'testSelectedNativeEntryFailedLiquidityGuardRollsBackOwnerFundsAndVenue',
+                               'testSelectedNativeTwoNFTsShareOneLPAndFundedRewards',
+                               'testSelectedNativeOneBucketRebalancePreservesBothNFTShares',
+                               'testSelectedNativeApprovedRangeUpdateUsesRealTriggerAndPreservesClaims',
+                               'testSelectedNativeDisabledSourceVaultMigrationRetainsPriceGuard',
+                               'testSelectedNativeStaleOracleBlocksVaultExitUntilReviewedFeedReplacement',
+                               'testSelectedNativePausedParkingWorksWithStaleFeedsAndBrokenCreatorInbox',
+                               'testSelectedNativeParkingMinimaExcludeCompoundAndUnattributedVaultDonations',
+                               'testSelectedNativeParkedResumeRequiresFreshFeedsAndPreservesAttachedShares',
+                               'testSelectedNativeRejectsHookDynamicWrongTokenAndUninitializedMarkets',
+                               'testSelectedNativeMoveFundsToWETHAndNewNativeFeeTierKeepsRights',
+                               'testSelectedNativeExitToRegularAddressConvertsOnlyPrincipalToZZZ',
+                               'testSelectedNativeRawExitWorksWithoutFeedOrEnabledPool']}
+
+class HistoricalForkInventoryFixture(unittest.TestCase):
     def setUp(self):
+        temporary=tempfile.TemporaryDirectory(prefix='popl-historical-fork-unit-')
+        self.addCleanup(temporary.cleanup)
+        fixture_root=Path(temporary.name)
+        for source,names in HISTORICAL_FORK_UNIT_NAMES.items():
+            target=fixture_root/source;target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_text('// Historical parser fixture; not executable qualification.\n'+
+                'contract HistoricalInventory {\n'+
+                ''.join('function '+name+'() public {}\n' for name in names)+'}\n',encoding='utf-8')
+        root_patch=patch.object(RUNNER,'ROOT',fixture_root)
+        root_patch.start();self.addCleanup(root_patch.stop)
+
+class ForkProcessTests(HistoricalForkInventoryFixture):
+    def setUp(self):
+        super().setUp()
         self.servers=[];self.commands=[];self.spawn_failure=False
         self.code=9;self.output='';self.stderr=''
     def server(self,relay):
@@ -160,8 +216,38 @@ def complete_results():
     return {suite:{'test_results':{name+'()':{'status':'Success'}
         for name in RUNNER.expected_tests(suite.split(':',1)[0])}} for suite in RUNNER.FORK_SUITES}
 
-class ForkCoverageTests(unittest.TestCase):
-    def test_current_source_inventories_include_both_actual_fork_classes(self):
+class RetiredForkQualificationTests(unittest.TestCase):
+    def test_missing_native_fixture_blocks_before_relay_forge_or_network(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);source=root/'test/UniswapV4Fork.t.sol'
+            source.parent.mkdir();source.write_text('contract HistoricalInventory {}',encoding='utf-8')
+            run=Mock();relay=Mock();server=Mock();errors=io.StringIO()
+            with patch.object(RUNNER,'ROOT',root),patch.object(sys,'stderr',errors):
+                code=RUNNER.run_fork(UPSTREAM,run=run,relay_factory=relay,server_factory=server)
+            self.assertEqual(code,2)
+            run.assert_not_called();relay.assert_not_called();server.assert_not_called()
+            self.assertIn('Fork qualification blocked',errors.getvalue())
+            self.assertIn('test/NativePoolFork.t.sol',errors.getvalue())
+            self.assertIn('No RPC or Forge process was started',errors.getvalue())
+            self.assertNotIn(UPSTREAM,errors.getvalue())
+    def test_cli_blocks_missing_current_source_before_initializing_transport_or_forge(self):
+        with tempfile.TemporaryDirectory() as directory:
+            errors=io.StringIO()
+            with patch.object(RUNNER,'ROOT',Path(directory)), \
+                    patch.object(sys,'argv',['run-fork-checks.py','--upstream',UPSTREAM]), \
+                    patch.object(sys,'stderr',errors), \
+                    patch.object(RUNNER.Relay,'__init__') as relay, \
+                    patch.object(RUNNER.RelayServer,'__init__') as server, \
+                    patch.object(RUNNER.shutil,'which') as which, \
+                    patch.object(RUNNER.urllib.request,'urlopen') as network:
+                self.assertEqual(RUNNER.main(),2)
+            relay.assert_not_called();server.assert_not_called()
+            which.assert_not_called();network.assert_not_called()
+            self.assertIn('Fork qualification blocked',errors.getvalue())
+            self.assertNotIn(UPSTREAM,errors.getvalue())
+
+class ForkCoverageTests(HistoricalForkInventoryFixture):
+    def test_historical_signature_fixtures_only_validate_parser_and_status_rules(self):
         old=RUNNER.expected_tests('test/UniswapV4Fork.t.sol');native=RUNNER.expected_tests('test/NativePoolFork.t.sol')
         self.assertEqual(len(old),9);self.assertEqual(len(native),29)
         self.assertIn('testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares',old)

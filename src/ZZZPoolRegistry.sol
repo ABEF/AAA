@@ -5,6 +5,7 @@ import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZOracle, IZZZRewards, IZZZLiquidity, IStateViewMinimal} from "./interfaces/IZZZ.sol";
 import {ZZZActivationAssets} from "./ZZZActivationAssets.sol";
 import {ZZZActivationEntry} from "./ZZZActivationEntry.sol";
+import {ZZZActivationAssetsFactory} from "./ZZZActivationAssetsFactory.sol";
 
 interface INativeVenueBindings {
     function poolManager() external view returns (address);
@@ -51,7 +52,7 @@ contract ZZZPoolRegistry is ZZZModule {
         address adminOwner, bytes32 adminCodeHash, bytes32 implementationCodeHash);
     event WrapperPolicyActivated(bytes32 indexed previousPolicy, bytes32 indexed activePolicy);
     constructor(address controller) ZZZModule(controller) {
-        activationAssets = new ZZZActivationAssets(controller, address(this));
+        activationAssets = ZZZActivationAssets(ZZZActivationAssetsFactory(access.activationAssetsFactory()).create());
         activationEntry = new ZZZActivationEntry(controller, address(this), address(activationAssets));
         // Native accounting does not use WETH. Optional wrapper metadata starts
         // unset and requires a fresh, fully validated governance approval.

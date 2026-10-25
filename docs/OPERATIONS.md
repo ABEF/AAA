@@ -1,3 +1,13 @@
+# Current LP-only operating profile
+
+Use [current release scope](SIMPLIFIED_RELEASE.md) for new deployments: accounting2
+with explicit fee_intake_version1, fixed pre-seal ETH/ZZZ sources, source-chain
+custody V2 and LP-only V3 schema. Do not schedule creator-inbox synchronization
+or bridge jobs. Historical profile0 instructions below apply only to their pinned
+old contracts and journals, not new service configuration. Pending records must
+be recovered under their original profile; never rewrite or delete them.
+
+
 # Development and operating procedures
 
 **Current candidate, reviewed 2026-10-25:** actual native ETH accounting/routing V2
@@ -112,7 +122,7 @@ turn [measurement proposals](REVENUE_SHARE.md) into payment authority. The creat
 agreement/measurement tasks are conditional; authenticating any actual funding,
 its currency and the complete receiver history is still required.
 
-The canonical chain's `external_rewards` inventory must include `receiver_count`, complete `receivers` and exact-release `observation_evidence`. Derive the complete list from confirmed `RewardReceiverCreated` history and reconcile `Fees.rewardReceiverCount()`/`rewardReceiver(bucketId)` at the manifest observation block. External mode requires at least one canonical receiver; satellites contain none. Conventional-only mode cannot hide registered external receivers under the conventional label.
+For historical fee profile0 only, the canonical chain's `external_rewards` inventory must include `receiver_count`, complete `receivers` and exact-release `observation_evidence`. Derive the complete list from confirmed `RewardReceiverCreated` history and reconcile `Fees.rewardReceiverCount()`/`rewardReceiver(bucketId)` at the manifest observation block. External mode requires at least one canonical receiver; satellites contain none. Conventional-only mode cannot hide registered external receivers under the conventional label.
 
 Each record includes `address`, immutable-specific `runtime_hash`, `bucket_id`, `home_pool_id`, `fees`, `token0`, `token1`, `wrapped_native`, `immutable_configuration=true` and `upgradeable=false`. The bucket hashes canonical chain/vault/original pool; the pair matches that original pool. Retain `observed_chain_id`, `observed_receiver`, `observed_fee_receiver`, `observed_block_number`, `observed_block_hash`, positive `observed_total_shares`, and `observed_bindings` for all five immutable getters. All observations use the same confirmed manifest block. `review_evidence` requires a named independent reviewer and exact release identity. For nonzero wrapping, `wrapper_review` includes the matching asset/address/runtime, `upgradeable=false`, `conversion=deposit:exact_1_to_1`, and release-specific evidence. A zero wrapper requires `wrapper_review=null`. Independently authenticate the underlying code, getters, event completeness and reviews; the offline validator only compares supplied records.
 
@@ -155,7 +165,13 @@ Python 3.11+ and a Unix host are expected. Copy `keeper/config.example.json`, fi
 python3 -m keeper.monitor --config keeper/config.local.json --once
 ```
 
-### Reward timing and maintenance schedule
+### Historical fee profile 0: reward timing and synchronization
+
+For current fee profile1, skip creator-inbox synchronization entirely. Use venue
+harvesting plus separately bounded LP/royalty conversion. The following old
+syncExternal/default-enabled settings apply only to legacy pinned contracts.
+
+#### Historical maintenance schedule
 
 Rewards do not accrue on a fixed per-minute clock. Supported venue fees become funded holder balances when harvested and allocated; creator payments become funded balances when their immutable inbox is processed with `syncExternal`. The 80/10/5/5 split applies to those actual receipts, with raw-unit rounding as documented in [economics](ECONOMICS.md). Optional external funding timing is chosen by its payer; it is not required for the selected hookless pool. No keeper can manufacture missing revenue.
 

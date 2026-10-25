@@ -24,7 +24,7 @@ library Ids {
     bytes32 internal constant FEES_CANONICAL = keccak256("ZZZFeesCanonical");
 }
 
-// ABI-compatible with the canonical Uniswap v4 PoolKey. ERC20 currencies only.
+// ABI-compatible with Uniswap v4. Native ETH is address(0), distinct from WETH.
 struct PoolKey {
     address currency0;
     address currency1;
@@ -66,85 +66,3 @@ struct Position {
     address locationVault;
 }
 
-// Each route is append-only. Only enabled can subsequently be changed.
-// source/destination tokens must represent the same asset at identical decimals.
-struct Route {
-    uint256 sourceChain;
-    address sourceAdapter;
-    address sourceVault;
-    address sourceReceiver;
-    uint256 destinationChain;
-    address destinationAdapter;
-    address destinationVault;
-    address destinationReceiver;
-    bytes32 destinationPool;
-    address sourceToken0;
-    address sourceToken1;
-    address destinationToken0;
-    address destinationToken1;
-    uint8 token0Decimals;
-    uint8 token1Decimals;
-}
-
-// Append-only, versioned bridge custody policy. Remote hashes are reviewed
-// metadata; this chain cannot verify code or bridge security on another chain.
-struct TransportPolicy {
-    bytes32 providerId;
-    uint256 sourceChain;
-    address sourceRouter;
-    address sourceProvider;
-    bytes32 sourceCodeHash;
-    bytes32 sourceConfigurationHash;
-    uint256 destinationChain;
-    address destinationRouter;
-    address destinationProvider;
-    bytes32 destinationCodeHash;
-    bytes32 destinationConfigurationHash;
-    bytes32 channelId;
-    bytes32 reviewHash;
-}
-struct TransportEnvelope {
-    uint8 version;
-    bytes32 policyId;
-    bytes payload;
-}
-
-enum MessageKind { Principal, Reward, Acknowledgement }
-enum AckPurpose { SourceCompletion, CanonicalLocation }
-struct BridgeMessage {
-    uint8 version;
-    MessageKind kind;
-    bytes32 routeId;
-    uint256 nonce;
-    // v3: whole shared-liquidity bucket, never an individual NFT identity.
-    uint256 bucketId;
-    bytes32 migrationId;
-    uint256 homeChain;
-    address homeVault;
-    address homeReceiver;
-    uint256 depositUSD;
-    uint256 amount0;
-    uint256 amount1;
-    // Reward messages use amount0 only. Split must sum to amount0.
-    uint256 individual;
-    uint256 collective;
-    // Permanent bucket identity survives multiple custody hops. Canonical token
-    // mappings follow the PRINCIPAL route's source order, not the ACK route order.
-    uint64 migrationEpoch;
-    bytes32 principalRouteId;
-    uint256 previousChain;
-    address previousVault;
-    address previousReceiver;
-    address canonicalToken0;
-    address canonicalToken1;
-    AckPurpose acknowledgement;
-    // The canonical membership ledger stays home and is frozen while remote.
-    bytes32 homePoolId;
-    uint256 totalShares;
-    // Lifetime remote fee allocations, in canonicalToken0/1 order. A returning
-    // home bucket cannot admit shares until every allocated fee is funded home.
-    uint256 allocatedIndividual0;
-    uint256 allocatedCollective0;
-    uint256 allocatedIndividual1;
-    uint256 allocatedCollective1;
-}

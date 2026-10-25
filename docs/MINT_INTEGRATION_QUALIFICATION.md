@@ -1,5 +1,14 @@
 # Qualify randomness and OpenSea primary mint
 
+
+## Current release simplification - 2026-10-25
+
+[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
+fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
+pool moves, external custody exit/recovery, royalty currencies and complete
+collection handoff. Current fee/custody profiles and canonical schema are
+explicit; old deployments/journals keep historical profiles.
+
 Current source issues paid NFTs through `Vault.mintDormant()`. It does not yet
 implement an OpenSea primary-drop mint path. Marketplaces may recognize the
 ERC-721 collection for secondary sales without supporting its primary mint.

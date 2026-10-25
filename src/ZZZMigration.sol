@@ -16,13 +16,15 @@ interface ICustodyVault is IZZZVault {
     function acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) external payable;
 }
 interface IMaintenanceLossPolicy { function maintenanceLossBps() external view returns(uint16); }
-/// Must prove finality, exact destination custody/backing, and closure for returns.
-interface ICustodyFinality { function verifyCustody(bytes32,bytes calldata) external view returns(bool); }
+interface ICustodySourceRegistry { function activationAssets() external view returns(address); }
+interface ICustodySourceIdentity { function zzz() external view returns(address); }
 /// @notice Governed custody handoff; recipient custody/liveness are explicitly trusted.
-/// No arbitrary call, delegatecall, sweep, timeout release or governance-only delivery proof.
+/// Source-chain custody only; any bridge or issuer exchange happens outside PoPL.
+/// No arbitrary call, delegatecall, sweep, timeout release or remote-completion proof.
 contract ZZZMigration is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
-    enum Status { None, Approved, Sent, RemoteVerified, Completed, Recovered, Cancelled }
+    uint8 public constant CUSTODY_VERSION=2;
+    enum Status { None, Approved, Sent, Completed, Recovered, Cancelled }
     struct ParkingRequest {
         uint256 bucketId; bytes32 poolId; uint256 lpTokenId; uint256 totalShares; uint256 depositUSD;
         uint64 custodyEpoch; uint64 nonce; address token0; address token1;
@@ -30,10 +32,10 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     struct Request {
         uint256 bucket; bytes32 sourceSnapshot; address recipient; bytes32 recipientCodeHash;
-        uint256 destinationChain; address destinationCustody; bytes32 destinationPool;
+        address destinationCustody; bytes32 destinationPool;
         address output0; address output1; uint256 minimum0; uint256 minimum1;
         bool rawExit; uint256 exitMinimum0; uint256 exitMinimum1;
-        uint256 minimumZZZ; address verifier; bytes32 verifierCodeHash; uint256 deadline; bytes32 reviewHash;
+        uint256 minimumZZZ; uint256 deadline; bytes32 reviewHash;
     }
     struct Plan {
         Request request; bytes32 sourcePool; PositionStatus sourceStatus; Status status; uint256 shares;
@@ -53,9 +55,8 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     mapping(uint256=>uint64) public parkingNonce;
     event ZZZConfigured(address indexed token,bytes32 codeHash,bytes32 reviewHash);
     event DestinationBound(bytes32 indexed id,bytes32 previousRequest,bytes32 newRequest,bytes32 destinationPool);
-    event CustodyApproved(bytes32 indexed id,uint256 indexed bucket,address indexed recipient,uint256 destinationChain);
+    event CustodyApproved(bytes32 indexed id,uint256 indexed bucket,address indexed recipient,address destinationCustody);
     event CustodySent(bytes32 indexed id,uint256 indexed bucket,address indexed recipient,uint256 zzzAmount);
-    event CustodyRemoteVerified(bytes32 indexed id,bytes32 commitment);
     event CustodyCompleted(bytes32 indexed id,uint256 indexed bucket,uint256 lpTokenId);
     event CustodyAssetsSent(bytes32 indexed id,address token0,uint256 amount0,address token1,uint256 amount1,bool rawExit);
     event CustodyRecovered(bytes32 indexed id,uint256 indexed bucket,uint256 zzzAmount);
@@ -75,11 +76,12 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         Plan storage q=plans[id]; return(q.status,q.sent0,q.sent1,q.startingUSD,q.departureBlock);
     }
     function minimumRetainedUSD(bytes32 id) external view returns(uint256) { return plans[id].minimumRetainedUSD; }
-    /// Configure the future actual token after sealing; never relabel in-flight custody.
-    /// Buyback target is a separate explicit governed operation.
+    /// Bind the deployment's fixed ZZZ target once during bootstrap, before seal.
+    /// Token-contract exchanges use external custody and a fresh reviewed deployment.
     function configureZZZ(address token,bytes32 codeHash,bytes32 reviewHash) external onlyGovernance nonReentrant {
-        if(outstandingCount!=0 || token.code.length==0 || token.codehash!=codeHash || reviewHash==bytes32(0) ||
+        if(access.isSealed() || currentZZZ!=address(0) || outstandingCount!=0 || token.code.length==0 || token.codehash!=codeHash || reviewHash==bytes32(0) ||
             !IZZZRewards(access.module(Ids.REWARDS)).isAsset(token)) revert InvalidConfiguration();
+        if(token!=ICustodySourceIdentity(ICustodySourceRegistry(address(_pools())).activationAssets()).zzz()) revert InvalidConfiguration();
         IZZZOracle(access.module(Ids.ORACLE)).price(token); currentZZZ=token; zzzCodeHash=codeHash;
         emit ZZZConfigured(token,codeHash,reviewHash);
     }
@@ -90,11 +92,11 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     function approve(Request calldata r) external onlyGovernance operating nonReentrant returns(bytes32 id) {
         _deadline(r.deadline); ICustodyVault v=_vault(); Position memory p=v.group(r.bucket);
-        bool custodyOnly=r.destinationChain==block.chainid && r.destinationPool==bytes32(0) && r.destinationCustody==r.recipient;
+        bool custodyOnly=r.destinationPool==bytes32(0) && r.destinationCustody==r.recipient;
         validation.validateRequest(abi.encode(r));
         PoolConfig memory source=_pools().accounting(p.poolId);
         if(!r.rawExit && source.key.currency0!=currentZZZ && source.key.currency1!=currentZZZ) revert InvalidConfiguration();
-        id=keccak256(abi.encode("ZZZ_CUSTODY_V1",block.chainid,address(access),address(this),++sequence,r));
+        id=keccak256(abi.encode("ZZZ_CUSTODY_V2",block.chainid,address(access),address(this),++sequence,r));
         Plan storage q=plans[id]; q.request=r; q.sourcePool=p.poolId; q.sourceStatus=p.status; q.status=Status.Approved;
         q.shares=v.bucketTotalShares(r.bucket); q.zzz=currentZZZ;
         q.token0=source.key.currency0; q.token1=source.key.currency1;
@@ -105,20 +107,19 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
             if(q.startingUSD==0 || oracle.value(currentZZZ,r.minimumZZZ)<q.minimumRetainedUSD) revert Slippage();
         }
         if(custodyOnly) {
-            if(r.output0!=q.token0 || r.output1!=q.token1 || r.verifier!=address(0) || r.verifierCodeHash!=bytes32(0)) revert InvalidConfiguration();
-        } else if(r.destinationChain==block.chainid) {
+            if(r.output0!=q.token0 || r.output1!=q.token1) revert InvalidConfiguration();
+        } else {
             _bindDestination(q,r);
-        } else if(r.verifier.code.length==0 || r.verifierCodeHash==bytes32(0) ||
-            r.verifier.codehash!=r.verifierCodeHash) revert InvalidConfiguration();
+        }
         activePlan[r.bucket]=id; ++outstandingCount;
-        emit CustodyApproved(id,r.bucket,r.recipient,r.destinationChain);
+        emit CustodyApproved(id,r.bucket,r.recipient,r.destinationCustody);
     }
     /// @notice One-time local return destination for an already sent holding plan.
     /// Preserve source snapshot, actual departure, mode and original loss budget.
     function bindLocalDestination(bytes32 id,bytes32 pool,uint256 minimum0,uint256 minimum1,bytes32 reviewHash)
         external onlyGovernance operating nonReentrant {
         Plan storage q=plans[id];Request memory r=q.request;
-        if(q.status!=Status.Sent || r.destinationChain!=block.chainid || r.destinationPool!=bytes32(0) ||
+        if(q.status!=Status.Sent || r.destinationPool!=bytes32(0) ||
             reviewHash==bytes32(0) || pool==bytes32(0) || (minimum0==0 && minimum1==0)) revert InvalidState();
         bytes32 previous=keccak256(abi.encode(r));PoolConfig memory target=_pools().accounting(pool);
         r.destinationPool=pool;r.destinationCustody=address(_vault());r.output0=target.key.currency0;r.output1=target.key.currency1;
@@ -160,7 +161,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function completeLocal(bytes32 id,uint256 a0,uint256 a1,uint128 minimumLiquidity,uint256 deadline)
         external payable live operating nonReentrant {
         _deadline(deadline); Plan storage q=plans[id]; Request memory r=q.request;
-        if(q.status!=Status.Sent || r.destinationChain!=block.chainid || r.destinationPool==bytes32(0) || a0<r.minimum0 ||
+        if(q.status!=Status.Sent || r.destinationPool==bytes32(0) || a0<r.minimum0 ||
             a1<r.minimum1 || minimumLiquidity==0) revert InvalidState();
         PoolConfig memory target=_pools().accounting(r.destinationPool);
         if(target.key.currency0!=r.output0 || target.key.currency1!=r.output1) revert InvalidConfiguration();
@@ -177,31 +178,15 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         if(p.status!=PositionStatus.Active || _vault().bucketTotalShares(r.bucket)!=q.shares) revert InvalidState();
         q.status=Status.Completed; _close(q,id); emit CustodyCompleted(id,r.bucket,p.lpTokenId);
     }
-    function verifyRemote(bytes32 id,bytes calldata proof) external operating nonReentrant {
-        Plan storage q=plans[id]; if(q.status!=Status.Sent || q.request.destinationChain==block.chainid) revert InvalidState();
-        bytes32 commitment=proofCommitment(id,1); _verify(q,commitment,proof); q.status=Status.RemoteVerified;
-        // No invented home-chain LP value, remote income routing or NFT relocation.
-        emit CustodyRemoteVerified(id,commitment);
-    }
-    /// Return FULL actually-sent ZZZ. Remote returns also prove final channel closure.
-    function recover(bytes32 id,uint256 deadline,bytes calldata proof) external payable operating nonReentrant {
+    /// Return every actually-sent source currency; no proof or invented remote balance.
+    /// Anyone may fully fund recovery, including while ordinary operations are paused.
+    function recover(bytes32 id,uint256 deadline) external payable operating nonReentrant {
         _deadline(deadline); Plan storage q=plans[id];
-        if(q.status!=Status.Sent && q.status!=Status.RemoteVerified) revert InvalidState();
-        if(q.request.destinationChain!=block.chainid) _verify(q,proofCommitment(id,2),proof);
+        if(q.status!=Status.Sent) revert InvalidState();
         uint256 a0=q.sent0; uint256 a1=q.sent1;
         _receive(q,q.sourcePool,q.token0,q.token1,a0,a1,0,deadline);
         if(_vault().bucketTotalShares(q.request.bucket)!=q.shares) revert InvalidState();
         q.status=Status.Recovered; _close(q,id); emit CustodyRecovered(id,q.request.bucket,q.sentZZZ);
-    }
-    function proofCommitment(bytes32 id,uint8 kind) public view returns(bytes32) {
-        Plan storage q=plans[id]; if((kind!=1 && kind!=2) || (q.sent0==0 && q.sent1==0)) revert InvalidState();
-        return keccak256(abi.encode("ZZZ_CUSTODY_FINALITY_V1",kind,block.chainid,address(access),address(this),id,
-            q.request,q.sourcePool,q.sourceStatus,q.shares,q.zzz,q.sent0,q.sent1,q.minimumRetainedUSD,q.departureBlock));
-    }
-    function _verify(Plan storage q,bytes32 commitment,bytes calldata proof) private view {
-        address verifier=q.request.verifier;
-        if(proof.length==0 || proof.length>65536 || verifier.code.length==0 ||
-            verifier.codehash!=q.request.verifierCodeHash || !ICustodyFinality(verifier).verifyCustody(commitment,proof)) revert InvalidState();
     }
     function _receive(Plan storage q,bytes32 pool,address t0,address t1,uint256 a0,uint256 a1,uint128 minimum,uint256 deadline) private {
         ICustodyVault v=_vault(); if(v.group(q.request.bucket).status!=PositionStatus.Outbound ||

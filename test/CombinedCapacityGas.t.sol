@@ -64,7 +64,7 @@ contract CombinedCapacityVenue is ERC721 {
 }
 
 /// @notice Combined permitted limits, rather than independent one-axis tests:
-/// Four historical buckets and funded creator inboxes, 32 admitted LP reward assets,
+/// Four historical buckets with actual LP fee receipts, 32 admitted LP reward assets,
 /// and the maximum 16 ERC20 royalty assets plus native ETH. Real core accounting;
 /// mocked access, tokens, oracle feeds, randomness, strategy and liquidity venue.
 /// Cold gasleft deltas exclude construction, intrinsic/calldata gas and refunds.
@@ -90,7 +90,6 @@ contract CombinedCapacityGasTest is Test {
     MockToken[] private tokens;
     bytes32[] private poolIds;
     uint256[] private incumbents;
-    address[] private inboxes;
     uint256 private entrant;
 
     function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
@@ -163,22 +162,20 @@ contract CombinedCapacityGasTest is Test {
             uint256 id = _mint(OWNER);
             incumbents.push(id);
             vm.prank(OWNER); vault.activate(id, pool, 1000, 1000, 1, block.timestamp + 100);
-            inboxes.push(fees.createRewardReceiver(vault.nftBucket(id), address(0)));
         }
         entrant = _mint(ENTRANT);
-        // Both previously collected dust and pending external receipts must be
-        // settled under the old cohort before either measured operation.
+        // Actual LP fees and sub-twenty dust belong to the incumbent cohort
+        // before either measured operation; no creator-inbox intake exists.
         for (uint256 i; i < SUPPORTED_BUCKETS; ++i) {
             venue.setFees(poolIds[i], 19);
             vault.collectFees(vault.nftBucket(incumbents[i]), block.timestamp + 100);
-            tokens[i * 2].mint(inboxes[i], 1000);
-            tokens[i * 2 + 1].mint(inboxes[i], 1000);
+            venue.setFees(poolIds[i], 1000);
+            vault.collectFees(vault.nftBucket(incumbents[i]), block.timestamp + 100);
         }
         for (uint256 i; i < 16; ++i) tokens[i].mint(address(royalties), 1600);
         vm.deal(address(royalties), 16 ether);
         assertEq(vault.bucketCount(), SUPPORTED_BUCKETS);
         assertEq(rewards.assetCount(), 33);
-        assertEq(fees.rewardReceiverCount(), SUPPORTED_BUCKETS);
         assertEq(royalties.assetCount(), 17);
         assertEq(membership.totalEligible(), SUPPORTED_BUCKETS);
         vm.resumeGasMetering();
@@ -190,7 +187,7 @@ contract CombinedCapacityGasTest is Test {
             ZZZOracle.DualPolicy memory p=oracle.policy(oracle.activePolicy(address(tokens[i])));
             vm.cool(p.primary.source);vm.cool(p.secondary.source);
         }
-        vm.cool(address(vault.migrationBudget())); vm.cool(address(fees.receiverFactory()));
+        vm.cool(address(vault.migrationBudget()));
         vm.cool(address(access)); vm.cool(address(pools)); vm.cool(address(feed));
         vm.cool(address(vrf)); vm.cool(address(policy)); vm.cool(address(venue));
         vm.cool(address(vault)); vm.cool(address(royalties));
@@ -198,7 +195,6 @@ contract CombinedCapacityGasTest is Test {
         vm.cool(address(membership)); vm.cool(address(rewards)); vm.cool(address(fees));
         vm.cool(address(oracle)); vm.cool(OWNER); vm.cool(ENTRANT); vm.cool(TREASURY);
         for (uint256 i; i < tokens.length; ++i) vm.cool(address(tokens[i]));
-        for (uint256 i; i < inboxes.length; ++i) vm.cool(inboxes[i]);
         // Helper getters above touch the NFT; cool it after those reads.
         vm.cool(address(nft));
         vm.cool(access.module(Ids.CANONICAL)); vm.cool(access.module(Ids.NFT_CANONICAL));
@@ -213,9 +209,7 @@ contract CombinedCapacityGasTest is Test {
             address token = address(tokens[i]);
             if (i < incumbents.length * 2) {
                 uint256 bucket = vault.nftBucket(incumbents[i / 2]);
-                assertEq(fees.totalExternalFunded(bucket, token), 1000);
                 assertEq(fees.dust(bucket, token), 0);
-                assertEq(tokens[i].balanceOf(inboxes[i / 2]), 0);
                 assertEq(rewards.liabilities(token), 919);
                 assertEq(rewards.claimable(incumbents[i / 2], token), 819 + 100 / incumbents.length);
             } else assertEq(rewards.liabilities(token), 0);
@@ -229,21 +223,21 @@ contract CombinedCapacityGasTest is Test {
         assertEq(royalties.claimable(incumbents[0], address(0)), 16 ether / SUPPORTED_BUCKETS);
     }
 
-    function testColdActivationAtCombinedBucketAssetAndReceiverCaps() public {
+    function testColdActivationAtCombinedBucketAndAssetCaps() public {
         _fixture();
         _cool();
         vm.prank(ENTRANT);
         uint256 beforeGas = gasleft();
         vault.activate(entrant, poolIds[0], 1000, 1000, 1, block.timestamp + 100);
         uint256 used = beforeGas - gasleft();
-        emit log_named_uint("combined.4-buckets.32-assets.4-inboxes.17-royalties.activation", used);
+        emit log_named_uint("combined.4-buckets.32-assets.17-royalties.activation", used);
         assertEq(membership.totalEligible(), SUPPORTED_BUCKETS + 1);
         assertGt(vault.sharesOf(entrant), 0);
         _assertHistoricalFundingExcluded();
         assertLt(used, LOCAL_GAS_BUDGET, "Combined-capacity activation exceeds unchanged local budget");
     }
 
-    function testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps() public {
+    function testColdIncumbentTopUpAtCombinedBucketAndAssetCaps() public {
         _fixture();
         uint256 previousShares = vault.sharesOf(incumbents[0]);
         uint256 previousWeight = royalties.weightOf(incumbents[0]);
@@ -252,7 +246,7 @@ contract CombinedCapacityGasTest is Test {
         uint256 beforeGas = gasleft();
         vault.increase(incumbents[0], 100, 100, 1, block.timestamp + 100);
         uint256 used = beforeGas - gasleft();
-        emit log_named_uint("combined.4-buckets.32-assets.4-inboxes.17-royalties.top-up", used);
+        emit log_named_uint("combined.4-buckets.32-assets.17-royalties.top-up", used);
         assertEq(membership.totalEligible(), SUPPORTED_BUCKETS);
         assertEq(royalties.weightOf(incumbents[0]), previousWeight);
         assertGt(vault.sharesOf(incumbents[0]), previousShares);
@@ -304,9 +298,7 @@ contract CombinedCapacityGasTest is Test {
                 800 + 100 / SUPPORTED_BUCKETS + (currentAsset ? 100 / SUPPORTED_BUCKETS : 0) + (i < 2 ? 819 : 0));
             if (currentAsset) {
                 uint256 earningBucket = vault.nftBucket(incumbents[i / 2]);
-                assertEq(fees.totalExternalFunded(earningBucket, token), 1000);
                 assertEq(fees.dust(earningBucket, token), 0);
-                assertEq(tokens[i].balanceOf(inboxes[i / 2]), 0);
             }
             if (i < 16) {
                 assertEq(royalties.claimable(entrant, token), 0);

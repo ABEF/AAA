@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 198.797,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\simplification-audit-20261025\\solidity\\terminal-guard\\ast-focused-profile-eoookjn2",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(AccessControllerTest|CanonicalHandoffTest)$",
+    "--json"
+  ],
+  "selected_methods": 6,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testCanonicalZZZIdentityMustBeBoundBeforeSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17719363
+        }
+      }
+    },
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testFuzzTerminalCanonicalStateCannotReopen(uint8)",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x752b82840000000000000000000000000000000000000000000000000000000000000001",
+            "gas": 17633528,
+            "stipend": 21204
+          },
+          "runs": 1000,
+          "mean_gas": 17612324,
+          "median_gas": 17612324,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testMissingOrMismatchedExitZZZCannotPermanentlySeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17865258
+        }
+      }
+    },
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testRetiredBridgeModulesCannotBeBoundEvenBeforeSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 423981
+        }
+      }
+    },
+    {
+      "suite": "test/AccessController.t.sol:AccessControllerTest",
+      "method": "testSealErasesBootstrap()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17567840
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testRetiredSourceCannotAbortRecommitOrReopenThroughUnpause()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 111449377
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "9d0f1d7243f65c2778545aabedc9f22e5280a836c92ee881a6e84cc8a3888a8f"
+}

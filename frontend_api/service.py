@@ -117,6 +117,8 @@ class Projection:
                     'deployment_block_hash', 'confirmations', 'max_block_age_seconds', 'contracts', 'assets'}
         if isinstance(config, dict) and 'accounting_version' in config:
             expected.add('accounting_version')
+        if isinstance(config, dict) and 'fee_intake_version' in config:
+            expected.add('fee_intake_version')
         if isinstance(config, dict) and 'history' in config:
             expected.add('history')
         if isinstance(config, dict) and 'predecessors' in config:
@@ -131,6 +133,10 @@ class Projection:
         self.accounting_version = config.get('accounting_version', 1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1, 2):
             raise ValueError('Unsupported deployment accounting version')
+        self.fee_intake_version = config.get('fee_intake_version', 0)
+        if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0, 1) or \
+                (self.fee_intake_version == 1 and self.accounting_version != 2):
+            raise ValueError('Unsupported LP fee-intake profile')
         self.chain = integer(config['chain_id'], 'chain_id', minimum=1)
         self.start = integer(config['deployment_block'], 'deployment_block')
         self.start_hash = _hash(config['deployment_block_hash'])
@@ -261,7 +267,9 @@ class Projection:
         if self.accounting_version == 2:
             if self._uint('vault', 'ACCOUNTING_VERSION()', block=block) != 2:
                 raise ProjectionError('Native accounting profile differs from the deployed Vault version')
-            native_schema = '0x' + keccak256(b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2').hex()
+            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3' if self.fee_intake_version == 1
+                      else b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2')
+            native_schema = '0x' + keccak256(domain).hex()
             actual = '0x' + self._call(self.contracts['handoff'].address, 'SCHEMA()', block=block)[0]
             if actual != native_schema:
                 raise ProjectionError('Native canonical schema differs from the reviewed profile')

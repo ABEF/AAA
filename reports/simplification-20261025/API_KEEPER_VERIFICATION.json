@@ -1,0 +1,20 @@
+{
+  "scope": "Six distinct newly added offline profile/API/keeper methods; earlier broken fixture and repaired reruns are not extra passes. No public RPC/service/signer action.",
+  "command": "python -X utf8 -m unittest tests_python.test_lp_only_services -v",
+  "result": "6 pass",
+  "tests": [
+    "LPOnlyProjectionTests.test_activation_sources_are_bound_to_the_onchain_zzz_identity",
+    "LPOnlyProjectionTests.test_current_schema_is_explicit_and_cannot_read_legacy_as_current",
+    "LPOnlyProjectionTests.test_unknown_profiles_never_coerce_or_downgrade",
+    "LPOnlyKeeperTests.test_current_fee_runtime_and_version_are_required",
+    "LPOnlyKeeperTests.test_journal_version_cannot_be_silently_reinterpreted",
+    "LPOnlyKeeperTests.test_retired_job_and_direct_submission_fail_before_any_rpc"
+  ],
+  "source_sha256": {
+    "frontend_api/activation_config.py": "f194b4c5da7d695517db8482260c9c50085be8918d8973d94499a14e56fbb790",
+    "frontend_api/service.py": "909bfe61504e4fdcbd78055055e4703f25471603f485c2bbc43950539da7d83c",
+    "keeper/monitor.py": "97988b05ef87fa97a0763b2969e9fc227b16a6725eb170cea5bc78ff5f51e6da",
+    "tests_python/test_lp_only_services.py": "d21c83a6c078259ba28384e77dc775665e34ae2dc8f42f0cb3fac0cd3aea0ec6"
+  },
+  "historical_journal_policy": "Profile zero absent/legacy values retain their old meaning; current profile cannot silently reinterpret those records."
+}

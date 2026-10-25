@@ -26,7 +26,7 @@ Shares are nonredeemable. They are priced against the pool's current principal N
 
 [Governed paused parking](CUSTODY_PARKING.md) closes LP into bucket-attributed Vault balances without holder redemption or a USD price read. Independently reviewed raw-token minimums bound only actual LP-close proceeds. NFT shares, equal membership, royalty eligibility and funded claims persist; no ongoing LP revenue is fabricated while closed. Resume restores ordinary valuation/deployment guards, and parked migration retains authenticated funding and remote-liability barriers.
 
-## Collected LP fees and optional funding
+## Collected local LP fees
 
 | Purpose | Share | Weight or destination |
 | --- | --- | --- |
@@ -37,13 +37,13 @@ Shares are nonredeemable. They are priced against the pool's current principal N
 
 Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global index dust stays reserved; per-NFT fractions carry. No administrator can sweep reward or orphan reserves.
 
-All registered creator inboxes are processed and their old dust settled before a new membership or shares can be issued. Late receipts during entry are settled under old weights with a final pending-funds barrier. New members get no earlier published/pending income. Payments delivered later use processing-time membership and shares; no historical creator entitlement is reconstructed.
+Already-funded dust across local buckets is settled once before entry. Fees earned by the current contribution swap are harvested under incumbent weights before issuing new shares. Only the bound Vault allocates actual local LP proceeds; callbacks and raw donations cannot create fee income. Creator inboxes and remote intake are removed.
 
-The selected hookless native ETH/ZZZ pool has a static 1.002% LP fee. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. Historical Pons creator payments are optional funding, not a prerequisite for this selected pool. No creator percentage or TVL-derived entitlement is assumed.
+The selected hookless native ETH/ZZZ pool has a static 1.002% LP fee. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. The current candidate has no Pons creator-payment intake. No creator percentage or TVL-derived entitlement is assumed.
 
 The undeployed [native V2 candidate](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through individual/equal-collective indices; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new indexed income. ZZZ rewards still need a cheaper qualified conversion route under the **default 1% loss cap, governed up to 10%, gas separate**; the selected pool's approximately 1.101% combined swap fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion operation retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. The earlier WETH checkpoint reports retain their historical source scope; use the [native-port verification](../reports/native-eth-port/VERIFICATION.md) for the current candidate.
 
-Historical already-allocated remote owner/collective liabilities are not split again or erased. Their token provenance, funding barriers and old evidence retain their original scope. The old bridge/pair execution stack is removed; current principal movement uses [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). External inbox funding does not discharge remote liabilities, and new contributions remain blocked while principal custody is away or its plan remains outstanding.
+Historical already-allocated remote owner/collective liabilities are not split again or erased. Their token provenance, funding barriers and old evidence retain their original scope. The old bridge/pair execution stack is removed; current principal movement uses [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). Old remote/inbox rows are not compatible with the new LP-only handoff schema. New contributions remain blocked while principal custody is away or its plan remains outstanding.
 
 ## Equal collective membership
 

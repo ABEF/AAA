@@ -1,3 +1,11 @@
+# Historical architecture evolution review
+
+This document records the October16 design and its source-bound review. It is
+not the current component or operator specification. Integrated bridge, creator
+inbox and pair-executor descriptions below are historical. Use [current architecture](ARCHITECTURE.md),
+[simplified release](SIMPLIFIED_RELEASE.md) and the [operator manual](OPERATOR_MANUAL.md).
+No retired feature is admitted by retaining this evidence.
+
 # Architecture evolution and trust boundaries
 
 **Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).

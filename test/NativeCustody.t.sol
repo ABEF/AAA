@@ -73,6 +73,9 @@ contract NativeVersionAccess is MockAccess {
 contract OldCanonicalSchema {
     bytes32 public constant SCHEMA=keccak256("ZZZ_CANONICAL_SAME_CHAIN_V1");
 }
+contract OldNativeFeeSchema {
+    bytes32 public constant SCHEMA=keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2");
+}
 contract RejectNativeCustody {receive() external payable {revert("recipient rejects");}}
 
 contract NativeCustodyTest is Test {
@@ -91,7 +94,7 @@ contract NativeCustodyTest is Test {
     }
     function _request() private view returns(ZZZMigration.Request memory r){
         r.bucket=1;r.sourceSnapshot=migration.sourceSnapshot(1);r.recipient=custody;r.recipientCodeHash=custody.codehash;
-        r.destinationChain=block.chainid;r.destinationCustody=custody;r.output0=address(0);r.output1=address(token);
+        r.destinationCustody=custody;r.output0=address(0);r.output1=address(token);
         r.rawExit=true;r.exitMinimum0=100;r.exitMinimum1=100;r.deadline=block.timestamp+100;r.reviewHash=review;
     }
     function _exit() private returns(bytes32 id){id=migration.approve(_request());ac.setPaused(true);migration.exit(id);}
@@ -105,9 +108,9 @@ contract NativeCustodyTest is Test {
     }
     function testRecoveryRequiresExactNativeValueDespitePrefunds() public {
         bytes32 id=_exit();_tokens();vm.deal(address(migration),200);
-        vm.expectRevert();migration.recover(id,block.timestamp+100,"");
-        vm.expectRevert();migration.recover{value:101}(id,block.timestamp+100,"");
-        migration.recover{value:100}(id,block.timestamp+100,"");
+        vm.expectRevert();migration.recover(id,block.timestamp+100);
+        vm.expectRevert();migration.recover{value:101}(id,block.timestamp+100);
+        migration.recover{value:100}(id,block.timestamp+100);
         assertEq(vault.acceptedNative(),100);assertEq(address(migration).balance,200);
         assertEq(vault.group(1).idle0,100);assertEq(token.allowance(address(migration),address(vault)),0);
     }
@@ -120,7 +123,7 @@ contract NativeCustodyTest is Test {
     }
     function testRecoveryFailureRollsBackETHAndTokens() public {
         bytes32 id=_exit();_tokens();vault.setReject(true);uint256 eth=address(this).balance;
-        vm.expectRevert();migration.recover{value:100}(id,block.timestamp+100,"");
+        vm.expectRevert();migration.recover{value:100}(id,block.timestamp+100);
         assertEq(address(this).balance,eth);assertEq(token.balanceOf(address(this)),100);
         assertEq(uint256(vault.group(1).status),uint256(PositionStatus.Outbound));
     }
@@ -193,8 +196,16 @@ contract NativeCanonicalFundingTest is Test {
     }
     function testCanonicalSchemaNamesNativeAccountingVersion() public {
         MockAccess a=_access();ZZZCanonicalHandoff handoff=new ZZZCanonicalHandoff(address(a));
-        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2"));
+        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3"));
+        assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_V1"));
+    }
+    function testLPOnlyImporterRejectsTheOldNativeFeeCodec() public {
+        MockAccess oldSource=_access();oldSource.bind(Ids.CANONICAL,address(new OldNativeFeeSchema()));oldSource.seal();
+        NativeVersionAccess targetAccess=new NativeVersionAccess();targetAccess.bind(Ids.VAULT,address(new NativeCanonicalVault()));
+        ZZZCanonicalHandoff target=new ZZZCanonicalHandoff(address(targetAccess));
+        vm.expectRevert(ZZZCanonicalHandoff.UnsupportedTransport.selector);target.prepareImport(address(oldSource));
+        assertEq(target.incomingSource(),address(0));assertEq(target.phase(),0);
     }
 }
 

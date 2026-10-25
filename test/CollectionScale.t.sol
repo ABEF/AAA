@@ -189,15 +189,10 @@ contract CollectionScaleTest is PooledVaultFixture {
         assertEq(royalties.orphaned(address(0)), 17);
         vm.prank(_holder(0)); vm.expectRevert(); vault.mintDormant{value: 0.05 ether}();
 
-        // Exercise actual receipt-backed creator-inbox allocation and the
-        // distinct conventional harvest path without pretending either is live.
-        address inbox = fees.createRewardReceiver(bucket, address(0));
-        t0.mint(inbox, totalPrincipal * 20); t1.mint(inbox, totalPrincipal * 40);
-        fees.syncExternal(bucket);
-        venue.setFees(totalPrincipal * 20, totalPrincipal * 20);
+        // Actual venue receipts preserve the same 40/60 gross fee vector;
+        // no optional creator-payment path is part of this candidate.
+        venue.setFees(totalPrincipal * 40, totalPrincipal * 60);
         vault.collectFees(bucket, block.timestamp + 100);
-        assertEq(fees.totalExternalFunded(bucket, address(t0)), totalPrincipal * 20);
-        assertEq(fees.totalExternalFunded(bucket, address(t1)), totalPrincipal * 40);
         assertEq(fees.compoundBalance(bucket, address(t0)), totalPrincipal * 2);
         assertEq(fees.compoundBalance(bucket, address(t1)), totalPrincipal * 3);
         assertEq(fees.buybackBalance(address(t0)), totalPrincipal * 2);
@@ -268,7 +263,7 @@ contract CollectionScaleTest is PooledVaultFixture {
     }
 
     function _cool(address owner) private {
-        vm.cool(address(vault.migrationBudget())); vm.cool(address(fees.receiverFactory()));
+        vm.cool(address(vault.migrationBudget()));
         (address feed,,,) = oracle.feeds(address(t0));
         vm.cool(address(ac)); vm.cool(address(vault)); vm.cool(address(membership));
         vm.cool(address(rewards)); vm.cool(address(fees)); vm.cool(address(compounder)); vm.cool(address(oracle));

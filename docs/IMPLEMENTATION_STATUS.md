@@ -1,8 +1,17 @@
 # Feature and evidence reference
 
+
+## Current release simplification - 2026-10-25
+
+[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
+fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
+pool moves, external custody exit/recovery, royalty currencies and complete
+collection handoff. Current fee/custody profiles and canonical schema are
+explicit; old deployments/journals keep historical profiles.
+
 ## Callable-function documentation and current service scope - 2026-10-25
 
-The [function reference](CONTRACT_FUNCTIONS.md) covers32 contracts and698 functions. It records the compiled current public
+The [function reference](CONTRACT_FUNCTIONS.md) covers31 contracts and649 functions. It records the compiled current public
 surface, inputs/outputs, read/write type, authority and concise behavior. The
 [operator manual](OPERATOR_MANUAL.md) owns procedures; its closing reference links
 the catalog. Internal helpers and unsupported external protocols are not new

@@ -19,6 +19,14 @@ migration or bridging is performed externally by that custodian. See the
 [native ETH candidate verification](../reports/native-eth-port/VERIFICATION.md).
 Earlier [custody evidence](../reports/custody-handoff/VERIFICATION.md) retains its original WETH-accounting scope.
 
+The current implementation exposes `Migration.CUSTODY_VERSION() == 2` and uses
+the `ZZZ_CUSTODY_V2` request-ID domain. Its request tuple has no destination-chain
+or verifier fields, and no remote-proof completion method exists. A source-chain
+custodian may perform an external bridge, but PoPL neither attests that transfer
+nor creates remote LP value, ownership or rewards. Preserve older runtime-bound
+records under their original versions; do not reinterpret old request/status
+data as custody V2.
+
 ## Choose the operation
 
 | Intended action | Supported operation | Result and boundary |
@@ -97,11 +105,16 @@ manual token exchange, bridging or a return to a reviewed different pair.
 
 1. Independently qualify the selected ZZZ contract, source/destination venue,
    input/output units, prices and source-chain recipient. The ordinary custody-only
-   procedure uses no bridge or finality verifier. Governance
-   calls `Migration.configureZZZ(token,expectedCodeHash,reviewHash)` with an admitted
-   Rewards asset and healthy USD feed. No outstanding principal plan may exist.
-   A future replacement ZZZ can be configured after sealing. Review its burn
-   interface and update `Buyback.setZZZ(...)` separately; neither setter moves funds.
+   procedure uses no bridge or finality verifier. During initial bootstrap,
+   before sealing, call `Migration.configureZZZ(token,expectedCodeHash,reviewHash)`
+   once with the same fixed token as `ActivationAssets.zzz()`, an admitted Rewards
+   asset and healthy USD feed. Sealing checks the nonzero, matching identities;
+   incomplete or mismatched setup blocks sealing. The target cannot be replaced or initially set
+   after sealing. For a later ordinary exit, verify its existing identity/code
+   hash rather than trying to configure it again. Buyback has its own reviewed
+   target configuration; setting a target never moves funds. A future token-contract
+   exchange uses this deployment's custody exit and a fresh reviewed deployment;
+   it does not relabel this deployment's ZZZ input or exit identity.
    Before parking, record the reviewed principal-plus-idle USD18 value `V`,
    Budget `maintenanceLossBps()` as `L`, and the configured ZZZ lower USD18 price
    `P` and decimals `d` at the same block. Compute the retained USD floor
@@ -125,8 +138,8 @@ manual token exchange, bridging or a return to a reviewed different pair.
    [the exact parking checks](CUSTODY_PARKING.md#authority-and-exact-authorization).
 4. Read `Migration.sourceSnapshot(bucket)` and the complete parked `Vault.group`
    at a fresh confirmed block, including total NFT shares and exact idle amounts.
-   Build `Request` binding that snapshot, recipient/code hash, destination chain,
-   custody, pool, ordered output tokens, exact raw output minima, `minimumZZZ`,
+   Build `Request` binding that snapshot, recipient/code hash, source-chain
+   destination custody, pool, ordered output tokens, exact raw output minima, `minimumZZZ`,
    deadline (at most ten minutes), and review hash. Set `rawExit=false`.
    The source pair must contain the configured ZZZ. Output asset identities are
    the Registry's actual accounting currencies: native ETH is `address(0)`,
@@ -135,8 +148,8 @@ manual token exchange, bridging or a return to a reviewed different pair.
    and the rounded-up minimum required by the parked approval's current value
    and ZZZ price. Never lower the pre-parking minimum to make an exit execute.
    For a manual external migration, use the custody-only values below: the
-   current chain, zero destination pool, recipient as destination custody and
-   zero verifier fields. A future chain ID is not needed to send to that address.
+   zero destination pool and recipient as destination custody. No chain-ID or
+   verifier field is accepted by the V2 request.
 5. Simulate approval and the **complete exit**, including the actual available
    source-pool swap after withdrawing PoPL liquidity. Governance approves the
    request. No principal leaves at approval. Keep the system paused and call
@@ -160,8 +173,9 @@ manual token exchange, bridging or a return to a reviewed different pair.
    status, zero source LP/idle, unchanged NFT ownership/shares and reward ledgers.
    Record the actual sent amount, not merely the minimum. Never resend a
    successful exit. Source LP valuation is unavailable, not zero. Growth and
-   upkeep cannot run on this outbound bucket; existing funded claims/transfers
-   and original creator inboxes retain their existing rights.
+   upkeep cannot run on this outbound bucket; existing funded claims and NFT
+   transfers retain their existing rights. Creator-payment inboxes are removed;
+   the current fee controller allocates actual local LP fees only.
 
 **Why park before the snapshot?** An active source snapshot commits the LP's live
 token quantities. External Uniswap swaps can change those quantities even while
@@ -177,13 +191,18 @@ An issuer's 1:1 or 1:10 migration can be performed by the approved recipient
 outside the source contracts. No standard issuer ABI is assumed. Approval must
 bind the reviewed destination assets, raw units/decimals and minimum backing.
 Token counts are not USD values and do not multiply NFT shares.
+`completeLocal` retains reviewed, actually funded different-pair return support;
+this does not change the deployment's fixed contribution or normal-exit ZZZ
+identity. For a ZZZ contract migration, the chosen operating approach is custody
+exit, external issuer exchange and a fresh reviewed deployment. Moving the tokens
+alone does not move the canonical NFT collection or its reward accounting.
 
 ## Custody-only holding before a destination is selected
 
 For either normal or raw exit, governance may approve local temporary holding
-without selecting a new LP yet: `destinationPool=0`, `destinationChain=block.chainid`,
+without selecting a new LP yet: `destinationPool=bytes32(0)`,
 `destinationCustody=recipient`, and output identities equal the source pair.
-Set `verifier=address(0)` and `verifierCodeHash=bytes32(0)`. This is the normal
+The V2 request contains no destination-chain or verifier settings. This is the normal
 operator path for an EOA that will subsequently perform an issuer migration or
 bridge externally. The recipient still receives the assets on the source chain.
 Destination minima may be zero in this explicit holding mode; raw **close**
@@ -261,7 +280,7 @@ only after verifying completion. A custody move does not change these policies.
 Keep old funding addresses and conversion paths for historical reward currencies.
 Historical compound remains incumbent NAV, not a new contributor's LP.
 
-`recover(id,deadline,proof)` requires **all actual sent currencies and quantities**
+`recover(id,deadline)` requires **all actual sent currencies and quantities**
 back, in a single funded transaction. Attach exactly the actually sent native
 amount as `msg.value` and approve only the required ERC20 amounts. Extra or missing
 ETH, failed funding or rejected settlement reverts the complete return; old native
@@ -290,34 +309,21 @@ canonical freeze, use the canonical handoff/abort procedure, not these ordinary
 custody calls. Resuming principal later requires a fresh reviewed unpaused
 `Migration.resume` and does not occur automatically on return or unpause.
 
-## Optional remote-proof scaffolding: outside this release
+## Current request and recovery boundary
 
-**Do not select a remote plan for the ordinary custody-address procedure.** Use
-the source-chain custody-only settings above; the operator may then choose an
-external bridge independently. Qualifying a protocol bridge, remote LP ledger or
-finality verifier is not a release requirement for that supported procedure.
+Custody V2 `Request` fields, in ABI order, are `bucket`, `sourceSnapshot`,
+`recipient`, `recipientCodeHash`, `destinationCustody`, `destinationPool`,
+`output0`, `output1`, `minimum0`, `minimum1`, `rawExit`, `exitMinimum0`,
+`exitMinimum1`, `minimumZZZ`, `deadline` and `reviewHash`. Amount minima use raw
+units of their named assets; the deadline is a Unix timestamp. Obtain currencies
+from Registry accounting, not token symbols. The request's review hash is not a
+delivery or backing proof.
 
-The existing ABI also contains an optional remote-plan/proof framework. It has
-no qualified provider or remote accounting implementation and is not an enabled
-operating flow. Its recipient is still an address **on the source chain**:
-sending assets to a numeric address does not itself cross chains. If a later
-separately reviewed design uses this framework, remote approval requires a
-pinned, reviewed `ICustodyFinality` verifier.
-`verifyRemote(id,proof)` verifies the domain-separated `proofCommitment(id,1)`:
-source deployment/plan, bucket/share snapshot, actual departure quantities,
-destination chain/custody/pool/assets/minima, review and departure block are bound.
-A remote recovery additionally verifies `proofCommitment(id,2)`, including final
-cancellation/closure of remote claims and in-flight delivery. There is no
-governance-only, empty-proof, timeout or changed-verifier override.
-
-**No real finality verifier, bridge provider or new remote ledger is supplied by
-this change.** A permissive fixture verifier is not production evidence. Proof
-quality and recipient security still require independent review. A verified
-remote plan stays outstanding and its source LP stays unavailable; this does
-not invent remote NAV, fund rewards, relocate NFT ownership or enable the old
-two-token v3 messages. Future-chain reward delivery, canonical ownership/ledger
-handoff and repeated remote custody hops are deferred designs, not functionality
-provided by this release or conditions for using source-chain custody-only exit.
+The removed remote verification and three-argument recovery selectors revert.
+There is no remote status or proof-based write-off. A sent plan closes only after
+actual local LP completion or a full original-currency return. Historical reports
+retain their old source scope; they do not establish compatibility with this ABI.
+Whole-collection handoff remains a separate same-chain operation.
 
 ## Marketplace royalty currencies
 
@@ -397,6 +403,17 @@ Inventory the one Migration runtime/controller, configured ZZZ/code hash,
 outstanding plans, source/destination snapshots and every royalty
 custody nonce/balance. The removed bridge/pair-helper inventory is historical;
 production inventory/service adaptation must be reviewed for the new layout.
+Current release inventory requires explicit `fee_intake_version: 1`, 15 current helpers,
+`Fees.FEE_INTAKE_VERSION() == 1`, `Migration.CUSTODY_VERSION() == 2`, and canonical
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3")`.
+`ActivationAssets.SOURCE_POLICY_VERSION() == 1` and its reviewed `zzz()` identity
+bound the ETH/ZZZ contribution inputs; royalty currencies remain separate. That
+ZZZ identity is selected once by bootstrap before sealing. A later token-contract
+exchange requires external custody and a fresh reviewed deployment, rather than
+relabeling historical balances or changing the existing input identity.
+The current helper set includes the controller-created ActivationAssetsFactory;
+verify its fixed controller and `assetsOf(Registry)` binding. It excludes the old
+RewardReceiverFactory even though the historical inventory also counted 15 helpers.
 Use fresh native-accounting version 2 API/keeper profiles with exact reviewed
 runtime pins and `Vault.ACCOUNTING_VERSION() == 2`. Version 1 WETH journals and
 predecessor history must not be reinterpreted or reset. The existing 8902 fixture
@@ -404,8 +421,7 @@ and its saved transactions remain unchanged; the public website deployment is
 null and website V2 integration still requires qualification.
 
 Alert on pending custody age, unauthorized state changes, token/recipient code
-changes and missing returns. Optional remote-proof plans require their separate
-pins/alerts if ever independently qualified. A crash can resume from contract
+changes and missing returns. There is no remote-proof service to operate. A crash can resume from contract
 records; no server-held nonce or timeout decides who owns backing.
 
 Real pool exit depth, target routes/feeds, recipient controls, new-token/burn

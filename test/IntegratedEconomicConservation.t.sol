@@ -28,6 +28,7 @@ import {ZZZContributionPricing} from "../src/ZZZContributionPricing.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZCompounder} from "../src/ZZZCompounder.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
+import {ZZZActivationAssetsFactory} from "../src/ZZZActivationAssetsFactory.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {Ids, PoolKey, PoolConfig, Position} from "../src/libraries/ZZZTypes.sol";
@@ -48,7 +49,7 @@ contract EconomicNativeRegistry {
     bytes32 private immutable identity;
     constructor(address controller,ZZZOracle prices,address token) {
         oracle=prices;
-        activationAssets=new ZZZActivationAssets(controller,address(this));
+        activationAssets=ZZZActivationAssets(ZZZActivationAssetsFactory(MockAccess(controller).activationAssetsFactory()).create());
         activationEntry=new ZZZActivationEntry(controller,address(this),address(activationAssets));
         config=PoolConfig(PoolKey(address(0),token,10020,200,address(0)),true,true,1000,100,100,200,600,1e18,1e30);
         identity=keccak256(abi.encode(config.key));

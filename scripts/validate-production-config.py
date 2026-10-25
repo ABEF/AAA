@@ -921,10 +921,11 @@ def main() -> int:
         result['current_release_gate']=True
         current=(isinstance(config,dict) and type(config.get('schema_version')) is int and
             config.get('schema_version') == 5 and type(config.get('mint_integration_version')) is int and
-            config.get('mint_integration_version') == 1 and result.get('production_qualification_supported') is True)
+            config.get('mint_integration_version') == 1 and type(config.get('fee_intake_version')) is int and
+            config.get('fee_intake_version') == 1 and result.get('production_qualification_supported') is True)
         if not current:
-            issue={'code':'current_profile_required','path':'mint_integration_version',
-                'message':'Current release qualification requires schema 5 and explicit mint_integration_version 1. Use --historical-consistency only to inspect historical layouts, never to approve the current release.'}
+            issue={'code':'current_profile_required','path':'current_release_profile',
+                'message':'Current release qualification requires schema 5, mint_integration_version 1 and fee_intake_version 1. Use --historical-consistency only to inspect historical layouts, never to approve the current release.'}
             result['issues'].append(issue)
             result.update(status='blocked',ready=False,production_qualification_supported=False,deployment_authorized=False)
             if 'blockers' in result:

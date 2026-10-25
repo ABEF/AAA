@@ -9,6 +9,7 @@ import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
+import {ZZZActivationAssetsFactory} from "../src/ZZZActivationAssetsFactory.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {IZZZAccess} from "../src/interfaces/IZZZ.sol";
@@ -23,7 +24,7 @@ contract ActivationRegistryFixture {
     ZZZActivationAssets public immutable assets;
     constructor(address controller) {
         access = IZZZAccess(controller);
-        assets = new ZZZActivationAssets(controller, address(this));
+        assets = ZZZActivationAssets(ZZZActivationAssetsFactory(access.activationAssetsFactory()).create());
     }
     function admit(address token) external returns (bytes32) { return assets.admitPoolAsset(token); }
 }

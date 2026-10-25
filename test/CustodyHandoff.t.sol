@@ -6,15 +6,15 @@ using DualOracleFixture for FixtureOracleType;
 
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {MockToken,MockFeed,MockPools} from "./mocks/Mocks.sol";
-import {ZZZMigration,ICustodyFinality} from "../src/ZZZMigration.sol";
+import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
-import {ZZZRewardReceiver} from "../src/ZZZRewardReceiver.sol";
 import {Ids,Position,PositionStatus,PoolConfig} from "../src/libraries/ZZZTypes.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-/// TEST ONLY: deterministic token math; not a real Uniswap/router/price/finality implementation.
+/// TEST ONLY: deterministic token math; not a real Uniswap/router/price implementation.
 contract HandoffVenue is ERC721 {
     MockPools pools; uint256 next=1; uint256 public loss; bool public failSwap;
+    uint256 fee0; uint256 fee1;
     mapping(uint256=>uint256) public a0; mapping(uint256=>uint256) public a1;
     constructor(MockPools p) ERC721("Fixture","FIX") {pools=p;}
     function configure(uint256 l,bool f) external {loss=l;failSwap=f;}
@@ -28,7 +28,11 @@ contract HandoffVenue is ERC721 {
         id=next++;_mint(msg.sender,id);_fund(pool,id,x,y);return(id,x,y);
     }
     function increase(bytes32 pool,uint256 id,uint256 x,uint256 y,uint128,uint256) external returns(uint256,uint256){_fund(pool,id,x,y);return(x,y);}
-    function collect(bytes32,uint256,uint256) external {}
+    function setFees(uint256 x,uint256 y) external {fee0=x;fee1=y;}
+    function collect(bytes32 pool,uint256,uint256) external {
+        PoolConfig memory c=pools.accounting(pool);uint256 x=fee0;uint256 y=fee1;fee0=0;fee1=0;
+        MockToken(c.key.currency0).mint(msg.sender,x);MockToken(c.key.currency1).mint(msg.sender,y);
+    }
     function close(bytes32 pool,uint256 id,uint256) external {
         PoolConfig memory c=pools.accounting(pool);uint256 x=a0[id];uint256 y=a1[id];delete a0[id];delete a1[id];_burn(id);
         MockToken(c.key.currency0).transfer(msg.sender,x);MockToken(c.key.currency1).transfer(msg.sender,y);
@@ -40,21 +44,26 @@ contract HandoffVenue is ERC721 {
         MockToken(output).mint(msg.sender,out);
     }
 }
-contract CustodyProofFixture is ICustodyFinality {
-    bytes32 public accepted;
-    function accept(bytes32 value) external {accepted=value;}
-    function verifyCustody(bytes32 digest,bytes calldata proof) external view returns(bool){return digest==accepted && keccak256(proof)==keccak256(hex"01");}
+/// TEST ONLY: immutable identity boundary for the fake pool registry.
+contract CustodySourceIdentity {
+    address public immutable zzz;
+    constructor(address token){zzz=token;}
 }
 contract CustodyHandoffTest is PooledVaultFixture {
     ZZZMigration migration; HandoffVenue handoffVenue; bytes32 review=keccak256("reviewed fixture only");
     function setUp() public override {
         super.setUp();handoffVenue=new HandoffVenue(pools);ac.bind(Ids.LIQUIDITY,address(handoffVenue));
         migration=new ZZZMigration(address(ac));ac.bind(Ids.MIGRATION,address(migration));
+        pools.setActivationAssets(address(new CustodySourceIdentity(address(t1))));
+        // TEST ONLY: the shared fixture sealed its mock core before installing
+        // Migration. Model bootstrap coherently; production cannot unseal.
+        ac.beginBootstrap();
         migration.configureZZZ(address(t1),address(t1).codehash,review);
+        ac.seal();
     }
     function _r(bool raw) private view returns(ZZZMigration.Request memory r) {
         r.bucket=_bucket();r.sourceSnapshot=migration.sourceSnapshot(r.bucket);r.recipient=bob;r.recipientCodeHash=bob.codehash;
-        r.destinationChain=block.chainid;r.destinationCustody=address(vault);r.destinationPool=poolId;
+        r.destinationCustody=address(vault);r.destinationPool=poolId;
         r.output0=address(t0);r.output1=address(t1);r.minimum0=970;r.minimum1=970;
         r.minimumZZZ=1940;r.rawExit=raw;r.exitMinimum0=1000;r.exitMinimum1=1000;
         r.deadline=block.timestamp+100;r.reviewHash=review;
@@ -160,7 +169,8 @@ contract CustodyHandoffTest is PooledVaultFixture {
         t0.mint(address(this),1000);nextZZZ.mint(address(this),10000e6);t0.approve(address(migration),1000);nextZZZ.approve(address(migration),10000e6);
         migration.completeLocal(id,1000,10000e6,1,block.timestamp+100);
         assertEq(vault.sharesOf(nftId),2000e18);(bool available,uint256 value)=nft.currentLPValue(nftId);assertTrue(available);assertEq(value,2000e18);
-        migration.configureZZZ(address(nextZZZ),address(nextZZZ).codehash,review);assertEq(migration.currentZZZ(),address(nextZZZ));
+        vm.expectRevert();migration.configureZZZ(address(nextZZZ),address(nextZZZ).codehash,review);
+        assertEq(migration.currentZZZ(),address(t1)); // The old deployment never relabels ZZZ.
     }
     function testFuzzExitSwapLossLimit(uint16 loss) public {
         loss=uint16(bound(loss,0,10000));activatedPosition();bytes32 id=migration.approve(_r(false));
@@ -168,15 +178,15 @@ contract CustodyHandoffTest is PooledVaultFixture {
         // This fixture's per-leg limit is 1%, stricter than the overall 3%.
         if(loss>100){vm.expectRevert();migration.exit(id);}else migration.exit(id);
     }
-    function testLateCreatorRewardsAndUnclaimedRightsFollowNFTDuringCustody() public {
-        uint256 nftId=activatedPosition();address inbox=fees.createRewardReceiver(_bucket(),address(0));_send(false);
-        t1.mint(inbox,100);ZZZRewardReceiver(payable(inbox)).sync();assertEq(rewards.claimable(nftId,address(t1)),90);
+    function testFundedLocalFeesAndUnclaimedRightsFollowNFTDuringCustody() public {
+        uint256 nftId=activatedPosition();handoffVenue.setFees(0,100);vault.collectFees(_bucket(),block.timestamp+100);
+        assertEq(rewards.claimable(nftId,address(t1)),90);_send(false);
         vm.prank(alice);nft.transferFrom(alice,bob,nftId);vm.prank(bob);assertEq(rewards.claim(nftId,address(t1)),90);
         assertEq(fees.compoundBalance(_bucket(),address(t1)),5);assertEq(fees.buybackBalance(address(t1)),5);
     }
     function testRecoveredCustodyNeedsFullActualSentZZZAndCanRemainPaused() public {
         uint256 nftId=activatedPosition();bytes32 id=_send(false);
-        vm.prank(bob);t1.approve(address(migration),2000);vm.prank(bob);migration.recover(id,block.timestamp+100,"");
+        vm.prank(bob);t1.approve(address(migration),2000);vm.prank(bob);migration.recover(id,block.timestamp+100);
         Position memory p=vault.group(_bucket());assertEq(uint256(p.status),uint256(PositionStatus.Parked));assertEq(p.idle0,0);assertEq(p.idle1,2000);
         assertEq(vault.totalIdle(address(t1)),2000);assertEq(vault.sharesOf(nftId),2000e18);
     }
@@ -199,18 +209,30 @@ contract CustodyHandoffTest is PooledVaultFixture {
         activatedPosition();ZZZMigration.Request memory r=_r(false);vm.prank(alice);vm.expectRevert();migration.approve(r);
         vm.prank(alice);vm.expectRevert();migration.configureZZZ(address(t0),address(t0).codehash,review);
     }
-    function testRemoteCannotBeApprovedWithoutVerifier() public {
-        activatedPosition();ZZZMigration.Request memory r=_r(false);r.destinationChain=block.chainid+1;
-        vm.expectRevert();migration.approve(r);
+    function testZZZTargetIsBootstrapOnlyOnceAndMatchesTheFixedSourceIdentity() public {
+        ZZZMigration fresh=new ZZZMigration(address(ac));
+        ac.beginBootstrap();
+        vm.expectRevert();fresh.configureZZZ(address(t0),address(t0).codehash,review);
+        fresh.configureZZZ(address(t1),address(t1).codehash,review);
+        vm.expectRevert();fresh.configureZZZ(address(t1),address(t1).codehash,review);
+        ac.seal();
+        ZZZMigration unconfigured=new ZZZMigration(address(ac));
+        vm.expectRevert();unconfigured.configureZZZ(address(t1),address(t1).codehash,review);
+        assertEq(unconfigured.currentZZZ(),address(0));
     }
-    function testRemoteProofCannotBeReplacedByGovernanceAndRecoveryRequiresClosure() public {
-        activatedPosition();CustodyProofFixture verifier=new CustodyProofFixture();ZZZMigration.Request memory r=_r(false);
-        r.destinationChain=block.chainid+1;r.destinationCustody=address(0x1234);r.verifier=address(verifier);r.verifierCodeHash=address(verifier).codehash;
-        bytes32 id=migration.approve(r);ac.setPaused(true);migration.exit(id);
-        vm.expectRevert();migration.verifyRemote(id,hex"01");verifier.accept(migration.proofCommitment(id,1));migration.verifyRemote(id,hex"01");
-        vm.prank(bob);t1.approve(address(migration),2000);vm.prank(bob);vm.expectRevert();migration.recover(id,block.timestamp+100,hex"01");
-        verifier.accept(migration.proofCommitment(id,2));vm.prank(bob);migration.recover(id,block.timestamp+100,hex"01");
-        assertEq(migration.outstandingCount(),0);
+    function testCustodyV2RemovesRemoteProofAndLegacyRecoverySelectors() public {
+        activatedPosition();bytes32 id=_send(false);assertEq(migration.CUSTODY_VERSION(),2);
+        (bool verified,)=address(migration).call(abi.encodeWithSignature("verifyRemote(bytes32,bytes)",id,hex"01"));
+        (bool commitment,)=address(migration).call(abi.encodeWithSignature("proofCommitment(bytes32,uint8)",id,1));
+        (bool legacyRecovery,)=address(migration).call(abi.encodeWithSignature("recover(bytes32,uint256,bytes)",id,block.timestamp+100,hex"01"));
+        assertFalse(verified);assertFalse(commitment);assertFalse(legacyRecovery);
+        (ZZZMigration.Status status,,,,)=migration.state(id);assertEq(uint256(status),uint256(ZZZMigration.Status.Sent));
+        assertEq(migration.activePlan(_bucket()),id);assertEq(migration.outstandingCount(),1);
+    }
+    function testCustodyRequestUsesVersionTwoDomain() public {
+        activatedPosition();ZZZMigration.Request memory r=_r(false);bytes32 id=migration.approve(r);
+        assertEq(id,keccak256(abi.encode("ZZZ_CUSTODY_V2",block.chainid,address(ac),address(migration),uint256(1),r)));
+        assertNotEq(id,keccak256(abi.encode("ZZZ_CUSTODY_V1",block.chainid,address(ac),address(migration),uint256(1),r)));
     }
     function testSentCustodyCannotChangeZZZOrAcceptInventedCompletion() public {
         activatedPosition();bytes32 id=_send(false);vm.expectRevert();migration.configureZZZ(address(t0),address(t0).codehash,review);

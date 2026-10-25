@@ -1,0 +1,332 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "scope": "Offline current/historical production inventory, bounded read-only observer ABI mapping and CLI admission. This is not API/keeper coverage, live-provider qualification, Solidity verification, deployment or independent audit.",
+  "current_profile": {
+    "schema_version": 5,
+    "accounting_version": 2,
+    "fee_intake_version": 1,
+    "mint_integration_version": 1,
+    "helpers": 15,
+    "helper_difference": "activation_assets_factory present; reward_receiver_factory absent",
+    "bindings": {
+      "Access.activationAssetsFactory": "reviewed factory address",
+      "Factory.access": "exact Access controller",
+      "Factory.assetsOf(Registry)": "exact Registry.activationAssets; code-owned assetsOfRegistry observation uses assetsOf(address), never a fabricated zero-argument getter",
+      "Fees.FEE_INTAKE_VERSION": 1,
+      "Migration.CUSTODY_VERSION": 2,
+      "Migration.currentZZZ": "same reviewed dependencies.zzz as ActivationAssets.zzz",
+      "Migration.zzzCodeHash": "same reviewed dependencies.zzz runtime hash",
+      "ActivationAssets.SOURCE_POLICY_VERSION": 1,
+      "ActivationAssets.zzz": "fixed deployment ZZZ identity"
+    },
+    "canonical_domain": "ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3",
+    "contribution_inputs": "enabled native ETH and fixed reviewed ZZZ only; royalty currencies and target-pair assets do not add inputs"
+  },
+  "legacy_compatibility": {
+    "absent_or_zero_fee_version": "Retains original 15-helper Native V2 schema, including old receiver factory and original zero-inbox limitation. No new factory/version getter is inferred.",
+    "same_helper_count_not_same_layout": true,
+    "canonical_domain": "ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2",
+    "current_qualification": false,
+    "cli": "Current default requires exact integer schema5/mint1/fee1; --historical-consistency is explicit, labeled non-release/non-deployment inspection.",
+    "histories_journals_and_events": "No predecessor currency records, pending journals or retired event descriptors were removed, reset or reinterpreted."
+  },
+  "runs": [
+    {
+      "stage": "initial_explicit_fee_intake_profile",
+      "command": "python -X utf8 -m unittest tests_python.test_fee_intake_profile tests_python.test_mint_integration_qualification tests_python.test_production_preflight_cli",
+      "methods": [
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_requires_exact_helper_and_controller_inventory",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_legacy_absent_and_zero_keep_original_helpers_and_codec",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_old_and_new_snapshots_are_not_reinterpreted_in_either_direction",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_rejects_extra_factory_and_legacy_getter_claims",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_controller_version_missing_wrong_or_boolean_never_qualifies",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_unsupported_profile_is_rejected_without_inference",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_mint_profile_one_does_not_promote_historical_fee_layout",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_queries_current_version_and_never_removed_factory_getters",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_missing_or_wrong_version_is_unavailable_without_legacy_fallback",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_legacy_consistency_is_preserved_but_never_production_qualification",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_profile_cannot_invent_unsupported_opensea_mint",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_cannot_claim_a_different_implementation_or_secondary_product",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_exact_request_abi_profile_and_two_words_required",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_irreversible_expiry_refund_or_reroll_does_not_qualify_original_draw",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_recovery_must_preserve_original_request_and_actual_result",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_negative_proof_and_callback_evidence_are_not_omitted",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_native_payment_choice_does_not_authorize_locked_principal_funding",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_profile_type_cannot_silently_select_legacy_or_current",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_template_declares_real_implementation_and_unselected_provider",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_malformed_integration_records_fail_closed_without_exception",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_historical_governed_layout_keeps_exact_block",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_native_schema_dispatch_lists_real_missing_requirements",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_float_version_cannot_enter_new_profile",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_duplicate_keys_and_nonfinite_numbers_are_rejected",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_inventory_file_size_is_bounded_before_parsing",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_report_replacement_is_atomic_and_cleans_failed_temporary",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_cli_refuses_to_overwrite_inventory_with_report",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_cli_sanitizes_invalid_input_and_unavailable_output",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_default_current_gate_rejects_omitted_zero_boolean_or_legacy_profile",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_explicit_historical_mode_can_only_report_consistency",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_gate_requires_explicit_lp_only_fee_intake_profile",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_profile_still_blocks_unimplemented_opensea_primary_mint",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_historical_opt_in_does_not_erase_current_source_incompatibility"
+      ],
+      "passed": 33,
+      "failed": 0,
+      "note": "Initial 14-helper current stage, before approved size-safe factory was introduced. Retains original stage source scope; not a claim of final factory coverage."
+    },
+    {
+      "stage": "exact_helper_inventory_and_historical_observer",
+      "methods": [
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_current_observer_rejects_missing_or_retired_helpers_before_rpc",
+        "tests_python.test_production_observer.ObserverGateCompositionTests.test_legacy_range_profile_does_not_infer_orientation_or_query_new_getters"
+      ],
+      "passed": 2,
+      "failed": 0,
+      "command": "python -X utf8 -m unittest tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_current_observer_rejects_missing_or_retired_helpers_before_rpc tests_python.test_production_observer.ObserverGateCompositionTests.test_legacy_range_profile_does_not_infer_orientation_or_query_new_getters"
+    },
+    {
+      "stage": "local_custody_profile",
+      "methods": [
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_requires_exact_helper_and_controller_inventory",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_manifest_requires_actual_local_only_custody_version",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_queries_current_version_and_never_removed_factory_getters",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_missing_or_wrong_version_is_unavailable_without_legacy_fallback",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_profile_still_blocks_unimplemented_opensea_primary_mint"
+      ],
+      "passed": 5,
+      "failed": 0,
+      "command": "python -X utf8 -m unittest tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_requires_exact_helper_and_controller_inventory tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_manifest_requires_actual_local_only_custody_version tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_queries_current_version_and_never_removed_factory_getters tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_missing_or_wrong_version_is_unavailable_without_legacy_fallback tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_profile_still_blocks_unimplemented_opensea_primary_mint"
+    },
+    {
+      "stage": "ETH_ZZZ_source_policy",
+      "methods": [
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_source_policy_version_and_reviewed_zzz_identity_are_required",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_valid_third_source_remains_historical_but_cannot_extend_current_contributions",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_queries_current_version_and_never_removed_factory_getters"
+      ],
+      "passed": 3,
+      "failed": 0,
+      "command": "python -X utf8 -m unittest tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_source_policy_version_and_reviewed_zzz_identity_are_required tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_valid_third_source_remains_historical_but_cannot_extend_current_contributions tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_queries_current_version_and_never_removed_factory_getters"
+    },
+    {
+      "stage": "final_factory_inventory",
+      "command": "python -X utf8 -m unittest tests_python.test_fee_intake_profile tests_python.test_mint_integration_qualification tests_python.test_production_preflight_cli",
+      "methods": [
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_requires_exact_helper_and_controller_inventory",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_legacy_absent_and_zero_keep_original_helpers_and_codec",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_old_and_new_snapshots_are_not_reinterpreted_in_either_direction",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_rejects_extra_factory_and_legacy_getter_claims",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_controller_version_missing_wrong_or_boolean_never_qualifies",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_unsupported_profile_is_rejected_without_inference",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_manifest_requires_actual_local_only_custody_version",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_source_policy_version_and_reviewed_zzz_identity_are_required",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_valid_third_source_remains_historical_but_cannot_extend_current_contributions",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_mint_profile_one_does_not_promote_historical_fee_layout",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_queries_current_version_and_never_removed_factory_getters",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_current_observer_rejects_missing_or_retired_helpers_before_rpc",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_activation_factory_mapping_uses_exact_registry_and_fails_closed",
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_missing_or_wrong_version_is_unavailable_without_legacy_fallback",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_legacy_consistency_is_preserved_but_never_production_qualification",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_profile_cannot_invent_unsupported_opensea_mint",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_cannot_claim_a_different_implementation_or_secondary_product",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_exact_request_abi_profile_and_two_words_required",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_irreversible_expiry_refund_or_reroll_does_not_qualify_original_draw",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_recovery_must_preserve_original_request_and_actual_result",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_negative_proof_and_callback_evidence_are_not_omitted",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_native_payment_choice_does_not_authorize_locked_principal_funding",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_profile_type_cannot_silently_select_legacy_or_current",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_template_declares_real_implementation_and_unselected_provider",
+        "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_malformed_integration_records_fail_closed_without_exception",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_historical_governed_layout_keeps_exact_block",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_native_schema_dispatch_lists_real_missing_requirements",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_float_version_cannot_enter_new_profile",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_duplicate_keys_and_nonfinite_numbers_are_rejected",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_inventory_file_size_is_bounded_before_parsing",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_report_replacement_is_atomic_and_cleans_failed_temporary",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_cli_refuses_to_overwrite_inventory_with_report",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_cli_sanitizes_invalid_input_and_unavailable_output",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_default_current_gate_rejects_omitted_zero_boolean_or_legacy_profile",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_explicit_historical_mode_can_only_report_consistency",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_gate_requires_explicit_lp_only_fee_intake_profile",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_profile_still_blocks_unimplemented_opensea_primary_mint",
+        "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_historical_opt_in_does_not_erase_current_source_incompatibility"
+      ],
+      "passed": 37,
+      "failed": 1,
+      "failed_methods": [
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_mint_profile_one_does_not_promote_historical_fee_layout"
+      ],
+      "diagnostic": "The synthetic current-to-legacy downgrade fixture retained ActivationAssetsFactory and current getter bindings. Validation correctly rejected this mixed old/new layout. Only the fixture was corrected to remove the current factory and restore exact legacy helper/getter bindings; no production guard was loosened."
+    },
+    {
+      "stage": "repaired_historical_fixture_only",
+      "methods": [
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_mint_profile_one_does_not_promote_historical_fee_layout"
+      ],
+      "passed": 1,
+      "failed": 0,
+      "note": "Other 37 unchanged passing methods were not repeated.",
+      "command": "python -X utf8 -m unittest tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_mint_profile_one_does_not_promote_historical_fee_layout"
+    },
+    {
+      "stage": "final_fixed_exit_identity",
+      "command": "python -X utf8 -m unittest tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_fixed_zzz_identity_requires_matching_exit_target_and_code_pin",
+      "methods": [
+        "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_fixed_zzz_identity_requires_matching_exit_target_and_code_pin"
+      ],
+      "passed": 1,
+      "failed": 0,
+      "subcases": "Missing/wrong Migration.currentZZZ; missing/wrong zzzCodeHash; positive equality to fixed ActivationAssets.zzz."
+    }
+  ],
+  "distinct_methods": 40,
+  "method_inventory": [
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_activation_factory_mapping_uses_exact_registry_and_fails_closed",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_controller_version_missing_wrong_or_boolean_never_qualifies",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_current_observer_rejects_missing_or_retired_helpers_before_rpc",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_fixed_zzz_identity_requires_matching_exit_target_and_code_pin",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_legacy_absent_and_zero_keep_original_helpers_and_codec",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_manifest_requires_actual_local_only_custody_version",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_rejects_extra_factory_and_legacy_getter_claims",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_requires_exact_helper_and_controller_inventory",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_mint_profile_one_does_not_promote_historical_fee_layout",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_missing_or_wrong_version_is_unavailable_without_legacy_fallback",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_queries_current_version_and_never_removed_factory_getters",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_old_and_new_snapshots_are_not_reinterpreted_in_either_direction",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_source_policy_version_and_reviewed_zzz_identity_are_required",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_unsupported_profile_is_rejected_without_inference",
+    "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_valid_third_source_remains_historical_but_cannot_extend_current_contributions",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_cannot_claim_a_different_implementation_or_secondary_product",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_malformed_integration_records_fail_closed_without_exception",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_profile_cannot_invent_unsupported_opensea_mint",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_template_declares_real_implementation_and_unselected_provider",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_exact_request_abi_profile_and_two_words_required",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_irreversible_expiry_refund_or_reroll_does_not_qualify_original_draw",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_legacy_consistency_is_preserved_but_never_production_qualification",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_native_payment_choice_does_not_authorize_locked_principal_funding",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_negative_proof_and_callback_evidence_are_not_omitted",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_profile_type_cannot_silently_select_legacy_or_current",
+    "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_recovery_must_preserve_original_request_and_actual_result",
+    "tests_python.test_production_observer.ObserverGateCompositionTests.test_legacy_range_profile_does_not_infer_orientation_or_query_new_getters",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_cli_refuses_to_overwrite_inventory_with_report",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_cli_sanitizes_invalid_input_and_unavailable_output",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_gate_requires_explicit_lp_only_fee_intake_profile",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_profile_still_blocks_unimplemented_opensea_primary_mint",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_default_current_gate_rejects_omitted_zero_boolean_or_legacy_profile",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_duplicate_keys_and_nonfinite_numbers_are_rejected",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_explicit_historical_mode_can_only_report_consistency",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_float_version_cannot_enter_new_profile",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_historical_governed_layout_keeps_exact_block",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_historical_opt_in_does_not_erase_current_source_incompatibility",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_inventory_file_size_is_bounded_before_parsing",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_native_schema_dispatch_lists_real_missing_requirements",
+    "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_report_replacement_is_atomic_and_cleans_failed_temporary"
+  ],
+  "final_unchanged_scope": {
+    "hashes_match_prior_final_receipt": true,
+    "files": [
+      "zzz_ops/production_v2.py",
+      "zzz_ops/production_observer.py",
+      "scripts/validate-production-config.py",
+      "config/production.example.json",
+      "tests_python/fee_intake_fixtures.py",
+      "tests_python/test_production_observer.py",
+      "tests_python/test_mint_integration_qualification.py",
+      "tests_python/test_production_preflight_cli.py"
+    ],
+    "explanation": "No backend production/fixture code changed after the final factory run and repaired historical fixture. The last addition is the focused fixed-target negative test; documentation and LF normalization do not add a semantic runtime change. Unchanged tests were reused with their recorded scope."
+  },
+  "negative_boundaries": [
+    "Missing/wrong/malformed new version/factory mapping never falls back to retired factory APIs.",
+    "Current and old canonical schemas/helper sets cannot be relabeled in either direction.",
+    "A historically valid third-currency route/source is rejected only by the current ETH/ZZZ contribution policy.",
+    "Current expected Migration and Assets bindings share the same fixed nonzero ZZZ identity and reviewed runtime.",
+    "OpenSea primary mint remains unimplemented; current fixtures/template remain blocked rather than inventing support."
+  ],
+  "source_review": {
+    "normal_unset_exit": "Migration.approve invokes CustodyValidation.validateRequest first; !rawExit rejects currentZZZ==0 or code-hash mismatch, so native ETH is not treated as a normal ZZZ target.",
+    "initial_seal": "Final controller additionally checks nonzero matching Assets.zzz and Migration.currentZZZ; root owns its Solidity evidence.",
+    "raw_exit": "Does not require a healthy normal-target price/swap; exact actual-asset minima and funding remain."
+  },
+  "template_cli": {
+    "exit_code": 1,
+    "stderr_empty": true,
+    "ready": false,
+    "deployment_authorized": false,
+    "issues": 831,
+    "approval_scope": "current_native_v2_lp_only_mint_integration_v1"
+  },
+  "diagnostics": [
+    "A first report invocation piped to Select-Object -First closed stdout and produced BrokenPipeError after report creation; a clean subprocess-capture invocation returned expected blocked exit1 with empty stderr. This was an invocation issue, not an ignored product test failure."
+  ],
+  "checks": {
+    "git_diff_check": "passed for owned scope",
+    "live_rpc": false,
+    "signing_or_deployment": false,
+    "service_or_journal_changes": false,
+    "fresh_full_regression": false
+  },
+  "files": {
+    "src/ZZZMigration.sol": {
+      "sha256": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+      "bytes": 17275
+    },
+    "src/ZZZCustodyValidation.sol": {
+      "sha256": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+      "bytes": 5354
+    },
+    "test/CustodyHandoff.t.sol": {
+      "sha256": "93526c7560ebc38ff4f6d411d51c14ef654d3f469da776a98ee927c5b18b94c1",
+      "bytes": 18113
+    },
+    "test/NativeCustody.t.sol": {
+      "sha256": "04f847fc744d13e3eeb328cee5e894b208031bee45e36c8d29399279ebee15ae",
+      "bytes": 17368
+    },
+    "zzz_ops/production_v2.py": {
+      "sha256": "0410a3ad52eda8e861f70cb8385333c9fb132a7184d3137aeeec24d666ae677a",
+      "bytes": 99306
+    },
+    "zzz_ops/production_observer.py": {
+      "sha256": "2401f394869de60d3f2a06a5d7b2bfa769a8e649906bd94de1a511ee84ba20a5",
+      "bytes": 47650
+    },
+    "scripts/validate-production-config.py": {
+      "sha256": "7589b8736191e2bb45c7a13e17e17c586d02d3b8ae6720564437f45ccd218634",
+      "bytes": 89953
+    },
+    "config/production.example.json": {
+      "sha256": "5ff219ce4ddf69d83b9c65790b5b7fb6f1d6f246081c09d8c227b95f6b58486f",
+      "bytes": 29917
+    },
+    "tests_python/test_production_observer.py": {
+      "sha256": "3065deb0bf0b3d4b7e4e40886f4f275e40efc49d2e45f40898ab662f2d2e405a",
+      "bytes": 37974
+    },
+    "tests_python/test_mint_integration_qualification.py": {
+      "sha256": "9fb63be16927e5a786be671793b0aec5d2bb25fc12a898577d3fc4c735f376aa",
+      "bytes": 8628
+    },
+    "tests_python/test_production_preflight_cli.py": {
+      "sha256": "2ba90fb8323cd73839659def368ef6402c14e4c9dcc7a51537d8bb1bc78839af",
+      "bytes": 8747
+    },
+    "tests_python/fee_intake_fixtures.py": {
+      "sha256": "e2a77209dd8ac65509ce78801868ff102f1caff91df1ac4a616a84c3d69bfac7",
+      "bytes": 1072
+    },
+    "tests_python/test_fee_intake_profile.py": {
+      "sha256": "3c6253229fcd4243458f4831b82e8f131547e18164fae9e7e86d9a4a88620d92",
+      "bytes": 14086
+    },
+    "docs/GOVERNED_CUSTODY_HANDOFF.md": {
+      "sha256": "face4ddbb8c1d0e879b1df78fb9aebe35f055ce13d61834dd2d45c81c29e60f3",
+      "bytes": 31563
+    },
+    "docs/DEPLOYMENT_ADDRESSES.md": {
+      "sha256": "6f0cb4dd9b5def80a9db4ec7fa935a94b7d4d9598477c71ff657d294baf1dedf",
+      "bytes": 21533
+    }
+  },
+  "separate_evidence": "Root adds API/keeper and shared Solidity/size results under their own source scopes."
+}

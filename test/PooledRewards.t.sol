@@ -5,7 +5,7 @@ import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
-import {Ids, Position, PositionStatus, PoolConfig, BridgeMessage, MessageKind} from "../src/libraries/ZZZTypes.sol";
+import {Ids, Position, PositionStatus, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 import {MockAccess, MockToken, MockPools} from "./mocks/Mocks.sol";
 import {RewardsVaultFixture} from "./RewardsAndFees.t.sol";
@@ -23,7 +23,7 @@ contract PooledRewardsTest is Test {
         fees = new ZZZFeeController(address(ac)); vault = new RewardsVaultFixture(rewards);
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft)); ac.bind(Ids.MEMBERSHIP, address(membership));
         ac.bind(Ids.REWARDS, address(rewards)); ac.bind(Ids.FEES, address(fees)); ac.bind(Ids.POOLS, address(pools));
-        ac.bind(Ids.RECEIVER, address(this)); rewards.addAsset(address(token0)); rewards.addAsset(address(token1));
+        rewards.addAsset(address(token0)); rewards.addAsset(address(token1));
         nft.configureRandomness(address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false); ac.seal();
         PoolConfig memory c; c.key.currency0 = address(token0); c.key.currency1 = address(token1); pools.set(POOL, c);
         Position memory p; p.poolId = POOL; p.homeChain = block.chainid; p.homeVault = address(vault);
@@ -38,25 +38,9 @@ contract PooledRewardsTest is Test {
         token0.mint(address(fees), personal + shared); vm.startPrank(address(fees));
         token0.approve(address(rewards), personal + shared); rewards.creditPool(bucket, address(token0), personal, shared); vm.stopPrank();
     }
-    function _remote() private {
-        Position memory p = vault.group(BUCKET); p.homeChain = block.chainid + 1; p.homeVault = FOREIGN_VAULT;
-        p.homeToken0 = CANONICAL0; p.homeToken1 = CANONICAL1; vault.set(BUCKET, p);
-    }
     function _allocate(uint256 amount) private {
         token0.mint(address(vault), amount); vm.startPrank(address(vault)); token0.approve(address(fees), amount);
         fees.allocate(BUCKET, address(token0), amount); vm.stopPrank();
-    }
-    function _snapshot(uint256 personal0, uint256 shared0, uint256 personal1, uint256 shared1)
-        private view returns (BridgeMessage memory m) {
-        Position memory p = vault.group(BUCKET);
-        m.version = 3; m.kind = MessageKind.Principal; m.bucketId = BUCKET; m.homeChain = p.homeChain; m.homeVault = p.homeVault;
-        m.canonicalToken0 = p.homeToken0; m.canonicalToken1 = p.homeToken1; m.totalShares = vault.bucketTotalShares(BUCKET);
-        m.allocatedIndividual0 = personal0; m.allocatedCollective0 = shared0;
-        m.allocatedIndividual1 = personal1; m.allocatedCollective1 = shared1;
-    }
-    function _remoteCredit(MockToken token, uint256 personal, uint256 shared) private {
-        token.mint(address(this), personal + shared); token.approve(address(fees), personal + shared);
-        fees.creditRemote(BUCKET, address(token), personal, shared);
     }
     function testOwnerFeesFollowSharesAndCollectiveIsEqualAcrossBuckets() public {
         _seed(1, ALICE, BUCKET, 100, true); _seed(2, BOB, BUCKET, 100, true); _seed(3, CAROL, SECOND, 200, true);
@@ -103,62 +87,6 @@ contract PooledRewardsTest is Test {
         vm.prank(address(vault)); membership.activate(1);
         assertEq(rewards.claimable(1, address(token0)), 50); assertEq(rewards.orphaned(address(token0)), 30);
         assertEq(rewards.liabilities(address(token0)), 50);
-    }
-    function testUnsentRemoteReservesAreIncludedInDepartureCounters() public {
-        _seed(1, ALICE, BUCKET, 100, true); _remote(); _allocate(100);
-        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, CANONICAL0);
-        assertEq(personal, 80); assertEq(shared, 10); assertEq(fees.remoteIndividual(BUCKET, address(token0)), 80);
-        assertEq(fees.remoteCollective(BUCKET, address(token0)), 10); assertEq(token0.balanceOf(address(fees)), 100);
-        assertEq(fees.compoundBalance(BUCKET, address(token0)), 5); assertEq(fees.buybackBalance(address(token0)), 5);
-        assertEq(fees.accounted(address(token0)), 100);
-        assertEq(rewards.claimable(1, address(token0)), 0);
-    }
-    function testRemoteDustAddsToLifetimeOwnerCounterBeforeDeparture() public {
-        _seed(1, ALICE, BUCKET, 100, true); _remote(); _allocate(19);
-        vm.prank(address(vault)); fees.flushDust(BUCKET, address(token0));
-        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, CANONICAL0);
-        assertEq(personal, 19); assertEq(shared, 0); assertEq(fees.remoteIndividual(BUCKET, address(token0)), 19);
-        assertEq(fees.accounted(address(token0)), 19);
-    }
-    function testCumulativeRemoteBaselinePreservesPastHopsWithoutDoubleCounting() public {
-        _seed(1, ALICE, BUCKET, 100, true); _remote(); fees.importAccounting(_snapshot(1000, 600, 2000, 1200)); _allocate(100);
-        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, CANONICAL0);
-        assertEq(personal, 1080); assertEq(shared, 610);
-        (personal, shared) = fees.allocated(BUCKET, CANONICAL1); assertEq(personal, 2000); assertEq(shared, 1200);
-    }
-    function testRemoteSnapshotCannotEraseUnsentLiabilities() public {
-        _seed(1, ALICE, BUCKET, 100, true); _remote(); _allocate(100);
-        BridgeMessage memory m = _snapshot(79, 10, 0, 0); vm.expectRevert(); fees.importAccounting(m);
-        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, CANONICAL0); assertEq(personal, 80); assertEq(shared, 10);
-    }
-    function testReturnedBucketBarrierRequiresBothOwnerAndCollectiveFunding() public {
-        _seed(1, ALICE, BUCKET, 100, true); fees.importAccounting(_snapshot(50, 30, 0, 0));
-        assertFalse(fees.remoteSettled(BUCKET)); _remoteCredit(token0, 50, 0); assertFalse(fees.remoteSettled(BUCKET));
-        _remoteCredit(token0, 0, 30); assertTrue(fees.remoteSettled(BUCKET)); assertEq(rewards.claimable(1, address(token0)), 80);
-        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, address(token0)); assertEq(personal, 50); assertEq(shared, 30);
-    }
-    function testBothCanonicalAssetsMustBeFundedBeforeBarrierClears() public {
-        _seed(1, ALICE, BUCKET, 100, true); fees.importAccounting(_snapshot(50, 30, 100, 60));
-        _remoteCredit(token0, 50, 30); assertFalse(fees.remoteSettled(BUCKET)); _remoteCredit(token1, 100, 60);
-        assertTrue(fees.remoteSettled(BUCKET)); assertEq(rewards.claimable(1, address(token1)), 160);
-    }
-    function testReversedSnapshotTokenOrderingPreservesCanonicalCounterIdentity() public {
-        _seed(1, ALICE, BUCKET, 100, true); BridgeMessage memory m = _snapshot(100, 60, 50, 30);
-        m.canonicalToken0 = address(token1); m.canonicalToken1 = address(token0); fees.importAccounting(m);
-        assertEq(fees.expectedIndividual(BUCKET, address(token0)), 50); assertEq(fees.expectedCollective(BUCKET, address(token0)), 30);
-        assertEq(fees.expectedIndividual(BUCKET, address(token1)), 100); assertEq(fees.expectedCollective(BUCKET, address(token1)), 60);
-    }
-    function testHomeSnapshotCannotResetPreviousExpectedCounters() public {
-        _seed(1, ALICE, BUCKET, 100, true); fees.importAccounting(_snapshot(50, 30, 0, 0));
-        BridgeMessage memory m = _snapshot(0, 0, 0, 0); vm.expectRevert(); fees.importAccounting(m); assertFalse(fees.remoteSettled(BUCKET));
-    }
-    function testImportedAccountingRejectsWrongSharesBeforeUpdatingCounters() public {
-        _seed(1, ALICE, BUCKET, 100, true); BridgeMessage memory m = _snapshot(50, 30, 0, 0); m.totalShares++;
-        vm.expectRevert(); fees.importAccounting(m); assertEq(fees.expectedIndividual(BUCKET, address(token0)), 0);
-    }
-    function testAccountingImportRequiresAuthenticatedReceiver() public {
-        _seed(1, ALICE, BUCKET, 100, true); BridgeMessage memory m = _snapshot(50, 30, 0, 0);
-        vm.prank(ALICE); vm.expectRevert(); fees.importAccounting(m);
     }
     function testFuzzOwnerClaimsNeverExceedFundedPoolFees(uint96 a, uint96 b, uint96 first, uint96 second) public {
         uint256 aShares = bound(uint256(a), 1, 1e24); uint256 bShares = bound(uint256(b), 1, 1e24);

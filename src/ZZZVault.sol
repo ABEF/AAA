@@ -1,13 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
 import {ZZZVaultCanonical} from "./ZZZVaultCanonical.sol";
-import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {Ids, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
@@ -18,7 +15,6 @@ import {IZZZNFT, IZZZMembership, IZZZFees, IZZZPools, IZZZStrategy, IZZZLiquidit
 /// Governance may release it to explicitly trusted external custody through Migration.
 /// Deposits, idle assets, compound reserves and earned fees are separate ledgers.
 contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
-    using SafeERC20 for IERC20;
     mapping(uint256 => Position) private positions; // Custody is keyed by stable bucket, never NFT.
     mapping(uint256 => bool) private minted;
     mapping(uint256 => uint256) public nftBucket;
@@ -29,7 +25,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     mapping(bytes32 => uint256) public poolBucket;
     uint256[] private buckets;
     mapping(uint256 => bool) private registeredBucket;
-    // Bounds combined funded inbox/dust work, with all reward assets admitted.
+    // Bounds historical custody and collective fee-dust settlement work.
     // Existing-bucket returns and pool migrations reuse their historical slot.
     uint256 public constant MAX_BUCKETS = 4;
     event PoolReserved(bytes32 indexed poolId, uint256 indexed bucketId);
@@ -50,9 +46,6 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     event Compounded(uint256 indexed bucketId, uint256 amount0, uint256 amount1);
     event PrincipalExited(uint256 indexed bucketId, bytes32 indexed handoffId, uint256 amount0, uint256 amount1);
     event PrincipalReturned(uint256 indexed bucketId,uint256 lpTokenId,bool deployed);
-    event ImportPending(uint256 indexed bucketId, uint256 indexed homeChain, address indexed homeVault);
-    event ImportFinalized(uint256 indexed bucketId, uint256 lpTokenId);
-    event LocationConfirmed(uint256 indexed bucketId, uint256 chainId, address destinationVault);
     event PrincipalParked(uint256 indexed bucketId, uint256 oldLpTokenId);
     constructor(address controller, uint256 nftHomeChain, address payable mintRecipient) ZZZModule(controller) {
         if (nftHomeChain == 0 || mintRecipient == address(0) || mintRecipient == address(this)) revert InvalidConfiguration();
@@ -207,8 +200,9 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         uint256 inputUSD = IZZZPools(_modulePools()).contributionValue(p.poolId, amount0, amount1);
         (address token0, address token1, uint32 limits) = migrationBudget.validateContribution(id, bucket, inputUSD, amount0 | (amount1 << 128), minimumLiquidity, activation);
         uint256 supply = bucketTotalShares[bucket];
-        // Other inboxes also fund the global collective index. Settle ALL before entry.
-        fees.syncAllExternal();
+        // Settle all already-funded collective dust before eligibility changes.
+        // Only this nonreentrant Vault can allocate new LP fee receipts.
+        IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust();
         if (supply != 0) {
             _harvest(bucket, deadline);
             fees.flushDust(bucket, token0); fees.flushDust(bucket, token1);
@@ -221,8 +215,6 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _idle(bucket, p.idle0 + amount0, p.idle1 + amount1);
         _balanceUsing(bucket, deadline, supply != 0);
         uint256 freshCompound;
-        // Settle any payments arriving during external entry calls before weights change.
-        fees.syncAllExternal();
         if (supply != 0) {
             // Fees earned by the entry swap belong to pre-entry membership.
             _harvest(bucket, deadline);
@@ -236,13 +228,10 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         incumbentNAV = oldLP + oldIdle + freshCompound;
         if (supply != 0 && incumbentNAV == 0) revert InvalidState();
         _put(bucket, supply == 0, minimumLiquidity, deadline);
-        // LP mint/increase can call tokens. Settle late receipts under OLD weights.
-        fees.syncAllExternal();
         (uint256 late0, uint256 late1) = _pullCompound(bucket);
         incumbentNAV += _valueBucket(bucket, late0, late1);
         (uint256 newLP, uint256 newIdle) = _nav(bucket);
-        // A transfer callback during the final pull may queue more receipts/dust.
-        // All remaining dependency calls are static reads or fixed checkpoints.
+        // Unclassified donations during callbacks cannot become LP fee income.
         IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(id);
         // The captured governed contribution limit applies to activation and
         // growth. Network gas is separate; later callbacks cannot widen this budget.
@@ -263,11 +252,9 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         ExactAsset.approve(token, fees, 0);
     }
     function _harvest(uint256 id, uint256 deadline) private {
-        IZZZFees(_moduleFees()).syncExternal(id);
         _harvestVenue(id, deadline);
     }
-    /// @dev Custody parking must not depend on an unrelated creator inbox.
-    /// Venue fees are still separated and funded before closing principal.
+    /// @dev Separate and fund venue fees before closing principal.
     function _harvestVenue(uint256 id, uint256 deadline) private {
         Position storage p = positions[id];
         (address token0, address token1) = _tokens(id);
@@ -429,7 +416,6 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     }
     /// @dev Retired v3 import selector fails closed. Other removed bridge
     /// selectors have no handler and revert; no receiver/bridge can be bound.
-    function importPending(uint256,bytes32,Position calldata,uint256,bytes32,uint256,uint256) external pure { revert InvalidState(); }
     /// @notice Only the fixed Migration module can park an LP. Its governed
     /// request binds exact custody and raw close minimums. No assets leave Vault.
     function park(uint256 id, uint256 deadline) external onlyModule(Ids.MIGRATION) nonReentrant canonicalAccounting {
@@ -511,7 +497,6 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     // No holder redemption or generic sweep. Governed custody handoff is explicit in the fixed Migration module.
     function _modulePools() private view returns (address) { return access.module(Ids.POOLS); }
     function _moduleLiquidity() private view returns (address) { return access.module(Ids.LIQUIDITY); }
-    function _moduleStrategy() private view returns (address) { return access.module(Ids.STRATEGY); }
     function _moduleFees() private view returns (address) { return access.module(Ids.FEES); }
 }
 

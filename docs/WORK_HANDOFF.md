@@ -1,3 +1,39 @@
+## Simplified ETH/ZZZ candidate - 2026-10-25
+
+Latest user scope: native ETH and fixed ZZZ only for activation/growth. ZZZ is
+bound once before sealing; no governance token replacement. Issuer migration
+uses source-chain custody exit and a fresh reviewed deployment. Normal exit
+converts to ZZZ; explicit raw exit sends the actual ETH/ZZZ pair without a swap.
+Sealing requires matching nonzero contribution/normal-exit ZZZ identities.
+Do not confuse the source-token restriction with marketplace royalty currencies.
+
+Creator-payment receivers/factory, remote fee/proof intake, unused bridge types
+and failure-only selectors are removed. Same-chain pool moves, trusted custody
+exit/full return, royalties and complete same-chain ownership/ledger handoff stay.
+Current fee profile1 uses15 helpers (new source-policy factory replaces the old
+receiver factory), custody version2 and LP-only V3 canonical schema. Historical
+profiles/events/journals stay distinct; no automatic migration or dummy bindings.
+
+Read ../reports/simplification-20261025/REVIEW.md and VERIFICATION.md. Source-bound
+reference covers31 contracts/649 functions;36 normal object gates pass. Access
+creation plus minimal288-byte role arguments is49,123/49,152 (29 margin);
+actual release role arrays need exact qualification. Vault runtime23,889/687margin.
+122 Solidity inputs ABI/AST pass;87 selected methods pass on the recorded
+pre-terminal-comparison source. Six final Access/retirement checks pass, including terminal-state fuzz1,000.
+Four repeats are not extra coverage:89 distinct selected behaviors across two
+source scopes, not a fresh full final-source regression. Backend40, API/keeper6 and fork-runner16 published-candidate (21dirty-worktree)
+scoped methods retain their exact evidence boundaries. Current livefork
+qualification is explicitly blocked before RPC/Forge until a native fixture
+replaces the archived wrapped one. Publication is separate: inspect
+Git and the eventual receipt, never infer a push from a local save.
+
+Maintain sole Todo, features, roadmap, operator and callable-reference docs.
+Preserve unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signer/null public DEPLOYMENT and paused monitoring. No public
+transaction/deployment/seal, website build/server or operating-service change.
+Production NOT APPROVED; real dependencies/OpenSea/authorities/operations and
+independent audit remain open. Main only.
+
 ## Service and callable-reference publication verified - 2026-10-25
 
 Contract implementation `03a0d76` and website memory-only `e96cc38` are pushed

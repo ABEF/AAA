@@ -104,7 +104,7 @@ contract ProductionGasTest is Test {
                 vm.cool(p.primary.source);vm.cool(p.secondary.source);
             }
         }
-        vm.cool(address(vault.migrationBudget())); vm.cool(address(fees.receiverFactory()));
+        vm.cool(address(vault.migrationBudget()));
         vm.cool(address(access));
         vm.cool(address(vault));
         vm.cool(address(nft.royaltyRewards()));

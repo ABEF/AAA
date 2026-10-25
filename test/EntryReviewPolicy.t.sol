@@ -72,10 +72,15 @@ contract EntryReviewPolicyTest is AtomicActivationIntegrationTest {
         ZZZContributionPricing pricing=oracle.contributionPricing();
         vm.prank(alice);vm.expectRevert(ZZZContributionPricing.InvalidAmount.selector);
         entry.executeReviewed(_review(id,false),1001);_assertNotSpent(id,balance);
-        vm.prank(alice);vm.expectRevert(bytes4(keccak256("InvalidState()")));
-        entry.execute(_review(id,false));_assertNotSpent(id,balance);
-        vm.prank(address(entry));vm.expectRevert(ZZZContributionPricing.InvalidState.selector);
-        pricing.beginEntry(id,poolId,address(stable),100e6);
+        // Removed historical selectors must fail with their exact old calldata,
+        // including for the formerly authorized Entry caller. No ABI shim needed.
+        bytes memory retired=abi.encodeWithSignature(
+            "execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))",_review(id,false));
+        vm.prank(alice);(bool accepted,) = address(entry).call(retired);
+        assertFalse(accepted);_assertNotSpent(id,balance);
+        vm.prank(address(entry));(accepted,) = address(pricing).call(abi.encodeWithSignature(
+            "beginEntry(uint256,bytes32,address,uint256)",id,poolId,address(stable),uint256(100e6)));
+        assertFalse(accepted);
         _assertNotSpent(id,balance);
     }
     function testMalformedMaximumABIRevertsWithoutSpendingPrefundsOrUserAllowance() public realIntegration {

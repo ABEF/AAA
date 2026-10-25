@@ -1,0 +1,94 @@
+{
+  "scope": "Independent internal read-only peer review, not an external audit or production approval. No frozen code/input edits performed.",
+  "source_sha256": {
+    "src/ZZZAccessController.sol": "def515407c49c343dacf912918d4bde80aa854f4714ed6e5502949af53585929",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZPoolRegistry.sol": "10c776bd25b7308aa821615bc11672795aede856ef2be197532c452d26fec3af",
+    "src/ZZZMigration.sol": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+    "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+    "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+    "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+    "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6"
+  },
+  "conclusions": [
+    "Canonical controller-created Assets factory has no caller-chosen controller/registry/calldata, custody or configuration authority. create binds the calling Registry, rejects duplicate caller children and uses only fixed child creation. Child validates canonical factory identity and its controller.",
+    "ZZZ source identity and custody exit target are one-time preseal. Source/exit matching is now required by seal, so omitted or mismatched setup cannot permanently disable normal exit after sealing. Existing custody validation already rejected zero normal targets: the identified omission was deployment liveness, not an accepted unauthorized ETH exit.",
+    "New LP-only fee controller admits only exact current-home Vault receipts in an actual pool currency. Raw donations do not fund fee indices. The raw20unit split preserves80/10/5/5 plus incumbent-only dust settlement and classified reserve release.",
+    "New V3 fee rows use strict2word headers/4word bucket rows/5word asset rows, authentic snapshot lineage and exact classified backing/restore. No zero-filled legacy counter fallback or incoming old inbox/remote ledger is accepted. Both ordinary LP and royalty ledgers retain their independent handoff rights.",
+    "Fixed external custody remains an explicitly accepted governance trust boundary. Arbitrary recipient control after a valid custody exit is not cryptographic permanence or automatic cross-chain ownership migration."
+  ],
+  "findings": [
+    {
+      "priority": "release blocker",
+      "kind": "exact constructor initcode size",
+      "source_hash": "def515407c49c343dacf912918d4bde80aa854f4714ed6e5502949af53585929",
+      "creation": 48872,
+      "argument_bytes_one_proposer_one_executor": 288,
+      "initcode_total": 49160,
+      "EIP3860_maximum": 49152,
+      "margin": -8,
+      "status": "Repaired in final source. Earlier failing source and its exact observation retained above; final proof is separately recorded below.",
+      "note": "Previous48714/150margin no longer matched the final matching-exit-identity guard build at this observation."
+    }
+  ],
+  "open_limits": [
+    "Real dual-price source independence/feeds and cheaper execution routes remain unqualified.",
+    "Actual VRF/OpenSea wallet/services/target-chain fork operations and independent audit remain release gates.",
+    "Historical wrapped-native fork fixture is archived, not silently counted as current native qualification.",
+    "Compiler ABI/typecheck and selected local execution are distinct; no external service behavior is inferred.",
+    "Access minimal one-proposer/one-executor constructor has only 29 bytes EIP-3860 initcode headroom; require exact real production arguments before deployment, not object-only creation size."
+  ],
+  "final_source_sha256": {
+    "src/ZZZAccessController.sol": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZPoolRegistry.sol": "10c776bd25b7308aa821615bc11672795aede856ef2be197532c452d26fec3af",
+    "src/ZZZMigration.sol": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+    "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+    "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+    "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+    "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6"
+  },
+  "final_initcode_repair": {
+    "source_sha256": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+    "change": "Terminal canonical states use >2 fail-closed guard; actual state setter bounds state to 0..4. No legal transition semantics changed. Added terminal-state fuzz case; execution evidence belongs to parent selected harness.",
+    "creation": 48835,
+    "argument_bytes_one_proposer_one_executor": 288,
+    "initcode_total": 49123,
+    "EIP3860_maximum": 49152,
+    "margin": 29,
+    "status": "Normal exact-argument minimal-role gate passes. Actual chosen production constructor arguments still require qualification; extra proposer/executor entries can exceed remaining margin.",
+    "size_evidence": "solidity/source-size-gates.json",
+    "abi_ast_evidence": "solidity/all-source-typecheck-summary-8.json",
+    "abi_ast_source_count": 122,
+    "normal_object_gate_count": 36
+  },
+  "evidence_location": "Large compiler/AST/size artifacts are preserved in the external simplification-audit-20261025/solidity workspace; relative evidence paths below refer there, not to committed binaries. The verification record summarizes their scope.",
+  "callable_reference_check": {
+    "checked": true,
+    "contracts": 31,
+    "functions": 649,
+    "constructors": 31,
+    "receive_hooks": 14,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 144,
+    "scope": "Deterministic current source/ABI/explanation binding and generated-content check only; no new compilation or contract test execution.",
+    "input_sha256": {
+      "docs/function-reference.json": "cb2a2ba93d9a39b782119e0970284bd338820c7f516046575998e9d5d12301eb",
+      "docs/function-reference-notes.json": "7f638a70b5f40f493a28e4fe2bbd8ca93abb1f13010e89b0be6b07979902d4db",
+      "docs/CONTRACT_FUNCTIONS.md": "03f7f78d4d916b5ce257208b03f902f8c9ec4e0ac08466005e3b93d38d64725b",
+      "scripts/generate-function-reference.py": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+      "zzz_ops/function_reference.py": "679c166314987de806953dee0d414df06b2c87a84cf8eb84b73525c3c88fcfa0"
+    }
+  },
+  "current_doc_link_check": {
+    "files": 35,
+    "local_inline_targets": 1477,
+    "broken": 0,
+    "evidence": "doc-link-scan.json",
+    "limits": "Local target existence only; no network URLs, Markdown anchor correctness or full prose correctness is inferred."
+  }
+}

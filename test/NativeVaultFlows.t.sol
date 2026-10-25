@@ -15,6 +15,8 @@ import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZBuyback} from "../src/ZZZBuyback.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
+import {ZZZActivationAssetsFactory} from "../src/ZZZActivationAssetsFactory.sol";
+import {IZZZAccess} from "../src/interfaces/IZZZ.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
@@ -46,7 +48,7 @@ contract NativeFlowRegistry {
     PoolConfig private config;
     constructor(address controller, ZZZOracle prices, address token) {
         oracle = prices;
-        activationAssets = new ZZZActivationAssets(controller,address(this));
+        activationAssets = ZZZActivationAssets(ZZZActivationAssetsFactory(IZZZAccess(controller).activationAssetsFactory()).create());
         activationEntry = new ZZZActivationEntry(controller,address(this),address(activationAssets));
         config = PoolConfig(PoolKey(address(0),token,10020,60,address(0)),true,true,1000,100,100,200,600,1e18,1e30);
         activationAssets.admitPoolAsset(address(0)); activationAssets.admitPoolAsset(token);
@@ -57,7 +59,7 @@ contract NativeFlowRegistry {
     function setRange(uint16 range) external { config.rangeBps = range; }
     function contributionValue(bytes32 pool,uint256 a0,uint256 a1) external view returns (uint256) {
         uint256 original = activationEntry.sourceValue(pool,a0,a1);
-        return original != 0 ? original : oracle.value(address(0),a0)+oracle.value(config.key.currency1,a1);
+        return original != 0 ? original : activationAssets.value(address(0),a0)+activationAssets.value(config.key.currency1,a1);
     }
 }
 
@@ -90,6 +92,7 @@ contract NativeVaultFlowsTest is Test {
         oracle.setTestFeed(address(0),address(price),1 hours); oracle.setTestFeed(address(token),address(price),1 hours);
         access.bind(Ids.ORACLE,address(oracle));
         pools = new NativeFlowRegistry(address(access),oracle,address(token));
+        pools.activationAssets().configureZZZ(address(token),address(token).codehash,keccak256("reviewed native fixture ZZZ identity"));
         entry = pools.activationEntry();
         core = new BoundaryCore(); FakePermit2 permit = new FakePermit2();
         positions = new BoundaryPositions(address(core),address(permit),address(wrapper)); core.setPositions(address(positions));
@@ -117,7 +120,7 @@ contract NativeVaultFlowsTest is Test {
     }
     function _entry(address owner,uint256 id,uint256 amount,bool grow) private {
         ZZZActivationEntry.Request memory r = ZZZActivationEntry.Request(id,poolId,address(0),amount,bytes32(0),0,1,block.timestamp+100,grow);
-        vm.prank(owner); entry.execute{value:amount}(r);
+        vm.prank(owner); entry.executeReviewed{value:amount}(r,200);
     }
     function testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper() public {
         uint256 id = _mint(ALICE); _entry(ALICE,id,100 ether,false);

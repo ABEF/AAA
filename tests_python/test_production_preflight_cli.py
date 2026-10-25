@@ -120,6 +120,20 @@ class ProductionPreflightCLITests(unittest.TestCase):
         self.assertFalse(report['deployment_authorized'])
         self.assertEqual('historical_manifest_consistency_only',report['approval_scope'])
 
+    def test_current_gate_requires_explicit_lp_only_fee_intake_profile(self):
+        from tests_python.test_mint_integration_qualification import current_fixture
+        for version in ('absent',0,True,False,'1'):
+            with self.subTest(version=version):
+                config=current_fixture()
+                if version=='absent':config.pop('fee_intake_version')
+                else:config['fee_intake_version']=version
+                status,report=self.fixture_main(config)
+                self.assertEqual(1,status)
+                self.assertFalse(report['ready'])
+                self.assertIn('current_profile_required',{i['code'] for i in report['issues']})
+                self.assertFalse(report['production_qualification_supported'])
+                self.assertFalse(report['deployment_authorized'])
+
     def test_current_profile_still_blocks_unimplemented_opensea_primary_mint(self):
         from tests_python.test_mint_integration_qualification import current_fixture
         status,report=self.fixture_main(current_fixture())

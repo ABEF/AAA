@@ -18,7 +18,6 @@ import {ZZZCompounder} from "../src/ZZZCompounder.sol";
 import {ZZZBuyback} from "../src/ZZZBuyback.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
-import {ZZZRewardReceiver} from "../src/ZZZRewardReceiver.sol";
 import {IZZZAccess} from "../src/interfaces/IZZZ.sol";
 import {IZZZCanonicalModule} from "../src/interfaces/IZZZCanonical.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
@@ -120,6 +119,8 @@ contract NativeCanonicalIntegrationTest is Test {
         s.access.bind(Ids.MIGRATION, address(s.migration)); s.access.bind(Ids.ORACLE, address(oracle)); s.access.bind(Ids.POOLS, address(s.pools));
         oracle.setTestFeed(address(0), address(feed), 3600); oracle.setTestFeed(address(token), address(feed), 3600);
         s.rewards.addAsset(address(token)); s.nft.addRoyaltyAsset(address(token));
+        s.pools.setTestZZZIdentity(address(token));
+        s.migration.configureZZZ(address(token),address(token).codehash,keccak256("native handoff fixed ZZZ"));
         s.vrf = new MockVRF(); s.nft.configureRandomness(address(s.vrf), bytes32(uint256(1)), 1, 3, 500000, false);
         PoolConfig memory config; config.key = PoolKey(address(0), address(token), 3000, 60, address(0));
         config.operationsEnabled = true; config.depositsEnabled = true; config.minDepositUSD = 1e18;
@@ -141,15 +142,8 @@ contract NativeCanonicalIntegrationTest is Test {
         vm.prank(ALICE); source.vault.activate{value: 1000 ether}(id, poolId, 1000 ether, 1000 ether, 1, block.timestamp + 100);
         uint256 bucket = source.vault.nftBucket(id);
         source.venue.setFees(103 ether + 7, 107 ether + 11); source.vault.collectFees(bucket, block.timestamp + 100);
-        // Native slot-zero protection must not also be exported in the legacy
-        // protectedNative row. The pre-created inbox holds exactly seven wei.
-        address predicted = vm.computeCreateAddress(address(source.fees.receiverFactory()), 1);
-        (bool prefundOK,) = predicted.call{value: 7}(""); assertTrue(prefundOK);
-        _govern(source, address(source.fees), abi.encodeCall(source.fees.createRewardReceiver, (bucket, address(0))));
-        address inbox = source.fees.rewardReceiver(bucket); assertEq(inbox, predicted);
-        assertEq(ZZZRewardReceiver(payable(inbox)).protected0(), 7);
-        assertEq(ZZZRewardReceiver(payable(inbox)).protectedNative(), 0);
-        (bool ok,) = inbox.call{value: 0.2 ether + 9}(""); assertTrue(ok);
+        // Unsolicited native prefunds remain quarantined separately from fees.
+        (bool ok,) = address(source.fees).call{value: 7}(""); assertTrue(ok);
         (ok,) = address(source.royalties).call{value: 1 ether + 3}(""); assertTrue(ok);
         token.mint(address(source.royalties), 13 ether + 2);
         vm.prank(ALICE); source.nft.transferFrom(ALICE, BOB, id);
@@ -185,7 +179,7 @@ contract NativeCanonicalIntegrationTest is Test {
     function _fundAll() private {
         for (uint8 slot; slot < 6; ++slot) for (uint256 i; i < source.handoff.assetCount(slot); ++i) source.handoff.fund(slot, i);
     }
-    function testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndOneProtectedInboxBalance() public {
+    function testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine() public {
         uint256 id = _seed(); _freezeExportImport(id); uint256 bucket = source.vault.nftBucket(id);
         uint256 nativeLP = source.rewards.claimable(id, address(0)); uint256 nativeRoyalties = source.royalties.claimable(id, address(0));
         uint256 ownerIndex = source.rewards.ownerIndex(bucket, address(0)); uint256 collectiveIndex = source.rewards.index(address(0));
@@ -195,12 +189,9 @@ contract NativeCanonicalIntegrationTest is Test {
         assertEq(destination.nft.ownerOf(id), BOB); assertEq(destination.nft.mintedCount(), 2);
         assertEq(destination.vault.sharesOf(id), source.vault.sharesOf(id));
         assertEq(destination.vault.totalIdle(address(0)), principal); assertEq(address(destination.vault).balance, principal);
-        assertEq(destination.fees.accounted(address(0)), reserves); assertEq(address(destination.fees).balance, reserves);
+        assertEq(destination.fees.accounted(address(0)), reserves); assertEq(address(destination.fees).balance, reserves + 7);
         assertEq(destination.rewards.ownerIndex(bucket, address(0)), ownerIndex); assertEq(destination.rewards.index(address(0)), collectiveIndex);
         assertEq(destination.rewards.claimable(id, address(0)), nativeLP); assertEq(destination.royalties.claimable(id, address(0)), nativeRoyalties);
-        address inbox = destination.fees.rewardReceiver(bucket);
-        assertEq(inbox.balance, 7); assertEq(ZZZRewardReceiver(payable(inbox)).protected0(), 7);
-        assertEq(ZZZRewardReceiver(payable(inbox)).protectedNative(), 0);
         uint256 before = BOB.balance;
         vm.prank(BOB); assertEq(destination.rewards.claim(id, address(0)), nativeLP);
         vm.prank(BOB); assertEq(destination.royalties.claim(id, address(0)), nativeRoyalties);

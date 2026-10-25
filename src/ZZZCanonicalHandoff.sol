@@ -19,10 +19,6 @@ interface ICanonicalHelpers {
     function royaltyRewards() external view returns (address);
     function canonicalRetire() external;
 }
-interface ICanonicalBridgeHistory {
-    function nonce() external view returns (uint256);
-    function receivedCount() external view returns (uint256);
-}
 
 /// @notice Fixed, bounded handoff coordinator. This first transport is direct
 /// same-chain custody with atomic retirement/activation. It cannot attest remote
@@ -31,7 +27,7 @@ interface ICanonicalBridgeHistory {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3");
     ICanonicalController public immutable access;
     // 0 idle, 1 frozen/exporting, 2 imported, 3 retired, 4 importing,
     // 5 active replacement, 6 aborting, 7 cancelled replacement, 8 captured/settling.

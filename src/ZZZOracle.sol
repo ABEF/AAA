@@ -60,7 +60,6 @@ contract ZZZOracle is ZZZModule {
         bytes32 reviewHash, bool bootstrapAdmission);
     event SequencerPolicyActivated(bytes32 indexed previousPolicy, bytes32 indexed activePolicy);
     error InvalidPrice(address token);
-    error SingleSourceUnsupported();
     constructor(address controller, address sequencer) ZZZModule(controller) {
         contributionPricing = new ZZZContributionPricing(controller,address(this));
         if (sequencer != address(0)) {
@@ -108,11 +107,6 @@ contract ZZZOracle is ZZZModule {
             startedAt > block.timestamp || updated < startedAt || updated > block.timestamp) revert InvalidPrice(source);
         // Uptime feeds report status transitions, not periodic price rounds. A
         // healthy unchanged status must not expire based on updatedAt age.
-    }
-    /// @notice A single-source policy is deliberately unavailable, including
-    /// bootstrap. Retaining this ABI must not silently retain its old semantics.
-    function setFeed(address, address, uint32) external pure {
-        revert SingleSourceUnsupported();
     }
     function policyCount() external view returns (uint256) { return history.length; }
     function policyAt(uint256 ordinal) external view returns (bytes32) { return history[ordinal]; }

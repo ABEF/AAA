@@ -1,0 +1,27 @@
+REASON: Unused historical transport sink.
+contract ParkingBridgeCapture {
+    address immutable token0;
+    address immutable token1;
+    uint256 public received0;
+    uint256 public received1;
+    constructor(address a, address b) { token0 = a; token1 = b; }
+    function send(BridgeMessage calldata m) external payable returns (bytes32) {
+        received0 += m.amount0; received1 += m.amount1;
+        require(IERC20(token0).transferFrom(msg.sender, address(this), m.amount0));
+        require(IERC20(token1).transferFrom(msg.sender, address(this), m.amount1));
+        return keccak256(abi.encode(m));
+    }
+}
+
+
+REASON: Unused historical route builder.
+    function _route() private returns (bytes32 routeId, ParkingBridgeCapture bridge) {
+        MockRoutes routes = new MockRoutes(); ac.bind(Ids.ROUTES, address(routes));
+        ac.bind(Ids.TRANSPORT, address(new MockReadyRouter()));
+        bridge = new ParkingBridgeCapture(address(t0), address(t1)); ac.bind(Ids.BRIDGE, address(bridge));
+        Route memory r; r.sourceChain = block.chainid; r.sourceVault = address(vault);
+        r.sourceReceiver = ac.module(Ids.RECEIVER); r.sourceToken0 = address(t0); r.sourceToken1 = address(t1);
+        r.destinationChain = block.chainid + 1; r.destinationVault = address(0xD357);
+        r.destinationReceiver = address(0xD358); r.destinationToken0 = address(t0); r.destinationToken1 = address(t1);
+        routeId = keccak256("parking-test-only-route"); routes.set(routeId, r);
+    }

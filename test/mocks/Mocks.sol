@@ -5,10 +5,13 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import {Ids,PoolKey,PoolConfig,Position,Route,BridgeMessage} from "../../src/libraries/ZZZTypes.sol";
-import {IZZZAccess,IZZZTransportReceiver,IZZZOracle} from "../../src/interfaces/IZZZ.sol";
+import {Ids,PoolKey,PoolConfig,Position} from "../../src/libraries/ZZZTypes.sol";
+import {IZZZAccess,IZZZOracle} from "../../src/interfaces/IZZZ.sol";
 import {ZZZRoyaltyFactory} from "../../src/ZZZRoyaltyFactory.sol";
+import {ZZZActivationAssetsFactory} from "../../src/ZZZActivationAssetsFactory.sol";
 interface IMockCallerAccess { function access() external view returns (address); }
+interface IMockSealRegistry { function activationAssets() external view returns(address); }
+interface IMockSealIdentity { function zzz() external view returns(address); }
 contract MockAccess {
     mapping(bytes32=>address) public module;
     mapping(address=>bool) public keepers;
@@ -16,8 +19,9 @@ contract MockAccess {
     uint8 public canonicalState;
     bool public canonicalSettling;
     address public immutable royaltyFactory;
+    address public immutable activationAssetsFactory;
     address public governor;
-    constructor(){governor=msg.sender;royaltyFactory=address(new ZZZRoyaltyFactory());}
+    constructor(){governor=msg.sender;royaltyFactory=address(new ZZZRoyaltyFactory());activationAssetsFactory=address(new ZZZActivationAssetsFactory());}
     function canonicalHandoff() external view returns(address){return module[Ids.CANONICAL];}
     function moduleAuthorized(bytes32 id,address caller) external view returns(bool){
         return isSealed && canonicalState==0 && caller==module[id];
@@ -30,6 +34,9 @@ contract MockAccess {
     function setCanonicalState(uint8 state) external {canonicalState=state;}
     function bind(bytes32 id,address a) external {module[id]=a;}
     function seal() external {isSealed=true;}
+    // TEST ONLY: assemble replacement mock dependencies during an explicit
+    // bootstrap phase. Real AccessController has no unseal function.
+    function beginBootstrap() external {isSealed=false;}
     function setPaused(bool a) external {paused=a;}
     function setKeeper(address a,bool b) external {keepers[a]=b;}
 }
@@ -64,6 +71,8 @@ contract MockFeed {
 }
 contract MockPools {
     address public activationEntry;
+    address public activationAssets;
+    function setActivationAssets(address helper) external {activationAssets=helper;}
     mapping(bytes32=>PoolConfig) private configs;
     function set(bytes32 id,PoolConfig memory c) external {configs[id]=c;}
     function get(bytes32 id) external view returns(PoolConfig memory){return configs[id];}
@@ -79,42 +88,21 @@ contract MockVaultRecord {
     function set(Position memory v) external {p=v;}
     function position(uint256) external view returns(Position memory){return p;}
 }
-contract MockRoutes {
-    mapping(bytes32=>Route) private routes;mapping(bytes32=>bool) private exists;
-    function set(bytes32 id,Route memory r) external {routes[id]=r;exists[id]=true;}
-    function get(bytes32 id) external view returns(Route memory,bool){require(exists[id]);return(routes[id],true);}
-}
-contract MockMessageReceiver {
-    using SafeERC20 for IERC20;
-    address public token;uint256 public received;bool public fail;
-    function configure(address t,bool f) external {token=t;fail=f;}
-    function receiveMessage(uint256,address,BridgeMessage calldata m) external {
-        require(!fail,"receiver failed");
-        if(m.amount0>0)IERC20(token).safeTransferFrom(msg.sender,address(this),m.amount0);
-        received++;
-    }
-}
-contract MockTransport {
-    using SafeERC20 for IERC20;
-    uint256 private nonce;
-    function send(uint256,address,address[] calldata ts,uint256[] calldata amounts,bytes calldata) external payable returns(bytes32){
-        for(uint256 i;i<ts.length;i++)IERC20(ts[i]).safeTransferFrom(msg.sender,address(this),amounts[i]);
-        return bytes32(++nonce);
-    }
-    function deliver(address adapter,uint256 source,address sender,bytes memory message,address token,uint256 amount) external {
-        if(token!=address(0))IERC20(token).forceApprove(adapter,amount);
-        IZZZTransportReceiver(adapter).onMessage(source,sender,message);
-        if(token!=address(0))IERC20(token).forceApprove(adapter,0);
-    }
-}
 contract BoundDummy {
     IZZZAccess public immutable access;
     bool public randomnessConfigured = true;
-    constructor(address a){access=IZZZAccess(a);}
+    address public zzz;
+    constructor(address a){access=IZZZAccess(a);zzz=address(this);}
+    // TEST ONLY: seal identity stubs. This dummy has no financial behavior.
+    function FEE_INTAKE_VERSION() external pure returns(uint256){return 1;}
+    function activationAssets() external view returns(address){return address(this);}
+    function setTestZZZIdentity(address token) external {zzz=token;}
+    function currentZZZ() external view returns(address) {
+        return IMockSealIdentity(IMockSealRegistry(access.module(Ids.POOLS)).activationAssets()).zzz();
+    }
     function transport() external view returns(address){return access.module(Ids.TRANSPORT);}
     function canonicalChainId() external view returns(uint256){return block.chainid;}
     function setRandomnessConfigured(bool ready) external {randomnessConfigured=ready;}
 }
 // TEST ONLY: custody unit tests explicitly bypass transport readiness. Router
 // readiness/authentication is tested with real modules in separate suites.
-contract MockReadyRouter { function canSend(bytes32) external pure returns(bool){return true;} }

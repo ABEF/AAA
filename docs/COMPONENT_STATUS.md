@@ -1,5 +1,14 @@
 ## Pricing-V2 component delta - 2026-10-24
 
+
+## Current release simplification - 2026-10-25
+
+[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
+fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
+pool moves, external custody exit/recovery, royalty currencies and complete
+collection handoff. Current fee/custody profiles and canonical schema are
+explicit; old deployments/journals keep historical profiles.
+
 ## Current component interpretation - 2026-10-25
 
 The table below describes the undeployed candidate, not installed services.
@@ -98,7 +107,7 @@ The [website-alignment evidence](../reports/website-alignment/README.md), [rewar
 |---|---|---|
 | `ZZZCanonicalHandoff.sol` | Six-domain captured cutoffs, ordered settlement, eight-row export/import, exact classified funding, restored abort and one atomic successor | Worst-case gas, interruption/callback review, same-chain successor admission and independent audit; cross-chain canonical transport is deferred |
 | `ZZZNFTCanonical.sol` / `ZZZVaultCanonical.sol` / `ZZZFeesCanonical.sol` | Sealed owner-bound codecs and typed import/custody hooks; exact traits, shares, fractions and original identity | Complete source-bound accounting verification, contract-owner compatibility and operational relaying |
-| `ZZZRoyaltyFactory.sol` / `ZZZRewardReceiverFactory.sol` | Immutable automatic factories for the NFT royalty ledger and classified creator inboxes | Deployment/owner bindings, native and token dependency behavior and successor receipt continuity |
+| `ZZZRoyaltyFactory.sol` / `ZZZActivationAssetsFactory.sol` | Immutable automatic factories for the NFT royalty ledger and classified creator inboxes | Deployment/owner bindings, native and token dependency behavior and successor receipt continuity |
 | `ZZZVault.sol` | Exact 0.05 ETH Dormant mint; $100 source-bound activation with the captured marginal-LP floor (98% at default2%); same limit on additions; nonredeemable shares; oracle-independent paused close into Parked custody and guarded resume | Independent accounting review, target-venue gas and staged recovery; no guarantee against failed external assets or venues |
 | `ZZZNFT.sol` | ERC-721/2981/4906; 1,000 cap; ordered quota/inventory VRF draws; immutable traits and royalty/metadata/claim helpers | Actual proof-verifying coordinator, funded subscription, callback/failure rehearsal and independently reviewed permanent artwork root |
 | `ZZZNFTMetadata.sol` | Read-only current marked principal/idle/compound NAV by NFT share; four evolution states; price-driven downgrades; explicit unavailable valuation; 58 palettes and four patterns selecting 2,784 supported artwork states | Permanent asset publication, live pricing and marketplace cache integration; bounded notifications and watcher are implemented but need staged operation |
@@ -109,8 +118,7 @@ The [website-alignment evidence](../reports/website-alignment/README.md), [rewar
 | `ZZZActivationEntry.sol` | Immutable Registry-created helper; owner-authenticated direct/native/typed single-hop v3/v4 inputs; original-source USD budget bound to exact Vault call; approvals/context callback isolation and atomic rollback | Actual route/funding/feed qualification, complete route-policy history, immutable binding review, combined selected-pool execution and wallet/Testnet rehearsal |
 | `ZZZRewards.sol` | Funded owner rewards by bucket shares; collective rewards by equal activated membership; index fractions and current-owner claims; current offline unit/fuzz/default-invariant suites pass | Independent accounting review, delayed-collection economics and target-chain maximum admitted-asset costs |
 | `ZZZMembership.sol` | Exactly one collective share per activated canonical NFT; pre-activation checkpoint; no top-up/rarity/age weighting; bounded canonical funded-dust settlement including Parked buckets | Qualify actual Entry/venue costs at the reduced immutable 4-historical-bucket cap and persistence through every custody state |
-| `ZZZFeeController.sol` | 80/10/5/5 allocation in raw units; segregated reserves; actual venue LP receipts and optional creator inbox intake; historical remote provenance codecs are not an enabled bridge | Independent review, admitted token/wrapper behavior and actual Entry/venue costs with four reachable inboxes; separate factory ceiling remains 16 |
-| `ZZZRewardReceiver.sol` | Immutable original bucket/pair and optional native wrapper; plain payments; permissionless processing; prefund quarantine | Helper is not a replaceable module; unsupported assets have no rescue; dependency outages can block entry |
+| `ZZZFeeController.sol` | 80/10/5/5 allocation in raw units; segregated reserves; actual local venue LP receipts only; explicit smaller fee codec and donation quarantine | Independent review, admitted token/wrapper behavior and actual Entry/venue costs, local dust settlement and exact funded handoff |
 | `ZZZStrategy.sol` / `ZZZCompounder.sol` | Oracle-relative ranges, deviation/cooldown/slippage policy; keeper coordinates Vault reinvestment of its own budget | Backtesting, volatility, MEV, gas and real settlement/rounding economics |
 | `ZZZBuyback.sol` | Bounded direct buyback/burn with acquired-balance and supply checks; separately governed reviewed future ZZZ target | No arbitrary multi-hop; actual token, routes, feed, burn behavior and operator coordination need qualification |
 | `ZZZMigration.sol` / `ZZZCustodyValidation.sol` | Atomic same-accounting-pair `moveFunds`; governed exact-snapshot all-ZZZ or explicit raw custody exit; local holding and one-time destination binding; actual funded local completion/full recovery; immutable read-only admission helper | Recipient custody is trusted; actual target routes, custody return/completion, backend deployment and inventory remain unqualified; integrated remote accounting/finality is deferred |

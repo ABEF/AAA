@@ -98,7 +98,6 @@ contract ZZZContributionPricing {
     /// @dev Entry calls BEFORE token pulls, approvals or conversion. No later
     /// quote can replace this original-source value or LP-pair price basis.
     /// @notice Retired initializer; current Entry must supply its signed maximum.
-    function beginEntry(uint256,bytes32,address,uint256) external pure returns(uint256) { revert InvalidState(); }
     function beginEntryReviewed(uint256 nft,bytes32 pool,address source,uint256 amount,uint16 maximumLossBps)
         external returns(uint256 lowerUSD) {
         if (msg.sender != _entry()) revert Unauthorized();
@@ -211,7 +210,6 @@ contract ZZZContributionPricing {
         // never overwrite a starting mark or count it as newly deployed LP.
         _historicalMarks(bucket);
         _putUnchanged(); bytes32 hash = _unchanged();
-        if (IZZZFees(access.module(Ids.FEES)).hasPendingExternal()) revert InvalidState();
         if (deployed == 0 || idle > Math.mulDiv(deployed+idle,500,10000) ||
             deployed+idle <= incumbentNAV || deployed < incumbentDeployed) revert Slippage();
         netUSD = deployed+idle-incumbentNAV;

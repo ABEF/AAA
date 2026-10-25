@@ -1,5 +1,14 @@
 # Configuration changes and LP recovery boundaries
 
+
+## Current release simplification - 2026-10-25
+
+[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
+fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
+pool moves, external custody exit/recovery, royalty currencies and complete
+collection handoff. Current fee/custody profiles and canonical schema are
+explicit; old deployments/journals keep historical profiles.
+
 **Current candidate (2026-10-24):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Native V2 verification](../reports/native-eth-port/VERIFICATION.md). Earlier [custody evidence](../reports/custody-handoff/VERIFICATION.md) retains its WETH-accounting source scope.
 
 The LP is nonredeemable by NFT holders. Governance can atomically move it between supported same-actual-pair pools or release attributed principal to explicitly approved external custody. Recipient custody and liveness are accepted trust; the source cannot compel return. No generic executor or sweep exists. See [selection](POOL_SELECTION.md), [policy](POST_SEAL_POLICY.md) and [native V2 scope](NATIVE_ETH_ARCHITECTURE.md).

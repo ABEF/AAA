@@ -7,7 +7,6 @@ import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZFeesCanonical} from "../src/ZZZFeesCanonical.sol";
-import {ZZZRewardReceiver} from "../src/ZZZRewardReceiver.sol";
 import {MockAccess, MockToken, MockPools} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "../src/libraries/ZZZTypes.sol";
@@ -56,6 +55,19 @@ contract RejectNativeClaim {
     function claim(ZZZRewards rewards, uint256 id) external { rewards.claim(id, address(0)); }
 }
 
+interface INativeFeeCaptureHook { function attemptCaptureDuringIntake() external; }
+// TEST ONLY: hostile admitted token tries to freeze the whole system from its
+// transfer callback; no unbounded reentrancy or public deployment is involved.
+contract NativeFeeCaptureToken is MockToken {
+    address private feeTarget;
+    address private callback;
+    constructor(address fees, address target) MockToken(18) { feeTarget = fees; callback = target; }
+    function _update(address from, address to, uint256 amount) internal override {
+        super._update(from, to, amount);
+        if (from != address(0) && to == feeTarget) INativeFeeCaptureHook(callback).attemptCaptureDuringIntake();
+    }
+}
+
 contract NativeFeeRewardsTest is Test {
     NativeFeeAccess ac;
     MockToken token;
@@ -66,6 +78,8 @@ contract NativeFeeRewardsTest is Test {
     NativeConvertedCreditFixture rewards;
     ZZZFeeController fees;
     ZZZFeesCanonical canonical;
+    NativeFeeCaptureToken captureToken;
+    bool private captureBlocked;
     address constant ALICE = address(0xA11CE);
     address constant BOB = address(0xB0B);
     bytes32 constant POOL = keccak256("native-accounting");
@@ -98,9 +112,6 @@ contract NativeFeeRewardsTest is Test {
     function _credit(uint256 personal, uint256 shared) private {
         vm.deal(address(fees), address(fees).balance + personal + shared);
         vm.prank(address(fees)); rewards.creditPool{value: personal + shared}(11, address(0), personal, shared);
-    }
-    function _receiver() private returns (ZZZRewardReceiver r) {
-        r = ZZZRewardReceiver(payable(fees.createRewardReceiver(11, address(0))));
     }
     function testNativeFeeSplitIsIndexedAndSeparatelyBacked() public {
         _seed(1, ALICE, 100, true); _seed(2, BOB, 300, true); _allocate(1000);
@@ -169,7 +180,7 @@ contract NativeFeeRewardsTest is Test {
         assertEq(rewards.assetCount(), 33);
         PoolConfig memory c; c.key.currency0 = address(token); c.key.currency1 = rewards.assets(2); pools.set(POOL, c);
         vault.setEpoch(1);
-        vm.prank(address(vault)); fees.syncAllExternal();
+        vm.prank(address(vault)); membership.settleDust();
         assertEq(rewards.claimable(1, address(0)), 19); assertEq(fees.dust(11, address(0)), 0);
         _seed(2, BOB, 100, true); assertEq(rewards.claimable(2, address(0)), 0);
     }
@@ -180,15 +191,6 @@ contract NativeFeeRewardsTest is Test {
         assertEq(address(vault).balance, beforeVault + 50);
         fees.releaseBuyback(address(0), 50);
         assertEq(address(fees).balance, 0); assertEq(address(rewards).balance, 900);
-    }
-    function testNativeInboxHasOnePendingAndProtectionSlot() public {
-        _seed(1, ALICE, 100, true); ZZZRewardReceiver receiver = _receiver();
-        (bool ok,) = address(receiver).call{value: 1000}(""); assertTrue(ok);
-        (uint256 a0, uint256 a1) = receiver.pending(); assertEq(a0, 1000); assertEq(a1, 0);
-        receiver.sync(); assertEq(rewards.claimable(1, address(0)), 900);
-        assertEq(receiver.protectedNative(), 0); assertEq(address(receiver).balance, 0);
-        ac.setCanonicalState(2);
-        vm.prank(address(fees)); vm.expectRevert(); receiver.canonicalProtection(0, 0, 1);
     }
     function testNativeRewardCanonicalCodecPreservesIndicesFractionsOrphansAndConvertedCredits() public {
         _seed(1, ALICE, 1, false); _seed(2, BOB, 3, false); _credit(1, 3);
@@ -239,20 +241,15 @@ contract NativeFeeRewardsTest is Test {
         vm.prank(ALICE); uint256 paid = rewards.claim(1, address(0));
         assertEq(address(fees).balance + address(rewards).balance + paid, total);
     }
-    function testCanonicalNativeFeeReservesAndReceiverQuarantineMigrateThenRestore() public {
+    function testCanonicalLPOnlyReservesAndDonationQuarantineMigrateThenRestore() public {
         _seed(1, ALICE, 100, true); _allocate(1000);
         vm.deal(address(fees), address(fees).balance + 7);
-        address factory = address(fees.receiverFactory());
-        address predicted = vm.computeCreateAddress(factory, vm.getNonce(factory)); vm.deal(predicted, 23);
-        ZZZRewardReceiver receiver = _receiver(); assertEq(address(receiver), predicted);
-        assertEq(receiver.protected0(), 23); assertEq(receiver.protectedNative(), 0);
-        (bool ok,) = address(receiver).call{value: 27}(""); assertTrue(ok);
         ac.setCanonicalState(1); ac.settle(true); rewards.canonicalCapture(); canonical.canonicalCapture(); canonical.canonicalSettle();
-        assertEq(rewards.liabilities(address(0)), 925); assertEq(address(rewards).balance, 925);
-        (address asset, uint256 amount) = canonical.canonicalBacking(0); assertEq(asset, address(0)); assertEq(amount, 109);
-        assertEq(canonical.canonicalAssetCount(), 5);
-        (asset, amount) = canonical.canonicalBacking(2); assertEq(asset, address(0)); assertEq(amount, 23);
-        (asset, amount) = canonical.canonicalBacking(4); assertEq(asset, address(0)); assertEq(amount, 0);
+        assertEq(rewards.liabilities(address(0)), 900); assertEq(address(rewards).balance, 900);
+        (address asset, uint256 amount) = canonical.canonicalBacking(0); assertEq(asset, address(0)); assertEq(amount, 107);
+        assertEq(canonical.canonicalAssetCount(), 2);
+        assertEq(canonical.canonicalExport(0).length, 64);
+        assertEq(canonical.canonicalExport(3).length, 128);
 
         NativeFeeAccess destination = new NativeFeeAccess();
         ZZZFeeController nextFees = new ZZZFeeController(address(destination));
@@ -265,17 +262,67 @@ contract NativeFeeRewardsTest is Test {
         for (uint256 i; i < canonical.canonicalAssetCount(); ++i) {
             canonical.canonicalRelease(i, address(next)); next.canonicalAccept(i, address(canonical));
         }
-        next.canonicalValidate(); assertEq(address(next).balance, 13); assertEq(address(nextFees).balance, 109);
-        ZZZRewardReceiver nextReceiver = ZZZRewardReceiver(payable(nextFees.rewardReceivers(0)));
-        assertEq(address(nextReceiver).balance, 23); assertEq(nextReceiver.protected0(), 23); assertEq(nextReceiver.protectedNative(), 0);
+        next.canonicalValidate(); assertEq(address(next).balance, 13); assertEq(address(nextFees).balance, 107);
+        assertEq(nextFees.compoundBalance(11, address(0)), 50);
+        assertEq(nextFees.buybackBalance(address(0)), 50); assertEq(nextFees.accounted(address(0)), 100);
         vm.expectRevert(); next.canonicalAccept(0, address(canonical));
         destination.setCanonicalState(4);
         for (uint256 i; i < canonical.canonicalAssetCount(); ++i) {
             next.canonicalRelease(i, address(canonical)); canonical.canonicalRestore(i, address(next));
         }
-        canonical.canonicalValidate(); assertEq(address(fees).balance, 109); assertEq(address(receiver).balance, 23);
-        assertEq(receiver.protected0(), 23); assertEq(receiver.protectedNative(), 0);
-        assertEq(address(rewards).balance, 925); assertEq(address(next).balance, 13);
+        canonical.canonicalValidate(); assertEq(address(fees).balance, 107);
+        assertEq(fees.accounted(address(0)), 100); assertEq(fees.compoundBalance(11, address(0)), 50);
+        assertEq(fees.buybackBalance(address(0)), 50);
+        assertEq(address(rewards).balance, 900); assertEq(address(next).balance, 13);
+    }
+    function testLPOnlyFeesRejectForeignHomeIdentityAndRetiredIntakeSelectors() public {
+        _seed(1, ALICE, 100, true);
+        Position memory p = vault.group(11); p.homeChain = block.chainid + 1; vault.set(p);
+        vm.prank(address(vault)); vm.expectRevert(); fees.allocate{value: 100}(11, address(0), 100);
+        p.homeChain = block.chainid; p.homeVault = BOB; vault.set(p);
+        vm.prank(address(vault)); vm.expectRevert(); fees.allocate{value: 100}(11, address(0), 100);
+        assertEq(fees.accounted(address(0)), 0); assertEq(rewards.liabilities(address(0)), 0);
+        (bool creator,) = address(fees).call{value: 100}(abi.encodeWithSignature("allocateExternal(uint256,address,uint256)",11,address(0),100));
+        (bool receiver,) = address(fees).call(abi.encodeWithSignature("createRewardReceiver(uint256,address)",11,address(0)));
+        (bool remote,) = address(fees).call{value: 100}(abi.encodeWithSignature("creditRemote(uint256,address,uint256,uint256)",11,address(0),80,20));
+        (bool bridge,) = address(fees).call(abi.encodeWithSignature("bridgeRewards(uint256,address,bytes32)",11,address(0),bytes32(0)));
+        assertFalse(creator); assertFalse(receiver); assertFalse(remote); assertFalse(bridge);
+        assertEq(fees.FEE_INTAKE_VERSION(), 1); assertEq(address(fees).balance, 0);
+    }
+    function attemptCaptureDuringIntake() external {
+        require(msg.sender == address(captureToken));
+        ac.setCanonicalState(1);
+        (bool ok, bytes memory reason) = address(canonical).call(abi.encodeCall(canonical.canonicalCapture, ()));
+        assertFalse(ok);
+        assertEq(reason, abi.encodeWithSignature("ReentrancyGuardReentrantCall()"));
+        captureBlocked = true;
+        ac.setCanonicalState(0);
+    }
+    function testCanonicalCaptureBarrierRejectsMidReceiptCallbackWithoutBlockingTheFee() public {
+        _seed(1, ALICE, 100, true);
+        captureToken = new NativeFeeCaptureToken(address(fees), address(this));
+        rewards.addAsset(address(captureToken));
+        PoolConfig memory c; c.key.currency1 = address(captureToken); pools.set(POOL, c);
+        captureToken.mint(address(vault), 1000);
+        vm.startPrank(address(vault)); captureToken.approve(address(fees), 1000);
+        fees.allocate(11, address(captureToken), 1000); vm.stopPrank();
+        assertTrue(captureBlocked); assertEq(ac.canonicalState(), 0);
+        assertEq(rewards.claimable(1, address(captureToken)), 900);
+        assertEq(fees.accounted(address(captureToken)), 100);
+        assertEq(captureToken.balanceOf(address(fees)), 100);
+        assertEq(captureToken.balanceOf(address(rewards)), 900);
+    }
+    function testLPOnlyFeeCodecRejectsOlderHeadersAndExpandedBucketRows() public {
+        ac.setCanonicalState(2);
+        vm.expectRevert(); canonical.canonicalImport(0, abi.encode(uint256(2),uint256(1),uint256(0)));
+        canonical.canonicalImport(0, abi.encode(uint256(2),uint256(1)));
+        canonical.canonicalImport(1, abi.encode(address(0),uint256(0),uint256(0),uint256(0),uint256(0)));
+        canonical.canonicalImport(2, abi.encode(address(token),uint256(0),uint256(0),uint256(0),uint256(0)));
+        vm.expectRevert(); canonical.canonicalImport(3, abi.encode(uint256(11),address(0),uint256(0),uint256(0),uint256(0)));
+        canonical.canonicalImport(3, abi.encode(uint256(11),address(0),uint256(0),uint256(0)));
+        canonical.canonicalImport(4, abi.encode(uint256(11),address(token),uint256(0),uint256(0)));
+        vm.expectRevert(); canonical.canonicalImport(5, abi.encode(uint256(11),address(token),uint256(0),uint256(0)));
+        canonical.canonicalValidate();
     }
     function testCanonical33CurrencySourceCompanionPrefundsSurviveAbortAndRecapture() public {
         _seed(1, ALICE, 100, true); _allocate(1000);

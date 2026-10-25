@@ -1,3 +1,13 @@
+## Current fork qualification boundary - 2026-10-25
+
+The wrapped-accounting NativePoolFork fixture is retired. Current fork
+qualification is blocked explicitly before RPC/Forge until a reviewed native
+replacement is available; historical source/status fixtures in unit tests do not
+qualify a real venue. Current release accepts ETH/fixed ZZZ inputs only, has no
+creator inbox/integrated bridge, and uses explicit LP-only profiles. Existing
+local deployments and journals keep their old source version. Read the
+[simplification evidence](../reports/simplification-20261025/VERIFICATION.md).
+
 ## Focused verification selection - 2026-10-25
 
 The Linux keeper workflow now explicitly includes

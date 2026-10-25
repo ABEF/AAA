@@ -3,6 +3,7 @@ pragma solidity 0.8.26;
 
 import {ZZZModule} from "../../src/base/ZZZModule.sol";
 import {ZZZActivationAssets} from "../../src/ZZZActivationAssets.sol";
+import {ZZZActivationAssetsFactory} from "../../src/ZZZActivationAssetsFactory.sol";
 import {ZZZActivationEntry} from "../../src/ZZZActivationEntry.sol";
 import {Ids, PoolConfig} from "../../src/libraries/ZZZTypes.sol";
 
@@ -21,7 +22,7 @@ contract LocalNativeRegistry is ZZZModule {
     constructor(address controller, address weth, address zzz) ZZZModule(controller) {
         require(block.chainid == 31337 && weth.code.length > 0 && zzz.code.length > 0 && weth != zzz, "local fixture only");
         wrapper=weth; token=zzz;
-        activationAssets=new ZZZActivationAssets(controller,address(this));
+        activationAssets=ZZZActivationAssets(ZZZActivationAssetsFactory(access.activationAssetsFactory()).create());
         activationEntry=new ZZZActivationEntry(controller,address(this),address(activationAssets));
     }
     function configureNative(PoolConfig calldata next) external onlyGovernance returns(bytes32 id) {

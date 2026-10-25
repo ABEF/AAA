@@ -22,10 +22,10 @@ contract ZZZCustodyValidation {
     error Unauthorized();error InvalidState();error InvalidConfiguration();
     struct Request {
         uint256 bucket; bytes32 sourceSnapshot; address recipient; bytes32 recipientCodeHash;
-        uint256 destinationChain; address destinationCustody; bytes32 destinationPool;
+        address destinationCustody; bytes32 destinationPool;
         address output0; address output1; uint256 minimum0; uint256 minimum1;
         bool rawExit; uint256 exitMinimum0; uint256 exitMinimum1;
-        uint256 minimumZZZ; address verifier; bytes32 verifierCodeHash; uint256 deadline; bytes32 reviewHash;
+        uint256 minimumZZZ; uint256 deadline; bytes32 reviewHash;
     }
     constructor(address controller){migration=msg.sender;access=IZZZAccess(controller);}
     function validateRequest(bytes calldata encoded) external view {
@@ -33,13 +33,13 @@ contract ZZZCustodyValidation {
         Request memory r=abi.decode(encoded,(Request));ICustodyParkingState state=ICustodyParkingState(migration);
         IZZZVault v=IZZZVault(access.module(Ids.VAULT));Position memory p=v.group(r.bucket);
         address token=state.currentZZZ();
-        bool custodyOnly=r.destinationChain==block.chainid && r.destinationPool==bytes32(0) && r.destinationCustody==r.recipient;
+        bool custodyOnly=r.destinationPool==bytes32(0) && r.destinationCustody==r.recipient;
         if(!access.isSealed() || r.bucket==0 || state.activePlan(r.bucket)!=bytes32(0) ||
             (p.status!=PositionStatus.Active && p.status!=PositionStatus.Parked) || p.homeChain!=block.chainid ||
             p.homeVault!=address(v) || p.locationChain!=block.chainid || p.locationVault!=address(v) ||
             v.bucketTotalShares(r.bucket)==0 || r.sourceSnapshot!=state.sourceSnapshot(r.bucket) || (!r.rawExit && (token==address(0) ||
             token.codehash!=state.zzzCodeHash())) || r.recipient==address(0) || r.recipient==migration || r.recipient==address(this) ||
-            r.recipient==address(v) || r.recipient.codehash!=r.recipientCodeHash || r.destinationChain==0 ||
+            r.recipient==address(v) || r.recipient.codehash!=r.recipientCodeHash ||
             r.destinationCustody==address(0) || (!custodyOnly && r.destinationPool==bytes32(0)) || r.output1==address(0) || r.output0==r.output1 || (!custodyOnly && r.minimum0==0 && r.minimum1==0) ||
             (r.rawExit ? (r.exitMinimum0==0 && r.exitMinimum1==0) : r.minimumZZZ==0) || r.reviewHash==bytes32(0)) revert InvalidConfiguration();
     }
@@ -50,8 +50,8 @@ contract ZZZCustodyValidation {
         PoolConfig memory target=IZZZPools(access.module(Ids.POOLS)).accounting(r.destinationPool);
         IZZZRewards rewards=IZZZRewards(access.module(Ids.REWARDS));
         if(r.destinationCustody!=address(v) || v.poolBucket(r.destinationPool)!=r.bucket || !target.operationsEnabled ||
-            target.key.currency0!=r.output0 || target.key.currency1!=r.output1 || r.verifier!=address(0) ||
-            r.verifierCodeHash!=bytes32(0) || !rewards.isAsset(r.output0) || !rewards.isAsset(r.output1)) revert InvalidConfiguration();
+            target.key.currency0!=r.output0 || target.key.currency1!=r.output1 ||
+            !rewards.isAsset(r.output0) || !rewards.isAsset(r.output1)) revert InvalidConfiguration();
         if(r.rawExit) return(0,0,0,0);
         IZZZOracle oracle=IZZZOracle(access.module(Ids.ORACLE));
         return(oracle.price(r.output0),oracle.price(r.output1),10**oracle.tokenDecimals(r.output0),10**oracle.tokenDecimals(r.output1));

@@ -1,5 +1,14 @@
 # Canonical handoff: same-chain implementation
 
+
+## Current release simplification - 2026-10-25
+
+[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
+fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
+pool moves, external custody exit/recovery, royalty currencies and complete
+collection handoff. Current fee/custody profiles and canonical schema are
+explicit; old deployments/journals keep historical profiles.
+
 This is the implementation and operating reference for the undeployed handoff
 candidate. It is not release approval. The [central Todo](../TODO.md#task-security-chain-recovery)
 owns remaining work; the [canonical migration design](CANONICAL_MIGRATION_DESIGN.md)

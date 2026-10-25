@@ -1,0 +1,109 @@
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function _remote() private {
+        Position memory p = vault.group(BUCKET); p.homeChain = block.chainid + 1; p.homeVault = FOREIGN_VAULT;
+        p.homeToken0 = CANONICAL0; p.homeToken1 = CANONICAL1; vault.set(BUCKET, p);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function _snapshot(uint256 personal0, uint256 shared0, uint256 personal1, uint256 shared1)
+        private view returns (BridgeMessage memory m) {
+        Position memory p = vault.group(BUCKET);
+        m.version = 3; m.kind = MessageKind.Principal; m.bucketId = BUCKET; m.homeChain = p.homeChain; m.homeVault = p.homeVault;
+        m.canonicalToken0 = p.homeToken0; m.canonicalToken1 = p.homeToken1; m.totalShares = vault.bucketTotalShares(BUCKET);
+        m.allocatedIndividual0 = personal0; m.allocatedCollective0 = shared0;
+        m.allocatedIndividual1 = personal1; m.allocatedCollective1 = shared1;
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function _remoteCredit(MockToken token, uint256 personal, uint256 shared) private {
+        token.mint(address(this), personal + shared); token.approve(address(fees), personal + shared);
+        fees.creditRemote(BUCKET, address(token), personal, shared);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testUnsentRemoteReservesAreIncludedInDepartureCounters() public {
+        _seed(1, ALICE, BUCKET, 100, true); _remote(); _allocate(100);
+        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, CANONICAL0);
+        assertEq(personal, 80); assertEq(shared, 10); assertEq(fees.remoteIndividual(BUCKET, address(token0)), 80);
+        assertEq(fees.remoteCollective(BUCKET, address(token0)), 10); assertEq(token0.balanceOf(address(fees)), 100);
+        assertEq(fees.compoundBalance(BUCKET, address(token0)), 5); assertEq(fees.buybackBalance(address(token0)), 5);
+        assertEq(fees.accounted(address(token0)), 100);
+        assertEq(rewards.claimable(1, address(token0)), 0);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testRemoteDustAddsToLifetimeOwnerCounterBeforeDeparture() public {
+        _seed(1, ALICE, BUCKET, 100, true); _remote(); _allocate(19);
+        vm.prank(address(vault)); fees.flushDust(BUCKET, address(token0));
+        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, CANONICAL0);
+        assertEq(personal, 19); assertEq(shared, 0); assertEq(fees.remoteIndividual(BUCKET, address(token0)), 19);
+        assertEq(fees.accounted(address(token0)), 19);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testCumulativeRemoteBaselinePreservesPastHopsWithoutDoubleCounting() public {
+        _seed(1, ALICE, BUCKET, 100, true); _remote(); fees.importAccounting(_snapshot(1000, 600, 2000, 1200)); _allocate(100);
+        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, CANONICAL0);
+        assertEq(personal, 1080); assertEq(shared, 610);
+        (personal, shared) = fees.allocated(BUCKET, CANONICAL1); assertEq(personal, 2000); assertEq(shared, 1200);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testRemoteSnapshotCannotEraseUnsentLiabilities() public {
+        _seed(1, ALICE, BUCKET, 100, true); _remote(); _allocate(100);
+        BridgeMessage memory m = _snapshot(79, 10, 0, 0); vm.expectRevert(); fees.importAccounting(m);
+        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, CANONICAL0); assertEq(personal, 80); assertEq(shared, 10);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testReturnedBucketBarrierRequiresBothOwnerAndCollectiveFunding() public {
+        _seed(1, ALICE, BUCKET, 100, true); fees.importAccounting(_snapshot(50, 30, 0, 0));
+        assertFalse(fees.remoteSettled(BUCKET)); _remoteCredit(token0, 50, 0); assertFalse(fees.remoteSettled(BUCKET));
+        _remoteCredit(token0, 0, 30); assertTrue(fees.remoteSettled(BUCKET)); assertEq(rewards.claimable(1, address(token0)), 80);
+        (uint256 personal, uint256 shared) = fees.allocated(BUCKET, address(token0)); assertEq(personal, 50); assertEq(shared, 30);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testBothCanonicalAssetsMustBeFundedBeforeBarrierClears() public {
+        _seed(1, ALICE, BUCKET, 100, true); fees.importAccounting(_snapshot(50, 30, 100, 60));
+        _remoteCredit(token0, 50, 30); assertFalse(fees.remoteSettled(BUCKET)); _remoteCredit(token1, 100, 60);
+        assertTrue(fees.remoteSettled(BUCKET)); assertEq(rewards.claimable(1, address(token1)), 160);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testReversedSnapshotTokenOrderingPreservesCanonicalCounterIdentity() public {
+        _seed(1, ALICE, BUCKET, 100, true); BridgeMessage memory m = _snapshot(100, 60, 50, 30);
+        m.canonicalToken0 = address(token1); m.canonicalToken1 = address(token0); fees.importAccounting(m);
+        assertEq(fees.expectedIndividual(BUCKET, address(token0)), 50); assertEq(fees.expectedCollective(BUCKET, address(token0)), 30);
+        assertEq(fees.expectedIndividual(BUCKET, address(token1)), 100); assertEq(fees.expectedCollective(BUCKET, address(token1)), 60);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testHomeSnapshotCannotResetPreviousExpectedCounters() public {
+        _seed(1, ALICE, BUCKET, 100, true); fees.importAccounting(_snapshot(50, 30, 0, 0));
+        BridgeMessage memory m = _snapshot(0, 0, 0, 0); vm.expectRevert(); fees.importAccounting(m); assertFalse(fees.remoteSettled(BUCKET));
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testImportedAccountingRejectsWrongSharesBeforeUpdatingCounters() public {
+        _seed(1, ALICE, BUCKET, 100, true); BridgeMessage memory m = _snapshot(50, 30, 0, 0); m.totalShares++;
+        vm.expectRevert(); fees.importAccounting(m); assertEq(fees.expectedIndividual(BUCKET, address(token0)), 0);
+    }
+
+
+REASON: Retired unreachable cross-chain fee ledger path; current actual-LP-only home identity and codec rejection covered by NativeFeeRewards.
+    function testAccountingImportRequiresAuthenticatedReceiver() public {
+        _seed(1, ALICE, BUCKET, 100, true); BridgeMessage memory m = _snapshot(50, 30, 0, 0);
+        vm.prank(ALICE); vm.expectRevert(); fees.importAccounting(m);
+    }

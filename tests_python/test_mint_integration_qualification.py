@@ -4,11 +4,12 @@ from pathlib import Path
 import unittest
 
 from tests_python.test_production_v2 import fixture, NOW, SHA, addr
+from tests_python.fee_intake_fixtures import lp_only_fixture
 from zzz_ops import production_v2 as P
 
 
 def current_fixture():
-    config = fixture()
+    config = lp_only_fixture(fixture())
     config['mint_integration_version'] = 1
     chain = config['chains'][0]
     chain['services']['opensea']['integration'] = {

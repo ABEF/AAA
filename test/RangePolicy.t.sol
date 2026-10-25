@@ -60,6 +60,7 @@ contract RangePolicyTest is Test {
         oracle.setTestFeed(address(t0), address(f0), 1 days); oracle.setTestFeed(address(t1), address(f1), 1 days);
         config = PoolConfig(PoolKey(address(t0), address(t1), 3000, 200, address(0)),
             true, true, 5000, 500, 100, 100, 600, 100e18, 1e30);
+        registry.activationAssets().configureZZZ(address(t1),address(t1).codehash,keccak256("range policy fixture ZZZ"));
         pool = registry.configure(config);
         position.poolId = pool; position.lpTokenId = 1; position.status = PositionStatus.Active;
         position.homeChain = block.chainid; position.locationChain = block.chainid;

@@ -187,7 +187,9 @@ contract ContributionPriceSecurityTest is PooledVaultFixture {
     }
     function testUnrelatedCallerCannotOpenOrAdoptPriceSnapshot() public {
         ZZZContributionPricing guard=oracle.contributionPricing();
-        vm.expectRevert();guard.beginEntry(1,poolId,address(t0),100);
+        (bool legacy,)=address(guard).call(abi.encodeWithSignature("beginEntry(uint256,bytes32,address,uint256)",1,poolId,address(t0),100));
+        assertFalse(legacy);
+        vm.expectRevert();guard.beginEntryReviewed(1,poolId,address(t0),100,200);
         vm.expectRevert();guard.begin(1,1,100,100e18,0);
         vm.expectRevert();guard.contributionNav(1);
         vm.expectRevert();guard.endEntry();assertFalse(guard.active());

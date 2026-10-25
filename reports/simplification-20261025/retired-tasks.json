@@ -1,0 +1,72 @@
+{
+  "reason": "Explicit user removal from current scope; not implemented/completed work",
+  "tasks": [
+    {
+      "id": "creator-terms",
+      "status": "todo",
+      "title": "Agree the creator fee-sharing plan",
+      "text": "Historical/optional Pons work. The selected hookless ETH/ZZZ pool earns ordinary LP fees without a creator-payment agreement. Agree exact terms only if discretionary external funding is explicitly selected.",
+      "href": "docs/REVENUE_SHARE.md",
+      "acceptance": [
+        "2026-10-24 scope: optional/historical funding is not a primary launch blocker for the selected hookless pool. Preserve old questions and reopen only for an explicitly selected external revenue arrangement. See [pool decision](docs/POOL_SELECTION.md).",
+        "Ask the creator: what fraction is shared, and is its base total hook revenue, the creator payout after Pons deductions, or another explicitly defined net amount? Are conversion costs, buybacks, refunds or other deductions included? Record the formula with a worked example and an effective start date.",
+        "Confirm current hook fees, protocol/creator splits, buyback settings and actual creator payout control using dated on-chain evidence. The historical 1% hook / 70% creator observation is not a current payment guarantee. PoPL liquidity alone does not confer hook revenue rights.",
+        "Record written confirmation from the authorized party, the agreement version and how amendments, suspension or termination are handled. This external agreement does not change PoPL's fixed 80/10/5/5 allocation or create unfunded claims.",
+        "Resolve the linked [measurement](TODO.md#task-creator-measurement), [payments](TODO.md#task-creator-payments) and [continuity](TODO.md#task-creator-continuity) questions before treating the funding path as qualified. Stage actual receipt-to-allocation-to-holder-claim under [operating rehearsals](TODO.md#task-testnet-rehearsal)."
+      ]
+    },
+    {
+      "id": "creator-measurement",
+      "status": "todo",
+      "title": "Agree how PoPL liquidity participation is measured",
+      "text": "Historical/optional Pons work. The selected hookless ETH/ZZZ pool earns ordinary LP fees without a creator-payment agreement. Agree participation measurement only for an explicitly selected external-sharing arrangement.",
+      "href": "docs/REVENUE_SHARE.md#proposed-baseline",
+      "acceptance": [
+        "2026-10-24 scope: optional/historical funding is not a primary launch blocker for the selected hookless pool. Preserve old questions and reopen only for an explicitly selected external revenue arrangement. See [pool decision](docs/POOL_SELECTION.md).",
+        "Ask whether fee-weighted sampled active-liquidity share or time-weighted active-liquidity share is accepted. Define the numerator/denominator, treatment of out-of-range LP, parked periods, deposits/top-ups, compounding, rebalances and moves between pools; total USD TVL is not automatically active-liquidity share.",
+        "Agree epoch length, sample frequency, maximum gaps, confirmation/finality depth, intra-block/tick-crossing approximation, complete raw hook-fee events, per-asset calculation, conversion basis and rounding/carry. Agree what happens if data is incomplete; do not silently impute missing fee history.",
+        "Name who produces, independently checks and resolves disputes over each report. The current calculator and collector propose amounts only; they do not authenticate creator acceptance, reconstruct exact intra-swap attribution or authorize payment. Technical event/backfill qualification remains under [hosted services](TODO.md#task-host-services) and [dependency review](TODO.md#task-security-dependencies)."
+      ]
+    },
+    {
+      "id": "creator-payments",
+      "status": "todo",
+      "title": "Confirm who pays, in which asset, and when",
+      "text": "Historical/optional Pons work. The selected hookless ETH/ZZZ pool earns ordinary LP fees without a creator-payment agreement. Agree payer, asset, cadence and reconciliation only for an explicitly selected external-funding path.",
+      "href": "docs/EXTERNAL_REWARDS.md#payment-and-allocation",
+      "acceptance": [
+        "2026-10-24 scope: optional/historical funding is not a primary launch blocker for the selected hookless pool. Preserve old questions and reopen only for an explicitly selected external revenue arrangement. See [pool decision](docs/POOL_SELECTION.md).",
+        "Ask which wallet or contract controls payment/configuration, whether payment is manual or automated, its frequency/minimum amount and its currency/network. Confirm control without requesting a private key. There is no deployed PoPL receiver address to send to yet.",
+        "After deployment and review, verify the canonical per-bucket RewardReceiver, its immutable bucket/pair and optional native wrapper. Do not use the mint recipient or NFT-sale royalty receiver. Current intake supports only its admitted pair assets and an exact reviewed native wrapper; any other payout asset needs explicit technical qualification.",
+        "Agree invoice/report IDs, transaction/receipt references, period reconciliation, late/partial/duplicate payments, shortfalls and unpaid residuals. Receipt acceptance does not authenticate the sender; the receiver is permissionless and cannot debit the creator or enforce an off-chain promise.",
+        "Explain and obtain agreement on processing-time allocation: a payment received after an NFT activation can benefit that entrant even when the creator earned it earlier. The existing intake does not reconstruct historical per-NFT swap entitlements. Requested historical allocation requires a separately scoped design, not a bookkeeping assumption.",
+        "Rehearse the complete report-to-payment-to-80/10/5/5-allocation-to-current-holder-claim cycle, with funded backing and separate gas. Creator hook funding and 5% NFT-marketplace royalties remain distinct streams.",
+        "Historical WETH epochs retain their original wrapping semantics. Native V2 inboxes use wrapper zero for actual ETH accounting; qualify any optional payout currency and preserve separate creator-intake, LP-holder and NFT-royalty accounting."
+      ]
+    },
+    {
+      "id": "creator-continuity",
+      "status": "todo",
+      "title": "Agree pool-change, incident and payment continuity",
+      "text": "Define contacts and the funding process if markets, chains, payout control or the creator agreement change, including settlement of old periods.",
+      "href": "docs/EXTERNAL_REWARDS.md#entry-timing-and-remote-custody",
+      "acceptance": [
+        "Ask how sharing continues when liquidity moves to another pool/chain or PoPL changes its canonical deployment. Agree effective cutoffs, measurement across old/new pools, settlement of old periods, late payment destinations and verification of replacement receivers. Compatibility still requires reviewed protocol support; a commercial agreement cannot add missing migration code.",
+        "Name the operational/incident contact and backup contact; agree notification for hook, recipient, token, oracle or liquidity changes, payment delays and service failure. Define an escalation and reconciliation process without promising an unagreed response time.",
+        "For incident or termination, preserve already funded holder rights and reconcile unpaid periods under the agreement. Do not assume refunds, principal withdrawals, arbitrary receiver redirection or continued future revenue. Use [operator controls](docs/OPERATOR_MANUAL.md#stop-controls) and the separately tracked [migration work](TODO.md#future-migration).",
+        "Agree issuer token-upgrade terms: exact old/new ZZZ contracts, ratio direction and decimals, conversion mechanism/authority, migration deadline, fees, new pool/hook and payout-currency continuity. The governed custody recipient may perform the exchange but NFT rights and original liabilities must remain intact."
+      ]
+    },
+    {
+      "id": "bridge-operation",
+      "status": "todo",
+      "title": "Optional future bridge and remote accounting design",
+      "text": "Deferred, not a current production/sealing requirement. The operator uses explicit source-chain custody for external bridges or token migration. No integrated bridge, remote NAV/reward continuation or cross-chain NFT ownership relocation is claimed.",
+      "href": "docs/GOVERNED_CUSTODY_HANDOFF.md",
+      "acceptance": [
+        "If this scope is requested later, independently design reviewed finality/channel closure, asset backing, replay/canonical uniqueness, authenticated transport, remote reward/compound and full return semantics. No multisig/timeout proof override is preauthorized.",
+        "Existing optional remote-proof ABI/scaffolding is disabled and unqualified. Sealing fixes implementations; missing bridge/whole-collection cross-chain capabilities cannot be added merely by changing an address. A future compatible reviewed replacement while the source chain works is a separate project; post-halt recovery is unsolved."
+      ]
+    }
+  ]
+}

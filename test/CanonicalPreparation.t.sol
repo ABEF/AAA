@@ -22,18 +22,20 @@ import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {IZZZAccess} from "../src/interfaces/IZZZ.sol";
-import {Ids, PoolKey, PoolConfig, Position, PositionStatus, Route, BridgeMessage, MessageKind}
+import {Ids, PoolKey, PoolConfig, Position, PositionStatus}
     from "../src/libraries/ZZZTypes.sol";
 import {VaultPolicyMock, VaultLiquidityMock} from "./VaultAccounting.t.sol";
-import {MockToken, MockPools, MockFeed, MockRoutes, MockTransport, MockMessageReceiver}
+import {MockToken, MockPools, MockFeed}
     from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 
-// TEST ONLY: real sealed controller and economic modules; venue, routes,
-// remote message authentication, prices and VRF are explicit fixtures.
+// TEST ONLY: real sealed controller and economic modules; venue, prices and VRF are explicit fixtures.
 contract PreparationPools is MockPools {
     IZZZAccess public immutable access;
-    constructor(address controller) { access = IZZZAccess(controller); }
+    constructor(address controller) { access = IZZZAccess(controller); activationAssets=address(this); }
+    // TEST ONLY: admission is explicitly mocked; economic accounting is real.
+    address public zzz;
+    function setTestZZZIdentity(address token) external { zzz=token; }
 }
 contract PreparationPolicy is VaultPolicyMock {
     IZZZAccess public immutable access;
@@ -42,19 +44,6 @@ contract PreparationPolicy is VaultPolicyMock {
 contract PreparationVenue is VaultLiquidityMock {
     IZZZAccess public immutable access;
     constructor(address controller, address a, address b) VaultLiquidityMock(a, b) { access = IZZZAccess(controller); }
-}
-contract PreparationRoutes is MockRoutes {
-    IZZZAccess public immutable access;
-    constructor(address controller) { access = IZZZAccess(controller); }
-}
-contract PreparationTransport is MockTransport {
-    IZZZAccess public immutable access;
-    constructor(address controller) { access = IZZZAccess(controller); }
-    function canSend(bytes32) external pure returns (bool) { return true; }
-}
-contract PreparationReceiver is MockMessageReceiver {
-    IZZZAccess public immutable access;
-    constructor(address controller) { access = IZZZAccess(controller); }
 }
 contract PreparationMintCallback is IERC721Receiver {
     ZZZAccessController public immutable controller;
@@ -95,9 +84,6 @@ contract CanonicalPreparationTest is Test {
     ZZZMigration private migration;
     PreparationPools private pools;
     PreparationVenue private venue;
-    PreparationRoutes private routes;
-    PreparationTransport private transport;
-    PreparationReceiver private receiver;
     MockToken private t0;
     MockToken private t1;
     MockFeed private feed;
@@ -124,8 +110,6 @@ contract CanonicalPreparationTest is Test {
         fees = new ZZZFeeController(address(ac)); compounder = new ZZZCompounder(address(ac));
         buyback = new ZZZBuyback(address(ac), address(t0), 1e30);
         oracle = new ZZZOracle(address(ac), address(0)); migration = new ZZZMigration(address(ac));
-        routes = new PreparationRoutes(address(ac)); transport = new PreparationTransport(address(ac));
-        receiver = new PreparationReceiver(address(ac)); receiver.configure(address(t0), false);
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft));
         ac.bind(Ids.LIQUIDITY, address(venue)); ac.bind(Ids.REWARDS, address(rewards));
         ac.bind(Ids.MEMBERSHIP, address(membership)); ac.bind(Ids.FEES, address(fees));
@@ -136,6 +120,7 @@ contract CanonicalPreparationTest is Test {
         feed = new MockFeed(8, 1e8);
         oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
         rewards.addAsset(address(t0)); rewards.addAsset(address(t1));
+        pools.setTestZZZIdentity(address(t0)); migration.configureZZZ(address(t0),address(t0).codehash,keccak256("preparation fixed ZZZ"));
         vrf = new MockVRF(); nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
         PoolConfig memory c; c.key = PoolKey(address(t0), address(t1), 3000, 60, address(0));
         c.operationsEnabled = true; c.depositsEnabled = true; c.minDepositUSD = 1e18;
@@ -195,18 +180,16 @@ contract CanonicalPreparationTest is Test {
         vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector); ac.execute(address(ac), 0, data, bytes32(0), salt);
     }
 
-    function testClaimsTransfersPendingRevealAndReceiptSettlementStayAvailable() public {
+    function testClaimsTransfersPendingRevealAndLPFeeCollectionStayAvailable() public {
         uint256 active = _active(); uint256 pending = _mint(false); uint256 bucket = vault.nftBucket(active);
-        _govern(address(fees), abi.encodeCall(fees.createRewardReceiver, (bucket, address(0))));
-        address inbox = fees.rewardReceiver(bucket); _prepare();
-        t0.mint(inbox, 100); fees.syncExternal(bucket);
+        _prepare(); venue.setFees(100, 0); vault.collectFees(bucket, block.timestamp + 100);
         (bool funded,) = address(nft.royaltyRewards()).call{value: 1 ether}(""); assertTrue(funded);
         vrf.fulfill(nft.requestOf(pending), 0, 0); nft.finalizeTraits(pending); assertTrue(nft.traitsReady(pending));
         vm.prank(ALICE); nft.transferFrom(ALICE, BOB, active);
         vm.prank(BOB); assertEq(rewards.claim(active, address(t0)), 90);
         ZZZRoyaltyRewards royalties = nft.royaltyRewards();
         vm.prank(BOB); assertEq(royalties.claim(active, address(0)), 1 ether);
-        t0.mint(inbox, 100); fees.syncExternal(bucket);
+        venue.setFees(100, 0); vault.collectFees(bucket, block.timestamp + 100);
         (funded,) = address(royalties).call{value: 1 ether}(""); assertTrue(funded);
         ZZZClaimRouter router = nft.claimRouter(); ZZZClaimRouter.Claim[] memory claims = new ZZZClaimRouter.Claim[](2);
         claims[0] = ZZZClaimRouter.Claim(active, address(t0), false);

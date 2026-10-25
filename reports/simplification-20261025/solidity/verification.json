@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-10-25T03:44:47.171129+00:00",
+  "scope": "Internal AST-selected execution; not full regression, real-provider or deployment qualification.",
+  "scopes": [
+    {
+      "name": "AST7 pre-terminal-guard",
+      "selected": 87,
+      "passed": 87,
+      "elapsed_seconds": 495.766,
+      "production_sources": {
+        "src/ZZZAccessController.sol": "def515407c49c343dacf912918d4bde80aa854f4714ed6e5502949af53585929",
+        "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+        "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+        "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+        "src/ZZZBuyback.sol": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+        "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+        "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+        "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+        "src/ZZZContributionPricing.sol": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+        "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+        "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+        "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+        "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+        "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+        "src/ZZZMembership.sol": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
+        "src/ZZZMigration.sol": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+        "src/ZZZMigrationBudget.sol": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+        "src/ZZZNFT.sol": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+        "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+        "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+        "src/ZZZOracle.sol": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+        "src/ZZZPoolRegistry.sol": "10c776bd25b7308aa821615bc11672795aede856ef2be197532c452d26fec3af",
+        "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+        "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+        "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+        "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+        "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+        "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+        "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+        "src/ZZZVault.sol": "70f27b707ac269d5f8ef06460d21d6d54561af4830f57e1ec116873ef1463b96",
+        "src/ZZZVaultCanonical.sol": "735010a389b2c6d8c6e9dc80170635bebb64586291e7671a56e5e104e23e3a48",
+        "src/base/ZZZCanonicalLedger.sol": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+        "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+        "src/interfaces/IZZZ.sol": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+        "src/interfaces/IZZZCanonical.sol": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+        "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+        "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+        "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+        "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+        "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+        "src/libraries/ZZZTypes.sol": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e"
+      },
+      "manifest_sha256": "dfd83ed014cd5d61b30c52b0300daa98210db16500fa86bbcd69515becb3d148",
+      "summary_sha256": "3fca8a0c848fd981f09efa4d085e29503e2c842f00692a14f42e39c36b287429",
+      "results_sha256": "dc9b203a13444a856eaa54ce03f3e32b03f7374378b8fbabe38e49ec21934ea4"
+    },
+    {
+      "name": "AST8 final terminal guard",
+      "selected": 6,
+      "passed": 6,
+      "elapsed_seconds": 198.797,
+      "production_sources": {
+        "src/ZZZAccessController.sol": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+        "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+        "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+        "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+        "src/ZZZBuyback.sol": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+        "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+        "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+        "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+        "src/ZZZContributionPricing.sol": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+        "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+        "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+        "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+        "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+        "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+        "src/ZZZMembership.sol": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
+        "src/ZZZMigration.sol": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+        "src/ZZZMigrationBudget.sol": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+        "src/ZZZNFT.sol": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+        "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+        "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+        "src/ZZZOracle.sol": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+        "src/ZZZPoolRegistry.sol": "10c776bd25b7308aa821615bc11672795aede856ef2be197532c452d26fec3af",
+        "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+        "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+        "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+        "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+        "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+        "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+        "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+        "src/ZZZVault.sol": "70f27b707ac269d5f8ef06460d21d6d54561af4830f57e1ec116873ef1463b96",
+        "src/ZZZVaultCanonical.sol": "735010a389b2c6d8c6e9dc80170635bebb64586291e7671a56e5e104e23e3a48",
+        "src/base/ZZZCanonicalLedger.sol": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+        "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+        "src/interfaces/IZZZ.sol": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+        "src/interfaces/IZZZCanonical.sol": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+        "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+        "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+        "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+        "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+        "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+        "src/libraries/ZZZTypes.sol": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e"
+      },
+      "manifest_sha256": "9d0f1d7243f65c2778545aabedc9f22e5280a836c92ee881a6e84cc8a3888a8f",
+      "summary_sha256": "6772a8fb4c0d0248595cfaffc3a1b18f0371e7a640dda138701b519d667d1c44",
+      "results_sha256": "63af9fc544188a5b6bdd767c09f92aba5b22779f39b9e404ee67b31845a6e002"
+    }
+  ],
+  "unique_selected_methods": 89,
+  "repeated_methods": [
+    [
+      "AccessControllerTest",
+      "testCanonicalZZZIdentityMustBeBoundBeforeSeal()"
+    ],
+    [
+      "AccessControllerTest",
+      "testMissingOrMismatchedExitZZZCannotPermanentlySeal()"
+    ],
+    [
+      "AccessControllerTest",
+      "testRetiredBridgeModulesCannotBeBoundEvenBeforeSeal()"
+    ],
+    [
+      "AccessControllerTest",
+      "testSealErasesBootstrap()"
+    ]
+  ],
+  "fuzz": [
+    {
+      "contract": "CustodyHandoffTest",
+      "method": "testFuzzExitSwapLossLimit(uint16)",
+      "runs_reported": 1001
+    },
+    {
+      "contract": "NativeFeeRewardsTest",
+      "method": "testFuzzNativeFeeChunkingPreservesFundsAndAllocation(uint96,uint96)",
+      "runs_reported": 1000
+    },
+    {
+      "contract": "AccessControllerTest",
+      "method": "testFuzzTerminalCanonicalStateCannotReopen(uint8)",
+      "runs_reported": 1000
+    }
+  ],
+  "production_changed_between_scopes": [
+    "src/ZZZAccessController.sol"
+  ],
+  "final_production_hashes_match_current": true,
+  "final_selected_source_hashes_match_current": true,
+  "current_production_source_count": 41,
+  "normal_size_report_sha256": "32f3e35edb025afc95b5820baf8fe3f00fc302a4e5440bb42f16809cd77f8c7a",
+  "harness_sha256": "d95a638be139624cb109c34612230043f9f40a50a68672c17aaba3cca5c9c1ee",
+  "final_scope_wrapper_sha256": "c3794f6b5095ca21e8960b401a4916a5419d687f34167f139def02d2c51012ad",
+  "limitations": [
+    "Only selected test assertions executed;105 and91 unrelated test methods respectively were whitespace-omitted.",
+    "All selected and helper bodies remain byte-identical to successful reviewed compiler AST source.",
+    "The AST7 source retains earlier Access code; exact initcode with real constructor role arrays was over the limit and not deployment-approved.",
+    "Final normal-size evidence, final source typecheck and source-based terminal-state equivalence review are separate evidence.",
+    "Four Access cases repeated after the only production change; repetitions are counted once.",
+    "Test gas includes fixture/aggregate calls; no target-chain gas or keeper economic qualification is claimed.",
+    "No external RPC, public signing/transaction, deployment, service change or existing local chain/state access."
+  ]
+}

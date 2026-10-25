@@ -7,7 +7,7 @@ using DualOracleFixture for FixtureOracleType;
 
 import {PooledVaultFixture, VaultLiquidityMock} from "./VaultAccounting.t.sol";
 import {MockFeed} from "./mocks/Mocks.sol";
-import {Ids, PoolConfig, Position, PositionStatus, BridgeMessage, MessageKind} from "../src/libraries/ZZZTypes.sol";
+import {Ids, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 
 /// @dev Deliberately impaired accounting venue, not a deployed Uniswap dependency.
 contract ImpairedPooledVenue is VaultLiquidityMock {
@@ -177,31 +177,5 @@ contract PooledSecurityTest is PooledVaultFixture {
         assertEq(vault.sharesOf(id),0);assertEq(vault.bucketCount(),0);assertEq(vault.poolBucket(poolId),0);
         assertEq(t0.balanceOf(alice),100000);assertEq(venue.next(),1);assertEq(treasury.balance,paid);
         assertEq(uint256(vault.nftStatus(id)),uint256(PositionStatus.Dormant));assertEq(membership.totalEligible(),0);
-    }
-
-    function _outstandingRemoteFees(uint256 bucket) private {
-        BridgeMessage memory m;m.version=3;m.kind=MessageKind.Principal;m.bucketId=bucket;
-        m.homeChain=block.chainid;m.homeVault=address(vault);m.canonicalToken0=address(t0);m.canonicalToken1=address(t1);
-        m.totalShares=vault.bucketTotalShares(bucket);m.allocatedIndividual0=80;m.allocatedCollective0=10;
-        vm.prank(address(0x987));fees.importAccounting(m);
-    }
-
-    function testUnfundedHistoricalRemoteFeesBlockEntryTopUpAndMigrationWithoutBlockingClaims() public {
-        uint256 first=activatedPosition();uint256 second=_mint(bob);uint256 bucket=vault.nftBucket(first);
-        uint256 oldShares=vault.bucketTotalShares(bucket);uint256 lp=vault.group(bucket).lpTokenId;
-        _outstandingRemoteFees(bucket);assertFalse(fees.remoteSettled(bucket));
-        vm.prank(bob);vm.expectRevert();vault.activate(second,poolId,1000,1000,1,block.timestamp+100);
-        vm.prank(alice);vm.expectRevert();vault.increase(first,100,100,1,block.timestamp+100);
-        vm.expectRevert();vault.releaseForMigration(bucket,bytes32(uint256(1)),block.timestamp+100);
-        assertEq(vault.bucketTotalShares(bucket),oldShares);assertEq(vault.group(bucket).lpTokenId,lp);
-        venue.setFees(100,0);vault.collectFees(bucket,block.timestamp+100);
-        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),90);
-        assertFalse(fees.remoteSettled(bucket));
-        address receiver=address(0x987);t0.mint(receiver,90);
-        vm.startPrank(receiver);t0.approve(address(fees),90);fees.creditRemote(bucket,address(t0),80,10);vm.stopPrank();
-        assertTrue(fees.remoteSettled(bucket));
-        _activate(bob,second,1000,1000);
-        assertEq(rewards.claimable(second,address(t0)),0);
-        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),90);
     }
 }

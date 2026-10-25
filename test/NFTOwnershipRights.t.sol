@@ -124,19 +124,18 @@ contract NFTOwnershipRightsTest is PooledVaultFixture {
         assertEq(rewards.claimable(id, address(t0)), 0);
     }
 
-    function testSuccessiveTransfersCarryPendingCreatorReceiptsAndRoyalties() public {
+    function testSuccessiveTransfersCarryAccruedLPFeesAndPendingRoyalties() public {
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id);
-        address inbox = fees.createRewardReceiver(bucket, address(0));
         _ledgers(); nft.addRoyaltyAsset(address(t0));
-        t0.mint(inbox, 200); t0.mint(address(royalties), 50);
+        venue.setFees(200, 0); vault.collectFees(bucket, block.timestamp + 100);
+        t0.mint(address(royalties), 50);
         (bool ok,) = address(royalties).call{value: 2 ether}(""); require(ok);
-        assertEq(rewards.claimable(id, address(t0)), 0);
+        assertEq(rewards.claimable(id, address(t0)), 180);
         vm.prank(alice); nft.approve(OPERATOR, id);
         vm.prank(OPERATOR); nft.transferFrom(alice, bob, id);
         vm.prank(bob); nft.setApprovalForAll(OPERATOR, true);
         vm.prank(OPERATOR); nft.transferFrom(bob, CAROL, id);
         vm.prank(CAROL); nft.transferFrom(CAROL, bob, id);
-        fees.syncExternal(bucket);
         vm.startPrank(alice);
         vm.expectRevert(); rewards.claim(id, address(t0));
         vm.expectRevert(); royalties.claim(id, address(t0));

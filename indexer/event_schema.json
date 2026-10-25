@@ -402,6 +402,27 @@
     "name": "PrincipalBridged",
     "signature": "PrincipalBridged(uint256,bytes32,uint256,uint256)"
   },
+  "0x21bb0e30918ff3a95214cfdb2066c88f751c1b10307f34ec69a9b9f463f85c4f": {
+    "name": "ZZZIdentityConfigured",
+    "signature": "ZZZIdentityConfigured(address,bytes32,bytes32)",
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "codeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ]
+  },
   "0x255d9461222a8a158eada0b4467a6921d765c79d919f6d425ee64c2e894ba6d8": {
     "fields": [
       {
@@ -2659,6 +2680,32 @@
     ],
     "name": "CustodyRecovered",
     "signature": "CustodyRecovered(bytes32,uint256,uint256)"
+  },
+  "0xf5a85f6bd22231f5f3fc3492eb53e86cafdea16c71ca2726359e7a885ba87d0a": {
+    "name": "CustodyApproved",
+    "signature": "CustodyApproved(bytes32,uint256,address,address)",
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationCustody",
+        "type": "address"
+      }
+    ]
   },
   "0xf7125f47bfec080d93292ccc76a20bf0cb1b51903f5188cbf5909e05fbd258d9": {
     "fields": [

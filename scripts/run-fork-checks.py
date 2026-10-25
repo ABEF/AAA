@@ -152,6 +152,15 @@ def verify_fork_results(output):
     return total
 
 def run_fork(upstream,*,forge=None,run=subprocess.run,server_factory=RelayServer,relay_factory=Relay):
+    # The former wrapped/native fixture was retired, not qualified for the new
+    # LP-only candidate. Never contact RPC/Forge or substitute archived source.
+    missing=[suite.split(':',1)[0] for suite in FORK_SUITES
+        if not (ROOT/suite.split(':',1)[0]).is_file()]
+    if missing:
+        print('Fork qualification blocked: current selected fixture unavailable: '+', '.join(missing)+
+            '. A reviewed current native fork suite is required; archived tests are historical only. '
+            'No RPC or Forge process was started.',file=sys.stderr,flush=True)
+        return 2
     relay=relay_factory(upstream)
     executable=forge or shutil.which('forge') or 'forge'
     version=run([executable,'--version'],capture_output=True,text=True,check=False)

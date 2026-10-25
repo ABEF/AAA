@@ -1,5 +1,17 @@
 # Release approval record - NOT APPROVED
 
+## Simplified current release - 2026-10-25
+
+[Current candidate boundary](SIMPLIFIED_RELEASE.md): fixed pre-seal ZZZ identity
+plus native ETH only for contributions; LP-only fee intake; no creator inbox or
+integrated cross-chain/proof path. Keep separate royalty currencies, source-chain
+custody exit/full return and whole-collection same-chain handoff. Explicit current
+fee/custody/helper/schema pins must match; old local profiles are not upgraded.
+Scoped evidence belongs to the [simplification review](../reports/simplification-20261025/REVIEW.md).
+Final normal size/constructor gates, exact source bindings and deployment rehearsal
+remain mandatory; no previous pass or document generation supplies release approval.
+
+
 ## New capabilities do not close service approval - 2026-10-25
 
 [Service readiness work](../reports/release-services-20261025/VERIFICATION.md)

@@ -86,6 +86,8 @@ contract NativeWrapperPolicyTest is Test {
             controller.bind(ids[i], ids[i] == Ids.POOLS ? address(governed) : address(new BoundDummy(address(controller))));
         }
         CanonicalFixture.bind(address(controller));
+        // TEST ONLY: this suite isolates wrapper governance, not source admission.
+        vm.mockCall(address(governed.activationAssets()),abi.encodeWithSignature("zzz()"),abi.encode(address(0x7A7A)));
         controller.seal(); ZZZPoolRegistry.WrapperPolicy memory p = _policy(address(first));
         bytes32 id = keccak256(abi.encode(p)); bytes memory data = abi.encodeCall(governed.approveWrapperPolicy, (p));
         vm.expectRevert(); governed.approveWrapperPolicy(p);
@@ -113,6 +115,8 @@ contract NativeWrapperPolicyTest is Test {
         ZZZPoolRegistry.WrapperPolicy memory previous = _policy(address(first));
         bytes32 previousId = governed.approveWrapperPolicy(previous); governed.activateWrapperPolicy(previousId);
         CanonicalFixture.bind(address(controller));
+        // TEST ONLY: this suite isolates wrapper governance, not source admission.
+        vm.mockCall(address(governed.activationAssets()),abi.encodeWithSignature("zzz()"),abi.encode(address(0x7A7A)));
         controller.seal(); admin.setOwner(address(0));
         ZZZPoolRegistry.WrapperPolicy memory renounced = previous; renounced.adminOwner = address(0);
         bytes32 id = keccak256(abi.encode(renounced));
