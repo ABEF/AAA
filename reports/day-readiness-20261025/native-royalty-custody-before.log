@@ -1,0 +1,66 @@
+test_current_holdings_survive_native_custody_and_return_before_recovery (tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_current_holdings_survive_native_custody_and_return_before_recovery) ... ERROR
+test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income) ... ERROR
+test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort) ... ERROR
+
+======================================================================
+ERROR: test_current_holdings_survive_native_custody_and_return_before_recovery (tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_current_holdings_survive_native_custody_and_return_before_recovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_native_royalty_custody_reporting.py", line 68, in test_current_holdings_survive_native_custody_and_return_before_recovery
+    held = self.read()
+           ^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_native_royalty_custody_reporting.py", line 58, in read
+    return Projection(self.cfg, self.rpc, clock=lambda: 1000).nft(str(self.identifier))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 526, in nft
+    settlement = self.royalty_reporting.read(nft_id, weight, royalty_assets, health, block)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\royalty_reporting.py", line 103, in read
+    raise ProjectionError('Inconsistent royalty currency eligibility')
+frontend_api.service.ProjectionError: Inconsistent royalty currency eligibility
+
+======================================================================
+ERROR: test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_native_royalty_custody_reporting.py", line 112, in test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income
+    model = self.model(); native_activation(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_native_royalty_custody_reporting.py", line 40, in native_activation
+    consume(model, entry)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_earnings.py", line 33, in consume
+    model(ev['address'],ev['topics'],ev['data'],int(ev['blockNumber'],16),ev['blockHash'],
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 191, in __call__
+    self.royalty(name, topics, t, d, timestamp, transaction)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 201, in royalty
+    require(identifier in self.minted and identifier not in self.weights and asset != ZERO and asset in self.cohorts,
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 39, in require
+    raise HistoryError(message)
+frontend_api.history.HistoryError: Invalid deferred royalty activation
+
+======================================================================
+ERROR: test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_native_royalty_custody_reporting.py", line 126, in test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort
+    model = self.model(); native_activation(model)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_native_royalty_custody_reporting.py", line 40, in native_activation
+    consume(model, entry)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_earnings.py", line 33, in consume
+    model(ev['address'],ev['topics'],ev['data'],int(ev['blockNumber'],16),ev['blockHash'],
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 191, in __call__
+    self.royalty(name, topics, t, d, timestamp, transaction)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 201, in royalty
+    require(identifier in self.minted and identifier not in self.weights and asset != ZERO and asset in self.cohorts,
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 39, in require
+    raise HistoryError(message)
+frontend_api.history.HistoryError: Invalid deferred royalty activation
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.212s
+
+FAILED (errors=3)

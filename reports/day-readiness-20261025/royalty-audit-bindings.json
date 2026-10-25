@@ -1,0 +1,250 @@
+{
+  "review": "Independent royalty/refactor and daywide funded-rights preservation slice",
+  "revisions": {
+    "day_baseline": "3551868d3413f650e07523229b959d3ea7d0f4a8",
+    "immediate_baseline": "964e6b6e14dfc91670ab74b6c5d34d8fe4da39bb",
+    "reference": "35007db755ad4007013c1828f83983202647857a",
+    "current_head": "55011c05aac491002f035054017aa27f5a8749a0"
+  },
+  "day_scope": "Europe/Paris2026-10-25 is 25hours:2026-10-24T22:00:00Z inclusive to2026-10-25T23:00:00Z exclusive",
+  "royalty_helper": {
+    "entire_source_equal_after_only_exact_deleted_helper_and12identifier_replacements": true,
+    "day_baseline_royalty_source_equals_immediate_baseline": true,
+    "current_royalty_source_equals_reference": true,
+    "exact_balance_expression": "return asset == address(0) ? address(this).balance : IERC20(asset).balanceOf(address(this));",
+    "existing_base_function_nonvirtual": true,
+    "call_sites": [
+      {
+        "ordinal": 1,
+        "baseline_function": "convertBatch",
+        "baseline_line": 153,
+        "line": "uint256 beforeSource = _balance(asset);"
+      },
+      {
+        "ordinal": 2,
+        "baseline_function": "convertBatch",
+        "baseline_line": 158,
+        "line": "if (output == 0 || _balance(asset) + total != beforeSource ||"
+      },
+      {
+        "ordinal": 3,
+        "baseline_function": "exitCustody",
+        "baseline_line": 265,
+        "line": "expectedBalance==0 || _balance(asset)!=expectedBalance) revert InvalidState();"
+      },
+      {
+        "ordinal": 4,
+        "baseline_function": "returnCustody",
+        "baseline_line": 284,
+        "line": "if(_balance(asset)<accounted[asset]) revert InvalidState();"
+      },
+      {
+        "ordinal": 5,
+        "baseline_function": "pending",
+        "baseline_line": 293,
+        "line": "uint256 balance = _balance(asset);"
+      },
+      {
+        "ordinal": 6,
+        "baseline_function": "_sync",
+        "baseline_line": 300,
+        "line": "uint256 balance = _balance(asset);"
+      },
+      {
+        "ordinal": 7,
+        "baseline_function": "_claim",
+        "baseline_line": 375,
+        "line": "if (_balance(asset) < accounted[asset]) revert InvalidState();"
+      },
+      {
+        "ordinal": 8,
+        "baseline_function": "claimable",
+        "baseline_line": 386,
+        "line": "uint256 balance = _balance(asset);"
+      },
+      {
+        "ordinal": 9,
+        "baseline_function": "canonicalCapture",
+        "baseline_line": 416,
+        "line": "uint256 balance = _balance(asset);"
+      },
+      {
+        "ordinal": 10,
+        "baseline_function": "canonicalImport",
+        "baseline_line": 472,
+        "line": "uint256 prefund = _balance(asset);"
+      },
+      {
+        "ordinal": 11,
+        "baseline_function": "canonicalActivate",
+        "baseline_line": 503,
+        "line": "uint256 extra = _balance(asset) - accounted[asset];"
+      },
+      {
+        "ordinal": 12,
+        "baseline_function": "forwardLate",
+        "baseline_line": 516,
+        "line": "amount = _balance(asset);"
+      }
+    ]
+  },
+  "source_bindings": [
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "day_baseline_sha256": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+      "reference_sha256": "f12c7b92d4fece2aa9d99b05da484a4467e0ecd95ce5f21198ca273be42ad921",
+      "current_sha256": "f12c7b92d4fece2aa9d99b05da484a4467e0ecd95ce5f21198ca273be42ad921",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "day_baseline_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "reference_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "current_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "day_baseline_sha256": "76c7e63beb6756cbce8172cc346c0d045f777a9b95b538c7c0622e63c6e5be0b",
+      "reference_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "current_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "day_baseline_sha256": "de15c9ffa3db0ecf4ccd9af2e3c3ad2ac728318f645deb528f62593dabb9a600",
+      "reference_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "current_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "day_baseline_sha256": "59b2a0819bc31369ff94c6ccd173b9993b9c7e1ff6acadd15cb0d2f3b2094e8e",
+      "reference_sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "current_sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "day_baseline_sha256": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+      "reference_sha256": "306715bf51d163f41ac6c072931e15732699f3cf7230345cc1e3b6aaf0a8fb4c",
+      "current_sha256": "306715bf51d163f41ac6c072931e15732699f3cf7230345cc1e3b6aaf0a8fb4c",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "day_baseline_sha256": "be23e77c4c28c7ec2841ca8749e6bbab5a7dbc92799591bbbd0671c8c4eb8ea2",
+      "reference_sha256": "a2d94a8152856240eb75d514a8d8f37d5f6412d3f3b1edca0ff31757c318940c",
+      "current_sha256": "a2d94a8152856240eb75d514a8d8f37d5f6412d3f3b1edca0ff31757c318940c",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "day_baseline_sha256": "de16a53238670ac21616ea3784feced8a932cc2a0cde7b5601c42e13a8985a55",
+      "reference_sha256": "fc236044d55fd7d5b834128f10a0fd732ba57bf1f0953b2995b3a34a496f38e0",
+      "current_sha256": "fc236044d55fd7d5b834128f10a0fd732ba57bf1f0953b2995b3a34a496f38e0",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "day_baseline_sha256": "a3f11b86c188c2a72886e48adcb934bcd797a6cb5584800ee4a34be7420f6496",
+      "reference_sha256": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68",
+      "current_sha256": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "day_baseline_sha256": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+      "reference_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "current_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "day_baseline_sha256": null,
+      "reference_sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "current_sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "day_baseline_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "reference_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "current_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "frontend_api/history.py",
+      "day_baseline_sha256": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+      "reference_sha256": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+      "current_sha256": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "frontend_api/earnings.py",
+      "day_baseline_sha256": "c7bfd2287b3c0846e7b8ccab6fed30382ed1331a90814e825b39c790bbc6d6a0",
+      "reference_sha256": "c7bfd2287b3c0846e7b8ccab6fed30382ed1331a90814e825b39c790bbc6d6a0",
+      "current_sha256": "c7bfd2287b3c0846e7b8ccab6fed30382ed1331a90814e825b39c790bbc6d6a0",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "frontend_api/earnings_replay.py",
+      "day_baseline_sha256": "0e0c988a68e2778376b5c362470ae01f8227ecba5c5b40dd0a5c737371c0de99",
+      "reference_sha256": "0e0c988a68e2778376b5c362470ae01f8227ecba5c5b40dd0a5c737371c0de99",
+      "current_sha256": "10e7717b419fe0b26c7e73ec79b99b72071c6788c189b16dbdb1fae3773678d2",
+      "unchanged_reference_to_current": false
+    },
+    {
+      "path": "frontend_api/royalty_reporting.py",
+      "day_baseline_sha256": "04d025faa99c700bc878c7c61af036a2d2ac19a5b21b04d663c88c1b5041d317",
+      "reference_sha256": "04d025faa99c700bc878c7c61af036a2d2ac19a5b21b04d663c88c1b5041d317",
+      "current_sha256": "bc5ae709afb482b719c3db7ac3aa2c1df3c1bbf5caf36cf830ee6106b5afc915",
+      "unchanged_reference_to_current": false
+    },
+    {
+      "path": "frontend_api/service.py",
+      "day_baseline_sha256": "6487985ece0a506a2ee50d3c2702021655c1076ddef4cf72804fa5f577021d59",
+      "reference_sha256": "090b5f3ee577c7954100ad54182f109fe31b7f175c2a330ec2fed15b44eb99e7",
+      "current_sha256": "6a2325fe6f1e3c515bf982bb0b93eb16b6bd67aa76862cac75bffa80f2a5c3c7",
+      "unchanged_reference_to_current": false
+    },
+    {
+      "path": "test/NFTOwnershipRights.t.sol",
+      "day_baseline_sha256": "12db5a9d56f09d03b51ee1f933c98c28ed944979c17657dc73e8e7963277809f",
+      "reference_sha256": "53740c3e1ff7d5bbf1af0686aba26233711dd296123c9cc4ad29e1ec1cffb648",
+      "current_sha256": "53740c3e1ff7d5bbf1af0686aba26233711dd296123c9cc4ad29e1ec1cffb648",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "test/RoyaltyCustody.t.sol",
+      "day_baseline_sha256": "f3e43a0c99b57e9d41e08731a2a5fda5821d29b812f2cf0a6de83cd2e9ec8c84",
+      "reference_sha256": "f3e43a0c99b57e9d41e08731a2a5fda5821d29b812f2cf0a6de83cd2e9ec8c84",
+      "current_sha256": "f3e43a0c99b57e9d41e08731a2a5fda5821d29b812f2cf0a6de83cd2e9ec8c84",
+      "unchanged_reference_to_current": true
+    },
+    {
+      "path": "tests_python/test_native_royalty_custody_reporting.py",
+      "day_baseline_sha256": null,
+      "reference_sha256": null,
+      "current_sha256": "ec28cd0ce375499966f01f62305616b562097b53a2e47766be19f5861e8c089c",
+      "unchanged_reference_to_current": null
+    }
+  ],
+  "new_finding": {
+    "id": "RR-P2-1",
+    "severity": "P2",
+    "confidence": "high",
+    "classification": "Pre-existing integration gap from native royalty custody addition2026-10-23; neither350helperconsolidation nor25Octpruning introduces it.",
+    "prior_reporting_guard_commit": "83d844d5",
+    "prior_replay_guard_commit": "61f2ac89",
+    "native_custody_producer_commit": "e36a581a",
+    "fix_scope": [
+      "frontend_api/royalty_reporting.py",
+      "frontend_api/earnings_replay.py",
+      "frontend_api/service.py"
+    ],
+    "new_test": "tests_python/test_native_royalty_custody_reporting.py",
+    "verification": "native-royalty-custody-verification.json",
+    "solidity_changes": false
+  }
+}

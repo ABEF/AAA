@@ -209,6 +209,7 @@ Custody, ownership and reward accounting.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
   - [Auditability refactor](reports/auditability-refactor-20261025/REVIEW.md) and [verification](reports/auditability-refactor-20261025/VERIFICATION.md): shared private settlement, read-only v3 identity checks, separate converters over a neutral abstract base, named phases and explicit private NFT/bucket identifiers. No new authority, economic policy or deployment profile. Compiler equivalence and affected execution retain exact scopes; actual services and independent audit remain open.
   - [Deep cleanup review](reports/deep-cleanup-20261025/REVIEW.md) and [verification](reports/deep-cleanup-20261025/VERIFICATION.md): inherited royalty balance/error reuse, guardian and initial role logs, dependency-bound evidence and obsolete native/outage fixtures. 32 scoped Solidity methods,41 Python methods and37 normal gates pass; 75 production/265 AST inputs are explicit. No economic/authority/storage change; new logs and ABI metadata differences are documented. Actual release gates remain open.
+  - [Independent day audit](reports/day-readiness-20261025/REVIEW.md) reconstructs all24 reachable Paris-day commits and independently checks reference35007db claims. No production Solidity change; native custody API/replay, contradictory saved evidence and two native-test sensitivity gaps are corrected. See exact fresh/reused scopes and open [release gates](reports/day-readiness-20261025/READINESS.md).
 
   </details>
 
@@ -333,6 +334,7 @@ Custody, ownership and reward accounting.
   - See the [operator appendix](docs/OPERATOR_MANUAL.md#callable-contract-reference) and [scoped verification](reports/release-services-20261025/function-reference/VERIFICATION.md). Normal verification now checks both Todo and this reference before running broader checks; no fresh full CI pass is claimed.
   - Current source-bound catalog is31contracts/643functions. The removed Buyback setter/event, immutable getter and matching setup order are reflected in exact compiler/reference notes. Maintain all callable purpose, authority and input/output explanations for future changes.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
+  - Snapshot3 now enforces independent bytecode/constructor limits, coherent raw artifact/status/freeze bindings and a closed stored compiler source inventory. 31 distinct affected methods pass across three scopes; actual matching75-source artifacts regenerate31contracts/608functions/13receive hooks without production recompilation. Dynamic actual release arguments remain unqualified; self-consistent metadata is not independent build/test authentication. Strict outer integer schemas and fixed-point ABI types are validated; the last source has three targeted passes, not a fresh31-method rerun.
 
   </details>
 
@@ -379,6 +381,7 @@ The data and services behind the app.
   - [Scoped outage regression](reports/comprehensive-improvement-20261025/VERIFICATION.md) prevents archive outages from erasing history. Source-currency rewards and conversions/claims remain distinct; complete actual historical ingestion and honest current-price availability still require qualification.
   - [Read-integrity fixes](reports/native-readiness-20261025/REVIEW.md) reject missing native claim rows rather than presenting a partial sum; per-NFT history now uses the existing complete-currency/current-price/period arithmetic validator. Failed history remains unavailable without discarding valid LP. Synthetic parser/actual API DTO browser evidence does not qualify actual ingestion or feed services.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
+  - Current replay authenticates complete native/optional custody exit-return intervals, accepts native deferral only during custody and never counts returned backing as income. After full return, old-cohort receipts and waiting-NFT recovery reconcile against chain. In-transit/missing/mismatched history remains unavailable. Separate database rebuild and actual provider/service acceptance are still required; see the [audit](reports/day-readiness-20261025/royalty-matrix.md).
 
   </details>
 
@@ -434,6 +437,7 @@ The data and services behind the app.
 
   - [Scoped verification](reports/royalty-reporting/VERIFICATION.md): 138 affected Python cases and 20 supplemental cases pass. Forty unchanged Solidity source bindings are reused; ten getter ABIs and 26 added indexer schemas match existing compiler artifacts. No Solidity rerun, public transaction, service deployment or website change.
   - The profile is explicit and pin-reviewed; legacy contracts do not inherit it. Currency failures do not bypass core identity, lifecycle, canonical freshness, full history coverage or request budgets. Conversion is neither a claim nor new revenue, and native claimable already includes remaining conversion credits.
+  - [Native custody correction](reports/day-readiness-20261025/royalty-matrix.md): verified nonce/cohort checks allow legitimate delayed ETH eligibility; balances remain unavailable while backing is external. Full NFT projection preserves LP/healthy currencies.52 distinct affected read/replay methods pass across recorded source scopes, including13new cases; actual native-custody producer case passes separately. No service/database rollout performed.
 
   </details>
 
@@ -753,12 +757,20 @@ Three required testing layers, with source-bound evidence.
   - Review explicitly archived obsolete pre-pricing ActivationEntry/creator/bridge fixtures and their source receipts; retain actual current Entry/Pricing security assertions in active integrations. Qualify the final frozen repository workflow without treating a targeted pass or retired test as a green full regression.
   - Implemented [frozen review package and strict verification](docs/FROZEN_REVIEW_BUNDLE.md): committed blobs, source/tree/dependency identities, required inputs and excluded-path inventory; no extraction, arbitrary execution, overwritten output or forged approval.19 distinct focused Python methods across recorded scopes. Regenerate for the final exact release commit and independently verify its hash; dependencies, operating rehearsals and external audit are not bundled or passed.
   - Run fresh complete frozen-release regression and source-bound static analysis/triage; the deep-cleanup campaign is targeted local evidence, not a green full workflow, live provider qualification, operating rehearsal or independent audit. The new reference snapshot2 requires exact imported dependency and build-file bindings.
+  - The current checked-in Slither review is stale:43bound names versus47required, with11additions/7retirements/28changed retained inputs. Current-source static-review gate is FAIL, not waived. Run/review a fresh frozen-source analysis, then independent audit/remediation and exact release sign-off; see [readiness](reports/day-readiness-20261025/READINESS.md).
 
   </details>
 
 <a id="task-local-verification"></a>
 
 - [x] **[Local contract and integration tests](reports/preproduction-audit-20261025/VERIFICATION.md)** - Implemented. Source-scoped local unit/invariant/integration evidence is recorded, including the October25 installed-v4 composition harness and repaired non-vacuous growth invariant. Keeper audit records199 distinct scoped passes and one Unix-only skip. Earlier receipts retain their source scope; these are not a fresh full regression, actual providers or production approval.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - The [day audit verification](reports/day-readiness-20261025/VERIFICATION.md) adds3project EVM cases,4isolated Access gas comparisons and83distinct Python methods across scoped runs. New native tests independently exercise partial exact-input rejection and intended uint128 bounds.37normal gates reuse exact75-source bindings;265-input AST refreshed for one changed test. Earlier full/regional counts retain their original scope; no new full regression is claimed.
+
+  </details>
 
 <a id="task-economic-rights-audit"></a>
 
@@ -907,6 +919,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Comprehensive review/coverage](reports/comprehensive-improvement-20261025/COVERAGE.md) and [findings](reports/comprehensive-improvement-20261025/REVIEW.md) distinguish fresh fixes from reused evidence and external gates. Review-cap, metadata, buyback, RPC transport and indexer atomicity improvements do not replace independent audit or qualify all48areas exhaustively.
   - [25October internal combined review](reports/daily-security-20261025/REVIEW.md) includes financial/custody/service paths, native source consistency, immutable burn target, funded historical dust and indexer provenance. No new unprivileged theft/dilution/double-claim path was confirmed in inspected scope; this is not an independent audit or guarantee of exploit absence.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
+  - [Day audit](reports/day-readiness-20261025/REVIEW.md) fixes a pre-existing contract/API/replay boundary mismatch during native royalty custody. Review converted-credit enrollment and both old/new NFT cohorts; no principal/reward rights or permissions change. Verified source/mocked API history is not hosted-provider qualification.
 
   </details>
 
@@ -1026,6 +1039,7 @@ Decisions and rehearsals before real funds.
 
   - The new3-address controller constructor has fixed96-byte ABI arguments; no proposer/executor arrays remain. Review governance wallet signers/threshold separately from the controller address. [Exact sizes](reports/architecture-pruning-20261025/bytecode-comparison.json) use unchanged normal compiler/EVM limits.
   - Qualify actual bootstrap, module/helper/authority bindings, deployment calldata, source/runtime pins, chain gas and setup/sealing procedures. No deployment follows from local gates; never waive EIP-170/EIP-3860.
+  - Controlled same-context Access comparison reproduces9207→9252runtime and42081→42256creation (+45/+175); constructor fixed arguments96bytes give42352total/6800margin. Four isolated role-gas measurements pass, including CREATE+12312raw execution gas. RoyaltyFactory runtime margin69bytes and actual NFT URI constructor arguments require exact release qualification; see [gas evidence](reports/day-readiness-20261025/role-gas.md).
 
   </details>
 
@@ -1065,4 +1079,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8ab88a415f9e7b37edfd9dcc458f33393574e39622725b9342debe3bd4bba85c`.
+Snapshot SHA-256: `7a5272e0e20e46cb6ce01122ca61584134ecb45434733bf3a1529637f0cf2f2c`.

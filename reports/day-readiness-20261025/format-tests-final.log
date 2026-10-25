@@ -1,0 +1,8 @@
+test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) ... ok
+test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) ... ok
+test_canonical_nested_tuple_arrays_and_overloads_are_exact (tests_python.test_function_reference.FunctionReferenceTests.test_canonical_nested_tuple_arrays_and_overloads_are_exact) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.231s
+
+OK

@@ -1,5 +1,35 @@
 # PoPL operator manual
 
+## Day-change audit: royalty custody and evidence - 2026-10-25
+
+No new on-chain function, permission, default or signing capability is added.
+
+- **Native royalty custody:** a new activated NFT can have its known rarity
+  weight but deferred ETH eligibility while ETH backing is outside the royalty
+  ledger. The API now reports this legitimate state. ETH claimable remains
+  unavailable, never zero; working LP and other currencies remain separate.
+  Read-only reporting does not synchronize, return funds or enroll the NFT.
+- **Return and recovery:** use the existing exact `returnCustody(asset,id)`
+  procedure with the original full amount/ID. A return is backing restoration,
+  not income. After full return, ordinary `sync(asset)` allocates unseen receipts
+  to the earlier cohort before enrolling waiting NFTs. Do not force eligibility
+  or retry the already completed activation. See [royalty reporting](ROYALTY_REPORTING.md#native-custody-history-and-recovery).
+- **Read-service rollout:** preserve configuration, pins, original SQLite and
+  backups. Rebuild/replay into a separate verified database from the earliest
+  affected custody event, retaining deployment anchors and all raw logs. Compare
+  exit IDs, exact full returns, both cohorts and final chain entitlements before
+  switching the service. Partial/missing history remains unavailable. This task
+  did not perform a rollout, service restart or database repair.
+- **Evidence snapshot 3:** regenerate with matching saved compiler input/output
+  and normal size report. The importer recomputes bytecode/constructor bounds
+  and rejects contradictory status/hashes/inventories. Never relabel schema 2,
+  edit success flags or substitute minimum dynamic arguments for actual release
+  constructor qualification. See [development](DEVELOPMENT.md) and
+  [verification](../reports/day-readiness-20261025/VERIFICATION.md).
+- **Release stop:** current checked-in Slither review does not match source.
+  Run and review current analysis before release; updating its hash alone is
+  not analysis. All external production gates remain open.
+
 ## Deep cleanup review - 2026-10-25
 
 The [review](../reports/deep-cleanup-20261025/REVIEW.md) changes no operator

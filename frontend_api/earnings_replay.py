@@ -20,6 +20,8 @@ SPECS = {
  ('royalties', 'Activated(uint256,uint256)'): (1, 1),
  ('royalties', 'RoyaltyAssetDeferred(uint256,address)'): (2, 0),
  ('royalties', 'RoyaltyEligibilityRecovered(address,uint256,uint256)'): (1, 2),
+ ('royalties', 'RoyaltyCustodyExited(bytes32,address,address,uint256,bytes32)'): (3, 2),
+ ('royalties', 'RoyaltyCustodyReturned(bytes32,address,uint256)'): (2, 1),
  ('royalties', 'RoyaltiesReceived(address,uint256,bool)'): (1, 2),
  ('handoff', 'Frozen(bytes32,address)'): (2, 0),
  ('handoff', 'Aborted(bytes32)'): (1, 0),
@@ -59,6 +61,8 @@ class Replay:
         self.cohorts = {}
         self.deferred = defaultdict(set)
         self.pending_recovery = {}
+        self.royalty_custody = {}
+        self.custody_ids = set()
         self.owner_index = defaultdict(int)
         self.collective_index = defaultdict(int)
         self.royalty_index = defaultdict(int)
@@ -127,7 +131,7 @@ class Replay:
         self.events += 1
         if role == 'handoff':
             if name == 'Frozen':
-                require(not self.frozen, 'Repeated canonical freeze')
+                require(not self.frozen and not self.royalty_custody, 'Repeated freeze or external royalty custody')
                 self.frozen = True
             elif name == 'Aborted':
                 require(self.frozen and not self.pending_recovery, 'Invalid canonical abort chronology')
@@ -198,7 +202,8 @@ class Replay:
             # Constructor/admission prefunds are quarantined, not earned receipts.
         elif name == 'RoyaltyAssetDeferred':
             identifier, asset = t[0], _topic_address(topics[2])
-            require(identifier in self.minted and identifier not in self.weights and asset != ZERO and asset in self.cohorts,
+            require(identifier in self.minted and identifier not in self.weights and asset in self.cohorts and
+                    (asset != ZERO or asset in self.royalty_custody),
                     'Invalid deferred royalty activation')
             require(asset not in self.deferred[identifier], 'Repeated deferred asset')
             self.deferred[identifier].add(asset)
@@ -215,7 +220,8 @@ class Replay:
             self.activation_order.append(identifier)
         elif name == 'RoyaltyEligibilityRecovered':
             asset = _topic_address(topics[1]); first, last = d
-            require(asset in self.cohorts and first == len(self.cohorts[asset])+1 and last == len(self.activation_order)
+            require(asset in self.cohorts and asset not in self.royalty_custody and
+                    first == len(self.cohorts[asset])+1 and last == len(self.activation_order)
                     and first <= last and asset not in self.pending_recovery, 'Invalid royalty recovery prefix')
             require(self.cohorts[asset] == set(self.activation_order[:first-1]), 'Non-prefix royalty cohort')
             if self.frozen:
@@ -224,9 +230,26 @@ class Replay:
                 self.pending_recovery[asset] = transaction
             else:
                 self.cohorts[asset] = set(self.weights)
+        elif name == 'RoyaltyCustodyExited':
+            identifier, asset, recipient = t[0], _topic_address(topics[2]), _topic_address(topics[3])
+            amount, review = d
+            require(not self.frozen and asset in self.cohorts and asset not in self.royalty_custody and
+                    self.cohorts[asset] == set(self.weights) and identifier != 0 and identifier not in self.custody_ids and
+                    recipient != ZERO and self.roles.get(recipient) != 'royalties' and
+                    amount > 0 and review != 0, 'Invalid royalty custody exit')
+            self.royalty_custody[asset] = identifier, amount
+            self.custody_ids.add(identifier)
+        elif name == 'RoyaltyCustodyReturned':
+            identifier, asset = t[0], _topic_address(topics[2])
+            require(not self.frozen and self.royalty_custody.get(asset) == (identifier, d[0]),
+                    'Royalty custody return differs from actual full exit')
+            # Returning the already-accounted principal is not royalty income.
+            # Any extra receipts are allocated by a subsequent ordinary sync.
+            del self.royalty_custody[asset]
         else:
             asset = _topic_address(topics[1]); amount, eligible = d
-            require(asset in self.cohorts and eligible in (0, 1), 'Unknown royalty currency/eligibility')
+            require(asset in self.cohorts and asset not in self.royalty_custody and eligible in (0, 1),
+                    'Unknown royalty currency/eligibility or external custody')
             cohort = self.cohorts[asset]
             supply = sum(self.weights[i] for i in cohort)
             require(bool(eligible) == bool(supply), 'Royalty receipt has inconsistent cohort weight')

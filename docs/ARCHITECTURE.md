@@ -1,5 +1,15 @@
 # Shared permanent-liquidity architecture
 
+## Day-change audit boundary - 2026-10-25
+
+The [audit](../reports/day-readiness-20261025/REVIEW.md) changes backend projection
+and replay compatibility with existing royalty custody, plus evidence validation
+and tests. It changes no Solidity production source, authority, accounting,
+economic rights or deployment profile. Native eligibility can wait during
+custody; unavailable balances stay explicit, and exact returns restore backing
+without new income. See [reporting](ROYALTY_REPORTING.md#native-custody-history-and-recovery).
+Reference snapshot 3 is build-evidence format, not a protocol/accounting version.
+
 **Undeployed candidate; production NOT APPROVED.** The current source uses native
 ETH accounting V3, direct governance V2 and the LP-only same-chain canonical V4
 schema. This fresh-deployment ABI/storage change does not upgrade existing Anvil

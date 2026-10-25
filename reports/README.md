@@ -1,5 +1,19 @@
 # Verification evidence
 
+## Day-change readiness audit - 2026-10-25
+
+[Adapted prompt](day-readiness-20261025/ADAPTED_PROMPT.md),
+[scope](day-readiness-20261025/SCOPE.md),
+[findings](day-readiness-20261025/REVIEW.md),
+[preservation matrix](day-readiness-20261025/PRESERVATION.md),
+[verification](day-readiness-20261025/VERIFICATION.md) and
+[release gates](day-readiness-20261025/READINESS.md).
+Independent review of reference35007db and the full Paris-day ancestry found
+reader/replay custody mismatches, contradictory-evidence acceptance and native
+test-sensitivity gaps. Those are corrected without changing production Solidity
+or deployed state. Fresh and exact reused evidence remain separate; no full
+regression, live qualification or independent audit approval is implied.
+
 ## Deep cleanup review - 2026-10-25
 
 [Adapted workflow](deep-cleanup-20261025/ADAPTED_PROMPT.md),

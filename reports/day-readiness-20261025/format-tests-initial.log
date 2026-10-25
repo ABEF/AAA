@@ -1,0 +1,167 @@
+test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) ... 
+  test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='snapshot', schema=True) ... FAIL
+  test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='notes', schema=True) ... FAIL
+  test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='merge', schema=True) ... FAIL
+  test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='snapshot', schema=1.0) ... FAIL
+  test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='notes', schema=1.0) ... FAIL
+  test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='merge', schema=1.0) ... FAIL
+test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) ... 
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed0x1') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed7x1') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed264x1') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='ufixed8x0') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='ufixed8x81') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed16x00') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed016x1') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='ufixed08x1') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed128x080') ... FAIL
+  test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='ufixed128x01') ... FAIL
+
+======================================================================
+FAIL: test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='snapshot', schema=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 422, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges
+    with self.assertRaises(ReferenceError):build_reference(self.root,base,self.notes)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='notes', schema=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 425, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges
+    with self.assertRaises(ReferenceError):build_reference(self.root,self.base,notes)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='merge', schema=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 429, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges
+    with self.assertRaises(ReferenceError):merge_notes([path])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='snapshot', schema=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 422, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges
+    with self.assertRaises(ReferenceError):build_reference(self.root,base,self.notes)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='notes', schema=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 425, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges
+    with self.assertRaises(ReferenceError):build_reference(self.root,self.base,notes)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges) (target='merge', schema=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 429, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges
+    with self.assertRaises(ReferenceError):merge_notes([path])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed0x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed7x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed264x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='ufixed8x0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='ufixed8x81')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed16x00')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed016x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='ufixed08x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='fixed128x080')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_fixed_point_abi_width_precision_and_aliases_are_canonical (tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical) (invalid='ufixed128x01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical
+    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.218s
+
+FAILED (failures=16)

@@ -1,0 +1,108 @@
+{
+  "scope": "Disposable Forge CREATE/call execution gas, not persistent/public deployment or target-chain cost.",
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "RoleGasTest",
+    "--json"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.594,
+  "results": {
+    "test/RoleGas.t.sol:RoleGasTest": {
+      "duration": "15ms 669\u00b5s 500ns",
+      "test_results": {
+        "testControlledRoleGasAndObservableAuthority()": {
+          "status": "Success",
+          "reason": null,
+          "counterexample": null,
+          "logs": [],
+          "decoded_logs": [],
+          "kind": {
+            "Unit": {
+              "gas": 18020532
+            }
+          },
+          "traces": [],
+          "labeled_addresses": {},
+          "duration": "15ms 461\u00b5s 500ns",
+          "breakpoints": {},
+          "gas_snapshots": {}
+        }
+      },
+      "warnings": []
+    }
+  },
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+  "artifact_sha256": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\solidity\\controlled-baseline-output.json": "349aa4e9efd8a6e3b27aae912ccda7753a63c00d9dcc3e22e56891cb19f5c36b",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\deep-cleanup-20261025\\solidity\\source-build.json": "a3c37b7a07163a66dde8bcab5fe6d853c1970a46bef5f5d61d565f4625801b50",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas\\bytecodes.json": "625b5b2ba01d5f80a50a5f5f7ddc5c24fd8babb9eb3df90ac4f2a5ee0c6ea322",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas\\test\\RoleGas.t.sol": "069ab9243f706e2d6f68e38ca7d0762f77c35e1e7dea84ca7efda53f71e1efa2",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas\\foundry.toml": "ed789637fb98ba59896cbb1b40307d0f6c9d18b32f957a6a5c44a7846abc9aa3"
+  },
+  "baseline_runtime_bytes": 9207,
+  "candidate_runtime_bytes": 9252,
+  "baseline_creation_bytes": 42081,
+  "candidate_creation_bytes": 42256,
+  "constructor_wire_labels": {
+    "baseline": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "initialGovernance",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialKeeper",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialGuardian",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      }
+    ],
+    "candidate": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "initialGovernance",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialKeeper",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialGuardian",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      }
+    ]
+  },
+  "limits": [
+    "Raw gasleft deltas include CREATE/code-deposit or CALL execution, not transaction intrinsic/calldata/L1/network overhead.",
+    "Raw deltas do not apply transaction refunds; revoke net billed gas is not inferred.",
+    "Role calls use the same bootstrap/governance test caller, same payload and preallocated memory; target state is cooled before each pair.",
+    "This is local isolated EVM code with reviewed compiled bytecodes, not target-chain deployment/rehearsal or production approval."
+  ]
+}

@@ -1,4 +1,34 @@
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+
+## Native custody history and recovery
+
+The current source accepts a delayed native eligibility prefix only with a
+verified nonzero `custodyNonce(address(0))` and consistent cohort counts/weights.
+This getter and `eligibleWeight` / `totalWeight` are required only when that
+native prefix lags. Old pinned runtimes lacking the required getter fail closed.
+The API configuration schema remains 1; this is not an on-chain upgrade.
+
+During external native custody, `claimable` intentionally reverts. Display ETH
+unavailable/null, the NFT's known royalty weight and deferred eligibility;
+preserve available LP and healthy-currency balances. The native prefix may still
+lag just after full return, before the next ordinary sync. Do not manufacture
+zero balances, old earnings or retroactive eligibility.
+
+Earnings replay now authenticates `RoyaltyCustodyExited` and
+`RoyaltyCustodyReturned` from the pinned ledger with exact topic/data structure,
+admitted currency, unique exit ID, recipient and amount. A matching full return
+restores backing without adding income. Native deferral is accepted only inside
+an observed native custody interval. Full earnings reconciliation stays
+unavailable while backing is external or events are missing/inconsistent; after
+return it verifies the ordinary cohort recovery and current chain balances.
+
+For a rollout, preserve original databases/configuration and back up raw history.
+Replay into a separate database from the earliest affected custody interval,
+retaining all anchors and intervening logs; compare both incumbent/new NFT
+results and chain reconciliation before switching clients. Do not reset history,
+infer missing events or repair a running service automatically. Read-service
+rollback restores the prior release/configuration, not on-chain custody state.
+See [fix and limits](../reports/day-readiness-20261025/royalty-matrix.md).
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
 undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
@@ -36,8 +66,10 @@ To verify converter status too, replace `null` with an object containing exactly
 reviewed deployed-runtime Keccak-256, including immutables). No placeholder address
 or hash is supplied. A null/mismatched pin makes converter status unavailable; it
 does not hide otherwise verified balances or create permission to convert.
-The API verifies the helper's ledger/controller binding, enabled flag and fixed
-100-basis-point execution limit. Network gas is separate.
+The API verifies the helper's ledger/controller binding and enabled flag.
+Current conversion policy defaults to 100 basis points and is governed up to
+1,000; the response is a read, not a review-pinned swap quote. Network gas is
+separate. Actual route/feed and caller-minimum checks remain independent.
 
 Without this profile, existing strict per-asset reads continue and
 `royalty_reporting.available` is false. This avoids interpreting old contracts

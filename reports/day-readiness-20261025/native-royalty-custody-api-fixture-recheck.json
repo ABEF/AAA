@@ -1,0 +1,17 @@
+{
+  "scope": "Only the two new indexed API cases sharing the repaired local fixture; unchanged backend and other50distinct passes reused",
+  "selection": [
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests"
+  ],
+  "tests_run": 2,
+  "all_pass": true,
+  "failures": [],
+  "errors": [],
+  "elapsed_seconds": 0.782,
+  "backend_source_sha256": {
+    "frontend_api/royalty_reporting.py": "bc5ae709afb482b719c3db7ac3aa2c1df3c1bbf5caf36cf830ee6106b5afc915",
+    "frontend_api/earnings_replay.py": "10e7717b419fe0b26c7e73ec79b99b72071c6788c189b16dbdb1fae3773678d2",
+    "frontend_api/service.py": "6a2325fe6f1e3c515bf982bb0b93eb16b6bd67aa76862cac75bffa80f2a5c3c7"
+  },
+  "test_sha256": "ec28cd0ce375499966f01f62305616b562097b53a2e47766be19f5861e8c089c"
+}

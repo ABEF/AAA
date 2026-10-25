@@ -1,5 +1,16 @@
 # Confirmed earnings and current-price USD values
 
+## Native royalty custody boundary - 2026-10-25
+
+Current replay accepts native deferral only within an authenticated custody
+exit/full-return interval. Returned backing is not royalty revenue. Ordinary
+post-return synchronization credits earlier unseen receipts to the earlier
+cohort before waiting NFTs join; conversions and claims still do not create
+income. Missing/mismatched events and full earnings reconciliation while backing
+is external remain unavailable, never zero. See [reporting and safe replay](ROYALTY_REPORTING.md#native-custody-history-and-recovery)
+and the [source-scoped correction](../reports/day-readiness-20261025/royalty-matrix.md).
+This implements reader compatibility; no live database or service was changed.
+
 This optional read-only backend reports processed earnings across the collection
 and for each NFT. It does not harvest, synchronize, convert, claim or sign a
 transaction. The public website still uses examples; its opt-in reviewed API

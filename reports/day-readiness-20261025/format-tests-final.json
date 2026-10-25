@@ -1,0 +1,26 @@
+{
+  "scope": "Only strict outer schema and fixed-point ABI formats; final scope includes one affected existing canonical-type control.",
+  "phase": "final",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "reports\\day-readiness-20261025\\run-format-tests.py",
+    "final"
+  ],
+  "methods": [
+    "tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_canonical_nested_tuple_arrays_and_overloads_are_exact"
+  ],
+  "tests_run": 3,
+  "source_sha256": {
+    "zzz_ops/function_reference.py": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+    "tests_python/test_function_reference.py": "9cea757d716f039a4bceb3b162709267def17ac2c9f800a582f6b328675a0d76"
+  },
+  "unchanged": true,
+  "elapsed_seconds": 0.328,
+  "failures": [],
+  "errors": [],
+  "successful": true
+}

@@ -1,0 +1,2153 @@
+{
+  "schema": 1,
+  "purpose": "Independent assertion-level old/current source review; not a fresh full regression.",
+  "original_test_methods": 24,
+  "first_replacement_methods": 20,
+  "current_test_methods": 21,
+  "original_direct_expectation_and_helper_calls": 73,
+  "original_effective_expectations_expanding_two_helper_calls": 77,
+  "source_sha256": {
+    "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt": "5e33ecfa0d0ea47c41ef3735f0c6731e3d1d00cccfb0d31f2cc7cd6c16e26d7f",
+    "test/FixedZZZPool.t.sol": "a27350bbc1ef571d3fd94cb1e70682d214c7d5cf79ff680d17ea460fc0684a3e",
+    "test/IntegratedEconomicConservation.t.sol": "f6e266cd5977198fe11a2a16a7e0556b1247a7229c90d0a5e80bc3a352ca112e",
+    "test/NativeAssetFoundation.t.sol": "9b10e2b2cddba57859f20c66882b65c4399b3d52486d6310cb826bc6bb8ebb34",
+    "test/NativeLiquidity.t.sol": "ea4e15d99524e2b1177469ccafe3f5f3a0e58b9e82210ee1bf03411cea376501",
+    "test/NativeSourceIdentity.t.sol": "5676b767f83cd9d8c0a43507543a04003fdeefad867eb0f4a8e4d632da7dac3e"
+  },
+  "method_matrix": [
+    {
+      "previous_method": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds",
+      "previous_line": 221,
+      "previous_body_sha256": "8f6384132a2ab17d90e2b8771e9e38a8d3288b017fe8932e6da838d62c856761",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain."
+    },
+    {
+      "previous_method": "testNativeIncreaseReusesPositionAndClearsApprovals",
+      "previous_line": 230,
+      "previous_body_sha256": "ee7e9abd661426a13dbb8fc83b1ee24d99feea9426d4e8b0cc85a02f0ebc9044",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeIncreaseReusesPositionAndClearsApprovals"
+      ],
+      "verdict": "Preserved",
+      "review": "Same LP NFT grows without minting another; exact caller ETH/token deltas are added. Only unused native-wrapper approval coupling retires."
+    },
+    {
+      "previous_method": "testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees",
+      "previous_line": 235,
+      "previous_body_sha256": "60a2251f3635fecfb26fc884b4f5ab5427be11b0a9ffac74d765f1c4fcd148eb",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Native receipts are ETH, not freshly minted WETH. Actual Core donation fee growth can round, so the actual-Core case bounds receipts and checks a second collection is empty; the unchanged deterministic foundation case retains exact +17 ETH/+29 token cash accounting and prefund assertions."
+    },
+    {
+      "previous_method": "testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault",
+      "previous_line": 243,
+      "previous_body_sha256": "33749f4b0da66e613a13e283782907abc73fe0dac6529c04d27fb4fba5cc6510",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCloseReturnsActualPrincipalInETHWithoutWrapping"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Actual principal amounts return in ETH and the pool token, with exact physical deltas and destroyed PosM ownership. Requiring no native ETH at the Vault contradicts current native custody and raw ETH/ZZZ exit."
+    },
+    {
+      "previous_method": "testNativeInputSwapResetsDirtySyncAndUsesNetDelta",
+      "previous_line": 250,
+      "previous_body_sha256": "831cedd80cdcba511c4ec233b3b9626d898987fe884cdf337444eb76b7ad4d3f",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta"
+      ],
+      "verdict": "Preserved with actual venue pricing",
+      "review": "Real Core dirty sync is reset; exact native input and token output deltas and no Manager residual are checked. The fabricated 0.99 output is replaced by output below gross input and above the requested floor."
+    },
+    {
+      "previous_method": "testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH",
+      "previous_line": 256,
+      "previous_body_sha256": "e0ec2ec6a5727a20cbfb6c94aaa326d7ed8e5eb526c0aa3ff87fc58f671d14af",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeOutputSwapPaysETHAndPreservesForcedPrefunds"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Real native output goes directly to the caller and retains forced Manager ETH; token input is exact. Fixed fake 0.99/WETH output is not a current guarantee."
+    },
+    {
+      "previous_method": "testNativePartialInputRejectedAtomically",
+      "previous_line": 262,
+      "previous_body_sha256": "4c420aee74addf187e7feca99a6b6d3bdb939a4abbb2eef645b410ffe267faaf",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeUnfillableInputRevertsAllCoreAndWalletState",
+        "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically",
+        "test/NativeLiquidity.t.sol:testNativeExactInputGuardRejectsPartialFillEvenWhenOutputPassesOracleFloor"
+      ],
+      "verdict": "Verification gap identified and strengthened",
+      "review": "The 1000 ETH/980 ETH replacement proves rollback but its minimum-output check masks removal of the exact-input check. The unchanged foundation short-fill-by-one case still covers that guard. A new actual-Core narrow-range observation proves a partial fill whose output meets the oracle floor, followed by an exact Slippage rejection and full state equality; its execution is recorded separately."
+    },
+    {
+      "previous_method": "testNativeMinOutIncludesExecutionFees",
+      "previous_line": 267,
+      "previous_body_sha256": "a1896e8ef591a4ce5adcf3bf24b8a680cdd257f51fefe51984b1c3504e140b2e",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMinimumOutputIncludesActualLPAndProtocolFees"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual LP/protocol fees and price impact cause the deliberately excessive minimum to reject. Price and caller cash remain unchanged. An additional Manager-zero assertion in this exact test is not retained, but other native cases assert the Manager balance and the revert restores its initial zero balance."
+    },
+    {
+      "previous_method": "testNativeUnexpectedSenderAndCallbackRejected",
+      "previous_line": 271,
+      "previous_body_sha256": "fcb8869719147dde0abaf1736ada0f0c0089f0ae1850331504373aaa75d9ce00",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeUnexpectedSenderAndCallbackRejected"
+      ],
+      "verdict": "Preserved",
+      "review": "Unsolicited native transfer and unauthenticated callback both reject."
+    },
+    {
+      "previous_method": "testNativeIncorrectWrapperRejectedBeforePull",
+      "previous_line": 275,
+      "previous_body_sha256": "ac6572dcf5f81f8c038b41d2d099389e06dc4b5f872857f1817f8bdac6f42f01",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeIdentityMustBeAdmittedBeforePullOrMint",
+        "test/NativeAssetFoundation.t.sol:testNativeETHOracleAndSourceAdmissionAreDistinctFromWETH"
+      ],
+      "verdict": "Obsolete wrapper rule replaced",
+      "review": "Registry native identity, not a WETH accounting substitute, controls native entry. Current negative admission preserves ETH/token funds and next PosM ID. Native and WETH feeds/admission are separately tested; an unused wrapper cannot disable custody."
+    },
+    {
+      "previous_method": "testNativeAmountsRemainUint128BoundedWithoutPermitApproval",
+      "previous_line": 280,
+      "previous_body_sha256": "a9ea5482334f10533dfe4c0018a32251b3190e524c7e58e6bd2b95312397f89d",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeAmountsStayUint128BoundedWithoutPermitApproval"
+      ],
+      "verdict": "Pre-existing verification gap strengthened",
+      "review": "Both old and first replacement sent zero msg.value and accepted any revert, so a later value check could hide removal of the uint128 bound. The repaired method supplies matching native value for oversized amount0 and amount1, poisons later pool reads, requires exact InvalidAmount, and checks cash/position/allowances unchanged. Production already had the early guard."
+    },
+    {
+      "previous_method": "testNativeLiquidityCallbackHookMaskRejected",
+      "previous_line": 284,
+      "previous_body_sha256": "2e4f9ba45ff73fef40b2da30749a9c29e7b3da9df330b236e7671538292fc975",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution"
+      ],
+      "verdict": "Preserved",
+      "review": "Hooked native keys reject and do not mint a PosM NFT. This remains a hookless-only deployment; no hook implementation is added."
+    },
+    {
+      "previous_method": "testNativeDynamicFeeRejected",
+      "previous_line": 290,
+      "previous_body_sha256": "802d21a3ea29c24342fb7f649159943f475a88f19969d4c8271b6a109b806793",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution"
+      ],
+      "verdict": "Preserved",
+      "review": "The dynamic-fee key rejects and does not mint a PosM NFT. The two old methods are merged; their policy checks both remain."
+    },
+    {
+      "previous_method": "testNativeBrokenWithdrawRollsBack",
+      "previous_line": 296,
+      "previous_body_sha256": "2184b13df9b08b6965d1cab615188528a9eac6f47c583afb3150948aee408938",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+        "test/NativeAssetFoundation.t.sol:testNativeMintAndIncreaseReturnUnusedETHWithoutCallingBrokenWrapper"
+      ],
+      "verdict": "Obsolete wrapper dependency retired",
+      "review": "Current native mint/increase do not unwrap WETH, so a broken unused withdraw must not block them. Exact native cash/refunds and unspent token/prefund/allowance safety replace the obsolete failure requirement."
+    },
+    {
+      "previous_method": "testNativeBrokenDepositRollsBackCredits",
+      "previous_line": 301,
+      "previous_body_sha256": "46128a774c826261e1eb81f80d98e696c3338a020e8c06be90fb4f57e0cc4b89",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+        "test/NativeAssetFoundation.t.sol:testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice"
+      ],
+      "verdict": "Obsolete wrapper dependency retired",
+      "review": "Native collection does not deposit into WETH. Its fee liability must survive actual delivery failure, now tested with a rejecting ETH recipient and successful later retry rather than an irrelevant wrapper deposit failure."
+    },
+    {
+      "previous_method": "testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping",
+      "previous_line": 305,
+      "previous_body_sha256": "199c03d39ac2127cc0069e942e4cc28d88ce017059fba41ac03ab71c40126c42",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativeRetainedPositionValueRevertsInsteadOfSubsidizingLaterLP",
+        "test/NativeLiquidity.t.sol:testNativePendingFeesMustBeCollectedBeforeIncreasingPrincipal"
+      ],
+      "verdict": "Preserved through explicit fault seam",
+      "review": "The unchanged foundation retainNative fault preserves user ETH/token balances and next ID. Actual PosM fee-netting supplies a second real residual case: increase before harvest rejects, then harvest/increase succeeds. An intentionally broken PosM is not presented as real venue behavior."
+    },
+    {
+      "previous_method": "testNativeForcedETHDuringTakeCannotBeClaimed",
+      "previous_line": 310,
+      "previous_body_sha256": "ecee08f2e6fa520ac81c53fda4444152c7c09ed53b130936d249160448222321",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically",
+        "test/NativeLiquidity.t.sol:testForcedETHDuringNativeForwardCannotBecomeIncome"
+      ],
+      "verdict": "Preserved at both boundaries",
+      "review": "Foundation still injects forced ETH from the expected Core take path and checks caller balances. The actual-Core case separately forces ETH back during recipient forwarding, verifies failure/Manager zero and permits a clean retry. These are distinct injection points, not identical tests."
+    },
+    {
+      "previous_method": "testNativeWrapperReentryFailsWhileCreditStillSucceeds",
+      "previous_line": 315,
+      "previous_body_sha256": "ed612ffb8ead9c5112e45a8084f0f1245ff0f2edabfc4426798c41468023ed99",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice"
+      ],
+      "verdict": "Obsolete wrapper callback retired; active callback protected",
+      "review": "An unused wrapper no longer runs during native swaps. A real ETH recipient callback attempts collect reentry, fails to enter, receives the original credit exactly once and clears its recorded fees."
+    },
+    {
+      "previous_method": "testNativeRegistryAdmissionRejectsUnreviewedDependencies",
+      "previous_line": 319,
+      "previous_body_sha256": "3ba41a966df947a7a914a050dc0ab8064fb5111f21b00c603c8a431ad29eb0c0",
+      "current_references": [
+        "test/FixedZZZPool.t.sol:testNativeAdmissionRetainsItsSeparateFixedIdentityGuard",
+        "test/NativeSourceIdentity.t.sol:testMatchingSourceStillCannotBypassNativeRuntimePins"
+      ],
+      "verdict": "Negative admission preserved; real qualification open",
+      "review": "The old any-revert tests could reject for an unset identity/unsupported native getter rather than each claimed runtime dependency. Current source/chain/runtime negative cases are explicit, but neither old nor replacement tests qualify a fully matching real deployed dependency inventory. That remains a release gate."
+    },
+    {
+      "previous_method": "testNativePlanBalancesNetAmountsWithinOnePercentBudget",
+      "previous_line": 325,
+      "previous_body_sha256": "56e2a95707ac4e91864cf01899ed4e743d71b58ef44341416baacfb17439e4a6",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee",
+        "test/IntegratedEconomicConservation.t.sol:testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor"
+      ],
+      "verdict": "Behavior preserved with corrected evidence reference",
+      "review": "The old fixed 0.99 fake output and >99.25% placement were fixture-specific, not guaranteed economics. The real two-pass Entry test explicitly requests the stricter 1% floor, asserts actual deployed LP >=99 from 100 and low idle. The earlier mapping incorrectly cited the direct paired-input cap test, which does not exercise the single-sided planner."
+    },
+    {
+      "previous_method": "testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee",
+      "previous_line": 336,
+      "previous_body_sha256": "eb1295b931a1dfd380bbb89f9100096cd34bfcb92c87898110f4ee452979048f",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual Core fee changes distinguish the chosen direction from the other packed direction; a mismatched LP fee returned by the explicit StateView fault rejects. The root selected 32-method execution includes this method."
+    },
+    {
+      "previous_method": "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap",
+      "previous_line": 349,
+      "previous_body_sha256": "b68615bd3a568824431e0f1fa18913bb02fbd42716f270408fab0ed808c6df01",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Preserved; ETH denomination",
+      "review": "Disabled mint/increase/swap reject; fee collection and close succeed, including with an unavailable oracle. Exact fee/native principal delivery is also retained in the unchanged foundation test. Pool stop must not block raw custody extraction."
+    },
+    {
+      "previous_method": "testNativeDisabledPoolExitDoesNotReadUnavailableOracle",
+      "previous_line": 358,
+      "previous_body_sha256": "ad4b2f071ee64c60775169059b3c6878806acab036e546c42d3cbe034c1847a4",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap"
+      ],
+      "verdict": "Preserved by merged case",
+      "review": "Oracle is explicitly replaced by a reverting contract after disabling operations, and actual collection/close still succeed and burn ownership. The separate old explicit Manager-zero assertion is not repeated in this merged method; native no-residual safety has independent current checks."
+    },
+    {
+      "previous_method": "testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle",
+      "previous_line": 364,
+      "previous_body_sha256": "681f992253af804b64648cffdb3025513f9889b6db270a0f41c98908cca057b2",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle"
+      ],
+      "verdict": "Preserved",
+      "review": "Strategy ordinary validation rejects a disabled pool; exit-price validation ignores the stop flag but still rejects unavailable prices. Raw parking/close does not call this oracle-requiring maintenance path."
+    }
+  ],
+  "individual_old_expectations": [
+    {
+      "id": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 226,
+      "expectation": "assertEq(positions.ownerOf(id), address(this))",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 226,
+      "expectation": "assertGt(spent0, 0)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 226,
+      "expectation": "assertGt(spent1, 0)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds.4",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 227,
+      "expectation": "assertEq(address(manager).balance, 123)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds.5",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 227,
+      "expectation": "assertEq(address(positions).balance, 456)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds.6",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 228,
+      "expectation": "assertEq(token.balanceOf(address(manager)), 789)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds.7",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 228,
+      "expectation": "assertEq(wrapped.balanceOf(address(manager)), 321)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds.8",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 228,
+      "expectation": "_clearApprovals()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual PosM ownership, positive spends, exact caller spend/refund and all native/ERC20/WETH prefunds are checked. Native funds use msg.value rather than pulling WETH. The unused-wrapper approval assertion is deliberately retired; active token/Permit2 allowance and expiration cleanup remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references.",
+      "old_helper_assertions": [
+        {
+          "line": 217,
+          "expectation": "assertEq(token.allowance(address(manager), address(permit)), 0)"
+        },
+        {
+          "line": 218,
+          "expectation": "assertEq(permit.amount(address(manager), address(token), address(positions)), 0)"
+        },
+        {
+          "line": 219,
+          "expectation": "assertEq(wrapped.allowance(address(manager), address(permit)), 0)"
+        }
+      ],
+      "current_helper_assertions": [
+        {
+          "line": 277,
+          "expectation": "assertEq(token.allowance(address(manager),address(permit)),0)"
+        },
+        {
+          "line": 279,
+          "expectation": "assertEq(amount,0)"
+        },
+        {
+          "line": 279,
+          "expectation": "assertEq(expiration,0)"
+        }
+      ],
+      "helper_difference": "Native ERC20 token and Permit2 amount reset remain, expiry reset is added. A WETH-to-Permit2 allowance check is retired because native operations never approve that unused wrapper; generic ERC20 liquidity still separately resets both actual pair approvals."
+    },
+    {
+      "id": "testNativeIncreaseReusesPositionAndClearsApprovals.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 233,
+      "expectation": "assertGt(positions.getPositionLiquidity(id), beforeLiquidity)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeIncreaseReusesPositionAndClearsApprovals"
+      ],
+      "verdict": "Preserved",
+      "review": "Same LP NFT grows without minting another; exact caller ETH/token deltas are added. Only unused native-wrapper approval coupling retires.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeIncreaseReusesPositionAndClearsApprovals.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 233,
+      "expectation": "assertEq(positions.nextTokenId(), 2)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeIncreaseReusesPositionAndClearsApprovals"
+      ],
+      "verdict": "Preserved",
+      "review": "Same LP NFT grows without minting another; exact caller ETH/token deltas are added. Only unused native-wrapper approval coupling retires.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeIncreaseReusesPositionAndClearsApprovals.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 233,
+      "expectation": "_clearApprovals()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeIncreaseReusesPositionAndClearsApprovals"
+      ],
+      "verdict": "Preserved",
+      "review": "Same LP NFT grows without minting another; exact caller ETH/token deltas are added. Only unused native-wrapper approval coupling retires.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references.",
+      "old_helper_assertions": [
+        {
+          "line": 217,
+          "expectation": "assertEq(token.allowance(address(manager), address(permit)), 0)"
+        },
+        {
+          "line": 218,
+          "expectation": "assertEq(permit.amount(address(manager), address(token), address(positions)), 0)"
+        },
+        {
+          "line": 219,
+          "expectation": "assertEq(wrapped.allowance(address(manager), address(permit)), 0)"
+        }
+      ],
+      "current_helper_assertions": [
+        {
+          "line": 277,
+          "expectation": "assertEq(token.allowance(address(manager),address(permit)),0)"
+        },
+        {
+          "line": 279,
+          "expectation": "assertEq(amount,0)"
+        },
+        {
+          "line": 279,
+          "expectation": "assertEq(expiration,0)"
+        }
+      ],
+      "helper_difference": "Native ERC20 token and Permit2 amount reset remain, expiry reset is added. A WETH-to-Permit2 allowance check is retired because native operations never approve that unused wrapper; generic ERC20 liquidity still separately resets both actual pair approvals."
+    },
+    {
+      "id": "testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 240,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), w + 17)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Native receipts are ETH, not freshly minted WETH. Actual Core donation fee growth can round, so the actual-Core case bounds receipts and checks a second collection is empty; the unchanged deterministic foundation case retains exact +17 ETH/+29 token cash accounting and prefund assertions.",
+      "assertion_verdict": "Intentional denomination change",
+      "assertion_correspondence": "Actual ETH receipt replaces +17 WETH. Exact +17 ETH cash remains in the unchanged foundation case; actual Core rounds accrued fees."
+    },
+    {
+      "id": "testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 240,
+      "expectation": "assertEq(token.balanceOf(address(this)), t + 29)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Native receipts are ETH, not freshly minted WETH. Actual Core donation fee growth can round, so the actual-Core case bounds receipts and checks a second collection is empty; the unchanged deterministic foundation case retains exact +17 ETH/+29 token cash accounting and prefund assertions.",
+      "assertion_verdict": "Exact check retained in peer",
+      "assertion_correspondence": "The exact +29 token check remains in NativeAssetFoundation; actual Core donation checks are positive/bounded and a second collection is empty."
+    },
+    {
+      "id": "testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 241,
+      "expectation": "assertEq(address(manager).balance, 123)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Native receipts are ETH, not freshly minted WETH. Actual Core donation fee growth can round, so the actual-Core case bounds receipts and checks a second collection is empty; the unchanged deterministic foundation case retains exact +17 ETH/+29 token cash accounting and prefund assertions.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees.4",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 241,
+      "expectation": "assertEq(token.balanceOf(address(manager)), 40)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Native receipts are ETH, not freshly minted WETH. Actual Core donation fee growth can round, so the actual-Core case bounds receipts and checks a second collection is empty; the unchanged deterministic foundation case retains exact +17 ETH/+29 token cash accounting and prefund assertions.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 247,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), beforeWrapped + amount0)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCloseReturnsActualPrincipalInETHWithoutWrapping"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Actual principal amounts return in ETH and the pool token, with exact physical deltas and destroyed PosM ownership. Requiring no native ETH at the Vault contradicts current native custody and raw ETH/ZZZ exit.",
+      "assertion_verdict": "Intentional denomination change",
+      "assertion_correspondence": "Exact returned native principal replaces exact newly wrapped principal."
+    },
+    {
+      "id": "testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 247,
+      "expectation": "assertEq(token.balanceOf(address(this)), beforeToken + amount1)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCloseReturnsActualPrincipalInETHWithoutWrapping"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Actual principal amounts return in ETH and the pool token, with exact physical deltas and destroyed PosM ownership. Requiring no native ETH at the Vault contradicts current native custody and raw ETH/ZZZ exit.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 248,
+      "expectation": "assertEq(address(this).balance, beforeNative)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCloseReturnsActualPrincipalInETHWithoutWrapping"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Actual principal amounts return in ETH and the pool token, with exact physical deltas and destroyed PosM ownership. Requiring no native ETH at the Vault contradicts current native custody and raw ETH/ZZZ exit.",
+      "assertion_verdict": "Obsolete assertion intentionally removed",
+      "assertion_correspondence": "Native ETH must now increase by actual returned principal; requiring an unchanged native balance would contradict direct ETH custody."
+    },
+    {
+      "id": "testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault.4",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 248,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeCloseReturnsActualPrincipalInETHWithoutWrapping"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Actual principal amounts return in ETH and the pool token, with exact physical deltas and destroyed PosM ownership. Requiring no native ETH at the Vault contradicts current native custody and raw ETH/ZZZ exit.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeInputSwapResetsDirtySyncAndUsesNetDelta.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 253,
+      "expectation": "assertEq(out, 0.99 ether)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta"
+      ],
+      "verdict": "Preserved with actual venue pricing",
+      "review": "Real Core dirty sync is reset; exact native input and token output deltas and no Manager residual are checked. The fabricated 0.99 output is replaced by output below gross input and above the requested floor.",
+      "assertion_verdict": "Fixture-specific quote retired",
+      "assertion_correspondence": "A synthetic fixed 0.99 output is replaced by actual Core output, exact receipt, and caller minimum enforcement."
+    },
+    {
+      "id": "testNativeInputSwapResetsDirtySyncAndUsesNetDelta.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 253,
+      "expectation": "assertEq(token.balanceOf(address(this)), beforeToken + out)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta"
+      ],
+      "verdict": "Preserved with actual venue pricing",
+      "review": "Real Core dirty sync is reset; exact native input and token output deltas and no Manager residual are checked. The fabricated 0.99 output is replaced by output below gross input and above the requested floor.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeInputSwapResetsDirtySyncAndUsesNetDelta.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 254,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), beforeWrapped - 1 ether)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta"
+      ],
+      "verdict": "Preserved with actual venue pricing",
+      "review": "Real Core dirty sync is reset; exact native input and token output deltas and no Manager residual are checked. The fabricated 0.99 output is replaced by output below gross input and above the requested floor.",
+      "assertion_verdict": "Intentional denomination change",
+      "assertion_correspondence": "Exactly 1 native ETH is spent rather than pulling and unwrapping 1 WETH."
+    },
+    {
+      "id": "testNativeInputSwapResetsDirtySyncAndUsesNetDelta.4",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 254,
+      "expectation": "assertEq(address(manager).balance, 0)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta"
+      ],
+      "verdict": "Preserved with actual venue pricing",
+      "review": "Real Core dirty sync is reset; exact native input and token output deltas and no Manager residual are checked. The fabricated 0.99 output is replaced by output below gross input and above the requested floor.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 259,
+      "expectation": "assertEq(manager.swap(poolId, false, 1 ether, 0.98 ether, block.timestamp + 100), 0.99 ether)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeOutputSwapPaysETHAndPreservesForcedPrefunds"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Real native output goes directly to the caller and retains forced Manager ETH; token input is exact. Fixed fake 0.99/WETH output is not a current guarantee.",
+      "assertion_verdict": "Fixture-specific quote retired",
+      "assertion_correspondence": "Actual output must clear the minimum and is received exactly; 0.99 was supplied by the old fake venue."
+    },
+    {
+      "id": "testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 260,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), beforeWrapped + 0.99 ether)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeOutputSwapPaysETHAndPreservesForcedPrefunds"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Real native output goes directly to the caller and retains forced Manager ETH; token input is exact. Fixed fake 0.99/WETH output is not a current guarantee.",
+      "assertion_verdict": "Intentional denomination change",
+      "assertion_correspondence": "Caller ETH increases by the actual returned output, with exact token input and no WETH minted."
+    },
+    {
+      "id": "testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 260,
+      "expectation": "assertEq(address(manager).balance, 123)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeOutputSwapPaysETHAndPreservesForcedPrefunds"
+      ],
+      "verdict": "Intentionally changed denomination",
+      "review": "Real native output goes directly to the caller and retains forced Manager ETH; token input is exact. Fixed fake 0.99/WETH output is not a current guarantee.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativePartialInputRejectedAtomically.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 264,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeUnfillableInputRevertsAllCoreAndWalletState",
+        "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically",
+        "test/NativeLiquidity.t.sol:testNativeExactInputGuardRejectsPartialFillEvenWhenOutputPassesOracleFloor"
+      ],
+      "verdict": "Verification gap identified and strengthened",
+      "review": "The 1000 ETH/980 ETH replacement proves rollback but its minimum-output check masks removal of the exact-input check. The unchanged foundation short-fill-by-one case still covers that guard. A new actual-Core narrow-range observation proves a partial fill whose output meets the oracle floor, followed by an exact Slippage rejection and full state equality; its execution is recorded separately.",
+      "assertion_verdict": "Verification gap strengthened",
+      "assertion_correspondence": "The broad replacement could fail solely on output minimum. Unchanged foundation checks and the new narrow-range real-delta probe isolate the exact-input restriction."
+    },
+    {
+      "id": "testNativePartialInputRejectedAtomically.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 265,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), w)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeUnfillableInputRevertsAllCoreAndWalletState",
+        "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically",
+        "test/NativeLiquidity.t.sol:testNativeExactInputGuardRejectsPartialFillEvenWhenOutputPassesOracleFloor"
+      ],
+      "verdict": "Verification gap identified and strengthened",
+      "review": "The 1000 ETH/980 ETH replacement proves rollback but its minimum-output check masks removal of the exact-input check. The unchanged foundation short-fill-by-one case still covers that guard. A new actual-Core narrow-range observation proves a partial fill whose output meets the oracle floor, followed by an exact Slippage rejection and full state equality; its execution is recorded separately.",
+      "assertion_verdict": "Intentional denomination change",
+      "assertion_correspondence": "Caller native/token balances replace caller wrapped balance, with additional physical LP and pool-price rollback checks."
+    },
+    {
+      "id": "testNativePartialInputRejectedAtomically.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 265,
+      "expectation": "assertEq(core.debt(), 0)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeUnfillableInputRevertsAllCoreAndWalletState",
+        "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically",
+        "test/NativeLiquidity.t.sol:testNativeExactInputGuardRejectsPartialFillEvenWhenOutputPassesOracleFloor"
+      ],
+      "verdict": "Verification gap identified and strengthened",
+      "review": "The 1000 ETH/980 ETH replacement proves rollback but its minimum-output check masks removal of the exact-input check. The unchanged foundation short-fill-by-one case still covers that guard. A new actual-Core narrow-range observation proves a partial fill whose output meets the oracle floor, followed by an exact Slippage rejection and full state equality; its execution is recorded separately.",
+      "assertion_verdict": "Fake field replaced by actual state checks",
+      "assertion_correspondence": "BoundaryCore.debt does not exist in real Core. Actual unlock enforces zero deltas; new partial-fill proof checks Core balances, price, protocol fees and LP state remain unchanged after rejection."
+    },
+    {
+      "id": "testNativeMinOutIncludesExecutionFees.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 268,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMinimumOutputIncludesActualLPAndProtocolFees"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual LP/protocol fees and price impact cause the deliberately excessive minimum to reject. Price and caller cash remain unchanged. An additional Manager-zero assertion in this exact test is not retained, but other native cases assert the Manager balance and the revert restores its initial zero balance.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeMinOutIncludesExecutionFees.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 269,
+      "expectation": "assertEq(address(manager).balance, 0)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeMinimumOutputIncludesActualLPAndProtocolFees"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual LP/protocol fees and price impact cause the deliberately excessive minimum to reject. Price and caller cash remain unchanged. An additional Manager-zero assertion in this exact test is not retained, but other native cases assert the Manager balance and the revert restores its initial zero balance.",
+      "assertion_verdict": "Direct assertion moved",
+      "assertion_correspondence": "This exact Manager-zero check is absent from the new minimum-output method. Its revert restores initial zero state; other actual native failure tests explicitly assert Manager balance/prefund equality."
+    },
+    {
+      "id": "testNativeUnexpectedSenderAndCallbackRejected.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 272,
+      "expectation": "assertFalse(ok)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeUnexpectedSenderAndCallbackRejected"
+      ],
+      "verdict": "Preserved",
+      "review": "Unsolicited native transfer and unauthenticated callback both reject.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeUnexpectedSenderAndCallbackRejected.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 273,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeUnexpectedSenderAndCallbackRejected"
+      ],
+      "verdict": "Preserved",
+      "review": "Unsolicited native transfer and unauthenticated callback both reject.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeIncorrectWrapperRejectedBeforePull.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 277,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeIdentityMustBeAdmittedBeforePullOrMint",
+        "test/NativeAssetFoundation.t.sol:testNativeETHOracleAndSourceAdmissionAreDistinctFromWETH"
+      ],
+      "verdict": "Obsolete wrapper rule replaced",
+      "review": "Registry native identity, not a WETH accounting substitute, controls native entry. Current negative admission preserves ETH/token funds and next PosM ID. Native and WETH feeds/admission are separately tested; an unused wrapper cannot disable custody.",
+      "assertion_verdict": "Obsolete wrapper admission retired",
+      "assertion_correspondence": "A native identity rejection replaces rejecting a native-to-WETH accounting substitution. The unused wrapper is not a principal dependency."
+    },
+    {
+      "id": "testNativeIncorrectWrapperRejectedBeforePull.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 278,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), w)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeIdentityMustBeAdmittedBeforePullOrMint",
+        "test/NativeAssetFoundation.t.sol:testNativeETHOracleAndSourceAdmissionAreDistinctFromWETH"
+      ],
+      "verdict": "Obsolete wrapper rule replaced",
+      "review": "Registry native identity, not a WETH accounting substitute, controls native entry. Current negative admission preserves ETH/token funds and next PosM ID. Native and WETH feeds/admission are separately tested; an unused wrapper cannot disable custody.",
+      "assertion_verdict": "Principal-denomination check replaced",
+      "assertion_correspondence": "Native ETH/token funds and next PosM ID remain unchanged on rejected native admission; no wrapper balance is pulled."
+    },
+    {
+      "id": "testNativeAmountsRemainUint128BoundedWithoutPermitApproval.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 281,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeAmountsStayUint128BoundedWithoutPermitApproval"
+      ],
+      "verdict": "Pre-existing verification gap strengthened",
+      "review": "Both old and first replacement sent zero msg.value and accepted any revert, so a later value check could hide removal of the uint128 bound. The repaired method supplies matching native value for oversized amount0 and amount1, poisons later pool reads, requires exact InvalidAmount, and checks cash/position/allowances unchanged. Production already had the early guard.",
+      "assertion_verdict": "Pre-existing weak negative repaired",
+      "assertion_correspondence": "Correct msg.value plus poisoned later reads and exact InvalidAmount now distinguish the actual uint128 bound from a later value mismatch."
+    },
+    {
+      "id": "testNativeAmountsRemainUint128BoundedWithoutPermitApproval.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 282,
+      "expectation": "assertEq(positions.nextTokenId(), 1)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeAmountsStayUint128BoundedWithoutPermitApproval"
+      ],
+      "verdict": "Pre-existing verification gap strengthened",
+      "review": "Both old and first replacement sent zero msg.value and accepted any revert, so a later value check could hide removal of the uint128 bound. The repaired method supplies matching native value for oversized amount0 and amount1, poisons later pool reads, requires exact InvalidAmount, and checks cash/position/allowances unchanged. Production already had the early guard.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeAmountsRemainUint128BoundedWithoutPermitApproval.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 282,
+      "expectation": "assertEq(address(manager).balance, 0)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeAmountsStayUint128BoundedWithoutPermitApproval"
+      ],
+      "verdict": "Pre-existing verification gap strengthened",
+      "review": "Both old and first replacement sent zero msg.value and accepted any revert, so a later value check could hide removal of the uint128 bound. The repaired method supplies matching native value for oversized amount0 and amount1, poisons later pool reads, requires exact InvalidAmount, and checks cash/position/allowances unchanged. Production already had the early guard.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeLiquidityCallbackHookMaskRejected.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 287,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution"
+      ],
+      "verdict": "Preserved",
+      "review": "Hooked native keys reject and do not mint a PosM NFT. This remains a hookless-only deployment; no hook implementation is added.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeLiquidityCallbackHookMaskRejected.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 288,
+      "expectation": "assertEq(positions.nextTokenId(), 1)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution"
+      ],
+      "verdict": "Preserved",
+      "review": "Hooked native keys reject and do not mint a PosM NFT. This remains a hookless-only deployment; no hook implementation is added.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeDynamicFeeRejected.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 293,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution"
+      ],
+      "verdict": "Preserved",
+      "review": "The dynamic-fee key rejects and does not mint a PosM NFT. The two old methods are merged; their policy checks both remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeDynamicFeeRejected.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 294,
+      "expectation": "assertEq(positions.nextTokenId(), 1)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution"
+      ],
+      "verdict": "Preserved",
+      "review": "The dynamic-fee key rejects and does not mint a PosM NFT. The two old methods are merged; their policy checks both remain.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeBrokenWithdrawRollsBack.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 298,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+        "test/NativeAssetFoundation.t.sol:testNativeMintAndIncreaseReturnUnusedETHWithoutCallingBrokenWrapper"
+      ],
+      "verdict": "Obsolete wrapper dependency retired",
+      "review": "Current native mint/increase do not unwrap WETH, so a broken unused withdraw must not block them. Exact native cash/refunds and unspent token/prefund/allowance safety replace the obsolete failure requirement.",
+      "assertion_verdict": "Obsolete failure intentionally inverted",
+      "assertion_correspondence": "Native mint/increase succeed with a broken unused wrapper, because no unwrap is executed."
+    },
+    {
+      "id": "testNativeBrokenWithdrawRollsBack.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 299,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), w)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+        "test/NativeAssetFoundation.t.sol:testNativeMintAndIncreaseReturnUnusedETHWithoutCallingBrokenWrapper"
+      ],
+      "verdict": "Obsolete wrapper dependency retired",
+      "review": "Current native mint/increase do not unwrap WETH, so a broken unused withdraw must not block them. Exact native cash/refunds and unspent token/prefund/allowance safety replace the obsolete failure requirement.",
+      "assertion_verdict": "Unused wrapper untouched",
+      "assertion_correspondence": "No wrapper call or WETH principal spend occurs; the actual lifecycle checks zero wrapper supply/balance."
+    },
+    {
+      "id": "testNativeBrokenWithdrawRollsBack.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 299,
+      "expectation": "assertEq(positions.nextTokenId(), 1)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+        "test/NativeAssetFoundation.t.sol:testNativeMintAndIncreaseReturnUnusedETHWithoutCallingBrokenWrapper"
+      ],
+      "verdict": "Obsolete wrapper dependency retired",
+      "review": "Current native mint/increase do not unwrap WETH, so a broken unused withdraw must not block them. Exact native cash/refunds and unspent token/prefund/allowance safety replace the obsolete failure requirement.",
+      "assertion_verdict": "Obsolete failure postcondition retired",
+      "assertion_correspondence": "A broken unused wrapper no longer prevents issuance of an underlying LP NFT; successful mint/growth now check real ownership and liquidity."
+    },
+    {
+      "id": "testNativeBrokenDepositRollsBackCredits.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 303,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+        "test/NativeAssetFoundation.t.sol:testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice"
+      ],
+      "verdict": "Obsolete wrapper dependency retired",
+      "review": "Native collection does not deposit into WETH. Its fee liability must survive actual delivery failure, now tested with a rejecting ETH recipient and successful later retry rather than an irrelevant wrapper deposit failure.",
+      "assertion_verdict": "Obsolete failure intentionally inverted",
+      "assertion_correspondence": "Native collection must not depend on a WETH deposit operation."
+    },
+    {
+      "id": "testNativeBrokenDepositRollsBackCredits.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 303,
+      "expectation": "assertEq(positions.nativeFees(id), 17)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+        "test/NativeAssetFoundation.t.sol:testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice"
+      ],
+      "verdict": "Obsolete wrapper dependency retired",
+      "review": "Native collection does not deposit into WETH. Its fee liability must survive actual delivery failure, now tested with a rejecting ETH recipient and successful later retry rather than an irrelevant wrapper deposit failure.",
+      "assertion_verdict": "Relevant delivery liability preserved elsewhere",
+      "assertion_correspondence": "Exact +17 pending native fees survive an actual rejecting recipient in the unchanged foundation case, then are delivered once on retry; wrapper failure is irrelevant."
+    },
+    {
+      "id": "testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 307,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativeRetainedPositionValueRevertsInsteadOfSubsidizingLaterLP",
+        "test/NativeLiquidity.t.sol:testNativePendingFeesMustBeCollectedBeforeIncreasingPrincipal"
+      ],
+      "verdict": "Preserved through explicit fault seam",
+      "review": "The unchanged foundation retainNative fault preserves user ETH/token balances and next ID. Actual PosM fee-netting supplies a second real residual case: increase before harvest rejects, then harvest/increase succeeds. An intentionally broken PosM is not presented as real venue behavior.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 308,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), w)",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativeRetainedPositionValueRevertsInsteadOfSubsidizingLaterLP",
+        "test/NativeLiquidity.t.sol:testNativePendingFeesMustBeCollectedBeforeIncreasingPrincipal"
+      ],
+      "verdict": "Preserved through explicit fault seam",
+      "review": "The unchanged foundation retainNative fault preserves user ETH/token balances and next ID. Actual PosM fee-netting supplies a second real residual case: increase before harvest rejects, then harvest/increase succeeds. An intentionally broken PosM is not presented as real venue behavior.",
+      "assertion_verdict": "Intentional denomination change",
+      "assertion_correspondence": "Unchanged foundation retainNative fault checks exact caller ETH/token preservation rather than a WETH balance."
+    },
+    {
+      "id": "testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 308,
+      "expectation": "assertEq(positions.nextTokenId(), 1)",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativeRetainedPositionValueRevertsInsteadOfSubsidizingLaterLP",
+        "test/NativeLiquidity.t.sol:testNativePendingFeesMustBeCollectedBeforeIncreasingPrincipal"
+      ],
+      "verdict": "Preserved through explicit fault seam",
+      "review": "The unchanged foundation retainNative fault preserves user ETH/token balances and next ID. Actual PosM fee-netting supplies a second real residual case: increase before harvest rejects, then harvest/increase succeeds. An intentionally broken PosM is not presented as real venue behavior.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeForcedETHDuringTakeCannotBeClaimed.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 312,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically",
+        "test/NativeLiquidity.t.sol:testForcedETHDuringNativeForwardCannotBecomeIncome"
+      ],
+      "verdict": "Preserved at both boundaries",
+      "review": "Foundation still injects forced ETH from the expected Core take path and checks caller balances. The actual-Core case separately forces ETH back during recipient forwarding, verifies failure/Manager zero and permits a clean retry. These are distinct injection points, not identical tests.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeForcedETHDuringTakeCannotBeClaimed.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 313,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), w)",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically",
+        "test/NativeLiquidity.t.sol:testForcedETHDuringNativeForwardCannotBecomeIncome"
+      ],
+      "verdict": "Preserved at both boundaries",
+      "review": "Foundation still injects forced ETH from the expected Core take path and checks caller balances. The actual-Core case separately forces ETH back during recipient forwarding, verifies failure/Manager zero and permits a clean retry. These are distinct injection points, not identical tests.",
+      "assertion_verdict": "Intentional denomination change",
+      "assertion_correspondence": "Current tests check caller ETH/token and Manager prefunds rather than new WETH receipts."
+    },
+    {
+      "id": "testNativeForcedETHDuringTakeCannotBeClaimed.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 313,
+      "expectation": "assertEq(address(manager).balance, 0)",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically",
+        "test/NativeLiquidity.t.sol:testForcedETHDuringNativeForwardCannotBecomeIncome"
+      ],
+      "verdict": "Preserved at both boundaries",
+      "review": "Foundation still injects forced ETH from the expected Core take path and checks caller balances. The actual-Core case separately forces ETH back during recipient forwarding, verifies failure/Manager zero and permits a clean retry. These are distinct injection points, not identical tests.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeWrapperReentryFailsWhileCreditStillSucceeds.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 317,
+      "expectation": "assertEq(manager.swap(poolId, false, 1 ether, 0.98 ether, block.timestamp + 100), 0.99 ether)",
+      "current_references": [
+        "test/NativeAssetFoundation.t.sol:testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice"
+      ],
+      "verdict": "Obsolete wrapper callback retired; active callback protected",
+      "review": "An unused wrapper no longer runs during native swaps. A real ETH recipient callback attempts collect reentry, fails to enter, receives the original credit exactly once and clears its recorded fees.",
+      "assertion_verdict": "Inactive callback retired; active callback covered",
+      "assertion_correspondence": "Native settlement no longer invokes the wrapper. An actual ETH recipient callback still attempts and fails reentry while the original fee credit is delivered once."
+    },
+    {
+      "id": "testNativeRegistryAdmissionRejectsUnreviewedDependencies.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 322,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/FixedZZZPool.t.sol:testNativeAdmissionRetainsItsSeparateFixedIdentityGuard",
+        "test/NativeSourceIdentity.t.sol:testMatchingSourceStillCannotBypassNativeRuntimePins"
+      ],
+      "verdict": "Negative admission preserved; real qualification open",
+      "review": "The old any-revert tests could reject for an unset identity/unsupported native getter rather than each claimed runtime dependency. Current source/chain/runtime negative cases are explicit, but neither old nor replacement tests qualify a fully matching real deployed dependency inventory. That remains a release gate.",
+      "assertion_verdict": "Negative test purpose narrowed honestly",
+      "assertion_correspondence": "The old generic configure(native-zero) any-revert did not isolate all runtime pins. Native source/chain/runtime rejection tests remain; full actual venue qualification is not claimed."
+    },
+    {
+      "id": "testNativeRegistryAdmissionRejectsUnreviewedDependencies.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 323,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/FixedZZZPool.t.sol:testNativeAdmissionRetainsItsSeparateFixedIdentityGuard",
+        "test/NativeSourceIdentity.t.sol:testMatchingSourceStillCannotBypassNativeRuntimePins"
+      ],
+      "verdict": "Negative admission preserved; real qualification open",
+      "review": "The old any-revert tests could reject for an unset identity/unsupported native getter rather than each claimed runtime dependency. Current source/chain/runtime negative cases are explicit, but neither old nor replacement tests qualify a fully matching real deployed dependency inventory. That remains a release gate.",
+      "assertion_verdict": "Negative test purpose narrowed honestly",
+      "assertion_correspondence": "The old native configure any-revert could reject at an absent native getter or unset source identity. Current identity/runtime tests make those causes explicit, without pretending positive actual admission."
+    },
+    {
+      "id": "testNativePlanBalancesNetAmountsWithinOnePercentBudget.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 328,
+      "expectation": "assertFalse(direction)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee",
+        "test/IntegratedEconomicConservation.t.sol:testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor"
+      ],
+      "verdict": "Behavior preserved with corrected evidence reference",
+      "review": "The old fixed 0.99 fake output and >99.25% placement were fixture-specific, not guaranteed economics. The real two-pass Entry test explicitly requests the stricter 1% floor, asserts actual deployed LP >=99 from 100 and low idle. The earlier mapping incorrectly cited the direct paired-input cap test, which does not exercise the single-sided planner.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativePlanBalancesNetAmountsWithinOnePercentBudget.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 334,
+      "expectation": "assertGe(deployed, 198 ether)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee",
+        "test/IntegratedEconomicConservation.t.sol:testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor"
+      ],
+      "verdict": "Behavior preserved with corrected evidence reference",
+      "review": "The old fixed 0.99 fake output and >99.25% placement were fixture-specific, not guaranteed economics. The real two-pass Entry test explicitly requests the stricter 1% floor, asserts actual deployed LP >=99 from 100 and low idle. The earlier mapping incorrectly cited the direct paired-input cap test, which does not exercise the single-sided planner.",
+      "assertion_verdict": "Normalized real execution evidence",
+      "assertion_correspondence": "The real two-pass Entry test deploys at least 99 of 100 under an explicit stricter 1% caller/policy bound, not merely idle-inclusive NAV."
+    },
+    {
+      "id": "testNativePlanBalancesNetAmountsWithinOnePercentBudget.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 334,
+      "expectation": "assertGt(deployed, 198.5 ether)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee",
+        "test/IntegratedEconomicConservation.t.sol:testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor"
+      ],
+      "verdict": "Behavior preserved with corrected evidence reference",
+      "review": "The old fixed 0.99 fake output and >99.25% placement were fixture-specific, not guaranteed economics. The real two-pass Entry test explicitly requests the stricter 1% floor, asserts actual deployed LP >=99 from 100 and low idle. The earlier mapping incorrectly cited the direct paired-input cap test, which does not exercise the single-sided planner.",
+      "assertion_verdict": "Incidental fixture result retired",
+      "assertion_correspondence": ">99.25% for a fake fee/range is not a product rule. Current default is 98%, and an explicitly stricter 99% actual placement scenario is retained."
+    },
+    {
+      "id": "testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 341,
+      "expectation": "assertFalse(direction)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual Core fee changes distinguish the chosen direction from the other packed direction; a mismatched LP fee returned by the explicit StateView fault rejects. The root selected 32-method execution includes this method.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 343,
+      "expectation": "assertEq(unchangedInput,beforeInput)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual Core fee changes distinguish the chosen direction from the other packed direction; a mismatched LP fee returned by the explicit StateView fault rejects. The root selected 32-method execution includes this method.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 345,
+      "expectation": "assertGt(higherInput,beforeInput)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual Core fee changes distinguish the chosen direction from the other packed direction; a mismatched LP fee returned by the explicit StateView fault rejects. The root selected 32-method execution includes this method.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee.4",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 347,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee"
+      ],
+      "verdict": "Preserved",
+      "review": "Actual Core fee changes distinguish the chosen direction from the other packed direction; a mismatched LP fee returned by the explicit StateView fault rejects. The root selected 32-method execution includes this method.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 351,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Preserved; ETH denomination",
+      "review": "Disabled mint/increase/swap reject; fee collection and close succeed, including with an unavailable oracle. Exact fee/native principal delivery is also retained in the unchanged foundation test. Pool stop must not block raw custody extraction.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 352,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Preserved; ETH denomination",
+      "review": "Disabled mint/increase/swap reject; fee collection and close succeed, including with an unavailable oracle. Exact fee/native principal delivery is also retained in the unchanged foundation test. Pool stop must not block raw custody extraction.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 353,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Preserved; ETH denomination",
+      "review": "Disabled mint/increase/swap reject; fee collection and close succeed, including with an unavailable oracle. Exact fee/native principal delivery is also retained in the unchanged foundation test. Pool stop must not block raw custody extraction.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap.4",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 355,
+      "expectation": "assertEq(wrapped.balanceOf(address(this)), beforeWrapped + 17)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Preserved; ETH denomination",
+      "review": "Disabled mint/increase/swap reject; fee collection and close succeed, including with an unavailable oracle. Exact fee/native principal delivery is also retained in the unchanged foundation test. Pool stop must not block raw custody extraction.",
+      "assertion_verdict": "Denomination changed; exact check retained in peer",
+      "assertion_correspondence": "Actual Core pays positive ETH fees while disabled; unchanged foundation checks the exact native +17 amount and principal separately."
+    },
+    {
+      "id": "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap.5",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 356,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap",
+        "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+      ],
+      "verdict": "Preserved; ETH denomination",
+      "review": "Disabled mint/increase/swap reject; fee collection and close succeed, including with an unavailable oracle. Exact fee/native principal delivery is also retained in the unchanged foundation test. Pool stop must not block raw custody extraction.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeDisabledPoolExitDoesNotReadUnavailableOracle.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 362,
+      "expectation": "assertEq(address(manager).balance, 0)",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap"
+      ],
+      "verdict": "Preserved by merged case",
+      "review": "Oracle is explicitly replaced by a reverting contract after disabling operations, and actual collection/close still succeed and burn ownership. The separate old explicit Manager-zero assertion is not repeated in this merged method; native no-residual safety has independent current checks.",
+      "assertion_verdict": "Direct assertion moved",
+      "assertion_correspondence": "The merged actual disabled/oracle-outage test does not repeat this Manager-zero literal. It still completes collect/close and destroys LP ownership; exact prefund/no-residual checks exist in other native cases."
+    },
+    {
+      "id": "testNativeDisabledPoolExitDoesNotReadUnavailableOracle.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 362,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap"
+      ],
+      "verdict": "Preserved by merged case",
+      "review": "Oracle is explicitly replaced by a reverting contract after disabling operations, and actual collection/close still succeed and burn ownership. The separate old explicit Manager-zero assertion is not repeated in this merged method; native no-residual safety has independent current checks.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle.1",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 366,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle"
+      ],
+      "verdict": "Preserved",
+      "review": "Strategy ordinary validation rejects a disabled pool; exit-price validation ignores the stop flag but still rejects unavailable prices. Raw parking/close does not call this oracle-requiring maintenance path.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle.2",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 367,
+      "expectation": "assertEq(policy.validateExitPrice(poolId), uint160(1 << 96))",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle"
+      ],
+      "verdict": "Preserved",
+      "review": "Strategy ordinary validation rejects a disabled pool; exit-price validation ignores the stop flag but still rejects unavailable prices. Raw parking/close does not call this oracle-requiring maintenance path.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    },
+    {
+      "id": "testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle.3",
+      "old_source": "reports/deep-cleanup-20261025/native-liquidity-before.sol.txt",
+      "line": 368,
+      "expectation": "vm.expectRevert()",
+      "current_references": [
+        "test/NativeLiquidity.t.sol:testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle"
+      ],
+      "verdict": "Preserved",
+      "review": "Strategy ordinary validation rejects a disabled pool; exit-price validation ignores the stop flag but still rejects unavailable prices. Raw parking/close does not call this oracle-requiring maintenance path.",
+      "assertion_verdict": "Preserved postcondition",
+      "assertion_correspondence": "The current referenced method retains this ownership, balance, no-mint, rejection or directional-policy postcondition; exact current assertion text is in current_assertion_references."
+    }
+  ],
+  "current_assertion_references": {
+    "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 294,
+      "body_sha256": "75f493b782378bf4de35899555efe7cd91feb42801f0b5f2b5046bd76d0f2eee",
+      "assertions": [
+        {
+          "line": 301,
+          "expectation": "assertEq(positions.ownerOf(id),address(this))"
+        },
+        {
+          "line": 301,
+          "expectation": "assertGt(spent0,0)"
+        },
+        {
+          "line": 301,
+          "expectation": "assertGt(spent1,0)"
+        },
+        {
+          "line": 302,
+          "expectation": "assertEq(beforeNative-address(this).balance,spent0)"
+        },
+        {
+          "line": 302,
+          "expectation": "assertEq(beforeToken-token.balanceOf(address(this)),spent1)"
+        },
+        {
+          "line": 303,
+          "expectation": "assertEq(address(manager).balance,123)"
+        },
+        {
+          "line": 303,
+          "expectation": "assertEq(address(positions).balance,456)"
+        },
+        {
+          "line": 304,
+          "expectation": "assertEq(token.balanceOf(address(manager)),789)"
+        },
+        {
+          "line": 304,
+          "expectation": "assertEq(wrapped.balanceOf(address(manager)),321)"
+        },
+        {
+          "line": 304,
+          "expectation": "_clearApprovals()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeIncreaseReusesPositionAndClearsApprovals": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 306,
+      "body_sha256": "75590d25a6aef3f07023db78b01f749b1f23b17520e37b3363ce74247726606c",
+      "assertions": [
+        {
+          "line": 310,
+          "expectation": "assertGt(positions.getPositionLiquidity(id),beforeLiquidity)"
+        },
+        {
+          "line": 310,
+          "expectation": "assertEq(positions.nextTokenId(),2)"
+        },
+        {
+          "line": 311,
+          "expectation": "assertEq(beforeNative-address(this).balance,x)"
+        },
+        {
+          "line": 311,
+          "expectation": "assertEq(beforeToken-token.balanceOf(address(this)),y)"
+        },
+        {
+          "line": 311,
+          "expectation": "_clearApprovals()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 313,
+      "body_sha256": "f89906387a6de5965a6162f23f9c13fb07934744f5e99ad3b24ba3885834d766",
+      "assertions": [
+        {
+          "line": 318,
+          "expectation": "assertGt(address(this).balance,n)"
+        },
+        {
+          "line": 318,
+          "expectation": "assertLe(address(this).balance-n,1 ether)"
+        },
+        {
+          "line": 319,
+          "expectation": "assertGt(token.balanceOf(address(this)),t)"
+        },
+        {
+          "line": 319,
+          "expectation": "assertLe(token.balanceOf(address(this))-t,2 ether)"
+        },
+        {
+          "line": 320,
+          "expectation": "assertEq(wrapped.balanceOf(address(this)),0)"
+        },
+        {
+          "line": 320,
+          "expectation": "assertEq(address(manager).balance,123)"
+        },
+        {
+          "line": 320,
+          "expectation": "assertEq(token.balanceOf(address(manager)),40)"
+        },
+        {
+          "line": 322,
+          "expectation": "assertEq(address(this).balance,n)"
+        },
+        {
+          "line": 322,
+          "expectation": "assertEq(token.balanceOf(address(this)),t)"
+        }
+      ]
+    },
+    "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper": {
+      "source": "test/NativeAssetFoundation.t.sol",
+      "line": 132,
+      "body_sha256": "996ff2a5567c43b88e0d4066439eadb0c9b873ad37c9479651711a22f561f812",
+      "assertions": [
+        {
+          "line": 137,
+          "expectation": "assertEq(address(this).balance, beforeETH + 17)"
+        },
+        {
+          "line": 137,
+          "expectation": "assertEq(token.balanceOf(address(this)), beforeToken + 29)"
+        },
+        {
+          "line": 140,
+          "expectation": "assertEq(address(this).balance, beforeETH + 17 + principal0)"
+        },
+        {
+          "line": 141,
+          "expectation": "assertEq(token.balanceOf(address(this)), beforeToken + 29 + principal1)"
+        },
+        {
+          "line": 142,
+          "expectation": "assertEq(address(manager).balance, 123)"
+        },
+        {
+          "line": 142,
+          "expectation": "assertEq(token.balanceOf(address(manager)), 40)"
+        },
+        {
+          "line": 143,
+          "expectation": "assertEq(brokenWrapper.totalSupply(), 0)"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeCloseReturnsActualPrincipalInETHWithoutWrapping": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 324,
+      "body_sha256": "2c3aad0c8a875e72d2fb11267fbd48a3e368b7ee0fbf6520e92f265da8edb97d",
+      "assertions": [
+        {
+          "line": 328,
+          "expectation": "assertEq(address(this).balance,n+x)"
+        },
+        {
+          "line": 328,
+          "expectation": "assertEq(token.balanceOf(address(this)),t+y)"
+        },
+        {
+          "line": 329,
+          "expectation": "assertEq(wrapped.balanceOf(address(this)),0)"
+        },
+        {
+          "line": 329,
+          "expectation": "vm.expectRevert()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 331,
+      "body_sha256": "691a2ae0e255824ad6fbd08592687b828fff8800a60442e0c045d29d887e1548",
+      "assertions": [
+        {
+          "line": 335,
+          "expectation": "assertLt(out,1 ether)"
+        },
+        {
+          "line": 335,
+          "expectation": "assertGe(out,0.98 ether)"
+        },
+        {
+          "line": 335,
+          "expectation": "assertEq(address(this).balance,n-1 ether)"
+        },
+        {
+          "line": 336,
+          "expectation": "assertEq(token.balanceOf(address(this)),t+out)"
+        },
+        {
+          "line": 336,
+          "expectation": "assertEq(address(manager).balance,0)"
+        },
+        {
+          "line": 336,
+          "expectation": "_clearApprovals()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeOutputSwapPaysETHAndPreservesForcedPrefunds": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 338,
+      "body_sha256": "d694c19c334130baedee20e7b76a91f244450cd7ff4312160645265d8753a1ae",
+      "assertions": [
+        {
+          "line": 342,
+          "expectation": "assertEq(address(this).balance,n+out)"
+        },
+        {
+          "line": 342,
+          "expectation": "assertEq(token.balanceOf(address(this)),t-1 ether)"
+        },
+        {
+          "line": 343,
+          "expectation": "assertGe(out,0.98 ether)"
+        },
+        {
+          "line": 343,
+          "expectation": "assertLt(out,1 ether)"
+        },
+        {
+          "line": 343,
+          "expectation": "assertEq(wrapped.balanceOf(address(this)),0)"
+        },
+        {
+          "line": 344,
+          "expectation": "assertEq(address(manager).balance,123)"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeUnfillableInputRevertsAllCoreAndWalletState": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 346,
+      "body_sha256": "0c88c4e086c650400fb989a57e71405f057da2963635d1c3bd0ee60be870f53d",
+      "assertions": [
+        {
+          "line": 349,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 350,
+          "expectation": "assertEq(_price(),beforePrice)"
+        },
+        {
+          "line": 350,
+          "expectation": "assertEq(positions.getPositionLiquidity(id),l)"
+        },
+        {
+          "line": 351,
+          "expectation": "assertEq(address(this).balance,n)"
+        },
+        {
+          "line": 351,
+          "expectation": "assertEq(token.balanceOf(address(this)),t)"
+        },
+        {
+          "line": 351,
+          "expectation": "assertEq(address(manager).balance,0)"
+        }
+      ]
+    },
+    "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically": {
+      "source": "test/NativeAssetFoundation.t.sol",
+      "line": 157,
+      "body_sha256": "cc76bee787c819370f895f212aa37cc8d1c9fa4e6c2e52fa14d893d6bdc599c5",
+      "assertions": [
+        {
+          "line": 160,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 161,
+          "expectation": "assertEq(address(this).balance, beforeETH)"
+        },
+        {
+          "line": 164,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 165,
+          "expectation": "assertEq(token.balanceOf(address(this)), beforeToken)"
+        },
+        {
+          "line": 165,
+          "expectation": "assertEq(address(this).balance, beforeETH)"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeExactInputGuardRejectsPartialFillEvenWhenOutputPassesOracleFloor": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 353,
+      "body_sha256": "170474e356fdcf4bf2f0ba2969b1987a24612cd48c090fb261ce7682accc09f8",
+      "assertions": [
+        {
+          "line": 369,
+          "expectation": "assertEq(reason.length,68)"
+        },
+        {
+          "line": 370,
+          "expectation": "assertEq(bytes4(reason),NativePartialFillObserved.selector)"
+        },
+        {
+          "line": 373,
+          "expectation": "assertLt(input,0)"
+        },
+        {
+          "line": 373,
+          "expectation": "assertGt(output,0)"
+        },
+        {
+          "line": 374,
+          "expectation": "assertLt(uint256(-int256(input)),request,\"must actually short-fill\")"
+        },
+        {
+          "line": 375,
+          "expectation": "assertGe(uint256(int256(output)),minimum,\"output guard alone must accept this fill\")"
+        },
+        {
+          "line": 382,
+          "expectation": "vm.expectRevert(ZZZModule.Slippage.selector)"
+        },
+        {
+          "line": 384,
+          "expectation": "assertEq(_price(),beforePrice)"
+        },
+        {
+          "line": 384,
+          "expectation": "assertEq(positions.getPositionLiquidity(id),liquidity)"
+        },
+        {
+          "line": 385,
+          "expectation": "assertEq(positions.ownerOf(id),address(this))"
+        },
+        {
+          "line": 386,
+          "expectation": "assertEq(address(this).balance,beforeBalances[0])"
+        },
+        {
+          "line": 386,
+          "expectation": "assertEq(token.balanceOf(address(this)),beforeBalances[1])"
+        },
+        {
+          "line": 387,
+          "expectation": "assertEq(address(core).balance,beforeBalances[2])"
+        },
+        {
+          "line": 387,
+          "expectation": "assertEq(token.balanceOf(address(core)),beforeBalances[3])"
+        },
+        {
+          "line": 388,
+          "expectation": "assertEq(address(manager).balance,beforeBalances[4])"
+        },
+        {
+          "line": 388,
+          "expectation": "assertEq(token.balanceOf(address(manager)),beforeBalances[5])"
+        },
+        {
+          "line": 389,
+          "expectation": "assertEq(address(positions).balance,beforeBalances[6])"
+        },
+        {
+          "line": 390,
+          "expectation": "assertEq(core.protocolFeesAccrued(Currency.wrap(address(0))),beforeBalances[7])"
+        },
+        {
+          "line": 391,
+          "expectation": "_clearApprovals()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeMinimumOutputIncludesActualLPAndProtocolFees": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 393,
+      "body_sha256": "ecf6caa1c593025717b48e8f9da5a6d056062a3dd5d90748e4f8d3356c3e3e87",
+      "assertions": [
+        {
+          "line": 395,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 396,
+          "expectation": "assertEq(_price(),beforePrice)"
+        },
+        {
+          "line": 396,
+          "expectation": "assertEq(address(this).balance,n)"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeUnexpectedSenderAndCallbackRejected": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 404,
+      "body_sha256": "fcb8869719147dde0abaf1736ada0f0c0089f0ae1850331504373aaa75d9ce00",
+      "assertions": [
+        {
+          "line": 405,
+          "expectation": "assertFalse(ok)"
+        },
+        {
+          "line": 406,
+          "expectation": "vm.expectRevert()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeIdentityMustBeAdmittedBeforePullOrMint": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 408,
+      "body_sha256": "61e1a27f0dd1d5fa180878499df55806dcecc4888f7c7c76306c68b84765e7b4",
+      "assertions": [
+        {
+          "line": 410,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 411,
+          "expectation": "assertEq(address(this).balance,n)"
+        },
+        {
+          "line": 411,
+          "expectation": "assertEq(token.balanceOf(address(this)),t)"
+        },
+        {
+          "line": 411,
+          "expectation": "assertEq(positions.nextTokenId(),1)"
+        }
+      ]
+    },
+    "test/NativeAssetFoundation.t.sol:testNativeETHOracleAndSourceAdmissionAreDistinctFromWETH": {
+      "source": "test/NativeAssetFoundation.t.sol",
+      "line": 213,
+      "body_sha256": "027fab857a1401a031018ba406c658cb1cffdd0142acd768e45d48f4a414382d",
+      "assertions": [
+        {
+          "line": 216,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 220,
+          "expectation": "assertEq(oracle.tokenDecimals(address(0)), 18)"
+        },
+        {
+          "line": 220,
+          "expectation": "assertEq(oracle.value(address(0), 1 ether), 2000 ether)"
+        },
+        {
+          "line": 221,
+          "expectation": "assertEq(oracle.value(address(brokenWrapper), 1 ether), 999 ether)"
+        },
+        {
+          "line": 223,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 225,
+          "expectation": "assertEq(assets.value(address(0), 0.05 ether), 100 ether)"
+        },
+        {
+          "line": 227,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 228,
+          "expectation": "assertEq(assets.value(address(0), 0), 0)"
+        },
+        {
+          "line": 231,
+          "expectation": "vm.expectRevert()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeAmountsStayUint128BoundedWithoutPermitApproval": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 413,
+      "body_sha256": "e3b5af2d1607a4e76e5397d18f1ebc97ff70673fc700d9616d06b6d039d35932",
+      "assertions": [
+        {
+          "line": 421,
+          "expectation": "vm.expectRevert(ZZZModule.InvalidAmount.selector)"
+        },
+        {
+          "line": 423,
+          "expectation": "vm.expectRevert(ZZZModule.InvalidAmount.selector)"
+        },
+        {
+          "line": 425,
+          "expectation": "assertEq(address(this).balance,n)"
+        },
+        {
+          "line": 426,
+          "expectation": "assertEq(positions.nextTokenId(),1)"
+        },
+        {
+          "line": 426,
+          "expectation": "assertEq(address(manager).balance,0)"
+        },
+        {
+          "line": 426,
+          "expectation": "_clearApprovals()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 428,
+      "body_sha256": "7190f85569fbe9685ad3968ca1a8397385384900e53771f8ce16243957c3209a",
+      "assertions": [
+        {
+          "line": 430,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 432,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 433,
+          "expectation": "assertEq(positions.nextTokenId(),1)"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 435,
+      "body_sha256": "db7c9ebd4ae511b764fef7855be66d3de8c5022abdf815dc6406c9f3c9248bb5",
+      "assertions": [
+        {
+          "line": 439,
+          "expectation": "assertEq(wrapped.totalSupply(),0)"
+        },
+        {
+          "line": 439,
+          "expectation": "assertEq(address(wrapped).balance,0)"
+        }
+      ]
+    },
+    "test/NativeAssetFoundation.t.sol:testNativeMintAndIncreaseReturnUnusedETHWithoutCallingBrokenWrapper": {
+      "source": "test/NativeAssetFoundation.t.sol",
+      "line": 100,
+      "body_sha256": "0d29bb635b293487fc90808076b7cf5fac64317cb96cced628a0b5c802269efd",
+      "assertions": [
+        {
+          "line": 107,
+          "expectation": "assertEq(address(this).balance, beforeETH - spent0)"
+        },
+        {
+          "line": 107,
+          "expectation": "assertGt(spent1, 0)"
+        },
+        {
+          "line": 111,
+          "expectation": "assertEq(address(this).balance, beforeETH - spent0 - added0)"
+        },
+        {
+          "line": 112,
+          "expectation": "assertGt(positions.getPositionLiquidity(id), original)"
+        },
+        {
+          "line": 113,
+          "expectation": "assertEq(address(manager).balance, 123)"
+        },
+        {
+          "line": 113,
+          "expectation": "assertEq(address(positions).balance, 456)"
+        },
+        {
+          "line": 114,
+          "expectation": "assertEq(token.balanceOf(address(manager)), 789)"
+        },
+        {
+          "line": 115,
+          "expectation": "assertEq(token.allowance(address(manager), address(permit)), 0)"
+        },
+        {
+          "line": 116,
+          "expectation": "assertEq(brokenWrapper.balanceOf(address(this)), 0)"
+        },
+        {
+          "line": 116,
+          "expectation": "assertEq(brokenWrapper.balanceOf(address(manager)), 0)"
+        }
+      ]
+    },
+    "test/NativeAssetFoundation.t.sol:testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice": {
+      "source": "test/NativeAssetFoundation.t.sol",
+      "line": 167,
+      "body_sha256": "90fdd67baaba135f230fdecf17bde8ff03dcc493be256bd43dc07392da95a866",
+      "assertions": [
+        {
+          "line": 169,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 170,
+          "expectation": "assertEq(positions.nativeFees(id), 17)"
+        },
+        {
+          "line": 170,
+          "expectation": "assertEq(positions.tokenFees(id), 29)"
+        },
+        {
+          "line": 173,
+          "expectation": "assertEq(address(this).balance, beforeETH + 17)"
+        },
+        {
+          "line": 173,
+          "expectation": "assertEq(positions.nativeFees(id), 0)"
+        }
+      ]
+    },
+    "test/NativeAssetFoundation.t.sol:testNativeRetainedPositionValueRevertsInsteadOfSubsidizingLaterLP": {
+      "source": "test/NativeAssetFoundation.t.sol",
+      "line": 206,
+      "body_sha256": "25e4b5d2ffb4615bddf54872a32dd6391b09cdc38b0b0e43730e893e282d1bcb",
+      "assertions": [
+        {
+          "line": 209,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 210,
+          "expectation": "assertEq(address(this).balance, beforeETH)"
+        },
+        {
+          "line": 210,
+          "expectation": "assertEq(token.balanceOf(address(this)), beforeToken)"
+        },
+        {
+          "line": 211,
+          "expectation": "assertEq(positions.nextTokenId(), 1)"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativePendingFeesMustBeCollectedBeforeIncreasingPrincipal": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 454,
+      "body_sha256": "1be91bce7dff6fc53302f2de6206766211fcf715fa5de1a465d1d20264175f29",
+      "assertions": [
+        {
+          "line": 456,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 457,
+          "expectation": "assertEq(positions.getPositionLiquidity(id),l)"
+        },
+        {
+          "line": 457,
+          "expectation": "assertEq(address(positions).balance,0)"
+        },
+        {
+          "line": 457,
+          "expectation": "_clearApprovals()"
+        },
+        {
+          "line": 460,
+          "expectation": "assertGt(positions.getPositionLiquidity(id),l)"
+        },
+        {
+          "line": 460,
+          "expectation": "_clearApprovals()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testForcedETHDuringNativeForwardCannotBecomeIncome": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 448,
+      "body_sha256": "bd92f46f89f2e6b94e0f977137dca364a94e7913bf43f978244585374dd46e32",
+      "assertions": [
+        {
+          "line": 450,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 451,
+          "expectation": "assertEq(address(this).balance,n)"
+        },
+        {
+          "line": 451,
+          "expectation": "assertEq(address(manager).balance,0)"
+        },
+        {
+          "line": 452,
+          "expectation": "assertGt(address(this).balance,n)"
+        }
+      ]
+    },
+    "test/FixedZZZPool.t.sol:testNativeAdmissionRetainsItsSeparateFixedIdentityGuard": {
+      "source": "test/FixedZZZPool.t.sol",
+      "line": 93,
+      "body_sha256": "e1a2fffa19eb777ffec2b616d410f657563c205bf4c169c335947d40c2c9bdae",
+      "assertions": [
+        {
+          "line": 99,
+          "expectation": "vm.expectRevert(ZZZModule.InvalidConfiguration.selector)"
+        },
+        {
+          "line": 100,
+          "expectation": "assertEq(assets.zzz(),address(zzz))"
+        }
+      ]
+    },
+    "test/NativeSourceIdentity.t.sol:testMatchingSourceStillCannotBypassNativeRuntimePins": {
+      "source": "test/NativeSourceIdentity.t.sol",
+      "line": 82,
+      "body_sha256": "307f1cedde1ea1b58253a86a537fa96b208a716cb0bb765107962f728fcd9ec0",
+      "assertions": [
+        {
+          "line": 87,
+          "expectation": "assertEq(assets.zzz(), ZZZ)"
+        },
+        {
+          "line": 89,
+          "expectation": "vm.expectRevert(ZZZModule.InvalidConfiguration.selector)"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 462,
+      "body_sha256": "70955ea583ac664a17055b9798f3d72f82fcd05ea708a01b835d85a1e38a6cfb",
+      "assertions": [
+        {
+          "line": 463,
+          "expectation": "assertFalse(direction)"
+        },
+        {
+          "line": 465,
+          "expectation": "assertLt(lowerFeeInput,initial)"
+        },
+        {
+          "line": 466,
+          "expectation": "assertEq(restored,initial)"
+        },
+        {
+          "line": 470,
+          "expectation": "vm.expectRevert()"
+        }
+      ]
+    },
+    "test/IntegratedEconomicConservation.t.sol:testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor": {
+      "source": "test/IntegratedEconomicConservation.t.sol",
+      "line": 316,
+      "body_sha256": "ae80c5cc9f7872805d850125ed6e35073cea9918965ee18201cedf316a5809b8",
+      "assertions": [
+        {
+          "line": 318,
+          "expectation": "assertEq(vault.migrationBudget().contributionLossBps(),200,\"approved two-percent default\")"
+        },
+        {
+          "line": 320,
+          "expectation": "assertEq(vault.migrationBudget().contributionLossBps(),100,\"explicit stricter one-percent proof\")"
+        },
+        {
+          "line": 327,
+          "expectation": "assertGe(deployed,99 ether,\"actual deployed value, not idle-inclusive NAV\")"
+        },
+        {
+          "line": 328,
+          "expectation": "assertLt(idle,0.01 ether,\"post-swap correction reduces recorded 0.5335 idle\")"
+        },
+        {
+          "line": 331,
+          "expectation": "assertTrue(membership.eligible(id))"
+        },
+        {
+          "line": 331,
+          "expectation": "assertEq(positions.ownerOf(p.lpTokenId),address(vault))"
+        },
+        {
+          "line": 332,
+          "expectation": "assertEq(vault.bucketTotalShares(bucket),vault.sharesOf(id))"
+        },
+        {
+          "line": 333,
+          "expectation": "assertGt(vault.sharesOf(id),0)"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 472,
+      "body_sha256": "9e6703754b14e0aa91473e9743321a3ba6422edb1063a4f07d68191eb47672ac",
+      "assertions": [
+        {
+          "line": 474,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 475,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 476,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 478,
+          "expectation": "assertGt(address(this).balance,n)"
+        },
+        {
+          "line": 479,
+          "expectation": "vm.expectRevert()"
+        }
+      ]
+    },
+    "test/NativeLiquidity.t.sol:testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle": {
+      "source": "test/NativeLiquidity.t.sol",
+      "line": 481,
+      "body_sha256": "7b5b4bbb11b8fb24f8157de699578397ca95629be23dd7404f7167bd7cd0b743",
+      "assertions": [
+        {
+          "line": 482,
+          "expectation": "vm.expectRevert()"
+        },
+        {
+          "line": 483,
+          "expectation": "assertEq(policy.validateExitPrice(poolId),uint160(1 << 96))"
+        },
+        {
+          "line": 484,
+          "expectation": "vm.expectRevert()"
+        }
+      ]
+    }
+  },
+  "verification_limits": [
+    "The earlier 32-method execution is separately source/body-bound and is not automatically rerun or relabelled after these test improvements.",
+    "The new exact-input and repaired uint128 methods passed in the separately recorded two-case current selected execution: solidity/native-regressions-verification.json.",
+    "Referenced unchanged peer tests establish where assertions currently exist. Their original evidence scope is retained; source existence is not a fresh execution pass.",
+    "Pinned actual Core/PosM are used for native integration; authority/admission/prices/Permit2 are explicit local seams, not real service qualification.",
+    "No production source, custody authority, economic split, loss cap, supported asset or public signing policy changes arise from this review."
+  ]
+}

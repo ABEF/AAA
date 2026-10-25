@@ -1,0 +1,90 @@
+{
+  "scope": "Only strict outer schema and fixed-point ABI formats; final scope includes one affected existing canonical-type control.",
+  "phase": "initial",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "reports\\day-readiness-20261025\\run-format-tests.py",
+    "initial"
+  ],
+  "methods": [
+    "tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical"
+  ],
+  "tests_run": 2,
+  "source_sha256": {
+    "zzz_ops/function_reference.py": "f11052dacf9eb14654fd13478173a3e20bcf7213eed91d29d5b4e76a4db2e4d3",
+    "tests_python/test_function_reference.py": "9cea757d716f039a4bceb3b162709267def17ac2c9f800a582f6b328675a0d76"
+  },
+  "unchanged": true,
+  "elapsed_seconds": 0.313,
+  "failures": [
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (target='snapshot', schema=True)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 422, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges\n    with self.assertRaises(ReferenceError):build_reference(self.root,base,self.notes)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (target='notes', schema=True)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 425, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges\n    with self.assertRaises(ReferenceError):build_reference(self.root,self.base,notes)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (target='merge', schema=True)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 429, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges\n    with self.assertRaises(ReferenceError):merge_notes([path])\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (target='snapshot', schema=1.0)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 422, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges\n    with self.assertRaises(ReferenceError):build_reference(self.root,base,self.notes)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (target='notes', schema=1.0)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 425, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges\n    with self.assertRaises(ReferenceError):build_reference(self.root,self.base,notes)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges (target='merge', schema=1.0)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 429, in test_outer_schema_one_requires_an_integer_for_snapshots_notes_and_merges\n    with self.assertRaises(ReferenceError):merge_notes([path])\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='fixed0x1')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='fixed7x1')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='fixed264x1')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='ufixed8x0')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='ufixed8x81')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='fixed16x00')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='fixed016x1')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='ufixed08x1')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='fixed128x080')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    },
+    {
+      "case": "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_point_abi_width_precision_and_aliases_are_canonical (invalid='ufixed128x01')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_function_reference.py\", line 439, in test_fixed_point_abi_width_precision_and_aliases_are_canonical\n    with self.subTest(invalid=typ),self.assertRaises(ReferenceError):canonical_type({'type':typ})\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ReferenceError not raised\n"
+    }
+  ],
+  "errors": [],
+  "successful": false
+}

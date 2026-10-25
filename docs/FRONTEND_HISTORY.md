@@ -1,3 +1,14 @@
+## Native royalty custody replay - 2026-10-25
+
+Current earnings replay validates complete RoyaltyCustodyExited/Returned intervals,
+permits native eligibility deferral only during actual native custody and treats
+full return as backing restoration, not income. In-transit reconciliation and
+missing/mismatched events stay unavailable. Preserve original databases and
+rebuild into a separate verified store before a reviewed service rollout; see
+[reporting procedure](ROYALTY_REPORTING.md#native-custody-history-and-recovery)
+and [audit](../reports/day-readiness-20261025/royalty-matrix.md). No running store
+or service was changed by this source fix.
+
 ## Confirmed-log validation and recovery - 2026-10-25
 
 The current indexer rejects malformed log identities/layouts as sanitized

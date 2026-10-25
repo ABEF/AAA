@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "source_snapshot": {
-    "snapshot_schema": 2,
+    "snapshot_schema": 3,
     "source_sha256": {
       "src/ZZZAccessController.sol": "8f78ea1f048a2fce5a40938b53de7486aa1dff88884bc6ec9a9fbf104d40c16c",
       "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
@@ -117,9 +117,98 @@
         }
       }
     },
+    "compiler_source_names": [
+      "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+      "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+      "node_modules/@openzeppelin/contracts/utils/Base64.sol",
+      "node_modules/@openzeppelin/contracts/utils/Context.sol",
+      "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+      "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+      "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+      "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol",
+      "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol",
+      "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol",
+      "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol",
+      "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+      "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol",
+      "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol",
+      "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol",
+      "src/ZZZAccessController.sol",
+      "src/ZZZActivationAssets.sol",
+      "src/ZZZActivationAssetsFactory.sol",
+      "src/ZZZActivationEntry.sol",
+      "src/ZZZBuyback.sol",
+      "src/ZZZCanonicalHandoff.sol",
+      "src/ZZZClaimRouter.sol",
+      "src/ZZZCompounder.sol",
+      "src/ZZZContributionPricing.sol",
+      "src/ZZZCustodyValidation.sol",
+      "src/ZZZFeeController.sol",
+      "src/ZZZFeesCanonical.sol",
+      "src/ZZZLPRewardConverter.sol",
+      "src/ZZZLiquidityManager.sol",
+      "src/ZZZMembership.sol",
+      "src/ZZZMigration.sol",
+      "src/ZZZMigrationBudget.sol",
+      "src/ZZZNFT.sol",
+      "src/ZZZNFTCanonical.sol",
+      "src/ZZZNFTMetadata.sol",
+      "src/ZZZOracle.sol",
+      "src/ZZZPoolRegistry.sol",
+      "src/ZZZPythPriceFeed.sol",
+      "src/ZZZRewards.sol",
+      "src/ZZZRoyaltyConverter.sol",
+      "src/ZZZRoyaltyFactory.sol",
+      "src/ZZZRoyaltyRewards.sol",
+      "src/ZZZStrategy.sol",
+      "src/ZZZV4RouteExecutor.sol",
+      "src/ZZZVault.sol",
+      "src/ZZZVaultCanonical.sol",
+      "src/base/ZZZCanonicalLedger.sol",
+      "src/base/ZZZModule.sol",
+      "src/base/ZZZRewardConverter.sol",
+      "src/interfaces/IZZZ.sol",
+      "src/interfaces/IZZZCanonical.sol",
+      "src/interfaces/IZZZNFTCanonical.sol",
+      "src/interfaces/IZZZV3Route.sol",
+      "src/libraries/ExactAsset.sol",
+      "src/libraries/ExactToken.sol",
+      "src/libraries/ZZZArtwork.sol",
+      "src/libraries/ZZZPriceMath.sol",
+      "src/libraries/ZZZTypes.sol",
+      "src/libraries/ZZZV3VenueValidation.sol"
+    ],
+    "solc_executable_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+    "normal_limits": {
+      "runtime_bytes": 24576,
+      "initcode_bytes": 49152
+    },
     "compiler_input_sha256": "b1b7fcfe27ae4cac6b9643b841b31d7c602a23c073793225754caf0f85785e8d",
     "compiler_output_sha256": "a3c37b7a07163a66dde8bcab5fe6d853c1970a46bef5f5d61d565f4625801b50",
-    "size_evidence_sha256": "44c72290148d450cea8b451f7a53a29015e90ac2ad241bfb1636f599eb8c29c0"
+    "size_evidence_sha256": "44c72290148d450cea8b451f7a53a29015e90ac2ad241bfb1636f599eb8c29c0",
+    "unqualified_dynamic_constructors": [
+      {
+        "source": "src/ZZZNFT.sol",
+        "contract": "ZZZNFT",
+        "minimum_argument_bytes": 96
+      }
+    ]
   },
   "abi_snapshot": {
     "ZZZAccessController": {
@@ -18411,7 +18500,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "055eabab11f914d14d4ddfabfb7d32831e5ab2615006e8b230ca6d1273e8a169",
+  "notes_sha256": "7a568096e69c9378e5731cb8f53707c1988b11d311754deaee07b65357f20352",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -21220,7 +21309,7 @@
     {
       "name": "ZZZBuyback",
       "source": "src/ZZZBuyback.sol",
-      "purpose": "Purpose-bound reserve spending to acquire and verifiably burn the governed reviewed ZZZ token.",
+      "purpose": "Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token.",
       "category": "Project contract",
       "functions": [
         {
@@ -21228,7 +21317,7 @@
           "kind": "constructor",
           "name": "constructor",
           "state_mutability": "nonpayable",
-          "purpose": "Deploy and bind Purpose-bound reserve spending to acquire and verifiably burn the governed reviewed ZZZ token.",
+          "purpose": "Deploy and bind Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token.",
           "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
           "status": "documented",
           "inputs": [

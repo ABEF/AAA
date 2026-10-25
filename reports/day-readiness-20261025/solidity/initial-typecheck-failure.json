@@ -1,0 +1,18 @@
+{
+  "scope": "New test-only fail(message) signature mismatch against pinned forge-std; no production source change.",
+  "errors": [
+    {
+      "component": "general",
+      "errorCode": "6160",
+      "formattedMessage": "TypeError: Wrong argument count for function call: 1 arguments given but expected 0.\n   --> test/NativeLiquidity.t.sol:367:42:\n    |\n367 |         try probe.observe(key,request) { fail(\"Observation must revert without changing the pool\"); }\n    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n",
+      "message": "Wrong argument count for function call: 1 arguments given but expected 0.",
+      "severity": "error",
+      "sourceLocation": {
+        "end": 23355,
+        "file": "test/NativeLiquidity.t.sol",
+        "start": 23298
+      },
+      "type": "TypeError"
+    }
+  ]
+}

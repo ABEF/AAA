@@ -15,7 +15,14 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Contributions and prices | Native ETH or one fixed ZZZ only. Source admission, the native pool, immutable buyback and normal exit use that same reviewed ZZZ identity. Minimum $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
 | Maintenance and conversion | Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
-| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest internal review](reports/deep-cleanup-20261025/REVIEW.md). |
+| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest internal review](reports/day-readiness-20261025/REVIEW.md). |
+
+The [day-change audit](reports/day-readiness-20261025/REVIEW.md) fixes read/API
+handling of native royalty custody and strengthens saved-build evidence and
+native regression tests. Production Solidity and rights are unchanged. The
+[gate assessment](reports/day-readiness-20261025/READINESS.md) explicitly records
+stale static triage and unqualified external dependencies; publication is not
+production approval.
 
 The native website read/unsigned profile is implemented in source. The
 [latest cleanup](reports/deep-cleanup-20261025/REVIEW.md) reuses balance/error

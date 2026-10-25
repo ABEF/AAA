@@ -5,11 +5,14 @@ import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
+import {ProtocolFeeLibrary} from "@uniswap/v4-core/src/libraries/ProtocolFeeLibrary.sol";
 import {LiquidityAmounts} from "@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
+import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 import {IPoolManagerMinimal} from "../src/interfaces/IZZZ.sol";
 import {MockAccess, MockToken} from "./mocks/Mocks.sol";
@@ -22,6 +25,7 @@ import {PoolKey as CoreKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
 import {Currency} from "@uniswap/v4-core/src/types/Currency.sol";
 import {PoolId} from "@uniswap/v4-core/src/types/PoolId.sol";
 import {BalanceDelta, BalanceDeltaLibrary} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import {SwapParams} from "@uniswap/v4-core/src/types/PoolOperation.sol";
 import {StateView} from "@uniswap/v4-periphery/src/lens/StateView.sol";
 import {PositionManager} from "@uniswap/v4-periphery/src/PositionManager.sol";
 import {IPositionDescriptor} from "@uniswap/v4-periphery/src/interfaces/IPositionDescriptor.sol";
@@ -201,6 +205,26 @@ contract NativeLiquidityPools {
     function disableOperations() external { config.operationsEnabled = false; config.depositsEnabled = false; }
 }
 
+error NativePartialFillObserved(int128 input, int128 output);
+
+/// @dev TEST ONLY: observe real swap deltas, then revert before settlement so
+/// neither balances nor pool state survive. This isolates a short input that
+/// still produces enough output to satisfy the independent output floor.
+contract NativePartialFillProbe {
+    using BalanceDeltaLibrary for BalanceDelta;
+    IPoolManager private immutable core;
+    constructor(IPoolManager manager) { core = manager; }
+    function observe(CoreKey calldata key, uint256 amount) external {
+        core.unlock(abi.encode(key, amount));
+    }
+    function unlockCallback(bytes calldata data) external returns (bytes memory) {
+        require(msg.sender == address(core));
+        (CoreKey memory key, uint256 amount) = abi.decode(data, (CoreKey, uint256));
+        BalanceDelta delta = core.swap(key, SwapParams(true, -int256(amount), TickMath.MIN_SQRT_PRICE + 1), "");
+        revert NativePartialFillObserved(delta.amount0(), delta.amount1());
+    }
+}
+
 /// @notice Actual installed PoolManager1.0.2/PositionManager1.0.3/StateView with
 /// the production LiquidityManager. Authority/admission/prices are explicit test
 /// seams; FactualPermit models only used allowances because real Permit2 pins
@@ -326,6 +350,46 @@ contract NativeLiquidityTest is Test {
         assertEq(_price(),beforePrice); assertEq(positions.getPositionLiquidity(id),l);
         assertEq(address(this).balance,n); assertEq(token.balanceOf(address(this)),t); assertEq(address(manager).balance,0);
     }
+    function testNativeExactInputGuardRejectsPartialFillEvenWhenOutputPassesOracleFloor() public {
+        (uint256 id,,) = manager.mint{value: 10 ether}(poolId,-60,60,10 ether,10 ether,1,block.timestamp+100);
+        uint128 liquidity = positions.getPositionLiquidity(id);
+        uint256 request;
+        {
+            uint256 net = SqrtPriceMath.getAmount0Delta(TickMath.getSqrtPriceAtTick(-60),_price(),liquidity,true);
+            (,,uint24 packedProtocol,uint24 lpFee) = state.getSlot0(PoolId.wrap(poolId));
+            uint24 fee = ProtocolFeeLibrary.calculateSwapFee(ProtocolFeeLibrary.getZeroForOneFee(packedProtocol),lpFee);
+            // Slightly exceed the complete range's gross input capacity. The
+            // range is narrow enough that its actual output still clears 98%.
+            request = Math.mulDiv(net,1_000_000,1_000_000-fee,Math.Rounding.Ceil)+1e12;
+        }
+        uint256 minimum = request*(10_000-pools.get(poolId).maxSlippageBps)/10_000;
+        NativePartialFillProbe probe = new NativePartialFillProbe(IPoolManager(address(core)));
+        try probe.observe(key,request) { fail(); }
+        catch (bytes memory reason) {
+            assertEq(reason.length,68);
+            assertEq(bytes4(reason),NativePartialFillObserved.selector);
+            int128 input; int128 output;
+            assembly ("memory-safe") { input := mload(add(reason,36)) output := mload(add(reason,68)) }
+            assertLt(input,0); assertGt(output,0);
+            assertLt(uint256(-int256(input)),request,"must actually short-fill");
+            assertGe(uint256(int256(output)),minimum,"output guard alone must accept this fill");
+        }
+        uint256[8] memory beforeBalances = [address(this).balance,token.balanceOf(address(this)),
+            address(core).balance,token.balanceOf(address(core)),address(manager).balance,
+            token.balanceOf(address(manager)),address(positions).balance,
+            core.protocolFeesAccrued(Currency.wrap(address(0)))];
+        uint160 beforePrice = _price();
+        vm.expectRevert(ZZZModule.Slippage.selector);
+        manager.swap{value: request}(poolId,true,request,minimum,block.timestamp+100);
+        assertEq(_price(),beforePrice); assertEq(positions.getPositionLiquidity(id),liquidity);
+        assertEq(positions.ownerOf(id),address(this));
+        assertEq(address(this).balance,beforeBalances[0]); assertEq(token.balanceOf(address(this)),beforeBalances[1]);
+        assertEq(address(core).balance,beforeBalances[2]); assertEq(token.balanceOf(address(core)),beforeBalances[3]);
+        assertEq(address(manager).balance,beforeBalances[4]); assertEq(token.balanceOf(address(manager)),beforeBalances[5]);
+        assertEq(address(positions).balance,beforeBalances[6]);
+        assertEq(core.protocolFeesAccrued(Currency.wrap(address(0))),beforeBalances[7]);
+        _clearApprovals();
+    }
     function testNativeMinimumOutputIncludesActualLPAndProtocolFees() public {
         _mint(); uint160 beforePrice = _price(); uint256 n = address(this).balance;
         vm.expectRevert(); manager.swap{value: 1 ether}(poolId,true,1 ether,0.995 ether,block.timestamp+100);
@@ -347,7 +411,18 @@ contract NativeLiquidityTest is Test {
         assertEq(address(this).balance,n); assertEq(token.balanceOf(address(this)),t); assertEq(positions.nextTokenId(),1);
     }
     function testNativeAmountsStayUint128BoundedWithoutPermitApproval() public {
-        vm.expectRevert(); manager.mint(poolId,-600,600,uint256(type(uint128).max)+1,1 ether,1,block.timestamp+100);
+        uint256 oversized = uint256(type(uint128).max)+1;
+        vm.deal(address(this),oversized+1 ether);
+        uint256 n = address(this).balance;
+        // Both calls supply the correct native value. A later native-value
+        // failure cannot make this pass if the early amount bound disappears.
+        vm.mockCallRevert(address(pools),abi.encodeWithSignature("get(bytes32)",poolId),
+            abi.encodeWithSignature("OversizedAmountReachedPoolRead()"));
+        vm.expectRevert(ZZZModule.InvalidAmount.selector);
+        manager.mint{value: oversized}(poolId,-600,600,oversized,1 ether,1,block.timestamp+100);
+        vm.expectRevert(ZZZModule.InvalidAmount.selector);
+        manager.mint{value: 1 ether}(poolId,-600,600,1 ether,oversized,1,block.timestamp+100);
+        assertEq(address(this).balance,n);
         assertEq(positions.nextTokenId(),1); assertEq(address(manager).balance,0); _clearApprovals();
     }
     function testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution() public {

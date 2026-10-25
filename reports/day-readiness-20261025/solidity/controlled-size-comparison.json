@@ -1,0 +1,331 @@
+{
+  "scope": "New controlled baseline recompilation with the exact current75-source dependency context/settings; not retrospective proof of historical dependency bytes, deployment, or full baseline tests.",
+  "baseline": "964e6b6e14dfc91670ab74b6c5d34d8fe4da39bb",
+  "reference": "35007db755ad4007013c1828f83983202647857a",
+  "current_code": "55011c05aac491002f035054017aa27f5a8749a0",
+  "source_changes": [
+    "src/ZZZAccessController.sol",
+    "src/ZZZRoyaltyRewards.sol",
+    "src/libraries/ZZZV3VenueValidation.sol"
+  ],
+  "explicit_inputs": 75,
+  "closed_source_inventory": true,
+  "settings_equal": true,
+  "settings_sha256": "53fc9d39e1baf85ac8eba38d67e82bf66185ea9d54f76df711b4f880f53e2b7e",
+  "baseline_input_sha256": "1396c7a685ebe00f2da328f9ef7ef9c102ca7aa13e40cd23999cb4d043ae5a69",
+  "baseline_output_sha256": "349aa4e9efd8a6e3b27aae912ccda7753a63c00d9dcc3e22e56891cb19f5c36b",
+  "current_input_sha256": "b1b7fcfe27ae4cac6b9643b841b31d7c602a23c073793225754caf0f85785e8d",
+  "current_output_sha256": "a3c37b7a07163a66dde8bcab5fe6d853c1970a46bef5f5d61d565f4625801b50",
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "elapsed_seconds": 60.953,
+  "errors": [],
+  "access": {
+    "source": "src/ZZZAccessController.sol",
+    "contract": "ZZZAccessController",
+    "runtime_before": 9207,
+    "runtime_after": 9252,
+    "creation_before": 42081,
+    "creation_after": 42256
+  },
+  "objects": [
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "runtime_before": 9207,
+      "runtime_after": 9252,
+      "creation_before": 42081,
+      "creation_after": 42256
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "runtime_before": 5849,
+      "runtime_after": 5849,
+      "creation_before": 6660,
+      "creation_after": 6660
+    },
+    {
+      "source": "src/ZZZActivationAssetsFactory.sol",
+      "contract": "ZZZActivationAssetsFactory",
+      "runtime_before": 7480,
+      "runtime_after": 7480,
+      "creation_before": 7534,
+      "creation_after": 7534
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "runtime_before": 17956,
+      "runtime_after": 17956,
+      "creation_before": 30500,
+      "creation_after": 30500
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "runtime_before": 7367,
+      "runtime_after": 7367,
+      "creation_before": 8059,
+      "creation_after": 8059
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "runtime_before": 21034,
+      "runtime_after": 21034,
+      "creation_before": 21664,
+      "creation_after": 21664
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "runtime_before": 2885,
+      "runtime_after": 2885,
+      "creation_before": 3443,
+      "creation_after": 3443
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "runtime_before": 2017,
+      "runtime_after": 2017,
+      "creation_before": 2402,
+      "creation_after": 2402
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "ZZZContributionPricing",
+      "runtime_before": 14804,
+      "runtime_after": 14804,
+      "creation_before": 15451,
+      "creation_after": 15451
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "runtime_before": 7847,
+      "runtime_after": 7847,
+      "creation_before": 8282,
+      "creation_after": 8282
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "runtime_before": 9702,
+      "runtime_after": 9702,
+      "creation_before": 10179,
+      "creation_after": 10179
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "runtime_before": 10223,
+      "runtime_after": 10223,
+      "creation_before": 11231,
+      "creation_after": 11231
+    },
+    {
+      "source": "src/ZZZLPRewardConverter.sol",
+      "contract": "ZZZLPRewardConverter",
+      "runtime_before": 16830,
+      "runtime_after": 16830,
+      "creation_before": 29162,
+      "creation_after": 29162
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "runtime_before": 20769,
+      "runtime_after": 20769,
+      "creation_before": 22216,
+      "creation_after": 22216
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "runtime_before": 7389,
+      "runtime_after": 7389,
+      "creation_before": 7838,
+      "creation_after": 7838
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "runtime_before": 22099,
+      "runtime_after": 22099,
+      "creation_before": 31043,
+      "creation_after": 31043
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "runtime_before": 20245,
+      "runtime_after": 20245,
+      "creation_before": 21264,
+      "creation_after": 21264
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "runtime_before": 23929,
+      "runtime_after": 23929,
+      "creation_before": 43809,
+      "creation_after": 43809
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "runtime_before": 10600,
+      "runtime_after": 10600,
+      "creation_before": 11513,
+      "creation_after": 11513
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "runtime_before": 12543,
+      "runtime_after": 12543,
+      "creation_before": 12867,
+      "creation_after": 12867
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "runtime_before": 10242,
+      "runtime_after": 10242,
+      "creation_before": 28255,
+      "creation_after": 28255
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "runtime_before": 10269,
+      "runtime_after": 10269,
+      "creation_before": 41633,
+      "creation_after": 41633
+    },
+    {
+      "source": "src/ZZZPythPriceFeed.sol",
+      "contract": "ZZZPythPriceFeed",
+      "runtime_before": 2193,
+      "runtime_after": 2193,
+      "creation_before": 3259,
+      "creation_after": 3259
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "runtime_before": 21311,
+      "runtime_after": 21311,
+      "creation_before": 22332,
+      "creation_after": 22332
+    },
+    {
+      "source": "src/ZZZRoyaltyConverter.sol",
+      "contract": "ZZZRoyaltyConverter",
+      "runtime_before": 16830,
+      "runtime_after": 16830,
+      "creation_before": 29162,
+      "creation_after": 29162
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "runtime_before": 24507,
+      "runtime_after": 24507,
+      "creation_before": 24560,
+      "creation_after": 24560
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "runtime_before": 22960,
+      "runtime_after": 22960,
+      "creation_before": 23897,
+      "creation_after": 23897
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "runtime_before": 20820,
+      "runtime_after": 20820,
+      "creation_before": 21416,
+      "creation_after": 21416
+    },
+    {
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "contract": "ZZZV4RouteExecutor",
+      "runtime_before": 11164,
+      "runtime_after": 11164,
+      "creation_before": 11322,
+      "creation_after": 11322
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "runtime_before": 22852,
+      "runtime_after": 22852,
+      "creation_before": 45132,
+      "creation_after": 45132
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "runtime_before": 18622,
+      "runtime_after": 18622,
+      "creation_before": 19983,
+      "creation_after": 19983
+    },
+    {
+      "source": "src/libraries/ExactAsset.sol",
+      "contract": "ExactAsset",
+      "runtime_before": 62,
+      "runtime_after": 62,
+      "creation_before": 93,
+      "creation_after": 93
+    },
+    {
+      "source": "src/libraries/ExactToken.sol",
+      "contract": "ExactToken",
+      "runtime_before": 62,
+      "runtime_after": 62,
+      "creation_before": 93,
+      "creation_after": 93
+    },
+    {
+      "source": "src/libraries/ZZZArtwork.sol",
+      "contract": "ZZZArtwork",
+      "runtime_before": 62,
+      "runtime_after": 62,
+      "creation_before": 93,
+      "creation_after": 93
+    },
+    {
+      "source": "src/libraries/ZZZPriceMath.sol",
+      "contract": "ZZZPriceMath",
+      "runtime_before": 62,
+      "runtime_after": 62,
+      "creation_before": 93,
+      "creation_after": 93
+    },
+    {
+      "source": "src/libraries/ZZZTypes.sol",
+      "contract": "Ids",
+      "runtime_before": 62,
+      "runtime_after": 62,
+      "creation_before": 93,
+      "creation_after": 93
+    },
+    {
+      "source": "src/libraries/ZZZV3VenueValidation.sol",
+      "contract": "ZZZV3VenueValidation",
+      "runtime_before": 62,
+      "runtime_after": 62,
+      "creation_before": 93,
+      "creation_after": 93
+    }
+  ],
+  "claim45_reproduced": true,
+  "claim175_creation_reproduced": true,
+  "current_all_inputs_unchanged": true
+}

@@ -20,7 +20,7 @@ Missing function-purpose, caller or payable-value explanations: **0**. Top-level
 | [ZZZActivationAssets](#zzzactivationassets) | Fixed ETH/ZZZ-only contribution-source policy. ZZZ identity is selected once before sealing; same-token admission/pins remain governed. Pair accounting and NFT marketplace royalty currencies are separate. | 14 |
 | [ZZZActivationAssetsFactory](#zzzactivationassetsfactory) | Fixed noncustodial deployment factory that splits Registry initcode and creates one immutable source-policy child for each caller; no policy, custody or execution authority. | 3 |
 | [ZZZActivationEntry](#zzzactivationentry) | Atomically convert reviewed owner input into actual attached LP with exact allowance, price/context and signed-loss checks. | 17 |
-| [ZZZBuyback](#zzzbuyback) | Purpose-bound reserve spending to acquire and verifiably burn the governed reviewed ZZZ token. | 6 |
+| [ZZZBuyback](#zzzbuyback) | Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token. | 6 |
 | [ZZZCanonicalHandoff](#zzzcanonicalhandoff) | Six-domain same-chain whole-collection replacement with captured roots, exact backing, atomic retirement and fully restored abort. | 38 |
 | [ZZZClaimRouter](#zzzclaimrouter) | Bounded atomic owner-authenticated batching across the fixed LP and royalty ledgers, with direct owner payouts. | 5 |
 | [ZZZCompounder](#zzzcompounder) | Keeper-authorized coordination of bucket compound/idle reinvestment through the fixed Vault. | 2 |
@@ -211,7 +211,7 @@ Atomically convert reviewed owner input into actual attached LP with exact allow
 
 ## ZZZBuyback
 
-Purpose-bound reserve spending to acquire and verifiably burn the governed reviewed ZZZ token.
+Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token.
 
 [Source](../src/ZZZBuyback.sol). Category: Project contract.
 
@@ -219,7 +219,7 @@ Purpose-bound reserve spending to acquire and verifiably burn the governed revie
 
 | Function / mutability | Purpose | Who / conditions | Inputs | Outputs |
 | --- | --- | --- | --- | --- |
-| `constructor(address,address,uint256)`<br>nonpayable | Deploy and bind Purpose-bound reserve spending to acquire and verifiably burn the governed reviewed ZZZ token. | Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed. | `controller: address` — Fixed AccessController address for this deployment’s roles and lifecycle.<br>`zzzToken: address` — Initial actual ERC20 ZZZ token acquired and verifiably burned by Buyback.<br>`maximumTradeUSD: uint256` — Positive immutable maximum buyback value per operation in USD18, not token amount. | None in ABI. |
+| `constructor(address,address,uint256)`<br>nonpayable | Deploy and bind Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token. | Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed. | `controller: address` — Fixed AccessController address for this deployment’s roles and lifecycle.<br>`zzzToken: address` — Initial actual ERC20 ZZZ token acquired and verifiably burned by Buyback.<br>`maximumTradeUSD: uint256` — Positive immutable maximum buyback value per operation in USD18, not token amount. | None in ABI. |
 
 ### Read functions
 

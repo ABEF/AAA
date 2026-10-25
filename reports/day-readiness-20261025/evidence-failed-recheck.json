@@ -1,0 +1,30 @@
+{
+  "scope": "Focused evidence importer/generator/CLI checks only; no compiler, EVM, network, signing or services.",
+  "observed_at_utc": "2026-10-25T21:43:27.351046+00:00",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "reports\\day-readiness-20261025\\run-evidence-tests.py",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_json_capture_reads_at_most_limit_plus_one_byte",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_duplicate_json_nonfinite_unknown_parameter_notes_and_overlapping_notes_reject",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_cli_rejects_contradictory_evidence_without_overwriting_reference"
+  ],
+  "source_sha256": {
+    "zzz_ops/function_reference.py": "f11052dacf9eb14654fd13478173a3e20bcf7213eed91d29d5b4e76a4db2e4d3",
+    "tests_python/test_function_reference.py": "634fc8a7cd572a591dca194ecaf19236e4c1bad106136e1cd2a3b49ffd9c4984",
+    "scripts/generate-function-reference.py": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a"
+  },
+  "sources_unchanged": true,
+  "elapsed_seconds": 0.594,
+  "tests_run": 3,
+  "selected_methods": [
+    "tests_python.test_function_reference.FunctionReferenceTests.test_json_capture_reads_at_most_limit_plus_one_byte",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_duplicate_json_nonfinite_unknown_parameter_notes_and_overlapping_notes_reject",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_cli_rejects_contradictory_evidence_without_overwriting_reference"
+  ],
+  "failures": {},
+  "errors": {},
+  "skips": {},
+  "successful": true
+}

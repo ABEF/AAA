@@ -1,3 +1,13 @@
+## Current contribution/pricing scope - 2026-10-25
+
+User contributions are native ETH/fixed ZZZ only. Both need two independently
+reviewed USD sources and the configured agreement/staleness controls. USDC/USDG/
+WETH feeds are conditional on a separately enabled and reviewed royalty conversion
+route; they are not current user-input admission or an assumed stable peg. See
+[current policy](SIMPLIFIED_RELEASE.md), [prices](PRICE_SECURITY.md) and
+[readiness](../reports/day-readiness-20261025/READINESS.md). Actual sources,
+independence, routes and updater/provider operation remain unqualified.
+
 ## Current feed candidates, costs and dated readings - 2026-10-25
 
 ## Service compatibility and mint-price decision - 2026-10-25

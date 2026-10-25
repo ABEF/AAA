@@ -99,11 +99,31 @@ class Reporting:
             count = p._uint('royalties', 'eligibleCount(address)', asset, block=block)
             eligible = _bool(p._call(p.contracts['royalties'].address,
                 'eligibleFor(uint256,address)', token_id, asset, block=block)[0])
-            if count > total or eligible != (ordinal != 0 and ordinal <= count) or (asset == ZERO and count != total):
+            if count > total or eligible != (ordinal != 0 and ordinal <= count):
                 raise ProjectionError('Inconsistent royalty currency eligibility')
+            if asset == ZERO and count != total:
+                # ETH has no optional-token read failure. A native prefix may
+                # lag only after an authenticated custody exit; it can still lag
+                # after full return until the next sync enrolls waiting NFTs.
+                # Older pinned ledgers without this getter remain fail-closed.
+                nonce = p._uint('royalties', 'custodyNonce(address)', ZERO, block=block)
+                native_weight = p._uint('royalties', 'eligibleWeight(address)', ZERO, block=block)
+                total_weight = p._uint('royalties', 'totalWeight()', block=block)
+                waiting = total-count
+                waiting_weight = total_weight-native_weight
+                if (nonce == 0 or not count <= native_weight <= 3*count or
+                        not total <= total_weight <= 3*total or native_weight > total_weight or
+                        not waiting <= waiting_weight <= 3*waiting):
+                    raise ProjectionError('Inconsistent native royalty custody eligibility')
+                if weight != 0:
+                    cohort_count, cohort_weight = (count, native_weight) if eligible else (waiting, waiting_weight)
+                    if cohort_count == 0 or not cohort_count-1 <= cohort_weight-weight <= 3*(cohort_count-1):
+                        raise ProjectionError('NFT weight differs from native royalty custody cohort')
             item = self.balance('royalties', token_id, asset, health, block)
             if weight == 0 and item['available'] and int(item['raw']) != 0:
                 raise ProjectionError('Inactive NFT has royalty entitlement')
+            if asset == ZERO and weight != 0 and not eligible and item['available'] and int(item['raw']) != 0:
+                raise ProjectionError('Deferred native royalty entitlement predates eligibility')
             item.update(eligible=eligible, eligibility='inactive' if not weight else 'eligible' if eligible else 'deferred',
                         settlement_currency='ETH' if asset == ZERO else 'source_asset',
                         unconverted_raw=item['raw'] if asset != ZERO else None)

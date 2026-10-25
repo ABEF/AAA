@@ -1,0 +1,177 @@
+{
+  "scope": "Independent negative probes of evidence parsing/consistency only; no compiler/EVM/security approval.",
+  "observed_at_utc": "2026-10-25T21:36:10.576850+00:00",
+  "command": "python -X utf8 reports/day-readiness-20261025/evidence-negative-probes.py",
+  "script_sha256": "4443304d3d1bdf8dc2c5b1cc50bc9f18d3cf592e596c6d8b120d410cee84d80c",
+  "source_sha256": {
+    "zzz_ops/function_reference.py": "3c45f4ac8d28f9f2723986870b1e62dfc1551080e144e837dfdc350d77a28e7c",
+    "tests_python/test_function_reference.py": "8356b27cb7dbb26ceaf344d16168d07cecffcc580d74946d3509ea35dd115726",
+    "scripts/generate-function-reference.py": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+    ".github/workflows/verify.yml": "7dfa3ad653fd4d033250f06b3292f61c1c7c0f464ffb245ee11f6cd045c99358",
+    "scripts/verify.sh": "a028903187e801ce23cc8218a09b6591de55ea5c7f44479475e2e9bef5d85aca",
+    "scripts/source_checks.py": "bd7c9548305d019a996941628183beb8c274e493906a2800c0ac009c44a77793",
+    "scripts/check-slither-review.py": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd"
+  },
+  "sources_unchanged": true,
+  "cases": [
+    {
+      "name": "valid_control",
+      "expected_accept": true,
+      "actual_accept": true,
+      "expectation_met": true,
+      "error": null,
+      "elapsed_seconds": 0.031,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "missing_compiler_output",
+      "expected_accept": false,
+      "actual_accept": false,
+      "expectation_met": true,
+      "error": {
+        "type": "FileNotFoundError",
+        "message": "[WinError 2] Le fichier sp\u00e9cifi\u00e9 est introuvable: 'C:\\\\Users\\\\Ali\\\\AppData\\\\Local\\\\Temp\\\\tmpondlfl7j\\\\output.json'"
+      },
+      "elapsed_seconds": 0.016,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "stale_source",
+      "expected_accept": false,
+      "actual_accept": false,
+      "expectation_met": true,
+      "error": {
+        "type": "ReferenceError",
+        "message": "Compiler source content differs: src/Fixture.sol"
+      },
+      "elapsed_seconds": 0.016,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "malformed_boolean_gate",
+      "expected_accept": false,
+      "actual_accept": false,
+      "expectation_met": true,
+      "error": {
+        "type": "ReferenceError",
+        "message": "Compiler object differs from normal size evidence"
+      },
+      "elapsed_seconds": 0.031,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "oversize_runtime_truthful_length_false_success",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.031,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "oversize_creation_truthful_length_false_success",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.047,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "static_constructor_exceeds_initcode",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.046,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "contradictory_declared_input_hash",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.032,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "contradictory_declared_output_hash",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.031,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "nonzero_compiler_exit_claimed_pass",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.016,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "failed_freeze_claimed_pass",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.016,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "open_inventory_claimed_pass",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.031,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "malformed_settings_null",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.031,
+      "scope": "Disposable isolated evidence fixture"
+    },
+    {
+      "name": "stored_dependency_binding_omitted",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.188,
+      "scope": "Actual stored reference copy; no repository writes"
+    },
+    {
+      "name": "stored_compiler_settings_omitted",
+      "expected_accept": false,
+      "actual_accept": true,
+      "expectation_met": false,
+      "error": null,
+      "elapsed_seconds": 0.203,
+      "scope": "Actual stored reference copy; no repository writes"
+    }
+  ],
+  "case_count": 15,
+  "met": 4,
+  "unexpected_acceptance": [
+    "oversize_runtime_truthful_length_false_success",
+    "oversize_creation_truthful_length_false_success",
+    "static_constructor_exceeds_initcode",
+    "contradictory_declared_input_hash",
+    "contradictory_declared_output_hash",
+    "nonzero_compiler_exit_claimed_pass",
+    "failed_freeze_claimed_pass",
+    "open_inventory_claimed_pass",
+    "malformed_settings_null",
+    "stored_dependency_binding_omitted",
+    "stored_compiler_settings_omitted"
+  ]
+}

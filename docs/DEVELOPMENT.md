@@ -1,3 +1,14 @@
+## Evidence snapshot 3 and day audit - 2026-10-25
+
+The current reference uses snapshot3 with closed compiler names, normal limits,
+compiler/status/freeze/hash coherence and independently derived constructor
+sizes. Schema2 must be regenerated from the original matching normal compiler
+input/output and size report; do not relabel old snapshots. Use the existing
+generator flags below, then --check. Actual dynamic constructor arguments still
+need release-specific qualification. See [audit](../reports/day-readiness-20261025/evidence-review.md).
+The current saved Slither triage is stale and fails the release gate; obtain
+and review a fresh frozen-source analysis. No old hash-only refresh qualifies it.
+
 ## Closed dependency evidence - 2026-10-25
 
 Current callable-reference snapshot2 binds project and imported Solidity plus

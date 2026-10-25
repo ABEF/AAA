@@ -1,0 +1,430 @@
+{
+  "schema": 1,
+  "purpose": "Source/body evidence supporting bounded test reuse, not a new execution pass.",
+  "compared_input_bindings": 265,
+  "changed_input_files": [
+    "test/NativeLiquidity.t.sol"
+  ],
+  "all_44_production_sources_and_134_installed_dependencies_unchanged": true,
+  "previous_native_method_bodies": [
+    {
+      "method": "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds",
+      "prior_body_sha256": "75f493b782378bf4de35899555efe7cd91feb42801f0b5f2b5046bd76d0f2eee",
+      "current_body_sha256": "75f493b782378bf4de35899555efe7cd91feb42801f0b5f2b5046bd76d0f2eee",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeIncreaseReusesPositionAndClearsApprovals",
+      "prior_body_sha256": "75590d25a6aef3f07023db78b01f749b1f23b17520e37b3363ce74247726606c",
+      "current_body_sha256": "75590d25a6aef3f07023db78b01f749b1f23b17520e37b3363ce74247726606c",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations",
+      "prior_body_sha256": "f89906387a6de5965a6162f23f9c13fb07934744f5e99ad3b24ba3885834d766",
+      "current_body_sha256": "f89906387a6de5965a6162f23f9c13fb07934744f5e99ad3b24ba3885834d766",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeCloseReturnsActualPrincipalInETHWithoutWrapping",
+      "prior_body_sha256": "2c3aad0c8a875e72d2fb11267fbd48a3e368b7ee0fbf6520e92f265da8edb97d",
+      "current_body_sha256": "2c3aad0c8a875e72d2fb11267fbd48a3e368b7ee0fbf6520e92f265da8edb97d",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta",
+      "prior_body_sha256": "691a2ae0e255824ad6fbd08592687b828fff8800a60442e0c045d29d887e1548",
+      "current_body_sha256": "691a2ae0e255824ad6fbd08592687b828fff8800a60442e0c045d29d887e1548",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeOutputSwapPaysETHAndPreservesForcedPrefunds",
+      "prior_body_sha256": "d694c19c334130baedee20e7b76a91f244450cd7ff4312160645265d8753a1ae",
+      "current_body_sha256": "d694c19c334130baedee20e7b76a91f244450cd7ff4312160645265d8753a1ae",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeUnfillableInputRevertsAllCoreAndWalletState",
+      "prior_body_sha256": "0c88c4e086c650400fb989a57e71405f057da2963635d1c3bd0ee60be870f53d",
+      "current_body_sha256": "0c88c4e086c650400fb989a57e71405f057da2963635d1c3bd0ee60be870f53d",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeMinimumOutputIncludesActualLPAndProtocolFees",
+      "prior_body_sha256": "ecf6caa1c593025717b48e8f9da5a6d056062a3dd5d90748e4f8d3356c3e3e87",
+      "current_body_sha256": "ecf6caa1c593025717b48e8f9da5a6d056062a3dd5d90748e4f8d3356c3e3e87",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeMissingOrExcessValueCannotSpendPrefunds",
+      "prior_body_sha256": "417e5af546ece032d579f0faaed9c2c5323e1a0db7cacd3c90457bc973048921",
+      "current_body_sha256": "417e5af546ece032d579f0faaed9c2c5323e1a0db7cacd3c90457bc973048921",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeUnexpectedSenderAndCallbackRejected",
+      "prior_body_sha256": "fcb8869719147dde0abaf1736ada0f0c0089f0ae1850331504373aaa75d9ce00",
+      "current_body_sha256": "fcb8869719147dde0abaf1736ada0f0c0089f0ae1850331504373aaa75d9ce00",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeIdentityMustBeAdmittedBeforePullOrMint",
+      "prior_body_sha256": "61e1a27f0dd1d5fa180878499df55806dcecc4888f7c7c76306c68b84765e7b4",
+      "current_body_sha256": "61e1a27f0dd1d5fa180878499df55806dcecc4888f7c7c76306c68b84765e7b4",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeAmountsStayUint128BoundedWithoutPermitApproval",
+      "prior_body_sha256": "d1c9f36d5595011f09adf38cb957652e8abd0b1db949f053339fcc55e1317240",
+      "current_body_sha256": "e3b5af2d1607a4e76e5397d18f1ebc97ff70673fc700d9616d06b6d039d35932",
+      "unchanged": false
+    },
+    {
+      "method": "testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution",
+      "prior_body_sha256": "7190f85569fbe9685ad3968ca1a8397385384900e53771f8ce16243957c3209a",
+      "current_body_sha256": "7190f85569fbe9685ad3968ca1a8397385384900e53771f8ce16243957c3209a",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+      "prior_body_sha256": "db7c9ebd4ae511b764fef7855be66d3de8c5022abdf815dc6406c9f3c9248bb5",
+      "current_body_sha256": "db7c9ebd4ae511b764fef7855be66d3de8c5022abdf815dc6406c9f3c9248bb5",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeRecipientFailureRollsBackActualFeeCollection",
+      "prior_body_sha256": "9cb09f4729903c64c55a0bdc339de6e1c72de03553e619355258d78f2a88375c",
+      "current_body_sha256": "9cb09f4729903c64c55a0bdc339de6e1c72de03553e619355258d78f2a88375c",
+      "unchanged": true
+    },
+    {
+      "method": "testForcedETHDuringNativeForwardCannotBecomeIncome",
+      "prior_body_sha256": "bd92f46f89f2e6b94e0f977137dca364a94e7913bf43f978244585374dd46e32",
+      "current_body_sha256": "bd92f46f89f2e6b94e0f977137dca364a94e7913bf43f978244585374dd46e32",
+      "unchanged": true
+    },
+    {
+      "method": "testNativePendingFeesMustBeCollectedBeforeIncreasingPrincipal",
+      "prior_body_sha256": "1be91bce7dff6fc53302f2de6206766211fcf715fa5de1a465d1d20264175f29",
+      "current_body_sha256": "1be91bce7dff6fc53302f2de6206766211fcf715fa5de1a465d1d20264175f29",
+      "unchanged": true
+    },
+    {
+      "method": "testNativePlannerReadsActualDirectionalProtocolFee",
+      "prior_body_sha256": "70955ea583ac664a17055b9798f3d72f82fcd05ea708a01b835d85a1e38a6cfb",
+      "current_body_sha256": "70955ea583ac664a17055b9798f3d72f82fcd05ea708a01b835d85a1e38a6cfb",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap",
+      "prior_body_sha256": "9e6703754b14e0aa91473e9743321a3ba6422edb1063a4f07d68191eb47672ac",
+      "current_body_sha256": "9e6703754b14e0aa91473e9743321a3ba6422edb1063a4f07d68191eb47672ac",
+      "unchanged": true
+    },
+    {
+      "method": "testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle",
+      "prior_body_sha256": "7b5b4bbb11b8fb24f8157de699578397ca95629be23dd7404f7167bd7cd0b743",
+      "current_body_sha256": "7b5b4bbb11b8fb24f8157de699578397ca95629be23dd7404f7167bd7cd0b743",
+      "unchanged": true
+    }
+  ],
+  "unchanged_previous_native_methods": 19,
+  "intentionally_strengthened_method": "testNativeAmountsStayUint128BoundedWithoutPermitApproval",
+  "new_method": "testNativeExactInputGuardRejectsPartialFillEvenWhenOutputPassesOracleFloor",
+  "six_reused_helper_contract_bodies": {
+    "BoundaryWETH": {
+      "unchanged": true,
+      "body_sha256": "211b13a01551e1adbbfe389691d87411e14dad280b538113447ce7420fc4f64a"
+    },
+    "BoundaryOracle": {
+      "unchanged": true,
+      "body_sha256": "d67b74f774aec007b8366ac59b3eb13d013cba3365b4d22e6debae5ec4d05f7e"
+    },
+    "BoundaryUnavailableOracle": {
+      "unchanged": true,
+      "body_sha256": "f800ea5137923101283f20ab2a64cdf41b602a4a0760a2eabc02dfdc02584c46"
+    },
+    "BoundaryCore": {
+      "unchanged": true,
+      "body_sha256": "d4e7793ab05c07d23ee2d43728ac2d0a2a84740d6e579863ee7ced17ca2233ae"
+    },
+    "BoundaryForce": {
+      "unchanged": true,
+      "body_sha256": "252953fe4fa9c2ca57ff213919adef62d23ad3ed839dcfd8a37990474dae3d58"
+    },
+    "BoundaryPositions": {
+      "unchanged": true,
+      "body_sha256": "555c887c625010e25742153e255659de7bf62a54fe1410cd7072c60b3f42aaac"
+    }
+  },
+  "prior_selected_receipt_sha256": "686ca3295937c1442543cb96a25852ed22c1686fb70588add4fd5d595c3375d5",
+  "current_typecheck_summary_sha256": "2db6ea3a5257d22f622fe97f8312e94a65130f4888da275436ac934b86e53cbf",
+  "scope": "Earlier 32 execution outcomes retain original source scope. Only the new method and strengthened bound method need fresh affected execution; source equality is not a full current regression or real venue qualification.",
+  "all_previous_native_fixture_non_test_bodies": [
+    {
+      "contract": "BoundaryWETH",
+      "function": "",
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryWETH",
+      "function": "failures",
+      "body_sha256": "3ba2d8ca6cc6ef33b33db2c2125b964112e18ed7ed61925ddb12f01dcf876d78",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryWETH",
+      "function": "reentry",
+      "body_sha256": "76bf6fd77e5ac89c9996c082778652881cf7f882c24b8acf15717c77e46b41ef",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryWETH",
+      "function": "deposit",
+      "body_sha256": "d817c0589a911260abbe2908f5b8ae0106c24e4c3e3861f3a2adbfa0a50eaf3f",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryWETH",
+      "function": "withdraw",
+      "body_sha256": "4c1731a9b255160d5625ce4cdddc40737b258524037ae70a1cb473aeb2b16124",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryOracle",
+      "function": "priceBounds",
+      "body_sha256": "8d8fb0124adc28b05ddad24f1d54db39ab32805a95f9efbcfd2143b45ffd5c5f",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryOracle",
+      "function": "quote",
+      "body_sha256": "1c3f08198d574bd8bd7cfe5369bab7d314ea64a0dcbc828e4f31aafd58aea146",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryOracle",
+      "function": "value",
+      "body_sha256": "1c3f08198d574bd8bd7cfe5369bab7d314ea64a0dcbc828e4f31aafd58aea146",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryOracle",
+      "function": "price",
+      "body_sha256": "700873fda597bf7af8b96c9805ec7ae9643c80858bad16a1617cb44b05dcd0f9",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryOracle",
+      "function": "tokenDecimals",
+      "body_sha256": "1573c7c5ff3b1a888dcc7ea179f717fe297f2d9a4dfd12248cc847bc7ced01da",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryOracle",
+      "function": "referenceX96",
+      "body_sha256": "805fbf1cc0470a4d67822b77e1c0af4a4304c234308ed4c2831374c4830a1ae2",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryUnavailableOracle",
+      "function": "",
+      "body_sha256": "eae3657c06be30de22d19d1db3d59f81a60d929db337fea434fb6b8c55d21377",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "setPositions",
+      "body_sha256": "6fcb526d68a290c13eed5e43bb56bc79c7133e5af855ade815e02ef401c6023b",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "setPartial",
+      "body_sha256": "36d385bc294ff6c7b5f33a403256debf9a04960016188f659158dfbc6f4c7ec9",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "forceTake",
+      "body_sha256": "352e32819b1438a33790fcc72e39c0ac654be117ef8119ec00051b3a73a824ac",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "",
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "unlock",
+      "body_sha256": "dbe5c8ea176485cd28a0d4822363da150771906aba4a298033afb0d6f9066203",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "swap",
+      "body_sha256": "8b09379bb08640abb950df8812df1c3faedd36e2a68793fa7cde076d7d5bae0c",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "sync",
+      "body_sha256": "a2ccc56ec893e5b62ea86ee61aa644deec53d808535bc8aac613dc71a28c2542",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "settle",
+      "body_sha256": "60c5ff3d9861ef81bb466331775bbb9fc28550a47ee52cfcc4c6c9984bc75a50",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "take",
+      "body_sha256": "23d76922fe07b72b5f6ce4c55663e05d33f7226b472a3d9a4126bdf50dfa40d5",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "positionCredit",
+      "body_sha256": "c79b1db07aed34d2654afea5396dbadbfd24f24531cb995d5a5b9e29058f6ab7",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryCore",
+      "function": "_pay",
+      "body_sha256": "d1d4915727a9bc8b8a29491546e1d0bc7a1060491937c792a32d8bdbc6ee958f",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryForce",
+      "function": "",
+      "body_sha256": "1532937b3e9a7127e6a5374dd124cd58e9f50d7975c1d2c928e062b85ada18b6",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryPositions",
+      "function": "",
+      "body_sha256": "07506367292ac0cc9dfc0489bc27611cb7b86dc00ffb6350a52761a85447d676",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryPositions",
+      "function": "retain",
+      "body_sha256": "1e1ef0d159001ffbfd43adccc5147f513a1ecaa28b5804954e5212c1deb8c47a",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryPositions",
+      "function": "fees",
+      "body_sha256": "29e36d766a1a6761198ddd1e33d4f2d48b23dd792067aa43f7ac95f5ca0b23e0",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryPositions",
+      "function": "getPoolAndPositionInfo",
+      "body_sha256": "0f0105ec996dff906bff5849b4415c5b5e257eb0b42641b07b9fc78356cad138",
+      "unchanged": true
+    },
+    {
+      "contract": "BoundaryPositions",
+      "function": "modifyLiquidities",
+      "body_sha256": "03b4b34da45e128b8d0efc0b1871d2b68355ae754d5d2819faff0fb9dcfbf75d",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityPools",
+      "function": "",
+      "body_sha256": "7d53d4f9f84190f727c89b4aa7b729cd8a6388e9813bae77f74b6903366f505d",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityPools",
+      "function": "get",
+      "body_sha256": "39a62c53819a827790e1ee8bfb42e0c7402c6a8591d7419a8ec6e74d684e3cfa",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityPools",
+      "function": "accounting",
+      "body_sha256": "39a62c53819a827790e1ee8bfb42e0c7402c6a8591d7419a8ec6e74d684e3cfa",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityPools",
+      "function": "isNativePool",
+      "body_sha256": "26cc7e1f20754295305e6429041616d7b62a1528c1d6d828df94ba5f23b00f49",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityPools",
+      "function": "setNativeEnabled",
+      "body_sha256": "12c507e27a9e4c27128d7bf2adf92ab671a0a93916939ab2414a5e025de88d5b",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityPools",
+      "function": "setKey",
+      "body_sha256": "32c81630a0b4275e0f84154d4acb041588aea1fddcdad54c00ebc37e91218c67",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityPools",
+      "function": "disableOperations",
+      "body_sha256": "fd28a3aebfacecac828eae62491a916d76db592476707b101345de4dbf2b63fb",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityTest",
+      "function": "",
+      "body_sha256": "ef9ece7c8d4fb8d1b37116b05a2816162d0bcc475e09f5f16b9e698b53c2214c",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityTest",
+      "function": "setUp",
+      "body_sha256": "9c3b771b93ad9e3460491d3fe756977d0842a3e88a91bbc1f9716af8f5ec2bd6",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityTest",
+      "function": "_mint",
+      "body_sha256": "db8913f49e052d7e159160ff7b04c7b91d4753b38939403a4fe533288150dad6",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityTest",
+      "function": "_clearApprovals",
+      "body_sha256": "8e0a4c0af232e3dd7682ef1e267fb969b3a0fe6c9ee1d754fdbfdfcc9a1af5a1",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityTest",
+      "function": "_price",
+      "body_sha256": "a73f3c01af50951d96c97b48ec430667034f28f910b6c96324be1697731de4f3",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityTest",
+      "function": "_donate",
+      "body_sha256": "cac3de5891999586df6bab238ba72faccce9280d2d7da7bdd68ec6b49ee7dd46",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityTest",
+      "function": "unlockCallback",
+      "body_sha256": "39930efb998fa7c308cd1a3280f0770dd7b8aecd685150828b55d6659b83c174",
+      "unchanged": true
+    },
+    {
+      "contract": "NativeLiquidityTest",
+      "function": "_settle",
+      "body_sha256": "318bd1ba75345e70f7f23e7ed43c9d459af8736e6c43cc19083d0efe1007f5d0",
+      "unchanged": true
+    }
+  ],
+  "all_previous_native_fixture_non_test_bodies_unchanged": true
+}

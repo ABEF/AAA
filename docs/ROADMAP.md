@@ -1,5 +1,21 @@
 # Engineering roadmap
 
+## Follow-up after the day-change audit - 2026-10-25
+
+[Implemented corrections](IMPLEMENTATION_STATUS.md#day-change-audit---2026-10-25)
+and [gate assessment](../reports/day-readiness-20261025/READINESS.md) now cover
+native royalty custody reporting/replay, independently checked evidence and two
+native-test sensitivity gaps. The sole [Todo](../TODO.md) retains task ownership;
+these local fixes do not qualify live services or close release approval.
+
+Next, refresh source-bound Slither findings on the frozen current candidate,
+qualify exact dynamic constructor arguments and real gas/economics, then complete
+reviewed feeds/routes/VRF/authority/OpenSea and native website/service acceptance.
+Source-profile compatibility and custody history must be rehearsed before a
+hosted API rollout. Independent audit/remediation and operating qualification
+remain prerequisites for real funds. Existing Anvil and public simulation stay
+separate; no rollout or deployment is authorized by this sequencing.
+
 ## Deep cleanup review - 2026-10-25
 
 The [adapted workflow](../reports/deep-cleanup-20261025/ADAPTED_PROMPT.md),

@@ -1,0 +1,108 @@
+test_actual_claim_and_conversion_reconcile_without_new_income (tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income) ... ok
+test_collection_and_nft_reconcile_exact_confirmed_history (tests_python.test_earnings.EarningsAPITests.test_collection_and_nft_reconcile_exact_confirmed_history) ... ok
+test_collection_before_first_mint_is_zero_not_an_indexer_error (tests_python.test_earnings.EarningsAPITests.test_collection_before_first_mint_is_zero_not_an_indexer_error) ... ok
+test_conversion_and_later_native_claim_preserve_original_earned_currency (tests_python.test_earnings.EarningsAPITests.test_conversion_and_later_native_claim_preserve_original_earned_currency) ... ok
+test_current_price_changes_usd_without_changing_earned_tokens (tests_python.test_earnings.EarningsAPITests.test_current_price_changes_usd_without_changing_earned_tokens) ... ok
+test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts (tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts) ... ok
+test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget (tests_python.test_earnings.EarningsAPITests.test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget) ... ok
+test_final_snapshot_expiry_rejects_even_successful_replay (tests_python.test_earnings.EarningsAPITests.test_final_snapshot_expiry_rejects_even_successful_replay) ... ok
+test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income (tests_python.test_earnings.EarningsAPITests.test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income) ... ok
+test_missing_profile_coverage_and_unminted_nft_are_explicit (tests_python.test_earnings.EarningsAPITests.test_missing_profile_coverage_and_unminted_nft_are_explicit) ... ok
+test_pending_royalties_do_not_enter_processed_earnings (tests_python.test_earnings.EarningsAPITests.test_pending_royalties_do_not_enter_processed_earnings) ... ok
+test_price_alias_and_module_policy_cannot_be_silently_changed (tests_python.test_earnings.EarningsAPITests.test_price_alias_and_module_policy_cannot_be_silently_changed) ... ok
+test_read_only_http_endpoints_and_invalid_ids (tests_python.test_earnings.EarningsAPITests.test_read_only_http_endpoints_and_invalid_ids) ... ok
+test_runtime_drift_and_history_gaps_fail_closed (tests_python.test_earnings.EarningsAPITests.test_runtime_drift_and_history_gaps_fail_closed) ... ok
+test_supervised_worker_dispatches_read_only_earnings (tests_python.test_earnings.EarningsAPITests.test_supervised_worker_dispatches_read_only_earnings) ... ok
+test_complete_indexed_history_recovers_both_nfts_after_exact_native_return (tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_complete_indexed_history_recovers_both_nfts_after_exact_native_return) ... ERROR
+test_external_custody_keeps_unverifiable_nft_reconciliation_closed (tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_external_custody_keeps_unverifiable_nft_reconciliation_closed) ... ok
+test_current_holdings_survive_native_custody_and_return_before_recovery (tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_current_holdings_survive_native_custody_and_return_before_recovery) ... ok
+test_deferred_native_currency_cannot_report_retroactive_credit (tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_deferred_native_currency_cannot_report_retroactive_credit) ... ok
+test_missing_legacy_custody_getter_is_not_assumed_to_be_an_outage (tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_missing_legacy_custody_getter_is_not_assumed_to_be_an_outage) ... ok
+test_native_gap_requires_real_custody_history_and_consistent_weight_bounds (tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds) ... ok
+test_duplicate_exit_or_wrong_return_cannot_invent_restored_backing (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_duplicate_exit_or_wrong_return_cannot_invent_restored_backing) ... ok
+test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income) ... ok
+test_external_custody_cannot_sync_income_or_recover_eligibility (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_external_custody_cannot_sync_income_or_recover_eligibility) ... ok
+test_native_deferral_without_authenticated_active_custody_still_rejected (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_native_deferral_without_authenticated_active_custody_still_rejected) ... ok
+test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort) ... ok
+test_return_without_extra_income_recovers_without_counting_custody_twice (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_return_without_extra_income_recovers_without_counting_custody_twice) ... ok
+test_wrong_emitter_cannot_authorize_native_deferral (tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_wrong_emitter_cannot_authorize_native_deferral) ... ok
+test_bad_token_pin_or_decimals_hides_only_that_currency (tests_python.test_royalty_reporting.ReportingTests.test_bad_token_pin_or_decimals_hides_only_that_currency) ... ok
+test_broken_core_identity_or_eligibility_is_not_a_partial_success (tests_python.test_royalty_reporting.ReportingTests.test_broken_core_identity_or_eligibility_is_not_a_partial_success) ... ok
+test_converter_missing_disabled_drift_never_promises_conversion (tests_python.test_royalty_reporting.ReportingTests.test_converter_missing_disabled_drift_never_promises_conversion) ... ok
+test_deferred_currency_eligibility_is_distinct_from_activation (tests_python.test_royalty_reporting.ReportingTests.test_deferred_currency_eligibility_is_distinct_from_activation) ... ok
+test_dormant_nft_is_inactive_without_fabricated_royalty_entitlement (tests_python.test_royalty_reporting.ReportingTests.test_dormant_nft_is_inactive_without_fabricated_royalty_entitlement) ... ok
+test_faulty_balance_returns_null_without_losing_healthy_rewards (tests_python.test_royalty_reporting.ReportingTests.test_faulty_balance_returns_null_without_losing_healthy_rewards) ... ok
+test_native_eth_and_unconverted_currency_are_not_summed_or_promised (tests_python.test_royalty_reporting.ReportingTests.test_native_eth_and_unconverted_currency_are_not_summed_or_promised) ... ok
+test_old_profile_keeps_strict_fail_closed_asset_validation (tests_python.test_royalty_reporting.ReportingTests.test_old_profile_keeps_strict_fail_closed_asset_validation) ... ok
+test_reorg_and_expiry_discard_even_currency_isolated_results (tests_python.test_royalty_reporting.ReportingTests.test_reorg_and_expiry_discard_even_currency_isolated_results) ... ok
+test_reporting_config_strict_and_no_implicit_old_abi_probe (tests_python.test_royalty_reporting.ReportingTests.test_reporting_config_strict_and_no_implicit_old_abi_probe) ... ok
+test_same_snapshot_ownership_change_preserves_unclaimed_rights (tests_python.test_royalty_reporting.ReportingTests.test_same_snapshot_ownership_change_preserves_unclaimed_rights) ... ok
+test_work_limits_are_not_swallowed_as_currency_or_converter_failures (tests_python.test_royalty_reporting.ReportingTests.test_work_limits_are_not_swallowed_as_currency_or_converter_failures) ... ok
+test_canonical_recovery_reverse_event_order_still_protects_earlier_cohort (tests_python.test_earnings.EarningsReplayTests.test_canonical_recovery_reverse_event_order_still_protects_earlier_cohort) ... ok
+test_collection_gross_dust_and_allocations_do_not_double_count (tests_python.test_earnings.EarningsReplayTests.test_collection_gross_dust_and_allocations_do_not_double_count) ... ok
+test_individual_collective_royalties_and_topup_have_independent_weights (tests_python.test_earnings.EarningsReplayTests.test_individual_collective_royalties_and_topup_have_independent_weights) ... ok
+test_invalid_recovery_activation_shares_and_rounding_fail_closed (tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed) ... ok
+test_prior_fees_exclude_new_entrant_and_transfers_do_not_reset_earnings (tests_python.test_earnings.EarningsReplayTests.test_prior_fees_exclude_new_entrant_and_transfers_do_not_reset_earnings) ... ok
+test_recovery_assigns_old_receipts_before_new_members_join (tests_python.test_earnings.EarningsReplayTests.test_recovery_assigns_old_receipts_before_new_members_join) ... ok
+test_same_chain_epoch_carries_rights_and_skips_import_transfers (tests_python.test_earnings.EarningsReplayTests.test_same_chain_epoch_carries_rights_and_skips_import_transfers) ... ok
+test_thousand_nfts_share_one_pool_without_thousand_reward_reads (tests_python.test_earnings.EarningsReplayTests.test_thousand_nfts_share_one_pool_without_thousand_reward_reads) ... ok
+test_uneligible_receipts_and_admission_prefunds_are_not_nft_earnings (tests_python.test_earnings.EarningsReplayTests.test_uneligible_receipts_and_admission_prefunds_are_not_nft_earnings) ... ok
+test_unknown_emitter_claim_and_conversion_events_are_not_income (tests_python.test_earnings.EarningsReplayTests.test_unknown_emitter_claim_and_conversion_events_are_not_income) ... ok
+test_window_boundary_and_fraction_carry_are_exact (tests_python.test_earnings.EarningsReplayTests.test_window_boundary_and_fraction_carry_are_exact) ... ok
+test_work_budget_and_malformed_layout_stop_replay (tests_python.test_earnings.EarningsReplayTests.test_work_budget_and_malformed_layout_stop_replay) ... ok
+test_actual_claim_and_conversion_reconcile_without_new_income (tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income) ... ok
+test_collection_and_nft_reconcile_exact_confirmed_history (tests_python.test_earnings.EarningsAPITests.test_collection_and_nft_reconcile_exact_confirmed_history) ... ok
+test_collection_before_first_mint_is_zero_not_an_indexer_error (tests_python.test_earnings.EarningsAPITests.test_collection_before_first_mint_is_zero_not_an_indexer_error) ... ok
+test_conversion_and_later_native_claim_preserve_original_earned_currency (tests_python.test_earnings.EarningsAPITests.test_conversion_and_later_native_claim_preserve_original_earned_currency) ... ok
+test_current_price_changes_usd_without_changing_earned_tokens (tests_python.test_earnings.EarningsAPITests.test_current_price_changes_usd_without_changing_earned_tokens) ... ok
+test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts (tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts) ... ok
+test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget (tests_python.test_earnings.EarningsAPITests.test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget) ... ok
+test_final_snapshot_expiry_rejects_even_successful_replay (tests_python.test_earnings.EarningsAPITests.test_final_snapshot_expiry_rejects_even_successful_replay) ... ok
+test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income (tests_python.test_earnings.EarningsAPITests.test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income) ... ok
+test_missing_profile_coverage_and_unminted_nft_are_explicit (tests_python.test_earnings.EarningsAPITests.test_missing_profile_coverage_and_unminted_nft_are_explicit) ... ok
+test_pending_royalties_do_not_enter_processed_earnings (tests_python.test_earnings.EarningsAPITests.test_pending_royalties_do_not_enter_processed_earnings) ... ok
+test_price_alias_and_module_policy_cannot_be_silently_changed (tests_python.test_earnings.EarningsAPITests.test_price_alias_and_module_policy_cannot_be_silently_changed) ... ok
+test_read_only_http_endpoints_and_invalid_ids (tests_python.test_earnings.EarningsAPITests.test_read_only_http_endpoints_and_invalid_ids) ... ok
+test_runtime_drift_and_history_gaps_fail_closed (tests_python.test_earnings.EarningsAPITests.test_runtime_drift_and_history_gaps_fail_closed) ... ok
+test_supervised_worker_dispatches_read_only_earnings (tests_python.test_earnings.EarningsAPITests.test_supervised_worker_dispatches_read_only_earnings) ... ok
+
+======================================================================
+ERROR: test_complete_indexed_history_recovers_both_nfts_after_exact_native_return (tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_complete_indexed_history_recovers_both_nfts_after_exact_native_return)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_native_royalty_custody_reporting.py", line 225, in test_complete_indexed_history_recovers_both_nfts_after_exact_native_return
+    reports = [self.base.read(str(identifier)) for identifier in (i,j)]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_earnings.py", line 227, in read
+    def read(self,identifier=None):return Projection(self.cfg,self.rpc,clock=lambda:1000).earnings(identifier)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 458, in earnings
+    return self.earnings_history.read(None if identifier is None else token_id(identifier))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings.py", line 92, in read
+    ordinal=p._uint('nft','mintOrdinalOf(uint256)',identifier,block=block)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 266, in _uint
+    return int(self._call(self.contracts[role].address, signature, *args, block=block)[0], 16)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 247, in _call
+    raw = self.rpc.call('eth_call', [{'to': target, 'data': data}, block])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 104, in call
+    result = self.inner.call(method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_history.py", line 85, in call
+    return super().call(method, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 138, in call
+    return self.responses[(tx['to'], tx['data'])]
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: ('0x0000000000000000000000000000000000000002', '0xaa439cf7ea6f53b185cb51295437571a6e68bd556f4bcff716add62df6a477635b610920')
+
+----------------------------------------------------------------------
+Ran 67 tests in 15.901s
+
+FAILED (errors=1)

@@ -1,5 +1,22 @@
 # Release approval record - NOT APPROVED
 
+## Day-change audit disposition - 2026-10-25
+
+[Current findings](../reports/day-readiness-20261025/REVIEW.md),
+[verification](../reports/day-readiness-20261025/VERIFICATION.md) and
+[readiness gates](../reports/day-readiness-20261025/READINESS.md) supersede any
+inference of approval from earlier source checks. Native-custody API/replay and
+evidence-checker defects are fixed; stronger native tests pass. No production
+Solidity changed. Normal 37-object/75-input evidence is reused after exact checks,
+and only the changed test's closed 265-input AST was refreshed. No full regression.
+
+Saved Slither triage is stale: **FAIL** current-source release gate. Refresh and
+review the actual analysis; do not copy new hashes into old findings. Exact
+release dynamic initcode arguments, real gas/strategy economics, services,
+OpenSea/VRF/authorities and independent audit remain unqualified. Evidence snapshot
+3 adds coherent capture and size checks; it is not independent producer or test
+authentication. Deployment/sign-off fields below remain unapproved.
+
 This records approval of **one frozen release**, not another Todo or a development
 log. The [sole Todo](../TODO.md) owns tasks; [features and evidence](IMPLEMENTATION_STATUS.md)
 record implemented behavior. Local passes, publication or this document do not

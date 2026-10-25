@@ -1,0 +1,147 @@
+{
+  "all_selected_pass": true,
+  "distinct_selected_methods": 52,
+  "new_native_custody_methods": 13,
+  "existing_affected_methods": 39,
+  "final_backend_scope": "Exactly unchanged across initial focused run and final two-case fixture recheck",
+  "initial_focused_run": {
+    "invocations": 67,
+    "distinct_methods": 52,
+    "passes": 66,
+    "errors": 1,
+    "duplicate_pass_invocations": 15,
+    "duplicate_methods": {
+      "tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_collection_and_nft_reconcile_exact_confirmed_history": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_collection_before_first_mint_is_zero_not_an_indexer_error": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_conversion_and_later_native_claim_preserve_original_earned_currency": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_current_price_changes_usd_without_changing_earned_tokens": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_final_snapshot_expiry_rejects_even_successful_replay": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_missing_profile_coverage_and_unminted_nft_are_explicit": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_pending_royalties_do_not_enter_processed_earnings": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_price_alias_and_module_policy_cannot_be_silently_changed": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_read_only_http_endpoints_and_invalid_ids": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_runtime_drift_and_history_gaps_fail_closed": 1,
+      "tests_python.test_earnings.EarningsAPITests.test_supervised_worker_dispatches_read_only_earnings": 1
+    },
+    "failed_case": "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_complete_indexed_history_recovers_both_nfts_after_exact_native_return",
+    "elapsed_seconds": 15.89
+  },
+  "fixture_repair": {
+    "before_sha256": "52b35b054d9585c42ae09e58668a4bb599bac1c64b52012af1aff7218a644a13",
+    "after_sha256": "ec28cd0ce375499966f01f62305616b562097b53a2e47766be19f5861e8c089c",
+    "changed_helpers": [
+      "setUp",
+      "_history"
+    ],
+    "reason": "New indexed second-NFT fixture lacked mintOrdinalOf/tokenAtOrdinal mock replies; set deterministic1/2 ordinals for both minted IDs. Refer to same fixture class via module alias to prevent unittest discovery of15imported tests. No production/backend assertion weakened.",
+    "other_test_classes_ast_identical": true,
+    "affected_api_cases_rerun": 2,
+    "previous50distinct_passes_reused_without_rerun": true
+  },
+  "final_recheck": {
+    "scope": "Only the two new indexed API cases sharing the repaired local fixture; unchanged backend and other50distinct passes reused",
+    "selection": [
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests"
+    ],
+    "tests_run": 2,
+    "all_pass": true,
+    "failures": [],
+    "errors": [],
+    "elapsed_seconds": 0.782,
+    "backend_source_sha256": {
+      "frontend_api/royalty_reporting.py": "bc5ae709afb482b719c3db7ac3aa2c1df3c1bbf5caf36cf830ee6106b5afc915",
+      "frontend_api/earnings_replay.py": "10e7717b419fe0b26c7e73ec79b99b72071c6788c189b16dbdb1fae3773678d2",
+      "frontend_api/service.py": "6a2325fe6f1e3c515bf982bb0b93eb16b6bd67aa76862cac75bffa80f2a5c3c7"
+    },
+    "test_sha256": "ec28cd0ce375499966f01f62305616b562097b53a2e47766be19f5861e8c089c"
+  },
+  "negative_controls": {
+    "pre_fix_positive_methods": 3,
+    "actual_errors": 3,
+    "artifact": "native-royalty-custody-before.json"
+  },
+  "body_scope_limit": "Nine earlier diagnostic passes predate final cohort-bound strengthening and indexed cases; not counted in distinct final coverage. Imported15repeats are not extra coverage.",
+  "backend_source_sha256": {
+    "frontend_api/royalty_reporting.py": "bc5ae709afb482b719c3db7ac3aa2c1df3c1bbf5caf36cf830ee6106b5afc915",
+    "frontend_api/earnings_replay.py": "10e7717b419fe0b26c7e73ec79b99b72071c6788c189b16dbdb1fae3773678d2",
+    "frontend_api/service.py": "6a2325fe6f1e3c515bf982bb0b93eb16b6bd67aa76862cac75bffa80f2a5c3c7"
+  },
+  "selected_methods": [
+    "tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income",
+    "tests_python.test_earnings.EarningsAPITests.test_collection_and_nft_reconcile_exact_confirmed_history",
+    "tests_python.test_earnings.EarningsAPITests.test_collection_before_first_mint_is_zero_not_an_indexer_error",
+    "tests_python.test_earnings.EarningsAPITests.test_conversion_and_later_native_claim_preserve_original_earned_currency",
+    "tests_python.test_earnings.EarningsAPITests.test_current_price_changes_usd_without_changing_earned_tokens",
+    "tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts",
+    "tests_python.test_earnings.EarningsAPITests.test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget",
+    "tests_python.test_earnings.EarningsAPITests.test_final_snapshot_expiry_rejects_even_successful_replay",
+    "tests_python.test_earnings.EarningsAPITests.test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income",
+    "tests_python.test_earnings.EarningsAPITests.test_missing_profile_coverage_and_unminted_nft_are_explicit",
+    "tests_python.test_earnings.EarningsAPITests.test_pending_royalties_do_not_enter_processed_earnings",
+    "tests_python.test_earnings.EarningsAPITests.test_price_alias_and_module_policy_cannot_be_silently_changed",
+    "tests_python.test_earnings.EarningsAPITests.test_read_only_http_endpoints_and_invalid_ids",
+    "tests_python.test_earnings.EarningsAPITests.test_runtime_drift_and_history_gaps_fail_closed",
+    "tests_python.test_earnings.EarningsAPITests.test_supervised_worker_dispatches_read_only_earnings",
+    "tests_python.test_earnings.EarningsReplayTests.test_canonical_recovery_reverse_event_order_still_protects_earlier_cohort",
+    "tests_python.test_earnings.EarningsReplayTests.test_collection_gross_dust_and_allocations_do_not_double_count",
+    "tests_python.test_earnings.EarningsReplayTests.test_individual_collective_royalties_and_topup_have_independent_weights",
+    "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed",
+    "tests_python.test_earnings.EarningsReplayTests.test_prior_fees_exclude_new_entrant_and_transfers_do_not_reset_earnings",
+    "tests_python.test_earnings.EarningsReplayTests.test_recovery_assigns_old_receipts_before_new_members_join",
+    "tests_python.test_earnings.EarningsReplayTests.test_same_chain_epoch_carries_rights_and_skips_import_transfers",
+    "tests_python.test_earnings.EarningsReplayTests.test_thousand_nfts_share_one_pool_without_thousand_reward_reads",
+    "tests_python.test_earnings.EarningsReplayTests.test_uneligible_receipts_and_admission_prefunds_are_not_nft_earnings",
+    "tests_python.test_earnings.EarningsReplayTests.test_unknown_emitter_claim_and_conversion_events_are_not_income",
+    "tests_python.test_earnings.EarningsReplayTests.test_window_boundary_and_fraction_carry_are_exact",
+    "tests_python.test_earnings.EarningsReplayTests.test_work_budget_and_malformed_layout_stop_replay",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_complete_indexed_history_recovers_both_nfts_after_exact_native_return",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_external_custody_keeps_unverifiable_nft_reconciliation_closed",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_current_holdings_survive_native_custody_and_return_before_recovery",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_deferred_native_currency_cannot_report_retroactive_credit",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_missing_legacy_custody_getter_is_not_assumed_to_be_an_outage",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_duplicate_exit_or_wrong_return_cannot_invent_restored_backing",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_external_custody_cannot_sync_income_or_recover_eligibility",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_native_deferral_without_authenticated_active_custody_still_rejected",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_return_without_extra_income_recovers_without_counting_custody_twice",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_wrong_emitter_cannot_authorize_native_deferral",
+    "tests_python.test_royalty_reporting.ReportingTests.test_bad_token_pin_or_decimals_hides_only_that_currency",
+    "tests_python.test_royalty_reporting.ReportingTests.test_broken_core_identity_or_eligibility_is_not_a_partial_success",
+    "tests_python.test_royalty_reporting.ReportingTests.test_converter_missing_disabled_drift_never_promises_conversion",
+    "tests_python.test_royalty_reporting.ReportingTests.test_deferred_currency_eligibility_is_distinct_from_activation",
+    "tests_python.test_royalty_reporting.ReportingTests.test_dormant_nft_is_inactive_without_fabricated_royalty_entitlement",
+    "tests_python.test_royalty_reporting.ReportingTests.test_faulty_balance_returns_null_without_losing_healthy_rewards",
+    "tests_python.test_royalty_reporting.ReportingTests.test_native_eth_and_unconverted_currency_are_not_summed_or_promised",
+    "tests_python.test_royalty_reporting.ReportingTests.test_old_profile_keeps_strict_fail_closed_asset_validation",
+    "tests_python.test_royalty_reporting.ReportingTests.test_reorg_and_expiry_discard_even_currency_isolated_results",
+    "tests_python.test_royalty_reporting.ReportingTests.test_reporting_config_strict_and_no_implicit_old_abi_probe",
+    "tests_python.test_royalty_reporting.ReportingTests.test_same_snapshot_ownership_change_preserves_unclaimed_rights",
+    "tests_python.test_royalty_reporting.ReportingTests.test_work_limits_are_not_swallowed_as_currency_or_converter_failures"
+  ],
+  "no_solidity_or_public_state_change": true,
+  "not_qualified": [
+    "Live RPC/provider logs",
+    "A hosted API or existing indexer migration",
+    "Full NFT earnings reconciliation while royalty funds remain in external custody (intentionally fail-closed)",
+    "Actual services, independent audit or production approval"
+  ],
+  "final_discovery_inventory": {
+    "selection": [
+      "tests_python.test_native_royalty_custody_reporting",
+      "tests_python.test_royalty_reporting.ReportingTests",
+      "tests_python.test_earnings.EarningsReplayTests",
+      "tests_python.test_earnings.EarningsAPITests"
+    ],
+    "invocations_if_executed": 52,
+    "distinct_methods": 52,
+    "duplicate_imported_tests_removed": true,
+    "executed": false,
+    "purpose": "Read-only inventory confirms corrected discovery; no broad tests repeated."
+  }
+}

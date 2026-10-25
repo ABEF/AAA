@@ -1,0 +1,42 @@
+{
+  "observed_at_utc": "2026-10-25T22:09:20.609875+00:00",
+  "checks": [
+    {
+      "args": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "{\"checked\": true, \"contracts\": 31, \"functions\": 608, \"constructors\": 31, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 123}",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "Project Todo verified.",
+      "stderr": ""
+    }
+  ],
+  "source_dependency_build_bindings": {
+    "project": 44,
+    "dependency": 31,
+    "build": 4,
+    "all_match": true
+  },
+  "normal_object_gates_reused": 37,
+  "typecheck_inputs_match": 265,
+  "original_drafts_preserved": 14,
+  "partial_owned_document_paths": [
+    "docs/DEVELOPMENT.md",
+    "docs/FRONTEND_HISTORY.md",
+    "docs/PRODUCTION_SERVICES.md",
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md"
+  ],
+  "python_syntax": "All owned Python files parsed",
+  "slither_review_gate": "FAIL - stale inventory; not executed or waived",
+  "no_full_regression_or_production_approval": true
+}

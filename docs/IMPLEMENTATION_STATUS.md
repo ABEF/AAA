@@ -1,5 +1,35 @@
 # Feature and evidence reference
 
+## Day-change audit - 2026-10-25
+
+The [adapted audit](../reports/day-readiness-20261025/ADAPTED_PROMPT.md),
+[findings](../reports/day-readiness-20261025/REVIEW.md) and
+[verification](../reports/day-readiness-20261025/VERIFICATION.md) distinguish
+the full Paris-day ancestry from reference `35007db`. No production Solidity
+changes were needed for the confirmed issues. The read API now accepts legitimate
+deferred ETH royalty eligibility during custody, and earnings replay validates
+exact custody exit/return history without counting returns as new income.
+Balances remain unavailable while backing is external; earlier royalties stay
+with their eligible cohort. No entitlement, authority or economic rule changed.
+
+Callable-reference snapshot **3** independently enforces normal bytecode and
+constructor bounds, closed source bindings and coherent saved build evidence.
+Schema 2 is historical; regenerate from matching saved normal artifacts. The
+reference still covers 31 contracts / 608 functions / 13 receive hooks. Stronger
+native tests distinguish exact-input protection from output-floor failure and
+require the intended oversized-input error.
+
+Fresh checks cover three project EVM methods, four isolated role-gas comparisons
+and 83 distinct Python methods across recorded source scopes; repeated methods
+are counted once. The changed test typechecks in the closed 265-input AST.
+All 75 unchanged production/dependency inputs and 37 normal object gates are
+reused after exact binding checks. No full regression is claimed. Current saved
+Slither triage is stale and fails the release gate; actual feeds/routes/VRF,
+authorities, OpenSea, current-profile native website/services, operating/gas
+qualification and independent audit remain open. See [readiness](../reports/day-readiness-20261025/READINESS.md).
+Production NOT APPROVED. No deployment, existing chain/journal, website or service
+change. Dated earlier entries retain their original source/evidence scope.
+
 ## Deep cleanup review - 2026-10-25
 
 The [adapted workflow](../reports/deep-cleanup-20261025/ADAPTED_PROMPT.md),

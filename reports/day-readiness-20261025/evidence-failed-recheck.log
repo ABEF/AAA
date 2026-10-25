@@ -1,0 +1,8 @@
+test_json_capture_reads_at_most_limit_plus_one_byte (tests_python.test_function_reference.FunctionReferenceTests.test_json_capture_reads_at_most_limit_plus_one_byte) ... ok
+test_duplicate_json_nonfinite_unknown_parameter_notes_and_overlapping_notes_reject (tests_python.test_function_reference.FunctionReferenceTests.test_duplicate_json_nonfinite_unknown_parameter_notes_and_overlapping_notes_reject) ... ok
+test_cli_rejects_contradictory_evidence_without_overwriting_reference (tests_python.test_function_reference.FunctionReferenceTests.test_cli_rejects_contradictory_evidence_without_overwriting_reference) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.582s
+
+OK

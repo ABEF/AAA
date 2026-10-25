@@ -1,3 +1,46 @@
+## Day-change readiness audit - 2026-10-25
+
+User prompt was challenged/adapted and executed against reference35007db,
+initial main55011c0 and the full25-hour Paris day:24reachable commits from
+baseline3551868. Read [adapted workflow](reports/day-readiness-20261025/ADAPTED_PROMPT.md),
+[review](reports/day-readiness-20261025/REVIEW.md),
+[verification](reports/day-readiness-20261025/VERIFICATION.md),
+[preservation](reports/day-readiness-20261025/PRESERVATION.md) and
+[release gates](reports/day-readiness-20261025/READINESS.md).
+
+Production Solidity is unchanged. Backend fixes legitimate native royalty
+custody eligibility/reporting and exact exit/full-return earnings replay;
+returns/conversions are not income and in-transit balances remain unavailable.
+No entitlement/authority/policy/profile changes. Source-read and canonical
+conversion guards were independently traced. No existing database repaired.
+Evidence snapshot3 recomputes normal sizes/constructor bounds, rejects
+contradictory captured hashes/status/closure and validates exact outer schemas
+and fixed-point ABI formats. Regenerate schema2 from matching saved artifacts,
+never relabel it. Callable reference31contracts/608functions/13receive hooks.
+
+Three project EVM methods plus four isolated Access gas checks pass. Two new
+native sensitivity cases isolate short exact input and oversized amount errors.
+83distinct Python methods cover52backend plus31tool methods across recorded
+source scopes; final checker has3targeted passes, not a fresh full31rerun.
+265closed AST inputs pass after one preserved test-only fail(string) repair.
+All75production/dependency inputs match reused37normal gates. Controlled same-
+context baseline compile reproduces+45runtime/+175creation Access bytes; CREATE
+raw execution+12312 and measured guardian updates+1642. Actual target gas/URI
+arguments remain unqualified; RoyaltyFactory runtime margin69bytes.
+
+Current saved Slither triage is stale: FAIL release gate. Actual feeds/routes/
+VRF/authorities/OpenSea/native website3/services/operations/max-state gas and
+independent audit remain open. Production NOT APPROVED. Sole Todo/features/
+roadmap/operator/callable/reference/release docs are aligned; no duplicate Todo.
+Git/publication receipt records actual commit/push separately from local saves.
+
+Main only. Preserve14original dirty drafts and unrelated artifacts; owned doc
+prefixes staged separately. Existing8902/Anvil/NFT/LP/balances/journals/dist
+overlay, website source/build/server, signer/services and paused monitor remain
+unchanged. Public DEPLOYMENT null, signing Anvil-only. No public RPC/transaction,
+deployment, seal or service action authorized or performed. Website memory-only
+publication is separate and does not deploy. Prior entries retain their scopes.
+
 ## Deep cleanup publication verified - 2026-10-25
 
 Contract implementation `35007db` and website memory-only

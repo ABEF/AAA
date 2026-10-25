@@ -3782,7 +3782,7 @@
       }
     },
     "ZZZBuyback": {
-      "purpose": "Purpose-bound reserve spending to acquire and verifiably burn the governed reviewed ZZZ token.",
+      "purpose": "Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token.",
       "functions": {
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
@@ -3834,7 +3834,7 @@
         }
       },
       "constructor": {
-        "purpose": "Deploy and bind Purpose-bound reserve spending to acquire and verifiably burn the governed reviewed ZZZ token.",
+        "purpose": "Deploy and bind Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
           "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",

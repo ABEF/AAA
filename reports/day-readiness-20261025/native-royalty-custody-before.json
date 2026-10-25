@@ -1,0 +1,32 @@
+{
+  "scope": "Three positive regression controls before the backend correction; no production contracts or public services touched",
+  "methods": [
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_current_holdings_survive_native_custody_and_return_before_recovery",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income",
+    "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort"
+  ],
+  "tests_run": 3,
+  "failures": [],
+  "errors": [
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_current_holdings_survive_native_custody_and_return_before_recovery",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_native_royalty_custody_reporting.py\", line 68, in test_current_holdings_survive_native_custody_and_return_before_recovery\n    held = self.read()\n           ^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_native_royalty_custody_reporting.py\", line 58, in read\n    return Projection(self.cfg, self.rpc, clock=lambda: 1000).nft(str(self.identifier))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\work_budget.py\", line 93, in bounded\n    return function(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\service.py\", line 526, in nft\n    settlement = self.royalty_reporting.read(nft_id, weight, royalty_assets, health, block)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\royalty_reporting.py\", line 103, in read\n    raise ProjectionError('Inconsistent royalty currency eligibility')\nfrontend_api.service.ProjectionError: Inconsistent royalty currency eligibility\n"
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_native_royalty_custody_reporting.py\", line 112, in test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income\n    model = self.model(); native_activation(model)\n                          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_native_royalty_custody_reporting.py\", line 40, in native_activation\n    consume(model, entry)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings.py\", line 33, in consume\n    model(ev['address'],ev['topics'],ev['data'],int(ev['blockNumber'],16),ev['blockHash'],\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_replay.py\", line 191, in __call__\n    self.royalty(name, topics, t, d, timestamp, transaction)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_replay.py\", line 201, in royalty\n    require(identifier in self.minted and identifier not in self.weights and asset != ZERO and asset in self.cohorts,\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_replay.py\", line 39, in require\n    raise HistoryError(message)\nfrontend_api.history.HistoryError: Invalid deferred royalty activation\n"
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_native_royalty_custody_reporting.py\", line 126, in test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort\n    model = self.model(); native_activation(model)\n                          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_native_royalty_custody_reporting.py\", line 40, in native_activation\n    consume(model, entry)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings.py\", line 33, in consume\n    model(ev['address'],ev['topics'],ev['data'],int(ev['blockNumber'],16),ev['blockHash'],\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_replay.py\", line 191, in __call__\n    self.royalty(name, topics, t, d, timestamp, transaction)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_replay.py\", line 201, in royalty\n    require(identifier in self.minted and identifier not in self.weights and asset != ZERO and asset in self.cohorts,\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_replay.py\", line 39, in require\n    raise HistoryError(message)\nfrontend_api.history.HistoryError: Invalid deferred royalty activation\n"
+    }
+  ],
+  "passed": 0,
+  "all_pass": false,
+  "source_sha256": {
+    "frontend_api/royalty_reporting.py": "04d025faa99c700bc878c7c61af036a2d2ac19a5b21b04d663c88c1b5041d317",
+    "frontend_api/earnings_replay.py": "0e0c988a68e2778376b5c362470ae01f8227ecba5c5b40dd0a5c737371c0de99",
+    "frontend_api/service.py": "090b5f3ee577c7954100ad54182f109fe31b7f175c2a330ec2fed15b44eb99e7",
+    "tests_python/test_native_royalty_custody_reporting.py": "62f4bebfd59c72e8d12dbc206af76eb244e09b8bdc1755870997f704e68875ca"
+  }
+}

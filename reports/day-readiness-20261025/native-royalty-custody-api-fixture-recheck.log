@@ -1,0 +1,7 @@
+test_complete_indexed_history_recovers_both_nfts_after_exact_native_return (tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_complete_indexed_history_recovers_both_nfts_after_exact_native_return) ... ok
+test_external_custody_keeps_unverifiable_nft_reconciliation_closed (tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_external_custody_keeps_unverifiable_nft_reconciliation_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.777s
+
+OK

@@ -228,6 +228,7 @@ class Projection:
             'claimable(uint256,address)': {1}, 'eligibleFor(uint256,address)': {1},
             'ownerIndex(uint256,address)': {1}, 'eligibleCount(address)': {0},
             'eligibleWeight(address)': {0}, 'index(address)': {0}, 'pending(address)': {0},
+            'custodyNonce(address)': {0},
         }
         if self.accounting_version in (2, 3):
             native_slots.update({

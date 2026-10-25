@@ -1,0 +1,402 @@
+{
+  "scope": "Four isolated Forge tests; setUp deployments precede separate test transaction contexts, with cooled target storage/account state.",
+  "observed_at_utc": "2026-10-25T21:50:53.041885+00:00",
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas-isolated",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "RoleGasTest",
+    "-vv",
+    "--json"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 1.406,
+  "cases": [
+    {
+      "method": "testConstructorGasAndInitialAuthority()",
+      "status": "Success",
+      "reason": null,
+      "unit_gas": {
+        "Unit": {
+          "gas": 55137
+        }
+      }
+    },
+    {
+      "method": "testGuardianGrantGasFromCommittedZero()",
+      "status": "Success",
+      "reason": null,
+      "unit_gas": {
+        "Unit": {
+          "gas": 133411
+        }
+      }
+    },
+    {
+      "method": "testGuardianIdempotentGasFromCommittedOne()",
+      "status": "Success",
+      "reason": null,
+      "unit_gas": {
+        "Unit": {
+          "gas": 118898
+        }
+      }
+    },
+    {
+      "method": "testGuardianRevokeGasFromCommittedOne()",
+      "status": "Success",
+      "reason": null,
+      "unit_gas": {
+        "Unit": {
+          "gas": 103013
+        }
+      }
+    }
+  ],
+  "measurements": [
+    {
+      "operation": "constructor CREATE",
+      "baseline_raw_gas": 8446648,
+      "candidate_raw_gas": 8458960,
+      "difference": 12312
+    },
+    {
+      "operation": "guardian grant",
+      "baseline_raw_gas": 26598,
+      "candidate_raw_gas": 28240,
+      "difference": 1642
+    },
+    {
+      "operation": "guardian idempotent grant",
+      "baseline_raw_gas": 6698,
+      "candidate_raw_gas": 8340,
+      "difference": 1642
+    },
+    {
+      "operation": "guardian revoke",
+      "baseline_raw_gas": 9498,
+      "candidate_raw_gas": 11140,
+      "difference": 1642
+    }
+  ],
+  "raw_results": {
+    "test/RoleGas.t.sol:RoleGasTest": {
+      "duration": "11ms 391\u00b5s 600ns",
+      "test_results": {
+        "testConstructorGasAndInitialAuthority()": {
+          "status": "Success",
+          "reason": null,
+          "counterexample": null,
+          "logs": [
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0x4e4109d520c9526f0541c4732fe75bfe81842ffcba4a1a829277abfaeba117da",
+                "0x000000000000000000000000000000000000000000000000000000000000beef"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50",
+                "0x000000000000000000000000000000000000000000000000000000000000600d"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+              "topics": [
+                "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000080e2b8000000000000000000000000000000000000000000000000000000000000001b636f6e7374727563746f722043524541544520626173656c696e650000000000"
+            },
+            {
+              "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+              "topics": [
+                "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+              ],
+              "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000008112d0000000000000000000000000000000000000000000000000000000000000001c636f6e7374727563746f72204352454154452063616e64696461746500000000"
+            }
+          ],
+          "decoded_logs": [
+            "constructor CREATE baseline: 8446648",
+            "constructor CREATE candidate: 8458960"
+          ],
+          "kind": {
+            "Unit": {
+              "gas": 55137
+            }
+          },
+          "traces": [],
+          "labeled_addresses": {},
+          "duration": "223\u00b5s 800ns",
+          "breakpoints": {},
+          "gas_snapshots": {}
+        },
+        "testGuardianGrantGasFromCommittedZero()": {
+          "status": "Success",
+          "reason": null,
+          "counterexample": null,
+          "logs": [
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0x4e4109d520c9526f0541c4732fe75bfe81842ffcba4a1a829277abfaeba117da",
+                "0x000000000000000000000000000000000000000000000000000000000000beef"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50",
+                "0x000000000000000000000000000000000000000000000000000000000000600d"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50",
+                "0x0000000000000000000000000000000000000000000000000000000000c0ffee"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+              "topics": [
+                "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+              ],
+              "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000067e60000000000000000000000000000000000000000000000000000000000000017677561726469616e206772616e7420626173656c696e65000000000000000000"
+            },
+            {
+              "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+              "topics": [
+                "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+              ],
+              "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000006e500000000000000000000000000000000000000000000000000000000000000018677561726469616e206772616e742063616e6469646174650000000000000000"
+            }
+          ],
+          "decoded_logs": [
+            "guardian grant baseline: 26598",
+            "guardian grant candidate: 28240"
+          ],
+          "kind": {
+            "Unit": {
+              "gas": 133411
+            }
+          },
+          "traces": [],
+          "labeled_addresses": {},
+          "duration": "385\u00b5s 900ns",
+          "breakpoints": {},
+          "gas_snapshots": {}
+        },
+        "testGuardianIdempotentGasFromCommittedOne()": {
+          "status": "Success",
+          "reason": null,
+          "counterexample": null,
+          "logs": [
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0x4e4109d520c9526f0541c4732fe75bfe81842ffcba4a1a829277abfaeba117da",
+                "0x000000000000000000000000000000000000000000000000000000000000beef"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50",
+                "0x000000000000000000000000000000000000000000000000000000000000600d"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50",
+                "0x000000000000000000000000000000000000000000000000000000000000600d"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+              "topics": [
+                "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+              ],
+              "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000001a2a0000000000000000000000000000000000000000000000000000000000000022677561726469616e206964656d706f74656e74206772616e7420626173656c696e65000000000000000000000000000000000000000000000000000000000000"
+            },
+            {
+              "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+              "topics": [
+                "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+              ],
+              "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000020940000000000000000000000000000000000000000000000000000000000000023677561726469616e206964656d706f74656e74206772616e742063616e6469646174650000000000000000000000000000000000000000000000000000000000"
+            }
+          ],
+          "decoded_logs": [
+            "guardian idempotent grant baseline: 6698",
+            "guardian idempotent grant candidate: 8340"
+          ],
+          "kind": {
+            "Unit": {
+              "gas": 118898
+            }
+          },
+          "traces": [],
+          "labeled_addresses": {},
+          "duration": "657\u00b5s 700ns",
+          "breakpoints": {},
+          "gas_snapshots": {}
+        },
+        "testGuardianRevokeGasFromCommittedOne()": {
+          "status": "Success",
+          "reason": null,
+          "counterexample": null,
+          "logs": [
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0x4e4109d520c9526f0541c4732fe75bfe81842ffcba4a1a829277abfaeba117da",
+                "0x000000000000000000000000000000000000000000000000000000000000beef"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50",
+                "0x000000000000000000000000000000000000000000000000000000000000600d"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "topics": [
+                "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50",
+                "0x000000000000000000000000000000000000000000000000000000000000600d"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            {
+              "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+              "topics": [
+                "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000251a0000000000000000000000000000000000000000000000000000000000000018677561726469616e207265766f6b6520626173656c696e650000000000000000"
+            },
+            {
+              "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+              "topics": [
+                "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+              ],
+              "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000002b840000000000000000000000000000000000000000000000000000000000000019677561726469616e207265766f6b652063616e64696461746500000000000000"
+            }
+          ],
+          "decoded_logs": [
+            "guardian revoke baseline: 9498",
+            "guardian revoke candidate: 11140"
+          ],
+          "kind": {
+            "Unit": {
+              "gas": 103013
+            }
+          },
+          "traces": [],
+          "labeled_addresses": {},
+          "duration": "329\u00b5s 300ns",
+          "breakpoints": {},
+          "gas_snapshots": {}
+        }
+      },
+      "warnings": []
+    }
+  },
+  "runtime_bytes": {
+    "baseline": 9207,
+    "candidate": 9252
+  },
+  "creation_bytes": {
+    "baseline": 42081,
+    "candidate": 42256
+  },
+  "constructor_wire_labels": {
+    "baseline": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "initialGovernance",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialKeeper",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialGuardian",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      }
+    ],
+    "candidate": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "initialGovernance",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialKeeper",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialGuardian",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      }
+    ]
+  },
+  "controlled_settings_equal": true,
+  "controlled_dependency_contents_equal": true,
+  "dependency_count": 31,
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+  "harness_driver_sha256": "8186d22242770647da20ee5bae2ce1cf087648ce0c3b4f3c218e8ade9bb8f708",
+  "artifact_sha256": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\solidity\\controlled-baseline-output.json": "349aa4e9efd8a6e3b27aae912ccda7753a63c00d9dcc3e22e56891cb19f5c36b",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\deep-cleanup-20261025\\solidity\\source-build.json": "a3c37b7a07163a66dde8bcab5fe6d853c1970a46bef5f5d61d565f4625801b50",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\solidity\\controlled-baseline-input.json": "1396c7a685ebe00f2da328f9ef7ef9c102ca7aa13e40cd23999cb4d043ae5a69",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\deep-cleanup-20261025\\solidity\\source-build-input.json": "b1b7fcfe27ae4cac6b9643b841b31d7c602a23c073793225754caf0f85785e8d",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas-isolated\\bytecodes.json": "625b5b2ba01d5f80a50a5f5f7ddc5c24fd8babb9eb3df90ac4f2a5ee0c6ea322",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas-isolated\\test\\RoleGas.t.sol": "de7bb9e94d3c3d38a43dbddb9b499bd82c175173b288038352ef053861793cc6",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas-isolated\\foundry.toml": "6ec8eb394b8c4cf428350f844676956b9a47a531043fc90f528b174839ec4625",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\day-readiness-20261025\\role-gas-isolated\\forge.stdout.json": "e78848a165e45cbe9235ebdb87bd84e5eb30b3a349b73f4e9e2037c77c5ac767"
+  },
+  "limits": [
+    "CREATE/call gasleft deltas exclude transaction intrinsic/calldata/L1/network costs and applied refunds.",
+    "Targets are cooled before identical payloads; assembly CALL has no return-data allocation and payload memory is allocated before measurement.",
+    "Initial combined-control revoke had dirty-slot semantics, so its absolute gas is not a standalone transaction estimate and is not used here.",
+    "EOA-style initial keeper/guardian addresses and the same bootstrap/governance test caller are used; sealed-governance branch gas and target-chain fees are not measured.",
+    "No persistent Anvil, public deployment, account key, signing, RPC or service operation occurs."
+  ],
+  "passed": true
+}

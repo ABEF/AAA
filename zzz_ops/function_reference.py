@@ -10,8 +10,9 @@ from typing import Any
 
 MAX_JSON_BYTES = 64 * 1024 * 1024
 CALLABLE_KINDS = frozenset(('function', 'constructor', 'receive', 'fallback'))
-SNAPSHOT_SCHEMA = 2
+SNAPSHOT_SCHEMA = 3
 BUILD_INPUTS = frozenset(('foundry.toml','package.json','package-lock.json','scripts/install-deps.sh'))
+NORMAL_LIMITS = {'runtime_bytes': 24576, 'initcode_bytes': 49152}
 
 
 class ReferenceError(ValueError):
@@ -28,9 +29,21 @@ def _pairs(items):
 
 
 def load_json(path: Path) -> Any:
-    if path.stat().st_size > MAX_JSON_BYTES:
+    return _load_raw_json(_read_json_bytes(path))
+
+
+def _read_json_bytes(path: Path) -> bytes:
+    with path.open('rb') as stream:
+        raw = stream.read(MAX_JSON_BYTES+1)
+    if len(raw) > MAX_JSON_BYTES:
         raise ReferenceError('Reference input exceeds size limit')
-    return json.loads(path.read_text(encoding='utf-8-sig'), object_pairs_hook=_pairs,
+    return raw
+
+
+def _load_raw_json(raw: bytes) -> Any:
+    if len(raw) > MAX_JSON_BYTES:
+        raise ReferenceError('Reference input exceeds size limit')
+    return json.loads(raw.decode('utf-8-sig'), object_pairs_hook=_pairs,
         parse_constant=lambda _: (_ for _ in ()).throw(ReferenceError('Nonfinite JSON value')))
 
 
@@ -58,8 +71,10 @@ def canonical_type(item: dict) -> str:
     if not re.fullmatch(r'(?:\[(?:[1-9][0-9]*)?\])*', suffix):
         raise ReferenceError('Invalid ABI array')
     base = {'uint': 'uint256', 'int': 'int256', 'fixed': 'fixed128x18', 'ufixed': 'ufixed128x18'}.get(base, base)
-    if base not in ('address', 'bool', 'bytes', 'string', 'function') and not re.fullmatch(
-            r'(?:u?int(?:8|16|24|32|40|48|56|64|72|80|88|96|104|112|120|128|136|144|152|160|168|176|184|192|200|208|216|224|232|240|248|256)|bytes(?:[1-9]|[12][0-9]|3[0-2])|u?fixed[0-9]+x[0-9]+)', base):
+    widths = r'(?:8|16|24|32|40|48|56|64|72|80|88|96|104|112|120|128|136|144|152|160|168|176|184|192|200|208|216|224|232|240|248|256)'
+    # ABI fixed/ufixed use the same 8..256-bit widths and 1..80 decimals.
+    scalar = r'(?:u?int'+widths+r'|bytes(?:[1-9]|[12][0-9]|3[0-2])|u?fixed'+widths+r'x(?:[1-9]|[1-7][0-9]|80))'
+    if base not in ('address', 'bool', 'bytes', 'string', 'function') and not re.fullmatch(scalar, base):
         raise ReferenceError('Unsupported ABI type')
     return base + suffix
 
@@ -113,8 +128,8 @@ def _dependency_source(root: Path, name: str) -> Path:
 
 def _check_sources(root, snapshot):
     if type(snapshot.get('snapshot_schema')) is not int or snapshot['snapshot_schema'] != SNAPSHOT_SCHEMA:
-        raise ReferenceError('Regenerate the reference with explicit dependency/build bindings')
-    for field in ('compiler_input_sha256','compiler_output_sha256','size_evidence_sha256'):
+        raise ReferenceError('Regenerate the reference with closed compiler/source and normal-limit bindings')
+    for field in ('compiler_input_sha256','compiler_output_sha256','size_evidence_sha256','solc_executable_sha256'):
         if not isinstance(snapshot.get(field),str) or not re.fullmatch(r'[0-9a-f]{64}',snapshot[field]):
             raise ReferenceError('Invalid compiler artifact binding')
     expected = snapshot.get('source_sha256')
@@ -130,6 +145,14 @@ def _check_sources(root, snapshot):
     build_inputs = snapshot.get('build_input_sha256')
     if not isinstance(dependencies,dict) or not isinstance(build_inputs,dict) or not set(build_inputs) <= BUILD_INPUTS:
         raise ReferenceError('Missing or invalid dependency/build bindings')
+    names = snapshot.get('compiler_source_names')
+    if (not isinstance(names,list) or any(not isinstance(name,str) for name in names) or
+            names != sorted(set(expected) | set(dependencies)) or set(expected) & set(dependencies)):
+        raise ReferenceError('Stored compiler source inventory differs from bindings')
+    if not isinstance(snapshot.get('compiler_settings'),dict) or not snapshot['compiler_settings']:
+        raise ReferenceError('Missing or invalid stored compiler settings')
+    if snapshot.get('normal_limits') != NORMAL_LIMITS:
+        raise ReferenceError('Stored normal limits differ')
     if set(build_inputs) != {name for name in BUILD_INPUTS if (root/name).is_file()}:
         raise ReferenceError('Build input inventory changed')
     for name,digest in dependencies.items():
@@ -142,17 +165,83 @@ def _check_sources(root, snapshot):
             raise ReferenceError('Build input changed: '+name)
 
 
+def _argument_shape(item):
+    """Return dynamic status and minimum/exact ABI payload bytes, without values."""
+    canonical_type(item)
+    typ = item['type']
+    base = typ.split('[',1)[0]
+    if base == 'tuple':
+        dynamic, minimum = _argument_sequence(item['components'])
+    else:
+        dynamic, minimum = base in ('bytes','string'), 32
+    for length in re.findall(r'\[([0-9]*)\]',typ):
+        if length == '':
+            dynamic, minimum = True, 32  # The empty dynamic array's length word.
+        else:
+            if len(length) > 9:
+                raise ReferenceError('Constructor fixed array cannot fit normal initcode')
+            count = int(length)
+            minimum = count * (32 + minimum if dynamic else minimum)
+    return dynamic, minimum
+
+
+def _argument_sequence(items):
+    if not isinstance(items,list):
+        raise ReferenceError('Invalid constructor inputs')
+    shapes = [_argument_shape(item) for item in items]
+    return any(dynamic for dynamic,_ in shapes), sum(
+        32 + minimum if dynamic else minimum for dynamic,minimum in shapes)
+
+
+def _constructor_bounds(abi):
+    if not isinstance(abi,list) or any(not isinstance(item,dict) for item in abi):
+        raise ReferenceError('Missing or invalid compiler ABI')
+    constructors = [item for item in abi if item.get('type') == 'constructor']
+    if len(constructors) > 1:
+        raise ReferenceError('Duplicate compiler constructor')
+    inputs = constructors[0].get('inputs',[]) if constructors else []
+    dynamic, minimum = _argument_sequence(inputs)
+    return {'types':[item['type'] for item in inputs],
+        'static_argument_bytes':None if dynamic else minimum,
+        'minimum_argument_bytes':minimum, 'requires_exact_arguments':dynamic}
+
+
+def _normal_evidence(sizes, input_raw, output_raw, source_count):
+    for field,raw in (('compiler_input_sha256',input_raw),('compiler_output_sha256',output_raw)):
+        if sizes.get(field) != sha(raw):
+            raise ReferenceError('Declared compiler artifact hash differs: '+field)
+    if type(sizes.get('solc_exit_code')) is not int or sizes['solc_exit_code'] != 0:
+        raise ReferenceError('Compiler exit status is not successful')
+    for field in ('closed_input_inventory','unchanged_before_build','unchanged_during_build','solc_executable_unchanged'):
+        if sizes.get(field) is not True:
+            raise ReferenceError('Normal compiler evidence is incomplete or contradictory: '+field)
+    if ('all_source_test_inputs_unchanged_during_build' in sizes and
+            sizes['all_source_test_inputs_unchanged_during_build'] is not True):
+        raise ReferenceError('Normal compiler evidence contradicts its complete source freeze')
+    for field in ('source_count','compiled_source_count'):
+        if type(sizes.get(field)) is not int or sizes[field] != source_count:
+            raise ReferenceError('Declared compiler source count differs')
+    for field in ('unexpected_implicit_sources','missing_compiled_sources'):
+        if sizes.get(field) != []:
+            raise ReferenceError('Normal compiler source closure is incomplete')
+    if (not isinstance(sizes.get('solc_executable_sha256'),str) or
+            not re.fullmatch(r'[0-9a-f]{64}',sizes['solc_executable_sha256'])):
+        raise ReferenceError('Missing or invalid compiler binary binding')
+
+
 def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, size_report: Path) -> dict:
     root = root.resolve()
-    supplied = load_json(compiler_input)
-    output = load_json(compiler_output)
-    sizes = load_json(size_report)
+    input_raw,output_raw,size_raw = [_read_json_bytes(path) for path in (compiler_input,compiler_output,size_report)]
+    supplied,output,sizes = [_load_raw_json(raw) for raw in (input_raw,output_raw,size_raw)]
     if not all(isinstance(x, dict) for x in (supplied, output, sizes)):
         raise ReferenceError('Compiler inputs must be JSON objects')
-    if supplied.get('language') != 'Solidity' or any(x.get('severity') == 'error' for x in output.get('errors', [])):
+    diagnostics = output.get('errors',[])
+    if (supplied.get('language') != 'Solidity' or not isinstance(diagnostics,list) or
+            any(not isinstance(x,dict) or x.get('severity') == 'error' for x in diagnostics)):
         raise ReferenceError('Compiler input/output is not a successful Solidity result')
     settings = supplied.get('settings')
-    if settings != sizes.get('settings') or sizes.get('all_pass') is not True or sizes.get('errors') != []:
+    if (not isinstance(settings,dict) or not settings or settings != sizes.get('settings') or
+            sizes.get('all_pass') is not True or sizes.get('errors') != []):
         raise ReferenceError('Compiler settings or normal size evidence differs')
     sources = supplied.get('sources')
     hashes = sizes.get('source_sha256')
@@ -164,6 +253,7 @@ def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, siz
             set(hashes)&set(dependencies) or
             set(sources) != set(hashes)|set(dependencies) or set(compiled_sources) != set(sources)):
         raise ReferenceError('Compiler source inventory differs from size evidence')
+    _normal_evidence(sizes,input_raw,output_raw,len(sources))
     for name, value in sources.items():
         source = _source(root,name) if name in hashes else _dependency_source(root,name)
         text = source.read_bytes().decode('utf-8-sig')
@@ -171,9 +261,10 @@ def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, siz
             raise ReferenceError('Compiler source content differs: ' + name)
     snapshot = {'snapshot_schema':SNAPSHOT_SCHEMA,'source_sha256':hashes,
         'dependency_source_sha256':dependencies,'build_input_sha256':sizes.get('build_input_sha256'),
-        'compiler_settings': settings,
-        'compiler_input_sha256': sha(compiler_input.read_bytes()), 'compiler_output_sha256': sha(compiler_output.read_bytes()),
-        'size_evidence_sha256': sha(size_report.read_bytes())}
+        'compiler_settings': settings,'compiler_source_names':sorted(sources),
+        'solc_executable_sha256':sizes['solc_executable_sha256'],'normal_limits':dict(NORMAL_LIMITS),
+        'compiler_input_sha256': sha(input_raw), 'compiler_output_sha256': sha(output_raw),
+        'size_evidence_sha256': sha(size_raw)}
     _check_sources(root, snapshot)
     gate_rows = sizes.get('gates')
     if not isinstance(gate_rows, list) or any(not isinstance(x, dict) for x in gate_rows):
@@ -181,7 +272,7 @@ def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, siz
     gates = {(x['path'], x['name']): x for x in gate_rows}
     if len(gates) != len(gate_rows) or not isinstance(output.get('contracts'), dict):
         raise ReferenceError('Duplicate object gate or missing compiled contracts')
-    objects, excluded = {}, []
+    objects, excluded, dynamic_arguments = {}, [], []
     for source, contracts in output.get('contracts', {}).items():
         if not source.startswith('src/'):
             continue
@@ -198,8 +289,23 @@ def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, siz
                     gate.get('creation_ok') is not True or gate.get('runtime_ok') is not True):
                 raise ReferenceError('Compiler object differs from normal size evidence')
             abi = obj.get('abi')
-            if not isinstance(abi, list):
-                raise ReferenceError('Missing compiler ABI')
+            bounds = _constructor_bounds(abi)
+            creation_bytes,runtime_bytes = len(creation)//2,len(runtime)//2
+            if (runtime_bytes > NORMAL_LIMITS['runtime_bytes'] or
+                    creation_bytes+bounds['minimum_argument_bytes'] > NORMAL_LIMITS['initcode_bytes']):
+                raise ReferenceError('Actual compiler object exceeds normal size limits')
+            static = bounds['static_argument_bytes']
+            if (gate.get('constructor_types') != bounds['types'] or 'static_argument_bytes' not in gate or
+                    (gate.get('static_argument_bytes') is not None if static is None else
+                     type(gate.get('static_argument_bytes')) is not int or gate['static_argument_bytes'] != static) or
+                    gate.get('dynamic_constructor_exact_argument_qualification_required') is not bounds['requires_exact_arguments'] or
+                    type(gate.get('runtime_margin')) is not int or gate['runtime_margin'] != NORMAL_LIMITS['runtime_bytes']-runtime_bytes or
+                    type(gate.get('maximum_total_argument_bytes')) is not int or
+                    gate['maximum_total_argument_bytes'] != NORMAL_LIMITS['initcode_bytes']-creation_bytes):
+                raise ReferenceError('Constructor or size metadata contradicts compiler ABI/bytes')
+            if bounds['requires_exact_arguments']:
+                dynamic_arguments.append({'source':source,'contract':name,
+                    'minimum_argument_bytes':bounds['minimum_argument_bytes']})
             if source.startswith('src/libraries/'):
                 if any(x.get('type') in CALLABLE_KINDS for x in abi):
                     raise ReferenceError('A callable project library needs explicit documentation policy')
@@ -210,6 +316,7 @@ def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, siz
             objects[name] = {'source': source, 'abi': abi, 'abi_sha256': sha(canonical_json(abi).encode())}
     if len(objects) + len(excluded) != len(gates):
         raise ReferenceError('Incomplete concrete object inventory')
+    snapshot['unqualified_dynamic_constructors'] = sorted(dynamic_arguments,key=lambda row:(row['source'],row['contract']))
     return {'schema': 1, 'source_snapshot': snapshot, 'abi_snapshot': objects,
             'excluded_objects': sorted(excluded, key=lambda x: x['contract'])}
 
@@ -218,7 +325,8 @@ def merge_notes(files: list[Path]) -> dict:
     result = {'schema': 1, 'contracts': {}}
     for path in files:
         obj = load_json(path)
-        if not isinstance(obj, dict) or obj.get('schema') != 1 or not isinstance(obj.get('contracts'), dict):
+        if (not isinstance(obj,dict) or type(obj.get('schema')) is not int or obj['schema'] != 1 or
+                not isinstance(obj.get('contracts'),dict)):
             raise ReferenceError('Notes require schema1 and contracts')
         for name, notes in obj['contracts'].items():
             if name in result['contracts']:
@@ -262,11 +370,22 @@ def _parameters(items, side, notes):
 
 def build_reference(root: Path, base: dict, notes: dict) -> dict:
     root = root.resolve()
-    if base.get('schema') != 1 or not isinstance(base.get('abi_snapshot'), dict):
+    if (not isinstance(base,dict) or type(base.get('schema')) is not int or base['schema'] != 1 or
+            not isinstance(base.get('abi_snapshot'),dict)):
         raise ReferenceError('Invalid ABI snapshot')
     _check_sources(root, base['source_snapshot'])
-    contract_notes = notes.get('contracts')
-    if notes.get('schema') != 1 or not isinstance(contract_notes, dict):
+    dynamic_arguments = []
+    for name,info in base['abi_snapshot'].items():
+        bounds = _constructor_bounds(info['abi'])
+        if bounds['requires_exact_arguments']:
+            dynamic_arguments.append({'source':info['source'],'contract':name,
+                'minimum_argument_bytes':bounds['minimum_argument_bytes']})
+    if base['source_snapshot'].get('unqualified_dynamic_constructors') != sorted(
+            dynamic_arguments,key=lambda row:(row['source'],row['contract'])):
+        raise ReferenceError('Stored constructor qualification differs from ABI')
+    contract_notes = notes.get('contracts') if isinstance(notes,dict) else None
+    if (not isinstance(notes,dict) or type(notes.get('schema')) is not int or notes['schema'] != 1 or
+            not isinstance(contract_notes,dict)):
         raise ReferenceError('Invalid notes')
     if set(contract_notes) - set(base['abi_snapshot']):
         raise ReferenceError('Notes name an unknown contract')

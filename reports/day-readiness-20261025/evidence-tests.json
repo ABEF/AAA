@@ -1,0 +1,52 @@
+{
+  "scope": "Focused evidence importer/generator/CLI checks only; no compiler, EVM, network, signing or services.",
+  "observed_at_utc": "2026-10-25T21:40:37.771336+00:00",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "reports\\day-readiness-20261025\\run-evidence-tests.py"
+  ],
+  "source_sha256": {
+    "zzz_ops/function_reference.py": "90958f199ef0e0be99d1777f704eabaaca30dc482178b931114741b3e804aaff",
+    "tests_python/test_function_reference.py": "938299b02bd05196f5a379aa2c45cb553f4d128a5e947f1ab9d5002047a2b353",
+    "scripts/generate-function-reference.py": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a"
+  },
+  "sources_unchanged": true,
+  "elapsed_seconds": 1.375,
+  "tests_run": 28,
+  "selected_methods": [
+    "tests_python.test_function_reference.FunctionReferenceTests.test_actual_size_limits_reject_success_flags_for_oversized_objects",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_canonical_nested_tuple_arrays_and_overloads_are_exact",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_check_rejects_missing_input_meaning_even_with_complete_function_notes",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_cli_rejects_contradictory_evidence_without_overwriting_reference",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_compiler_content_settings_size_and_source_escape_are_checked",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_declared_artifact_hashes_and_freeze_exit_closure_claims_are_checked",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_dependency_lock_or_build_profile_drift_invalidates_reference",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_dependency_paths_and_old_snapshot_cannot_bypass_binding",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_deterministic_generation_and_check_detects_altered_document",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_duplicate_json_nonfinite_unknown_parameter_notes_and_overlapping_notes_reject",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_dynamic_constructor_minimum_is_enforced_without_qualifying_actual_values",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_exact_static_constructor_and_runtime_boundaries_remain_valid",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_existing_build_file_cannot_be_omitted_from_snapshot",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_fixed_array_constructor_bytes_cannot_be_counted_as_one_word",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_import_records_explicit_dependency_content_and_build_inputs",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_import_rejects_implicit_or_omitted_compiler_dependency",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_imported_dependency_drift_invalidates_existing_reference",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_inherited_entries_positions_and_tuple_fields_are_preserved",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_invalid_tuple_and_scalar_shapes_are_not_documented_as_valid",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_missing_dependency_or_build_input_fails_closed",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_null_compiler_settings_and_contradictory_constructor_metadata_reject",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_removed_callable_and_duplicate_signatures_do_not_silently_pass",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_size_gate_boolean_strings_cannot_qualify_compiler_import",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_source_drift_missing_or_new_source_fails_without_compiling",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_source_root_resolution_cannot_escape_the_repository",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_stored_schema_three_closure_settings_and_dynamic_qualification_cannot_be_omitted",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_unknown_or_missing_notes_are_explicit_and_not_invented",
+    "tests_python.test_function_reference.FunctionReferenceTests.test_unreported_content_hash_or_invalid_saved_artifact_hash_is_rejected"
+  ],
+  "failures": {},
+  "errors": {},
+  "skips": {},
+  "successful": true
+}

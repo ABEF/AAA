@@ -1,0 +1,37 @@
+{
+  "scope": "Read-only actual saved current normal evidence import at final bounded-read source; no compiler/EVM/network/services.",
+  "observed_at_utc": "2026-10-25T21:45:26.833948+00:00",
+  "source_sha256": {
+    "zzz_ops/function_reference.py": "f11052dacf9eb14654fd13478173a3e20bcf7213eed91d29d5b4e76a4db2e4d3",
+    "tests_python/test_function_reference.py": "634fc8a7cd572a591dca194ecaf19236e4c1bad106136e1cd2a3b49ffd9c4984",
+    "scripts/generate-function-reference.py": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a"
+  },
+  "artifact_sha256": {
+    "source-build-input.json": "b1b7fcfe27ae4cac6b9643b841b31d7c602a23c073793225754caf0f85785e8d",
+    "source-build.json": "a3c37b7a07163a66dde8bcab5fe6d853c1970a46bef5f5d61d565f4625801b50",
+    "source-size-gates.json": "44c72290148d450cea8b451f7a53a29015e90ac2ad241bfb1636f599eb8c29c0"
+  },
+  "snapshot_schema": 3,
+  "compiler_sources": 75,
+  "project_sources": 44,
+  "dependencies": 31,
+  "unqualified_dynamic_constructors": [
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "minimum_argument_bytes": 96
+    }
+  ],
+  "counts": {
+    "contracts": 31,
+    "functions": 608,
+    "constructors": 31,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 123
+  },
+  "accepted": true,
+  "production_approval": false
+}
