@@ -185,15 +185,20 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         _checkPosition(poolId, id);
         bytes[] memory parameters = new bytes[](2);
         parameters[0] = abi.encode(id, uint256(0), uint128(0), uint128(0), bytes(""));
-        bool nativePool = c.key.currency0 == address(0);
+        _settleTakePair(c.key, DECREASE, parameters, deadline);
+    }
+    /// @dev Only collect/close supply fixed typed actions. Keep recipient reads
+    /// after their original callbacks; native and ERC20 prefunds stay untouched.
+    function _settleTakePair(PoolKey memory key, uint8 action, bytes[] memory parameters, uint256 deadline) private {
+        bool nativePool = key.currency0 == address(0);
         uint256 beforeNative = address(this).balance;
         if (nativePool) { nativeSender = address(poolManager); nativeReceived = 0; }
-        parameters[1] = abi.encode(c.key.currency0, c.key.currency1, nativePool ? address(this) : access.module(Ids.VAULT));
-        uint256 beforeToken1 = nativePool ? IERC20(c.key.currency1).balanceOf(address(this)) : 0;
-        posm.modifyLiquidities(abi.encode(abi.encodePacked(DECREASE, TAKE_PAIR), parameters), deadline);
+        parameters[1] = abi.encode(key.currency0, key.currency1, nativePool ? address(this) : access.module(Ids.VAULT));
+        uint256 beforeToken1 = nativePool ? IERC20(key.currency1).balanceOf(address(this)) : 0;
+        posm.modifyLiquidities(abi.encode(abi.encodePacked(action, TAKE_PAIR), parameters), deadline);
         if (nativePool) {
             _finishNativeCredit(beforeNative, access.module(Ids.VAULT));
-            ExactToken.push(c.key.currency1, access.module(Ids.VAULT), IERC20(c.key.currency1).balanceOf(address(this)) - beforeToken1);
+            ExactToken.push(key.currency1, access.module(Ids.VAULT), IERC20(key.currency1).balanceOf(address(this)) - beforeToken1);
         }
     }
     function close(bytes32 poolId, uint256 id, uint256 deadline) external onlyModule(Ids.VAULT) nonReentrant {
@@ -206,16 +211,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         if (min0 > type(uint128).max || min1 > type(uint128).max) revert InvalidAmount();
         bytes[] memory parameters = new bytes[](2);
         parameters[0] = abi.encode(id, uint128(min0), uint128(min1), bytes(""));
-        bool nativePool = c.key.currency0 == address(0);
-        uint256 beforeNative = address(this).balance;
-        if (nativePool) { nativeSender = address(poolManager); nativeReceived = 0; }
-        parameters[1] = abi.encode(c.key.currency0, c.key.currency1, nativePool ? address(this) : access.module(Ids.VAULT));
-        uint256 beforeToken1 = nativePool ? IERC20(c.key.currency1).balanceOf(address(this)) : 0;
-        posm.modifyLiquidities(abi.encode(abi.encodePacked(BURN, TAKE_PAIR), parameters), deadline);
-        if (nativePool) {
-            _finishNativeCredit(beforeNative, access.module(Ids.VAULT));
-            ExactToken.push(c.key.currency1, access.module(Ids.VAULT), IERC20(c.key.currency1).balanceOf(address(this)) - beforeToken1);
-        }
+        _settleTakePair(c.key, BURN, parameters, deadline);
     }
     function ticks(uint256 id) external view returns (int24 lower, int24 upper) {
         (, uint256 info) = posm.getPoolAndPositionInfo(id);

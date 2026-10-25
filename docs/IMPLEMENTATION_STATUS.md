@@ -1,5 +1,23 @@
 # Feature and evidence reference
 
+## Auditability refactor - 2026-10-25
+
+The [current review](../reports/auditability-refactor-20261025/REVIEW.md) and
+[scoped verification](../reports/auditability-refactor-20261025/VERIFICATION.md)
+cover shared collect/close settlement, an internal v3 identity validator, separate
+LP/royalty converters inheriting one neutral abstract base, and named handoff
+phases plus explicit private NFT/bucket identifiers. Permissions, rounding,
+accounting, callback order, numeric states and external wire types remain.
+The neutral base changes Solidity struct provenance, not ledger ownership.
+
+The reference still covers 31 concrete contracts / 608 functions / 13 receive hooks.
+Normal 37-object gates and 131-input typechecking pass. Exact compiler comparison
+and targeted execution are recorded in the verification, rather than inferred
+from old totals. All 135 event descriptors are preserved. No full regression,
+actual service qualification or independent audit is claimed. Existing Anvil,
+wallet/website profiles, journals, public signing and services stay unchanged.
+Production NOT APPROVED; external release gates in the sole Todo remain open.
+
 ## Current smaller architecture - 2026-10-25
 
 Read [the pruning review](../reports/architecture-pruning-20261025/REVIEW.md),

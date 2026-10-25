@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 447.922,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\auditability-refactor-20261025\\solidity\\selected\\ast-focused-profile-u70yue78",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(NativeAssetFoundationTest|LiquidityEncodingTest|V3VenueValidationTest|AtomicActivationIntegrationTest|EntryReviewPolicyTest|LPRewardConversionTest|RoyaltyConversionTest|TypedV4RewardsTest|VaultAccountingTest|NativeVaultFlowsTest|CanonicalHandoffTest)$",
+    "--json"
+  ],
+  "selected_methods": 25,
+  "complete_selection_executed": false,
+  "missing": [],
+  "unexpected": [
+    [
+      "EntryReviewPolicyTest",
+      "testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer"
+    ],
+    [
+      "EntryReviewPolicyTest",
+      "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent"
+    ]
+  ],
+  "cases": [
+    {
+      "suite": "test/AtomicActivationIntegration.t.sol:AtomicActivationIntegrationTest",
+      "method": "testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 19100979
+        }
+      }
+    },
+    {
+      "suite": "test/AtomicActivationIntegration.t.sol:AtomicActivationIntegrationTest",
+      "method": "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 20681419
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testFullHandoffCarriesConvertedNativeLPRewardsToCurrentOwner()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 247760679
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 19101002
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testGrowthReviewRejectsWideningAndPreservesExistingSharesAndClaims()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 22948000
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 20681440
+        }
+      }
+    },
+    {
+      "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+      "method": "testCallbacksCannotPauseOrExposePartialBalances()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1950178
+        }
+      }
+    },
+    {
+      "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+      "method": "testEarnedOnlyConservationAndNoNewcomerRedistribution()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1365669
+        }
+      }
+    },
+    {
+      "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+      "method": "testExactUnwrapWithoutPriceAndFailureRecovery()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 893293
+        }
+      }
+    },
+    {
+      "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+      "method": "testOnePercentBoundaryAndAtomicRollback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1655157
+        }
+      }
+    },
+    {
+      "suite": "test/LiquidityEncoding.t.sol:LiquidityEncodingTest",
+      "method": "testCollectUsesZeroDecreaseAndVaultRecipient()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 704852
+        }
+      }
+    },
+    {
+      "suite": "test/NativeAssetFoundation.t.sol:NativeAssetFoundationTest",
+      "method": "testNativeCloseDisarmsCreditAndReadsTokenRecipientAfterNativeCallback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 779109
+        }
+      }
+    },
+    {
+      "suite": "test/NativeAssetFoundation.t.sol:NativeAssetFoundationTest",
+      "method": "testNativeCollectAndDisabledClosePayETHWithFailedWrapper()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 859025
+        }
+      }
+    },
+    {
+      "suite": "test/NativeAssetFoundation.t.sol:NativeAssetFoundationTest",
+      "method": "testNativeCollectDisarmsCreditAndReadsTokenRecipientAfterNativeCallback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 754596
+        }
+      }
+    },
+    {
+      "suite": "test/NativeAssetFoundation.t.sol:NativeAssetFoundationTest",
+      "method": "testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 783406
+        }
+      }
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativeFeesFollowOwnerThroughGrowthAndRepeatedRebalances()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 14705303
+        }
+      }
+    },
+    {
+      "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+      "method": "testBatchConvertsOnlyEarnedBalancesAndKeepsNativeEntitlement()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1219730
+        }
+      }
+    },
+    {
+      "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+      "method": "testExactUnwrapNoSwapOrOracle()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 522084
+        }
+      }
+    },
+    {
+      "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+      "method": "testLossOverOnePercentRollsBackEverythingAndRetryWorks()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1478178
+        }
+      }
+    },
+    {
+      "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+      "method": "testReadOnlyCallbacksCannotObserveIntermediateClaimableBalances()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1052448
+        }
+      }
+    },
+    {
+      "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+      "method": "testActualV4LPConversionPreservesIndividualCollectiveAndExistingETH()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1477785
+        }
+      }
+    },
+    {
+      "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+      "method": "testActualV4RoyaltyConversionPreservesNFTWeightsAndEveryPrefund()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1286293
+        }
+      }
+    },
+    {
+      "suite": "test/V3VenueValidation.t.sol:V3VenueValidationTest",
+      "method": "testEachMismatchPreservesRevertSelectorAndSkipsLaterPoisonedReads()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 152301
+        }
+      }
+    },
+    {
+      "suite": "test/V3VenueValidation.t.sol:V3VenueValidationTest",
+      "method": "testMatchingVenueAcceptsBothEndpointOrders()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 59167
+        }
+      }
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testActivationCannotCollectHistoricalSharedRewards()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6485745
+        }
+      }
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testTopUpKeepsBothNFTsAndCheckpointsFees()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 5265394
+        }
+      }
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testVenueFailureRollsBackActivationKeepsPaidDormantNFT()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 2482955
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "20cbb214e39b40ada0efd3dd44ace2b570a543c05cedf0dfacc53687f0a26ee2"
+}

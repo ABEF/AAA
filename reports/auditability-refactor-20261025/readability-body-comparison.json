@@ -1,0 +1,972 @@
+{
+  "scope": "Read-only token comparisons of already-archived production source inputs; no compiler, Solidity/Python tests, chain, RPC or services run.",
+  "observed_at_utc": "2026-10-25T20:25:14.723225+00:00",
+  "comparison_script_sha256": "215b3bbabfb14f6d70740ae0437ef89de538da29ff870a2ecf49e0609255fa17",
+  "baseline_input_sha256": "1c5d2b6b50b195a59bc4b337bd66e88cd7791b08707be7e88bfe40369a9cce1e",
+  "candidate_input_sha256": "b3223d402e65432ce7707166e6f7efd03080f39a52b7abc70178b74a8b2653fa",
+  "objects": [
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "baseline_function_count": 53,
+      "candidate_function_count": 53,
+      "expected_count": 53,
+      "same_function_names": true,
+      "exact_current_source_equals_compiled_input": true,
+      "baseline_content_sha256": "d394f833686176558b7781531ffe2598e057c4691d7bb7faefc65ef2e318f651",
+      "candidate_content_sha256": "a2d94a8152856240eb75d514a8d8f37d5f6412d3f3b1edca0ff31757c318940c",
+      "private_constant_values": {},
+      "function_bodies": [
+        {
+          "name": "constructor",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "362e4a55a4396bf2dbe1097fdd21768026f5b54e07479081edb8bc8654fd5ac1",
+          "candidate_normalized_token_sha256": "362e4a55a4396bf2dbe1097fdd21768026f5b54e07479081edb8bc8654fd5ac1"
+        },
+        {
+          "name": "receive",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "f8ff5cac3cbfdacaf82bf4161d219fb789bfd4456a5e0737f2e012afac768f04",
+          "candidate_normalized_token_sha256": "f8ff5cac3cbfdacaf82bf4161d219fb789bfd4456a5e0737f2e012afac768f04"
+        },
+        {
+          "name": "nftStatus",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "0d833f97dc302e707ca035a6593f18a587b4f6e9b55f963edb4159df7c7f255e",
+          "candidate_normalized_token_sha256": "0d833f97dc302e707ca035a6593f18a587b4f6e9b55f963edb4159df7c7f255e"
+        },
+        {
+          "name": "group",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "a4ca737c4d37b4b0b2be50179c0bd86e93bb446c63a469835dcc143524f69c45",
+          "candidate_normalized_token_sha256": "a4ca737c4d37b4b0b2be50179c0bd86e93bb446c63a469835dcc143524f69c45"
+        },
+        {
+          "name": "bucketCount",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "d3a755b8dabf25ec7fcbfd8388b04f309789f613cef4d40ce0e29eb329b211af",
+          "candidate_normalized_token_sha256": "d3a755b8dabf25ec7fcbfd8388b04f309789f613cef4d40ce0e29eb329b211af"
+        },
+        {
+          "name": "bucketAt",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "366a2631acc5c569d6fe771f631ba74f31f7fa0159385b7f143218bdc07071ce",
+          "candidate_normalized_token_sha256": "366a2631acc5c569d6fe771f631ba74f31f7fa0159385b7f143218bdc07071ce"
+        },
+        {
+          "name": "canonicalModule",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "f544a74fc5228e54ee78f61d8dfeac17acbbe919a5a3974af0642b37df493f7b",
+          "candidate_normalized_token_sha256": "f544a74fc5228e54ee78f61d8dfeac17acbbe919a5a3974af0642b37df493f7b"
+        },
+        {
+          "name": "_registerBucket",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "bucket"
+          },
+          "baseline_normalized_token_sha256": "ee1435f0c50bc7cd4fe1c1d051f0ab68ce1e973873d0cffb3882e8736d587c4c",
+          "candidate_normalized_token_sha256": "ee1435f0c50bc7cd4fe1c1d051f0ab68ce1e973873d0cffb3882e8736d587c4c"
+        },
+        {
+          "name": "reservePool",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "df4e37a38bbcadc28a4d7b6a7b9b86648c22972b6865f49e743f7e0195be65ba",
+          "candidate_normalized_token_sha256": "df4e37a38bbcadc28a4d7b6a7b9b86648c22972b6865f49e743f7e0195be65ba"
+        },
+        {
+          "name": "_reserve",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "bucket"
+          },
+          "baseline_normalized_token_sha256": "ccbc5825620421000ad32aec063c5ee2eb19bd1e7c3ff7a0b10c19755d687225",
+          "candidate_normalized_token_sha256": "ccbc5825620421000ad32aec063c5ee2eb19bd1e7c3ff7a0b10c19755d687225"
+        },
+        {
+          "name": "_tokens",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "925812dd694edb2eab27e22b4147eb897ab58c7317957a47e00a63b6838efbe5",
+          "candidate_normalized_token_sha256": "925812dd694edb2eab27e22b4147eb897ab58c7317957a47e00a63b6838efbe5"
+        },
+        {
+          "name": "_nft",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "c693971a72a890b1e736520720f30da85fd3c5e1b766e350c34b3da42f094717",
+          "candidate_normalized_token_sha256": "c693971a72a890b1e736520720f30da85fd3c5e1b766e350c34b3da42f094717"
+        },
+        {
+          "name": "_requireOwner",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "nftId": "id"
+          },
+          "baseline_normalized_token_sha256": "daa07bb3073cb5ae9089f55ff477eebc7500679324fd75e43114d3eec6cc459b",
+          "candidate_normalized_token_sha256": "daa07bb3073cb5ae9089f55ff477eebc7500679324fd75e43114d3eec6cc459b"
+        },
+        {
+          "name": "_active",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "fba1e42218ff6c379fbd57114dc7543b41f4d7e3d2eebfa9be4e2368988f59a5",
+          "candidate_normalized_token_sha256": "fba1e42218ff6c379fbd57114dc7543b41f4d7e3d2eebfa9be4e2368988f59a5"
+        },
+        {
+          "name": "_tokenBalance",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "efa52268c81754325858a4d256404f95f162a7a801d114f2861c64496eedb0e5",
+          "candidate_normalized_token_sha256": "efa52268c81754325858a4d256404f95f162a7a801d114f2861c64496eedb0e5"
+        },
+        {
+          "name": "_receiveAssets",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "8491198deb278a500b1e640cfee9e037492adbdc37f7b33301315c9cbe633d18",
+          "candidate_normalized_token_sha256": "8491198deb278a500b1e640cfee9e037492adbdc37f7b33301315c9cbe633d18"
+        },
+        {
+          "name": "_idle",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "90c7a0654ebaa7b283c1277d4c93d19487eb3fa731204aa9a4e1b7d6d12b0103",
+          "candidate_normalized_token_sha256": "90c7a0654ebaa7b283c1277d4c93d19487eb3fa731204aa9a4e1b7d6d12b0103"
+        },
+        {
+          "name": "_valueBucket",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "bucket"
+          },
+          "baseline_normalized_token_sha256": "9a898b4afade8c3fd4347be01c2e2fc1a7ba2c3b3ce29e1270b9a3375e453df8",
+          "candidate_normalized_token_sha256": "9a898b4afade8c3fd4347be01c2e2fc1a7ba2c3b3ce29e1270b9a3375e453df8"
+        },
+        {
+          "name": "_put",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "41f5ac3bb468789775bcbfa27ed72ee91f1a8f9e1298e0e2b4819b87a451151e",
+          "candidate_normalized_token_sha256": "41f5ac3bb468789775bcbfa27ed72ee91f1a8f9e1298e0e2b4819b87a451151e"
+        },
+        {
+          "name": "mintDormant",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "c002f602927170f187e9374f79150b7ec92df77d9d846da11515bd4df45f5512",
+          "candidate_normalized_token_sha256": "c002f602927170f187e9374f79150b7ec92df77d9d846da11515bd4df45f5512"
+        },
+        {
+          "name": "activate",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "d5762ac8eb8c023468d54bad0320150ac70fbeecfc91ba42b0ffaf15c4585066",
+          "candidate_normalized_token_sha256": "d5762ac8eb8c023468d54bad0320150ac70fbeecfc91ba42b0ffaf15c4585066"
+        },
+        {
+          "name": "increase",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "c4a4faca6c09844d48e65524d7cfa3709c1cb73d8a5f78908e961f242ffcbbf0",
+          "candidate_normalized_token_sha256": "c4a4faca6c09844d48e65524d7cfa3709c1cb73d8a5f78908e961f242ffcbbf0"
+        },
+        {
+          "name": "_nav",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "bucket"
+          },
+          "baseline_normalized_token_sha256": "2a9dbe9f7b605347c44722f26a830c0a128c9b4c1a4e21105c1ed8f95ffec692",
+          "candidate_normalized_token_sha256": "2a9dbe9f7b605347c44722f26a830c0a128c9b4c1a4e21105c1ed8f95ffec692"
+        },
+        {
+          "name": "_join",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "nftId": "id",
+            "bucketId": "bucket"
+          },
+          "baseline_normalized_token_sha256": "fade1614dca8a77b376c1cafc2d5035ff8b7b284a4d45d0effe3a502e284f35a",
+          "candidate_normalized_token_sha256": "fade1614dca8a77b376c1cafc2d5035ff8b7b284a4d45d0effe3a502e284f35a"
+        },
+        {
+          "name": "_allocate",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "8f5c52566e0a7a4c897d43cea7060182035164200ec16244eab3ea62c6a58b33",
+          "candidate_normalized_token_sha256": "8f5c52566e0a7a4c897d43cea7060182035164200ec16244eab3ea62c6a58b33"
+        },
+        {
+          "name": "_harvest",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "386953ab3432e66dcc8db355ebed3b1cd9b8e1f9bbd756cf967aa14d18581ee1",
+          "candidate_normalized_token_sha256": "386953ab3432e66dcc8db355ebed3b1cd9b8e1f9bbd756cf967aa14d18581ee1"
+        },
+        {
+          "name": "_harvestVenue",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "5e27efa90f775d66730f2ff58ac49cc78905693cfd7abe9dc63d3248ac694c33",
+          "candidate_normalized_token_sha256": "5e27efa90f775d66730f2ff58ac49cc78905693cfd7abe9dc63d3248ac694c33"
+        },
+        {
+          "name": "collectFees",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "94b7f8080c7301c3edd50c27d24b352bf8951bb6b4ac3b387d0bbef0a5033926",
+          "candidate_normalized_token_sha256": "94b7f8080c7301c3edd50c27d24b352bf8951bb6b4ac3b387d0bbef0a5033926"
+        },
+        {
+          "name": "_pullCompound",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "1ca39f606257ad0a51a43df96f95a80133cd814034622b7fb1458691a7da99ad",
+          "candidate_normalized_token_sha256": "1ca39f606257ad0a51a43df96f95a80133cd814034622b7fb1458691a7da99ad"
+        },
+        {
+          "name": "compound",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "aee381112425ac7a5643d260f34fd3466f50620c68b503cf767bfdeae5c07307",
+          "candidate_normalized_token_sha256": "aee381112425ac7a5643d260f34fd3466f50620c68b503cf767bfdeae5c07307"
+        },
+        {
+          "name": "_close",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "7e574ec6e355132d49e1eaa1ba61e6b29c81bd8b4ceb47e5a31e3fe25a8cbaef",
+          "candidate_normalized_token_sha256": "7e574ec6e355132d49e1eaa1ba61e6b29c81bd8b4ceb47e5a31e3fe25a8cbaef"
+        },
+        {
+          "name": "_swap",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "0e6df08139795560c9fea4fce8e1acb2e84fcbfa172ceb30a079d721c87d22c4",
+          "candidate_normalized_token_sha256": "0e6df08139795560c9fea4fce8e1acb2e84fcbfa172ceb30a079d721c87d22c4"
+        },
+        {
+          "name": "_balanceUsing",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "ff8989734bd4a8006c3d6995f361c49bce724f391a0d35fb2da3acfb345e9486",
+          "candidate_normalized_token_sha256": "ff8989734bd4a8006c3d6995f361c49bce724f391a0d35fb2da3acfb345e9486"
+        },
+        {
+          "name": "_idleValue",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "7681fef15643bd73c8c80be30a1951a866c88d693a0ef269efdb6b60b448fa0b",
+          "candidate_normalized_token_sha256": "7681fef15643bd73c8c80be30a1951a866c88d693a0ef269efdb6b60b448fa0b"
+        },
+        {
+          "name": "_unwind",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "dd50512bb395f6adc3906bd1d0adfb9aa7550f0be439d6980930a5b2c10cf8f4",
+          "candidate_normalized_token_sha256": "dd50512bb395f6adc3906bd1d0adfb9aa7550f0be439d6980930a5b2c10cf8f4"
+        },
+        {
+          "name": "_migrationCheckpoint",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "49c5d52e2a50d18049ef1cffedef9548ca5f2f9c0cb9aa2be3eac77be0dcdb28",
+          "candidate_normalized_token_sha256": "49c5d52e2a50d18049ef1cffedef9548ca5f2f9c0cb9aa2be3eac77be0dcdb28"
+        },
+        {
+          "name": "_redeploy",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "154926a54af2c851f98ba496226edebe3ff64fd3f9d8adcd9235a2cb7fa8252a",
+          "candidate_normalized_token_sha256": "154926a54af2c851f98ba496226edebe3ff64fd3f9d8adcd9235a2cb7fa8252a"
+        },
+        {
+          "name": "rebalance",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "fc29c0e717901a754573a7bfa44c1a2e88dc6385ed7f7cac2dcf64a7b62737a8",
+          "candidate_normalized_token_sha256": "fc29c0e717901a754573a7bfa44c1a2e88dc6385ed7f7cac2dcf64a7b62737a8"
+        },
+        {
+          "name": "consolidateHandoff",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "0ad7df71e56569aee524f1592de1c17cd328b05c891308f99e2f54d7cdf8c78f",
+          "candidate_normalized_token_sha256": "0ad7df71e56569aee524f1592de1c17cd328b05c891308f99e2f54d7cdf8c78f"
+        },
+        {
+          "name": "releaseForMigration",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "05b931ff12b049e731803066fd40188345811b53772fd1e48dcfddc4d2330470",
+          "candidate_normalized_token_sha256": "05b931ff12b049e731803066fd40188345811b53772fd1e48dcfddc4d2330470"
+        },
+        {
+          "name": "acceptHandoff",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "5bbc778df7643c3da2a9f24395dd96175248f88bf335aff28deb7ab72e6525d2",
+          "candidate_normalized_token_sha256": "5bbc778df7643c3da2a9f24395dd96175248f88bf335aff28deb7ab72e6525d2"
+        },
+        {
+          "name": "park",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "1b3f3694d097d175db85da2fdaf43976dbda15109b7a5f9156d61c49d6a1854f",
+          "candidate_normalized_token_sha256": "1b3f3694d097d175db85da2fdaf43976dbda15109b7a5f9156d61c49d6a1854f"
+        },
+        {
+          "name": "resume",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "6b82560fe3312d81ce592e85aff7378d772a664b8c6a99b6d34ee92d2591f8df",
+          "candidate_normalized_token_sha256": "6b82560fe3312d81ce592e85aff7378d772a664b8c6a99b6d34ee92d2591f8df"
+        },
+        {
+          "name": "movePool",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "05eafab76066b44528155cea60b0e9e5564586ba4dfcbf276c1b524082202333",
+          "candidate_normalized_token_sha256": "05eafab76066b44528155cea60b0e9e5564586ba4dfcbf276c1b524082202333"
+        },
+        {
+          "name": "_movePool",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "bucketId": "id"
+          },
+          "baseline_normalized_token_sha256": "931e37313c88565893924aeef5ac446eea1817fe638e61b0fb60e847c221f2b4",
+          "candidate_normalized_token_sha256": "931e37313c88565893924aeef5ac446eea1817fe638e61b0fb60e847c221f2b4"
+        },
+        {
+          "name": "onERC721Received",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "d8e6c4fa3b6eee19fe8a473d702923f8328637a53d533f53489518e40820e007",
+          "candidate_normalized_token_sha256": "d8e6c4fa3b6eee19fe8a473d702923f8328637a53d533f53489518e40820e007"
+        },
+        {
+          "name": "canonicalWrite",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "54b3c2c647e408fe0b6aa9c1c0a422b32c89829969ee7586542bee9116a293a2",
+          "candidate_normalized_token_sha256": "54b3c2c647e408fe0b6aa9c1c0a422b32c89829969ee7586542bee9116a293a2"
+        },
+        {
+          "name": "canonicalSend",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "64a9923d0c44942e162ddac4691d6b5f32c497c5ddb89488a7c5258d754ca6f9",
+          "candidate_normalized_token_sha256": "64a9923d0c44942e162ddac4691d6b5f32c497c5ddb89488a7c5258d754ca6f9"
+        },
+        {
+          "name": "canonicalBarrier",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "5e724f41861b4464dfa22f96f411aa8058861cc04505dd83846fa1e37a5a40e7",
+          "candidate_normalized_token_sha256": "5e724f41861b4464dfa22f96f411aa8058861cc04505dd83846fa1e37a5a40e7"
+        },
+        {
+          "name": "_canonicalSender",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "ad4cd10814549e9df8a0a03481bcf2c9f7364733fd5e8df2aad7c3f20d4119c5",
+          "candidate_normalized_token_sha256": "ad4cd10814549e9df8a0a03481bcf2c9f7364733fd5e8df2aad7c3f20d4119c5"
+        },
+        {
+          "name": "_modulePools",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "d8f9ddbf2dcb7d93d699a723d78f514322ba4524ba6d62b69602eb607b0f9085",
+          "candidate_normalized_token_sha256": "d8f9ddbf2dcb7d93d699a723d78f514322ba4524ba6d62b69602eb607b0f9085"
+        },
+        {
+          "name": "_moduleLiquidity",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "84bcde430af153f62c61f4a5ac16667ae191c5e1662dd97b9b212ea7ed5e0487",
+          "candidate_normalized_token_sha256": "84bcde430af153f62c61f4a5ac16667ae191c5e1662dd97b9b212ea7ed5e0487"
+        },
+        {
+          "name": "_moduleFees",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "abd65e86f47daee05d6822fffea04ae831e236b687979495b86d448dc005d62d",
+          "candidate_normalized_token_sha256": "abd65e86f47daee05d6822fffea04ae831e236b687979495b86d448dc005d62d"
+        }
+      ],
+      "all_compared_bodies_equal": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "baseline_function_count": 26,
+      "candidate_function_count": 26,
+      "expected_count": 26,
+      "same_function_names": true,
+      "exact_current_source_equals_compiled_input": true,
+      "baseline_content_sha256": "ebe354445635759a1f47b09f878a969bdab9ad427d3bad57f48312d13e9937e5",
+      "candidate_content_sha256": "fc236044d55fd7d5b834128f10a0fd732ba57bf1f0953b2995b3a34a496f38e0",
+      "private_constant_values": {},
+      "function_bodies": [
+        {
+          "name": "constructor",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "b1e19731371d2166d70a8d9e1da890f184b9f3559c49c6b4c085f8de248f22e7",
+          "candidate_normalized_token_sha256": "b1e19731371d2166d70a8d9e1da890f184b9f3559c49c6b4c085f8de248f22e7"
+        },
+        {
+          "name": "receive",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "292e8cad7708b3f0bba6a5f6a0d7b24ff2b19aacdc721aad003a70f7b469004d",
+          "candidate_normalized_token_sha256": "292e8cad7708b3f0bba6a5f6a0d7b24ff2b19aacdc721aad003a70f7b469004d"
+        },
+        {
+          "name": "_balance",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "445e99272e57726c2280e31f688e75a4afa4745386e06b807a723690415e08c8",
+          "candidate_normalized_token_sha256": "445e99272e57726c2280e31f688e75a4afa4745386e06b807a723690415e08c8"
+        },
+        {
+          "name": "_vault",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "ffe5283064a88fc0806fdf343338cc13a12e91f610e5fa64eef8f49cf4166931",
+          "candidate_normalized_token_sha256": "ffe5283064a88fc0806fdf343338cc13a12e91f610e5fa64eef8f49cf4166931"
+        },
+        {
+          "name": "_pools",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "f0ce68414167f7521281479d2c4a248913a4590bda7307050515c4cd51a6e351",
+          "candidate_normalized_token_sha256": "f0ce68414167f7521281479d2c4a248913a4590bda7307050515c4cd51a6e351"
+        },
+        {
+          "name": "request",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "88fd19492c236afb35996c2aa407be7d1addb254f42cf5cb6a483daf090cb03c",
+          "candidate_normalized_token_sha256": "88fd19492c236afb35996c2aa407be7d1addb254f42cf5cb6a483daf090cb03c"
+        },
+        {
+          "name": "state",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q"
+          },
+          "baseline_normalized_token_sha256": "05311e923167477fe2975e6cf47fb8b45e20d74725e2a590b07c0bb49289709a",
+          "candidate_normalized_token_sha256": "05311e923167477fe2975e6cf47fb8b45e20d74725e2a590b07c0bb49289709a"
+        },
+        {
+          "name": "minimumRetainedUSD",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "d53525e5ef3b17d0175b42023c615b3d73abf031ac081139282dc53221c1f200",
+          "candidate_normalized_token_sha256": "d53525e5ef3b17d0175b42023c615b3d73abf031ac081139282dc53221c1f200"
+        },
+        {
+          "name": "configureZZZ",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "ac91d5358008dc9bb5c0697800d838977584e3b4581acda9a6fd5a0c3bc1b8db",
+          "candidate_normalized_token_sha256": "ac91d5358008dc9bb5c0697800d838977584e3b4581acda9a6fd5a0c3bc1b8db"
+        },
+        {
+          "name": "sourceSnapshot",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "vault": "v",
+            "position": "p"
+          },
+          "baseline_normalized_token_sha256": "0fe4b25627aff306cb27b235ea1a60b486e315fe760c220fa752d85084736a02",
+          "candidate_normalized_token_sha256": "0fe4b25627aff306cb27b235ea1a60b486e315fe760c220fa752d85084736a02"
+        },
+        {
+          "name": "approve",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q",
+            "vault": "v",
+            "position": "p"
+          },
+          "baseline_normalized_token_sha256": "df762848c76324f1d3eefe4e851a47d5be6914331f18636914b8ab17705cfb21",
+          "candidate_normalized_token_sha256": "df762848c76324f1d3eefe4e851a47d5be6914331f18636914b8ab17705cfb21"
+        },
+        {
+          "name": "bindLocalDestination",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q",
+            "requestData": "r"
+          },
+          "baseline_normalized_token_sha256": "10a5825b38dfaa37339bf2496c997fa2702346cb6e2ea90f07101a061a1f0b3f",
+          "candidate_normalized_token_sha256": "10a5825b38dfaa37339bf2496c997fa2702346cb6e2ea90f07101a061a1f0b3f"
+        },
+        {
+          "name": "_bindDestination",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q",
+            "requestData": "r"
+          },
+          "baseline_normalized_token_sha256": "702f2b1acb46f02d20718348aa301f081801b9d912278fad2c7dcc39922479ce",
+          "candidate_normalized_token_sha256": "702f2b1acb46f02d20718348aa301f081801b9d912278fad2c7dcc39922479ce"
+        },
+        {
+          "name": "exit",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q",
+            "requestData": "r",
+            "vault": "v",
+            "balance0Before": "b0",
+            "balance1Before": "b1"
+          },
+          "baseline_normalized_token_sha256": "f68ffb4eae3c30dd868888158670b927f104d1712d44a3501eb1011a1ddcadb6",
+          "candidate_normalized_token_sha256": "f68ffb4eae3c30dd868888158670b927f104d1712d44a3501eb1011a1ddcadb6"
+        },
+        {
+          "name": "cancel",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q"
+          },
+          "baseline_normalized_token_sha256": "caa4f3aa6f9bb82c51ab39d208bca6a467d4cf92f2b1b774f24c4c7288cc4fc0",
+          "candidate_normalized_token_sha256": "caa4f3aa6f9bb82c51ab39d208bca6a467d4cf92f2b1b774f24c4c7288cc4fc0"
+        },
+        {
+          "name": "completeLocal",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q",
+            "requestData": "r",
+            "position": "p"
+          },
+          "baseline_normalized_token_sha256": "98f1f3105de94d825e16ef045026c0b96e396f15356e3fe21463f9c96113b53b",
+          "candidate_normalized_token_sha256": "98f1f3105de94d825e16ef045026c0b96e396f15356e3fe21463f9c96113b53b"
+        },
+        {
+          "name": "recover",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q"
+          },
+          "baseline_normalized_token_sha256": "c264bf36c75314a734be3523d51cdde5a0418e8bf377185724122577b404a47e",
+          "candidate_normalized_token_sha256": "c264bf36c75314a734be3523d51cdde5a0418e8bf377185724122577b404a47e"
+        },
+        {
+          "name": "_receive",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q",
+            "vault": "v",
+            "balance0Before": "b0",
+            "balance1Before": "b1",
+            "token0": "t0",
+            "token1": "t1",
+            "amount0": "a0",
+            "amount1": "a1",
+            "minimumLiquidity": "minimum"
+          },
+          "baseline_normalized_token_sha256": "25106366cf33ce86dcd8d5772f137014e76e649d5117dbd90d0cec47277772f4",
+          "candidate_normalized_token_sha256": "25106366cf33ce86dcd8d5772f137014e76e649d5117dbd90d0cec47277772f4"
+        },
+        {
+          "name": "_close",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q",
+            "planId": "id"
+          },
+          "baseline_normalized_token_sha256": "592b33af00ff208f61f0388b5897467152f7fc52b79d3bf127fa900cb78e745a",
+          "candidate_normalized_token_sha256": "592b33af00ff208f61f0388b5897467152f7fc52b79d3bf127fa900cb78e745a"
+        },
+        {
+          "name": "_sentZZZ",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "plan": "q"
+          },
+          "baseline_normalized_token_sha256": "e8a9d1e827ef36c9133df9dd1a14a599207f5afc2c69f6557f630314ce49c873",
+          "candidate_normalized_token_sha256": "e8a9d1e827ef36c9133df9dd1a14a599207f5afc2c69f6557f630314ce49c873"
+        },
+        {
+          "name": "_currentFloor",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "dab1f7ddf1354f03b1aff545d0830f861191d309ff04e4bb326ba8d5b2d1afb3",
+          "candidate_normalized_token_sha256": "dab1f7ddf1354f03b1aff545d0830f861191d309ff04e4bb326ba8d5b2d1afb3"
+        },
+        {
+          "name": "_amounts",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "position": "p"
+          },
+          "baseline_normalized_token_sha256": "06a9c24c3fc18223b8b954b48c84756985e5237f829b40431a0ca129956f423c",
+          "candidate_normalized_token_sha256": "06a9c24c3fc18223b8b954b48c84756985e5237f829b40431a0ca129956f423c"
+        },
+        {
+          "name": "moveFunds",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "0b26f08c9992665e4789588375131b4edeac93978b1c55d5a321600a9fa585f2",
+          "candidate_normalized_token_sha256": "0b26f08c9992665e4789588375131b4edeac93978b1c55d5a321600a9fa585f2"
+        },
+        {
+          "name": "resume",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "70d6d097b03e5d6f994e8a3d8ad59988ca6e5a1717045c989625b69ea597ef14",
+          "candidate_normalized_token_sha256": "70d6d097b03e5d6f994e8a3d8ad59988ca6e5a1717045c989625b69ea597ef14"
+        },
+        {
+          "name": "park",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "vault": "v",
+            "position": "p"
+          },
+          "baseline_normalized_token_sha256": "fc8344b01893b92aefff26ecf9965b2ee7181cd16b03a7fe3a9e335f3685325c",
+          "candidate_normalized_token_sha256": "fc8344b01893b92aefff26ecf9965b2ee7181cd16b03a7fe3a9e335f3685325c"
+        },
+        {
+          "name": "invalidateParking",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "acf5e778d0fec22d5c341415b9353c6099e4703c2fe1ab516029f2f227773f88",
+          "candidate_normalized_token_sha256": "acf5e778d0fec22d5c341415b9353c6099e4703c2fe1ab516029f2f227773f88"
+        }
+      ],
+      "all_compared_bodies_equal": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "baseline_function_count": 25,
+      "candidate_function_count": 25,
+      "expected_count": 25,
+      "same_function_names": true,
+      "exact_current_source_equals_compiled_input": true,
+      "baseline_content_sha256": "05b21a64d6a92419ca87587d66bd03d0706e5f6299217e4f219c9c3f5b495d88",
+      "candidate_content_sha256": "c434c5c68637e5d9de64ee9651d8d767fd8446ef48865f94ef1b5e4271770d0c",
+      "private_constant_values": {
+        "PHASE_IDLE": "0",
+        "PHASE_EXPORTING": "1",
+        "PHASE_IMPORTED_AWAITING_BACKING": "2",
+        "PHASE_RETIRED": "3",
+        "PHASE_IMPORTING": "4",
+        "PHASE_ACTIVE_REPLACEMENT": "5",
+        "PHASE_ABORTING": "6",
+        "PHASE_CANCELLED_IMPORT": "7",
+        "PHASE_SETTLING": "8",
+        "STATE_OPERATING": "0",
+        "STATE_FROZEN": "1",
+        "STATE_IMPORTING": "2",
+        "STATE_RETIRED": "3",
+        "STATE_CANCELLED": "4",
+        "DOMAIN_NFT": "0",
+        "DOMAIN_VAULT": "1",
+        "DOMAIN_MEMBERSHIP": "2",
+        "DOMAIN_LP_REWARDS": "3",
+        "DOMAIN_ROYALTIES": "4",
+        "DOMAIN_FEES": "5"
+      },
+      "function_bodies": [
+        {
+          "name": "constructor",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "4c504cfdac9d8703e4de019cc82e27a874b5acdf5c86f1e8b6b6b681243c1647",
+          "candidate_normalized_token_sha256": "4c504cfdac9d8703e4de019cc82e27a874b5acdf5c86f1e8b6b6b681243c1647"
+        },
+        {
+          "name": "governance",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "43ff1465f1d7f2bc6549982ab074b043d4a6d9f1f66f5d9ef6bde8008551e63d",
+          "candidate_normalized_token_sha256": "43ff1465f1d7f2bc6549982ab074b043d4a6d9f1f66f5d9ef6bde8008551e63d"
+        },
+        {
+          "name": "moduleAt",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "DOMAIN_NFT": "0",
+            "DOMAIN_VAULT": "1",
+            "DOMAIN_MEMBERSHIP": "2",
+            "DOMAIN_LP_REWARDS": "3",
+            "DOMAIN_ROYALTIES": "4",
+            "DOMAIN_FEES": "5"
+          },
+          "baseline_normalized_token_sha256": "09d43875c67ce8a9b821eb6dbe629c15ca21f1b1a245af09d3daad10a447364a",
+          "candidate_normalized_token_sha256": "09d43875c67ce8a9b821eb6dbe629c15ca21f1b1a245af09d3daad10a447364a"
+        },
+        {
+          "name": "_module",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "d1327163ee54b1890f3c6dc1c38725d76be2ccacb0bb1334c95b71a1bf93c3b3",
+          "candidate_normalized_token_sha256": "d1327163ee54b1890f3c6dc1c38725d76be2ccacb0bb1334c95b71a1bf93c3b3"
+        },
+        {
+          "name": "_peer",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "df0882da9ebb8f9139e98e6d784ea177111da63c28b608bf114aaa75ec483159",
+          "candidate_normalized_token_sha256": "df0882da9ebb8f9139e98e6d784ea177111da63c28b608bf114aaa75ec483159"
+        },
+        {
+          "name": "deploymentCommitment",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "c5a8f6484a86a610d957d401ffbcef170f3f14451b718739f20903f2d2859646",
+          "candidate_normalized_token_sha256": "c5a8f6484a86a610d957d401ffbcef170f3f14451b718739f20903f2d2859646"
+        },
+        {
+          "name": "prepareImport",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_IDLE": "0",
+            "PHASE_IMPORTING": "4",
+            "STATE_IMPORTING": "2"
+          },
+          "baseline_normalized_token_sha256": "f6da4c35a5ac7fb8b63274f0472e9a0b9519febb55d74a5154fe97ef58729dac",
+          "candidate_normalized_token_sha256": "f6da4c35a5ac7fb8b63274f0472e9a0b9519febb55d74a5154fe97ef58729dac"
+        },
+        {
+          "name": "freeze",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_IDLE": "0",
+            "PHASE_IMPORTING": "4",
+            "PHASE_ACTIVE_REPLACEMENT": "5",
+            "PHASE_SETTLING": "8",
+            "STATE_OPERATING": "0",
+            "STATE_FROZEN": "1"
+          },
+          "baseline_normalized_token_sha256": "c6639f778cae8e3567f5ace6953c04b9473061f221f69c0054775f6f2f2f13f4",
+          "candidate_normalized_token_sha256": "c6639f778cae8e3567f5ace6953c04b9473061f221f69c0054775f6f2f2f13f4"
+        },
+        {
+          "name": "settle",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_EXPORTING": "1",
+            "PHASE_SETTLING": "8",
+            "STATE_FROZEN": "1"
+          },
+          "baseline_normalized_token_sha256": "01eb15a6966a9d175014737d78a72c4fee0adb7881c42619b2ca25d0a2a00483",
+          "candidate_normalized_token_sha256": "01eb15a6966a9d175014737d78a72c4fee0adb7881c42619b2ca25d0a2a00483"
+        },
+        {
+          "name": "bindFrozen",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_IMPORTING": "4"
+          },
+          "baseline_normalized_token_sha256": "16ba933d461d27db604d2c74b856ce00bda25c71547b1b3130c08f6cf9c9dbe2",
+          "candidate_normalized_token_sha256": "16ba933d461d27db604d2c74b856ce00bda25c71547b1b3130c08f6cf9c9dbe2"
+        },
+        {
+          "name": "_next",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "15a1156e004048ce13698089005f46bdd6bcf3e8933bd8ebe517397811e41fb8",
+          "candidate_normalized_token_sha256": "15a1156e004048ce13698089005f46bdd6bcf3e8933bd8ebe517397811e41fb8"
+        },
+        {
+          "name": "exportRows",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_EXPORTING": "1"
+          },
+          "baseline_normalized_token_sha256": "679d374030d6f4d53d606916f8ec2507c9bdf4830f215df923620f11418950a1",
+          "candidate_normalized_token_sha256": "679d374030d6f4d53d606916f8ec2507c9bdf4830f215df923620f11418950a1"
+        },
+        {
+          "name": "importRows",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_EXPORTING": "1",
+            "PHASE_IMPORTING": "4"
+          },
+          "baseline_normalized_token_sha256": "fcf0c5afc81eceff1d64aa607497765106fd52f3d5a531b7de109d0a18b2b546",
+          "candidate_normalized_token_sha256": "fcf0c5afc81eceff1d64aa607497765106fd52f3d5a531b7de109d0a18b2b546"
+        },
+        {
+          "name": "completeImport",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_EXPORTING": "1",
+            "PHASE_IMPORTED_AWAITING_BACKING": "2",
+            "PHASE_IMPORTING": "4"
+          },
+          "baseline_normalized_token_sha256": "0da5e4dc7d17ca92840a54d57f888904851c2287729b84ea9fe13cc8bf3f2688",
+          "candidate_normalized_token_sha256": "0da5e4dc7d17ca92840a54d57f888904851c2287729b84ea9fe13cc8bf3f2688"
+        },
+        {
+          "name": "_balance",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "3f01f042254b604064b84495043ae831c3feda0dd9f3fa2d230218ac2d0bbac0",
+          "candidate_normalized_token_sha256": "3f01f042254b604064b84495043ae831c3feda0dd9f3fa2d230218ac2d0bbac0"
+        },
+        {
+          "name": "fund",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_EXPORTING": "1",
+            "PHASE_IMPORTED_AWAITING_BACKING": "2"
+          },
+          "baseline_normalized_token_sha256": "030477334e9b65de7469bbd68bd05b8a63df5837d8b1eb39cbb2a8cd64c9dfe5",
+          "candidate_normalized_token_sha256": "030477334e9b65de7469bbd68bd05b8a63df5837d8b1eb39cbb2a8cd64c9dfe5"
+        },
+        {
+          "name": "acceptFunding",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_IMPORTED_AWAITING_BACKING": "2"
+          },
+          "baseline_normalized_token_sha256": "e6a32f9191767cf1448202b27815982e5815a00e5228374cd99b0c2783bacfd1",
+          "candidate_normalized_token_sha256": "e6a32f9191767cf1448202b27815982e5815a00e5228374cd99b0c2783bacfd1"
+        },
+        {
+          "name": "_allFunded",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {},
+          "baseline_normalized_token_sha256": "e8d4a675c65101d86c18e8060879553f8d5f9d9a13484db508ad7524fd70e33f",
+          "candidate_normalized_token_sha256": "e8d4a675c65101d86c18e8060879553f8d5f9d9a13484db508ad7524fd70e33f"
+        },
+        {
+          "name": "commit",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_EXPORTING": "1",
+            "PHASE_IMPORTED_AWAITING_BACKING": "2",
+            "PHASE_RETIRED": "3",
+            "STATE_RETIRED": "3"
+          },
+          "baseline_normalized_token_sha256": "c8d0b813c814de66b0624435daa4518634395f984ef2344da4105fde3c6f7959",
+          "candidate_normalized_token_sha256": "c8d0b813c814de66b0624435daa4518634395f984ef2344da4105fde3c6f7959"
+        },
+        {
+          "name": "activate",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_IMPORTED_AWAITING_BACKING": "2",
+            "PHASE_RETIRED": "3",
+            "PHASE_ACTIVE_REPLACEMENT": "5",
+            "STATE_OPERATING": "0"
+          },
+          "baseline_normalized_token_sha256": "e20dfe2d6a123d140d283b15bb893fd8e622f2fabf0324995fdecf41d7d3d674",
+          "candidate_normalized_token_sha256": "e20dfe2d6a123d140d283b15bb893fd8e622f2fabf0324995fdecf41d7d3d674"
+        },
+        {
+          "name": "abort",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_EXPORTING": "1",
+            "PHASE_ABORTING": "6",
+            "PHASE_SETTLING": "8"
+          },
+          "baseline_normalized_token_sha256": "d885cc75800d916e4fd9193fa89cd898f375de777b79ef24ecc605e8116b6b64",
+          "candidate_normalized_token_sha256": "d885cc75800d916e4fd9193fa89cd898f375de777b79ef24ecc605e8116b6b64"
+        },
+        {
+          "name": "cancelImport",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_IMPORTED_AWAITING_BACKING": "2",
+            "PHASE_IMPORTING": "4",
+            "PHASE_ABORTING": "6",
+            "PHASE_CANCELLED_IMPORT": "7",
+            "STATE_CANCELLED": "4"
+          },
+          "baseline_normalized_token_sha256": "d8b070133302fccf61d63620c91d790339f6af7ca0bf94e004445c8cca1119b2",
+          "candidate_normalized_token_sha256": "d8b070133302fccf61d63620c91d790339f6af7ca0bf94e004445c8cca1119b2"
+        },
+        {
+          "name": "returnFunds",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_ABORTING": "6",
+            "PHASE_CANCELLED_IMPORT": "7"
+          },
+          "baseline_normalized_token_sha256": "45e5a622d4b7cf9f698b4257eadf44086f4e57ad94c64f9f4ea2ba919de9e153",
+          "candidate_normalized_token_sha256": "45e5a622d4b7cf9f698b4257eadf44086f4e57ad94c64f9f4ea2ba919de9e153"
+        },
+        {
+          "name": "returnFunding",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_ABORTING": "6",
+            "PHASE_CANCELLED_IMPORT": "7"
+          },
+          "baseline_normalized_token_sha256": "6ee82a1291100f9771f72792d9970a22bd14f3a503fb2967651355e9bef3a2a4",
+          "candidate_normalized_token_sha256": "6ee82a1291100f9771f72792d9970a22bd14f3a503fb2967651355e9bef3a2a4"
+        },
+        {
+          "name": "finishAbort",
+          "equal_after_declared_normalization": true,
+          "aliases_used": {
+            "PHASE_IDLE": "0",
+            "PHASE_ACTIVE_REPLACEMENT": "5",
+            "PHASE_ABORTING": "6",
+            "PHASE_CANCELLED_IMPORT": "7",
+            "STATE_OPERATING": "0"
+          },
+          "baseline_normalized_token_sha256": "b4363a64a212e69aacf42f9a45257b7df6cd82e3d13fe18bca5e5cc720b75f77",
+          "candidate_normalized_token_sha256": "b4363a64a212e69aacf42f9a45257b7df6cd82e3d13fe18bca5e5cc720b75f77"
+        }
+      ],
+      "all_compared_bodies_equal": true
+    }
+  ],
+  "all_readability_comparisons_match": true,
+  "limits": [
+    "Explicit identifier aliases and private constant literals are recorded per body; public ABI names are not changed by this normalization.",
+    "Comments/whitespace and brace-only formatting wrappers are excluded. Token equality is additional static evidence, not a formal control-flow/equivalence proof.",
+    "The earlier intermediate duplicate _join parameter was repaired before compilation. These frozen inputs keep NFT and bucket argument domains distinct.",
+    "Compiler wire ABI, recursive storage, executable and normal size comparisons plus changed-path execution evidence are separate."
+  ]
+}

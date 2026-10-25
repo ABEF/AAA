@@ -1,0 +1,455 @@
+{
+  "src/ZZZVault.sol": {
+    "before_sha256": "d394f833686176558b7781531ffe2598e057c4691d7bb7faefc65ef2e318f651",
+    "renamed_declarations": [
+      {
+        "function": "_registerBucket",
+        "old": "bucket",
+        "new": "bucketId",
+        "declaration_id": 37238,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_reserve",
+        "old": "bucket",
+        "new": "bucketId",
+        "declaration_id": 37287,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_tokens",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 37322,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_requireOwner",
+        "old": "id",
+        "new": "nftId",
+        "declaration_id": 37355,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_active",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 37394,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_idle",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 37482,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_valueBucket",
+        "old": "bucket",
+        "new": "bucketId",
+        "declaration_id": 37565,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_put",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 37584,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_nav",
+        "old": "bucket",
+        "new": "bucketId",
+        "declaration_id": 38082,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_join",
+        "old": "id",
+        "new": "nftId",
+        "declaration_id": 38097,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_join",
+        "old": "bucket",
+        "new": "bucketId",
+        "declaration_id": 38099,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_allocate",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 38449,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_harvest",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 38504,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_harvestVenue",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 38518,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_pullCompound",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 38646,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_close",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 38775,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_balanceUsing",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 38941,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_idleValue",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 39026,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_unwind",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 39039,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_migrationCheckpoint",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 39072,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_redeploy",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 39087,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_movePool",
+        "old": "id",
+        "new": "bucketId",
+        "declaration_id": 39713,
+        "public_parameter_renamed": false
+      }
+    ],
+    "identifier_replacements": 118,
+    "after_preformat_sha256": "3288850163725d347842a1dfcee18f86c40264b33cc680bafeef7eeae8b2cc77",
+    "scope": "Compiler-resolved PRIVATE PARAMETERS only; _join first argument and _requireOwner are NFT IDs, remaining explicit allowlist is bucket IDs. All references follow declaration IDs; public/state/member names untouched."
+  },
+  "src/ZZZMigration.sol": {
+    "before_sha256": "ebe354445635759a1f47b09f878a969bdab9ad427d3bad57f48312d13e9937e5",
+    "renamed_declarations": [
+      {
+        "function": "state",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 15753,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "sourceSnapshot",
+        "old": "v",
+        "new": "vault",
+        "declaration_id": 15922,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "sourceSnapshot",
+        "old": "p",
+        "new": "position",
+        "declaration_id": 15928,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "approve",
+        "old": "v",
+        "new": "vault",
+        "declaration_id": 15993,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "approve",
+        "old": "p",
+        "new": "position",
+        "declaration_id": 15999,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "approve",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 16084,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "bindLocalDestination",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 16284,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "bindLocalDestination",
+        "old": "r",
+        "new": "requestData",
+        "declaration_id": 16291,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_bindDestination",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 16430,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_bindDestination",
+        "old": "r",
+        "new": "requestData",
+        "declaration_id": 16433,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "exit",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 16470,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "exit",
+        "old": "r",
+        "new": "requestData",
+        "declaration_id": 16477,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "exit",
+        "old": "v",
+        "new": "vault",
+        "declaration_id": 16527,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "exit",
+        "old": "b0",
+        "new": "balance0Before",
+        "declaration_id": 16532,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "exit",
+        "old": "b1",
+        "new": "balance1Before",
+        "declaration_id": 16539,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "cancel",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 16766,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "completeLocal",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 16823,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "completeLocal",
+        "old": "r",
+        "new": "requestData",
+        "declaration_id": 16830,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "completeLocal",
+        "old": "p",
+        "new": "position",
+        "declaration_id": 16908,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "recover",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 17040,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "v",
+        "new": "vault",
+        "declaration_id": 17137,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "b0",
+        "new": "balance0Before",
+        "declaration_id": 17199,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "b1",
+        "new": "balance1Before",
+        "declaration_id": 17217,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 17118,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "t0",
+        "new": "token0",
+        "declaration_id": 17122,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "t1",
+        "new": "token1",
+        "declaration_id": 17124,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "a0",
+        "new": "amount0",
+        "declaration_id": 17126,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "a1",
+        "new": "amount1",
+        "declaration_id": 17128,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_receive",
+        "old": "minimum",
+        "new": "minimumLiquidity",
+        "declaration_id": 17130,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_close",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 17360,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_close",
+        "old": "id",
+        "new": "planId",
+        "declaration_id": 17362,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_sentZZZ",
+        "old": "q",
+        "new": "plan",
+        "declaration_id": 17391,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "_amounts",
+        "old": "p",
+        "new": "position",
+        "declaration_id": 17465,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "park",
+        "old": "v",
+        "new": "vault",
+        "declaration_id": 17590,
+        "public_parameter_renamed": false
+      },
+      {
+        "function": "park",
+        "old": "p",
+        "new": "position",
+        "declaration_id": 17596,
+        "public_parameter_renamed": false
+      }
+    ],
+    "identifier_replacements": 251,
+    "after_preformat_sha256": "c59b51bdefda4688988b1bf608085a9bab0800da3f4b3fcfa423f7891aa232d8",
+    "scope": "Only compiler-resolved private parameters/local variables and references; no public parameter, state/member name, expression or control-flow edit."
+  },
+  "src/ZZZCanonicalHandoff.sol": {
+    "before_text_sha256": "05b21a64d6a92419ca87587d66bd03d0706e5f6299217e4f219c9c3f5b495d88",
+    "after_preformat_sha256": "f44d7c8d1b40ff1498f268abfdf7a7c28a4f0caebb66ab2c6651cad315903c90",
+    "phase_values": {
+      "0": "PHASE_IDLE",
+      "1": "PHASE_EXPORTING",
+      "2": "PHASE_IMPORTED_AWAITING_BACKING",
+      "3": "PHASE_RETIRED",
+      "4": "PHASE_IMPORTING",
+      "5": "PHASE_ACTIVE_REPLACEMENT",
+      "6": "PHASE_ABORTING",
+      "7": "PHASE_CANCELLED_IMPORT",
+      "8": "PHASE_SETTLING"
+    },
+    "access_state_values": {
+      "0": "STATE_OPERATING",
+      "1": "STATE_FROZEN",
+      "2": "STATE_IMPORTING",
+      "3": "STATE_RETIRED",
+      "4": "STATE_CANCELLED"
+    },
+    "domain_values": {
+      "0": "DOMAIN_NFT",
+      "1": "DOMAIN_VAULT",
+      "2": "DOMAIN_MEMBERSHIP",
+      "3": "DOMAIN_LP_REWARDS",
+      "4": "DOMAIN_ROYALTIES",
+      "5": "DOMAIN_FEES"
+    },
+    "exact_inverse_before_formatting": true,
+    "added_public_selectors_or_storage": false
+  },
+  "precompile_review_repair": {
+    "reason": "Independent review caught duplicate _join bucketId names before compilation. Generic id classification was incorrect; replayed original source using explicit NFT/bucket function allowlists and uniqueness assertions. No tests or transactions ran on the intermediate source.",
+    "intermediate_sha256": "b5bd4c60e0ff93e3ae312e7f727f32b7b664e17b96996c660fc713e12ac2d348",
+    "archive": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\auditability-refactor-20261025\\vault-prefreeze-name-collision.sol.txt",
+    "production_finding": false
+  }
+}

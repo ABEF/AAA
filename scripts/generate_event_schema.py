@@ -44,7 +44,14 @@ def build_schema(texts):
 
 
 def source_schema(root=ROOT):
-    texts = [path.read_text(encoding='utf-8') for path in sorted((root / 'src').glob('*.sol'))]
+    # Shared/base implementations declare events inherited by concrete modules.
+    # Keep the existing top-level declarations first so inherited aliases cannot
+    # rename canonical decoder fields. Then visit nested files by depth/name,
+    # using POSIX strings for the same ordering on Windows and Unix.
+    source = root / 'src'
+    paths = sorted(source.rglob('*.sol'),
+                   key=lambda path: (len(path.relative_to(source).parts), path.relative_to(source).as_posix()))
+    texts = [path.read_text(encoding='utf-8') for path in paths]
     schema = build_schema(texts + list(ERC721_EVENTS))
     historical = json.loads((root / 'indexer/historical_event_schema.json').read_text(encoding='utf-8'))
     return merge_historical(schema, historical)

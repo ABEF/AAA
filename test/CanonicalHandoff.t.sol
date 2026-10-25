@@ -12,7 +12,7 @@ import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZLPRewardConverter} from "../src/ZZZLPRewardConverter.sol";
-import {ZZZRoyaltyConverter} from "../src/ZZZRoyaltyConverter.sol";
+import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZCompounder} from "../src/ZZZCompounder.sol";
@@ -357,7 +357,7 @@ contract CanonicalHandoffTest is Test {
         source.rewards.addAsset(address(wrapper));
         ZZZLPRewardConverter converter=new ZZZLPRewardConverter(address(source.ac),address(source.rewards),address(wrapper));
         source.rewards.bindConverter(address(converter));
-        converter.configureWrapper(ZZZRoyaltyConverter.WrapperPolicy(address(wrapper).codehash,address(0),address(0),address(0),0,0,keccak256("test wrapper")));
+        converter.configureWrapper(ZZZRewardConverter.WrapperPolicy(address(wrapper).codehash,address(0),address(0),address(0),0,0,keccak256("test wrapper")));
         converter.setEnabled(true);source.ac.seal();_approve(source);
         destination=_deploySystemWithAssets(false,false);
         destination.rewards.addAsset(address(token1));destination.rewards.addAsset(address(wrapper));

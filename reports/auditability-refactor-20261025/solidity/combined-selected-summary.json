@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-10-25T20:33:08.495007+00:00",
+  "all_selected_pass": true,
+  "distinct_selected_behaviors": 26,
+  "runtime_test_invocations": 28,
+  "known_inherited_repeat_invocations": 2,
+  "initial_profile_selected_behaviors": 25,
+  "reused_initial_profile_selected_behaviors_on_final_fixture": 25,
+  "fresh_final_fixture_selected_behaviors": 1,
+  "initial_profile": {
+    "runtime_cases": 27,
+    "raw_forge_exit_code": 0,
+    "raw_driver_exit_code": 1,
+    "raw_complete_selection_executed": false,
+    "all25_selected_present_and_pass": true,
+    "strict_ast_inheritance_reconciliation": "focused-reconciled-summary.json",
+    "elapsed_seconds": 447.922
+  },
+  "final_profile": {
+    "selected_methods": 1,
+    "complete_selection_executed": true,
+    "elapsed_seconds": 126.516,
+    "cases": [
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+        "status": "Success",
+        "reason": null,
+        "gas": null,
+        "kind": {
+          "Unit": {
+            "gas": 8858655
+          }
+        }
+      }
+    ]
+  },
+  "fixture_repair": {
+    "file": "test/NativeVaultFlows.t.sol",
+    "before_sha256": "c28e5509e4e1da7fbbfb6cebe42730972ee510635d39827d3933e099daca772b",
+    "after_sha256": "f9b8c654be473f417231453646099dace85765212055d5a55d38455aaaa0be88",
+    "changed_byte": 7949,
+    "reason": "Preexisting native activation/growth fixture asserted accounting2 after the current Position3 version change; correct only the expected version to3. Behavior/backing assertions stay unchanged.",
+    "all15_retained_prior_functions_and_helpers_byte_identical": true,
+    "prior25_changed_scope": "One previously omitted test version assertion only; all prior25 selected bodies and helpers unchanged. Prior passes reused without rerun."
+  },
+  "final_typecheck": {
+    "source_count": 131,
+    "source_hashes_file": "final-typecheck-summary.json",
+    "elapsed_seconds": 13.39,
+    "errors": [],
+    "unchanged_during_compile": true,
+    "compiler_input_sha256": "3753a83f750c3229094508b8322db77cc27991951f087c5293a6a7c33a643272",
+    "compiler_output_sha256": "5f17514bf06178070b4139ecfce120dd078643b38c821149fed06141ad4b7c82"
+  },
+  "normal_object_gates_reused": 37,
+  "production_source_count": 44,
+  "production_source_hashes_match": true,
+  "production_source_sha256": {
+    "src/ZZZAccessController.sol": "7c9303335d1cf668b264b9be5d89a6f9d526300e815ba9dc8b8b7df7c9e69600",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "dc3472b8d198246f3b0f7c0f8ad07945d149a2035a12a415e3c1cff6e1af584a",
+    "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
+    "src/ZZZCanonicalHandoff.sol": "c434c5c68637e5d9de64ee9651d8d767fd8446ef48865f94ef1b5e4271770d0c",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
+    "src/ZZZCustodyValidation.sol": "9343deb8edcfaab900979cd1e27716826700810eeef40ba7d6657fa41380ae58",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+    "src/ZZZLiquidityManager.sol": "925dd46418ac3145718564437cb2d3f3bb031fd807401d98b1035a20b4720f26",
+    "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+    "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+    "src/ZZZMigration.sol": "fc236044d55fd7d5b834128f10a0fd732ba57bf1f0953b2995b3a34a496f38e0",
+    "src/ZZZMigrationBudget.sol": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68",
+    "src/ZZZNFT.sol": "306715bf51d163f41ac6c072931e15732699f3cf7230345cc1e3b6aaf0a8fb4c",
+    "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+    "src/ZZZNFTMetadata.sol": "b1ca53e94e0f4bd642eff3b49c200b4edb56f803d2b30f7ea9e7e913786ed8bf",
+    "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+    "src/ZZZPoolRegistry.sol": "967775732b0848988ab111fd9e5ae9dade3a8ba99f6a1d043e6a0bce5cb28bc2",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "a2d94a8152856240eb75d514a8d8f37d5f6412d3f3b1edca0ff31757c318940c",
+    "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZModule.sol": "0232427e6175adc3680f389bc6a0a62e7f95d8b2c6807370b8ea10ebbca00950",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "src/interfaces/IZZZ.sol": "f8145db63e811487a6bb75d90e1d228c0ce4a783f789b5e11b41fc389b16206b",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "a1f4523d3668e7620013e626bd51f71cadd9ee82168dbfbc0070b82f97656a0d",
+    "src/libraries/ZZZV3VenueValidation.sol": "e484b43b45a133859d3664e8de78b9c8ed8b6316a7c036a7c548a148f92f635c"
+  },
+  "evidence_sha256": {
+    "selected/focused-summary.json": "c9817b99411145ead772710e865460c9d93a60a882c4783dc4f6b47193970600",
+    "selected/focused-reconciled-summary.json": "e4c66a3196feb21716275302ac533dd22db390240c6302daf96ff9db5dd428b7",
+    "selected/focused-transformation.json": "20cbb214e39b40ada0efd3dd44ace2b570a543c05cedf0dfacc53687f0a26ee2",
+    "selected-native-final/focused-summary.json": "2457470f2e0911044f22aeb43bc1bd9f018e8528b8e48f682c23e5edc6e4e88e",
+    "selected-native-final/focused-transformation.json": "cceb4861d5158220a04ddbee8f164453a8907cd5e794f2e711457bfd227e6561",
+    "source-size-gates.json": "6fb818bf2c9d89d6f264c8914916571b6ebbb658c9e29ddc03897e1f594fa623",
+    "final-typecheck-summary.json": "c5ccb9c0cbaee52192c34897480df535bb8d03f26fb02798cb5b9484a7eb785c",
+    "native-version-manifest.json": "57e37f97fcc7c13aea349f27dbd10b074a0c1a70dc4b7351c2a1dc403e62a50d"
+  },
+  "scope": "26 distinct selected behaviors across two scoped fixture profiles;2 inherited repeated bodies counted once.37 normal production object gates are separate reused source-matched evidence. Not a full fresh regression, real market/provider/wallet/operating qualification or independent audit. No existing Anvil, service, journal or public transaction touched."
+}

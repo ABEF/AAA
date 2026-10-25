@@ -1,0 +1,23 @@
+{
+  "scope": "Complete affected event-schema regression module after recursive-source discovery fix; no broad Python/Solidity rerun",
+  "exit_code": 1,
+  "stored_descriptor_count": 135,
+  "generated_descriptor_count": 135,
+  "historical_descriptor_count": 33,
+  "stored_equals_generated": false,
+  "artifact_byte_identical": true,
+  "dropped_topics": [],
+  "new_topics": [],
+  "changed_descriptors": [
+    "0xb25823483ce218e984d1f3e1e31b375af0182b859381e050fb54597002af4bba"
+  ],
+  "source_sha256": {
+    "scripts/generate_event_schema.py": "f6f03d42cdd1f9e1065f3e2c17bc33e8ee06445dbe3f99173d1e5d76db0dc5f7",
+    "tests_python/test_event_schema.py": "0d24c8e7969d678bcd86884adba0a378f92f27beef52f75c4358fc163b7aaf12",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "indexer/event_schema.json": "7be74762f4d65c2073c79355f0bba5c7f46f23c457ec2e7addf8ef7f61433187",
+    "indexer/historical_event_schema.json": "2ae2effbe5c009eb71c942ed76b2bb4f876650bc913d876fb3a324efc3dd96ad"
+  },
+  "log_sha256": "a1b3d5783cedf0e2a5e34a1248732b6b76978f4da21c1c989d9e8afe5a05e1be",
+  "qualification": "Source-schema compatibility only; no deployed indexer, service or marketplace qualification."
+}

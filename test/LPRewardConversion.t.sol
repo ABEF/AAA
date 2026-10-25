@@ -11,7 +11,7 @@ import {MockFeed} from "./mocks/Mocks.sol";
 import {ConversionAccess, ConversionToken, ConversionWrapper, ConversionVenue, ConversionReadProbe} from "./RoyaltyConversion.t.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZLPRewardConverter} from "../src/ZZZLPRewardConverter.sol";
-import {ZZZRoyaltyConverter} from "../src/ZZZRoyaltyConverter.sol";
+import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
 
@@ -52,9 +52,9 @@ contract LPRewardConversionTest is Test {
         oracle=new ZZZOracle(address(a),address(0));sf=new MockFeed(8,1e8);ef=new MockFeed(8,2000e8);
         oracle.setTestFeed(address(t),address(sf),3600);oracle.setTestFeed(address(w),address(ef),3600);a.bind(Ids.ORACLE,address(oracle));
         c=new ZZZLPRewardConverter(address(a),address(r),address(w));r.bindConverter(address(c));
-        c.configureWrapper(ZZZRoyaltyConverter.WrapperPolicy(address(w).codehash,address(0),address(0),address(0),0,0,bytes32(uint256(1))));
+        c.configureWrapper(ZZZRewardConverter.WrapperPolicy(address(w).codehash,address(0),address(0),address(0),0,0,bytes32(uint256(1))));
         c.setEnabled(true);venue=new ConversionVenue(address(t),w);
-        routeId=c.addRoute(ZZZRoyaltyConverter.RoutePolicy(address(t),address(venue),address(venue),address(venue),500,
+        routeId=c.addRoute(ZZZRewardConverter.RoutePolicy(address(t),address(venue),address(venue),address(venue),500,
             address(t).codehash,address(venue).codehash,address(venue).codehash,address(venue).codehash,bytes32(uint256(2))));
         a.seal();nft.mint(alice,1);nft.mint(bob,2);nft.mint(carol,3);
         shares.join(r,1,2e18);shares.join(r,2,1e18);vm.deal(address(w),1000 ether);vm.deal(address(this),100 ether);

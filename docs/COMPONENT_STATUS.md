@@ -8,12 +8,12 @@ profiles and journals remain separately decoded. See [profile boundaries](POSITI
 [feature/evidence reference](IMPLEMENTATION_STATUS.md). Production NOT APPROVED.
 
 The current reference covers **31 contracts, 608 functions and 13 receive hooks**.
-Normal 36-object gates and 127-input ABI checks pass; 512 distinct Python methods
-pass across recorded scopes. Completed EVM evidence belongs to its exact receipt;
-no pending run or historical total supplies a fresh full regression. Registry
-runtime is 10,269 bytes; Vault 22,852 leaves 1,724. Access creation 42,081 plus 96-byte
-fixed arguments totals 42,177, leaving 6,975bytes. Actual service/release qualification
-and independent audit remain open.
+Normal 37-object gates and 131-input typechecking pass. The [refactor verification](../reports/auditability-refactor-20261025/VERIFICATION.md)
+separates exact compiler comparison, scoped execution and inherited-struct metadata
+changes. The shared abstract converter is not another operator target; the two
+concrete instances retain separate ledgers. Registry runtime 10,269; Vault 22,852
+leaves 1,724bytes; Access total initcode 42,177 leaves 6,975. Actual service/release
+qualification and independent audit remain open. No full regression is inferred.
 
 ## On-chain identity, entry and custody
 

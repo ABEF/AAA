@@ -24,6 +24,21 @@ Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.0
 
 Earlier [release-hardening evidence](../reports/release-hardening/README.md) records bounded metadata notifications and the source-specific metadata checks; it predates native custody, atomic Entry and parking. [Historical integration receipts](../reports/gap-hardening/README.md) retain their own source, compiler, test and review scope. The current capacity change has separate [targeted evidence](../reports/architecture-evolution/VERIFICATION.md). Historical CI remains scoped to its exact published revision. These checks do not establish production integration or an independent audit.
 
+## Shared implementation boundaries
+
+[LiquidityManager](../src/ZZZLiquidityManager.sol) uses one private settlement
+helper for collect/close; each caller retains its fixed action and checks.
+[Entry](../src/ZZZActivationEntry.sol) and the converter base share an internal
+read-only [v3 venue validator](../src/libraries/ZZZV3VenueValidation.sol), while
+keeping their own admission and runtime-pin checks. The two concrete reward
+converters inherit [one neutral implementation](../src/base/ZZZRewardConverter.sol)
+but retain separate immutable ledgers, storage and balances. No external linked
+library, shared funds, executor or additional authority is introduced.
+
+Private NFT and bucket identifiers and handoff phase/domain constants are now
+explicit; wire phase values and financial ordering are unchanged. See the
+[refactor comparison](../reports/auditability-refactor-20261025/VERIFICATION.md).
+
 ## Identity and custody
 
 Only the canonical chain issues NFTs. Minting forwards the charge separately, requests verifiable randomness and creates a dormant ERC-721 with no LP or rewards. Mint and payment/request failures roll back atomically. The NFT enforces the1,000cap and excludes royalty/mint-receiver collisions. Before canonical sealing, the randomness configuration must exist; actual provider availability remains a deployment gate.

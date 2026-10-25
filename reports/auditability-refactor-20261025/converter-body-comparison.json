@@ -1,0 +1,137 @@
+{
+  "kind": "Static source-body comparison, not bytecode or behavior verification",
+  "baseline_commit": "ba91651805051a974070b8a07543fa18d20d3551",
+  "baseline_path": "src/ZZZRoyaltyConverter.sol",
+  "baseline_file_sha256": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+  "candidate_path": "src/base/ZZZRewardConverter.sol",
+  "candidate_file_sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+  "normalization": [
+    "IRoyaltyWrapper -> IRewardWrapper",
+    "IRoyaltyProxyAdmin -> IRewardProxyAdmin",
+    "IActivationV3Router -> IV3RouteRouter"
+  ],
+  "same_function_names": true,
+  "rows": [
+    {
+      "name": "constructor",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "4ec3e1c31e81d9d656a0e70188b25bb1f9f6c7795bcdb5c9950cf8f9255021f8",
+      "new_sha256": "4ec3e1c31e81d9d656a0e70188b25bb1f9f6c7795bcdb5c9950cf8f9255021f8",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "configureWrapper",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "731e0c4b7d0ee86729e429b62475508276647adc3b9a24a219a4abf16c3ff389",
+      "new_sha256": "731e0c4b7d0ee86729e429b62475508276647adc3b9a24a219a4abf16c3ff389",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "setEnabled",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "aa342c973a4cdf1ff8a0052f3edf71d6154c4e0f5df5bc94e85e6c23a1e51465",
+      "new_sha256": "aa342c973a4cdf1ff8a0052f3edf71d6154c4e0f5df5bc94e85e6c23a1e51465",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "setConversionLossBps",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "6769a0626092cb1d2b4ab9680f64ba08cfebdaff03e0e84a1c04d5e43ec7e8dd",
+      "new_sha256": "6769a0626092cb1d2b4ab9680f64ba08cfebdaff03e0e84a1c04d5e43ec7e8dd",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "addRoute",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "1f455fedce9d7058424574771626b09323c8d4989bc4b616234fb99e375e6f5e",
+      "new_sha256": "1f455fedce9d7058424574771626b09323c8d4989bc4b616234fb99e375e6f5e",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "route",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "10cbecc4fa949a89c8642331874af3d636a8de7a16cf29b72593d9f288ea11ba",
+      "new_sha256": "10cbecc4fa949a89c8642331874af3d636a8de7a16cf29b72593d9f288ea11ba",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "addV4Route",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "eef94dcf407f372e4396413ac4c3c3cac5d381c7cc5634aba63fb7178e028d94",
+      "new_sha256": "eef94dcf407f372e4396413ac4c3c3cac5d381c7cc5634aba63fb7178e028d94",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "v4Route",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "f501fb32d3af2eb911d6b682c3274544bbbcbb348dc5193112d5c07d0e16c456",
+      "new_sha256": "f501fb32d3af2eb911d6b682c3274544bbbcbb348dc5193112d5c07d0e16c456",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "routeKind",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "eaf9febdd4af4925695a3684049939c5ce9ca00f3d099d8c680458ec05f380e7",
+      "new_sha256": "eaf9febdd4af4925695a3684049939c5ce9ca00f3d099d8c680458ec05f380e7",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "routeExists",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "1a42cb0d7358818d0912950b28054ac1ef1b83eb6cb6c560a1e4c074bf98015c",
+      "new_sha256": "1a42cb0d7358818d0912950b28054ac1ef1b83eb6cb6c560a1e4c074bf98015c",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "routeEnabled",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "7d1a8f82589e05ae058f096b0ff1038d57daa850615708a6574a2f285d127ade",
+      "new_sha256": "7d1a8f82589e05ae058f096b0ff1038d57daa850615708a6574a2f285d127ade",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "setRouteEnabled",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "e55851255070c0794bcdd7daf8b4eda2671ff797deabb795348f25a9e458504a",
+      "new_sha256": "e55851255070c0794bcdd7daf8b4eda2671ff797deabb795348f25a9e458504a",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "_pin",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "91f0b3047958298f096291c2fd7f9af869a40d56f94b6d234275376174978241",
+      "new_sha256": "91f0b3047958298f096291c2fd7f9af869a40d56f94b6d234275376174978241",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "_checkWrapper",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "5450c47451b44fae3f799eab3d7217ee5c094006068f78c2c1d6cd9b9daaf11e",
+      "new_sha256": "5450c47451b44fae3f799eab3d7217ee5c094006068f78c2c1d6cd9b9daaf11e",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "_checkRoute",
+      "excluded_extraction": true,
+      "old_normalized_sha256": "dace2960c4379afa544a9173b5547433520bb94db5c2d4a72fd3673bcd890385",
+      "new_sha256": "c4384dc0d8f1f7a3247009582330ecb4d6d660ff2abc7722b2506246fd496a09",
+      "equal_after_interface_spelling_normalization": false
+    },
+    {
+      "name": "convert",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "0ea88e412cc20616e4aa7eba008599db9a78a359683b108d73d52dafce9b9f76",
+      "new_sha256": "0ea88e412cc20616e4aa7eba008599db9a78a359683b108d73d52dafce9b9f76",
+      "equal_after_interface_spelling_normalization": true
+    },
+    {
+      "name": "_convertV4",
+      "excluded_extraction": false,
+      "old_normalized_sha256": "f088af759305dd7f6b97eefa5b9d30bdaf614ec99b51027a630d8c563da03ac8",
+      "new_sha256": "f088af759305dd7f6b97eefa5b9d30bdaf614ec99b51027a630d8c563da03ac8",
+      "equal_after_interface_spelling_normalization": true
+    }
+  ],
+  "unchanged_nonextracted_bodies": true,
+  "limits": "_checkRoute venue reads extracted; imports, inheritance and compiler effects require final project ABI/storage/size/behavior evidence."
+}

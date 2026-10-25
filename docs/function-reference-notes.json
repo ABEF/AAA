@@ -3286,7 +3286,7 @@
       }
     },
     "ZZZLPRewardConverter": {
-      "purpose": "Fixed LP-ledger-only executor converting already earned ERC20 rewards into native ETH without changing NFT attribution.",
+      "purpose": "Fixed LP rewards-ledger-only executor converting earned ERC20 balances into native ETH. Shares the abstract ZZZRewardConverter implementation, but has its own address, immutable ledger, route policies and storage; no shared custody or new authority.",
       "functions": {
         "MAX_LOSS_BPS()": {
           "purpose": "Read the immutable upper bound for the component’s governed execution-loss setting.",
@@ -3492,7 +3492,7 @@
       }
     },
     "ZZZRoyaltyConverter": {
-      "purpose": "Fixed royalty-ledger-only executor converting already earned ERC20 royalties into native ETH under reviewed routes.",
+      "purpose": "Fixed royalties-ledger-only executor converting earned ERC20 balances into native ETH. Shares the abstract ZZZRewardConverter implementation, but has its own address, immutable ledger, route policies and storage; no shared custody or new authority.",
       "functions": {
         "MAX_LOSS_BPS()": {
           "purpose": "Read the immutable upper bound for the component’s governed execution-loss setting.",
@@ -4777,9 +4777,9 @@
         "phase()": {
           "purpose": "Read this coordinator’s explicit handoff progress state.",
           "access": "Anyone; read-only.",
-          "notes": "Returns: 0idle,1export/fund,2importcomplete,3retired,4importing,5activated,6aborting,7cancelled,8settling.",
+          "notes": "Returns: 0idle,1exporting,2imported-awaiting-backing,3retired,4importing,5active-replacement,6aborting,7cancelled-import,8settling; existing uint8 values unchanged.",
           "outputs": {
-            "0": "0idle,1export/fund,2importcomplete,3retired,4importing,5activated,6aborting,7cancelled,8settling."
+            "0": "0idle,1exporting,2imported-awaiting-backing,3retired,4importing,5active-replacement,6aborting,7cancelled-import,8settling; existing uint8 values unchanged."
           }
         },
         "prepareImport(address)": {

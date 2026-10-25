@@ -3,7 +3,8 @@ pragma solidity 0.8.26;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {AtomicActivationIntegrationTest} from "./AtomicActivationIntegration.t.sol";
-import {IActivationV3Router,ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
+import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
+import {IV3RouteRouter} from "../src/interfaces/IZZZV3Route.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {MockToken,MockFeed} from "./mocks/Mocks.sol";
@@ -11,7 +12,7 @@ import {PoolConfig,PositionStatus} from "../src/libraries/ZZZTypes.sol";
 
 /// @dev TEST ONLY typed conversion with exact transfers and a hostile callback.
 /// This is not actual market execution or source/provider qualification.
-contract EntryPriceCallbackRouter is IActivationV3Router {
+contract EntryPriceCallbackRouter is IV3RouteRouter {
     address public immutable factory;
     address public target;
     bytes public data;

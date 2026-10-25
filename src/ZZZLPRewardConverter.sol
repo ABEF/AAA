@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import {ZZZRoyaltyConverter} from "./ZZZRoyaltyConverter.sol";
+import {ZZZRewardConverter} from "./base/ZZZRewardConverter.sol";
 
-/// @notice Dedicated LP-reward instance of the reviewed fixed-ledger converter.
-/// Shares execution guards with royalty conversion, but never its custody or ledger.
-contract ZZZLPRewardConverter is ZZZRoyaltyConverter {
+/// @notice LP-only instance of the fixed-ledger converter. It shares reviewed
+/// execution guards with royalty conversion, never custody, balances or ledger rights.
+contract ZZZLPRewardConverter is ZZZRewardConverter {
     constructor(address controller, address rewards, address wrappedETH)
-        ZZZRoyaltyConverter(controller, rewards, wrappedETH) {}
+        ZZZRewardConverter(controller, rewards, wrappedETH) {}
 }

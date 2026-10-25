@@ -2,6 +2,7 @@
 import importlib.util
 import json
 from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -27,6 +28,47 @@ def log(signature, indexed=(), data=(), emitter=TOKEN):
 
 
 class EventSchemaTests(unittest.TestCase):
+    def test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'src/base').mkdir(parents=True)
+            (root / 'indexer').mkdir()
+            (root / 'src/Concrete.sol').write_text(
+                'event Shared(uint256 indexed nftId, uint256 amount);', encoding='utf-8')
+            (root / 'src/base/Shared.sol').write_text(
+                'event Converted(address indexed source, bytes32 indexed routeId, uint256 input, uint256 nativeOutput);\n'
+                'event Shared(uint256 indexed id, uint256 value);', encoding='utf-8')
+            historical = generator.build_schema(['event Retired(address indexed asset);'])
+            (root / 'indexer/historical_event_schema.json').write_text(json.dumps(historical), encoding='utf-8')
+            schema = generator.source_schema(root)
+            self.assertEqual(schema[topic('Converted(address,bytes32,uint256,uint256)')]['fields'], [
+                {'type': 'address', 'name': 'source', 'indexed': True},
+                {'type': 'bytes32', 'name': 'routeId', 'indexed': True},
+                {'type': 'uint256', 'name': 'input', 'indexed': False},
+                {'type': 'uint256', 'name': 'nativeOutput', 'indexed': False},
+            ])
+            self.assertEqual(schema[topic('Shared(uint256,uint256)')]['fields'], [
+                {'type': 'uint256', 'name': 'nftId', 'indexed': True},
+                {'type': 'uint256', 'name': 'amount', 'indexed': False},
+            ])
+            self.assertEqual(schema[topic('Retired(address)')], historical[topic('Retired(address)')])
+            # Three ERC721 descriptors, two current topics and one historical
+            # topic. The inherited duplicate cannot create a second descriptor.
+            self.assertEqual(len(schema), 6)
+
+    def test_source_schema_rejects_layout_collisions_in_nested_base_sources(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'src/base').mkdir(parents=True)
+            (root / 'indexer').mkdir()
+            (root / 'indexer/historical_event_schema.json').write_text('{}', encoding='utf-8')
+            (root / 'src/Concrete.sol').write_text(
+                'event Changed(address indexed owner, uint256 amount);', encoding='utf-8')
+            (root / 'src/base/Shared.sol').write_text(
+                'event Changed(address owner, uint256 indexed amount);', encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'Conflicting event topic'):
+                generator.source_schema(root)
+
     def test_keeper_range_policy_and_orientation_logs_are_exact_and_bounded(self):
         pool='0x'+'ab'*32;review='0x'+'cd'*32
         cases=(('RangeOrientationChanged(bytes32,uint8,uint8)',[word(0,'uint8'),word(1,'uint8')],

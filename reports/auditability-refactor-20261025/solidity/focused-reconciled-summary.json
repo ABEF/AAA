@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "raw_forge_exit_code": 0,
+  "raw_driver_exit_code": 1,
+  "raw_complete_selection_executed": false,
+  "all_selected_methods_present": true,
+  "expected_selected_methods": 25,
+  "actual_runtime_cases": 27,
+  "distinct_selected_method_bodies": 25,
+  "all_successful": true,
+  "inherited_repeats": [
+    {
+      "runtime_suite": "EntryReviewPolicyTest",
+      "method": "testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer",
+      "defining_contract": "AtomicActivationIntegrationTest",
+      "defining_source": "test/AtomicActivationIntegration.t.sol",
+      "ast_id": 50663,
+      "defining_contract_ast_id": 51895,
+      "child_linearized_base_contract_ids": [
+        97480,
+        51895,
+        195334,
+        209462,
+        228595,
+        255636,
+        223535,
+        222740,
+        220650,
+        255276,
+        219679,
+        219676
+      ],
+      "selected_function_sha256": "07ef011dccdaf43dfe6ea146b4ca8f7dc0f475f73a00e0486dff7f5b71571c53",
+      "fixture_scope": "Inherited exact base method and modifier/private fixture; child has no constructor, state declarations, setUp or modifier override. Execution remains child contract context, reported as repeat, not extra distinct behavior."
+    },
+    {
+      "runtime_suite": "EntryReviewPolicyTest",
+      "method": "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent",
+      "defining_contract": "AtomicActivationIntegrationTest",
+      "defining_source": "test/AtomicActivationIntegration.t.sol",
+      "ast_id": 49861,
+      "defining_contract_ast_id": 51895,
+      "child_linearized_base_contract_ids": [
+        97480,
+        51895,
+        195334,
+        209462,
+        228595,
+        255636,
+        223535,
+        222740,
+        220650,
+        255276,
+        219679,
+        219676
+      ],
+      "selected_function_sha256": "20a9151f55daaf2127fee201054ba1bd9119dfdab9a3684e6a6b598b5054d895",
+      "fixture_scope": "Inherited exact base method and modifier/private fixture; child has no constructor, state declarations, setUp or modifier override. Execution remains child contract context, reported as repeat, not extra distinct behavior."
+    }
+  ],
+  "strict_extra_case_policy": "Exactly these two compiler-AST-proven inherited cases; every other unexpected or missing case fails reconciliation. Pinned driver was not modified.",
+  "compiler_input_sha256": "1110d605e723bf00ec2609c33228c29d0d6dda2b757c9f58e1a0794da528c1fc",
+  "compiler_output_sha256": "00b2de22d67711eca8d00824ee0c1b897c5fba98475ffd5ba3f940338cc8990d",
+  "raw_summary_sha256": "c9817b99411145ead772710e865460c9d93a60a882c4783dc4f6b47193970600",
+  "transformation_sha256": "20cbb214e39b40ada0efd3dd44ace2b570a543c05cedf0dfacc53687f0a26ee2",
+  "production_source_count": 44,
+  "production_sources_unchanged": true,
+  "elapsed_seconds": 447.922,
+  "scope": "25 distinct selected bodies across27 executions in isolated AST-reduced profile; not27 distinct cases, full regression, live/provider qualification or independent audit."
+}

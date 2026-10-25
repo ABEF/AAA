@@ -11,7 +11,8 @@ import {MockAccess, MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {ZZZRoyaltyConverter} from "../src/ZZZRoyaltyConverter.sol";
-import {IActivationV3Router} from "../src/ZZZActivationEntry.sol";
+import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
+import {IV3RouteRouter} from "../src/interfaces/IZZZV3Route.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
 
 contract ConversionAccess is MockAccess { function state(uint8 s) external { canonicalState = s; } }
@@ -66,7 +67,7 @@ contract ConversionVenue {
     }
     function settings(uint256 b,bool l) external { bps=b; lie=l; }
     function setCallback(address a,bytes calldata d) external {callback=a;callbackData=d;}
-    function exactInputSingle(IActivationV3Router.ExactInputSingleParams calldata p) external payable returns(uint256 out) {
+    function exactInputSingle(IV3RouteRouter.ExactInputSingleParams calldata p) external payable returns(uint256 out) {
         require(p.tokenIn==source&&p.tokenOut==address(wrapped)&&p.fee==fee);
         IERC20(source).transferFrom(msg.sender,address(this),p.amountIn);
         out = p.amountIn * 1e12 / 2000 * bps / 10000;
@@ -96,9 +97,9 @@ contract RoyaltyConversionTest is Test {
         a.bind(Ids.ORACLE,address(oracle));a.bind(Ids.NFT,address(nft));a.bind(Ids.CANONICAL,address(this));
         a.setKeeper(address(this),true);
         c=new ZZZRoyaltyConverter(address(a),address(r),address(w)); r.bindConverter(address(c));
-        c.configureWrapper(ZZZRoyaltyConverter.WrapperPolicy(address(w).codehash,address(0),address(0),address(0),0,0,bytes32(uint256(1))));
+        c.configureWrapper(ZZZRewardConverter.WrapperPolicy(address(w).codehash,address(0),address(0),address(0),0,0,bytes32(uint256(1))));
         c.setEnabled(true);venue=new ConversionVenue(address(t),w);
-        routeId=c.addRoute(ZZZRoyaltyConverter.RoutePolicy(address(t),address(venue),address(venue),address(venue),500,
+        routeId=c.addRoute(ZZZRewardConverter.RoutePolicy(address(t),address(venue),address(venue),address(venue),500,
             address(t).codehash,address(venue).codehash,address(venue).codehash,address(venue).codehash,bytes32(uint256(2))));
         a.seal();nft.mint(alice,1,0);nft.mint(bob,2,1);nft.mint(carol,3,2);
         nft.activate(1);nft.activate(2);vm.deal(address(w),1000 ether);vm.deal(address(this),100 ether);

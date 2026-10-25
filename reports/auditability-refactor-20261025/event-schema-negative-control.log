@@ -1,0 +1,25 @@
+test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics (tests_python.test_event_schema.EventSchemaTests.test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics) ... ERROR
+test_source_schema_rejects_layout_collisions_in_nested_base_sources (tests_python.test_event_schema.EventSchemaTests.test_source_schema_rejects_layout_collisions_in_nested_base_sources) ... FAIL
+
+======================================================================
+ERROR: test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics (tests_python.test_event_schema.EventSchemaTests.test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_event_schema.py", line 44, in test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics
+    self.assertEqual(schema[topic('Converted(address,bytes32,uint256,uint256)')]['fields'], [
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: '0x2bddd8f58a6133908776d5052ff3ce5fc8444f2e866ad2392152000a8323ce91'
+
+======================================================================
+FAIL: test_source_schema_rejects_layout_collisions_in_nested_base_sources (tests_python.test_event_schema.EventSchemaTests.test_source_schema_rejects_layout_collisions_in_nested_base_sources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_event_schema.py", line 69, in test_source_schema_rejects_layout_collisions_in_nested_base_sources
+    with self.assertRaisesRegex(ValueError, 'Conflicting event topic'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.049s
+
+FAILED (failures=1, errors=1)

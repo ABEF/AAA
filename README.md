@@ -15,17 +15,20 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Contributions and prices | Native ETH or one fixed ZZZ only. Source admission, the native pool, immutable buyback and normal exit use that same reviewed ZZZ identity. Minimum $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
 | Maintenance and conversion | Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
-| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest internal review](reports/architecture-pruning-20261025/REVIEW.md). |
+| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest internal review](reports/auditability-refactor-20261025/REVIEW.md). |
 
 The native website read/unsigned profile is implemented in source. The
-[latest review](reports/architecture-pruning-20261025/REVIEW.md) removes obsolete
-remote Position fields and zero-delay timelock machinery. The current reference
-covers **31 contracts, 608 functions and 13 receive hooks**. Registry runtime is
-10,269 bytes; Vault runtime is 22,852 with 1,724 bytes of headroom. Access creation
-is 42,081 bytes plus its fixed 96-byte governance/keeper/guardian arguments:
-42,177 total, leaving 6,975 bytes. Normal 36-object gates and 127-input ABI checks
-pass; 512 distinct Python methods pass across recorded scopes. These are scoped
-checks, not a fresh full regression or production approval. [Integration and operator boundaries](docs/NATIVE_WEBSITE_PROFILE.md).
+[architecture pruning](reports/architecture-pruning-20261025/REVIEW.md) removed
+obsolete remote fields and scheduler machinery. The [current refactor](reports/auditability-refactor-20261025/REVIEW.md)
+shares settlement and validation code, separates both converters from their
+neutral implementation and clarifies handoff/accounting internals. Wire types,
+storage, economic rights and callback order are preserved; inherited Solidity
+struct names now use the neutral base. The reference remains **31 contracts,
+608 functions and 13 receive hooks**. Normal 37-object gates and 131-input
+typechecking pass; [exact sizes and scoped verification](reports/auditability-refactor-20261025/VERIFICATION.md)
+do not imply a full regression or production approval. Vault runtime remains
+22,852 bytes with 1,724 bytes of headroom; Access total initcode remains 42,177
+with 6,975 bytes. [Integration and operator boundaries](docs/NATIVE_WEBSITE_PROFILE.md).
 
 Optional [Pyth source compatibility](docs/PYTH_PRICE_SOURCE.md), strict current
 mint/VRF qualification and [frozen audit packaging](docs/FROZEN_REVIEW_BUNDLE.md)
@@ -49,7 +52,7 @@ does not select independent feeds or provide live prices.
 | Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |
 | Production inventory | [Native preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit accounting V3/governance V2, helper bindings, approved pins, actual observations and release blockers |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
-| Security and release | [Latest internal review](reports/architecture-pruning-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
+| Security and release | [Latest internal review](reports/auditability-refactor-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 

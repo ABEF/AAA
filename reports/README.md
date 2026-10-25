@@ -1,5 +1,14 @@
 # Verification evidence
 
+Current source organization: [auditability refactor review](auditability-refactor-20261025/REVIEW.md),
+[verification](auditability-refactor-20261025/VERIFICATION.md) and
+[compiler comparison](auditability-refactor-20261025/compiler-comparison.md).
+Shared settlement/venue guards, separate converters over a neutral base and
+explicit financial identifiers/phases preserve the existing rights and controls.
+The [preceding architecture pruning](architecture-pruning-20261025/VERIFICATION.md)
+has its own source scope. Historical totals below are not a new full regression,
+service qualification or production approval.
+
 
 Latest residual cleanup: [review](obsolete-code-20261025/REVIEW.md),
 [verification](obsolete-code-20261025/VERIFICATION.md). Unused Registry wrapper

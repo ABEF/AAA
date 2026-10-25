@@ -2,7 +2,7 @@
 pragma solidity 0.8.26;
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
-import {IActivationV3Router} from "../../src/ZZZActivationEntry.sol";
+import {IV3RouteRouter} from "../../src/interfaces/IZZZV3Route.sol";
 
 // Disposable Anvil fixtures. Symbols describe UI scenarios, not public assets.
 contract LocalInputToken is ERC20 {
@@ -51,7 +51,7 @@ contract LocalInputFactory {
         return fee == 500 ? pools[keccak256(abi.encode(a < b ? a : b, a < b ? b : a))] : address(0);
     }
 }
-contract LocalInputRouter is IActivationV3Router {
+contract LocalInputRouter is IV3RouteRouter {
     address public immutable factory;
     constructor(address selected) { require(block.chainid == 31337); factory = selected; }
     function exactInputSingle(ExactInputSingleParams calldata p) external payable returns(uint256 out) {

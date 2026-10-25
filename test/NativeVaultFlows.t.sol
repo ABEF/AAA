@@ -125,7 +125,7 @@ contract NativeVaultFlowsTest is Test {
     function testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper() public {
         uint256 id = _mint(ALICE); _entry(ALICE,id,100 ether,false);
         uint256 shares = vault.sharesOf(id); uint256 bucket = vault.nftBucket(id);
-        assertGt(shares,0); assertTrue(membership.eligible(id)); assertEq(vault.ACCOUNTING_VERSION(),2);
+        assertGt(shares,0); assertTrue(membership.eligible(id)); assertEq(vault.ACCOUNTING_VERSION(),3);
         assertEq(vault.contributionUSD(id),100 ether); assertEq(wrapper.totalSupply(),0);
         (bool available,uint256 beforeValue) = nft.currentLPValue(id); assertTrue(available); assertGe(beforeValue,99 ether);
         _entry(ALICE,id,5 ether,true);

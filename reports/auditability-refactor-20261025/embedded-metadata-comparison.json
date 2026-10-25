@@ -1,0 +1,318 @@
+{
+  "scope": "Read-only explanation of archived compiler creation-data differences; no compiler/test rerun, chain or service operation.",
+  "observed_at_utc": "2026-10-25T20:26:30.497772+00:00",
+  "script_sha256": "91babea6b34b1c0debb255f7fa818c13f3b53b403f529d91af6a0d832fd734b3",
+  "artifact_sha256": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-pruning-20261025\\solidity\\source-build.json": "2d593cb67c834a59f0c6aea4384c365c8d0f7c525a4970962946cd8af24b884a",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\auditability-refactor-20261025\\solidity\\source-build.json": "4e882f8b127dd66fe6fcc0e7cdc55d6f8677de9a5f8039df39ebbb1be18d2fe0"
+  },
+  "comparisons": [
+    {
+      "contract": "ZZZVault",
+      "raw_creation_equal": false,
+      "creation_equal_after_only_known_metadata_mask": true,
+      "bytes_before": 45132,
+      "bytes_after": 45132,
+      "masked_sha256_before": "9fd00e2555e3149b1947b034974303c5e40bd38e05f8ff80b8be1a08f7c54968",
+      "masked_sha256_after": "9fd00e2555e3149b1947b034974303c5e40bd38e05f8ff80b8be1a08f7c54968",
+      "baseline_metadata_regions": [
+        {
+          "offset": 23815,
+          "length": 53,
+          "metadata_sha256": "a71baa6b4c4ddeb6b3ce861255607d505df8b7c5eae79de6a4ca241f1e550994",
+          "known_compiler_origins": [
+            {
+              "campaign": 0,
+              "source": "src/ZZZVault.sol",
+              "contract": "ZZZVault",
+              "kind": "deployedBytecode"
+            }
+          ]
+        },
+        {
+          "offset": 45079,
+          "length": 53,
+          "metadata_sha256": "9b2b6b9006c00c14d8cab164c44cfc2d23a6284b2072efeac5d1b43ab09123b8",
+          "known_compiler_origins": [
+            {
+              "campaign": 0,
+              "source": "src/ZZZMigrationBudget.sol",
+              "contract": "ZZZMigrationBudget",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZMigrationBudget.sol",
+              "contract": "ZZZMigrationBudget",
+              "kind": "deployedBytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZVault.sol",
+              "contract": "ZZZVault",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZMigrationBudget.sol",
+              "contract": "ZZZMigrationBudget",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZMigrationBudget.sol",
+              "contract": "ZZZMigrationBudget",
+              "kind": "deployedBytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZVault.sol",
+              "contract": "ZZZVault",
+              "kind": "bytecode"
+            }
+          ]
+        }
+      ],
+      "candidate_metadata_regions": [
+        {
+          "offset": 23815,
+          "length": 53,
+          "metadata_sha256": "b508541e0cd8e17f9e1071c1d6e7530d226fbb354bc6f774c4d8a1660915a710",
+          "known_compiler_origins": [
+            {
+              "campaign": 1,
+              "source": "src/ZZZVault.sol",
+              "contract": "ZZZVault",
+              "kind": "deployedBytecode"
+            }
+          ]
+        },
+        {
+          "offset": 45079,
+          "length": 53,
+          "metadata_sha256": "9b2b6b9006c00c14d8cab164c44cfc2d23a6284b2072efeac5d1b43ab09123b8",
+          "known_compiler_origins": [
+            {
+              "campaign": 0,
+              "source": "src/ZZZMigrationBudget.sol",
+              "contract": "ZZZMigrationBudget",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZMigrationBudget.sol",
+              "contract": "ZZZMigrationBudget",
+              "kind": "deployedBytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZVault.sol",
+              "contract": "ZZZVault",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZMigrationBudget.sol",
+              "contract": "ZZZMigrationBudget",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZMigrationBudget.sol",
+              "contract": "ZZZMigrationBudget",
+              "kind": "deployedBytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZVault.sol",
+              "contract": "ZZZVault",
+              "kind": "bytecode"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contract": "ZZZMigration",
+      "raw_creation_equal": false,
+      "creation_equal_after_only_known_metadata_mask": true,
+      "bytes_before": 31043,
+      "bytes_after": 31043,
+      "masked_sha256_before": "96db9d2bd666088fc01d2a446e9a44db4d190601ca4973a978620ff9848a70dc",
+      "masked_sha256_after": "96db9d2bd666088fc01d2a446e9a44db4d190601ca4973a978620ff9848a70dc",
+      "baseline_metadata_regions": [
+        {
+          "offset": 22708,
+          "length": 53,
+          "metadata_sha256": "06f030edcde2f4bbde5b4a690cf5158c6d680c9bea55d8a5cccb6630c5b48a98",
+          "known_compiler_origins": [
+            {
+              "campaign": 0,
+              "source": "src/ZZZMigration.sol",
+              "contract": "ZZZMigration",
+              "kind": "deployedBytecode"
+            }
+          ]
+        },
+        {
+          "offset": 30990,
+          "length": 53,
+          "metadata_sha256": "ca0bd7999f9975225a6c9cba1b4f596e48bab76332428a8d7decb8c366e7dd0c",
+          "known_compiler_origins": [
+            {
+              "campaign": 0,
+              "source": "src/ZZZCustodyValidation.sol",
+              "contract": "ZZZCustodyValidation",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZCustodyValidation.sol",
+              "contract": "ZZZCustodyValidation",
+              "kind": "deployedBytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZMigration.sol",
+              "contract": "ZZZMigration",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZCustodyValidation.sol",
+              "contract": "ZZZCustodyValidation",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZCustodyValidation.sol",
+              "contract": "ZZZCustodyValidation",
+              "kind": "deployedBytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZMigration.sol",
+              "contract": "ZZZMigration",
+              "kind": "bytecode"
+            }
+          ]
+        }
+      ],
+      "candidate_metadata_regions": [
+        {
+          "offset": 22708,
+          "length": 53,
+          "metadata_sha256": "817dd7a60e62fb44b5da510dc403dc3c42acb781f38127e7ab7bd852ec4b3e7d",
+          "known_compiler_origins": [
+            {
+              "campaign": 1,
+              "source": "src/ZZZMigration.sol",
+              "contract": "ZZZMigration",
+              "kind": "deployedBytecode"
+            }
+          ]
+        },
+        {
+          "offset": 30990,
+          "length": 53,
+          "metadata_sha256": "ca0bd7999f9975225a6c9cba1b4f596e48bab76332428a8d7decb8c366e7dd0c",
+          "known_compiler_origins": [
+            {
+              "campaign": 0,
+              "source": "src/ZZZCustodyValidation.sol",
+              "contract": "ZZZCustodyValidation",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZCustodyValidation.sol",
+              "contract": "ZZZCustodyValidation",
+              "kind": "deployedBytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZMigration.sol",
+              "contract": "ZZZMigration",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZCustodyValidation.sol",
+              "contract": "ZZZCustodyValidation",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZCustodyValidation.sol",
+              "contract": "ZZZCustodyValidation",
+              "kind": "deployedBytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZMigration.sol",
+              "contract": "ZZZMigration",
+              "kind": "bytecode"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contract": "ZZZCanonicalHandoff",
+      "raw_creation_equal": false,
+      "creation_equal_after_only_known_metadata_mask": false,
+      "bytes_before": 21525,
+      "bytes_after": 21664,
+      "masked_sha256_before": "d44fd5917385cb20d5026e9107f3d9ce201f8429d4ddfc68ea06feac6bdd0e0c",
+      "masked_sha256_after": "ad9734a6955cf2efe0e3fe829e87be54abd2f22087195287e60cf76a73990eaa",
+      "baseline_metadata_regions": [
+        {
+          "offset": 21472,
+          "length": 53,
+          "metadata_sha256": "ebf0fa9309f65f386645074f236cfe43303baeb91393f6f5bae54c6c2b2792c9",
+          "known_compiler_origins": [
+            {
+              "campaign": 0,
+              "source": "src/ZZZCanonicalHandoff.sol",
+              "contract": "ZZZCanonicalHandoff",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 0,
+              "source": "src/ZZZCanonicalHandoff.sol",
+              "contract": "ZZZCanonicalHandoff",
+              "kind": "deployedBytecode"
+            }
+          ]
+        }
+      ],
+      "candidate_metadata_regions": [
+        {
+          "offset": 21611,
+          "length": 53,
+          "metadata_sha256": "c3e279738f23611b3ed2e5cd408ce16045f479ffd9ccb061feceaca5f49edca8",
+          "known_compiler_origins": [
+            {
+              "campaign": 1,
+              "source": "src/ZZZCanonicalHandoff.sol",
+              "contract": "ZZZCanonicalHandoff",
+              "kind": "bytecode"
+            },
+            {
+              "campaign": 1,
+              "source": "src/ZZZCanonicalHandoff.sol",
+              "contract": "ZZZCanonicalHandoff",
+              "kind": "deployedBytecode"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Only complete Solidity CBOR trailers independently extracted from saved compiler objects are masked; positions, lengths and provenance are recorded.",
+    "The first compiler comparison removes terminal CBOR only. Vault/Migration creation each contains a second child metadata region; raw equality must not be claimed.",
+    "Handoff remains different after metadata masking. Named constants changed its generated executable bytes; ABI/storage and static body correspondence alone are not a formal behavior proof.",
+    "No immutable runtime addresses are populated by this comparison and no existing deployment is upgraded."
+  ]
+}

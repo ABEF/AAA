@@ -1,3 +1,36 @@
+## Auditability refactor - 2026-10-25
+
+User authorized four source refactors: private collect/close settlement, shared
+read-only v3 validation, separate LP/royalty converters over neutral abstract
+ZZZRewardConverter, and explicit financial IDs/named handoff phases. Wire types,
+recursive storage, financial order, rights and policies remain unchanged. Struct
+internalType provenance and identical duplicate error ABI entries are explicit.
+Same accounting3/direct governance2/local canonicalV4; no profile relabeling.
+
+Read [review](reports/auditability-refactor-20261025/REVIEW.md),
+[verification](reports/auditability-refactor-20261025/VERIFICATION.md) and compiler
+comparison. 26 distinct selected Solidity methods pass across two fixture scopes;
+two inherited repeats are not added. 20 event-schema methods pass; 131 final
+ABI/AST inputs and 37 normal gates; 44 production hashes match. 31 contracts,
+608 functions and 13 receive hooks. No fresh full regression, actual provider
+qualification or independent audit. Vault 22,852/1,724 margin; Access total 42,177/
+6,975 margin; Liquidity 344 bytes smaller; each converter 122 smaller; Handoff 139
+larger under unchanged settings. RoyaltyFactory 69-byte margin remains tight.
+
+An intermediate private NFT/bucket identifier collision was corrected before
+compilation/execution. Event-recursion/alias failures and the one-byte stale
+test version assertion repair are retained in scoped evidence. No production
+financial defect or new authority was introduced by those corrections.
+
+Maintain sole Todo/features/roadmap/operator/callable reference. Preserve older
+unrelated drafts and existing 8902/Anvil/NFT/LP/balances/journals/dist overlay;
+website native2 remains historical and explicit native3 acceptance is open.
+Anvil-only signing, null public DEPLOYMENT and paused monitoring remain. No
+website source/build/server, service, public transaction, deployment or seal.
+Main only. Feeds/routes/VRF/authorities/OpenSea, actual operating and gas/economic
+qualification and independent audit remain open. Production NOT APPROVED.
+Publication is separate: verify Git and the new receipt; local saves are not push.
+
 ## Architecture pruning publication verified - 2026-10-25
 
 Contract implementation144d3c9 and website memory-onlydbd1018 are pushed onmain;

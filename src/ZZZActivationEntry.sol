@@ -12,33 +12,13 @@ import {ExactToken} from "./libraries/ExactToken.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
 import {ZZZContributionPricing} from "./ZZZContributionPricing.sol";
 import {ZZZV4RouteExecutor} from "./ZZZV4RouteExecutor.sol";
+import {IV3RouteRouter} from "./interfaces/IZZZV3Route.sol";
+import {ZZZV3VenueValidation} from "./libraries/ZZZV3VenueValidation.sol";
 
 interface IActivationVault {
     function activate(uint256, bytes32, uint256, uint256, uint128, uint256) external payable;
     function increase(uint256, uint256, uint256, uint128, uint256) external payable;
 }
-interface IActivationV3Factory { function getPool(address, address, uint24) external view returns (address); }
-interface IActivationV3Pool {
-    function factory() external view returns (address);
-    function token0() external view returns (address);
-    function token1() external view returns (address);
-    function fee() external view returns (uint24);
-}
-/// @dev SwapRouter02's deadline-free single-hop tuple. Entry checks its own deadline.
-interface IActivationV3Router {
-    struct ExactInputSingleParams {
-        address tokenIn;
-        address tokenOut;
-        uint24 fee;
-        address recipient;
-        uint256 amountIn;
-        uint256 amountOutMinimum;
-        uint160 sqrtPriceLimitX96;
-    }
-    function factory() external view returns (address);
-    function exactInputSingle(ExactInputSingleParams calldata) external payable returns (uint256);
-}
-
 /// @notice Atomic owner-funded source conversion into the permanent LP Vault.
 /// The Registry creates this immutable child. No arbitrary executor, recipient,
 /// user-supplied USD value, NFT custody, permit or token rescue path exists.
@@ -164,12 +144,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
             p.reviewHash == bytes32(0) || p.fee >= 1_000_000) revert InvalidConfiguration();
         _pin(p.source, p.sourceCodeHash); _pin(p.output, p.outputCodeHash);
         _pin(p.router, p.routerCodeHash); _pin(p.factory, p.factoryCodeHash); _pin(p.pool, p.poolCodeHash);
-        address a = p.source < p.output ? p.source : p.output;
-        address b = p.source < p.output ? p.output : p.source;
-        if (IActivationV3Router(p.router).factory() != p.factory ||
-            IActivationV3Factory(p.factory).getPool(p.source, p.output, p.fee) != p.pool ||
-            IActivationV3Pool(p.pool).factory() != p.factory || IActivationV3Pool(p.pool).token0() != a ||
-            IActivationV3Pool(p.pool).token1() != b || IActivationV3Pool(p.pool).fee() != p.fee) revert InvalidConfiguration();
+        ZZZV3VenueValidation.validate(p.router, p.factory, p.pool, p.source, p.output, p.fee);
     }
     function _owner(uint256 id) private view returns (address) {
         return IZZZNFT(access.module(Ids.NFT)).ownerOf(id);
@@ -274,7 +249,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
             acquired = _convertV4(request,output,sourceBaseline,outputBaseline);
         } else if (kind == 1) {
             IERC20(source).forceApprove(policy.router, request.amountIn);
-            acquired = IActivationV3Router(policy.router).exactInputSingle(IActivationV3Router.ExactInputSingleParams(
+            acquired = IV3RouteRouter(policy.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(
                 source, output, policy.fee, address(this), request.amountIn, request.minimumOut, 0));
             IERC20(source).forceApprove(policy.router, 0);
             if (acquired < request.minimumOut || IERC20(source).balanceOf(address(this)) != sourceBaseline ||

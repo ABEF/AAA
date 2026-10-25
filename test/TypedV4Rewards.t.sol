@@ -15,6 +15,7 @@ import {BalanceDelta} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
 import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
 import {StateView} from "@uniswap/v4-periphery/src/lens/StateView.sol";
 import {ZZZRoyaltyConverter} from "../src/ZZZRoyaltyConverter.sol";
+import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
 import {ZZZLPRewardConverter} from "../src/ZZZLPRewardConverter.sol";
 import {ZZZV4RouteExecutor} from "../src/ZZZV4RouteExecutor.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
@@ -55,7 +56,7 @@ contract TypedV4RewardsTest is Test {
         if(address(callbackTarget)!=address(0)) {
             bytes memory returned;
             (callbackSucceeded,returned)=address(callbackTarget).call(
-                abi.encodeCall(ZZZRoyaltyConverter.setConversionLossBps,(uint16(1000))));
+                abi.encodeCall(ZZZRewardConverter.setConversionLossBps,(uint16(1000))));
             if(returned.length>=4)callbackError=bytes4(returned);
         }
     }
@@ -218,9 +219,9 @@ contract TypedV4RewardsTest is Test {
         oracle.setTestFeed(address(stable),address(new MockFeed(8,1e8)),3600);
         oracle.setTestFeed(address(wrapper),address(new MockFeed(8,2000e8)),3600);
         ZZZRoyaltyConverter separate=new ZZZRoyaltyConverter(address(access),address(this),address(wrapper));
-        separate.configureWrapper(ZZZRoyaltyConverter.WrapperPolicy(address(wrapper).codehash,address(0),address(0),address(0),0,0,keccak256("wrapper fixture")));
+        separate.configureWrapper(ZZZRewardConverter.WrapperPolicy(address(wrapper).codehash,address(0),address(0),address(0),0,0,keccak256("wrapper fixture")));
         separate.setEnabled(true);ConversionVenue venue=new ConversionVenue(address(stable),wrapper);
-        bytes32 id=separate.addRoute(ZZZRoyaltyConverter.RoutePolicy(address(stable),address(venue),address(venue),address(venue),500,
+        bytes32 id=separate.addRoute(ZZZRewardConverter.RoutePolicy(address(stable),address(venue),address(venue),address(venue),500,
             address(stable).codehash,address(venue).codehash,address(venue).codehash,address(venue).codehash,keccak256("v3 fixture")));
         assertEq(separate.routeKind(id),1);assertEq(separate.route(id).source,address(stable));
         stable.mint(address(this),300e6);stable.approve(address(separate),300e6);vm.deal(address(wrapper),1 ether);

@@ -1,0 +1,16 @@
+{
+  "scope": "New nested-source regressions against unchanged top-level-only generator, before fix",
+  "expected_failure": true,
+  "exit_code": 1,
+  "methods": [
+    "tests_python.test_event_schema.EventSchemaTests.test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics",
+    "tests_python.test_event_schema.EventSchemaTests.test_source_schema_rejects_layout_collisions_in_nested_base_sources"
+  ],
+  "generator_sha256": "09f3f6dd07ca092d0672b2c4e316ff89ba64df63f186f26b06c6a8e7d329b51c",
+  "test_source_sha256": "0d24c8e7969d678bcd86884adba0a378f92f27beef52f75c4358fc163b7aaf12",
+  "actual_failure_modes": [
+    "Missing nested Converted topic",
+    "Nested conflicting indexed layout was not rejected"
+  ],
+  "log_sha256": "3607e2010e4688999a5e377e3588a0cb6b03332fa95ba668a90431f55156acbd"
+}

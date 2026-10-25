@@ -1,0 +1,78 @@
+{
+  "scope": "Complete affected event-schema regression module after recursive breadth-first POSIX-path discovery; no broad Python/Solidity rerun",
+  "exit_code": 0,
+  "test_method_count": 20,
+  "methods": [
+    "test_buyback_operating_limit_stop_and_reopen_are_observable",
+    "test_dual_price_and_factual_contribution_events_are_exactly_decodable",
+    "test_dynamic_metadata_and_obsolete_power_logs_remain_raw",
+    "test_equal_abi_alias_keeps_first_canonical_field_names",
+    "test_erc4906_metadata_events_have_unindexed_data_arguments",
+    "test_finalized_traits_decode_narrow_integer_fields",
+    "test_future_request_policy_changes_retain_old_and_new_values",
+    "test_generated_artifact_matches_current_contract_sources",
+    "test_historical_catalog_rejects_wrong_topics_and_indexed_collisions",
+    "test_keeper_range_policy_and_orientation_logs_are_exact_and_bounded",
+    "test_lp_and_royalty_claim_logs_preserve_existing_decoder_names",
+    "test_membership_and_royalty_activation_logs_are_distinct",
+    "test_native_and_token_royalty_receipts_include_eligibility",
+    "test_overloaded_asset_admissions_keep_both_distinct_abis",
+    "test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules",
+    "test_same_topic_indexed_layout_conflict_fails_closed",
+    "test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics",
+    "test_source_schema_rejects_layout_collisions_in_nested_base_sources",
+    "test_topic_collision_with_different_types_or_signature_fails_closed",
+    "test_vrf_configuration_and_ordered_request_logs"
+  ],
+  "stored_descriptor_count": 135,
+  "generated_descriptor_count": 135,
+  "historical_descriptor_count": 33,
+  "stored_equals_generated": true,
+  "artifact_byte_identical": true,
+  "dropped_topics": [],
+  "new_topics": [],
+  "changed_descriptors": [],
+  "source_sha256": {
+    "scripts/generate_event_schema.py": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+    "tests_python/test_event_schema.py": "0d24c8e7969d678bcd86884adba0a378f92f27beef52f75c4358fc163b7aaf12",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "indexer/event_schema.json": "7be74762f4d65c2073c79355f0bba5c7f46f23c457ec2e7addf8ef7f61433187",
+    "indexer/historical_event_schema.json": "2ae2effbe5c009eb71c942ed76b2bb4f876650bc913d876fb3a324efc3dd96ad"
+  },
+  "log_sha256": "375f1eeab0c47b3a650107839c00708a18f566a7d3a098d3914cd6fbc52454c7",
+  "prior_attempt": "Plain recursive WindowsPath ordering found canonical alias-field rename; fixed and failure retained in event-schema-tests-attempt1.*. Two new regressions first reproduced failures under original nonrecursive generator; not counted as passes.",
+  "qualification": "Source-schema compatibility only; no deployed indexer, service or marketplace qualification.",
+  "deterministic_precedence": [
+    "Prior top-level source declarations retain first canonical decoder field names.",
+    "Nested source files are then visited by relative path depth and POSIX spelling, consistently across Windows/Unix.",
+    "Identical ABI aliases deduplicate; any incompatible indexed layout fails closed.",
+    "Historical descriptors are merged with topic/signature/layout validation; current canonical field names are not rewritten."
+  ],
+  "attempt_outcomes": [
+    {
+      "name": "original nonrecursive generator",
+      "source_sha256": "09f3f6dd07ca092d0672b2c4e316ff89ba64df63f186f26b06c6a8e7d329b51c",
+      "preimage": "event-generator-before-recursive.py.txt",
+      "failed_methods": {
+        "test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics": "Missing nested Converted topic raised KeyError.",
+        "test_source_schema_rejects_layout_collisions_in_nested_base_sources": "Nested indexed-layout collision was not inspected, so expected ValueError was absent."
+      }
+    },
+    {
+      "name": "first recursive path-sort attempt",
+      "source_sha256": "f6f03d42cdd1f9e1065f3e2c17bc33e8ee06445dbe3f99173d1e5d76db0dc5f7",
+      "failed_methods": {
+        "test_generated_artifact_matches_current_contract_sources": "RouteEnabled descriptor id changed to routeId.",
+        "test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics": "Nested Shared alias changed prior canonical field names."
+      },
+      "preimage": "event-generator-recursive-attempt1.py.txt"
+    },
+    {
+      "name": "final breadth-first POSIX ordering",
+      "source_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "passed_distinct_methods": 20,
+      "failed_methods": {}
+    }
+  ],
+  "distinct_count_rule": "20 distinct methods in final affected module, including2new regressions. Negative controls and repeated attempts are not additional passed coverage."
+}

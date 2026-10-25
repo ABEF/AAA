@@ -1,5 +1,21 @@
 # PoPL operator manual
 
+## Auditability refactor - 2026-10-25
+
+This [implementation refactor](../reports/auditability-refactor-20261025/REVIEW.md)
+adds no new operating call, authority or configuration. Use the concrete
+`ZZZLPRewardConverter` and `ZZZRoyaltyConverter` addresses as before; their
+abstract `ZZZRewardConverter` base is not a deployment target and does not merge
+their ledgers. Solidity integrations constructing policy structs now name the
+neutral base; external ABI tuple fields and function inputs remain unchanged.
+
+Handoff `phase()` still returns 0..8 in the existing order: idle, exporting,
+imported awaiting backing, retired, importing, active replacement, aborting,
+cancelled import and settling. Named private constants improve review but add
+no setter or new transition. The [callable reference](CONTRACT_FUNCTIONS.md)
+and [existing handoff procedure](CANONICAL_HANDOFF.md) remain authoritative.
+Never substitute new runtime pins into an existing deployment merely because
+wire types match. Capture and qualify the actual reviewed deployment's code.
 
 ## One fixed ZZZ and current setup order - 2026-10-25
 

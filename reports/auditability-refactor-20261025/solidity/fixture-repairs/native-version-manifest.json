@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-10-25T20:29:52.753304+00:00",
+  "source_commit": "ba91651805051a974070b8a07543fa18d20d3551",
+  "file": "test/NativeVaultFlows.t.sol",
+  "reason": "Preexisting native activation/growth fixture asserted accounting2 after the current Position3 version change; correct only the expected version to3. Behavior/backing assertions stay unchanged.",
+  "before_sha256": "c28e5509e4e1da7fbbfb6cebe42730972ee510635d39827d3933e099daca772b",
+  "after_sha256": "f9b8c654be473f417231453646099dace85765212055d5a55d38455aaaa0be88",
+  "changed_byte": 7949,
+  "old": "assertEq(vault.ACCOUNTING_VERSION(),2)",
+  "new": "assertEq(vault.ACCOUNTING_VERSION(),3)",
+  "archive": "reports/auditability-refactor-20261025/solidity/fixture-repairs/NativeVaultFlows.t.sol.before-version3.txt",
+  "prior25_omitted_method": {
+    "source": "test/NativeVaultFlows.t.sol",
+    "contract": "NativeVaultFlowsTest",
+    "function": "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper",
+    "ast_id": 149807,
+    "start": 7611,
+    "length": 999,
+    "original_sha256": "c1b48f9941d69dd314668d35057c90dadfc76e8ea66a350e9565d1f5326738c5"
+  },
+  "retained_functions_and_helpers_unchanged": 15,
+  "prior25_selected_body_changed": false,
+  "production_sources_unchanged": true,
+  "production_source_count": 44,
+  "prior25_raw_summary_sha256": "c9817b99411145ead772710e865460c9d93a60a882c4783dc4f6b47193970600",
+  "no_old_journal_or_runtime_upgrade": true
+}

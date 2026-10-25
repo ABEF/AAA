@@ -206,6 +206,7 @@ Custody, ownership and reward accounting.
   - The [residual-code review](reports/obsolete-code-20261025/REVIEW.md) removes unconsumed Registry wrapper records and orphan creator-payment measurement tools, aligns current keeper examples and corrects stale operating/audit requirements. Historical event/journal readers and actual converter wrapper checks remain; no external release gate closes. Use that report for final source scope and verification rather than adding earlier counts.
   - [Day consistency audit](reports/daily-security-20261025/REVIEW.md): one fixed ZZZ now binds source, native admission, immutable Buyback and normal exit; the old buyback retarget setter is removed. Registry admission prevents mismatched native identity. This is fresh-deployment source only; 28 distinct selected behaviors across recorded fixture scopes, 35 indexer methods and 36 normal gates are source-scoped, not external qualification.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
+  - [Auditability refactor](reports/auditability-refactor-20261025/REVIEW.md) and [verification](reports/auditability-refactor-20261025/VERIFICATION.md): shared private settlement, read-only v3 identity checks, separate converters over a neutral abstract base, named phases and explicit private NFT/bucket identifiers. No new authority, economic policy or deployment profile. Compiler equivalence and affected execution retain exact scopes; actual services and independent audit remain open.
 
   </details>
 
@@ -1060,4 +1061,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `c98ebbcb9ae4afc3e69b28e05fe6bbee6493e6058d0298ded03d03937cc45385`.
+Snapshot SHA-256: `f8765b2250a17e3e2191c776a2a109241f3ad71be92209c610a2cb649431a788`.

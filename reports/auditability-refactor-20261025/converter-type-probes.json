@@ -1,0 +1,40 @@
+{
+  "kind": "Retrospective record of already-executed Solidity0.8.26 ABI-only probes; no compiler rerun by this record",
+  "compiler_path": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/toolchain-0.8.26/solc.exe",
+  "tiny_probe_source_sha256": "924a9477dc776713c38125fc5b16bf24dd1000a38905a4bd831039e3ddd32d6b",
+  "tiny_probe_payload_sha256": "8ea72d60649491bddf6fa1a5dfd55aace13864a447e75f3c3d4e7af1b7b8ae8f",
+  "tiny_probe_result": "Expected TypeError: inherited Policy cannot be constructed through Child.Policy. This motivated neutral-base source type names.",
+  "project_probes": [
+    {
+      "scope": "Six refactored production source inputs and imported dependencies, ABI only",
+      "result": "Passed without compiler errors; no size/bytecode/behavior coverage",
+      "explicit_inputs": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZRoyaltyConverter.sol",
+        "src/ZZZLPRewardConverter.sol",
+        "src/base/ZZZRewardConverter.sol",
+        "src/libraries/ZZZV3VenueValidation.sol",
+        "src/interfaces/IZZZV3Route.sol"
+      ]
+    },
+    {
+      "scope": "Eight affected test-source inputs and imported dependencies, ABI only, first attempt",
+      "result": "TypeError: static inherited setConversionLossBps reference through ZZZRoyaltyConverter; fixed to ZZZRewardConverter. No test executed."
+    },
+    {
+      "scope": "Same eight test inputs after source type-name fix, ABI only",
+      "result": "Passed without compiler errors; no EVM test, size or bytecode check",
+      "explicit_inputs": [
+        "test/AtomicActivationIntegration.t.sol",
+        "test/ContributionEntryPriceSecurity.t.sol",
+        "test/local/LocalInputFixtures.sol",
+        "test/RoyaltyConversion.t.sol",
+        "test/LPRewardConversion.t.sol",
+        "test/TypedV4Rewards.t.sol",
+        "test/CanonicalHandoff.t.sol",
+        "test/V3VenueValidation.t.sol"
+      ]
+    }
+  ],
+  "archive_limit": "Probe console results were not archived as complete compiler output/input files at execution time. Hashes here cover the deterministic tiny probe only; do not infer frozen imported-source coverage. Final root compilation/tests supersede these preliminary type probes. The Royalty constructor input label was subsequently restored from royalties to receiver without another probe."
+}

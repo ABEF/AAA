@@ -52,12 +52,25 @@ contract NativeAssetFoundationTest is Test {
     bytes32 private poolId;
     bool private rejectETH;
     bool private tryReenter;
+    address private tokenRecipientAfterNative;
+    bool private coreCreditRejectedDuringForward;
 
     receive() external payable {
         require(!rejectETH, "reject ETH");
         if (tryReenter) {
             (bool ok,) = address(manager).call(abi.encodeWithSignature("collect(bytes32,uint256,uint256)", poolId, 1, block.timestamp));
             require(!ok, "reentry succeeded");
+        }
+        if (tokenRecipientAfterNative != address(0)) {
+            // TEST ONLY: the fake core credits only its recorded Positions.
+            // Even that expected sender must be disarmed before forwarding.
+            vm.prank(address(positions));
+            (bool accepted,) = address(core).call(abi.encodeCall(core.positionCredit,
+                (address(0), address(manager), uint256(1))));
+            coreCreditRejectedDuringForward = !accepted;
+            // MockAccess deliberately permits this callback mutation. Production
+            // bindings cannot change; this detects accidental recipient caching.
+            access.bind(Ids.VAULT, tokenRecipientAfterNative);
         }
     }
     function setUp() public {
@@ -158,6 +171,37 @@ contract NativeAssetFoundationTest is Test {
         rejectETH = false; tryReenter = true;
         uint256 beforeETH = address(this).balance; manager.collect(poolId, id, block.timestamp + 100);
         assertEq(address(this).balance, beforeETH + 17); assertEq(positions.nativeFees(id), 0);
+    }
+    function _assertTakePairCallbackOrder(bool closing) private {
+        uint256 id = _mint(); positions.fees(id, 17, 29);
+        uint128 liquidity = positions.getPositionLiquidity(id);
+        uint256 expected0; uint256 expected1;
+        if (closing) (expected0, expected1) = manager.amounts(id);
+        expected0 += 17; expected1 += 29;
+        new BoundaryForce{value: 123}(payable(address(manager))); token.mint(address(manager), 40);
+        address recipient = address(0xBEEF);
+        uint256 beforeETH = address(this).balance;
+        uint256 beforeToken = token.balanceOf(address(this));
+        uint256 beforeRecipient = token.balanceOf(recipient);
+        tokenRecipientAfterNative = recipient;
+        if (closing) manager.close(poolId, id, block.timestamp + 100);
+        else manager.collect(poolId, id, block.timestamp + 100);
+        assertTrue(coreCreditRejectedDuringForward);
+        assertEq(address(this).balance, beforeETH + expected0);
+        assertEq(token.balanceOf(address(this)), beforeToken);
+        assertEq(token.balanceOf(recipient), beforeRecipient + expected1);
+        assertEq(address(manager).balance, 123); assertEq(token.balanceOf(address(manager)), 40);
+        assertEq(access.module(Ids.VAULT), recipient);
+        if (closing) {
+            assertEq(positions.getPositionLiquidity(id), 0);
+            vm.expectRevert(); positions.ownerOf(id);
+        } else assertEq(positions.getPositionLiquidity(id), liquidity);
+    }
+    function testNativeCollectDisarmsCreditAndReadsTokenRecipientAfterNativeCallback() public {
+        _assertTakePairCallbackOrder(false);
+    }
+    function testNativeCloseDisarmsCreditAndReadsTokenRecipientAfterNativeCallback() public {
+        _assertTakePairCallbackOrder(true);
     }
     function testNativeRetainedPositionValueRevertsInsteadOfSubsidizingLaterLP() public {
         positions.retain(true);

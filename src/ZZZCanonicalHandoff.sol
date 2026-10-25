@@ -11,9 +11,10 @@ interface ICanonicalController is IZZZAccess {
     function bootstrap() external view returns (address);
     function preparationHash() external view returns (bytes32);
     function preparationReadyDestination() external view returns (bool);
-    function preparationNotice() external view returns (uint256,address,bytes32,bytes32);
+    function preparationNotice() external view returns (uint256, address, bytes32, bytes32);
     function canonicalTransition(uint8 state, bool settling, bool clearPreparation) external;
 }
+
 interface ICanonicalHelpers {
     function canonicalModule() external view returns (address);
     function royaltyRewards() external view returns (address);
@@ -28,6 +29,28 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
     bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4");
+    // Numeric values are wire-compatible; coordinator phases and Access states
+    // are separate state machines. Constants add no public getter or storage.
+    uint8 private constant PHASE_IDLE = 0;
+    uint8 private constant PHASE_EXPORTING = 1;
+    uint8 private constant PHASE_IMPORTED_AWAITING_BACKING = 2;
+    uint8 private constant PHASE_RETIRED = 3;
+    uint8 private constant PHASE_IMPORTING = 4;
+    uint8 private constant PHASE_ACTIVE_REPLACEMENT = 5;
+    uint8 private constant PHASE_ABORTING = 6;
+    uint8 private constant PHASE_CANCELLED_IMPORT = 7;
+    uint8 private constant PHASE_SETTLING = 8;
+    uint8 private constant STATE_OPERATING = 0;
+    uint8 private constant STATE_FROZEN = 1;
+    uint8 private constant STATE_IMPORTING = 2;
+    uint8 private constant STATE_RETIRED = 3;
+    uint8 private constant STATE_CANCELLED = 4;
+    uint8 private constant DOMAIN_NFT = 0;
+    uint8 private constant DOMAIN_VAULT = 1;
+    uint8 private constant DOMAIN_MEMBERSHIP = 2;
+    uint8 private constant DOMAIN_LP_REWARDS = 3;
+    uint8 private constant DOMAIN_ROYALTIES = 4;
+    uint8 private constant DOMAIN_FEES = 5;
     ICanonicalController public immutable access;
     // 0 idle, 1 frozen/exporting, 2 imported, 3 retired, 4 importing,
     // 5 active replacement, 6 aborting, 7 cancelled replacement, 8 captured/settling.
@@ -59,44 +82,75 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
     event RecordExported(bytes32 indexed handoff, uint8 indexed slot, uint256 indexed row, bytes record);
     event SnapshotCommitted(bytes32 indexed handoff, bytes32 stateRoot);
     event RecordImported(bytes32 indexed handoff, uint8 indexed slot, uint256 indexed row);
-    event BackingTransferred(bytes32 indexed handoff, uint8 indexed slot, uint256 indexed index, address asset, uint256 amount);
+    event BackingTransferred(
+        bytes32 indexed handoff, uint8 indexed slot, uint256 indexed index, address asset, uint256 amount
+    );
     event Retired(bytes32 indexed handoff, address indexed successor, bytes32 stateRoot);
     event Activated(bytes32 indexed handoff, address indexed source, bytes32 stateRoot);
     event AbortStarted(bytes32 indexed handoff);
     event BackingReturned(bytes32 indexed handoff, uint8 indexed slot, uint256 indexed index);
     event Aborted(bytes32 indexed handoff);
 
-    constructor(address controller) { access = ICanonicalController(controller); }
+    constructor(address controller) {
+        access = ICanonicalController(controller);
+    }
     modifier governance() {
         if (msg.sender != access.governance() || !access.isSealed()) revert Unauthorized();
         _;
     }
+
     function moduleAt(uint8 slot) public view returns (address) {
-        if (slot == 0) return access.module(Ids.NFT_CANONICAL);
-        if (slot == 1) return ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule();
-        if (slot == 2) return access.module(Ids.MEMBERSHIP);
-        if (slot == 3) return access.module(Ids.REWARDS);
-        if (slot == 4) return ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards();
-        if (slot == 5) return access.module(Ids.FEES_CANONICAL);
+        if (slot == DOMAIN_NFT) return access.module(Ids.NFT_CANONICAL);
+        if (slot == DOMAIN_VAULT) return ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule();
+        if (slot == DOMAIN_MEMBERSHIP) return access.module(Ids.MEMBERSHIP);
+        if (slot == DOMAIN_LP_REWARDS) return access.module(Ids.REWARDS);
+        if (slot == DOMAIN_ROYALTIES) return ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards();
+        if (slot == DOMAIN_FEES) return access.module(Ids.FEES_CANONICAL);
         revert InvalidState();
     }
+
     function _module(uint8 slot) private view returns (IZZZCanonicalModule) {
         return IZZZCanonicalModule(moduleAt(slot));
     }
+
     function _peer(address controller) private view returns (ZZZCanonicalHandoff) {
         return ZZZCanonicalHandoff(IZZZAccess(controller).canonicalHandoff());
     }
+
     /// @notice Review commitment to the exact destination controller, code,
     /// bound modules and immutable helpers. Review still has to establish that
     /// the selected implementation is safe; a code hash is not a security proof.
     function deploymentCommitment() public view returns (bytes32 result) {
         if (!access.isSealed()) revert InvalidState();
-        result = keccak256(abi.encode(SCHEMA, block.chainid, address(access), address(this),
-            address(access).codehash, address(this).codehash, incomingSource));
-        bytes32[16] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
-            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION,
-            Ids.ORACLE, Ids.POOLS, Ids.CANONICAL,
-            Ids.NFT_CANONICAL, Ids.VAULT_CANONICAL, Ids.FEES_CANONICAL];
+        result = keccak256(
+            abi.encode(
+                SCHEMA,
+                block.chainid,
+                address(access),
+                address(this),
+                address(access).codehash,
+                address(this).codehash,
+                incomingSource
+            )
+        );
+        bytes32[16] memory ids = [
+            Ids.VAULT,
+            Ids.NFT,
+            Ids.LIQUIDITY,
+            Ids.REWARDS,
+            Ids.MEMBERSHIP,
+            Ids.FEES,
+            Ids.STRATEGY,
+            Ids.COMPOUNDER,
+            Ids.BUYBACK,
+            Ids.MIGRATION,
+            Ids.ORACLE,
+            Ids.POOLS,
+            Ids.CANONICAL,
+            Ids.NFT_CANONICAL,
+            Ids.VAULT_CANONICAL,
+            Ids.FEES_CANONICAL
+        ];
         for (uint256 i; i < ids.length; ++i) {
             address target = access.module(ids[i]);
             if (target.code.length == 0) revert InvalidState();
@@ -107,49 +161,73 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
             result = keccak256(abi.encode(result, slot, target, target.codehash));
         }
     }
+
     /// @notice Only an unused, unsealed deployment can become an inert importer.
     /// Its ordinary economic entrypoints remain unavailable until activation.
     function prepareImport(address sourceController) external nonReentrant {
-        if (access.isSealed() || msg.sender != access.bootstrap() || phase != 0 ||
-            sourceController == address(access) || sourceController.code.length == 0 ||
-            !IZZZAccess(sourceController).isSealed()) revert Unauthorized();
+        if (
+            access.isSealed() || msg.sender != access.bootstrap() || phase != PHASE_IDLE
+                || sourceController == address(access) || sourceController.code.length == 0
+                || !IZZZAccess(sourceController).isSealed()
+        ) revert Unauthorized();
         if (IZZZVault(access.module(Ids.VAULT)).canonicalChainId() != block.chainid) revert UnsupportedTransport();
         if (_peer(sourceController).SCHEMA() != SCHEMA) revert UnsupportedTransport();
         incomingSource = sourceController;
-        phase = 4;
-        access.canonicalTransition(2, false, false);
+        phase = PHASE_IMPORTING;
+        access.canonicalTransition(STATE_IMPORTING, false, false);
         emit ImportPrepared(sourceController);
     }
+
     function freeze() external governance nonReentrant {
-        if ((phase != 0 && phase != 5) || !access.preparationActive() || access.canonicalState() != 0 ||
-            !access.preparationReadyDestination())
+        if (
+            (phase != PHASE_IDLE && phase != PHASE_ACTIVE_REPLACEMENT) || !access.preparationActive()
+                || access.canonicalState() != STATE_OPERATING || !access.preparationReadyDestination()
+        ) {
             revert InvalidState();
+        }
         (uint256 chain, address destination, bytes32 deployment,) = access.preparationNotice();
         if (chain != block.chainid) revert UnsupportedTransport();
         ZZZCanonicalHandoff peer = _peer(destination);
-        if (!IZZZAccess(destination).isSealed() || peer.SCHEMA() != SCHEMA || peer.phase() != 4 ||
-            peer.incomingSource() != address(access) || peer.deploymentCommitment() != deployment)
+        if (
+            !IZZZAccess(destination).isSealed() || peer.SCHEMA() != SCHEMA || peer.phase() != PHASE_IMPORTING
+                || peer.incomingSource() != address(access) || peer.deploymentCommitment() != deployment
+        ) {
             revert InvalidState();
-        if (IZZZVault(IZZZAccess(destination).module(Ids.VAULT)).canonicalChainId() != block.chainid)
+        }
+        if (IZZZVault(IZZZAccess(destination).module(Ids.VAULT)).canonicalChainId() != block.chainid) {
             revert UnsupportedTransport();
+        }
         // Every bucket must be parked and have no active custody handoff.
         // Capture enforces that boundary; no retired v3 channel is admitted.
         destinationController = destination;
         destinationDeployment = deployment;
-        handoffId = keccak256(abi.encode(SCHEMA, block.chainid, address(access), address(this),
-            destination, address(peer), access.preparationHash(), deployment));
-        phase = 8;
+        handoffId = keccak256(
+            abi.encode(
+                SCHEMA,
+                block.chainid,
+                address(access),
+                address(this),
+                destination,
+                address(peer),
+                access.preparationHash(),
+                deployment
+            )
+        );
+        phase = PHASE_SETTLING;
         settlementCursor = 0;
         stateRoot = bytes32(0);
         // Establish the guard BEFORE any external balance observation. Capture
         // every module first, then process only those immutable cutoffs.
-        access.canonicalTransition(1, false, false);
-        for (uint8 slot; slot < SLOTS; ++slot) _module(slot).canonicalCapture();
+        access.canonicalTransition(STATE_FROZEN, false, false);
+        for (uint8 slot; slot < SLOTS; ++slot) {
+            _module(slot).canonicalCapture();
+        }
         for (uint8 slot; slot < SLOTS; ++slot) {
             recordCount[slot] = _module(slot).canonicalCount();
             assetCount[slot] = _module(slot).canonicalAssetCount();
-            if (recordCount[slot] == 0 || assetCount[slot] > 256)
+            if (recordCount[slot] == 0 || assetCount[slot] > 256) {
                 revert InvalidState();
+            }
             exportCursor[slot] = 0;
             exportRoot[slot] = bytes32(0);
             for (uint256 index; index < assetCount[slot]; ++index) {
@@ -160,22 +238,25 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
         peer.bindFrozen(handoffId);
         emit Frozen(handoffId, destination);
     }
+
     /// @notice Process each captured domain exactly once in fixed order. No
     /// export, funding or activation is possible until all six have settled.
     /// Cutoffs were captured atomically at freeze; later receipts stay outside
     /// this snapshot even if the operator stops between settlement calls.
     function settle(uint8 slot) external nonReentrant {
-        if (phase != 8 || slot != settlementCursor || slot >= SLOTS) revert InvalidState();
-        access.canonicalTransition(1, true, false);
+        if (phase != PHASE_SETTLING || slot != settlementCursor || slot >= SLOTS) revert InvalidState();
+        access.canonicalTransition(STATE_FROZEN, true, false);
         _module(slot).canonicalSettle();
-        access.canonicalTransition(1, false, false);
+        access.canonicalTransition(STATE_FROZEN, false, false);
         settlementCursor = slot + 1;
-        if (settlementCursor == SLOTS) phase = 1;
+        if (settlementCursor == SLOTS) phase = PHASE_EXPORTING;
         emit DomainSettled(handoffId, slot);
     }
+
     function bindFrozen(bytes32 id) external {
-        if (phase != 4 || msg.sender != address(_peer(incomingSource)) || handoffId != bytes32(0))
+        if (phase != PHASE_IMPORTING || msg.sender != address(_peer(incomingSource)) || handoffId != bytes32(0)) {
             revert Unauthorized();
+        }
         handoffId = id;
         ZZZCanonicalHandoff source = ZZZCanonicalHandoff(msg.sender);
         if (source.handoffId() != id || source.destinationController() != address(access)) revert InvalidState();
@@ -184,12 +265,16 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
             assetCount[slot] = source.assetCount(slot);
         }
     }
+
     function _next(bytes32 previous, uint8 slot, uint256 row, bytes memory record) private view returns (bytes32) {
         return keccak256(abi.encode(handoffId, slot, row, previous, keccak256(record)));
     }
+
     function exportRows(uint8 slot, uint256 count) external nonReentrant {
-        if (phase != 1 || slot >= SLOTS || count == 0 || count > MAX_ROWS ||
-            exportCursor[slot] + count > recordCount[slot]) revert InvalidState();
+        if (
+            phase != PHASE_EXPORTING || slot >= SLOTS || count == 0 || count > MAX_ROWS
+                || exportCursor[slot] + count > recordCount[slot]
+        ) revert InvalidState();
         uint256 end = exportCursor[slot] + count;
         for (uint256 row = exportCursor[slot]; row < end; ++row) {
             bytes memory record = _module(slot).canonicalExport(row);
@@ -198,18 +283,24 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
         }
         exportCursor[slot] = end;
         bool complete = true;
-        for (uint8 i; i < SLOTS; ++i) if (exportCursor[i] != recordCount[i]) complete = false;
+        for (uint8 i; i < SLOTS; ++i) {
+            if (exportCursor[i] != recordCount[i]) complete = false;
+        }
         if (complete) {
             stateRoot = keccak256(abi.encode(handoffId, recordCount, assetCount, exportRoot));
             emit SnapshotCommitted(handoffId, stateRoot);
         }
     }
+
     function importRows(uint8 slot, bytes[] calldata records) external nonReentrant {
-        if (phase != 4 || slot >= SLOTS || records.length == 0 || records.length > MAX_ROWS ||
-            importCursor[slot] + records.length > recordCount[slot]) revert InvalidState();
+        if (
+            phase != PHASE_IMPORTING || slot >= SLOTS || records.length == 0 || records.length > MAX_ROWS
+                || importCursor[slot] + records.length > recordCount[slot]
+        ) revert InvalidState();
         ZZZCanonicalHandoff source = _peer(incomingSource);
-        if (source.phase() != 1 || source.stateRoot() == bytes32(0) || source.handoffId() != handoffId)
+        if (source.phase() != PHASE_EXPORTING || source.stateRoot() == bytes32(0) || source.handoffId() != handoffId) {
             revert InvalidState();
+        }
         IZZZCanonicalModule sourceModule = IZZZCanonicalModule(source.moduleAt(slot));
         for (uint256 i; i < records.length; ++i) {
             uint256 row = importCursor[slot]++;
@@ -219,26 +310,36 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
             emit RecordImported(handoffId, slot, row);
         }
     }
+
     function completeImport() external nonReentrant {
-        if (phase != 4) revert InvalidState();
+        if (phase != PHASE_IMPORTING) revert InvalidState();
         ZZZCanonicalHandoff source = _peer(incomingSource);
         for (uint8 slot; slot < SLOTS; ++slot) {
-            if (importCursor[slot] != recordCount[slot] || importRoot[slot] != source.exportRoot(slot) ||
-                _module(slot).canonicalCount() != recordCount[slot] ||
-                _module(slot).canonicalAssetCount() != assetCount[slot]) revert InvalidRecord();
+            if (
+                importCursor[slot] != recordCount[slot] || importRoot[slot] != source.exportRoot(slot)
+                    || _module(slot).canonicalCount() != recordCount[slot]
+                    || _module(slot).canonicalAssetCount() != assetCount[slot]
+            ) revert InvalidRecord();
         }
         stateRoot = keccak256(abi.encode(handoffId, recordCount, assetCount, importRoot));
-        if (source.phase() != 1 || stateRoot == bytes32(0) || stateRoot != source.stateRoot()) revert InvalidRecord();
+        if (source.phase() != PHASE_EXPORTING || stateRoot == bytes32(0) || stateRoot != source.stateRoot()) {
+            revert InvalidRecord();
+        }
         importComplete = true;
-        phase = 2;
+        phase = PHASE_IMPORTED_AWAITING_BACKING;
     }
+
     function _balance(address asset, address owner) private view returns (uint256) {
         return asset == address(0) ? owner.balance : IERC20(asset).balanceOf(owner);
     }
+
     function fund(uint8 slot, uint256 index) external nonReentrant {
-        if (phase != 1 || slot >= SLOTS || index >= assetCount[slot] || funded[slot][index]) revert InvalidState();
+        if (phase != PHASE_EXPORTING || slot >= SLOTS || index >= assetCount[slot] || funded[slot][index]) {
+            revert InvalidState();
+        }
         ZZZCanonicalHandoff peer = _peer(destinationController);
-        if (peer.phase() != 2 || peer.stateRoot() != stateRoot || stateRoot == bytes32(0)) revert InvalidState();
+        if (peer.phase() != PHASE_IMPORTED_AWAITING_BACKING || peer.stateRoot() != stateRoot || stateRoot == bytes32(0))
+        revert InvalidState();
         (address asset, uint256 amount) = _module(slot).canonicalBacking(index);
         IZZZCanonicalModule destination = IZZZCanonicalModule(peer.moduleAt(slot));
         (address otherAsset, uint256 otherAmount) = destination.canonicalBacking(index);
@@ -250,66 +351,90 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
         peer.acceptFunding(slot, index);
         emit BackingTransferred(handoffId, slot, index, asset, amount);
     }
+
     function acceptFunding(uint8 slot, uint256 index) external nonReentrant {
         ZZZCanonicalHandoff source = _peer(incomingSource);
-        if (msg.sender != address(source) || phase != 2 || slot >= SLOTS || index >= assetCount[slot] ||
-            incomingFunded[slot][index] || !source.funded(slot,index)) revert Unauthorized();
+        if (
+            msg.sender != address(source) || phase != PHASE_IMPORTED_AWAITING_BACKING || slot >= SLOTS
+                || index >= assetCount[slot] || incomingFunded[slot][index] || !source.funded(slot, index)
+        ) revert Unauthorized();
         incomingFunded[slot][index] = true;
         _module(slot).canonicalAccept(index, source.moduleAt(slot));
     }
+
     function _allFunded() private view {
         for (uint8 slot; slot < SLOTS; ++slot) {
-            for (uint256 index; index < assetCount[slot]; ++index)
+            for (uint256 index; index < assetCount[slot]; ++index) {
                 if (!funded[slot][index]) revert InvalidBacking();
+            }
         }
     }
+
     function commit() external governance nonReentrant {
-        if (phase != 1 || stateRoot == bytes32(0)) revert InvalidState();
+        if (phase != PHASE_EXPORTING || stateRoot == bytes32(0)) revert InvalidState();
         ZZZCanonicalHandoff peer = _peer(destinationController);
-        if (peer.phase() != 2 || peer.stateRoot() != stateRoot ||
-            peer.deploymentCommitment() != destinationDeployment) revert InvalidState();
+        if (
+            peer.phase() != PHASE_IMPORTED_AWAITING_BACKING || peer.stateRoot() != stateRoot
+                || peer.deploymentCommitment() != destinationDeployment
+        ) revert InvalidState();
         _allFunded();
         // Both transitions are atomic on this chain. A failed readiness or
         // backing check rolls retirement back; no competing successor is added.
-        phase = 3;
-        access.canonicalTransition(3, false, false);
+        phase = PHASE_RETIRED;
+        access.canonicalTransition(STATE_RETIRED, false, false);
         ICanonicalHelpers(access.module(Ids.NFT)).canonicalRetire();
         peer.activate();
         emit Retired(handoffId, destinationController, stateRoot);
     }
+
     function activate() external nonReentrant {
         ZZZCanonicalHandoff source = _peer(incomingSource);
-        if (msg.sender != address(source) || phase != 2 || source.phase() != 3 ||
-            source.destinationController() != address(access) || source.stateRoot() != stateRoot)
+        if (
+            msg.sender != address(source) || phase != PHASE_IMPORTED_AWAITING_BACKING || source.phase() != PHASE_RETIRED
+                || source.destinationController() != address(access) || source.stateRoot() != stateRoot
+        ) {
             revert Unauthorized();
+        }
         for (uint8 slot; slot < SLOTS; ++slot) {
-            for (uint256 index; index < assetCount[slot]; ++index)
+            for (uint256 index; index < assetCount[slot]; ++index) {
                 if (!incomingFunded[slot][index]) revert InvalidBacking();
+            }
             _module(slot).canonicalValidate();
         }
-        for (uint8 slot; slot < SLOTS; ++slot) _module(slot).canonicalActivate();
-        phase = 5;
-        access.canonicalTransition(0, false, true);
+        for (uint8 slot; slot < SLOTS; ++slot) {
+            _module(slot).canonicalActivate();
+        }
+        phase = PHASE_ACTIVE_REPLACEMENT;
+        access.canonicalTransition(STATE_OPERATING, false, true);
         emit Activated(handoffId, incomingSource, stateRoot);
     }
+
     function abort() external governance nonReentrant {
-        if (phase != 1 && phase != 8) revert InvalidState();
-        phase = 6;
+        if (phase != PHASE_EXPORTING && phase != PHASE_SETTLING) revert InvalidState();
+        phase = PHASE_ABORTING;
         _peer(destinationController).cancelImport();
         emit AbortStarted(handoffId);
     }
+
     function cancelImport() external nonReentrant {
         ZZZCanonicalHandoff source = _peer(incomingSource);
-        if (msg.sender != address(source) || source.phase() != 6 || (phase != 4 && phase != 2))
+        if (
+            msg.sender != address(source) || source.phase() != PHASE_ABORTING
+                || (phase != PHASE_IMPORTING && phase != PHASE_IMPORTED_AWAITING_BACKING)
+        ) {
             revert Unauthorized();
-        phase = 7;
-        access.canonicalTransition(4, false, false);
+        }
+        phase = PHASE_CANCELLED_IMPORT;
+        access.canonicalTransition(STATE_CANCELLED, false, false);
     }
+
     function returnFunds(uint8 slot, uint256 index) external nonReentrant {
-        if (phase != 6 || slot >= SLOTS || index >= assetCount[slot] ||
-            !funded[slot][index] || returned[slot][index]) revert InvalidState();
+        if (
+            phase != PHASE_ABORTING || slot >= SLOTS || index >= assetCount[slot] || !funded[slot][index]
+                || returned[slot][index]
+        ) revert InvalidState();
         ZZZCanonicalHandoff peer = _peer(destinationController);
-        if (peer.phase() != 7) revert InvalidState();
+        if (peer.phase() != PHASE_CANCELLED_IMPORT) revert InvalidState();
         (address asset, uint256 amount) = _module(slot).canonicalBacking(index);
         returned[slot][index] = true;
         uint256 beforeBalance = _balance(asset, moduleAt(slot));
@@ -318,22 +443,29 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
         _module(slot).canonicalRestore(index, peer.moduleAt(slot));
         emit BackingReturned(handoffId, slot, index);
     }
+
     function returnFunding(uint8 slot, uint256 index) external nonReentrant {
         ZZZCanonicalHandoff source = _peer(incomingSource);
-        if (msg.sender != address(source) || phase != 7 || source.phase() != 6 ||
-            !incomingFunded[slot][index] || !source.returned(slot,index)) revert Unauthorized();
+        if (
+            msg.sender != address(source) || phase != PHASE_CANCELLED_IMPORT || source.phase() != PHASE_ABORTING
+                || !incomingFunded[slot][index] || !source.returned(slot, index)
+        ) revert Unauthorized();
         incomingFunded[slot][index] = false;
         _module(slot).canonicalRelease(index, source.moduleAt(slot));
     }
+
     function finishAbort() external governance nonReentrant {
-        if (phase != 6 || _peer(destinationController).phase() != 7) revert InvalidState();
+        if (phase != PHASE_ABORTING || _peer(destinationController).phase() != PHASE_CANCELLED_IMPORT) {
+            revert InvalidState();
+        }
         for (uint8 slot; slot < SLOTS; ++slot) {
-            for (uint256 index; index < assetCount[slot]; ++index)
+            for (uint256 index; index < assetCount[slot]; ++index) {
                 if (funded[slot][index] && !returned[slot][index]) revert InvalidBacking();
+            }
             _module(slot).canonicalValidate();
         }
-        phase = incomingSource == address(0) ? 0 : 5;
-        access.canonicalTransition(0, false, true);
+        phase = incomingSource == address(0) ? PHASE_IDLE : PHASE_ACTIVE_REPLACEMENT;
+        access.canonicalTransition(STATE_OPERATING, false, true);
         emit Aborted(handoffId);
     }
 }

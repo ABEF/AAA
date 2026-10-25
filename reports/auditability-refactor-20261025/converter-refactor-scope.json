@@ -1,0 +1,21 @@
+{
+  "kind": "Implementation snapshot recorded after final constructor-label fix; no deployment/test authority",
+  "baseline_commit": "ba91651805051a974070b8a07543fa18d20d3551",
+  "changes": [
+    "Shared abstract converter guards; separate LP/royalty fixed-ledger wrappers and storage",
+    "Shared internal v3 identity check preserving runtime-pin positions and short-circuit read order",
+    "Neutral v3 interfaces and necessary qualified Solidity source-type references",
+    "Two new unexecuted validator tests: matching endpoint orders and all six poisoned-later-read mismatch stages"
+  ],
+  "abi_note": "External tuples/selectors/constructor input labels preserved in intent; internalType qualifiers intentionally change to neutralbase. Final ABI/storage/object comparison required.",
+  "source_sha256": {
+    "src/ZZZActivationEntry.sol": "dc3472b8d198246f3b0f7c0f8ad07945d149a2035a12a415e3c1cff6e1af584a",
+    "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+    "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "src/libraries/ZZZV3VenueValidation.sol": "e484b43b45a133859d3664e8de78b9c8ed8b6316a7c036a7c548a148f92f635c",
+    "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+    "test/V3VenueValidation.t.sol": "85d8113160bf77a065ac87700fc57b54521a817179314a8540c496202f98edc0"
+  },
+  "no_new_evm_test_or_build_executed": true
+}

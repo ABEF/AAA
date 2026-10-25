@@ -10,7 +10,8 @@ import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
-import {ZZZActivationEntry, IActivationV3Router} from "../src/ZZZActivationEntry.sol";
+import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
+import {IV3RouteRouter} from "../src/interfaces/IZZZV3Route.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {PooledVaultFixture, VaultLiquidityMock} from "./VaultAccounting.t.sol";
@@ -19,7 +20,7 @@ import {EntryFactoryFixture, EntryPoolFixture} from "./helpers/ActivationRouteFi
 /// @dev TEST ONLY: a typed SwapRouter02 boundary with deterministic 6-to-18
 /// decimal output and optional transfer callback. This is not live routing,
 /// executable market pricing or evidence of actual Robinhood liquidity.
-contract AtomicIntegrationRouter is IActivationV3Router {
+contract AtomicIntegrationRouter is IV3RouteRouter {
     address public immutable factory;
     uint256 public outputBps = 9900;
     IERC721 public callbackNFT;
