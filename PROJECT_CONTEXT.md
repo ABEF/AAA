@@ -1,3 +1,28 @@
+## Full-audit publication verified - 2026-10-26
+
+Contract `5b6cf6b` and website memory-only `560b8d6` are pushed on main;
+both exact remote heads verified. Read [publication](reports/full-audit-20261025/PUBLICATION.md),
+[review](reports/full-audit-20261025/REVIEW.md) and
+[verification](reports/full-audit-20261025/VERIFICATION.md). Three backend
+composition defects fixed;11scoped Python methods and one EVM gascase pass.
+Fresh399flag manual Slither review/47bindings passes internalcoverage; accepted
+custody/token/gas risks stay open.44production Solidity sources unchanged.
+Solc86output successful; Forge later hostsignaturecache failure preserved.
+37normal object lengths match;265AST changedtest passes. No full regression,
+realservice/greenCI/independentaudit approval. Earlier staticstale FAIL historical.
+
+Current website native2reader and oldexampleUSDC/USDG/99%copy still need explicit
+current3/ETHfixedZZZ/98%alignment. Actualfeeds/routes/VRF/authorities/OpenSea/burn/
+targetgas/operating qualification and independent audit remain open; unknown
+newcurrencies atretired royaltyreceiver unsupported. Production NOT APPROVED.
+
+Mainonly;14originaldirtyfiles preserved. Existing8902/Anvil/NFT/LP/balances/
+journals/distoverlay andwebsite source/build/server, signer/services andpaused
+monitor unchanged. Public DEPLOYMENTnull, signingAnvil-only. No publicRPC/
+financialtransaction/deployment/seal/service action. Sourcepublication only;
+this later receipt checkpoint is docs-only. Maintain soleTodo/features/operator/
+roadmap/release/callablereference andbothmemories; publication never deploys.
+
 ## Full candidate audit checkpoint - 2026-10-26
 
 Audit started25October; initial main e32e966. Read [review](reports/full-audit-20261025/REVIEW.md),
