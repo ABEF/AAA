@@ -27,6 +27,7 @@ Custody, ownership and reward accounting.
   - Verify chain/product support and the required interface against the exact proposed OpenSea integration. A listing/secondary sale or direct Anvil mint is not primary-mint acceptance.
   - Preserve canonical NFT identity, 1,000 cap, 0.05 ETH recipient, exact rarity draw/VRF, zero LP at mint, mint pause/lifecycle and atomic rollback. Check NFT ownership when the caller is a marketplace intermediary; review any adapter/core change before sealing.
   - Rehearse a supported marketplace mint, payment, receiver callback/rejection, reveal and pause/restart; record receipts and exact verified collection URL. Keep production website mint preparation disabled.
+  - Official OpenSea Robinhood chain support is distinct from custom primary-mint/SeaDrop compatibility. [Current research](reports/real-service-readiness-20261025/RESEARCH.md) leaves actual product/contract/caller/recipient/royalty and random-draw integration unqualified; no marketplace mint authority or mint adapter was silently added.
 
   </details>
 
@@ -153,6 +154,7 @@ Custody, ownership and reward accounting.
   - Broader native redesign design-audit findings are explicit in docs/NATIVE_ETH_ARCHITECTURE.md: zero/unset identities; native indices and existing credits; historical native compound/dust and33-slot loops; two-stage canonical funding/abort; nonduplicated receiver protection; transitive wrapper independence; per-epoch schema/backend/price/trace profiles; and native recipient callbacks. These are implementation/verification blockers, not closed by the current WETH tests.
   - [Native V2 implementation and scoped evidence](reports/native-eth-port/VERIFICATION.md): exact payable ingress, native indices with converted credits, 33-asset historical reserves, distinct receiver protection, two-stage canonical funding/abort and forced-ETH exclusion. Do not combine old WETH modules/epochs with V2 or reset existing local journals. Same-actual-pair fee-tier moves remain supported; atomic ETH/WETH conversion needs a reviewed explicit boundary and currently fails closed.
   - [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) is implemented as schema-5 inventory and read-only same-block observations. Complete the actual pinned deployment, route/feed/service and independent review records; implementing a checker does not qualify its inputs or authorize release.
+  - [Vault headroom](reports/native-readiness-20261025/vault/VERIFICATION.md): three private refactors preserve ABI/storage/call order and leave313 runtime bytes.37normal object gates and12scoped cases pass; actual cold activation11,510,987 remains under12M. This is limited room, not gas-optimality, full regression or deployment approval.
 
   </details>
 
@@ -335,6 +337,7 @@ The data and services behind the app.
   - NFT card totals now combine individual LP, equal collective and royalties; they exclude gross pool income and require complete same-snapshot priced components. Saved demo 24h net history remains unavailable. [Scoped evidence](reports/topup-and-reward-review/VERIFICATION.md) does not qualify live ingestion or prices.
   - The [NFT calculation audit](reports/topup-and-reward-review/REWARD_CALCULATION.md) traces individual LP + equal collective + royalties, distinguishes earned from unpaid totals and guards invalid aggregates. Six focused display cases and 37 affected client cases pass; real ingestion/pricing qualification remains open.
   - [Scoped outage regression](reports/comprehensive-improvement-20261025/VERIFICATION.md) prevents archive outages from erasing history. Source-currency rewards and conversions/claims remain distinct; complete actual historical ingestion and honest current-price availability still require qualification.
+  - [Read-integrity fixes](reports/native-readiness-20261025/REVIEW.md) reject missing native claim rows rather than presenting a partial sum; per-NFT history now uses the existing complete-currency/current-price/period arithmetic validator. Failed history remains unavailable without discarding valid LP. Synthetic parser/actual API DTO browser evidence does not qualify actual ingestion or feed services.
 
   </details>
 
@@ -359,6 +362,7 @@ The data and services behind the app.
   - Decision 2026-10-20: the dedicated 10/25/100-user capacity campaign is [deferred](TODO.md#task-capacity-campaign). Keep basic overload safety, bounded independent workers, safe recovery and qualification of configured hosting/RPC limits before real funds. Capacity stays unverified; the disposable shared signer is not a production service.
   - Native V2 API and keeper configurations require explicit accounting_version2, reviewed runtimes and deployment identity; legacy predecessor profiles remain explicit. Qualify the website native valuation profile, complete production inventory and provider traces before activation. Do not reinterpret old state journals or change Anvil-only signing.
   - Shared read-only RPC refuses all redirects, including same-host; only explicitly configured reviewed endpoints may be used. Bounded failover, chain recheck, response/work limits and sanitized failure reporting remain. Qualify final provider URLs/proxy/auth behavior explicitly; other historical standalone transports are separate.
+  - Use the stricter [RPC qualification procedure](docs/RPC_PREPARATION_QUALIFICATION.md): timeouts/rate limits/ambiguous errors do not prove unknown-hash rejection; the opt-in preparation profile requires reviewed genesis/runtime and a real discarded Approval(0) log witness. Keep basic public-read observations, actual preparation capability and independent operating approval separate.
 
   </details>
 
@@ -497,6 +501,7 @@ What holders see and use.
   - [Pending nonce diagnosis](reports/browser-wallet/PENDING_NONCE.md): 175 affected cases, two mocked browser scenarios and six actual read-only recovery observations pass. Queued or wallet-changed nonces now stop the wait immediately; journals and local-only signing remain. The actual nonce 35 mint is unmined; controlled queue reconciliation and extension acceptance remain open.
   - [Authorized local mint reconciliation](reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md): exact queued nonce35 mint removed after identity/pool checks; complete stateRoot and both account balances/nonces unchanged.13 focused checks and an isolated browser scenario pass. User MetaMask nonce-history reset, exact saved-journal archival and temporary local-overlay removal remain pending. Public signing/source unchanged.
   - [Reviewed Entry V1](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding) now binds the caller maximum in contract/preparation/trace/inventory. Complete matching native website/wallet and real deployment/provider qualification before public activation/growth; historical clients remain incompatible, no silent fallback.
+  - [Native schema-2 website profile](docs/NATIVE_WEBSITE_PROFILE.md) is implemented locally for accounting2/routing2/pricing2/review1: native-zero pricing, policy/parent/runtime pins, current caller-bound cap and conservative upper-input floor; exact native LP+royalty claims. Both native ledgers are mandatory, and NFT history uses raw/price/period arithmetic validation. Public DEPLOYMENT stays null; shared signer/client/coordinator unchanged and Anvil-only. Actual native extension/chain acceptance, public signing approval and rollout remain open.
 
   </details>
 
@@ -945,9 +950,10 @@ Decisions and rehearsals before real funds.
   - Obtain actual ETH/ZZZ/USDG/USDC source proposals and market references with [Creator tasks / ZZZ team](TODO.md#task-creator-zzz-price), then independently verify them. If two defensible ZZZ sources cannot be qualified, keep ZZZ pricing/contributions unavailable; invent no provider or pool-spot fallback.
   - Retain independently reviewed exact-release/chain/deployment evidence, schema-5 pricing_version 2 observations and current helper/runtime bindings. Internal focused checks do not close real-provider, fork/service, gas/recovery or independent audit gates.
   - Reconcile the contract companion 34-mark maximum with the current 33-currency activation/preflight inventory limit. Keep configurations requiring 34 distinct reviewed currencies unavailable unless a separately reviewed bounded capacity change is implemented and qualified; never truncate historical backing or silently widen budgets.
-  - User decision2026-10-24: intended source disagreement tolerance is3% (300bps). Calibrate actual feed ages and verify the independent default1% execution floor; never average answers or automatically raise a cap to accept a wide quote.
+  - User decision2026-10-24: intended source disagreement tolerance is3% (300bps). Calibrate actual feed ages and verify the independent default2% contribution execution floor; never average answers or automatically raise a cap to accept a wide quote.
   - Run a fresh separate native/accounting2/routing2/pricing2 operating rehearsal. Historical local scaffolds now reject incompatible current artifacts before state/process creation; existing8902, NFTs, LP and journals remain untouched. Qualify actual provider/route gas: the latest [local cold-capacity workload](reports/onchain-safety/VERIFICATION.md) uses11,507,856 gas, leaving492,144 under its unchanged12M gate. Earlier135,373 margin is historical; neither substituted-feed workload qualifies actual providers or all34-mark compositions.
   - Record [dated candidate readings and cost semantics](reports/price-reference-20261025/OBSERVATION.md) separately from configured policy/qualification. Public Chainlink ETH availability and a ZZZ pool-derived estimate do not close either source pair. Review Shared-SVR/product/secondary-proxy common dependencies, feed ages, source/admin upgrades, per-read versus data/RPC/hosting charges and who pays. No source service or production gas price is selected.
+  - [Updated official-source research](reports/real-service-readiness-20261025/RESEARCH.md) does not establish a qualified ZZZ source pair. Current defaults are2% contribution/1% conversion/3% maintenance, gas separate; source disagreement remains3%. Do not substitute shared-upstream proxy pairs, an instantaneous pool price or an invented feed.
 
   </details>
 
@@ -1061,4 +1067,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `ff6ff8cb1ebc4038fa895bcfbaad3901ad32226a50701801abbd47c569ab2edd`.
+Snapshot SHA-256: `5462176e859edf995a3934944fcddab1d13f0dd21f27a76866d7c4d2f664b400`.

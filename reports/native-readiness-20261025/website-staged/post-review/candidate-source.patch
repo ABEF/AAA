@@ -1,0 +1,27 @@
+--- a/deployment-api.js
++++ b/deployment-api.js
+@@ -54,6 +54,7 @@
+   }
+   if(!Array.isArray(m.reward_assets)||!m.reward_assets.length||m.reward_assets.length>(m.schema===2?49:32))fail('Invalid reward inventory');
+   const rewards=new Set();for(const a of m.reward_assets){if(!ADDRESS.test(a.address)||rewards.has(a.address)||!integer(a.decimals,0,36)||! /^(ETH|WETH|ZZZ|USDG|USDC)$/.test(a.symbol)||(a.address===ZERO&&(a.symbol!=='ETH'||a.decimals!==18)))fail('Invalid reward currency');rewards.add(a.address);}
++  if(m.schema===2&&!rewards.has(ZERO))fail('Native reward inventory must include ETH');
+   if(!object(m.limits)||!integer(m.limits.gas,21000,12000000))fail('Invalid gas limit');
+   for(const name of ['gas_price_wei','network_fee_wei','native_value_wei','contribution_usd_18'])if(raw(m.limits[name])===0n)fail('Missing bounded spending policy');
+   if(m.schema===2)validateNativeManifest(m);
+@@ -134,6 +135,7 @@
+         if(!a||seen.has(row.asset)||a.symbol!==row.symbol||a.decimals!==row.decimals)fail('Unreviewed reward currency');seen.add(row.asset);
+         if(row.raw===null){if(row.available!==false)fail('Invalid unavailable balance');}else {if(row.available===false)fail('Unavailable balance contains an amount');raw(row.raw);}
+       }
++      if(this.native&&!seen.has(ZERO))fail('Native ledger omitted ETH; the combined balance is unavailable');
+     }
+     return n;
+   }
+@@ -152,7 +154,7 @@
+         const n=await this.nft(id,owner,controller.signal);
+         try{const earned=await this.request('/v1/nfts/'+id+'/earnings',undefined,controller.signal);
+           if(earned.schema!==1||earned.chain_id!==this.manifest.chain_id||earned.scope!=='nft'||earned.token_id!==id||earned.owner!==owner||earned.provenance?.block_hash!==n.provenance.block_hash)fail('Earnings snapshot differs');
+-          await this.provenance(earned.provenance);n.earnings=earned;
++          this.validateEarnings(earned,'nft');await this.provenance(earned.provenance);n.earnings=earned;
+         }catch{n.earnings={available:false,reason:'Complete earnings at this position snapshot are unavailable.'};}
+         return n;
+       })));

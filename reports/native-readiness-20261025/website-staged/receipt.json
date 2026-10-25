@@ -1,0 +1,60 @@
+{
+  "status": "TESTED_EXTERNAL_CANDIDATE_ONLY_NOT_APPLIED",
+  "automatic_approval": "Website source write rejected because current instructions prohibit source changes; no SITE write retry/workaround or service/build/deployment action followed. Parent must obtain explicit authorization before application.",
+  "combined_distinct_cases": 121,
+  "source_candidate": {
+    "deployment-api.js": {
+      "site_before_sha256": "25966510556adf3824949049010f14ddcc447801804065d242ab738c657c25e0",
+      "staged_sha256": "59bf13c5db0736bc705874a6e50d0a370a4076f517150783ba27e747c17d2834"
+    },
+    "deployment-native.js": {
+      "site_before_sha256": null,
+      "staged_sha256": "79caedbc5ed15c066f9b9944f34b001179c8c6883b05116c84a7f8a1e434e377"
+    },
+    "deployment-view.js": {
+      "site_before_sha256": "0596463f7cb7a0a1bf9f92b3461076eb09cdd507a9908a3f50f4442f4aa115f9",
+      "staged_sha256": "0948b5651d4ab1b4e66edb5aa5b81efc1e8aac4e593430d65ed9fecbdea5bc24"
+    }
+  },
+  "test_counts": {
+    "affected_legacy_api_and_local_coordinator": 84,
+    "native_read_unsigned": 33,
+    "native_UI_policy": 4
+  },
+  "captured_final_test_receipt": "native-final-tests.json",
+  "fixture_sha256": "c30fe3a395b20ab51c53c2439d953a44ab7834de9dd23fafe058e4be2b1a4070",
+  "selector_checks": 31,
+  "module_identity_checks": 4,
+  "shared_boundaries": {
+    "browser-wallet.js": {
+      "site_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+      "staged_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106"
+    },
+    "browser-client.js": {
+      "site_sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+      "staged_sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08"
+    },
+    "deployment-transactions.js": {
+      "site_sha256": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+      "staged_sha256": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6"
+    },
+    "deployment-config.js": {
+      "site_sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "staged_sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2"
+    }
+  },
+  "evidence_sha256": {
+    "candidate-source.patch": "da3e389e41e156669f20a2b4f3545cc938c77ef2d2430a9fd8f4696da061a108",
+    "export-fixtures.py": "ff166c08491695c12bd6beab767a905722db22587e53f86954286a7ea017d1ad",
+    "native-final-tests.json": "7e127d516e14e38d22dbd91f755a81365b3b6839643761da70e803e358171b4a",
+    "native-final-tests.log": "50e56c17a917637567c1d911068c93dc08bc719b99d22067320b444ebe404d6a",
+    "native-final-tests.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-selector-checks.json": "30a8eeaca8641d595e24fea5b18854ed8ec6590f84012d8f5efbe4b3877d4bac",
+    "run-native-final.py": "b264bd01f7af270757bd31d2922b869e2b011692f71e3e878dbfbacb320420b4",
+    "tests/deployment-native-view.test.mjs": "689108eb321527f1ee64a1f30f75859fd26a4412f9cd3f40ab9c21b787860f3c",
+    "tests/deployment-native.test.mjs": "ae8763b51f540db93b8cbdb0b197e9a03ec1620ada672eb5ae871d342b176fbc",
+    "tests/fixtures/deployment-native-api.json": "c30fe3a395b20ab51c53c2439d953a44ab7834de9dd23fafe058e4be2b1a4070",
+    "tests/helpers/deployment-native-fixture.mjs": "53919b843b94486a6ff97ef4b011bc36438c8d37159f0bc6acbc4ce64a54b1c9",
+    "VERIFICATION.md": "5d5bc549b2f213a78245b6564f90c3d941f8526ceb5f2a646dad12070bc38f1d"
+  }
+}

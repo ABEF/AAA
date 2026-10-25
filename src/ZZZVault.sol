@@ -125,6 +125,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         return migrationBudget.valueBucket(bucket, amount0, amount1);
     }
     function _put(uint256 id, bool create, uint128 minimumLiquidity, uint256 deadline) private {
+        ZZZMigrationBudget budget = migrationBudget;
         Position storage p = positions[id];
         (address token0, address token1) = _tokens(id);
         IZZZLiquidity manager = IZZZLiquidity(_moduleLiquidity());
@@ -138,7 +139,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         uint256 spent0;
         uint256 spent1;
         if (create) {
-            (int24 lower, int24 upper, uint160 ref) = migrationBudget.mintTarget(id);
+            (int24 lower, int24 upper, uint160 ref) = budget.mintTarget(id);
             (p.lpTokenId, spent0, spent1) = manager.mint{value: nativeValue}(p.poolId, lower, upper, a0, a1, minimumLiquidity, deadline);
             IPositionManagerMinimal(manager.positionManager()).approve(address(manager), p.lpTokenId);
             p.centerX96 = ref;
@@ -148,9 +149,9 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         }
         ExactAsset.approve(token0, address(manager), 0);
         ExactAsset.approve(token1, address(manager), 0);
-        migrationBudget.assertPut(id, a0, a1, spent0, spent1, before0, before1);
+        budget.assertPut(id, a0, a1, spent0, spent1, before0, before1);
         _idle(id, a0 - spent0, a1 - spent1);
-        migrationBudget.assertDeployed(id);
+        budget.assertDeployed(id);
     }
     /// @notice Paid issuance creates no LP, collective membership or fee entitlement. Proceeds are
     /// forwarded separately and never enter the permanently locked principal ledger.
@@ -319,6 +320,16 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         p.lpTokenId = 0;
         _idle(id, p.idle0 + closed0, p.idle1 + closed1);
     }
+    /// @dev Both balance passes and handoff consolidation keep the same exact
+    /// allowance/reset path. Read the live pool after approval, as at each caller.
+    function _swap(Position storage p,bool direction,address input,uint256 amount,uint256 minimum,uint256 deadline)
+        private returns(uint256 output) {
+        address manager = _moduleLiquidity();
+        ExactAsset.approve(input,manager,amount);
+        output = IZZZLiquidity(manager).swap{value:input == address(0) ? amount : 0}(
+            p.poolId,direction,amount,minimum,deadline);
+        ExactAsset.approve(input,manager,0);
+    }
     function _balanceUsing(uint256 id, uint256 deadline, bool existingRange) private {
         Position storage p = positions[id];
         // A swap changes the LP ratio. Re-plan once from actual post-swap state;
@@ -326,10 +337,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         for (uint256 pass; pass < 2;) {
             (bool zeroForOne, uint256 amountIn, uint256 minimumOut, address input) = migrationBudget.balancePlan(id, existingRange);
             if (amountIn == 0) return;
-            address manager = _moduleLiquidity();
-            ExactAsset.approve(input, manager, amountIn);
-            uint256 amountOut = IZZZLiquidity(manager).swap{value: input == address(0) ? amountIn : 0}(p.poolId, zeroForOne, amountIn, minimumOut, deadline);
-            ExactAsset.approve(input, manager, 0);
+            uint256 amountOut = _swap(p, zeroForOne, input, amountIn, minimumOut, deadline);
             if (zeroForOne) _idle(id, p.idle0 - amountIn, p.idle1 + amountOut);
             else _idle(id, p.idle0 + amountOut, p.idle1 - amountIn);
             unchecked { ++pass; }
@@ -338,11 +346,11 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function _idleValue(uint256 id) private view returns (uint256) {
         return migrationBudget.idleValue(id);
     }
-    function _unwind(uint256 id, uint256 deadline, bool migrating) private {
+    function _unwind(uint256 id, uint256 deadline) private {
         migrationBudget.validateUnwind(id);
         _harvest(id, deadline);
         _pullCompound(id);
-        if (migrating) _migrationCheckpoint(id, 1);
+        _migrationCheckpoint(id, 1);
         _close(id, deadline);
     }
     function _migrationCheckpoint(uint256 id, uint8 phase) private {
@@ -365,7 +373,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         Position storage p = positions[id];
         uint256 oldId = p.lpTokenId;
         _migrationCheckpoint(id, 0);
-        _unwind(id, deadline, true);
+        _unwind(id, deadline);
         _redeploy(id, minimumLiquidity, deadline);
         _migrationCheckpoint(id, 2);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
@@ -376,11 +384,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _deadline(deadline); Position storage p = positions[id];
         ZZZMigrationBudget.HandoffSwap memory plan = migrationBudget.handoffPlan(id,zzz,minimumZZZ);
         if (plan.amount != 0) {
-            address manager = _moduleLiquidity();
-            ExactAsset.approve(plan.input,manager,plan.amount);
-            uint256 out = IZZZLiquidity(manager).swap{value: plan.input == address(0) ? plan.amount : 0}(
-                p.poolId,plan.direction,plan.amount,plan.minimum,deadline);
-            ExactAsset.approve(plan.input,manager,0);
+            uint256 out = _swap(p,plan.direction,plan.input,plan.amount,plan.minimum,deadline);
             if (plan.direction) _idle(id,0,plan.held+out); else _idle(id,plan.held+out,0);
         }
         if ((plan.direction ? p.idle1 : p.idle0) < minimumZZZ) revert Slippage();
@@ -461,7 +465,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             _pullCompound(id);
             _migrationCheckpoint(id, 1);
         }
-        else _unwind(id, deadline, true);
+        else _unwind(id, deadline);
         p.poolId = newPool; // Ordinary local maintenance retains its ordered-pair guard.
         _redeploy(id, minimumLiquidity, deadline);
         _migrationCheckpoint(id, 2);

@@ -1,5 +1,22 @@
 ## Comprehensive review publication verified - 2026-10-25
 
+## Native integration / Vault / RPC handoff - 2026-10-25
+
+Read [current review](../reports/native-readiness-20261025/REVIEW.md),
+[verification](../reports/native-readiness-20261025/VERIFICATION.md) and Git/
+publication receipt before describing what was pushed. Vault private refactors
+preserve ABI/storage and save256 runtime bytes (313margin). Native schema-2
+website reads/unsigned reviewed calldata are locally applied; signer/client/
+coordinator and public null DEPLOYMENT are unchanged. Both native ETH ledger
+rows are mandatory; NFT earnings cannot bypass arithmetic validation.
+
+The existing RPC probe has strict outage classification and explicit discarded
+Approval(0) tracing. Complete actual identity/trace/provider, native chain/wallet,
+feeds/routes/VRF, OpenSea, authority, strategy/gas and operating qualification.
+Keep the independent audit/remediation gate open. Do not reset8902/Anvil/NFT/LP/
+balances/journals or dist repair overlay, restart services/monitoring, deploy or
+enable public signing. Main only; maintain sole Todo/features/operator/memories.
+
 Contract implementation `5790763` and website memory-only `92c090b` are
 pushed on main; remote hashes verified. Read [publication receipt](../reports/comprehensive-improvement-20261025/PUBLICATION.md),
 [findings](../reports/comprehensive-improvement-20261025/REVIEW.md) and

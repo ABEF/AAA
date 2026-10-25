@@ -15,7 +15,8 @@ Do not redo completed behavior or unchanged tests merely to increase a pass coun
 
 The [reviewed Entry V1 implementation](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
 now binds the caller maximum through Entry/Pricing, exact preparation/trace and
-inventory profiles. Qualify the matching native website/wallet profile before
+inventory profiles. The [native website read/unsigned profile](NATIVE_WEBSITE_PROFILE.md)
+now implements that interface locally. Qualify actual native wallets/chain/services before
 public signing; historical clients must reject the new ABI rather than silently
 fall back. Retain old local deployments and journals unchanged. [Latest review](../reports/comprehensive-improvement-20261025/REVIEW.md).
 
@@ -34,7 +35,8 @@ or other different-pair conversion remains unsupported; external custody is a
 distinct trusted workflow, not that algorithm. Retain and qualify same-chain whole-
 collection handoff. It does not solve future-chain or post-halt ownership recovery.
 
-Keep normal runtime/initcode and gas limits. Vault remains close to EIP-170; use the latest exact-source size receipt.
+Keep normal runtime/initcode and gas limits. The [private Vault refactor](../reports/native-readiness-20261025/vault/VERIFICATION.md)
+leaves313 runtime bytes; this remains limited headroom. Use the latest exact-source receipt.
 Any bytecode change needs fresh normal runtime and initcode gates. Review
 complete custody/liability invariants, callbacks and abort/return paths before
 accepting further changes. Immediate governance/external recipients remain trusted.
@@ -52,6 +54,8 @@ Prioritize two genuinely independent USD sources per economic asset. Review
 shared upstreams/proxies, ages, depegs, outage/recovery and cost; neither a pool
 spot estimate nor two proxies for the same provider establishes independence.
 Qualify actual ETH/ZZZ/USDG/USDC routes and complete execution/trace/fee evidence.
+Use the [read-only capability probe](RPC_PREPARATION_QUALIFICATION.md), then real
+deployment-specific traces and operating rehearsals; a basic public-node pass is insufficient.
 Creator-team pricing/token/market answers remain relevant; Pons creator funding
 is optional historical scope for the current hookless pool.
 

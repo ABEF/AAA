@@ -1,5 +1,20 @@
 ## Current feed candidates, costs and dated readings - 2026-10-25
 
+## Service capability and marketplace boundaries - 2026-10-25
+
+Use [RPC preparation qualification](RPC_PREPARATION_QUALIFICATION.md) before
+real deployment-specific rehearsals. The stricter missing-hash classifier and
+actual discarded Approval(0) trace test are implemented; no fixture qualifies
+a provider. [Dated research and observations](../reports/real-service-readiness-20261025/VERIFICATION.md)
+keep network support, ABI compatibility, operating evidence and approval separate.
+
+Current official documentation does not establish a qualified independent ZZZ
+source pair or a supported compatible VRF for this collection. OpenSea Robinhood
+network support alone does not qualify the custom primary mint/SeaDrop path.
+Do not substitute two shared-upstream proxies, remove proof/request guards or
+assume a marketplace product supports this mint. Authorities remain unset at
+the user's request. Continue those external decisions in the sole Todo.
+
 The [saved read-only observation](../reports/price-reference-20261025/OBSERVATION.md)
 records candidate Chainlink ETH/USD and a separately labeled pool-derived ZZZ
 estimate. Neither is configured PoPL two-source consensus. The catalog's Shared
@@ -33,7 +48,7 @@ Solidity, website/service, existing Anvil/journal or monitor change follows.
 
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Current defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their

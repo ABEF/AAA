@@ -1,0 +1,75 @@
+{
+  "observed_at": "2026-10-25T01:18:34.216412+00:00",
+  "type": "official-document research, not on-chain/provider qualification",
+  "baseline_commit": "8cec66c",
+  "sources": [
+    {
+      "url": "https://docs.robinhood.com/chain/connecting/",
+      "claim": "Mainnet4663/testnet46630; archive endpoints recommended for historical reads. Public endpoints explicitly rate-limited and not recommended for production. Provider credentials and plan remain to be selected."
+    },
+    {
+      "url": "https://docs.robinhood.com/chain/oracles-and-price-feeds/",
+      "claim": "Official documentation describes AggregatorV3 crypto feeds and refers users to Chainlink directory; no selected two-source PoPL pairing is established by this page."
+    },
+    {
+      "url": "https://docs.chain.link/vrf/v2-5/supported-networks",
+      "claim": "No Robinhood entry found on the current supported-networks page. This does not prove every independent randomness service is absent."
+    },
+    {
+      "url": "https://docs.chain.link/data-feeds/l2-sequencer-feeds",
+      "claim": "Current address list omits Robinhood and explicitly states no expansion to new networks. A genuine source or independently reviewed no-feed policy remains unresolved."
+    },
+    {
+      "url": "https://docs.chain.link/data-feeds/self-managed-feeds",
+      "claim": "A self-managed feed exposes familiar interfaces but its publication/monitoring/service levels belong to the external operator. Interface/runtime similarity does not prove independent reporting or Chainlink-managed operation."
+    },
+    {
+      "url": "https://docs.robinhood.com/chain/data-streams/",
+      "claim": "Documents a Data Streams verifier on4663. A pull verifier is not a drop-in independently updated AggregatorV3 source; no ZZZ stream or qualified adapter was selected."
+    },
+    {
+      "url": "https://support.opensea.io/en/articles/8867082-which-blockchains-are-compatible-with-opensea",
+      "claim": "Robinhood Chain appears in the official supported-chain list. This is marketplace network support, not acceptance of this custom primary mint."
+    },
+    {
+      "url": "https://docs.opensea.io/docs/seadrop",
+      "claim": "Primary drops use SeaDrop-compatible integration. Current PoPL source lacks mintSeaDrop integration and needs product/contract approval; no adapter or fee/recipient policy is assumed."
+    },
+    {
+      "url": "https://docs.opensea.io/reference/build_drop_mint_transaction",
+      "claim": "Official mint transaction API supports ERC721 SeaDropV1 drops, separately requiring actual drop eligibility/configuration; no custom PoPL drop is deployed or approved."
+    },
+    {
+      "url": "https://d20dao.org/docs/deployments",
+      "claim": "Provider publishes Robinhood deployments, but its distinct SDK/request/proof/admin/recovery semantics remain unapproved. No new runtime observation or audit was performed."
+    },
+    {
+      "url": "https://rh-vrf.com/docs",
+      "claim": "Provider documents thresholdBLS native-only request service and zero-keyHash/group-current semantics; current PoPL requires nonzero lane and original-provider immutable configuration. Claims require independent proof/admin/recovery review, not guard removal."
+    },
+    {
+      "url": "https://eips.ethereum.org/EIPS/eip-1898",
+      "claim": "Unknown blockHash must fail rather than silently resolve latest. A transport timeout alone is not evidence of standards-compliant rejection."
+    },
+    {
+      "url": "https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers",
+      "claim": "callTracer withLog is an explicit option collecting emitted logs. Merely accepting the option on a no-log read does not prove usable event witnesses."
+    }
+  ],
+  "hard_open_inputs": [
+    "two independently justified USD sources per asset, especiallyZZZ",
+    "actual approved VRF/coordinator/proof/key/payment/consumer/subscription/recovery",
+    "OpenSea primary-drop product acceptance and compatible mint path",
+    "reviewed production provider/archive/trace plan and actual service rehearsal",
+    "previously deferred authority wallets remain unset; do not ask the same question again",
+    "content publication and independent retrieval",
+    "independent audit and actual operating approval"
+  ],
+  "not_actions": [
+    "no external messages or provider signup",
+    "no provider/authority decision",
+    "no public transaction/deployment",
+    "no service/monitor change",
+    "no live price or runtime pin supplied"
+  ]
+}

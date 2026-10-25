@@ -3,13 +3,14 @@ from __future__ import annotations
 import itertools
 import http.client
 import json
+import re
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from typing import Any
 from zzz_ops.work_budget import checkpoint, consume, timeout
-from zzz_ops.errors import RpcError, WorkLimit
+from zzz_ops.errors import RpcError, RemoteRPCError, WorkLimit
 
 class WrongChain(RpcError): pass
 
@@ -75,7 +76,15 @@ class Rpc:
             # Do not include URLs, raw transport headers or credentials in error logs.
             code = error.get('code') if isinstance(error,dict) else None
             if type(code) is not int: code = None
-            raise RpcError(f'{method} returned JSON-RPC error {code}')
+            message=error.get('message') if isinstance(error,dict) else None
+            reason='invalid_params' if code == -32602 else 'rate_limited' if code == -32005 else 'unclassified'
+            # Recognize only explicit missing-block responses. A timeout, generic
+            # rejection or unsupported hash-parameter error proves no capability.
+            if code in (-32000,-32001) and isinstance(message,str) and len(message)<=512 and re.fullmatch(
+                    r'(?:header not found|block not found|unknown block|unknown block hash|block hash not found)'
+                    r'(?:[: ]+0x[0-9a-fA-F]{64})?[.!]?',message.strip(),re.I):
+                reason='unavailable_block'
+            raise RemoteRPCError(method,code,reason)
         if 'result' not in body: raise RpcError('Missing JSON-RPC result')
         return body['result']
 

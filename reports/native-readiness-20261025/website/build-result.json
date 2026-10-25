@@ -1,0 +1,56 @@
+{
+  "syntax": [
+    {
+      "file": "deployment-api.js",
+      "exit": 0
+    },
+    {
+      "file": "deployment-native.js",
+      "exit": 0
+    },
+    {
+      "file": "deployment-view.js",
+      "exit": 0
+    },
+    {
+      "file": "tests/deployment-native.test.mjs",
+      "exit": 0
+    },
+    {
+      "file": "tests/deployment-native-view.test.mjs",
+      "exit": 0
+    },
+    {
+      "file": "tests/helpers/deployment-native-fixture.mjs",
+      "exit": 0
+    },
+    {
+      "file": "build.mjs",
+      "exit": 0
+    }
+  ],
+  "asset_check": "Checked 89 unique element IDs, 8 local references, application selectors, and all five routes.\nVerified 2784 self-contained artwork/metadata pairs and image hashes; 1000 inventory entries, at most 4 identical finished looks.",
+  "isolated_build": "Static build complete: 5599 files in dist/. No dependency installation required.",
+  "source_sha256": {
+    "deployment-api.js": "2c71558cc1ef5f2b15157715105afd724ca88a9efc35fad3095255afe920cae2",
+    "deployment-native.js": "79caedbc5ed15c066f9b9944f34b001179c8c6883b05116c84a7f8a1e434e377",
+    "deployment-view.js": "0948b5651d4ab1b4e66edb5aa5b81efc1e8aac4e593430d65ed9fecbdea5bc24",
+    "package.json": "a920b864c339877d7cfc6ada165d2e26069ff908fb4a7726489e5d89e860960d",
+    "build.mjs": "8d7304232b758ef71abb93be9c05a8b95a265207386c20f3f2127498306eb947",
+    "tests/deployment-native.test.mjs": "e67704ccef9cc5d7bdc000e1b81cc44361fd00cad6a6533e666c177f069bb7ca",
+    "tests/deployment-native-view.test.mjs": "689108eb321527f1ee64a1f30f75859fd26a4412f9cd3f40ab9c21b787860f3c",
+    "tests/helpers/deployment-native-fixture.mjs": "53919b843b94486a6ff97ef4b011bc36438c8d37159f0bc6acbc4ce64a54b1c9",
+    "tests/fixtures/deployment-native-api.json": "c30fe3a395b20ab51c53c2439d953a44ab7834de9dd23fafe058e4be2b1a4070"
+  },
+  "protected_sha256": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "browser-client.js": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+    "deployment-transactions.js": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2"
+  },
+  "site_dist_files_preserved": 5598,
+  "site_dist_manifest_sha256": "444fb13043e9f3e608f5ed44d668c724f3685de2277bf6ae8cd38e18c805f430",
+  "build_files": 5599,
+  "public_deployment": null,
+  "services_changed": false
+}

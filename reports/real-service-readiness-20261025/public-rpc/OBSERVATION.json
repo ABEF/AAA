@@ -1,0 +1,35 @@
+{
+  "approval_trace_observed": false,
+  "chain_id": 4663,
+  "decision": "Stopped before preparation-profile execution because independent public explorer corroboration returned HTTP403.",
+  "evidence_hashes": {
+    "blockscout-public-pins-network-retry.json": "7af612d723379e3d5bb84751744a048a4b8d8c28d96efaffb2a65a5a474269f2",
+    "blockscout-public-pins.json": "1e1eb3d90fae6b9e10e7ef83817b5037e30915d5da930521326065a4abca8072"
+  },
+  "independent_genesis_established": false,
+  "independent_runtime_established": false,
+  "intended_profile": "activation_api_v1",
+  "prior_parent_observation": {
+    "file": "public-two-provider-observation.json",
+    "scope": "Parent recorded Pinax keeper_v1 checks only. Not rerun or promoted to activation_api_v1.",
+    "sha256": "4b42d0f63a2dd434d180e3ca29f64a3e484f538c7163f7e85183717240489909"
+  },
+  "probe_address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "production_approved": false,
+  "profile_executed": false,
+  "recorded_at": "2026-10-25T01:40:37.018804+00:00",
+  "request_scope": {
+    "explicit_network_retry_http_status": 403,
+    "initial_transport": "URLError",
+    "no_redirects": true,
+    "public_explorer_gets": 4,
+    "response_byte_limit": 2097152,
+    "timeout_seconds": 8
+  },
+  "schema": 1,
+  "source_hashes": {
+    "keeper\\probe.py": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+    "zzz_ops\\errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops\\rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9"
+  }
+}

@@ -1,0 +1,26 @@
+[profile.default]
+src="empty"
+test="test"
+out="out"
+cache_path="cache"
+evm_version="cancun"
+optimizer=true
+optimizer_runs=1
+optimizer_details={yul=false}
+via_ir=true
+ffi=false
+remappings=[
+"@openzeppelin/contracts/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/",
+"@uniswap/v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+"@uniswap/v4-periphery/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/",
+"v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+"permit2/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/lib/permit2/",
+"solmate/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/lib/solmate/",
+"forge-std/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/",
+]
+[profile.default.fuzz]
+runs=1000
+[profile.default.invariant]
+runs=32
+depth=128
+fail_on_revert=true

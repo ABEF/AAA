@@ -1,3 +1,29 @@
+## Native readiness improvement checkpoint - 2026-10-25
+
+Read [review](reports/native-readiness-20261025/REVIEW.md),
+[scoped verification](reports/native-readiness-20261025/VERIFICATION.md) and Git/
+publication receipt. Vault private refactors save256 runtime bytes:24,263 with
+313margin; exact ABI/normalized storage match.37normal gates/12selected Solidity
+cases pass; cold indexed activation11,510,987 under unchanged12M. No broad full
+regression or gas-optimality claim.
+
+The user explicitly approved applying the tested native website integration
+locally. Separate schema2 read/unsigned profile matches accounting2/routing2/
+pricing2/review1 with parent/runtime/policy/upper-floor checks. Both native ETH
+claim ledgers are required; NFT earnings use full arithmetic validation. Shared
+BrowserWallet/BrowserClient/DeploymentTransactions remain byte-identical and
+Anvil-only, public DEPLOYMENT null. External isolated build only; preserve dist
+overlay,8902/Anvil/NFT/LP/balances/journals and paused monitoring. No server or
+service update, public signing, financial transaction, deployment or sealing.
+
+The user separately approved bounded public read-only RPC probing. Keep actual
+dated results and environment failures distinct from independent provider approval.
+The probe's missing-hash outage false positive is fixed; optional actual Approval0
+trace witnesses remain read-only. Feed/route/VRF/authority/OpenSea/native operating
+rehearsals and independent audit remain open. Production NOT APPROVED. Preserve
+unrelated drafts, main only, sole Todo/features/operator/roadmap and both memories.
+Local application, commits, pushes and static deployment are separate facts.
+
 ## Comprehensive review publication verified - 2026-10-25
 
 Contract implementation `5790763` and website memory-only `92c090b` are

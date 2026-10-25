@@ -1,0 +1,45 @@
+{
+  "scope": "Actual headless DOM/modules, current Python protocol/NFT/preparation DTOs over synthetic dependencies; explicit synthetic inventory/readiness and unavailable optional history; no extension, chain, public network or send",
+  "records": [
+    {
+      "case": "activate_eth",
+      "passed": true,
+      "wallet_methods": [
+        "eth_requestAccounts",
+        "eth_accounts",
+        "eth_accounts"
+      ],
+      "rpc_calls": 96
+    },
+    {
+      "case": "increase_eth",
+      "passed": true,
+      "wallet_methods": [
+        "eth_requestAccounts",
+        "eth_accounts",
+        "eth_accounts"
+      ],
+      "rpc_calls": 83
+    },
+    {
+      "case": "approve_usdg",
+      "passed": true,
+      "wallet_methods": [
+        "eth_requestAccounts",
+        "eth_accounts",
+        "eth_accounts"
+      ],
+      "rpc_calls": 102
+    },
+    {
+      "case": "claim_eth_both",
+      "passed": true,
+      "wallet_methods": [
+        "eth_requestAccounts",
+        "eth_accounts",
+        "eth_accounts"
+      ],
+      "rpc_calls": 76
+    }
+  ]
+}

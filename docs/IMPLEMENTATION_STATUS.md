@@ -1,5 +1,30 @@
 # Feature and evidence reference
 
+## Native integration and operating readiness - 2026-10-25
+
+The [latest review](../reports/native-readiness-20261025/REVIEW.md) and
+[scoped verification](../reports/native-readiness-20261025/VERIFICATION.md) cover:
+
+- A separate, explicit native-V2 website read/unsigned profile now matches
+  pricing2/routing2/review1, native-zero valuation, dual bounds and caller-bound
+  loss calldata. Exact policy/parent/runtime checks reject incompatible profiles.
+  Native claim reads require both ETH ledgers; NFT earnings use the existing raw
+  currency/price/period arithmetic validator. Unknown amounts stay unavailable.
+- Three private Vault refactors preserve ABI/storage and call ordering, saving
+  256 runtime bytes. Runtime24,263 leaves313 bytes; all37 normal object gates
+  and12 selected execution cases pass. Cold activation11,510,987 remains below
+  the unchanged12M gate; no gas-reduction or full-regression claim is made.
+- The existing read-only RPC probe now distinguishes missing-block rejection
+  from outages, and optionally verifies actual discarded Approval(0) tracing.
+  [Operator procedure](RPC_PREPARATION_QUALIFICATION.md) keeps observations
+  separate from provider approval and operating rehearsals.
+
+Website source is updated locally; the isolated build does not touch the existing
+dist overlay or static server. Public DEPLOYMENT remains null; signer/client/
+coordinator remain unchanged and Anvil-only. Real services, native wallet/chain
+acceptance, OpenSea, authorities and independent audit remain open. Production
+NOT APPROVED. Older dated sections retain their original source scope.
+
 ## Reviewed Entry, truthful metadata and resilient history - 2026-10-25
 
 [Review and scope](../reports/comprehensive-improvement-20261025/REVIEW.md) and

@@ -1,0 +1,60 @@
+{
+  "status_at_capture": "PARENT_LOCAL_SOURCE_APPLICATION_OBSERVED_NO_AGENT_SITE_WRITES",
+  "observed_post_review_passes": 119,
+  "counts": {
+    "native_profile_and_API": 39,
+    "UI_policy": 4,
+    "affected_legacy_API_and_wallet_earnings": 76
+  },
+  "prior_121_record": "../native-final-tests.json retains pre-fix source scope; do not present it as final-source121 reruns.",
+  "implementation": {
+    "native_partial_total": "schema2 descriptors include ETH; both native LP/royalty rows required; duplicates already rejected",
+    "portfolio_earnings": "validateEarnings before NFT-card attachment for all profiles; malformed earnings unavailable without discarding confirmed LP"
+  },
+  "diagnostics": "Two new native omission controls failed before their guards. The valid NFT-earnings positive control exposed an address-versus-asset test-fixture field mistake; corrected before final119-pass run. Earlier partial runs are not extra passes.",
+  "source_candidate": {
+    "deployment-api.js": {
+      "staged_sha256": "2c71558cc1ef5f2b15157715105afd724ca88a9efc35fad3095255afe920cae2",
+      "site_at_capture_sha256": "2c71558cc1ef5f2b15157715105afd724ca88a9efc35fad3095255afe920cae2"
+    },
+    "deployment-native.js": {
+      "staged_sha256": "79caedbc5ed15c066f9b9944f34b001179c8c6883b05116c84a7f8a1e434e377",
+      "site_at_capture_sha256": "79caedbc5ed15c066f9b9944f34b001179c8c6883b05116c84a7f8a1e434e377"
+    },
+    "deployment-view.js": {
+      "staged_sha256": "0948b5651d4ab1b4e66edb5aa5b81efc1e8aac4e593430d65ed9fecbdea5bc24",
+      "site_at_capture_sha256": "0948b5651d4ab1b4e66edb5aa5b81efc1e8aac4e593430d65ed9fecbdea5bc24"
+    }
+  },
+  "reused_unchanged_signer_and_coordinator": {
+    "browser-wallet.js": {
+      "site_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+      "staged_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106"
+    },
+    "browser-client.js": {
+      "site_sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+      "staged_sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08"
+    },
+    "deployment-transactions.js": {
+      "site_sha256": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+      "staged_sha256": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6"
+    },
+    "deployment-config.js": {
+      "site_sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "staged_sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2"
+    }
+  },
+  "fixture_sha256": "c30fe3a395b20ab51c53c2439d953a44ab7834de9dd23fafe058e4be2b1a4070",
+  "evidence_sha256": {
+    "candidate-source.patch": "041b6e30b46c630675b4bdeb24c76631d3571548062fc2f612e5cb6a6544ea88",
+    "native-post-review-tests.json": "2dd2a83cdd712f3b7c1a2a3952d08fd63e2a980839e4eabcba17c85bea793be3",
+    "native-post-review-tests.log": "481286844ea26d40b7261c5b997128155cff4a10bca51421184adcf5d1116a3c",
+    "native-post-review-tests.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run-native-post-review.py": "1112a095dca1154377bb73f2d362fce5da5d3f3cc77219c900748cf323772073",
+    "tests/deployment-native.test.mjs": "e67704ccef9cc5d7bdc000e1b81cc44361fd00cad6a6533e666c177f069bb7ca",
+    "tests/wallet-earnings.test.mjs": "aaa13b20a16e04ea001d2c5f81c2a1d4d1c7b1e26280effd82a0623cfed07abc",
+    "VERIFICATION.md": "ceaba45047ad7751476c2d379a2f87cf85e0cfdad4274593bfa3e70e38966355"
+  },
+  "pre_review_api_sha256": "59bf13c5db0736bc705874a6e50d0a370a4076f517150783ba27e747c17d2834",
+  "local_source_matches_final_candidate": true
+}

@@ -24,7 +24,9 @@ Claims contain 1-32 operations, not 32 NFTs times every asset. Each operation
 names an actual decimal-string uint256 token ID, an admitted asset and a strict
 boolean selecting royalties or LP rewards. Duplicate operations are rejected;
 the same NFT/asset in the two different ledgers is valid. Native address zero is
-allowed for royalties only. Every selected NFT must belong to the supplied
+allowed for royalties and, under accounting V2, native LP rewards. The same NFT
+and native asset may select both distinct ledgers in one exact batch. Historical
+profiles do not gain native-LP semantics from a manifest change. Every selected NFT must belong to the supplied
 wallet, and every selected operation must have a positive funded balance.
 Nothing silently drops failing entries or splits an oversized request.
 

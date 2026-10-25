@@ -12,9 +12,10 @@ deployment, sealing or real-fund action is authorized by this record.
 | --- | --- |
 | Native contracts | Actual ETH accounting V2, typed v3/v4 routes, dual-source pricing V2 and reviewed Entry policy V1 are locally implemented. Require exact module/helper/runtime/ABI/configuration inventory; old WETH/local profiles are not interchangeable. |
 | Economic controls | Defaults 2% contribution / 1% conversion / 3% maintenance, gas separate; immediate governance maxima 10%. Reviewed Entry rejects policy above the caller maximum before pulls. Per-operation floors do not bound future price loss or repeated turnover. |
+| Readiness improvements | [Native integration, strict RPC capability checks and Vault headroom](../reports/native-readiness-20261025/VERIFICATION.md): locally verified scopes; actual service/extension qualification remains open. |
 | Latest local review | [Comprehensive improvements](../reports/comprehensive-improvement-20261025/REVIEW.md) and [verification](../reports/comprehensive-improvement-20261025/VERIFICATION.md) record reviewed-cap, indexed-history, metadata, buyback and transport boundaries. Normal size/gas gates and explicit source scope remain mandatory. |
 | Market and services | Selected hookless ETH/ZZZ pool, real input/conversion routes, independent feeds/VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and complete target-chain gas remain unqualified. |
-| Website and wallets | Public simulation/null DEPLOYMENT; shared signer Anvil-only. Native-V2 reviewed Entry browser integration and actual extensions remain open. Preserve historical journals and local deployments. |
+| Website and wallets | Public simulation/null DEPLOYMENT; shared signer Anvil-only. Native-V2 read/unsigned review is implemented locally; actual native chain/extension acceptance, public signing approval and service rollout remain open. Preserve historical journals and local deployments. |
 | Operations and audit | Linux/target-chain recovery rehearsals, frozen-release verification and independent audit/remediation/sign-off remain required. Existing local evidence does not approve services or funds. |
 
 The user-reported [local two-wallet acceptance](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)

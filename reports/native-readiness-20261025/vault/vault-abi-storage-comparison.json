@@ -1,0 +1,2219 @@
+{
+  "abi_equal": true,
+  "normalized_storage_equal": true,
+  "baseline_runtime": 24519,
+  "current_runtime": 24263,
+  "baseline_creation_with_args": 47372,
+  "current_creation_with_args": 47102,
+  "baseline_source_sha256": "ad588c01ba2443b6de5a61f632a47887c64139d7aed0d4ef10bcc15d089bb34f",
+  "current_source_sha256": "4d56bb0d0e2926f13bd9d78cc3a602017bb5f1cf83b396d75ec0515abae37d39",
+  "baseline_normalized_storage": [
+    {
+      "label": "_status",
+      "slot": "0",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    },
+    {
+      "label": "positions",
+      "slot": "1",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => struct Position)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "struct Position",
+          "members": [
+            {
+              "label": "poolId",
+              "slot": "0",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "bytes32",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "lpTokenId",
+              "slot": "1",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "idle0",
+              "slot": "2",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "idle1",
+              "slot": "3",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "depositUSD",
+              "slot": "4",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "centerX96",
+              "slot": "5",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint160",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "lastRebalance",
+              "slot": "5",
+              "offset": 20,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint64",
+                "numberOfBytes": "8"
+              }
+            },
+            {
+              "label": "status",
+              "slot": "5",
+              "offset": 28,
+              "type": {
+                "encoding": "inplace",
+                "label": "enum PositionStatus",
+                "numberOfBytes": "1"
+              }
+            },
+            {
+              "label": "homeChain",
+              "slot": "6",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "homeVault",
+              "slot": "7",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "homeReceiver",
+              "slot": "8",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "homeToken0",
+              "slot": "9",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "homeToken1",
+              "slot": "10",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "locationChain",
+              "slot": "11",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "locationVault",
+              "slot": "12",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            }
+          ],
+          "numberOfBytes": "416"
+        }
+      }
+    },
+    {
+      "label": "minted",
+      "slot": "2",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => bool)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      }
+    },
+    {
+      "label": "nftBucket",
+      "slot": "3",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "sharesOf",
+      "slot": "4",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "contributionUSD",
+      "slot": "5",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "bucketTotalShares",
+      "slot": "6",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "homePoolId",
+      "slot": "7",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => bytes32)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "poolBucket",
+      "slot": "8",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(bytes32 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "buckets",
+      "slot": "9",
+      "offset": 0,
+      "type": {
+        "base": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "encoding": "dynamic_array",
+        "label": "uint256[]",
+        "numberOfBytes": "32"
+      }
+    },
+    {
+      "label": "registeredBucket",
+      "slot": "10",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => bool)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      }
+    },
+    {
+      "label": "totalIdle",
+      "slot": "11",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "nativeReceived",
+      "slot": "12",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    },
+    {
+      "label": "sequence",
+      "slot": "13",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  ],
+  "current_normalized_storage": [
+    {
+      "label": "_status",
+      "slot": "0",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    },
+    {
+      "label": "positions",
+      "slot": "1",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => struct Position)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "struct Position",
+          "members": [
+            {
+              "label": "poolId",
+              "slot": "0",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "bytes32",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "lpTokenId",
+              "slot": "1",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "idle0",
+              "slot": "2",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "idle1",
+              "slot": "3",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "depositUSD",
+              "slot": "4",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "centerX96",
+              "slot": "5",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint160",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "lastRebalance",
+              "slot": "5",
+              "offset": 20,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint64",
+                "numberOfBytes": "8"
+              }
+            },
+            {
+              "label": "status",
+              "slot": "5",
+              "offset": 28,
+              "type": {
+                "encoding": "inplace",
+                "label": "enum PositionStatus",
+                "numberOfBytes": "1"
+              }
+            },
+            {
+              "label": "homeChain",
+              "slot": "6",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "homeVault",
+              "slot": "7",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "homeReceiver",
+              "slot": "8",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "homeToken0",
+              "slot": "9",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "homeToken1",
+              "slot": "10",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            },
+            {
+              "label": "locationChain",
+              "slot": "11",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "locationVault",
+              "slot": "12",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              }
+            }
+          ],
+          "numberOfBytes": "416"
+        }
+      }
+    },
+    {
+      "label": "minted",
+      "slot": "2",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => bool)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      }
+    },
+    {
+      "label": "nftBucket",
+      "slot": "3",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "sharesOf",
+      "slot": "4",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "contributionUSD",
+      "slot": "5",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "bucketTotalShares",
+      "slot": "6",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "homePoolId",
+      "slot": "7",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => bytes32)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "poolBucket",
+      "slot": "8",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(bytes32 => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "buckets",
+      "slot": "9",
+      "offset": 0,
+      "type": {
+        "base": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "encoding": "dynamic_array",
+        "label": "uint256[]",
+        "numberOfBytes": "32"
+      }
+    },
+    {
+      "label": "registeredBucket",
+      "slot": "10",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "label": "mapping(uint256 => bool)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      }
+    },
+    {
+      "label": "totalIdle",
+      "slot": "11",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "label": "nativeReceived",
+      "slot": "12",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    },
+    {
+      "label": "sequence",
+      "slot": "13",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  ],
+  "current_abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "controller",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nftHomeChain",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address payable",
+          "name": "mintRecipient",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "CanonicalLocked",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Expired",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidAmount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidConfiguration",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidState",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NativeTransferFailed",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotReady",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Paused",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Preparing",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "SafeERC20FailedOperation",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Slippage",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Unauthorized",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "UnsupportedToken",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "nftId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "poolId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "name": "Activated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "name": "Compounded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "nftId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "mintPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "DormantMinted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "name": "FeesCollected",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "lpTokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ImportFinalized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "homeChain",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "homeVault",
+          "type": "address"
+        }
+      ],
+      "name": "ImportPending",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "nftId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "name": "LiquidityAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "destinationVault",
+          "type": "address"
+        }
+      ],
+      "name": "LocationConfirmed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "poolId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        }
+      ],
+      "name": "PoolReserved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "handoffId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "name": "PrincipalExited",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "oldLpTokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "PrincipalParked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "lpTokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "deployed",
+          "type": "bool"
+        }
+      ],
+      "name": "PrincipalReturned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "oldLpTokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newLpTokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint160",
+          "name": "centerX96",
+          "type": "uint160"
+        }
+      ],
+      "name": "Rebalanced",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "nftId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bucketId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "netUSD",
+          "type": "uint256"
+        }
+      ],
+      "name": "SharesAdded",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "ACCOUNTING_VERSION",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MAX_BUCKETS",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MINT_PRICE",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "pool",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "minimumLiquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptHandoff",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "access",
+      "outputs": [
+        {
+          "internalType": "contract IZZZAccess",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "poolId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "minimumLiquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "activate",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "bucketAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "bucketCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "bucketTotalShares",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "canonicalBarrier",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "canonicalChainId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "canonicalModule",
+      "outputs": [
+        {
+          "internalType": "contract ZZZVaultCanonical",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "destination",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "canonicalSend",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "kind",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes",
+          "name": "row",
+          "type": "bytes"
+        }
+      ],
+      "name": "canonicalWrite",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "collectFees",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "minimumLiquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "compound",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "zzz",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minimumZZZ",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "consolidateHandoff",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "contributionUSD",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "bucket",
+          "type": "uint256"
+        }
+      ],
+      "name": "group",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lpTokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "idle0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "idle1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "depositUSD",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint160",
+              "name": "centerX96",
+              "type": "uint160"
+            },
+            {
+              "internalType": "uint64",
+              "name": "lastRebalance",
+              "type": "uint64"
+            },
+            {
+              "internalType": "enum PositionStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "homeChain",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "homeVault",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "homeReceiver",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "homeToken0",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "homeToken1",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "locationChain",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "locationVault",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct Position",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "homePoolId",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lpTokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "idle0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "idle1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "depositUSD",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint160",
+              "name": "centerX96",
+              "type": "uint160"
+            },
+            {
+              "internalType": "uint64",
+              "name": "lastRebalance",
+              "type": "uint64"
+            },
+            {
+              "internalType": "enum PositionStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "homeChain",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "homeVault",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "homeReceiver",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "homeToken0",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "homeToken1",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "locationChain",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "locationVault",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct Position",
+          "name": "",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "importPending",
+      "outputs": [],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "minimumLiquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "increase",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "migrationBudget",
+      "outputs": [
+        {
+          "internalType": "contract ZZZMigrationBudget",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "mintDormant",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "mintProceedsRecipient",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "newPool",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint128",
+          "name": "minimumLiquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "movePool",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "nftBucket",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "nftStatus",
+      "outputs": [
+        {
+          "internalType": "enum PositionStatus",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC721Received",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "park",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "poolBucket",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "minimumLiquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "rebalance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "handoffId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "releaseForMigration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pool",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bucket",
+          "type": "uint256"
+        }
+      ],
+      "name": "reservePool",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "newPool",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint128",
+          "name": "minimumLiquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "resume",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "sequence",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "sharesOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "totalIdle",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "notice": "Published HEAD Vault baseline recompiled under the same normal profile with renamed contract/import path for comparison. Exact ABI and normalized storage layout, not a semantic-equivalence proof."
+}

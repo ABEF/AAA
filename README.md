@@ -15,7 +15,11 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Contributions and prices | $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
 | Maintenance and conversion | Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ or explicit raw custody exit. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridging/remote ledgers are deferred. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
-| Release gates | Actual routes/independent feeds/VRF, authorities, native website/OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest improvement review](reports/comprehensive-improvement-20261025/REVIEW.md). |
+| Release gates | Actual routes/independent feeds/VRF, authorities, native website/OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest readiness review](reports/native-readiness-20261025/REVIEW.md). |
+
+The native website read/unsigned profile is implemented locally. Private Vault
+refactors leave313 runtime bytes (up from57), with unchanged ABI/storage and
+normal gates. [Integration and operator boundaries](docs/NATIVE_WEBSITE_PROFILE.md).
 
 Source-scoped local evidence establishes particular behavior, not production
 qualification. Dated [price research](reports/price-reference-20261025/OBSERVATION.md)
@@ -32,7 +36,7 @@ does not select independent feeds or provide live prices.
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
 | Production inventory | [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit pricing V2, 15 helper bindings, approved pins, actual observations and release blockers |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
-| Security and release | [Latest improvement review](reports/comprehensive-improvement-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
+| Security and release | [Latest readiness review](reports/native-readiness-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 

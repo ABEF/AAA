@@ -1,0 +1,74 @@
+{
+  "baseline_commit": "8cec66c",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "scope": "Local implementation, fake-RPC verification and official documentation research. No actual provider probe, private-key access, transaction, deployment, service, Anvil/journal/website/monitor change.",
+  "source_sha256": {
+    "keeper/probe.py": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+    "tests_python/test_keeper_probe.py": "c16c2fc9552d802d164dd7a6a69cff50ce5de8229513c9d3d32d54003ed6b966",
+    "tests_python/test_rpc.py": "c1ad64c0541c14b459748f4940ba5bcae3005463a24fe0fa71bef4a777bca59f",
+    "docs/RPC_PREPARATION_QUALIFICATION.md": "2fe601e9c62e6a7baac340f1eae8b6066644319f72873b37cf6c5ac6a6f04628",
+    "reports/real-service-readiness-20261025/RESEARCH.md": "b840baf3459db1250c615496d73f2bc70bc99dfd3b3d1e164802e84ef655828f"
+  },
+  "baseline_probe_sha256": "fde9ed879569576b58f1a95d14a74866817f7091c00294771de3eb27b7f8cd93",
+  "negative_control": {
+    "test_methods": 1,
+    "expected_failed_subcases": 4,
+    "errors": 0,
+    "baseline": "Original keeper/probe.py loaded in isolation without working-tree reversion.",
+    "log": "probe-false-qualification-original-source.log"
+  },
+  "verification": [
+    {
+      "test_methods": 16,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.469,
+      "log": "verification-initial.log",
+      "scope": "13 probe methods plus new remote-metadata method and two existing sanitization methods; source before final deadline/code-bound/report-label refinement."
+    },
+    {
+      "test_methods": 7,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.312,
+      "log": "verification-runtime-guard.log",
+      "scope": "Only affected preparation/unknown-error cases after refusing trace on unmatched runtime and bounded config read."
+    },
+    {
+      "test_methods": 15,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.485,
+      "log": "verification-final-probe.log",
+      "scope": "Final probe methods, including two new precise deadline/call-budget checks. Shared Rpc/errors source did not change after its three scoped checks."
+    }
+  ],
+  "distinct_methods_passed": 18,
+  "meaningful_effects": [
+    "Transport failures and ambiguous/rate-limit/invalid-parameter remote errors never qualify unknown-block rejection.",
+    "Explicit preparation profile requires reviewed genesis and ERC20 runtime before actual trace simulation.",
+    "Exact same-hash zero-value approve(0) event witness validates callTracer withLog rather than accepting an empty getter trace.",
+    "A failed first reference read no longer hides remaining endpoint observations.",
+    "Strict bounded JSON and input/output separation preserve private config and older evidence on configuration/argument rejection; completed failed observations are saved explicitly, and publication durability errors require inspection.",
+    "100 logical RPC calls enforced; late replies discarded past90s. This is not a hard in-flight transport/process deadline.",
+    "HTTP statuses and sanitized JSON-RPC error codes remain separately labeled."
+  ],
+  "not_qualified": [
+    "actual provider/archive/trace or load/uptime service",
+    "real price pairs or ZZZ independent market data",
+    "VRF proof/admin/funding/recovery",
+    "OpenSea primary mint acceptance",
+    "authority addresses",
+    "public signing or deployment",
+    "independent audit"
+  ],
+  "research": "official-research.json",
+  "earlier_tests_not_rerun": [
+    "full Solidity/build/size/gas",
+    "full backend/keeper regression",
+    "actual provider/fork services",
+    "deferred capacity campaign"
+  ]
+}

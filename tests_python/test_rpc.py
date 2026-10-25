@@ -2,6 +2,7 @@ import io,json,threading,unittest,urllib.error
 from http.server import BaseHTTPRequestHandler,HTTPServer
 from unittest.mock import patch
 from zzz_ops.rpc import Rpc,RpcError
+from zzz_ops.errors import RemoteRPCError
 
 class RpcTests(unittest.TestCase):
     def test_reject_insecure_remote(self):
@@ -82,6 +83,25 @@ class RpcTests(unittest.TestCase):
         with patch.object(rpc._opener,'open',return_value=io.BytesIO(b'{"id":1,"jsonrpc":"2.0","error":{"code":"SECRET"}}')):
             with self.assertRaises(RpcError) as ctx:rpc._post(rpc.active_url,'test',[])
             self.assertNotIn('SECRET',str(ctx.exception))
+    @patch('zzz_ops.rpc.time.sleep')
+    def test_remote_error_metadata_is_narrow_sanitized_and_survives_retry_cause(self,_):
+        cases=[(-32001,'block not found','unavailable_block'),(-32000,'header not found','unavailable_block'),
+            (-32000,'rate limit SECRET','unclassified'),(-32602,'unknown block','invalid_params'),
+            (-32005,'unknown block','rate_limited'),(-32001,'SECRET','unclassified')]
+        for code,message,reason in cases:
+            with self.subTest(code=code,message=message):
+                rpc=Rpc(['https://rpc.invalid/SECRET'],1,retries=2)
+                def reply(request,timeout):
+                    value=json.loads(request.data)
+                    body={'jsonrpc':'2.0','id':value['id']}
+                    if value['method']=='eth_chainId':body['result']='0x1'
+                    else:body['error']={'code':code,'message':message,'data':'SECRET'}
+                    return io.BytesIO(json.dumps(body).encode())
+                with patch.object(rpc._opener,'open',side_effect=reply):
+                    with self.assertRaises(RpcError) as observed:rpc.call('eth_call',[{},'latest'])
+                remote=observed.exception.__cause__;self.assertIsInstance(remote,RemoteRPCError)
+                self.assertEqual((remote.method,remote.code,remote.reason),('eth_call',code,reason))
+                self.assertNotIn('SECRET',str(observed.exception)+str(remote))
     def test_http_error_responses_close_before_preserved_error_and_configured_failover(self):
         for status in (429,500):
             with self.subTest(status=status):

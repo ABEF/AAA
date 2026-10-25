@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 1.25,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\vault-headroom-20261025\\scoped-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "CombinedCapacityGasTest",
+    "--match-test",
+    "^testColdActivationWithEveryHistoricalRewardIndexPopulated",
+    "-vv"
+  ],
+  "cold_activation_gas": 11510987,
+  "unchanged_budget": 12000000,
+  "budget_margin": 489013,
+  "scope": "Same cached test/source/profile, one repeated case only to retain named gas log. Not an additional distinct test and not real maximal-market gas qualification."
+}

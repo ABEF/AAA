@@ -1,0 +1,135 @@
+{
+  "selectors": {
+    "ACCOUNTING_VERSION()": {
+      "observed": "0xebbc42b6",
+      "keccak": "0xebbc42b6"
+    },
+    "PRICING_VERSION()": {
+      "observed": "0x5f9c8132",
+      "keccak": "0x5f9c8132"
+    },
+    "REVIEW_POLICY_VERSION()": {
+      "observed": "0x96b09228",
+      "keccak": "0x96b09228"
+    },
+    "ENTRY_REVIEW_VERSION()": {
+      "observed": "0x49de0529",
+      "keccak": "0x49de0529"
+    },
+    "migrationBudget()": {
+      "observed": "0x7d13e4db",
+      "keccak": "0x7d13e4db"
+    },
+    "contributionPricing()": {
+      "observed": "0x2cf518cc",
+      "keccak": "0x2cf518cc"
+    },
+    "oracle()": {
+      "observed": "0x7dc0d1d0",
+      "keccak": "0x7dc0d1d0"
+    },
+    "vault()": {
+      "observed": "0xfbfa77cf",
+      "keccak": "0xfbfa77cf"
+    },
+    "access()": {
+      "observed": "0x71907f17",
+      "keccak": "0x71907f17"
+    },
+    "registry()": {
+      "observed": "0x7b103999",
+      "keccak": "0x7b103999"
+    },
+    "activationEntry()": {
+      "observed": "0x5dbf78a2",
+      "keccak": "0x5dbf78a2"
+    },
+    "activationAssets()": {
+      "observed": "0x5b703199",
+      "keccak": "0x5b703199"
+    },
+    "MAX_LOSS_BPS()": {
+      "observed": "0xc187241c",
+      "keccak": "0xc187241c"
+    },
+    "contributionLossBps()": {
+      "observed": "0xa7b5810c",
+      "keccak": "0xa7b5810c"
+    },
+    "activePolicy(address)": {
+      "observed": "0x237a06fb",
+      "keccak": "0x237a06fb"
+    },
+    "tokenDecimals(address)": {
+      "observed": "0x8ee573ac",
+      "keccak": "0x8ee573ac"
+    },
+    "priceBounds(address)": {
+      "observed": "0x4cbb3d60",
+      "keccak": "0x4cbb3d60"
+    },
+    "policies(bytes32)": {
+      "observed": "0xddbfd8ef",
+      "keccak": "0xddbfd8ef"
+    },
+    "routeKind(bytes32)": {
+      "observed": "0x2e4c02f3",
+      "keccak": "0x2e4c02f3"
+    },
+    "routeEnabled(bytes32)": {
+      "observed": "0x2e59691a",
+      "keccak": "0x2e59691a"
+    },
+    "active()": {
+      "observed": "0x02fb0c5e",
+      "keccak": "0x02fb0c5e"
+    },
+    "module(bytes32)": {
+      "observed": "0xe8cffd1d",
+      "keccak": "0xe8cffd1d"
+    },
+    "nft()": {
+      "observed": "0x47ccca02",
+      "keccak": "0x47ccca02"
+    },
+    "claimRouter()": {
+      "observed": "0xbc1bc485",
+      "keccak": "0xbc1bc485"
+    },
+    "decimals()": {
+      "observed": "0x313ce567",
+      "keccak": "0x313ce567"
+    },
+    "price(address)": {
+      "observed": "0xaea91078",
+      "keccak": "0xaea91078"
+    },
+    "approve(address,uint256)": {
+      "observed": "0x095ea7b3",
+      "keccak": "0x095ea7b3"
+    },
+    "mintDormant()": {
+      "observed": "0x21bf772d",
+      "keccak": "0x21bf772d"
+    },
+    "claimBatch((uint256,address,bool)[])": {
+      "observed": "0xbbeaec93",
+      "keccak": "0xbbeaec93"
+    },
+    "execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))": {
+      "observed": "0x35b13b87",
+      "keccak": "0x35b13b87"
+    },
+    "executeReviewed((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool),uint16)": {
+      "observed": "0x7d2edfe7",
+      "keccak": "0x7d2edfe7"
+    }
+  },
+  "module_ids": {
+    "ZZZOracle": "0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38",
+    "ZZZPoolRegistry": "0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7",
+    "ZZZVault": "0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968",
+    "ZZZNFT": "0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5"
+  },
+  "all_match": true
+}

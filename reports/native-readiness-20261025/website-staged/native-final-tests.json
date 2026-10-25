@@ -1,0 +1,67 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 0.44,
+  "command": [
+    "C:/Program Files/nodejs/node.exe",
+    "--test",
+    "tests/deployment-transactions.test.mjs",
+    "tests/deployment-native.test.mjs",
+    "tests/deployment-native-view.test.mjs"
+  ],
+  "test_total": 121,
+  "counts": {
+    "affected_legacy_api_and_local_coordinator": 84,
+    "native_read_unsigned": 33,
+    "native_UI_policy": 4
+  },
+  "source_unchanged_during_run": true,
+  "inputs_sha256": {
+    "app.js": "22b60108f08059211d5cca181e87cbfcea4781a60a1aaeb45391d9b3a92d08d3",
+    "artworks.js": "6c6b0d5f5d5cf454c338ddb6930ba9a1d7475042d61a889102922f012ce5c42d",
+    "browser-client.js": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+    "browser-intent.js": "b815deee123120ee5bba839558f3265aacfc54552dc83655df4635bee352ac9b",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-api.js": "59bf13c5db0736bc705874a6e50d0a370a4076f517150783ba27e747c17d2834",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "deployment-native.js": "79caedbc5ed15c066f9b9944f34b001179c8c6883b05116c84a7f8a1e434e377",
+    "deployment-session.js": "c9f193c95c96bbbd865a29760a32b8e418351a8639ed1ae9aa052fb0f4fc6482",
+    "deployment-transactions.js": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+    "deployment-view.js": "0948b5651d4ab1b4e66edb5aa5b81efc1e8aac4e593430d65ed9fecbdea5bc24",
+    "domain.js": "934a69deaf3b4bd20e6d2565b15c84c2d553e4d1fe063a97faf5e681ced00fe1",
+    "local-client.js": "3d93229c7f39be9a6dade9b0937ffec2e98865ddbea89e1aba066543da613c0f",
+    "local-view.js": "3944ccf2006154151d35f528ed1c56f46f83b4a133a664c70a88cab9ed2cfb15",
+    "palette-system.js": "9f0d0ca89cf7c968fc967b372270406504d5d67da8c0fd202466b8ebc8b7add7",
+    "preview-store.js": "b1a248221835231560ca8b2095a99a79e5db0309a737f542075599b6fb497b46",
+    "ui-state.js": "7fa3a79aff22e0bf7f4bc0efd8d621dfd3fe95a141327598379126988d626277",
+    "wallet.js": "d39f97fe2ba6e6bcb989080bab51534f206a2f4b9cc38998312d7bd7df8cf101",
+    "tests/deployment-api.test.mjs": "381d3112ec981669bd9b5eff3cb45d7cb11267113dd4555a4edc975e9c6ea542",
+    "tests/deployment-native-view.test.mjs": "689108eb321527f1ee64a1f30f75859fd26a4412f9cd3f40ab9c21b787860f3c",
+    "tests/deployment-native.test.mjs": "ae8763b51f540db93b8cbdb0b197e9a03ec1620ada672eb5ae871d342b176fbc",
+    "tests/deployment-transactions.test.mjs": "1457af405ddc51070f701979e16936db014fa15474d59ddfad425ccdde37fd62",
+    "tests/helpers/deployment-native-fixture.mjs": "53919b843b94486a6ff97ef4b011bc36438c8d37159f0bc6acbc4ce64a54b1c9",
+    "tests/fixtures/deployment-api.json": "78aba5b8914c896038797cbbe510d47730ce90716820eef32463f7aeb5619f4b",
+    "tests/fixtures/deployment-native-api.json": "c30fe3a395b20ab51c53c2439d953a44ab7834de9dd23fafe058e4be2b1a4070"
+  },
+  "shared_boundaries": {
+    "browser-wallet.js": {
+      "site_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+      "staged_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106"
+    },
+    "browser-client.js": {
+      "site_sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+      "staged_sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08"
+    },
+    "deployment-transactions.js": {
+      "site_sha256": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+      "staged_sha256": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6"
+    },
+    "deployment-config.js": {
+      "site_sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "staged_sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2"
+    }
+  },
+  "fixture_sha256": "c30fe3a395b20ab51c53c2439d953a44ab7834de9dd23fafe058e4be2b1a4070",
+  "stdout_sha256": "50e56c17a917637567c1d911068c93dc08bc719b99d22067320b444ebe404d6a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "qualification": "Isolated EXT copy only; real Python DTO generation over mock RPC/source/venue dependencies, no live services, actual provider independence or public wallet signing."
+}

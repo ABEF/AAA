@@ -1,0 +1,158 @@
+{
+  "chain_id": 4663,
+  "compatibility_checks_passed": false,
+  "created_at": "2026-10-25T01:37:27.068416+00:00",
+  "endpoints": [
+    {
+      "checks": [
+        {
+          "cause_type": "HTTPError",
+          "duration_ms": 47.0,
+          "error_site": "rpc.py:call:110",
+          "error_type": "RpcError",
+          "name": "fresh_head",
+          "ok": false,
+          "transport_status": 403
+        }
+      ],
+      "index": 0,
+      "receipts": []
+    },
+    {
+      "checks": [
+        {
+          "duration_ms": 828.0,
+          "name": "fresh_head",
+          "ok": true,
+          "value": {
+            "hash": "0xe465b0b028775a744a638e10c12e2bb0b3a33b423c470c636f38ce6c4818a859",
+            "number": 97217070,
+            "timestamp": 1792892247
+          }
+        },
+        {
+          "duration_ms": 688.0,
+          "name": "common_block_hash",
+          "ok": true,
+          "value": "0xd52bc241e5c7638c529c80b05658d55349bacd573de354597be015255b38e06b"
+        },
+        {
+          "duration_ms": 703.0,
+          "name": "canonical_hash_eth_call",
+          "ok": true,
+          "value": {
+            "bytes": 32,
+            "sha256": "cdaf72b849dcbb239ffd2d8d69f0d9b4592b26a3140552face0c2347cf6007b4"
+          }
+        },
+        {
+          "duration_ms": 656.0,
+          "name": "canonical_hash_code",
+          "ok": true,
+          "value": {
+            "bytes": 3248,
+            "sha256": "ba6387efba110de98195f5c8db8af998bed9522ce5bb577ac307a7f83d9c0ab2"
+          }
+        },
+        {
+          "duration_ms": 641.0,
+          "name": "canonical_hash_storage",
+          "ok": true,
+          "value": {
+            "bytes": 32,
+            "sha256": "6aed34e6bddff5e1d872b5d7d5698a7b73abd6f3b33402732edc73ab9ffb9c70"
+          }
+        },
+        {
+          "duration_ms": 672.0,
+          "name": "unknown_hash_rejected",
+          "ok": true,
+          "value": true
+        },
+        {
+          "duration_ms": 656.0,
+          "name": "gas_price_wei",
+          "ok": true,
+          "value": 20038000
+        },
+        {
+          "duration_ms": 672.0,
+          "name": "safe_tag",
+          "ok": true,
+          "value": {
+            "hash": "0x4af2de1bc9073f57c269452d68c6d0e79216cc3e3d8018b5223fbbf19999ba4b",
+            "number": 97210717
+          }
+        },
+        {
+          "duration_ms": 687.0,
+          "name": "finalized_tag",
+          "ok": true,
+          "value": {
+            "hash": "0xfcf81417d00879373c1defe464cdb90c588f9481a146dedc9345561e4b21e0b9",
+            "number": 97206520
+          }
+        },
+        {
+          "duration_ms": 5375.0,
+          "name": "ordinary_receipt_samples",
+          "ok": true,
+          "value": 3
+        },
+        {
+          "duration_ms": 656.0,
+          "name": "reference_still_canonical",
+          "ok": true,
+          "value": "0xd52bc241e5c7638c529c80b05658d55349bacd573de354597be015255b38e06b"
+        }
+      ],
+      "index": 1,
+      "receipts": [
+        {
+          "block": 97217058,
+          "effective_gas_price_wei": 20022000,
+          "gasUsedForL1": 476,
+          "gas_times_price_wei": "3787441608000",
+          "gas_used": 189164,
+          "l1Fee": null,
+          "l1GasUsed": null,
+          "status": 1,
+          "transaction": "0x8712105adef22ee5e33415102f1f53bd885fc7fa20b5829fdd02807086b627b2"
+        },
+        {
+          "block": 97217058,
+          "effective_gas_price_wei": 20022000,
+          "gasUsedForL1": 385,
+          "gas_times_price_wei": "2805162288000",
+          "gas_used": 140104,
+          "l1Fee": null,
+          "l1GasUsed": null,
+          "status": 1,
+          "transaction": "0xd3d33693291914995f54569b7563711099039cbd80195485e67c202748e9a0ba"
+        },
+        {
+          "block": 97217058,
+          "effective_gas_price_wei": 20022000,
+          "gasUsedForL1": 146,
+          "gas_times_price_wei": "537230304000",
+          "gas_used": 26832,
+          "l1Fee": null,
+          "l1GasUsed": null,
+          "status": 1,
+          "transaction": "0x030da0706cd17337cf0c6bcd46f238d7d219696c7a1581004a9bff1b2f55f6e7"
+        }
+      ]
+    }
+  ],
+  "probe_address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "probe_calldata": "0x18160ddd",
+  "production_approved": false,
+  "profile": "keeper_v1",
+  "reference_block": {
+    "hash": "0xd52bc241e5c7638c529c80b05658d55349bacd573de354597be015255b38e06b",
+    "number": 97217058,
+    "timestamp": 1792892246
+  },
+  "schema": 2,
+  "scope": "User-authorized point-in-time public reads, keeper_v1 only; no independently reviewed genesis/runtime or approval-trace qualification, no signing or sends"
+}

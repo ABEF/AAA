@@ -1,5 +1,26 @@
 # PoPL operator manual
 
+## Native website profile and service qualification - 2026-10-25
+
+Use the [explicit native website profile](NATIVE_WEBSITE_PROFILE.md) for current
+accounting2/pricing2/routing2/review1 deployments. Never run the old WETH manifest
+against current code or reinterpret existing Anvil journals. The public build
+still has null DEPLOYMENT and nonlocal sends remain disabled. A local source
+update is not a static-server rollout or approval to enable signing.
+
+Before service deployment, run the opt-in [RPC capability procedure](RPC_PREPARATION_QUALIFICATION.md)
+with independently reviewed public genesis/runtime identifiers and private
+endpoint configuration. A timeout is not proof of missing-block rejection. A
+getter accepting withLog is not proof of event traces. Preserve failed reports;
+do not turn an unavailable observation into a provider approval.
+
+The current Vault is a pre-deployment private refactor with identical ABI/storage,
+not an upgrade to an existing address. Rebuild and check normal bytecode gates
+after every source change;313 bytes is still limited room. Update exact artifact
+pins only in an independently reviewed deployment inventory. Current cap defaults
+remain2/1/3%, immediate-governance maxima10%, gas separate. No permissions,
+custody/reward rights, source-chain exit or recovery policy changed.
+
 ## Reviewed contributions and indexer incidents - 2026-10-25
 
 Use [reviewed Entry policy](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)

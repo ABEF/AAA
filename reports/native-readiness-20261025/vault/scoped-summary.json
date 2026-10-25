@@ -1,0 +1,92 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 449.33,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\vault-headroom-20261025\\scoped-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "IntegratedEconomicConservationTest|RebalanceBudgetTest|CustodyHandoffTest|MigrationExecutionBudgetTest|CombinedCapacityGasTest",
+    "--json",
+    "--match-test",
+    "^(testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded|testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor|testActualV4SecondBalancingSwapFailureRollsBackTheFirstSwapAndAllEntitlements|testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted|testRebalanceSnapshotCannotBeReenteredDuringClose|testDonationsAndClaimableFeesCannotPayRebalanceLoss|testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties|testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback|testCompleteRequiresActualLPAndPreservesNFTAndLedgers|testReceiptIncludesOldAndNewDesignatedCompoundWithoutCountingRewardsBuybackOrDonations|testRepeatedMovesStartFreshSnapshotsIncludingAttributedIdle|testColdActivationWithEveryHistoricalRewardIndexPopulated)"
+  ],
+  "cases": [
+    {
+      "suite": "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest",
+      "test": "testColdActivationWithEveryHistoricalRewardIndexPopulated()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "test": "testCompleteRequiresActualLPAndPreservesNFTAndLedgers()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "test": "testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "test": "testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4SecondBalancingSwapFailureRollsBackTheFirstSwapAndAllEntitlements()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+      "test": "testReceiptIncludesOldAndNewDesignatedCompoundWithoutCountingRewardsBuybackOrDonations()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+      "test": "testRepeatedMovesStartFreshSnapshotsIncludingAttributedIdle()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "test": "testDonationsAndClaimableFeesCannotPayRebalanceLoss()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "test": "testRebalanceSnapshotCannotBeReenteredDuringClose()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "test": "testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}
