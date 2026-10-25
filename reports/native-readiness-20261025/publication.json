@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-25T01:47:56.618555+00:00",
+  "branch": "main",
+  "contract_implementation_commit": "89e91a037545182d32515a740f27c05073b9624e",
+  "contract_remote_verified": true,
+  "website_implementation_commit": "94510a61e1265c766921015723997d2551b658d9",
+  "website_remote_verified": true,
+  "contract_source_and_document_scope_sha256": "5294495fa9bdbefe07c240fe70fec748c196603796beb448c0d9aa68c59bbee4",
+  "website_code_locally_applied": true,
+  "website_static_server_updated": false,
+  "existing_dist_preserved": true,
+  "public_deployment": null,
+  "public_signing": "unchanged/Anvil-only",
+  "production_approved": false,
+  "existing_chain_journals_services_monitoring": "preserved/no action"
+}

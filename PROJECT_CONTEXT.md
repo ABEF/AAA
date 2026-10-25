@@ -1,3 +1,23 @@
+## Native readiness publication verified - 2026-10-25
+
+Implementation `89e91a0` (contract/backend) and `94510a6` (website source) are
+pushed on main; remote hashes verified. Read [publication](reports/native-readiness-20261025/PUBLICATION.md),
+[review](reports/native-readiness-20261025/REVIEW.md) and [verification](reports/native-readiness-20261025/VERIFICATION.md).
+Vault24,263/313runtime margin, unchanged ABI/storage;12scoped Solidity,18RPC
+Python,119final affected Node,4isolated browser and37normal object gates retain
+their exact scope. Earlier121JS is pre-review evidence, not added again. No full
+regression, actual native wallet/service approval or independent audit claimed.
+
+Native read/unsigned website source is locally applied and published after user
+approval. Both native ETH ledgers are required; NFT earnings validate arithmetic.
+Actual Pinax11basic reads pass; publicRPC/explorer403 prevent independent-pin/
+preparation-trace qualification. No actual public financial transaction/signing.
+No static server/service/dist/8902/Anvil/NFT/LP/balance/journal/monitor change.
+Signer/client/coordinator remain byte-identical, Anvil-only, public DEPLOYMENT null.
+Feeds/routes/VRF/authorities/OpenSea/native operating rehearsals and independent
+audit remain open. Main only; preserve unrelated drafts and the sole Todo/features/
+operator/roadmap/both memories. Production NOT APPROVED.
+
 ## Native readiness improvement checkpoint - 2026-10-25
 
 Read [review](reports/native-readiness-20261025/REVIEW.md),
