@@ -1,5 +1,12 @@
 # Verification evidence
 
+Current service work: [review](release-services-20261025/REVIEW.md) and
+[verification](release-services-20261025/VERIFICATION.md) cover optional Pyth
+reader, current mint/VRF qualification and frozen-review tooling.17 new Solidity,
+87 distinct gate/package Python methods plus focused reference checks across recorded scopes and38 normal object gates;
+actual services/marketplace/independent audit remain unapproved. Historical
+reports below preserve their original defaults and source scope.
+
 Latest internal audit: [pre-production review](preproduction-audit-20261025/REVIEW.md), [scoped verification](preproduction-audit-20261025/VERIFICATION.md). Keeper budget/preflight fixes, improved composed/invariant evidence and current operator guidance; production NOT APPROVED.
 
 Current inventory tooling: [native preflight verification](native-preflight/VERIFICATION.md) and [internal review](native-preflight/REVIEW.md). These offline/mock checks qualify no real deployment, route, service or independent audit. Earlier contract evidence retains its source scope.

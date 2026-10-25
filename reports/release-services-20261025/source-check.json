@@ -1,0 +1,8 @@
+{
+  "matched_source_evidence_hashes": 79,
+  "unique_paths": 76,
+  "failures": [],
+  "prior_production_sources_changed": [],
+  "runtime_or_network_tests_executed": false,
+  "scope": "Existing scoped receipts, all43 production-source hashes and42 old source bytes vs HEAD; documentation generator recorded separately."
+}

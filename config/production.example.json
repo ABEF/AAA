@@ -742,6 +742,11 @@
       },
       "nft_inventory": {
         "randomness": {
+          "request_profile": "subscription_v25_two_words_v1",
+          "request_selector": "0x9b1c385e",
+          "num_words": 2,
+          "recovery_policy": null,
+          "funding": null,
           "coordinator": null,
           "runtime_hash": null,
           "observed_runtime_hash": null,
@@ -828,6 +833,10 @@
         "opensea": {
           "status": "unqualified",
           "profile": "primary_mint_current_nft",
+          "integration": {
+            "requested_product": "opensea_seadrop_v1",
+            "implementation_profile": "vault_direct_v1"
+          },
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -839,5 +848,6 @@
   ],
   "pricing_version": 2,
   "review_policy_version": 1,
-  "range_policy_version": 1
+  "range_policy_version": 1,
+  "mint_integration_version": 1
 }

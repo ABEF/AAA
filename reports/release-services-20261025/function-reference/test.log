@@ -1,0 +1,19 @@
+Verbatim tool-output transcript of the executed final generator-only test run.
+This file records the existing run; the tests were not rerun to create this log.
+Command: python -X utf8 -m unittest tests_python.test_function_reference -v
+
+test_canonical_nested_tuple_arrays_and_overloads_are_exact (tests_python.test_function_reference.FunctionReferenceTests.test_canonical_nested_tuple_arrays_and_overloads_are_exact) ... ok
+test_check_rejects_missing_input_meaning_even_with_complete_function_notes (tests_python.test_function_reference.FunctionReferenceTests.test_check_rejects_missing_input_meaning_even_with_complete_function_notes) ... ok
+test_compiler_content_settings_size_and_source_escape_are_checked (tests_python.test_function_reference.FunctionReferenceTests.test_compiler_content_settings_size_and_source_escape_are_checked) ... ok
+test_deterministic_generation_and_check_detects_altered_document (tests_python.test_function_reference.FunctionReferenceTests.test_deterministic_generation_and_check_detects_altered_document) ... ok
+test_duplicate_json_nonfinite_unknown_parameter_notes_and_overlapping_notes_reject (tests_python.test_function_reference.FunctionReferenceTests.test_duplicate_json_nonfinite_unknown_parameter_notes_and_overlapping_notes_reject) ... ok
+test_inherited_entries_positions_and_tuple_fields_are_preserved (tests_python.test_function_reference.FunctionReferenceTests.test_inherited_entries_positions_and_tuple_fields_are_preserved) ... ok
+test_invalid_tuple_and_scalar_shapes_are_not_documented_as_valid (tests_python.test_function_reference.FunctionReferenceTests.test_invalid_tuple_and_scalar_shapes_are_not_documented_as_valid) ... ok
+test_removed_callable_and_duplicate_signatures_do_not_silently_pass (tests_python.test_function_reference.FunctionReferenceTests.test_removed_callable_and_duplicate_signatures_do_not_silently_pass) ... ok
+test_source_drift_missing_or_new_source_fails_without_compiling (tests_python.test_function_reference.FunctionReferenceTests.test_source_drift_missing_or_new_source_fails_without_compiling) ... ok
+test_unknown_or_missing_notes_are_explicit_and_not_invented (tests_python.test_function_reference.FunctionReferenceTests.test_unknown_or_missing_notes_are_explicit_and_not_invented) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.224s
+
+OK

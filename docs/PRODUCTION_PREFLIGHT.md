@@ -1,5 +1,19 @@
 # Native V2 production inventory and read-only preflight
 
+## Current mint qualification boundary - 2026-10-25
+
+Current release CLI validation requires **schema5 and mint_integration_version1**.
+Missing/zero/boolean profiles and schema4 are blocked by default. Only explicit
+`--historical-consistency` inspects historical layouts, with current_release_gate
+false and no production qualification. Library-level legacy consistency remains
+available to historical consumers; it must not be used as a release approval.
+
+Current profile1 truthfully blocks OpenSea primary mint because the existing
+direct paid Vault mint cannot implement SeaDrop's recipient/payment interface.
+See [mint/VRF requirements](MINT_INTEGRATION_QUALIFICATION.md) and the
+[scoped verification](../reports/release-services-20261025/vrf-opensea/VERIFICATION.md).
+Its code-owned unsupported state cannot be overridden by manifest evidence.
+
 ## Reviewed Entry policy V1 - 2026-10-25
 
 The current undeployed pricing-V2 candidate uses
@@ -10,7 +24,8 @@ funds move, retaining all final price/LP/policy checks. Legacy execute is disabl
 on the new code; historical pricing-V1/local deployments retain original ABI.
 Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
 and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
-Native-V2 browser integration and actual provider/wallet qualification remain open;
+Native-V2 read/unsigned browser integration is implemented; actual native
+deployment/provider/wallet qualification remains open;
 no existing chain, website build, journal or public signer was upgraded.
 
 

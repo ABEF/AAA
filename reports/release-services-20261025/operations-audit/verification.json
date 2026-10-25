@@ -1,0 +1,91 @@
+{
+  "created_utc": "2026-10-25T02:11:59.609594+00:00",
+  "production_approved": false,
+  "scope": "Offline exporter and verifier only; frozen ac98b5b baseline, not this pass final release",
+  "final_scoped_unittest": {
+    "distinct_methods_passed": 19,
+    "methods": [
+      "test_allowlist_excludes_runtime_secrets_history_and_memories",
+      "test_approval_or_handoff_forgery_is_rejected",
+      "test_callable_reference_consumer_requires_frozen_explanations_and_snapshot",
+      "test_changed_source_without_matching_manifest_fails",
+      "test_credential_bearing_dependency_url_is_not_exported",
+      "test_declared_catalog_and_abi_consumers_require_exact_fixture_inputs",
+      "test_deterministic_frozen_inputs_and_dependency_limitations",
+      "test_duplicate_manifest_keys_and_zip_members_are_rejected",
+      "test_excluded_paths_are_recorded_without_copying_their_bytes",
+      "test_exclusive_atomic_publication_preserves_existing_archive",
+      "test_extra_or_missing_member_fails",
+      "test_gitlink_metadata_cannot_be_omitted",
+      "test_gitlink_pin_is_carried_but_never_claimed_bundled",
+      "test_member_count_and_expanded_size_limits_apply_before_read",
+      "test_missing_or_changed_dependency_pin_is_rejected",
+      "test_rejects_portable_path_ambiguities",
+      "test_requires_exact_commit_before_git_is_read",
+      "test_symlink_compression_and_trailing_payload_are_rejected",
+      "test_verify_requires_trusted_expected_hash"
+    ],
+    "runs": [
+      {
+        "command": "python -X utf8 -m unittest tests_python.test_review_bundle -v",
+        "source_scope": "Complete 17-method archive-schema candidate before final fixture admission",
+        "tests_run": 17,
+        "passed": 17,
+        "failed": 0,
+        "errors": 0,
+        "elapsed_seconds": 0.072
+      },
+      {
+        "command": "python -X utf8 -m unittest tests_python.test_review_bundle.ReviewBundleTests.test_allowlist_excludes_runtime_secrets_history_and_memories tests_python.test_review_bundle.ReviewBundleTests.test_declared_catalog_and_abi_consumers_require_exact_fixture_inputs tests_python.test_review_bundle.ReviewBundleTests.test_deterministic_frozen_inputs_and_dependency_limitations -v",
+        "source_scope": "Final exact catalog/vector/static-input admission and mandatory fixture guards",
+        "tests_run": 3,
+        "passed": 3,
+        "failed": 0,
+        "errors": 0,
+        "elapsed_seconds": 0.006
+      },
+      {
+        "command": "python -X utf8 -m unittest tests_python.test_review_bundle.ReviewBundleTests.test_allowlist_excludes_runtime_secrets_history_and_memories tests_python.test_review_bundle.ReviewBundleTests.test_callable_reference_consumer_requires_frozen_explanations_and_snapshot -v",
+        "source_scope": "Final exact callable-reference JSON/Markdown admission and required-input guard; only two affected cases rerun",
+        "tests_run": 2,
+        "passed": 2,
+        "failed": 0,
+        "errors": 0,
+        "elapsed_seconds": 0.007
+      }
+    ]
+  },
+  "earlier_diagnostic": "Initial 14 methods: 13 passes, one ZIP test-builder error. Repaired only the fixture byte-read ordering and reran that case. Dependency/exclusion checks then justified an affected 17-method exporter run. Final catalog/vector admission added the 18th distinct method and reran its three affected cases. Callable-reference admission added the 19th distinct guard and reran only two affected cases. Repeated results are not added to the 19 distinct methods; no final full protocol regression is claimed.",
+  "actual_git_export": {
+    "archive_sha256": "30d1ecfb70a121d6c9630270489757cb2ff42d083e441c30b89fa3bb203a81d3",
+    "dependencies_bundled": false,
+    "ok": true,
+    "production_approved": false,
+    "source_commit": "ac98b5bab417dc813a2533f4e1e5c6dfcc95dda0",
+    "source_files": 386,
+    "source_tree_sha1": "981ef1c0bf9850de3ea8c5e4abd46d1b4ced9e00",
+    "tests_executed": false
+  },
+  "excluded_committed_paths": 1381,
+  "checks": {
+    "cli_create_and_separate_verify": true,
+    "actual_commit_determinism": true,
+    "existing_output_not_replaced": true,
+    "wrong_expected_hash_rejected": true,
+    "committed_blob_not_dirty_draft": true,
+    "historical_reports_git_and_dependencies_not_copied": true,
+    "required_fixed_keccak_vector_fixture_admitted": true
+  },
+  "source_hashes": {
+    "zzz_ops/review_bundle.py": "b653a398c7a4a5b6a622db744a411291ff48b8c3b7d5eb74abd5d8478b3b1c80",
+    "scripts/prepare-release-review.py": "41e499be98457fb5f651d2cc453bb52a044c3919d138276a297845fad1778a03",
+    "tests_python/test_review_bundle.py": "b2c2b05a5acc4f0832d06be4bf84219914ddc1bc9239df247741fc316e482637",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "aff86822af7ecea31b785cd6469b795f91cf4ac04c00a9187a2e211a1af502a7"
+  },
+  "limits": [
+    "No protocol, Solidity, historical regression, Linux runtime, provider, wallet or service test ran.",
+    "No external audit, operational approval or public transaction is claimed.",
+    "ZIP exists externally only; parent must regenerate a final-commit package after publication.",
+    "Callable-reference admission was added after the baseline export; regenerate at the final publication commit. Only the two affected exporter cases were rerun."
+  ]
+}

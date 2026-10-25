@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "created_at": "2026-10-25T02:15:36.233660+00:00",
+  "source_baseline": "ac98b5bab417dc813a2533f4e1e5c6dfcc95dda0",
+  "tests": {
+    "distinct_methods": 68,
+    "new_methods": 15,
+    "affected_legacy_methods": 53,
+    "runs": [
+      {
+        "log": "python-verification.log",
+        "passed_methods": 54
+      },
+      {
+        "log": "python-malformed-verification.log",
+        "passed_methods": 1
+      },
+      {
+        "log": "python-cli-verification.log",
+        "passed_methods": 13
+      }
+    ],
+    "full_regression": false,
+    "real_provider_qualification": false
+  },
+  "public_observation": {
+    "logical_checks": 16,
+    "passed": 16,
+    "http_json_rpc_posts": 32,
+    "limits": {
+      "seconds": 60,
+      "logical_calls": 20,
+      "posts": 40
+    },
+    "independent_provider_count": 1,
+    "qualified": false,
+    "initial_sandbox_transport_failed": true
+  },
+  "preserved": {
+    "solidity_sources_unchanged": true,
+    "mint_authority_unchanged": true,
+    "provider_unselected": true,
+    "no_public_signing": true,
+    "no_transactions": true,
+    "no_service_or_website_change": true,
+    "no_existing_chain_journal_change": true
+  },
+  "limits": [
+    "No supported compatible coordinator selected; on-chain runtime existence is not source/proof/admin review.",
+    "OpenSea primary mint remains unimplemented. Buyer gross0.05ETH is selected, fee deducted from creator proceeds and gas separate; exact product/platform fee remain open.",
+    "Legacy mint profile zero is historical manifest consistency, not current production qualification.",
+    "Source-scoped gate checks do not independently authenticate externally supplied evidence."
+  ]
+}

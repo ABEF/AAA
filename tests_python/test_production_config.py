@@ -687,7 +687,7 @@ class ProductionConfigTests(unittest.TestCase):
             path=Path(directory)/'inventory.json';output=Path(directory)/'gate.json'
             path.write_text(json.dumps(self.config,ensure_ascii=False),encoding='utf-8')
             result=subprocess.run([sys.executable,str(ROOT/'scripts/validate-production-config.py'),
-                '--config',str(path),'--output',str(output)],capture_output=True,text=True,encoding='utf-8',check=False)
+                '--config',str(path),'--output',str(output),'--historical-consistency'],capture_output=True,text=True,encoding='utf-8',check=False)
             self.assertEqual(result.returncode,0,result.stderr)
             self.assertTrue(json.loads(output.read_text(encoding='utf-8'))['ready'])
     def test_cli_invalid_json_is_blocked(self):

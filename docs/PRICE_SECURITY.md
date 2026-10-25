@@ -1,5 +1,15 @@
 # Price security and factual LP verification
 
+## Optional source reader and remaining pricing qualification - 2026-10-25
+
+The [Pyth Core reader](PYTH_PRICE_SOURCE.md) adds a compatible immutable source
+interface with strict precision, confidence, publish-time freshness and bounded
+runtime-pinned reads. It does not update feeds or establish independence.
+Confidence screens a midpoint; it does not widen Oracle price bounds. Proxy
+implementation changes remain outside a proxy runtime hash. No actual source
+pair, price or update service is selected. ZZZ still requires two qualified
+independent sources even when the activation input is ETH.
+
 ## Reviewed Entry policy V1 - 2026-10-25
 
 The current undeployed pricing-V2 candidate uses
@@ -10,7 +20,8 @@ funds move, retaining all final price/LP/policy checks. Legacy execute is disabl
 on the new code; historical pricing-V1/local deployments retain original ABI.
 Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
 and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
-Native-V2 browser integration and actual provider/wallet qualification remain open;
+Native-V2 read/unsigned browser integration is implemented; actual native
+deployment/provider/wallet qualification remains open;
 no existing chain, website build, journal or public signer was upgraded.
 
 

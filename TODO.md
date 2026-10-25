@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**17 To do | 29 In progress | 21 Implemented locally**
+**14 To do | 32 In progress | 22 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -15,21 +15,6 @@ Implemented means built and locally checked, not deployed or independently audit
 ## Smart contracts
 
 Custody, ownership and reward accounting.
-
-<a id="task-opensea-mint"></a>
-
-- [ ] **[Qualify OpenSea primary mint integration](docs/OPENSEA_MINT.md)** - To do. Production minting is intended for OpenSea; the website Mint page is a demonstration. Verify the actual supported mint product, Robinhood chain, canonical PoPL caller/recipient path and collection URL before sealing.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Code review 2026-10-23: current Vault.mintDormant mints to msg.sender and the NFT accepts mint only from Vault; no SeaDrop interface is implemented. Verify buyer recipient, payment/fee handling and the exact supported Robinhood drop integration before adding any mint adapter. General marketplace chain support does not prove primary-drop support.
-  - Verify chain/product support and the required interface against the exact proposed OpenSea integration. A listing/secondary sale or direct Anvil mint is not primary-mint acceptance.
-  - Preserve canonical NFT identity, 1,000 cap, 0.05 ETH recipient, exact rarity draw/VRF, zero LP at mint, mint pause/lifecycle and atomic rollback. Check NFT ownership when the caller is a marketplace intermediary; review any adapter/core change before sealing.
-  - Rehearse a supported marketplace mint, payment, receiver callback/rejection, reveal and pause/restart; record receipts and exact verified collection URL. Keep production website mint preparation disabled.
-  - Official OpenSea Robinhood chain support is distinct from custom primary-mint/SeaDrop compatibility. [Current research](reports/real-service-readiness-20261025/RESEARCH.md) leaves actual product/contract/caller/recipient/royalty and random-draw integration unqualified; no marketplace mint authority or mint adapter was silently added.
-
-  </details>
 
 <a id="task-lp-eth-settlement"></a>
 
@@ -101,6 +86,7 @@ Custody, ownership and reward accounting.
   - Native V2 accepts actual ETH at asset zero with explicit policy and independent feed; exact Entry/Vault/manager call values are checked. Native V2 read/preparation profiles do not require WETH for ETH. Old local fixtures and prior WETH route evidence retain their original scope; current v3 conversions cannot output native ETH directly.
   - The [two-source guard](docs/PRICE_SECURITY.md) is implemented, not live-qualified. Freeze source/pair prices and limits before any source pull/conversion; validate upper-input/lower-marginal-LP floors and final fingerprints/spot. Close [dual-source qualification](TODO.md#task-dual-price-qualification) for every enabled input and both LP currencies.
   - The [October25 selected-fee local composition](reports/preproduction-audit-20261025/REVIEW.md#a-07-thin-market-activation-feasibility-remains-open) exposes an honest thin-market native activation that retains about$99.38 but deploys only$98.85 of$100; the99% guard reverts safely. Qualify full-trace feasibility at actual liquidity/ticks/fees before wallet review, preserve exact rollback and existing approvals, and assess bounded post-swap ratio correction only if it can improve deployed LP within the same captured budget. Never weaken the floor or count incumbent/idle assets as new LP; deeper mock liquidity is not launch qualification.
+  - [Dated service/route evidence](reports/release-services-20261025/feeds-routes/VERIFICATION.md): fresh Pinax reads returned429 twice and official RPC403 before a usable snapshot. No fresh route quote/depth or cheaper ZZZ conversion is qualified; transport failure is not market absence. Preserve bounded retries and fail closed.
 
   </details>
 
@@ -117,6 +103,7 @@ Custody, ownership and reward accounting.
   - [AUD18-02](reports/daily-security-20261018/REVIEW.md): user selected qualified/funded reliable provider plus stopping new minting and draining original ordered draws before collection replacement. A confirmed readiness endpoint is implemented; qualify actual funding, request latency, alerts and original-provider outage resolution. No reroll/pending-request carry/provider-swap path; a permanently unanswered request still blocks whole-collection replacement, not ordinary LP migration. See [operator policy](docs/OPERATOR_MANUAL.md#mint-and-metadata).
   - The independent mint-only governance pause and confirmed pause status are implemented; rehearse provider outage, original fulfillment, ordered reveal and deliberate resume. No reroll/provider swap. See [operator controls](reports/operator-controls/VERIFICATION.md).
   - Revealed metadata displays fixed rarity weight1/2/3 even while dormant, with separate royalty_activated flag. Unknown draws stay Unrevealed; economic ledger eligibility remainszero until activation, with no retroactive royalties. Fixed artwork/rarity quotas and paths are unchanged.
+  - [Current mint/VRF profile1](docs/MINT_INTEGRATION_QUALIFICATION.md) binds exact subscription-v2.5 selector, two words, nonzero lane, same original request/result recovery through refund/expiry, negative-proof/callback evidence and external funding. Actual RH-VRF/D20 compatibility remains unqualified; no guard relaxation, adapter or provider selection is implied.
 
   </details>
 
@@ -138,6 +125,22 @@ Custody, ownership and reward accounting.
   - Selected hookless pool: verify actual native ETH to WETH and fee-tier LP moves, source/destination ownership, fixed-price 3% cap, recipient segregation and separate contribution cutover. The moveFunds alias adds no arbitrary external transfer capability; regular-address custody uses the existing reviewed exit request.
   - Use the audited park-first procedure for separately mined exit approvals: external swaps can change an Active snapshot despite PoPL pause. Preserve the original rounded-up pre-parking ZZZ minimum as well as the parked approval floor. Separate parking/approval does not automatically share one cached on-chain budget; snapshot and raw/normal safeguards stay strict.
   - Native V2 raw exit/return is ETH/ZZZ and wrapper-independent, with exact payable return funding. It remains dependent on usable venue/token/runtime bindings. Atomic ETH/WETH moves are rejected pending an explicit conversion boundary; external governed custody completion is a separate workflow.
+
+  </details>
+
+<a id="task-opensea-mint"></a>
+
+- [ ] **[Qualify OpenSea primary mint integration](docs/MINT_INTEGRATION_QUALIFICATION.md)** - In progress. Actual interface/payment mismatch is identified and the current release gate rejects a fabricated primary-drop approval. Implement and qualify a recipient-aware OpenSea integration before sealing: buyer pays0.05ETH gross, actual platform fee deducted from recipient proceeds, gas separate. Current direct Vault mint remains unchanged.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Code review 2026-10-23: current Vault.mintDormant mints to msg.sender and the NFT accepts mint only from Vault; no SeaDrop interface is implemented. Verify buyer recipient, payment/fee handling and the exact supported Robinhood drop integration before adding any mint adapter. General marketplace chain support does not prove primary-drop support.
+  - Verify chain/product support and the required interface against the exact proposed OpenSea integration. A listing/secondary sale or direct Anvil mint is not primary-mint acceptance.
+  - Preserve canonical NFT identity, 1,000 cap, 0.05 ETH gross buyer price and actual platform-fee/net-recipient conservation, exact rarity draw/VRF, zero LP at mint, mint pause/lifecycle and atomic rollback. Check NFT ownership when the caller is a marketplace intermediary; review any adapter/core change before sealing.
+  - Rehearse a supported marketplace mint, payment, receiver callback/rejection, reveal and pause/restart; record receipts and exact verified collection URL. Keep production website mint preparation disabled.
+  - Official OpenSea Robinhood chain support is distinct from custom primary-mint/SeaDrop compatibility. [Current research](reports/real-service-readiness-20261025/RESEARCH.md) leaves actual product/contract/caller/recipient/royalty and random-draw integration unqualified; no marketplace mint authority or mint adapter was silently added.
+  - Decision2026-10-25:0.05ETH is total buyer mint price; the recipient receives the remainder after the actual platform fee, gas separate. No actual fee is selected. [Current qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) is hardblocked by code-owned direct-mint capability; runtime presence/general chain support cannot implement SeaDrop or qualify primary mint.
 
   </details>
 
@@ -296,6 +299,19 @@ Custody, ownership and reward accounting.
 
   </details>
 
+<a id="task-callable-reference"></a>
+
+- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Source-bound reference covers32 concrete contracts and698 functions, with purpose, caller, every top-level input, exact output types/tuple fields, constructors and ETH receive conditions. Linked at the operator manual end; the normal verifier rejects stale or incomplete function/input documentation.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Derived from the current43-source compiler ABI and normal size evidence; inherited ERC721/governance methods are included, internal-only libraries excluded. No function is executed by documentation generation.
+  - Keep editable explanations and ABI/source snapshot in sync after source, behavior, permission, input or output changes. Run python scripts/generate-function-reference.py --check; missing purpose/caller/payable-value/input notes or stale generated/source data must fail. A correct signature is not transaction authorization.
+  - See the [operator appendix](docs/OPERATOR_MANUAL.md#callable-contract-reference) and [scoped verification](reports/release-services-20261025/function-reference/VERIFICATION.md). Normal verification now checks both Todo and this reference before running broader checks; no fresh full CI pass is claimed.
+
+  </details>
+
 
 ## Backend
 
@@ -363,6 +379,7 @@ The data and services behind the app.
   - Native V2 API and keeper configurations require explicit accounting_version2, reviewed runtimes and deployment identity; legacy predecessor profiles remain explicit. Qualify the website native valuation profile, complete production inventory and provider traces before activation. Do not reinterpret old state journals or change Anvil-only signing.
   - Shared read-only RPC refuses all redirects, including same-host; only explicitly configured reviewed endpoints may be used. Bounded failover, chain recheck, response/work limits and sanitized failure reporting remain. Qualify final provider URLs/proxy/auth behavior explicitly; other historical standalone transports are separate.
   - Use the stricter [RPC qualification procedure](docs/RPC_PREPARATION_QUALIFICATION.md): timeouts/rate limits/ambiguous errors do not prove unknown-hash rejection; the opt-in preparation profile requires reviewed genesis/runtime and a real discarded Approval(0) log witness. Keep basic public-read observations, actual preparation capability and independent operating approval separate.
+  - [Current observation](reports/release-services-20261025/vrf-opensea/VERIFICATION.md) obtained16 logical canonical runtime/storage reads using32 HTTP posts from one public provider. Separate feed probing later failed429/403. Neither result supplies redundant operating approval, continuous uptime or preparation-trace qualification.
 
   </details>
 
@@ -440,6 +457,7 @@ The data and services behind the app.
   - [Operator runbook](docs/PRODUCTION_PREFLIGHT.md): separate approved pins and actual observations; preserve historical qualification blocks, require current configuration/fee scope and complete creation-to-anchor history. Nonzero creator-inbox inventory and unsupported canonical boundaries fail explicitly.
   - Populate independently reviewed real addresses, runtime pins, source/conversion routes, feeds, authorities, VRF/hosting/OpenSea/gas/recovery and independent audit records under the corresponding open release tasks. The checked-in current example must remain blocked until those actual inputs are qualified.
   - Current [pricing-V2 extension](docs/PRICE_SECURITY.md) verifies the fixed Oracle pricing companion and complete two-source policy/bounds/fingerprints at the same confirmed timestamp. Its new source-scoped evidence is [separate](reports/price-security/VERIFICATION.md) from the earlier 73-case preflight publication; neither qualifies live providers.
+  - Current CLI requires schema5/current mint profile1 by default; explicit historical mode is never qualification. [68 distinct affected Python methods](reports/release-services-20261025/vrf-opensea/VERIFICATION.md) include legacy/type/downgrade/unsupported-mint and exact original-randomness recovery boundaries. Current source correctly blocks OpenSea qualification until compatible code exists.
 
   </details>
 
@@ -705,27 +723,6 @@ Three required testing layers, with source-bound evidence.
 
   </details>
 
-<a id="task-audit-release"></a>
-
-- [ ] **[Independent audit and release approval](docs/RELEASE_CHECKLIST.md)** - To do. Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - **Local tests:** minting, activation, rewards, royalties, transfers and security.
-  - Reproduce all Solidity/Python tests for the final frozen production release on supported Ubuntu, retaining exact source revision, compiler settings and full logs. Candidate CI and earlier green CI for `5febe70` do not validate future source changes.
-  - Compile every contract/test/script and check normal runtime/initcode limits, constructor-argument allowance (including the claim router) and current gas; all small bytecode margins require explicit review.
-  - Independently review the final source-bound Slither triage and accepted risks, refreshing analysis if source changes. Completed internal triage does not close the external audit gate.
-  - Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.
-  - Complete production services, creator terms, frozen-release independent audit and operating rehearsals. Real bridging remains blocked by destination capacity admission and provider/recovery qualification.
-  - Complete the seven [security audit workstreams](docs/SECURITY_AUDIT_PLAN.md), including qualification of the implemented same-chain whole-collection handoff while the source works. Cross-chain canonical transport is deferred optional scope, not a current launch/sealing requirement. Post-halt recovery is deferred; LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
-  - Fill and independently authenticate the schema-4 production inventory: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
-  - Preserve complete exact-release local/Ubuntu, actual Robinhood mainnet-fork and Robinhood Testnet evidence. Partial/cancelled fork runs and older source snapshots do not qualify the final release; test timeouts must retain partial evidence without counting as a pass.
-  - Keep test-inventory assertions aligned with published fork cases and preserve standard assertion failure reporting. The [CI fixture correction](reports/architecture-evolution-ci/README.md) covers stale expectations for the existing 24 native/Pons plus nine hookless tests; it does not qualify production dependencies.
-  - Before frozen-release/full CI sign-off, repair or explicitly retire obsolete pre-pricing ActivationEntry mocks using the actual current Entry/Pricing interface and preserved security assertions. Targeted passing current integrations do not establish a green full repository workflow; retain failed fixture diagnostics and exact source scope.
-
-  </details>
-
 <a id="task-capacity-campaign"></a>
 
 - [ ] **[Deferred: 10/25/100-user load campaign](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md#accepted-sequencing)** - To do. Deferred by the user on 2026-10-20; revisit after launch if needed or on explicit request. Production capacity remains unverified. This campaign is not the next development priority and is not scheduled.
@@ -763,6 +760,28 @@ Three required testing layers, with source-bound evidence.
   - Robinhood mainnet fork: qualify the actual selected hookless ETH/ZZZ pool and deployed dependencies against exact release sources. Historical Pons execution retains its original scope and is not selected-pool qualification; read reports/hookless-pool/VERIFICATION.md for current coverage.
   - Stage actual Uniswap swaps/entry/maintenance, malicious token/callback behavior, exact approvals/settlement, stale prices, donations and failures.
   - Current fork inventory is 29 selected-native and nine historical alternative-pool cases, not a claim of 38 final-source passes.
+
+  </details>
+
+<a id="task-audit-release"></a>
+
+- [ ] **[Independent audit and release approval](docs/RELEASE_CHECKLIST.md)** - In progress. Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - **Local tests:** minting, activation, rewards, royalties, transfers and security.
+  - Reproduce all Solidity/Python tests for the final frozen production release on supported Ubuntu, retaining exact source revision, compiler settings and full logs. Candidate CI and earlier green CI for `5febe70` do not validate future source changes.
+  - Compile every contract/test/script and check normal runtime/initcode limits, constructor-argument allowance (including the claim router) and current gas; all small bytecode margins require explicit review.
+  - Independently review the final source-bound Slither triage and accepted risks, refreshing analysis if source changes. Completed internal triage does not close the external audit gate.
+  - Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.
+  - Complete qualified current services, frozen-release independent audit and operating rehearsals. Creator-payment terms apply only if optional external funding is selected; the hookless launch pool earns LP fees directly. Integrated bridges and remote ledgers remain deferred optional scope.
+  - Complete the seven [security audit workstreams](docs/SECURITY_AUDIT_PLAN.md), including qualification of the implemented same-chain whole-collection handoff while the source works. Cross-chain canonical transport is deferred optional scope, not a current launch/sealing requirement. Post-halt recovery is deferred; LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
+  - Fill and independently authenticate the schema-5 production inventory with explicit mint_integration_version1: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
+  - Preserve complete exact-release local/Ubuntu, actual Robinhood mainnet-fork and Robinhood Testnet evidence. Partial/cancelled fork runs and older source snapshots do not qualify the final release; test timeouts must retain partial evidence without counting as a pass.
+  - Keep test-inventory assertions aligned with published fork cases and preserve standard assertion failure reporting. The [CI fixture correction](reports/architecture-evolution-ci/README.md) covers stale expectations for the existing 24 native/Pons plus nine hookless tests; it does not qualify production dependencies.
+  - Before frozen-release/full CI sign-off, repair or explicitly retire obsolete pre-pricing ActivationEntry mocks using the actual current Entry/Pricing interface and preserved security assertions. Targeted passing current integrations do not establish a green full repository workflow; retain failed fixture diagnostics and exact source scope.
+  - Implemented [frozen review package and strict verification](docs/FROZEN_REVIEW_BUNDLE.md): committed blobs, source/tree/dependency identities, required inputs and excluded-path inventory; no extraction, arbitrary execution, overwritten output or forged approval.19 distinct focused Python methods across recorded scopes. Regenerate for the final exact release commit and independently verify its hash; dependencies, operating rehearsals and external audit are not bundled or passed.
 
   </details>
 
@@ -934,26 +953,7 @@ Decisions and rehearsals before real funds.
   - Select and verify multisig/keeper/guardian/mint-recipient authorities, zero-delay governance controller and fixed module bindings; prohibit mint/LP/royalty receiver collisions.
   - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and any optional creator payer; 17 fixed core contracts (controller plus 16 sealed modules), 15 fixed helpers including two separately deployed converters, later creator inboxes and reviewed chain-specific dependencies. Observe canonical lifecycle/origin, companion owners and factory bindings. The governance controller has zero delay, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
   - Record the unresolved independent ZZZ price-feed question and the team's evidence under [creator pricing](TODO.md#task-creator-zzz-price); keep PoPL authority selection under this task.
-
-  </details>
-
-<a id="task-dual-price-qualification"></a>
-
-- [ ] **[Qualify two independent USD sources per input and LP asset](docs/PRICE_SECURITY.md)** - To do. Select and independently qualify two defensible USD sources for ETH and ZZZ plus each enabled USDG/USDC input. The user selected 3% agreement (300 bps); no real source pair, adapter or freshness setting is qualified. Do not enable unsupported assets or treat mock agreement as market safety.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Record exact network/source/adapter addresses, USD denomination, precision, runtime/implementation/admin/upstream policy and complete append-only Oracle policy/ordinal. Review common reporter, exchange, pool, bridge and USD-reference dependencies; two addresses or provider labels are not proof of independence.
-  - Choose source ages and disagreement settings from actual heartbeat, update/deviation behavior and market depth; qualify both-source outage/recovery, sequencer policy, stale/future/incomplete rounds, proxy upgrades, depeg and sustained manipulation. USDG/USDC are not hard-coded $1. Missing or disagreeing sources fail closed.
-  - Qualify $100 activation and $5 growth at actual source upper bounds and marginal LP lower bounds through funded routes, exact approvals, swaps, raw accounting and physical LP. Include worst-case 34-mark historical/source work, feed gas/latency, price/cap callbacks, newly discovered historical receipts, loss boundaries and recovery. Network gas is separate; wide uncertainty cannot silently enlarge the loss budget.
-  - Obtain actual ETH/ZZZ/USDG/USDC source proposals and market references with [Creator tasks / ZZZ team](TODO.md#task-creator-zzz-price), then independently verify them. If two defensible ZZZ sources cannot be qualified, keep ZZZ pricing/contributions unavailable; invent no provider or pool-spot fallback.
-  - Retain independently reviewed exact-release/chain/deployment evidence, schema-5 pricing_version 2 observations and current helper/runtime bindings. Internal focused checks do not close real-provider, fork/service, gas/recovery or independent audit gates.
-  - Reconcile the contract companion 34-mark maximum with the current 33-currency activation/preflight inventory limit. Keep configurations requiring 34 distinct reviewed currencies unavailable unless a separately reviewed bounded capacity change is implemented and qualified; never truncate historical backing or silently widen budgets.
-  - User decision2026-10-24: intended source disagreement tolerance is3% (300bps). Calibrate actual feed ages and verify the independent default2% contribution execution floor; never average answers or automatically raise a cap to accept a wide quote.
-  - Run a fresh separate native/accounting2/routing2/pricing2 operating rehearsal. Historical local scaffolds now reject incompatible current artifacts before state/process creation; existing8902, NFTs, LP and journals remain untouched. Qualify actual provider/route gas: the latest [local cold-capacity workload](reports/onchain-safety/VERIFICATION.md) uses11,507,856 gas, leaving492,144 under its unchanged12M gate. Earlier135,373 margin is historical; neither substituted-feed workload qualifies actual providers or all34-mark compositions.
-  - Record [dated candidate readings and cost semantics](reports/price-reference-20261025/OBSERVATION.md) separately from configured policy/qualification. Public Chainlink ETH availability and a ZZZ pool-derived estimate do not close either source pair. Review Shared-SVR/product/secondary-proxy common dependencies, feed ages, source/admin upgrades, per-read versus data/RPC/hosting charges and who pays. No source service or production gas price is selected.
-  - [Updated official-source research](reports/real-service-readiness-20261025/RESEARCH.md) does not establish a qualified ZZZ source pair. Current defaults are2% contribution/1% conversion/3% maintenance, gas separate; source disagreement remains3%. Do not substitute shared-upstream proxy pairs, an instantaneous pool price or an invented feed.
+  - [Current authority/custody guide](docs/GOVERNANCE.md) distinguishes zero-delay governance approval from recipient custody, guardian pause and bounded keeper execution. User deferred production wallet selection; keep those gates open. VRF funding owner is provider-specific and must not spend locked principal or earned rewards.
 
   </details>
 
@@ -968,6 +968,27 @@ Decisions and rehearsals before real funds.
   - Inventory all royalty assets and review exact transfers, rebases, mutable authority, prefund/zero-member quarantine, pending settlement, claim callbacks, fractional/global dust, transfer rights and activation outage behavior.
   - Approve admitted-token outage/upgrade/blacklist behavior and economic value of repeated sub-20-raw-unit incumbent dust settlements.
   - Before issuer migration or external custody, inventory principal/current and historical compound, holder liabilities, royalty liabilities, buyback reserves, fractions, quarantines and accidental assets separately. Principal/royalty exit is not an arbitrary sweep of every contract balance; old-denomination purpose-bound reserves need an explicitly reviewed path or compatible whole-collection recovery. Unsupported-token failure may prevent exact recovery; never invent backing or relabel funds.
+
+  </details>
+
+<a id="task-dual-price-qualification"></a>
+
+- [ ] **[Qualify two independent USD sources per input and LP asset](docs/PRICE_SECURITY.md)** - In progress. An optional immutable Pyth Core reader is implemented with bounded precision/confidence/freshness/runtime checks. Official catalogs give ETH/stablecoin candidates; no ZZZ source pair, adapter deployment, updater or actual policy is qualified. Source agreement remains3%; keep unsupported assets unavailable.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Record exact network/source/adapter addresses, USD denomination, precision, runtime/implementation/admin/upstream policy and complete append-only Oracle policy/ordinal. Review common reporter, exchange, pool, bridge and USD-reference dependencies; two addresses or provider labels are not proof of independence.
+  - Choose source ages and disagreement settings from actual heartbeat, update/deviation behavior and market depth; qualify both-source outage/recovery, sequencer policy, stale/future/incomplete rounds, proxy upgrades, depeg and sustained manipulation. USDG/USDC are not hard-coded $1. Missing or disagreeing sources fail closed.
+  - Qualify $100 activation and $5 growth at actual source upper bounds and marginal LP lower bounds through funded routes, exact approvals, swaps, raw accounting and physical LP. Include worst-case 34-mark historical/source work, feed gas/latency, price/cap callbacks, newly discovered historical receipts, loss boundaries and recovery. Network gas is separate; wide uncertainty cannot silently enlarge the loss budget.
+  - Obtain actual ETH/ZZZ/USDG/USDC source proposals and market references with [Creator tasks / ZZZ team](TODO.md#task-creator-zzz-price), then independently verify them. If two defensible ZZZ sources cannot be qualified, keep ZZZ pricing/contributions unavailable; invent no provider or pool-spot fallback.
+  - Retain independently reviewed exact-release/chain/deployment evidence, schema-5 pricing_version 2 observations and current helper/runtime bindings. Internal focused checks do not close real-provider, fork/service, gas/recovery or independent audit gates.
+  - Reconcile the contract companion 34-mark maximum with the current 33-currency activation/preflight inventory limit. Keep configurations requiring 34 distinct reviewed currencies unavailable unless a separately reviewed bounded capacity change is implemented and qualified; never truncate historical backing or silently widen budgets.
+  - User decision2026-10-24: intended source disagreement tolerance is3% (300bps). Calibrate actual feed ages and verify the independent default2% contribution execution floor; never average answers or automatically raise a cap to accept a wide quote.
+  - Run a fresh separate native/accounting2/routing2/pricing2 operating rehearsal. Historical local scaffolds now reject incompatible current artifacts before state/process creation; existing8902, NFTs, LP and journals remain untouched. Qualify actual provider/route gas: the latest [local cold-capacity workload](reports/onchain-safety/VERIFICATION.md) uses11,507,856 gas, leaving492,144 under its unchanged12M gate. Earlier135,373 margin is historical; neither substituted-feed workload qualifies actual providers or all34-mark compositions.
+  - Record [dated candidate readings and cost semantics](reports/price-reference-20261025/OBSERVATION.md) separately from configured policy/qualification. Public Chainlink ETH availability and a ZZZ pool-derived estimate do not close either source pair. Review Shared-SVR/product/secondary-proxy common dependencies, feed ages, source/admin upgrades, per-read versus data/RPC/hosting charges and who pays. No source service or production gas price is selected.
+  - [Updated official-source research](reports/real-service-readiness-20261025/RESEARCH.md) does not establish a qualified ZZZ source pair. Current defaults are2% contribution/1% conversion/3% maintenance, gas separate; source disagreement remains3%. Do not substitute shared-upstream proxy pairs, an instantaneous pool price or an invented feed.
+  - [Optional Pyth reader](docs/PYTH_PRICE_SOURCE.md) has17 focused Solidity passes including1,000 confidence-boundary fuzz samples and38 normal object gates. The37 prior objects are byte-identical. Qualify real Core/proxy/feed/denomination/age/confidence/updater fees and common upstreams; confidence is a screening ceiling, not added mathematical Oracle bounds. Neither two Pyth products nor shared Chainlink proxies establish independence.
 
   </details>
 
@@ -1067,4 +1088,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `5462176e859edf995a3934944fcddab1d13f0dd21f27a76866d7c4d2f664b400`.
+Snapshot SHA-256: `030ff9c890c128d072e9499798bd14cf2c25d59ab7a8a1ed14049fe941ca4065`.

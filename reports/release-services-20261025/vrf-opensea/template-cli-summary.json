@@ -1,0 +1,13 @@
+{
+  "returncode": 1,
+  "schema_version": 5,
+  "mint_integration_version": 1,
+  "current_release_gate": true,
+  "production_qualification_supported": true,
+  "ready": false,
+  "deployment_authorized": false,
+  "opensea_primary_mint_supported": false,
+  "unsupported_primary_mint_reported": true,
+  "raw_output_sha256": "4a5f58345c80004dcc277fa1c4f02236012ce35454f882bd7ad719cf25778ff7",
+  "stderr_empty": true
+}

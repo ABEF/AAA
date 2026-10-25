@@ -1,5 +1,17 @@
 # Production mint venue
 
+## Approved buyer price and unimplemented mint path - 2026-10-25
+
+Buyer pays **0.05 ETH total mint price**. Any actual primary-mint platform fee is
+deducted from that amount; the immutable proceeds recipient gets the remainder.
+Network gas stays separate. No particular platform percentage is assumed.
+
+This is the required OpenSea integration behavior. The current direct Vault mint
+still forwards the entire0.05ETH and mints to msg.sender. It has no mintSeaDrop
+interface, recipient-aware payment path or OpenSea primary-drop approval. These
+are pre-seal implementation/acceptance requirements, not configuration claims.
+See [the exact integration requirements](MINT_INTEGRATION_QUALIFICATION.md).
+
 User decision, 2026-10-22: **production minting is intended for OpenSea**. The
 website Mint page demonstrates the product. Local Anvil minting remains an
 integration tool, not the production launch flow.
@@ -15,7 +27,8 @@ collection administration and exact URL. A listing or secondary sale does not
 prove primary-mint compatibility. Do not substitute a different NFT collection
 for the canonical PoPL identity and ledgers.
 
-The selected integration must preserve 1,000 supply, 0.05 ETH price/recipient,
+The selected integration must preserve 1,000 supply and0.05ETH gross buyer price with actual platform fees
+deducted before net recipient proceeds,
 fixed draw and rarity quotas, original randomness, mint pause/canonical lifecycle,
 atomic failure and zero LP at mint. Verify the NFT recipient even if an intermediary
 calls the contracts. Review any required adapter/contract change before sealing;

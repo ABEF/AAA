@@ -15,11 +15,17 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Contributions and prices | $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
 | Maintenance and conversion | Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ or explicit raw custody exit. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridging/remote ledgers are deferred. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
-| Release gates | Actual routes/independent feeds/VRF, authorities, native website/OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest readiness review](reports/native-readiness-20261025/REVIEW.md). |
+| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest service review](reports/release-services-20261025/REVIEW.md). |
 
 The native website read/unsigned profile is implemented locally. Private Vault
 refactors leave313 runtime bytes (up from57), with unchanged ABI/storage and
 normal gates. [Integration and operator boundaries](docs/NATIVE_WEBSITE_PROFILE.md).
+
+Optional [Pyth source compatibility](docs/PYTH_PRICE_SOURCE.md), strict current
+mint/VRF qualification and [frozen audit packaging](docs/FROZEN_REVIEW_BUNDLE.md)
+are implemented. OpenSea still needs a compatible primary-mint path: buyer pays
+0.05ETH gross, recipient receives net after the actual platform fee, gas separate.
+No source pair, updater, provider or marketplace acceptance is approved.
 
 Source-scoped local evidence establishes particular behavior, not production
 qualification. Dated [price research](reports/price-reference-20261025/OBSERVATION.md)
@@ -34,9 +40,10 @@ does not select independent feeds or provide live prices.
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
 | Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, range/assets/pools, emergency stops and restart procedures |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
+| Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |
 | Production inventory | [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit pricing V2, 15 helper bindings, approved pins, actual observations and release blockers |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
-| Security and release | [Latest readiness review](reports/native-readiness-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
+| Security and release | [Latest service review](reports/release-services-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 
@@ -66,7 +73,7 @@ flowchart LR
 | **Custody and per-NFT shares** | Vault owns the physical LP and records each NFT's nonredeemable shares. LiquidityManager executes typed venue operations; the budget helper checks contribution and maintenance loss limits. | [Vault](src/ZZZVault.sol), [LiquidityManager](src/ZZZLiquidityManager.sol), [budget helper](src/ZZZMigrationBudget.sol) |
 | **LP revenue accounting** | Creator inboxes and venue collections feed FeeController. It allocates receipts to holder/collective balances and separate compound/buyback reserves. Membership gives each activated NFT one collective share. | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol), [creator intake](docs/EXTERNAL_REWARDS.md) |
 | **Royalties and claims** | RoyaltyRewards preserves per-NFT entitlements, isolates optional currency outages and credits batch-converted ETH to the same NFTs. Current owners claim through either ledger or ClaimRouter. | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [converter](src/ZZZRoyaltyConverter.sol), [ClaimRouter](src/ZZZClaimRouter.sol), [operator flow](docs/ROYALTY_SETTLEMENT.md) |
-| **Valuation and maintenance** | Oracle requires two reviewed USD sources per asset. Its fixed pricing companion freezes contribution prices/limits and verifies marginal LP; Strategy defines guarded ranges and eligibility. Keeper maintenance stays within on-chain limits. | [Oracle](src/ZZZOracle.sol), [contribution pricing](src/ZZZContributionPricing.sol), [price security](docs/PRICE_SECURITY.md), [Strategy](src/ZZZStrategy.sol), [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) |
+| **Valuation and maintenance** | Oracle requires two reviewed USD sources per asset. Its fixed pricing companion freezes contribution prices/limits and verifies marginal LP; Strategy defines guarded ranges and eligibility. Keeper maintenance stays within on-chain limits. | [Oracle](src/ZZZOracle.sol), [contribution pricing](src/ZZZContributionPricing.sol), [price security](docs/PRICE_SECURITY.md), [optional Pyth source](src/ZZZPythPriceFeed.sol), [Strategy](src/ZZZStrategy.sol), [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) |
 | **Governance and permissions** | AccessController binds modules and enforces immediate authorized configuration, guardian pause and keeper authorization. Sealing fixes module bindings; constrained configuration remains available. | [AccessController](src/ZZZAccessController.sol), [authority and change boundaries](docs/CHANGE_AND_RECOVERY.md) |
 | **Recovery and migration** | Migration atomically moves LP between admitted pools with identical actual currencies and governs all-ZZZ or explicit raw custody exits. Native raw exit sends ETH/ZZZ without WETH. Actual funded local LP is required for completion; external custody is trusted. A separate versioned handoff carries ownership, ledgers and backing to one compatible replacement. Cross-version and future-chain completion remain open. | [Migration](src/ZZZMigration.sol), [CanonicalHandoff](src/ZZZCanonicalHandoff.sol), [handoff scope](docs/CANONICAL_HANDOFF.md) |
 
@@ -113,7 +120,7 @@ The target live flow is **website -> read/preparation API -> user wallet confirm
 
 | Step | Rule |
 | --- | --- |
-| **Mint** | Pay exactly **0.05 ETH** to the immutable mint recipient for a dormant NFT. Minting adds supply, not liquidity or reward eligibility. |
+| **Mint** | Buyer mint price is **0.05 ETH**, gas separate. Current direct mint pays it all to the immutable recipient; the required OpenSea integration pays the recipient net of its actual platform fee. Minting adds supply, not liquidity or reward eligibility. |
 | **Activate** | After reveal, the conservative original input value must reach **$100**. Conversion and new LP deployment share the captured execution limit (2% by default, governance maximum 10%); the upper input / lower LP price bounds tighten its floor. Network gas is separate. |
 | **Add liquidity** | Contributions from **$5 in conservative original input value** grow the same NFT under the captured contribution limit; gas is separate. Higher pool minima apply. Existing holders' assets cannot subsidize the new LP floor; a top-up adds no collective membership. |
 | **Hold or transfer** | The current owner can claim its funded balances. Transfers carry the LP allocation, remaining unclaimed balances and future fee rights. A seller can claim before a transfer, so an earlier listing balance is not guaranteed to the buyer. |

@@ -8,7 +8,7 @@ funds move, retaining all final price/LP/policy checks. Legacy execute is disabl
 on the new code; historical pricing-V1/local deployments retain original ABI.
 Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
 and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
-Native-V2 browser integration and actual provider/wallet qualification remain open;
+The native-V2 read/unsigned browser profile is implemented; actual provider/wallet qualification remains open;
 no existing chain, website build, journal or public signer was upgraded.
 
 ## Current dual-price route boundary - 2026-10-24

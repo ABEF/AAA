@@ -1,6 +1,33 @@
 # Deployment address inventory
 
-**Current candidate (2026-10-24):** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor is removed; whole-collection handoff remains separate. The native-accounting V2 candidate holds and sends actual ETH/ZZZ; native ETH is asset zero, not WETH. Atomic ETH/WETH moves remain unsupported until an explicit conversion boundary is implemented. Real finality/remote accounting, production inventory, services and independent qualification remain open. Earlier evidence retains its original scope. [Current native verification](../reports/native-eth-port/VERIFICATION.md).
+## Current direct mint versus intended OpenSea proceeds - 2026-10-25
+
+The immutable mint recipient gains no management powers. Current direct mint
+forwards the full0.05ETH. The intended OpenSea integration must keep the buyer's
+gross mint price0.05ETH and deduct the actual platform fee before paying that
+recipient; gas is separate. No platform rate or marketplace contract is approved.
+This requires a compatible mint implementation before sealing; an inventory
+entry cannot create it. [Integration requirements](MINT_INTEGRATION_QUALIFICATION.md).
+
+## Governance authority versus custody recipient - 2026-10-25
+
+These are distinct identities. Governance authorizes exact configuration, pool
+movement and paused custody exits through the zero-delay controller. The reviewed
+exit recipient receives and controls assets, without gaining protocol governance.
+They can use the same wallet only as an explicit reviewed custody/security choice.
+
+| Balance | Does principal exit transfer it? |
+| --- | --- |
+| Attributed LP principal and included bucket idle | Yes: normal mode closes/converts toZZZ; explicit raw mode sends actual pair assets, nativeETH/ZZZ for the selected pool, without a swap. |
+| Claimable LP-owner/collective rewards | No automatic sweep. Their liabilities and backing remain classified in the reward ledgers. |
+| NFT-sale royalties | Not by principal exit; the royalty ledger has its own reviewed paused full-currency custody exit/return. |
+| Mint proceeds already paid | No: they are already at the immutable mint recipient. |
+| Ownership and reward accounting | Not relocated by moving principal. Same-chain whole-collection handoff is a distinct verified path. |
+
+Authority addresses, multisig threshold/signers and provider-specific subscription
+ownership remain unselected. No public role or wallet was configured by this update.
+
+**Current candidate (2026-10-24):** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor is removed; whole-collection handoff remains separate. The native-accounting V2 candidate holds and sends actual ETH/ZZZ; native ETH is asset zero, not WETH. Atomic ETH/WETH moves remain unsupported until an explicit conversion boundary is implemented. Actual production inventory, services and independent qualification remain open; integrated remote ledgers/finality are deferred optional scope. Earlier evidence retains its original scope. [Current native verification](../reports/native-eth-port/VERIFICATION.md).
 
 Migration creates the immutable read-only [`ZZZCustodyValidation`](../src/ZZZCustodyValidation.sol)
 companion. Record `Migration.validation()`, its `migration()`/`access()` bindings
@@ -46,7 +73,7 @@ An address alone does not establish the right chain, code or authority.
 | Governance multisig | Select its public address, signer public addresses and threshold. It initially receives proposer and canceller roles; NFT ownership is not a governance vote. |
 | Guardian | Select the emergency pause account. It cannot unpause or withdraw principal. |
 | Keeper | Select a dedicated signer, fund its native gas balance and restrict it to keeper operations. Separate it from governance in production; role separation is an operating recommendation, not a general on-chain prohibition on reusing an address. |
-| Mint proceeds recipient | Select the immutable recipient of exactly 0.05 ETH per successful dormant mint. A treasury may fill this role; it has no custody authority merely by receiving mint payments. |
+| Mint proceeds recipient | Select the immutable proceeds recipient: current direct mint pays exactly 0.05 ETH; the required OpenSea path pays net of its actual platform fee from the same 0.05 ETH buyer total. A treasury may fill this role; it has no custody authority merely by receiving mint payments. |
 | Deployment/bootstrap signer | Select the temporary deployment account. It performs write-once bindings and configuration before seal; sealing permanently clears bootstrap. |
 | VRF subscription owner/funder | Identify the selected service's subscription ownership, authorized consumers and funding arrangements. These depend on the qualified coordinator, not a PoPL administrator setter. |
 | Optional external payer | Only if separate discretionary funding is used, record the payer/authorizing identity and terms for its immutable inbox. The selected hookless pool earns actual LP fees without a Pons creator agreement; a calculator cannot authorize payments. |

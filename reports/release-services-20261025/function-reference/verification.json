@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-10-25T02:42:40.345810+00:00",
+  "scope": "Function documentation and generator only; no Solidity recompilation or financial operation for this documentation step.",
+  "counts": {
+    "contracts": 32,
+    "functions": 698,
+    "constructors": 32,
+    "receive_hooks": 15,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 142
+  },
+  "documentation_bytes": 373180,
+  "json_bytes": 1649762,
+  "artifact_import": {
+    "passed": true,
+    "existing_compiler_evidence": "reports/release-services-20261025/feeds-routes/source-size-gates.json",
+    "new_compile": false,
+    "source_snapshot": {
+      "source_sha256": {
+        "src/ZZZAccessController.sol": "d065ee3f56d4d9bd4bd52e323743fa28a3578f7fd8422295198dbc928dc51468",
+        "src/ZZZActivationAssets.sol": "2e42802e8009696d83538b3875bfafd8ea3ac3bbe47d0ea1578f736bf2d36d75",
+        "src/ZZZActivationEntry.sol": "b11c5ef8e0dc546bdff99755e311ee7205db8100fb04c75bd00c05bbc7e6d05a",
+        "src/ZZZBuyback.sol": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+        "src/ZZZCanonicalHandoff.sol": "a5244c7e1d5a7f4e1eacae6c250b158784ac247251ca142b30c21a3f2db66bda",
+        "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+        "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+        "src/ZZZContributionPricing.sol": "f7c6bc87542e12d8f388955fc553e92fc817e1cc40a471b42b267602e1efe8be",
+        "src/ZZZCustodyValidation.sol": "8952fd265e6b31559d5fd8f16aaf47e2a53b404954c02af0410d78a4e4fba81e",
+        "src/ZZZFeeController.sol": "76c7e63beb6756cbce8172cc346c0d045f777a9b95b538c7c0622e63c6e5be0b",
+        "src/ZZZFeesCanonical.sol": "de15c9ffa3db0ecf4ccd9af2e3c3ad2ac728318f645deb528f62593dabb9a600",
+        "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+        "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+        "src/ZZZMembership.sol": "59b2a0819bc31369ff94c6ccd173b9993b9c7e1ff6acadd15cb0d2f3b2094e8e",
+        "src/ZZZMigration.sol": "de16a53238670ac21616ea3784feced8a932cc2a0cde7b5601c42e13a8985a55",
+        "src/ZZZMigrationBudget.sol": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+        "src/ZZZNFT.sol": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+        "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+        "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+        "src/ZZZOracle.sol": "db9a7e36422ca396f003db6651ed6ccaa5b4daa47cc60f278ad1bf986ff764b2",
+        "src/ZZZPoolRegistry.sol": "86307c3290bfd5560403b22c898100d52d0e4840b76dbe66c6bbc5bbd8738642",
+        "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+        "src/ZZZRewardReceiver.sol": "25a0910c6464ee2ffbacd95c024ee3f71cfc9b1ad03b216b78ac3346667cdb43",
+        "src/ZZZRewardReceiverFactory.sol": "9d43b64ede76b74d6e7b79d3419de1e02715c64585d13bca39cd8f949cc2af6f",
+        "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+        "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+        "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+        "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+        "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+        "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+        "src/ZZZVault.sol": "4d56bb0d0e2926f13bd9d78cc3a602017bb5f1cf83b396d75ec0515abae37d39",
+        "src/ZZZVaultCanonical.sol": "c4ab1d7dd3d4082e385eb5b86565a5a3e96413c822afdfaaa1acd6db826c2191",
+        "src/base/ZZZCanonicalLedger.sol": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+        "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+        "src/interfaces/IZZZ.sol": "0976a3a18302010fcbfeaba20e034e390621476fff91cdec9c7dfa47549d68cb",
+        "src/interfaces/IZZZCanonical.sol": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+        "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+        "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+        "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+        "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+        "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+        "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+        "src/libraries/ZZZTypes.sol": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80"
+      },
+      "compiler_settings": {
+        "evmVersion": "cancun",
+        "viaIR": true,
+        "optimizer": {
+          "enabled": true,
+          "runs": 1,
+          "details": {
+            "yul": false
+          }
+        },
+        "remappings": [
+          "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          "forge-std/=lib/forge-std/src/",
+          "solmate/=node_modules/@uniswap/v4-core/lib/solmate/"
+        ],
+        "outputSelection": {
+          "*": {
+            "*": [
+              "abi",
+              "evm.bytecode.object",
+              "evm.deployedBytecode.object"
+            ]
+          }
+        }
+      },
+      "compiler_input_sha256": "ee51265d5dabd04c2305df241109c9d7ddbcf0de09b0bb5fb9b31a965c15906d",
+      "compiler_output_sha256": "9d8a47ed1fb4ece6bf1ef11a4df7fcd21f5d6acd9e38e0bb2b9c72c9eaa16e5a",
+      "size_evidence_sha256": "0f448e38d9ccd5e0359e7879ddf2cc393e89d6266fd765299839fcc3c90ac0ce"
+    },
+    "normal_object_gates_reused": 38,
+    "solidity_sources_match": {
+      "src/ZZZAccessController.sol": true,
+      "src/ZZZActivationAssets.sol": true,
+      "src/ZZZActivationEntry.sol": true,
+      "src/ZZZBuyback.sol": true,
+      "src/ZZZCanonicalHandoff.sol": true,
+      "src/ZZZClaimRouter.sol": true,
+      "src/ZZZCompounder.sol": true,
+      "src/ZZZContributionPricing.sol": true,
+      "src/ZZZCustodyValidation.sol": true,
+      "src/ZZZFeeController.sol": true,
+      "src/ZZZFeesCanonical.sol": true,
+      "src/ZZZLiquidityManager.sol": true,
+      "src/ZZZLPRewardConverter.sol": true,
+      "src/ZZZMembership.sol": true,
+      "src/ZZZMigration.sol": true,
+      "src/ZZZMigrationBudget.sol": true,
+      "src/ZZZNFT.sol": true,
+      "src/ZZZNFTCanonical.sol": true,
+      "src/ZZZNFTMetadata.sol": true,
+      "src/ZZZOracle.sol": true,
+      "src/ZZZPoolRegistry.sol": true,
+      "src/ZZZPythPriceFeed.sol": true,
+      "src/ZZZRewardReceiver.sol": true,
+      "src/ZZZRewardReceiverFactory.sol": true,
+      "src/ZZZRewards.sol": true,
+      "src/ZZZRoyaltyConverter.sol": true,
+      "src/ZZZRoyaltyFactory.sol": true,
+      "src/ZZZRoyaltyRewards.sol": true,
+      "src/ZZZStrategy.sol": true,
+      "src/ZZZV4RouteExecutor.sol": true,
+      "src/ZZZVault.sol": true,
+      "src/ZZZVaultCanonical.sol": true,
+      "src/base/ZZZCanonicalLedger.sol": true,
+      "src/base/ZZZModule.sol": true,
+      "src/interfaces/IZZZ.sol": true,
+      "src/interfaces/IZZZCanonical.sol": true,
+      "src/interfaces/IZZZNFTCanonical.sol": true,
+      "src/libraries/BridgeAssets.sol": true,
+      "src/libraries/ExactAsset.sol": true,
+      "src/libraries/ExactToken.sol": true,
+      "src/libraries/ZZZArtwork.sol": true,
+      "src/libraries/ZZZPriceMath.sol": true,
+      "src/libraries/ZZZTypes.sol": true
+    }
+  },
+  "final_check": {
+    "command": "python -X utf8 scripts/generate-function-reference.py --check",
+    "exit_code": 0,
+    "result": {
+      "checked": true,
+      "contracts": 32,
+      "functions": 698,
+      "constructors": 32,
+      "receive_hooks": 15,
+      "fallback_hooks": 0,
+      "explanation_gaps": 0,
+      "unannotated_inputs": 0,
+      "unannotated_outputs": 142
+    }
+  },
+  "new_generator_tests": {
+    "command": "python -X utf8 -m unittest tests_python.test_function_reference -v",
+    "exit_code": 0,
+    "distinct_methods": 10,
+    "method_names": [
+      "test_canonical_nested_tuple_arrays_and_overloads_are_exact",
+      "test_invalid_tuple_and_scalar_shapes_are_not_documented_as_valid",
+      "test_inherited_entries_positions_and_tuple_fields_are_preserved",
+      "test_source_drift_missing_or_new_source_fails_without_compiling",
+      "test_deterministic_generation_and_check_detects_altered_document",
+      "test_unknown_or_missing_notes_are_explicit_and_not_invented",
+      "test_check_rejects_missing_input_meaning_even_with_complete_function_notes",
+      "test_removed_callable_and_duplicate_signatures_do_not_silently_pass",
+      "test_compiler_content_settings_size_and_source_escape_are_checked",
+      "test_duplicate_json_nonfinite_unknown_parameter_notes_and_overlapping_notes_reject"
+    ],
+    "seconds": 0.224,
+    "raw_output": "test.log",
+    "log_origin": "Verbatim transcript of the executed tool output; no extra run was performed solely to make this file.",
+    "history": [
+      "Initial synthetic fixtures failed exact source-content validation because Windows text writes changed line endings; fixed only fixture LF bytes, not production checks.",
+      "Nine distinct methods then passed.",
+      "Only two affected render methods were repeated after tuple-path/maintenance and coverage-count changes; not counted again.",
+      "Added one missing-input completeness regression and explicit fixture input meanings; final ten distinct methods passed.",
+      "No changed generator/test source after the final ten-method pass. Final real input notes imported afterwards; production documentation check passed."
+    ]
+  },
+  "external_reviewed_note_inputs": {
+    "function-notes-core.json": {
+      "sha256": "a8fa04d6533be6c5c1f0600eaedfa1eefd7203de36b6f1df57e3ee4255d3bfcf",
+      "bytes": 112202
+    },
+    "function-notes-custody.json": {
+      "sha256": "3a6c6e9b9b6c01d110a08d2e7547660e35cf600d2b5a4cea65d1005f848beb95",
+      "bytes": 257922
+    },
+    "function-notes-helpers.json": {
+      "sha256": "8c8114648ebeed09dcc38e6864e1c30652251a1aa086dd1845491c983d19b356",
+      "bytes": 14438
+    }
+  },
+  "file_bindings": {
+    "scripts/generate-function-reference.py": {
+      "sha256": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+      "bytes": 2394
+    },
+    "zzz_ops/function_reference.py": {
+      "sha256": "679c166314987de806953dee0d414df06b2c87a84cf8eb84b73525c3c88fcfa0",
+      "bytes": 24078
+    },
+    "tests_python/test_function_reference.py": {
+      "sha256": "44790fe652c7d4ec2ac08d46ebacaa633075eabe9d9f81d6d2beef35f2729ade",
+      "bytes": 11118
+    },
+    "docs/CONTRACT_FUNCTIONS.md": {
+      "sha256": "f1124b0fd92dca4c66a872e1d9c681be229f7820d26611990d7fcec67d6332cf",
+      "bytes": 373180
+    },
+    "docs/function-reference.json": {
+      "sha256": "738cbbc51d0bb611cfdc61335154dea595a3538fff8519670fffa5ea321e7043",
+      "bytes": 1649762
+    },
+    "docs/function-reference-notes.json": {
+      "sha256": "000dd09a0eadf71efacc2f4908cb999785ae189db4f2857e258586b08a80015e",
+      "bytes": 377969
+    },
+    "reports/release-services-20261025/function-reference/test.log": {
+      "sha256": "7e1227c3328956117fb95b0ecceddc7f755d7cee1aebebf509b1874b29c8f51b",
+      "bytes": 2364
+    }
+  },
+  "limitations": [
+    "Human explanations require review; ABI/source bindings do not prove semantic correctness.",
+    "142 output positions have no separate per-output annotation; output meaning is in function purpose or ordered named tuple fields. Nested tuple fields retain exact types/names/order without claiming a prose annotation on every leaf.",
+    "Default check verifies stored ABI hash, complete notes, current source inventory/hashes and deterministic docs; new source requires reimport of matching reviewed compiler/size artifacts.",
+    "Root reported bash -n scripts/verify.sh passes after wiring the cheap documentation check; this agent did not rerun that shell check.",
+    "No live deployments, public transaction, website/service/restart, provider qualification, independent audit, or production approval."
+  ]
+}

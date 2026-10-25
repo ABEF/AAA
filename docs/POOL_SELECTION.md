@@ -65,24 +65,27 @@ unimplemented and are rejected; they need a reviewed explicit conversion boundar
 Different-pair returns through separately approved external custody remain a
 manual path, with actual new-token funding and destination LP checks. Moving LP does not silently enable destination deposits or alter
 routes. [Exact operator steps](GOVERNED_CUSTODY_HANDOFF.md#move-funds-without-external-custody).
-The overall 3% cap is fixed, including after sealing; the narrower per-pool setting
-remains configurable within its coded bounds. Raw exit is a distinct risk approval.
+The aggregate maintenance cap defaults to3% and governance can change it up to10%
+after sealing. Existing stricter pool/caller limits remain. Normal custody plans
+retain their original absolute floor; explicit raw exit is a separate risk approval.
 Native raw exit/recovery do not call WETH, but still depend on actual core/token
 bindings, successful settlement and recipient transfers; there is no universal
 exit guarantee through failed external dependencies.
 
 ## Remaining qualification
 
-The fee does not automatically violate the 1% contribution budget: only the swapped
-portion incurs it. Every complete input quote must still leave at least 99% as new
-LP. Do not weaken the limit to pass an expensive quote. Independent ZZZ/USD pricing,
+The selected pool fee applies only to the swapped portion of a contribution.
+The default contribution budget is2%, requiring at least98% of conservative upper
+input value as actual new LP; caller-bound policy and full execution checks still
+apply. The separate1% reward-conversion cap requires a cheaper qualified route. Independent ZZZ/USD pricing,
 ETH/ZZZ/USDG/USDC routes, full conversion/gas economics, production inventory,
 VRF, authorities, marketplace support, operating rehearsals and independent audit
-remain open. Bounded post-seal VRF/buyback controls, typed v4 conversion and an
-explicit ETH/WETH move boundary remain pre-seal work. Existing fork observations
+remain open. Bounded post-seal request/buyback controls and typed v4 conversion are implemented;
+actual provider/market qualification remains open. Atomic ETH/WETH different-pair
+movement is unsupported; explicit external custody remains a distinct trusted path. Existing fork observations
 retain their original WETH-accounting source scope; local native fixtures do not
-qualify live services. Fresh version 2 backend/keeper pins and website integration
-are required; old 8902 state/journals remain unchanged and public deployment is null.
+qualify live services. Fresh version2 backend/keeper pins and actual native wallet/service acceptance
+are required. The native read/unsigned website profile is implemented locally; old 8902 state/journals remain unchanged and public deployment is null.
 
 [Native candidate evidence](../reports/native-eth-port/VERIFICATION.md) |
 [Earlier selected-pool evidence](../reports/hookless-pool/VERIFICATION.md) |

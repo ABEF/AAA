@@ -1,5 +1,16 @@
 # Release approval record - NOT APPROVED
 
+## New capabilities do not close service approval - 2026-10-25
+
+[Service readiness work](../reports/release-services-20261025/VERIFICATION.md)
+adds an optional immutable Pyth reader, stricter current mint/VRF qualification
+and frozen-source review packaging. No actual provider, updater, wallet authority,
+OpenSea primary mint, current native operating service or independent audit is
+approved. Current schema5/mint profile1 correctly blocks incompatible OpenSea
+minting; historical mode is inspection only. Buyer gross0.05ETH/net recipient
+after actual platform fee is the required future OpenSea behavior, gas separate.
+The current direct mint has not changed. Final package export is not sign-off.
+
 Reviewed 2026-10-25. This file records approval of **one frozen release**, not a
 second Todo or a chronological development log. The [sole Todo](../TODO.md)
 owns tasks; the [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns

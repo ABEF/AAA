@@ -1,0 +1,6 @@
+test_current_malformed_integration_records_fail_closed_without_exception (tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_malformed_integration_records_fail_closed_without_exception) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.366s
+
+OK

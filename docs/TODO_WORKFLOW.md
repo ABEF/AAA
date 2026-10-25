@@ -1,5 +1,14 @@
 # Maintaining the project Todo
 
+## Callable function reference maintenance
+
+When a public/external function, parameter, output, permission or behavior changes,
+update [the source-bound function reference](CONTRACT_FUNCTIONS.md) and its concise
+behavior/authority notes with the same change. Regenerate from the current normal
+compiler ABI and check source bindings; do not hand-edit signatures or infer
+permissions from visibility alone. The operator manual links this reference at
+its end, while retaining exact procedures and failure/recovery boundaries.
+
 **[TODO.md](../TODO.md) is the only task-status checklist.** It is ordered with Smart contracts first, Backend second and Frontend third, followed by Creator tasks / ZZZ team, testing, security/audit, operations and future migration. Expand a task's acceptance criteria for its detailed release requirements. The website has no Todo page or generated task data.
 
 | Document | Purpose | Update when |

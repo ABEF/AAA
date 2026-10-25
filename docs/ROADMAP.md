@@ -1,5 +1,20 @@
 # Engineering roadmap
 
+## Current dependency progress - 2026-10-25
+
+Optional Pyth Core source compatibility, explicit mint/VRF qualification and a
+frozen-source reviewer handoff are implemented. Qualify real independent sources
+and updater operations; no ZZZ pair is established. The current mint cannot yet
+support OpenSea: implement gross0.05ETH buyer price/net platform-fee recipient
+accounting and the correct canonical buyer path before sealing. Select a VRF
+with compatible original-request recovery; actual candidates are not qualified.
+
+Run current CLI/schema5/mint profile1; legacy consistency never approves this
+release. Use the exact committed review package for independent audit/remediation
+and real operating qualification. Authority addresses remain deferred. The
+[service review](../reports/release-services-20261025/REVIEW.md) records capability,
+actual observations and still-open external decisions separately.
+
 Reviewed 2026-10-25. **Production NOT APPROVED.** The [sole Todo](../TODO.md)
 owns task status and acceptance criteria; the [feature/evidence reference](IMPLEMENTATION_STATUS.md)
 describes implemented candidates, and the [release record](RELEASE_CHECKLIST.md)

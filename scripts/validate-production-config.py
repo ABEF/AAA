@@ -904,19 +904,43 @@ def write_report(path: Path,encoded: str) -> None:
 def main() -> int:
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',required=True);parser.add_argument('--expected-commit');parser.add_argument('--output')
+    parser.add_argument('--historical-consistency',action='store_true',
+        help='Inspect historical inventory consistency only; never use this mode for current release qualification')
     args=parser.parse_args()
-    try:result=validate(read_config(Path(args.config)),expected_commit=args.expected_commit)
+    config=None
+    try:
+        config=read_config(Path(args.config))
+        result=validate(config,expected_commit=args.expected_commit)
     except (OSError,UnicodeError,ValueError,RecursionError) as exc:
         result={'schema_version':4,'status':'blocked','ready':False,'deployment_authorized':False,
             'issues':[{'code':'config.unreadable','path':'config','message':type(exc).__name__}]}
+    if args.historical_consistency:
+        result.update(current_release_gate=False,approval_scope='historical_manifest_consistency_only',
+            production_qualification_supported=False,deployment_authorized=False)
+    else:
+        result['current_release_gate']=True
+        current=(isinstance(config,dict) and type(config.get('schema_version')) is int and
+            config.get('schema_version') == 5 and type(config.get('mint_integration_version')) is int and
+            config.get('mint_integration_version') == 1 and result.get('production_qualification_supported') is True)
+        if not current:
+            issue={'code':'current_profile_required','path':'mint_integration_version',
+                'message':'Current release qualification requires schema 5 and explicit mint_integration_version 1. Use --historical-consistency only to inspect historical layouts, never to approve the current release.'}
+            result['issues'].append(issue)
+            result.update(status='blocked',ready=False,production_qualification_supported=False,deployment_authorized=False)
+            if 'blockers' in result:
+                result['blockers'].setdefault('services',[]).append({
+                    'path':issue['path'],'code':issue['code'],'remediation':issue['message']})
     if args.output and Path(args.output).resolve()==Path(args.config).resolve():
-        result={'schema_version':result['schema_version'],'status':'blocked','ready':False,'deployment_authorized':False,
-            'issues':[{'code':'output.path_conflict','path':'output','message':'Report must not overwrite the inventory input'}]}
+        result.update(status='blocked',ready=False,deployment_authorized=False,
+            issues=[{'code':'output.path_conflict','path':'output','message':'Report must not overwrite the inventory input'}])
+        result.pop('blockers',None)
     encoded=json.dumps(result,indent=2,sort_keys=True)+'\n'
     if args.output and not any(i['code']=='output.path_conflict' for i in result['issues']):
         try:write_report(Path(args.output),encoded)
         except OSError:
             print(json.dumps({'status':'blocked','ready':False,'deployment_authorized':False,
+                'current_release_gate':not args.historical_consistency,
+                'production_qualification_supported':False,
                 'issues':[{'code':'output.unavailable','path':'output','message':'Report could not be replaced atomically'}]}))
             return 1
     print(encoded,end='');return 0 if result['ready'] else 1

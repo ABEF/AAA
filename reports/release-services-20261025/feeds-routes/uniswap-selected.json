@@ -1,0 +1,884 @@
+[
+  {
+    "id": "v4-poolmanager-robinhood-chain",
+    "protocol": "v4",
+    "contract": "PoolManager",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x8366a39CC670B4001A1121B8F6A443A643e40951",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v4-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v4-core/blob/main/src/PoolManager.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x8366a39CC670B4001A1121B8F6A443A643e40951",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v4-positionmanager-robinhood-chain",
+    "protocol": "v4",
+    "contract": "PositionManager",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x58daec3116aae6D93017bAAea7749052E8a04fA7",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v4-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v4-periphery/blob/main/src/PositionManager.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x58daec3116aae6D93017bAAea7749052E8a04fA7",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v4-positiondescriptor-robinhood-chain",
+    "protocol": "v4",
+    "contract": "PositionDescriptor",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x9639443158E8C5efa35Bd45287bf2EFfd3D8dC06",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v4-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v4-periphery/blob/main/src/PositionDescriptor.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x9639443158E8C5efa35Bd45287bf2EFfd3D8dC06",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v4-v4quoter-robinhood-chain",
+    "protocol": "v4",
+    "contract": "V4Quoter",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x8Dc178eFB8111BB0973Dd9d722ebeFF267c98F94",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v4-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v4-periphery/blob/main/src/lens/V4Quoter.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x8Dc178eFB8111BB0973Dd9d722ebeFF267c98F94",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v4-stateview-robinhood-chain",
+    "protocol": "v4",
+    "contract": "StateView",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xF3334192D15450CdD385c8B70e03f9A6bD9E673b",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v4-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v4-periphery/blob/main/src/lens/StateView.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xF3334192D15450CdD385c8B70e03f9A6bD9E673b",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v4-reserveslens-robinhood-chain",
+    "protocol": "v4",
+    "contract": "ReservesLens",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x0000001b173C3bbF3984D417d8614E3eed34865B",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v4-core",
+    "sourceRef": "b08eb66",
+    "sourceCodeUrl": "https://github.com/Uniswap/v4-periphery/blob/main/src/lens/ReservesLens.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x0000001b173C3bbF3984D417d8614E3eed34865B",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v4-erc7914detector-robinhood-chain",
+    "protocol": "v4",
+    "contract": "ERC7914Detector",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xc470458fc6A7E43471b31e6a2eB2612215A7102e",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v4-core",
+    "sourceRef": "e5b4eed",
+    "sourceCodeUrl": "https://github.com/Uniswap/util-contracts/blob/main/src/ERC7914Detector.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xc470458fc6A7E43471b31e6a2eB2612215A7102e",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-uniswapv3factory-robinhood-chain",
+    "protocol": "v3",
+    "contract": "UniswapV3Factory",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v3-core/blob/main/contracts/UniswapV3Factory.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-nonfungiblepositionmanager-robinhood-chain",
+    "protocol": "v3",
+    "contract": "NonfungiblePositionManager",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x73991a25C818Bf1f1128dEAaB1492D45638DE0D3",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v3-periphery/blob/main/contracts/NonfungiblePositionManager.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x73991a25C818Bf1f1128dEAaB1492D45638DE0D3",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-quoterv2-robinhood-chain",
+    "protocol": "v3",
+    "contract": "QuoterV2",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x33e885eD0Ec9bF04EcfB19341582aADCb4c8A9E7",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x33e885eD0Ec9bF04EcfB19341582aADCb4c8A9E7",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-ticklens-robinhood-chain",
+    "protocol": "v3",
+    "contract": "TickLens",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x7DfD4F31be6814D2906BDE155c3e1B146EAc1468",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/TickLens.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x7DfD4F31be6814D2906BDE155c3e1B146EAc1468",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-nftdescriptor-robinhood-chain",
+    "protocol": "v3",
+    "contract": "NFTDescriptor",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x2E9D45Bb7b30549F5216813aDA9a6b7982C5B3ED",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v3-periphery/blob/main/contracts/libraries/NFTDescriptor.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x2E9D45Bb7b30549F5216813aDA9a6b7982C5B3ED",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-nonfungibletokenpositiondescriptor-robinhood-chain",
+    "protocol": "v3",
+    "contract": "NonfungibleTokenPositionDescriptor",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x6F84dAE9c064ff453E5C8af51EfB819f8f610225",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v3-periphery/blob/main/contracts/NonfungibleTokenPositionDescriptor.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x6F84dAE9c064ff453E5C8af51EfB819f8f610225",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-uniswapinterfacemulticall-robinhood-chain",
+    "protocol": "v3",
+    "contract": "UniswapInterfaceMulticall",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x282A3C4D320Cc7f0d5eaf56B8029e4B88338f0a3",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/UniswapInterfaceMulticall.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x282A3C4D320Cc7f0d5eaf56B8029e4B88338f0a3",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-swaprouter02-robinhood-chain",
+    "protocol": "v3",
+    "contract": "SwapRouter02",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xCaf681a66D020601342297493863E78C959E5cb2",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xCaf681a66D020601342297493863E78C959E5cb2",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v3-mixedroutequoterv2-robinhood-chain",
+    "protocol": "v3",
+    "contract": "MixedRouteQuoterV2",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x7edd862aa08dD5Be664C21188E1A2A0E64e3A283",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v3-core",
+    "sourceRef": "0ecb1fc",
+    "sourceCodeUrl": "https://github.com/Uniswap/mixed-quoter/blob/main/src/MixedRouteQuoterV2.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x7edd862aa08dD5Be664C21188E1A2A0E64e3A283",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v2-uniswapv2factory-robinhood-chain",
+    "protocol": "v2",
+    "contract": "UniswapV2Factory",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x8bcEaA40B9AcdfAedF85AdF4FF01F5Ad6517937f",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v2-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v2-core/blob/master/contracts/UniswapV2Factory.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x8bcEaA40B9AcdfAedF85AdF4FF01F5Ad6517937f",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "v2-uniswapv2router02-robinhood-chain",
+    "protocol": "v2",
+    "contract": "UniswapV2Router02",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x89e5DB8B5aA49aA85AC63f691524311AEB649eba",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/v2-core",
+    "sourceRef": "56928a9",
+    "sourceCodeUrl": "https://github.com/Uniswap/v2-periphery/blob/master/contracts/UniswapV2Router02.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x89e5DB8B5aA49aA85AC63f691524311AEB649eba",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "uniswapx-dutchv3orderreactor-robinhood-chain",
+    "protocol": "uniswapx",
+    "contract": "DutchV3OrderReactor",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x000000007A1C8e570011EeDF86A2A35593013cBA",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/UniswapX",
+    "sourceRef": "UniswapX@2.1.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x000000007A1C8e570011EeDF86A2A35593013cBA",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "uniswapx-orderquoter-robinhood-chain",
+    "protocol": "uniswapx",
+    "contract": "OrderQuoter",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x00000000a3db63Df9078cBF3dF88B4CAdD5a7F58",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/UniswapX",
+    "sourceRef": "UniswapX@2.1.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/UniswapX/blob/main/src/lens/OrderQuoter.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x00000000a3db63Df9078cBF3dF88B4CAdD5a7F58",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "uniswapx-erc20eth-robinhood-chain",
+    "protocol": "uniswapx",
+    "contract": "ERC20ETH",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x00000000e20E49e6dCeE6e8283A0C090578F0fb9",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/UniswapX",
+    "sourceRef": "UniswapX@2.1.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/ERC20-eth/blob/main/src/ERC20ETH.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x00000000e20E49e6dCeE6e8283A0C090578F0fb9",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "permit2-permit2-robinhood-chain",
+    "protocol": "permit2",
+    "contract": "Permit2",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/permit2",
+    "sourceRef": "permit2@1.0.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/permit2/blob/main/src/Permit2.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x000000000022D473030F116dDEE9F6B43aC78BA3",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "smart-wallet-caliburentry-robinhood-chain",
+    "protocol": "smart-wallet",
+    "contract": "CaliburEntry",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x000000009B1D0aF20D8C6d0A44e162d11F9b8f00",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/calibur",
+    "sourceRef": "e5b4eed",
+    "sourceCodeUrl": "https://github.com/Uniswap/calibur/blob/main/src/CaliburEntry.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x000000009B1D0aF20D8C6d0A44e162d11F9b8f00",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "universal-router-universalrouter-robinhood-chain",
+    "protocol": "universal-router",
+    "contract": "UniversalRouter",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x204FAca1764B154221e35c0d20aBb3c525710498",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/universal-router",
+    "sourceRef": "802fe4c",
+    "sourceCodeUrl": "https://github.com/Uniswap/universal-router/blob/main/contracts/UniversalRouter.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x204FAca1764B154221e35c0d20aBb3c525710498",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "universal-router-universalrouter-v2-1-2-robinhood-chain",
+    "protocol": "universal-router",
+    "contract": "UniversalRouter#v2.1.2",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x204FAca1764B154221e35c0d20aBb3c525710498",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/universal-router",
+    "sourceRef": "802fe4c",
+    "sourceCodeUrl": "https://github.com/Uniswap/universal-router/blob/main/contracts/UniversalRouter.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x204FAca1764B154221e35c0d20aBb3c525710498",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "universal-router-swapproxy-robinhood-chain",
+    "protocol": "universal-router",
+    "contract": "SwapProxy",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x0000000085E102724e78eCd2F45DC9cA239Affad",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/universal-router",
+    "sourceRef": "484b405",
+    "sourceCodeUrl": "https://github.com/Uniswap/universal-router/blob/main/contracts/SwapProxy.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x0000000085E102724e78eCd2F45DC9cA239Affad",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-continuousclearingauctionfactory-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "ContinuousClearingAuctionFactory",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x000000001F26a0044BaA66024e7b6599c61963F8",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/continuous-clearing-auction",
+    "sourceRef": "v2.1.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/continuous-clearing-auction/blob/main/src/ContinuousClearingAuctionFactory.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x000000001F26a0044BaA66024e7b6599c61963F8",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-continuousclearingauctionfactory-v2-0-0-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "ContinuousClearingAuctionFactory#v2.0.0",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x00cCa200BF124dBfA848937c553864f4B4CE0632",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/continuous-clearing-auction",
+    "sourceRef": "v2.0.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/continuous-clearing-auction/blob/main/src/ContinuousClearingAuctionFactory.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x00cCa200BF124dBfA848937c553864f4B4CE0632",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-liquiditylauncher-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "LiquidityLauncher",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x0000FffFBE8efE702c8703aE3477FF5dE3d319C0",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/main/src/LiquidityLauncher.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x0000FffFBE8efE702c8703aE3477FF5dE3d319C0",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-liquiditylauncher-v3-0-0-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "LiquidityLauncher#v3.0.0",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x00004c4ccc709Ef590F7C81102C0689F0263D4e9",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.0.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/v3.0.0/src/LiquidityLauncher.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x00004c4ccc709Ef590F7C81102C0689F0263D4e9",
+    "env": "mainnet",
+    "status": "deprecated",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-lbpstrategy-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "LBPStrategy",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xbf1aB81f7d534b2CC0Da76fcf4d541322bB0e000",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.3.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/1c5904912aefceaceb89c24528cd5e25d0b61597/src/strategies/lbp/LBPStrategy.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xbf1aB81f7d534b2CC0Da76fcf4d541322bB0e000",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-lbpstrategy-v3-1-1-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "LBPStrategy#v3.1.1",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x05d552391067389EE44fec3924157ed33F976000",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.1.1",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/5ef0262b8e191360a212aac864a525dcf7a06605/src/strategies/lbp/LBPStrategy.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x05d552391067389EE44fec3924157ed33F976000",
+    "env": "mainnet",
+    "status": "deprecated",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-lbpstrategy-v3-0-0-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "LBPStrategy#v3.0.0",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x095e38a2135aeBcfFa98A5B6911591937f912000",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.0.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/v3.0.0/src/strategies/lbp/LBPStrategy.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x095e38a2135aeBcfFa98A5B6911591937f912000",
+    "env": "mainnet",
+    "status": "deprecated",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-instantlaunchstrategy-creator-fees-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "InstantLaunchStrategy#creator-fees",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x23f8209572b4a1C2AD88A42749E830791Fb027f1",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/InstantLaunchStrategy.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x23f8209572b4a1C2AD88A42749E830791Fb027f1",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-instantlaunchstrategy-no-creator-fees-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "InstantLaunchStrategy#no-creator-fees",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xAD44D55E7f8337C3cE113fBb591486E85be104b2",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/InstantLaunchStrategy.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xAD44D55E7f8337C3cE113fBb591486E85be104b2",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-universalrouterstrategy-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "UniversalRouterStrategy",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x0A122717bc36E3C7A7958128a5C789E0b070b3Ae",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.3.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/1c5904912aefceaceb89c24528cd5e25d0b61597/src/strategies/UniversalRouterStrategy.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x0A122717bc36E3C7A7958128a5C789E0b070b3Ae",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-universalrouterstrategy-v3-2-0-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "UniversalRouterStrategy#v3.2.0",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x1242c9439d589cAE85E121B1f79f2aF51e91DCEE",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/dd8769cd45c0e9450e928513ee129b0af74f7f32/src/strategies/UniversalRouterStrategy.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x1242c9439d589cAE85E121B1f79f2aF51e91DCEE",
+    "env": "mainnet",
+    "status": "deprecated",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-initializerhook-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "InitializerHook",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x5fB5229FBA341dFE5a7e6A14d4809D6Cf887a000",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.3.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/7ea523c9d75a51cb2f497be5e49bacdaeb80a342/src/periphery/hooks/InitializerHook.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x5fB5229FBA341dFE5a7e6A14d4809D6Cf887a000",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-initializerhook-v3-1-1-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "InitializerHook#v3.1.1",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xD462a559337859369EF271814851A18F496ba000",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.1.1",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/5ef0262b8e191360a212aac864a525dcf7a06605/src/periphery/hooks/InitializerHook.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xD462a559337859369EF271814851A18F496ba000",
+    "env": "mainnet",
+    "status": "deprecated",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-tokensplitter-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "TokenSplitter",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x4F5E3FBb9745358A92Da5674305FAb8D2B8a73cE",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/TokenSplitter.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x4F5E3FBb9745358A92Da5674305FAb8D2B8a73cE",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-tokensplitter-v3-0-0-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "TokenSplitter#v3.0.0",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x8B7DCeb5639DB986FCf86606C74e6300C40FE3cd",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.0.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/TokenSplitter.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x8B7DCeb5639DB986FCf86606C74e6300C40FE3cd",
+    "env": "mainnet",
+    "status": "deprecated",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-feesplitter-creator-fees-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "FeeSplitter#creator-fees",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xeFF166AAf189323c58dc27eD1206EB2C37FaACDf",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/FeeSplitter.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xeFF166AAf189323c58dc27eD1206EB2C37FaACDf",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-feesplitter-no-creator-fees-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "FeeSplitter#no-creator-fees",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x222D6d4f1ce59b0d48D5505114eC8Addc90A4359",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/FeeSplitter.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x222D6d4f1ce59b0d48D5505114eC8Addc90A4359",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-uerc20beneficiaryvault-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "UERC20BeneficiaryVault",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0x26d2F7AcB07707034406a0dC458351Bb63C02553",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.3.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/7ea523c9d75a51cb2f497be5e49bacdaeb80a342/src/periphery/UERC20BeneficiaryVault.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0x26d2F7AcB07707034406a0dC458351Bb63C02553",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-uerc20beneficiaryvault-v3-2-0-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "UERC20BeneficiaryVault#v3.2.0",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xd35E9CA72F64C7F93BE30fad67524323396B36D7",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/dd8769cd45c0e9450e928513ee129b0af74f7f32/src/periphery/UERC20BeneficiaryVault.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xd35E9CA72F64C7F93BE30fad67524323396B36D7",
+    "env": "mainnet",
+    "status": "deprecated",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-compoundingclaimrecipient-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "CompoundingClaimRecipient",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xf585b5D728A8fdE743027307BF5F3556E3B9C58D",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.3.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/7ea523c9d75a51cb2f497be5e49bacdaeb80a342/src/periphery/CompoundingClaimRecipient.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xf585b5D728A8fdE743027307BF5F3556E3B9C58D",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-compoundingclaimrecipient-v3-2-0-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "CompoundingClaimRecipient#v3.2.0",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xf9526Dd3361fe0ba6b7a99533ed471D3E808E99a",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "v3.2.0",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/dd8769cd45c0e9450e928513ee129b0af74f7f32/src/periphery/CompoundingClaimRecipient.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xf9526Dd3361fe0ba6b7a99533ed471D3E808E99a",
+    "env": "mainnet",
+    "status": "deprecated",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-buybackandburnclaimrecipient-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "BuybackAndBurnClaimRecipient",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xa1ba4CC12654D2b188e3ba77dc86c75cA47f1A4e",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "0b5ee0527af94a8c635b6af5b334a7d17c5ed719",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/0b5ee0527af94a8c635b6af5b334a7d17c5ed719/src/periphery/BuybackAndBurnClaimRecipient.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xa1ba4CC12654D2b188e3ba77dc86c75cA47f1A4e",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  },
+  {
+    "id": "liquidity-launchpad-vestingclaimrecipient-robinhood-chain",
+    "protocol": "liquidity-launchpad",
+    "contract": "VestingClaimRecipient",
+    "chain": "Robinhood Chain",
+    "chainId": 4663,
+    "address": "0xeF451B293ED8C61d20f7d13ef336a496F0cc2c26",
+    "tier": "labs-supported",
+    "sourceRepo": "https://github.com/Uniswap/liquidity-launcher",
+    "sourceRef": "0b5ee0527af94a8c635b6af5b334a7d17c5ed719",
+    "sourceCodeUrl": "https://github.com/Uniswap/liquidity-launcher/blob/0b5ee0527af94a8c635b6af5b334a7d17c5ed719/src/periphery/VestingClaimRecipient.sol",
+    "explorerUrl": "https://robinhoodchain.blockscout.com/address/0xeF451B293ED8C61d20f7d13ef336a496F0cc2c26",
+    "env": "mainnet",
+    "status": "active",
+    "aliases": [
+      "robinhood"
+    ]
+  }
+]

@@ -1,3 +1,34 @@
+## Service qualification and function-reference handoff - 2026-10-25
+
+Read [service review](reports/release-services-20261025/REVIEW.md),
+[verification](reports/release-services-20261025/VERIFICATION.md) and Git/publication.
+Optional immutable Pyth reader adds bounded original-time/precision/confidence/
+runtime checks;17new Solidity cases and38normal object gates pass. All37previous
+objects remain byte-identical. ETH/stable candidates exist; no ZZZ pair, updater,
+actual feed/route or provider is qualified. Pyth midpoint confidence is a screening
+ceiling, not widened Oracle bounds; proxy implementation/upstream review remains.
+
+Current schema5/mint profile1 fails closed on incompatible OpenSea primary mint;
+legacy CLI inspection requires --historical-consistency and never qualifies release.
+68distinct affected gate/CLI and19review-package methods pass across scoped runs.
+Frozen committed-source export is implemented, not dependency bundling, operating
+rehearsal, final release selection or independent audit. Exact final package is
+regenerated after implementation commit and recorded in publication separately.
+
+User selected OpenSea buyer gross0.05ETH; actual platform fee comes out of recipient
+proceeds, gas separate. Current direct mint still forwards all0.05ETH; compatible
+buyer/payment/VRF integration remains pre-seal work. Authority addresses deferred.
+The callable reference is implemented:32 contracts,698 functions,32constructors,
+15receive hooks; all top-level inputs are explained, with exact outputs/tuple
+fields and purpose/caller/payable conditions.10focused generator checks pass.
+The normal verifier rejects stale source/reference or incomplete function/input
+notes. Maintain it whenever behavior, ABI, permissions or parameters change. Sole Todo/features/roadmap/operator are aligned.
+
+Preserve unrelated drafts, main only,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signer/null public DEPLOYMENT and paused monitor. No public transaction,
+deployment/seal, website source/build/server or service action. Website memory-only
+update is distinct. Production NOT APPROVED; verify commits/remote publication.
+
 ## Native readiness publication verified - 2026-10-25
 
 Implementation `89e91a0` (contract/backend) and `94510a6` (website source) are

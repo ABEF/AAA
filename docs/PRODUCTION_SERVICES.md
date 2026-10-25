@@ -1,5 +1,36 @@
 ## Current feed candidates, costs and dated readings - 2026-10-25
 
+## Service compatibility and mint-price decision - 2026-10-25
+
+The optional [Pyth Core reader](PYTH_PRICE_SOURCE.md) is implemented and locally
+verified; no source is deployed or admitted. It preserves original publish times,
+checks precision/confidence/age/runtime with bounded reads, and adds no updater
+or authority. Confidence is a screening limit, not a widening of Oracle USD bounds
+or proof of market truth. Core proxy implementations and common upstreams still
+need independent review. Chainlink/Pyth catalogs provide candidate ETH/USD,
+USDG/USD and USDC/USD products; no ZZZ pair was established. Pyth updates require
+a separately funded, monitored service. [Research and scoped evidence](../reports/release-services-20261025/REVIEW.md).
+
+Current release validation requires schema5 with explicit mint_integration_version1.
+The existing Vault direct mint is not an OpenSea drop integration; the gate blocks
+it regardless of supplied proof flags. Legacy inspection requires the explicit
+CLI --historical-consistency option and is never current release qualification.
+[Mint and randomness qualification](MINT_INTEGRATION_QUALIFICATION.md) requires the
+actual request ABI, original-request/same-result recovery and separate funding.
+No supported VRF provider is selected. Authority wallets remain unset by decision.
+
+OpenSea primary mint must charge the buyer **0.05 ETH gross**, pay its actual
+platform fee from that amount and send the remainder to the mint recipient;
+network gas is separate. The actual platform fee is unverified. Current direct
+mint still forwards the entire0.05ETH and is not that integration. Keep the
+OpenSea implementation/acceptance gate open before sealing.
+
+Use the [frozen review package](FROZEN_REVIEW_BUNDLE.md) to hand an exact committed
+source tree and dependency pins to reviewers. Export/verification is not an audit,
+test run, self-contained dependency bundle, operating rehearsal or release approval.
+Production remains NOT APPROVED; public signing, services and existing local
+state are unchanged.
+
 ## Service capability and marketplace boundaries - 2026-10-25
 
 Use [RPC preparation qualification](RPC_PREPARATION_QUALIFICATION.md) before

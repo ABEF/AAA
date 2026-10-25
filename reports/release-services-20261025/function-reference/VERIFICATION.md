@@ -1,0 +1,23 @@
+# Contract function reference: verification scope
+
+The [generated reference](../../../docs/CONTRACT_FUNCTIONS.md) documents the current undeployed candidate. [Exact bindings and results](verification.json) record the final generator, tests, notes, generated files and **43 production Solidity source hashes**. Production is **NOT APPROVED**.
+
+## What changed
+
+A source-bound ABI importer and deterministic renderer produce one reference with a contract index and separate deployment, read, write and native-ETH hook tables. The tables retain exact signatures, overloads, inherited ERC-721/governance surfaces, mutability, argument/result types and recursively expanded tuple fields. Reviewed notes explain purpose, permitted callers, every top-level input and payable native value. Retired or unavailable entry points are labelled; no withdrawal or permission is inferred from a method name.
+
+The final catalog covers **32 concrete contracts, 698 functions, 32 constructors and 15 receive hooks**; there is no fallback hook. Six internal-only libraries have no callable ABI and are excluded. Function/caller/payable explanation gaps: **0**. Top-level input explanation gaps: **0**. **142 output positions** lack a separate per-output annotation: their result meaning is in the function purpose or ordered named fields. Exact unnamed output positions are retained, not assigned invented meanings. Nested tuples are expanded without claiming a dedicated prose explanation on every leaf.
+
+The Markdown is **373,180 bytes**, below the threshold for splitting the reference. Editable explanations are in [function-reference-notes.json](../../../docs/function-reference-notes.json); [function-reference.json](../../../docs/function-reference.json) retains the full ABI and binding snapshot. Root linked the reference at the bottom of the operator manual and wired the cheap check into the normal verifier.
+
+## What was actually verified
+
+**10 distinct new documentation-generator methods pass** in the final scoped run, recorded in the [tool-output transcript](test.log). They cover canonical nested tuple arrays and overloads; inherited entries, unnamed positions and field order; source drift/new inventory; deterministic generation/alteration detection; unknown or missing notes; mandatory top-level input explanations; removed callables and duplicate signatures; exact compiler content/settings/size binding and path confinement; malformed ABI types; and duplicate/nonfinite JSON, unknown input notes and conflicting notes.
+
+The first synthetic-fixture attempt failed correctly because Windows text writes produced CRLF while the simulated compiler input used LF. Only the test fixture was repaired to write exact LF bytes; the production source validator was not relaxed. Nine distinct methods then passed. After focused rendering refinements only two affected methods were repeated. A new missing-input regression brought the final run to ten methods, all passing in **0.224 seconds**. Repeated methods are not additional distinct checks. The log preserves the existing executed output; no extra unchanged run was made just to create it.
+
+After all three authors completed the reviewed notes, the importer reused the existing final production compiler input/output and normal size evidence. It checked all43 current source hashes, exact compiler content/settings and all38 normal object rows, then generated the final reference. `python scripts/generate-function-reference.py --check` passed with the final zero-gap counts. **No Solidity compilation, unchanged contract regression or size build was repeated for this documentation task.** The earlier Pyth/size checks retain their separate [recorded scope](../feeds-routes/VERIFICATION.md).
+
+The default check fails on source inventory/hash drift, stale ABI hash, unknown or duplicate callables/notes, missing function/caller/payable/input explanations, and changed generated content. After Solidity changes, import matching reviewed compiler/size artifacts and update the notes before regenerating; the [maintenance instructions](../../../docs/CONTRACT_FUNCTIONS.md#maintenance) give platform-neutral commands. Human semantic review remains necessary: deterministic generation is not a substitute for an audit of the described behavior.
+
+Root separately reported `bash -n scripts/verify.sh` passes after adding the cheap checks; this agent did not execute that shell validation again. No financial transaction, public signing, key access, deployment, service/server change, existing Anvil/NFT/LP/balance/journal change or monitoring action occurred. Runtime qualification, external-service approval and independent audit remain separate release gates.

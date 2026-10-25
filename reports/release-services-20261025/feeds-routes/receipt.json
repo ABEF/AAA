@@ -1,0 +1,29 @@
+{
+  "baseline": "ac98b5b",
+  "compiler": "solc0.8.26/Cancun viaIR optimizer1 yulfalse",
+  "solidity_methods": 17,
+  "fuzz_runs": 1000,
+  "production_source_count": 43,
+  "object_gates": 38,
+  "qualification": false,
+  "production_approved": false,
+  "bindings": {
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "test/PythPriceFeed.t.sol": "72f713cf177f44ba00193fa8d4f266afdba4dc1ecc257d1c8dbec8151f8e12d6",
+    "docs/PYTH_PRICE_SOURCE.md": "ba2a2592f4f9175e9cb284cf88350466b394197faf9774705b40ba45868aa5dd",
+    "reports/release-services-20261025/feeds-routes/build-source.py": "d624b45699385fa31d0b353d1faec9cb53f53eebcca2ebea75bafa40bcbd1a7b",
+    "reports/release-services-20261025/feeds-routes/fetch-catalogs.py": "dceafc5354bdc9b8096427561efd2b8bb22a4514ab162bd6ec8e245b1f24b8b9",
+    "reports/release-services-20261025/feeds-routes/observe-candidates.py": "7d911636ecbe81e03fd987458622e99c908f5f621237387d216dcce9ce10a55a",
+    "reports/release-services-20261025/feeds-routes/run-solidity.py": "cb44f1dc215a4591bda282c4d2ee34671eb8887a28ecf9a88777fdc3d863727a"
+  },
+  "evidence_sha256": {
+    "pyth-reader.json": "63c3949f6ecdf83e18ee439aee6a59c4d8ee256644d8c26be3b50ac1c3089d51",
+    "pyth-reader.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pyth-reader-summary.json": "0edb649486f15585c94b75611643112b6fe966a0753eceae8f68df79a9caca5b",
+    "pyth-reader-inputs.json": "5632ef94998753bafeaaabb18862ec466477ebc523edb67b957c2d08a3dae937",
+    "source-size-gates.json": "0f448e38d9ccd5e0359e7879ddf2cc393e89d6266fd765299839fcc3c90ac0ce",
+    "source-build-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prior-object-comparison.json": "590dddc141f3d2e84d33d42a77b0765d4c4421096c2afd1cd05e091f053e8f4c"
+  },
+  "external_compiler_output_sha256": "9d8a47ed1fb4ece6bf1ef11a4df7fcd21f5d6acd9e38e0bb2b9c72c9eaa16e5a"
+}

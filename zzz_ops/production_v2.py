@@ -42,6 +42,13 @@ EVIDENCE = ('toolchain', 'static_analysis', 'invariants', 'uniswap_fork', 'stagi
             'economic_approval', 'independent_audit', 'remediation',
             'native_accounting', 'typed_v4_routes', 'custody_handoff')
 SERVICES = ('rpc', 'pricing', 'randomness', 'keeper', 'api', 'metadata', 'opensea')
+# Code-owned capabilities, not fields a manifest can invent to authorize minting.
+# Adding a real recipient-aware marketplace path needs a separately reviewed
+# contract implementation and an explicit new profile; an ABI claim is not one.
+MINT_IMPLEMENTATION_PROFILE = 'vault_direct_v1'
+VRF_REQUEST_PROFILE = 'subscription_v25_two_words_v1'
+VRF_REQUEST_SELECTOR = '0x' + keccak256(
+    b'requestRandomWords((bytes32,uint256,uint16,uint32,uint32,bytes))')[:4].hex()
 TOP_FIELDS = frozenset(('schema_version','accounting_version','routing_version','pricing_version','review_policy_version',
     'accounting_model','custody_architecture','release_commit','canonical_chain_id',
     'economics','nft_policy','evidence','chains'))
@@ -1101,11 +1108,63 @@ def _services(g,chain,path):
             g.text(service.get('collection_url'),sp+'.collection_url')
 
 
+def _mint_integration(g,chain,path):
+    """Current source capabilities, separate from historical schema-5 evidence.
+
+    These checks deliberately cannot turn a staged secondary sale, ordinary
+    chain support or a self-declared SeaDrop ABI into an implemented primary mint.
+    """
+    sp = path+'.services.opensea'
+    service = _obj(_obj(chain.get('services')).get('opensea'))
+    integration = g.obj(service.get('integration'),sp+'.integration')
+    g.check(integration.get('requested_product') == 'opensea_seadrop_v1',
+        sp+'.integration.requested_product','mint.product',
+        'Record the actual intended OpenSea ERC-721 SeaDrop primary-drop product, not a secondary listing or generic chain support.','services')
+    g.check(integration.get('implementation_profile') == MINT_IMPLEMENTATION_PROFILE,
+        sp+'.integration.implementation_profile','mint.implementation_profile',
+        'This source implements Vault direct issuance only; manifest metadata cannot add a SeaDrop mint authority or recipient/payment path.','services')
+    # Current NFT has no mintSeaDrop/getMintStats surface; Vault requires the
+    # exact paid mint and issues to msg.sender. Never accept fabricated proof
+    # flags as an implementation of a different caller/recipient/payment model.
+    g.check(False,sp+'.integration','mint.opensea_unsupported',
+        'Implement and review a compatible OpenSea primary-mint path before sealing: canonical buyer identity, exact 0.05ETH payment/split, one original VRF request, pauses and rollback. Current Vault direct mint is incompatible.','services')
+    np = path+'.nft_inventory.randomness'
+    vrf = _obj(_obj(chain.get('nft_inventory')).get('randomness'))
+    g.check(vrf.get('request_profile') == VRF_REQUEST_PROFILE and
+        vrf.get('request_selector') == VRF_REQUEST_SELECTOR and
+        type(vrf.get('num_words')) is int and vrf.get('num_words') == 2,
+        np,'randomness.request_profile',
+        'Qualify the exact subscription-v2.5 request selector, two words and current nonzero immutable lane. Matching callback ABI or a zero-lane provider is insufficient.','randomness')
+    policy = g.obj(vrf.get('recovery_policy'),np+'.recovery_policy')
+    g.check(policy.get('unserved_request') == 'original_request_remains_valid' and
+        policy.get('refund_or_expiry') == 'cannot_invalidate_original_fulfillment' and
+        policy.get('failed_callback') == 'same_request_same_result' and
+        policy.get('reroll') == 'none',np+'.recovery_policy','randomness.recovery_policy',
+        'Review original-request validity through timeout/refund and same-result callback recovery. An irreversible cancellation can permanently block ordered reveals; refund is not replacement randomness.','randomness')
+    staged = _obj(vrf.get('integration_evidence'))
+    original_id = g.num(staged.get('fulfilled_request_id'),np+'.integration_evidence.fulfilled_request_id',1)
+    recovered_id = g.num(staged.get('recovery_request_id'),np+'.integration_evidence.recovery_request_id',1)
+    original_hash = g.hex(staged.get('original_result_sha256'),np+'.integration_evidence.original_result_sha256',prefix=False)
+    recovered_hash = g.hex(staged.get('recovered_result_sha256'),np+'.integration_evidence.recovered_result_sha256',prefix=False)
+    g.check(original_id is not None and recovered_id == original_id and
+        original_hash is not None and recovered_hash == original_hash and
+        staged.get('request_selector') == VRF_REQUEST_SELECTOR and
+        type(staged.get('callback_words_count')) is int and staged.get('callback_words_count') == 2,
+        np+'.integration_evidence','randomness.original_result_recovery',
+        'Bind actual callback recovery to the same original request and exact two-word result; a successful new request or reroll does not qualify recovery.','randomness')
+    for field in ('invalid_proof_rejection_sha256','unauthenticated_callback_rejection_sha256'):
+        g.hex(staged.get(field),np+'.integration_evidence.'+field,prefix=False)
+    funding = g.obj(vrf.get('funding'),np+'.funding')
+    g.check(funding.get('source') == 'external_subscription_reserve',np+'.funding.source',
+        'randomness.funding','Fund actual requests separately from locked principal and accrued holder rewards.','randomness')
+    g.hex(funding.get('owner'),np+'.funding.owner',20)
+
+
 def validate(config: Any, *, expected_commit: str | None = None, now: int | None = None) -> dict[str,Any]:
     """Validate explicit schema 5 only, preserving every legacy schema boundary."""
     config = copy.deepcopy(config) if isinstance(config,dict) else {}
     g = Gate(config.get('release_commit'))
-    g.check(set(config)-{'_notes','range_policy_version'} == set(TOP_FIELDS),'config','schema.keys',
+    g.check(set(config)-{'_notes','range_policy_version','mint_integration_version'} == set(TOP_FIELDS),'config','schema.keys',
         'Use only explicit schema-5 fields; obsolete bridge approvals cannot accompany this release inventory.')
     g.commit = g.hex(g.commit,'release_commit',20,prefix=False)
     now = int(time.time()) if now is None else now
@@ -1119,6 +1178,10 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     range_version = config.get('range_policy_version',0)
     g.check(type(range_version) is int and range_version in (0,1),'range_policy_version','range.profile',
         'Use an explicit supported range-policy profile; zero retains historical raw-price semantics.','bindings')
+    mint_version = config.get('mint_integration_version',0)
+    mint_profile_valid = type(mint_version) is int and mint_version in (0,1)
+    g.check(mint_profile_valid,'mint_integration_version','mint.profile',
+        'Use explicit mint-integration profile 1 for current release qualification. Absent/zero is historical schema-5 consistency only.','services')
     _policies(g,config)
     evidence = g.obj(config.get('evidence'),'evidence')
     for name in EVIDENCE: g.proof(evidence.get(name),'evidence.'+name)
@@ -1145,15 +1208,24 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     for index, value in enumerate(chains):
         chain = g.obj(value,f'chains[{index}]')
         _chain(g,chain,f'chains[{index}]',home,now,range_version)
+        if mint_version == 1 and mint_profile_valid:
+            _mint_integration(g,chain,f'chains[{index}]')
     groups = {}
     for issue in g.issues:
         groups.setdefault(issue['group'],[]).append({'path':issue['path'],'code':issue['code'],
             'remediation':issue['remediation']})
     return {'schema_version':5,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
         'release_commit':g.commit,'deployment_authorized':False,'issues':g.issues,
+        'mint_integration_version':mint_version,
+        'approval_scope':'current_native_v2_mint_integration_v1' if mint_version == 1 and mint_profile_valid else 'legacy_manifest_consistency_only',
+        'production_qualification_supported':mint_version == 1 and mint_profile_valid,
+        'primary_mint_implementation':MINT_IMPLEMENTATION_PROFILE,
+        'opensea_primary_mint_supported':False,
         'blockers':groups,'migration_enabled':False,'protocol_bridge_enabled':False,
         'local_pool_move_supported':True,'source_chain_custody_handoff_supported':True,
         'limitations':['Offline checks cannot authenticate supplied evidence or authorize deployment, sealing, signing, or spending.',
+            'Historical mint profile zero may be internally consistent but is not current production qualification; current release runners must require explicit mint profile one.',
+            'Current source supports paid Vault direct mint only. OpenSea primary-drop integration is not implemented, regardless of supplied staged proof flags.',
             'migration_enabled is the legacy protocol-bridge flag. Supported local pool moves and source-chain custody handoffs are code capabilities, not transaction authorization.',
             'Local pool moves require the same ordered actual currencies. Source-chain custody supports normal all-ZZZ or explicit raw exit to a reviewed recipient, with no forced return and no remote NFT/reward ledger.',
             'This profile covers one active canonical native-V2 deployment; cross-chain activation and ETH/WETH principal conversion are unsupported.',

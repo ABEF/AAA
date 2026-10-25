@@ -1,0 +1,47 @@
+"""Normal production object limits; no deployment, size waiver or test rerun."""
+from pathlib import Path
+import hashlib
+import json
+import subprocess
+import sys
+import time
+
+R=Path(__file__).resolve().parents[3]
+E=Path(r'C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9')
+B=E/'release-services-20261025'/'feeds-routes'; B.mkdir(parents=True,exist_ok=True)
+sources={p.relative_to(R).as_posix():{'content':p.read_bytes().decode('utf-8-sig')} for p in (R/'src').rglob('*.sol')}
+settings={'evmVersion':'cancun','viaIR':True,'optimizer':{'enabled':True,'runs':1,'details':{'yul':False}},
+    'remappings':['@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/','@uniswap/v4-core/=node_modules/@uniswap/v4-core/',
+                  '@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/','forge-std/=lib/forge-std/src/',
+                  'solmate/=node_modules/@uniswap/v4-core/lib/solmate/'],
+    'outputSelection':{'*':{'*':['abi','evm.bytecode.object','evm.deployedBytecode.object']}}}
+payload={'language':'Solidity','sources':sources,'settings':settings}
+(B/'source-build-input.json').write_text(json.dumps(payload),encoding='utf-8')
+start=time.monotonic()
+p=subprocess.run([str(E/'toolchain-0.8.26/solc.exe'),'--standard-json','--base-path',str(R)],
+    input=json.dumps(payload).encode(),cwd=R,capture_output=True,timeout=1200)
+(B/'source-build-stderr.log').write_bytes(p.stderr)
+raw=p.stdout[p.stdout.find(b'{'):]; (B/'source-build.json').write_bytes(raw); data=json.loads(raw)
+errors=[x for x in data.get('errors',[]) if x['severity']=='error']; gates=[]
+for path,contracts in data.get('contracts',{}).items():
+    if not path.startswith('src/'):continue
+    for name,value in contracts.items():
+        runtime=len(value['evm']['deployedBytecode']['object'])//2; creation=len(value['evm']['bytecode']['object'])//2
+        if not creation:continue
+        args=next((x['inputs'] for x in value['abi'] if x.get('type')=='constructor'),[])
+        dynamic=any(x['type'] in ('string','bytes','tuple') or '[' in x['type'] for x in args)
+        static=None if dynamic else len(args)*32
+        entry={'path':path,'name':name,'runtime':runtime,'runtime_margin':24576-runtime,'creation':creation,
+               'constructor_types':[x['type'] for x in args],'static_argument_bytes':static,
+               'runtime_ok':runtime<=24576,'creation_ok':creation+(static or 0)<=49152,
+               'maximum_total_argument_bytes':49152-creation,'dynamic_constructor_exact_argument_qualification_required':dynamic}
+        gates.append(entry)
+report={'solc_exit_code':p.returncode,'elapsed_seconds':round(time.monotonic()-start,2),'errors':errors,'gates':gates,
+        'all_pass':not errors and all(x['runtime_ok'] and x['creation_ok'] for x in gates),'settings':settings,
+        'source_sha256':{path:hashlib.sha256((R/path).read_bytes()).hexdigest() for path in sources},
+        'compiler_content_sha256':{path:hashlib.sha256(value['content'].encode()).hexdigest() for path,value in sources.items()},
+        'qualification':'Normal EIP-170/EIP-3860 object gates; dynamic release constructor arguments require exact ABI-encoded qualification. No deployment or live-service approval.'}
+(B/'source-size-gates.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+print(json.dumps({'elapsed':report['elapsed_seconds'],'source_count':len(sources),'gate_count':len(gates),'all_pass':report['all_pass'],
+    'errors':errors,'new_reader':[x for x in gates if x['name']=='ZZZPythPriceFeed'],'vault':[x for x in gates if x['name']=='ZZZVault']},indent=2))
+sys.exit(0 if report['all_pass'] else 1)

@@ -1,0 +1,27 @@
+{
+  "observed_at_utc": "2026-10-25T02:02:09.594006+00:00",
+  "release_approved": false,
+  "sources": {
+    "chainlink": {
+      "url": "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+      "bytes": 84653,
+      "sha256": "714038abef5e6290ce09d4f02279382ff0dcd36e573b8d745ba38d9d316bf776",
+      "available": true,
+      "selected_count": 3
+    },
+    "pyth": {
+      "url": "https://pyth.dourolabs.app/v1/symbols",
+      "bytes": 5205512,
+      "sha256": "71b2162e3cc2efcb469d0dcd6afe74fde8cf82bfbd150a534f286d8930325ec4",
+      "available": true,
+      "selected_count": 3
+    },
+    "uniswap": {
+      "url": "https://developers.uniswap.org/deployments.json",
+      "bytes": 715843,
+      "sha256": "c55fd4a670b6e166e409960025007ef4c8775186e0a1f5733d21e46b6ab16195",
+      "available": true,
+      "selected_count": 49
+    }
+  }
+}

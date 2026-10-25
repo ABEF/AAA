@@ -1,0 +1,74 @@
+{
+  "src/ZZZNFT.sol": {
+    "sha256": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+    "bytes": 19716
+  },
+  "src/ZZZVault.sol": {
+    "sha256": "4d56bb0d0e2926f13bd9d78cc3a602017bb5f1cf83b396d75ec0515abae37d39",
+    "bytes": 29681
+  },
+  "zzz_ops/production_v2.py": {
+    "sha256": "a9923341203236c396eaac70cd28e4e7022a1e85fa765e51650974987ee8472f",
+    "bytes": 96310
+  },
+  "scripts/validate-production-config.py": {
+    "sha256": "b8f3bb528aded24e70b6fa0719b02b0aa43fffd3aa87aed54a3cc7f7e3436ced",
+    "bytes": 89837
+  },
+  "tests_python/test_production_preflight_cli.py": {
+    "sha256": "b2b5ab1c49b74ac9ad70cc08e3f87319320acc8b317eac75340a387c91bd2c0e",
+    "bytes": 7924
+  },
+  "tests_python/test_production_config.py": {
+    "sha256": "93e88576c758f11682f95e39ccff341886730f4260285ec0c71bd8d8a73ef0f5",
+    "bytes": 86563
+  },
+  "config/production.example.json": {
+    "sha256": "6cc1a782700e4a4087cd105eced5ef95aad4d9032e13fa1bbb8ff88ce1a3498b",
+    "bytes": 29489
+  },
+  "tests_python/test_mint_integration_qualification.py": {
+    "sha256": "1d76c299fc81bed62de6488c4d96af9a1e744e0bbc960ed937f14e57f91ef141",
+    "bytes": 8550
+  },
+  "tests_python/test_production_v2.py": {
+    "sha256": "b6f14406ca2651feddc87944edbcc171b04c3f43c87223926b96408ad91df376",
+    "bytes": 38306
+  },
+  "docs/MINT_INTEGRATION_QUALIFICATION.md": {
+    "sha256": "f92b94014713513fa5045456fe98c42dc545cb06d25cb69170fb767d74d044c0",
+    "bytes": 7707
+  },
+  "reports/release-services-20261025/vrf-opensea/observation.json": {
+    "sha256": "5fa7cf610b950c78f847ea45036fd247a7b036d72b1d70ff2218743fbe67bcbf",
+    "bytes": 3964
+  },
+  "reports/release-services-20261025/vrf-opensea/observe.py": {
+    "sha256": "0fc139f8dff039db7c4079164268ce7e0d0434d99fd36635134bcc19c4947297",
+    "bytes": 4303
+  },
+  "reports/release-services-20261025/vrf-opensea/python-cli-verification.log": {
+    "sha256": "4ef60e24bd713516809dc7401f8e8033c637908ea126751f87ebbb6f5e230d77",
+    "bytes": 2648
+  },
+  "reports/release-services-20261025/vrf-opensea/python-malformed-verification.log": {
+    "sha256": "7a4a8cbc021e0b183f457a575714aa9da1385d328d72d33e9848bfa9280bb9ef",
+    "bytes": 341
+  },
+  "reports/release-services-20261025/vrf-opensea/python-verification.log": {
+    "sha256": "11a3579c3f00266f91083a0cb067398696e9d1688126f983e50fbe5a02482fed",
+    "bytes": 10197
+  },
+  "reports/release-services-20261025/vrf-opensea/RESEARCH.md": {
+    "sha256": "e11681b3b21ad423580279e46c6b94b60a9f1547dde2f93fefb38790dd0197de",
+    "bytes": 6816
+  },
+  "reports/release-services-20261025/vrf-opensea/template-cli-summary.json": {
+    "sha256": "56c7e39bd53df42d8a506cbcd4e8b10e638bf279320eccdba425ff75914b22dc",
+    "bytes": 424
+  },
+  "reports/release-services-20261025/vrf-opensea/VERIFICATION.md": {
+    "sha256": "1250799cd2224a37af3912b39894bc8e39f62f4eb5b2866b4588cdd1c065105f",
+    "bytes": 3673
+  }
+}

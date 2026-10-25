@@ -1,5 +1,35 @@
 # Immediate governance
 
+## Current role and custody boundary - 2026-10-25
+
+Governance multisig signers authorize exact zero-delay controller operations.
+The multisig can approve assets/pools/routes/feeds, strategy and keeper policies,
+roles, and contribution/conversion/maintenance caps up to10%. It can pause and
+unpause, authorize same-pair pool moves, and separately approve paused external
+custody exits and compatible whole-collection handoff. This is a powerful trusted
+role; sealing fixes implementations, not these approved configuration/exit powers.
+
+The custody recipient is the destination of an approved transfer, **not another
+governance role**. It may be an EOA or contract. Receiving principal gives it
+actual control outside the Vault, not the ability to reconfigure PoPL. It may
+fund only the already approved return/completion path, as may other funders;
+that path preserves NFT shares and the original approved backing/minima. There
+is no guarantee the custodian will bridge, migrate or return assets.
+
+Guardian can pause immediately, but cannot unpause, configure or move funds.
+Ordinary global pause leaves claims and NFT transfers available; the separate
+canonical freeze/retirement rules still apply. Keeper executes bounded maintenance
+and pays gas, not discretionary custody exit or destination selection. The mint
+recipient receives0.05ETH per successful current direct mint and has no powers
+from that payment. The required OpenSea path instead keeps0.05ETH gross buyer
+price and pays the recipient net of the actual platform fee; that integration
+is not implemented. Network gas is separate. Bootstrap disappears at seal. VRF subscription ownership and
+funding depend on the provider, which remains unqualified.
+
+Read [address inventory](DEPLOYMENT_ADDRESSES.md),
+[custody procedure](GOVERNED_CUSTODY_HANDOFF.md) and [operator manual](OPERATOR_MANUAL.md).
+Production addresses remain unset; no role selection or live operation follows.
+
 The user selected **no governance timelock at any point** on 2026-10-18.
 This supersedes the earlier two-day template and the proposed narrow route-manager
 exception. The candidate is undeployed. Historical reports describe their original
@@ -36,8 +66,8 @@ Bootstrap is erased and fixed module bindings cannot be replaced.
 | Change feeds, wrapper policies, operators or strategy parameters | Exact governance operation; no waiting period. Existing parameter and binding restrictions remain. |
 | Global pause | Guardian or governance, immediately. Only governance can unpause. |
 | Stop a pool / pause only NFT minting | Governance `PoolRegistry.disablePool` clears flags without dependency reads; `NFT.setMintPaused` controls new mints. No waiting period or new role. Reopening a pool uses full validation; resuming minting does not override global/lifecycle controls. |
-| Propose LP migration | Governance authorizes the exact plan. `MIGRATION_DELAY()` is zero. |
-| Execute an approved LP migration | Authorized keeper, immediately if every execution/custody/route check passes. No autonomous choice of destination. |
+| Approve custody exit | Governance authorizes the exact reviewed plan and destination; no governance waiting period. `Migration.approve` is the current interface, not a retired bridge proposal. |
+| Move LP / execute custody exit | Governance calls `Migration.moveFunds` for supported same-pair movement or `Migration.exit` for an approved paused custody plan. Keeper authority alone is insufficient. |
 | Preparation, parking, handoff or successor approval | Governance, with no time delay; required state transitions, exact backing and source retirement remain mandatory. |
 | Replace sealed implementations with arbitrary new code | No generic in-place upgrade exists. Only implemented, compatible handoff mechanisms can authorize a reviewed successor. |
 
@@ -52,12 +82,16 @@ Keeper rebalance cooldowns, transaction deadlines, oracle freshness and sequence
 recovery checks, confirmations and verified cross-chain finality serve execution
 or accounting safety. They remain. Approval cannot skip missing funding, pause/
 preparation/frozen-state checks, ownership checks, approved-route checks or the
-1% contribution and 3% supported local-move/rebalance execution-loss limits.
+captured execution limits: defaults2% contribution/1% conversion/3% maintenance,
+with immediately governed maxima10%. An original approved custody floor is not
+retroactively relaxed by changing the live cap. Explicit raw exit uses approved
+raw minima instead of a fabricated USD guarantee.
 
-Migration eligibility is immediate, but bridge delivery is asynchronous and may
-fail or wait for authentic settlement. Future cross-chain canonical activation
-still requires verified source finality with no multisig-only override. An
-approved plan is not a guarantee that external assets or venues are available.
+The current launch scope uses same-chain pool moves and source-chain external
+custody. The recipient handles external token migration or bridging; integrated
+bridges and remote NFT/reward-ledger transport are deferred optional scope. The
+remaining remote-proof interface does not supply a provider, verifier or remote
+ledger. An approved plan does not guarantee token, venue or custodian availability.
 
 ## Accepted trust boundary and release evidence
 

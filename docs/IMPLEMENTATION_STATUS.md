@@ -1,5 +1,21 @@
 # Feature and evidence reference
 
+## Callable-function documentation and current service scope - 2026-10-25
+
+The [function reference](CONTRACT_FUNCTIONS.md) covers32 contracts and698 functions. It records the compiled current public
+surface, inputs/outputs, read/write type, authority and concise behavior. The
+[operator manual](OPERATOR_MANUAL.md) owns procedures; its closing reference links
+the catalog. Internal helpers and unsupported external protocols are not new
+operator interfaces. Regenerate the source-bound reference after ABI, behavior,
+permissions or parameter changes; signatures alone do not explain safety.
+
+The [component map](COMPONENT_STATUS.md) is aligned to2% contribution/98% deployed
+LP, implemented native profiles and optional/deferred bridging. New optional Pyth
+source capability, strict current mint qualification and frozen-review tooling
+are described in the [service review](../reports/release-services-20261025/REVIEW.md).
+Actual feed/route/updater, VRF, OpenSea, authority and operating qualification and
+independent audit remain open. Production NOT APPROVED.
+
 ## Native integration and operating readiness - 2026-10-25
 
 The [latest review](../reports/native-readiness-20261025/REVIEW.md) and

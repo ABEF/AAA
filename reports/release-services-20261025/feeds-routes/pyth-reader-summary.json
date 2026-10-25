@@ -1,0 +1,120 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 30.42,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\release-services-20261025\\feeds-routes\\pyth-reader-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "PythPriceFeedTest",
+    "--json"
+  ],
+  "cases": [
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testChangedCoreRuntimeFailsDespitePreviouslyValidPrice()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testConfidenceBoundaryAndOneRawUnitAboveAreExact()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testConstructorRejectsMissingIdentityUnreviewedRuntimeAndInvalidPolicy()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testExponentChangesAndMalformedSignExtensionReject()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testExponentEndpointsRetainExactUnitsWithoutRescaling()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testFreshnessBoundaryIsExactAndCannotBeRenewedByReading()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testFuzzConfidenceCheckMatchesExactRationalBoundary(uint64,uint64,uint16)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testGasExhaustionCannotConsumeEntireCallerBudget()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testNativeOracleIntegrationHasNoSingleSourceFallbackForOutageOrDisagreement()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testNativeOracleIntegrationPreservesDualBoundsAndChangingRoundFingerprint()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testNoNativeValueOrArbitraryUpdateSurface()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testNoncanonicalConfidenceCannotTruncateToSafeValue()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testPreservesExactPriceOriginalTimestampAndSyntheticRoundIdentity()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testShortOversizedAndRevertingDataHaveBoundedDomainErrors()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testZeroConfidencePolicyRequiresActualZeroConfidence()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testZeroFutureAndOversizedPublishTimesReject()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PythPriceFeed.t.sol:PythPriceFeedTest",
+      "test": "testZeroNegativeAndNoncanonicalWidePricesReject()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

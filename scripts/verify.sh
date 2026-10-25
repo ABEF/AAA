@@ -2,6 +2,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p reports
+python3 scripts/sync-project-todo.py --check
+python3 scripts/generate-function-reference.py --check
 python3 scripts/run_python_tests.py
 python3 scripts/source_checks.py
 command -v forge >/dev/null || { echo "BLOCKED: Foundry forge is not installed" >&2; exit 1; }

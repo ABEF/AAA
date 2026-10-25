@@ -1,5 +1,39 @@
 # PoPL operator manual
 
+## Current service and mint qualification procedures - 2026-10-25
+
+- [Optional Pyth source setup](PYTH_PRICE_SOURCE.md): exact identity, age/confidence,
+  independent upstream/proxy review, funded updater and setDualFeed admission.
+  Implemented reader is not a selected feed or update service.
+- [Mint/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md): exact original draw,
+  recovery and funding; unsupported OpenSea direct-mint bridge remains blocked.
+  Required buyer price is0.05ETH gross, recipient net after actual platform fee,
+  gas separate. Existing direct mint still pays all0.05ETH.
+- [Current preflight](PRODUCTION_PREFLIGHT.md): explicit mint profile1 is mandatory.
+  --historical-consistency is historical inspection, never release qualification.
+- [Frozen review handoff](FROZEN_REVIEW_BUNDLE.md): exact committed inputs,
+  dependency pins and independently trusted package hash, no execution or approval.
+
+The closing [callable-function reference](#callable-contract-reference) lists
+current contract inputs/outputs and permissions. Use procedures as well as ABI
+types; a valid call can be irreversible and still require economic review.
+
+## Release service and authority qualification - 2026-10-25
+
+The [current governance authority](GOVERNANCE.md#current-role-and-custody-boundary---2026-10-25)
+and [custody/balance inventory](DEPLOYMENT_ADDRESSES.md) distinguish the multisig,
+keeper, guardian, immutable mint recipient and actual exit custodian. Only
+governance can approve/execute principal custody exit or choose its destination.
+An exit is not a general sweep of all protocol balances, and a recipient does
+not gain configuration powers. Bootstrap authority ends permanently at seal.
+
+Current service work must use qualified versioned profiles. A legacy inventory
+consistency result is not current release qualification. Keep direct-mint,
+OpenSea-primary and secondary-listing evidence distinct; the present direct mint
+does not become SeaDrop-compatible because the network is listed by OpenSea.
+No provider address or fee split may be invented to close the gate. Exact
+new source/adapter identities still require reviewed policy admission.
+
 ## Native website profile and service qualification - 2026-10-25
 
 Use the [explicit native website profile](NATIVE_WEBSITE_PROFILE.md) for current
@@ -342,7 +376,7 @@ Use `hashOperation`/`hashOperationBatch` and operation status to verify the exac
 | Guardian | Direct `AccessController.setPaused(true)` | Governance uses `setGuardian(address,bool)`. A guardian cannot unpause, choose a new pool, withdraw LP or repair lost governance. |
 | Keeper | Eligible maintenance and approved migration execution | Governance uses `setKeeper(address,bool)`. Isolate/revoke a compromised signer, reconcile its pending transactions, then qualify a new signer and state. No salary, gas reimbursement or bounty is automatic. |
 | Bootstrap | Initial bindings and sealing | `bind` and `seal` only before sealing; bootstrap is erased. Do not retain deployment keys as a supposed recovery backdoor. |
-| Mint recipient | Receives successful 0.05 ETH mints | Immutable Vault constructor address; receiving money grants no management authority. No post-seal setter. |
+| Mint recipient | Current direct mint pays 0.05 ETH; required OpenSea path pays net after its actual platform fee from the same buyer total | Immutable Vault constructor address; receiving money grants no management authority. No post-seal setter. |
 
 Roles can technically share an address, but this combines their compromise and availability risks. Immediate governance can approve unsafe dependencies or harmful replacement code; role separation and independent transaction review are operational defenses, not an on-chain delay. If every required governance authority/key is lost, there is no hidden admin recovery. Preserve reviewed multisig recovery arrangements before launch.
 
@@ -1255,3 +1289,34 @@ Use [the confirmed collection procedure](COLLECTION_READS.md) for endpoint setup
 complete inventory/current LP semantics, matched API/proxy/frontend deployment,
 refresh, stop/rollback and stale/reorg/indexer recovery. This is a read-only
 service change; no contract function, permission, key or transaction is added.
+
+
+<a id="callable-contract-reference"></a>
+
+## Callable contract reference: reads, writes, inputs and outputs
+
+Open the [complete callable-function reference](CONTRACT_FUNCTIONS.md). It is
+grouped by contract, with a navigation index and separate read/write tables.
+Each entry records the concise purpose, required caller, exact argument and
+return types, tuple fields and relevant safety limitations. Constructors and
+native-ETH receive hooks are included separately; internal-only libraries are
+not callable deployed contracts.
+
+- **Read:** `view`/`pure` does not submit a transaction. A read can still fail on
+  stale prices, missing history, retired lifecycle or dependency faults.
+- **Write:** a successful transaction changes state. Many writes return nothing;
+  their result is confirmed state/events, not an invented output value. A return
+  value from a simulated write does not prove the transaction later succeeded.
+- **Inputs:** token/native amounts are raw integer units unless explicitly USD,
+  BPS, ticks or timestamps. Native ETH sent with a payable call is a separate
+  transaction `value`, not an ABI argument. Gas is always separate.
+- **Permission:** external/public ABI visibility does not grant operator access.
+  Holder, governance, keeper, parent-module and authenticated-callback roles
+  remain distinct. Use the linked procedure before signing a consequential call.
+- **Addresses:** this is a source reference, not the production address book.
+  Verify chain, deployed version, runtime, bindings and [address inventory](DEPLOYMENT_ADDRESSES.md)
+  first. Do not call current ABIs against historical local deployments.
+
+The source-bound [generation/check procedure](CONTRACT_FUNCTIONS.md#maintenance)
+must accompany future function, permission, parameter, output or behavior changes.
+No read or write is executed by generating this reference.
