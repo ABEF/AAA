@@ -63,6 +63,11 @@ revenue, decimals, gas and market depth; a common raw threshold across ETH/ZZZ i
 not a common economic value. Network gas is paid by the keeper separately; it is
 not taken from a holder's80% or the collective10% by claim logic.
 
+For the exact JSON field, per-bucket override precedence and controlled
+config/restart/health procedure, use [change the harvesting interval](OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval).
+Editing the sample file does not reconfigure an installed keeper. Its standalone
+timer tracks successful keeper harvest receipts, not every implicit/manual harvest.
+
 One submitted transaction uses the serial nonce/receipt path per cycle. LP and
 royalty conversions retain their existing three-way turn with maintenance.
 Within cycles reaching maintenance, buyback priority alternates with LP/metadata

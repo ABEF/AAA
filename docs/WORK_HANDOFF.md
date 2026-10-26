@@ -29,6 +29,10 @@ remains open; use Git for the later docs-only receipt checkpoint.
 The user is the sole human operator and controls governance. Use that model in
 the [operator manual](OPERATOR_MANUAL.md#one-operator-and-governance-wallet);
 separate account capabilities do not require extra people or an operator role.
+The [harvest schedule procedure](OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval)
+explains the four-hour example, exact JSON setting, overrides, receipt-based timer
+and controlled restart/health/rollback. It changes no live config or contract;
+do not infer that a production harvesting service has been enabled.
 
 1. Use the [single task ledger](../TODO.md): actual feeds/routes/RPC/VRF/authorities,
    OpenSea primary-mint path, current3 website and service acceptance remain open.

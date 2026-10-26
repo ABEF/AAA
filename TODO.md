@@ -1044,6 +1044,7 @@ Decisions and rehearsals before real funds.
   - Focused Linux CI selection now includes the new maintenance/range policy suites, preserving process-lock/recovery qualification as Linux-specific. No CI run or running service upgrade is inferred from a workflow edit; unchanged prior tests retain original source scope.
   - [Keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) binds health to exact loaded config, rejects malformed conversion controls, repairs obsolete range-test domain and selects current3/fee1/native rehearsal source. Final affected Python354pass/5Unix skips (359methods),9range methods incl1000fuzz; unchanged production Solidity/permissions/economics. Linux current-fixture process/systemd, actual feeds/routes/gas/services and independent audit remain open. Deploy matching health writer/checker only under separate rollout; never patch old hashes or reset journals.
   - [Reward scheduling review](reports/reward-allocation-20261026/REVIEW.md): three source-bound old-code starvation failures become passing cases; final376 unique keeper methods yield370 passes/6 explicit skips. Preserve pending-first recovery, existing conversion turns and optional validated priority/currency cursors; no journal reset, extra successful submission per cycle, economic change or installed-service rollout. Qualify actual batch economics, backlog alerts and execution latency before production.
+  - The [standalone harvest schedule procedure](docs/OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval) documents maintenance.harvest_interval_seconds (example14400/four hours), positive-second settings, bucket override precedence, the separate polling interval and the last successful standalone-harvest receipt timer. Config changes require controlled restart, pending/journal preservation and fresh config-bound health; no contract call, resealing or automatic live rollout. Actual production interval/batch economics remain unqualified.
 
   </details>
 
@@ -1113,4 +1114,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `ea625333779f84048a3998c3819c248db786c086dbf19766552e09df40c765bc`.
+Snapshot SHA-256: `96cfed70b5b24d0bda4fce09e1941b21a5fb143987fddf7ccea94190f00d91b7`.

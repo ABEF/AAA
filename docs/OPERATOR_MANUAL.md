@@ -50,6 +50,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Move existing LP, close it temporarily, or change chains | [Custody and LP migration](#custody-and-lp-migration) |
 | Change prices, sequencer checks or wrapper policy | [Dependencies and pricing](#dependencies-and-pricing) |
 | Collect LP fees, compound, burn or process royalties | [Revenue operations](#revenue-operations) |
+| Change the automatic fee-harvest interval | [Standalone harvesting schedule](#change-the-standalone-harvesting-interval) |
 | Resolve pending artwork reveals or replace all contracts | [Mint and metadata](#mint-and-metadata), [whole-collection replacement](#whole-collection-replacement) |
 | Change managers/keys, replace a server, update software | [Authorities](#authorities), [services](#services-and-server-recovery) |
 | Use a browser wallet locally, recover pending transactions or inspect exact approvals | [Browser-wallet signing and recovery](BROWSER_WALLET.md) |
@@ -561,6 +562,61 @@ The example polls every600seconds and schedules standalone harvests every4hours;
 standalone compounding is off and `buybacks` is empty. These are blocked sample
 settings, not an enabled production promise. Do not put swaps/compounding inside
 the holder claim: a failed strategy or buyback should not block funded LP claims.
+
+### Change the standalone harvesting interval
+
+As the sole operator, edit the **actual keeper service configuration**. The
+setting is `maintenance.harvest_interval_seconds`, in seconds. The current
+[example](../keeper/config.example.json) uses **14400 = 4 hours**. This is an
+off-chain scheduling change: no governance contract call, redeployment or
+unsealing is required, and the 80/10/5/5 split does not change.
+
+For a **one-hour** interval, merge these fields into the existing `maintenance`
+object, keeping its other settings intact:
+
+```json
+{
+  "harvest": true,
+  "harvest_interval_seconds": 3600
+}
+```
+
+1. Identify the real service's config and unit/supervisor. Review its current
+   pending intent, preserve the private config/journal/receipt evidence and
+   follow [planned stop/recovery](KEEPER_RECOVERY.md). Stop only that authorized
+   service cleanly and confirm it cannot keep signing from another host.
+2. Set a positive whole-number interval: `1800` means 30 minutes, `3600` one hour,
+   `14400` four hours. Review gas budgets before increasing frequency. Check
+   `bucket_overrides["<actual bucket ID>"].harvest_interval_seconds` and `.harvest`:
+   these override the global maintenance values. A bucket ID is not an NFT ID
+   or a Uniswap pool ID. Change/remove only the intended override.
+3. Keep chain, sender, runtime/authority pins, state/lock paths and original
+   pending records intact. Run read-only preflight with the exact reviewed config:
+   `python3 -m keeper.ops --config /path/to/reviewed-keeper.json preflight`.
+   Reconcile pending work using its original evidence, not new assumed limits.
+4. Under the authorized service rollout, restart the actual service with the
+   reviewed config. The keeper loads config at startup; editing JSON alone does
+   not reload it. Do not run another monitor against its journal alongside it.
+5. Require a fresh healthy cycle with the matching `configuration_sha256`, then
+   verify actual `FeesCollected`/`FeesAllocated` receipts when eligible. A fresh
+   health result or dry run is not proof that a harvest transaction occurred.
+
+The threshold uses the chain timestamp of the keeper's last **confirmed,
+successful standalone** `harvest:<bucket>` action, not its restart time. A shorter
+interval or a missing previous timestamp can make harvesting due immediately at
+the next eligible cycle. Contributions, rebalances, compounding and outside
+manual harvests do not reset that standalone journal timestamp. Polling uses the
+separate `interval_seconds` setting (example600seconds, minimum60); an interval
+shorter than the polling cadence cannot make checks run more often. Pending
+receipts, other eligible jobs, pause/lifecycle and execution/gas guards can delay
+execution; this is not an exact wall-clock promise.
+
+Set `maintenance.harvest=false` to stop only scheduled standalone harvests;
+implicit/manual harvesting and funded claims retain their existing behavior.
+To roll back a schedule change, restore the prior reviewed config and repeat
+the controlled restart/health checks. Never reset `last`, pending state, nonce,
+budgets or health hashes to force a harvest or make a check pass. Review the
+config change explicitly when using a backup bound to the old configuration.
 
 ### Tune or stop buyback trading
 
