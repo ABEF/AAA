@@ -434,7 +434,7 @@
           "id": "host-services",
           "status": "progress",
           "title": "Host and monitor the API & indexer",
-          "text": "Bounded workers, request budgets, per-client admission and a guarded proxy profile are implemented and locally verified. Qualify Linux/TLS hosting, redundant RPCs, complete backfills/reorg recovery, provider quotas and off-host alerts. Initial Pinax compatibility checks passed; the documented public endpoint returned HTTP 403 from this environment.",
+          "text": "Bounded workers, request budgets, per-client admission and a guarded proxy profile are implemented and locally verified. Current Pinax serialized archive reads served the pinned current-pool fork; earlier HTTP/transport/batch failures retain their dated source scope. Full production RPC/history capabilities, Linux/TLS API hosting, complete backfills/reorg recovery, quotas and off-host alerts remain unqualified. Poplint static HTTPS is separate from API/indexer hosting.",
           "href": "docs/FRONTEND_API.md#local-operation-and-verification",
           "acceptance": [
             "[Collection ingress delta](reports/collection-reads/nginx.json): the reviewed GET allowlist and supervised workers support bounded collection reads; all 34 isolated Nginx checks pass. Roll out matching API/proxy/frontend versions; Linux/TLS/provider qualification remains open.",

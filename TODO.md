@@ -404,7 +404,7 @@ The data and services behind the app.
 
 <a id="task-host-services"></a>
 
-- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. Bounded workers, request budgets, per-client admission and a guarded proxy profile are implemented and locally verified. Qualify Linux/TLS hosting, redundant RPCs, complete backfills/reorg recovery, provider quotas and off-host alerts. Initial Pinax compatibility checks passed; the documented public endpoint returned HTTP 403 from this environment.
+- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. Bounded workers, request budgets, per-client admission and a guarded proxy profile are implemented and locally verified. Current Pinax serialized archive reads served the pinned current-pool fork; earlier HTTP/transport/batch failures retain their dated source scope. Full production RPC/history capabilities, Linux/TLS API hosting, complete backfills/reorg recovery, quotas and off-host alerts remain unqualified. Poplint static HTTPS is separate from API/indexer hosting.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1139,4 +1139,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `10b313a612271506fc8e5598813984b8233005926d45bef32cbb317f2fa97a00`.
+Snapshot SHA-256: `f2e659516a8d84fbf0a779942a3fab6f20f438328f85f741fdeffba092bc1b84`.

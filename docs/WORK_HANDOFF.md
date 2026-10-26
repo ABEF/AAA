@@ -5,6 +5,12 @@ Reviewed 2026-10-27. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
+Published contract source/evidence checkpoint:
+[8be0f89](https://github.com/ABEF/AAA/commit/8be0f89fd982253ddae7bef2ebfc36b497d836b1).
+Website main77501ce and served artifactf23c559 are different identifiers;
+the unchanged demo serves9be6d1. Documentation commits after these checkpoints
+do not deploy contracts, websites or services.
+
 The separate [poplint current3 integration](../reports/current3-website-20261026/DEPLOYMENT.md)
 is served over HTTPS from website sourcef23c559; website main77501ce adds operating
 docs and its verified certificate-renewal hook without redeploying the artifact.
@@ -51,6 +57,15 @@ new static hosting/TLS, never the demo or keeper/Anvil/monitor state. Earlier [m
 build/static receipts retain scope; actual qualification remains open.
 
 ## Continue here
+
+For the next session, use the current fork's swap-floor witness to guide actual
+quote/feed/route qualification. ETH/fixed-ZZZ inputs and all captured limits stay
+unchanged. The reader and harness are implemented; actual provider/price/route,
+contracts/API, OpenSea/VRF and operating approval are still open. Do not interpret
+poplint's unconfigured status as an error to fix using invented addresses.
+Reuse unchanged source-bound checks; run new verification only for changed code,
+configuration, dependencies or unresolved findings. No unattended work, monitor
+restart or public signing/deployment is requested for the overnight interval.
 
 The user is the sole human operator and controls governance. Use that model in
 the [operator manual](OPERATOR_MANUAL.md#one-operator-and-governance-wallet);
@@ -104,6 +119,11 @@ do not infer that a production harvesting service has been enabled.
   do not probe old chat credentials, print the private key, install another
   privileged key or use the read-only staging monitor key for deployment.
   Key availability does not authorize contract signing or unrelated server changes.
+- Four pre-existing drafts remain local and deliberately excluded from these
+  publications: reports/source-checks.json, scripts/run-fork-checks.py,
+  tests_python/test_fork_runner.py and tests_python/test_frontend_history.py.
+  Their original hashes match the saved baseline. The new current fork runner
+  is separate; do not reset, overwrite or publish these unrelated drafts blindly.
 - Update Todo/features/operator/roadmap/release/context together. Keep current
   guides current rather than adding another dated preamble. Verify remote heads
   and distinguish publication from deployment.

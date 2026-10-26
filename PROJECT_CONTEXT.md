@@ -58,6 +58,15 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
+Latest published functional checkpoint: contract
+[8be0f89](https://github.com/ABEF/AAA/commit/8be0f89fd982253ddae7bef2ebfc36b497d836b1)
+and website main77501ce. Poplint servesf23c559; the unchanged demo serves9be6d1.
+Subsequent handoff/documentation commits do not deploy new artifacts. Next
+session should start from the [resume instructions](docs/WORK_HANDOFF.md),
+current fork witness and remaining actual feed/route/API qualification, without
+repeating unchanged suites. Poplint's unconfigured page is expected until real
+reviewed bindings exist; do not replace it with demo or historical Anvil data.
+
 Last backend/keeper security publication [2a9c65b](https://github.com/ABEF/AAA/commit/2a9c65bf2d4dc27cc4eb16a8ba8b629f07f2f22b): [review](reports/system-adversarial-20261026/REVIEW.md),
 [coverage](reports/system-adversarial-20261026/COVERAGE.md) and
 [verification](reports/system-adversarial-20261026/VERIFICATION.md). All608 functions,
