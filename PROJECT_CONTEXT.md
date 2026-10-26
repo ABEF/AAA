@@ -58,7 +58,7 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Current systematic adversarial work: [review](reports/system-adversarial-20261026/REVIEW.md),
+Latest functional publication [2a9c65b](https://github.com/ABEF/AAA/commit/2a9c65bf2d4dc27cc4eb16a8ba8b629f07f2f22b): [review](reports/system-adversarial-20261026/REVIEW.md),
 [coverage](reports/system-adversarial-20261026/COVERAGE.md) and
 [verification](reports/system-adversarial-20261026/VERIFICATION.md). All608 functions,
 31 constructors and13 receivers have multiple static cases;1,987 scenario instances
@@ -72,7 +72,8 @@ are bounded/strict and invalid arguments no longer echo values.244 unique affect
 Python methods:241 passes/3 explicit skips,42 new included once; no failures/errors/drift. Actual
 contract-wallet callbacks remain supported; conditional preview differences are
 not fabricated accounting errors. Solidity/ABI/economics/services are unchanged.
-Publication must be verified separately; the handoff/receipt records exact heads.
+Exact main publication is verified in the [receipt](reports/system-adversarial-20261026/PUBLICATION.md);
+actual operating/provider/independent qualification remains open.
 
 Prior market/input publication60bfb96/receiptc3289a8 retains its
 [exact scope](reports/market-adversarial-20261026/VERIFICATION.md):223affected

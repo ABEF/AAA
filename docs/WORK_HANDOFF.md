@@ -22,9 +22,9 @@ Actual Linux group cleanup/restart remains open; no installed unit changed.
 Owner callbacks can legitimately change later claim payouts; no unconditional
 view/simulation equality or skipped-liability workaround was added.
 
-This work follows verified mainc3289a8 and is prepared for scoped main publication.
-Verify the final exact local/remote head and campaign receipt before reporting
-pushed. Existing services/Anvil/NFTs/LP/balances/journals/website/monitor remain
+Implementation [2a9c65b](https://github.com/ABEF/AAA/commit/2a9c65bf2d4dc27cc4eb16a8ba8b629f07f2f22b) is
+pushed on main with exact local/remote equality verified in the
+[publication receipt](../reports/system-adversarial-20261026/PUBLICATION.md). Existing services/Anvil/NFTs/LP/balances/journals/website/monitor remain
 untouched. Earlier [market](../reports/market-adversarial-20261026/VERIFICATION.md),
 [resilience](../reports/reward-resilience-20261026/VERIFICATION.md) and normal
 build/static receipts retain scope; actual qualification remains open.
