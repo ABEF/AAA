@@ -1,5 +1,11 @@
 # Release approval record - NOT APPROVED
 
+Latest [keeper/LP audit](../reports/keeper-lp-audit-20261026/REVIEW.md) fixes
+observation/configuration and verification gaps without changing production
+Solidity/authority/economics.354affected Python passes/5Unix skips and9range passes
+retain explicit scope; updated current-profile Linux crash/systemd/target-chain
+qualification and independent audit remain open. No approval/deployment follows.
+
 This records approval of **one frozen release**, not a second Todo or development
 log. The [sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 record implemented behavior. Local checks, source publication or this record do

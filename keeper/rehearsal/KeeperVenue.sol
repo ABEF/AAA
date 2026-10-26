@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-/// Test-only operational fixture. No real liquidity, prices, royalties or Pons hook.
+/// Test-only current-profile fixture. No real liquidity, prices or royalties.
 /// Exercises the keeper's actual ABI discovery, signed actions and process recovery.
 contract KeeperVenue {
+    uint256 public constant ACCOUNTING_VERSION = 3;
+    uint256 public constant FEE_INTAKE_VERSION = 1;
     address public admin;
     mapping(address => bool) public keepers;
     bool public paused;
@@ -28,7 +30,7 @@ contract KeeperVenue {
     function bucketAt(uint256 ordinal) external pure returns (uint256) { require(ordinal == 0); return 1; }
     function bucketTotalShares(uint256 bucket) external pure returns (uint256) { require(bucket == 1); return 1000; }
     function config() public pure returns (uint256[14] memory c) {
-        c[0] = 1; c[1] = 2; c[2] = 3000; c[3] = 60;
+        c[0] = 0; c[1] = 2; c[2] = 3000; c[3] = 60;
     }
     function poolId() public pure returns (bytes32) {
         uint256[14] memory c = config();
@@ -37,14 +39,10 @@ contract KeeperVenue {
     function get(bytes32 pool) external pure returns (uint256[14] memory) { require(pool == poolId()); return config(); }
     function accounting(bytes32 pool) external pure returns (uint256[14] memory) { require(pool == poolId()); return config(); }
     function poolBucket(bytes32 pool) external pure returns (uint256) { require(pool == poolId()); return 1; }
-    function group(uint256 bucket) external view returns (uint256[15] memory g) {
+    function group(uint256 bucket) external view returns (uint256[8] memory g) {
         require(bucket == 1);
-        g[0] = uint256(poolId()); g[1] = 1; g[7] = 1; g[8] = block.chainid;
-        g[9] = uint160(address(this)); g[10] = uint160(address(this));
-        g[11] = uint160(address(this)); g[12] = uint160(address(this));
-        g[13] = block.chainid; g[14] = uint160(address(this));
+        g[0] = uint256(poolId()); g[1] = 1; g[6] = lastRebalance; g[7] = 1;
     }
-    function rewardReceiver(uint256) external pure returns (address) { return address(0); }
     function needsRebalance(uint256) external view returns (bool) { return requested && block.timestamp >= lastRebalance + 600; }
     function collectFees(uint256 bucket, uint256 deadline) external {
         require(keepers[msg.sender] && canonicalState == 0 && !paused && !rejectExecution && bucket == 1 && block.timestamp <= deadline);

@@ -5,6 +5,14 @@ undeployed; local/staging deployments are separate fixtures. No public signing o
 
 ## Repeatable isolated rehearsal
 
+Fresh rehearsal/new-only staging setup now selects explicit accounting3/fee1,
+8word native-zero fixture. Old installed services retain their old code/config
+and are not upgraded by this source release. The updated fixture's actual getters
+and current Keeper reader pass disposable-local checks; its full Unix process
+campaign and systemd/target-chain acceptance remain separate and unexecuted here.
+The source receipt now includes Position/range/fee helper hashes.
+
+
 On an unprivileged Ubuntu user with Python 3.11+ and Foundry **1.4.4**:
 
 ```sh

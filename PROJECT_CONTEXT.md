@@ -51,6 +51,15 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
+Latest local keeper/LP candidate: [audit](reports/keeper-lp-audit-20261026/REVIEW.md),
+[verification](reports/keeper-lp-audit-20261026/VERIFICATION.md). Three keeper
+Python files change observation integrity; current fixture/rehearsal and range-test
+repairs improve qualification.354affected Python passes/5Unix skips,9range passes;
+production44Solidity/ABI/economics unchanged. Unix current-fixture process and
+actual services remain unqualified. Publication is recorded separately, not
+inferred from a local save; existing runtime/state remains unchanged.
+
+
 Documentation consolidation [5114a1c](https://github.com/ABEF/AAA/commit/5114a1c62a8519c91233983d9123b137a24bbc60) and
 website memory-only7dd7c35 are published on main, exact remote heads verified.
 [Cleanup receipt](reports/documentation-cleanup-20261026/PUBLICATION.md) records

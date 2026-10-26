@@ -1,0 +1,23 @@
+test_no_retired_creator_job_and_local_isolation_are_explicit (tests_python.test_keeper_rehearsal_profile.RehearsalProfileTests.test_no_retired_creator_job_and_local_isolation_are_explicit) ... FAIL
+test_process_rehearsal_selects_current_accounting_and_intake (tests_python.test_keeper_rehearsal_profile.RehearsalProfileTests.test_process_rehearsal_selects_current_accounting_and_intake) ... FAIL
+
+======================================================================
+FAIL: test_no_retired_creator_job_and_local_isolation_are_explicit (tests_python.test_keeper_rehearsal_profile.RehearsalProfileTests.test_no_retired_creator_job_and_local_isolation_are_explicit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_rehearsal_profile.py", line 41, in test_no_retired_creator_job_and_local_isolation_are_explicit
+    self.assertNotIn('sync_external_rewards',lab.cfg['maintenance'])
+AssertionError: 'sync_external_rewards' unexpectedly found in {'compound': False, 'sync_external_rewards': False, 'harvest': True, 'harvest_interval_seconds': 14400}
+
+======================================================================
+FAIL: test_process_rehearsal_selects_current_accounting_and_intake (tests_python.test_keeper_rehearsal_profile.RehearsalProfileTests.test_process_rehearsal_selects_current_accounting_and_intake)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_rehearsal_profile.py", line 36, in test_process_rehearsal_selects_current_accounting_and_intake
+    self.assertEqual(lab.cfg.get('accounting_version'),3)
+AssertionError: None != 3
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.051s
+
+FAILED (failures=2)

@@ -1,0 +1,22 @@
+{
+  "scope": "Read-only source review; only keeper/royalties.py changes. Solidity and other codecs unchanged by this agent. Five new offline methods are separately captured; this is not a new Solidity or full keeper test.",
+  "sha256": {
+    "keeper/royalties.py": "7354c3187d8aad49bbfef7debe4fed7c9cecd4e484178470580559756175ccb9",
+    "zzz_ops/range_policy.py": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+    "zzz_ops/position.py": "129f8070c887792991bcfab6fd2a8993c673eb9560e27efd4a26964754371cea",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+    "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
+    "src/ZZZRoyaltyRewards.sol": "f12c7b92d4fece2aa9d99b05da484a4467e0ecd95ce5f21198ca273be42ad921",
+    "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+    "src/base/ZZZModule.sol": "0232427e6175adc3680f389bc6a0a62e7f95d8b2c6807370b8ea10ebbca00950",
+    "tests_python/test_keeper_conversion_integrity.py": "f8786830e8581e1da779ba2523e1f066fb9ce6082d81bc84b2146b7ff5cc7223"
+  }
+}

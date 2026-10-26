@@ -105,6 +105,12 @@ class RoyaltyAutomation:
             words=decode_words(k.rpc.call('eth_call',[{'to':contracts[name],'data':data},selector]))
             if len(words)!=1: raise RpcError('Unexpected royalty getter ABI')
             return int(words[0],16)
+        def enabled(name, sig, *args):
+            # A malformed core bool is an observation failure, not governance's
+            # legitimate off switch. Preserve outer deferred/degraded telemetry.
+            value = read(name, sig, *args)
+            if value not in (0, 1): raise RpcError('Noncanonical conversion boolean')
+            return value == 1
         checks=[(self.ledger,'access()' if self.lp else 'canonicalController()',contracts['access']),
             (self.ledger,'converter()',contracts[self.converter]),(self.converter,'ledger()',contracts[self.ledger]),
             (self.converter,'access()',contracts['access']),
@@ -128,7 +134,7 @@ class RoyaltyAutomation:
         loss=read(self.converter,'conversionLossBps()') if self.configurable_loss else 100
         if read(self.ledger,'MAX_CONVERSION_NFTS()')!=32 or ceiling!=(1000 if self.configurable_loss else 100) or not 0<=loss<=ceiling:
             raise RpcError('Royalty protocol limit mismatch')
-        if read(self.converter,'enabled()')!=1: return False
+        if not enabled(self.converter,'enabled()'): return False
         count=read(self.nft,'mintedCount()')
         if count>1000: raise RpcError('Invalid royalty inventory')
         if count==0: return False
@@ -144,7 +150,7 @@ class RoyaltyAutomation:
         unwrap = not self.native_v4 and asset == contracts[self.wrapper]
         if self.native_v4:
             if read(self.converter,'routeKind(bytes32)',route)!=2: raise RpcError('Royalty route kind mismatch')
-            if read(self.converter,'routeEnabled(bytes32)',route)!=1: return False
+            if not enabled(self.converter,'routeEnabled(bytes32)',route): return False
             values=decode_words(k.rpc.call('eth_call',[{'to':contracts[self.converter],
                 'data':calldata('v4Route(bytes32)',route)},selector]))
             # The fixed helper's validate checks key, static hookless venue,
@@ -154,7 +160,7 @@ class RoyaltyAutomation:
             if len(values)!=14 or values!=checked or int(values[0],16)!=int(asset,16) or int(values[1],16)!=0:
                 raise RpcError('Royalty native v4 policy mismatch')
         elif not unwrap:
-            if read(self.converter,'routeEnabled(bytes32)',route)!=1: return False
+            if not enabled(self.converter,'routeEnabled(bytes32)',route): return False
             values=decode_words(k.rpc.call('eth_call',[{'to':contracts[self.converter],'data':calldata('route(bytes32)',route)},selector]))
             if len(values)!=10 or int(values[0],16)!=int(asset,16): raise RpcError('Royalty route currency mismatch')
         elif route!=ZERO: raise RpcError('WETH unwrapping must not select a swap route')

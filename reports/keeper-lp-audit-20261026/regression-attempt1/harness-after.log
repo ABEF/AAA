@@ -1,0 +1,17 @@
+test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) ... ok
+test_refused_redirect_fails_over_only_to_a_configured_chain_checked_endpoint (tests_python.test_rpc.RedirectTransportTests.test_refused_redirect_fails_over_only_to_a_configured_chain_checked_endpoint) ... ok
+test_atomic_roundtrip (tests_python.test_state.StateTests.test_atomic_roundtrip) ... ok
+test_atomic_state_repairs_existing_unix_permissions (tests_python.test_state.StateTests.test_atomic_state_repairs_existing_unix_permissions) ... skipped 'Unix private-file permissions required'
+test_concurrent_lock_rejected (tests_python.test_state.StateTests.test_concurrent_lock_rejected) ... skipped 'Unix fcntl process locking required'
+test_lock_released (tests_python.test_state.StateTests.test_lock_released) ... skipped 'Unix fcntl process locking required'
+test_malformed_state_fails_closed (tests_python.test_state.StateTests.test_malformed_state_fails_closed) ... ok
+test_missing_default (tests_python.test_state.StateTests.test_missing_default) ... ok
+test_predictable_temp_hardlink_cannot_overwrite_another_file (tests_python.test_state.StateTests.test_predictable_temp_hardlink_cannot_overwrite_another_file) ... ok
+test_predictable_temp_symlink_cannot_overwrite_another_file (tests_python.test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file) ... skipped 'Unix symlink/permission semantics required'
+test_serialization_failure_retains_previous_state_and_removes_exclusive_temp (tests_python.test_state.StateTests.test_serialization_failure_retains_previous_state_and_removes_exclusive_temp) ... ok
+test_stale_predictable_temporary_file_is_never_clobbered (tests_python.test_state.StateTests.test_stale_predictable_temporary_file_is_never_clobbered) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.324s
+
+OK (skipped=4)

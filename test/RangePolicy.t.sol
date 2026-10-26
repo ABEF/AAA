@@ -113,7 +113,7 @@ contract RangePolicyTest is Test {
     }
     function testInactiveAndMissingIdentityCannotAuthorizeRebalance() public {
         _width(1000); vm.warp(block.timestamp + 600);
-        for (uint8 i; i <= 6; ++i) {
+        for (uint8 i; i <= uint8(PositionStatus.Parked); ++i) {
             if (i == uint8(PositionStatus.Active)) continue;
             position.status = PositionStatus(i); vault.set(position);
             assertFalse(strategy.rangeUpdatePending(BUCKET)); assertFalse(strategy.needsRebalance(BUCKET));

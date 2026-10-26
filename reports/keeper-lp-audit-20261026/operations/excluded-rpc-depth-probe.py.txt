@@ -1,0 +1,71 @@
+"""Malformed provider nesting is an RPC failure, not an interpreter crash.
+
+Uses the real parser/retry path over a synthetic bounded HTTP transport. No
+socket, public RPC, signer or running keeper process is involved.
+"""
+import json
+import sys
+import unittest
+from unittest.mock import patch
+
+from zzz_ops.rpc import Rpc, RpcError
+
+
+class RpcMalformedDepthTests(unittest.TestCase):
+    @staticmethod
+    def nested_result(request_id):
+        depth = sys.getrecursionlimit() + 128
+        if depth > 10_000:
+            raise AssertionError('Unexpected interpreter recursion setting for bounded fixture')
+        return (b'{"jsonrpc":"2.0","id":' + str(request_id).encode() + b',"result":' +
+                b'[' * depth + b'0' + b']' * depth + b'}')
+
+    def test_deep_provider_payload_fails_over_and_rechecks_chain(self):
+        rpc = Rpc(['https://bad.invalid', 'https://healthy.invalid'], 31337, retries=1)
+        calls = []
+
+        def transport(url, raw):
+            request = json.loads(raw)
+            calls.append((url, request['method']))
+            if url == 'https://bad.invalid':
+                return self.nested_result(request['id'])
+            result = hex(31337) if request['method'] == 'eth_chainId' else '0x2a'
+            return json.dumps({'jsonrpc': '2.0', 'id': request['id'], 'result': result}).encode()
+
+        with patch.object(rpc, '_read_http', side_effect=transport), patch('zzz_ops.rpc.time.sleep'):
+            self.assertEqual(rpc.call('eth_getBalance', ['0x' + '11' * 20, 'latest']), '0x2a')
+        self.assertEqual(calls, [('https://bad.invalid', 'eth_chainId'),
+                                 ('https://healthy.invalid', 'eth_chainId'),
+                                 ('https://healthy.invalid', 'eth_getBalance')])
+
+    def test_all_deep_endpoints_raise_sanitized_retryable_rpc_error(self):
+        rpc = Rpc(['https://bad.invalid/PRIVATE-ENDPOINT'], 31337, retries=2)
+        calls = []
+
+        def transport(_url, raw):
+            request = json.loads(raw)
+            calls.append(request['method'])
+            return self.nested_result(request['id'])
+
+        with patch.object(rpc, '_read_http', side_effect=transport), patch('zzz_ops.rpc.time.sleep'):
+            with self.assertRaises(RpcError) as error:
+                rpc.call('eth_blockNumber')
+        self.assertEqual(calls, ['eth_chainId', 'eth_chainId'])
+        self.assertNotIn('PRIVATE-ENDPOINT', str(error.exception))
+        self.assertNotIn('https://', str(error.exception))
+
+    def test_well_formed_nested_result_remains_valid(self):
+        rpc = Rpc(['https://healthy.invalid'], 31337, retries=1)
+        result = {'nested': [1, {'value': '0x2a'}]}
+
+        def transport(_url, raw):
+            request = json.loads(raw)
+            value = hex(31337) if request['method'] == 'eth_chainId' else result
+            return json.dumps({'jsonrpc': '2.0', 'id': request['id'], 'result': value}).encode()
+
+        with patch.object(rpc, '_read_http', side_effect=transport):
+            self.assertEqual(rpc.call('debug_traceCall', []), result)
+
+
+if __name__ == '__main__':
+    unittest.main()

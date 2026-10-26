@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-10-26T17:49:05.615874+00:00",
+  "scope": "Current8coreLPmodules plus named direct dependencies source trace; one test-only status-domain repair. No new production Solidity or public operations.",
+  "primary_source_sha256": {
+    "src/ZZZVault.sol": "a2d94a8152856240eb75d514a8d8f37d5f6412d3f3b1edca0ff31757c318940c",
+    "src/ZZZLiquidityManager.sol": "925dd46418ac3145718564437cb2d3f3bb031fd807401d98b1035a20b4720f26",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZPoolRegistry.sol": "967775732b0848988ab111fd9e5ae9dade3a8ba99f6a1d043e6a0bce5cb28bc2",
+    "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+    "src/ZZZMigrationBudget.sol": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403"
+  },
+  "supporting_source_sha256": {
+    "src/base/ZZZModule.sol": "0232427e6175adc3680f389bc6a0a62e7f95d8b2c6807370b8ea10ebbca00950",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "a1f4523d3668e7620013e626bd51f71cadd9ee82168dbfbc0070b82f97656a0d",
+    "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+    "src/ZZZActivationEntry.sol": "dc3472b8d198246f3b0f7c0f8ad07945d149a2035a12a415e3c1cff6e1af584a",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "node_modules/@uniswap/v4-periphery/src/PositionManager.sol": "49214f7463f709c378e5bdd010697eea02c1cabb2339fbe09f2ee5395748c6e3",
+    "node_modules/@uniswap/v4-periphery/src/base/DeltaResolver.sol": "cb2df93554fb4541355c6e42e346a39cd59138d919456dd5f1d500e2a5d70864",
+    "node_modules/@uniswap/v4-periphery/src/libraries/PositionInfoLibrary.sol": "5c889e1d5f259291045413e28069101eba1e7b8b72df6586bf54e4de5e525099",
+    "node_modules/@uniswap/v4-core/src/libraries/ProtocolFeeLibrary.sol": "f8d96d9c8b5d12ab927b34551699bd7086750475f70254c9505e636f2cafe56a",
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462"
+  },
+  "test_source_sha256": {
+    "before": "bf666826b7a440da5cad2d56a632a78ab3cbba0d6c38a49c3f8348aae70c1c5f",
+    "after": "17a824ea66c879e4c4d5fd6b3e21e55b25e006f67762b648e66fcb5d1cd75473"
+  },
+  "reused_normal_object_evidence": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\deep-cleanup-20261025\\solidity\\source-size-gates.json",
+    "sha256": "44c72290148d450cea8b451f7a53a29015e90ac2ad241bfb1636f599eb8c29c0",
+    "production_files": 44,
+    "dependency_files": 31,
+    "build_files": 4,
+    "all_source_dependency_build_bindings_match": true
+  },
+  "new_verification": {
+    "before": "before-summary.json",
+    "after": "after-summary.json",
+    "distinct_final_methods": 9,
+    "before_failure_not_additional_passing_coverage": true,
+    "fuzz_runs": 1000,
+    "only_changed_AST_input": "test/RangePolicy.t.sol",
+    "fresh_AST_inputs": 265,
+    "fresh_AST_typecheck_pass": true,
+    "no_full_regression": true,
+    "no_fresh_static_run": true
+  }
+}

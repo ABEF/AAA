@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 86.39,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\keeper-lp-audit-20261026\\core\\after\\execution\\ast-focused-profile-0oqyls50",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(RangePolicyTest)$",
+    "--json"
+  ],
+  "selected_methods": 9,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testCurrentPhysicalPositionIsReadAndMalformedTicksFailClosed()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1000157
+        }
+      }
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testDisabledOperationsAndStaleOracleCannotBypassNormalEligibility()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 669313
+        }
+      }
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testFuzzAppliedWidthHasNoPersistentMismatch(uint16)",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xf7e63aef000000000000000000000000000000000000000000000000000000000000389f",
+            "gas": 739488,
+            "stipend": 21216
+          },
+          "runs": 1000,
+          "mean_gas": 713996,
+          "median_gas": 716853,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testInactiveAndMissingIdentityCannotAuthorizeRebalance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 491167
+        }
+      }
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testNarrowingWaitsForCooldownThenAppliesOnce()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1046047
+        }
+      }
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testRealSealedGovernanceCanImmediatelyApproveRangeChange()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 49020650
+        }
+      }
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1094801
+        }
+      }
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testSmallMarketMoveDoesNotCreateRangeUpdateChurn()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 921157
+        }
+      }
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testWideningAndReturningToDeployedPolicy()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1153703
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "47a87e9ad3b3ee0d2183a70330c8138b8dad38bb0fc0a8db86e86f79806cd674",
+  "phase": "after",
+  "all_265_sources_unchanged_during_execution": true,
+  "production_source_changed": false,
+  "normal_37_object_evidence_reused": true,
+  "compiler_input_sha256": "8ec6ec35a4a4ea11e22c6c2654c9065800db0c3db1336dfc330a568406db420f",
+  "compiler_output_sha256": "750436de7b92969750d5270b800a37540b3b4aebb3be59c04694377790c34cfa"
+}

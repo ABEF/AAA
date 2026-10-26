@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "date": "2026-10-26",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "source_files": [
+    {
+      "path": "keeper/monitor.py",
+      "sha256": "d9942781b9bdb7db536eda712a9afff6826ce13d17aa2b4c2b74b54b0bf96cfb",
+      "before_sha256": "cf13b3ad3f9270947ad2ffd7673b6531d44e18a4956a6bf00d81c5fad092cdd5",
+      "changed": true,
+      "kind": "production source"
+    },
+    {
+      "path": "keeper/ops.py",
+      "sha256": "c3c7d1f7904841d01266ce6a7d6af1da789f0bb85ce37d6a053d976c88162377",
+      "before_sha256": "cc8259b31755fdef6a1a4105b8cdcf73413a3cface28fa59e77f4c758349d227",
+      "changed": true,
+      "kind": "production source"
+    },
+    {
+      "path": "zzz_ops/state.py",
+      "sha256": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+      "before_sha256": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+      "changed": false,
+      "kind": "production source"
+    },
+    {
+      "path": "zzz_ops/ethereum_fees.py",
+      "sha256": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+      "before_sha256": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+      "changed": false,
+      "kind": "production source"
+    },
+    {
+      "path": "zzz_ops/rpc.py",
+      "sha256": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+      "before_sha256": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+      "changed": false,
+      "kind": "production source"
+    },
+    {
+      "path": "tests_python/test_keeper_ops.py",
+      "sha256": "3ea93b4ccc19e975564285c1dc5dbe1f53f55dfdb818973452884430e61828a4",
+      "before_sha256": "79a944cd7c0844a16f44434886780e4f97920c08b4a6a691e536d766d8bbcc4c",
+      "changed": true,
+      "kind": "existing synthetic health fixture"
+    },
+    {
+      "path": "tests_python/test_keeper_health_identity.py",
+      "sha256": "a62bb0e0dfe04b3c311e92360e53a866a249b4cca6c469a5007e64ce57022f0e",
+      "before_sha256": null,
+      "changed": true,
+      "kind": "new focused regression"
+    },
+    {
+      "path": "tests_python/test_keeper_preparation.py",
+      "sha256": "e4894c04310649fde7f6fa3de4954e9dadf6e03af69e05d64aaadb0a4fdca3f4",
+      "before_sha256": "54caf5ebb5e167d22931713ca30fc326048a3e4521e9bc81762d629941e50189",
+      "changed": true,
+      "kind": "existing fixture constructed after final loaded configuration"
+    }
+  ],
+  "tests": {
+    "command": "python -X utf8 -m unittest -v tests_python.test_keeper_health_identity tests_python.test_keeper_ops",
+    "before_log": "health-identity-before.log",
+    "before_result": "6 methods executed, 1 matching-identity control passed; 10 failing subcase assertions across the other 5 methods",
+    "after_log": "health-identity-after.log",
+    "after_result": "19 distinct methods pass: 6 new + 13 existing Ops; no source dependency/build or unchanged whole-suite run",
+    "unique_count": 19,
+    "ids": [
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_historical_profile_cannot_reuse_current_profile_heartbeat.test_historical_profile_cannot_reuse_current_profile_heartbeat",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_legacy_heartbeat_without_configuration_binding_cannot_pass.test_legacy_heartbeat_without_configuration_binding_cannot_pass",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass.test_malformed_binding_cannot_pass",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_matching_real_heartbeat_passes_without_exporting_configuration.test_matching_real_heartbeat_passes_without_exporting_configuration",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat.test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat",
+      "tests_python.test_keeper_ops.OpsTests.test_dry_run_requires_explicit_health_mode.test_dry_run_requires_explicit_health_mode",
+      "tests_python.test_keeper_ops.OpsTests.test_first_pending_cycle_has_actionable_health_reasons.test_first_pending_cycle_has_actionable_health_reasons",
+      "tests_python.test_keeper_ops.OpsTests.test_future_heartbeat_and_missing_counters_do_not_pass.test_future_heartbeat_and_missing_counters_do_not_pass",
+      "tests_python.test_keeper_ops.OpsTests.test_healthy_requires_fresh_live_identity_and_success.test_healthy_requires_fresh_live_identity_and_success",
+      "tests_python.test_keeper_ops.OpsTests.test_missing_or_corrupt_health_never_looks_healthy.test_missing_or_corrupt_health_never_looks_healthy",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_cannot_approve_wrong_native_accounting_abi.test_preflight_cannot_approve_wrong_native_accounting_abi",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_is_read_only_and_never_calls_signer.test_preflight_is_read_only_and_never_calls_signer",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_low_balance_or_revoked_role_cannot_pass.test_preflight_low_balance_or_revoked_role_cannot_pass",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_refuses_missing_state_nonce_drift_or_pending.test_preflight_refuses_missing_state_nonce_drift_or_pending",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_unqualified_fee_or_review_cannot_pass.test_preflight_unqualified_fee_or_review_cannot_pass",
+      "tests_python.test_keeper_ops.OpsTests.test_snapshot_corruption_age_configuration_and_identity.test_snapshot_corruption_age_configuration_and_identity",
+      "tests_python.test_keeper_ops.OpsTests.test_snapshot_is_exclusive_and_never_overwrites_state.test_snapshot_is_exclusive_and_never_overwrites_state",
+      "tests_python.test_keeper_ops.OpsTests.test_snapshot_preserves_pending_budget_and_omits_secrets.test_snapshot_preserves_pending_budget_and_omits_secrets"
+    ]
+  },
+  "excluded_hypothesis": {
+    "source": "excluded-rpc-depth-probe.py.txt",
+    "log": "rpc-depth-before.log",
+    "result": "3 diagnostic methods passed on unchanged Rpc source; bounded-depth hypothesis not confirmed, no RPC source edit and not added to fix-verification total"
+  },
+  "boundaries": [
+    "No actual RPC requests/signing/deployment/seal/service/website/Anvil/journal/monitor action",
+    "Health digest is configuration binding, not authentication or production qualification",
+    "No fee/economic/authority/profile/journal/snapshot schema change"
+  ],
+  "external_gates": [
+    "actual provider and transport operating qualification",
+    "Linux/systemd/signing and off-host authenticated monitoring rehearsals",
+    "exact chain fee accounting and spend budgets",
+    "current deployment/services/authorities/feeds/routes/VRF/OpenSea",
+    "frozen release and independent audit/remediation"
+  ],
+  "compatibility_followup": {
+    "context": "Parent 358-method affected attempt identified this fixture failure; original aggregate failure remains in parent evidence. Not an on-chain/signing defect.",
+    "method": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparing_skips_rebalance_compound_buyback_and_keeps_healthy_observation",
+    "command": "python -X utf8 -m unittest -v tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparing_skips_rebalance_compound_buyback_and_keeps_healthy_observation",
+    "result": "one affected method passes after finalizing configuration before Keeper construction",
+    "log": "health-preparation-fixture-after.log",
+    "production_source_changed": false,
+    "reason": "Keep original loaded-configuration digest: live rehash could relabel cached contracts/profiles after mutating caller input; no runtime reload API introduced."
+  }
+}

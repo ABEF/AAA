@@ -742,6 +742,15 @@ There is no independent pause for every individual feature/asset payout. Do not 
 
 ## Services and server recovery
 
+The heartbeat now includes `configuration_sha256`, a hash of the exact loaded
+configuration. `keeper.ops health` requires the same hash, not merely chain and
+sender. Old/missing/malformed or mismatched artifacts return `configuration_mismatch`.
+Deploy matching writer/checker together only through an authorized rollout and
+require a fresh matching cycle after a reviewed config change. Never patch the
+hash, edit/reset a journal or assume this digest authenticates the host/provider.
+There is no in-process config reload: finalize config before constructing Keeper.
+
+
 Use the reviewed Linux/Unix release and separate service users. The keeper's sample ten-minute poll and four-hour harvest schedule are not guarantees. Change reviewed config for interval, thresholds, per-bucket overrides, minimum liquidity, gas/daily budgets, RPC providers and metadata scans; restart through the deployment's service manager after checking pending work. Do not guess a production unit name or reuse the isolated staging signer/config.
 
 Read-only checks from the repository (replace paths with the actual reviewed configuration):

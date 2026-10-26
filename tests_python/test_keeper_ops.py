@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 from keeper.monitor import Keeper
-from keeper.ops import create_snapshot, verify_snapshot, health_check, preflight
+from keeper.ops import create_snapshot, verify_snapshot, health_check, preflight, digest
 from tests_python.test_keeper import FakeRpc, A, B
 from zzz_ops.abi import calldata, keccak256
 from zzz_ops.rpc import RpcError
@@ -26,6 +26,7 @@ class OpsTests(unittest.TestCase):
         self.k = Keeper(self.cfg,rpc=self.rpc);self.k.state['next_nonce'] = 0;self.k.save()
         self.now = int(time.time());stamp = dt.datetime.fromtimestamp(self.now,dt.timezone.utc).isoformat()
         self.health = {'time':stamp,'last_success_at':stamp,'chain_id':1,'sender':A,'status':'healthy','live':True,
+            'configuration_sha256':digest(self.cfg),
             'pending':False,'strategy_paused':False,'preparation_active':False,'canonical_state':0,
             'skipped_buckets':0,'blocked_actions':0,'consecutive_failures':0}
         original = self.rpc.call

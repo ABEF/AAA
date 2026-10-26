@@ -1,0 +1,19 @@
+{
+  "observed_at_utc": "2026-10-26T17:45:52.777750+00:00",
+  "phase": "after",
+  "scope": "Actual Keeper/RoyaltyAutomation, disposable state files and injected byte RPC. Three explicit profiles and both ledgers. No network/signing/service.",
+  "selection": "tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests",
+  "tests_run": 5,
+  "failures": [],
+  "errors": [],
+  "successful": true,
+  "elapsed_seconds": 9.562,
+  "source_sha256": {
+    "keeper/royalties.py": "7354c3187d8aad49bbfef7debe4fed7c9cecd4e484178470580559756175ccb9",
+    "keeper/monitor.py": "d9942781b9bdb7db536eda712a9afff6826ce13d17aa2b4c2b74b54b0bf96cfb",
+    "tests_python/test_keeper_conversion_integrity.py": "f8786830e8581e1da779ba2523e1f066fb9ce6082d81bc84b2146b7ff5cc7223",
+    "tests_python/test_royalty_keeper.py": "4f18a1be9bf7262f51d915744bf3d0db9ab17f853a9cf906cbaaeec7a3df3c5b",
+    "tests_python/test_typed_v4_conversion_keeper.py": "e677005850aa9dac50336870d22321dfca3ded48a5db6269640e49c3bc14461c"
+  },
+  "source_unchanged": true
+}

@@ -57,6 +57,14 @@ deployment are preserved. See [website profile](NATIVE_WEBSITE_PROFILE.md),
 
 ## Current evidence and limits
 
+[Keeper/LP audit](../reports/keeper-lp-audit-20261026/REVIEW.md) adds exact loaded-
+config health identity and strict conversion Booleans, fixes the stale range test
+domain and brings fresh rehearsal source to current3/fee1/native shape. Production
+Solidity/economics/ABI are unchanged. Final affected Python:354passes/5Unix skips
+from359methods;9range methods pass including1,000fuzz runs. Standalone fixture/
+reader checks are not the still-pending Linux crash/systemd or real-market campaign.
+
+
 | Evidence | Actual verification scope |
 | --- | --- |
 | [Fee breakdown](../reports/backend-remediation-20261026/VERIFICATION.md) |167distinct affected Python methods (31new/136existing),54inputs pinned. Five backend modules; no Solidity/schema/economic change. Earlier focused runs overlap, not extra coverage. |

@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Keeper/LP audit](keeper-lp-audit-20261026/REVIEW.md) and
+[verification](keeper-lp-audit-20261026/VERIFICATION.md) record config-bound health,
+strict conversion controls and repaired verification.354affected Python passes,
+5Unix skips and9range methods retain scope; earlier failures/subsets are preserved,
+not added to fresh coverage. Production Solidity and running services unchanged.
+
 Current instructions are organized in the [documentation map](../docs/README.md).
 [Documentation consolidation](documentation-cleanup-20261026/README.md) replaces
 obsolete guide prose without rewriting the historical reports below. Each report

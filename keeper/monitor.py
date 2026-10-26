@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse
 import copy
 import datetime as dt
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -83,6 +84,11 @@ def signer_environment(rpc_url: str | None = None) -> dict[str,str]:
 class Keeper:
     def __init__(self, config: dict[str,Any], *, live: bool = False, rpc: Rpc | None = None):
         self.config, self.live = config, live
+        # A heartbeat must identify the actual loaded configuration, not just a
+        # signer/chain which may be reused across deployments or policy reviews.
+        # Export only the digest: endpoint and signer-file secrets stay private.
+        self.configuration_sha256 = hashlib.sha256(json.dumps(
+            config,sort_keys=True,separators=(',',':')).encode()).hexdigest()
         self.accounting_version = config.get('accounting_version',1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3):
             raise ValueError('Unsupported keeper accounting version')
@@ -283,6 +289,7 @@ class Keeper:
         def health(status: str, **extra: Any) -> None:
             atomic_json(self.health_path,{'time':dt.datetime.now(dt.timezone.utc).isoformat(),
                 'status':status,'live':self.live,'chain_id':self.chain,'sender':self.sender,
+                'configuration_sha256':self.configuration_sha256,
                 'last_success_at':self.last_success_at,'consecutive_failures':self.cycle_failures,
                 'skipped_buckets':self.skipped_buckets,'pending':bool(self.state.get('pending')),
                 'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,

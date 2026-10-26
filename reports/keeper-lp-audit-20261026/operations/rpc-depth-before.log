@@ -1,0 +1,8 @@
+test_all_deep_endpoints_raise_sanitized_retryable_rpc_error (tests_python.test_rpc_malformed_depth.RpcMalformedDepthTests.test_all_deep_endpoints_raise_sanitized_retryable_rpc_error) ... ok
+test_deep_provider_payload_fails_over_and_rechecks_chain (tests_python.test_rpc_malformed_depth.RpcMalformedDepthTests.test_deep_provider_payload_fails_over_and_rechecks_chain) ... ok
+test_well_formed_nested_result_remains_valid (tests_python.test_rpc_malformed_depth.RpcMalformedDepthTests.test_well_formed_nested_result_remains_valid) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.134s
+
+OK

@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "exit_code": 1,
+  "elapsed_seconds": 71.985,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\keeper-lp-audit-20261026\\core\\before\\execution\\ast-focused-profile-7r6shkz8",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(RangePolicyTest)$",
+    "--json"
+  ],
+  "selected_methods": 1,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "method": "testInactiveAndMissingIdentityCannotAuthorizeRebalance()",
+      "status": "Failure",
+      "reason": "panic: failed to convert value into enum type (0x21)",
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 428935
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "4817d00b6f5f562018e4b0ac9eb81d58faf29c6291b8b0a2ef95cf6d22683c3d",
+  "phase": "before",
+  "all_265_sources_unchanged_during_execution": true,
+  "production_source_changed": false,
+  "normal_37_object_evidence_reused": true,
+  "compiler_input_sha256": "8ea3dd0aadfa6847a969f95b37ce3d8bad5e221e9c681dbe5702e94728548f09",
+  "compiler_output_sha256": "c9afccdaf1d5eba5e3adc8486a0a5626965ee68ec948c7fd0c937206cdaade7f"
+}

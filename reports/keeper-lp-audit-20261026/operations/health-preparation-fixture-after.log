@@ -1,0 +1,6 @@
+test_preparing_skips_rebalance_compound_buyback_and_keeps_healthy_observation (tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparing_skips_rebalance_compound_buyback_and_keeps_healthy_observation) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.098s
+
+OK

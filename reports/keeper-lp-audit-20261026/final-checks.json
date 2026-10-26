@@ -1,0 +1,255 @@
+{
+  "observed_at_utc": "2026-10-26T18:02:49.943693+00:00",
+  "local_doc_targets": 816,
+  "broken_local_targets": 0,
+  "affected_methods": 359,
+  "passes": 354,
+  "Unix_skips": 5,
+  "source_inputs_unchanged": 145,
+  "range_methods": 9,
+  "width_fuzz_runs": 1000,
+  "standalone_fixture_checks": {
+    "actual_accounting_three": true,
+    "actual_intake_one": true,
+    "actual_eight_word_group": true,
+    "actual_native_currency_zero": true,
+    "real_current_keeper_reader": true
+  },
+  "unchanged_production_Solidity": 44,
+  "unchanged_normal_dependencies": 31,
+  "unchanged_build_inputs": 4,
+  "callable_reference": {
+    "contracts": 31,
+    "functions": 608,
+    "checked": true
+  },
+  "sole_Todo_ids_statuses_preserved": 65,
+  "current_static_coverage_reused": true,
+  "source_consistency": {
+    "kind": "source_consistency_only",
+    "solidity_compiled": false,
+    "security_audit_pass": false,
+    "modules": 17,
+    "standalone_helpers": [
+      "ZZZRoyaltyRewards",
+      "ZZZNFTMetadata",
+      "ZZZClaimRouter",
+      "ZZZActivationAssets",
+      "ZZZActivationEntry",
+      "ZZZMigrationBudget",
+      "ZZZCustodyValidation",
+      "ZZZRoyaltyFactory",
+      "ZZZActivationAssetsFactory",
+      "ZZZRoyaltyConverter",
+      "ZZZLPRewardConverter",
+      "ZZZV4RouteExecutor",
+      "ZZZContributionPricing"
+    ],
+    "source_files": [
+      {
+        "file": "src/base/ZZZCanonicalLedger.sol",
+        "lines": 77
+      },
+      {
+        "file": "src/base/ZZZModule.sol",
+        "lines": 88
+      },
+      {
+        "file": "src/base/ZZZRewardConverter.sol",
+        "lines": 228
+      },
+      {
+        "file": "src/interfaces/IZZZ.sol",
+        "lines": 155
+      },
+      {
+        "file": "src/interfaces/IZZZCanonical.sol",
+        "lines": 27
+      },
+      {
+        "file": "src/interfaces/IZZZNFTCanonical.sol",
+        "lines": 32
+      },
+      {
+        "file": "src/interfaces/IZZZV3Route.sol",
+        "lines": 25
+      },
+      {
+        "file": "src/libraries/ExactAsset.sol",
+        "lines": 28
+      },
+      {
+        "file": "src/libraries/ExactToken.sol",
+        "lines": 27
+      },
+      {
+        "file": "src/libraries/ZZZArtwork.sol",
+        "lines": 30
+      },
+      {
+        "file": "src/libraries/ZZZPriceMath.sol",
+        "lines": 19
+      },
+      {
+        "file": "src/libraries/ZZZTypes.sol",
+        "lines": 58
+      },
+      {
+        "file": "src/libraries/ZZZV3VenueValidation.sol",
+        "lines": 22
+      },
+      {
+        "file": "src/ZZZAccessController.sol",
+        "lines": 207
+      },
+      {
+        "file": "src/ZZZActivationAssets.sol",
+        "lines": 141
+      },
+      {
+        "file": "src/ZZZActivationAssetsFactory.sol",
+        "lines": 18
+      },
+      {
+        "file": "src/ZZZActivationEntry.sol",
+        "lines": 280
+      },
+      {
+        "file": "src/ZZZBuyback.sol",
+        "lines": 71
+      },
+      {
+        "file": "src/ZZZCanonicalHandoff.sol",
+        "lines": 471
+      },
+      {
+        "file": "src/ZZZClaimRouter.sol",
+        "lines": 75
+      },
+      {
+        "file": "src/ZZZCompounder.sol",
+        "lines": 15
+      },
+      {
+        "file": "src/ZZZContributionPricing.sol",
+        "lines": 237
+      },
+      {
+        "file": "src/ZZZCustodyValidation.sol",
+        "lines": 71
+      },
+      {
+        "file": "src/ZZZFeeController.sol",
+        "lines": 151
+      },
+      {
+        "file": "src/ZZZFeesCanonical.sol",
+        "lines": 141
+      },
+      {
+        "file": "src/ZZZLiquidityManager.sol",
+        "lines": 294
+      },
+      {
+        "file": "src/ZZZLPRewardConverter.sol",
+        "lines": 11
+      },
+      {
+        "file": "src/ZZZMembership.sol",
+        "lines": 110
+      },
+      {
+        "file": "src/ZZZMigration.sol",
+        "lines": 499
+      },
+      {
+        "file": "src/ZZZMigrationBudget.sol",
+        "lines": 305
+      },
+      {
+        "file": "src/ZZZNFT.sol",
+        "lines": 346
+      },
+      {
+        "file": "src/ZZZNFTCanonical.sol",
+        "lines": 80
+      },
+      {
+        "file": "src/ZZZNFTMetadata.sol",
+        "lines": 141
+      },
+      {
+        "file": "src/ZZZOracle.sol",
+        "lines": 234
+      },
+      {
+        "file": "src/ZZZPoolRegistry.sol",
+        "lines": 170
+      },
+      {
+        "file": "src/ZZZPythPriceFeed.sol",
+        "lines": 75
+      },
+      {
+        "file": "src/ZZZRewards.sol",
+        "lines": 312
+      },
+      {
+        "file": "src/ZZZRoyaltyConverter.sol",
+        "lines": 11
+      },
+      {
+        "file": "src/ZZZRoyaltyFactory.sol",
+        "lines": 14
+      },
+      {
+        "file": "src/ZZZRoyaltyRewards.sol",
+        "lines": 518
+      },
+      {
+        "file": "src/ZZZStrategy.sol",
+        "lines": 254
+      },
+      {
+        "file": "src/ZZZV4RouteExecutor.sol",
+        "lines": 168
+      },
+      {
+        "file": "src/ZZZVault.sol",
+        "lines": 665
+      },
+      {
+        "file": "src/ZZZVaultCanonical.sol",
+        "lines": 270
+      }
+    ],
+    "external_imports": [
+      "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "@openzeppelin/contracts/utils/Base64.sol",
+      "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "@openzeppelin/contracts/utils/Strings.sol",
+      "@openzeppelin/contracts/utils/math/Math.sol",
+      "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+      "@uniswap/v4-core/src/libraries/TickMath.sol",
+      "@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol"
+    ],
+    "errors": [],
+    "limitations": [
+      "Balanced delimiters do not prove valid Solidity",
+      "No type checking, EVM execution or exploit analysis"
+    ]
+  },
+  "original_dirty_preserved": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "historical_report_inputs_preserved": 1855,
+  "unit_sweep_scope": "Affected and synthetic/loopback only; five Unix cases skipped. Real Linux current process crash rehearsal/systemd and target providers unqualified.",
+  "production_approved": false
+}

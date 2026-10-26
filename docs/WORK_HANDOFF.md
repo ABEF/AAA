@@ -5,13 +5,12 @@ Reviewed 2026-10-26. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
-[Backend fee integrity](../reports/backend-remediation-20261026/REVIEW.md) is
-published in379ae19; [receipt](../reports/backend-remediation-20261026/PUBLICATION.md)
-verifies publication.167affected Python methods pass,54input pins; no Solidity/
-economic/schema/signing change. Documentation cleanup5114a1c consolidates current guides, removes five redundant
-pages and preserves historical evidence. Both contract and website memory heads
-were verified; [receipt](../reports/documentation-cleanup-20261026/PUBLICATION.md)
-records the exact scope. Later receipt updates do not change implementation.
+[Keeper/LP audit](../reports/keeper-lp-audit-20261026/REVIEW.md) and
+[verification](../reports/keeper-lp-audit-20261026/VERIFICATION.md) record config-bound
+health, strict conversion flags, current3native rehearsal source and range enum
+test repair.354affected Python passes/5Unix skips;9range passes incl1000fuzz.
+Production Solidity/ABI/economics unchanged. Publication is recorded separately;
+check actual Git/remote receipt. Old journals and installed services are not upgraded.
 
 ## Continue here
 

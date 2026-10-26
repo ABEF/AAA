@@ -38,8 +38,12 @@ class KeeperPreparationTests(unittest.TestCase):
     def test_preparing_skips_rebalance_compound_buyback_and_keeps_healthy_observation(self):
         self.fixture.preparing = True
         self.fixture.reserves[fixtures.C] = 100
-        self.k.maintenance = {'harvest':False}
-        self.k.config['buybacks'] = [{'token':fixtures.B,'amount':1,'pool_id':fixtures.H}]
+        # Finalize the loaded configuration before constructing its identity.
+        # A heartbeat must not rehash later mutable input and mislabel cached
+        # deployment/profile fields as a newly reviewed running configuration.
+        self.fixture.cfg['maintenance'] = {'harvest':False}
+        self.fixture.cfg['buybacks'] = [{'token':fixtures.B,'amount':1,'pool_id':fixtures.H}]
+        self.k = self.fixture.k = fixtures.Keeper(self.fixture.cfg,rpc=self.rpc)
         with patch.object(self.k, 'submit', return_value=True) as submit:
             self.assertTrue(self.k.run_cycle())
         submit.assert_not_called()

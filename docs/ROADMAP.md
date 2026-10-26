@@ -40,7 +40,8 @@ are not upgraded by relabeling. Rehearse approval/contribution/claim/recovery an
 account/network changes against the exact reviewed configuration. See
 [website boundary](NATIVE_WEBSITE_PROFILE.md) and [wallet task](../TODO.md#task-wallet).
 
-Qualify hosted services, concurrent request budgets, index recovery, keeper
+Use the corrected config-bound health/strict conversion controls and explicit
+current3 rehearsal source, then qualify hosted services, concurrent request budgets, index recovery, keeper
 restart/nonce/fee-review recovery, backups, monitoring and operator rotation.
 Validate real target-chain maximum-state gas and range/maintenance economics;
 local synthetic tests do not establish capacity or uninterrupted uptime.

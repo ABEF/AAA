@@ -1,0 +1,98 @@
+test_changed_reviewed_limits_or_provider_need_fresh_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat) ... 
+  test_changed_reviewed_limits_or_provider_need_fresh_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat) (field='max_gas_price_wei') ... FAIL
+  test_changed_reviewed_limits_or_provider_need_fresh_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat) (field='rpc_urls') ... FAIL
+test_historical_profile_cannot_reuse_current_profile_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_historical_profile_cannot_reuse_current_profile_heartbeat) ... FAIL
+test_legacy_heartbeat_without_configuration_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_legacy_heartbeat_without_configuration_binding_cannot_pass) ... FAIL
+test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) ... 
+  test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value=None) ... FAIL
+  test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value=True) ... FAIL
+  test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value={}) ... FAIL
+  test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value='0x1234') ... FAIL
+  test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value='ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff') ... FAIL
+test_matching_real_heartbeat_passes_without_exporting_configuration (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_matching_real_heartbeat_passes_without_exporting_configuration) ... ok
+test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat) ... FAIL
+
+======================================================================
+FAIL: test_changed_reviewed_limits_or_provider_need_fresh_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat) (field='max_gas_price_wei')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 69, in test_changed_reviewed_limits_or_provider_need_fresh_heartbeat
+    self.assertFalse(health_check(other)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_changed_reviewed_limits_or_provider_need_fresh_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat) (field='rpc_urls')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 69, in test_changed_reviewed_limits_or_provider_need_fresh_heartbeat
+    self.assertFalse(health_check(other)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_historical_profile_cannot_reuse_current_profile_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_historical_profile_cannot_reuse_current_profile_heartbeat)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 63, in test_historical_profile_cannot_reuse_current_profile_heartbeat
+    self.assertFalse(health_check(other)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_legacy_heartbeat_without_configuration_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_legacy_heartbeat_without_configuration_binding_cannot_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 75, in test_legacy_heartbeat_without_configuration_binding_cannot_pass
+    self.assertFalse(health_check(self.config)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 83, in test_malformed_binding_cannot_pass
+    self.assertFalse(health_check(self.config)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 83, in test_malformed_binding_cannot_pass
+    self.assertFalse(health_check(self.config)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 83, in test_malformed_binding_cannot_pass
+    self.assertFalse(health_check(self.config)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value='0x1234')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 83, in test_malformed_binding_cannot_pass
+    self.assertFalse(health_check(self.config)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) (value='ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 83, in test_malformed_binding_cannot_pass
+    self.assertFalse(health_check(self.config)['ok'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_health_identity.py", line 58, in test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat
+    self.assertFalse(health_check(other)['ok'])
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.139s
+
+FAILED (failures=10)

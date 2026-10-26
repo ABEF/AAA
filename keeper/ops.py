@@ -39,6 +39,8 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
     if age < -30 or age > max_age: reasons.append('heartbeat_stale_or_future')
     if data.get('chain_id') != config['chain_id'] or data.get('sender') != config['sender'].lower():
         reasons.append('deployment_identity_mismatch')
+    if data.get('configuration_sha256') != digest(config):
+        reasons.append('configuration_mismatch')
     expected = 'dry_run' if allow_dry_run else 'healthy'
     if data.get('status') != expected or data.get('live') is not (not allow_dry_run): reasons.append('maintenance_not_healthy')
     for field in ('pending','strategy_paused'):

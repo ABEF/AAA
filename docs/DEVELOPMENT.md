@@ -44,6 +44,19 @@ solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. Check exact-revision CI.
 Keep normal runtime/initcode/gas gates and exact constructor arguments.
 
+## Focused keeper verification
+
+```bash
+python3 scripts/run-keeper-tests.py --output path/to/new-keeper-results.json
+```
+
+The maintained CI selection deduplicates defined test classes and covers keeper,
+metadata, native/conversion and recovery helpers. Unix-only assertions remain
+explicit on other hosts; Windows success does not qualify Linux operation.
+[Latest evidence](../reports/keeper-lp-audit-20261026/VERIFICATION.md) records the
+initial failures/repairs,359selected354pass5skips and9affected Solidity passes;
+it is not a new full release regression or production qualification.
+
 ## Fork and operating qualification
 
 Current fork qualification is blocked until an actual native accounting3 fixture

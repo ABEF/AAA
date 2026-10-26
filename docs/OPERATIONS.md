@@ -56,7 +56,9 @@ only under their reviewed configs/bindings/budgets. They are separate jobs;
 harvesting, conversion and payout are different accounting actions. Native ETH
 fees need no conversion. ZZZ conversion at default1% requires a cheaper qualified
 route than the selected pool's recorded effective fee. Unconverted balances stay
-backed; failure is not permission to widen a caller floor. Do not schedule creator
+backed; failure is not permission to widen a caller floor. Noncanonical converter
+or route Boolean flags are errors/deferred work, not legitimate disabled controls;
+valid0remains off. Preserve degraded telemetry while independent upkeep continues. Do not schedule creator
 inbox, remote reward/ACK or bridge jobs: those current modules are removed.
 
 ## Optional metadata notifications
@@ -69,6 +71,15 @@ instant marketplace cache refresh. No LP action is needed just to refresh art.
 [Metadata/hosting](NFT_METADATA.md), [artwork publication](ARTWORK_PUBLICATION.md).
 
 ## Stop, recovery and restart
+
+The heartbeat now includes `configuration_sha256`, a hash of the exact loaded
+configuration. `keeper.ops health` requires the same hash, not merely chain and
+sender. Old/missing/malformed or mismatched artifacts return `configuration_mismatch`.
+Deploy matching writer/checker together only through an authorized rollout and
+require a fresh matching cycle after a reviewed config change. Never patch the
+hash, edit/reset a journal or assume this digest authenticates the host/provider.
+There is no in-process config reload: finalize config before constructing Keeper.
+
 
 Stop new signing and preserve journal/lock/health/config/receipt evidence before
 repair or host migration. Resolve saved transaction hashes and nonce/fee reviews;

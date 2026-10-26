@@ -1,0 +1,24 @@
+test_changed_reviewed_limits_or_provider_need_fresh_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat) ... ok
+test_historical_profile_cannot_reuse_current_profile_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_historical_profile_cannot_reuse_current_profile_heartbeat) ... ok
+test_legacy_heartbeat_without_configuration_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_legacy_heartbeat_without_configuration_binding_cannot_pass) ... ok
+test_malformed_binding_cannot_pass (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass) ... ok
+test_matching_real_heartbeat_passes_without_exporting_configuration (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_matching_real_heartbeat_passes_without_exporting_configuration) ... ok
+test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat (tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat) ... ok
+test_dry_run_requires_explicit_health_mode (tests_python.test_keeper_ops.OpsTests.test_dry_run_requires_explicit_health_mode) ... ok
+test_first_pending_cycle_has_actionable_health_reasons (tests_python.test_keeper_ops.OpsTests.test_first_pending_cycle_has_actionable_health_reasons) ... ok
+test_future_heartbeat_and_missing_counters_do_not_pass (tests_python.test_keeper_ops.OpsTests.test_future_heartbeat_and_missing_counters_do_not_pass) ... ok
+test_healthy_requires_fresh_live_identity_and_success (tests_python.test_keeper_ops.OpsTests.test_healthy_requires_fresh_live_identity_and_success) ... ok
+test_missing_or_corrupt_health_never_looks_healthy (tests_python.test_keeper_ops.OpsTests.test_missing_or_corrupt_health_never_looks_healthy) ... ok
+test_preflight_cannot_approve_wrong_native_accounting_abi (tests_python.test_keeper_ops.OpsTests.test_preflight_cannot_approve_wrong_native_accounting_abi) ... ok
+test_preflight_is_read_only_and_never_calls_signer (tests_python.test_keeper_ops.OpsTests.test_preflight_is_read_only_and_never_calls_signer) ... ok
+test_preflight_low_balance_or_revoked_role_cannot_pass (tests_python.test_keeper_ops.OpsTests.test_preflight_low_balance_or_revoked_role_cannot_pass) ... ok
+test_preflight_refuses_missing_state_nonce_drift_or_pending (tests_python.test_keeper_ops.OpsTests.test_preflight_refuses_missing_state_nonce_drift_or_pending) ... ok
+test_preflight_unqualified_fee_or_review_cannot_pass (tests_python.test_keeper_ops.OpsTests.test_preflight_unqualified_fee_or_review_cannot_pass) ... ok
+test_snapshot_corruption_age_configuration_and_identity (tests_python.test_keeper_ops.OpsTests.test_snapshot_corruption_age_configuration_and_identity) ... ok
+test_snapshot_is_exclusive_and_never_overwrites_state (tests_python.test_keeper_ops.OpsTests.test_snapshot_is_exclusive_and_never_overwrites_state) ... ok
+test_snapshot_preserves_pending_budget_and_omits_secrets (tests_python.test_keeper_ops.OpsTests.test_snapshot_preserves_pending_budget_and_omits_secrets) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.698s
+
+OK

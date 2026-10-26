@@ -145,12 +145,17 @@ class RedirectTransportTests(unittest.TestCase):
         handler.send_response(200);handler.send_header('Content-Length',str(len(body)))
         handler.end_headers();handler.wfile.write(body)
     def test_redirect_destinations_never_receive_rpc_requests(self):
-        trapped=[]
+        trapped=[];observed=[]
         def trap(handler):
             trapped.append(handler.command)
             self.reply(handler,b'{"jsonrpc":"2.0","id":1,"result":"0x1"}')
         target=self.server(trap)
         def redirect(handler):
+            # Finish the POST before closing: unread request bytes can reset the
+            # Windows socket before the client observes our redirect response.
+            body=json.loads(handler.rfile.read(int(handler.headers['Content-Length'])))
+            self.assertEqual(body['method'],'eth_chainId')
+            observed.append(int(handler.path[1:]))
             handler.send_response(int(handler.path[1:]));handler.send_header('Location',target+'/trap')
             handler.send_header('Content-Length','0');handler.end_headers()
         source=self.server(redirect)
@@ -160,6 +165,7 @@ class RedirectTransportTests(unittest.TestCase):
                 error=None
                 try:rpc._read_http(rpc.active_url,b'{"jsonrpc":"2.0","id":1,"method":"eth_chainId","params":[]}')
                 except (RpcError,urllib.error.HTTPError) as exc:error=exc
+                self.assertEqual(observed[-1],status,'The source must actually serve this redirect')
                 self.assertEqual(len(trapped),before,'A redirect must not reach the unreviewed target')
                 self.assertIsNotNone(error)
     @patch('zzz_ops.rpc.time.sleep')
@@ -169,6 +175,7 @@ class RedirectTransportTests(unittest.TestCase):
             trapped.append(handler.command);self.reply(handler,b'forbidden')
         target=self.server(trap)
         def redirect(handler):
+            handler.rfile.read(int(handler.headers['Content-Length']))
             handler.send_response(302);handler.send_header('Location',target+'/SECRET')
             handler.send_header('Content-Length','0');handler.end_headers()
         source=self.server(redirect)

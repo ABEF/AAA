@@ -1,0 +1,10 @@
+test_balance_transport_outage_keeps_the_existing_deferred_path (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_balance_transport_outage_keeps_the_existing_deferred_path) ... ok
+test_canonical_true_preserves_exact_batch_floor_and_gas_envelope (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_canonical_true_preserves_exact_batch_floor_and_gas_envelope) ... ok
+test_canonical_zero_stays_a_legitimate_stop_for_every_profile_and_ledger (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_canonical_zero_stays_a_legitimate_stop_for_every_profile_and_ledger) ... ok
+test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) ... ok
+test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 8.772s
+
+OK

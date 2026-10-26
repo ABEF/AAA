@@ -121,14 +121,15 @@ class Lab:
         rpc(self.url,'anvil_setBalance',[self.sender,hex(10**20)])
         self.admin_call('authorize(address,bool)',self.sender,1)
         code = rpc(self.url,'eth_getCode',[self.venue,'latest']);codehash = '0x'+keccak256(bytes.fromhex(code[2:])).hex()
-        self.cfg = {'chain_id':31337,'accounting_model':'shared-pools-v2','rpc_urls':[self.url],'sender':self.sender,
+        self.cfg = {'chain_id':31337,'accounting_model':'shared-pools-v2','accounting_version':3,'fee_intake_version':1,
+            'rpc_urls':[self.url],'sender':self.sender,
             'contracts':{k:self.venue for k in ('access','vault','strategy','fees','compounder','buyback','pools')},
             'code_hashes':{k:codehash for k in ('access','vault','strategy','fees','compounder','buyback','pools')},
             'reviewed_for_live_use':True,'receipt_fee_policy':'included','cast_binary':self.bin['cast'],
             'keystore':str(self.key),'password_file':str(self.password),'confirmations':1,'interval_seconds':60,
             'max_gas_limit':500000,'max_gas_price_wei':10**11,'max_transaction_cost_wei':10**17,'max_daily_cost_wei':10**18,
             'state_path':str(self.host/'state.json'),'health_path':str(self.host/'health.json'),'lock_path':str(self.host/'keeper.lock'),
-            'maintenance':{'compound':False,'sync_external_rewards':False,'harvest':True,'harvest_interval_seconds':14400}}
+            'maintenance':{'compound':False,'harvest':True,'harvest_interval_seconds':14400}}
         self.config = self.root/'config.json';self.write_config()
         self.cli('--initialize-state')
         return self
@@ -274,11 +275,13 @@ def main():
     check(all(binaries.values()),'Pinned Foundry tools required')
     versions = {name:subprocess.check_output([path,'--version'],text=True).strip() for name,path in binaries.items()}
     check(all('1.4.4' in version for version in versions.values()),'Use reviewed Foundry 1.4.4')
-    sources = ['keeper/monitor.py','keeper/ops.py','zzz_ops/abi.py','zzz_ops/state.py','zzz_ops/rpc.py',
+    sources = ['keeper/monitor.py','keeper/ops.py','keeper/royalties.py','zzz_ops/abi.py','zzz_ops/state.py','zzz_ops/rpc.py',
+        'zzz_ops/ethereum_fees.py','zzz_ops/range_policy.py','zzz_ops/position.py','zzz_ops/errors.py',
         'keeper/rehearsal/KeeperVenue.sol','scripts/rehearse-keeper.py']
     hashes = {name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in sources}
     report = {'schema':1,'created_at':dt.datetime.now(dt.timezone.utc).isoformat(),'scope':'local Anvil / test-only venue; no public signing',
-        'production_approved':False,'source_hashes':hashes,'versions':versions,'cases':[],'ok':False}
+        'production_approved':False,'accounting_version':3,'fee_intake_version':1,
+        'source_hashes':hashes,'versions':versions,'cases':[],'ok':False}
     def record(name,ok):
         check(ok,name);report['cases'].append({'name':name,'ok':True});print(json.dumps(report['cases'][-1]),flush=True)
     try:

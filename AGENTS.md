@@ -76,6 +76,9 @@ before changing behavior. This file contains current instructions, not a timelin
   No gate relaxation, invented provider qualification or global audit guarantee.
 - [Documentation cleanup/publication](reports/documentation-cleanup-20261026/PUBLICATION.md)
   records the consolidated current guides and original-draft preservation.
+- Latest keeper/LP source-scoped review: [audit](reports/keeper-lp-audit-20261026/REVIEW.md)
+  and [verification](reports/keeper-lp-audit-20261026/VERIFICATION.md). Health binds
+  loaded config; deploy checker/writer together, never alter journals to pass.
 - Current source/evidence references: [backend fee integrity](reports/backend-remediation-20261026/VERIFICATION.md),
   [full candidate audit](reports/full-audit-20261025/VERIFICATION.md),
   [cleanup compiler comparison](reports/deep-cleanup-20261025/compiler-comparison.md).

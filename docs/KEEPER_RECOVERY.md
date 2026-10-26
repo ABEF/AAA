@@ -86,6 +86,15 @@ An unused signer can explicitly bootstrap using `python -m keeper.monitor --conf
 
 ## Logs, health and fallback
 
+The heartbeat now includes `configuration_sha256`, a hash of the exact loaded
+configuration. `keeper.ops health` requires the same hash, not merely chain and
+sender. Old/missing/malformed or mismatched artifacts return `configuration_mismatch`.
+Deploy matching writer/checker together only through an authorized rollout and
+require a fresh matching cycle after a reviewed config change. Never patch the
+hash, edit/reset a journal or assume this digest authenticates the host/provider.
+There is no in-process config reload: finalize config before constructing Keeper.
+
+
 The current keeper requires both `preparationActive()` and `canonicalState()` on
 the exact controller. Missing, malformed or unknown states fail closed. State0
 can operate under ordinary preparation/pause rules; Frozen1, Importing2, Retired3

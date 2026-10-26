@@ -1,0 +1,178 @@
+test_balance_transport_outage_keeps_the_existing_deferred_path (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_balance_transport_outage_keeps_the_existing_deferred_path) ... ok
+test_canonical_true_preserves_exact_batch_floor_and_gas_envelope (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_canonical_true_preserves_exact_batch_floor_and_gas_envelope) ... ok
+test_canonical_zero_stays_a_legitimate_stop_for_every_profile_and_ledger (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_canonical_zero_stays_a_legitimate_stop_for_every_profile_and_ledger) ... ok
+test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) ... 
+  test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v3_wrapper', lp=False) ... FAIL
+  test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v3_wrapper', lp=True) ... FAIL
+  test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v3_wrapper_configurable', lp=False) ... FAIL
+  test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v3_wrapper_configurable', lp=True) ... FAIL
+  test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v4_native', lp=False) ... FAIL
+  test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v4_native', lp=True) ... FAIL
+test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) ... 
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper', lp=False, value=2) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper', lp=False, value=115792089237316195423570985008687907853269984665640564039457584007913129639935) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper', lp=True, value=2) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper', lp=True, value=115792089237316195423570985008687907853269984665640564039457584007913129639935) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper_configurable', lp=False, value=2) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper_configurable', lp=False, value=115792089237316195423570985008687907853269984665640564039457584007913129639935) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper_configurable', lp=True, value=2) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper_configurable', lp=True, value=115792089237316195423570985008687907853269984665640564039457584007913129639935) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v4_native', lp=False, value=2) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v4_native', lp=False, value=115792089237316195423570985008687907853269984665640564039457584007913129639935) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v4_native', lp=True, value=2) ... FAIL
+  test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v4_native', lp=True, value=115792089237316195423570985008687907853269984665640564039457584007913129639935) ... FAIL
+
+======================================================================
+FAIL: test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v3_wrapper', lp=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 59, in test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission
+    with patch.object(keeper, 'submit') as submit, self.assertRaisesRegex(RpcError, 'boolean'):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v3_wrapper', lp=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 59, in test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission
+    with patch.object(keeper, 'submit') as submit, self.assertRaisesRegex(RpcError, 'boolean'):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v3_wrapper_configurable', lp=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 59, in test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission
+    with patch.object(keeper, 'submit') as submit, self.assertRaisesRegex(RpcError, 'boolean'):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v3_wrapper_configurable', lp=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 59, in test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission
+    with patch.object(keeper, 'submit') as submit, self.assertRaisesRegex(RpcError, 'boolean'):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v4_native', lp=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 59, in test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission
+    with patch.object(keeper, 'submit') as submit, self.assertRaisesRegex(RpcError, 'boolean'):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission) (profile='v4_native', lp=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 59, in test_noncanonical_converter_enabled_flag_raises_before_quote_or_submission
+    with patch.object(keeper, 'submit') as submit, self.assertRaisesRegex(RpcError, 'boolean'):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper', lp=False, value=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper', lp=False, value=115792089237316195423570985008687907853269984665640564039457584007913129639935)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper', lp=True, value=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper', lp=True, value=115792089237316195423570985008687907853269984665640564039457584007913129639935)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper_configurable', lp=False, value=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper_configurable', lp=False, value=115792089237316195423570985008687907853269984665640564039457584007913129639935)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper_configurable', lp=True, value=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v3_wrapper_configurable', lp=True, value=115792089237316195423570985008687907853269984665640564039457584007913129639935)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v4_native', lp=False, value=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v4_native', lp=False, value=115792089237316195423570985008687907853269984665640564039457584007913129639935)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v4_native', lp=True, value=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle (tests_python.test_keeper_conversion_integrity.ConversionBooleanIntegrityTests.test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle) (profile='v4_native', lp=True, value=115792089237316195423570985008687907853269984665640564039457584007913129639935)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_conversion_integrity.py", line 73, in test_noncanonical_route_flag_is_logged_as_deferred_not_a_healthy_disabled_cycle
+    self.assertEqual(keeper.blocked_actions, 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 5 tests in 5.662s
+
+FAILED (failures=18)
