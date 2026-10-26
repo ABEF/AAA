@@ -1,0 +1,16 @@
+{
+  "revision": "3ad0e3f0fd14c3142e798054df937236983698cd",
+  "original_monitor_sha256": "d9942781b9bdb7db536eda712a9afff6826ce13d17aa2b4c2b74b54b0bf96cfb",
+  "final_tests_sha256": "f93a2a55e50537b55eaa8e00862938b35ba0e852763b43231a125159d7fa5e7e",
+  "candidate_monitor_sha256": "48077887eeab921a0571c962a2346cd9a2cbb62144f39d1643bab2a0c6ab9bd6",
+  "tests": [
+    "tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_funded_buyback_progresses_during_continuous_rebalancing",
+    "tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_perpetually_funded_first_currency_cannot_starve_second",
+    "tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_busy_conversions_buyback_and_maintenance_all_progress"
+  ],
+  "run": 3,
+  "failures": 3,
+  "errors": 0,
+  "skips": 0,
+  "expected_negative_control": true
+}

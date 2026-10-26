@@ -41,6 +41,45 @@ Read [keeper recovery](KEEPER_RECOVERY.md), [service rehearsals](KEEPER_REHEARSA
 
 <a id="reward-timing-and-maintenance-schedule"></a>
 
+## Reward timing and maintenance schedule
+
+Harvest funds the fixed80/10/5/5 allocation once. The10% is indexed equally across
+activated NFTs at that receipt; claiming does not change the denominator or
+another NFT's entitlement. Individual and collective LP rewards are claimed
+together for the NFT. Compound/buyback reserves stay outside that claim ledger.
+[Timing and worked example](ECONOMICS.md#allocation-reinvestment-and-claim-timing).
+
+| Job | Reviewed operating policy | Confirmed evidence |
+| --- | --- | --- |
+| Harvest | `maintenance.harvest=true`, `harvest_interval_seconds`; permissionless manual `Vault.collectFees` is also available. Contribution/rebalance/compound paths harvest as well. | `FeesCollected`, matching funded `PoolRewardsCredited`/`FeesAllocated`, actual receipt and separate reserves. Uncollected pool fees are not claimable yet. |
+| Compound | `maintenance.compound=true`, `compound_interval_seconds`, currency-specific `compound_thresholds` plus actual minimum LP and all guards. Contributions/rebalances can already reinvest the same bucket's reserve. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
+| Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
+| Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
+
+The sample configuration polls600seconds, harvests every14,400seconds, disables
+standalone compounding and has an empty buyback list. These are inactive/placeholder
+choices, not qualified production settings. Choose intervals/batches from actual
+revenue, decimals, gas and market depth; a common raw threshold across ETH/ZZZ is
+not a common economic value. Network gas is paid by the keeper separately; it is
+not taken from a holder's80% or the collective10% by claim logic.
+
+One submitted transaction uses the serial nonce/receipt path per cycle. LP and
+royalty conversions retain their existing three-way turn with maintenance.
+Within cycles reaching maintenance, buyback priority alternates with LP/metadata
+work, and buyback currencies rotate, so persistent rebalances or a funded first
+currency cannot monopolize every opportunity. Optional validated journal fields
+`buyback_priority`/`buyback_cursor` are retained on restart; old journals without
+them default safely. Do not add, reset or edit them manually. This gives eligible
+work opportunities, not a wall-clock execution SLA: pending receipts, pause,
+preparation, insufficient reserves, simulation/price/fee/gas guards still defer it.
+
+Monitor successful harvest/compound/burn receipts, outstanding reserve amounts,
+deferred/error logs and receipt age. A persistent backlog needs reviewed task
+sizing/route/prices/gas repair, not a reserve sweep or automatic loss-cap increase.
+Stop/review/restart through the recovery procedure with journals intact; changing
+source/config here does not roll out to an installed service. Before production,
+qualify actual batch economics, schedule latency and recovery with these jobs on.
+
 ## Maintenance and range policy
 
 The keeper discovers shared custody buckets; it does not rebalance each NFT.

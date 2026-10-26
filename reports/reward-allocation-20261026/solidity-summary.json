@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 122.688,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\reward-allocation-20261026\\solidity-attempt2\\execution\\ast-focused-profile-17cogh_z",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(NativeFeeRewardsTest)$",
+    "--json"
+  ],
+  "selected_methods": 2,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testFuzzClaimOrderAndFrequencyCannotRedistributeAnyNftRewards(uint8,uint8)",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x6bd3341000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009",
+            "gas": 18199751,
+            "stipend": 21332
+          },
+          "runs": 1000,
+          "mean_gas": 18702622,
+          "median_gas": 18782907,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "method": "testThreeHolderClaimsPreserveExactSplitAndDormantExclusion()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3303544
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "9d731c276775aed066729eedebc87bc2448c0e2d883243e76f25154b09469656"
+}

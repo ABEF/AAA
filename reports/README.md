@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Reward allocation review](reward-allocation-20261026/REVIEW.md) and
+[verification](reward-allocation-20261026/VERIFICATION.md) distinguish harvest
+allocation, NFT claims, compounding and actual burns. Two new accounting methods
+pass, including 1,000 randomized claim schedules; the keeper fairness fix passes
+370 affected Python methods/6 explicit skips. No production Solidity or service
+change; exact source and negative-control evidence retain their stated limits.
+
 [Keeper/LP audit](keeper-lp-audit-20261026/REVIEW.md) and
 [verification](keeper-lp-audit-20261026/VERIFICATION.md) record config-bound health,
 strict conversion controls and repaired verification.354affected Python passes,

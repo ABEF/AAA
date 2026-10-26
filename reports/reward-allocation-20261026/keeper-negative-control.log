@@ -1,0 +1,43 @@
+test_funded_buyback_progresses_during_continuous_rebalancing (tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_funded_buyback_progresses_during_continuous_rebalancing) ... FAIL
+test_perpetually_funded_first_currency_cannot_starve_second (tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_perpetually_funded_first_currency_cannot_starve_second) ... FAIL
+test_busy_conversions_buyback_and_maintenance_all_progress (tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_busy_conversions_buyback_and_maintenance_all_progress) ... FAIL
+
+======================================================================
+FAIL: test_funded_buyback_progresses_during_continuous_rebalancing (tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_funded_buyback_progresses_during_continuous_rebalancing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_buyback_fairness.py", line 66, in test_funded_buyback_progresses_during_continuous_rebalancing
+    self.assertIn('buyback', [action[0] for action in actions])
+AssertionError: 'buyback' not found in ['vault', 'vault', 'vault', 'vault', 'vault', 'vault']
+
+======================================================================
+FAIL: test_perpetually_funded_first_currency_cannot_starve_second (tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_perpetually_funded_first_currency_cannot_starve_second)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_buyback_fairness.py", line 74, in test_perpetually_funded_first_currency_cannot_starve_second
+    self.assertEqual(currencies[:4], [NATIVE_ASSET, fixtures.C, NATIVE_ASSET, fixtures.C])
+AssertionError: Lists differ: ['0x0[40 chars], '0x0000000000000000000000000000000000000000'[88 chars]000'] != ['0x0[40 chars], '0x3333333333333333333333333333333333333333'[88 chars]333']
+
+First differing element 1:
+'0x0000000000000000000000000000000000000000'
+'0x3333333333333333333333333333333333333333'
+
+  ['0x0000000000000000000000000000000000000000',
++  '0x3333333333333333333333333333333333333333',
+   '0x0000000000000000000000000000000000000000',
++  '0x3333333333333333333333333333333333333333']
+-  '0x0000000000000000000000000000000000000000',
+-  '0x0000000000000000000000000000000000000000']
+
+======================================================================
+FAIL: test_busy_conversions_buyback_and_maintenance_all_progress (tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_busy_conversions_buyback_and_maintenance_all_progress)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_buyback_fairness.py", line 84, in test_busy_conversions_buyback_and_maintenance_all_progress
+    self.assertIn(name, names)
+AssertionError: 'buyback' not found in ['rewards', 'royalties', 'vault', 'rewards', 'royalties', 'vault', 'rewards', 'royalties', 'vault', 'rewards', 'royalties', 'vault']
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.435s
+
+FAILED (failures=3)

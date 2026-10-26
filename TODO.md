@@ -260,6 +260,15 @@ Custody, ownership and reward accounting.
 
 - [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares. These ledgers currently preserve payout currencies; ETH-only LP settlement is a separate open task.
 
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Allocation occurs when actual local LP fees are harvested; the equal collective denominator is activated membership at that receipt, not the number of unclaimed NFTs. Claims pay already funded entitlement and never reallocate, compound or buy back. [Timing and arithmetic](docs/ECONOMICS.md#allocation-reinvestment-and-claim-timing).
+  - [Reward review](reports/reward-allocation-20261026/REVIEW.md) and [verification](reports/reward-allocation-20261026/VERIFICATION.md): two new Solidity methods pass, including1,000 randomized early/deferred claim schedules with four NFTs, two currencies, dust/fractions, activation, top-up and transfer. Exact owner/collective/reserve isolation and total funding conservation hold in scoped fixtures; no production Solidity or economic rule changed.
+  - Keeper compounding and buyback remain separate guarded jobs; contributions/rebalances can also reinvest designated compound. Sample standalone compound is disabled and buybacks are empty. Actual routes/fixed-ZZZ burn semantics, economical batch thresholds, gas/latency/backlog monitoring and operating qualification remain in the linked keeper/conversion release tasks.
+
+  </details>
+
 <a id="task-shared-custody"></a>
 
 - [x] **[Shared LP, maintenance & custody controls](docs/ARCHITECTURE.md)** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, governance approvals, parking and guarded resumption are implemented. Ordinary rebalances now also enforce the user-approved 3% aggregate fixed-start-price cap, retaining existing guards and 5% idle; gas is separate. Approved range changes can now trigger the ordinary keeper rebalance at a flat price after cooldown; successful application clears the mismatch. The registry now restricts new activations/top-ups to one contribution pool at a time, while preserving governed future switches and historical custody.
@@ -1018,7 +1027,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-keeper-guardrails"></a>
 
-- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery/lifecycle controls plus captured fee-review schema 1, canonical dynamic-fee accounting, L1/total bounds and version-aware preflight are implemented candidates. Legacy pending evidence is preserved, not guessed or resent. Actual Linux/RPC/fee/alert/host recovery and independent operating approval remain open.
+- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery/lifecycle controls, captured fee-review schema1, config-bound health and strict conversion reads are implemented candidates. Buyback priority and currency rotation prevent continuous maintenance/first-currency starvation without changing the serial pending/nonce/gas path. Actual Linux/RPC/fee/alert/host recovery and independent operating approval remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1033,6 +1042,7 @@ Decisions and rehearsals before real funds.
   - Qualify the new strict maintenance settings, per-currency thresholds/idle Budget pins, successful-operation cooldown and optional reviewed two-width policy on actual Linux/services. New retired bridge scheduling is removed; recovery of original pending hashes remains first, without deletion or resend. Configuration updates do not activate a running service.
   - Focused Linux CI selection now includes the new maintenance/range policy suites, preserving process-lock/recovery qualification as Linux-specific. No CI run or running service upgrade is inferred from a workflow edit; unchanged prior tests retain original source scope.
   - [Keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) binds health to exact loaded config, rejects malformed conversion controls, repairs obsolete range-test domain and selects current3/fee1/native rehearsal source. Final affected Python354pass/5Unix skips (359methods),9range methods incl1000fuzz; unchanged production Solidity/permissions/economics. Linux current-fixture process/systemd, actual feeds/routes/gas/services and independent audit remain open. Deploy matching health writer/checker only under separate rollout; never patch old hashes or reset journals.
+  - [Reward scheduling review](reports/reward-allocation-20261026/REVIEW.md): three source-bound old-code starvation failures become passing cases; final376 unique keeper methods yield370 passes/6 explicit skips. Preserve pending-first recovery, existing conversion turns and optional validated priority/currency cursors; no journal reset, extra successful submission per cycle, economic change or installed-service rollout. Qualify actual batch economics, backlog alerts and execution latency before production.
 
   </details>
 
@@ -1102,4 +1112,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `997c27cb8bf7db55550166d2f0d39a0038dada411f4e984d8ce872c0e5114aa0`.
+Snapshot SHA-256: `2f5480fba51463d71e92b1e48ba5db07724f7a413de722d1ff7645705a1bbd64`.

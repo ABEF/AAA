@@ -51,15 +51,20 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest functional publication [885af8e](https://github.com/ABEF/AAA/commit/885af8edaadbc4fa7f8da8021c1d2d2fe66a4a6d):
-[keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md),
-[verification](reports/keeper-lp-audit-20261026/VERIFICATION.md) and
-[publication receipt](reports/keeper-lp-audit-20261026/PUBLICATION.md). Website
-memory-onlyfd8c3e8; both remote heads verified. Health binds exact loaded config;
-conversion flags reject malformed observations. Current3native rehearsal and
-range-test repairs improve qualification:354Python passes/5Unix skips,9range
-passes including1000fuzz. Production44Solidity/ABI/economics unchanged. Actual
-Linux process/target services remain unqualified; existing runtime unchanged.
+Latest local candidate: [reward review](reports/reward-allocation-20261026/REVIEW.md)
+and [verification](reports/reward-allocation-20261026/VERIFICATION.md). Allocation is
+at harvest; claims preserve other NFT entitlements and reserves. Two new Solidity
+methods pass, including 1,000 randomized claim schedules. The keeper fixes buyback
+starvation through priority/currency rotation, with376 affected Python methods:
+370 pass / 6 explicit skips and no failures/errors. Production 44 Solidity/ABI/economics
+are unchanged. Actual operating rollout remains unapproved; journals/services and
+the website remain untouched. Publication must be verified separately.
+
+Last verified published baseline is3ad0e3f (docs receipt), with functional885af8e:
+[keeper/LP review](reports/keeper-lp-audit-20261026/REVIEW.md) and
+[receipt](reports/keeper-lp-audit-20261026/PUBLICATION.md). It binds loaded-config
+health and rejects malformed conversion flags. Website memory-onlyfd8c3e8 remains
+its prior verified state; no website update is implied by this contract task.
 
 Documentation consolidation [5114a1c](https://github.com/ABEF/AAA/commit/5114a1c62a8519c91233983d9123b137a24bbc60) and
 website memory-only7dd7c35 are published on main, exact remote heads verified.

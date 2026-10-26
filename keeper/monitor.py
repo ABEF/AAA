@@ -37,6 +37,7 @@ ASSET_ARGUMENTS = {
 }
 MAX_METADATA_SUPPLY = 1000
 MAX_METADATA_BATCH = 50
+MAX_BUYBACK_TASKS = 32
 CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
 PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('strategy','applyKeeperRange(bytes32)'),
@@ -174,6 +175,13 @@ class Keeper:
         self.lp_rewards = RoyaltyAutomation(self, lp=True)
         turn = self.state.get('conversion_turn',0)
         if type(turn) is not int or not 0 <= turn <= 2: raise ValueError('Invalid conversion scheduling state')
+        if type(self.state.get('buyback_priority',False)) is not bool:
+            raise ValueError('Invalid buyback priority state')
+        cursor = self.state.get('buyback_cursor',0)
+        if type(cursor) is not int or not 0 <= cursor <= MAX_BUYBACK_TASKS:
+            raise ValueError('Invalid buyback scheduling cursor')
+        # A bad new task must not prevent recovery of an already saved hash.
+        if not self.state.get('pending'): self._buyback_tasks()
         if self.live:
             if config.get('reviewed_for_live_use') is not True:
                 raise ValueError('Live use requires an explicit reviewed deployment configuration')
@@ -1120,9 +1128,51 @@ class Keeper:
             log(worker.key+'_deferred',**error_context(exc))
             return False
 
+    def _buyback_tasks(self) -> list[dict[str,Any]]:
+        tasks = self.config.get('buybacks',[])
+        if not isinstance(tasks,list) or len(tasks) > MAX_BUYBACK_TASKS:
+            raise ValueError('Buybacks require a bounded task list')
+        tokens = set()
+        for task in tasks:
+            if not isinstance(task,dict): raise ValueError('Buyback task must be an object')
+            token = self._asset(task.get('token'))
+            amount = positive(task.get('amount'),'buyback amount')
+            pool = task.get('pool_id')
+            if amount >= 1 << 256 or not isinstance(pool,str) or \
+                    not re.fullmatch(r'0x[0-9a-fA-F]{64}',pool) or token in tokens:
+                raise ValueError('Invalid or duplicate buyback task')
+            tokens.add(token)
+        return tasks
+
+    def _buyback_once(self,tasks: list[dict[str,Any]]) -> bool:
+        """Bounded currency rotation; every actual submission uses normal guards."""
+        if not tasks: return False
+        start = self.state.get('buyback_cursor',0) % len(tasks)
+        for offset in range(len(tasks)):
+            slot = (start+offset) % len(tasks)
+            task = tasks[slot]
+            token = self._asset(task['token'])
+            amount = positive(task['amount'],'buyback amount')
+            # Advance before submit() persists any intent. Even a funded first
+            # currency or a reverted/deferred task cannot monopolize the next turn.
+            self.state['buyback_cursor'] = slot+1
+            try:
+                if self.view('fees','buybackBalance(address)',token) >= amount:
+                    _,fresh = self._head()
+                    if self.submit('buyback','execute(address,uint256,bytes32,uint256)',
+                            (token,amount,task['pool_id'],fresh+180),f'buyback:{token}'):
+                        return True
+            except (ValueError,RpcError) as exc:
+                if self.state.get('pending'): raise
+                self.blocked_actions += 1
+                log('buyback_deferred',token=token,**error_context(exc))
+        self.save()
+        return False
+
     def cycle(self) -> None:
         if self.poll_pending(): return
         self._validate_maintenance_config()
+        buybacks = self._buyback_tasks()
         self._validate_accounting_version()
         if self.canonical_state() != 0: return
         paused = self.view('access','paused()') != 0
@@ -1138,6 +1188,16 @@ class Keeper:
         self.save()
         if turn < 2 and workers[turn].enabled and not paused and not preparing:
             if self._convert_rewards(workers[turn]): return
+        # Keep the historical three-way conversion cursor intact. Alternate
+        # buyback priority only when reaching maintenance; busy maintenance and
+        # metadata cannot indefinitely hide funded buyback reserves. Metadata's
+        # own alternation advances only if reached, preserving LP opportunities.
+        buyback_first = False
+        if buybacks and not paused and not preparing:
+            buyback_first = self.state.get('buyback_priority',False)
+            self.state['buyback_priority'] = not buyback_first
+            self.save()
+            if buyback_first and self._buyback_once(buybacks): return
         metadata_first = False
         if self.metadata_enabled:
             # Alternate priority so changing artwork cannot starve LP maintenance
@@ -1183,11 +1243,7 @@ class Keeper:
         if paused:
             log('protocol_paused'); return
         if preparing: return
-        for task in self.config.get('buybacks',[]):
-            token = self._asset(task['token']); amount = positive(task['amount'],'amount')
-            if self.view('fees','buybackBalance(address)',token) >= amount:
-                _,fresh = self._head()
-                if self.submit('buyback','execute(address,uint256,bytes32,uint256)',(token,amount,task['pool_id'],fresh+180),f'buyback:{token}'): return
+        if not buyback_first and self._buyback_once(buybacks): return
         for i in ((turn+1)%2, turn%2):
             if i != turn and workers[i].enabled and self._convert_rewards(workers[i]): return
 

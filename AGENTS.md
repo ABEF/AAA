@@ -79,6 +79,10 @@ before changing behavior. This file contains current instructions, not a timelin
 - Latest keeper/LP source-scoped review: [audit](reports/keeper-lp-audit-20261026/REVIEW.md)
   and [verification](reports/keeper-lp-audit-20261026/VERIFICATION.md). Health binds
   loaded config; deploy checker/writer together, never alter journals to pass.
+- [Reward allocation review](reports/reward-allocation-20261026/REVIEW.md) verifies
+  claim-order conservation and fixes off-chain buyback scheduling fairness.
+  Allocation is at harvest; LP claims never run compound/buyback. Rollout and
+  actual schedule/route/burn/gas qualification remain separate; preserve journals.
 - Current source/evidence references: [backend fee integrity](reports/backend-remediation-20261026/VERIFICATION.md),
   [full candidate audit](reports/full-audit-20261025/VERIFICATION.md),
   [cleanup compiler comparison](reports/deep-cleanup-20261025/compiler-comparison.md).

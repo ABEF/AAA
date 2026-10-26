@@ -57,3 +57,7 @@ reports/preproduction-audit-20261025/** -text whitespace=cr-at-eol,-blank-at-eol
 
 # Preserve exact liquidity-placement, range and keeper scoped receipts.
 reports/liquidity-operations-20261025/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve the original Windows reward-scheduler negative-control receipts.
+reports/reward-allocation-20261026/keeper-negative-control.json -text whitespace=cr-at-eol
+reports/reward-allocation-20261026/keeper-negative-control.log -text whitespace=cr-at-eol

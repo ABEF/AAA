@@ -5,6 +5,14 @@ Reviewed 2026-10-26. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
+[Reward review](../reports/reward-allocation-20261026/REVIEW.md) and
+[verification](../reports/reward-allocation-20261026/VERIFICATION.md) record fixed
+allocation timing, two new claim-conservation methods (1,000 fuzz runs), and keeper
+buyback priority/currency fairness. Final376 affected Python methods:370 pass / 6skips,
+no failures/errors or source drift. Production contracts/economics unchanged;
+running services/journals untouched. Local source/docs are saved; publication
+must be verified separately before reporting pushed.
+
 [Keeper/LP audit](../reports/keeper-lp-audit-20261026/REVIEW.md) and
 [verification](../reports/keeper-lp-audit-20261026/VERIFICATION.md) record config-bound
 health, strict conversion flags, current3native rehearsal source and range enum

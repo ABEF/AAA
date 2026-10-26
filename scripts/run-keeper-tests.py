@@ -12,7 +12,7 @@ MODULES=(
  'test_keeper_recovery','test_keeper_ops','test_keeper_probe','test_staging_monitor',
  'test_rpc','test_state','test_keeper_native','test_keeper_example','test_royalty_keeper',
  'test_typed_v4_conversion_keeper','test_lp_conversion','test_keeper_health_identity',
- 'test_keeper_conversion_integrity','test_keeper_rehearsal_profile',
+ 'test_keeper_conversion_integrity','test_keeper_rehearsal_profile','test_keeper_buyback_fairness',
 )
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def inputs():

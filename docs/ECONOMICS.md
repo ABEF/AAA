@@ -52,6 +52,41 @@ Shares are nonredeemable. They are priced against the pool's current principal N
 | Permanent compounding | 5% | Isolated attributed reinvestment reserve |
 | ZZZ buyback/burn | 5% | Isolated approved execution reserve |
 
+### Allocation, reinvestment and claim timing
+
+Pool swaps earn fees while the LP is eligible/in range; they do not run a PoPL
+distribution transaction every minute. `Vault.collectFees` collects actual fees,
+then FeeController funds the four allocations in that same transaction. Joining,
+growing, rebalancing and standalone compounding also harvest fees along their
+guarded paths. Uncollected venue fees are not yet a holder's funded claim balance.
+
+| Event | What changes | What does not happen |
+| --- | --- | --- |
+| Harvest | 80% advances the bucket's per-share owner index; 10% advances the equal activated-membership index. The other 5%/5% become separately backed reserves. | No loop pays every NFT, and no burn is inferred merely from reserving funds. |
+| NFT claim | Checkpoint that NFT's individual and collective balances, pay its current owner, and reduce the corresponding liability by the actual payout. Fractions remain. | No second allocation, membership change, compounding or buyback. Other NFTs' earned balances and both reserves are unchanged. |
+| Reinvestment | Keeper `Compounder.compound`, or a guarded contribution/rebalance, puts the bucket's compound funds into backing/LP for its existing shares. | It does not consume holder claim balances or mint another collective membership. Retained attributed idle remains backing, not completed LP deployment. |
+| Buyback | A separate keeper `Buyback.execute` spends only the designated reserve, swaps ETH to ZZZ when required, then verifies the actual ZZZ burn and supply reduction. | It does not depend on a holder claiming. Failed execution reverts reserve release; an allocated 5% is not an executed burn. |
+
+The collective denominator is the eligible count **when receipts are allocated**,
+not the number who have claimed and not a reconstructed count at each swap.
+Dormant NFTs do not participate; activation grants one membership regardless of
+LP size/rarity, and a top-up grants none. Published indices are checkpointed before
+entry, excluding past allocated fees. Unharvested fees in another historical
+bucket retain receipt-time policy; the current bucket is harvested before joining.
+
+For an exact arithmetic example, 6,000 raw fee units with three activated NFTs
+holding 10%/20%/70% of LP shares allocate owner amounts 480/960/3,360, collective
+200 each, compound 300 and buyback 300. The claim totals are 680/1,160/3,560.
+After any subset claims, each remaining NFT retains its amount and the two
+300-unit reserves remain. A fourth dormant NFT receives zero. Currency units and
+rounding matter; this example is not a USD valuation or a return forecast.
+
+Keep harvesting, reinvestment, buybacks and claims separate. Use reviewed keeper
+intervals, per-currency minimum economic batches, gas budgets and backlog alerts;
+see [operating schedule](OPERATIONS.md#reward-timing-and-maintenance-schedule).
+An off/failed keeper leaves funded rights and purpose reserves on-chain, but does
+not promise timely reinvestment, conversion or burn.
+
 Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global index dust stays reserved; per-NFT fractions carry. No administrator can sweep reward or orphan reserves. Collection allocation
 accumulators may include carried/index rounding amounts; they are not the exact
 sum of all NFT claimable balances.

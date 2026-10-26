@@ -1,0 +1,18 @@
+{
+  "sha256": {
+    "bindings.json": "f02f0e9acfab05dd540cdcec9e5f3dc38fb8912616366a3236661b59823cecb8",
+    "final-checks.json": "5987c215ceef11e5eac7e6b7dc0a9b584008a39f55888adb33143132360ba0e2",
+    "keeper-negative-control.json": "076d89f784b11dbf0b122e236b32b6eed2a30d3b93eaac95d11751bd2f3089f2",
+    "keeper-negative-control.log": "25c60e24162443d267cd9e4071fa6c4ce3148eccae3526d28bad7a93c47aba1e",
+    "keeper-tests.json": "a551f719fe014e3c64ef8abefd191500d688947495502aae6324c27bbab257ae",
+    "keeper-tests.log": "0c5d8c17ec520cfa478371e4397a7fc6cf3c4b88b0fdaa8209c4e68a83cede8e",
+    "REVIEW.md": "2e02d190ba2c714dfddbb52c459fe47024a4e001efb68e49fc73fb7ada469a7e",
+    "run-focused.py": "5ba017beee9ff705078f74d1a3c0d7e171ef00a62af302a42b22ad650346020a",
+    "solidity-results.json": "200a77adeb9706212f6d9745c644fb2368114a2a9c41508a5a87bffca25dd3b0",
+    "solidity-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "solidity-summary.json": "1685ddfe271391074f7098b6fc7d8a1d3a8e5a30108525227e05ca39cd87ade4",
+    "source-checks.json": "a765607420105316a18fc00c1d0ae8099a11b6db2a0805bc3e3f29d556d9505f",
+    "typecheck.json": "4131c1c2c50cd1adbf6f2b29ed164c7131bf5a51c7ed7a7df959f021f11a0954",
+    "VERIFICATION.md": "ddd59e1144130b91da2c8356930125c2065d0bfda28d3c10a163c10a0e7db478"
+  }
+}

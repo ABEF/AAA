@@ -17,11 +17,14 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
-The [keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) hardens health
-identity and conversion fault reporting, with current-profile rehearsal and
-range-test repairs. [Verification](reports/keeper-lp-audit-20261026/VERIFICATION.md)
-records354affected Python passes/5Unix skips and9range-method passes; production
-Solidity and economic rights are unchanged.
+The [reward review](reports/reward-allocation-20261026/REVIEW.md) verifies allocation
+and repeated claim isolation, and fixes keeper buyback starvation during busy
+maintenance. [Verification](reports/reward-allocation-20261026/VERIFICATION.md)
+records two new Solidity methods (including 1,000 randomized schedules) and370 affected
+Python passes/6 explicit skips. Production Solidity/economic rights are unchanged;
+the keeper still requires separately authorized operating qualification/rollout.
+Earlier [keeper/LP hardening](reports/keeper-lp-audit-20261026/REVIEW.md) retains
+its exact source scope.
 
 Current rules and code boundaries are summarized below. [Feature/evidence reference](docs/IMPLEMENTATION_STATUS.md)
 and [documentation map](docs/README.md) distinguish current instructions, legacy

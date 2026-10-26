@@ -521,12 +521,12 @@ Changing off-chain code hashes to whatever is currently deployed is not a review
 
 ## Revenue operations
 
-Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: individual LP shares / equal activated-NFT collective membership / compound reserve / buyback reserve. Rarity only weights the separate royalty ledger at x1/x2/x3. Source: [economics](ECONOMICS.md).
+Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: individual LP shares / equal activated-NFT collective membership / compound reserve / buyback reserve. Rarity only weights the separate royalty ledger at x1/x2/x3. Allocation occurs at actual harvest. The 10% denominator is activated membership at that allocation, not remaining unclaimed NFTs; a claim never redistributes funds or runs the 5% jobs. Source: [timing and arithmetic](ECONOMICS.md#allocation-reinvestment-and-claim-timing).
 
 | Operation | Entry point / owner of action | Verify and recover |
 | --- | --- | --- |
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
-| Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)` | Uses classified reserve, actual pool and guards; funds never pass through keeper. Poll/threshold changes are off-chain; insufficient funds or unsafe execution waits/reverts. |
+| Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)`; contributions/rebalances also pull the bucket's compound reserve | Uses attributed backing, actual pool and guards; funds never pass through keeper. Holder claim balances are separate. Poll/threshold changes are off-chain; insufficient funds or unsafe execution waits/reverts. |
 | Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and normal exit. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires custody exit and a fresh reviewed deployment. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
@@ -538,6 +538,13 @@ A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**
 Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees and UI estimates.
 
 Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. LP/royalty conversion uses its separately bound guarded converter; LP payouts and the fixed 80/10/5/5 allocation are unchanged. Creator-payment inboxes and measurement jobs are retired. See [royalty/claim behavior](CLAIM_ROUTER.md).
+
+Before enabling automated revenue operations, review the actual
+[schedule and reserve checks](OPERATIONS.md#reward-timing-and-maintenance-schedule).
+The example polls every600seconds and schedules standalone harvests every4hours;
+standalone compounding is off and `buybacks` is empty. These are blocked sample
+settings, not an enabled production promise. Do not put swaps/compounding inside
+the holder claim: a failed strategy or buyback should not block funded LP claims.
 
 ### Tune or stop buyback trading
 

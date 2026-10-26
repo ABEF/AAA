@@ -361,4 +361,127 @@ contract NativeFeeRewardsTest is Test {
         assertEq(nativeBacking, 100); assertEq(tokenBacking, 100);
         assertEq(address(canonical).balance, 1); assertEq(address(rewards).balance, 900);
     }
+
+    /// Independent arithmetic example: 6,000 received units, unequal LP shares,
+    /// equal collective membership and a dormant NFT. Claims cannot spend 5/5.
+    function testThreeHolderClaimsPreserveExactSplitAndDormantExclusion() public {
+        _seed(1, ALICE, 1, true); _seed(2, BOB, 2, true);
+        _seed(3, address(0xCA401), 7, true); _seed(4, address(0xDA7E), 0, false);
+        _allocate(6000);
+        assertEq(rewards.claimable(1, address(0)), 680); // 480 personal + 200 equal.
+        assertEq(rewards.claimable(2, address(0)), 1160); // 960 + 200.
+        assertEq(rewards.claimable(3, address(0)), 3560); // 3,360 + 200.
+        assertEq(rewards.claimable(4, address(0)), 0);
+        assertEq(membership.totalEligible(), 3);
+        _isolatedClaim(2, address(0));
+        assertEq(rewards.liabilities(address(0)), 4240);
+        _isolatedClaim(1, address(0));
+        vm.prank(address(0xCA401)); nft.transferFrom(address(0xCA401), address(0xE7E), 3);
+        vm.prank(address(0xCA401)); vm.expectRevert(); rewards.claim(3, address(0));
+        _isolatedClaim(3, address(0));
+        assertEq(address(rewards).balance, 0); assertEq(rewards.liabilities(address(0)), 0);
+        assertEq(fees.compoundBalance(11, address(0)), 300);
+        assertEq(fees.buybackBalance(address(0)), 300);
+        assertEq(address(fees).balance, 600); assertEq(fees.accounted(address(0)), 600);
+        assertEq(_isolatedClaim(3, address(0)), 0);
+    }
+
+    /// Same funded history, different claim schedules: claims must not change
+    /// lifetime NFT entitlement, fractions, indices or the two purpose reserves.
+    /// This isolates accounting; real venue/rebalance coverage lives elsewhere.
+    function testFuzzClaimOrderAndFrequencyCannotRedistributeAnyNftRewards(uint8 order, uint8 early) public {
+        _seed(1, ALICE, 1, true); _seed(2, BOB, 2, true);
+        _seed(3, address(0xCA401), 7, true); _seed(4, address(0xDA7E), 0, false);
+        uint256 checkpoint = vm.snapshotState();
+        bytes32 frequent = _claimSchedule(order, early);
+        assertTrue(vm.revertToState(checkpoint));
+        bytes32 deferred = _claimSchedule(uint8(23 - order % 24), 0);
+        assertEq(frequent, deferred);
+    }
+
+    function _allocateToken(uint256 amount) private {
+        token.mint(address(vault), amount);
+        vm.startPrank(address(vault)); token.approve(address(fees), amount);
+        fees.allocate(11, address(token), amount); vm.stopPrank();
+    }
+    function _assetBalance(address asset, address holder) private view returns (uint256) {
+        return asset == address(0) ? holder.balance : token.balanceOf(holder);
+    }
+    function _isolatedClaim(uint256 id, address asset) private returns (uint256 amount) {
+        uint256[4] memory beforeClaims;
+        for (uint256 i; i < 4; ++i) beforeClaims[i] = rewards.claimable(i + 1, asset);
+        bytes32 reserved = keccak256(abi.encode(fees.compoundBalance(11, asset), fees.buybackBalance(asset),
+            fees.accounted(asset), fees.dust(11, asset), _assetBalance(asset, address(fees)),
+            rewards.index(asset), rewards.ownerIndex(11, asset), membership.totalEligible(), vault.bucketTotalShares(11)));
+        address owner = nft.ownerOf(id);
+        uint256 beforeWallet = _assetBalance(asset, owner);
+        uint256 beforeBacking = _assetBalance(asset, address(rewards));
+        uint256 beforeLiability = rewards.liabilities(asset);
+        vm.prank(owner); amount = rewards.claim(id, asset);
+        assertEq(amount, beforeClaims[id - 1]);
+        assertEq(_assetBalance(asset, owner), beforeWallet + amount);
+        assertEq(_assetBalance(asset, address(rewards)), beforeBacking - amount);
+        assertEq(rewards.liabilities(asset), beforeLiability - amount);
+        for (uint256 i; i < 4; ++i) {
+            assertEq(rewards.claimable(i + 1, asset), i + 1 == id ? 0 : beforeClaims[i]);
+        }
+        assertEq(reserved, keccak256(abi.encode(fees.compoundBalance(11, asset), fees.buybackBalance(asset),
+            fees.accounted(asset), fees.dust(11, asset), _assetBalance(asset, address(fees)),
+            rewards.index(asset), rewards.ownerIndex(11, asset), membership.totalEligible(), vault.bucketTotalShares(11))));
+    }
+    function _claims(uint256[4][2] memory paid, uint8 order, uint8 mask) private {
+        uint256 remaining = 15;
+        uint256 permutation = order % 24;
+        for (uint256 slot; slot < 4; ++slot) {
+            uint256 rank = permutation % (4 - slot); permutation /= 4 - slot;
+            uint256 id;
+            for (uint256 candidate; candidate < 4; ++candidate) {
+                if ((remaining & (1 << candidate)) == 0) continue;
+                if (rank == 0) { id = candidate + 1; break; }
+                --rank;
+            }
+            remaining &= ~(1 << (id - 1));
+            if ((uint256(mask) & (1 << (id - 1))) == 0) continue;
+            paid[0][id - 1] += _isolatedClaim(id, address(0));
+            paid[1][id - 1] += _isolatedClaim(id, address(token));
+        }
+    }
+    function _claimSchedule(uint8 order, uint8 early) private returns (bytes32 result) {
+        uint256[4][2] memory paid;
+        _allocate(1003); _allocate(2); _allocate(997);
+        _allocateToken(2007); _allocateToken(13);
+        _claims(paid, order, early & 15);
+        // Mirror the real Vault's funded-dust barrier and old-share checkpoint.
+        vm.prank(address(vault)); membership.settleDust();
+        vault.join(1, 3);
+        vm.prank(address(vault)); membership.settleDust();
+        vault.join(4, 6);
+        vm.prank(address(vault)); membership.activate(4);
+        assertEq(rewards.claimable(4, address(0)), 0);
+        assertEq(rewards.claimable(4, address(token)), 0);
+        _allocate(1019); _allocate(381); _allocateToken(83); _allocateToken(58);
+        _claims(paid, uint8(23 - order % 24), early >> 4);
+        vm.prank(address(0xCA401)); nft.transferFrom(address(0xCA401), address(0xE7E), 3);
+        _allocate(41); _allocate(3); _allocate(1999); _allocateToken(4001); _allocateToken(17);
+        _claims(paid, order, 15);
+        _claims(paid, order, 15); // A second claim pays zero, preserving fractions.
+        result = keccak256(abi.encode(paid));
+        for (uint256 k; k < 2; ++k) {
+            address asset = k == 0 ? address(0) : address(token);
+            uint256 totalPaid;
+            for (uint256 i; i < 4; ++i) {
+                totalPaid += paid[k][i];
+                result = keccak256(abi.encode(result, rewards.claimable(i + 1, asset),
+                    rewards.fraction(i + 1, asset), rewards.ownerFraction(i + 1, asset)));
+            }
+            assertEq(totalPaid + _assetBalance(asset, address(rewards)) + _assetBalance(asset, address(fees)),
+                k == 0 ? 5445 : 6179);
+            assertEq(_assetBalance(asset, address(rewards)), rewards.liabilities(asset));
+            assertEq(_assetBalance(asset, address(fees)), fees.accounted(asset));
+            result = keccak256(abi.encode(result, rewards.index(asset), rewards.ownerIndex(11, asset),
+                rewards.liabilities(asset), fees.compoundBalance(11, asset), fees.buybackBalance(asset),
+                fees.dust(11, asset), fees.accounted(asset)));
+        }
+        assertEq(membership.totalEligible(), 4);
+    }
 }

@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "errors": [],
+  "changed_inputs": [
+    "test/NativeFeeRewards.t.sol"
+  ],
+  "source_count": 265,
+  "seconds": 15.078,
+  "input_sha256": "de349c32520c2ed712b5de0254050e110ec041ce4b741b9a4663f328a64e0996",
+  "output_sha256": "051dc8f8a19ce8a83b3b6b8686cfb9f501181e9e087a36ce469df4b6b7434fc7"
+}

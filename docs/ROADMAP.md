@@ -45,6 +45,10 @@ current3 rehearsal source, then qualify hosted services, concurrent request budg
 restart/nonce/fee-review recovery, backups, monitoring and operator rotation.
 Validate real target-chain maximum-state gas and range/maintenance economics;
 local synthetic tests do not establish capacity or uninterrupted uptime.
+Qualify the [separate revenue jobs](OPERATIONS.md#reward-timing-and-maintenance-schedule)
+with actual batch sizes, gas, harvest/conversion/compound/burn latency and backlog
+alerts. The local claim-conservation and buyback-fairness checks do not enable
+the placeholder service or turn allocated reserves into executed trades.
 
 ## 4. Freeze and approve a complete release
 

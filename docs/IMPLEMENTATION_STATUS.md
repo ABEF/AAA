@@ -43,7 +43,7 @@ safe by a documentation claim or simulated example.
 | Fee-integrity reconciliation | Current fee1 verifies actual module version, exact funded-credit/allocation pairs and pinned observed-key dust. Malformed summary data rejects; genuine outages null affected metrics. Authentic full logs/timestamps remain necessary. | [Latest fixes](../reports/backend-remediation-20261026/REVIEW.md) |
 | Unsigned transaction preparation | Complete Entry simulation/newLP/caller cap checks, exact approval step, expiry and separate gas. Bounded claim preparation and opt-in direct-mint drafts exist. Current production qualification and website mint capability reject the unsupported OpenSea path; the preparer itself is not a universal public-mint block. No user signer in API. | [Activation preparation](ACTIVATION_PREPARATION.md), [transactions](FRONTEND_TRANSACTIONS.md) |
 | Request and index resilience | Per-client admission, finite supervised workers/deadlines/RPC budgets; anchored SQLite replay/reorg handling and independent-provider history-window audit. Real hosting/capacity qualification remains open. | [Ingress](API_INGRESS.md), [concurrency](CONCURRENT_SERVICES.md), [index recovery](INDEXER_RECOVERY.md), [history audit](HISTORY_AUDIT.md) |
-| Keeper | Discovers shared buckets, simulates eligible upkeep, persists intents/receipts/budgets, recovers nonce/fee state without automatic resend. Optional metadata notifications; dry-run default. | [Operations](OPERATIONS.md), [recovery](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
+| Keeper | Discovers shared buckets, simulates eligible upkeep, persists intents/receipts/budgets, recovers nonce/fee state without automatic resend. Buyback priority/currency rotation prevents persistent maintenance or a first currency monopolizing all opportunities. Optional metadata notifications; dry-run default. | [Reward timing/fairness](OPERATIONS.md#reward-timing-and-maintenance-schedule), [recovery](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
 | Release tooling | Current schema5 inventory/pinned observer, RPC/mint qualification gates, immutable artwork bundle and frozen review export. Tools do not deploy or replace approval. | [Preflight](PRODUCTION_PREFLIGHT.md), [review package](FROZEN_REVIEW_BUNDLE.md) |
 
 ## Frontend boundary
@@ -57,11 +57,19 @@ deployment are preserved. See [website profile](NATIVE_WEBSITE_PROFILE.md),
 
 ## Current evidence and limits
 
+[Reward allocation review](../reports/reward-allocation-20261026/REVIEW.md) checks
+exact split, claim isolation and randomized order/frequency, and fixes buyback
+starvation. [Verification](../reports/reward-allocation-20261026/VERIFICATION.md):
+two new Solidity methods pass (one 1,000-run fuzz case);376 unique affected Python
+methods yield370 passes/6 explicit skips, zero failures/errors. No production
+Solidity/ABI/economic change or installed service rollout. Allocation at harvest,
+claims and actual reinvestment/burn are distinct; sample jobs remain disabled.
+
 [Keeper/LP audit](../reports/keeper-lp-audit-20261026/REVIEW.md) adds exact loaded-
 config health identity and strict conversion Booleans, fixes the stale range test
 domain and brings fresh rehearsal source to current3/fee1/native shape. Production
 Solidity/economics/ABI are unchanged. Final affected Python:354passes/5Unix skips
-from359methods;9range methods pass including1,000fuzz runs. Standalone fixture/
+from359methods;9range methods pass including1,000 fuzz runs. Standalone fixture/
 reader checks are not the still-pending Linux crash/systemd or real-market campaign.
 
 
@@ -72,7 +80,7 @@ reader checks are not the still-pending Linux crash/systemd or real-market campa
 | [Deep cleanup](../reports/deep-cleanup-20261025/VERIFICATION.md) |32scoped Solidity/41Python/37normal object gates in its recorded scope; dependency/build bindings retained. Contract reference31contracts/608functions/13receive hooks. |
 | [Earlier source-scoped reports](../reports/README.md) | Local/fork/UI/keeper/rights receipts apply only to their stated revisions, fixtures, chains and environments. Older counts, bridges, inboxes or WETH profiles are not current claims. |
 
-Unchanged production44Solidity/31installed dependencies/four build inputs matched
+Unchanged production 44 Solidity/31installed dependencies/four build inputs matched
 the last backend publication. No new full test count, live provider approval,
 published CI result, operating uptime or independent audit is inferred. Actual
 OpenSea/VRF/prices/routes/authorities/artwork/services/gas/operations and audit
