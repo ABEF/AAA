@@ -82,6 +82,16 @@ LP/royalty claim balances remain separate. The website still shows examples.
    final canonical hash, chain, confirmation depth, deployment anchor and age.
    Return a short-lived draft only while its deadline remains valid.
 
+Both approval previews and complete Entry reviews validate the contribution
+pool's existing slot0 response. Typed v4 input routes apply the same validation
+to their own pool: canonical integer ABI fields, initialized TickMath bounds,
+`sqrtAtTick(tick) <= sqrtPriceX96 <= sqrtAtTick(tick + 1)`, each packed 12-bit
+directional protocol fee at most 1,000 pips, and a stored LP fee matching the
+reviewed static PoolKey fee. Contradictory state fails closed. The inclusive
+upper endpoint preserves v4's real downward-crossing boundary state; active-range
+membership uses the stored tick, never a substituted floor tick. This reuses
+already-required pinned reads and adds no request/response fields or RPC calls.
+
 The outer Entry deadline is on-chain for activation/top-ups; an ERC20 approval
 has no on-chain expiry. Snapshots must be at most 120 seconds old and cannot be
 more than 30 seconds in the future; draft lifetime is at most 60 seconds and never

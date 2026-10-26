@@ -532,11 +532,17 @@ Follow the
 | USD source pair / freshness / disagreement | Governance `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`; verify two independent reviewed sources, exact runtimes/decimals, valid current rounds, append-only identity and `priceBounds` fingerprint | Both sources are mandatory. No single-source, stale/spot or $1 fallback. Disable affected work and follow the [pricing recovery procedure](#configure-stop-and-recover-usd-pricing---2026-10-24); raw funded claims and explicitly approved raw custody retain separate rules. |
 | Sequencer feed replacement | `setSequencerFeed(source,expectedCodeHash,reviewHash)` after reviewing the new nonzero source | Replacement does not require the failed old feed to work. Existing recovery grace remains. No setter removes the protection by setting zero. |
 | Pool manager, token, router or optional historical hook change | Compare actual code/config/authorities to the deployment pins; stop affected work | Some source/route policies can be replaced, but immutable venue bindings cannot be patched by changing a manifest. New unsupported implementations require compatible reviewed replacement work. |
+| Contradictory pool sqrt/tick/fee observation | Unsigned contribution/route reviews and observed/manual inventory gates reject inconsistent integer slot0, malformed directional protocol fees or reviewed static-fee mismatch. Valid downward-crossing boundary ticks are preserved. | Stop the affected preparation/release review; retain sanitized block/hash/error evidence. Compare the same canonical block using a reviewed independent provider and check runtime/key pins. Do not edit the tick, relax checks or substitute latest state. Consistent fabrication still requires provider review; this validator is not authentication. [Market/input review](../reports/market-adversarial-20261026/REVIEW.md). |
 | RPC/trace/archive outage | Use chain-checked reviewed endpoints with required hash-pinned reads and trace/receipt semantics | Never fall back to latest/unconfirmed state or a wrong chain. Serve unavailable status; retain indexes/state. |
 
 Changing off-chain code hashes to whatever is currently deployed is not a review. Verify proxy implementation and external control as well as runtime bytecode. Governance configuration during canonical preparation is blocked; cancel preparation only if reopening is intended, not to bypass a migration freeze.
 
 ## Revenue operations
+
+A real `PoolManager.donate` becomes funded fee growth and is allocated at harvest
+like other actual LP receipts. An unsolicited raw Vault balance remains a prefund,
+not NFT income or new shares. Do not describe funded earnings alone as organic
+trading volume or a sustainable yield; donation/wash-flow intent is not classified.
 
 Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: individual LP shares / equal activated-NFT collective membership / compound reserve / buyback reserve. Rarity only weights the separate royalty ledger at x1/x2/x3. Allocation occurs at actual harvest. The 10% denominator is activated membership at that allocation, not remaining unclaimed NFTs; a claim never redistributes funds or runs the 5% jobs. Source: [timing and arithmetic](ECONOMICS.md#allocation-reinvestment-and-claim-timing).
 

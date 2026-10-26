@@ -16,6 +16,7 @@ from typing import Any
 
 from zzz_ops.abi import keccak256, word
 from zzz_ops.state import integer
+from zzz_ops.tick_math import validate_slot0
 
 ZERO = '0x' + '00' * 20
 ZERO_HASH = '0x' + '00' * 32
@@ -242,6 +243,15 @@ def expected_bindings(chain: dict[str, Any], *, range_policy_version=0,
             'v4Executor':h(role+'_v4_executor'),'wrapper':bindings.get('wrapper'),
             'MAX_LOSS_BPS':1000,'conversionLossBps':limits.get(role+'_conversion_bps'),'enabled':True}
     return {'modules':result,'helpers':{role:helper[role] for role in helper_roles}}
+
+
+def _consistent_slot0(price, protocol, slot, expected_fee):
+    """Do not let hand-authored inventory JSON bypass observer state checks."""
+    try:
+        validate_slot0(price, slot.get('tick'), protocol, slot.get('lp_fee'), expected_fee=expected_fee)
+    except ValueError:
+        return False
+    return type(expected_fee) is int
 
 
 class Gate:
@@ -689,11 +699,10 @@ def _pools(g,chain,path,tokens,deps,range_policy_version=0):
             g.check('range_policy' not in pool and 'observed_range_policy' not in pool,
                 pp+'.range_policy','range.profile','Explicit range-policy metadata requires range_policy_version 1.','bindings')
         slot = g.obj(pool.get('slot0'),pp+'.slot0')
-        g.num(slot.get('sqrt_price_x96'),pp+'.slot0.sqrt_price_x96',1,2**160-1)
-        g.num(slot.get('protocol_fee'),pp+'.slot0.protocol_fee',0,2**24-1)
-        g.check(type(slot.get('tick')) is int and -887272 <= slot.get('tick') <= 887272 and
-            type(slot.get('lp_fee')) is int and slot.get('lp_fee') == fee,pp+'.slot0','pool.state',
-            'Verify an initialized pool and its actual stored static LP fee; protocol fees are separate.','routes')
+        price = g.num(slot.get('sqrt_price_x96'),pp+'.slot0.sqrt_price_x96',1,2**160-1)
+        protocol = g.num(slot.get('protocol_fee'),pp+'.slot0.protocol_fee',0,2**24-1)
+        g.check(_consistent_slot0(price,protocol,slot,fee),pp+'.slot0','pool.state',
+            'Verify consistent initialized sqrt/tick state and actual static LP/directional protocol fees.','routes')
         g.num(pool.get('liquidity'),pp+'.liquidity',1,2**128-1)
         review = _bound_proof(g,pool.get('review_evidence'),pp+'.review_evidence',chain,kind='principal_pool_qualification')
         g.check(review.get('configuration_sha256') == configuration_hash(pool_configuration(chain,pool)),
@@ -778,10 +787,9 @@ def _routes(g,chain,path,tokens,deps,pools,limits,fee_intake_version=0):
                     venue.get('stateView') == values.get('stateView'),rp+'.venue_observation','route.state_binding',
                     'Confirm the conversion StateView actually binds this PoolManager.','bindings')
                 slot = g.obj(venue.get('slot0'),rp+'.venue_observation.slot0')
-                g.num(slot.get('sqrt_price_x96'),rp+'.venue_observation.slot0.sqrt_price_x96',1,2**160-1)
-                g.num(slot.get('protocol_fee'),rp+'.venue_observation.slot0.protocol_fee',0,2**24-1)
-                g.check(type(slot.get('lp_fee')) is int and slot.get('lp_fee') == values.get('fee') and
-                    type(slot.get('tick')) is int and -887272 <= slot.get('tick') <= 887272,
+                price = g.num(slot.get('sqrt_price_x96'),rp+'.venue_observation.slot0.sqrt_price_x96',1,2**160-1)
+                protocol = g.num(slot.get('protocol_fee'),rp+'.venue_observation.slot0.protocol_fee',0,2**24-1)
+                g.check(_consistent_slot0(price,protocol,slot,values.get('fee')),
                     rp+'.venue_observation.slot0','route.pool_state','Confirm initialized current static-fee conversion state.','routes')
                 g.num(venue.get('liquidity'),rp+'.venue_observation.liquidity',1,2**128-1)
         elif kind == 1:

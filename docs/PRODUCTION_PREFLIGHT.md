@@ -145,6 +145,17 @@ Observed runtime hashes and getters remain separate from approved pins. Missing,
 malformed, reverted or mismatched observations are unavailable, not invented zero
 values. No observation marks a feed, route, provider or audit as qualified.
 
+Principal-pool and typed-v4-route slot0 observations use exact integer v4
+TickMath validation: initialized sqrt price in `[MIN_SQRT, MAX_SQRT)`, stored
+tick in `[MIN_TICK, MAX_TICK)`, and
+`sqrtAtTick(tick) <= sqrtPriceX96 <= sqrtAtTick(tick + 1)`. Canonical ABI integers,
+both packed 12-bit protocol-fee directions (at most 1,000 pips each), and a valid
+stored LP fee are required. The offline gate additionally requires the reviewed
+static LP fee and applies the same value checks to manually supplied inventories,
+not only observer output. A genuine exact downward crossing can leave the stored
+tick one below the boundary; retain it rather than replacing it with a floor tick. This validates
+existing slot0 fields without adding RPC calls or changing the inventory schema.
+
 Pool and route mappings cannot all be enumerated from their getters. The observer
 checks declared IDs; complete creation-to-anchor event/history review is still
 required to prove no admitted policy was omitted. Enumerated asset/receiver lists

@@ -136,6 +136,10 @@ contract IntegratedEconomicConservationTest is Test {
         access.bind(Ids.MIGRATION,address(this));access.bind(Ids.COMPOUNDER,address(compounder));
         access.setKeeper(address(this),true);rewards.addAsset(address(token));
         vrf=new MockVRF();nft.configureRandomness(address(vrf),bytes32(uint256(1)),1,3,500000,false);
+        // Match the fixed production contribution identity before sealing. Pool
+        // admission alone deliberately does not approve arbitrary source tokens.
+        registry.activationAssets().configureZZZ(address(token),address(token).codehash,
+            keccak256("test-only fixed ZZZ identity; not production token qualification"));
         royalties=nft.royaltyRewards();CanonicalFixture.bind(address(access));access.seal();
         PoolConfig memory c=registry.get(keccak256(abi.encode(PoolKey(address(0),address(token),10020,200,address(0)))));
         pool=keccak256(abi.encode(c.key));
@@ -165,7 +169,12 @@ contract IntegratedEconomicConservationTest is Test {
         BalanceDelta delta;
         if(mode==0 || mode==2) (delta,)=core.modifyLiquidity(key,ModifyLiquidityParams(-60000,60000,
             mode==0?int256(amount):-int256(amount),bytes32(0)),"");
-        else delta=core.swap(key,SwapParams(direction,-int256(amount),direction?TickMath.MIN_SQRT_PRICE+1:TickMath.MAX_SQRT_PRICE-1),"");
+        else if(mode==3) delta=core.donate(key,amount,amount,"");
+        else {
+            uint160 limit=direction?TickMath.MIN_SQRT_PRICE+1:TickMath.MAX_SQRT_PRICE-1;
+            if(mode==4) (,,,limit)=abi.decode(data,(uint8,bool,uint256,uint160));
+            delta=core.swap(key,SwapParams(direction,-int256(amount),limit),"");
+        }
         _settle(address(0),delta.amount0());_settle(address(token),delta.amount1());return "";
     }
     function _settle(address asset,int128 delta) private {
@@ -284,6 +293,83 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(reserves, keccak256(abi.encode(fees.compoundBalance(bucket, address(0)),
             fees.compoundBalance(bucket, address(token)), fees.buybackBalance(address(0)),
             fees.buybackBalance(address(token)), fees.accounted(address(0)), fees.accounted(address(token)))));
+    }
+
+    function _matchFreshMarketPrices() private returns(uint256 tokenUSD8) {
+        // TEST ONLY: explicit mock observations matching the newly traded market.
+        // These correlated fixture values do not qualify independent live feeds.
+        primary.set(1e8,block.timestamp,block.timestamp);
+        secondary.set(1e8,block.timestamp,block.timestamp);
+        (uint160 q,,,)=state.getSlot0(PoolId.wrap(pool));
+        tokenUSD8=(1e8*(uint256(1)<<192))/(uint256(q)*uint256(q));
+        MockFeed first=new MockFeed(8,int256(tokenUSD8));
+        MockFeed second=new MockFeed(8,int256(tokenUSD8));
+        oracle.setDualFeed(address(token),
+            ZZZOracle.SourcePolicy(address(first),address(first).codehash,keccak256("test-market-primary"),3600,8),
+            ZZZOracle.SourcePolicy(address(second),address(second).codehash,keccak256("test-market-secondary"),3600,8),
+            300,keccak256("test-only moved market observations; not provider qualification"));
+    }
+    function _outOfRangeContributions(bool above) private {
+        _deepenExternalLiquidity(); registry.setRange(2500);
+        ZZZStrategy strategy=ZZZStrategy(access.module(Ids.STRATEGY));
+        strategy.setRangeOrientation(pool,1); // +/-25% ZZZ price in ETH.
+        uint256 a=_mint(ALICE);_contribute(ALICE,a,100 ether,false);_assertBacking();
+        uint256 bucket=vault.nftBucket(a);uint256 lp=vault.group(bucket).lpTokenId;
+        uint256 sharesA=vault.sharesOf(a);
+        (int24 lower,int24 upper)=manager.ticks(lp);
+        int24 target=above?upper+600:lower-600;
+        core.unlock(abi.encode(uint8(4),!above,uint256(1_000_000 ether),TickMath.getSqrtPriceAtTick(target)));
+        uint256 price=_matchFreshMarketPrices();
+        (,int24 marketTick,,)=state.getSlot0(PoolId.wrap(pool));
+        assertTrue(above?marketTick>=upper:marketTick<lower,"physical LP is fully outside range");
+        (bool available,uint256 beforeA)=nft.currentLPValue(a);assertTrue(available);
+        uint256 b=_mint(BOB);_contribute(BOB,b,100 ether,false);_assertBacking();
+        assertEq(vault.group(bucket).lpTokenId,lp,"join must not silently rebalance");
+        assertEq(vault.sharesOf(a),sharesA);
+        assertEq(rewards.claimable(b,address(0)),0,"no old native swap fees for newcomer");
+        assertEq(rewards.claimable(b,address(token)),0,"no old token swap fees for newcomer");
+        (,uint256 afterA)=nft.currentLPValue(a);assertGe(afterA,beforeA,"incumbent allocation not diluted");
+        (,uint256 valueB)=nft.currentLPValue(b);assertGe(valueB,98 ether);
+        uint256 sharesB=vault.sharesOf(b);
+        uint256 oldB0=rewards.claimable(b,address(0));uint256 oldB1=rewards.claimable(b,address(token));
+        // The second supported source currency must also grow an existing NFT.
+        uint256 amount=(5e18*1e8+price-1)/price;
+        vm.startPrank(ALICE);token.approve(address(entry),amount);
+        entry.executeReviewed(ZZZActivationEntry.Request(a,pool,address(token),amount,bytes32(0),0,1,block.timestamp+100,true),200);
+        vm.stopPrank();_assertBacking();
+        assertGt(vault.sharesOf(a),sharesA);assertEq(vault.sharesOf(b),sharesB);
+        assertGe(rewards.claimable(b,address(0)),oldB0);assertGe(rewards.claimable(b,address(token)),oldB1);
+        assertEq(vault.group(bucket).lpTokenId,lp);
+        uint256 finalA=vault.sharesOf(a);vm.warp(block.timestamp+601);_matchFreshMarketPrices();
+        assertTrue(strategy.needsRebalance(bucket));
+        vault.rebalance(bucket,1,block.timestamp+100);_assertBacking();
+        uint256 next=vault.group(bucket).lpTokenId;assertTrue(next!=lp);
+        assertEq(vault.sharesOf(a),finalA);assertEq(vault.sharesOf(b),sharesB);
+        assertEq(vault.bucketTotalShares(bucket),finalA+sharesB);assertEq(membership.totalEligible(),2);
+        (lower,upper)=manager.ticks(next);(,marketTick,,)=state.getSlot0(PoolId.wrap(pool));
+        assertTrue(marketTick>=lower&&marketTick<upper,"new physical range follows moved market");
+        assertEq(positions.ownerOf(next),address(vault));
+        _claim(ALICE,a);_claim(BOB,b);_assertBacking();
+    }
+    function testActualV4ContributionsAboveOldRangePreserveIncumbentsAndRebalance() public {
+        _outOfRangeContributions(true);
+    }
+    function testActualV4ContributionsBelowOldRangePreserveIncumbentsAndRebalance() public {
+        _outOfRangeContributions(false);
+    }
+    function testActualV4CoreDonationCannotGiveNewcomerPastFundedFees() public {
+        _deepenExternalLiquidity();
+        uint256 a=_mint(ALICE);_contribute(ALICE,a,100 ether,false);_assertBacking();
+        uint256 shares=vault.sharesOf(a);uint256 old0=credited[0];uint256 old1=credited[1];
+        // Actual permissionless v4 donate changes fee growth; this is distinct
+        // from an unsolicited raw Vault balance, which remains a prefund.
+        core.unlock(abi.encode(uint8(3),false,uint256(20 ether)));
+        uint256 b=_mint(BOB);_contribute(BOB,b,100 ether,false);_assertBacking();
+        assertGt(credited[0],old0);assertGt(credited[1],old1);
+        assertEq(rewards.claimable(b,address(0)),0);assertEq(rewards.claimable(b,address(token)),0);
+        assertGt(rewards.claimable(a,address(0)),0);assertGt(rewards.claimable(a,address(token)),0);
+        assertEq(vault.sharesOf(a),shares);assertEq(membership.totalEligible(),2);
+        _claim(ALICE,a);_claim(BOB,b);_assertBacking();
     }
 
     function testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded() public {

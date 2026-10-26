@@ -92,6 +92,12 @@ before changing behavior. This file contains current instructions, not a timelin
   configuration/ABI still fails closed. Pending intents stop all scheduling.
   Current3 unsigned claims reject contradictory inactive rewards; preserve legacy,
   parked/outbound and deferred-currency rights. No installed service was changed.
+- [Market/input review](reports/market-adversarial-20261026/REVIEW.md) adds shared
+  exact TickMath/slot0 checks to unsigned reviews and observed/manual inventory.
+  Preserve real downward-boundary ticks; never repair an inconsistent observation
+  by guessing. Actual PoolManager donations are funded fees, unlike raw Vault
+  prefunds; neither consistency nor funded earnings proves provider authenticity
+  or organic trading volume. Production Solidity/services remain unchanged.
 - Current source/evidence references: [backend fee integrity](reports/backend-remediation-20261026/VERIFICATION.md),
   [full candidate audit](reports/full-audit-20261025/VERIFICATION.md),
   [cleanup compiler comparison](reports/deep-cleanup-20261025/compiler-comparison.md).

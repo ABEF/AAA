@@ -1,0 +1,15 @@
+{
+  "head": "25ac8d48e535fc0ad0e93b450f6fdd4fcd564a7b",
+  "passed": false,
+  "tests_run": 4,
+  "failures": 6,
+  "errors": 0,
+  "source_git_blob_sha256": {
+    "frontend_api/liquidity_context.py": "f9e71555ccab8b77023f66a7c32f9e0c11ba38c2f4bd2d5bd6bb199d30924797",
+    "frontend_api/activation_v4.py": "9662e26bfe828bf47b4bb67e86b172511706c2279c0894a7b6a1f2a45b8e222b",
+    "zzz_ops/production_observer.py": "670210e66a5b7854a4bea374dd3c650da59f4d9aa87ddbe3df117db19ab17953",
+    "zzz_ops/production_v2.py": "81a35e20c9bac84ec01552f44454c456a12991336908f80c83fafed688752eff"
+  },
+  "tests_sha256": "84518b68406031889851d976bf6e69da4d8abfc55a0ee423a5ed413a7c0faf9c",
+  "method": "Exact final regression methods against HEAD implementations loaded in memory; no checkout mutation"
+}

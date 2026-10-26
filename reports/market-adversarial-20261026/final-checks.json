@@ -1,0 +1,31 @@
+{
+  "observed_at_utc": "2026-10-26T20:59:19.924134+00:00",
+  "unique_affected_python_methods": 223,
+  "passes": 223,
+  "skips": 0,
+  "source_pins_unchanged": true,
+  "new_python_methods_in_final_count": 11,
+  "actual_v4_composed_methods": 15,
+  "new_actual_v4_methods_in_final_count": 3,
+  "reference_vectors": 150,
+  "reference_assertions": 299,
+  "assertions_are_not_test_count": true,
+  "failed_first_fixture_preserved": true,
+  "production_solidity_changed": false,
+  "normal_size_static_evidence_reused": true,
+  "fresh_full_solidity_static_audit": false,
+  "task_ids_statuses_preserved": 65,
+  "local_doc_file_targets_checked": 859,
+  "local_doc_file_target_errors": [],
+  "doc_scope": "Local file targets, not remote liveness or anchor validation.",
+  "callable_reference": "31 contracts/608 functions checked, ABI unchanged.",
+  "original_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "public_transactions_submitted": false,
+  "installed_services_changed": false,
+  "production_approved": false
+}

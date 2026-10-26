@@ -371,6 +371,7 @@ The data and services behind the app.
   - The [October25 selected-fee local composition](reports/preproduction-audit-20261025/REVIEW.md#a-07-thin-market-activation-feasibility-remains-open) exposes an honest thin-market native activation that retains about$99.38 but deploys only$98.85 of$100; the99% guard reverts safely. Qualify full-trace feasibility at actual liquidity/ticks/fees before wallet review, preserve exact rollback and existing approvals, and assess bounded post-swap ratio correction only if it can improve deployed LP within the same captured budget. Never weaken the floor or count incumbent/idle assets as new LP; deeper mock liquidity is not launch qualification.
   - [Reviewed Entry V1](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding) now binds the caller maximum in contract/preparation/trace/inventory. Complete matching native website/wallet and real deployment/provider qualification before public activation/growth; historical clients remain incompatible, no silent fallback.
   - [Full audit](reports/full-audit-20261025/SERVICES.md) fixes current-accounting3 dormant-state preparation and the narrowly typed native source-policy read. Composed regressions cover actual current-profile bindings, native activation/growth and exact fixed-ZZZ approval, while historical profiles remain explicit. No actual route/RPC/service/wallet qualification or public signing is inferred.
+  - [Market/input hardening](reports/market-adversarial-20261026/VERIFICATION.md) validates exact sqrt/tick/fee consistency before approval/trace, preserves real boundary ticks and rejects malformed route state.223affected backend methods pass; no extra RPC call or schema/signing change. Actual quotes/routes/providers remain unqualified.
 
   </details>
 
@@ -395,6 +396,7 @@ The data and services behind the app.
   - Current replay authenticates complete native/optional custody exit-return intervals, accepts native deferral only during custody and never counts returned backing as income. After full return, old-cohort receipts and waiting-NFT recovery reconcile against chain. In-transit/missing/mismatched history remains unavailable. Separate database rebuild and actual provider/service acceptance are still required; see the [audit](reports/day-readiness-20261025/royalty-matrix.md).
   - The [full service audit](reports/full-audit-20261025/SERVICES.md) fixes independent-history audit chain-ID composition with the actual Rpc adapter. Checked integers and canonical hexadecimal transport values remain strict; Boolean/floating/malformed inputs reject. Offline actual-adapter/SQLite evidence does not qualify archive provider completeness or a deployed service.
   - [Current fee conservation](reports/backend-remediation-20261026/HISTORY.md): actual fee-intake1 version, exact same-transaction/bucket/currency funded-credit pairing and pinned observed-key carried dust now reconcile. Independent LP-share and rarity weights, top-ups and verified same-chain continuity have scoped checks. Complete authentic history remains required: head checks do not prove every dust-only receipt or timestamp. Final affected167methods (31new/136existing) pass; service/pricing/capacity qualification remains open.
+  - Actual PoolManager donations are funded fee growth, unlike unsolicited raw Vault prefunds. [Market/input review](reports/market-adversarial-20261026/REVIEW.md) preserves receipt-backed attribution but requires clear reporting: funded earnings do not prove organic volume or sustainable yield. No speculative APY or intent classification is added.
 
   </details>
 
@@ -506,6 +508,7 @@ The data and services behind the app.
   - Current [pricing-V2 extension](docs/PRICE_SECURITY.md) verifies the fixed Oracle pricing companion and complete two-source policy/bounds/fingerprints at the same confirmed timestamp. Its new source-scoped evidence is [separate](reports/price-security/VERIFICATION.md) from the earlier 73-case preflight publication; neither qualifies live providers.
   - Current CLI requires schema5/current mint profile1 by default; explicit historical mode is never qualification. [68 distinct affected Python methods](reports/release-services-20261025/vrf-opensea/VERIFICATION.md) include legacy/type/downgrade/unsupported-mint and exact original-randomness recovery boundaries. Current source correctly blocks OpenSea qualification until compatible code exists.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
+  - [Market/input review](reports/market-adversarial-20261026/REVIEW.md) shares exact integer slot0 validation between observer and both offline state gates, including manually supplied inventories. Consistency is not provider authentication; chain/block/runtime/independent-observation qualification remains required.
 
   </details>
 
@@ -852,6 +855,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Review [the October25 composed installed-v4 harness](reports/preproduction-audit-20261025/VERIFICATION.md) for actual fees, royalty/LP separation, growth/compound/rebalance/transfer conservation, prefund isolation and rollback. Local governance/feeds/VRF/Permit2/admission remain substitutes; extend actual provider/venue qualification, not unchanged generic test reruns.
   - [Full principal review](reports/full-audit-20261025/PRINCIPAL.md) traces old compound/fees, marginal deployedLP, exact prefunds/native callbacks, share issuance and captured price/loss marks. No new unprivileged dilution path confirmed in inspected code.3%feed agreement does not guarantee2%execution feasibility; real depth/source quality/economics and independent review remain required.
   - [Reporting conservation review](reports/backend-remediation-20261026/REVIEW.md): replay separates gross LP intake, holder/collective credits, carried dust and compound/buyback reserves. This repairs reporting integrity without changing share issuance or on-chain economics; final167Python methods do not requalify real venue economics.
+  - [Actual-v4 market cases](reports/market-adversarial-20261026/VERIFICATION.md) cover ETH activation and fixed-ZZZ growth entirely above/below the old range, then rebalance/claims, plus real PoolManager donations before a newcomer.15affected shared-fixture methods pass; original missing-ZZZ-identity fixture failures are retained, not hidden. No production contract/economic change.
 
   </details>
 
@@ -905,6 +909,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Review the implemented [two-source price and factual LP guard](docs/PRICE_SECURITY.md), including common-mode/proxy authority, depeg/outage, pre-pull frozen prices/caps, exact deployment spot, historical incumbent backing, gas/DoS limits and coherent backend traces. Real source qualification remains [open](TODO.md#task-dual-price-qualification).
   - Review the frozen compiler/dependency closure and current official advisories using [applicability triage](reports/deep-cleanup-20261025/UPSTREAM.md). The final source graph has no internal recursion/named-error require trigger, but is not a compiler proof or independent approval. Recheck actual compiler-generated behavior on any compiler/dependency change.
   - Qualify the actual fixed ZZZ burn(uint256) ABI, exact holder-balance/totalSupply reduction, upgrade/blacklist controls and target route before enabling buyback. The immutable target and successful pool ERC20 transfers alone do not establish burn compatibility. A failed burn reverts; do not substitute an arbitrary transfer-to-wallet as proof of burn.
+  - [Exact slot0 input checks](reports/market-adversarial-20261026/REVIEW.md) reject contradictory pool state and malformed fees in unsigned reviews/release observations. A consistent fabricated RPC result or correlated USD sources remain external qualification risks; no single-source fallback is introduced.
 
   </details>
 
@@ -1117,4 +1122,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `b7270d74c109dba0fd93669ada3f83a314b64085dbdcb472bac5d3485bd13a9d`.
+Snapshot SHA-256: `b41a22763bf708f8cb60f1509d798cc946fa896c21631632272789cfdbc56e73`.

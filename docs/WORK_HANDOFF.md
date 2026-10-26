@@ -5,22 +5,22 @@ Reviewed 2026-10-26. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
-[Reward resilience review](../reports/reward-resilience-20261026/REVIEW.md) and
-[verification](../reports/reward-resilience-20261026/VERIFICATION.md) record:
-independent guarded harvesting after maintenance RPC failures; fail-closed invalid
-configuration/ABI; consistent stop after pending errors; current3 inactive claim
-draft integrity. Final 443affected Python methods: 437 pass / 6 skips, no failures/errors
-or source drift. One new actual-v4 outage/harvest/claim case passes. Production
-Solidity/ABI/economic rights remain unchanged. The first wider regression failure
-is preserved and corrected without changing its existing assertion.
+[Market/input review](../reports/market-adversarial-20261026/REVIEW.md) and
+[verification](../reports/market-adversarial-20261026/VERIFICATION.md) record exact
+slot0 consistency/fee checks across unsigned reviews/routes/observed and manual
+release inventory. Valid stored downward-boundary ticks remain unchanged.
+223affected Python methods pass, zero skips/failures/errors/source drift;15actual-v4
+composed methods pass after explicitly configuring the test fixed-ZZZ identity.
+Both out-of-range directions preserve contributions/shares/claims and subsequent
+rebalancing; actual pool donations are excluded from newcomer past income.
+Original first fixture failures remain preserved. Production Solidity/ABI/economics
+and existing services/Anvil/NFTs/LP/balances/journals/website/monitor are untouched.
 
-Implementation [97cbd16](https://github.com/ABEF/AAA/commit/97cbd16a4d849ef9b630b319bf7146fdd5575150)
-is pushed on main; the exact remote head is verified in the
-[publication receipt](../reports/reward-resilience-20261026/PUBLICATION.md).
-Installed services/Anvil/NFT/LP/balances/journals, website and monitor remain
-untouched. Earlier [allocation](../reports/reward-allocation-20261026/VERIFICATION.md)
-and [keeper/LP](../reports/keeper-lp-audit-20261026/VERIFICATION.md) receipts retain
-their own exact scope; actual qualification and independent audit are still open.
+This candidate follows verified main25ac8d4 (reward resilience receipt) and is
+prepared for scoped main publication. Final exact local/remote identity is recorded
+in the campaign publication receipt after push. Earlier [resilience](../reports/reward-resilience-20261026/VERIFICATION.md),
+[allocation](../reports/reward-allocation-20261026/VERIFICATION.md) and normal size/
+static receipts retain their own exact scopes; actual qualification remains open.
 
 ## Continue here
 

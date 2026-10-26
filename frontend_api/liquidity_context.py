@@ -3,6 +3,7 @@ from zzz_ops.position import decode_position, is_local_position
 from datetime import datetime, timezone
 
 from frontend_api.service import ProjectionError, _address_word, _bool
+from zzz_ops.tick_math import decode_slot0
 
 
 def signed_tick(word):
@@ -20,9 +21,10 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         return p._call(pins[role], method, *args, block=block, words=count)
 
     slot = read('state_view', 'getSlot0(bytes32)', pool, count=4)
-    spot, tick = int(slot[0], 16), signed_tick(slot[1])
-    if not 4295128739 <= spot < 1461446703485210103287273052203988822378723970342:
-        raise ProjectionError('Invalid pool sqrt price')
+    try:
+        spot, tick, _protocol_fee, _lp_fee = decode_slot0(slot, expected_fee=int(config[2], 16))
+    except ValueError as exc:
+        raise ProjectionError('Invalid or contradictory confirmed pool slot0') from exc
     # Check the admitted strategy's oracle/deviation guard even for an approval
     # response: a stale price must never be presented as a usable LP quote.
     if int(read('strategy', 'validatePrice(bytes32)', pool)[0], 16) != spot:

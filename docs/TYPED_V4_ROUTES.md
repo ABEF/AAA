@@ -41,6 +41,18 @@ fabricated token code hash. The pool must be initialized, hook zero, static fee
 below 1,000,000 pips and tick spacing 1-32,767. StateView's manager binding,
 runtime pins and current stored LP fee are checked before and after execution.
 
+The unsigned review also checks the existing pinned slot0 response with exact
+integer v4 TickMath: canonical ABI fields, initialized sqrt/tick bounds,
+`sqrtAtTick(tick) <= sqrtPriceX96 <= sqrtAtTick(tick + 1)`, both packed 12-bit
+protocol-fee directions at most 1,000 pips, and the stored LP fee equal to the
+reviewed static fee. It rejects contradictory state before preparing a route.
+The inclusive upper endpoint is intentional: after a downward boundary crossing,
+v4 can store the preceding tick at the exact boundary price. Preserve that tick;
+do not replace it with a calculated floor tick for range membership. Observer
+and offline inventory checks share the integer consistency validation; the offline
+gate also requires the reviewed static fee. No new RPC reads or schema fields are
+added. These off-chain checks do not replace the executor's own guards.
+
 The helper authenticates one core unlock callback, consumes its pending context,
 requires full exact input and a positive minimum output, explicitly syncs native
 settlement, settles/takes exact deltas and forwards only measured output.

@@ -1,0 +1,9 @@
+Compiling 4 files with Solc 0.8.26
+Solc 0.8.26 finished in 126.51ms
+Compiler run successful!
+
+Ran 1 test for test/TickMathCrosscheck.t.sol:TickMathCrosscheck
+[PASS] testExactIntegerVectorsAndIntervals() (gas: 446651)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 3.67ms (2.85ms CPU time)
+
+Ran 1 test suite in 5.86ms (3.67ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

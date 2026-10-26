@@ -1,0 +1,10 @@
+{
+  "exit_code": 1,
+  "source_sha256": {
+    "frontend_api/liquidity_context.py": "f9e71555ccab8b77023f66a7c32f9e0c11ba38c2f4bd2d5bd6bb199d30924797",
+    "frontend_api/activation_v4.py": "9662e26bfe828bf47b4bb67e86b172511706c2279c0894a7b6a1f2a45b8e222b",
+    "zzz_ops/production_observer.py": "670210e66a5b7854a4bea374dd3c650da59f4d9aa87ddbe3df117db19ab17953",
+    "zzz_ops/production_v2.py": "81a35e20c9bac84ec01552f44454c456a12991336908f80c83fafed688752eff",
+    "tests_python/test_slot0_integrity.py": "9f4153c1e68b222f6992e3ec7c5a35aa9b268ce0f2d2ac20cfcd7a3d17b9d940"
+  }
+}

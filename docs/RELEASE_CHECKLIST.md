@@ -1,9 +1,10 @@
 # Release approval record - NOT APPROVED
 
-Latest [keeper/LP audit](../reports/keeper-lp-audit-20261026/REVIEW.md) fixes
-observation/configuration and verification gaps without changing production
-Solidity/authority/economics.354affected Python passes/5Unix skips and9range passes
-retain explicit scope; updated current-profile Linux crash/systemd/target-chain
+Latest [market/input review](../reports/market-adversarial-20261026/REVIEW.md)
+rejects contradictory v4 prices/ticks/fees in reviews and release observations.
+223affected backend methods and15actual-v4 composition cases pass; source scopes
+and the corrected fixture's original failures are retained. Production Solidity,
+authority and economics are unchanged. Real provider/liquidity/service/target-chain
 qualification and independent audit remain open. No approval/deployment follows.
 
 This records approval of **one frozen release**, not a second Todo or development
@@ -15,6 +16,7 @@ not authorize deployment, sealing, service rollout or public transactions.
 
 | Evidence | What it establishes; limits |
 | --- | --- |
+| [Market/input checks](../reports/market-adversarial-20261026/VERIFICATION.md) | 223affected Python passes,15actual-v4 composed passes and a separate exact TickMath reference check. Contradictory slot0 rejects; legitimate boundaries, both out-of-range contribution directions and donation/claim backing are checked. Consistency does not prove RPC authenticity or organic trading volume. No production Solidity or service change. |
 | [Adversarial reward/keeper checks](../reports/reward-resilience-20261026/VERIFICATION.md) | 437affected Python passes/6 explicit skips and one new actual-v4 outage/harvest/claim case. Fixes upkeep-error isolation, post-intent stopping and contradictory current3 claim drafts. Production Solidity/rights unchanged; no actual provider/service/gas or independent release qualification. |
 | [Rewards and keeper fairness](../reports/reward-allocation-20261026/VERIFICATION.md) | Two new Solidity methods, including 1,000 claim-order fuzz runs;370 affected Python passes/6 explicit skips. Fixes buyback scheduling starvation; production contracts/rights unchanged. Does not qualify live routes/burns, execution latency, gas, operating services or release approval. |
 | [Backend remediation, 2026-10-26](../reports/backend-remediation-20261026/VERIFICATION.md) | Five Python modules corrected; 167 affected methods pass. No Solidity, dependency/build-input, API-schema, rights or signing change. Actual authentic history, pricing/provider, current website and service capacity remain open. |

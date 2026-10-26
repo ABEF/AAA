@@ -58,16 +58,21 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest functional publication [97cbd16](https://github.com/ABEF/AAA/commit/97cbd16a4d849ef9b630b319bf7146fdd5575150): [adversarial reward review](reports/reward-resilience-20261026/REVIEW.md)
-and [verification](reports/reward-resilience-20261026/VERIFICATION.md). Keeper
-maintenance RPC failure no longer suppresses an independently guarded due harvest;
-configuration/ABI faults still fail closed and pending intents stop scheduling.
-Current3 claim drafts reject contradictory inactive rewards/global activation data.
-Final 443Python methods: 437 pass / 6 explicit skips, stable source pins; one new actual-v4
-outage/harvest/claim case passes. Production 44 Solidity/ABI/economics unchanged.
-Existing services/Anvil/journals/website remain untouched. Exact main publication
-is verified in the [receipt](reports/reward-resilience-20261026/PUBLICATION.md);
-actual operating/provider/independent qualification stays open.
+Current market/input work: [review](reports/market-adversarial-20261026/REVIEW.md)
+and [verification](reports/market-adversarial-20261026/VERIFICATION.md). Shared exact
+slot0 validation rejects contradictory sqrt/tick/fees before unsigned reviews,
+route reads and observed/manual release gates, preserving valid boundary ticks.
+223affected Python methods pass without skips/source drift;15actual-v4 composed
+cases pass, including both out-of-range contribution directions and real pool
+fees donated before newcomer activation. The missing fixed-ZZZ fixture binding
+was corrected; original failure evidence remains. Production Solidity/ABI/economics,
+services/Anvil/journals/website remain unchanged. Publication status is recorded
+in the work handoff and campaign receipt; actual qualification remains open.
+
+Earlier functional97cbd16 / receipt25ac8d4:
+[reward resilience](reports/reward-resilience-20261026/VERIFICATION.md),437affected
+Python passes/6skips and one new actual-v4 case retain their original source scope.
+No unchanged keeper/claim/full-contract suite was rerun by implication.
 
 Prior allocation/fairness publication0ee9650 and
 [receipt](reports/reward-allocation-20261026/PUBLICATION.md) retain their scope;

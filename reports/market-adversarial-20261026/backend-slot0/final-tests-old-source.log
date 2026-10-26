@@ -1,0 +1,63 @@
+test_current_activation_rejects_contradictory_tick_before_simulation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_current_activation_rejects_contradictory_tick_before_simulation) ... 
+  test_current_activation_rejects_contradictory_tick_before_simulation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_current_activation_rejects_contradictory_tick_before_simulation) (approval=False) ... FAIL
+test_current_activation_rejects_contradictory_tick_before_simulation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_current_activation_rejects_contradictory_tick_before_simulation) ... FAIL
+test_typed_conversion_route_rejects_contradictory_tick (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_typed_conversion_route_rejects_contradictory_tick) ... FAIL
+test_observer_does_not_publish_contradictory_slot_as_confirmed (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_observer_does_not_publish_contradictory_slot_as_confirmed) ... FAIL
+test_direct_inventory_cannot_bypass_observer_validation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_direct_inventory_cannot_bypass_observer_validation) ... 
+  test_direct_inventory_cannot_bypass_observer_validation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_direct_inventory_cannot_bypass_observer_validation) (route=False) ... FAIL
+  test_direct_inventory_cannot_bypass_observer_validation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_direct_inventory_cannot_bypass_observer_validation) (route=True) ... FAIL
+
+======================================================================
+FAIL: test_current_activation_rejects_contradictory_tick_before_simulation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_current_activation_rejects_contradictory_tick_before_simulation) (approval=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_slot0_integrity.py", line 79, in test_current_activation_rejects_contradictory_tick_before_simulation
+    with self.subTest(approval=approval), self.assertRaisesRegex(ProjectionError, 'slot0'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_current_activation_rejects_contradictory_tick_before_simulation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_current_activation_rejects_contradictory_tick_before_simulation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_slot0_integrity.py", line 81, in test_current_activation_rejects_contradictory_tick_before_simulation
+    self.assertEqual(rpc.trace_count, 0)
+AssertionError: 2 != 0
+
+======================================================================
+FAIL: test_typed_conversion_route_rejects_contradictory_tick (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_typed_conversion_route_rejects_contradictory_tick)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_slot0_integrity.py", line 112, in test_typed_conversion_route_rejects_contradictory_tick
+    with self.assertRaisesRegex(ProjectionError, 'slot0'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_observer_does_not_publish_contradictory_slot_as_confirmed (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_observer_does_not_publish_contradictory_slot_as_confirmed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_slot0_integrity.py", line 124, in test_observer_does_not_publish_contradictory_slot_as_confirmed
+    self.assertIsNone(chain['pools'][0]['slot0'])
+AssertionError: {'sqrt_price_x96': '79228162514264337593543950336', 'tick': 500000, 'protocol_fee': 0, 'lp_fee': 10020} is not None
+
+======================================================================
+FAIL: test_direct_inventory_cannot_bypass_observer_validation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_direct_inventory_cannot_bypass_observer_validation) (route=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_slot0_integrity.py", line 149, in test_direct_inventory_cannot_bypass_observer_validation
+    self.assertFalse(result['ready'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_direct_inventory_cannot_bypass_observer_validation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_direct_inventory_cannot_bypass_observer_validation) (route=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_slot0_integrity.py", line 149, in test_direct_inventory_cannot_bypass_observer_validation
+    self.assertFalse(result['ready'])
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.281s
+
+FAILED (failures=6)

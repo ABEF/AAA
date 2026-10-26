@@ -16,6 +16,7 @@ from typing import Any
 
 from zzz_ops.abi import decode_words, keccak256
 from zzz_ops.work_budget import Budget, BudgetedRPC, request_scope
+from zzz_ops.tick_math import decode_slot0
 
 ZERO = '0x' + '00' * 20
 ZERO_HASH = '0x' + '00' * 32
@@ -427,10 +428,7 @@ class Observer:
 
     def slot(self, state, pool):
         raw = self.read(state, 'getSlot0(bytes32)', pool, count=4)
-        price, tick, protocol, fee = map(lambda w: int(w, 16), raw)
-        tick = tick-(1 << 256) if tick >= 1 << 255 else tick
-        if price >= 1 << 160 or not -(1 << 23) <= tick < 1 << 23 or protocol >= 1 << 24 or fee >= 1 << 24:
-            raise ValueError('Noncanonical slot0 ABI')
+        price, tick, protocol, fee = decode_slot0(raw)
         return dict(sqrt_price_x96=str(price), tick=tick, protocol_fee=protocol, lp_fee=fee)
 
     def liquidity(self, state, pool=None):

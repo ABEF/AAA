@@ -5,6 +5,7 @@ from frontend_api.activation import ActivationTransactions
 from frontend_api.service import Projection, ProjectionError
 from tests_python.test_frontend_activation import ActivationRPC
 from tests_python.test_frontend_api import MockRPC, addr, configuration
+from zzz_ops.tick_math import sqrt_price_at_tick
 
 
 class LiquidityContextTests(unittest.TestCase):
@@ -13,10 +14,11 @@ class LiquidityContextTests(unittest.TestCase):
         return ActivationTransactions(Projection(configuration(), self.rpc, clock=lambda:1000), self.rpc.config)
 
     def tick(self, tick):
-        # RPC fixture isolates boundary membership; production range/price math
-        # is exercised separately in the Solidity suite.
+        # Match actual v4 integer TickMath, including the strategy observation.
+        price = sqrt_price_at_tick(tick)
         self.rpc.put(self.rpc.pins['state_view'],'getSlot0(bytes32)',(self.rpc.pool,),
-                     (2**96,tick if tick >= 0 else 2**256+tick,0,0))
+                     (price,tick if tick >= 0 else 2**256+tick,0,0))
+        self.rpc.put(self.rpc.pins['strategy'],'validatePrice(bytes32)',(self.rpc.pool,),(price,))
 
     def test_lower_inclusive_upper_exclusive_and_outside_allowed(self):
         for tick,active in [(-121,False),(-120,True),(0,True),(119,True),(120,False),(121,False)]:

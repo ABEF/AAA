@@ -1,0 +1,16 @@
+test_current_activation_rejects_contradictory_tick_before_simulation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_current_activation_rejects_contradictory_tick_before_simulation) ... ok
+test_direct_inventory_cannot_bypass_observer_validation (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_direct_inventory_cannot_bypass_observer_validation) ... ok
+test_direct_inventory_handles_bad_types_prices_and_fees_without_crashing (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_direct_inventory_handles_bad_types_prices_and_fees_without_crashing) ... ok
+test_exact_downward_boundary_keeps_actual_tick_for_range_membership (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_exact_downward_boundary_keeps_actual_tick_for_range_membership) ... ok
+test_observer_does_not_publish_contradictory_slot_as_confirmed (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_observer_does_not_publish_contradictory_slot_as_confirmed) ... ok
+test_observer_preserves_valid_downward_boundary (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_observer_preserves_valid_downward_boundary) ... ok
+test_static_fee_or_directional_protocol_corruption_prevents_approval (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_static_fee_or_directional_protocol_corruption_prevents_approval) ... ok
+test_typed_conversion_route_rejects_contradictory_tick (tests_python.test_slot0_integrity.Slot0IntegrationTests.test_typed_conversion_route_rejects_contradictory_tick) ... ok
+test_abi_domain_and_directional_fees_fail_closed (tests_python.test_slot0_integrity.TickMathStateTests.test_abi_domain_and_directional_fees_fail_closed) ... ok
+test_exact_known_endpoints_and_rounding (tests_python.test_slot0_integrity.TickMathStateTests.test_exact_known_endpoints_and_rounding) ... ok
+test_integer_interval_edges_and_only_exact_downward_boundary (tests_python.test_slot0_integrity.TickMathStateTests.test_integer_interval_edges_and_only_exact_downward_boundary) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 7.057s
+
+OK

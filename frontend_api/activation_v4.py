@@ -5,10 +5,9 @@ No router fallback, raw calldata, hook or LP-pool admission is inferred here.
 from frontend_api.activation_config import NATIVE_ASSET_CODE_HASH
 from frontend_api.service import ProjectionError, ZERO, _address_word
 from zzz_ops.abi import keccak256
+from zzz_ops.tick_math import decode_slot0
 
 DOMAIN = keccak256(b'ZZZ_TYPED_V4_ROUTE_V1')
-MIN_SQRT = 4295128739
-MAX_SQRT = 1461446703485210103287273052203988822378723970342
 
 
 def route_output(p, cfg, req, pins, block):
@@ -39,8 +38,10 @@ def route_output(p, cfg, req, pins, block):
     if _address_word(p._call(state, 'poolManager()', block=block)[0]) != manager:
         raise ProjectionError('Typed v4 state view binding changed')
     pool = '0x' + keccak256(bytes.fromhex(''.join(data[2:7]))).hex()
-    slot = [int(x, 16) for x in p._call(state, 'getSlot0(bytes32)', pool, block=block, words=4)]
-    if not MIN_SQRT <= slot[0] < MAX_SQRT or slot[3] != fee:
-        raise ProjectionError('Typed v4 pool is uninitialized or its fee differs')
+    slot = p._call(state, 'getSlot0(bytes32)', pool, block=block, words=4)
+    try:
+        decode_slot0(slot, expected_fee=fee)
+    except ValueError as exc:
+        raise ProjectionError('Typed v4 pool has invalid or contradictory slot0') from exc
     req['v4_executor'] = helper
     return output

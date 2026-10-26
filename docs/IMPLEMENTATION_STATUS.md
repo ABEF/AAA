@@ -44,7 +44,7 @@ safe by a documentation claim or simulated example.
 | Unsigned transaction preparation | Complete Entry simulation/newLP/caller cap checks, exact approval step, expiry and separate gas. Bounded current3 claims reject contradictory inactive balances/malformed activation data before a wallet draft. Parked/outbound and optional-currency deferral rights remain. Opt-in direct-mint drafts exist; production/website mint gates reject unsupported OpenSea integration, while the preparer itself is not a universal public-mint block. No user signer in API. | [Activation preparation](ACTIVATION_PREPARATION.md), [transactions](FRONTEND_TRANSACTIONS.md) |
 | Request and index resilience | Per-client admission, finite supervised workers/deadlines/RPC budgets; anchored SQLite replay/reorg handling and independent-provider history-window audit. Real hosting/capacity qualification remains open. | [Ingress](API_INGRESS.md), [concurrency](CONCURRENT_SERVICES.md), [index recovery](INDEXER_RECOVERY.md), [history audit](HISTORY_AUDIT.md) |
 | Keeper | Discovers shared buckets, simulates eligible upkeep, persists intents/receipts/budgets and recovers without automatic resend. Authenticated due harvesting can continue after maintenance RPC failure; malformed configuration/ABI still fails closed, and saved pending errors stop work. Buyback priority/currency rotation prevents starvation. Optional metadata notifications; dry-run default. | [Reward timing/fairness](OPERATIONS.md#reward-timing-and-maintenance-schedule), [recovery](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
-| Release tooling | Current schema5 inventory/pinned observer, RPC/mint qualification gates, immutable artwork bundle and frozen review export. Tools do not deploy or replace approval. | [Preflight](PRODUCTION_PREFLIGHT.md), [review package](FROZEN_REVIEW_BUNDLE.md) |
+| Release tooling | Exact integer slot0 consistency/fee validation in both observed and manually supplied states; current schema5 inventory/pinned observer, RPC/mint qualification gates, immutable artwork bundle and frozen review export. Tools do not deploy or replace approval. | [Preflight](PRODUCTION_PREFLIGHT.md), [review package](FROZEN_REVIEW_BUNDLE.md) |
 
 ## Frontend boundary
 
@@ -56,6 +56,16 @@ deployment are preserved. See [website profile](NATIVE_WEBSITE_PROFILE.md),
 [deployment integration](DEPLOYMENT_WEBSITE.md) and [browser wallet](BROWSER_WALLET.md).
 
 ## Current evidence and limits
+
+[Adversarial market/input review](../reports/market-adversarial-20261026/REVIEW.md)
+and [verification](../reports/market-adversarial-20261026/VERIFICATION.md):223affected
+backend methods pass;15actual-v4 composed methods include both out-of-range
+contribution directions, subsequent rebalance/claims and past-donation exclusion
+for newcomers. Shared exact TickMath validation rejects inconsistent sqrt/tick/
+fee state while preserving legitimate stored boundary ticks. A missing fixed-ZZZ
+fixture binding was corrected and its first failures retained. Production Solidity,
+ABI, economic rights and service configuration are unchanged; funded receipts do
+not establish organic volume or sustainable returns.
 
 [Adversarial reward review](../reports/reward-resilience-20261026/REVIEW.md): the
 final affected scope has 443 unique methods, 437 passes/6 explicit skips, zero errors

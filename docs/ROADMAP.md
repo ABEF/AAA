@@ -53,6 +53,12 @@ Exercise [maintenance-outage harvest isolation and claim-integrity checks](../re
 under actual provider/service conditions, including degraded health and saved
 pending recovery. Local fault fixtures do not close those operating gates.
 
+For market/input acceptance, retain the [exact slot0 consistency checks](../reports/market-adversarial-20261026/REVIEW.md)
+and exercise both out-of-range directions, valid tick boundaries and actual
+funded donations against the qualified deployment. Consistent observations do
+not authenticate an RPC, and funded fee history does not prove organic volume.
+These local cases do not close the provider/liquidity/operating gates.
+
 ## 4. Freeze and approve a complete release
 
 Select exact source/configuration/authorities. Run the relevant final release

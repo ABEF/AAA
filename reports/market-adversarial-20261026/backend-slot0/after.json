@@ -1,0 +1,20 @@
+{
+  "exit_code": 0,
+  "modules": [
+    "tests_python.test_liquidity_context",
+    "tests_python.test_frontend_activation",
+    "tests_python.test_current_activation_profile",
+    "tests_python.test_typed_v4_activation",
+    "tests_python.test_production_observer",
+    "tests_python.test_production_v2"
+  ],
+  "source_sha256": {
+    "zzz_ops/tick_math.py": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+    "frontend_api/liquidity_context.py": "da949d2cf93bfa207bf7c25dcbafb18f6099cc25b827c5032cf76ddc8ea9a995",
+    "frontend_api/activation_v4.py": "91827ad5eb3c6180a44dabba79609efe8ae2a17c080a5a93cf188603cff07ec0",
+    "zzz_ops/production_observer.py": "9829d153b472c7613a2446d7df6d4ca4b30ee4834745663a772fade629046dc7",
+    "zzz_ops/production_v2.py": "c4f2908375475cb5a80e7fbd250dc24ea7be59cceb851353a3583bb5682dfc21",
+    "tests_python/test_slot0_integrity.py": "84518b68406031889851d976bf6e69da4d8abfc55a0ee423a5ed413a7c0faf9c",
+    "tests_python/test_liquidity_context.py": "d7836521fc62a8dcc8e897777ca2b5c85422ba73b5b9776141556ba3da4ff5ce"
+  }
+}

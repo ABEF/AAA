@@ -58,7 +58,13 @@ new shares are `floor(S * N / V)`. Initial shares equal net contributed USD unit
 `V` is remeasured **after** the entry swap reprices incumbent LP and includes its
 pre-existing idle/designated compound. Entry-swap fees, existing receipts and
 compound settle under old weights before new shares/membership are added.
-Donations, claimable rewards and buyback reserves cannot subsidize the entry.
+Unsolicited raw Vault prefunds are not attributed principal or income and cannot
+subsidize the entry; claimable rewards and buyback reserves remain separate.
+An actual Uniswap `PoolManager.donate` is different: it funds position fee growth.
+When harvested, those funded fees follow the same 80/10/5/5 allocation under the
+pre-entry shares and eligible membership. Their compound allocation belongs to
+the incumbent NAV before new shares are issued. Funded fees are not proof of
+organic trading volume or a sustainable return.
 Floor rounding issues less than one raw share below the ideal rational result;
 the economic value of that raw share depends on current NAV/share scale.
 
@@ -77,9 +83,15 @@ If costs cannot meet the captured floor (98% at the current 2% default), the ato
 
 The quote's `liquidity_context` uses the same confirmed hash as its prices and
 simulation. It reads the current physical LP ticks, StateView `slot0.tick`,
-strategy eligibility and last-rebalance checkpoint. Range activity uses
-`lower <= tick < upper`; at an exact downward crossing, sqrt price alone is not
-enough to classify the active tick.
+strategy eligibility and last-rebalance checkpoint. The read verifies canonical
+slot0 integers, initialized TickMath bounds, coherent square-root price/tick,
+valid directional protocol fees and the reviewed static LP fee. The exact check
+is `sqrtAtTick(tick) <= sqrtPriceX96 <= sqrtAtTick(tick + 1)`, using integer v4
+TickMath endpoints. Its inclusive upper endpoint admits the genuine stored tick
+one below the boundary after a downward crossing. Range activity still uses the
+original stored tick with `lower <= tick < upper`; replacing it with a calculated
+floor tick would misclassify that boundary. These checks reuse the existing
+pinned slot0 response, without another RPC read or response-schema change.
 
 | Warning state | Meaning shown to the holder |
 | --- | --- |

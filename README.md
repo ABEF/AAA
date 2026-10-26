@@ -17,6 +17,14 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
+The [adversarial market review](reports/market-adversarial-20261026/REVIEW.md)
+rejects contradictory pool prices/ticks/fees before unsigned reviews or release
+observations. [Verification](reports/market-adversarial-20261026/VERIFICATION.md):
+223 affected backend methods and15actual-v4 composed cases pass, including
+out-of-range contributions in both directions and funded pool donations.
+Production contracts/rights and installed services are unchanged; this does not
+qualify real providers, liquidity or sustainable trading revenue.
+
 The [adversarial reward review](reports/reward-resilience-20261026/REVIEW.md)
 isolates maintenance outages from guarded fee collection, rejects contradictory
 inactive claim drafts and consistently stops scheduling after a saved pending
@@ -45,7 +53,7 @@ retains its source scope. Neither establishes production approval.
 | Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |
 | Production inventory | [Native preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit accounting V3/governance V2, helper bindings, approved pins, actual observations and release blockers |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
-| Security and release | [Latest internal review](reports/backend-remediation-20261026/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
+| Security and release | [Latest internal market/input review](reports/market-adversarial-20261026/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 

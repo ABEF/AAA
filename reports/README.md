@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Market/input review](market-adversarial-20261026/REVIEW.md) and
+[verification](market-adversarial-20261026/VERIFICATION.md) record exact integer
+slot0 integrity and223affected Python passes.15actual-v4 composed cases cover
+both out-of-range contribution directions, rebalance/claims and actual funded
+donations; the first missing-identity fixture failures are retained. Production
+Solidity/rights and installed services are unchanged; real qualification stays open.
+
 [Adversarial rewards/keeper review](reward-resilience-20261026/REVIEW.md) and
 [verification](reward-resilience-20261026/VERIFICATION.md) record maintenance
 outage isolation, consistent pending-error stops and impossible inactive claim

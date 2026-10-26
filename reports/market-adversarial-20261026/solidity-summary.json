@@ -1,0 +1,203 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 136.907,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\market-adversarial-20261026\\solidity-final\\execution\\ast-focused-profile-oeh_op5p",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(IntegratedEconomicConservationTest)$",
+    "--json"
+  ],
+  "selected_methods": 15,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4ApprovedTwoPercentDefaultAndStricterOnePercentApplyToActivationAndGrowth()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 14357391
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4BalancedJoinsCannotCaptureOldIncomeOrPrefundsAndPreserveShares()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 12016455
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4ContributionsAboveOldRangePreserveIncumbentsAndRebalance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 21942293
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4ContributionsBelowOldRangePreserveIncumbentsAndRebalance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 21852720
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4CoreDonationCannotGiveNewcomerPastFundedFees()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 13338315
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 12373934
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4IdleOnlyCompoundGrowsLPWithoutMovingSharesOrTakingPrefunds()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 9561704
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4InverseZZZPriceRangeDeploysGrowsAndKeepsFeeAccounting()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 12165441
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4LateSourceRoundCallbackRollsBackLPFundsEligibilityAndFees()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6703136
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 24951518
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4SecondBalancingSwapFailureRollsBackTheFirstSwapAndAllEntitlements()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3536006
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 19251297
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4StalePricesBlockRebalanceButPreserveHarvestAndClaimAccounting()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 13722643
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6294720
+        }
+      }
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4UnfeasibleDepthStillRollsBackEveryLedger()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3323026
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "ceecbef066779c6db6546fe872912a58d381ebc75da0272881e672b68c57adee"
+}
