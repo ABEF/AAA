@@ -1,15 +1,26 @@
 # Immediate governance
 
-## Current role and custody boundary - 2026-10-25
+## Operator and authority boundary
 
-The selected governance multisig calls each target module directly. The Access
+There is one human project operator: the user. That operator controls the
+governance wallet and runs the keeper/services. "Operator" describes the person;
+"governance" describes that person's configured on-chain authority. There is no
+separate operator role, committee or additional human approval in PoPL.
+
+The selected governance wallet calls each target module directly. The Access
 controller authenticates that wallet through `canConfigure(caller)`; it does not
 schedule or forward the transaction.
-The multisig can approve assets/pools/routes/feeds, strategy and keeper policies,
+The governance wallet can approve assets/pools/routes/feeds, strategy and keeper policies,
 roles, and contribution/conversion/maintenance caps up to10%. It can pause and
 unpause, authorize same-pair pool moves, and separately approve paused external
 custody exits and compatible whole-collection handoff. This is a powerful trusted
 role; sealing fixes implementations, not these approved configuration/exit powers.
+
+One person may control multiple accounts. Keep the automated keeper's limited
+service key separate from the governance key; this requires no second operator.
+Guardian, bootstrap, mint recipient and custody-recipient permissions retain
+their existing boundaries even when controlled by the same person. A single-owner
+wallet/Safe is possible; no production address or wallet type is selected here.
 
 The custody recipient is the destination of an approved transfer, **not another
 governance role**. It may be an EOA or contract. Receiving principal gives it

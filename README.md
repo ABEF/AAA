@@ -87,7 +87,7 @@ Many NFTs share **one physical LP per pool/strategy**, with independent share ac
 
 ### 2. Backend and operations
 
-Read services serve confirmed chain state. Transaction preparation returns an unsigned request for the user's wallet. The keeper uses a separate operator signer for authorized maintenance; it does not sign user activations.
+Read services serve confirmed chain state. Transaction preparation returns an unsigned request for the user's wallet. The keeper uses a dedicated service signer controlled by the same project operator for authorized maintenance; it does not sign user activations.
 
 | Service | Responsibility and relationship | Code / operating reference |
 | --- | --- | --- |
@@ -187,7 +187,7 @@ The [metadata specification](docs/NFT_METADATA.md) and [artwork catalogue](desig
 
 | Role | Authority | Boundary |
 | --- | --- | --- |
-| **Governance multisig** | Calls approved configuration and recovery functions directly, with no protocol waiting period. | Reviewed destinations and replacement code remain trusted. A new governance wallet must explicitly accept a proposal; keeper/guardian roles rotate separately. |
+| **Governance wallet** | The single project operator controls this wallet and calls configuration/recovery functions directly, with no protocol waiting period. | Reviewed destinations and replacement code remain trusted. A new governance wallet must explicitly accept a proposal; keeper/guardian roles rotate separately. |
 | **Guardian** | Pauses operations during an incident. | Cannot unpause or withdraw principal; unpause belongs to governance. |
 | **Keeper** | Executes eligible maintenance within contract permissions and economic limits. | Cannot change governance policy or bypass execution guards. |
 

@@ -46,9 +46,16 @@ VRF/providers, actual feed/route policies and service choices remain unselected.
 
 ## Wallets and authorities to choose
 
+One human operator controls governance and operates the services. The identities
+below describe accounts/capabilities, not a requirement for several people.
+The existing inventory field `governance.multisig` names the governance wallet;
+the field name does not enforce multiple owners. The preflight accepts one signer
+and threshold1, subject to the same actual wallet/authority evidence. Preserve
+the schema and record the chosen wallet accurately rather than inventing people.
+
 | Identity | Configuration and responsibility |
 | --- | --- |
-| Governance multisig | Select its public address, signer public addresses, threshold and recovery controls. This wallet is `Access.governance()` and directly calls governed modules; NFT ownership is not a governance vote. |
+| Governance wallet, controlled by the operator | Select its public address, actual signer/threshold policy and recovery controls. A single-owner configuration is supported. This wallet is `Access.governance()` and directly calls governed modules; NFT ownership is not a governance vote. |
 | Guardian | Select the emergency pause account. It cannot unpause or withdraw principal. |
 | Keeper | Select a dedicated signer, fund its native gas balance and restrict it to keeper operations. Separate it from governance in production; role separation is an operating recommendation, not a general on-chain prohibition on reusing an address. |
 | Mint proceeds recipient | Select the immutable proceeds recipient: current direct mint pays exactly 0.05 ETH; the required OpenSea path pays net of its actual platform fee from the same 0.05 ETH buyer total. A treasury may fill this role; it has no custody authority merely by receiving mint payments. |
@@ -188,7 +195,7 @@ hash alone proves neither return funding nor safe remote accounting. See the
 ## Configuration that is not a wallet address
 
 Record chain IDs; deployment/confirmed block hashes; runtime/initcode identities; the accounting version and canonical schema;
-multisig signers/threshold and direct governance version2; VRF key hash, subscription ID,
+actual governance signers/threshold and direct governance version2; VRF key hash, subscription ID,
 confirmations and callback budget; pool keys/IDs and strategy bounds; conversion
 route IDs; source-chain custody version/request/snapshot/review identities;
 content CIDs and metadata URI; RPC URLs; API/indexer
@@ -248,8 +255,9 @@ bytes to creation code. It has no dynamic role arrays. Qualify the exact frozen
 creation code plus these actual arguments against EIP-3860 and its runtime
 against EIP-170; the earlier scheduled-controller 29-byte margin is historical.
 
-Use the actual multisig **contract address** as initial governance, not its
-internal signer addresses. Its threshold is managed by that wallet. Additional
+Use the actual governance wallet address as initial governance. If it is a Safe,
+use its **contract address**, not its internal owner address; its threshold is
+managed by that wallet. A governance EOA uses its own address directly. Additional
 keeper/guardian grants use `setKeeper`/`setGuardian`; governance wallet rotation
 uses the two-step handover. Preserve full reviewed authority history and exact
 runtime/bootstrap/source/exit bindings. Removing obsolete role arrays does not

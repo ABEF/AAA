@@ -54,6 +54,10 @@ before changing behavior. This file contains current instructions, not a timelin
   exit converts to fixed ZZZ under approved limits; explicit raw exit sends actual
   ETH/ZZZ without swaps or an aggregate loss promise. External custody is trusted;
   the source cannot force return. Exit does not migrate canonical NFT/reward rights.
+- One human operator (the user) controls governance and operates the services;
+  operator and governance are not separate people or approval roles. Keep the
+  automated keeper's limited key/capability distinct from governance. No extra
+  operator role, mandatory multi-person committee or new wallet is implied.
 - Current owner holds unclaimed rights, including prior owners' accruals.
   NFT earnings are individual+collective LP plus royalties, excluding reserves
   and duplicate claims/conversions/imports. Earnings, claimable and claimed differ.

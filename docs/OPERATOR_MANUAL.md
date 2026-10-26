@@ -11,6 +11,21 @@ procedure in the same change, or explain why there is no operator impact. Keep
 [features/evidence](IMPLEMENTATION_STATUS.md) and the [task ledger](TODO_WORKFLOW.md)
 aligned. This is a review obligation, not automatic synchronization.
 
+## One operator and governance wallet
+
+You are the project's single human operator and control its governance wallet.
+Governance actions in this manual are actions you authorize from that wallet;
+they do not require a separate operator, committee or second project manager.
+The contracts have no additional "operator" role. The keeper is your automated
+service, using a limited keeper key rather than loading the governance key onto
+the server. You can also control the guardian/deployment/treasury accounts;
+their permissions and rotation procedures remain distinct.
+
+The governance wallet can be a directly controlled account or a compatible
+single-owner Safe. Production wallet addresses/type remain unselected. For a
+Safe, use its own signing flow so the Safe is the target caller; for a direct
+account, that account itself submits the call. See [governance](GOVERNANCE.md).
+
 ## Find the right procedure
 
 Production minting is intended for OpenSea; the website Mint page is a demo.
@@ -275,8 +290,9 @@ The public site remains simulated and signing remains Anvil-only.
 After sealing, the wallet returned by `Access.governance()` calls the governed
 module **directly**. The module authenticates it through `Access.canConfigure`.
 The controller has `GOVERNANCE_VERSION=2`; it has no scheduling, generic forwarding
-executor or Timelock roles. A Safe owner uses the Safe's transaction flow so the
-Safe itself is the target caller; a personal owner address is not authorized.
+executor or Timelock roles. If governance is a Safe, its owner uses the Safe's
+transaction flow so the Safe itself is the target caller; that owner's personal
+account does not inherit the Safe's authority. A governance EOA calls directly.
 Review exact target, value, calldata and wallet nonce, simulate from that wallet,
 then verify the finalized receipt and resulting getters. **There is no governance
 waiting period.** A wallet proposal is not an executed target call. Cancel or

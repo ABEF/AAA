@@ -30,6 +30,13 @@ same-actual-pair pool movement remain. External exit handles issuer exchanges
 or outside bridging; integrated bridges/creator inboxes/remote ledgers are removed.
 There is no post-seal ZZZ identity replacement or timelock operation machinery.
 
+The user is the single human operator and controls the governance wallet as well
+as project services. There is no separate operator authority or committee.
+Dedicated keeper/guardian/bootstrap/recipient accounts describe capabilities,
+not additional people. A single-owner governance configuration is supported;
+actual production wallet type/addresses remain unselected. Keep the keeper's
+limited service key separate from the governance key.
+
 ## Artwork and financial reporting
 
 Eight base colors,58 palettes, four stable pattern slots, three rarities and four

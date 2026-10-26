@@ -26,6 +26,10 @@ remains open; use Git for the later docs-only receipt checkpoint.
 
 ## Continue here
 
+The user is the sole human operator and controls governance. Use that model in
+the [operator manual](OPERATOR_MANUAL.md#one-operator-and-governance-wallet);
+separate account capabilities do not require extra people or an operator role.
+
 1. Use the [single task ledger](../TODO.md): actual feeds/routes/RPC/VRF/authorities,
    OpenSea primary-mint path, current3 website and service acceptance remain open.
 2. Keep the current accounting3/governance2/fee1/localV4 profile explicit. Existing

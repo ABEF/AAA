@@ -959,17 +959,18 @@ Decisions and rehearsals before real funds.
 
 <a id="task-authorities-prices"></a>
 
-- [ ] **[Select authorities & price services](docs/DEPLOYMENT_ADDRESSES.md)** - To do. Confirm authority wallets and independently qualify two-source USD pricing for every enabled input/LP currency, with explicit proxy, bounds and outage policies.
+- [ ] **[Select authorities & price services](docs/DEPLOYMENT_ADDRESSES.md)** - To do. The sole human operator controls governance and project services. Select the actual wallet/signature policy and limited service accounts; independently qualify two-source USD pricing for every enabled input/LP currency. Public authority addresses and provider decisions remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Supply two independently reviewed USD sources per required asset, exact policy IDs/ordinals, decimals, denomination, source ages/disagreement, source runtimes/proxy/upstream authorities and sequencer/outage policy. See [source qualification](TODO.md#task-dual-price-qualification).
   - Independently review and stage sequencer policy replacement through the actual sealed governance controller, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
-  - Select and verify multisig/keeper/guardian/mint-recipient authorities, direct governance wallet/controller and fixed module bindings; prohibit mint/LP/royalty receiver collisions.
+  - Select and verify the sole operator-controlled governance wallet/signature policy and keeper/guardian/mint-recipient authorities, direct governance wallet/controller and fixed module bindings; prohibit mint/LP/royalty receiver collisions.
   - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap and provider-specific VRF subscription owner;17fixed core contracts (controller plus16sealed modules),15current helpers including the source-policy factory and two separately deployed converters, and reviewed chain dependencies. No creator payer/receiver factory/inbox is required. Observe lifecycle/origin, companion owners and exact factory bindings. Direct governance2 has no timelock queue, executor or scheduler; royalties use NFT.royaltyRewards(), and no burn wallet is required.
   - Record the unresolved independent ZZZ price-feed question and the team's evidence under [creator pricing](TODO.md#task-creator-zzz-price); keep PoPL authority selection under this task.
   - [Current authority/custody guide](docs/GOVERNANCE.md) distinguishes immediate direct governance approval from recipient custody, guardian pause and bounded keeper execution. User deferred production wallet selection; keep those gates open. VRF funding owner is provider-specific and must not spend locked principal or earned rewards.
+  - The user is the single human project operator and governance controller. No extra operator role/committee or multi-person approval is introduced. Current contracts and preflight already allow one signer/threshold1; the inventory field multisig remains schema-compatible. Dedicated limited keeper/guardian accounts do not require additional people. Actual public wallets remain unselected. See [operator model](docs/OPERATOR_MANUAL.md#one-operator-and-governance-wallet).
 
   </details>
 
@@ -1112,4 +1113,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `2f5480fba51463d71e92b1e48ba5db07724f7a413de722d1ff7645705a1bbd64`.
+Snapshot SHA-256: `ea625333779f84048a3998c3819c248db786c086dbf19766552e09df40c765bc`.
