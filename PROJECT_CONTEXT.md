@@ -58,7 +58,7 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Current market/input work: [review](reports/market-adversarial-20261026/REVIEW.md)
+Latest functional publication [60bfb96](https://github.com/ABEF/AAA/commit/60bfb96a1cde47b84af926dc62d9ca9b692925ac): [review](reports/market-adversarial-20261026/REVIEW.md)
 and [verification](reports/market-adversarial-20261026/VERIFICATION.md). Shared exact
 slot0 validation rejects contradictory sqrt/tick/fees before unsigned reviews,
 route reads and observed/manual release gates, preserving valid boundary ticks.
@@ -66,8 +66,8 @@ route reads and observed/manual release gates, preserving valid boundary ticks.
 cases pass, including both out-of-range contribution directions and real pool
 fees donated before newcomer activation. The missing fixed-ZZZ fixture binding
 was corrected; original failure evidence remains. Production Solidity/ABI/economics,
-services/Anvil/journals/website remain unchanged. Publication status is recorded
-in the work handoff and campaign receipt; actual qualification remains open.
+services/Anvil/journals/website remain unchanged. Exact main publication is verified in the [receipt](reports/market-adversarial-20261026/PUBLICATION.md);
+actual qualification remains open.
 
 Earlier functional97cbd16 / receipt25ac8d4:
 [reward resilience](reports/reward-resilience-20261026/VERIFICATION.md),437affected

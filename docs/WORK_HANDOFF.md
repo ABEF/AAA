@@ -16,9 +16,9 @@ rebalancing; actual pool donations are excluded from newcomer past income.
 Original first fixture failures remain preserved. Production Solidity/ABI/economics
 and existing services/Anvil/NFTs/LP/balances/journals/website/monitor are untouched.
 
-This candidate follows verified main25ac8d4 (reward resilience receipt) and is
-prepared for scoped main publication. Final exact local/remote identity is recorded
-in the campaign publication receipt after push. Earlier [resilience](../reports/reward-resilience-20261026/VERIFICATION.md),
+Implementation [60bfb96](https://github.com/ABEF/AAA/commit/60bfb96a1cde47b84af926dc62d9ca9b692925ac) is
+pushed on main, with exact local/remote equality verified in the
+[publication receipt](../reports/market-adversarial-20261026/PUBLICATION.md). Earlier [resilience](../reports/reward-resilience-20261026/VERIFICATION.md),
 [allocation](../reports/reward-allocation-20261026/VERIFICATION.md) and normal size/
 static receipts retain their own exact scopes; actual qualification remains open.
 
