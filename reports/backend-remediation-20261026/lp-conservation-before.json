@@ -1,0 +1,37 @@
+{
+  "observed_at_utc": "2026-10-25T23:40:44.568580+00:00",
+  "phase": "before",
+  "scope": "Current3/fee1 actual SQLite and Projection earnings composition plus explicitly versioned event conservation. Synthetic offline RPC only.",
+  "selection": [
+    "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests"
+  ],
+  "tests_run": 4,
+  "failures": [
+    {
+      "test": "test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_lp_fee_conservation.py\", line 61, in test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged\n    with self.assertRaises(HistoryError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: HistoryError not raised\n"
+    },
+    {
+      "test": "test_current_earnings_checks_actual_fee_intake_version_before_replay (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_earnings_checks_actual_fee_intake_version_before_replay)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_lp_fee_conservation.py\", line 75, in test_current_earnings_checks_actual_fee_intake_version_before_replay\n    with self.assertRaises(HistoryError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: HistoryError not raised\n"
+    },
+    {
+      "test": "test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match) (reader=<function CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match.<locals>.<lambda> at 0x00000198DBCD2200>)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_lp_fee_conservation.py\", line 70, in test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match\n    with self.subTest(reader=reader), self.assertRaises(HistoryError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: HistoryError not raised\n"
+    },
+    {
+      "test": "test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match) (reader=<function CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match.<locals>.<lambda> at 0x00000198DBCD2700>)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_lp_fee_conservation.py\", line 70, in test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match\n    with self.subTest(reader=reader), self.assertRaises(HistoryError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: HistoryError not raised\n"
+    }
+  ],
+  "errors": [],
+  "successful": false,
+  "elapsed_seconds": 1.25,
+  "source_sha256": {
+    "frontend_api/earnings.py": "c7bfd2287b3c0846e7b8ccab6fed30382ed1331a90814e825b39c790bbc6d6a0",
+    "frontend_api/earnings_replay.py": "10e7717b419fe0b26c7e73ec79b99b72071c6788c189b16dbdb1fae3773678d2",
+    "frontend_api/wallet_earnings.py": "dd0564859a8bb643848857f0d44ace7843098a8aae75ca381e6c6f1cb636dde3",
+    "tests_python/test_lp_fee_conservation.py": "3786691bf651fe4f4d4116f2afff498fa41d316178248480957ec4e490a2621d"
+  },
+  "source_unchanged": true
+}

@@ -1,0 +1,6 @@
+test_historical_dormant_zero_and_native_token_credit_are_distinguished (tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.259s
+
+OK

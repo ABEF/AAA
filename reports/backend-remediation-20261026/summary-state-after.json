@@ -1,0 +1,28 @@
+{
+  "observed_at_utc": "2026-10-25T23:43:27.969865+00:00",
+  "phase": "after",
+  "scope": "Eleven new summary integrity/state methods; final run adds twelve existing controls because their shared fixture now models the current profile and one extra weight getter.",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "reports\\backend-remediation-20261026\\run-summary-state-tests.py",
+    "after"
+  ],
+  "selection": [
+    "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests",
+    "tests_python.test_wallet_summary.WalletSummaryTests"
+  ],
+  "tests_run": 23,
+  "failures": [],
+  "errors": [],
+  "successful": true,
+  "elapsed_seconds": 0.0,
+  "source_sha256": {
+    "frontend_api/portfolio.py": "722014b141ff82e189469563f1f661dfaf23e600823a5af77f68b281c30ba6a3",
+    "tests_python/test_wallet_summary_integrity.py": "47ce6419c7a8d8c3c82684c6dae57d4605be989e5d7079accf071c5b28fbfa69",
+    "tests_python/test_wallet_summary.py": "926d617e1d69ec41e62975241febfc3fbfbcf1904cec0f8dca59f1a99fbc9dd9"
+  },
+  "sources_unchanged": true,
+  "repeated_initial_five_methods_not_additional_coverage": true
+}

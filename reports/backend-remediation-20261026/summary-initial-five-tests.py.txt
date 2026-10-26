@@ -1,0 +1,64 @@
+"""Wallet chunk integrity separates invalid data from an unavailable view.
+
+The existing confirmed-snapshot fixture supplies deterministic ABI words; no
+public provider, database, signing or production capacity is exercised here.
+"""
+import unittest
+
+from frontend_api.portfolio import read
+from frontend_api.service import ProjectionError
+from zzz_ops.errors import RpcError, WorkLimit
+from tests_python import test_wallet_summary as fixtures
+
+
+class WalletSummaryIntegrityTests(unittest.TestCase):
+    def broken_lp(self, failure):
+        projection = fixtures.Snapshot(2)
+        original = projection._call
+
+        def call(target, method, identifier, *, block, words):
+            if identifier == 1:
+                if isinstance(failure, Exception):
+                    raise failure
+                return list(failure)
+            return original(target, method, identifier, block=block, words=words)
+
+        projection._call = call
+        return projection
+
+    def test_nonboolean_lp_availability_rejects_the_entire_chunk(self):
+        for flag in (2, 255, 2**256 - 1):
+            with self.subTest(flag=flag):
+                projection = self.broken_lp((f'{flag:064x}', f'{100:064x}'))
+                with self.assertRaises(ProjectionError):
+                    read(projection, fixtures.OWNER, 90, 0)
+
+    def test_unavailable_lp_with_nonzero_amount_rejects_the_entire_chunk(self):
+        projection = self.broken_lp((f'{0:064x}', f'{100:064x}'))
+        with self.assertRaisesRegex(ProjectionError, 'Unavailable LP contains a value'):
+            read(projection, fixtures.OWNER, 90, 0)
+
+    def test_genuine_lp_view_outage_preserves_healthy_eth_without_partial_lp(self):
+        projection = self.broken_lp(RpcError('synthetic optional view outage'))
+        result = read(projection, fixtures.OWNER, 90, 0)
+        self.assertIsNone(result['lp_usd_18'])
+        self.assertEqual(result['claimable_eth_wei'], '15')
+        self.assertEqual(result['token_ids'], ['1', '2'])
+
+    def test_work_limit_is_never_converted_into_unavailable_lp(self):
+        projection = self.broken_lp(WorkLimit('rpc_budget'))
+        with self.assertRaises(WorkLimit):
+            read(projection, fixtures.OWNER, 90, 0)
+
+    def test_consistent_lp_and_eth_totals_retain_the_same_snapshot(self):
+        projection = fixtures.Snapshot(2)
+        result = read(projection, fixtures.OWNER, 90, 0)
+        self.assertEqual(result['lp_usd_18'], '300')
+        self.assertEqual(result['claimable_eth_wei'], '15')
+        self.assertEqual(result['provenance']['block_number'], 90)
+        self.assertEqual(result['provenance']['block_hash'], fixtures.HASH)
+        self.assertIsNone(result['next_offset'])
+
+
+if __name__ == '__main__':
+    unittest.main()

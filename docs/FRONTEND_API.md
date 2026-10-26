@@ -1,3 +1,15 @@
+## Financial read integrity - 2026-10-26
+
+Current accounting 3 requires actual native ETH first in the LP asset inventory.
+Validated inactive NFTs cannot have positive available LP/royalty credits.
+Wallet chunks reject malformed core data rather than masking it as an outage;
+genuine unreadable views still mark only the affected metric unavailable.
+One extra pinned royalty-weight read per current NFT checks inactive claims;
+16-item chunks and existing work/deadline limits remain. Fee-intake 1 earnings
+also verify funded-credit/allocation pairs and final observed-key dust.
+No response schema or signing capability changes. See [backend evidence](../reports/backend-remediation-20261026/VERIFICATION.md)
+and [earnings/claimable definitions](EARNINGS_HISTORY.md).
+
 ## Current local Position V3 profile - 2026-10-25
 
 ## Full audit: current-profile readers - 2026-10-25

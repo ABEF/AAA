@@ -47,6 +47,9 @@ class Earnings:
                     'Earnings module controller mismatch')
             require(p._addr('access','module(bytes32)','0x'+keccak256(label.encode()).hex(),block=block) == contract.address,
                     'Earnings module is not the sealed binding')
+            if role == 'fees' and p.fee_intake_version == 1:
+                require(int(p._call(contract.address,'FEE_INTAKE_VERSION()',block=block)[0],16) == 1,
+                        'Earnings fee-intake profile differs from the actual module')
         for role in ('rewards','royalties'):
             require(p._uint(role,'SCALE()',block=block) == SCALE, 'Unsupported earnings index scale')
         return {**{r:p.contracts[r].address for r in ('nft','rewards','royalties','vault','handoff')},
@@ -59,6 +62,13 @@ class Earnings:
         require(int(p._call(member,'totalEligible()',block=block)[0],16) == len(model.members), 'Collective member history differs')
         require(p._uint('royalties','totalWeight()',block=block) == sum(model.weights.values()), 'Royalty weight history differs')
         require(p._uint('royalties','activationCount()',block=block) == len(model.weights), 'Royalty activation history differs')
+        if p.fee_intake_version == 1:
+            fees = self.profiles[p.contracts['access'].address]['fees'].address
+            # The final carried remainder is not part of either reward index.
+            # Read only this epoch's observed fee keys, at the same pinned cutoff.
+            for bucket, asset in sorted(model.fee_keys):
+                actual = int(p._call(fees, 'dust(uint256,address)', bucket, asset, block=block)[0], 16)
+                require(actual == model.fee_dust[bucket, asset], 'LP fee dust history differs')
         for bucket, supply in model.supply.items():
             require(p._uint('vault','bucketTotalShares(uint256)',bucket,block=block) == supply, 'LP share history differs')
             for asset in lp_assets:
@@ -108,7 +118,7 @@ class Earnings:
             at={'blockHash':cutoff['hash'],'requireCanonical':True}
             emitters=self.check_profile(peer,at)
             a,b=peer._admitted(at)
-            model.begin(emitters,a,b,lower)
+            model.begin(emitters,a,b,lower,fee_intake_version=peer.fee_intake_version)
             replayed=peer._history_snapshot(cutoff,at,a,b,consumer=model,extra_emitters=tuple(emitters.values()))
             model.finish()
             self.reconcile(peer,model,at,a,b,replayed.provenance['minted_count'])

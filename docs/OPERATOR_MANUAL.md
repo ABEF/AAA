@@ -1,5 +1,26 @@
 # PoPL operator manual
 
+## Fee breakdown: verification and recovery - 2026-10-26
+
+This [backend correction](../reports/backend-remediation-20261026/REVIEW.md)
+adds no on-chain function, permission, config key, write action or service rollout.
+
+| Check / symptom | Operator procedure |
+| --- | --- |
+| Current LP-only fee history | Keep explicit fee intake 1. Verify actual `FeeController.FEE_INTAKE_VERSION()`, sealed module/runtime pins, all seven emitters and the same confirmed cutoff. Replay requires exact funded-credit/allocation pairs and actual `dust(bucket,asset)` for observed keys. Native address zero is permitted only in that getter's currency argument. |
+| Fee/dust mismatch or malformed core value | Stop serving the affected report; preserve raw logs, database, request/config hash, cutoff and error. Compare a separate replay copy with authentic independent-provider windows. Do not edit/delete history, guess zero, relabel a profile or trigger a financial transaction to hide an error. |
+| Current accounting-3 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked/outbound NFTs retain eligible funded rewards. |
+| Wallet read budget | Current accounting 3 adds one pinned `weightOf(id)` read per NFT; historical read shapes remain. Keep 16-item chunks, finite request limits and complete same-block chunk verification. Requalify actual latency/budgets before rollout; no unbounded retry or limit relaxation. |
+| Display totals | Ready to claim = funded LP plus royalty balances now. Earnings 24h/all time includes earlier claims and past owners; claims/conversions are not new income. Compound/buyback/gross receipts are not additional NFT claimable funds. |
+
+Recover by correcting provider/history/configuration evidence and rerunning the
+bounded read on a separate copy. Upgrade/rollback only matching API releases
+under the existing service runbook when separately authorized; never reset chain
+or journals. Genuine view outages may null only their metric; malformed Boolean,
+ABI, or contradictory available/value data now rejects the request. See
+[earnings operations](EARNINGS_HISTORY.md) and [167-method evidence](../reports/backend-remediation-20261026/VERIFICATION.md).
+Production feeds/history capacity and service acceptance remain open.
+
 ## Full current-candidate audit - 2026-10-25
 
 The [full audit](../reports/full-audit-20261025/REVIEW.md) preserves existing

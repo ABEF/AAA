@@ -1,5 +1,37 @@
 # Confirmed earnings and current-price USD values
 
+## Fee allocation integrity - 2026-10-26
+
+For explicit `fee_intake_version: 1`, the pinned actual FeeController must return
+`FEE_INTAKE_VERSION() == 1`. Replay pairs each allocation with its exact preceding
+funded LP credit in the same transaction, bucket and currency. Distributed 20*n
+must fund 16*n individual and 2*n collective; each remaining n goes to compound
+and buyback. A carried-only receipt has no reward credit. Membership dust
+settlement has its exact individual-only credit. Unrelated logs may interleave;
+missing, conflicting or unmatched entries reject the report.
+
+At every epoch cutoff, observed fee keys also reconcile `dust(bucket,asset)`
+against the actual pinned FeeController, including zero. Historical profile 0
+retains its reviewed semantics. This adds no transaction or policy setter.
+See [review and limitations](../reports/backend-remediation-20261026/HISTORY.md)
+and [final affected verification](../reports/backend-remediation-20261026/VERIFICATION.md).
+
+**Use the correct total:** NFT earnings = individual LP + collective LP + eligible
+royalties. Reserves and gross pool fees are not extra NFT income. Earned 24h/all
+time includes paid income; current claimable subtracts actual claims and includes
+the ledger's presently claimable receipts. Pending royalty receipts can be
+claimable before synchronization enters processed earnings. Claims/conversions
+never create a second earnings event. Original earned currencies use today's
+confirmed prices; a conversion is not a historical USD valuation.
+
+Head-state reconciliation is not proof of raw-log completeness or every historic
+timestamp: deleting an isolated unobserved dust-only receipt, or tampering with
+intermediate dust while restoring the true final remainder, may leave no head
+signal. Require authentic complete logs and the bounded independent-provider
+history audit. Never repair raw logs, assume zero or weaken the profile to force
+a report. Preserve the original database and diagnose using a separate replay
+copy with the same seven emitter bindings and confirmed cutoff.
+
 ## Native royalty custody boundary - 2026-10-25
 
 Current replay accepts native deferral only within an authenticated custody

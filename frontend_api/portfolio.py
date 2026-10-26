@@ -36,19 +36,30 @@ def read(p, wallet_address, block_number, offset):
     for identifier in selected:
         if p._addr('nft','ownerOf(uint256)',identifier,block=block)!=wallet:
             raise HistoryError('Wallet ownership differs from indexed snapshot')
+        # In the fixed current ledger, weight zero means this NFT has never
+        # activated; eligibility is permanent. Read actual views anyway so an
+        # unavailable or contradictory response is never replaced with zero.
+        inactive=False
+        if p.accounting_version==3:
+            weight=p._uint('royalties','weightOf(uint256)',identifier,block=block)
+            if weight>3:raise ProjectionError('Wallet NFT royalty weight exceeds the reviewed bound')
+            inactive=weight==0
         # Keep each metric independent: unreadable LP never becomes a zero sum.
         try:
             value=p._call(p.contracts['nft'].address,'currentLPValue(uint256)',identifier,block=block,words=2)
             available=_bool(value[0]);amount=int(value[1],16)
             if not available and amount:raise ProjectionError('Unavailable LP contains a value')
+            if inactive and available and amount:raise ProjectionError('Inactive NFT has attached LP value')
             lp_ok=lp_ok and available;total_lp+=amount
-        except WorkLimit:raise
+        except (WorkLimit,ProjectionError):raise
         except RpcError:lp_ok=False
         if eth_ok:
             try:
-                total_eth+=sum(p._uint(role,'claimable(uint256,address)',identifier,ZERO,block=block)
-                               for role in ('rewards','royalties'))
-            except WorkLimit:raise
+                amount=sum(p._uint(role,'claimable(uint256,address)',identifier,ZERO,block=block)
+                           for role in ('rewards','royalties'))
+                if inactive and amount:raise ProjectionError('Inactive NFT has native reward entitlement')
+                total_eth+=amount
+            except (WorkLimit,ProjectionError):raise
             except RpcError:eth_ok=False
     p._finish(header)
     digest=hashlib.sha256(','.join(map(str,ids)).encode('ascii')).hexdigest()

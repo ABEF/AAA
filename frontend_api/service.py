@@ -227,6 +227,7 @@ class Projection:
         native_slots = {
             'claimable(uint256,address)': {1}, 'eligibleFor(uint256,address)': {1},
             'ownerIndex(uint256,address)': {1}, 'eligibleCount(address)': {0},
+            'dust(uint256,address)': {1},
             'eligibleWeight(address)': {0}, 'index(address)': {0}, 'pending(address)': {0},
             'custodyNonce(address)': {0},
         }
@@ -350,6 +351,8 @@ class Projection:
                          for n in range(count)]
             if len(set(addresses)) != count or role == 'royalties' and (not addresses or addresses[0] != ZERO):
                 raise ProjectionError('Malformed admitted asset inventory')
+            if role == 'rewards' and self.accounting_version == 3 and (not addresses or addresses[0] != ZERO):
+                raise ProjectionError('Current LP ledger must begin with native ETH')
             if role == 'rewards' and (len(set(addresses)-{ZERO}) > 32 or (ZERO in addresses and addresses[0] != ZERO)):
                 raise ProjectionError('Malformed LP native settlement inventory')
             admitted.append(addresses)
@@ -530,6 +533,11 @@ class Projection:
         else:
             lp_balances = [self._balance('rewards', nft_id, a, block) for a in lp_assets]
             royalty_balances = [self._balance('royalties', nft_id, a, block) for a in royalty_assets]
+        # Never-activated NFTs cannot own either reward stream. Unknown
+        # currency balances remain unavailable rather than being invented as 0.
+        if weight == 0 and any(item.get('available', True) and int(item['raw']) != 0
+                               for balances in (lp_balances, royalty_balances) for item in balances):
+            raise ProjectionError('Inactive NFT has reward entitlement')
         result = {
             'schema': 2, 'chain_id': self.chain, 'token_id': str(nft_id), 'mint_ordinal': ordinal,
             'lifecycle': lifecycle,

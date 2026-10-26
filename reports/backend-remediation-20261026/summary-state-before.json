@@ -1,0 +1,52 @@
+{
+  "observed_at_utc": "2026-10-25T23:43:16.401144+00:00",
+  "phase": "before",
+  "scope": "Eleven new summary integrity/state methods; final run adds twelve existing controls because their shared fixture now models the current profile and one extra weight getter.",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "reports\\backend-remediation-20261026\\run-summary-state-tests.py",
+    "before"
+  ],
+  "selection": [
+    "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests"
+  ],
+  "tests_run": 11,
+  "failures": [
+    [
+      "test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='lp_raw')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_wallet_summary_integrity.py\", line 115, in test_current_inactive_nft_cannot_add_lp_or_either_native_reward\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='individual')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_wallet_summary_integrity.py\", line 115, in test_current_inactive_nft_cannot_add_lp_or_either_native_reward\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='royalties')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_wallet_summary_integrity.py\", line 115, in test_current_inactive_nft_cannot_add_lp_or_either_native_reward\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "test_current_invalid_royalty_weight_rejects_before_aggregation (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation) (weight=4)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_wallet_summary_integrity.py\", line 135, in test_current_invalid_royalty_weight_rejects_before_aggregation\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "test_current_invalid_royalty_weight_rejects_before_aggregation (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation) (weight=115792089237316195423570985008687907853269984665640564039457584007913129639935)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_wallet_summary_integrity.py\", line 135, in test_current_invalid_royalty_weight_rejects_before_aggregation\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "test_malformed_native_claimable_abi_rejects_the_entire_chunk (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_malformed_native_claimable_abi_rejects_the_entire_chunk)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_wallet_summary_integrity.py\", line 79, in test_malformed_native_claimable_abi_rejects_the_entire_chunk\n    with self.assertRaisesRegex(ProjectionError, 'Malformed static ABI result'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ]
+  ],
+  "errors": [],
+  "successful": false,
+  "elapsed_seconds": 0.016,
+  "source_sha256": {
+    "frontend_api/portfolio.py": "5800e3deaace5aeda73db58f2ee0f182405358a1e031c8d223c0adcb61cec78f",
+    "tests_python/test_wallet_summary_integrity.py": "47ce6419c7a8d8c3c82684c6dae57d4605be989e5d7079accf071c5b28fbfa69",
+    "tests_python/test_wallet_summary.py": "926d617e1d69ec41e62975241febfc3fbfbcf1904cec0f8dca59f1a99fbc9dd9"
+  },
+  "sources_unchanged": true,
+  "repeated_initial_five_methods_not_additional_coverage": true
+}

@@ -1,0 +1,57 @@
+{
+  "observed_at_utc": "2026-10-25T23:39:35.346675+00:00",
+  "phase": "before",
+  "scope": "Seven new actual current/historical Projection methods; raw ABI fixtures, no real RPC or signing.",
+  "source_sha256": {
+    "frontend_api/service.py": "ca465b0159551ac5046e2aa52e800a8e2a6d3b4e8a4919663c2ecaf2d66053a8",
+    "tests_python/test_current_fee_integrity.py": "d53fc2c6f7abf9ace895c5c780c24617336f147ab0ac81573dbf1fd0f2b9b43d"
+  },
+  "sources_unchanged": true,
+  "tests_run": 7,
+  "failures": [
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row (assets=[])",
+      "frontend_api.service.ProjectionError: Admitted assets differ from the reviewed descriptor allowlist\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 66, in test_current_lp_inventory_requires_native_first_without_inventing_a_row\n    with self.assertRaisesRegex(ProjectionError,'LP ledger must begin with native ETH'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"LP ledger must begin with native ETH\" does not match \"Admitted assets differ from the reviewed descriptor allowlist\"\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row (assets=['0x0000000000000000000000000000000000000014', '0x0000000000000000000000000000000000000015'])",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 66, in test_current_lp_inventory_requires_native_first_without_inventing_a_row\n    with self.assertRaisesRegex(ProjectionError,'LP ledger must begin with native ETH'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row (assets=['0x0000000000000000000000000000000000000014', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000015'])",
+      "frontend_api.service.ProjectionError: Malformed LP native settlement inventory\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 66, in test_current_lp_inventory_requires_native_first_without_inventing_a_row\n    with self.assertRaisesRegex(ProjectionError,'LP ledger must begin with native ETH'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"LP ledger must begin with native ETH\" does not match \"Malformed LP native settlement inventory\"\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected (asset='0x0000000000000000000000000000000000000000')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 74, in test_inactive_native_and_token_lp_credit_is_rejected\n    with self.assertRaisesRegex(ProjectionError,'Inactive NFT has reward entitlement'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected (asset='0x0000000000000000000000000000000000000014')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 74, in test_inactive_native_and_token_lp_credit_is_rejected\n    with self.assertRaisesRegex(ProjectionError,'Inactive NFT has reward entitlement'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected (asset='0x0000000000000000000000000000000000000015')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 74, in test_inactive_native_and_token_lp_credit_is_rejected\n    with self.assertRaisesRegex(ProjectionError,'Inactive NFT has reward entitlement'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_royalty_credit_without_optional_reporting_is_rejected (asset='0x0000000000000000000000000000000000000000')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 82, in test_inactive_royalty_credit_without_optional_reporting_is_rejected\n    with self.assertRaisesRegex(ProjectionError,'Inactive NFT has reward entitlement'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_royalty_credit_without_optional_reporting_is_rejected (asset='0x0000000000000000000000000000000000000015')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 82, in test_inactive_royalty_credit_without_optional_reporting_is_rejected\n    with self.assertRaisesRegex(ProjectionError,'Inactive NFT has reward entitlement'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_optional_reporting_does_not_permit_inactive_lp_credit (asset='0x0000000000000000000000000000000000000000')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 90, in test_optional_reporting_does_not_permit_inactive_lp_credit\n    with self.assertRaisesRegex(ProjectionError,'Inactive NFT has reward entitlement'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_optional_reporting_does_not_permit_inactive_lp_credit (asset='0x0000000000000000000000000000000000000014')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_current_fee_integrity.py\", line 90, in test_optional_reporting_does_not_permit_inactive_lp_credit\n    with self.assertRaisesRegex(ProjectionError,'Inactive NFT has reward entitlement'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ]
+  ],
+  "errors": [],
+  "skips": [],
+  "successful": false,
+  "elapsed_seconds": 3.172
+}

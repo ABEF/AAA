@@ -67,6 +67,10 @@ class Replay:
         self.collective_index = defaultdict(int)
         self.royalty_index = defaultdict(int)
         self.fee_dust = defaultdict(int)
+        self.fee_keys = set()
+        self.fee_intake_version = 0
+        self.pending_lp_credit = {}
+        self.pending_lp_transaction = None
         self.scaled = defaultdict(int)
         self.totals = defaultdict(int)
         self.day = defaultdict(int)
@@ -74,7 +78,12 @@ class Replay:
         self.last_timestamp = -1
         self.frozen = self.retired = False
 
-    def begin(self, emitters, lp_assets, royalty_assets, lower=None):
+    def begin(self, emitters, lp_assets, royalty_assets, lower=None, *, fee_intake_version=0):
+        require(type(fee_intake_version) is int and fee_intake_version in (0, 1),
+                'Unsupported earnings fee-intake profile')
+        require(not self.pending_lp_credit, 'Previous earnings epoch left an unmatched LP credit')
+        self.fee_intake_version = fee_intake_version
+        self.fee_keys = set()
         self.roles = {value: key for key, value in emitters.items()}
         self.lp_assets, self.royalty_assets = set(lp_assets), set(royalty_assets)
         self.lower, self.started = lower, lower is None
@@ -126,6 +135,9 @@ class Replay:
             # Import Transfers/backing/constructor prefunds are not new earnings.
             return
         require(not self.retired, 'Economic events follow canonical retirement')
+        if self.fee_intake_version == 1 and self.pending_lp_credit:
+            require(transaction == self.pending_lp_transaction,
+                    'LP reward credit lacks its same-transaction fee allocation')
         require(self.last_timestamp <= timestamp <= self.timestamp, 'Earnings chronology is inconsistent')
         self.last_timestamp = timestamp
         self.events += 1
@@ -167,6 +179,11 @@ class Replay:
             require(asset in self.lp_assets and self.supply[bucket] > 0 and sum(d) > 0,
                     'LP allocation lacks admitted asset/shares')
             personal, collective = d
+            if self.fee_intake_version == 1:
+                key = bucket, asset
+                require(key not in self.pending_lp_credit, 'Repeated unmatched LP reward credit')
+                self.pending_lp_credit[key] = personal, collective
+                self.pending_lp_transaction = transaction
             owner_delta = personal*SCALE//self.supply[bucket]
             self.owner_index[bucket, asset] += owner_delta
             self.add('lp_owner_allocated', asset, personal, timestamp)
@@ -181,18 +198,36 @@ class Replay:
             bucket, asset = t[0], _topic_address(topics[2])
             require(asset in self.lp_assets and self.supply[bucket] > 0, 'Unreviewed LP revenue currency/bucket')
             key = bucket, asset
+            self.fee_keys.add(key)
             if name == 'FeesAllocated':
                 distributed, dust = d
                 require(distributed % 20 == 0 and dust < 20, 'Invalid fee allocation rounding')
+                if self.fee_intake_version == 1:
+                    self.fee_credit(key, (distributed//20*16, distributed//20*2) if distributed else None)
                 self.add('lp_processed', asset, distributed+dust-self.fee_dust[key], timestamp)
                 self.fee_dust[key] = dust
                 self.add('lp_compounding_allocated', asset, distributed//20, timestamp)
                 self.add('lp_buyback_allocated', asset, distributed//20, timestamp)
             else:
                 require(d[0] == self.fee_dust[key] and 0 < d[0] < 20, 'Invalid carried fee dust')
+                if self.fee_intake_version == 1:
+                    self.fee_credit(key, (d[0], 0))
                 self.fee_dust[key] = 0
         else:
             self.royalty(name, topics, t, d, timestamp, transaction)
+
+    def fee_credit(self, key, expected):
+        """LP-only intake emits its exact funded reward credit before the fee log.
+
+        Unrelated logs may interleave; the bucket, currency and transaction must
+        still match. A small carried-only receipt emits no reward credit.
+        """
+        require(self.pending_lp_credit.get(key) == expected,
+                'Fee allocation differs from its funded LP reward credit')
+        if expected is not None:
+            del self.pending_lp_credit[key]
+            if not self.pending_lp_credit:
+                self.pending_lp_transaction = None
 
     def royalty(self, name, topics, t, d, timestamp, transaction):
         if name == 'AssetAdded':
@@ -264,7 +299,8 @@ class Replay:
                 self.cohorts[asset] = set(self.weights)
 
     def finish(self):
-        require(self.started and not self.deferred and not self.pending_recovery, 'Incomplete earnings epoch')
+        require(self.started and not self.deferred and not self.pending_recovery and not self.pending_lp_credit,
+                'Incomplete earnings epoch')
         require(set(self.weights) == self.members == set(self.shares), 'Activation/share/membership events are incomplete')
         require(set(self.cohorts) == self.royalty_assets, 'Royalty admission history is incomplete')
 

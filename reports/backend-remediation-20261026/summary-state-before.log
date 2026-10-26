@@ -1,0 +1,75 @@
+test_consistent_lp_and_eth_totals_retain_the_same_snapshot (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_consistent_lp_and_eth_totals_retain_the_same_snapshot) ... ok
+test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) ... 
+  test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='lp_raw') ... FAIL
+  test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='individual') ... FAIL
+  test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='royalties') ... FAIL
+test_current_inactive_views_are_read_not_assumed_zero (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_views_are_read_not_assumed_zero) ... ok
+test_current_invalid_royalty_weight_rejects_before_aggregation (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation) ... 
+  test_current_invalid_royalty_weight_rejects_before_aggregation (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation) (weight=4) ... FAIL
+  test_current_invalid_royalty_weight_rejects_before_aggregation (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation) (weight=115792089237316195423570985008687907853269984665640564039457584007913129639935) ... FAIL
+test_genuine_lp_view_outage_preserves_healthy_eth_without_partial_lp (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_genuine_lp_view_outage_preserves_healthy_eth_without_partial_lp) ... ok
+test_genuine_native_claimable_outage_preserves_lp_without_partial_eth (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_genuine_native_claimable_outage_preserves_lp_without_partial_eth) ... ok
+test_historical_profiles_keep_their_original_read_shape (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_historical_profiles_keep_their_original_read_shape) ... ok
+test_malformed_native_claimable_abi_rejects_the_entire_chunk (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_malformed_native_claimable_abi_rejects_the_entire_chunk) ... FAIL
+test_nonboolean_lp_availability_rejects_the_entire_chunk (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_nonboolean_lp_availability_rejects_the_entire_chunk) ... ok
+test_unavailable_lp_with_nonzero_amount_rejects_the_entire_chunk (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_unavailable_lp_with_nonzero_amount_rejects_the_entire_chunk) ... ok
+test_work_limit_is_never_converted_into_unavailable_lp (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_work_limit_is_never_converted_into_unavailable_lp) ... ok
+
+======================================================================
+FAIL: test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='lp_raw')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_summary_integrity.py", line 115, in test_current_inactive_nft_cannot_add_lp_or_either_native_reward
+    with self.assertRaises(ProjectionError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='individual')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_summary_integrity.py", line 115, in test_current_inactive_nft_cannot_add_lp_or_either_native_reward
+    with self.assertRaises(ProjectionError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_current_inactive_nft_cannot_add_lp_or_either_native_reward (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward) (component='royalties')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_summary_integrity.py", line 115, in test_current_inactive_nft_cannot_add_lp_or_either_native_reward
+    with self.assertRaises(ProjectionError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_current_invalid_royalty_weight_rejects_before_aggregation (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation) (weight=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_summary_integrity.py", line 135, in test_current_invalid_royalty_weight_rejects_before_aggregation
+    with self.assertRaises(ProjectionError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_current_invalid_royalty_weight_rejects_before_aggregation (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation) (weight=115792089237316195423570985008687907853269984665640564039457584007913129639935)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_summary_integrity.py", line 135, in test_current_invalid_royalty_weight_rejects_before_aggregation
+    with self.assertRaises(ProjectionError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_malformed_native_claimable_abi_rejects_the_entire_chunk (tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_malformed_native_claimable_abi_rejects_the_entire_chunk)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_summary_integrity.py", line 79, in test_malformed_native_claimable_abi_rejects_the_entire_chunk
+    with self.assertRaisesRegex(ProjectionError, 'Malformed static ABI result'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.008s
+
+FAILED (failures=6)

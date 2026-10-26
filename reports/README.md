@@ -1,5 +1,17 @@
 # Verification evidence
 
+## Backend fee-breakdown remediation - 2026-10-26
+
+[Review](backend-remediation-20261026/REVIEW.md),
+[verification](backend-remediation-20261026/VERIFICATION.md),
+[history](backend-remediation-20261026/HISTORY.md),
+[current profile](backend-remediation-20261026/PROFILE.md) and
+[wallet summary](backend-remediation-20261026/OPERATIONS.md) record the five-module
+reporting fixes. Final affected suite: 167 distinct Python methods, 31 new and
+136 existing. Pre-fix counterexamples remain; earlier overlapping runs are not
+summed as coverage. Solidity/economics and running services are unchanged.
+Complete authentic logs, actual services and independent audit remain required.
+
 ## Full current-candidate audit - 2026-10-26
 
 Started25October: [findings](full-audit-20261025/REVIEW.md),

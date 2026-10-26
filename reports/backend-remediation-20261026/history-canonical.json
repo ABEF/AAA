@@ -1,0 +1,21 @@
+{
+  "observed_at_utc": "2026-10-25T23:49:40.180773+00:00",
+  "phase": "canonical",
+  "scope": "Synthetic offline RPC, actual byte-ABI Projection and disposable SQLite only. No network or signing.",
+  "selection": [
+    "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_canonical_epoch_skips_imports_and_resets_only_observed_fee_keys"
+  ],
+  "tests_run": 1,
+  "failures": [],
+  "errors": [],
+  "successful": true,
+  "elapsed_seconds": 0.172,
+  "source_sha256": {
+    "frontend_api/earnings.py": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+    "frontend_api/earnings_replay.py": "044b3f349fd8ef6c1dcfd198aa82515b08cfea82c02284d4156fd790b285a46e",
+    "frontend_api/wallet_earnings.py": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+    "frontend_api/service.py": "335b6a87bd3a2161da9a403d8aeaaa81a542e37e3c6ab36ec43c921a0ab61b44",
+    "tests_python/test_lp_fee_conservation.py": "5285e4c93e075b50c24ad63bf4eb642e9225f48310739d37fdf4274a53d4f968"
+  },
+  "source_unchanged": true
+}

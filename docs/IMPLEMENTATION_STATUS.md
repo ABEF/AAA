@@ -1,5 +1,24 @@
 # Feature and evidence reference
 
+## Fee-breakdown integrity - 2026-10-26
+
+The [backend review](../reports/backend-remediation-20261026/REVIEW.md) implements
+same-transaction/bucket/currency pairing of current LP-only fee allocations and
+funded reward credits, actual fee-version validation and pinned carried-dust
+reconciliation. NFT reads reject impossible inactive credits and current LP
+inventories without native ETH first. Wallet summaries preserve malformed-data
+errors while genuine currency/view outages remain unavailable; one extra pinned
+weight read applies only to current accounting 3.
+
+The final [affected suite](../reports/backend-remediation-20261026/affected-suite.json)
+passes **167 distinct methods: 31 new and 136 existing**, across ten modules.
+Earlier focused runs are subsets or pre-fix controls, not additional coverage.
+Five backend modules change; Solidity, API schema, profiles, fee split, rights,
+signing and live services do not. Current earnings mean individual + collective
+LP rewards plus royalties, excluding compound/buyback and duplicate conversion
+income. Complete authentic logs and qualified services/prices remain release
+requirements. Production NOT APPROVED.
+
 ## Full current-candidate audit - 2026-10-26
 
 Started25October and completed26October Europe/Paris. The [review](../reports/full-audit-20261025/REVIEW.md),

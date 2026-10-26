@@ -1,5 +1,13 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The [fee-breakdown follow-up](reports/backend-remediation-20261026/REVIEW.md)
+binds current fee allocations to their actual funded credits and carried dust,
+rejects impossible dormant rewards and missing native ETH inventory, and stops
+wallet summaries masking malformed core values as outages. **167 affected Python
+methods pass**; Solidity, economic rights and running services are unchanged.
+Earnings history includes already claimed income; claimable balances show only
+what remains available. [Definitions and verification](reports/backend-remediation-20261026/VERIFICATION.md).
+
 PoPL connects transferable NFTs to vault-managed liquidity. Activation attaches
 an LP allocation and unlocks funded LP fees plus a separate share of NFT-sale
 royalties. Holders cannot redeem principal; governance can approve trusted

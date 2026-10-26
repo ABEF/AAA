@@ -1,0 +1,38 @@
+test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) ... 
+  test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FC62A3E0>) ... FAIL
+  test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FCF91BC0>) ... FAIL
+  test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FCF91B20>) ... FAIL
+test_current_native_dust_is_reconciled_without_calling_untouched_currencies (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_native_dust_is_reconciled_without_calling_untouched_currencies) ... ok
+test_legacy_profile_needs_no_new_fee_dust_getter (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_legacy_profile_needs_no_new_fee_dust_getter) ... ok
+
+======================================================================
+FAIL: test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FC62A3E0>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lp_fee_conservation.py", line 203, in test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes
+    with self.subTest(reader=reader), self.assertRaises(HistoryError):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FCF91BC0>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lp_fee_conservation.py", line 203, in test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes
+    with self.subTest(reader=reader), self.assertRaises(HistoryError):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FCF91B20>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lp_fee_conservation.py", line 203, in test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes
+    with self.subTest(reader=reader), self.assertRaises(HistoryError):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.969s
+
+FAILED (failures=3)

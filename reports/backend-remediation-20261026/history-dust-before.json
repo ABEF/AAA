@@ -1,0 +1,34 @@
+{
+  "observed_at_utc": "2026-10-25T23:46:56.560002+00:00",
+  "phase": "dust-before",
+  "scope": "Synthetic offline RPC, actual byte-ABI Projection and disposable SQLite only. No network or signing.",
+  "selection": [
+    "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests"
+  ],
+  "tests_run": 3,
+  "failures": [
+    {
+      "test": "test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FC62A3E0>)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_lp_fee_conservation.py\", line 203, in test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes\n    with self.subTest(reader=reader), self.assertRaises(HistoryError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: HistoryError not raised\n"
+    },
+    {
+      "test": "test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FCF91BC0>)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_lp_fee_conservation.py\", line 203, in test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes\n    with self.subTest(reader=reader), self.assertRaises(HistoryError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: HistoryError not raised\n"
+    },
+    {
+      "test": "test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x00000274FCF91B20>)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_lp_fee_conservation.py\", line 203, in test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes\n    with self.subTest(reader=reader), self.assertRaises(HistoryError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: HistoryError not raised\n"
+    }
+  ],
+  "errors": [],
+  "successful": false,
+  "elapsed_seconds": 1.14,
+  "source_sha256": {
+    "frontend_api/earnings.py": "9e293908cdb55fee387a8e652b3f07d19b7c0e5b9e4f7e0d22fc007c69f8c30a",
+    "frontend_api/earnings_replay.py": "6099a655ee82017110ec77759a555e8e41aae511272e63ecd234cc3447d5308f",
+    "frontend_api/wallet_earnings.py": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+    "frontend_api/service.py": "4963d9e647481de72316e66d13e42a47735b3be95bd47d3a89401b45bc77d8eb",
+    "tests_python/test_lp_fee_conservation.py": "68dfad555fe182361c672d5522d8056caafe0bba0349a494803973caea85d8d3"
+  },
+  "source_unchanged": true
+}

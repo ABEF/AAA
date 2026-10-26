@@ -57,7 +57,7 @@ def read(engine, wallet_address, block_number, offset):
         at = {'blockHash': cutoff['hash'], 'requireCanonical': True}
         emitters = engine.check_profile(peer, at)
         a, b = peer._admitted(at)
-        model.begin(emitters, a, b, lower)
+        model.begin(emitters, a, b, lower, fee_intake_version=peer.fee_intake_version)
         replayed = peer._history_snapshot(cutoff, at, a, b, consumer=model, extra_emitters=tuple(emitters.values()))
         model.finish()
         engine.reconcile(peer, model, at, a, b, replayed.provenance['minted_count'])

@@ -1,0 +1,93 @@
+{
+  "observed_at_utc": "2026-10-25T23:47:18.877616+00:00",
+  "scope": "Offline actual current3 Projection and temporary SQLite. No network, signatures or production database.",
+  "original_fee_log": {
+    "address": "0x0000000000000000000000000000000000000028",
+    "blockHash": "0x00000000000000000000000000000000000000000000000000000000000186b4",
+    "blockNumber": "0x14",
+    "data": "0x00000000000000000000000000000000000000000000000000000000000000640000000000000000000000000000000000000000000000000000000000000000",
+    "logIndex": "0x1",
+    "removed": false,
+    "topics": [
+      "0x062a097cb1aaff0fc14f4995579e726e2d0cc1ca460604f79ec411cde485c3f8",
+      "0x0000000000000000000000000000000000000000000000000000000000000005",
+      "0x0000000000000000000000000000000000000000000000000000000000000014"
+    ],
+    "transactionHash": "0x0000000000000000000000000000000000000000000000000000000000018a9c"
+  },
+  "corrupted_fee_log": {
+    "address": "0x0000000000000000000000000000000000000028",
+    "blockHash": "0x00000000000000000000000000000000000000000000000000000000000186b4",
+    "blockNumber": "0x14",
+    "data": "0x00000000000000000000000000000000000000000000000000000000000000640000000000000000000000000000000000000000000000000000000000000013",
+    "logIndex": "0x1",
+    "removed": false,
+    "topics": [
+      "0x062a097cb1aaff0fc14f4995579e726e2d0cc1ca460604f79ec411cde485c3f8",
+      "0x0000000000000000000000000000000000000000000000000000000000000005",
+      "0x0000000000000000000000000000000000000000000000000000000000000014"
+    ],
+    "transactionHash": "0x0000000000000000000000000000000000000000000000000000000000018a9c"
+  },
+  "onchain_dust_raw": "0",
+  "original_collection": {
+    "asset": "0x0000000000000000000000000000000000000014",
+    "symbol": "ZZZ",
+    "decimals": 18,
+    "lp_processed_raw": "100",
+    "lp_owner_allocated_raw": "80",
+    "lp_collective_allocated_raw": "10",
+    "lp_compounding_allocated_raw": "5",
+    "lp_buyback_allocated_raw": "5",
+    "lp_collective_quarantined_raw": "0",
+    "royalties_received_raw": "0",
+    "royalties_allocated_raw": "0",
+    "royalties_quarantined_raw": "0",
+    "current_price": {
+      "available": false,
+      "usd_per_token_18": null,
+      "reason": "price_not_configured"
+    },
+    "usd_at_current_price_18": {
+      "lp_processed": null,
+      "lp_owner_allocated": null,
+      "lp_collective_allocated": null,
+      "lp_compounding_allocated": null,
+      "lp_buyback_allocated": null,
+      "lp_collective_quarantined": "0",
+      "royalties_received": "0",
+      "royalties_allocated": "0",
+      "royalties_quarantined": "0"
+    }
+  },
+  "incorrectly_accepted_collection": {
+    "asset": "0x0000000000000000000000000000000000000014",
+    "symbol": "ZZZ",
+    "decimals": 18,
+    "lp_processed_raw": "119",
+    "lp_owner_allocated_raw": "80",
+    "lp_collective_allocated_raw": "10",
+    "lp_compounding_allocated_raw": "5",
+    "lp_buyback_allocated_raw": "5",
+    "lp_collective_quarantined_raw": "0",
+    "royalties_received_raw": "0",
+    "royalties_allocated_raw": "0",
+    "royalties_quarantined_raw": "0",
+    "current_price": {
+      "available": false,
+      "usd_per_token_18": null,
+      "reason": "price_not_configured"
+    },
+    "usd_at_current_price_18": {
+      "lp_processed": null,
+      "lp_owner_allocated": null,
+      "lp_collective_allocated": null,
+      "lp_compounding_allocated": null,
+      "lp_buyback_allocated": null,
+      "lp_collective_quarantined": "0",
+      "royalties_received": "0",
+      "royalties_allocated": "0",
+      "royalties_quarantined": "0"
+    }
+  }
+}

@@ -1,0 +1,2014 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-10-25T23:50:49.977640+00:00",
+  "finished_at_utc": "2026-10-25T23:51:19.541203+00:00",
+  "scope": "One final affected Python sweep for five changed backend modules; no Solidity or whole-Python regression, live RPC, signing, services or local-chain actions.",
+  "selection": {
+    "modules": [
+      "tests_python.test_frontend_api",
+      "tests_python.test_royalty_reporting",
+      "tests_python.test_native_royalty_custody_reporting",
+      "tests_python.test_earnings",
+      "tests_python.test_wallet_earnings",
+      "tests_python.test_collection",
+      "tests_python.test_wallet_summary",
+      "tests_python.test_current_fee_integrity",
+      "tests_python.test_wallet_summary_integrity",
+      "tests_python.test_lp_fee_conservation"
+    ],
+    "defined_test_classes_only": true,
+    "classes": [
+      "tests_python.test_collection.CollectionIntegrationTests",
+      "tests_python.test_collection.CollectionTests",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests",
+      "tests_python.test_earnings.EarningsAPITests",
+      "tests_python.test_earnings.EarningsLineageTests",
+      "tests_python.test_earnings.EarningsReplayTests",
+      "tests_python.test_frontend_api.FrontendHTTPTests",
+      "tests_python.test_frontend_api.FrontendProjectionTests",
+      "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests",
+      "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests",
+      "tests_python.test_lp_fee_conservation.StrictFeeReplayTests",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests",
+      "tests_python.test_royalty_reporting.ConversionHistoryTests",
+      "tests_python.test_royalty_reporting.ConversionLineageTests",
+      "tests_python.test_royalty_reporting.ReportingTests",
+      "tests_python.test_wallet_earnings.SelectionReplayTests",
+      "tests_python.test_wallet_earnings.WalletEarningsTests",
+      "tests_python.test_wallet_earnings.WalletLineageTests",
+      "tests_python.test_wallet_summary.WalletSummaryTests",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests"
+    ],
+    "deduplicated_method_ids": [
+      "tests_python.test_collection.CollectionIntegrationTests.test_http_and_both_supervised_dispatchers",
+      "tests_python.test_collection.CollectionIntegrationTests.test_real_sqlite_inventory_uses_exact_contract_owner_and_lp",
+      "tests_python.test_collection.CollectionTests.test_complete_chunks_cover_all_nfts_once_and_match_lp",
+      "tests_python.test_collection.CollectionTests.test_current_dormant_three_cannot_report_unknown_lp",
+      "tests_python.test_collection.CollectionTests.test_current_lp_not_lifetime_contributions_sets_evolution",
+      "tests_python.test_collection.CollectionTests.test_dormant_cannot_report_unknown_lp",
+      "tests_python.test_collection.CollectionTests.test_empty_collection_is_confirmed_zero",
+      "tests_python.test_collection.CollectionTests.test_full_cap_has_bounded_page_reads",
+      "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks",
+      "tests_python.test_collection.CollectionTests.test_malformed_boolean_not_masked_as_outage",
+      "tests_python.test_collection.CollectionTests.test_missing_history_stale_and_reorg_rejected",
+      "tests_python.test_collection.CollectionTests.test_missing_one_lp_poison_total_without_erasing_other_positions",
+      "tests_python.test_collection.CollectionTests.test_remote_eligibility_persists_without_fabricated_local_value",
+      "tests_python.test_collection.CollectionTests.test_valuation_read_outage_does_not_become_zero",
+      "tests_python.test_collection.CollectionTests.test_work_budget_not_masked_as_unavailable",
+      "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected",
+      "tests_python.test_collection.CollectionTests.test_wrong_owner_rejected",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_active_parked_and_outbound_claims_are_not_treated_as_dormant",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_source_only_lp_inventory_keeps_its_explicit_profile",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_royalty_credit_without_optional_reporting_is_rejected",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_optional_reporting_does_not_permit_inactive_lp_credit",
+      "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_verified_dormant_zero_and_optional_unavailable_remain_distinct",
+      "tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income",
+      "tests_python.test_earnings.EarningsAPITests.test_collection_and_nft_reconcile_exact_confirmed_history",
+      "tests_python.test_earnings.EarningsAPITests.test_collection_before_first_mint_is_zero_not_an_indexer_error",
+      "tests_python.test_earnings.EarningsAPITests.test_conversion_and_later_native_claim_preserve_original_earned_currency",
+      "tests_python.test_earnings.EarningsAPITests.test_current_price_changes_usd_without_changing_earned_tokens",
+      "tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts",
+      "tests_python.test_earnings.EarningsAPITests.test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget",
+      "tests_python.test_earnings.EarningsAPITests.test_final_snapshot_expiry_rejects_even_successful_replay",
+      "tests_python.test_earnings.EarningsAPITests.test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income",
+      "tests_python.test_earnings.EarningsAPITests.test_missing_profile_coverage_and_unminted_nft_are_explicit",
+      "tests_python.test_earnings.EarningsAPITests.test_pending_royalties_do_not_enter_processed_earnings",
+      "tests_python.test_earnings.EarningsAPITests.test_price_alias_and_module_policy_cannot_be_silently_changed",
+      "tests_python.test_earnings.EarningsAPITests.test_read_only_http_endpoints_and_invalid_ids",
+      "tests_python.test_earnings.EarningsAPITests.test_runtime_drift_and_history_gaps_fail_closed",
+      "tests_python.test_earnings.EarningsAPITests.test_supervised_worker_dispatches_read_only_earnings",
+      "tests_python.test_earnings.EarningsLineageTests.test_real_receipt_and_two_databases_preserve_both_epochs_without_import_income",
+      "tests_python.test_earnings.EarningsReplayTests.test_canonical_recovery_reverse_event_order_still_protects_earlier_cohort",
+      "tests_python.test_earnings.EarningsReplayTests.test_collection_gross_dust_and_allocations_do_not_double_count",
+      "tests_python.test_earnings.EarningsReplayTests.test_individual_collective_royalties_and_topup_have_independent_weights",
+      "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed",
+      "tests_python.test_earnings.EarningsReplayTests.test_prior_fees_exclude_new_entrant_and_transfers_do_not_reset_earnings",
+      "tests_python.test_earnings.EarningsReplayTests.test_recovery_assigns_old_receipts_before_new_members_join",
+      "tests_python.test_earnings.EarningsReplayTests.test_same_chain_epoch_carries_rights_and_skips_import_transfers",
+      "tests_python.test_earnings.EarningsReplayTests.test_thousand_nfts_share_one_pool_without_thousand_reward_reads",
+      "tests_python.test_earnings.EarningsReplayTests.test_uneligible_receipts_and_admission_prefunds_are_not_nft_earnings",
+      "tests_python.test_earnings.EarningsReplayTests.test_unknown_emitter_claim_and_conversion_events_are_not_income",
+      "tests_python.test_earnings.EarningsReplayTests.test_window_boundary_and_fraction_carry_are_exact",
+      "tests_python.test_earnings.EarningsReplayTests.test_work_budget_and_malformed_layout_stop_replay",
+      "tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc",
+      "tests_python.test_frontend_api.FrontendHTTPTests.test_http_read_is_exact_json_and_not_cacheable",
+      "tests_python.test_frontend_api.FrontendHTTPTests.test_unavailable_response_does_not_leak_provider_error",
+      "tests_python.test_frontend_api.FrontendHTTPTests.test_unknown_nft_is_not_a_zero_balance_position",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_asset_count_and_duplicates_bounded",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_changed_deployment_anchor_rejected_before_contract_reads",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_identity_excludes_private_rpc_endpoint",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_current_value_can_downgrade_evolution_without_losing_royalty_weight",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_decimals_and_new_asset_admission_fail_closed",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_dormant_unrevealed_traits_are_not_invented",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_every_contract_read_hash_pinned_no_write_rpc",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_exact_asset_units_native_royalties_and_real_value",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_final_freshness_boundary_and_clock_rollback",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_inconsistent_timestamp_for_same_final_header_hash_is_rejected",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_abi_short_reply_rejected",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_boolean_address_and_value_rejected",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_missing_ordinal_and_inconsistent_hashed_identity",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_native_slot_requires_complete_reviewed_inventory",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_no_invented_history_usd_or_wallet_inventory",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_ownership_changes_are_not_cached",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_cannot_report_an_active_lp_mark",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_principal_keeps_claims_and_eligibility_with_honest_unavailable_value",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_provider_without_eip1898_never_falls_back_to_latest",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_reorg_during_reads_discards_all_results",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_retained_block_with_reduced_confirmation_depth_is_rejected",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_runtime_mismatch_rejected_for_module_and_asset",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_snapshot_expiring_during_final_rpc_is_not_returned",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_stale_future_or_insufficiently_confirmed_chain_rejected",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_unavailable_current_value_does_not_hide_claims_or_revoke_activation",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected",
+      "tests_python.test_frontend_api.FrontendProjectionTests.test_wrong_chain_rejected_before_calls",
+      "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged",
+      "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_earnings_checks_actual_fee_intake_version_before_replay",
+      "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match",
+      "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_valid_collection_and_nft_keep_net_rewards_and_gross_separate",
+      "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes",
+      "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_native_dust_is_reconciled_without_calling_untouched_currencies",
+      "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_legacy_profile_needs_no_new_fee_dust_getter",
+      "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_legacy_profile_stays_explicit_and_does_not_invent_new_grammar",
+      "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_canonical_epoch_skips_imports_and_resets_only_observed_fee_keys",
+      "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_matches_multiple_allocations_zero_distribution_and_dust_by_receipt",
+      "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_nft_math_keeps_lp_share_collective_and_royalty_rarity_independent",
+      "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_rejects_unmatched_wrong_duplicate_and_cross_transaction_credits",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_complete_indexed_history_recovers_both_nfts_after_exact_native_return",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_external_custody_keeps_unverifiable_nft_reconciliation_closed",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_current_holdings_survive_native_custody_and_return_before_recovery",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_deferred_native_currency_cannot_report_retroactive_credit",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_missing_legacy_custody_getter_is_not_assumed_to_be_an_outage",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_duplicate_exit_or_wrong_return_cannot_invent_restored_backing",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_external_custody_cannot_sync_income_or_recover_eligibility",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_native_deferral_without_authenticated_active_custody_still_rejected",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_return_without_extra_income_recovers_without_counting_custody_twice",
+      "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_wrong_emitter_cannot_authorize_native_deferral",
+      "tests_python.test_royalty_reporting.ConversionHistoryTests.test_conversion_separate_from_claims_income_and_other_nfts",
+      "tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected",
+      "tests_python.test_royalty_reporting.ConversionHistoryTests.test_missing_coverage_is_unavailable_not_zero_conversion",
+      "tests_python.test_royalty_reporting.ConversionHistoryTests.test_only_actual_later_claim_increases_previously_claimed",
+      "tests_python.test_royalty_reporting.ConversionHistoryTests.test_wrong_emitter_cannot_create_conversion_credit",
+      "tests_python.test_royalty_reporting.ConversionHistoryTests.test_zero_rounding_credits_are_valid_not_additional_income",
+      "tests_python.test_royalty_reporting.ConversionLineageTests.test_old_conversion_currency_survives_absence_from_current_assets",
+      "tests_python.test_royalty_reporting.ConversionLineageTests.test_two_handoffs_preserve_conversions_without_duplication_or_inherited_profile",
+      "tests_python.test_royalty_reporting.ReportingTests.test_bad_token_pin_or_decimals_hides_only_that_currency",
+      "tests_python.test_royalty_reporting.ReportingTests.test_broken_core_identity_or_eligibility_is_not_a_partial_success",
+      "tests_python.test_royalty_reporting.ReportingTests.test_converter_missing_disabled_drift_never_promises_conversion",
+      "tests_python.test_royalty_reporting.ReportingTests.test_deferred_currency_eligibility_is_distinct_from_activation",
+      "tests_python.test_royalty_reporting.ReportingTests.test_dormant_nft_is_inactive_without_fabricated_royalty_entitlement",
+      "tests_python.test_royalty_reporting.ReportingTests.test_faulty_balance_returns_null_without_losing_healthy_rewards",
+      "tests_python.test_royalty_reporting.ReportingTests.test_native_eth_and_unconverted_currency_are_not_summed_or_promised",
+      "tests_python.test_royalty_reporting.ReportingTests.test_old_profile_keeps_strict_fail_closed_asset_validation",
+      "tests_python.test_royalty_reporting.ReportingTests.test_reorg_and_expiry_discard_even_currency_isolated_results",
+      "tests_python.test_royalty_reporting.ReportingTests.test_reporting_config_strict_and_no_implicit_old_abi_probe",
+      "tests_python.test_royalty_reporting.ReportingTests.test_same_snapshot_ownership_change_preserves_unclaimed_rights",
+      "tests_python.test_royalty_reporting.ReportingTests.test_work_limits_are_not_swallowed_as_currency_or_converter_failures",
+      "tests_python.test_wallet_earnings.SelectionReplayTests.test_selected_totals_equal_individual_histories_without_pooling_fractions",
+      "tests_python.test_wallet_earnings.SelectionReplayTests.test_selection_bound_and_duplicates_rejected",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_claims_conversions_not_new_income_and_missing_conversion_rejected",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_current_prices_and_unpriced_nonzero_components_remain_separate",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_http_and_supervised_worker_dispatch",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_incomplete_or_mismatched_inventory_never_becomes_zero",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_missing_profile_and_work_budget_fail_closed",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_real_sqlite_replay_matches_single_nft_and_pins_inventory",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_three_chunks_cover_all_holdings_without_replaying_per_nft",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_transfer_moves_lifetime_history_to_current_holder",
+      "tests_python.test_wallet_earnings.WalletEarningsTests.test_unconfirmed_stale_and_invalid_cursors_rejected",
+      "tests_python.test_wallet_earnings.WalletLineageTests.test_two_epochs_survive_replacement_without_import_income",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_all_chunks_cover_every_holding_once",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_budget_failure_not_swallowed_as_missing_price",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_empty_wallet_is_verified_zero",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_invalid_cursor_rejected",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_one_chunk_work_is_bounded_at_collection_cap",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_past_end_rejected",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_reorg_fails_entire_chunk",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_stale_snapshot_rejected",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_unavailable_eth_is_never_partial_or_zero",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_unavailable_lp_does_not_mask_eth",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_unconfirmed_block_rejected",
+      "tests_python.test_wallet_summary.WalletSummaryTests.test_wrong_owner_fails_entire_chunk",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_consistent_lp_and_eth_totals_retain_the_same_snapshot",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_views_are_read_not_assumed_zero",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_genuine_lp_view_outage_preserves_healthy_eth_without_partial_lp",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_genuine_native_claimable_outage_preserves_lp_without_partial_eth",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_historical_profiles_keep_their_original_read_shape",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_malformed_native_claimable_abi_rejects_the_entire_chunk",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_nonboolean_lp_availability_rejects_the_entire_chunk",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_unavailable_lp_with_nonzero_amount_rejects_the_entire_chunk",
+      "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_work_limit_is_never_converted_into_unavailable_lp"
+    ],
+    "original_dirty_frontend_history_tests_excluded": true,
+    "imported_fixture_paths": [
+      "tests_python/test_collection.py",
+      "tests_python/test_current_fee_integrity.py",
+      "tests_python/test_earnings.py",
+      "tests_python/test_frontend_api.py",
+      "tests_python/test_frontend_history.py",
+      "tests_python/test_frontend_lineage.py",
+      "tests_python/test_lp_fee_conservation.py",
+      "tests_python/test_native_royalty_custody_reporting.py",
+      "tests_python/test_royalty_reporting.py",
+      "tests_python/test_wallet_earnings.py",
+      "tests_python/test_wallet_summary.py",
+      "tests_python/test_wallet_summary_integrity.py"
+    ]
+  },
+  "source_sha256_before": {
+    "frontend_api/__init__.py": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+    "frontend_api/activation.py": "9ab3cc60bd63f4731b01331cc14ac3bddd7830b2b14513dd751012e9bd08cd68",
+    "frontend_api/activation_config.py": "aa1fa5a48acbe08378c823a1ae59abef9a3a0da88001a8fbac7a7df7eb7483b7",
+    "frontend_api/activation_server.py": "2c90810c594c0aa371a778332417d005bc9be15051041f610354bbc29f1e4179",
+    "frontend_api/activation_trace.py": "dafc3b91593a1d74a40d0125962f16aaea62b1909be1e31b440bcc03ee57c284",
+    "frontend_api/activation_v4.py": "9662e26bfe828bf47b4bb67e86b172511706c2279c0894a7b6a1f2a45b8e222b",
+    "frontend_api/admission.py": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+    "frontend_api/collection.py": "c08c9688343fe826be7cf11c3654b09fa569424f8fed7c9f44996da1fbe8b1bb",
+    "frontend_api/earnings.py": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+    "frontend_api/earnings_prices.py": "52f5e6f6f6067cc00491e9f50ecdf570ea903daea71ceb6e454c95d7fb8a82c0",
+    "frontend_api/earnings_replay.py": "044b3f349fd8ef6c1dcfd198aa82515b08cfea82c02284d4156fd790b285a46e",
+    "frontend_api/history.py": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+    "frontend_api/history_audit.py": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+    "frontend_api/http_runtime.py": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+    "frontend_api/lifecycle.py": "bdf8785971b409602f079377aaa6c24c2e3887666c9528da780143670765f93e",
+    "frontend_api/lineage.py": "8266bf95492b5f1e51d257c8c49664ba08f98d41311fea29440aff1bbc2b1984",
+    "frontend_api/liquidity_context.py": "f9e71555ccab8b77023f66a7c32f9e0c11ba38c2f4bd2d5bd6bb199d30924797",
+    "frontend_api/mint_readiness.py": "3fcca923b2ce52d005a8fdbded5a269505660a80a8d760e52d3392be05f4836b",
+    "frontend_api/portfolio.py": "722014b141ff82e189469563f1f661dfaf23e600823a5af77f68b281c30ba6a3",
+    "frontend_api/royalty_reporting.py": "bc5ae709afb482b719c3db7ac3aa2c1df3c1bbf5caf36cf830ee6106b5afc915",
+    "frontend_api/server.py": "84a71cc3c07ea44ffd54a8249ff7d98b2febd200373a30c1886f712abefc26c5",
+    "frontend_api/service.py": "335b6a87bd3a2161da9a403d8aeaaa81a542e37e3c6ab36ec43c921a0ab61b44",
+    "frontend_api/transactions.py": "b6bcb84046860ebe7d8d659c9bc61c2bd7fe87830191c7de16293152b19ce15c",
+    "frontend_api/wallet_earnings.py": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+    "frontend_api/worker.py": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+    "reports/backend-remediation-20261026/run-affected-suite.py": "e3fe81b26017a588889fe25f78f297a85c3e8093e8a9bf61f468b41052164ab7",
+    "tests_python/test_collection.py": "56b932fc3c7521fa8edcc9459258cd6b6d17599c0b526a2e2fa8fca9e8cb1e87",
+    "tests_python/test_current_fee_integrity.py": "e7f290de667a1cda573d242defea53d156d2eb321581049c97c10e52a72f983e",
+    "tests_python/test_earnings.py": "3899a07928583d89059cddac2565d559b90056fac7f0c7b2f95579a396f36148",
+    "tests_python/test_frontend_api.py": "a9334c246cb2ab5b073863dc1331a28fcbe3e4dec4e2912303ab1e6e7f8bd01c",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+    "tests_python/test_frontend_lineage.py": "8fa4e26de7de8157f6f7e3e479bf5e8860d9393d6043b93e868e6018dbdf0afe",
+    "tests_python/test_lp_fee_conservation.py": "5285e4c93e075b50c24ad63bf4eb642e9225f48310739d37fdf4274a53d4f968",
+    "tests_python/test_native_royalty_custody_reporting.py": "ec28cd0ce375499966f01f62305616b562097b53a2e47766be19f5861e8c089c",
+    "tests_python/test_royalty_reporting.py": "e62e9291c68c4d6ae25f940a29adad99bd48d518d8c2cbb4f0bd6dbd64e462d2",
+    "tests_python/test_wallet_earnings.py": "c5b266d9f2bdb513c9e5258a7e26c65777c726d201dd99c35169b64eb0a4c444",
+    "tests_python/test_wallet_summary.py": "926d617e1d69ec41e62975241febfc3fbfbcf1904cec0f8dca59f1a99fbc9dd9",
+    "tests_python/test_wallet_summary_integrity.py": "47ce6419c7a8d8c3c82684c6dae57d4605be989e5d7079accf071c5b28fbfa69",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/ethereum_fees.py": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "zzz_ops/function_reference.py": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+    "zzz_ops/historical_production.py": "daa3edd9f539e4e60722169fa5c29154b982e049788c3d42f1296c2e8dc4cd3f",
+    "zzz_ops/holder_preflight.py": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+    "zzz_ops/position.py": "129f8070c887792991bcfab6fd2a8993c673eb9560e27efd4a26964754371cea",
+    "zzz_ops/price_policy.py": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+    "zzz_ops/production_observer.py": "670210e66a5b7854a4bea374dd3c650da59f4d9aa87ddbe3df117db19ab17953",
+    "zzz_ops/production_v2.py": "81a35e20c9bac84ec01552f44454c456a12991336908f80c83fafed688752eff",
+    "zzz_ops/range_policy.py": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+    "zzz_ops/review_bundle.py": "b653a398c7a4a5b6a622db744a411291ff48b8c3b7d5eb74abd5d8478b3b1c80",
+    "zzz_ops/rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea"
+  },
+  "source_sha256_after": {
+    "frontend_api/__init__.py": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+    "frontend_api/activation.py": "9ab3cc60bd63f4731b01331cc14ac3bddd7830b2b14513dd751012e9bd08cd68",
+    "frontend_api/activation_config.py": "aa1fa5a48acbe08378c823a1ae59abef9a3a0da88001a8fbac7a7df7eb7483b7",
+    "frontend_api/activation_server.py": "2c90810c594c0aa371a778332417d005bc9be15051041f610354bbc29f1e4179",
+    "frontend_api/activation_trace.py": "dafc3b91593a1d74a40d0125962f16aaea62b1909be1e31b440bcc03ee57c284",
+    "frontend_api/activation_v4.py": "9662e26bfe828bf47b4bb67e86b172511706c2279c0894a7b6a1f2a45b8e222b",
+    "frontend_api/admission.py": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+    "frontend_api/collection.py": "c08c9688343fe826be7cf11c3654b09fa569424f8fed7c9f44996da1fbe8b1bb",
+    "frontend_api/earnings.py": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+    "frontend_api/earnings_prices.py": "52f5e6f6f6067cc00491e9f50ecdf570ea903daea71ceb6e454c95d7fb8a82c0",
+    "frontend_api/earnings_replay.py": "044b3f349fd8ef6c1dcfd198aa82515b08cfea82c02284d4156fd790b285a46e",
+    "frontend_api/history.py": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+    "frontend_api/history_audit.py": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+    "frontend_api/http_runtime.py": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+    "frontend_api/lifecycle.py": "bdf8785971b409602f079377aaa6c24c2e3887666c9528da780143670765f93e",
+    "frontend_api/lineage.py": "8266bf95492b5f1e51d257c8c49664ba08f98d41311fea29440aff1bbc2b1984",
+    "frontend_api/liquidity_context.py": "f9e71555ccab8b77023f66a7c32f9e0c11ba38c2f4bd2d5bd6bb199d30924797",
+    "frontend_api/mint_readiness.py": "3fcca923b2ce52d005a8fdbded5a269505660a80a8d760e52d3392be05f4836b",
+    "frontend_api/portfolio.py": "722014b141ff82e189469563f1f661dfaf23e600823a5af77f68b281c30ba6a3",
+    "frontend_api/royalty_reporting.py": "bc5ae709afb482b719c3db7ac3aa2c1df3c1bbf5caf36cf830ee6106b5afc915",
+    "frontend_api/server.py": "84a71cc3c07ea44ffd54a8249ff7d98b2febd200373a30c1886f712abefc26c5",
+    "frontend_api/service.py": "335b6a87bd3a2161da9a403d8aeaaa81a542e37e3c6ab36ec43c921a0ab61b44",
+    "frontend_api/transactions.py": "b6bcb84046860ebe7d8d659c9bc61c2bd7fe87830191c7de16293152b19ce15c",
+    "frontend_api/wallet_earnings.py": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+    "frontend_api/worker.py": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+    "reports/backend-remediation-20261026/run-affected-suite.py": "e3fe81b26017a588889fe25f78f297a85c3e8093e8a9bf61f468b41052164ab7",
+    "tests_python/test_collection.py": "56b932fc3c7521fa8edcc9459258cd6b6d17599c0b526a2e2fa8fca9e8cb1e87",
+    "tests_python/test_current_fee_integrity.py": "e7f290de667a1cda573d242defea53d156d2eb321581049c97c10e52a72f983e",
+    "tests_python/test_earnings.py": "3899a07928583d89059cddac2565d559b90056fac7f0c7b2f95579a396f36148",
+    "tests_python/test_frontend_api.py": "a9334c246cb2ab5b073863dc1331a28fcbe3e4dec4e2912303ab1e6e7f8bd01c",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+    "tests_python/test_frontend_lineage.py": "8fa4e26de7de8157f6f7e3e479bf5e8860d9393d6043b93e868e6018dbdf0afe",
+    "tests_python/test_lp_fee_conservation.py": "5285e4c93e075b50c24ad63bf4eb642e9225f48310739d37fdf4274a53d4f968",
+    "tests_python/test_native_royalty_custody_reporting.py": "ec28cd0ce375499966f01f62305616b562097b53a2e47766be19f5861e8c089c",
+    "tests_python/test_royalty_reporting.py": "e62e9291c68c4d6ae25f940a29adad99bd48d518d8c2cbb4f0bd6dbd64e462d2",
+    "tests_python/test_wallet_earnings.py": "c5b266d9f2bdb513c9e5258a7e26c65777c726d201dd99c35169b64eb0a4c444",
+    "tests_python/test_wallet_summary.py": "926d617e1d69ec41e62975241febfc3fbfbcf1904cec0f8dca59f1a99fbc9dd9",
+    "tests_python/test_wallet_summary_integrity.py": "47ce6419c7a8d8c3c82684c6dae57d4605be989e5d7079accf071c5b28fbfa69",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/ethereum_fees.py": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "zzz_ops/function_reference.py": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+    "zzz_ops/historical_production.py": "daa3edd9f539e4e60722169fa5c29154b982e049788c3d42f1296c2e8dc4cd3f",
+    "zzz_ops/holder_preflight.py": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+    "zzz_ops/position.py": "129f8070c887792991bcfab6fd2a8993c673eb9560e27efd4a26964754371cea",
+    "zzz_ops/price_policy.py": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+    "zzz_ops/production_observer.py": "670210e66a5b7854a4bea374dd3c650da59f4d9aa87ddbe3df117db19ab17953",
+    "zzz_ops/production_v2.py": "81a35e20c9bac84ec01552f44454c456a12991336908f80c83fafed688752eff",
+    "zzz_ops/range_policy.py": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+    "zzz_ops/review_bundle.py": "b653a398c7a4a5b6a622db744a411291ff48b8c3b7d5eb74abd5d8478b3b1c80",
+    "zzz_ops/rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea"
+  },
+  "source_changes_during_run": [],
+  "sources_unchanged": true,
+  "tests_run": 167,
+  "methods": [
+    {
+      "id": "tests_python.test_collection.CollectionIntegrationTests.test_http_and_both_supervised_dispatchers",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.875
+    },
+    {
+      "id": "tests_python.test_collection.CollectionIntegrationTests.test_real_sqlite_inventory_uses_exact_contract_owner_and_lp",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.156
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_complete_chunks_cover_all_nfts_once_and_match_lp",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_current_dormant_three_cannot_report_unknown_lp",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_current_lp_not_lifetime_contributions_sets_evolution",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_dormant_cannot_report_unknown_lp",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_empty_collection_is_confirmed_zero",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_full_cap_has_bounded_page_reads",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks (block=90, offset=-1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks (block=90, offset=1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks (block=90, offset=1000)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks (block=90, offset=True)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks (block=True, offset=0)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks (block='90', offset=0)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_invalid_cursors_and_blocks (block=90, offset=48)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_malformed_boolean_not_masked_as_outage",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_missing_history_stale_and_reorg_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_missing_one_lp_poison_total_without_erasing_other_positions",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_remote_eligibility_persists_without_fabricated_local_value",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_valuation_read_outage_does_not_become_zero",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_work_budget_not_masked_as_unavailable",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='tokenAtOrdinal(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='mintOrdinalOf(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='mintedCount()')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='rarityOf(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='paletteOf(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='patternOf(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='weightOf(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='nftStatus(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_collection.CollectionTests.test_wrong_mint_identity_count_and_traits_rejected (method='sharesOf(uint256)')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_collection.CollectionTests.test_wrong_owner_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_active_parked_and_outbound_claims_are_not_treated_as_dormant",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_active_parked_and_outbound_claims_are_not_treated_as_dormant (status=1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_active_parked_and_outbound_claims_are_not_treated_as_dormant (status=2)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_active_parked_and_outbound_claims_are_not_treated_as_dormant (status=4)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.454
+    },
+    {
+      "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row (assets=[])",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row (assets=['0x0000000000000000000000000000000000000014', '0x0000000000000000000000000000000000000015'])",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row (assets=['0x0000000000000000000000000000000000000014', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000015'])",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.343
+    },
+    {
+      "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=1, claimable='zero')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=1, role=4, asset='0x0000000000000000000000000000000000000014')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=1, role=4, asset='0x0000000000000000000000000000000000000015')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=1, role=5, asset='0x0000000000000000000000000000000000000000')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=1, role=5, asset='0x0000000000000000000000000000000000000015')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=2, claimable='zero')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=2, role=4, asset='0x0000000000000000000000000000000000000014')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=2, role=4, asset='0x0000000000000000000000000000000000000015')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=2, role=5, asset='0x0000000000000000000000000000000000000000')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_dormant_zero_and_native_token_credit_are_distinguished (version=2, role=5, asset='0x0000000000000000000000000000000000000015')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 1.032
+    },
+    {
+      "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_source_only_lp_inventory_keeps_its_explicit_profile",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_source_only_lp_inventory_keeps_its_explicit_profile (version=1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_source_only_lp_inventory_keeps_its_explicit_profile (version=2)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.234
+    },
+    {
+      "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected (asset='0x0000000000000000000000000000000000000000')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected (asset='0x0000000000000000000000000000000000000014')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected (asset='0x0000000000000000000000000000000000000015')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.375
+    },
+    {
+      "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_royalty_credit_without_optional_reporting_is_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_royalty_credit_without_optional_reporting_is_rejected (asset='0x0000000000000000000000000000000000000000')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_royalty_credit_without_optional_reporting_is_rejected (asset='0x0000000000000000000000000000000000000015')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.234
+    },
+    {
+      "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_optional_reporting_does_not_permit_inactive_lp_credit",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_optional_reporting_does_not_permit_inactive_lp_credit (asset='0x0000000000000000000000000000000000000000')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_optional_reporting_does_not_permit_inactive_lp_credit (asset='0x0000000000000000000000000000000000000014')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.313
+    },
+    {
+      "id": "tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_verified_dormant_zero_and_optional_unavailable_remain_distinct",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.234
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.25
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_collection_and_nft_reconcile_exact_confirmed_history",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.266
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_collection_before_first_mint_is_zero_not_an_indexer_error",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.172
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_conversion_and_later_native_claim_preserve_original_earned_currency",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.297
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_current_price_changes_usd_without_changing_earned_tokens",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.281
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.187
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.25
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_final_snapshot_expiry_rejects_even_successful_replay",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.094
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.219
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_missing_profile_coverage_and_unminted_nft_are_explicit",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.187
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_pending_royalties_do_not_enter_processed_earnings",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.188
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_price_alias_and_module_policy_cannot_be_silently_changed",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.187
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_read_only_http_endpoints_and_invalid_ids",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.828
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_runtime_drift_and_history_gaps_fail_closed",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.25
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsAPITests.test_supervised_worker_dispatches_read_only_earnings",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.235
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsLineageTests.test_real_receipt_and_two_databases_preserve_both_epochs_without_import_income",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.703
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_canonical_recovery_reverse_event_order_still_protects_earlier_cohort",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.016
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_collection_gross_dust_and_allocations_do_not_double_count",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_individual_collective_royalties_and_topup_have_independent_weights",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.015
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed (ev={'address': '0x0000000000000000000000000000000000000005', 'blockNumber': '0x14', 'blockHash': '0x00000000000000000000000000000000000000000000000000000000000186b4', 'transactionHash': '0x0000000000000000000000000000000000000000000000000000000000018a9c', 'logIndex': '0x0', 'removed': False, 'topics': ['0x4867887a5b0bebacccb6e4c9c656b3a6b2fe478e226ea1fa5230d9b4bdabc26e', '0x000000000000000000000000000000000000000000000000000000000000000b'], 'data': '0x0000000000000000000000000000000000000000000000000000000000000001'})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed (ev={'address': '0x0000000000000000000000000000000000000005', 'blockNumber': '0x14', 'blockHash': '0x00000000000000000000000000000000000000000000000000000000000186b4', 'transactionHash': '0x0000000000000000000000000000000000000000000000000000000000018a9c', 'logIndex': '0x0', 'removed': False, 'topics': ['0xf7125f47bfec080d93292ccc76a20bf0cb1b51903f5188cbf5909e05fbd258d9', '0x0000000000000000000000000000000000000000000000000000000000000015'], 'data': '0x0000000000000000000000000000000000000000000000000000000000000009000000000000000000000000000000000000000000000000000000000000000a'})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed (ev={'address': '0x0000000000000000000000000000000000000005', 'blockNumber': '0x14', 'blockHash': '0x00000000000000000000000000000000000000000000000000000000000186b4', 'transactionHash': '0x0000000000000000000000000000000000000000000000000000000000018a9c', 'logIndex': '0x0', 'removed': False, 'topics': ['0x33e79962e8d633cf34bd5e370ee8d12f6c74799825aa236c2d51338fb3e54a42', '0x0000000000000000000000000000000000000000000000000000000000000000'], 'data': '0x00000000000000000000000000000000000000000000000000000000000000630000000000000000000000000000000000000000000000000000000000000000'})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed (ev={'address': '0x0000000000000000000000000000000000000028', 'blockNumber': '0x14', 'blockHash': '0x00000000000000000000000000000000000000000000000000000000000186b4', 'transactionHash': '0x0000000000000000000000000000000000000000000000000000000000018a9c', 'logIndex': '0x0', 'removed': False, 'topics': ['0x062a097cb1aaff0fc14f4995579e726e2d0cc1ca460604f79ec411cde485c3f8', '0x0000000000000000000000000000000000000000000000000000000000000005', '0x0000000000000000000000000000000000000000000000000000000000000014'], 'data': '0x00000000000000000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000000000000000000'})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed (ev={'address': '0x0000000000000000000000000000000000000028', 'blockNumber': '0x14', 'blockHash': '0x00000000000000000000000000000000000000000000000000000000000186b4', 'transactionHash': '0x0000000000000000000000000000000000000000000000000000000000018a9c', 'logIndex': '0x0', 'removed': False, 'topics': ['0x09dea7dba19f2080ee37b19654b28abc3e323c329cdc223fa0e51baebd1dec78', '0x0000000000000000000000000000000000000000000000000000000000000005', '0x0000000000000000000000000000000000000000000000000000000000000014'], 'data': '0x0000000000000000000000000000000000000000000000000000000000000001'})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed (ev={'address': '0x0000000000000000000000000000000000000003', 'blockNumber': '0x14', 'blockHash': '0x00000000000000000000000000000000000000000000000000000000000186b4', 'transactionHash': '0x0000000000000000000000000000000000000000000000000000000000018a9c', 'logIndex': '0x0', 'removed': False, 'topics': ['0x2d9380e23bde3c37c5c401d3fb19b9c26c1fd87b7efdc375af7eb443db593916', '0x000000000000000000000000000000000000000000000000000000000000000b', '0x0000000000000000000000000000000000000000000000000000000000000006'], 'data': '0x00000000000000000000000000000000000000000000000000000000000000640000000000000000000000000000000000000000000000000000000000000064'})",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.031
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_prior_fees_exclude_new_entrant_and_transfers_do_not_reset_earnings",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.016
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_recovery_assigns_old_receipts_before_new_members_join",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.016
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_same_chain_epoch_carries_rights_and_skips_import_transfers",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_thousand_nfts_share_one_pool_without_thousand_reward_reads",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 2.328
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_uneligible_receipts_and_admission_prefunds_are_not_nft_earnings",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.015
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_unknown_emitter_claim_and_conversion_events_are_not_income",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_window_boundary_and_fraction_carry_are_exact",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.016
+    },
+    {
+      "id": "tests_python.test_earnings.EarningsReplayTests.test_work_budget_and_malformed_layout_stop_replay",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc (method='GET', path='/v1/nfts/57668834953523417335750805724198894159101674408155280880167464608522245860580')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc (method='GET', path='/v1/nfts/57668834953523417335750805724198894159101674408155280880167464608522245860580?rpc=https://evil.invalid')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc (method='GET', path='/v1/nfts/01')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc (method='GET', path='/v1/wallets/0x000000000000000000000000000000000000001e')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc (method='POST', path='/v1/nfts/57668834953523417335750805724198894159101674408155280880167464608522245860580')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc (method='GET', path='https://evil.invalid/v1/nfts/1')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.109
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_http_read_is_exact_json_and_not_cacheable",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.172
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_unavailable_response_does_not_leak_provider_error",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.078
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendHTTPTests.test_unknown_nft_is_not_a_zero_balance_position",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.11
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_asset_count_and_duplicates_bounded",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.109
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_changed_deployment_anchor_rejected_before_contract_reads",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.11
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_identity_excludes_private_rpc_endpoint",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.171
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000004', 'code_hash': '0x9333325e8e854e5740477c1ca38e2cc0f999e0a52e17c7c8a885a36d5706e527'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 18, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}], 'send_transactions': True})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000000', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000004', 'code_hash': '0x9333325e8e854e5740477c1ca38e2cc0f999e0a52e17c7c8a885a36d5706e527'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 18, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}]})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 18, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}]})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000004', 'code_hash': '0x9333325e8e854e5740477c1ca38e2cc0f999e0a52e17c7c8a885a36d5706e527'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}, 'random_contract': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 18, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}]})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': True, 'rpc_urls': ['http://127.0.0.1:8545'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000004', 'code_hash': '0x9333325e8e854e5740477c1ca38e2cc0f999e0a52e17c7c8a885a36d5706e527'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 18, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}]})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000004', 'code_hash': '0x9333325e8e854e5740477c1ca38e2cc0f999e0a52e17c7c8a885a36d5706e527'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 18, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18.0, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}]})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000004', 'code_hash': '0x9333325e8e854e5740477c1ca38e2cc0f999e0a52e17c7c8a885a36d5706e527'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 6, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}]})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://example.com'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000004', 'code_hash': '0x9333325e8e854e5740477c1ca38e2cc0f999e0a52e17c7c8a885a36d5706e527'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 18, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}]})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment (config={'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'], 'deployment_block': 10, 'deployment_block_hash': '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'confirmations': 12, 'max_block_age_seconds': 120, 'contracts': {'access': {'address': '0x0000000000000000000000000000000000000001', 'code_hash': '0xc5ec096756386ce74881e5291930aa6f550b697d105fb209046df03e42443d7d'}, 'nft': {'address': '0x0000000000000000000000000000000000000002', 'code_hash': '0x45aca4afeeb1b4a29ff07eaefad4537d948baef4f714dd3ca951296b5cbd5a48'}, 'vault': {'address': '0x0000000000000000000000000000000000000003', 'code_hash': '0x9ed3cacbc1aa2070085e4b025c5960c1d955cd996166bd124869fb46fe63698a'}, 'rewards': {'address': '0x0000000000000000000000000000000000000004', 'code_hash': '0x9333325e8e854e5740477c1ca38e2cc0f999e0a52e17c7c8a885a36d5706e527'}, 'royalties': {'address': '0x0000000000000000000000000000000000000005', 'code_hash': '0x3352e003b8afa06d8994700af7f52907093574a6ebb863fcb090264ab9d226ea'}, 'claim_router': {'address': '0x0000000000000000000000000000000000000006', 'code_hash': '0xc056bb3bd3bff04daeed26baa66412d9afd2f46e914eae6e51ef09ff4e90d5ce'}, 'handoff': {'address': '0x0000000000000000000000000000000000000007', 'code_hash': '0x46271e66a7bf0393f263cddfdf28a4170d2a5003899c1d3e05f0c4634bff9572'}, 'vault_canonical': {'address': '0x0000000000000000000000000000000000000008', 'code_hash': '0xdc801511520247fe8034a0005d8ba3f8ee8c1bc20efbb933c88551350972940f'}}, 'assets': [{'address': '0x0000000000000000000000000000000000000000', 'decimals': 18, 'symbol': 'ETH', 'code_hash': None}, {'address': '0x0000000000000000000000000000000000000014', 'decimals': 18, 'symbol': 'ZZZ', 'code_hash': '0x3964aab509739055f9035332d8e92aac52e87c79b987457b736d4710dd769893'}, {'address': '0x0000000000000000000000000000000000000015', 'decimals': 6, 'symbol': 'USDC', 'code_hash': '0xd6aca1be9729c13d677335161321649cccae6a591554772516700f986f942eaa'}], 'private_key': 'FORBIDDEN'})",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.188
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_current_value_can_downgrade_evolution_without_losing_royalty_weight",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_current_value_can_downgrade_evolution_without_losing_royalty_weight (usd=10000)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_current_value_can_downgrade_evolution_without_losing_royalty_weight (usd=9999)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_current_value_can_downgrade_evolution_without_losing_royalty_weight (usd=1000)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_current_value_can_downgrade_evolution_without_losing_royalty_weight (usd=999)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_current_value_can_downgrade_evolution_without_losing_royalty_weight (usd=1)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.312
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_decimals_and_new_asset_admission_fail_closed",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.125
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_dormant_unrevealed_traits_are_not_invented",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.11
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_every_contract_read_hash_pinned_no_write_rpc",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.125
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_exact_asset_units_native_royalties_and_real_value",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.109
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_final_freshness_boundary_and_clock_rollback",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_final_freshness_boundary_and_clock_rollback (final_time=1109)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_final_freshness_boundary_and_clock_rollback (final_time=1110)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_final_freshness_boundary_and_clock_rollback (final_time=959)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.172
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_inconsistent_timestamp_for_same_final_header_hash_is_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.094
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='True')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='-1')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='1.0')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='0x123')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='01')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='+1')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='115792089237316195423570985008')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='999999999999999999999999999999')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='/../../')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc (item='None')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.094
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_abi_short_reply_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.093
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_boolean_address_and_value_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_boolean_address_and_value_rejected (method='traitsReady(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_boolean_address_and_value_rejected (method='ownerOf(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_boolean_address_and_value_rejected (method='currentLPValue(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_boolean_address_and_value_rejected (method='weightOf(uint256)')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_boolean_address_and_value_rejected (method='nftStatus(uint256)')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.453
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_missing_ordinal_and_inconsistent_hashed_identity",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.125
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_native_slot_requires_complete_reviewed_inventory",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.079
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_no_invented_history_usd_or_wallet_inventory",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_ownership_changes_are_not_cached",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.156
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_cannot_report_an_active_lp_mark",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.094
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (field=0)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (field=1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (field=7)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (field=8)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (field=9)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (field=13)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (field=14)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (field=14)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.406
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_parked_principal_keeps_claims_and_eligibility_with_honest_unavailable_value",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.094
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_provider_without_eip1898_never_falls_back_to_latest",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.063
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_reorg_during_reads_discards_all_results",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.093
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_retained_block_with_reduced_confirmation_depth_is_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.094
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_runtime_mismatch_rejected_for_module_and_asset",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_runtime_mismatch_rejected_for_module_and_asset (target='0x0000000000000000000000000000000000000002')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_runtime_mismatch_rejected_for_module_and_asset (target='0x0000000000000000000000000000000000000015')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.188
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_snapshot_expiring_during_final_rpc_is_not_returned",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.109
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_stale_future_or_insufficiently_confirmed_chain_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.078
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_unavailable_current_value_does_not_hide_claims_or_revoke_activation",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.094
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected (method='isSealed()', target='0x0000000000000000000000000000000000000001')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected (method='access()', target='0x0000000000000000000000000000000000000002')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected (method='module(bytes32)', target='0x0000000000000000000000000000000000000001')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected (method='royalties()', target='0x0000000000000000000000000000000000000006')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected (method='nft()', target='0x0000000000000000000000000000000000000005')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected (method='canonicalChainId()', target='0x0000000000000000000000000000000000000003')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.484
+    },
+    {
+      "id": "tests_python.test_frontend_api.FrontendProjectionTests.test_wrong_chain_rejected_before_calls",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.063
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.281
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_earnings_checks_actual_fee_intake_version_before_replay",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.203
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (reader=<function CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match.<locals>.<lambda> at 0x0000015C21B2E8E0>)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (reader=<function CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match.<locals>.<lambda> at 0x0000015C21B2EA20>)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.25
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_valid_collection_and_nft_keep_net_rewards_and_gross_separate",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.313
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x0000015C21B2EAC0>)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x0000015C21B2E5C0>)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (reader=<function CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes.<locals>.<lambda> at 0x0000015C21B2ED40>)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.343
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_native_dust_is_reconciled_without_calling_untouched_currencies",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.329
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_legacy_profile_needs_no_new_fee_dust_getter",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.281
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_legacy_profile_stays_explicit_and_does_not_invent_new_grammar",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_canonical_epoch_skips_imports_and_resets_only_observed_fee_keys",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.015
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_matches_multiple_allocations_zero_distribution_and_dust_by_receipt",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_nft_math_keeps_lp_share_collective_and_royalty_rarity_independent",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.032
+    },
+    {
+      "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_rejects_unmatched_wrong_duplicate_and_cross_transaction_credits",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_rejects_unmatched_wrong_duplicate_and_cross_transaction_credits (fault='missing_credit')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_rejects_unmatched_wrong_duplicate_and_cross_transaction_credits (fault='wrong_split')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_rejects_unmatched_wrong_duplicate_and_cross_transaction_credits (fault='duplicate_credit')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_rejects_unmatched_wrong_duplicate_and_cross_transaction_credits (fault='different_transaction')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_rejects_unmatched_wrong_duplicate_and_cross_transaction_credits (fault='different_asset')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_rejects_unmatched_wrong_duplicate_and_cross_transaction_credits (fault='unmatched_credit')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.031
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_complete_indexed_history_recovers_both_nfts_after_exact_native_return",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.422
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyHistoryAPITests.test_external_custody_keeps_unverifiable_nft_reconciliation_closed",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.281
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_current_holdings_survive_native_custody_and_return_before_recovery",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.234
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_deferred_native_currency_cannot_report_retroactive_credit",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.141
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_missing_legacy_custody_getter_is_not_assumed_to_be_an_outage",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.125
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds (signature='custodyNonce(address)', values=(0,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds (signature='eligibleWeight(address)', values=(1,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds (signature='eligibleWeight(address)', values=(7,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds (signature='eligibleWeight(address)', values=(6,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds (signature='totalWeight()', values=(4,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds (signature='totalWeight()', values=(16,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyProjectionTests.test_native_gap_requires_real_custody_history_and_consistent_weight_bounds (signature='eligibleFor(uint256,address)', values=(1,))",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.859
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_duplicate_exit_or_wrong_return_cannot_invent_restored_backing",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_duplicate_exit_or_wrong_return_cannot_invent_restored_backing (mutation='duplicate')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_duplicate_exit_or_wrong_return_cannot_invent_restored_backing (mutation='wrong_id')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_duplicate_exit_or_wrong_return_cannot_invent_restored_backing (mutation='wrong_amount')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.032
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_exact_return_and_recovery_preserve_earlier_receipts_without_new_income",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_external_custody_cannot_sync_income_or_recover_eligibility",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_external_custody_cannot_sync_income_or_recover_eligibility (name='RoyaltiesReceived')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_external_custody_cannot_sync_income_or_recover_eligibility (name='RoyaltyEligibilityRecovered')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.015
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_native_deferral_without_authenticated_active_custody_still_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.016
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_restored_but_unsynced_history_keeps_newcomer_out_of_native_cohort",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.016
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_return_without_extra_income_recovers_without_counting_custody_twice",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_native_royalty_custody_reporting.NativeCustodyReplayTests.test_wrong_emitter_cannot_authorize_native_deferral",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.015
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_conversion_separate_from_claims_income_and_other_nfts",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.219
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected (mutation={'source': '0x0000000000000000000000000000000000000000'})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected (mutation={'source': '0x0000000000000000000000000000000000000014'})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected (mutation={'token': 123})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected (mutation={'amount': 0, 'native': 1})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected (mutation={'data': '0x0000000000000000000000000000000000000000000000000000000000000064'})",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected (mutation={'topics': ['0x8cf8bdee38d1f77a80e9d022ed87c849557d2289a2e7271026ace74860afd2de', '0x7f7f67652038e500fc619ca903a796ffe93b2ebae249fbf94e7e3f9f50516ce4', '0x0000000000000000000000000000000000000000000000000000000000000015', '0x000000000000000000000000000000000000000000000000000000000000001e']})",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.406
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_missing_coverage_is_unavailable_not_zero_conversion",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.141
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_only_actual_later_claim_increases_previously_claimed",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.187
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_wrong_emitter_cannot_create_conversion_credit",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.125
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ConversionHistoryTests.test_zero_rounding_credits_are_valid_not_additional_income",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.141
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ConversionLineageTests.test_old_conversion_currency_survives_absence_from_current_assets",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.375
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ConversionLineageTests.test_two_handoffs_preserve_conversions_without_duplication_or_inherited_profile",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.469
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_bad_token_pin_or_decimals_hides_only_that_currency",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.328
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_broken_core_identity_or_eligibility_is_not_a_partial_success",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.609
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_converter_missing_disabled_drift_never_promises_conversion",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.281
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_deferred_currency_eligibility_is_distinct_from_activation",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.172
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_dormant_nft_is_inactive_without_fabricated_royalty_entitlement",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.125
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_faulty_balance_returns_null_without_losing_healthy_rewards",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.094
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_native_eth_and_unconverted_currency_are_not_summed_or_promised",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.109
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_old_profile_keeps_strict_fail_closed_asset_validation",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.141
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_reorg_and_expiry_discard_even_currency_isolated_results",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.172
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_reporting_config_strict_and_no_implicit_old_abi_probe",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.203
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_same_snapshot_ownership_change_preserves_unclaimed_rights",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.156
+    },
+    {
+      "id": "tests_python.test_royalty_reporting.ReportingTests.test_work_limits_are_not_swallowed_as_currency_or_converter_failures",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.203
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.SelectionReplayTests.test_selected_totals_equal_individual_histories_without_pooling_fractions",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.032
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.SelectionReplayTests.test_selection_bound_and_duplicates_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_wallet_earnings.SelectionReplayTests.test_selection_bound_and_duplicates_rejected (selected=(11, 11))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.SelectionReplayTests.test_selection_bound_and_duplicates_rejected (selected=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.SelectionReplayTests.test_selection_bound_and_duplicates_rejected (selected=(True,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.SelectionReplayTests.test_selection_bound_and_duplicates_rejected (selected=(0,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.SelectionReplayTests.test_selection_bound_and_duplicates_rejected (selected=(115792089237316195423570985008687907853269984665640564039457584007913129639936,))",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.SelectionReplayTests.test_selection_bound_and_duplicates_rejected (selected=[11])",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_claims_conversions_not_new_income_and_missing_conversion_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.593
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_current_prices_and_unpriced_nonzero_components_remain_separate",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.204
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_http_and_supervised_worker_dispatch",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.843
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_incomplete_or_mismatched_inventory_never_becomes_zero",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.188
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_missing_profile_and_work_budget_fail_closed",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.156
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_real_sqlite_replay_matches_single_nft_and_pins_inventory",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.313
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_three_chunks_cover_all_holdings_without_replaying_per_nft",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.796
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_transfer_moves_lifetime_history_to_current_holder",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.344
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_unconfirmed_stale_and_invalid_cursors_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_unconfirmed_stale_and_invalid_cursors_rejected (block=100, offset=0)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_unconfirmed_stale_and_invalid_cursors_rejected (block=9, offset=0)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_unconfirmed_stale_and_invalid_cursors_rejected (block=99, offset=1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_unconfirmed_stale_and_invalid_cursors_rejected (block=99, offset=16)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_unconfirmed_stale_and_invalid_cursors_rejected (block=True, offset=0)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_earnings.WalletEarningsTests.test_unconfirmed_stale_and_invalid_cursors_rejected (block=99, offset=1000)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.235
+    },
+    {
+      "id": "tests_python.test_wallet_earnings.WalletLineageTests.test_two_epochs_survive_replacement_without_import_income",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.578
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_all_chunks_cover_every_holding_once",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_budget_failure_not_swallowed_as_missing_price",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_empty_wallet_is_verified_zero",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_invalid_cursor_rejected",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_invalid_cursor_rejected (offset=-1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_invalid_cursor_rejected (offset=1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_invalid_cursor_rejected (offset=1000)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_invalid_cursor_rejected (offset=False)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_invalid_cursor_rejected (offset='16')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_one_chunk_work_is_bounded_at_collection_cap",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_past_end_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_reorg_fails_entire_chunk",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_stale_snapshot_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_unavailable_eth_is_never_partial_or_zero",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_unavailable_lp_does_not_mask_eth",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_unconfirmed_block_rejected",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary.WalletSummaryTests.test_wrong_owner_fails_entire_chunk",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_consistent_lp_and_eth_totals_retain_the_same_snapshot",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward (component='lp_raw')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward (component='individual')",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_nft_cannot_add_lp_or_either_native_reward (component='royalties')",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_inactive_views_are_read_not_assumed_zero",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation (weight=4)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_current_invalid_royalty_weight_rejects_before_aggregation (weight=115792089237316195423570985008687907853269984665640564039457584007913129639935)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_genuine_lp_view_outage_preserves_healthy_eth_without_partial_lp",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_genuine_native_claimable_outage_preserves_lp_without_partial_eth",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_historical_profiles_keep_their_original_read_shape",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_historical_profiles_keep_their_original_read_shape (version=1)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_historical_profiles_keep_their_original_read_shape (version=2)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_malformed_native_claimable_abi_rejects_the_entire_chunk",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_nonboolean_lp_availability_rejects_the_entire_chunk",
+      "status": "passed",
+      "subtests": [
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_nonboolean_lp_availability_rejects_the_entire_chunk (flag=2)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_nonboolean_lp_availability_rejects_the_entire_chunk (flag=255)",
+          "status": "passed"
+        },
+        {
+          "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_nonboolean_lp_availability_rejects_the_entire_chunk (flag=115792089237316195423570985008687907853269984665640564039457584007913129639935)",
+          "status": "passed"
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_unavailable_lp_with_nonzero_amount_rejects_the_entire_chunk",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "tests_python.test_wallet_summary_integrity.WalletSummaryIntegrityTests.test_work_limit_is_never_converted_into_unavailable_lp",
+      "status": "passed",
+      "subtests": [],
+      "elapsed_seconds": 0.0
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "successful": true,
+  "elapsed_seconds": 29.563
+}

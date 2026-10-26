@@ -1,0 +1,14 @@
+{
+  "observed_at_utc": "2026-10-25T23:41:58.231982+00:00",
+  "scope": "One additional actual Projection historical dormant native/token entitlement method; original seven methods unchanged and not rerun.",
+  "source_sha256": {
+    "frontend_api/service.py": "4963d9e647481de72316e66d13e42a47735b3be95bd47d3a89401b45bc77d8eb",
+    "tests_python/test_current_fee_integrity.py": "e7f290de667a1cda573d242defea53d156d2eb321581049c97c10e52a72f983e"
+  },
+  "tests_run": 1,
+  "successful": true,
+  "failures": [],
+  "errors": [],
+  "elapsed_seconds": 1.265,
+  "sources_unchanged": true
+}

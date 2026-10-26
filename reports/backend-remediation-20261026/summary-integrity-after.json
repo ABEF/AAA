@@ -1,0 +1,23 @@
+{
+  "observed_at_utc": "2026-10-25T23:34:54.174183+00:00",
+  "phase": "after",
+  "scope": "Five new wallet-summary integrity methods only; deterministic snapshot/ABI fixture, no network or service.",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "reports\\backend-remediation-20261026\\run-summary-integrity-tests.py",
+    "after"
+  ],
+  "tests_run": 5,
+  "failures": [],
+  "errors": [],
+  "successful": true,
+  "elapsed_seconds": 0.015,
+  "source_sha256": {
+    "frontend_api/portfolio.py": "5800e3deaace5aeda73db58f2ee0f182405358a1e031c8d223c0adcb61cec78f",
+    "tests_python/test_wallet_summary_integrity.py": "ecaba4f13bbb60b6ca847b4ea8187ce1298813d35d3c957709ef9e03a139d32c",
+    "tests_python/test_wallet_summary.py": "ea540390258577236eb5773136044f529752ab6c908a3ac6de1597b73b91c495"
+  },
+  "sources_unchanged": true
+}

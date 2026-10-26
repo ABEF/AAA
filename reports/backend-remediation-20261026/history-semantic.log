@@ -1,0 +1,6 @@
+test_strict_nft_math_keeps_lp_share_collective_and_royalty_rarity_independent (tests_python.test_lp_fee_conservation.StrictFeeReplayTests.test_strict_nft_math_keeps_lp_share_collective_and_royalty_rarity_independent) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.035s
+
+OK

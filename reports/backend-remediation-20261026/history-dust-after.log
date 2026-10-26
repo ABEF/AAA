@@ -1,0 +1,12 @@
+test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_collection_nft_and_wallet_reject_false_carried_dust_with_same_indexes) ... ok
+test_current_native_dust_is_reconciled_without_calling_untouched_currencies (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_current_native_dust_is_reconciled_without_calling_untouched_currencies) ... ok
+test_legacy_profile_needs_no_new_fee_dust_getter (tests_python.test_lp_fee_conservation.CurrentFeeDustAPITests.test_legacy_profile_needs_no_new_fee_dust_getter) ... ok
+test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged) ... ok
+test_current_earnings_checks_actual_fee_intake_version_before_replay (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_earnings_checks_actual_fee_intake_version_before_replay) ... ok
+test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match) ... ok
+test_current_valid_collection_and_nft_keep_net_rewards_and_gross_separate (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_valid_collection_and_nft_keep_net_rewards_and_gross_separate) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.991s
+
+OK

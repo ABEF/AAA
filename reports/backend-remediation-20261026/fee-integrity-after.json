@@ -1,0 +1,16 @@
+{
+  "observed_at_utc": "2026-10-25T23:41:05.210838+00:00",
+  "phase": "after",
+  "scope": "Seven new actual current/historical Projection methods; raw ABI fixtures, no real RPC or signing.",
+  "source_sha256": {
+    "frontend_api/service.py": "4963d9e647481de72316e66d13e42a47735b3be95bd47d3a89401b45bc77d8eb",
+    "tests_python/test_current_fee_integrity.py": "d53fc2c6f7abf9ace895c5c780c24617336f147ab0ac81573dbf1fd0f2b9b43d"
+  },
+  "sources_unchanged": true,
+  "tests_run": 7,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "successful": true,
+  "elapsed_seconds": 2.016
+}

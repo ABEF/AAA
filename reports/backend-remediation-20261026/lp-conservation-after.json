@@ -1,0 +1,21 @@
+{
+  "observed_at_utc": "2026-10-25T23:42:23.610200+00:00",
+  "phase": "after",
+  "scope": "Current3/fee1 actual SQLite and Projection earnings composition plus explicitly versioned event conservation. Synthetic offline RPC only.",
+  "selection": [
+    "tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests",
+    "tests_python.test_lp_fee_conservation.StrictFeeReplayTests"
+  ],
+  "tests_run": 8,
+  "failures": [],
+  "errors": [],
+  "successful": true,
+  "elapsed_seconds": 1.015,
+  "source_sha256": {
+    "frontend_api/earnings.py": "9e293908cdb55fee387a8e652b3f07d19b7c0e5b9e4f7e0d22fc007c69f8c30a",
+    "frontend_api/earnings_replay.py": "6099a655ee82017110ec77759a555e8e41aae511272e63ecd234cc3447d5308f",
+    "frontend_api/wallet_earnings.py": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+    "tests_python/test_lp_fee_conservation.py": "3786691bf651fe4f4d4116f2afff498fa41d316178248480957ec4e490a2621d"
+  },
+  "source_unchanged": true
+}

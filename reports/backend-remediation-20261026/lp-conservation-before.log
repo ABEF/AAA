@@ -1,0 +1,47 @@
+test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged) ... FAIL
+test_current_earnings_checks_actual_fee_intake_version_before_replay (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_earnings_checks_actual_fee_intake_version_before_replay) ... FAIL
+test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match) ... 
+  test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match) (reader=<function CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match.<locals>.<lambda> at 0x00000198DBCD2200>) ... FAIL
+  test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match) (reader=<function CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match.<locals>.<lambda> at 0x00000198DBCD2700>) ... FAIL
+test_current_valid_collection_and_nft_keep_net_rewards_and_gross_separate (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_valid_collection_and_nft_keep_net_rewards_and_gross_separate) ... ok
+
+======================================================================
+FAIL: test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lp_fee_conservation.py", line 61, in test_current_collection_rejects_forged_gross_while_chain_indexes_are_unchanged
+    with self.assertRaises(HistoryError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_current_earnings_checks_actual_fee_intake_version_before_replay (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_earnings_checks_actual_fee_intake_version_before_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lp_fee_conservation.py", line 75, in test_current_earnings_checks_actual_fee_intake_version_before_replay
+    with self.assertRaises(HistoryError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match) (reader=<function CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match.<locals>.<lambda> at 0x00000198DBCD2200>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lp_fee_conservation.py", line 70, in test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match
+    with self.subTest(reader=reader), self.assertRaises(HistoryError):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match (tests_python.test_lp_fee_conservation.CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match) (reader=<function CurrentFeeConservationAPITests.test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match.<locals>.<lambda> at 0x00000198DBCD2700>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lp_fee_conservation.py", line 70, in test_current_nft_and_wallet_reject_missing_allocation_even_when_views_match
+    with self.subTest(reader=reader), self.assertRaises(HistoryError):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.244s
+
+FAILED (failures=4)

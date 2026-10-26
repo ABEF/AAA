@@ -1,0 +1,12 @@
+test_active_parked_and_outbound_claims_are_not_treated_as_dormant (tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_active_parked_and_outbound_claims_are_not_treated_as_dormant) ... ok
+test_current_lp_inventory_requires_native_first_without_inventing_a_row (tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_current_lp_inventory_requires_native_first_without_inventing_a_row) ... ok
+test_historical_source_only_lp_inventory_keeps_its_explicit_profile (tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_historical_source_only_lp_inventory_keeps_its_explicit_profile) ... ok
+test_inactive_native_and_token_lp_credit_is_rejected (tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_native_and_token_lp_credit_is_rejected) ... ok
+test_inactive_royalty_credit_without_optional_reporting_is_rejected (tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_inactive_royalty_credit_without_optional_reporting_is_rejected) ... ok
+test_optional_reporting_does_not_permit_inactive_lp_credit (tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_optional_reporting_does_not_permit_inactive_lp_credit) ... ok
+test_verified_dormant_zero_and_optional_unavailable_remain_distinct (tests_python.test_current_fee_integrity.CurrentFeeIntegrityTests.test_verified_dormant_zero_and_optional_unavailable_remain_distinct) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.020s
+
+OK

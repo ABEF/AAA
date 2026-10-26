@@ -1,5 +1,17 @@
 # Release approval record - NOT APPROVED
 
+## Fee-breakdown disposition - 2026-10-26
+
+[Backend remediation](../reports/backend-remediation-20261026/REVIEW.md) and
+[verification](../reports/backend-remediation-20261026/VERIFICATION.md) fix
+reporting inconsistencies in five Python modules; all 167 affected methods pass.
+Production Solidity, dependencies/build inputs, API schema, economic rights and
+signing remain unchanged. Earlier current-source static review/object evidence
+retains its scope; no unchanged whole suite or static analyzer was rerun.
+Actual authentic history/provider/pricing, service budgets, current website,
+OpenSea/VRF/authorities, target-chain operations and independent audit remain
+open. This is source implementation, not deployment or production approval.
+
 ## Full audit disposition - 2026-10-26
 
 The [current audit](../reports/full-audit-20261025/REVIEW.md),

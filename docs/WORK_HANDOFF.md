@@ -1,3 +1,31 @@
+## Backend fee-breakdown remediation - 2026-10-26
+
+Read [review](../reports/backend-remediation-20261026/REVIEW.md) and
+[verification](../reports/backend-remediation-20261026/VERIFICATION.md). Five Python
+modules now pair current fee allocations with exact funded LP credits and pinned
+carried dust; check actual fee-intake1; reject impossible inactive rewards and
+missing native ETH; preserve malformed wallet errors rather than mask as outage.
+Current3 summaries add one pinned weight read/NFT; finite chunks/budgets remain.
+Final affected167 distinct methods pass:31new/136existing,54source/fixture pins;
+earlier focused controls/subsets are not extra coverage. Production44Solidity,
+31dependencies/4build inputs, ABI608functions, profiles and economics unchanged.
+
+NFT earnings = individual+collective LP plus royalties; reserves/gross receipts,
+claims/conversions/imports do not add new NFT income. Earnings include prior
+claims/past owners; claimable is remaining funded value. Pending royalty claims
+may precede processed history; original earned currencies use today's prices.
+Head-state checks cannot prove every dust-only receipt/timestamp: authentic
+complete logs and independent-provider windows remain necessary.
+
+Sole Todo/features/operator/roadmap/release maintained. Main only;14original
+drafts and other artifacts preserved. Publication must be verified separately;
+local save is not push/deployment. Website memory only; source/build/server,
+existing8902/Anvil/NFT/LP/balances/journals/dist overlay, signer/services and paused
+monitor untouched. Public DEPLOYMENT null; signing Anvil-only. No public RPC,
+transaction/deployment/seal/service action. Actual current3 website, feeds/routes/
+VRF/authorities/OpenSea/history/target-gas/operations and independent audit remain
+open. Production NOT APPROVED. No global personal memory is assumed.
+
 ## Full candidate audit checkpoint - 2026-10-26
 
 Audit started25October; initial main e32e966. Read [review](../reports/full-audit-20261025/REVIEW.md),

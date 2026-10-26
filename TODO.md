@@ -384,6 +384,7 @@ The data and services behind the app.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
   - Current replay authenticates complete native/optional custody exit-return intervals, accepts native deferral only during custody and never counts returned backing as income. After full return, old-cohort receipts and waiting-NFT recovery reconcile against chain. In-transit/missing/mismatched history remains unavailable. Separate database rebuild and actual provider/service acceptance are still required; see the [audit](reports/day-readiness-20261025/royalty-matrix.md).
   - The [full service audit](reports/full-audit-20261025/SERVICES.md) fixes independent-history audit chain-ID composition with the actual Rpc adapter. Checked integers and canonical hexadecimal transport values remain strict; Boolean/floating/malformed inputs reject. Offline actual-adapter/SQLite evidence does not qualify archive provider completeness or a deployed service.
+  - [Current fee conservation](reports/backend-remediation-20261026/HISTORY.md): actual fee-intake1 version, exact same-transaction/bucket/currency funded-credit pairing and pinned observed-key carried dust now reconcile. Independent LP-share and rarity weights, top-ups and verified same-chain continuity have scoped checks. Complete authentic history remains required: head checks do not prove every dust-only receipt or timestamp. Final affected167methods (31new/136existing) pass; service/pricing/capacity qualification remains open.
 
   </details>
 
@@ -427,6 +428,7 @@ The data and services behind the app.
   - Enforce at most eight predecessors and one million configured maximum replay events across current and prior histories. RPC observations and operator ingestion remain the trust model; this backend does not prove consensus finality or implement cross-chain history.
   - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
   - [Indexer recovery](docs/INDEXER_RECOVERY.md) preserves confirmed SQLite blocks/logs/cursor on missing, malformed, unstable or unproved RPC ancestry. A bounded contiguous common ancestor or original start anchor must be proved read-only before one atomic guarded rollback. Current provider/backfill/finality/recovery qualification remains open.
+  - [Fee integrity remediation](reports/backend-remediation-20261026/PROFILE.md): current3 LP inventory requires actual native ETH first and validated inactive NFTs reject positive available LP/royalty credit. Genuine optional currency outages remain null. Wallet summaries preserve malformed-data errors and use one extra pinned weight read per current NFT; finite chunks/budgets remain.
 
   </details>
 
@@ -440,6 +442,7 @@ The data and services behind the app.
   - [Scoped verification](reports/royalty-reporting/VERIFICATION.md): 138 affected Python cases and 20 supplemental cases pass. Forty unchanged Solidity source bindings are reused; ten getter ABIs and 26 added indexer schemas match existing compiler artifacts. No Solidity rerun, public transaction, service deployment or website change.
   - The profile is explicit and pin-reviewed; legacy contracts do not inherit it. Currency failures do not bypass core identity, lifecycle, canonical freshness, full history coverage or request budgets. Conversion is neither a claim nor new revenue, and native claimable already includes remaining conversion credits.
   - [Native custody correction](reports/day-readiness-20261025/royalty-matrix.md): verified nonce/cohort checks allow legitimate delayed ETH eligibility; balances remain unavailable while backing is external. Full NFT projection preserves LP/healthy currencies.52 distinct affected read/replay methods pass across recorded source scopes, including13new cases; actual native-custody producer case passes separately. No service/database rollout performed.
+  - [Fee-breakdown review](reports/backend-remediation-20261026/REVIEW.md): inactive ghost credits reject with or without optional reporting. Activated parked/outbound rewards and unavailable currency states remain distinct. Both ETH ledgers are required for a ready-to-claim total; no raw source-token units are added to ETH.
 
   </details>
 
@@ -835,6 +838,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Review [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md): independent price/decimal range vectors, current-NAV entry and compound exclusion, loss/appreciation/replacement/transfer continuity. Extend the bounded local/mock evidence with actual production routes, calibrated strategy backtests and full configuration gas/MEV qualification.
   - Review [the October25 composed installed-v4 harness](reports/preproduction-audit-20261025/VERIFICATION.md) for actual fees, royalty/LP separation, growth/compound/rebalance/transfer conservation, prefund isolation and rollback. Local governance/feeds/VRF/Permit2/admission remain substitutes; extend actual provider/venue qualification, not unchanged generic test reruns.
   - [Full principal review](reports/full-audit-20261025/PRINCIPAL.md) traces old compound/fees, marginal deployedLP, exact prefunds/native callbacks, share issuance and captured price/loss marks. No new unprivileged dilution path confirmed in inspected code.3%feed agreement does not guarantee2%execution feasibility; real depth/source quality/economics and independent review remain required.
+  - [Reporting conservation review](reports/backend-remediation-20261026/REVIEW.md): replay separates gross LP intake, holder/collective credits, carried dust and compound/buyback reserves. This repairs reporting integrity without changing share issuance or on-chain economics; final167Python methods do not requalify real venue economics.
 
   </details>
 
@@ -850,6 +854,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Independently review the 5% ERC-2981 request and 100% eligible royalty redistribution in the separate immutable ETH/ERC20 ledger at activated rarity weights 1/2/3. Marketplace payment remains voluntary.
   - Configure OpenSea creator earnings to the actual `NFT.royaltyRewards()` helper at 5%, verify collection-administration access and each admitted payout asset, and stage a paid sale through receipt, weighted claim and NFT transfer. The current contract requests optional earnings; it does not implement ERC-721-C enforcement.
   - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
+  - [Fee-breakdown review](reports/backend-remediation-20261026/REVIEW.md): lifetime earnings are individual+collective+royalty income including earlier payouts, distinct from current claimable and lifetime claimed. Claims/conversions/imports are not new earnings; transfers and top-ups preserve past entitlements. Independent rarity/LP-weight example and final affected167methods pass; independent audit remains open.
 
   </details>
 
@@ -929,6 +934,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
   - [Day audit](reports/day-readiness-20261025/REVIEW.md) fixes a pre-existing contract/API/replay boundary mismatch during native royalty custody. Review converted-credit enrollment and both old/new NFT cohorts; no principal/reward rights or permissions change. Verified source/mocked API history is not hosted-provider qualification.
   - [Full current-candidate audit](reports/full-audit-20261025/REVIEW.md) traces principal, ownership/economic/custody and service boundaries; fixes current activation and history-audit composition. Fresh source-scoped static analysis is manually triaged separately from real-service/independent qualification. No new principal redemption, delayed governance, signing or deployment authority.
+  - [Backend remediation](reports/backend-remediation-20261026/VERIFICATION.md): five Python reporting modules hardened; final167distinct affected methods pass (31new/136existing). Malformed core values and inconsistent history fail closed; genuine outages remain unavailable. No Solidity, schema, signing, database/service or website rollout; actual provider/history/operations qualification and independent audit remain open.
 
   </details>
 
@@ -1089,4 +1095,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `c84b7ec66ebde4ec05ac7c9e63a251cfd7a4e782cb72372379d0ada34ff8e8d9`.
+Snapshot SHA-256: `0b16f62b1dbfe79ff4e1272dcb67e20f6f4a43a3ce79bcf8c1b7eb7741b7f099`.

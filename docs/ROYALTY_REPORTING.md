@@ -1,5 +1,16 @@
 **Current policy, 2026-10-25:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 
+## Inactive reward integrity - 2026-10-26
+
+Validated never-activated NFTs cannot report a positive available LP or royalty
+claim, with or without this optional profile. Rarity remains known before
+activation; its royalty eligibility is not retroactive. Currency read failures
+remain unavailable/null and do not become fabricated zero. Activated NFTs retain
+their owed rewards when parked/outbound; market-value downgrades do not revoke
+eligibility. Current native LP inventory must actually include ETH first.
+[Scoped backend verification](../reports/backend-remediation-20261026/VERIFICATION.md)
+changes no royalty weighting, currency conversion, claim permission or schema.
+
 ## Native custody history and recovery
 
 The current source accepts a delayed native eligibility prefix only with a

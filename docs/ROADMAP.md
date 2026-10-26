@@ -1,5 +1,16 @@
 # Engineering roadmap
 
+## After fee-breakdown remediation - 2026-10-26
+
+The [backend fixes](../reports/backend-remediation-20261026/REVIEW.md) close
+confirmed allocation/dust, inactive balance, native inventory and wallet error
+masking defects. Their 167-method affected sweep is local synthetic evidence,
+not actual provider/history capacity or production acceptance. Next integrate
+and qualify the explicit current-3 website/read profile, authentic complete
+history and real prices/services, alongside the existing OpenSea/VRF/authority/
+route/operations and independent-audit gates. No public rollout is authorized;
+the [single Todo](../TODO.md) owns status.
+
 ## After full candidate audit - 2026-10-26
 
 The [full audit](../reports/full-audit-20261025/REVIEW.md) fixes current activation
