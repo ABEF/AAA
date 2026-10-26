@@ -1,11 +1,12 @@
 # Release approval record - NOT APPROVED
 
-Latest [market/input review](../reports/market-adversarial-20261026/REVIEW.md)
-rejects contradictory v4 prices/ticks/fees in reviews and release observations.
-223affected backend methods and15actual-v4 composition cases pass; source scopes
-and the corrected fixture's original failures are retained. Production Solidity,
-authority and economics are unchanged. Real provider/liquidity/service/target-chain
-qualification and independent audit remain open. No approval/deployment follows.
+Latest [systematic adversarial review](../reports/system-adversarial-20261026/REVIEW.md)
+adds complete callable scenario coverage and corrects read-RPC/holder-tool input
+integrity/failure handling and adds source-only systemd progress supervision.
+The244-method scope has241 passes/3 explicit skips; the652ABI
+rows/1,987 scenario instances are static review coverage, not execution counts.
+Production Solidity/ABI/rights and running services are unchanged. Real dependency,
+marketplace/service/gas/operating qualification and independent audit remain open.
 
 This records approval of **one frozen release**, not a second Todo or development
 log. The [sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
@@ -16,6 +17,7 @@ not authorize deployment, sealing, service rollout or public transactions.
 
 | Evidence | What it establishes; limits |
 | --- | --- |
+| [Systematic adversarial checks](../reports/system-adversarial-20261026/VERIFICATION.md) | 608 functions+31 constructors+13 receivers have multiple source-reviewed cases; inventory is not execution completeness. RPC/holder input corrections and source watchdog integration have244 distinct affected methods:241 passes/3 explicit skips,42 new included once. Actual Linux/systemd cleanup/recovery remains unqualified. Unchanged37normal object gates/static/v4 evidence is reused at exact pins. No production contract, service or approval change. |
 | [Market/input checks](../reports/market-adversarial-20261026/VERIFICATION.md) | 223affected Python passes,15actual-v4 composed passes and a separate exact TickMath reference check. Contradictory slot0 rejects; legitimate boundaries, both out-of-range contribution directions and donation/claim backing are checked. Consistency does not prove RPC authenticity or organic trading volume. No production Solidity or service change. |
 | [Adversarial reward/keeper checks](../reports/reward-resilience-20261026/VERIFICATION.md) | 437affected Python passes/6 explicit skips and one new actual-v4 outage/harvest/claim case. Fixes upkeep-error isolation, post-intent stopping and contradictory current3 claim drafts. Production Solidity/rights unchanged; no actual provider/service/gas or independent release qualification. |
 | [Rewards and keeper fairness](../reports/reward-allocation-20261026/VERIFICATION.md) | Two new Solidity methods, including 1,000 claim-order fuzz runs;370 affected Python passes/6 explicit skips. Fixes buyback scheduling starvation; production contracts/rights unchanged. Does not qualify live routes/burns, execution latency, gas, operating services or release approval. |

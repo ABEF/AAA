@@ -50,6 +50,21 @@ observations. Scan exit 0 means a page was saved. Summary exit 2 means incomplet
 inventory or unresolved code-bearing owners; exit 0 only means neither was found.
 Exit 1 means the operation failed. **None is release approval.**
 
+## Input validation and failed commands
+
+Every config/page read is capped at2MiB+1 before parsing; above2MiB rejects.
+Duplicate object fields and nonfinite/overflowing numbers reject, and parser-limit
+failures use the same sanitized failure path. Do not hand-edit evidence to make
+it pass: reduce a genuine oversized page through a smaller scan and rerun at the
+same pinned block, or repair the reviewed config and collect a new observation.
+Checksums detect corruption, not forged data.
+
+Invalid flags/commands/numeric values return exit1 with a fixed message instead
+of echoing supplied values. Static `--help` remains standard; valid flags and
+scan/summary exit0/2 semantics above remain. Credentials must use the external
+RPC environment setting, never command-line arguments, reports or Git. Failure
+preserves existing output and cannot approve a migration. [Scoped tests](../reports/system-adversarial-20261026/ops-input/VERIFICATION.md).
+
 ## Resolve each flagged owner
 
 All contracts and code-bearing delegated accounts are unresolved by default.

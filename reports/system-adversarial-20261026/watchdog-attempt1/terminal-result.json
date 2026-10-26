@@ -1,0 +1,17 @@
+{
+  "origin": "Captured original terminal unittest result, not a later rerun",
+  "observed_at_utc": "2026-10-26T21:43:30.671302+00:00",
+  "command": "python -X utf8 -m unittest tests_python.test_keeper_watchdog -v",
+  "tests_run": 19,
+  "failures": 0,
+  "errors": 12,
+  "skips": 1,
+  "cause": "Inert Unix-socket test fixture did not provide AF_UNIX on the Windows runtime; production correctly rejected unavailable transport. Correct test fixture, preserve real Unix skip.",
+  "source_sha256": {
+    "keeper/watchdog.py": "79c134817c02bb530e098e6bc369e99543b9e86c13f1b3382fb95cfb80b6e5ad",
+    "keeper/monitor.py": "81cdc0b2bd51fe281af45149d1d51bd853e7bb1c9ad6ef323e0e1d0ecb1ea1c1",
+    "keeper/zzz-keeper.service": "4a76852eaa165879c350252b893fbd9cae7764722f01353e23ee1c6ee687e229",
+    "tests_python/test_keeper_watchdog.py": "65261071725b23ce4cbaebb7d6a850943ee255a618f3c790bb82ae690e22aecf"
+  },
+  "independent_source_review_finding": "ProgressRPC initially omitted eth_call; correct before final affected verification."
+}

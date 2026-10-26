@@ -1,5 +1,13 @@
 # Verification evidence
 
+[Systematic adversarial review](system-adversarial-20261026/REVIEW.md),
+[function/source coverage](system-adversarial-20261026/COVERAGE.md) and
+[verification](system-adversarial-20261026/VERIFICATION.md) distinguish652 callable
+source-review rows/1,987 scenario instances from244 unique affected Python methods:241 passes/3 explicit skips.
+The read-RPC and holder CLI corrections preserve source-stage negative controls,
+unchanged Solidity evidence, existing services and unrelated drafts. This is
+internal audit preparation; real qualification and independent audit remain open.
+
 [Market/input review](market-adversarial-20261026/REVIEW.md) and
 [verification](market-adversarial-20261026/VERIFICATION.md) record exact integer
 slot0 integrity and223affected Python passes.15actual-v4 composed cases cover

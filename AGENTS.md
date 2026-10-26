@@ -98,6 +98,13 @@ before changing behavior. This file contains current instructions, not a timelin
   by guessing. Actual PoolManager donations are funded fees, unlike raw Vault
   prefunds; neither consistency nor funded earnings proves provider authenticity
   or organic trading volume. Production Solidity/services remain unchanged.
+- [Systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
+  maps608 functions plus31 constructors/13 receivers to multiple static cases; rows
+  and1,987 scenario instances are not execution tests. Strict RPC identity/JSON/
+  envelope/decoder failure and bounded/sanitized holder CLI inputs and systemd progress watchdog have244affected
+  methods:241 passes/3 explicit skips; production Solidity/services remain unchanged. Owner callbacks
+  can legitimately change later batch claim amounts; do not add unconditional
+  preview equality or skip liabilities to overcome dependency failure.
 - Current source/evidence references: [backend fee integrity](reports/backend-remediation-20261026/VERIFICATION.md),
   [full candidate audit](reports/full-audit-20261025/VERIFICATION.md),
   [cleanup compiler comparison](reports/deep-cleanup-20261025/compiler-comparison.md).

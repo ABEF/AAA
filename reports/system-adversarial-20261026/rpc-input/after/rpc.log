@@ -1,0 +1,14 @@
+test_canonical_chain_quantity_and_hex_letter_case_remain_supported (tests_python.test_rpc_integrity.RpcIntegrityTests.test_canonical_chain_quantity_and_hex_letter_case_remain_supported) ... ok
+test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) ... ok
+test_duplicate_response_fields_are_rejected_at_any_object_depth (tests_python.test_rpc_integrity.RpcIntegrityTests.test_duplicate_response_fields_are_rejected_at_any_object_depth) ... ok
+test_finite_fee_history_json_numbers_are_preserved (tests_python.test_rpc_integrity.RpcIntegrityTests.test_finite_fee_history_json_numbers_are_preserved) ... ok
+test_invalid_chain_identity_fails_over_without_running_the_action_there (tests_python.test_rpc_integrity.RpcIntegrityTests.test_invalid_chain_identity_fails_over_without_running_the_action_there) ... ok
+test_nonfinite_json_numbers_are_rejected_in_nested_results (tests_python.test_rpc_integrity.RpcIntegrityTests.test_nonfinite_json_numbers_are_rejected_in_nested_results) ... ok
+test_recursive_json_fails_over_to_a_reviewed_endpoint (tests_python.test_rpc_integrity.RpcIntegrityTests.test_recursive_json_fails_over_to_a_reviewed_endpoint) ... ok
+test_recursive_only_endpoint_returns_a_sanitized_rpc_error (tests_python.test_rpc_integrity.RpcIntegrityTests.test_recursive_only_endpoint_returns_a_sanitized_rpc_error) ... ok
+test_result_and_error_envelope_is_not_a_qualified_remote_rejection (tests_python.test_rpc_integrity.RpcIntegrityTests.test_result_and_error_envelope_is_not_a_qualified_remote_rejection) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.419s
+
+OK

@@ -1,0 +1,12 @@
+{
+  "callable_rows": 213,
+  "normal_functions": 199,
+  "constructors": 9,
+  "receive_hooks": 5,
+  "all_rows_match_exact_catalog": true,
+  "every_row_has_three_scenarios": true,
+  "op_function_rows": 127,
+  "reviewed_source_and_dependency_hashes_still_match": true,
+  "new_execution_scope": "ops-input/after.json only",
+  "production_source_changed": false
+}

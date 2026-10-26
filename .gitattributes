@@ -71,3 +71,7 @@ reports/market-adversarial-20261026/** -text whitespace=cr-at-eol
 reports/market-adversarial-20261026/**/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 # Preserve the reference dependency license byte-for-byte, including its first-line space.
 reports/market-adversarial-20261026/backend-slot0/tickmath-forge/MIT_LICENSE whitespace=cr-at-eol,-blank-at-eol
+
+# Preserve source-stage adversarial review receipts, counters and diagnostics.
+reports/system-adversarial-20261026/** -text whitespace=cr-at-eol
+reports/system-adversarial-20261026/**/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

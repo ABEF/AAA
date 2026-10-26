@@ -1,0 +1,1690 @@
+{
+  "schema": 1,
+  "scope": "Additional operator/read-only release/recovery boundaries",
+  "function_rows": [
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "integer",
+      "line": 17,
+      "end_line": 20,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "hash32",
+      "line": 23,
+      "end_line": 26,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "code_bytes",
+      "line": 29,
+      "end_line": 35,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "digest",
+      "line": 38,
+      "end_line": 39,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "scan_page",
+      "line": 42,
+      "end_line": 150,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "summarize",
+      "line": 153,
+      "end_line": 207,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "get",
+      "line": 72,
+      "end_line": 77,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "pinned",
+      "line": 79,
+      "end_line": 84,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/holder_preflight.py",
+      "function": "binding",
+      "line": 86,
+      "end_line": 98,
+      "family": "Holder scan and summary",
+      "scenarios": [
+        "Read one exact canonical block/runtime/controller binding and recheck reorg/confirmation after bounded page work.",
+        "Reject duplicate/mixed/missing ordinal or owner observations; checksum is accidental-corruption detection, never authentication.",
+        "Classify every code-bearing/delegated owner unresolved; no-code does not prove key control, and output never grants release approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_address",
+      "line": 72,
+      "end_line": 78,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_hash",
+      "line": 81,
+      "end_line": 84,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_quantity",
+      "line": 87,
+      "end_line": 93,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_uint",
+      "line": 96,
+      "end_line": 105,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_chain_id",
+      "line": 108,
+      "end_line": 111,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_word",
+      "line": 114,
+      "end_line": 117,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_decode",
+      "line": 120,
+      "end_line": 133,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_string",
+      "line": 136,
+      "end_line": 145,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_same",
+      "line": 148,
+      "end_line": 155,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "_normalized",
+      "line": 158,
+      "end_line": 160,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "observe",
+      "line": 686,
+      "end_line": 747,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "read_manifest",
+      "line": 750,
+      "end_line": 764,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "write_observation",
+      "line": 767,
+      "end_line": 784,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "__init__",
+      "line": 164,
+      "end_line": 169,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "request",
+      "line": 171,
+      "end_line": 174,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "header",
+      "line": 176,
+      "end_line": 184,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "anchor",
+      "line": 186,
+      "end_line": 204,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "finish",
+      "line": 206,
+      "end_line": 210,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "attempt",
+      "line": 212,
+      "end_line": 218,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "read",
+      "line": 220,
+      "end_line": 234,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "typed",
+      "line": 236,
+      "end_line": 254,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "code",
+      "line": 256,
+      "end_line": 264,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "records",
+      "line": 266,
+      "end_line": 289,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "dependencies",
+      "line": 291,
+      "end_line": 308,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "tokens",
+      "line": 310,
+      "end_line": 348,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "dual_price",
+      "line": 350,
+      "end_line": 391,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "descriptor",
+      "line": 393,
+      "end_line": 397,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "wrappers",
+      "line": 399,
+      "end_line": 427,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "slot",
+      "line": 429,
+      "end_line": 432,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "liquidity",
+      "line": 434,
+      "end_line": 439,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "pools",
+      "line": 441,
+      "end_line": 460,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "sequencer",
+      "line": 462,
+      "end_line": 494,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "governance",
+      "line": 496,
+      "end_line": 541,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "sources",
+      "line": 543,
+      "end_line": 558,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "ledgers",
+      "line": 560,
+      "end_line": 581,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "nft",
+      "line": 583,
+      "end_line": 602,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "route_venue",
+      "line": 604,
+      "end_line": 623,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "routes",
+      "line": 625,
+      "end_line": 683,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "unique",
+      "line": 755,
+      "end_line": 761,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "nonfinite",
+      "line": 762,
+      "end_line": 763,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "observe_price",
+      "line": 366,
+      "end_line": 375,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "has_role",
+      "line": 518,
+      "end_line": 521,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "granted",
+      "line": 522,
+      "end_line": 523,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "checked_code",
+      "line": 369,
+      "end_line": 371,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "read_policy",
+      "line": 408,
+      "end_line": 410,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_observer.py",
+      "function": "admin_state",
+      "line": 418,
+      "end_line": 422,
+      "family": "Read-only observed inventory",
+      "scenarios": [
+        "Only explicit read methods and EIP1898 hash selector; wrong chain/genesis/header/runtime or malformed ABI never becomes complete evidence.",
+        "Bound lists/getter gas/RPC work and validate integer slot0/boundary/fee semantics; failed getter yields incomplete/null, no guessedzero/latest fallback.",
+        "Keep approved pins/evidence unchanged, sanitize provider errors and atomically replace observation; a success is consistency, not independent security/provider approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "identity",
+      "line": 105,
+      "end_line": 108,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_obj",
+      "line": 111,
+      "end_line": 112,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_numeric",
+      "line": 115,
+      "end_line": 117,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "configuration_hash",
+      "line": 120,
+      "end_line": 125,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "pool_configuration",
+      "line": 128,
+      "end_line": 135,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "governance_configuration",
+      "line": 138,
+      "end_line": 145,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "fee_intake_profile",
+      "line": 148,
+      "end_line": 152,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "expected_bindings",
+      "line": 155,
+      "end_line": 245,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_consistent_slot0",
+      "line": 248,
+      "end_line": 254,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_equal",
+      "line": 315,
+      "end_line": 326,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_bindings",
+      "line": 329,
+      "end_line": 337,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_runtime",
+      "line": 340,
+      "end_line": 346,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_bound_proof",
+      "line": 349,
+      "end_line": 362,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_policies",
+      "line": 365,
+      "end_line": 394,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_chain",
+      "line": 397,
+      "end_line": 493,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_dependencies",
+      "line": 496,
+      "end_line": 523,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_dual_price",
+      "line": 526,
+      "end_line": 584,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_tokens",
+      "line": 587,
+      "end_line": 637,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_pools",
+      "line": 640,
+      "end_line": 716,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_routes",
+      "line": 719,
+      "end_line": 917,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_obj_list",
+      "line": 920,
+      "end_line": 921,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_wrapper",
+      "line": 924,
+      "end_line": 955,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_authority",
+      "line": 958,
+      "end_line": 996,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_canonical",
+      "line": 999,
+      "end_line": 1032,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_ledger_assets",
+      "line": 1035,
+      "end_line": 1069,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_nft",
+      "line": 1072,
+      "end_line": 1131,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_services",
+      "line": 1134,
+      "end_line": 1165,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "_mint_integration",
+      "line": 1168,
+      "end_line": 1217,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "validate",
+      "line": 1220,
+      "end_line": 1297,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "m",
+      "line": 166,
+      "end_line": 166,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "h",
+      "line": 167,
+      "end_line": 167,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "d",
+      "line": 168,
+      "end_line": 168,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "__init__",
+      "line": 258,
+      "end_line": 260,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "check",
+      "line": 262,
+      "end_line": 266,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "obj",
+      "line": 268,
+      "end_line": 270,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "items",
+      "line": 272,
+      "end_line": 274,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "num",
+      "line": 276,
+      "end_line": 280,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "hex",
+      "line": 282,
+      "end_line": 287,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "text",
+      "line": 289,
+      "end_line": 292,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "proof",
+      "line": 294,
+      "end_line": 308,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/production_v2.py",
+      "function": "keys",
+      "line": 310,
+      "end_line": 312,
+      "family": "Offline current/legacy inventory boundary",
+      "scenarios": [
+        "Require explicit accounting/fee/mint profiles, exact immutable bindings/source/route identities and bounded types; historical consistency cannot qualify current release.",
+        "Malformed/null/mismatched prices/slot0/receipts/evidence mark blockers; exact direct primary-mint incompatibility remains a hard current gate.",
+        "All supplied evidence remains unauthenticated until independent review; output always deployment_authorized=false, with no transaction or signer path."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "require",
+      "line": 38,
+      "end_line": 40,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "digest",
+      "line": 43,
+      "end_line": 44,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "canonical",
+      "line": 47,
+      "end_line": 48,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "path_name",
+      "line": 51,
+      "end_line": 61,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "admitted",
+      "line": 64,
+      "end_line": 88,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "git",
+      "line": 91,
+      "end_line": 99,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "frozen_files",
+      "line": 102,
+      "end_line": 147,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "dependency_record",
+      "line": 150,
+      "end_line": 185,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "handoff",
+      "line": 188,
+      "end_line": 242,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "pack",
+      "line": 245,
+      "end_line": 256,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "zip_bytes",
+      "line": 259,
+      "end_line": 270,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "strict_json",
+      "line": 273,
+      "end_line": 282,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "verify",
+      "line": 285,
+      "end_line": 356,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "publish",
+      "line": 359,
+      "end_line": 378,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "main",
+      "line": 381,
+      "end_line": 408,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "unique",
+      "line": 274,
+      "end_line": 279,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "zzz_ops/review_bundle.py",
+      "function": "reject_constant",
+      "line": 280,
+      "end_line": 281,
+      "family": "Committed frozen review bundle",
+      "scenarios": [
+        "Read exact lowercase commit without replacement objects; reject unsafe/symlink/device/case-colliding paths and bound inventory/file/archive expansion.",
+        "Verify external trusted archive SHA and all listed source/Git blob/dependency identities; reject unexpected members, duplicate keys, noncanonical ZIP metadata or appended data.",
+        "Publish immutable external archive exclusively and sanitize failures; exporting inputs does not run tests or approve production. Committed-content allowlisting/PEM detection is not a universal secret scanner."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/observe-production-config.py",
+      "function": "main",
+      "line": 25,
+      "end_line": 59,
+      "family": "Observer CLI",
+      "scenarios": [
+        "Endpoint comes from explicitly named read-RPC environment variable; parser errors cannot echo a mistakenly pasted endpoint.",
+        "Keep reviewed manifest distinct from output, require optional block/hash cross-check together and use chain-checked read-only Rpc.",
+        "Anchor/write failure preserves prior output with sanitized generic error; incomplete observation returns distinct exit2 and no approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/observe-production-config.py",
+      "function": "error",
+      "line": 19,
+      "end_line": 22,
+      "family": "Observer CLI",
+      "scenarios": [
+        "Endpoint comes from explicitly named read-RPC environment variable; parser errors cannot echo a mistakenly pasted endpoint.",
+        "Keep reviewed manifest distinct from output, require optional block/hash cross-check together and use chain-checked read-only Rpc.",
+        "Anchor/write failure preserves prior output with sanitized generic error; incomplete observation returns distinct exit2 and no approval."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/validate-production-config.py",
+      "function": "_current_profile",
+      "line": 22,
+      "end_line": 24,
+      "family": "Current release gate CLI",
+      "scenarios": [
+        "Read bounded strict JSON; input/output identity conflict cannot overwrite reviewed manifest.",
+        "Default current profile fails closed on historical layouts; legacy mode loads only on explicit request and never qualifies current release.",
+        "Atomic report replacement and sanitized error class preserve previous valid file on write failure; ready/blocked output never authorizes deployment."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/validate-production-config.py",
+      "function": "validate",
+      "line": 27,
+      "end_line": 39,
+      "family": "Current release gate CLI",
+      "scenarios": [
+        "Read bounded strict JSON; input/output identity conflict cannot overwrite reviewed manifest.",
+        "Default current profile fails closed on historical layouts; legacy mode loads only on explicit request and never qualifies current release.",
+        "Atomic report replacement and sanitized error class preserve previous valid file on write failure; ready/blocked output never authorizes deployment."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/validate-production-config.py",
+      "function": "read_config",
+      "line": 42,
+      "end_line": 53,
+      "family": "Current release gate CLI",
+      "scenarios": [
+        "Read bounded strict JSON; input/output identity conflict cannot overwrite reviewed manifest.",
+        "Default current profile fails closed on historical layouts; legacy mode loads only on explicit request and never qualifies current release.",
+        "Atomic report replacement and sanitized error class preserve previous valid file on write failure; ready/blocked output never authorizes deployment."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/validate-production-config.py",
+      "function": "write_report",
+      "line": 55,
+      "end_line": 63,
+      "family": "Current release gate CLI",
+      "scenarios": [
+        "Read bounded strict JSON; input/output identity conflict cannot overwrite reviewed manifest.",
+        "Default current profile fails closed on historical layouts; legacy mode loads only on explicit request and never qualifies current release.",
+        "Atomic report replacement and sanitized error class preserve previous valid file on write failure; ready/blocked output never authorizes deployment."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/validate-production-config.py",
+      "function": "main",
+      "line": 66,
+      "end_line": 99,
+      "family": "Current release gate CLI",
+      "scenarios": [
+        "Read bounded strict JSON; input/output identity conflict cannot overwrite reviewed manifest.",
+        "Default current profile fails closed on historical layouts; legacy mode loads only on explicit request and never qualifies current release.",
+        "Atomic report replacement and sanitized error class preserve previous valid file on write failure; ready/blocked output never authorizes deployment."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/validate-production-config.py",
+      "function": "unique",
+      "line": 46,
+      "end_line": 51,
+      "family": "Current release gate CLI",
+      "scenarios": [
+        "Read bounded strict JSON; input/output identity conflict cannot overwrite reviewed manifest.",
+        "Default current profile fails closed on historical layouts; legacy mode loads only on explicit request and never qualifies current release.",
+        "Atomic report replacement and sanitized error class preserve previous valid file on write failure; ready/blocked output never authorizes deployment."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/inventory-nft-holders.py",
+      "function": "read_json",
+      "line": 22,
+      "end_line": 46,
+      "family": "Holder CLI",
+      "scenarios": [
+        "Bound2MiB stream before allocation; reject duplicate/nonfinite/overflow JSON and normalize parser failure, preserving finite/exactlimit data.",
+        "Sanitize argument/JSON failures without echoing accidentally pasted endpoint/value; no file/RPC begins on bad arguments, and standard static help remains.",
+        "Keep exclusive output, exact pinned inventory/frozen-rescan requirements and release_approved=false; no read-only report grants authority."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/inventory-nft-holders.py",
+      "function": "main",
+      "line": 49,
+      "end_line": 81,
+      "family": "Holder CLI",
+      "scenarios": [
+        "Bound2MiB stream before allocation; reject duplicate/nonfinite/overflow JSON and normalize parser failure, preserving finite/exactlimit data.",
+        "Sanitize argument/JSON failures without echoing accidentally pasted endpoint/value; no file/RPC begins on bad arguments, and standard static help remains.",
+        "Keep exclusive output, exact pinned inventory/frozen-rescan requirements and release_approved=false; no read-only report grants authority."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/inventory-nft-holders.py",
+      "function": "error",
+      "line": 16,
+      "end_line": 19,
+      "family": "Holder CLI",
+      "scenarios": [
+        "Bound2MiB stream before allocation; reject duplicate/nonfinite/overflow JSON and normalize parser failure, preserving finite/exactlimit data.",
+        "Sanitize argument/JSON failures without echoing accidentally pasted endpoint/value; no file/RPC begins on bad arguments, and standard static help remains.",
+        "Keep exclusive output, exact pinned inventory/frozen-rescan requirements and release_approved=false; no read-only report grants authority."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/inventory-nft-holders.py",
+      "function": "unique",
+      "line": 28,
+      "end_line": 34,
+      "family": "Holder CLI",
+      "scenarios": [
+        "Bound2MiB stream before allocation; reject duplicate/nonfinite/overflow JSON and normalize parser failure, preserving finite/exactlimit data.",
+        "Sanitize argument/JSON failures without echoing accidentally pasted endpoint/value; no file/RPC begins on bad arguments, and standard static help remains.",
+        "Keep exclusive output, exact pinned inventory/frozen-rescan requirements and release_approved=false; no read-only report grants authority."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/inventory-nft-holders.py",
+      "function": "reject_constant",
+      "line": 35,
+      "end_line": 36,
+      "family": "Holder CLI",
+      "scenarios": [
+        "Bound2MiB stream before allocation; reject duplicate/nonfinite/overflow JSON and normalize parser failure, preserving finite/exactlimit data.",
+        "Sanitize argument/JSON failures without echoing accidentally pasted endpoint/value; no file/RPC begins on bad arguments, and standard static help remains.",
+        "Keep exclusive output, exact pinned inventory/frozen-rescan requirements and release_approved=false; no read-only report grants authority."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    },
+    {
+      "source": "scripts/inventory-nft-holders.py",
+      "function": "finite_float",
+      "line": 37,
+      "end_line": 41,
+      "family": "Holder CLI",
+      "scenarios": [
+        "Bound2MiB stream before allocation; reject duplicate/nonfinite/overflow JSON and normalize parser failure, preserving finite/exactlimit data.",
+        "Sanitize argument/JSON failures without echoing accidentally pasted endpoint/value; no file/RPC begins on bad arguments, and standard static help remains.",
+        "Keep exclusive output, exact pinned inventory/frozen-rescan requirements and release_approved=false; no read-only report grants authority."
+      ],
+      "evidence_status": "Static source/call-path inspection, except holder CLI12new/24affected methods explicitly executed in ops-input/after.json."
+    }
+  ],
+  "source_sha256": {
+    "zzz_ops/holder_preflight.py": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+    "zzz_ops/production_observer.py": "9829d153b472c7613a2446d7df6d4ca4b30ee4834745663a772fade629046dc7",
+    "zzz_ops/production_v2.py": "c4f2908375475cb5a80e7fbd250dc24ea7be59cceb851353a3583bb5682dfc21",
+    "zzz_ops/review_bundle.py": "b653a398c7a4a5b6a622db744a411291ff48b8c3b7d5eb74abd5d8478b3b1c80",
+    "scripts/inventory-nft-holders.py": "0f24b770b8e3e970895def799bde8bca8c93b30c4eab544d5014838393866d74",
+    "scripts/observe-production-config.py": "3548c49f1c7e8c75a0ab6bed5b5dd4eac6704305d1717c9002a1d89eda974eb5",
+    "scripts/validate-production-config.py": "b240161e9b660cc8b38bca5f8416b2190cd7c2f9a93781de42e0a1cb948292e1"
+  },
+  "findings": [
+    {
+      "id": "OPS-INPUT-1",
+      "severity": "P2 availability/data-integrity",
+      "status": "implemented and locally verified",
+      "detail": "Holder CLI checked file size after unbounded read and accepted ambiguous/nonfinite JSON. Bounded strict input correction and final24method affected scope recorded in ops-input."
+    },
+    {
+      "id": "OPS-ARGS-1",
+      "severity": "P3 diagnostic secrecy",
+      "status": "implemented and locally verified",
+      "detail": "Holder CLI default argparse echoed invalid argument values outside sanitized boundary. Custom error handling now emits fixed generic failure without input echo; static help is unchanged. Four synthetic-marker negative controls and final affected24pass receipt are recorded."
+    }
+  ],
+  "limits": [
+    "Current observed state must use qualified provider/genesis/runtime and independent review; syntactically consistent data can still be fabricated.",
+    "SHA256 of local pages or frozen package does not authenticate an untrusted RPC/producer or constitute approval.",
+    "No operator script can override canonical retirement, discard backing, recover a lost governance key, force custodian return or prove old holder contract compatibility.",
+    "No real RPC/provider/service/target-gas or independent audit qualification was performed."
+  ],
+  "production_source_changed": false,
+  "services_changed": false,
+  "new_execution_scope": "ops-input/after.json only",
+  "production_approved": false
+}

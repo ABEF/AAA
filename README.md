@@ -17,6 +17,15 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
+The [systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
+maps all608 functions plus31 constructors/13 receivers to multiple source-reviewed
+edge cases. It fixes malformed RPC identity/JSON/failover and holder-inventory
+input/diagnostic defects, and adds a systemd main-progress watchdog for stalled
+keeper I/O. [Verification](reports/system-adversarial-20261026/VERIFICATION.md):
+244 unique affected Python methods:241 passes/3 explicit skips; unchanged Solidity evidence is reused.
+The1,987 scenario instances are review coverage, not1987execution tests or a
+security guarantee. Production contracts/rights and running services are unchanged.
+
 The [adversarial market review](reports/market-adversarial-20261026/REVIEW.md)
 rejects contradictory pool prices/ticks/fees before unsigned reviews or release
 observations. [Verification](reports/market-adversarial-20261026/VERIFICATION.md):
@@ -53,7 +62,7 @@ retains its source scope. Neither establishes production approval.
 | Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |
 | Production inventory | [Native preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit accounting V3/governance V2, helper bindings, approved pins, actual observations and release blockers |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
-| Security and release | [Latest internal market/input review](reports/market-adversarial-20261026/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
+| Security and release | [Latest systematic internal review](reports/system-adversarial-20261026/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 

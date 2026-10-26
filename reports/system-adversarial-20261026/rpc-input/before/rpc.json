@@ -1,0 +1,109 @@
+{
+  "observed_at_utc": "2026-10-26T21:09:59.287072+00:00",
+  "scope": "Actual RPC adapter with inert HTTP transport; no live network/service/signer.",
+  "tests_run": 9,
+  "failures": [
+    [
+      "test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) (malformed='1')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 95, in test_chain_id_requires_a_canonical_hex_quantity\n    with patch.object(rpc, '_post', side_effect=respond), self.assertRaises(RpcError):\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) (malformed='0x01')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 95, in test_chain_id_requires_a_canonical_hex_quantity\n    with patch.object(rpc, '_post', side_effect=respond), self.assertRaises(RpcError):\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) (malformed='0X1')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 95, in test_chain_id_requires_a_canonical_hex_quantity\n    with patch.object(rpc, '_post', side_effect=respond), self.assertRaises(RpcError):\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) (malformed='+0x1')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 95, in test_chain_id_requires_a_canonical_hex_quantity\n    with patch.object(rpc, '_post', side_effect=respond), self.assertRaises(RpcError):\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) (malformed='0x0_1')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 95, in test_chain_id_requires_a_canonical_hex_quantity\n    with patch.object(rpc, '_post', side_effect=respond), self.assertRaises(RpcError):\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) (malformed=' 0x1')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 95, in test_chain_id_requires_a_canonical_hex_quantity\n    with patch.object(rpc, '_post', side_effect=respond), self.assertRaises(RpcError):\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) (malformed='0x1\\n')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 95, in test_chain_id_requires_a_canonical_hex_quantity\n    with patch.object(rpc, '_post', side_effect=respond), self.assertRaises(RpcError):\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_chain_id_requires_a_canonical_hex_quantity (tests_python.test_rpc_integrity.RpcIntegrityTests.test_chain_id_requires_a_canonical_hex_quantity) (malformed=b'0x1')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 95, in test_chain_id_requires_a_canonical_hex_quantity\n    with patch.object(rpc, '_post', side_effect=respond), self.assertRaises(RpcError):\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_duplicate_response_fields_are_rejected_at_any_object_depth (tests_python.test_rpc_integrity.RpcIntegrityTests.test_duplicate_response_fields_are_rejected_at_any_object_depth) (raw=b'{\"jsonrpc\":\"2.0\",\"id\":99,\"id\":1,\"result\":\"0x1\"}')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 63, in test_duplicate_response_fields_are_rejected_at_any_object_depth\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_duplicate_response_fields_are_rejected_at_any_object_depth (tests_python.test_rpc_integrity.RpcIntegrityTests.test_duplicate_response_fields_are_rejected_at_any_object_depth) (raw=b'{\"jsonrpc\":\"1.0\",\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0x1\"}')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 63, in test_duplicate_response_fields_are_rejected_at_any_object_depth\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_duplicate_response_fields_are_rejected_at_any_object_depth (tests_python.test_rpc_integrity.RpcIntegrityTests.test_duplicate_response_fields_are_rejected_at_any_object_depth) (raw=b'{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0x2\",\"result\":\"0x1\"}')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 63, in test_duplicate_response_fields_are_rejected_at_any_object_depth\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_duplicate_response_fields_are_rejected_at_any_object_depth (tests_python.test_rpc_integrity.RpcIntegrityTests.test_duplicate_response_fields_are_rejected_at_any_object_depth) (raw=b'{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"slot\":\"old\",\"slot\":\"new\"}}')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 63, in test_duplicate_response_fields_are_rejected_at_any_object_depth\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_invalid_chain_identity_fails_over_without_running_the_action_there (tests_python.test_rpc_integrity.RpcIntegrityTests.test_invalid_chain_identity_fails_over_without_running_the_action_there)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 109, in test_invalid_chain_identity_fails_over_without_running_the_action_there\n    self.assertEqual(seen, [('https://a.invalid', 'eth_chainId'),\nAssertionError: Lists differ: [('ht[39 chars]ps://a.invalid', 'eth_blockNumber')] != [('ht[39 chars]ps://b.invalid', 'eth_chainId'), ('https://b.i[23 chars]er')]\n\nFirst differing element 1:\n('https://a.invalid', 'eth_blockNumber')\n('https://b.invalid', 'eth_chainId')\n\nSecond list contains 1 additional elements.\nFirst extra element 2:\n('https://b.invalid', 'eth_blockNumber')\n\n- [('https://a.invalid', 'eth_chainId'), ('https://a.invalid', 'eth_blockNumber')]\n+ [('https://a.invalid', 'eth_chainId'),\n+  ('https://b.invalid', 'eth_chainId'),\n+  ('https://b.invalid', 'eth_blockNumber')]\n"
+    ],
+    [
+      "test_nonfinite_json_numbers_are_rejected_in_nested_results (tests_python.test_rpc_integrity.RpcIntegrityTests.test_nonfinite_json_numbers_are_rejected_in_nested_results) (number=b'NaN')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 71, in test_nonfinite_json_numbers_are_rejected_in_nested_results\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_nonfinite_json_numbers_are_rejected_in_nested_results (tests_python.test_rpc_integrity.RpcIntegrityTests.test_nonfinite_json_numbers_are_rejected_in_nested_results) (number=b'Infinity')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 71, in test_nonfinite_json_numbers_are_rejected_in_nested_results\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_nonfinite_json_numbers_are_rejected_in_nested_results (tests_python.test_rpc_integrity.RpcIntegrityTests.test_nonfinite_json_numbers_are_rejected_in_nested_results) (number=b'-Infinity')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 71, in test_nonfinite_json_numbers_are_rejected_in_nested_results\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_nonfinite_json_numbers_are_rejected_in_nested_results (tests_python.test_rpc_integrity.RpcIntegrityTests.test_nonfinite_json_numbers_are_rejected_in_nested_results) (number=b'1e400')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 71, in test_nonfinite_json_numbers_are_rejected_in_nested_results\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_nonfinite_json_numbers_are_rejected_in_nested_results (tests_python.test_rpc_integrity.RpcIntegrityTests.test_nonfinite_json_numbers_are_rejected_in_nested_results) (number=b'-1e400')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 71, in test_nonfinite_json_numbers_are_rejected_in_nested_results\n    with patch.object(rpc, '_read_http', return_value=raw), self.assertRaises(RpcError):\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "test_result_and_error_envelope_is_not_a_qualified_remote_rejection (tests_python.test_rpc_integrity.RpcIntegrityTests.test_result_and_error_envelope_is_not_a_qualified_remote_rejection)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 79, in test_result_and_error_envelope_is_not_a_qualified_remote_rejection\n    self.assertIs(type(observed.exception), RpcError)\nAssertionError: <class 'zzz_ops.errors.RemoteRPCError'> is not <class 'zzz_ops.errors.RpcError'>\n"
+    ]
+  ],
+  "errors": [
+    [
+      "test_recursive_json_fails_over_to_a_reviewed_endpoint (tests_python.test_rpc_integrity.RpcIntegrityTests.test_recursive_json_fails_over_to_a_reviewed_endpoint)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 40, in test_recursive_json_fails_over_to_a_reviewed_endpoint\n    self.assertEqual(rpc.call('eth_blockNumber'), '0xabc')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\rpc.py\", line 99, in call\n    actual = int(self._post(url,'eth_chainId',[]),16)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\rpc.py\", line 71, in _post\n    body = json.loads(data)\n           ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1139, in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1143, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1204, in _execute_mock_call\n    result = effect(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 21, in decode\n    raise RecursionError('Synthetic platform JSON decoder limit')\nRecursionError: Synthetic platform JSON decoder limit\n"
+    ],
+    [
+      "test_recursive_only_endpoint_returns_a_sanitized_rpc_error (tests_python.test_rpc_integrity.RpcIntegrityTests.test_recursive_only_endpoint_returns_a_sanitized_rpc_error)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 50, in test_recursive_only_endpoint_returns_a_sanitized_rpc_error\n    rpc.call('eth_blockNumber')\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\rpc.py\", line 99, in call\n    actual = int(self._post(url,'eth_chainId',[]),16)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\rpc.py\", line 71, in _post\n    body = json.loads(data)\n           ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1139, in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1143, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1204, in _execute_mock_call\n    result = effect(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_rpc_integrity.py\", line 21, in decode\n    raise RecursionError('Synthetic platform JSON decoder limit')\nRecursionError: Synthetic platform JSON decoder limit\n"
+    ]
+  ],
+  "skips": [],
+  "source_sha256_before": {
+    "zzz_ops/rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+    "tests_python/test_rpc_integrity.py": "2ceb53d9df8d60c7a671cc0c5eb2540b696ec9864e5dd640f4607ebbf75594c5",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "source_sha256_after": {
+    "zzz_ops/rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+    "tests_python/test_rpc_integrity.py": "2ceb53d9df8d60c7a671cc0c5eb2540b696ec9864e5dd640f4607ebbf75594c5",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "source_stable": true,
+  "successful": false,
+  "public_transactions": false
+}

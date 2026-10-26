@@ -7,6 +7,11 @@ StartLimitBurst=5
 
 [Service]
 Type=simple
+# Requires reviewed systemd>=240 and source supporting main-process progress.
+# Verify the loaded WatchdogUSec/WatchdogSignal/NotifyAccess before enabling.
+NotifyAccess=main
+WatchdogSec=120s
+WatchdogSignal=SIGKILL
 User=zzz
 Group=zzz
 WorkingDirectory=/opt/zzz-protocol
@@ -14,6 +19,9 @@ ExecStart=/usr/bin/python3 -m keeper.monitor --config /etc/zzz/keeper.json
 Restart=on-failure
 RestartSec=30
 KillMode=control-group
+SendSIGKILL=yes
+FinalKillSignal=SIGKILL
+LimitCORE=0
 TimeoutStopSec=120
 StandardOutput=journal
 StandardError=journal

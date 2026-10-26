@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "baseline_commit": "c3289a844f304803495597298688b1d6d89862be",
+  "scope": "Static read-only financial/reporting composition review; no fresh execution and no proof of authentic complete logs.",
+  "source_sha256": {
+    "frontend_api/service.py": "335b6a87bd3a2161da9a403d8aeaaa81a542e37e3c6ab36ec43c921a0ab61b44",
+    "frontend_api/history.py": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+    "frontend_api/earnings.py": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+    "frontend_api/earnings_prices.py": "52f5e6f6f6067cc00491e9f50ecdf570ea903daea71ceb6e454c95d7fb8a82c0",
+    "frontend_api/earnings_replay.py": "044b3f349fd8ef6c1dcfd198aa82515b08cfea82c02284d4156fd790b285a46e",
+    "frontend_api/wallet_earnings.py": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+    "frontend_api/portfolio.py": "722014b141ff82e189469563f1f661dfaf23e600823a5af77f68b281c30ba6a3",
+    "frontend_api/lineage.py": "8266bf95492b5f1e51d257c8c49664ba08f98d41311fea29440aff1bbc2b1984",
+    "frontend_api/royalty_reporting.py": "bc5ae709afb482b719c3db7ac3aa2c1df3c1bbf5caf36cf830ee6106b5afc915",
+    "indexer/events.py": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+    "indexer/monitor.py": "6f50a2839a9abc174b5224a52f7aeca2584ab51492bebd963d30091a6b683e02",
+    "indexer/event_schema.json": "11f49554c4b1a1ace157e04ea7c2b67e21f0c97eaf13d9ea5b396f9aa7c638f0"
+  },
+  "matches_prior_python_inventory_where_recorded": {
+    "frontend_api/service.py": true,
+    "frontend_api/history.py": true,
+    "frontend_api/earnings.py": true,
+    "frontend_api/earnings_prices.py": true,
+    "frontend_api/earnings_replay.py": true,
+    "frontend_api/wallet_earnings.py": true,
+    "frontend_api/portfolio.py": true,
+    "frontend_api/lineage.py": true,
+    "frontend_api/royalty_reporting.py": true,
+    "indexer/events.py": true,
+    "indexer/monitor.py": true
+  },
+  "new_tests_executed": 0,
+  "production_source_changed": false,
+  "confirmed_new_defects": [],
+  "families": [
+    {
+      "name": "Projection and per-currency availability",
+      "files": [
+        "frontend_api/service.py",
+        "frontend_api/portfolio.py",
+        "frontend_api/royalty_reporting.py"
+      ],
+      "cases": [
+        "Unrevealed/dormant/missing IDs and contradictory activation/share/weight state; nonexistent identity does not become a fabricated zero position.",
+        "Broken optional currency metadata/claim view vs core runtime/controller failure; only affected optional balance fields may be unavailable, work/deployment failures still abort.",
+        "Native custody deferral/recovery and current-owner transfer; derived stage remains separate from permanently activated entitlement.",
+        "Wallet inventory count, snapshot confirmation/freshness and complete chunks; missing LP valuation cannot silently make a smaller total."
+      ],
+      "assessment": "No reproducible additional defect found; existing runtime/ABI/chain/canonical checks and limits retained."
+    },
+    {
+      "name": "Earnings arithmetic and denomination",
+      "files": [
+        "frontend_api/earnings.py",
+        "frontend_api/earnings_replay.py",
+        "frontend_api/earnings_prices.py"
+      ],
+      "cases": [
+        "Old versus new member fee allocation, source fractions, carried dust and tiny raw units.",
+        "Claim, conversion, imported backing and custody return are not new earned revenue; converted ETH is not valued a second time as new income.",
+        "Zero original earned amount with no price can be zero; positive amount with missing/stale/mismatched source price stays null.",
+        "Current lower-bound dual USD price marks original earned currencies rather than pretending to be historic USD or current claimable money."
+      ],
+      "assessment": "No reproducible additional defect found; exact funding/index/paid reconciliation is separate from provider independence and economic qualification."
+    },
+    {
+      "name": "History, ancestry and ownership",
+      "files": [
+        "frontend_api/history.py",
+        "frontend_api/lineage.py",
+        "indexer/monitor.py",
+        "indexer/events.py"
+      ],
+      "cases": [
+        "Missing mint/transfer, wrong emitter/topic/word/recipient/asset, duplicate provenance, repeated transaction across blocks and removed/orphaned logs fail closed.",
+        "Same-chain predecessor order, both retirement/activation directions, matching source root/IDs, exact creation and cutoff anchors; no legacy codec relabeling.",
+        "Snapshot-consistent SQLite reads, bounded events/records, no latest-block fallback and reconciliation before destructive reorg writes.",
+        "Legitimate payout callback may transfer the NFT before Claimed emits; the recorded authorized recipient need not equal owner at the emitted-log moment."
+      ],
+      "assessment": "No new reproducible defect found; indexed complete ingestion is operator-maintained evidence, not a consensus/log-completeness proof."
+    },
+    {
+      "name": "Wallet lifetime/current holdings",
+      "files": [
+        "frontend_api/wallet_earnings.py",
+        "frontend_api/portfolio.py"
+      ],
+      "cases": [
+        "No holdings versus beyond-end cursor, offset alignment, selected16NFT bounded chunks and a1000NFT upper bound.",
+        "Transferred NFTs include lifetime prior-owner NFT earnings, not wallet-tenure income; same block/inventory is required before summing chunks.",
+        "Newly minted successor NFTs absent from predecessor epochs must match ordinal chronology; full configured lineage required."
+      ],
+      "assessment": "No additional reproducible defect found; final target-chain/provider/capacity service acceptance remains open."
+    }
+  ],
+  "observations": [
+    {
+      "id": "R-OBS-1",
+      "topic": "Claim preview equality",
+      "details": "Exact initial view/simulation output equality is conditional on inert callbacks. A contract owner may donate ETH to royalty pending funds or claim another ledger before a later batch entry. A generic equality veto would reject supported flows. Root informed; no source change here."
+    }
+  ],
+  "unresolved_limits": [
+    "Optional-token failure may make full processed earnings unavailable even when healthy ETH NFT balances remain available. Do not replace unknown history with zero.",
+    "Authentic complete historical logs and source prices need actual provider/archive/replay qualification.",
+    "Public current3 website/service acceptance and real operating capacity remain unqualified."
+  ]
+}

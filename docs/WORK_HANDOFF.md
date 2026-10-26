@@ -5,22 +5,29 @@ Reviewed 2026-10-26. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
-[Market/input review](../reports/market-adversarial-20261026/REVIEW.md) and
-[verification](../reports/market-adversarial-20261026/VERIFICATION.md) record exact
-slot0 consistency/fee checks across unsigned reviews/routes/observed and manual
-release inventory. Valid stored downward-boundary ticks remain unchanged.
-223affected Python methods pass, zero skips/failures/errors/source drift;15actual-v4
-composed methods pass after explicitly configuring the test fixed-ZZZ identity.
-Both out-of-range directions preserve contributions/shares/claims and subsequent
-rebalancing; actual pool donations are excluded from newcomer past income.
-Original first fixture failures remain preserved. Production Solidity/ABI/economics
-and existing services/Anvil/NFTs/LP/balances/journals/website/monitor are untouched.
+[Systematic adversarial review](../reports/system-adversarial-20261026/REVIEW.md),
+[coverage](../reports/system-adversarial-20261026/COVERAGE.md) and
+[verification](../reports/system-adversarial-20261026/VERIFICATION.md) map652 callable
+rows (608 functions/31 constructors/13 receivers) and1987static scenario instances.
+No new on-chain exploit was confirmed in the inspected partitions. Production
+Solidity/ABI/rights remain unchanged. New RPC identity/JSON/envelope/failover and
+holder bounded-input/sanitized-argument corrections and watchdog integration have
+244 distinct affected methods:241 passes/3 explicit skips,42 new methods included
+once and zero failures/errors/source drift. Source-stage failures
+and exploratory parser-threshold mistakes are preserved rather than relabeled.
+Source-only keeper main-progress watchdog/unit support contains stalled RPC
+when the reviewed systemd supervisor is actually enabled; standalone I/O still
+has no absolute deadline. Financial/recovery Keeper methods are unchanged.
+Actual Linux group cleanup/restart remains open; no installed unit changed.
+Owner callbacks can legitimately change later claim payouts; no unconditional
+view/simulation equality or skipped-liability workaround was added.
 
-Implementation [60bfb96](https://github.com/ABEF/AAA/commit/60bfb96a1cde47b84af926dc62d9ca9b692925ac) is
-pushed on main, with exact local/remote equality verified in the
-[publication receipt](../reports/market-adversarial-20261026/PUBLICATION.md). Earlier [resilience](../reports/reward-resilience-20261026/VERIFICATION.md),
-[allocation](../reports/reward-allocation-20261026/VERIFICATION.md) and normal size/
-static receipts retain their own exact scopes; actual qualification remains open.
+This work follows verified mainc3289a8 and is prepared for scoped main publication.
+Verify the final exact local/remote head and campaign receipt before reporting
+pushed. Existing services/Anvil/NFTs/LP/balances/journals/website/monitor remain
+untouched. Earlier [market](../reports/market-adversarial-20261026/VERIFICATION.md),
+[resilience](../reports/reward-resilience-20261026/VERIFICATION.md) and normal
+build/static receipts retain scope; actual qualification remains open.
 
 ## Continue here
 

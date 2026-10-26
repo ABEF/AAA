@@ -1,0 +1,9 @@
+{
+  "baseline": "c3289a844f304803495597298688b1d6d89862be",
+  "class_Keeper_ast_identical": true,
+  "source_change": "watchdog import/main startup and progress integration only",
+  "current_monitor_sha256": "81cdc0b2bd51fe281af45149d1d51bd853e7bb1c9ad6ef323e0e1d0ecb1ea1c1",
+  "watchdog_sha256": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+  "unit_sha256": "4a76852eaa165879c350252b893fbd9cae7764722f01353e23ee1c6ee687e229",
+  "unit_is_example_only_no_service_rollout": true
+}

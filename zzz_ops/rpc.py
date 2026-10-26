@@ -3,6 +3,7 @@ from __future__ import annotations
 import itertools
 import http.client
 import json
+import math
 import re
 import time
 import urllib.error
@@ -13,6 +14,32 @@ from zzz_ops.work_budget import checkpoint, consume, timeout
 from zzz_ops.errors import RpcError, RemoteRPCError, WorkLimit
 
 class WrongChain(RpcError): pass
+
+
+def _unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError('Duplicate JSON-RPC field')
+        result[key] = value
+    return result
+
+
+def _reject_constant(_):
+    raise ValueError('Nonfinite JSON-RPC number')
+
+
+def _finite_float(value):
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError('Nonfinite JSON-RPC number')
+    return number
+
+
+def _chain_quantity(value):
+    if not isinstance(value, str) or re.fullmatch(r'0x(?:0|[1-9a-fA-F][0-9a-fA-F]{0,63})', value) is None:
+        raise RpcError('Malformed RPC chain identity')
+    return int(value, 16)
 
 class _RejectRedirects(urllib.request.HTTPRedirectHandler):
     def redirect_request(self,req,fp,code,msg,headers,newurl):
@@ -68,9 +95,18 @@ class Rpc:
         data = self._read_http(url, raw)
         checkpoint()
         if len(data) > 8 * 1024 * 1024: raise RpcError('RPC response exceeded size limit')
-        body = json.loads(data)
+        try:
+            body = json.loads(data, object_pairs_hook=_unique_object,
+                              parse_constant=_reject_constant, parse_float=_finite_float)
+        except (ValueError, RecursionError):
+            # Parser limits vary by Python/platform. Keep malformed remote input
+            # inside bounded failover, without retaining raw payload/cause data.
+            raise RpcError('Malformed JSON-RPC payload') from None
+        checkpoint()
         if not isinstance(body,dict) or type(body.get('id')) is not int or body.get('id') != request_id or body.get('jsonrpc') != '2.0':
             raise RpcError('Malformed JSON-RPC response')
+        if ('result' in body) == ('error' in body):
+            raise RpcError('Malformed JSON-RPC response envelope')
         if 'error' in body:
             error = body['error']
             # Do not include URLs, raw transport headers or credentials in error logs.
@@ -96,7 +132,7 @@ class Rpc:
             checkpoint()
             url = self.active_url
             try:
-                actual = int(self._post(url,'eth_chainId',[]),16)
+                actual = _chain_quantity(self._post(url,'eth_chainId',[]))
                 if actual != self.chain_id: raise WrongChain('RPC chain ID mismatch')
                 return actual if method == 'eth_chainId' else self._post(url, method, params or [])
             except WorkLimit:

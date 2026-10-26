@@ -1,0 +1,8 @@
+{
+  "stage1_eight_test_method_bodies_identical_in_final": true,
+  "stage1_new_methods": 8,
+  "final_new_methods": 12,
+  "final_tests_sha256": "ae9d3461aa59d88bf931edfdc743965ff56b384a262737be72bbccbfc2523261",
+  "final_script_sha256": "0f24b770b8e3e970895def799bde8bca8c93b30c4eab544d5014838393866d74",
+  "op_functions": 127
+}

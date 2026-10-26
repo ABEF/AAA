@@ -1,0 +1,62 @@
+{
+  "scope": "Exact final new tests against original CLI, offline inert/temporary fixtures only",
+  "tests_run": 8,
+  "selected_methods": [
+    "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_duplicate_keys_at_any_depth_are_rejected",
+    "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_exact_size_limit_and_finite_json_remain_accepted",
+    "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_failed_summary_preserves_existing_report",
+    "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_invalid_scan_input_is_sanitized_without_rpc_or_report",
+    "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_malformed_and_deep_json_fail_as_validation_errors",
+    "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_nonfinite_constants_and_float_overflow_are_rejected",
+    "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_stream_read_is_bounded_before_rejecting_oversized_file",
+    "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_valid_summary_preserves_exclusive_output_and_nonapproval"
+  ],
+  "failures": [
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_duplicate_keys_at_any_depth_are_rejected (raw=b'{\"chain_id\":1,\"chain_id\":2}')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 61, in test_duplicate_keys_at_any_depth_are_rejected\n    with self.subTest(raw=raw), self.assertRaises(ValueError):\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ],
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_duplicate_keys_at_any_depth_are_rejected (raw=b'{\"source\":{\"nft\":\"a\",\"nft\":\"b\"}}')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 61, in test_duplicate_keys_at_any_depth_are_rejected\n    with self.subTest(raw=raw), self.assertRaises(ValueError):\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ],
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_malformed_and_deep_json_fail_as_validation_errors (size=4001)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 72, in test_malformed_and_deep_json_fail_as_validation_errors\n    with self.subTest(size=len(raw)), self.assertRaises(ValueError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ],
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_nonfinite_constants_and_float_overflow_are_rejected (number='NaN')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 67, in test_nonfinite_constants_and_float_overflow_are_rejected\n    with self.subTest(number=number), self.assertRaises(ValueError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ],
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_nonfinite_constants_and_float_overflow_are_rejected (number='Infinity')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 67, in test_nonfinite_constants_and_float_overflow_are_rejected\n    with self.subTest(number=number), self.assertRaises(ValueError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ],
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_nonfinite_constants_and_float_overflow_are_rejected (number='-Infinity')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 67, in test_nonfinite_constants_and_float_overflow_are_rejected\n    with self.subTest(number=number), self.assertRaises(ValueError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ],
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_nonfinite_constants_and_float_overflow_are_rejected (number='1e999')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 67, in test_nonfinite_constants_and_float_overflow_are_rejected\n    with self.subTest(number=number), self.assertRaises(ValueError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ],
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_nonfinite_constants_and_float_overflow_are_rejected (number='-1e999')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 67, in test_nonfinite_constants_and_float_overflow_are_rejected\n    with self.subTest(number=number), self.assertRaises(ValueError):\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ],
+    [
+      "tests_python.test_holder_inventory_input.HolderInventoryInputTests.test_stream_read_is_bounded_before_rejecting_oversized_file",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_holder_inventory_input.py\", line 46, in test_stream_read_is_bounded_before_rejecting_oversized_file\n    with self.assertRaisesRegex(ValueError, 'bound'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ]
+  ],
+  "errors": [],
+  "skips": [],
+  "source_sha256": {
+    "tests_python\\test_holder_inventory_input.py": "4283b474349d0ed2203dec7a46107e087a2eb8446a2ef48183157a700ec0c873",
+    "scripts\\inventory-nft-holders.py": "6eb11bdb082251471980de2b81046788485b7a3a6fe0a634fe598f257c5910c2",
+    "tests_python\\test_holder_preflight.py": "fe3fede68f1abc7d73ace88f5ccca474fb6f0617b600fe9754785673d4c826b0",
+    "zzz_ops\\holder_preflight.py": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c"
+  },
+  "passed": false,
+  "public_network_calls": false
+}

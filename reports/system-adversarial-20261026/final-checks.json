@@ -1,0 +1,48 @@
+{
+  "observed_at_utc": "2026-10-26T21:53:02.345125+00:00",
+  "callable_rows": 652,
+  "contract_functions": 608,
+  "constructors": 31,
+  "receive_hooks": 13,
+  "scenario_instances_static_not_tests": 1987,
+  "production_sources": 44,
+  "unique_affected_python_methods": 244,
+  "passes": 241,
+  "skips": [
+    [
+      "tests_python.test_keeper_watchdog.WatchdogServiceTests.test_actual_private_unix_datagram_receives_only_fixed_watchdog_payload",
+      "Actual Unix datagram semantics require Unix; no systemd service is started."
+    ],
+    [
+      "tests_python.test_keeper.KeeperTests.test_cast_cli_accepts_generated_command_without_signing",
+      "Foundry cast is not installed"
+    ],
+    [
+      "tests_python.test_keeper_recovery.RecoveryTests.test_runtime_permissions_and_symlinks_fail_closed",
+      "Unix runtime ownership and permissions required"
+    ]
+  ],
+  "new_methods_in_final_count": 42,
+  "source_inputs_unchanged_during_final_run": true,
+  "production_solidity_changed": false,
+  "keeper_financial_recovery_class_ast_identical": true,
+  "watchdog_main_and_source_unit_only_no_service_rollout": true,
+  "actual_systemd_or_host_cleanup_qualification": false,
+  "normal_object_gates_reused": 37,
+  "unchanged_solidity_static_suites_rerun": false,
+  "task_ids_statuses_preserved": 65,
+  "local_doc_file_targets_checked": 1002,
+  "local_doc_file_target_errors": [],
+  "doc_scope": "Local file targets only; not remote liveness or anchor validation.",
+  "callable_reference": "31 contracts/608 functions checked, ABI unchanged.",
+  "original_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "public_transactions": false,
+  "website_server_or_existing_anvil_state_changed": false,
+  "staging_monitor_resumed": false,
+  "production_approved": false
+}

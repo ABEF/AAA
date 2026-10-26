@@ -1,0 +1,36 @@
+# Backend and keeper composition
+
+Static call-path review complements the exact on-chain callable inventory.
+It is not a claim that every Python execution schedule was exercised. Source
+pins are in the execution receipts, [financial addendum](backend-rights-review.json)
+and [operator inventory](ops-review.json); scenarios below distinguish retained
+behavior from the narrow fresh corrections.
+
+| Boundary | Edge/adversarial cases evaluated | Property / limitation |
+| --- | --- | --- |
+| Read-only RPC | Wrong/changed chain, malformed identity, duplicate fields, nonfinite JSON/overflow, mismatched IDs, result+error, parser limit, oversized replies, redirects, timeouts/failover and exhausted work budget | New strict decoding/canonical identity corrections. Configured endpoint failover only, sanitized errors, no write-method admission; consistent fabricated data still requires independent provider qualification. |
+| HTTP/client admission | Bad/duplicate framing/Host/origin, slow ingress, huge/nested/ambiguous body, spoofed proxy identity, depleted IP budget, equivalent IPv4/IPv6, concurrent leases and disconnect | Existing absolute deadlines, connection/worker/client caps and loopback/reviewed-proxy boundary. Wallet/IP is not authentication. Real proxy/capacity acceptance remains open. |
+| Worker isolation | Concurrent requests, snapshot expiry during work, stuck child, failed reap/result cleanup, invalid output, backward/forward wall clock, partial result | Existing bounded processes, monotonic deadline plus snapshot checks and poisoned-worker quarantine; no unbounded queue, partial success or silent background work. |
+| Activation/growth review | Huge/decimal/Boolean inputs, wrong owner/status/token/route/code, allowance/reset, stale price/range/physical ID, trace disagreement/partial second pass, affordability/deadline and policy changes | Typed exact unsigned action, original-source/marginalLP checks, approved temporary amounts and separate gas. No signer or public-transaction capability; approval itself never activates. |
+| Mint/claim review | Supply/price/pause, unknown IDs, inactive positive rewards, duplicate claims, wrong ledger/asset, optional currency fault, recipient callback changing later claim state | Exact typed recipient/target/ownership checks and complete simulation. A draft does not reserve an NFT or fee amount. Empty simulated claims reject; unconditional preview equality is not imposed on supported callbacks. |
+| Reads/history/USD | Unavailable versus zero, malformed credit/dust, missing/duplicated/reordered logs, wrong emitters/canonical cutoffs, converted/past claimed funds, missing original-currency price, partial wallet chunks | Exact integer source amounts, separate earned/claimable/paid, current-price policy and same-block inventory. Full history may be unavailable while a healthy currency balance is readable. Logs/checksums are not cryptographic completeness/authenticity proofs. |
+| Indexer storage/reorg | Changed head/parent/timestamp, missing ancestry, deep reorg, invalid logs/SQLite bounds, concurrent writer, wrong identity/start block and interrupted update | Existing read-before-write reconciliation, bounded rollback, transactional storage and explicit stop. Do not reset a database merely to clear an error. |
+| Stalled RPC/no-progress supervision | Continuous trickle or blocked DNS, no-progress versus intentional sleep, stale/foreign PID, late return, notify failure and signer interruption | Source-only optional systemd main-progress watchdog;120s example/10s cadence accommodates bounded90s signer. No background heartbeat; reviewed group SIGKILL/no-core and intact journal are required. Standalone commands remain unsupervised, and actual host cleanup/restart remains unqualified. |
+| Keeper bootstrap/config | Wrong runtime/accounting/canonical profile, missing/insecure keystore, mixed journals, changed config, used signer/nonzero pending nonce, same host lock versus two-host operation | Existing explicit identity/fresh initialization and protected runtime files. Local locks are not distributed fencing; stop/fence or revoke the old keeper before a replacement host signs. |
+| Pending/signing/receipts | Ambiguous cast return, rejected/replaced/reorged transaction, wrong sender/nonce/calldata/value/chain, fee cap mismatch, additional L1 fee, receipt/header drift and failed durable save | Existing serial saved intent precedes broadcast; no automatic resend/replacement. Canonical signed-fee reconciliation and final block checks precede checkpoint; preserve pending state on uncertainty. |
+| Maintenance scheduling | Busy conversion/metadata/buyback streams, broken price or optional currency, wrong ABI/config, cooldown/gas/price bounds, paused/preparing/retired state and crash/restart cursors | Existing fair cursors and isolated due harvest retain their precise boundaries. Malformed config fails closed; pending intent stops work. Opportunity is not a wall-clock SLA. |
+| Metadata watcher | Empty/1000NFT inventory, wrapped cursor, bad ordinal/token mapping, duplicate IDs, malformed evolution, reorg/old notification, changed code and failed receipt checkpoint | Existing bounded discovery/notification with separate journal state; stage follows actual marked LP and external caches may lag. Notification never changes LP/reward rights. |
+| Recovery/health/snapshots | Stale/future/unbound health, pending/error/degraded cycle, old config backup, partial write, wrong deployment and lost server | Existing atomic private state and config-bound evidence. Backup hashes detect corruption, not a forged history; actual off-host restore/alerting/fencing still require rehearsal. |
+| Holder/release tooling | Huge/ambiguous/nonfinite files, bad CLI values, duplicate/missing/mixed pages, wrong frozen successor/escrow, overwritten report or forged checksum | New bounded/strict/sanitized holder input path. Exclusive output and unresolved-holder classification remain. Evidence is not migration approval or proof an escrow can release a successor NFT. |
+| Public/local website boundary | Historical profile on current contracts, stale examples, account/network changes, saved operation recovery and simulated versus signed actions | Existing public simulation/null deployment and Anvil-only signer remain. Current3 integration/asset/cap copy is still an explicit release gate; no website source/build/server or preserved local state was changed. |
+
+RPC failure normalization must not swallow WorkLimit or convert missing values to
+zero. Keeper log messages retain fixed event/type/site diagnostics, not raw
+provider payloads/credentials. Operator commands still need documented flags and
+external secret storage; a shell/CLI history is not a secret-input channel.
+
+No new contract change or further history/activation accounting defect was
+confirmed. The independently confirmed keeper I/O stall received the source-only
+[supervisor correction](WATCHDOG.md), retaining its real-host qualification limit. Fresh checks cover the changed RPC/CLI
+boundaries and their affected compositions only; unchanged Solidity, full keeper,
+full frontend or capacity campaigns were not rerun or called current acceptance.

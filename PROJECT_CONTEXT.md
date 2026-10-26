@@ -58,16 +58,27 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest functional publication [60bfb96](https://github.com/ABEF/AAA/commit/60bfb96a1cde47b84af926dc62d9ca9b692925ac): [review](reports/market-adversarial-20261026/REVIEW.md)
-and [verification](reports/market-adversarial-20261026/VERIFICATION.md). Shared exact
-slot0 validation rejects contradictory sqrt/tick/fees before unsigned reviews,
-route reads and observed/manual release gates, preserving valid boundary ticks.
-223affected Python methods pass without skips/source drift;15actual-v4 composed
-cases pass, including both out-of-range contribution directions and real pool
-fees donated before newcomer activation. The missing fixed-ZZZ fixture binding
-was corrected; original failure evidence remains. Production Solidity/ABI/economics,
-services/Anvil/journals/website remain unchanged. Exact main publication is verified in the [receipt](reports/market-adversarial-20261026/PUBLICATION.md);
-actual qualification remains open.
+Current systematic adversarial work: [review](reports/system-adversarial-20261026/REVIEW.md),
+[coverage](reports/system-adversarial-20261026/COVERAGE.md) and
+[verification](reports/system-adversarial-20261026/VERIFICATION.md). All608 functions,
+31 constructors and13 receivers have multiple static cases;1,987 scenario instances
+are not test passes. Shared RPC rejects malformed identity/ambiguous or nonfinite
+JSON/envelopes and keeps decoder limits in bounded failover. The keeper main
+path now supports optional systemd progress supervision; the source120s unit
+uses main notifications and group SIGKILL/no-core, preserving journal recovery.
+Actual host kill/restart qualification remains open; standalone RPC can still
+block beyond an inactivity timeout. Holder input reads
+are bounded/strict and invalid arguments no longer echo values.244 unique affected
+Python methods:241 passes/3 explicit skips,42 new included once; no failures/errors/drift. Actual
+contract-wallet callbacks remain supported; conditional preview differences are
+not fabricated accounting errors. Solidity/ABI/economics/services are unchanged.
+Publication must be verified separately; the handoff/receipt records exact heads.
+
+Prior market/input publication60bfb96/receiptc3289a8 retains its
+[exact scope](reports/market-adversarial-20261026/VERIFICATION.md):223affected
+Python methods and15actual-v4 composition cases. No unchanged Solidity/static/
+full keeper/website suite was rerun. Actual qualification and independent audit
+remain open.
 
 Earlier functional97cbd16 / receipt25ac8d4:
 [reward resilience](reports/reward-resilience-20261026/VERIFICATION.md),437affected
@@ -96,7 +107,7 @@ backend fee integrity; [receipt](reports/backend-remediation-20261026/PUBLICATIO
 167distinct affected Python methods pass (31new/136existing),54inputs pinned.
 No Solidity changed in that fix. The previous full audit's current399-finding
 static triage/47bindings and37object evidence retain their original scope.
-Reference:31contracts/608functions. Vault runtime22,852; Access constructor total
+Reference:31contracts/608 functions. Vault runtime22,852; Access constructor total
 42,352 in the recorded normal build. Actual release constructor/gas still needs
 qualification. No full new regression, green-CI or independent audit is implied.
 

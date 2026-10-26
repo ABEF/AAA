@@ -1,6 +1,7 @@
 """Bounded read-only inventory and offline summary; no wallet or signer."""
 import argparse
 import json
+import math
 import os
 from pathlib import Path
 import sys
@@ -11,15 +12,42 @@ from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.errors import WorkLimit
 
 
+class _Parser(argparse.ArgumentParser):
+    def error(self, _message):
+        # Default argparse diagnostics echo invalid values, which could be an
+        # accidentally pasted provider credential. Public --help stays standard.
+        raise ValueError('Invalid inventory arguments')
+
+
 def read_json(path):
-    raw = Path(path).read_bytes()
+    # Bound the read itself, not merely the bytes already allocated in memory.
+    with Path(path).open('rb') as source:
+        raw = source.read(2 * 1024 * 1024 + 1)
     if len(raw) > 2 * 1024 * 1024:
         raise ValueError('Inventory input exceeds bound')
-    return json.loads(raw)
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError('Duplicate inventory JSON key')
+            result[key] = value
+        return result
+    def reject_constant(_value):
+        raise ValueError('Nonfinite inventory JSON number')
+    def finite_float(value):
+        number = float(value)
+        if not math.isfinite(number):
+            raise ValueError('Nonfinite inventory JSON number')
+        return number
+    try:
+        return json.loads(raw, object_pairs_hook=unique,
+                          parse_constant=reject_constant, parse_float=finite_float)
+    except RecursionError:
+        raise ValueError('Inventory JSON parser exceeded its nesting limit') from None
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = _Parser(description=__doc__)
     sub = parser.add_subparsers(dest='mode', required=True)
     scan = sub.add_parser('scan')
     scan.add_argument('--config', required=True)
@@ -30,8 +58,8 @@ def main():
     merge = sub.add_parser('summarize')
     merge.add_argument('pages', nargs='+')
     merge.add_argument('--output', required=True)
-    args = parser.parse_args()
     try:
+        args = parser.parse_args()
         if args.mode == 'scan':
             cfg = read_json(args.config)
             rpc = Rpc([os.environ[args.rpc_env]], cfg['chain_id'], retries=2)

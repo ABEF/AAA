@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-10-26T21:45:10.228924+00:00",
+  "scope": "Development terminal unittest result; final deduplicated root scope is separate and overlaps.",
+  "origin": "Original observed python -m unittest tests_python.test_keeper_watchdog -v invocation, not a new rerun",
+  "tests_run": 21,
+  "passes": 20,
+  "failures": 0,
+  "errors": 0,
+  "skips": [
+    {
+      "method": "tests_python.test_keeper_watchdog.WatchdogServiceTests.test_actual_private_unix_datagram_receives_only_fixed_watchdog_payload",
+      "reason": "Actual Unix datagram requires Unix; Windows runtime unsupported."
+    }
+  ],
+  "methods": [
+    "tests_python.test_keeper_watchdog.ProgressRPCTests.test_bounded_read_error_is_progress_but_original_error_is_preserved",
+    "tests_python.test_keeper_watchdog.ProgressRPCTests.test_eth_call_default_sender_and_read_failure_keep_original_semantics",
+    "tests_python.test_keeper_watchdog.ProgressRPCTests.test_eth_call_keeps_real_rpc_shape_and_reports_progress_after_its_completion",
+    "tests_python.test_keeper_watchdog.ProgressRPCTests.test_only_completed_read_calls_pulse_and_all_other_identity_is_delegated",
+    "tests_python.test_keeper_watchdog.WatchdogMainTests.test_initialize_and_explicit_resolution_do_not_start_a_cycle",
+    "tests_python.test_keeper_watchdog.WatchdogMainTests.test_intentional_idle_pulses_main_thread_and_honors_existing_stop_request",
+    "tests_python.test_keeper_watchdog.WatchdogMainTests.test_once_mode_pulses_before_constructor_and_wraps_its_real_read_path",
+    "tests_python.test_keeper_watchdog.WatchdogMainTests.test_without_watchdog_preserves_old_constructor_and_once_dispatch",
+    "tests_python.test_keeper_watchdog.WatchdogServiceTests.test_actual_private_unix_datagram_receives_only_fixed_watchdog_payload",
+    "tests_python.test_keeper_watchdog.WatchdogServiceTests.test_shipped_service_has_matching_main_watchdog_group_kill_and_no_core_policy",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_abstract_notification_socket_is_encoded_without_path_leak",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_ancestor_pid_does_not_authorize_descendant_progress",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_cadence_preserves_margin_for_bounded_ninety_second_signer",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_failed_or_short_notification_is_sanitized_and_not_credited",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_forked_process_cannot_use_captured_main_identity",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_late_or_backward_progress_cannot_revive_a_missed_watchdog",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_main_progress_sends_only_fixed_nonblocking_datagram",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_malformed_configuration_is_rejected_without_echoing_values",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_short_reviewed_intervals_use_one_third_cadence_and_force_is_explicit",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_systemd_environment_is_consumed_before_children_are_constructed",
+    "tests_python.test_keeper_watchdog.WatchdogTests.test_unconfigured_watchdog_is_noop_without_clock_or_socket"
+  ],
+  "source_sha256": {
+    "keeper/watchdog.py": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+    "keeper/monitor.py": "81cdc0b2bd51fe281af45149d1d51bd853e7bb1c9ad6ef323e0e1d0ecb1ea1c1",
+    "keeper/zzz-keeper.service": "4a76852eaa165879c350252b893fbd9cae7764722f01353e23ee1c6ee687e229",
+    "tests_python/test_keeper_watchdog.py": "0889c63538c0d0704857a3c3c7dc727b99db8d795f4ea6650d57ddd3c3e22489"
+  },
+  "source_unchanged_since_observed_run": true,
+  "broad_affected_rerun": false,
+  "systemd_or_service_rehearsal": false,
+  "public_rpc_or_signer": false,
+  "production_approved": false
+}

@@ -25,6 +25,7 @@ from zzz_ops.ethereum_fees import execution_price, fee_cap, transaction_chain_id
 from zzz_ops.range_policy import observe as observe_range_policy, verify as verify_range_policy
 from zzz_ops.position import decode_position
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
+from keeper.watchdog import ProgressWatchdog, ProgressRPC
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
 NATIVE_ASSET = '0x'+'0'*40
@@ -1270,6 +1271,8 @@ def main() -> None:
     parser.add_argument('--initialize-state',action='store_true')
     args = parser.parse_args()
     if args.initialize_state and (args.live or args.resolve_pending): parser.error('Initialization cannot sign or resolve a transaction')
+    watchdog = ProgressWatchdog.from_environment()
+    watchdog.pulse(force=True)
     config = json.loads(Path(args.config).read_text())
     interval = positive(config.get('interval_seconds',600),'interval_seconds')
     if interval < 60: raise ValueError('Polling interval must be at least 60 seconds')
@@ -1278,19 +1281,29 @@ def main() -> None:
         nonlocal stop;stop=True
     signal.signal(signal.SIGINT,halt);signal.signal(signal.SIGTERM,halt)
     with process_lock(config.get('lock_path','var/keeper.lock')):
-        keeper = Keeper(config,live=args.live)
+        # Wrap before construction: a live startup also validates signer/chain
+        # state. Completed reads report progress; blocked I/O has no pulse thread.
+        if watchdog.enabled:
+            rpc = ProgressRPC(Rpc(config['rpc_urls'],positive(config['chain_id'],'chain_id')),watchdog)
+            keeper = Keeper(config,live=args.live,rpc=rpc)
+        else:
+            keeper = Keeper(config,live=args.live)
+        watchdog.pulse(force=True)
         keeper.stop_requested = lambda: stop
         if args.initialize_state:
             keeper.initialize_state();return
         if args.resolve_pending:
             keeper.resolve_pending(args.resolve_pending);return
         while not stop:
+            watchdog.pulse(force=True)
             success = keeper.run_cycle()
+            watchdog.pulse(force=True)
             if args.once and not success: raise SystemExit(1)
             if args.once: break
             delay = min(interval * 2**min(keeper.cycle_failures,3),max(interval,3600))
             for _ in range(delay):
                 if stop: break
+                watchdog.pulse()
                 time.sleep(1)
 
 if __name__ == '__main__':

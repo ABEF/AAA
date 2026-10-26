@@ -59,6 +59,15 @@ funded donations against the qualified deployment. Consistent observations do
 not authenticate an RPC, and funded fee history does not prove organic volume.
 These local cases do not close the provider/liquidity/operating gates.
 
+The [per-callable adversarial matrix](../reports/system-adversarial-20261026/COVERAGE.md)
+provides an exact source-review starting point for the independent auditor, not
+proof of execution for every scenario. Retain the stricter RPC/holder-input
+boundary behavior and main-progress systemd watchdog in actual provider/recovery
+rehearsals, including stalled DNS/header/body, killed signer descendants and
+no-resend pending recovery. A valid provider
+identity, inventory checksum or local pass is not authentic-history or release
+approval.
+
 ## 4. Freeze and approve a complete release
 
 Select exact source/configuration/authorities. Run the relevant final release

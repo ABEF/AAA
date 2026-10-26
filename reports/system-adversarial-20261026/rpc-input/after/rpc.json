@@ -1,0 +1,23 @@
+{
+  "observed_at_utc": "2026-10-26T21:10:02.071137+00:00",
+  "scope": "Actual RPC adapter with inert HTTP transport; no live network/service/signer.",
+  "tests_run": 9,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "source_sha256_before": {
+    "zzz_ops/rpc.py": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+    "tests_python/test_rpc_integrity.py": "2ceb53d9df8d60c7a671cc0c5eb2540b696ec9864e5dd640f4607ebbf75594c5",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "source_sha256_after": {
+    "zzz_ops/rpc.py": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+    "tests_python/test_rpc_integrity.py": "2ceb53d9df8d60c7a671cc0c5eb2540b696ec9864e5dd640f4607ebbf75594c5",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "source_stable": true,
+  "successful": true,
+  "public_transactions": false
+}

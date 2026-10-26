@@ -5,7 +5,7 @@ fee intake1/localV4; fixed80/10/5/5 and separate eligible rarity royalties.
 No creator inbox, integrated bridge or remote-proof interface remains. Same-chain
 handoff and trusted source-chain custody are separate; no forced return or
 post-halt canonical recovery is promised. [Full internal audit](../reports/full-audit-20261025/REVIEW.md)
-and [latest backend fixes](../reports/backend-remediation-20261026/REVIEW.md)
+and [systematic adversarial coverage/fixes](../reports/system-adversarial-20261026/REVIEW.md)
 retain their evidence scope, not independent release approval. The seven workstreams
 below map to [the single security Todo](../TODO.md#security--audit).
 
@@ -30,7 +30,7 @@ green run qualifies a different release. Do not relax gas, size or security gate
 LiquidityManager implementations and venue bindings cannot be replaced.
 Immediate governance controls supported feeds, assets, routes, destinations
 and bounded strategy settings. Guardians can pause; keepers have no redemption
-function. Governance and migration delays are fixed at zero; there is no advance notice window.
+function. There is no timelock/scheduler machinery or advance notice window; governance acts directly.
 
 - Audit the absence of a notice window: compromised governance can act immediately; no guardian veto or delay is promised. Verify direct governance authentication, two-step wallet replacement and the absence of timelock scheduling/executor selectors. Custody approvals have fresh deadlines, not a waiting period.
 - Build and test a complete role/call matrix, including bootstrap, callbacks,
@@ -131,8 +131,10 @@ contracts; historical readers/evidence do not re-enable them.
   Code hashes alone do not describe mutable proxy/storage behavior.
 - Reconcile actual receipts per asset; test prefund quarantine, duplicate/delayed
   funding, partial/no-op burns, failed swaps and rollback with healthy claims intact.
-- Verify current fee intake cannot classify a donation, principal transfer or
-  historical creator message as newly received LP fees. Separately review ZZZ
+- Verify current fee intake cannot classify an unsolicited raw Vault prefund,
+  principal transfer or historical creator message as newly received LP fees.
+  Actual PoolManager donations create funded fee growth; distinguish them from
+  organic trading volume, and exclude past harvested income from newcomers. Separately review ZZZ
   issuer upgrade, freeze, blacklist and migration powers; removing creator-payment
   integration does not remove those dependency risks.
 - Qualify live VRF fulfillment and blocked ordered reveal. An admitted broken
@@ -188,7 +190,30 @@ intent tools and isolated keeper rehearsals exist; the website still simulates.
 - Require independent audit/remediation and exact-release operating/configuration
   sign-off. Open gates remain open even when every local regression passes.
 
-## Current composition and historical-code boundary - 2026-10-25
+## Function-level adversarial review procedure
+
+Use the [652-row callable inventory](../reports/system-adversarial-20261026/COVERAGE.md)
+for constructors, functions and receive hooks; review private/base/library paths
+with their concrete callers. Each callable needs multiple appropriate cases,
+covering caller/input/lifecycle/order/callback/dependency/market/recovery axes
+where relevant. Getter/default/ABI cases differ from fund-moving attacks.
+Label static reasoning, existing exact-pin execution, fresh tests and unresolved
+qualification separately. A matrix row or test-source link is not a passed test.
+
+Retain complete-path semantics when hardening: owner callbacks can legitimately
+change later batch claim payouts; a numerical source-agreement pass need not make
+an execution budget feasible; optional currency outages must not invent backing.
+Use the actual adapters with inert transports for malformed RPC/JSON/envelope,
+canonical chain identity, bounded retry/failover and terminal-budget cases.
+Verify stalled DNS/header/body containment separately from socket inactivity
+timeouts. The source main-progress watchdog must stop notifying during blocked
+work, and actual systemd must kill/reap every signer descendant before restart
+with the journal intact; API worker deadlines are a different boundary.
+Limit file reads before allocation, reject duplicate/nonfinite values and avoid
+raw argument/provider diagnostics. Verify existing reports/journals are preserved
+on failure; matching local checksums do not authenticate observations.
+
+## Current composition and historical-code boundary
 
 Audit `Migration.moveFunds`/`movePool`/`resume` only for the supported same ordered
 actual currencies; ETH and WETH are distinct. Different-pair and issuer exchange

@@ -91,7 +91,7 @@ Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membersh
 accumulators may include carried/index rounding amounts; they are not the exact
 sum of all NFT claimable balances.
 
-Already-funded dust across local buckets is settled once before entry. Fees earned by the current contribution swap are harvested under incumbent weights before issuing new shares. Only the bound Vault allocates actual local LP proceeds; callbacks and raw donations cannot create fee income. Creator inboxes and remote intake are removed.
+Already-funded dust across local buckets is settled once before entry. Fees earned by the current contribution swap are harvested under incumbent weights before issuing new shares. Only the bound Vault allocates actual local LP proceeds; an arbitrary callback or unsolicited raw Vault prefund cannot fabricate such proceeds. Actual PoolManager donations do change fee growth and fund the normal allocation at harvest; they do not prove organic trading volume. Creator inboxes and remote intake are removed.
 
 The selected hookless native ETH/ZZZ pool has a static 1.002% LP fee. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. The current candidate has no Pons creator-payment intake. No creator percentage or TVL-derived entitlement is assumed.
 

@@ -21,6 +21,43 @@ newly deployed LP. Source disagreement3% is a different guard and does not guara
 an executable quote. Failed final Entry reverts input/LP changes, not earlier
 approval or network gas. [Entry flow](ACTIVATION_ENTRY.md), [prices](PRICE_SECURITY.md).
 
+## RPC failure handling
+
+The shared read-only RPC adapter requires a canonical hex chain-ID quantity,
+unique JSON object fields, finite numbers and exactly one result/error envelope.
+Malformed/oversized/parser-limited replies fail through bounded configured
+endpoint retries; WorkLimit still stops request work immediately. Valid finite
+fee-history floats and the adapter's checked integer chain-ID return are retained.
+A response containing both a result and a missing-block error is malformed,
+not evidence of correct unavailable-block handling. Socket inactivity timeouts
+are not absolute DNS/header/body deadlines; use the reviewed systemd progress
+watchdog below for keeper stall containment. API request workers retain their
+separate hard30second supervisor.
+
+On persistent failure, keep pending intents/index state, inspect fixed error
+site/type diagnostics and compare the same canonical block with a reviewed
+independent endpoint. Do not echo raw provider responses/credentials, reset a
+journal, resend a saved transaction or bypass strict decoding. Actual provider
+qualification remains open. [Review and evidence](../reports/system-adversarial-20261026/VERIFICATION.md).
+
+## Keeper progress watchdog
+
+The shipped [source unit](../keeper/zzz-keeper.service) opts into120second
+systemd supervision, with main-PID notification, control-group SIGKILL and no
+core dumps. The keeper sends fixed progress datagrams from its main execution
+path after RPC returns and during intentional idle sleep; no background timer
+can conceal stalled I/O. Notifications are at most10seconds apart while making
+progress, leaving room for the existing90second signer step. A locally overdue
+pulse rejects instead of reviving a missed deadline.
+
+Install/review matching source and unit together only through an authorized
+rollout. Validate systemd>=240, effective settings and real group cleanup first;
+a file containing a setting does not prove the manager applied it. No environment
+means the original standalone path, with no hard supervisor. This is a
+no-progress watchdog, not a120second whole-cycle SLA, and it does not replace
+off-host health checks. [Exact operator/recovery procedure](KEEPER_RECOVERY.md#stalled-rpc-and-progress-watchdog).
+No current service or paused monitor was changed.
+
 ## Running reviewed services
 
 On a supported Linux/Unix host with Python3.11+, verified configuration and private

@@ -37,6 +37,64 @@ LP stays on chain. The keeper discovers the Vault's shared buckets and reads cur
 
 The state file preserves deployment identity, next nonce, pending intent/hash, daily costs, maintenance times, discovery cursor and metadata checkpoints. Live startup refuses missing/corrupt state, an absent nonce checkpoint or an unqualified network fee policy. Used signers require a canonical confirmed receipt anchor; a later deep reorganization blocks further signing until reviewed reconciliation. Submission refuses nonce drift, unknown pending transactions and insufficient native balance. Ambiguous broadcasts never trigger blind resubmission.
 
+## Stalled RPC and progress watchdog
+
+A peer can trickle HTTP headers/body, or DNS can stall, beyond urllib's socket
+inactivity timeout. Without an outer supervisor, retries cannot begin until
+that call returns. API workers have a separate killable30second deadline; a
+standalone keeper command does not. A stale health alert alone cannot interrupt
+blocked I/O.
+
+The reviewed source [unit](../keeper/zzz-keeper.service) sets
+`WatchdogSec=120s`, `NotifyAccess=main`, `WatchdogSignal=SIGKILL`,
+`KillMode=control-group`, `SendSIGKILL=yes`, `FinalKillSignal=SIGKILL` and
+`LimitCORE=0`. Main progress notifications bracket startup/cycles, follow
+completed RPC and cover intentional polling sleep; there is no timer thread.
+A stuck read/signer cannot keep reporting progress. Default notification cadence
+is at most10seconds, leaving margin for the existing90second signer timeout.
+A progressing cycle may legitimately exceed120seconds.
+
+Before a separately authorized rollout:
+
+1. Stop/fence the old service/signer and preserve exact source/configuration,
+   pending journal, backups and loaded unit/drop-ins. Never edit a saved nonce,
+   pending hash, fee review or cost record to make restart pass.
+2. Review matching source/unit, systemd>=240 and all effective overrides. The
+   following are read-only inspection commands for the target host:
+
+   ```sh
+   systemd --version
+   systemd-analyze verify /etc/systemd/system/zzz-keeper.service
+   systemctl show zzz-keeper.service -p WatchdogUSec -p WatchdogSignal -p NotifyAccess -p KillMode -p SendSIGKILL -p FinalKillSignal -p LimitCORE -p WatchdogTimestampMonotonic
+   ```
+
+   Require the reviewed120second timeout, main-process notification, group
+   termination, SIGKILL (signal9), no core dumps and advancing accepted timestamps.
+   Older managers can ignore unsupported options; warnings or ignored settings
+   block qualification. Review manual timeout changes against maximum legitimate
+   uninterrupted work plus notification gap; do not blindly shorten the value.
+3. Rehearse with isolated inert operations on that exact Linux host: stalled DNS,
+   continuously trickled headers/body and interrupted signer. Verify systemd
+   terminates every service/signer descendant before restart, releases the old
+   lock and never overlaps another keeper. Local Python mocks/unit text do not
+   prove actual cgroup cleanup or manager behavior.
+4. Verify restart reads the intact journal. A saved hash is checked at that hash;
+   a hashless intent remains ambiguous and blocks new submissions. The old signer
+   may have broadcast just before termination: use exact reviewed transaction
+   identity/nonce evidence and `--resolve-pending` as appropriate. Never resend,
+   replace, delete pending state or reset budgets automatically. Repeated failure
+   may hit the existing service start limit and require operator review.
+5. Keep independent off-host stale/degraded/pending alerts. The desktop staging
+   monitor remains paused; source watchdog support neither resumes it nor proves
+   uninterrupted uptime. For rollback, stop/fence, restore the reviewed matching
+   source/unit pair and inspect effective settings with the same journal intact.
+
+Notifications carry only fixed bytes; systemd environment fields are consumed
+before signer children start. This adds no financial capability or journal
+migration. With no configured watchdog, existing one-shot/init/resolve/standalone
+behavior remains. Live code/unit deployment and real kill/recovery qualification
+are separate approvals. [Internal evidence](../reports/system-adversarial-20261026/WATCHDOG.md).
+
 ## Fee-review upgrades and legacy pending intents
 
 The current keeper writes `pending.fee_review` schema 1 before invoking its signer.
