@@ -1,7 +1,7 @@
 # Release approval record - NOT APPROVED
 
 Latest [systematic adversarial review](../reports/system-adversarial-20261026/REVIEW.md)
-adds complete callable scenario coverage and corrects read-RPC/holder-tool input
+adds a source-review matrix for every inventoried callable and corrects read-RPC/holder-tool input
 integrity/failure handling and adds source-only systemd progress supervision.
 The244-method scope has241 passes/3 explicit skips; the652ABI
 rows/1,987 scenario instances are static review coverage, not execution counts.

@@ -78,6 +78,10 @@ before changing behavior. This file contains current instructions, not a timelin
 - Run useful affected checks; reuse unchanged Solidity/dependency/build evidence
   only with exact source pins. Do not inflate counts by adding overlapping runs.
   No gate relaxation, invented provider qualification or global audit guarantee.
+- Reconcile current Todo acceptance text as well as its summary: old inputs, loss
+  policies, governance and codecs belong to explicitly historical evidence. Do not
+  turn deferred work or deliberately disabled public signing into an approval.
+  Documentation-only synchronization does not close implementation/release tasks.
 - [Documentation cleanup/publication](reports/documentation-cleanup-20261026/PUBLICATION.md)
   records the consolidated current guides and original-draft preservation.
 - Latest keeper/LP source-scoped review: [audit](reports/keeper-lp-audit-20261026/REVIEW.md)

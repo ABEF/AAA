@@ -123,7 +123,18 @@ Contract checkout: `C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/
 Website checkout: `C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website` (`ABEF/AAA-website`).
 Public demonstration: [popldemo.0xwave.com](https://popldemo.0xwave.com).
 Published native website reader still targets accounting2; current3 integration
-and example-copy alignment are separate work. Public transactions are disabled.
+and example-copy alignment are separate work. Current selectors must be ETH/fixed
+ZZZ only and reflect the captured2% default contribution budget (98% deployed),
+not historical stablecoin/99% examples. Public transactions are disabled by user
+decision, not a missing permission to enable them.
+
+The [documentation reconciliation](reports/documentation-sync-20261026/README.md)
+corrects superseded Todo acceptance wording without closing any of its65tasks.
+Priorities are actual ETH/ZZZ prices and a cheaper ZZZ-to-ETH conversion route,
+matching current3 website/read services, supported OpenSea primary-mint/VRF
+integration, then exact-host operating qualification and independent review.
+The source-only keeper watchdog still needs a separately authorized Linux
+cgroup/signer-stop/journal/no-resend rehearsal; publication does not install it.
 
 Preserve local Anvil/NFT/LP/balances/journals/port8902/dist overlay. Signer remains
 Anvil-only, public DEPLOYMENT null, staging monitoring paused. Original dirty

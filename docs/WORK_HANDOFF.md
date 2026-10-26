@@ -39,13 +39,23 @@ explains the four-hour example, exact JSON setting, overrides, receipt-based tim
 and controlled restart/health/rollback. It changes no live config or contract;
 do not infer that a production harvesting service has been enabled.
 
-1. Use the [single task ledger](../TODO.md): actual feeds/routes/RPC/VRF/authorities,
-   OpenSea primary-mint path, current3 website and service acceptance remain open.
-2. Keep the current accounting3/governance2/fee1/localV4 profile explicit. Existing
-   local deployments retain their own code/profile; never relabel or reset them.
-3. Qualify current target-chain depth/gas/strategy economics and Linux operating
-   rehearsals, then freeze exact source/configuration for independent review and
-   remediation. Production remains NOT APPROVED.
+1. Use the [single task ledger](../TODO.md). Its [documentation reconciliation](../reports/documentation-sync-20261026/README.md)
+   removes stale present-tense input, floor, governance and codec instructions;
+   all65task IDs/statuses remain unchanged. This was not another code/test campaign.
+2. Qualify actual independent ETH/ZZZ prices, RPC/history and a cheaper ZZZ-to-ETH
+   conversion route within the default1% cap. Source agreement is not quote
+   feasibility or proof of full historical ingestion. Select actual authorities.
+3. Match website/read services to accounting3/governance2/fee1/localV4, ETH/fixedZZZ
+   and the captured2% default/98% deployed floor. Public signing stays disabled;
+   existing Anvil profiles/journals are never relabeled or reset. Production mint
+   remains an unfinished supported OpenSea primary-mint/VRF integration.
+4. Under separate operating authorization, qualify matching source/unit on Linux,
+   including stalled RPC/signer descendants, group termination, lock release and
+   original pending/journal/nonce recovery with no automatic resend. Source-only
+   watchdog support and old staging receipts do not close this gate.
+5. Qualify target-chain depth/gas/strategy economics, backups/alerts and metadata
+   hosting; freeze exact source/configuration for independent review/remediation.
+   Production remains NOT APPROVED.
 
 ## Preservation and publication
 
