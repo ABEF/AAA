@@ -1,3 +1,25 @@
+## Backend fee-breakdown publication verified - 2026-10-26
+
+Contract `379ae19` and website memory-only `4e04bb5` are pushed on main;
+both remote heads verified. Read [publication](reports/backend-remediation-20261026/PUBLICATION.md),
+[review](reports/backend-remediation-20261026/REVIEW.md) and
+[verification](reports/backend-remediation-20261026/VERIFICATION.md). Five Python
+modules hardened;167distinct affected methods pass (31new/136existing),54input
+hashes stable. Exact LP fee/credit/dust conservation, current ETH inventory,
+inactive claims and malformed wallet values are checked. No economic/schema/
+Solidity/signing change.44sources/31dependencies/4build pins match; unchanged
+static/object evidence reused, no broad rerun or independent-audit claim.
+
+Earned history and claimable balances stay distinct. LP individual+collective
+plus royalties is NFT income; reserves and duplicate claims/conversions are not.
+Authentic complete logs and actual provider/service qualification remain needed.
+Production NOT APPROVED; current3website/services/feeds/routes/VRF/authorities/
+OpenSea/gas/operations/independent audit remain open. SoleTodo/features/operator/
+roadmap/release/bothmemories aligned. Main only;14originaldrafts preserved.
+Website memory-only; no source/build/server/Anvil/NFT/LP/balance/journal/dist/
+service/monitor/publicRPC/transaction/deployment/seal action. Signing Anvil-only,
+public DEPLOYMENT null, monitor paused. Receipt checkpoint is documentation only.
+
 ## Backend fee-breakdown remediation - 2026-10-26
 
 Read [review](reports/backend-remediation-20261026/REVIEW.md) and
