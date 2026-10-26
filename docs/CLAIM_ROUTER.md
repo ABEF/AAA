@@ -77,6 +77,12 @@ totals or infer historical token prices. The website remains a simulation until
 the reviewed deployment, verified addresses, live reads and wallet transaction
 flow are integrated.
 
+The contract repository now includes opt-in [unsigned claim preparation](FRONTEND_TRANSACTIONS.md).
+It validates a selected batch and simulates exact router calldata at one confirmed
+canonical block. It neither requests approval nor signs/broadcasts. Fresh wallet
+account/chain/calldata validation, gas estimation, user confirmation and receipt
+handling remain frontend integration work.
+
 The local regression suite uses the real NFT, router and reward ledgers with a
 mock share vault, mock exact-transfer assets and mock VRF. It covers authorization,
 mixed assets/NFTs, transfer ownership, atomic failures, native callbacks, refunds,
@@ -86,16 +92,4 @@ target-chain gas headroom, real VRF support or independent audit approval. Recor
 fresh compilation/size, full regression, source-bound static analysis and staged
 operating evidence under the [transaction integration task](../TODO.md#task-transaction-ui) before deployment approval.
 
-The initial scoped local run on 2026-10-15 passed all **22 router tests**, including
-**1,000 fuzz cases**. A cold-account workload with 16 NFTs, each claiming one LP
-asset and native royalties (32 operations total), consumed **3,789,465 gas**,
-below the existing 12M local regression ceiling. This fixture does not prove a
-32-operation batch is affordable for every admitted asset or production chain;
-gas estimation and smaller chunks remain necessary.
-
-With the pinned 0.8.26 compiler profile, router runtime/initcode objects measured
-**2,885 / 3,443 bytes**, and the NFT including embedded helper creation measured
-**18,895 / 46,294 bytes**. NFT deployment must also include its actual ABI-encoded
-constructor arguments within the 49,152-byte initcode limit; a large base URI can
-consume the remaining allowance. The local constructor fixture is development
-evidence, not a production deployment rehearsal.
+Historical router test/size measurements are recorded in [the original feature evidence](https://github.com/ABEF/AAA/blob/a5fad3e744da3d2ecbde01611c3f0b5371736784/docs/CLAIM_ROUTER.md); they are not current target-chain gas qualification. Use actual current compilation/constructor inputs and simulation.

@@ -1,52 +1,3 @@
-**Current policy, 2026-10-25:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-
-## Inactive reward integrity - 2026-10-26
-
-Validated never-activated NFTs cannot report a positive available LP or royalty
-claim, with or without this optional profile. Rarity remains known before
-activation; its royalty eligibility is not retroactive. Currency read failures
-remain unavailable/null and do not become fabricated zero. Activated NFTs retain
-their owed rewards when parked/outbound; market-value downgrades do not revoke
-eligibility. Current native LP inventory must actually include ETH first.
-[Scoped backend verification](../reports/backend-remediation-20261026/VERIFICATION.md)
-changes no royalty weighting, currency conversion, claim permission or schema.
-
-## Native custody history and recovery
-
-The current source accepts a delayed native eligibility prefix only with a
-verified nonzero `custodyNonce(address(0))` and consistent cohort counts/weights.
-This getter and `eligibleWeight` / `totalWeight` are required only when that
-native prefix lags. Old pinned runtimes lacking the required getter fail closed.
-The API configuration schema remains 1; this is not an on-chain upgrade.
-
-During external native custody, `claimable` intentionally reverts. Display ETH
-unavailable/null, the NFT's known royalty weight and deferred eligibility;
-preserve available LP and healthy-currency balances. The native prefix may still
-lag just after full return, before the next ordinary sync. Do not manufacture
-zero balances, old earnings or retroactive eligibility.
-
-Earnings replay now authenticates `RoyaltyCustodyExited` and
-`RoyaltyCustodyReturned` from the pinned ledger with exact topic/data structure,
-admitted currency, unique exit ID, recipient and amount. A matching full return
-restores backing without adding income. Native deferral is accepted only inside
-an observed native custody interval. Full earnings reconciliation stays
-unavailable while backing is external or events are missing/inconsistent; after
-return it verifies the ordinary cohort recovery and current chain balances.
-
-For a rollout, preserve original databases/configuration and back up raw history.
-Replay into a separate database from the earliest affected custody interval,
-retaining all anchors and intervening logs; compare both incumbent/new NFT
-results and chain reconciliation before switching clients. Do not reset history,
-infer missing events or repair a running service automatically. Read-service
-rollback restores the prior release/configuration, not on-chain custody state.
-See [fix and limits](../reports/day-readiness-20261025/royalty-matrix.md).
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
-
 # Royalty balances, eligibility and conversion history
 
 The confirmed read API can report native ETH, earned non-ETH balances and deferred
@@ -56,36 +7,46 @@ support, not a deployed API or a live website integration.
 
 ## Enable the current ledger profile
 
-In the reviewed schema-2 API configuration, add this optional field:
+The schema-2 read API has a separate optional `royalty_reporting` profile.
+For the current governed converter, use reporting **schema 2** with its exact
+runtime pin:
 
 ```json
 "royalty_reporting": {
-  "schema": 1,
-  "converter": null
+  "schema": 2,
+  "converter": {
+    "address": "<ledger-bound converter address>",
+    "code_hash": "<reviewed deployed-runtime Keccak-256>"
+  }
 }
 ```
 
-Use it only with the reviewed current royalty-ledger runtime/ABI. Existing module,
-asset, lifecycle, chain, deployment-anchor and canonical-hash pins remain required.
-The profile calls `canonicalController`, `activationCount`, `activationOrdinal`,
-`eligibleCount`, `eligibleFor` and `converter`; an old ledger lacking those methods
-is incompatible, not a recoverable currency outage. Do not infer a profile from
-a familiar token name or silently probe arbitrary contract versions.
+These are unusable placeholders. Reporting schema 2 requires a non-null converter
+pin; it reads `conversionLossBps()` and verifies the hard ceiling of 1,000 bps.
+The current conversion default is 100 bps (1%), governed up to 1,000 bps (10%), with
+network gas separate. The observed setting is not a swap quote or permission to
+execute. Typed routes, feed review and stricter caller/venue minima still apply;
+see [conversion routes](TYPED_V4_ROUTES.md) and
+[execution-loss controls](EXECUTION_LOSS_POLICY.md).
 
-To verify converter status too, replace `null` with an object containing exactly
-`address` (the ledger's bound nonzero converter address) and `code_hash` (its
-reviewed deployed-runtime Keccak-256, including immutables). No placeholder address
-or hash is supplied. A null/mismatched pin makes converter status unavailable; it
-does not hide otherwise verified balances or create permission to convert.
-The API verifies the helper's ledger/controller binding and enabled flag.
-Current conversion policy defaults to 100 basis points and is governed up to
-1,000; the response is a read, not a review-pinned swap quote. Network gas is
-separate. Actual route/feed and caller-minimum checks remain independent.
+Use only the matching reviewed royalty-ledger/runtime ABI. The service verifies
+existing module, asset, lifecycle, chain, deployment-anchor and canonical-hash
+pins. It reads `canonicalController`, `activationCount`, `activationOrdinal`,
+`eligibleCount`, `eligibleFor` and `converter`. Missing core getters are an
+incompatible profile, not an optional currency outage. Never select profiles
+from token names or silently probe arbitrary versions.
 
-Without this profile, existing strict per-asset reads continue and
-`royalty_reporting.available` is false. This avoids interpreting old contracts
-through a new ABI. History replay is independent of the opt-in; predecessor
-deployments never inherit the current converter/profile automatically.
+| Reporting selection | Supported meaning |
+| --- | --- |
+| Schema 2 with exact non-null converter pin | Current governed converter binding, enable state, operating cap and hard cap |
+| Schema 1 with `converter: null` | Eligibility and isolated balances without verified converter status; usable only when the ledger supports the required core getters |
+| Schema 1 with converter pin | Historical fixed 100 bps converter ABI; it cannot verify the current 1,000 bps ceiling |
+| Profile omitted | Original strict per-asset reads; `royalty_reporting.available` is false |
+
+A null/mismatched pin makes converter status unavailable; it does not hide
+otherwise verified balances or authorize a conversion. Predecessors never inherit
+this optional current profile automatically. A profile or API rollback does not
+change any on-chain converter, eligibility or already executed transaction.
 
 ## Response fields
 
@@ -117,6 +78,46 @@ currency eligibility prefix. On recovery the contract protects earlier receipts,
 then admits waiting NFTs for future receipts. The API reports that state; reading
 it does not submit `sync`, activate an NFT or execute conversion.
 
+## Inactive reward integrity
+
+Validated never-activated NFTs cannot report positive available LP or royalty
+claims, with or without this optional profile. Rarity determines known x1/x2/x3
+weight; activation starts eligibility without retroactive royalties. Unreadable
+currencies stay unavailable/null. Activated NFTs retain owed rewards while
+parked/outbound or after a market-value downgrade. Current LP inventory must
+actually include native ETH first. See [current backend verification](../reports/backend-remediation-20261026/VERIFICATION.md).
+
+## Native custody history and recovery
+
+The current source accepts a delayed native eligibility prefix only with a
+verified nonzero `custodyNonce(address(0))` and consistent cohort counts/weights.
+This getter and `eligibleWeight` / `totalWeight` are required only when that
+native prefix lags. Old pinned runtimes lacking the required getter fail closed.
+This eligibility check is shared by both reporting profiles; it is not an
+on-chain upgrade.
+
+During external native custody, `claimable` intentionally reverts. Display ETH
+unavailable/null, the NFT's known royalty weight and deferred eligibility;
+preserve available LP and healthy-currency balances. The native prefix may still
+lag just after full return, before the next ordinary sync. Do not manufacture
+zero balances, old earnings or retroactive eligibility.
+
+Earnings replay now authenticates `RoyaltyCustodyExited` and
+`RoyaltyCustodyReturned` from the pinned ledger with exact topic/data structure,
+admitted currency, unique exit ID, recipient and amount. A matching full return
+restores backing without adding income. Native deferral is accepted only inside
+an observed native custody interval. Full earnings reconciliation stays
+unavailable while backing is external or events are missing/inconsistent; after
+return it verifies the ordinary cohort recovery and current chain balances.
+
+For a rollout, preserve original databases/configuration and back up raw history.
+Replay into a separate database from the earliest affected custody interval,
+retaining all anchors and intervening logs; compare both incumbent/new NFT
+results and chain reconciliation before switching clients. Do not reset history,
+infer missing events or repair a running service automatically. Read-service
+rollback restores the prior release/configuration, not on-chain custody state.
+See [fix and limits](../reports/day-readiness-20261025/royalty-matrix.md).
+
 ## History and amounts that must not be counted twice
 
 The indexer schema includes `RoyaltyConverted` and currency eligibility/control
@@ -142,9 +143,11 @@ current deployment. Missing lineage returns unavailable lifetime totals; invalid
 configured lineage or incomplete ingestion rejects the projection.
 
 The operator-maintained SQLite store and pinned RPC are still trusted for complete
-ingestion; this is not a cryptographic log-completeness or finality proof. Gross
-earned revenue, 24-hour/all-time USD pricing and cross-chain history remain outside
-this feature. See [history trust boundaries](FRONTEND_HISTORY.md) and
+ingestion; this is not a cryptographic log-completeness or finality proof.
+Processed 24h/all-time earnings and current-price USD marks use the separate
+[earnings profile](EARNINGS_HISTORY.md); they are not conversion-history totals.
+Only reviewed same-chain lineage is supported. See
+[history trust boundaries](FRONTEND_HISTORY.md) and
 [predecessor verification](FRONTEND_LINEAGE.md).
 
 ## Operating and recovery procedure

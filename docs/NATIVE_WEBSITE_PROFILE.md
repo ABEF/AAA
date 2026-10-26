@@ -1,24 +1,14 @@
-## Scope: published native2 website profile
+# Published native2 website read and unsigned profile
 
-This document records the existing published website read/unsigned profile2.
-The newer contract candidate uses [accounting3/localV4](POSITION_V3.md); it needs
-an explicitly matching website integration and qualification. Do not relabel the
-profile2 table below or any existing Anvil journal as version3. Public DEPLOYMENT
-remains null and signing Anvil-only; no website build/server change is implied.
+This guide records the published website accounting 2/pricing 2/Entry-review1
+manifest. The newer contract candidate is [accounting 3/localV4](POSITION_V3.md)
+and still requires an explicitly matching website integration and qualification.
+Do not relabel this profile or an existing Anvil journal as 3. Native2 source
+support is not evidence that accounting-3 wallet flows are qualified. Public
+`DEPLOYMENT` remains null and the shared signer stays Anvil-only.
 
-# Native-V2 website read and unsigned reviews
-
-
-## Current release simplification - 2026-10-25
-
-[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
-fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
-pool moves, external custody exit/recovery, royalty currencies and complete
-collection handoff. Current fee/custody profiles and canonical schema are
-explicit; old deployments/journals keep historical profiles.
-
-The website has an explicit **schema-2 manifest** for accounting2, pricing2,
-routing2 and reviewed Entry1. It is locally implemented; the public configuration
+The website has an explicit **schema-2 manifest** for accounting 2, pricing 2,
+routing 2 and reviewed Entry1. It is locally implemented; the public configuration
 remains null. Nonlocal submission is disabled. The shared signer, browser client
 and transaction coordinator are unchanged and remain Anvil-only. This does not
 qualify real native wallet/provider flows or approve deployment.
@@ -30,24 +20,24 @@ Read [scope and verification](../reports/native-readiness-20261025/VERIFICATION.
 
 ## Select the matching deployment profile
 
-Keep schema1 for an existing historical WETH/local deployment. Its original
+Keep schema 1 for an existing historical WETH/local deployment. Its original
 valuation asset, 1% policy, ABI and journals retain their meaning. Do not change
 an old manifest's version to make new code appear compatible. Explicit current
 version data cannot silently pass as a historical profile.
 
-For schema2, start with the reviewed manifest fields in the existing guide and
+For schema 2, start with the reviewed manifest fields in the existing guide and
 make these additions/changes. No actual production addresses are supplied here.
 
 | Field | Native-V2 requirement |
 | --- | --- |
 | Versions | `schema: 2`, `accounting_version: 2`, `pricing_version: 2`, `routing_version: 2`, `review_policy_version: 1`. All explicit. |
 | Contract pins | Existing `access`, `nft`, `vault`, `entry`, `claim_router`, `oracle`, plus `pools`, `budget`, `activation_assets`, `contribution_pricing`. Ten distinct nonzero addresses, each with the reviewed exact deployed `runtime_code`. |
-| Contribution ceiling | `limits.maximum_contribution_loss_bps`, integer0-1000. This is the independently approved website ceiling, not a value discovered from the API. Normally200 for the current2% default; a different value requires review. Zero is a real zero cap, never a missing/default value. |
+| Contribution ceiling | `limits.maximum_contribution_loss_bps`, integer 0-1000. This is the independently approved website ceiling, not a value discovered from the API. A reviewed 200 ceiling represents a 2% contribution budget; a different value requires review. Zero is a real zero cap, never a missing/default value. |
 | Every input | Existing symbol/address/decimals/route/enabled/runtime fields, plus approved `price_policy_id`, `asset_policy_id` and `route_kind`. Both IDs are nonzero hashes. |
-| Native ETH input | Address and `valuation_asset` both zero,18decimals, `runtime_code: null`. Never query a deployed runtime at address zero or substitute WETH. |
+| Native ETH input | Address and `valuation_asset` both zero, 18 decimals, `runtime_code: null`. Never query a deployed runtime at address zero or substitute WETH. |
 | ERC20 input | Valuation address equals the actual token; exact reviewed runtime and decimals. WETH is not another activation selector. |
 | Route | Kind0 only with zero route ID; typed nonzero route ID is kind1 or2. Native routed input requires kind2. Enabled admission, policy IDs and route kind must match confirmed state. |
-| Reward inventory | Complete reviewed union, at most49 unique currencies, including native ETH/zero/18. Native LP projection is bounded33 rows and royalties17 rows; both must include exactly one ETH entry. Missing entries fail rather than becoming a partial claim total. |
+| Reward inventory | Complete reviewed union, at most 49 unique currencies, including native ETH/zero/18. Native LP projection is bounded 33 rows and royalties 17 rows; both must include exactly one ETH entry. Missing entries fail rather than becoming a partial claim total. |
 
 All other chain/genesis/anchor, confirmation, age, API identity, gas/value and
 same-origin/HTTPS restrictions remain. Choose public production configuration
@@ -71,14 +61,14 @@ separate. NFT earnings USD marks retain the reviewed API/configuration trust
 boundary; the browser does not independently re-read every historical currency's
 Oracle policy.
 
-Activation targets at least$100 at the lower source price with only minimal
-raw-unit rounding; growth starts at$5. The execution floor uses **upper input
+Activation targets at least $100 at the lower source price with only minimal
+raw-unit rounding; growth starts at $5. The execution floor uses **upper input
 USD rounded up**, less the captured allowed fraction rounded down. Added LP is
 the independently checked simulated marginal deployed amount, not attributed
 idle or an optimistic gross contribution. A wider valid price band can therefore
 make a quote unavailable even before the nominal loss cap is exhausted.
 
-The current on-chain contribution cap must fit the manifest ceiling, equal the
+The manifest-compatible on-chain contribution cap must fit the manifest ceiling, equal the
 API's captured execution cap and equal its reviewed caller maximum. The client
 reconstructs the exact `executeReviewed` selector and all ten ABI words, including
 the maximum. Target, sender, value, input amount, route, deadline, LP/liquidity

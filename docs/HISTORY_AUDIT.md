@@ -14,8 +14,10 @@ observation, not a cryptographic proof that no event was omitted.
 ## Configure and run
 
 Use the reviewed schema-2 API configuration with `history`, `earnings_history`
-and every required predecessor. The constructor verifies that each earnings
-profile has all seven emitters. The audit checks that the SQLite cursor has the
+and every required same-chain predecessor. Current deployments explicitly select
+accounting 3 and fee intake 1; V4 predecessors must use the same Position codec.
+The constructor verifies that each earnings profile has all seven emitters.
+The audit checks that the SQLite cursor has the
 exact configured chain/start/parent/contract identity and has fully ingested the
 requested window. It uses raw log fields, not cached event names or decoded data.
 
@@ -65,8 +67,9 @@ emitter, transaction/block identity, transaction index and log index are compare
 ## Coverage, limits and release use
 
 One run handles at most **128 blocks**, **10,000 logs** and **8 MiB of normalized
-log data per source**. Stored raw JSON is capped at 64 KiB per log. RPC log fetches
-use chunks of at most 32 blocks and the existing transport response limit.
+log data per source**. Stored raw JSON text is capped at 65,536 characters per log
+before decoding. RPC log fetches use chunks of at most 32 blocks and the existing
+transport response limit.
 The standard 25-second request deadline, RPC/post budgets and SQLite cancellation
 remain active. Reducing the window can resolve volume/latency limits; a single
 block beyond the limits requires engineering review. No truncation or ignored
@@ -85,7 +88,9 @@ A report for a historical window is not a current balance or price quote. No USD
 price is inferred, and an audit pass does not qualify a feed. Preserve the user's
 current-price earnings policy: missing prices stay unavailable, conversions and
 claims are not new income, and transfers preserve the NFT's earnings history.
-Remote/cross-chain gross history remains outside the supported same-chain profile.
+The current release has no remote fee intake or bridge history. A custody transfer
+to an external address is not a same-chain canonical handoff or proof of a later
+chain's NFT/reward history.
 
 ## Database performance and recovery
 

@@ -53,12 +53,14 @@ revert the entire operation. Input/output are bounded by signed int128 settlemen
 1. Qualify the actual assets, independently priced feeds, pool liquidity,
    directional fees, manager and StateView runtime hashes/binding. A UI ticker or
    low nominal LP fee does not establish an executable route.
-2. Admit the activation source through the existing asset policy. Call
+2. Verify native ETH or fixed ZZZ source admission through the existing policy;
+   no third contribution currency can be added. Call
    `Entry.addV4Route(policy)` through governance with the exact immutable policy.
    The output must be one actual currency of the selected contribution pool.
    Direct pair input still uses route zero; token approvals remain exact amounts.
-3. Add a reviewed activation configuration with `routing_version: 2`, accounting
-   V2 and `contracts.v4_executor: {address,code_hash}`. Every source entry declares
+3. Add a reviewed activation configuration with accounting 3 / fee-intake 1 in
+   its parent, explicit routing 2 / pricing 2 / review 1 and
+   `contracts.v4_executor: {address,code_hash}` plus the fixed pricing companion. Every source entry declares
    `route_kind` (0 direct, 1 v3 or 2 v4). Include reviewed token/feed and conversion
    manager/StateView dependency pins. No automatic v3/native fallback exists.
 4. Preparation verifies helper/parent, domain/policy, actual pool state and current
@@ -99,7 +101,7 @@ Royalty reporting opts in with `royalty_reporting: {schema: 2,
 converter: {address, code_hash}}`. It reports the current governed cap separately
 from its 10% hard maximum; a missing/mismatched getter is unavailable, not 1%.
 
-[Execution-loss policy](EXECUTION_LOSS_POLICY.md) defines 1% / 1% / 3% defaults,
+[Execution-loss policy](EXECUTION_LOSS_POLICY.md) defines 2% / 1% / 3% defaults,
 immediate governance and 10% hard maxima. At default 1%, the selected ETH/ZZZ
 pool's observed approximately 1.101% fee still does not qualify a full conversion
 at reference prices. Qualify a cheaper route or deliberately review a policy
@@ -108,8 +110,9 @@ change; never silently raise the limit.
 ## Remaining release work
 
 Actual assets/routes/feeds, RPC/trace compatibility, complete fees/gas and keeper
-operation need qualification. Native website/release inventory, atomic ETH/WETH
-principal moves, OpenSea mint support, future-chain handoff and independent audit
-remain separate gates. No public signing, deployment or existing local fixture
-change is enabled here. [Scoped evidence](../reports/typed-v4-routes/VERIFICATION.md)
+operation need qualification, alongside current-profile website/release inventory,
+OpenSea mint support and independent audit. Atomic ETH/WETH principal moves and
+cross-chain NFT/ledger transport are unsupported scope, not implied capabilities
+or required bridge-provider configuration. External custody remains separate.
+No public signing, deployment or existing local fixture change is enabled here. [Scoped evidence](../reports/typed-v4-routes/VERIFICATION.md)
 and the [single Todo](../TODO.md) distinguish implementation from release approval.

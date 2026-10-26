@@ -1,15 +1,33 @@
-## Native royalty custody replay - 2026-10-25
+# Confirmed wallet inventory and lifetime claims
 
-Current earnings replay validates complete RoyaltyCustodyExited/Returned intervals,
-permits native eligibility deferral only during actual native custody and treats
-full return as backing restoration, not income. In-transit reconciliation and
-missing/mismatched events stay unavailable. Preserve original databases and
-rebuild into a separate verified store before a reviewed service rollout; see
-[reporting procedure](ROYALTY_REPORTING.md#native-custody-history-and-recovery)
-and [audit](../reports/day-readiness-20261025/royalty-matrix.md). No running store
-or service was changed by this source fix.
+`frontend_api/history.py` extends the unhosted
+[confirmed read API](FRONTEND_API.md) using the existing event indexer's SQLite
+database. It implements complete current wallet NFT inventory and cumulative
+**Previously claimed** amounts per NFT/asset, including every past LP and royalty
+claim paid to previous owners. It neither deploys/hosts a backend nor changes the
+website's simulated actions.
 
-## Confirmed-log validation and recovery - 2026-10-25
+## Current and historical scope
+
+Current reads explicitly use accounting 3/fee-intake 1 and same-chain canonical V4.
+Native ETH is admitted by both ledgers; historical accounting 1 retains its
+ERC20-only LP boundary. No profile or old journal is relabeled automatically.
+
+This reader reconstructs ownership, actual payouts and LP/royalty conversions.
+The separate [earnings profile](EARNINGS_HISTORY.md) reconstructs processed
+individual LP, equal collective LP and rarity-weighted royalties, with today's
+confirmed-price USD marks. Claims and conversions never create extra income;
+current native claimable already includes remaining conversion credits. A
+transfer preserves lifetime history for the NFT, including its earlier owners.
+
+Native custody exit/return history must authenticate the exact interval. Return
+restores backing rather than income; unavailable backing/reconciliation never
+becomes zero. See [native custody reporting and recovery](ROYALTY_REPORTING.md#native-custody-history-and-recovery).
+Complete same-chain predecessors are verified separately under
+[the lineage procedure](FRONTEND_LINEAGE.md). No integrated bridge or cross-chain
+ownership/ledger replay is inferred from a custody transfer.
+
+## Confirmed-log validation and recovery
 
 The current indexer rejects malformed log identities/layouts as sanitized
 `invalid_log` and conflicting block/log or transaction/block identities as
@@ -31,42 +49,7 @@ forensic copy and rebuild into a separate database, then verify full creation,
 predecessor and cutoff coverage before serving results. See
 [indexer recovery](INDEXER_RECOVERY.md) and the
 [scoped service review](../reports/daily-security-20261025/SERVICE_REVIEW.md).
-No running service or existing journal/database is changed by this source update.
-
-## Processed earnings and current USD - 2026-10-19
-
-The separate [earnings endpoint](EARNINGS_HISTORY.md) now uses this raw-log
-consumer for share/index/cohort accounting, verified same-chain epochs and
-all-time/24-hour processed income. All seven reviewed emitters need complete
-creation-to-cutoff coverage. Claims/conversions below retain their distinct
-meanings. USD uses today's confirmed prices of the originally earned currencies;
-missing prices are unavailable. Read [scoped evidence](../reports/earnings-history/VERIFICATION.md).
-
-## Royalty conversion history extension - 2026-10-19
-
-Raw replay now recognizes the exact `RoyaltyConverted` event from the pinned
-royalty ledger. The API exposes lifetime source amounts converted and ETH credited
-as `royalty_conversions`; only actual `Claimed` events affect `previously_claimed`.
-Complete configured same-chain predecessor replay carries both histories through
-retirement cutoffs, preserving historical currencies and all past owners.
-Missing history/lineage remains unavailable; invalid coverage never yields a
-partial lifetime total. Existing raw logs need no reset solely because an older
-decoder labelled an event unknown.
-
-Read [the integration and recovery guide](ROYALTY_REPORTING.md) and
-[scoped verification](../reports/royalty-reporting/VERIFICATION.md). Conversion is
-not new earned revenue. The [earnings extension](EARNINGS_HISTORY.md) adds
-processed 24h/all-time amounts and current-price USD marks. Native claimable balances already include remaining
-conversion credits, so consumers must not add lifetime credited ETH to them.
-
-# Confirmed wallet inventory and lifetime claims
-
-Updated 2026-10-15. `frontend_api/history.py` extends the unhosted
-[confirmed read API](FRONTEND_API.md) using the existing event indexer's SQLite
-database. It implements complete current wallet NFT inventory and cumulative
-**Previously claimed** amounts per NFT/asset, including every past LP and royalty
-claim paid to previous owners. It neither deploys/hosts a backend nor changes the
-website's simulated actions.
+These source protections do not repair an existing database or restart its service.
 
 ## API behavior
 
@@ -109,6 +92,9 @@ wallet's personal earnings. Current claimable balances remain separate.
 
 Each NFT response checks replayed owner against canonical `ownerOf`; all history
 responses check replayed mint inventory against `mintedCount`, bounded to 1,000.
+After history/ownership reads, final projection checks revalidate the selected
+header, current confirmation depth and freshness. A slow replay cannot publish
+an expired or insufficiently confirmed snapshot.
 Underlying ledger events emitted during claim batches are counted exactly once;
 `BatchClaimed` is not added as another financial amount.
 
@@ -181,7 +167,8 @@ raw logs emitted by the exact pinned NFT or the two exact pinned reward ledgers:
 - Both ledgers `Claimed(uint256,address,address,uint256)`: exactly four topics
   and one uint256 data word. Each claim must name a minted NFT, a nonzero payout
   recipient and an asset admitted by that particular ledger. Native address zero
-  is permitted for royalties only.
+  is permitted for royalties and, in accounting 2/3, admitted native LP rewards.
+  Accounting 1 preserves its original ERC20-only LP boundary.
 
 Each raw log must match its stored block/transaction/log-index/emitter identity
 and confirmed header; removed logs, duplicate block/log indices and transactions
@@ -192,8 +179,9 @@ time; canonical contract authorization and direct payout determine entitlement.
 
 `max_events` bounds all examined logs from those three emitters, including
 unrelated metadata events, to at most 1,000,000. Exceeding it fails rather than
-truncating lifetime history. Asset and collection bounds remain 32 LP assets,
-17 royalty assets and 1,000 NFTs. This implementation replays history per request;
+truncating lifetime history. Current bounds are at most 33 LP currencies (native
+ETH plus 32 ERC20s), 17 royalty currencies and 1,000 NFTs. Historical accounting
+1 supports 32 ERC20 LP assets. This implementation replays history per request;
 production load/cold-backfill testing and a separately reviewed incremental
 checkpoint design may be needed as history grows. No history cache or supplied
 aggregate is trusted as the authoritative answer.

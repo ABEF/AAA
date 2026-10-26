@@ -1,58 +1,53 @@
 # Canonical handoff: same-chain implementation
 
-
-## Current release simplification - 2026-10-25
-
-[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
-fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
-pool moves, external custody exit/recovery, royalty currencies and complete
-collection handoff. Current fee/custody profiles and canonical schema are
-explicit; old deployments/journals keep historical profiles.
-
 This is the implementation and operating reference for the undeployed handoff
 candidate. It is not release approval. The [central Todo](../TODO.md#task-security-chain-recovery)
-owns remaining work; the [canonical migration design](CANONICAL_MIGRATION_DESIGN.md)
-retains the wider future-chain requirements. Source-bound verification belongs in
-[the native candidate report](../reports/native-eth-port/VERIFICATION.md).
-Earlier [handoff evidence](../reports/canonical-handoff/VERIFICATION.md) retains
-its original source/accounting scope.
+owns remaining work; the [canonical migration design](CANONICAL_MIGRATION_DESIGN.md) records deferred
+future-chain questions, not an implemented transport. Current schema/profile
+evidence is linked from [features](IMPLEMENTATION_STATUS.md) and the
+[report index](../reports/README.md); older handoff/native reports retain their
+original source scope. **Production NOT APPROVED.**
 
 ## Supported boundary
 
-The V2 coordinator binds
-`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2")`. Both source and
-replacement must expose that schema; V1 WETH-accounting deployments are rejected,
-not silently reinterpreted. Native ETH is asset zero. All admitted assets,
-including native backing and historical compound, remain explicit currencies.
-Each Vault group carries its authenticated `uint64 compositionEpoch`; parked
-idle follows the actual current pair while original home identities survive.
+The current coordinator binds
+`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4")`, matching
+accounting3 eight-word local Positions and LP-only fee intake1. Both peers must
+expose this exact schema. Older WETH/native V1/V2/V3 codecs are rejected, not
+reinterpreted. Native ETH is asset zero; every admitted principal, reserve and
+reward currency remains explicit. Current Positions contain no remote location
+or composition-epoch fields. See [the profile](POSITION_V3.md).
 
 The candidate transfers the collection and classified economic state to one
 replacement **on the same chain**. Every nonempty bucket must first be parked
-at the home Vault, every draw must be complete, and principal/royalty external
+at the current Vault, every draw must be complete, and principal/royalty external
 custody must be fully resolved. The retired LP bridge/pair executor stack cannot
 be bound to this candidate; historical records do not qualify remote closure.
 
-Cross-chain canonical activation, authenticated channel closure and obligation
-funding, transport, replay boundaries and post-halt recovery remain unimplemented.
-There is no multisig attestation or timeout override. Same-chain source retirement
-and replacement activation are atomic: a reorganization reverts both. Off-chain
-consumers must still wait for the selected finality policy. These missing code
-capabilities cannot be added to already sealed implementations.
+This release has no integrated bridge, remote ledger or cross-chain canonical
+activation. An external principal custodian may bridge independently; that does
+not transfer NFT ownership or reward accounting. A future-chain protocol would
+need separately reviewed transport, verified finality and replay/ownership
+boundaries; post-halt recovery is deferred. There is no multisig-only or timeout
+override. Same-chain retirement/activation is atomic: a reorganization reverts
+both. Consumers still wait for the selected finality policy. Sealed implementations
+cannot acquire missing code by changing configuration.
 
 ## Fixed modules and authority
 
 [ZZZCanonicalHandoff](../src/ZZZCanonicalHandoff.sol) coordinates six state domains:
-NFT, Vault, membership, LP rewards, royalty rewards and fee reserves/inboxes.
+NFT, Vault, membership, LP rewards, royalty rewards and LP-only fee reserves.
 The [NFT](../src/ZZZNFTCanonical.sol), [Vault](../src/ZZZVaultCanonical.sol) and
 [Fees](../src/ZZZFeesCanonical.sol) companions are separately deployed, bound once
 and checked against their owners at sealing. They keep codecs outside the
 custody contracts to meet normal EVM code-size limits. They have no configurable
 executor, delegatecall, general withdrawal or arbitrary call facility.
 
-The existing governance controller authorizes preparation, freeze, commit, abort and reopening
-after a fully restored abort. Anyone can settle the next captured domain, relay the bounded records or advance an
-exact funding leg. Relay callers cannot choose owners, balances or recipients.
+The wallet returned by `Access.governance()` directly authorizes preparation,
+freeze, commit, abort and reopening after a fully restored abort. There is no
+timelock, scheduler or generic controller executor. Anyone can settle the next
+captured domain, relay bounded records or advance an exact funding leg.
+Relay callers cannot choose owners, balances or recipients.
 The guardian pause is separate; unpausing cannot reopen a frozen or retired
 canonical deployment. The bootstrap must prepare a destination as an inert
 importer before sealing it. Its modules cannot be changed afterward.
@@ -90,18 +85,16 @@ remapped to the replacement. No NFT principal becomes redeemable.
 
 ## Backing, cutoffs and late receipts
 
-Freeze captures every admitted ledger and inbox balance before settling any of
-them. Settlement is split into bounded domain calls, while the original cutoffs
+Freeze captures every admitted ledger and classified fee-reserve balance before
+settling any domain. Settlement is split into bounded domain calls, while the original cutoffs
 remain immutable across blocks and operator outages. Only the captured pending
 amount is indexed under the frozen membership.
 Subsequent plain transfers cannot change the export root or substitute for a
-captured obligation. Native and wrapped inbox balances are captured separately.
-Native Vault principal/quarantine, native Fees reserves/inbox protection, native
+captured obligation. Native Vault principal/quarantine, native Fees reserves, native
 individual/collective indices and converted credits, and native royalties are
-separate custody/accounting domains. Receiver asset zero is not duplicated in an
-extra native protection slot. LP and royalty liabilities, including division dust
-and per-NFT fractions, are carried exactly; converted ETH is not earned twice. The local 3% principal execution budget is not a haircut of
-claims or reserves. This direct handoff uses exact token units with no conversion.
+separate custody/accounting domains. Native currency remains a single admitted asset per applicable ledger. LP and royalty liabilities, including division dust
+and per-NFT fractions, are carried exactly; converted ETH is not earned twice. The governed maintenance budget (default 3%, maximum 10%) does not haircut
+claims or reserves. This direct handoff uses exact token units without conversion.
 
 Unassigned source-companion donations are not exported or stored as new per-asset
 freeze baselines. On abort, the fixed coordinator verifies an exact incoming balance
@@ -109,14 +102,15 @@ increase before the companion restores only that amount, preserving unrelated
 prefunds. Importer acceptance separately retains its own pre-funding baseline.
 This avoids allowing dust donations to add source freeze storage work.
 
-Destination donations remain unassigned/quarantined; royalty and creator inbox
-receipts before destination activation cannot become retroactive rewards. Old
-marketplace royalty receivers and creator inboxes can still receive payments.
-Permissionless late forwarding sends them to the one immediate successor; it
-does not recurse through an arbitrary chain of replacements. Creator receipts
-remain unsplit until processed under the active deployment, so 80/10/5/5 is not
-applied twice. Queued local creator funds block new membership until processed.
-Unknown unsolicited tokens do not create an unbounded migration inventory.
+Destination donations remain unassigned/quarantined; pre-activation receipts
+cannot become retroactive rewards. The retired royalty ledger can still receive
+marketplace payments. Its permissionless `forwardLate(asset)` sends only a
+previously admitted currency to the fixed immediate successor; forwarding does
+not recurse across a chain of replacements. An unadmitted new ERC20 sent after
+retirement has no admission or generic rescue path. Inventory cached receivers,
+currencies and pending orders before cutover. Creator inboxes and remote fee
+intake do not exist in the current candidate. Unknown unsolicited tokens do not
+expand its bounded handoff inventory.
 
 ## Cancellation and recovery
 
@@ -139,12 +133,13 @@ recovery promise is made for a broken or malicious token.
 
 ## Integration and qualification
 
-Fresh native API/keeper profiles explicitly select accounting version 2 and verify
-`Vault.ACCOUNTING_VERSION()` plus reviewed runtime pins. Legacy WETH profiles and
+Fresh API/keeper profiles explicitly select accounting version3 and fee intake1,
+and verify `Vault.ACCOUNTING_VERSION()` plus reviewed runtime pins. Legacy WETH profiles and
 predecessor epochs retain their own currency/version interpretation; saved nonce,
 receipt and pending journals cannot be reset or reinterpreted as a native upgrade.
-The current website V2 profile still requires qualification; public deployment
-remains null, shared browser signing Anvil-only and the existing 8902 fixture is unchanged.
+The historical native2 website reader cannot serve current accounting3 merely
+by relabeling a manifest. Current website/service acceptance remains open; public
+DEPLOYMENT is null, signing stays Anvil-only and existing fixtures are unchanged.
 
 Keeper reads `canonicalState()` strictly and stops all new transaction submissions
 while frozen, importing, retired or cancelled; it continues recovery of already
@@ -154,7 +149,7 @@ API/indexer/frontend integration must expose lifecycle and successor identity,
 stop presenting a retired source as active, follow complete deployment lineage
 for lifetime claimed totals, and distinguish imported `Transfer` events from new
 mint sales. Marketplace collection recognition and source retirement notices
-also need rehearsal. Export relaying, gas at the complete admitted asset/inbox
+also need rehearsal. Export relaying, gas at the complete admitted asset
 domain, target-chain operation, qualified successor templates and independent
 audit remain release work. A local handoff test is not cross-chain qualification.
 

@@ -1,5 +1,10 @@
 # Confirmed collection positions and attached LP
 
+The backend supports the explicit current accounting 3/canonical V4 profile and
+reviewed historical codecs. Published native2 website support remains separate;
+its presence does not qualify a accounting-3 website deployment. Public configuration
+stays disabled until matching readers/services are reviewed.
+
 The read API and opt-in website deployment profile list the complete canonical
 collection, up to 1,000 minted NFTs. They read ownership, immutable traits,
 activation and current attached LP from the reviewed contracts. This is separate
@@ -38,7 +43,8 @@ contributions nor claimable rewards. Per-NFT integer rounding is preserved; the
 sum can differ from unrounded bucket NAV by rounding dust. No token-market or USD
 price is invented by the API or browser.
 
-Activated count means reward eligibility, including remote or parked NFTs; it
+Activated count means reward eligibility, including parked or custody-outbound
+NFTs in the current profile; historical remote states retain their old meaning. It
 does not assert that every position is currently in range or earning fees. A
 non-local or failed LP valuation makes the total unavailable while verified
 positions and eligibility counts can remain visible. An unreadable dormant LP

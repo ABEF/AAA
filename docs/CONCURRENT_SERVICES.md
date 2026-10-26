@@ -1,6 +1,6 @@
 # Concurrent API operation
 
-The confirmed read API and both unsigned preparation entry points now use bounded
+The confirmed read API and both unsigned preparation entry points use bounded
 parallel admission. Each request owns a separate spawned process and Projection,
 RPC client, SQLite reader and request budget. There is no shared wallet session,
 nonce manager, signer or cached financial result. Each result retains its existing
@@ -25,7 +25,7 @@ listener. Both bind only to 127.0.0.1; no public endpoint is created by this wor
 | Limit | Default and behavior |
 | --- | --- |
 | Concurrent expensive requests | `--workers 4`, accepted integer range 1-8, per service process. No waiting work queue; a full pool returns HTTP 503 `service_busy` and `Retry-After: 1`. |
-| Per-client admission | Both CLI services now limit each IP to two active requests, reads at 1/s (burst 12) and preparation at 6/min (burst 2). Optional reviewed proxy identity and exact-origin policy; see [ingress operation](API_INGRESS.md). |
+| Per-client admission | Both CLI services limit each IP to two active requests, reads at 1/s (burst 12) and preparation at 6/min (burst 2). Optional reviewed proxy identity and exact-origin policy; see [ingress operation](API_INGRESS.md). |
 | Active HTTP connections | `--max-connections 8`, accepted integer range 1-32. Admission occurs before a handler thread is created. Excess connections receive the same bounded busy response. The TCP listen backlog is 16. |
 | Request headers | At most 8 KiB per line and 32 KiB total including the request line; oversized input returns 431. Duplicate Host/length and ambiguous framing are rejected before RPC work. |
 | Request ingress | Five seconds from handler start, including all headers and the complete POST body; periodic trickle input does not reset this deadline. POST body limit remains 16 KiB. |
@@ -94,15 +94,16 @@ failover, ingress policy and multi-device wallet/signing rehearsals remain under
 [transaction integration](../TODO.md#task-transaction-ui). No public server was
 upgraded, no paused monitor resumed, and no public transaction was submitted.
 
+## Capacity qualification and historical acceptance
 
-## Capacity decision and manual acceptance - 2026-10-20
-
-The user reports the six local two-wallet flows passed; see the
+The user reported six historical local two-wallet flows passed; see the
 [manual acceptance record](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
 This report does not change operator functions, roles, configuration, limits or
 stop/restart procedures. The dedicated 10/25/100-user load campaign is deferred;
 do not run it automatically or raise worker limits as part of this decision.
-Continue using bounded API admission, independent user-wallet signing and saved
-transaction recovery for the production integration. The shared local signer
-and lock remain test-only. Production capacity is unverified, and accepting real
+Bounded API admission and saved transaction recovery remain requirements for
+reviewed integration. Existing local signer/locks and manual fixture acceptance
+are not current-accounting-3 or production browser-signing qualification. The
+shared signer remains Anvil-only; the current public deployment is disabled.
+Production capacity is unverified, and accepting real
 funds still requires the outstanding dependency and release qualification.

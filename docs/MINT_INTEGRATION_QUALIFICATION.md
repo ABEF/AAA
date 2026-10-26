@@ -1,14 +1,6 @@
 # Qualify randomness and OpenSea primary mint
 
 
-## Current release simplification - 2026-10-25
-
-[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
-fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
-pool moves, external custody exit/recovery, royalty currencies and complete
-collection handoff. Current fee/custody profiles and canonical schema are
-explicit; old deployments/journals keep historical profiles.
-
 Current source issues paid NFTs through `Vault.mintDormant()`. It does not yet
 implement an OpenSea primary-drop mint path. Marketplaces may recognize the
 ERC-721 collection for secondary sales without supporting its primary mint.
@@ -47,7 +39,7 @@ profile update; manifest metadata alone cannot add it.
 
 ## Qualify the original randomness request
 
-Current PoPL needs the subscription-v2.5 tuple request selector `0x9b1c385e`,
+Production minting is intended for OpenSea; website minting is demonstrative. This decision is not marketplace acceptance. Current PoPL needs the subscription-v2.5 tuple request selector `0x9b1c385e`,
 exactly two words, its configured nonzero immutable lane/subscription/payment
 mode and authenticated asynchronous callback. The version-1 randomness record
 contains:

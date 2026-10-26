@@ -1,13 +1,5 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [fee-breakdown follow-up](reports/backend-remediation-20261026/REVIEW.md)
-binds current fee allocations to their actual funded credits and carried dust,
-rejects impossible dormant rewards and missing native ETH inventory, and stops
-wallet summaries masking malformed core values as outages. **167 affected Python
-methods pass**; Solidity, economic rights and running services are unchanged.
-Earnings history includes already claimed income; claimable balances show only
-what remains available. [Definitions and verification](reports/backend-remediation-20261026/VERIFICATION.md).
-
 PoPL connects transferable NFTs to vault-managed liquidity. Activation attaches
 an LP allocation and unlocks funded LP fees plus a separate share of NFT-sale
 royalties. Holders cannot redeem principal; governance can approve trusted
@@ -23,37 +15,13 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Contributions and prices | Native ETH or one fixed ZZZ only. Source admission, the native pool, immutable buyback and normal exit use that same reviewed ZZZ identity. Minimum $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
 | Maintenance and conversion | Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
-| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest internal review](reports/full-audit-20261025/REVIEW.md). |
+| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
-The [full candidate audit](reports/full-audit-20261025/REVIEW.md) fixes current
-activation preparation and independent-history audit composition. Fresh static
-analysis is manually triaged against current source; its internal coverage gate
-passes. Production Solidity and rights are unchanged. The [gate assessment](reports/full-audit-20261025/READINESS.md)
-keeps actual integrations, service/gas qualification and independent review open;
-publication is not deployment or production approval.
-
-The native website read/unsigned profile is implemented in source. The
-[latest cleanup](reports/deep-cleanup-20261025/REVIEW.md) reuses balance/error
-implementations, makes guardian roles observable, binds dependency/build evidence
-and replaces obsolete native/royalty fixtures. Function encodings, storage and
-economic rights remain; event/error metadata differences are explicit.
-**32 scoped Solidity checks, 41 Python methods and 37 normal object gates pass.**
-The [verification](reports/deep-cleanup-20261025/VERIFICATION.md) binds 75 production
-inputs and 265 total AST inputs and states the actual limits. The callable reference
-remains 31 contracts/608 functions/13 receive hooks. Vault runtime remains 22,852
-with 1,724 bytes of headroom; Access total initcode is 42,352 with 6,800 bytes.
-These checks do not establish a full regression or production approval.
-[Integration and operator boundaries](docs/NATIVE_WEBSITE_PROFILE.md).
-
-Optional [Pyth source compatibility](docs/PYTH_PRICE_SOURCE.md), strict current
-mint/VRF qualification and [frozen audit packaging](docs/FROZEN_REVIEW_BUNDLE.md)
-are implemented. OpenSea still needs a compatible primary-mint path: buyer pays
-0.05 ETH gross, recipient receives net after the actual platform fee, gas separate.
-No source pair, updater, provider or marketplace acceptance is approved.
-
-Source-scoped local evidence establishes particular behavior, not production
-qualification. Dated [price research](reports/price-reference-20261025/OBSERVATION.md)
-does not select independent feeds or provide live prices.
+Current rules and code boundaries are summarized below. [Feature/evidence reference](docs/IMPLEMENTATION_STATUS.md)
+and [documentation map](docs/README.md) distinguish current instructions, legacy
+local profiles and historical verification. Latest [backend fee-integrity checks](reports/backend-remediation-20261026/VERIFICATION.md)
+pass167affected methods; the [full internal audit](reports/full-audit-20261025/REVIEW.md)
+retains its source scope. Neither establishes production approval.
 
 ## Project navigation
 
@@ -63,11 +31,12 @@ does not select independent feeds or provide live prices.
 | Questions for the token/pool creator | [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team) - independent ZZZ pricing, token controls and market continuity |
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
 | Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, range/assets/pools, emergency stops and restart procedures |
+| Documentation map | [Current guides and historical references](docs/README.md) |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
 | Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |
 | Production inventory | [Native preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit accounting V3/governance V2, helper bindings, approved pins, actual observations and release blockers |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
-| Security and release | [Latest internal review](reports/deep-cleanup-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
+| Security and release | [Latest internal review](reports/backend-remediation-20261026/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 
@@ -117,7 +86,7 @@ Read services serve confirmed chain state. Transaction preparation returns an un
 | **HTTP admission and isolation** | Bounded isolated workers, per-client concurrency/read/preparation budgets, finite connections and deadlines, explicit overload and cleanup quarantine. Guarded proxy identity/origin; no signer. | [Worker pool](frontend_api/worker.py), [client admission](frontend_api/admission.py), [HTTP bounds](frontend_api/http_runtime.py), [proxy and recovery](docs/API_INGRESS.md) |
 | **Read API** | Verifies deployment/lifecycle at a confirmed block, then reads current owners, LP values and funded balances. Optional current-ledger reporting separates ETH/source balances and deferred royalty eligibility; complete pinned predecessor replay carries lifetime claims and conversion credits across same-chain handoffs. | [Service](frontend_api/service.py), [lifecycle](frontend_api/lifecycle.py), [lineage replay](frontend_api/lineage.py), [API contract](docs/FRONTEND_API.md), [royalty reporting](docs/ROYALTY_REPORTING.md) |
 | **Earnings history** | Replays actual processed LP/royalty earnings per collection and NFT, preserving weights, fractions and complete same-chain lineage. Optional reviewed prices value original earned currencies at today's confirmed snapshot. Claims, conversions and current balances stay separate. | [Replay/API](frontend_api/earnings.py), [configuration and operations](docs/EARNINGS_HISTORY.md), [evidence](reports/earnings-history/VERIFICATION.md) |
-| **Claim and local-mint preparation** | Builds up to 32 owner-authenticated LP/royalty claim operations with canonical simulation and separate gas estimates. Local/historical mint drafts remain test tools; the current release profile rejects unqualified OpenSea minting. Short-lived unsigned reviews only; no signer. | [Preparer](frontend_api/transactions.py), [configuration and wallet rules](docs/FRONTEND_TRANSACTIONS.md), [mint qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) |
+| **Claim and local-mint preparation** | Builds up to 32 owner-authenticated LP/royalty claim operations with canonical simulation and separate gas estimates. Opt-in direct-mint drafts exist; the production qualification gate and website mint capability reject unsupported OpenSea primary minting. A draft alone does not approve public minting. Short-lived unsigned reviews only; no signer. | [Preparer](frontend_api/transactions.py), [configuration and wallet rules](docs/FRONTEND_TRANSACTIONS.md), [mint qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) |
 | **Activation preparation** | Checks asset/route/feed bindings, simulates the complete Entry call, measures new LP, and returns exact unsigned calldata and separate gas. Missing approval produces an approval step before re-quoting. | [Preparation](frontend_api/activation.py), [opt-in endpoint](frontend_api/activation_server.py), [integration sequence](docs/ACTIVATION_PREPARATION.md) |
 | **Keeper** | Discovers shared buckets, checks eligibility, simulates and submits authorized upkeep. Persists intents, receipts and budgets for recovery; optional metadata watching uses the same bounded transaction path. | [Monitor](keeper/monitor.py), [execution](keeper/ops.py), [recovery runbook](docs/KEEPER_RECOVERY.md) |
 | **Release preflight** | Explicit current accounting-V3/governance-V2 inventory validation and bounded read-only same-block observation. Actual service/evidence qualification stays separate; no signer or deployment authority. | [Gate](scripts/validate-production-config.py), [observer](scripts/observe-production-config.py), [operator sequence](docs/PRODUCTION_PREFLIGHT.md) |

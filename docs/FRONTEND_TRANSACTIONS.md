@@ -14,6 +14,14 @@ against disposable Anvil contracts. No production PoPL deployment is configured.
 | Dormant mint | Canonical Vault `mintDormant()` | Exactly 0.05 ETH | None |
 | LP and royalty claims | Immutable NFT-owned router `claimBatch((uint256,address,bool)[])` | Zero | None |
 
+Direct mint is an implemented unsigned backend capability and historical Anvil
+path, **not an OpenSea primary mint integration**. The production qualification
+gate rejects that unsupported OpenSea path; public website minting remains a
+demonstration. Direct mint forwards the full 0.05 ETH to its recipient. The requested
+OpenSea buyer total of 0.05 ETH/platform-fee split needs compatible code and review.
+See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Enabling transaction
+configuration does not implement that path or enable signing.
+
 The service accepts only the connected wallet's public address and the typed
 selection. Callers cannot provide RPC URLs, chain IDs, destinations, recipients,
 arbitrary calldata, overrides, nonce, gas settings or spending approvals.
@@ -24,7 +32,7 @@ Claims contain 1-32 operations, not 32 NFTs times every asset. Each operation
 names an actual decimal-string uint256 token ID, an admitted asset and a strict
 boolean selecting royalties or LP rewards. Duplicate operations are rejected;
 the same NFT/asset in the two different ledgers is valid. Native address zero is
-allowed for royalties and, under accounting V2, native LP rewards. The same NFT
+allowed for royalties and, under explicit accounting 2/3, native LP rewards. The same NFT
 and native asset may select both distinct ledgers in one exact batch. Historical
 profiles do not gain native-LP semantics from a manifest change. Every selected NFT must belong to the supplied
 wallet, and every selected operation must have a positive funded balance.
@@ -198,7 +206,10 @@ wallet transactions.
 The existing eight read-service pins do not authenticate Entry, Registry, source
 admission, Oracle and conversion routes. Activation requires those additional
 reviewed identities, a complete original-source quote and a simulated marginal
-LP deployment satisfying the single 1% execution-loss budget.
+LP deployment satisfying the captured contribution-loss budget. The current
+ETH/fixed ZZZ candidate defaults to 2%, governed up to 10%, with its reviewed caller
+ceiling and stricter execution minima still enforced. Historical 1% fixtures keep
+their original policy/ABI; do not reuse their quotes for the current profile.
 
 For ERC20 input, approve only the exact source amount to the immutable
 Registry-created Entry. After approval confirmation, requote and simulate the
@@ -207,8 +218,11 @@ with zero source address. No NFT approval is needed. The separately configured
 [complete Entry preparation service](ACTIVATION_PREPARATION.md) supplies this path;
 use separate listeners for activation and mint/claim adapters.
 
-Production feeds, funded USDC/USDG routes, selected Entry/Pons qualification,
-reviewed authorities/VRF, hosting and independent audit remain release gates.
+Current activation/growth accepts native ETH or the one fixed ZZZ token only.
+Actual feeds, routes/native venue, current website compatibility, authorities,
+VRF, hosting, OpenSea integration and independent audit remain release gates.
+Royalty currencies are separate and do not become contribution assets merely
+because a royalty receipt is admitted.
 
 ## Verification
 
@@ -223,7 +237,7 @@ input/error boundaries. Frozen ABI vectors were independently checked against
 the actual router using Solidity `abi.encodeCall`. Offline RPC fixtures are not
 live service, production wallet or authority qualification.
 
-Current [scoped evidence](../reports/wallet-preparation/VERIFICATION.md) distinguishes
+The [source-scoped evidence](../reports/wallet-preparation/VERIFICATION.md) distinguishes
 reused compiler evidence from current Python tests. See the
 [operator procedure](OPERATOR_MANUAL.md#unsigned-mint-and-claim-service) to enable,
 disable and recover this service without changing contract permissions.

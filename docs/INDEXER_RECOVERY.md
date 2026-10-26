@@ -6,6 +6,12 @@ contract list, creation/start block and original parent hash identify one histor
 The [confirmed-history API](FRONTEND_HISTORY.md) must keep unavailable or
 incomplete history distinct from zero balances and zero earnings.
 
+Use exact emitter inventories for the selected deployment profile, not familiar
+token names or an old Anvil manifest. Earnings needs all seven reviewed emitters
+from creation. Accounting3/canonical V4 and historical codecs remain distinct;
+adding emitters or changing profiles is not a cursor-only edit. Backfill and
+verify a separate database before switching consumers.
+
 The shared read-only RPC client refuses HTTP redirects, including redirects on
 the same host. Endpoint rotation uses only the configured reviewed URL list and
 rechecks the chain ID. If a provider changes its address, review and configure

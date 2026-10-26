@@ -33,3 +33,18 @@ For every feature, fix, resolved issue, new task or decision:
 6. Report local and GitHub status separately. If publishing is blocked, state the outstanding step. Do not promise synchronization based on local saves.
 
 This is a required development procedure, not a background synchronization service. Future sessions must read the repository instructions. No global personal memory is assumed.
+
+## Keep current guides concise
+
+Use [the documentation map](README.md). Replace obsolete guidance within its owning
+guide instead of adding another dated checkpoint above it. Current context belongs
+in AGENTS/PROJECT_CONTEXT/WORK_HANDOFF; exact historic changes belong in Git and
+source-scoped reports. Preserve original report bytes, failure evidence and source
+identities. Historical interfaces never override the selected current profile.
+
+Merge duplicate pages only after retaining distinct procedures and repairing
+incoming links. If immutable evidence links an old design, keep a short explicit
+historical pointer to its exact Git text. Before consolidating dirty Markdown,
+save and hash original drafts outside Git; do not stage unrelated code changes.
+Validate current links/anchors, generated Todo/reference and unchanged code pins;
+do not rerun contract suites for documentation-only edits.

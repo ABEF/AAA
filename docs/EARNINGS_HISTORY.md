@@ -1,6 +1,12 @@
 # Confirmed earnings and current-price USD values
 
-## Fee allocation integrity - 2026-10-26
+This optional read-only backend reports processed collection and per-NFT
+earnings. It never harvests, synchronizes, converts, claims or signs. The current
+candidate uses accounting 3, fee intake 1 and same-chain canonical V4. The public
+website remains a simulation; current-profile service, website and provider
+qualification remain open. See the [financial-history task](../TODO.md#task-financial-history).
+
+## Fee allocation integrity
 
 For explicit `fee_intake_version: 1`, the pinned actual FeeController must return
 `FEE_INTAKE_VERSION() == 1`. Replay pairs each allocation with its exact preceding
@@ -32,7 +38,7 @@ history audit. Never repair raw logs, assume zero or weaken the profile to force
 a report. Preserve the original database and diagnose using a separate replay
 copy with the same seven emitter bindings and confirmed cutoff.
 
-## Native royalty custody boundary - 2026-10-25
+## Native royalty custody boundary
 
 Current replay accepts native deferral only within an authenticated custody
 exit/full-return interval. Returned backing is not royalty revenue. Ordinary
@@ -41,14 +47,9 @@ cohort before waiting NFTs join; conversions and claims still do not create
 income. Missing/mismatched events and full earnings reconciliation while backing
 is external remain unavailable, never zero. See [reporting and safe replay](ROYALTY_REPORTING.md#native-custody-history-and-recovery)
 and the [source-scoped correction](../reports/day-readiness-20261025/royalty-matrix.md).
-This implements reader compatibility; no live database or service was changed.
-
-This optional read-only backend reports processed earnings across the collection
-and for each NFT. It does not harvest, synchronize, convert, claim or sign a
-transaction. The public website still uses examples; its opt-in reviewed API
-profile consumes confirmed NFT, current-holdings and collection earnings. See the owning
-[financial-history task](../TODO.md#task-financial-history) and
-[scoped verification](../reports/earnings-history/VERIFICATION.md).
+This is reader compatibility, not a running-service upgrade. Earlier
+[earnings verification](../reports/earnings-history/VERIFICATION.md) retains its
+original source/profile scope; current integrity evidence is linked above.
 
 ## Endpoints and definitions
 
@@ -89,14 +90,16 @@ unavailable USD, independently of healthy current LP/ETH balances. Account chang
 discard old totals. These are **lifetime earnings of currently held NFTs**, including
 earlier owners, not personal wallet income or remaining claimable rewards.
 
-Collection holder allocations sum individual LP + collective LP + allocated
-royalties. They exclude gross-receipt duplication, compound/buyback and quarantine,
+Per-asset collection holder allocations sum individual LP + collective LP +
+allocated royalties. They exclude gross-receipt duplication, compound/buyback
+and quarantine,
 but include ledger rounding dust. They need not equal per-NFT whole-unit sums.
 Full collection inventory/LP aggregation remains separate.
 
-Enable through the existing reviewed `earnings_history` profile; no new role or
-on-chain call is needed. Deploy matching read API/frontend versions, verify known
-inventory/cutoffs, and qualify actual feeds/coverage/latency before public use.
+Enable through the reviewed `earnings_history` profile; no new role or
+state-changing contract call is needed. Release matching read API/frontend
+versions, verify known inventory/cutoffs, and qualify actual feeds/coverage/latency
+before public use.
 To stop reports, disable the optional profile and restart only the read service
 under its runbook, or roll back matching releases. Never reset the chain/index
 or substitute examples/zeros on failure. See [scoped evidence](../reports/wallet-earnings/VERIFICATION.md).
@@ -110,17 +113,16 @@ or substitute examples/zeros on failure. See [scoped evidence](../reports/wallet
 | `royalties_received_raw`, `royalties_allocated_raw`, `royalties_quarantined_raw` | Actual processed royalty receipts, separated by eligibility; admission/constructor prefunds are excluded |
 | NFT `lp_individual_raw`, `lp_collective_raw`, `royalties_raw` | Exact whole-unit earnings reconstructed from the ledger's 1e36 indexes and carried fractions |
 
-Do not sum gross receipts and their allocations as additional income. Remote
-holder credits are included when the home ledger processes them, but the API
-does not invent the remote gross revenue or remote reserve allocations from a
-90% credit. Complete satellite gross reporting needs separately reviewed history.
+Do not sum gross receipts and their allocations as additional income. Current
+fee-intake 1 accepts local LP receipts; no creator-payment inbox, satellite or
+remote fee-intake configuration belongs in this release. Explicit historical
+fee-intake 0 replay retains its earlier semantics and cannot establish remote
+gross/reserve totals from a holder-only credit.
 
 The clock is **on-chain processing/allocation time**. The 24-hour window is
 `(confirmed timestamp - 86400, confirmed timestamp]`. An unsynchronized royalty
-deposit, unharvested venue fee or unpaid creator obligation is not yet processed
-earnings. A late creator payment enters the period when processed, not when the
-creator's underlying trades happened. A fractional token unit enters an NFT's
-period when carried fractions first become a whole raw unit. This distinction
+deposit or unharvested venue fee is not yet processed earnings. A fractional token
+unit enters an NFT's period when carried fractions first become a whole raw unit. This distinction
 matters for very small amounts and is returned in the response.
 
 ## USD valuation decision
@@ -181,12 +183,14 @@ until reviewed and implemented; the profile is not a general successor decoder.
    backfill is invalid. Build a new database with the reviewed configuration;
    preserve the old database, WAL-consistent backups and retirement records.
 3. **Reconcile:** compare the pinned block, minted count, total shares, reward
-   indexes, membership, royalty cohorts and a known NFT's earnings/claims.
+   indexes, membership, royalty cohorts and a known NFT's earnings/claims. For
+   fee-intake 1, verify actual version 1, complete matching fee/credit logs and
+   each observed fee key's pinned final dust.
    Do not switch service traffic to incomplete history.
 4. **Enable prices only after review:** use the policy below and independently
-   qualify actual feed, proxy/admin, wrapper equivalence and sequencer behavior.
+   qualify actual feed, proxy/admin and sequencer behavior.
 5. **Serve through the existing supervised read server:** the routes retain
-   request deadlines, RPC budgets, bounded SQLite reads, serial worker execution,
+   request deadlines, RPC budgets, bounded SQLite reads, isolated request workers,
    final canonicality/confirmation checks and no-store responses. Never replace
    rejected history with a zero balance. Validate latency on the actual workload
    before public hosting.
@@ -198,34 +202,75 @@ until reviewed and implemented; the profile is not a general successor decoder.
 
 ### Optional price policy
 
-Replace `prices: null` with:
+Leave `prices: null` until actual sources and policies are reviewed. Raw history
+can remain available while nonzero USD totals are unavailable. For the current
+accounting-3 candidate, a configured price block must use **pricing version 2**:
 
 ```json
 {
+  "pricing_version": 2,
   "oracle": {"address": "<bound ZZZOracle>", "code_hash": "<runtime hash>"},
   "sequencer": null,
   "feeds": [
     {
-      "asset": "<earned asset address>",
-      "priced_token": "<same token, or reviewed wrapper for native ETH>",
-      "token_code_hash": "<runtime hash>",
-      "source": "<reviewed USD feed>",
-      "source_code_hash": "<runtime hash>",
-      "max_age": 60,
-      "feed_decimals": 8
+      "asset": "0x0000000000000000000000000000000000000000",
+      "priced_token": "0x0000000000000000000000000000000000000000",
+      "token_code_hash": null,
+      "price_policy": {
+        "policy_id": "<reviewed append-only policy identity>",
+        "ordinal": 0,
+        "policy": {
+          "token": "0x0000000000000000000000000000000000000000",
+          "primary": {
+            "source": "<first independently reviewed source>",
+            "expectedCodeHash": "<runtime hash>",
+            "independenceId": "<nonzero independence identity>",
+            "maxAge": 60,
+            "feedDecimals": 8
+          },
+          "secondary": {
+            "source": "<different independently reviewed source>",
+            "expectedCodeHash": "<runtime hash>",
+            "independenceId": "<different nonzero independence identity>",
+            "maxAge": 60,
+            "feedDecimals": 8
+          },
+          "maxDeviationBps": 300,
+          "assetDecimals": 18,
+          "reviewHash": "<nonzero reviewed-policy hash>"
+        }
+      }
     }
   ]
 }
 ```
 
-Use `sequencer: null` only when the reviewed Oracle actually has no sequencer
-feed; otherwise provide its exact `address` and `code_hash`. Native ETH's asset
-identity is the zero address and requires an explicit reviewed equivalent-token
-price mapping. Other assets cannot alias another token. `max_age` and decimals
-must match Oracle storage exactly; this example does not choose a production
-feed age. Oracle.price supplies the existing freshness/round/uptime guards.
-Proxy runtime pins do not independently authenticate their upstream economics;
-actual provider and upgrade monitoring remain release requirements.
+This illustrates native ETH; each ERC20 entry instead uses its own address,
+runtime hash and verified decimals. Replace every placeholder. These illustrative
+ordinals, ages and decimals are not production settings. Copy the exact reviewed
+immutable record, including its Oracle-derived policy identity and ordinal; do not invent or hand-edit identities.
+The user-selected disagreement policy is 300 bps (3%), measured against the
+lower source; actual active records still require review. The contract permits
+reviewed values up to 500 bps.
+
+Native ETH uses address zero, 18 decimals, `priced_token: zero` and
+`token_code_hash: null`; it never aliases WETH in this profile. Every ERC20 prices
+itself with its exact runtime/decimals. Both independently reviewed source records,
+active policy, round data and observation fingerprint must agree with the pinned
+Oracle at the same block. The USD mark uses the conservative lower bound and
+returns the upper bound/fingerprint too. Missing, stale or divergent sources make
+that asset's USD unavailable; there is no single-source fallback or stablecoin peg
+assumption. See [pricing controls and limits](PRICE_SECURITY.md).
+
+Use `sequencer: null` only when the actual reviewed Oracle has no sequencer feed;
+otherwise supply its exact address/runtime pin. Proxy runtime pins alone do not
+authenticate implementations or economic independence. Provider, update and
+upgrade monitoring remain release requirements.
+
+Historical accounting 1/2 may retain an explicitly compatible pricing-version-1
+single-feed mapping. Its `source`, `source_code_hash`, `max_age` and
+`feed_decimals` fields match that old Oracle ABI. It is not a valid current
+accounting-3 configuration and must not be copied into a fresh release.
 
 ## Accounting and recovery boundaries
 

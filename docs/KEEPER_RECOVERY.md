@@ -1,44 +1,35 @@
 # Keeper outage and server recovery
 
-Current local-Position configurations explicitly set `accounting_version: 3`, the independently
-reviewed deployed runtime hash at `code_hashes.vault`, the actual address at
-`contracts.vault`, and the matching chain/deployment identity. A compiler template
-hash is not a deployed runtime pin. Every new-work/submission
-boundary verifies the version; pending receipt recovery runs first. A missing
-version in an old journal means legacy1, and a mismatch stops without rewriting
-pending transactions, nonces or receipts. Restore the matching profile/state;
-never convert an existing Anvil journal by editing its version number.
-Native reserve compounding/buyback uses currency zero with zero user call value;
-the fee controller funds its own classified reserve. Native venue fees need no
-conversion worker. Explicit WETH conversion remains separately configured.
-See [historical native implementation evidence](../reports/native-eth-port/VERIFICATION.md).
+Operating runbook for an **undeployed candidate; production NOT APPROVED**.
+Use the [rehearsal guide](KEEPER_REHEARSALS.md) for commands and evidence, the
+[keeper internal review](../reports/keeper-recovery/REVIEW.md) for its original
+scope, and the [central Todo](../TODO.md#task-keeper-recovery) for remaining work.
 
-Fresh current LP-only deployments also require explicit `fee_intake_version: 1`,
-the actual `contracts.fees` address and its reviewed deployed runtime at
-`code_hashes.fees`. The keeper checks `FEE_INTAKE_VERSION() == 1` before new work.
-This profile is persisted separately from accounting version3: historical
-accounting1/2 and fee0/fee1 journals and pending hashes must not be reinterpreted by copying current settings
-or editing a version field. Restore their original deployment/profile for reviewed
-reconciliation. The current example uses separate native/profile-specific state
-paths (`var/keeper-local-position-v3-lp-only.*`); it does not upgrade an installed
-service or provide reviewed runtime pins. The current eight-word Position layout
-uses None0/Active1/Outbound2/Dormant3/Parked4 and the LP-only V4 canonical schema.
-Historical rows remain fifteen words with their original remote/status meanings.
-The keeper checks the configured exact version/runtime before new work; it never
-guesses a codec from response length or fabricates chain provenance. In particular,
-historical Remote3 is not current Dormant3. Only Active1 runs ordinary LP upkeep;
-outbound/parked states keep their separate recovery procedures.
+## Deployment and journal identity
 
-Hardened keeper candidate. See [the internal review](../reports/keeper-recovery/REVIEW.md). Staging and independent approval remain required before funded operation.
+Current configuration explicitly selects `accounting_version: 3` and
+`fee_intake_version: 1`, the exact chain/deployment identity, real Vault/Fees
+addresses and independently reviewed deployed runtimes in `code_hashes`.
+A compiler template is not a deployed runtime pin. Verify actual version getters
+before new work; pending receipt recovery always runs first.
 
-See [service qualification and rehearsal](KEEPER_REHEARSALS.md) for the isolated
-process-crash suite and read-only health, preflight and recovery-snapshot commands.
-Actual execution evidence is kept separately from the historical internal review.
+Current Positions have eight local words and statuses None0/Active1/Outbound2/
+Dormant3/Parked4; only Active1 runs ordinary LP upkeep. Accounting1/2 retain their
+original fifteen-word rows/status meanings (historical Remote3 is not Dormant3).
+A missing version in an old journal means legacy1, not current support. A mismatch
+stops without rewriting pending hashes, nonces, costs or receipts. Restore the
+original matching release/profile; never upgrade a journal by editing its version.
+The example's separate `keeper-local-position-v3-lp-only` paths do not upgrade an
+installed service or supply reviewed runtime pins.
 
-The desktop chat health monitor was **paused at the user's request on 2026-10-17**.
-Existing observations remain historical; the interval after pausing has no chat
-monitoring coverage. Pausing that monitor did not stop the isolated server service.
-Do not resume the monitor without authorization.
+Native compound/buyback jobs use currency zero and zero user call value: Fees
+funds its classified reserve. Native venue fees need no conversion; a separate
+explicit non-native conversion worker retains its own binding/routes/cap.
+
+The desktop chat monitor is **paused by the user's 2026-10-17 instruction**.
+Historical observations provide no coverage after that pause and no proof of
+continuous server uptime. Pausing it did not itself stop the staging services.
+Do not resume monitoring or administer those services without authorization.
 
 ## Restart and custody
 

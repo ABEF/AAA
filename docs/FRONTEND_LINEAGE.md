@@ -1,6 +1,6 @@
 # Lifetime claims across same-chain handoffs
 
-The confirmed NFT endpoint can now return lifetime LP and royalty claim totals
+The confirmed NFT endpoint returns lifetime LP and royalty claim totals
 across the complete configured lineage of replacement deployments. These include
 claims by every past/current NFT owner. Current funded balances still come only
 from the active deployment; replay never changes or increases claimable rewards.
@@ -8,6 +8,12 @@ from the active deployment; replay never changes or increases claimable rewards.
 This implements the [read API task](../TODO.md#task-read-api) for the supported
 same-chain handoff. It does not implement cross-chain consensus verification,
 marketplace cutover or a hosted production indexer.
+
+For the current accounting 3/canonical V4 candidate, every configured predecessor
+must explicitly use accounting 3 too. Older accounting 1/2 readers remain for
+compatible historical lineages; they are not an automatic import path into V4.
+Custody exit to an operator-controlled address does not itself move NFT identities
+or reward ledgers. See [custody exit](GOVERNED_CUSTODY_HANDOFF.md).
 
 ## Operator configuration
 
@@ -21,6 +27,7 @@ Every entry contains exactly these fields:
 
 | Field | Required meaning |
 | --- | --- |
+| `accounting_version` | Required for native/current lineage; current V4 requires 3 for every predecessor. Historical configurations retain their explicit supported codec. |
 | `deployment_block`, `deployment_block_hash` | Reviewed sealed-deployment anchor, at or before its outgoing retirement; the destination anchor must also precede that handoff |
 | `contracts` | All eight independently reviewed address/runtime pins, using the [API configuration format](FRONTEND_API.md#deployment-configuration) |
 | `assets` | Exact historical LP/royalty asset union and descriptors at retirement, using the same API format |
@@ -29,7 +36,9 @@ Every entry contains exactly these fields:
 
 The current deployment must also have its own complete `history` configuration.
 Predecessors inherit its chain, RPC endpoints, confirmation depth, freshness
-policy and schema. They cannot override those fields or contain nested predecessor
+policy, fee-intake version and configuration schema. Their accounting version is
+explicit; they do not inherit the current optional royalty/earnings reporting
+configuration. They cannot override inherited fields or contain nested predecessor
 lists. Every protocol contract address must be distinct across deployments;
 repeated identities, cycles and asset/module collisions are rejected.
 
@@ -86,5 +95,7 @@ hash equality does not replace that review. The service never signs or broadcast
 Actual archive-RPC availability, latency at the configured history bounds,
 retention/backups and browser integration need operating qualification under
 [hosted services](../TODO.md#task-host-services) and [live history UI](../TODO.md#task-live-history-ui).
-Cross-chain relocation remains in the [canonical migration task](../TODO.md#task-security-chain-recovery).
+There is no integrated bridge or cross-chain ledger-import procedure in this
+release. External chain/token migration uses reviewed custody exit and redeployment;
+it does not acquire same-chain lineage guarantees merely by copying configuration.
 See the [scoped verification](../reports/frontend-lineage/VERIFICATION.md).

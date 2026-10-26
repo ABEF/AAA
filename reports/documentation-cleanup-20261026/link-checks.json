@@ -1,0 +1,107 @@
+{
+  "reviewed_tracked_markdown": 348,
+  "current_markdown_scanned": 345,
+  "links_checked": 3011,
+  "baseline_errors": [
+    {
+      "source": "PROJECT_CONTEXT.md",
+      "target": "docs/CHANGE_AND_RECOVERY.md#destination-capacity-unresolved-proposed-next-implementation",
+      "kind": "fragment",
+      "resolved": "docs/CHANGE_AND_RECOVERY.md",
+      "fragment": "destination-capacity-unresolved-proposed-next-implementation"
+    },
+    {
+      "source": "docs/GOVERNED_CUSTODY_HANDOFF.md",
+      "target": "CUSTODY_PARKING.md#authority-and-exact-authorization",
+      "kind": "fragment",
+      "resolved": "docs/CUSTODY_PARKING.md",
+      "fragment": "authority-and-exact-authorization"
+    },
+    {
+      "source": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../TODO.md#task-bridge-operation",
+      "kind": "fragment",
+      "resolved": "TODO.md",
+      "fragment": "task-bridge-operation"
+    },
+    {
+      "source": "reports/architecture-evolution/REVIEW.md",
+      "target": "../../src/ZZZBridgeRouter.sol",
+      "kind": "file",
+      "resolved": "src/ZZZBridgeRouter.sol"
+    },
+    {
+      "source": "reports/daily-security-20261024/REVIEW.md",
+      "target": "../../docs/NATIVE_ETH_ARCHITECTURE.md#adversarial-design-review---2026-10-24",
+      "kind": "fragment",
+      "resolved": "docs/NATIVE_ETH_ARCHITECTURE.md",
+      "fragment": "adversarial-design-review---2026-10-24"
+    },
+    {
+      "source": "reports/history/ARCHITECTURE-per-nft.md",
+      "target": "ROBINHOOD_POOL.md",
+      "kind": "file",
+      "resolved": "reports/history/ROBINHOOD_POOL.md"
+    },
+    {
+      "source": "reports/history/ARCHITECTURE-per-nft.md",
+      "target": "BRIDGE_ONBOARDING.md",
+      "kind": "file",
+      "resolved": "reports/history/BRIDGE_ONBOARDING.md"
+    },
+    {
+      "source": "reports/history/ARCHITECTURE-per-nft.md",
+      "target": "../reports/IMPLEMENTATION_UPDATE.md",
+      "kind": "file",
+      "resolved": "reports/reports/IMPLEMENTATION_UPDATE.md"
+    },
+    {
+      "source": "reports/release-hardening/README.md",
+      "target": "../../docs/OPERATIONS.md#reward-timing-and-maintenance-schedule",
+      "kind": "fragment",
+      "resolved": "docs/OPERATIONS.md",
+      "fragment": "reward-timing-and-maintenance-schedule"
+    },
+    {
+      "source": "reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md",
+      "target": "../../src/ZZZRewardReceiver.sol",
+      "kind": "file",
+      "resolved": "src/ZZZRewardReceiver.sol"
+    }
+  ],
+  "current_errors": [
+    {
+      "source": "reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md",
+      "target": "../../src/ZZZRewardReceiver.sol",
+      "kind": "file",
+      "resolved": "src/ZZZRewardReceiver.sol"
+    },
+    {
+      "source": "reports/history/ARCHITECTURE-per-nft.md",
+      "target": "ROBINHOOD_POOL.md",
+      "kind": "file",
+      "resolved": "reports/history/ROBINHOOD_POOL.md"
+    },
+    {
+      "source": "reports/history/ARCHITECTURE-per-nft.md",
+      "target": "BRIDGE_ONBOARDING.md",
+      "kind": "file",
+      "resolved": "reports/history/BRIDGE_ONBOARDING.md"
+    },
+    {
+      "source": "reports/history/ARCHITECTURE-per-nft.md",
+      "target": "../reports/IMPLEMENTATION_UPDATE.md",
+      "kind": "file",
+      "resolved": "reports/reports/IMPLEMENTATION_UPDATE.md"
+    },
+    {
+      "source": "reports/architecture-evolution/REVIEW.md",
+      "target": "../../src/ZZZBridgeRouter.sol",
+      "kind": "file",
+      "resolved": "src/ZZZBridgeRouter.sol"
+    }
+  ],
+  "new_errors": [],
+  "active_guide_errors": [],
+  "historical_report_bytes_preserved": true
+}

@@ -1,56 +1,22 @@
 # Release approval record - NOT APPROVED
 
-## Fee-breakdown disposition - 2026-10-26
+This records approval of **one frozen release**, not a second Todo or development
+log. The [sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
+record implemented behavior. Local checks, source publication or this record do
+not authorize deployment, sealing, service rollout or public transactions.
 
-[Backend remediation](../reports/backend-remediation-20261026/REVIEW.md) and
-[verification](../reports/backend-remediation-20261026/VERIFICATION.md) fix
-reporting inconsistencies in five Python modules; all 167 affected methods pass.
-Production Solidity, dependencies/build inputs, API schema, economic rights and
-signing remain unchanged. Earlier current-source static review/object evidence
-retains its scope; no unchanged whole suite or static analyzer was rerun.
-Actual authentic history/provider/pricing, service budgets, current website,
-OpenSea/VRF/authorities, target-chain operations and independent audit remain
-open. This is source implementation, not deployment or production approval.
+## Evidence and approval boundary
 
-## Full audit disposition - 2026-10-26
+| Evidence | What it establishes; limits |
+| --- | --- |
+| [Backend remediation, 2026-10-26](../reports/backend-remediation-20261026/VERIFICATION.md) | Five Python modules corrected; 167 affected methods pass. No Solidity, dependency/build-input, API-schema, rights or signing change. Actual authentic history, pricing/provider, current website and service capacity remain open. |
+| [Full audit](../reports/full-audit-20261025/VERIFICATION.md) and [gate assessment](../reports/full-audit-20261025/READINESS.md) | Current internal static review covers 399 flags/47 bindings. Accepted custody/token/gas risks remain. Solc86-input output succeeds; Forge later fails on host signature-cache handling and is not a green overall CLI run. 37 object lengths match captured normal evidence; exact release arguments/target gas remain unqualified. 11 scoped Python methods and one composed EVM gas/accounting case passed, not a fresh full regression. |
+| [Earlier day-change audit](../reports/day-readiness-20261025/VERIFICATION.md), [cleanup](../reports/deep-cleanup-20261025/VERIFICATION.md) and [older reports](../reports/README.md) | Preserve their original source/fixture scopes and reused evidence. The earlier stale-static FAIL is historical, superseded by the full audit's actual reviewed analysis; earlier passes never qualify later source automatically. |
 
-The [current audit](../reports/full-audit-20261025/REVIEW.md),
-[verification](../reports/full-audit-20261025/VERIFICATION.md) and
-[gate assessment](../reports/full-audit-20261025/READINESS.md) fix three backend
-composition failures and refresh actual source-bound static triage. Internal
-static coverage now passes for399reviewed flags/47bindings; the earlier stale
-triage failure is historical. Accepted custody/token/gas risks remain open.
-Solc86-input output succeeds; Forge overall CLI later fails on the host signature
-cache and is not relabeled.37object lengths match the captured normal build;
-dynamic release arguments and actual target gas remain unqualified.
-
-No production contract changed. Eleven scoped Python methods and one composed
-gas/accounting method pass; no fresh full release regression, live dependency,
-OpenSea/VRF/wallet/service, published CI green or independent approval is claimed.
-Unknown currencies at retired royalty receivers remain unsupported; qualify
-actual fixed-ZZZ burn semantics. Deployment/sign-off fields remain unapproved.
-
-## Day-change audit disposition - 2026-10-25
-
-[Current findings](../reports/day-readiness-20261025/REVIEW.md),
-[verification](../reports/day-readiness-20261025/VERIFICATION.md) and
-[readiness gates](../reports/day-readiness-20261025/READINESS.md) supersede any
-inference of approval from earlier source checks. Native-custody API/replay and
-evidence-checker defects are fixed; stronger native tests pass. No production
-Solidity changed. Normal 37-object/75-input evidence is reused after exact checks,
-and only the changed test's closed 265-input AST was refreshed. No full regression.
-
-Saved Slither triage is stale: **FAIL** current-source release gate. Refresh and
-review the actual analysis; do not copy new hashes into old findings. Exact
-release dynamic initcode arguments, real gas/strategy economics, services,
-OpenSea/VRF/authorities and independent audit remain unqualified. Evidence snapshot
-3 adds coherent capture and size checks; it is not independent producer or test
-authentication. Deployment/sign-off fields below remain unapproved.
-
-This records approval of **one frozen release**, not another Todo or a development
-log. The [sole Todo](../TODO.md) owns tasks; [features and evidence](IMPLEMENTATION_STATUS.md)
-record implemented behavior. Local passes, publication or this document do not
-authorize deployment, sealing or public financial transactions.
+No actual live dependency, OpenSea/VRF/wallet/service, published green CI or
+independent production approval is implied. Qualify actual fixed-ZZZ burn
+semantics; unknown currencies at retired royalty receivers remain unsupported.
+Deployment and reviewer fields below remain unapproved.
 
 ## Current candidate and evidence limits
 
@@ -60,11 +26,11 @@ authorize deployment, sealing or public financial transactions.
 | Governance | Governance V2 is the selected wallet/Safe calling functions directly. No timelock, queued/predecessor executor or OpenZeppelin role grants. Two-step governance handover; separate guardian/keeper and immutable mint recipient. 16 module bindings fixed at seal. |
 | Economic controls | Defaults 2% contribution/1% conversion/3% maintenance, each maximum 10%, gas separate. Caller-reviewed Entry maximum and stronger venue minima remain. Approved normal custody floors cannot be weakened later. Per-operation limits do not cap future market loss or repeated turnover. |
 | Pool/input policy | User input is only native ETH or fixed ZZZ. All Registry LP pairs must contain that ZZZ; reviewed future WETH/ZZZ/fee-tier replacements remain possible. One contribution pool at a time. Stablecoins may be separate royalty currencies, not contribution inputs. |
-| Current source checks | [Deep cleanup](../reports/deep-cleanup-20261025/VERIFICATION.md): 32 scoped Solidity / 41 Python methods, 37 normal object gates, 75 closed production inputs and 265 final AST inputs. No fresh full regression, current Slither, real-service or independent approval. |
+| Source verification | Use the exact source bindings and scopes in the evidence table above. Current internal static coverage passes; no full frozen-release regression, actual-service or independent approval is recorded. A later backend-only fix does not rerun unchanged Solidity by implication. |
 | Refactor compatibility | [Comparison](../reports/deep-cleanup-20261025/compiler-comparison.md) preserves function encodings and all recursive storage. Explicit additions are guardian/initial role logs; duplicated/noncallable error metadata is removed. No rights, rates, input currencies or authority changes. Reference evidence schema 2 is distinct from on-chain profiles. |
-| Code-size qualification | Vault runtime 22,852 with 1,724 margin. Access creation 42,256+96 fixed arguments=42,352 with 6,800 margin. Guardian visibility adds 45 runtime/175 creation bytes; other object sizes unchanged. RoyaltyFactory 69-byte runtime margin remains. Exact release NFT URI arguments/artifacts/configuration still require qualification. |
+| Code-size qualification | Captured normal evidence: Vault runtime 22,852/1,724 margin; Access creation 42,256+96 static arguments=42,352/6,800 margin; RoyaltyFactory runtime margin 69. Exact frozen release artifacts and actual dynamic constructor/URI arguments still require qualification; these are not fresh target-gas observations. |
 | Actual dependencies | Selected-pool lifecycle, conversion routes, independent feeds, VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and maximal target-chain gas remain unqualified. |
-| Website/wallets | Public simulation/null DEPLOYMENT; signing Anvil-only. Native read/unsigned source is implemented, but current-profile/provider/wallet acceptance and authorized public rollout remain open. Existing local deployments/journals are unchanged. |
+| Website/wallets | Public simulation/null DEPLOYMENT; signing Anvil-only. Historical native2 read/unsigned source is implemented; explicit accounting3/provider/wallet acceptance and authorized public rollout remain open. Existing local deployments/journals are unchanged. |
 | Operations/audit | Target-chain/Linux failure and recovery rehearsals, independent audit/remediation, frozen-source review and final configuration/sign-off remain required. |
 
 The [earlier daily review](../reports/daily-security-20261025/REVIEW.md) records

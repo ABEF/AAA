@@ -1,6 +1,6 @@
 # Deployment address inventory
 
-## Current direct mint versus intended OpenSea proceeds - 2026-10-25
+## Mint proceeds and approval boundary
 
 The immutable mint recipient gains no management powers. Current direct mint
 forwards the full 0.05 ETH. The intended OpenSea integration must keep the buyer's
@@ -9,7 +9,7 @@ recipient; gas is separate. No platform rate or marketplace contract is approved
 This requires a compatible mint implementation before sealing; an inventory
 entry cannot create it. [Integration requirements](MINT_INTEGRATION_QUALIFICATION.md).
 
-## Governance authority versus custody recipient - 2026-10-25
+## Governance authority versus custody recipient
 
 These are distinct identities. Governance authorizes exact configuration, pool
 movement and paused custody exits by calling their modules directly. Access
@@ -28,44 +28,21 @@ They can use the same wallet only as an explicit reviewed custody/security choic
 Authority addresses, multisig threshold/signers and provider-specific subscription
 ownership remain unselected. No public role or wallet was configured by this update.
 
-**Current candidate (2026-10-25):** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor and optional remote-proof custody paths are removed; whole-collection handoff remains separate. The current accounting3 candidate holds and sends actual ETH/ZZZ; native ETH is asset zero, not WETH. Atomic ETH/WETH moves remain unsupported until an explicit conversion boundary is implemented. A reviewed source-chain custodian may bridge externally; no integrated bridge or remote ownership/reward ledger is supplied. Actual production inventory, services and independent qualification remain open. Earlier evidence retains its original scope. [Native accounting verification](../reports/native-eth-port/VERIFICATION.md).
+**Current candidate:** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor and optional remote-proof custody paths are removed; whole-collection handoff remains separate. The current accounting3 candidate holds and sends actual ETH/ZZZ; native ETH is asset zero, not WETH. Atomic ETH/WETH moves remain unsupported until an explicit conversion boundary is implemented. A reviewed source-chain custodian may bridge externally; no integrated bridge or remote ownership/reward ledger is supplied. Actual production inventory, services and independent qualification remain open. Earlier evidence retains its original scope. [Native accounting verification](../reports/native-eth-port/VERIFICATION.md).
 
-Migration creates the immutable read-only [`ZZZCustodyValidation`](../src/ZZZCustodyValidation.sol)
-companion. Record `Migration.validation()`, its `migration()`/`access()` bindings
-and deployed runtime hash, plus Vault's Budget and canonical companions. It does
-not hold principal or execute arbitrary calls. `ZZZPairMigration` and its old
-bridge/transport companions are historical components, not current deployment
-addresses. Qualify the actual pools, currencies, feeds and complete runtime/initcode
-sizes. The [schema-5 preflight](PRODUCTION_PREFLIGHT.md) now describes this layout; actual addresses, reviewed pins, fresh observations and independent qualification remain required. Legacy schema 4 keeps its historical interpretation.
+This is an **undeployed candidate, NOT APPROVED**, not a list of configured
+public addresses. Complete the [production manifest](../config/production.example.json)
+with actual chain IDs, confirmed blocks, code/immutable bindings and independent
+review evidence. An address or a successful inventory check is not approval.
+The [sole Todo](../TODO.md) owns qualification work; the
+[release record](RELEASE_CHECKLIST.md) records final sign-off.
 
-The royalty conversion candidate also requires a separately deployed
-[`ZZZRoyaltyConverter`](../src/ZZZRoyaltyConverter.sol), constructed with the exact
-controller and RoyaltyRewards ledger. Native-only v4 conversion permits wrapper zero; an explicit v3/unwrap path requires its own reviewed wrapper. Governance binds it to the
-ledger once **before sealing**. Record its runtime hash and bidirectional bindings,
-the explicit conversion profile and each reviewed route/feed. If a wrapper is used, retain its proxy/admin/implementation policy separately.
-It is an optional fixed helper, not a replacement sealed controller module. Core
-seal validation alone does not prove this optional feature is configured. Each
-successor needs its own reviewed binding. Production helper-inventory qualification
-remains open; see [setup and stopping procedures](ROYALTY_SETTLEMENT.md).
-
-This is a configuration reference, not a task-status list or approved deployment.
-The protocol remains an undeployed candidate. Production public wallets and
-PoPL contract addresses are not selected. The [release record](RELEASE_CHECKLIST.md)
-remains NOT APPROVED; progress belongs in the [central Todo](../TODO.md).
-
-For the [bounded operating-control candidate](POST_SEAL_POLICY.md), record the
-actual NFT and Buyback runtime hashes, fixed VRF provider/lane/subscription/payment
-configuration, current `requestConfirmations`/`callbackGasLimit`, immutable
-`maxTradeUSD` and current `operatingTradeUSD`. The two request parameters and the
-buyback operating limit are deployment policy, not immutable NFT rights or copied
-canonical records. Refresh observations after configuration; retain old request
-transactions and operation history. The current inventory distinguishes
-`immutable_provider_configuration` from the exact two-field
-`mutable_request_parameters` list. The schema-5 tooling is implemented; actual native release-inventory qualification remains separate and open.
-
-The [production manifest](../config/production.example.json) records addresses,
-chain IDs, observed blocks, code hashes, immutable bindings and review evidence.
-An address alone does not establish the right chain, code or authority.
+Use [schema-5 preflight](PRODUCTION_PREFLIGHT.md) for the current layout; older
+schemas/profiles remain historical inspection only. Record each module/helper
+below once, together with exact deployed runtime (including immutables), parent
+bindings, source/implementation/admin controls and configuration history. A
+compiler template hash is not a deployed runtime pin. Public authorities,
+VRF/providers, actual feed/route policies and service choices remain unselected.
 
 ## Wallets and authorities to choose
 
@@ -105,7 +82,7 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 
 | Manifest name | Contract |
 | --- | --- |
-| `access` | `ZZZAccessController` — zero-delay governance and sealed module bindings |
+| `access` | `ZZZAccessController` — authenticates direct governance and fixes sealed module bindings |
 | `vault` | `ZZZVault` — permanent principal custody and NFT share ledger |
 | `nft` | `ZZZNFT` — canonical ownership, fixed trait draw and royalty request |
 | `liquidity` | `ZZZLiquidityManager` — fixed venue settlement |
@@ -134,7 +111,7 @@ The current inventory has **15 fixed helpers**: thirteen created by their parent
 | Vault constructor | `ZZZMigrationBudget`; verify `Vault.migrationBudget`, helper `vault`/`access` bindings and deployed runtime. It has no custody or configurable executor. |
 | Migration constructor | `ZZZCustodyValidation`; verify `Migration.validation`, helper `migration`/`access` bindings and runtime. It is read-only and has no custody/execution authority. |
 | Entry and converter constructors | Each creates a distinct `ZZZV4RouteExecutor`; verify its exact `parent()` and parent `v4Executor()` getter. |
-| Separate LP and royalty converters | Deploy each with its own immutable ledger/controller and explicit optional wrapper; bind each ledger before sealing. |
+| Separate LP and royalty converters | Deploy each with its own immutable ledger/controller and explicit optional wrapper; bind each ledger before sealing if that conversion stream is required. Core seal validation does not prove an optional converter is configured. |
 
 The royalty receiver is **`NFT.royaltyRewards()` (`ZZZRoyaltyRewards`)**, not an
 administrator wallet. ERC-2981 requests 5% there; actual admitted receipts go to
@@ -169,7 +146,6 @@ identities, not ticker symbols or addresses copied from another chain.
 
 Current selected-market identities and dated observations are retained in
 [pool selection](POOL_SELECTION.md) and the [pinned pool observation](../reports/hookless-pool/observed-pool.json).
-Earlier [Pons research](ROBINHOOD_POOL.md) retains its historical scope.
 [Activation routing](ACTIVATION_ROUTING.md) and [service decisions](PRODUCTION_SERVICES.md)
 record remaining qualification; none is production approval. A v4 **pool ID is a
 bytes32 identity**, not a wallet or a separate pool-contract address. Native
@@ -177,7 +153,7 @@ admission supports initialized static, hookless ETH/ZZZ fee tiers on the pinned
 Robinhood deployment; supported ERC20 pools use ordinary admission. Registration
 does not enable arbitrary venues. Actual independent source pairs for ETH/ZZZ and any separately priced royalty conversion assets, plus VRF qualification, remain unset. No stable peg is assumed. See [pricing requirements](PRICE_SECURITY.md).
 
-## External custody and future-chain dependencies
+## External custody and whole-collection replacement
 
 Atomic supported local moves need no external recipient. A separately approved
 external exit records the exact source-chain recipient, recipient code hash (including an EOA's
@@ -218,6 +194,14 @@ route IDs; source-chain custody version/request/snapshot/review identities;
 content CIDs and metadata URI; RPC URLs; API/indexer
 origins; keeper monitoring, backup and alert endpoints. Secrets and private keys
 must remain outside source, manifests and Git.
+
+Record immutable VRF provider/lane/subscription/payment settings separately
+from bounded future `requestConfirmations`/`callbackGasLimit`, and immutable
+Buyback `maxTradeUSD` separately from current `operatingTradeUSD`. Refresh
+observations after a setting change; original requests/history remain unchanged.
+The mutable VRF list contains exactly those two request parameters. These
+operating policies are not imported NFT economic rights. See
+[post-seal controls](POST_SEAL_POLICY.md).
 
 The [deployment template](../script/DeployCore.s.sol) is restricted to local
 chain IDs 31337/31338 and deliberately does not seal. It is not an approved public

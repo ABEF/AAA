@@ -1,5 +1,7 @@
 # Native ETH and local Position3 architecture
 
+<a id="adversarial-design-review---2026-10-24"></a>
+
 The undeployed current candidate uses native ETH/ZZZ through contributions, LP
 settlement, rewards, maintenance and custody. `Vault.ACCOUNTING_VERSION() == 3`
 selects the eight-word [local Position codec](POSITION_V3.md). The same-chain

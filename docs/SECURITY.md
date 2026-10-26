@@ -18,8 +18,9 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
   departure to a trusted external EOA or contract through the explicit custody
   workflow.** This is a real custody power, not an on-chain guarantee of return.
   There is no generic Vault executor, arbitrary sweep or automatic raw fallback.
-- The zero-delay controller retains immediate governance powers over reviewed
-  feeds, routes, pools, roles and bounded operating parameters. Sealing fixes
+- The current governance wallet directly configures reviewed feeds, routes,
+  pools, roles and bounded parameters; Access authenticates it without a
+  timelock, queued operation or forwarding executor. Sealing fixes
   module bindings and the once-configured ZZZ contribution/normal-exit identity.
   Guardians may pause; governance resumes. A pause does not veto governance's
   separately authorized custody departure. See the [operator manual](OPERATOR_MANUAL.md).

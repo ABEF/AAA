@@ -1,5 +1,13 @@
 # Verification evidence
 
+Current instructions are organized in the [documentation map](../docs/README.md).
+[Documentation consolidation](documentation-cleanup-20261026/README.md) replaces
+obsolete guide prose without rewriting the historical reports below. Each report
+still applies only to its recorded source, deployment and verification scope.
+Some older reports contain relative links to now-retired source paths; inspect
+the report at its recorded Git revision for that historical code. These are not
+current implementation links.
+
 ## Backend fee-breakdown remediation - 2026-10-26
 
 [Review](backend-remediation-20261026/REVIEW.md),

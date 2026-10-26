@@ -1,6 +1,6 @@
 # Local API and browser-wallet rehearsal
 
-## Current native/pricing-V2 limitation - 2026-10-24
+## Current compatibility boundary
 
 The commands below describe the historical WETH/single-feed browser fixture.
 Fresh `local-stack.py` and `local-api-stack.py` startup with current native/pricing-V2
@@ -9,26 +9,30 @@ created. The old scaffold still assumes wrapper accounting, single-source feed
 configuration and legacy unsigned-review traces; changing only its feed setter
 would not produce a qualified V2 rehearsal.
 
-Preserve the existing running 8902 fixture, NFT/LP balances, browser journals and
-its exact original build. Do not rebuild/restart it in place or relabel its
-history as V2. A fresh isolated native/routing/pricing-V2 lab needs coherent test
+Preserve any existing 8902 fixture's NFT/LP balances, journals and original build;
+this document does not establish that it is currently running. Inspect its actual
+process/manifest first. Do not rebuild it in place or relabel its history as
+accounting-3. A fresh isolated native/routing/pricing-V2 lab needs coherent test
 venue/accounting fixtures, explicitly correlated test-only dual feed mirrors,
 current helper-phase configuration and a complete separate operating rehearsal.
 Mock sources never establish independent production pricing. The browser signer
 remains Anvil-only; no public signing or service change follows from this warning.
 
-This separate stack runs the website's reviewed API profile against actual Anvil,
-the real read/mint-claim/activation worker services and current source-authenticated
-core artifacts. It uses the unchanged local-only browser signer. No public RPC,
+The historical stack ran its matching website profile against actual Anvil,
+real API workers and its source-authenticated historical core artifacts. It uses
+the unchanged local-only browser signer. No public RPC,
 wallet private key or nonlocal signing option exists in the launcher.
 
 ## Start and verify
 
-From the contract repository, with the pinned development toolchain:
+The following is a historical command shape, not a fresh-start recipe for the
+current checkout. Use only independently reviewed matching historical
+source/artifacts. Current native/pricing-V2 startup deliberately fails its
+compatibility gate; do not weaken that gate to run these commands:
 
 ```sh
 forge build test/local/LocalAPIVenue.sol test/local/LocalInputFixtures.sol test/local/LocalNativeRegistry.sol test/mocks/MockVRF.sol --out /external/fixture-out --cache-path /external/fixture-cache
-python scripts/local-api-stack.py --anvil /path/to/anvil --cast /path/to/cast --artifacts /path/to/current-core-out --fixture-artifacts /external/fixture-out --state /external/new-api-runs --website /path/to/AAA-website --port 8902
+python scripts/local-api-stack.py --anvil /path/to/anvil --cast /path/to/cast --artifacts /path/to/reviewed-historical-core-out --fixture-artifacts /external/fixture-out --state /external/new-api-runs --website /path/to/AAA-website --port 8902
 ```
 
 Build the website first with `npm run build` from its own checkout. Quote paths
@@ -48,7 +52,7 @@ The Holder starts with 18 NFTs to exercise card and summary pagination (three
 active positions, the rest dormant). The other local account is funded for a
 fresh mint/activation journey. This does not change the public demo's four NFTs.
 
-## What the rehearsal establishes
+## What the historical rehearsal establishes
 
 - Real mint, native Entry, exact ERC20 approval then fresh complete LP review,
   top-up and ETH claim execution through the actual preparation/trace validation.
@@ -66,7 +70,8 @@ real token custody and exposes position-manager reads for the production trace
 parser, but uses deterministic 1:1 math. Its conversion pools expose funded mock
 reserve presence, not Uniswap liquidity math. LocalFeed is always fresh at $1,
 including the explicitly configured native ETH mark. MockVRF reveals local mints
-without a verifiable proof. None qualifies the actual Pons pool, routes or VRF.
+without a verifiable proof. None qualifies the selected hookless native pool,
+actual routes/feeds, accounting 3 website or VRF.
 
 ## Full-wallet totals
 
@@ -82,7 +87,10 @@ excludes unconverted source currencies and is not generated/lifetime revenue.
 One missing value makes that complete metric unavailable while the independent
 metric may remain available. There is no partial-total or zero fallback. Account
 changes cancel the old aggregate, reset card pagination and clear previous totals.
-Full-wallet historical earnings and collection-wide totals remain open.
+Separate [wallet earnings](EARNINGS_HISTORY.md#current-holdings-totals) and
+[collection reads](COLLECTION_READS.md) are implemented in matching reviewed
+profiles. That later source support does not upgrade this historical fixture or
+qualify the current accounting 3 website and real services.
 
 ## Stop, diagnose and restart
 

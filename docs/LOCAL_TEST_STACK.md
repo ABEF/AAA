@@ -1,7 +1,13 @@
-# Local browser test environment
+# Historical local browser test environment
+
+This is the pre-native/pricing-V2 fixture guide. Fresh current-artifact startup
+is blocked by `require_legacy_fixture_artifacts` before Anvil/deployment. Existing
+chains, balances and journals retain their original profile. Do not relabel or
+reset them. A historical fresh run needs a separately reviewed matching
+source/artifact set; this is not an accounting 3 production rehearsal recipe.
 
 The [launcher](../scripts/local-stack.py) starts its own loopback Anvil chain,
-deploys and seals the current PoPL core, seeds four NFTs, and connects the
+deploys and seals its matching historical core, seeds four NFTs, and connects the
 confirmed read/earnings API and SQLite indexer to a separate local browser panel.
 It does not deploy the public website. The panel borrows the website's existing
 artwork. The [website itself](LOCAL_WEBSITE.md) is also mounted at `/app/`, using
@@ -12,7 +18,7 @@ wallet signing and deployment qualification remain separate work.
 
 | Component | Local behavior |
 | --- | --- |
-| NFT, Vault, Entry, contribution/maintenance budgets, Strategy, reward ledgers, ClaimRouter, controller | Unmodified compiled production candidate; source hashes checked before deployment. |
+| NFT, Vault, Entry, contribution/maintenance budgets, Strategy, reward ledgers, ClaimRouter, controller | The historical compiled candidate recorded by that run; hashes must match that reviewed artifact set, never a relabeled current build. |
 | Shared LP custody boundary | `LocalDemoVenue` replaces LiquidityManager and Uniswap. Exact local ERC20 balances and recorded quantities; deterministic 1:1 swaps. This does not test Uniswap math, Pons, real liquidity or slippage. |
 | Prices | Local, always-fresh $1 test-token feed. ETH royalties have no USD mark; the API reports unavailable USD. |
 | Randomness | Existing MockVRF; no proof, subscription or provider qualification. The real finite NFT draw still runs. |
@@ -39,13 +45,14 @@ start a separate fresh fixture to test the new [$5 guards](CONTRIBUTION_MINIMUMS
 
 Requirements: Python 3.11+, Foundry Anvil/Cast/Forge, the pinned Solidity toolchain
 and installed repository dependencies. Run from the contract repository root.
-Use existing current-source compiler artifacts when available. Otherwise build
-the core following [Development](DEVELOPMENT.md), then compile only the local
-fixtures:
+These commands belong to the historical revision; compile only its matching
+source/fixtures and preserve their bindings. Current artifacts intentionally fail
+the compatibility check. A changed version flag is not a current
+[development](DEVELOPMENT.md) stack:
 
 ```sh
 forge build test/local/LocalDemoVenue.sol test/local/LocalInputFixtures.sol test/local/LocalNativeRegistry.sol test/mocks/MockVRF.sol --out /path/to/local-fixture-out --cache-path /path/to/local-fixture-cache
-python scripts/local-stack.py --anvil /path/to/anvil --cast /path/to/cast --artifacts /path/to/current-core-out --fixture-artifacts /path/to/local-fixture-out --state /path/to/external-local-state --website /path/to/AAA-website --port 8890
+python scripts/local-stack.py --anvil /path/to/anvil --cast /path/to/cast --artifacts /path/to/reviewed-historical-core-out --fixture-artifacts /path/to/local-fixture-out --state /path/to/external-local-state --website /path/to/AAA-website --port 8890
 ```
 
 Quote paths with spaces. Windows executables use `.exe`; `python3` can be used
@@ -161,8 +168,9 @@ and cannot pretend to execute named routes.
 
 Initial activation is $100; later additions are $5. Verify the exact selected
 source, decimals, spender and allowance in the confirmation, then verify confirmed
-on-chain LP increase. A smaller nonzero allowance is reset before exact approval;
-a sufficient existing allowance is reused. Local wrappers retain ETH backing.
+on-chain LP increase. An earlier wrapped-input branch required an allowance reset;
+that is not the later exact-replacement/native profile's two-transaction flow.
+A sufficient allowance is reused. Historical wrappers retain ETH backing.
 Successful conversion is not proof of public market liquidity, pricing, native
 pool support or the still-open ETH-only LP payout path.
 

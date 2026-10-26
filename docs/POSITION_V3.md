@@ -2,9 +2,9 @@
 
 The undeployed candidate uses `ACCOUNTING_VERSION() == 3`,
 `GOVERNANCE_VERSION() == 2` and canonical schema
-`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. Routing/pricing remain2,
-review-policy1 and fee-intake1. HTTP read schema2 retains decimal-string amounts
-and named statuses; its deployment configuration explicitly selects accounting3.
+`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. Routing/pricing remain 2,
+review-policy 1 and fee-intake 1. HTTP read schema 2 retains decimal-string amounts
+and named statuses; its deployment configuration explicitly selects accounting 3.
 These are source changes for a **fresh deployment**, not an upgrade to Anvil or
 any existing contract, journal, database or website configuration.
 
@@ -30,9 +30,9 @@ domain checks, not satellite or cross-chain liquidity features.
 
 The pure [codec](../zzz_ops/position.py) selects the exact row length/status map
 from the declared profile; it never guesses from return length. Keeper and API
-retain separate15-word historical codecs for accounting1/2. New rows cannot be
+retain separate 15-word historical codecs for accounting1/2. New rows cannot be
 labelled as old ones, old rows cannot be imported into V4, and a version change
-cannot repair or upgrade a saved journal. Canonical group rows are384bytes;
+cannot repair or upgrade a saved journal. Canonical group rows are 384 bytes;
 legacy/trailing rows reject before import writes. Complete record ordering,
 source authentication, backing and funded-abort rules remain.
 
@@ -55,12 +55,12 @@ signers/threshold and configure separate roles deliberately.
 
 The [operator manual](OPERATOR_MANUAL.md) owns exact procedures. Old schedule/
 execute recipes apply only to old controllers and must not be used for profile3.
-Only16 supported core modules may be bound; unknown and retired identities
+Only 16 supported core modules may be bound; unknown and retired identities
 reject. Sealing permanently clears bootstrap and prevents module rebinding.
 
 ## Retained rights and boundaries
 
-Activation/growth accept native ETH or the single fixed ZZZ, with$100/$5 minima,
+Activation/growth accept native ETH or the single fixed ZZZ, with $100 / $5 minima,
 two-source USD checks, actual added LP and caller-bound execution limits. Every
 admitted contribution/maintenance pool must contain that same ZZZ. Native ETH
 and WETH are distinct; WETH/ZZZ remains a possible reviewed future ERC20 pool,

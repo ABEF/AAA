@@ -60,7 +60,7 @@ not release sources.
 The current website and production transaction-preparation API still use the
 $100 rule. This work does not provide a live $1 wallet flow or a deployed $1
 contract. Mocked venue, feeds, VRF and authority behavior are explicitly test
-scaffolding; the selected Pons pool, real gas costs, funding and external services
+scaffolding; actual hookless ETH/ZZZ execution, real gas, funding and services
 remain separately qualified in the [central Todo](../TODO.md#task-testnet-rehearsal).
 
 [Scoped test evidence](../reports/one-dollar-rehearsal/VERIFICATION.md) records

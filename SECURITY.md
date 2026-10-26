@@ -1,24 +1,24 @@
 # Security and release status
 
-ZZZ Protocol is a compiled, tested development candidate with an internal source review. It is not independently audited or approved for real-fund deployment. Current source-bound evidence is in [release hardening](reports/release-hardening/README.md) and [internal static analysis](reports/release-hardening/static-analysis/README.md). The [Implemented / Todo checklist](docs/IMPLEMENTATION_STATUS.md) separates source features from remaining integration and release work. Earlier artwork/alignment/readiness reports preserve their historical scope.
+PoPL is an **undeployed development candidate; production NOT APPROVED**.
+Publishing source or passing scoped checks does not approve real funds.
 
-Permanent custody makes implementation and configuration mistakes particularly difficult to recover from. Publishing this repository does not close any release gate.
+- [Current security model](docs/SECURITY.md) and [seven-workstream audit plan](docs/SECURITY_AUDIT_PLAN.md).
+- [Latest backend fee-integrity review](reports/backend-remediation-20261026/REVIEW.md)
+  and [source-scoped full audit](reports/full-audit-20261025/REVIEW.md).
+- [Current internal static dispositions](reports/production/slither-review.json):
+  actual399findings/47bindings, internal coverage PASS; not independent audit.
+- [Sole security Todo](TODO.md#security--audit), [release approval](docs/RELEASE_CHECKLIST.md),
+  [operator response](docs/OPERATOR_MANUAL.md) and [historical evidence index](reports/README.md).
 
-The latest [NFT economic-rights review](reports/nft-rights-audit/REVIEW.md) and
-[executed checks](reports/nft-rights-audit/VERIFICATION.md) extend internal
-verification. The [seven-workstream audit plan](docs/SECURITY_AUDIT_PLAN.md)
-defines remaining security acceptance criteria, tracked in the central
-[Security & audit Todo](TODO.md#security--audit). Permanent home-chain loss has
-no implemented canonical NFT/ledger recovery; LP migration alone does not solve it.
+Holders cannot redeem LP principal. Direct governance can immediately change
+supported policy and approve trusted external custody; no timelock notice or
+forced custodian return is promised. Sealed implementations cannot be patched
+in place. External custody does not migrate NFT ownership/reward accounting,
+and permanent chain loss has no implemented canonical recovery.
 
-- [Security model and intended invariants](docs/SECURITY.md)
-- [Historical source-level self-review](docs/AUDIT.md)
-- [Current static-analysis findings and individual dispositions](reports/production/slither-review.json)
-- [Mandatory release checklist](docs/RELEASE_CHECKLIST.md)
-- [Component implementation status](docs/COMPONENT_STATUS.md)
-- [Historical verification evidence](reports/README.md)
-- [Publication verification](reports/PUBLICATION_CHECKS.json)
-
-Do not place private keys, RPC credentials, signer passwords, or keystores in this repository. The deployment template is local-only and does not enable deposits.
-
-No dedicated security reporting channel has been established. Avoid posting exploit details or sensitive data in public issues; arrange a private channel with the repository owner before disclosing them.
+Actual dependencies, independent prices/routes, randomness, authorities,
+marketplace/services/operations and independent audit/remediation remain open.
+Never commit keys, credentialed RPC URLs, passwords or keystores. No dedicated
+private security-reporting channel is configured; arrange a private channel with
+the repository owner before sending exploit details or sensitive information.

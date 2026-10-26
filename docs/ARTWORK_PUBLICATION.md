@@ -50,7 +50,7 @@ Track completion in the [metadata task](../TODO.md#task-metadata-ops). These are
 - Configure and independently review `NFT_BASE_URI=ipfs://<CID>/` before
   freezing/sealing the collection, retaining its trailing slash and flat SVG paths.
   Budget actual constructor bytes as well as compiled NFT initcode size.
-- Rehearse Dormant/Activated/Enhanced/Singularity rendering, stale/remote
+- Rehearse Dormant/Activated/Enhanced/Singularity rendering, stale/outbound/parked
   valuation fallback and ERC-4906 refresh on the target marketplace/test deployment.
 
 The prepared bundle deliberately reports `root_cid=null`, `uploaded=false` and

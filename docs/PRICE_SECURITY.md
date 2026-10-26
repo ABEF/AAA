@@ -1,36 +1,11 @@
 # Price security and factual LP verification
 
-## Optional source reader and remaining pricing qualification - 2026-10-25
-
-The [Pyth Core reader](PYTH_PRICE_SOURCE.md) adds a compatible immutable source
-interface with strict precision, confidence, publish-time freshness and bounded
-runtime-pinned reads. It does not update feeds or establish independence.
-Confidence screens a midpoint; it does not widen Oracle price bounds. Proxy
-implementation changes remain outside a proxy runtime hash. No actual source
-pair, price or update service is selected. ZZZ still requires two qualified
-independent sources even when the activation input is ETH.
-
-## Reviewed Entry policy V1 - 2026-10-25
-
-The current undeployed pricing-V2 candidate uses
-`executeReviewed(Request,uint16 maximumLossBps)` with explicit
-`review_policy_version: 1` in activation/release profiles and matching Entry/Pricing
-getters. It rejects a captured governed cap above the caller maximum before
-funds move, retaining all final price/LP/policy checks. Legacy execute is disabled
-on the new code; historical pricing-V1/local deployments retain original ABI.
-Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
-and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
-Native-V2 read/unsigned browser integration is implemented; actual native
-deployment/provider/wallet qualification remains open;
-no existing chain, website build, journal or public signer was upgraded.
-
-
 ## Status and security boundary
 
 The undeployed pricing-V2 candidate combines two-source USD checks with factual
 Uniswap position and asset-movement checks. This is implemented protection, not
 qualification of live price services. The user-selected disagreement tolerance is **3% (300 bps)**. No production
-ETH, ZZZ or USDG source pair, heartbeat, proxy policy or conversion route is
+ETH or ZZZ source pair, heartbeat, proxy policy or conversion route is
 selected or qualified by this document. Production remains unapproved.
 
 Two different questions must be answered:
@@ -50,7 +25,7 @@ prices cannot prove that liquidity was deployed.
 The Oracle adds no separate percentage or LINK payment for price reads. Ordinary
 public Chainlink push-feed getters have no per-read LINK charge. On-chain reads
 consume transaction gas; off-chain eth_call has no transaction gas fee but RPC,
-custom data/provider and hosting bills may apply. The500,000-gas source-call
+custom data/provider and hosting bills may apply. The 500,000-gas source-call
 limit is a ceiling, not a flat charge. Actual provider terms and full-operation
 gas are release work; VRF/data-reporting products are separate services.
 
@@ -64,7 +39,7 @@ copy these values into a live policy or presume future freshness/free service.
 ## Two sources for every priced asset
 
 [ZZZOracle](../src/ZZZOracle.sol) exposes `PRICING_VERSION() == 2` and
-`priceBounds(asset)`. ETH, ZZZ and USDG each need their own approved source pair;
+`priceBounds(asset)`. ETH and fixed ZZZ each need their own approved source pair;
 one ETH/USD feed plus one ZZZ/USD feed is not redundant pricing for either asset.
 Native ETH is address zero with 18 decimals, without a token runtime or wrapper.
 
@@ -104,13 +79,15 @@ a claim that 5% uncertainty is safe for an operation with a 1% loss budget.
 fingerprint binds the chain, Oracle, active asset and sequencer policies and both
 complete source rounds. `price` and ordinary `value` use the lower bound.
 `quote(input, output, amount)` uses the upper input price and lower output price
-to form a strict minimum-output reference. USDG is priced at its actual observed
-USD value; no stablecoin is assumed to remain at $1.
+to form a strict minimum-output reference. An optional admitted royalty or
+conversion currency needs its own reviewed source pair whenever an operation
+values it; no stablecoin is assumed to remain at $1. Those currencies are not
+activation inputs.
 
 There is no automatic single-source, stale-price, last-good-price, target-pool
-spot or presumed-peg fallback. The old `setFeed` ABI explicitly reverts. Its
-historical `feeds` getter exposes primary metadata only and does not establish
-pricing-V2 readiness.
+spot or presumed-peg fallback. The obsolete `setFeed` setter and single-feed shadow getters are absent from
+the current contract. Historical reader profiles retain their original semantics
+and do not establish pricing-V2 readiness.
 
 Chainlink's documentation distinguishes source quality, liquidity, stablecoin
 and market-integrity risks and places source assessment on the consuming
@@ -118,6 +95,15 @@ application. Its API documents round timestamps and precision, which must be
 interpreted for the selected feed rather than treated as proof of independence.
 [Source selection](https://docs.chain.link/data-feeds/selecting-data-feeds),
 [feed API](https://docs.chain.link/data-feeds/api-reference).
+
+## Compatible source readers
+
+The optional [Pyth Core reader](PYTH_PRICE_SOURCE.md) supplies the compatible
+round interface with precision, confidence, publish-time and runtime checks.
+It does not update feeds, select a source or prove independence. Confidence
+screens a midpoint rather than widening the Oracle bounds. Source proxy and
+updater qualification remain separate. ZZZ still requires two independent
+qualified observations even when ETH is the activation input.
 
 ## Independence and governance still require review
 
@@ -151,9 +137,12 @@ mechanism and manipulation assessment.
 ## One contribution, one frozen price basis
 
 [Activation Entry](../src/ZZZActivationEntry.sol) calls
-`ZZZContributionPricing.beginEntry` before pulling tokens, approving routers or
-converting assets. The fixed [pricing companion](../src/ZZZContributionPricing.sol)
-is created by the Oracle and authenticated to the actual Entry and Vault Budget.
+`ZZZContributionPricing.beginEntryReviewed` before pulling tokens, approving routers or
+converting assets. The caller supplies `maximumLossBps` through
+`Entry.executeReviewed(Request,maximumLossBps)`. The captured governed cap must
+not exceed that signed maximum before funds move. Release/preparation profiles
+require `review_policy_version: 1`; old execute is not a current alternative.
+The fixed [pricing companion](../src/ZZZContributionPricing.sol) is created by the Oracle and authenticated to the actual Entry and Vault Budget.
 It holds no user funds, approves no assets and supplies no arbitrary executor or
 sweep path.
 
@@ -275,11 +264,9 @@ relaxed to save gas.
 
 ### Bounded inventory capacity
 
-The contract companion permits at most 34 marked currencies: the bounded reward
-inventory can contain 33 currencies including native ETH, plus an original input
-that is not already in that inventory. Current activation/preflight token
-inventories remain bounded to 33 total currencies. This work does not widen
-those backend limits. A configuration requiring 34 distinct reviewed currencies
-cannot be presented as supported by the current preparation profile: it must fail
-closed or receive a separately reviewed capacity change and worst-case gas/RPC
-qualification. Never omit a required historical asset to fit the inventory.
+The pricing companion has a defensive ceiling of 34 marked currencies. The
+current release accepts only ETH and fixed ZZZ as original inputs; both already
+belong to its admitted LP-reward inventory. Backend inventories remain bounded
+to 33 currencies, including native ETH. That bound is not permission to add a
+third activation asset or omit required historical backing. Any future expansion
+would require explicit compatible code, inventory and worst-case gas/RPC review.

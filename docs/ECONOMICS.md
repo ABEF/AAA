@@ -52,13 +52,15 @@ Shares are nonredeemable. They are priced against the pool's current principal N
 | Permanent compounding | 5% | Isolated attributed reinvestment reserve |
 | ZZZ buyback/burn | 5% | Isolated approved execution reserve |
 
-Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global index dust stays reserved; per-NFT fractions carry. No administrator can sweep reward or orphan reserves.
+Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global index dust stays reserved; per-NFT fractions carry. No administrator can sweep reward or orphan reserves. Collection allocation
+accumulators may include carried/index rounding amounts; they are not the exact
+sum of all NFT claimable balances.
 
 Already-funded dust across local buckets is settled once before entry. Fees earned by the current contribution swap are harvested under incumbent weights before issuing new shares. Only the bound Vault allocates actual local LP proceeds; callbacks and raw donations cannot create fee income. Creator inboxes and remote intake are removed.
 
 The selected hookless native ETH/ZZZ pool has a static 1.002% LP fee. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. The current candidate has no Pons creator-payment intake. No creator percentage or TVL-derived entitlement is assumed.
 
-Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through individual/equal-collective indices; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new indexed income. ZZZ rewards still need a cheaper qualified route under the **default 1% loss cap, governed up to 10%, gas separate**; the selected pool's recorded approximately1.101% combined fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md) retains its source scope and does not verify later accounting V3 changes.
+Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through individual/equal-collective indices; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new indexed income. ZZZ rewards still need a cheaper qualified route under the **default 1% loss cap, governed up to 10%, gas separate**; the selected pool's recorded approximately 1.101% combined fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md) retains its source scope and does not verify later accounting V3 changes.
 
 The old bridge/pair execution stack and remote-fee intake are removed. Historical
 remote/inbox profiles retain their own ledgers and decoding; no automatic import,
@@ -66,13 +68,29 @@ erasure or reinterpretation is provided. Current movement uses [governed custody
 and compatible LP-only canonical V4. Contributions remain blocked while principal
 is away or its plan is outstanding.
 
+## Claimable, earned and paid amounts
+
+These are separate measurements, never interchangeable:
+
+| Measurement | Included | Excluded |
+| --- | --- | --- |
+| NFT rewards to claim | Its exact funded LP balance (individual plus collective) and separately recorded royalty balance | Compounding, buyback, other NFTs' shares and unswapped source balances presented as ETH |
+| NFT fees generated, 24 hours / all time | Processed individual LP, equal collective rewards and royalties attributed to that NFT | Gross pool/collection revenue, repeated claims, conversion output and returned custody |
+| Previously claimed | Verified lifetime LP and royalty payouts, including earlier owners | Unclaimed balances and a second recognition of earned income |
+
+Pending admitted royalty receipts may appear in contract claimable views before
+synchronization enters processed earnings history. Collection gross LP intake
+is displayed separately from the NFT's net rewards. Missing history or prices
+remain unavailable. These reporting distinctions do not change on-chain rights;
+see [history semantics](FRONTEND_HISTORY.md).
+
 ## Equal collective membership
 
 `ZZZMembership.activate` is vault-only, one-time and checkpoints all admitted LP reward assets before eligibility changes. A dormant NFT has zero membership; each activated NFT has one share regardless of rarity, LP size or number of top-ups. Membership persists through transfer, market losses, pauses and migration. No contribution-USD Power module or score exists. Contribution USD remains a separate historical contribution record, not a reward weight or current valuation.
 
 ## NFT-sale royalties
 
-ERC-2981 requests **5% of a marketplace sale** payable to the immutable NFT-owned royalty receiver. Payment cannot be forced by this interface. **100% of actual receipts** is reserved for already-activated NFTs in weights Commun x1 / Rare x2 / Legendary x3, independently of LP revenue allocations. LP size and evolution do not change royalty weight. Current owners claim all their NFT's accrued balances.
+ERC-2981 requests **5% of a marketplace sale** payable to the immutable NFT-owned royalty receiver. Payment cannot be forced by this interface. **100% of distributable receipts** is reserved for eligible activated NFTs in weights Commun x1 / Rare x2 / Legendary x3, independently of LP revenue allocations. LP size and evolution do not change royalty weight. Current owners claim all their NFT's accrued balances.
 
 Native ETH and up to 16 reviewed exact-transfer, non-rebasing ERC20s are supported;
 stablecoins admitted here do not become contribution inputs. Pending royalties
@@ -94,9 +112,9 @@ newly eligible NFTs.
 
 ## NFT supply and evolution
 
-Mint supply is capped at1,000, with exact 600/300/100 rarity quotas. Authenticated VRF words are bound to each NFT/request, and permissionless reveal proceeds strictly in mint order. Draws use remaining quotas; 60/30/10 describes initial odds only. Earlier unavailable randomness blocks later reveals; there is no reroll or administrator bypass.
+Mint supply is capped at 1,000, with exact 600/300/100 rarity quotas. Authenticated VRF words are bound to each NFT/request, and permissionless reveal proceeds strictly in mint order. Draws use remaining quotas; 60/30/10 describes initial odds only. Earlier unavailable randomness blocks later reveals; there is no reroll or administrator bypass.
 
-Evolution follows current marked LP share NAV, including attributed idle and compounding reserves, excluding claimable rewards and donations. Enhanced starts at $1,000; Singularity at$10,000. A decline can lower evolution while activation, collective membership and rarity royalties remain. Stale/oracle or external/parked-custody valuation is unavailable, not a zero-price observation. It does not block claims or recovery.
+Evolution follows current marked LP share NAV, including attributed idle and compounding reserves, excluding claimable rewards and donations. Enhanced starts at $1,000; Singularity at $10,000. A decline can lower evolution while activation, collective membership and rarity royalties remain. Stale/oracle or external/parked-custody valuation is unavailable, not a zero-price observation. It does not block claims or recovery.
 
 ## Strategy and migrations
 

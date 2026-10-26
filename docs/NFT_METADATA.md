@@ -1,6 +1,6 @@
 # NFT traits, royalties and live artwork
 
-## Fixed royalty trait versus activation - 2026-10-25
+## Fixed royalty trait versus activation
 
 Revealed metadata always reports the fixed rarity weight (Commun1 / Rare2 /
 Legendary3), including while Dormant. Unrevealed weight is the string
@@ -42,7 +42,7 @@ Traits remain bound to the NFT through transfers, additions and migration. `pale
 
 `currentLPValue` returns availability and current 18-decimal oracle-USD marked principal/idle/compound NAV proportional to NFT shares. It does not include unclaimed rewards, arbitrary donations or historical contribution USD. Enhanced starts at$1,000 and Singularity at$10,000; losses may downgrade artwork. An activated NFT below$100 remains activated.
 
-Remote/in-flight custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate live remote prices. Claims and migration do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
+External/in-flight local custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate live external-custody prices. Claims and migration do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
 
 The optional keeper watcher observes confirmed-block evolution, valuation availability and reveal state and uses the existing simulated/budgeted serial transaction path. It defaults to disabled, validates the canonical deployment and live runtime pins, and separates observations from confirmed notifications. This is a separate NFT scan; LP rebalancing still operates once per shared pool. See [operating details](OPERATIONS.md#optional-metadata-notifications) and [current verification](../reports/release-hardening/README.md). Immutable artwork publication and actual marketplace cache integration remain release gates: a changed view or emitted event does not guarantee an instant external refresh.
 
@@ -52,8 +52,7 @@ The optional keeper watcher observes confirmed-block evolution, valuation availa
 
 Native ETH is admitted automatically. Reviewed ERC20 assets can be appended through NFT governance; prefunds at admission are quarantined. Pending receipts are checkpointed before a new NFT joins, preserving incumbent rights. Zero-eligibility and constructor prefunds stay orphaned. Current owners claim, and unclaimed funds follow transfers. No admin rescue or redirected claim exists. Read [economic rules](ECONOMICS.md) for dust, token admission and liveness boundaries.
 
-The [ETH-first settlement direction](ROYALTY_SETTLEMENT.md) is a separate planned
-integration: qualify ETH pricing and actual ETH/WETH receipts, and convert
+The [ETH-first settlement direction](ROYALTY_SETTLEMENT.md) is a separate implemented candidate requiring live qualification: qualify ETH pricing and actual ETH/WETH receipts, and convert
 USDC/USDG only if those royalty settlement currencies cannot be excluded. The candidate converts earned royalties in bounded batches into ETH and preserves
 direct-currency claims as a fallback. A failed optional currency no longer blocks
 activation: earlier eligible NFTs retain unseen receipts; newcomers join that

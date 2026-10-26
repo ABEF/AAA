@@ -1,8 +1,8 @@
 # Attributed idle, dust and reinvestment
 
-Current development policy, 2026-10-25: contribution default **2%**, LP/royalty
+The undeployed candidate uses a contribution default of **2%**, LP/royalty
 conversion **1%**, ordinary maintenance **3%**; gas is separate. Governance may
-change each within its existing hard10% maximum. These are ceilings, not targets,
+change each within its existing hard 10% maximum. These are ceilings, not targets,
 market-loss insurance or permission to sweep balances. Read actual deployed
 settings and preserve captured operation/approved-custody minima.
 
@@ -10,7 +10,7 @@ settings and preserve captured operation/approved-custody minima.
 
 The Vault plans against the actual market and performs **at most two** balancing
 swaps. The second plan reads the actual post-first-swap state, including its new
-price and position ratio. Corrections no greater than1bp of that bucket's
+price and position ratio. Corrections no greater than 1 bp of that bucket's
 available input are skipped to avoid chasing precision dust. This is a bounded
 improvement, not an optimal router or a guarantee of zero idle in every market.
 
@@ -20,11 +20,11 @@ An existing LP's self-generated fees are harvested separately before increasing
 liquidity; they cannot be misclassified as new principal.
 
 The contribution floor counts **marginal deployed LP**, not idle, old principal,
-unclaimed fees or donations. At the current2% default, conservative $100 input
+unclaimed fees or donations. At the current 2% default, conservative $100 input
 requires at least $98 of new LP; $5 growth requires at least $4.90. Any retained
 idle still belongs to the NFT-share bucket and is included in current NAV. Thus
 undeployed value and execution loss are different, even though both consume the
-deployed-LP allowance. The separate5% whole-bucket idle ceiling remains.
+deployed-LP allowance. The separate 5% whole-bucket idle ceiling remains.
 
 If an operation cannot satisfy all guards, the complete transaction reverts.
 A separately confirmed ERC20 approval and spent network gas are not undone by
@@ -36,7 +36,7 @@ allowance; do not repeat a successful approval blindly.
 | Balance | Owner/purpose | Permitted handling |
 | --- | --- | --- |
 | Vault `Position.idle0/idle1` | Principal attributed to that shared bucket and its NFT shares | Reinvest through the guarded compounding/rebalance path; use approved principal custody only for an explicit migration/exit. |
-| Fees' designated compound reserve | The fixed5% LP-compounding allocation | Release only through the fixed compound path into the same bucket. It is not claimable operator revenue. |
+| Fees' designated compound reserve | The fixed 5% LP-compounding allocation | Release only through the fixed compound path into the same bucket. It is not claimable operator revenue. |
 | Buyback reserve | Fixed5% buyback/burn purpose | Use the governed, bounded buyback worker and actual burn evidence; no dust transfer to a treasury. |
 | Per-NFT reward fractions and global division residuals | Backing for exact reward accounting | Carry/checkpoint under the existing ledger, including through transfer/handoff. Never round them into an operator sweep. |
 | Small LP fee receipt dust | Existing fee allocation/membership semantics | Keep reserved and settle under incumbent weights before membership changes; historical raw-unit exceptions need asset-specific economic review. |
@@ -56,7 +56,7 @@ that bucket's attributed idle even when no fresh compound reserve is available.
 It captures starting prices/principal and the current maintenance cap before
 harvest, adds only actually released designated compound, and checks retained
 LP plus idle afterward at that same price vector. The stricter venue idle-loss
-guard, actual LP increase and5% idle ceiling still apply. NFT shares are unchanged.
+guard, actual LP increase and 5% idle ceiling still apply. NFT shares are unchanged.
 
 The Budget's `lastCompound(bucket)` records successful compound time, with the
 pool's `minRebalanceInterval` as an on-chain minimum between compounds. A failed

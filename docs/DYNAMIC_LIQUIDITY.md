@@ -1,16 +1,14 @@
-**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
-
 # Dynamic contributions, LP replacement and current NFT value
 
-This is the accounting and integration reference for the development candidate.
+This is the accounting and integration reference for the **undeployed candidate;
+production NOT APPROVED**. Inputs are native ETH or the fixed deployment ZZZ.
 It does not qualify live feeds, routes, a keeper schedule or production funds.
 Remaining work belongs to the [central Todo](../TODO.md#task-security-share-accounting).
+
+[Execution-loss policy](EXECUTION_LOSS_POLICY.md) defaults to 2% contribution,
+1% conversion and 3% maintenance; direct governance may configure each up to 10%.
+Stronger venue/caller minima and captured normal-custody floors remain binding.
+Network gas is separate. Historical fixed-limit profiles keep their own meaning.
 
 ## One shared LP, independent NFT accounts
 
@@ -31,7 +29,7 @@ One shared pool does not require 1,000 independent rebalances.
 
 | Operation | Actual source path | Accounting consequence |
 | --- | --- | --- |
-| Activate/top up | [Entry](../src/ZZZActivationEntry.sol), [Vault `_join`](../src/ZZZVault.sol), [budget `contributionResult`](../src/ZZZMigrationBudget.sol) | Original source value, current incumbent NAV and measured marginal LP determine entry; minimum $100 gross for activation and the captured marginal-deployed floor (98% at current default), gas separate. |
+| Activate/top up | [Entry](../src/ZZZActivationEntry.sol), [Vault `_join`](../src/ZZZVault.sol), [budget `contributionResult`](../src/ZZZMigrationBudget.sol) | Original source value, current incumbent NAV and measured marginal LP determine entry; minimum $100 gross activation/$5 growth and the captured marginal-deployed floor (98% at current default), gas separate. |
 | Select token mix | [Strategy `compoundPlan` / `_plan`](../src/ZZZStrategy.sol) | Existing contributions use the actual current LP ticks. Initial positions use `target` at current oracle prices. |
 | Replace LP | [Vault `rebalance`](../src/ZZZVault.sol) | Harvest, release designated compound, close, balance and mint atomically; update current physical LP ID. Share counts persist. |
 | Read current value | [LiquidityManager `amounts`](../src/ZZZLiquidityManager.sol), [Metadata `currentValue`](../src/ZZZNFTMetadata.sol) | Current position liquidity/ticks/spot determine token amounts; fresh, deviation-checked oracle prices mark those actual amounts. |
@@ -46,13 +44,14 @@ needed; above it only token1. These are token quantities, not equal USD weights.
 Uniswap's [concentrated liquidity reference](https://developers.uniswap.org/docs/get-started/concepts/liquidity-providers/concentrated-liquidity)
 explains range inactivity and the same core behavior in v3/v4.
 
-A $0.50-$1.50 illustrative ZZZ/USDC range is not a 50/50 value allocation at $1.
-At $1.40 it is heavily weighted toward USDC. Real tick spacing rounds boundaries
-outward, so the rounded LP can still be in range at the nominal $1.50 example.
+A historical $0.50-$1.50 ZZZ/USDC arithmetic example is not a current input/pool
+policy or a 50/50 value allocation at $1. At $1.40 it is heavily weighted toward
+USDC. Real tick spacing rounds boundaries outward, so the rounded LP can still be in range at the nominal $1.50 example.
 The [independent Decimal vectors](../reports/dynamic-liquidity/range-vectors.json)
 cover nine prices, four decimal/order arrangements, $100/$10,000 inputs and
-single/proportional dual-token plans. They do not substitute for actual Pons
-execution. Production's native-ETH/ZZZ pair and hook costs remain distinct.
+single/proportional dual-token plans. Those saved arithmetic/fixture results do
+not qualify the selected hookless native-ETH/ZZZ venue, its swap/protocol fees,
+actual depth or current execution. No Pons hook or creator funding is required.
 
 For a bucket with existing shares `S`, incumbent value `V` and net new value `N`,
 new shares are `floor(S * N / V)`. Initial shares equal net contributed USD units.
@@ -97,44 +96,57 @@ the [recovery runbook](KEEPER_RECOVERY.md). A reliable next-check estimate needs
 fresh authenticated operating telemetry, with stale/offline states explicitly
 displayed. Even then it is a check estimate, not a guaranteed transaction time.
 
-The selected Pons pool has zero conventional LP fees and separate externally
-funded revenue. The warning describes inactive swap liquidity without promising
-creator payments or revoking already funded claims/royalty eligibility.
+The selected [hookless native ETH/ZZZ pool](POOL_SELECTION.md) earns conventional
+LP fees when its position is active. Out-of-range liquidity earns no conventional
+swap fees until price returns or guarded maintenance changes its range. Funded
+claims and activation/royalty eligibility survive. This does not promise continuous
+fee income or external creator payments.
 
 ## Changing the range after sealing
 
-Governance can update the existing pool configuration through the zero-delay controller.
-`rangeBps` is a half-width: 1,000 means approximately +/-10% of the reference
-pool price before outward tick rounding. The registry permits 100-5,000 basis
-points; trigger and spot-deviation settings must remain inside their own bounds
+The current governance wallet directly calls the Registry/Strategy setters,
+authenticated through Access; there is no scheduler or forwarding executor.
+`rangeBps` is an approximate half-width before outward tick rounding: 1,000 means
++/-10% in the explicitly configured orientation. Mode0 is raw token1/token0;
+mode1 is token0/token1 (ZZZ priced in ETH for the selected native pair). These
+inverse ratios have different numeric endpoints; do not infer orientation from
+the ticker alone. The registry permits 100-5,000 basis points; trigger and spot-deviation settings must remain inside their own bounds
 and below the half-width. These are parameter changes, not code upgrades.
 
 Updating this setting does not instantly resize the current physical LP. The
 implemented [range-policy path](RANGE_POLICY_UPDATES.md) compares deployed ticks
 with the configured target at the recorded LP center. A mismatch can satisfy
 the existing rebalance trigger even at a flat price, after the normal cooldown.
-The keeper uses ordinary rebalance with all price, minimum-output, 3% aggregate
-and idle guards retained. Successful replacement clears the mismatch. No new
-force-rebalance authority is added; governed parking remains a separate recovery
+The keeper uses ordinary rebalance with all price, minimum-output, captured
+governed maintenance-budget and idle guards retained. Successful replacement clears the mismatch. No new force-rebalance authority is added; governed parking remains a separate recovery
 process. Production strategy qualification remains in the central Todo.
+
+Optional automatic selection is limited to governance-approved +/-25% and +/-50%
+presets in ZZZ-price-in-ETH orientation. The on-chain rule chooses the width from
+reviewed displacement thresholds and cadence; the keeper supplies no arbitrary
+width. Selection only updates desired configuration; a separately confirmed
+guarded rebalance applies physical ticks. Cooldown, pending-tick mismatch and
+configuration fingerprints still constrain it. See [range operations](RANGE_POLICY_UPDATES.md).
 
 ## Aggregate rebalance budget
 
-The user approved a fixed **3% aggregate execution-loss cap for ordinary
-rebalances**, gas separate, on 2026-10-18. The existing helper snapshots principal
-and attributed idle at fresh initial prices **before harvest**. It then adds
-exact released compound, closes/balances/mints, and requires final LP plus idle
-to retain at least `startingValue - floor(startingValue * 300 / 10000)` under that
-same price/decimal vector. The 5% idle ceiling and every existing per-step guard
-remain. New fee receipts, claim balances, buyback funds and donations cannot
-cover a deficit. Failure rolls back the entire operation, including harvesting.
+The Budget snapshots the current `maintenanceLossBps()` as `L` (default 300,
+hard maximum 1,000), principal and attributed idle at fresh initial prices
+**before harvest**. It adds exact released compound, closes/balances/mints and
+requires final LP plus idle to retain at least
+`startingValue - floor(startingValue * L / 10000)` at that same initial
+price/decimal vector. The 5% idle ceiling and every per-step guard remain.
+New fee receipts, claim balances, buyback funds and donations cannot cover a
+deficit. Failure rolls back the operation, including its harvesting; gas is spent.
+A callback or later policy edit cannot weaken the captured operation.
 
 This reuses the same checkpoints as same-ordered-pair moves/resumes; the existing
 `MigrationValueChecked` event also records successful ordinary rebalances.
-It is a 97% **LP plus idle** floor, not a 97%-deployed promise, a target loss,
-an impermanent-loss hedge or protection against repeated cumulative erosion.
+At default L=300 it is a 97% **LP plus idle** floor, not a 97%-deployed promise,
+a target loss, an impermanent-loss hedge or protection against repeated cumulative erosion.
 It does not qualify a malicious venue that lies about retained amounts, dishonest
-starting oracle prices, different-pair conversion or asynchronous bridging.
+starting oracle prices or unsupported different-pair conversion. External custody
+is separately approved and has no integrated bridge/remote-ledger guarantee.
 
 ## Current value, metadata and frontend
 
@@ -147,7 +159,7 @@ cannot redeem principal.
 
 The price guard also applies to metadata; a pool spot outside its admitted oracle
 deviation produces unavailable value. Honest marks remain readable when pool
-operations are disabled. Remote/in-flight/parked custody and dependency failures
+operations are disabled. Outbound/parked custody and dependency failures
 stay unavailable, not zero or an invented historical price. Activation and its
 royalty weight persist through falling value and unavailable valuation.
 

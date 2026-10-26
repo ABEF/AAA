@@ -1,29 +1,31 @@
 # Reviewed website API profile
 
-## Current native-V2 profile - 2026-10-25
+The website has disabled-by-default read and unsigned-review adapters. Public
+`deployment-config.js` exports `DEPLOYMENT = null`; nonlocal submission is
+unavailable, and the shared signer remains Anvil-only.
 
-The [schema-2 native profile](NATIVE_WEBSITE_PROFILE.md) now implements native
-ETH valuation, dual bounds, explicit reviewed EntryV1 and the captured governed
-loss budget. It is a separate reviewed manifest, not automatic schema detection.
-Public DEPLOYMENT remains null; shared signer/client/coordinator remain unchanged
-and Anvil-only. The source update and isolated build do not update the server or
-existing local dist/journals. Real native wallet/provider acceptance remains open.
+## Deployment compatibility
 
-The older schema-1 table below describes historical WETH-based deployments and
-retains their original semantics. Never reuse it for accounting V2.
+| Profile | Scope |
+| --- | --- |
+| Historical schema 1 | Wrapped-asset/single-feed local deployments, original 1% contribution policy and original journals |
+| Published schema 2/native2 | Accounting 2, dual pricing 2, routing 2 and reviewed Entry 1; see [exact native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
+| Current contract accounting 3/localV4 | Requires a separately matched website reader/manifest and operating qualification; relabeling native2 is unsupported |
 
-The website now has a separate **read and unsigned-review profile** for the
-existing production-shaped APIs. It is disabled in the shipped build:
-`deployment-config.js` exports `DEPLOYMENT = null`. Nonlocal profiles remain
-unsigned. The optional local API coordinator reuses the unchanged browser signer,
-which admits only chain 31337; see the local rehearsal procedure below. This is an integration candidate, not deployment approval.
+The older tables below describe published and historical adapters, not approval
+for accounting-3 deployment. Native2 supports a captured governed contribution cap;
+the schema 1 99% fixture floor is not a universal current rule. The contract
+candidate accepts ETH/fixed ZZZ only and defaults to 2% contribution loss; manifest
+input admission, code/runtime pins and quote policy must match the selected
+version exactly. No source publication updates a static server, existing chain,
+wallet journal or running service.
 
 See [verification](../reports/deployment-adapter/VERIFICATION.md),
 [API hosting](API_INGRESS.md), [read API](FRONTEND_API.md),
 [activation preparation](ACTIVATION_PREPARATION.md) and
 [mint/claim preparation](FRONTEND_TRANSACTIONS.md).
 
-## Confirmed collection explorer - 2026-10-23
+## Confirmed collection explorer
 
 The reviewed profile now lists the canonical collection and complete current LP
 total without connecting a wallet. Search, eligibility/rarity/color/style filters,
@@ -42,11 +44,11 @@ DEPLOYMENT stays null; this does not enable signing or qualify live hosting.
 | LP attached | Confirmed `currentLPValue` projection in USD; unavailable values remain unavailable. An unsigned approval/contribution never changes the card or artwork. |
 | Earnings | LP individual + collective + royalty earnings at current reviewed prices, only with matching NFT/block provenance. No price or matching history means unavailable, not zero. |
 | ETH claim review | One to eight selected NFTs, funded ETH LP/royalty entries only. Source currencies are disclosed separately and are never relabeled ETH. |
-| Mint | Production: demonstration only; mint preparation blocked pending qualified OpenSea integration/URL. Local rehearsal retains `Vault.mintDormant()` with exactly 0.05 ETH. See [mint venue](OPENSEA_MINT.md). |
+| Mint | Production: demonstration only; mint preparation blocked pending qualified OpenSea integration/URL. Local rehearsal retains `Vault.mintDormant()` with exactly 0.05 ETH. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). |
 | Activation review | Token units from the reviewed Oracle, targeting exactly $100 in value with the smallest necessary raw-unit round-up. A changed price requires a new quote. |
-| Growth review | User enters units of ETH/ZZZ/USDC/USDG, with a verified value of at least $5. Only reviewed enabled inputs/routes are accepted. |
+| Growth review | Published/historical manifests may expose ETH/ZZZ/USDC/USDG units. Current accounting 3 must restrict contributions to ETH/fixed ZZZ, with a verified $5 minimum; a compatible reader is still required. |
 | Approval review | Exact selected amount to the pinned Entry, never unlimited or a hidden zero-reset sequence. Complete preparation must run again after an actual confirmed approval. |
-| LP execution review | Exact Entry calldata, selected NFT/pool/source/route, minimum output/liquidity and expiry; the backend trace must report at least 99% marginal LP deployed. Review displays simulated LP added and separate network gas. |
+| LP execution review | Exact Entry calldata, selected NFT/pool/source/route, minimum output/liquidity and expiry; the trace must meet the selected version's captured marginal-LP floor. Legacy schema 1 uses 99%; native2 uses its reviewed governed cap. Show simulated LP added and gas separately. |
 | Submit | Nonlocal: unavailable. Local Anvil rehearsal: explicit wallet confirmation, independent preflight, same-hash recovery and confirmed-state reconciliation through the unchanged signer. |
 
 Wallet-wide LP and claimable ETH totals aggregate every holding in bounded
@@ -98,8 +100,8 @@ profile ignores this configuration and retains its own local wallet admission.
    [wallet task](../TODO.md#task-wallet). Unknowns remain open.
 2. Run the existing read/mint-claim and activation services under their reviewed
    configurations. Keep their independent admission, Origin and resource limits.
-   Reverse-proxy GET `/api/v1/*` and POST `/api/v1/transactions/prepare` to the
-   read/transaction service; POST `/api/v1/activation/prepare` goes to the
+   Reverse-proxy only the enumerated reviewed GET routes and exact POST
+   `/api/v1/transactions/prepare` to the read/transaction service; POST `/api/v1/activation/prepare` goes to the
    activation service. Strip only `/api`; do not expose service control paths.
 3. Configure browser `connect-src` for the exact reviewed node plus same-origin
    API. The node must support browser CORS and canonical hash reads. Never put
@@ -208,6 +210,6 @@ reconciliation is not implemented here. See
 
 ## Actual local API integration
 
-The [local API rehearsal](LOCAL_API_REHEARSAL.md) supplies real Anvil receipts
+The historical [local API rehearsal](LOCAL_API_REHEARSAL.md) records real Anvil receipts
 and real API worker responses. Its market/feed/VRF boundaries remain local mocks;
 actual extension acceptance remains open. No nonlocal signing was added.

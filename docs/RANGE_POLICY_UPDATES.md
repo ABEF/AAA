@@ -1,6 +1,6 @@
 # Applying range settings after sealing
 
-Governance can change the admitted pool's range through the existing governance controller.
+Governance can change the admitted pool's range through direct calls from the selected governance wallet.
 The keeper can then apply it through the ordinary `Vault.rebalance` path even
 if the price has not moved far enough to satisfy the price trigger. A separate,
 default-disabled policy lets it select **only** the reviewed 25%/50% presets under
@@ -163,7 +163,7 @@ reviewed deployment, set `maintenance.compound_idle=true`, provide an exact
 `idle_compounding_budget` address and `code_hashes.idle_compounding_budget`, and
 set `compound_thresholds` for **both actual pool currencies** plus an explicit
 `compound_interval_seconds` from 600 to 604800. Currency-zero is native ETH only
-under accounting version 2. The keeper checks the Budget runtime, mutual Vault
+under explicit native accounting profiles 2 or 3; use 3 for the current candidate. The keeper checks the Budget runtime, mutual Vault
 binding and `IDLE_COMPOUNDING_VERSION()==1` before using attributed idle.
 
 Thresholds are positive **raw units per currency**, such as independently chosen

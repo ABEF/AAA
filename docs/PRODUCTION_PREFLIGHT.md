@@ -1,7 +1,7 @@
 # Current native production inventory and read-only preflight
 
 
-## Current release simplification - 2026-10-25
+## Current release scope
 
 [Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
 fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
@@ -9,7 +9,7 @@ pool moves, external custody exit/recovery, royalty currencies and complete
 collection handoff. Current fee/custody profiles and canonical schema are
 explicit; old deployments/journals keep historical profiles.
 
-## Current mint qualification boundary - 2026-10-25
+## Mint qualification boundary
 
 Current release CLI validation requires **schema5, accounting_version3,
 fee_intake_version1 and mint_integration_version1**.
@@ -24,7 +24,7 @@ See [mint/VRF requirements](MINT_INTEGRATION_QUALIFICATION.md) and the
 [scoped verification](../reports/release-services-20261025/vrf-opensea/VERIFICATION.md).
 Its code-owned unsupported state cannot be overridden by manifest evidence.
 
-## Reviewed Entry policy V1 - 2026-10-25
+## Reviewed Entry policy
 
 The current undeployed pricing-V2 candidate uses
 `executeReviewed(Request,uint16 maximumLossBps)` with explicit
@@ -49,7 +49,7 @@ Legacy schema 4 keeps its historical interpretation, including its refusal to
 approve the governed/native layout. Its previous blocked template is preserved as
 [production.legacy-v4.example.json](../config/production.legacy-v4.example.json). Do not relabel old WETH contracts, state or
 journals as the current profile. Accounting2/LP-only V3 snapshots likewise remain
-historical and are not current V4 snapshots. Start a separate current-version inventory with exact
+historical and are not current localV4 snapshots. Start a separate current-version inventory with exact
 deployment-specific runtime hashes, including immutable constructor values.
 
 ## What is inventoried

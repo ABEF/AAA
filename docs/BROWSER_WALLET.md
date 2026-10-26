@@ -1,4 +1,11 @@
-# Browser-wallet signing on the disposable local chain
+# Browser-wallet operation on historical disposable chains
+
+This manual preserves the explicit pre-native/pricing-V2 Anvil browser fixture
+and its recovery behavior. It is not the current accounting-3 deployment guide.
+`scripts/local-stack.py` rejects fresh startup with current production artifacts;
+do not relabel an old chain, journal, manifest or fixture as current. Existing
+local chains and unresolved sends must be preserved and recovered in their
+original profile. No public wallet signing is enabled.
 
 For the separate default-disabled production-shaped read/unsigned-review adapter,
 see [reviewed website API profile](DEPLOYMENT_WEBSITE.md). It does not extend
@@ -34,10 +41,13 @@ the website. Reload the app to load frontend changes; do not reset Anvil.
 
 ## Start and connect
 
-1. Start the [local launcher](LOCAL_TEST_STACK.md) with the existing website checkout,
-   authenticated production artifacts, the native input fixture artifacts,
-   `--named-assets --native-input`, and an unused `--port`. This creates a new
-   disposable deployment; it does not resume an old Anvil chain.
+1. For an already running historical fixture, preserve its original URL, run
+   directory, genesis, manifest and journals. A new run requires independently
+   reviewed **historical compatible artifacts** under the
+   [local launcher](LOCAL_TEST_STACK.md) compatibility gate; current artifacts
+   are deliberately rejected. The historical named/native fixture used
+   `--named-assets --native-input`. Starting it creates a new disposable chain,
+   never a continuation of existing NFTs or pending transactions.
 2. Open `http://127.0.0.1:<port>/app/?wallet=browser#my-nfts` in a browser with an
    EIP-1193 extension. The exact `?wallet=browser` query opts in. The ordinary
    `/app/` page retains the launcher-owned test wallets; ordinary static/public
@@ -70,11 +80,15 @@ uses the permission flow above; refresh remains read-only. Adding a network is
 followed by an explicit switch if needed, then fresh account/chain/genesis checks.
 A different provider or disconnected account cannot complete an old setup request.
 
-The local named inputs are ZZZ, USDG, USDC and ETH. **All have a $1 mock input
-price, including ETH.** Local activation is exactly 100 input units at that mock
+The historical fixture's named inputs are ZZZ, USDG, USDC and ETH. They are mock
+labels, not the current release's accepted assets. **All have a $1 mock input
+price, including ETH.** Fixture activation is exactly 100 input units at that mock
 price; increases start at 5 input units. This does not qualify actual token prices
-or conversion routes. Production Entry still enforces a $100 minimum, not an
-exact-$100 maximum; production quote/rounding alignment remains open.
+or conversion routes. The current candidate accepts only native ETH or the one
+fixed ZZZ token, with a $100 activation minimum, $5 growth minimum and default 2%
+contribution execution-loss guard. Native/pricing-V2 review and exact wallet
+qualification are separate work; do not copy mock prices, stablecoin inputs or
+old transaction calldata into that release.
 
 ## What is checked before signing
 
@@ -135,13 +149,11 @@ Legacy chainId may be omitted: EIP-155 v establishes it. Typed transactions must
 still provide their signed chain ID; conflicting or unverifiable identity cannot
 confirm. RPC identity and canonical reads are not consensus proofs.
 
-For this incident, reload the page and use Recover status for the saved mint;
-new operations then use the same path automatically. Preserve localStorage and
-server journals. Do not repeat mint or approval, reset Anvil, or loosen receipt
-checks. A web-only update must preserve the original session, chain and contracts.
-If rollback is necessary, retain journals and deploy a reviewed reader fix; the
-old wallet-only reader can reproduce the error. Production deployment remains
-gated. [Verification](../reports/browser-wallet/CHAIN_READER.md).
+Preserve localStorage and server journals while recovering the saved hash. Do
+not repeat mint/approval, reset Anvil or loosen receipt checks. A reviewed web-only
+reader fix must preserve the original session, chain and contracts; rollback
+cannot discard unresolved sends. The earlier incident's exact source scope and
+recovery are in [chain-reader verification](../reports/browser-wallet/CHAIN_READER.md).
 
 ## Submission, confirmation and artwork
 
@@ -244,12 +256,12 @@ unsent. A successful receipt with a failed projection refresh stays confirmed.
 Closing a page or reaching a wait timeout does not cancel an extension request.
 Provider numeric failures name the field without logging raw wallet data.
 
-A later exact diagnostic identifies a numeric eth_getTransactionCount response.
 The shared signer accepts safe nonnegative integers as well as bounded hex at the
 provider response boundary. Unsafe numbers are rejected, never rounded; outgoing
 transactions remain canonical hex. Reload updated files before a new review.
 See [numeric nonce evidence](../reports/browser-wallet/NUMERIC_NONCE.md).
-The type mismatch is reproduced and fixed; actual MetaMask acceptance is pending.
+That report records its original reproduction/fix scope; it does not qualify the
+current deployment or every wallet-extension version.
 
 ## Failure and recovery procedure
 
@@ -307,16 +319,14 @@ not cancel a signed transaction on a node. Public-wallet cancellation/replacemen
 reconciliation is not implemented here. See
 [scoped diagnosis and evidence](../reports/browser-wallet/PENDING_NONCE.md).
 
-## Authorized local mint cleanup - 2026-10-22
+## Historical local mint cleanup
 
-The exact nonce 35 mint in the 8902 fixture has been removed from the isolated
-node; full chain state and both wallets' balances/nonces are unchanged. The user
-must still clear MetaMask's local activity/nonce history and use the temporary
-in-page archive control in the same browser. No automatic transaction is sent.
-The [reconciliation procedure and evidence](../reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md)
-contains exact prerequisites, preserved evidence and restoration instructions.
-The temporary dist overlay must never be published; source/public signing remain
-unchanged. Keep these browser steps pending until actually verified.
+The [8902 fixture reconciliation record](../reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md)
+preserves the separately authorized nonce 35 cleanup, evidence, exact prerequisites
+and restoration instructions. It is an incident record, not a general permission
+to remove pending transactions, clear wallet activity or reset a chain. Its
+temporary dist overlay must never be published. Do not infer unresolved browser
+steps are complete merely because source or documentation changed.
 
 ## Stop, restart and rollback
 
@@ -340,8 +350,9 @@ production service command or public deployment.
 
 ## Evidence and remaining qualification
 
-The scoped candidate has 43 affected Python checks and 167 website checks, plus
-five actual holder transactions through an EIP-1193-shaped local RPC adapter:
+The historical source-scoped candidate records 43 affected Python checks and
+167 website checks, plus five actual holder transactions through an
+EIP-1193-shaped local RPC adapter:
 mint, native ETH activation, exact USDC approval, USDC increase and ETH claim.
 The four original fixture NFT ownership/LP/activation records remained unchanged.
 The adapter exercise is **not** browser-extension acceptance or public signing.

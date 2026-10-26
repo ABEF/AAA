@@ -1,29 +1,24 @@
 # Post-seal configuration and public-chain rehearsals
 
-Decision recorded 2026-10-24. Routine operating settings should remain configurable
-after sealing. This is a pre-seal design requirement, not a claim that all of the
-controls below are implemented. The [central Todo](../TODO.md#task-post-seal-configuration)
-owns completion status. No public deployment, transaction or signer extension is
-authorized by this document.
+Sealing fixes core implementations, bindings and the deployment's ZZZ identity.
+Supported operating settings remain governed within their existing bounds. This
+page describes the current candidate's boundary; the [sole Todo](../TODO.md#task-post-seal-configuration)
+owns qualification work and the [operator manual](OPERATOR_MANUAL.md) owns exact
+procedures. It authorizes no deployment, transaction or signer extension.
 
 ## Configuration boundary
 
-**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
-
-
+Contribution, conversion and maintenance loss defaults are **2% / 1% / 3%**,
+with separate network gas and hard 10% maxima. Caller/venue minima and already
+approved custody floors remain binding. See [execution policy](EXECUTION_LOSS_POLICY.md)
+and [typed routes](TYPED_V4_ROUTES.md).
 
 | Category | Requirement | Current boundary |
 | --- | --- | --- |
 | Governance wallet | Current `GOVERNANCE_VERSION=2` wallet calls target modules directly, with no Timelock queue or generic executor. | `proposeGovernance(candidate)` by the current wallet, then `acceptGovernance()` by the candidate, has no delay. Zero proposal cancels. Operating canonical state and inactive preparation are mandatory. Keeper/guardian grants and the immutable mint recipient do not rotate with governance. Bootstrap is erased at seal; lost governance has no hidden admin rescue. |
 | Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, explicit price orientation, approved two-width keeper selection, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.setOperatingTradeUSD` sets a USD18 execution ceiling from zero through immutable `maxTradeUSD`; zero stops buybacks before prices or reserves are queried. |
 | Assets and conversions | Enable/disable/re-enable native ETH and the fixed pre-seal ZZZ input; rotate reviewed routes when liquidity changes. Marketplace royalty admission is separate. | No third contribution currency or post-seal ZZZ replacement is supported. Bind matching contribution/normal-exit ZZZ identities before sealing; issuer migration uses custody exit and a fresh reviewed deployment. Entry and LP/royalty converters retain pinned append-only typed v3/v4 route controls. Native v4 output needs no wrapper; v3 converters keep their own wrapper checks. Real qualification remains open; routes do not add a new input identity or algorithm. |
-| Pools and pricing | Change the sole contribution pool, reviewed two-source USD policies and supported strategy settings through existing immediate governance. | `Oracle.setDualFeed` appends a policy with two distinct source/independence identities, runtime pins, per-source ages and 0-500 bps disagreement. Both sources must pass; old `setFeed` is not a current callable function. No missing-source/spot/peg fallback. Entry freezes prices and operating limits before transfers/conversion; new settings cannot replace that captured basis. Live source independence/proxy/depeg/gas qualification remains open. |
+| Pools and pricing | Change the sole contribution pool, reviewed two-source USD policies and supported strategy settings through existing immediate governance. | `Oracle.setDualFeed` appends a policy with two distinct source/independence identities, runtime pins, per-source ages and 0-500 bps disagreement. The selected disagreement tolerance is 300 bps (3%); both sources must pass. Old `setFeed` is not a current callable function. No missing-source/spot/peg fallback. Entry freezes prices and operating limits before transfers/conversion; new settings cannot replace that captured basis. Live source independence/proxy/depeg/gas qualification remains open. |
 | Randomness operation | Tune future callback gas and confirmations within contract and actual provider bounds; preserve pending requests and ordered draws. | After initial configuration, `NFT.setRandomnessRequestSettings` changes only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/gas lane, subscription and payment mode stay fixed. It cannot repair or reroll an old request. |
 | Services | Rotate qualified RPCs, hosting and compatible API/keeper settings without resetting transaction journals or changing deployment identity. | Current accounting3/fee1 uses eight-word local Positions and LP-only V4 canonical schema, with distinct state paths. Historical accounting1/2 rows/statuses/journals retain their original profile; changing a version field is not migration. Off-chain configuration does not alter sealed bytecode. Keep the shared signer Anvil-only and public `DEPLOYMENT` null until separately authorized and qualified. |
 | Economic rights and safety | Preserve supply/rarity inventory, revealed traits, ownership, earned rewards, backing, the 80/10/5/5 allocation and approved execution-loss limits. | No reset, confiscation, arbitrary sweep, generic executor or unbounded upgrade is introduced. A reviewed replacement uses the explicit handoff and preserves rights; it is not a way to erase them. |
@@ -34,8 +29,9 @@ control still needs an explicit caller, bounds, events, dependency checks,
 stop/reopen behavior and old-transaction/pending-state handling. A global pause
 does not bypass preparation or terminal canonical locks.
 
-The [bounded operating-control candidate](../reports/post-seal-controls/VERIFICATION.md)
-adds these two setters with previous/new-value events and immediate governance.
+The randomness-settings and buyback-ceiling setters emit previous/new-value
+events and use immediate governance. Their [source-scoped evidence](../reports/post-seal-controls/VERIFICATION.md)
+is separate from live provider qualification.
 They work during an ordinary pause, but reject preparation, canonical lifecycle
 locks and reentry. A successor reviews its own operating settings; these are not
 imported NFT economic entitlements. Actual provider acceptance can be narrower
@@ -47,7 +43,6 @@ For randomness observations, the blocked production template now distinguishes
 `immutable_configuration` flag is rejected in that NFT record. Capture current
 getters and retain original request transactions when reviewing pending draws.
 
-Defaults remain **2% contribution / 1% conversion / 3% maintenance**, gas separate. Governance may now change each category through the [bounded execution policy](EXECUTION_LOSS_POLICY.md), maximum 10%. The earlier fixed-cap requirement is superseded.
 The selected pool's observed approximately 1.101% swap fee means it is not a
 qualified full-balance conversion route at reference prices. Require a cheaper,
 independently reviewed route; until then keep earned source balances backed and
@@ -69,12 +64,12 @@ work; raw funded claims and explicit raw custody paths retain their own rules.
 ## Native implementation versus configurable policy
 
 The current native candidate implements actual ETH custody, fee indices, principal
-return and same-chain canonical funding. Its schema rejects old V1 handoff codecs;
-existing WETH deployments/journals are not upgraded by changing configuration.
-Record exact version 2 Vault/runtime pins in fresh API/keeper profiles and retain
-per-deployment historical currency semantics. The existing 8902 fixture and saved
-transactions remain unchanged; the public website deployment stays null and its
-V2 profile remains to be qualified.
+return and same-chain canonical funding. Local canonical V4 rejects older handoff codecs;
+existing wrapped/native-2 deployments and journals are not upgraded by changing configuration.
+Record accounting 3 / fee-intake 1 / direct governance 2 runtime pins and local
+canonical V4 in fresh API/keeper profiles. Retain historical deployment semantics
+and saved transactions without relabelling them. The public website deployment
+stays null; its native-2 reader is not a qualified current-3 integration.
 
 Atomic pool moves currently require identical actual ordered currencies. ETH and
 WETH are distinct: moving between those pools needs an explicit reviewed boundary
@@ -137,8 +132,8 @@ test cleanup easier.
 
 ## Review scope
 
-This policy distinguishes implemented candidate behavior from unimplemented
-operating controls and external qualification. Source-bound native evidence is
+This policy distinguishes implemented configuration controls from external
+qualification and operating rehearsals. Source-bound native evidence is
 recorded separately; earlier WETH reports retain their original scope. Current controls were
 read in `ZZZAccessController`, `ZZZNFT`, `ZZZActivationEntry`, `ZZZRoyaltyConverter`,
 `ZZZLPRewardConverter`, `ZZZBuyback`, `ZZZMigration`, `ZZZVault` and

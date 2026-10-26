@@ -1,117 +1,61 @@
-## Financial read integrity - 2026-10-26
-
-Current accounting 3 requires actual native ETH first in the LP asset inventory.
-Validated inactive NFTs cannot have positive available LP/royalty credits.
-Wallet chunks reject malformed core data rather than masking it as an outage;
-genuine unreadable views still mark only the affected metric unavailable.
-One extra pinned royalty-weight read per current NFT checks inactive claims;
-16-item chunks and existing work/deadline limits remain. Fee-intake 1 earnings
-also verify funded-credit/allocation pairs and final observed-key dust.
-No response schema or signing capability changes. See [backend evidence](../reports/backend-remediation-20261026/VERIFICATION.md)
-and [earnings/claimable definitions](EARNINGS_HISTORY.md).
-
-## Current local Position V3 profile - 2026-10-25
-
-## Full audit: current-profile readers - 2026-10-25
-
-Current activation preparation now uses the selected profile's dormant state
-and narrowly typed native source-policy address argument. Independent history
-audit consumes the actual Rpc adapter's checked integer chain ID as well as
-canonical wire-hex fixtures; malformed/Boolean/floating values fail closed.
-No public signing, write endpoint, state override or fallback profile is added.
-See [service review](../reports/full-audit-20261025/SERVICES.md). Existing live
-services, websites, databases and local wallets were not changed by these fixes.
-
-Current deployments require explicit `accounting_version: 3` and
-`fee_intake_version: 1` in the existing **schema 2** read configuration.
-The service verifies `Vault.ACCOUNTING_VERSION() == 3`, direct
-`AccessController.GOVERNANCE_VERSION() == 2`, actual governance identity and
-`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. The [Position codec](POSITION_V3.md)
-is eight words; dormant/parked codes are 3/4. Response field names and large
-integer decimal strings stay unchanged; no removed remote-position fields are
-fabricated. Local custody is established by the pinned chain/Vault/controller
-and canonical lifecycle, rather than legacy satellite fields.
-
-Explicit accounting 1/2 readers remain for their reviewed historical profiles;
-omitting the version selects legacy1, never the current release. Do not rewrite
-old deployments, transaction journals or predecessor codecs. V4 handoff rejects
-older schemas, and current lineage rejects a predecessor with a different
-Position codec. An operator must not claim automatic cross-codec migration.
-
-Currency zero is native ETH only in reviewed currency argument positions, never
-as a contract target. Both LP and royalty ledgers can hold native ETH. Native
-price profiles use `priced_token: zero` and `token_code_hash: null` with reviewed
-independent USD sources. No runtime is invented for ETH. Actual feed/route/provider,
-hosting and wallet qualification remain open; signing stays Anvil-only and the
-public website deployment remains null.
-
-## Confirmed collection extension - 2026-10-23
-
-`GET /v1/collection/<confirmed-block>/<offset>` provides at most 16 canonical
-positions at one pinned block, with the complete inventory digest and per-chunk
-LP/eligibility sums. Complete all chunks before displaying totals. See
-[collection procedures and limits](COLLECTION_READS.md). Matching supervised workers
-and Nginx allowlist are required; unknown/partial pages cannot become zero.
-
-## Processed earnings extension - 2026-10-19
-
-Updated 2026-10-22: the optional profile also serves
-`GET /v1/wallets/<address>/earnings/<confirmed-block>/<offset>` in 16-NFT chunks.
-The matching current-balance route is `/v1/wallets/<address>/summary/<block>/<offset>`.
-Both are in the reviewed Nginx GET allowlist; deploy the matching proxy include
-and run `nginx -t` before rollout. The opt-in website profile displays complete
-same-block earnings totals; the public deployment remains disabled. See
-[current-holdings semantics](EARNINGS_HISTORY.md#current-holdings-totals).
-
-Optional `earnings_history` adds read-only `GET /v1/earnings` and
-`GET /v1/nfts/<decimal-token-id>/earnings`. They reconstruct separate processed
-LP/collective/royalty earnings for all time and the last 24 hours. The user's USD
-policy is **current confirmed prices**, not historical dollars. Claims and
-conversion credits are separate. Review all seven emitters from creation, full
-predecessor coverage and price pins before enabling. See [configuration and
-recovery](EARNINGS_HISTORY.md) and [evidence](../reports/earnings-history/VERIFICATION.md).
-Existing position responses do not silently fetch this additional history.
-Live deployment and frontend integration remain open.
-
-## Current royalty reporting extension - 2026-10-19
-
-The optional [royalty reporting profile](ROYALTY_REPORTING.md) adds verified
-per-currency eligibility, explicit unavailable balance fields and pinned converter
-enable status to the single-NFT read. ETH balances include unclaimed conversion
-credits; source balances are not promised ETH payments. Core deployment/lifecycle,
-complete-history and final snapshot checks stay strict. Legacy all-or-nothing
-currency behavior below applies when this profile is absent; wallet inventory
-and financial-action validation retain their existing strict paths.
-
-Complete history now also returns `royalty_conversions`, separately from actual
-lifetime `previously_claimed`. See [field semantics and operator recovery](ROYALTY_REPORTING.md)
-and [scoped evidence](../reports/royalty-reporting/VERIFICATION.md). This is backend
-implementation; processed earnings/current-price USD now have their own
-[optional profile](EARNINGS_HISTORY.md). Neither is a deployed service or live UI.
-
 # Confirmed frontend read API
 
-The `frontend_api` package is a working read-only Python 3.11+ service for
-**individual canonical NFTs and confirmed wallet inventories**. It reads deployed contracts, rather than using
-website demo balances. It has no private keys, signer, transaction broadcast,
-administrator write endpoint, invented balances or external dependencies. An
-explicit opt-in [unsigned mint/claim preparation endpoint](FRONTEND_TRANSACTIONS.md)
-can construct and simulate typed transaction drafts; default operation stays GET-only.
-It has not been deployed or operated against a production PoPL deployment.
+The `frontend_api` Python service reads confirmed contract state and optional
+complete indexed history. It has no private keys, signer, broadcast method or
+administrator write endpoint. Optional typed preparation returns simulated,
+unsigned drafts only; public signing remains disabled. Production hosting,
+current-profile website integration and actual dependencies are not qualified.
+
+## Current deployment profile
+
+Use explicit `accounting_version: 3` and `fee_intake_version: 1` with read
+configuration **schema 2**. The service checks Vault accounting 3, direct
+Access governance 2, actual governance identity and canonical
+`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. The [Position codec](POSITION_V3.md)
+has eight words; current dormant/parked states are 3/4. No retired remote fields
+are synthesized. Both LP and royalty ledgers support native ETH; current LP
+inventory must actually begin with ETH. Validated never-activated NFTs cannot
+report positive available rewards. Malformed wallet-summary core data rejects;
+a genuine view outage leaves the affected metric unavailable.
+
+Fee-intake1 earnings verify the actual module version, exact funded-credit /
+allocation pairing and observed-key final dust. See [earnings semantics and
+configuration](EARNINGS_HISTORY.md), [royalty reporting](ROYALTY_REPORTING.md) and
+[current backend verification](../reports/backend-remediation-20261026/VERIFICATION.md).
+Native USD policies use direct address zero and dual-source pricing 2; no wrapper
+runtime or single-source fallback is invented.
+
+Explicit accounting 1/2 readers remain for reviewed historical deployments.
+Omitting accounting version selects legacy1, not the release candidate. Preserve
+old addresses, codecs, journals and snapshots. Current V4 lineage requires
+accounting 3 predecessors; it does not migrate an older Position codec. Source
+publication never changes an existing API, Anvil deployment or website server.
 
 ## Implemented endpoint
 
-```text
-GET /v1/protocol
-GET /v1/nfts/{canonical-decimal-token-id}
-GET /v1/wallets/{nonzero-Ethereum-address}/nfts
-```
+| GET path | Purpose / optional configuration |
+| --- | --- |
+| `/v1/protocol` | Verified lifecycle, controls and source-committed successor information |
+| `/v1/mint-readiness` | Confirmed reveal inventory; not randomness-provider or mint-execution approval |
+| `/v1/nfts/{token-id}` | Canonical owner, traits, LP value, current claimable balances and available history |
+| `/v1/wallets/{address}/nfts` | Complete confirmed ownership inventory; requires creation-to-cutoff history |
+| `/v1/wallets/{address}/summary/{block}/{offset}` | Up to 16 current holdings' LP/ETH values; complete every matching chunk before totaling |
+| `/v1/collection/{block}/{offset}` | Up to 16 canonical positions and chunk LP totals; see [collection reads](COLLECTION_READS.md) |
+| `/v1/earnings` | Processed collection LP/royalty history; requires `earnings_history` |
+| `/v1/nfts/{token-id}/earnings` | That NFT's processed lifetime/24h earnings, including previous owners |
+| `/v1/wallets/{address}/earnings/{block}/{offset}` | Up to 16 current holdings' lifetime earnings; requires `earnings_history` |
+
+Base protocol/NFT/inventory/readiness responses use schema 2. Collection,
+summary and earnings chunk responses have their own schema 1 under that same
+schema 2 deployment configuration. Do not infer a contract profile from a response
+schema number. Optional [unsigned preparation](FRONTEND_TRANSACTIONS.md) is enabled
+separately; the ordinary read listener remains GET-only.
 
 Token IDs are the actual uint256 identities, not mint ordinals or website
 example numbers. JSON returns large token-unit integers as decimal **strings**;
 never convert them to JavaScript `Number` for accounting.
 
-Configuration and read responses use **schema 2**. The [lifecycle boundary](FRONTEND_LIFECYCLE.md)
+The [lifecycle boundary](FRONTEND_LIFECYCLE.md)
 requires two additional canonical helper pins. Locked deployments refuse NFT
 and wallet projections; `/v1/protocol` remains available for verified lifecycle
 and source-committed successor information without reading reward balances.
@@ -159,11 +103,11 @@ configuration verifies and combines the complete same-chain LP/royalty claim
 lineage. Without it, `previously_claimed` remains explicitly unavailable.
 Current-deployment claims must never be presented as the NFT's lifetime total.
 
-These endpoints are an unhosted integration foundation. The existing `indexer/`
-remains unchanged; the new read-only history consumer validates its exact
-confirmed snapshot and replays both ledgers. Actual price/ingestion qualification, live website integration and
-operating rehearsals remain release work. Native contract batched claims are a separate `ZZZClaimRouter`
-capability; this read service neither invokes it nor guarantees execution at a
+These endpoints are an unhosted integration foundation. The read-only history
+consumer validates the configured indexer's exact confirmed snapshot and replays
+both ledgers. Actual price/ingestion qualification, live website integration and
+operating rehearsals remain release work. Native contract batched claims are a
+separate `ZZZClaimRouter` capability; this read service neither invokes it nor guarantees execution at a
 later block. The wallet must recheck owner/network and simulate immediately
 before signing. A quoted confirmed balance can change before execution.
 
@@ -350,9 +294,9 @@ a compatible service version. See [controls evidence](../reports/operator-contro
 
 ## Wallet summary chunks
 
-`GET /v1/wallets/{address}/summary/{block-number}/{offset}` returns schema1
-summary chunks under the same schema2 reviewed deployment. Each chunk covers
-at most16 holdings. Use the wallet inventory snapshot, offsets0/16/32, and
+`GET /v1/wallets/{address}/summary/{block-number}/{offset}` returns schema 1
+summary chunks under the same schema 2 reviewed deployment. Each chunk covers
+at most 16 holdings. Use the wallet inventory snapshot, offsets 0/16/32, and
 require the same inventory digest, ordered IDs, owner, count and canonical block.
 Only display totals once every chunk is verified; never present partial sums.
 LP uses currentLPValue; funded ETH combines LP and royalties. Missing values

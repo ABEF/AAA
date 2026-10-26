@@ -1,264 +1,125 @@
 # PoPL operator manual
 
-## Fee breakdown: verification and recovery - 2026-10-26
+Management procedures for the **undeployed candidate; production NOT APPROVED**.
+The [sole Todo](../TODO.md) owns remaining work; the [release approval record](RELEASE_CHECKLIST.md)
+records one frozen release. A procedure, local pass or GitHub publication does
+not authorize public transactions, deployment, sealing or a service restart.
 
-This [backend correction](../reports/backend-remediation-20261026/REVIEW.md)
-adds no on-chain function, permission, config key, write action or service rollout.
+**Keep this manual current.** Changes to operator-facing functions, permissions,
+defaults, parameters, lifecycles, services or failures must update the affected
+procedure in the same change, or explain why there is no operator impact. Keep
+[features/evidence](IMPLEMENTATION_STATUS.md) and the [task ledger](TODO_WORKFLOW.md)
+aligned. This is a review obligation, not automatic synchronization.
 
-| Check / symptom | Operator procedure |
+## Find the right procedure
+
+Production minting is intended for OpenSea; the website Mint page is a demo.
+Qualify the exact mint product, chain, contract integration and collection URL
+before sealing, following [mint integration qualification](MINT_INTEGRATION_QUALIFICATION.md).
+Existing mint pause/reveal controls still govern external mint callers.
+
+For full-wallet earnings and collection holder allocations, use the existing
+reviewed read API with [current-holdings totals](EARNINGS_HISTORY.md#current-holdings-totals).
+Match API/frontend versions, verify a complete same-block inventory, and retain
+unavailable states on missing chunks/prices. No authority or transaction is added;
+stop/rollback these reports through the read-service profile, not a chain reset.
+
+| I want to... | Procedure |
 | --- | --- |
-| Current LP-only fee history | Keep explicit fee intake 1. Verify actual `FeeController.FEE_INTAKE_VERSION()`, sealed module/runtime pins, all seven emitters and the same confirmed cutoff. Replay requires exact funded-credit/allocation pairs and actual `dust(bucket,asset)` for observed keys. Native address zero is permitted only in that getter's currency argument. |
-| Fee/dust mismatch or malformed core value | Stop serving the affected report; preserve raw logs, database, request/config hash, cutoff and error. Compare a separate replay copy with authentic independent-provider windows. Do not edit/delete history, guess zero, relabel a profile or trigger a financial transaction to hide an error. |
-| Current accounting-3 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked/outbound NFTs retain eligible funded rewards. |
-| Wallet read budget | Current accounting 3 adds one pinned `weightOf(id)` read per NFT; historical read shapes remain. Keep 16-item chunks, finite request limits and complete same-block chunk verification. Requalify actual latency/budgets before rollout; no unbounded retry or limit relaxation. |
-| Display totals | Ready to claim = funded LP plus royalty balances now. Earnings 24h/all time includes earlier claims and past owners; claims/conversions are not new income. Compound/buyback/gross receipts are not additional NFT claimable funds. |
+| View the confirmed collection, LP totals, and recover failed reads | [Confirmed collection data](COLLECTION_READS.md) |
+| Change +/-50% LP range to +/-20%, trigger, cooldown or execution settings | [Range and strategy](#range-and-strategy) |
+| Enable/disable ETH or fixed ZZZ, or change an approved route | [Activation assets and routes](#activation-assets-and-routes) |
+| Stop minting independently | [Mint-only pause](#mint-and-metadata) |
+| Stop new LP entering a pool, stop maintenance, or open another pool | [Pool admission and retirement](#pool-admission-and-retirement) |
+| Stop everything possible, recover and restart safely | [Stop controls](#stop-controls) and [incident recovery](#incident-recovery) |
+| Move existing LP, close it temporarily, or change chains | [Custody and LP migration](#custody-and-lp-migration) |
+| Change prices, sequencer checks or wrapper policy | [Dependencies and pricing](#dependencies-and-pricing) |
+| Collect LP fees, compound, burn or process royalties | [Revenue operations](#revenue-operations) |
+| Resolve pending artwork reveals or replace all contracts | [Mint and metadata](#mint-and-metadata), [whole-collection replacement](#whole-collection-replacement) |
+| Change managers/keys, replace a server, update software | [Authorities](#authorities), [services](#services-and-server-recovery) |
+| Use a browser wallet locally, recover pending transactions or inspect exact approvals | [Browser-wallet signing and recovery](BROWSER_WALLET.md) |
+| Configure reviewed API holdings; rehearse wallet sends on local Anvil only | [Reviewed website API profile](DEPLOYMENT_WEBSITE.md) |
+| Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
 
-Recover by correcting provider/history/configuration evidence and rerunning the
-bounded read on a separate copy. Upgrade/rollback only matching API releases
-under the existing service runbook when separately authorized; never reset chain
-or journals. Genuine view outages may null only their metric; malformed Boolean,
-ABI, or contradictory available/value data now rejects the request. See
-[earnings operations](EARNINGS_HISTORY.md) and [167-method evidence](../reports/backend-remediation-20261026/VERIFICATION.md).
-Production feeds/history capacity and service acceptance remain open.
+## Current accounting3 deployment boundary
 
-## Full current-candidate audit - 2026-10-25
+The current candidate uses actual ETH at currency `address(0)`. Read
+`Vault.ACCOUNTING_VERSION() == 3`, `Access.GOVERNANCE_VERSION() == 2` and the handoff's
+`SCHEMA() == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4")`, then verify every
+module/helper runtime and binding. Deploy a coherent new set; do not attach new
+helpers to the existing WETH-accounted local deployment or reset its journals.
+`group()`/`position()` decode eight words in order: pool ID, physical LP token ID,
+idle0, idle1, depositUSD, centerX96, lastRebalance, status. Current statuses are
+None0, Active1, Outbound2, Dormant3 and Parked4. Historical accounting1/2 still use
+their original fifteen-word rows and status meanings; never infer a profile from
+row length or treat their Remote3 as current Dormant3.
 
-The [full audit](../reports/full-audit-20261025/REVIEW.md) preserves existing
-functions, custody trust and economic rules. It adds no signer, privileged role,
-write call or deployment authority.
+- **Prices and input admission:** govern the reviewed two-source policy with
+  `Oracle.setDualFeed(address(0),primary,secondary,maxDeviationBps,reviewHash)`
+  for ETH with 18 decimals. Verify both sources and the full pricing-V2 policy;
+  native activation policy uses
+  `ActivationAssets.NATIVE_ASSET_CODE_HASH()`, a typed identity, not an ETH runtime
+  hash. Enable it with `setAsset(address(0),true,sentinel,reviewHash)`; disabling
+  new input never removes backing or accrued rewards. WETH is a separate ERC20.
+- **Activation/growth:** `Entry.executeReviewed(Request,maximumLossBps)` with source zero carries exactly
+  `amountIn` as native value; ERC20 input carries zero ETH and exact approval.
+  Direct `Vault.activate/increase` also requires exactly the declared slot-0 ETH.
+  Missing/extra value reverts; old prefunds cannot supply it. Approval never adds LP.
+- **Fees and claims:** native fees receive the same 80/10/5/5 allocation and
+  individual/equal-collective checkpoints as tokens. Current owners claim ETH
+  directly; already converted credits remain separate earned balances. ZZZ still
+  needs a qualified conversion route under the current cap (1% default, governance maximum 10%); gas is separate.
+- **Pool moves:** `moveFunds` accepts identical actual currencies only, including
+  another native ETH/ZZZ fee tier. ETH/WETH atomic conversion is unfinished and
+  fails closed. Reviewed external custody completion remains a separate procedure.
+- **Raw exit and return:** the existing pause/park/snapshot/approve/exit procedure
+  now sends native ETH and ZZZ, without invoking WETH. It still depends on usable
+  venue/token bindings. For `recover` or `completeLocal`, attach exactly the declared
+  native amount as call value and approve only the ERC20 amount. Normal exit keeps
+  its captured `minimumRetainedUSD(id)`; raw mode retains explicit raw minima
+  and no USD guarantee.
+- **Revenue intake:** harvest actual local LP fees; creator-payment inboxes are removed.
+- **Services and replacement:** API and keeper configurations explicitly select
+  `accounting_version: 3`; keeper configuration requires the reviewed deployed
+  runtime hash at `code_hashes.vault` and its actual `contracts.vault`. Review
+  all other runtime bindings, the actual ETH feed and per-predecessor
+  versions. Old journal files must not be reinterpreted as accounting3. Canonical funding
+  transfers backing first, then sends a zero-value acknowledgment; never pay it
+  twice. Historical V1/V2 schemas cannot be imported into current V4; reviewed peers must match the exact codec.
 
-- **Current activation preparation:** accounting3 uses `Dormant=3`; historical
-  profiles retain their own status. Matching native ETH source-policy reads must
-  permit address(0) only in the typed asset argument, never as owner/target. The
-  repaired backend now composes these current bindings before exact approval,
-  trace and unsigned review. Do not relabel an old deployment to obtain a quote.
-- **Independent history audit:** use a reviewed actual Rpc adapter and a complete
-  copied SQLite index. Checked integer chain IDs and canonical hexadecimal
-  transport quantities are accepted; Boolean/float/malformed responses reject.
-  This command reads evidence only. Preserve the original database, anchors and
-  raw history; do not run an automatic repair/reset on a failed audit.
-- **Buyback qualification:** fixed ZZZ must actually support `burn(uint256)` and
-  reduce both its balance and totalSupply by the exact acquired amount. Token
-  symbol/pool admission does not establish this. Failure reverts buyback and
-  leaves its reserve classified; no transfer to an arbitrary burn wallet occurs.
-- **Late royalty currencies:** source `forwardLate(asset)` supports only currencies
-  admitted before retirement. Retired governance cannot admit a new ERC20.
-  Unexpected/unadmitted tokens sent there have no generic rescue path. Inventory
-  settlement currencies, cached old royalty receivers and pending orders before
-  handoff; update marketplace receiver configuration where supported. Do not
-  promise universal recovery or silently introduce a sweep. See [recovery scope](ROYALTY_SETTLEMENT.md#late-receipts-after-retirement).
-- **Price/operation availability:** the 3% source-agreement tolerance is not a
-  guarantee a contribution can meet its tighter 2% loss floor. Upper input/lower
-  LP bounds plus venue costs can reject it; reprepare using actual reviewed
-  prices/depth. Never average away disagreement, widen a caller's reviewed cap
-  or count idle/incumbent funds as newly deployed LP to force success.
+The website's explicit accounting3 read/unsigned profile, full release inventory, real feeds/routes,
+target-chain rehearsals and independent audit remain open. Public signing stays
+Anvil-only and the public deployment configuration remains null.
 
-See [verification](../reports/full-audit-20261025/VERIFICATION.md) for actual
-fresh static analysis, narrow regression and gas evidence. Local tests do not
-qualify real feeds/routes/VRF/OpenSea/authorities, current website/services,
-max-state target-chain gas or independent audit. No service rollout occurred.
+### Fixed ZZZ setup order
 
-## Day-change audit: royalty custody and evidence - 2026-10-25
+Review and configure the two-source USD policies first. Bind
+`ActivationAssets.configureZZZ(token,codeHash,reviewHash)` once before
+`PoolRegistry.configureNative`; deploy/bind Buyback with that same immutable ZZZ,
+then call the one-time `Migration.configureZZZ`. Verify matching nonzero source,
+buyback and normal-exit identities before sealing. A wrong immutable identity
+requires a fresh reviewed deployment, not a post-seal repair setter. Raw emergency
+exit does not gain a conversion/buyback dependency.
 
-No new on-chain function, permission, default or signing capability is added.
+### Deployment and integration qualification
 
-- **Native royalty custody:** a new activated NFT can have its known rarity
-  weight but deferred ETH eligibility while ETH backing is outside the royalty
-  ledger. The API now reports this legitimate state. ETH claimable remains
-  unavailable, never zero; working LP and other currencies remain separate.
-  Read-only reporting does not synchronize, return funds or enroll the NFT.
-- **Return and recovery:** use the existing exact `returnCustody(asset,id)`
-  procedure with the original full amount/ID. A return is backing restoration,
-  not income. After full return, ordinary `sync(asset)` allocates unseen receipts
-  to the earlier cohort before enrolling waiting NFTs. Do not force eligibility
-  or retry the already completed activation. See [royalty reporting](ROYALTY_REPORTING.md#native-custody-history-and-recovery).
-- **Read-service rollout:** preserve configuration, pins, original SQLite and
-  backups. Rebuild/replay into a separate verified database from the earliest
-  affected custody event, retaining deployment anchors and all raw logs. Compare
-  exit IDs, exact full returns, both cohorts and final chain entitlements before
-  switching the service. Partial/missing history remains unavailable. This task
-  did not perform a rollout, service restart or database repair.
-- **Evidence snapshot 3:** regenerate with matching saved compiler input/output
-  and normal size report. The importer recomputes bytecode/constructor bounds
-  and rejects contradictory status/hashes/inventories. Never relabel schema 2,
-  edit success flags or substitute minimum dynamic arguments for actual release
-  constructor qualification. See [development](DEVELOPMENT.md) and
-  [verification](../reports/day-readiness-20261025/VERIFICATION.md).
-- **Release stop:** current checked-in Slither review does not match source.
-  Run and review current analysis before release; updating its hash alone is
-  not analysis. All external production gates remain open.
+| Need | Procedure and boundary |
+| --- | --- |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema-5 preflight](PRODUCTION_PREFLIGHT.md). Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
+| USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
+| Current website read/unsigned review | [Explicit native profile](NATIVE_WEBSITE_PROFILE.md). Current accounting3 must not be served with a historical accounting2 reader. Actual consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
+| RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
 
-## Deep cleanup review - 2026-10-25
+Source-scoped audit results belong to [reports](../reports/README.md), not to a
+second release history in this manual. Current internal static coverage passes;
+actual dependencies, target-chain gas/operations and independent audit remain open.
 
-The [review](../reports/deep-cleanup-20261025/REVIEW.md) changes no operator
-permission, contribution currency, economic rule or custody guarantee.
 
-- **Role history:** `setGuardian(address,bool)` now emits `GuardianChanged`;
-  `setKeeper` retains `KeeperChanged`. The controller constructor emits both
-  initial grants. Start role monitoring from the controller's deployment block
-  and canonical receipt, not just the NFT's first mint. Replay indexed account /
-  enabled updates, confirm stored mappings and reorg-safe completeness. Older
-  deployments lack these initial logs: review original constructor arguments and
-  calls rather than infer that no role exists. This is visibility, not more power.
-- **Reference/evidence refresh:** install the locked dependencies before running
-  `python scripts/generate-function-reference.py --check`. Snapshot schema2
-  binds imported Solidity plus foundry.toml, package.json, package-lock.json and
-  install-deps.sh. If any binding changes, obtain reviewed complete compiler
-  inputs/output and normal size evidence, then regenerate. Do not hand-edit
-  hashes, drop bindings or enable implicit-source fallback to bypass failure.
-  This evidence schema is not a deployed accounting/profile upgrade.
-- **Marketplace currencies:** admit expected royalty currencies and qualify
-  routes/feeds before payments begin. Funds already present when a currency is
-  first admitted are quarantined as orphaned. Do not promise retroactive credit
-  or silently allocate unknown historical receipts. Unexpected currencies need
-  provenance and an explicit reviewed policy; supported WETH/stable royalties
-  remain separate from ETH/ZZZ-only contributions.
-- **Native maintenance:** harvest before increasing the shared native position.
-  Current Vault paths do this. The adapter's strict exact-debt/prefund check is
-  intentional; do not bypass it when PositionManager has pending fees. Review
-  actual confirmed state, failure and original transaction before retrying.
-
-See the [callable reference](CONTRACT_FUNCTIONS.md),
-[royalty procedure](ROYALTY_SETTLEMENT.md) and [scoped verification](../reports/deep-cleanup-20261025/VERIFICATION.md).
-No website/server, existing local chain/journal, signer policy or monitor changed.
-
-## Auditability refactor - 2026-10-25
-
-This [implementation refactor](../reports/auditability-refactor-20261025/REVIEW.md)
-adds no new operating call, authority or configuration. Use the concrete
-`ZZZLPRewardConverter` and `ZZZRoyaltyConverter` addresses as before; their
-abstract `ZZZRewardConverter` base is not a deployment target and does not merge
-their ledgers. Solidity integrations constructing policy structs now name the
-neutral base; external ABI tuple fields and function inputs remain unchanged.
-
-Handoff `phase()` still returns 0..8 in the existing order: idle, exporting,
-imported awaiting backing, retired, importing, active replacement, aborting,
-cancelled import and settling. Named private constants improve review but add
-no setter or new transition. The [callable reference](CONTRACT_FUNCTIONS.md)
-and [existing handoff procedure](CANONICAL_HANDOFF.md) remain authoritative.
-Never substitute new runtime pins into an existing deployment merely because
-wire types match. Capture and qualify the actual reviewed deployment's code.
-
-## One fixed ZZZ and current setup order - 2026-10-25
-
-There is one ZZZ contract for contribution inputs, the selected native LP,
-buyback burns and normal custody exit. Configure its reviewed source identity
-before `PoolRegistry.configureNative`; native admission rejects an unset or
-mismatched source before venue checks. Deploy/bind Buyback with that same token,
-then call the one-time `Migration.configureZZZ`; it checks the source and immutable
-Buyback identities before recording the exit pin. Sealing then verifies the
-matching nonzero source/exit setup. No post-seal retargeting exists.
-
-If the initial identity or immutable Buyback was wrong, do not seal or invent a
-repair setter: prepare a fresh reviewed deployment. Operator range, limits,
-asset enable/disable and approved routes remain configurable within their bounds.
-Raw emergency exit still does not need a conversion or buyback dependency.
-
-The [day review](../reports/daily-security-20261025/REVIEW.md) also separates
-already-funded dust settlement from old venue liveness; actual new contribution
-execution and nonzero payment/backing checks remain mandatory.
-
-## Current release simplification - 2026-10-25
-
-[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
-fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
-pool moves, external custody exit/recovery, royalty currencies and complete
-collection handoff. Current fee/custody profiles and canonical schema are
-explicit; old deployments/journals keep historical profiles.
-
-## Current service and mint qualification procedures - 2026-10-25
-
-- [Optional Pyth source setup](PYTH_PRICE_SOURCE.md): exact identity, age/confidence,
-  independent upstream/proxy review, funded updater and setDualFeed admission.
-  Implemented reader is not a selected feed or update service.
-- [Mint/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md): exact original draw,
-  recovery and funding; unsupported OpenSea direct-mint bridge remains blocked.
-  Required buyer price is0.05ETH gross, recipient net after actual platform fee,
-  gas separate. Existing direct mint still pays all0.05ETH.
-- [Current preflight](PRODUCTION_PREFLIGHT.md): explicit mint profile1 is mandatory.
-  --historical-consistency is historical inspection, never release qualification.
-- [Frozen review handoff](FROZEN_REVIEW_BUNDLE.md): exact committed inputs,
-  dependency pins and independently trusted package hash, no execution or approval.
-
-The closing [callable-function reference](#callable-contract-reference) lists
-current contract inputs/outputs and permissions. Use procedures as well as ABI
-types; a valid call can be irreversible and still require economic review.
-
-## Release service and authority qualification - 2026-10-25
-
-The [current governance authority](GOVERNANCE.md#current-role-and-custody-boundary---2026-10-25)
-and [custody/balance inventory](DEPLOYMENT_ADDRESSES.md) distinguish the multisig,
-keeper, guardian, immutable mint recipient and actual exit custodian. Only
-governance can approve/execute principal custody exit or choose its destination.
-An exit is not a general sweep of all protocol balances, and a recipient does
-not gain configuration powers. Bootstrap authority ends permanently at seal.
-
-Current service work must use qualified versioned profiles. A legacy inventory
-consistency result is not current release qualification. Keep direct-mint,
-OpenSea-primary and secondary-listing evidence distinct; the present direct mint
-does not become SeaDrop-compatible because the network is listed by OpenSea.
-No provider address or fee split may be invented to close the gate. Exact
-new source/adapter identities still require reviewed policy admission.
-
-## Native website profile and service qualification - 2026-10-25
-
-Use the [explicit native website profile](NATIVE_WEBSITE_PROFILE.md) for current
-accounting3/pricing2/routing2/review1 deployments with fee-intake1, local eight-word
-Positions and LP-only V4 canonical schema. Never run the old WETH manifest
-against current code or reinterpret existing Anvil journals. The public build
-still has null DEPLOYMENT and nonlocal sends remain disabled. A local source
-update is not a static-server rollout or approval to enable signing.
-
-Before service deployment, run the opt-in [RPC capability procedure](RPC_PREPARATION_QUALIFICATION.md)
-with independently reviewed public genesis/runtime identifiers and private
-endpoint configuration. A timeout is not proof of missing-block rejection. A
-getter accepting withLog is not proof of event traces. Preserve failed reports;
-do not turn an unavailable observation into a provider approval.
-
-The current Position3 Vault changes its Position ABI/storage and canonical codec;
-it is a fresh-deployment candidate, not an upgrade to an existing address.
-Rebuild and check normal runtime/initcode gates with exact constructor arguments
-after every source change. Earlier byte margins do not qualify changed objects. Update exact artifact
-pins only in an independently reviewed deployment inventory. Current cap defaults
-remain2/1/3%, immediate-governance maxima10%, gas separate. Economic rights and
-custody trust remain; direct governance calls and explicit Position3 profiles
-replace the older controller forwarding and Position layout described in
-historical evidence.
-
-## Reviewed contributions and indexer incidents - 2026-10-25
-
-Use [reviewed Entry policy](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
-for new pricing-V2 deployments: require explicit version1 getters/configuration,
-new exact selector, current runtime pins and complete simulation. A governed cap
-above the encoded caller maximum rejects before funds move; prepare a new quote
-instead of widening an old signed review. Other configuration is not locked by
-that maximum. Old Anvil/website ABI and journals keep their original policy.
-
-For missing/malformed/unstable indexer ancestry, follow [indexer recovery](INDEXER_RECOVERY.md).
-Preserve the DB/WAL, cursor, anchors and event history. Switch only to a reviewed
-configured endpoint and retry; never clear history to make an outage look current.
-For `invalid_log` or `duplicate_log`, preserve a consistent DB/WAL evidence copy,
-configuration and affected block/log range. The current ingestion guard rejects
-malformed/oversized provenance and conflicting event identities before new rows
-or a new cursor are committed; a separately proved reorg rollback is distinct.
-It does not repair already poisoned history. Compare a reviewed provider, and if
-independently approved rebuild into a separate database with complete creation,
-predecessor and cutoff coverage. Never delete bad rows, guess a cursor or replace
-unavailable earnings with zero. [Current validation](FRONTEND_HISTORY.md) explains
-the limits; no automatic cleanup or new financial action follows from an alert.
-RPC redirects are refused, including same-host redirects: configure the actual
-reviewed final endpoint explicitly. Normal bounded failover still applies.
-
-Revealed NFT metadata now distinguishes fixed royalty trait weight from activation;
-the `royalty_activated` flag is not proof every optional payment currency is ready.
-Buyback's operating/max USD ceiling uses upper input bounds rounded upward;
-disagreeing valid prices can require a smaller batch. Execution floors and gas
-remain separate. Re-read/re-simulate after any policy/provider change.
-
-## Liquidity placement and keeper policy - 2026-10-25
+## Liquidity placement and keeper policy
 
 Use [idle and dust ownership](IDLE_AND_DUST.md) before any cleanup. Contributions
-default to2% (98% marginal deployed LP), conversion1%, maintenance3%, gas separate.
+default to 2% (98% marginal deployed LP), conversion 1%, maintenance 3%, gas separate.
 The Vault makes at most two balancing passes using actual post-swap state; tiny
 corrections are skipped. Retained idle still backs the same bucket. There is no
 general clear/sweep or operator dust recipient.
@@ -316,51 +177,13 @@ it does not observe every intervening price or prove sustained low volatility.
 The keeper cannot choose arbitrary widths, bypass prices or guarantee always-in-
 range LP. Polling and a target width are not a promised execution time.
 
+<a id="configure-stop-and-recover-usd-pricing---2026-10-24"></a>
 
-## Budget feed services and label observations - 2026-10-25
-
-Use the [pricing snapshot and cost boundary](../reports/price-reference-20261025/OBSERVATION.md)
-as dated research only. Before choosing providers, record actual product terms,
-subscription/update/adapter/RPC costs, payment authority and network gas. Standard
-public push-feed getters need no separate per-read LINK transfer; that does not
-make VRF, paid reporting or custom hosting free. Qualify the exact proxy product
-and upstream administrators, not only its ticker or runtime hash.
-
-Do not use a secondary proxy of the same upstream as independent confirmation,
-nor the selected pool's spot as its own USD guard. Show observation time and feed
-update time separately. Governed post-seal replacement uses the complete
-setDualFeed admission procedure below and refreshed reviewed downstream policy;
-it does not deploy new Oracle code or authorize a single-feed fallback.
-
-## Price-read gas and optimized checkpoints - 2026-10-24
-
-The [on-chain safety/cost follow-up](../reports/onchain-safety/REVIEW.md) changes
-implementation, not operator permissions, limits or transaction arguments.
-Qualify the exact release runtimes again before deployment. An already sealed
-deployment cannot receive these code changes merely by changing its feed address.
-
-Every price/asset-decimals/sequencer read must fit the fixed 500,000-gas call
-ceiling and exact ABI length. Review real proxy/adapter behavior and worst-case
-gas before admitting it. On failure, disable affected new work, retain saved
-transactions, diagnose/replace the dependency through existing governance and
-fully revalidate before reopening. Never bypass a failed source or increase an
-execution cap automatically. The ceiling is a code bound, not a mutable setting.
-Healthy uptime status transitions do not expire periodically; down/recovery
-grace checks remain. Raw funded claims still need no USD price.
-
-Strategy snapshots last only for one read-only planning call. Execution/final
-contribution checks still re-read; checkpoint caching cannot be enabled across
-transactions. Eligibility and NFT shares still change only through the existing
-authorized lifecycle. No new server option, maintenance schedule, sweep or
-custody authority is introduced. Local component gas savings are not actual
-target-chain fee estimates; qualify real cold/max-state routes and feeds using
-the unchanged gas/size gates in the [verification record](../reports/onchain-safety/VERIFICATION.md).
-
-## Configure, stop and recover USD pricing - 2026-10-24
+## Configure, stop and recover USD pricing
 
 The [pricing-V2 guard](PRICE_SECURITY.md) requires two independently reviewed USD
-sources per priced asset. `Oracle.setFeed` now explicitly reverts; its old
-single-feed instructions are historical. Do not use one ETH/USD source plus one
+sources per priced asset. The old single-feed `setFeed` entry point is removed;
+its instructions and deployed profiles are historical. Do not use one ETH/USD source plus one
 ZZZ/USD source as redundant coverage for both assets.
 
 1. Disable affected pool contributions with `disablePool(poolId,true,false)`;
@@ -408,24 +231,15 @@ keeps its separate exact minima and no USD guarantee. Failed pools/tokens can
 still prevent movement. See [preflight](PRODUCTION_PREFLIGHT.md) and
 [raw recovery controls](GOVERNED_CUSTODY_HANDOFF.md).
 
-
-## Current-version production preflight - 2026-10-24
-
-Use the [schema-5 inventory runbook](PRODUCTION_PREFLIGHT.md) before presenting any
-native/V4 deployment as ready. Fill approved public addresses/runtime pins and
-policy first; collect one bounded canonical read snapshot separately; then run
-the offline gate against the exact release commit. Unknown prices, routes,
-authorities, VRF, services and audit evidence remain named blockers.
-
-The observer cannot approve its own observations or prove route-map completeness
-without creation-to-anchor history. Do not copy actual code into approved pins,
-reuse a stale snapshot after configuration, or overwrite the original inventory.
-On partial/mismatched reads, inspect the existing deployment and fix the cause;
-no automatic reconfiguration, signing, retry transaction, reseal or reset occurs.
-The public site and existing Anvil/journals are unaffected.
+Source reads, asset-decimals and sequencer reads have a fixed 500,000-gas call
+ceiling and exact ABI checks. Qualify actual proxy gas before admission. Strategy
+read snapshots last one planning call only; execution/final checks re-read. Raw
+funded claims do not need USD prices. Public push-feed reads need no per-read
+LINK transfer, but adapters, updates, RPCs and VRF can cost money; review each
+actual product and upstream authority. [Price operating requirements](PRICE_SECURITY.md).
 
 
-## Typed conversion and loss-limit operations - 2026-10-24
+## Typed conversion and loss-limit operations
 
 [Typed v4 route setup](TYPED_V4_ROUTES.md) covers new pools/routes, exact policy
 fields, activation `routing_version: 2`, converter workers and failure/restart.
@@ -446,96 +260,6 @@ ordinary pause allows policy changes; preparation/canonical locks and reentry do
 not. Caps are per operation, not cumulative. Other venue guards can still be
 stricter than 10%; raising a cap does not bypass those guards or guarantee a swap.
 The public site remains simulated and signing remains Anvil-only.
-
-
-**Post-seal settings and real-funds rehearsals (2026-10-24):** [Configuration policy and cleanup boundaries](POST_SEAL_POLICY.md) distinguish existing setters from required pre-seal extensions. Use a separate mainnet rehearsal deployment; no reset/burn or general sweep exists. No public action is authorized by this design record.
-
-**Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](POOL_SELECTION.md). Production remains NOT APPROVED.
-
-This is the management guide for the **current undeployed candidate**. It describes available controls, their effects and recovery boundaries; it does not approve a production deployment. Use the [central Todo](../TODO.md) for outstanding work and the [release record](RELEASE_CHECKLIST.md) for deployment approval. Production addresses, services and several migration capabilities remain unqualified.
-
-## Current accounting3 deployment boundary
-
-The current candidate uses actual ETH at currency `address(0)`. Read
-`Vault.ACCOUNTING_VERSION() == 3`, `Access.GOVERNANCE_VERSION() == 2` and the handoff's
-`SCHEMA() == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4")`, then verify every
-module/helper runtime and binding. Deploy a coherent new set; do not attach new
-helpers to the existing WETH-accounted local deployment or reset its journals.
-`group()`/`position()` decode eight words in order: pool ID, physical LP token ID,
-idle0, idle1, depositUSD, centerX96, lastRebalance, status. Current statuses are
-None0, Active1, Outbound2, Dormant3 and Parked4. Historical accounting1/2 still use
-their original fifteen-word rows and status meanings; never infer a profile from
-row length or treat their Remote3 as current Dormant3.
-
-- **Prices and input admission:** govern the reviewed two-source policy with
-  `Oracle.setDualFeed(address(0),primary,secondary,maxDeviationBps,reviewHash)`
-  for ETH with 18 decimals. Verify both sources and the full pricing-V2 policy;
-  native activation policy uses
-  `ActivationAssets.NATIVE_ASSET_CODE_HASH()`, a typed identity, not an ETH runtime
-  hash. Enable it with `setAsset(address(0),true,sentinel,reviewHash)`; disabling
-  new input never removes backing or accrued rewards. WETH is a separate ERC20.
-- **Activation/growth:** `Entry.execute` with source zero carries exactly
-  `amountIn` as native value; ERC20 input carries zero ETH and exact approval.
-  Direct `Vault.activate/increase` also requires exactly the declared slot-0 ETH.
-  Missing/extra value reverts; old prefunds cannot supply it. Approval never adds LP.
-- **Fees and claims:** native fees receive the same 80/10/5/5 allocation and
-  individual/equal-collective checkpoints as tokens. Current owners claim ETH
-  directly; already converted credits remain separate earned balances. ZZZ still
-  needs a qualified conversion route under the current cap (1% default, governance maximum 10%); gas is separate.
-- **Pool moves:** `moveFunds` accepts identical actual currencies only, including
-  another native ETH/ZZZ fee tier. ETH/WETH atomic conversion is unfinished and
-  fails closed. Reviewed external custody completion remains a separate procedure.
-- **Raw exit and return:** the existing pause/park/snapshot/approve/exit procedure
-  now sends native ETH and ZZZ, without invoking WETH. It still depends on usable
-  venue/token bindings. For `recover` or `completeLocal`, attach exactly the declared
-  native amount as call value and approve only the ERC20 amount. Normal exit keeps
-  its captured `minimumRetainedUSD(id)`; raw mode retains explicit raw minima
-  and no USD guarantee.
-- Creator-payment inboxes are removed; harvest actual local LP fees.
-
-- **Services and replacement:** API and keeper configurations explicitly select
-  `accounting_version: 3`; keeper configuration requires the reviewed deployed
-  runtime hash at `code_hashes.vault` and its actual `contracts.vault`. Review
-  all other runtime bindings, the actual ETH feed and per-predecessor
-  versions. Old journal files must not be reinterpreted as accounting3. Canonical funding
-  transfers backing first, then sends a zero-value acknowledgment; never pay it
-  twice. Historical V1/V2 schemas cannot be imported into current V4; reviewed peers must match the exact codec.
-
-The website's explicit accounting3 read/unsigned profile, full release inventory, real feeds/routes,
-target-chain rehearsals and independent audit remain open. Public signing stays
-Anvil-only and the public deployment configuration remains null.
-
-**Keep this manual current.** Every change to an operator-facing function, permission, default, parameter, lifecycle, service or failure mode must update the affected procedure in the same change, or explicitly record why there is no operator impact. Update the task ledger and feature/evidence reference too. This is a required development/review step, not automatic synchronization. See [maintenance rules](TODO_WORKFLOW.md).
-
-## Find the right procedure
-
-Production minting is intended for OpenSea; the website Mint page is a demo.
-Qualify the exact mint product, chain, contract integration and collection URL
-before sealing, following [the mint venue procedure](OPENSEA_MINT.md).
-Existing mint pause/reveal controls still govern external mint callers.
-
-For full-wallet earnings and collection holder allocations, use the existing
-reviewed read API with [current-holdings totals](EARNINGS_HISTORY.md#current-holdings-totals).
-Match API/frontend versions, verify a complete same-block inventory, and retain
-unavailable states on missing chunks/prices. No authority or transaction is added;
-stop/rollback these reports through the read-service profile, not a chain reset.
-
-| I want to... | Procedure |
-| --- | --- |
-| View the confirmed collection, LP totals, and recover failed reads | [Confirmed collection data](COLLECTION_READS.md) |
-| Change +/-50% LP range to +/-20%, trigger, cooldown or execution settings | [Range and strategy](#range-and-strategy) |
-| Accept/remove an activation token, or change its swap pool | [Activation assets and routes](#activation-assets-and-routes) |
-| Stop minting independently | [Mint-only pause](#mint-and-metadata) |
-| Stop new LP entering a pool, stop maintenance, or open another pool | [Pool admission and retirement](#pool-admission-and-retirement) |
-| Stop everything possible, recover and restart safely | [Stop controls](#stop-controls) and [incident recovery](#incident-recovery) |
-| Move existing LP, close it temporarily, or change chains | [Custody and LP migration](#custody-and-lp-migration) |
-| Change prices, sequencer checks or wrapper policy | [Dependencies and pricing](#dependencies-and-pricing) |
-| Collect LP fees, compound, burn or process royalties | [Revenue operations](#revenue-operations) |
-| Resolve pending artwork reveals or replace all contracts | [Mint and metadata](#mint-and-metadata), [whole-collection replacement](#whole-collection-replacement) |
-| Change managers/keys, replace a server, update software | [Authorities](#authorities), [services](#services-and-server-recovery) |
-| Use a browser wallet locally, recover pending transactions or inspect exact approvals | [Browser-wallet signing and recovery](BROWSER_WALLET.md) |
-| Configure reviewed API holdings; rehearse wallet sends on local Anvil only | [Reviewed website API profile](DEPLOYMENT_WEBSITE.md) |
-| Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
 
 ## Before every management operation
 
@@ -580,6 +304,14 @@ and [controller source](../src/ZZZAccessController.sol).
 
 Roles can technically share an address, but this combines their compromise and availability risks. Immediate governance can approve unsafe dependencies or harmful replacement code; role separation and independent transaction review are operational defenses, not an on-chain delay. If every required governance authority/key is lost, there is no hidden admin recovery. Preserve reviewed multisig recovery arrangements before launch.
 
+<a id="deep-cleanup-review---2026-10-25"></a>
+
+Monitor `GuardianChanged` and `KeeperChanged` from the controller's deployment
+receipt, including initial grants, then reconcile their stored mappings with
+canonical complete history. Older controllers without initial events require
+constructor/call evidence. These events add visibility, not authority.
+
+
 ## Range and strategy
 
 **You can change the supported strategy's parameters after sealing**, without replacing contracts. You cannot replace the algorithm itself by updating a number.
@@ -595,7 +327,7 @@ Roles can technically share an address, but this combines their compromise and a
 | +/-20% | `2000` | 0.80 to 1.20 |
 | Total width 20%, meaning +/-10% | `1000` | 0.90 to 1.10 |
 
-1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only intended settings. Use `configureNative(config)` for the selected native ETH/ZZZ pool and `configure(config)` for supported hookless ERC20 pools. V2 accounting retains the real zero ETH currency; do not substitute WETH or change slot ordering.
+1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only intended settings. Use `configureNative(config)` for the selected native ETH/ZZZ pool and `configure(config)` for supported hookless ERC20 pools. Current accounting3 retains the real zero ETH currency; do not substitute WETH or change slot ordering.
 2. Check the dependent bounds below, oracle freshness, current price/spot difference, target ticks, actual swap costs and expected gas. Review narrower-range out-of-range exposure and turnover. Simulate the new configuration and maintenance on a fork at the same state before approval.
 3. Governance executes the configuration. This **does not immediately close/reopen LP**. Inspect `Strategy.rangeUpdatePending(bucketId)` and `needsRebalance(bucketId)`.
 4. The authorized keeper submits `Vault.rebalance(bucketId,minimumLiquidity,deadline)` when cooldown and guards permit. A width mismatch can trigger it even at a flat price. Polling every ten minutes is only an example; it is not a guaranteed rebalance deadline.
@@ -671,7 +403,7 @@ Current native accounting uses explicitly admitted ETH at `address(0)`, with an 
 
 Read/review the new route, append it with `addRoute`, qualify it, switch the backend's selected route, and use `setRouteEnabled(oldId,false)` to stop the old route. Route contents/identities are immutable; do not overwrite one in a manifest under the old hash. There is no time delay. Concurrent user quotes may revert after disablement and must be rebuilt. Already mined operations cannot be undone.
 
-To stop an input immediately, use `ActivationAssets.setAsset(token,false,expectedCodeHash,reviewHash)` with the required nonzero token/review hash, and disable affected Entry routes. Disable paths deliberately avoid dependency calls needed for enabling; they can help when a token/feed is broken. Previously attached LP, shares and claims are not erased. Re-enabling requires valid current token/feed/code checks and new quotes. Pool configuration cannot silently re-enable an explicitly disabled source. See [asset controls](ACTIVATION_ASSETS.md), [Entry](ACTIVATION_ENTRY.md) and [routing](ACTIVATION_ROUTING.md).
+To stop an input immediately, use `ActivationAssets.setAsset(token,false,expectedCodeHash,reviewHash)` with the exact ETH-zero or fixed-ZZZ token and nonzero review hash, and disable affected Entry routes. Disable paths deliberately avoid dependency calls needed for enabling; they can help when a token/feed is broken. Previously attached LP, shares and claims are not erased. Re-enabling requires valid current token/feed/code checks and new quotes. Pool configuration cannot silently re-enable an explicitly disabled source. See [Entry and source policy](ACTIVATION_ENTRY.md) and [routing](ACTIVATION_ROUTING.md).
 
 ## Pool admission and retirement
 
@@ -750,7 +482,7 @@ ownership/reward handoff below is a separate retained feature.
 | New local pool/token | Approve ordered destination currencies and minima. Recipient performs any issuer exchange externally. If the plan initially selected local holding without a pool, admit/reserve a target for the same bucket and call the one-time `bindLocalDestination(id,pool,min0,min1,reviewHash)`. It preserves the original loss budget and departure. `completeLocal` must actually fund/mint the target LP and preserve shares. Then deliberately switch the sole contribution pool/input routes. |
 | New chain through your custodian | Approve source-chain custody only: `destinationPool=0`, `destinationCustody=recipient` in the current local-only request. The recipient performs any bridge/token migration externally. No on-protocol bridge is required; source principal remains outstanding/unavailable until a supported funded return/completion. This does not relocate NFTs/reward ledgers or promise remote accrual. See the runbook for exact request/approval fields. |
 | Recover principal | In the current source-chain custody workflow, `recover(id,deadline)` returns every actual sent asset and restores parked custody. Supply the exact sent native value and ERC20 approvals; no proof parameter or remote verifier exists. No timeout, partial funding, balance write-off or resend. |
-| Restart recovered/parked LP | Revalidate prices, venue, policy and current snapshot. Unpause and govern `Migration.resume(bucket,pool,minLP,deadline)`; verify actual active LP and unchanged shares. Ordinary supported same-pair `movePool` remains in this one module. |
+| Restart recovered/parked LP | Revalidate prices, venue, policy and current snapshot. Unpause and govern `Migration.resume(bucket,pool,minLP,deadline)`; verify actual active LP and unchanged shares. Ordinary supported same-pair `moveFunds` remains in this one module. |
 | Park without sending | Pause, verify `activePlan(bucket)=0`, then use exact `Migration.park(ParkingRequest)` with current pool/LP/shares/recorded contribution value/custody epoch/parking nonce/accounting currencies and raw close minima. At least one minimum must be positive; deadline is at most ten minutes. It omits source USD checks but cannot bypass an unusable venue/token or changed core/runtime binding. Current native parking does not call WETH or its policy. Invalidate unused parking authorization with `invalidateParking`. |
 | Move royalty currencies as well | Separate `RoyaltyRewards.exitCustody(asset,recipient,expectedBalance,nonce,recipientCodeHash,reviewHash)` while paused. Per-NFT entitlements remain; that currency's claims/valuation wait for exact full `returnCustody(asset,id)`. Native ETH is asset zero. Other currencies, LP principal and royalty quarantine must not be merged. |
 
@@ -765,7 +497,7 @@ stop external Uniswap swaps, so separate active approval/exit transactions can
 become stale. Prefer pause, reviewed parking before any custody approval, then
 the stable parked snapshot. Cancel a stale approved plan before parking; never
 weaken the snapshot check. The supported direct active exit needs a reviewed
-atomic controller approval/exit batch to avoid the between-transaction race;
+atomic governance-wallet approval/exit batch to avoid the between-transaction race;
 it can still revert if the snapshot changed before inclusion. A failed parked
 exit leaves the earlier parking intact. The contract's parked approval floor
 starts at parked value; it does not autonomously cache the pre-parking budget.
@@ -844,7 +576,7 @@ of the selected hookless-pool operation. Marketplace royalties remain separate.
 
 ### Start a current keeper configuration
 
-The shipped `keeper/config.example.json` selects native accounting version2 and
+The shipped `keeper/config.example.json` selects native accounting version3 and
 LP-only fee-intake version1 explicitly. It has no creator-sync or bridge jobs,
 uses separate native/profile-specific state paths and leaves live review/runtime
 pins unset. It must fail closed until actual deployment pins and operating limits
@@ -933,8 +665,7 @@ faults even when the separate healthy-currency balance view still works.
 Before sealing, qualify the actual randomness coordinator/network/subscription, funding asset, gas lane, confirmations and callback budget. `NFT.configureRandomness(...)` is **one-time before seal**; coordinator, gas lane, subscription ID and payment mode stay fixed. Only future confirmations and callback gas have the bounded control below. Funding/service management uses that provider's reviewed procedures, not an invented PoPL retry function. Do not seal against an unavailable/unqualified provider.
 
 After initial configuration, governance can call
-`NFT.setRandomnessRequestSettings(confirmations,gasLimit)` through the existing
-controller, before or after seal. Contract bounds are 3-200 confirmations and
+`NFT.setRandomnessRequestSettings(confirmations,gasLimit)` directly from the governance wallet, before or after seal. Contract bounds are 3-200 confirmations and
 200,000-10,000,000 callback gas; independently check the actual coordinator's
 potentially narrower bounds and simulate the intended next request. Read old
 `requestConfirmations()`/`callbackGasLimit()`, execute exact calldata, then verify
@@ -1110,391 +841,153 @@ fresh validation with a compatible reviewed policy. A configuration/code change
 requires old drafts to be discarded; mined transactions cannot be rolled back.
 This service is not installed on the server by this change.
 
+## Financial reporting and recovery
+
+This [backend correction](../reports/backend-remediation-20261026/REVIEW.md)
+adds no on-chain function, permission, config key, write action or service rollout.
+
+| Check / symptom | Operator procedure |
+| --- | --- |
+| Current LP-only fee history | Keep explicit fee intake 1. Verify actual `FeeController.FEE_INTAKE_VERSION()`, sealed module/runtime pins, all seven emitters and the same confirmed cutoff. Replay requires exact funded-credit/allocation pairs and actual `dust(bucket,asset)` for observed keys. Native address zero is permitted only in that getter's currency argument. |
+| Fee/dust mismatch or malformed core value | Stop serving the affected report; preserve raw logs, database, request/config hash, cutoff and error. Compare a separate replay copy with authentic independent-provider windows. Do not edit/delete history, guess zero, relabel a profile or trigger a financial transaction to hide an error. |
+| Current accounting-3 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked/outbound NFTs retain eligible funded rewards. |
+| Wallet read budget | Current accounting 3 adds one pinned `weightOf(id)` read per NFT; historical read shapes remain. Keep 16-item chunks, finite request limits and complete same-block chunk verification. Requalify actual latency/budgets before rollout; no unbounded retry or limit relaxation. |
+| Display totals | Ready to claim = funded LP plus royalty balances now. Earnings 24h/all time includes earlier claims and past owners; claims/conversions are not new income. Compound/buyback/gross receipts are not additional NFT claimable funds. |
+
+Recover by correcting provider/history/configuration evidence and rerunning the
+bounded read on a separate copy. Upgrade/rollback only matching API releases
+under the existing service runbook when separately authorized; never reset chain
+or journals. Genuine view outages may null only their metric; malformed Boolean,
+ABI, or contradictory available/value data now rejects the request. See
+[earnings operations](EARNINGS_HISTORY.md) and [167-method evidence](../reports/backend-remediation-20261026/VERIFICATION.md).
+Production feeds/history capacity and service acceptance remain open.
+
+Native royalty custody can defer a newly activated NFT's ETH eligibility without
+undoing its activation. Read `eligibleFor(id,asset)`; outside backing is unavailable,
+not zero. Use the exact full `returnCustody(asset,id)` first, then ordinary `sync`
+allocates unseen funds to the earlier cohort before admitting waiting NFTs.
+A custody return is backing restoration, not income. Never retry a completed
+activation or manufacture historical eligibility.
+
+Retired `forwardLate(asset)` accepts only previously admitted currencies and sends
+them to the fixed immediate successor. Unknown new ERC20 receipts at a retired
+receiver have no admission/rescue path. Before handoff inventory cached royalty
+receivers, payment currencies and orders; do not promise universal recovery or
+introduce an undocumented sweep. [Royalty recovery](ROYALTY_SETTLEMENT.md#late-receipts-after-retirement).
+
+
 ## Disposable local testing
 
-Use the [local browser stack procedure](LOCAL_TEST_STACK.md) for Anvil-only
-mint/activation/top-up/fees/royalties/transfer/claim rehearsals. The launcher owns
-its local chain and disposable accounts; no production key or public RPC is used.
-It simulates each typed transaction and records receipts and gas. Test venues,
-prices, randomness and time advancement are explicit. Stop with Ctrl+C or the
-authenticated local stop endpoint; restart creates a new isolated deployment and
-indexer. Preserve receipts, inspect partial approvals before retrying and discard
-old session/configuration data. Lost responses recover with Refresh and the same
-operation ID. Do not bypass an uncertain-submission stop: inspect operations and
-submission/receipt records, then restart the disposable chain. Requests have
-strict input bounds, no queued concurrent mutations, revision checks and a
-256-operation session ceiling. This does not install or qualify a production keeper.
+Use the [local stack](LOCAL_TEST_STACK.md), [website harness](LOCAL_WEBSITE.md)
+and [isolated API rehearsal](LOCAL_API_REHEARSAL.md) for disposable Anvil flows.
+Verify the exact fixture profile/build/runtime and preserve existing NFT/LP,
+balances, receipts and journals. A launcher restart may create a new fixture;
+it is not chain recovery. Do not restart/reset an existing lab to clear a wallet
+error. Historical named USDC/USDG/WETH fixtures are test-only and are not current
+ETH/fixed-ZZZ production inputs.
 
-The [existing website mode](LOCAL_WEBSITE.md) runs at `/app/` on this same origin.
-Choose a local account, review exact approval and Entry separately, and inspect
-current LP/earnings/claims after confirmation. The typed `/prepare` endpoint has
-32 outstanding drafts and a 60-second expiry; `/action` executes the bound draft
-with fresh ownership/simulation/gas checks. Claims batch at most ten NFTs and 32
-currency operations per confirmation. Cancel sends nothing; approval may remain
-if the later contribution is cancelled. Use Refresh to recover the same pending
-operation after a lost response. New sessions clear the old intent without
-resubmission. Missing prices remain unavailable, and no demo balance replaces a
-failed read. The operator's root panel still funds/rebalances the fixture. Stop,
-restart and evidence retention follow the same procedure above. No new authority,
-production endpoint or contract configuration is introduced.
+A token approval is separate from activation/growth. Confirm at most the exact
+required ERC20 approval then the reviewed Entry call; sufficient allowance skips
+approval. Native ETH uses exact call value, no approval. Before showing new LP or
+evolution, verify successful confirmed execution and increased actual deployed LP.
+Reverts preserve Entry input/conversion/LP changes, but gas and an earlier
+approval remain separate. A failed post-confirmation read requires recovery,
+not another contribution.
 
-For local UI verification, a revealed dormant NFT retains its rarity multiplier
-(Commun ×1, Rare ×2, Legendary ×3) in gray. Its effective royalty accounting
-weight remains zero until activation. Unrevealed NFTs have no assumed multiplier.
-This label correction requires no operator call, service restart or contract update.
-Dormant detail views omit claims; active views retain the existing balance and
-confirmed-state guards. Activation and transfer controls are unchanged.
+<a id="local-contribution-form-troubleshooting"></a>
+<a id="local-activation-review-during-a-busy-refresh"></a>
+<a id="two-transaction-contribution-operation"></a>
+<a id="two-browsers-using-local-wallets"></a>
+<a id="local-submission-lock-recovery---2026-10-20"></a>
+<a id="independent-local-wallet-confirmations---2026-10-20"></a>
 
-Local wallet selection now comes from `GET /session` before the slow portfolio
-read and persists through reloads in session storage, bound to that deployment.
-After a launcher restart, choose the wallet again. Updating the session endpoint
-requires restarting this disposable service using the procedure above; preserve
-its external receipts first. A restart creates a new fixture, not a restored
-persistent deployment. The public server and paused monitor are unaffected.
+Local busy/review/nonce handling belongs to the matching fixture's
+[runbook](LOCAL_WEBSITE.md) and [concurrency evidence](../reports/local-wallet-concurrency/VERIFICATION.md).
+Keep the serialized local signer/mutation lock. Retry only a documented rejection
+that occurred before work began, using the identical saved operation identity;
+never retry an ambiguous broadcast as a new action. Two browsers have independent
+accounts/sessions; do not erase recovery storage to work around a conflict.
 
-Refresh keeps labeled last-confirmed artwork, masks stale amounts and disables
-financial actions. Dormant NFTs omit reward/history sections; active cards expose
-Claim and Grow attached LP separately. Only confirmed market-value evolution
-changes animate, and reduced-motion users get the same state without animation.
-If a transaction confirms but reading fails, refresh balances; do not resubmit.
-Busy state reads retry up to 13 attempts inside a 90-second request deadline;
-writes never automatically retry as new intent. Persistent busy/error states
-require inspecting the local operation/error logs. Interrupted HTTP readers no
-longer trigger a second error response. These are local UI/service procedures;
-no new contract permission, economic parameter or production operator call exists.
+## Main website pending-action and storage recovery
 
-Keep the local serial lock. For public services, qualify independent per-user
-wallet signing and concurrent shared-pool contributions/claims with stale quote,
-ownership, nonce and load controls under the central frontend/service tasks.
+Use [browser-wallet signing and recovery](BROWSER_WALLET.md) for the opt-in local
+extension profile; demo storage and launcher-owned signing are different modes.
+Reads use the exact deployment-pinned RPC; the extension authorizes/signs.
+Reverify exposed account, chain/genesis, runtime pins and original reviewed limits.
+A selected wallet label alone proves none of these. Public signing stays disabled;
+production must use an independently reviewed Robinhood manifest, never an Anvil
+fallback or a guessed network name.
+
+Preserve the hash, exact review, nonce/account/chain and saved operation before
+recovering pending, missing, changed or mismatched receipts. Close/refresh does
+not cancel a transaction. Recovery checks the same hash, never sends it again.
+Check the [nonce-queue procedure](BROWSER_WALLET.md#queued-or-changed-transaction-numbers)
+before any separately authorized reconciliation; do not fill gaps or reset state.
+A confirmed approval is not Entry execution. A confirmed Entry remains effective
+when the UI read fails. Mask stale amounts and disable conflicting actions; only
+the target NFT's confirmed LP/tier change may update its artwork.
+
+The known local nonce 35 incident retains its separate
+[reconciliation evidence](../reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md);
+it is not a general authorization to clean pending state. Local two-wallet manual
+acceptance is [recorded](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
+The 10/25/100-user campaign is deferred, not passed or implicitly scheduled.
+
+## Concurrent read and preparation services
+
+Follow [bounded workers and cleanup](CONCURRENT_SERVICES.md) and
+[public ingress](API_INGRESS.md) for exact flags, limits and start/stop procedures.
+Services are read-only or prepare unsigned transactions; they hold no wallet key.
+Busy429/503 responses permit finite read backoff, not another financial intent.
+A failed cleanup quarantines its worker slot: drain ingress, stop the reviewed
+process group, preserve evidence, correct the cause and verify fresh state before
+reopening. Never raise budgets or return stale financial data to hide failure.
+One-host browser/demo locks do not establish production wallet authorization or
+100-user capacity; actual Linux/provider/monitoring qualification remains open.
+
+## Holder payout currencies
+
+LP and royalty converters remain separate, bound to their exact immutable ledgers.
+Follow [LP settlement](LP_ETH_SETTLEMENT.md) and [royalty settlement](ROYALTY_SETTLEMENT.md).
+Native ETH needs no conversion. Non-native earned balances remain their actual
+currency until a successful guarded conversion credits ETH to those same NFTs.
+Keep unavailable/pending amounts explicit; never display source token units as ETH.
+No converter has principal custody or a generic approval/sweep permission.
+
+## Convert LP holder fees to ETH
+
+Before sealing, bind the reviewed LP converter and any explicitly used wrapper;
+qualify actual typed routes, independent feeds, recipient behavior and keeper gas.
+Default conversion loss is 1%, governance maximum 10%, gas separate. Follow the
+[operator procedure](LP_ETH_SETTLEMENT.md#operator-procedure) and
+[bounded scheduling](LP_ETH_SETTLEMENT.md#keeper-configuration-and-scheduling)
+for stop/reopen, route rotation, source claims and pending-intent recovery.
+Existing sealed deployments/journals cannot acquire new bindings through a config
+edit. Service changes need separate rollout authorization.
+
+<a id="capacity-decision-and-manual-acceptance---2026-10-20"></a>
+<a id="queued-wallet-transaction-recovery"></a>
+<a id="real-local-api-rehearsal-and-complete-wallet-totals"></a>
+<a id="collection-data-operations---2026-10-23"></a>
+
+[Confirmed collection reads](COLLECTION_READS.md) and
+[current-holdings totals](EARNINGS_HISTORY.md#current-holdings-totals) require
+complete same-block inventory/chunks and authentic history. Retain nulls on missing
+prices/history. No local manual acceptance or sample reward funds qualify the
+current production integration.
 
 ## Fixed boundaries
 
 | Desired future change | Current boundary |
 | --- | --- |
-| Supported source tokens, conversion routes, prices, pool parameters, operators | Governed configuration after sealing, within code constraints; immediate authorization, no delay. |
+| Enable/disable ETH or fixed ZZZ; reviewed routes, prices, pool parameters, operators | Governed configuration after sealing, within code constraints; immediate authorization, no delay. |
 | Mint price/recipient, supply/rarity quotas, trait draw rules, 80/10/5/5, requested 5% royalty rate/weights | No ordinary post-seal setter. Requires separately reviewed architecture/replacement if changed; not a UI edit. |
 | Randomness provider/lane/subscription/payment mode, canonical artwork base, module bindings, core strategy/adapter implementation | Fixed at or before sealing. Future-request confirmations/callback gas have their separate bounded setter; pending draws cannot be changed or rerolled. Range orientation and approved presets are supported policy, not a replacement algorithm. No proxy-upgrade or generic patch function. |
-| Lower production activation below $100 or exceed the 10% hard execution-loss ceilings | No such configuration path. Governance can change current limits within 0-10%; defaults are 2% / 1% / 3%. The separate $1 local test build is not production configuration. |
+| Lower production activation below $100 or exceed the 10% hard execution-loss ceilings | No such configuration path; growth has its separate fixed $5 floor. Governance can change current limits within 0-10%; defaults are 2% / 1% / 3%. The separate $1 local test build is not production configuration. |
 | Redeem principal, reroll rarity, overwrite owners/reward balances, sweep liabilities | Not supported. Governance configuration is not permission to manufacture those operations. |
 | Add arbitrary pair conversion, hooks, chains, cross-chain canonical replacement or post-halt recovery | Not made functional just by adding an address. Complete missing design, source support, independent review and rehearsals before relying on it. |
 
 Future changes must preserve this distinction: what can be configured now, what requires new compatible code, what has actually been qualified, and what cannot be recovered. Do not describe a possible new deployment as a repair guaranteed to work with every already sealed predecessor.
-
-
-### Local contribution form troubleshooting
-
-The NFT dialog now shows validation, preparation and error feedback next to Review.
-If acknowledgement is missing, tick the displayed checkbox; if approval just
-confirmed, the same deployment/wallet/NFT/amount carries that acknowledgement to
-the separate LP review. Changing the amount clears it. No approval automatically
-sends Entry. A busy form cannot submit twice; failures remain visible in the dialog.
-Only the NFT receiving activation/top-up has an artwork updating badge; global
-stale balance guards remain. Reload the local page to load this UI-only change;
-no service restart, contract call, public deployment or governance change is needed.
-
-## Main website pending-action and storage recovery
-
-The opt-in local **browser-wallet** mode has a separate
-[signing and recovery procedure](BROWSER_WALLET.md). It uses unsigned typed
-preparation, independent extension signing, exact nonce/code and bounded gas checks,
-same-origin durable pending records and canonical receipt observation. Public
-hosting remains a simulation. Its recovery must not be replaced by the demo or
-launcher-owned signer procedures below; switching modes does not cancel a sent
-transaction. No contract authority or production deployment changes.
-
-Use the deployment-pinned read RPC for blockchain reads and receipts; the selected
-extension handles authorization/signing. Review node chain/genesis, RPC origin,
-CSP/CORS and fee policy together. A failed reader preserves the original hash;
-never fall back to another chain, erase recovery storage or repeat an approval.
-Approval completion is separate from the Entry transaction and cannot change LP
-or artwork. See [reader setup, outage and recovery](BROWSER_WALLET.md#independent-read-rpc-and-recovery)
-and [verification](../reports/browser-wallet/CHAIN_READER.md). Public signing and
-production provider qualification remain gated. No contract role/control changed.
-
-For type-2 receipts, use signed fee caps and the canonical block base fee to derive
-execution price; retain raw RPC-reported price separately. The original reviewed
-unit-price and total-cost limits still apply. Deterministic mismatches require
-same-hash recovery, not another mint. See [dynamic-fee evidence](../reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md).
-
-For connection failures, inspect the public account actually exposed to the site,
-not only the account selected in the extension. Only the two disposable fixture
-accounts are admitted locally. Change the wallet's site permissions as needed.
-If the chain ID is 31337 but genesis verification fails, correct the run's exact
-RPC URL; switching to another network with the same ID is insufficient. Refresh reads current authorization; explicit MetaMask selection reopens permissions.
-Both reverify the deployment.
-Failed connection leaves actions disabled and the error visible in the dialog.
-
-If the wallet padded a transaction's gas limit, recover its original hash without
-resubmission. The submitted transaction must retain the exact economic fields,
-nonce and chain and stay inside hard policy limits; canonical gas used, unit price
-and paid cost must also stay inside the original reviewed limits. Preserve that
-review and the observed receipt. A pending receipt, altered economic field,
-exceeded paid bound or changed inclusion remains unresolved for operator review;
-do not erase the journal or repeat a confirmed approval. See
-[connection and recovery evidence](../reports/browser-wallet/CONNECTION_RECOVERY.md)
-and the full [receipt procedure](BROWSER_WALLET.md#submission-confirmation-and-artwork).
-
-Wallet response and RPC-read waits are separate: 90 seconds for the extension,
-15 seconds per read. Confirmation polls the same hash up to 21 times at 1500ms spacing,
-within a 45-second monotonic read budget; no retry sends a transaction.
-One confirmation requires two matching canonical block hash/number reads;
-additional confirmations still require the configured depth. This avoids a
-separate cached head vetoing checked inclusion. See
-[automatic confirmation evidence](../reports/browser-wallet/AUTO_CONFIRMATION.md). If still unresolved,
-inspect the wallet and recover the saved hash. Keep the original request and
-review. Ordinary refresh shows labeled last-confirmed cards with actions disabled;
-read failures or account/session changes must not present those values as current.
-
-Local portfolio reads reuse one literal-loopback HTTP connection only within the
-serialized read and close it on completion/failure. This changes no operator
-permissions or production RPC configuration. A web-only update must authenticate
-the original chain/session/journals; never restart Anvil to clear a slow read.
-See [latency and mint follow-up](../reports/browser-wallet/MINT_WAIT_PERFORMANCE.md).
-
-The production UI must request **Robinhood Chain**, using an independently
-verified production manifest for chain ID, RPCs and contract identities. It must
-not select a testnet or use an Anvil fallback. The current opt-in browser signer
-continues to allow only local chain 31337; production manifest qualification and
-public signing remain open. No public network values are inferred from a wallet's
-network name.
-
-The public simulation adds one `claim-testing-20261020` receipt after existing
-saved actions. It preserves LP, NFT traits and cumulative claims; refreshing does
-not refill a claimed receipt. Reset demo intentionally restores the starting
-portfolio/history and a later page load can reinitialize that sample receipt.
-The local contract adapter never uses this sample funding. Upgrade feedback uses
-the supplied ACTI sound for activation (full audible clip, 3.69 seconds) and EV for
-later upward tiers (1.425 seconds). The image crossfade and sound start together
-after a successful contribution and refreshed increased LP/higher tier, in the
-same wallet/session. Approvals, claims, failures and same-tier top-ups are silent.
-Audio failure never changes transaction results; reduced motion suppresses glow.
-Reload the page for updated JavaScript; existing local fixture servers already
-allow the audio-only MP4 assets and need no chain reset. Static Node previews must
-load the updated asset allowlist. No authority, signer or contract procedure changes.
-The NFT detail view omits the Previously claimed frame; lifetime claims remain
-accounted for. Earned history includes claimed and unclaimed rewards and must not
-be relabeled as cumulative payouts or current claimable funds.
-
-The main website tracks activation/top-up/claim work per NFT and mint separately.
-A conflicting action on the same NFT or overlapping claim batch is rejected;
-other NFTs can continue. Only a changed target artwork animates. Wallet/network
-changes cancel unsent previews, and reconnecting to the old address does not
-revive them. Default browser-wallet reconnection uses public-account reads only;
-Disconnect clears its tab session selection. No new operator role or contract call.
-
-Same-origin demo tabs use Web Locks for latest-state event commits and resource
-conflicts. HTTPS/localhost plus a supported browser is required; unsupported locks,
-failed storage, malformed history, a full 1,000-event log or a 10-second lock wait
-produce explicit errors. Do not disable these checks. Refresh reads saved state
-without replaying an intent. Reset demo invalidates pending work through a reset
-epoch; preserve example history first if needed. It never affects on-chain funds.
-
-Build/release the main static site through the normal approved deployment process;
-reload JS after deployment. This local change does not restart the Anvil service,
-production server or paused monitor. The prior release may contain lost-update
-behavior; prefer a reviewed forward fix over rollback. See [evidence](../reports/frontend-state/VERIFICATION.md).
-Production recovery still requires persisted transaction hashes and canonical
-receipt/replacement/reorg reconciliation; browser/demo locks are not distributed
-wallet authorization or a production multi-user capacity guarantee.
-
-## Concurrent read and preparation services
-
-Infrastructure operators configure `python -m frontend_api.server` and
-`python -m frontend_api.activation_server` with the existing reviewed manifests.
-Both now accept `--workers 4` (1-8) and `--max-connections 8` (1-32), per listener.
-See [exact start commands, bounds and recovery](CONCURRENT_SERVICES.md). These
-are separate read-only/unsigned services, with no new contract authority or signer.
-Do not parallelize the disposable local launcher's mutation/signing lock.
-
-Verify startup caps/chain and fresh `/v1/protocol` responses before exposing a
-reviewed ingress proxy. Busy capacity returns 503 `service_busy` with Retry-After;
-permit only finite read backoff, never a new financial submission as an automatic
-retry. A failed cleanup permanently quarantines that worker slot and emits a fixed
-operator-action log. Inspect and drain ingress, stop the service and all children,
-retain sanitized evidence, correct the cause, then restart and verify fresh state.
-Do not remove live-child directories or substitute old financial data. Reducing
-workers to one is a bounded fallback; rolling back the HTTP protections is not.
-Linux/provider capacity, process-group shutdown and off-host monitoring still need
-qualification before hosting. No existing service or paused monitor was restarted.
-
-Main-site unsent simulation actions expire after 15 seconds or navigation away;
-returning to the page reads saved state and requires a fresh action. Ordinary tab
-switching is allowed. The exact-version immutable preview cache never replaces
-a storage read or an on-chain query. The local `/app/` confirmation adapter rejects
-missing/nonfinite/overlong expiry, counts preparation time, and checks monotonic
-and wall time plus chain/account/revision before submission. Refresh and prepare
-again on expiry; recover unresolved submissions using the existing operation ID.
-Only a page reload is needed for these website code changes. No economics, local
-signer permissions, on-chain configuration or automatic transaction retry changed.
-
-## Holder payout currencies
-
-The current candidate supports LP conversion through its own fixed converter,
-separate from `RoyaltyRewards.convertBatch(...)`. Follow [LP setup and recovery](LP_ETH_SETTLEMENT.md)
-below. Older source-only deployments cannot gain this binding after sealing;
-the [earlier audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) applies
-to those earlier sources. Never send LP ledger assets to the royalty converter
-or configure arbitrary approvals. Verify actual receipt currencies, exact
-converter bindings and backing before enabling native claims. Preserve source
-balances and explicit pending/unavailable reporting while conversion is stopped.
-Live qualification remains in the [central task](../TODO.md#task-lp-eth-settlement).
-
-Historical pre-V2 named-fixture UI: four visible input choices (ZZZ/USDG/USDC/ETH), internal WETH accounting, a dedicated contribution dialog and confirmed per-NFT evolution refresh. That fixture's wrapping behavior does not describe native V2. See [named local rehearsal](LOCAL_TEST_STACK.md#named-input-local-rehearsal). No production authority/procedure change; public routes, ETH-only LP settlement and hosting remain open.
-
-Contribution incidents: distinguish a rejected/preparation failure, pending/unknown
-receipt, reverted receipt and confirmed LP with a failed read. Never ask for a new
-submission while the original result is unknown. Recover the same operation ID and
-receipt first. A reverted Entry preserves input tokens but costs gas and can leave
-an earlier allowance. A successful Entry creates nonredeemable LP even when the
-API subsequently fails. Separately wrapped local ETH remains wallet-owned WETH
-if contribution fails. The pre-V2 native-input fixture wrapped inside Entry
-atomically; current native Entry uses actual ETH and does not wrap. See the
-[failure evidence](../reports/topup-and-reward-review/contribution-rollback.json).
-
-## Convert LP holder fees to ETH
-
-Follow the [LP ETH settlement procedure](LP_ETH_SETTLEMENT.md#operator-procedure) before sealing: bind a separate converter, review wrapper/routes/feeds, enable the guarded worker, and confirm exact source/native liability changes. It covers route rotation, dependency-independent stops, source-currency recovery, pending transaction reconciliation, restart and irreversible bindings. Read the converter's current `conversionLossBps()`; the default is 1% with a 10% hard maximum, gas separate. See [bounded scheduling](LP_ETH_SETTLEMENT.md#keeper-configuration-and-scheduling) for both conversion streams and maintenance.
-
-## Local activation review during a busy refresh
-
-For the disposable loopback website only, reload `/app/#my-nfts` to load the
-client fix; no restart, reset, authority change or contract deployment is needed.
-Review activation/mint/claim can wait for a portfolio refresh using at most 30
-preparation attempts within the existing 90-second request timeout. Only the exact
-409 busy response, emitted before preparation starts, is retried. Account/state
-changes cancel the wait. Draft expiry counts from the final preparation attempt,
-including processing time; rejected busy waits create no draft.
-Approval and Entry still need separate confirmations. No `/action` submission or
-lost response is retried automatically. If contention persists, let the other
-tab finish, then prepare again; inspect pending-operation recovery before any
-new submission. Never reset the live test chain merely to clear this message.
-Reverting the client restores the immediate-busy error but changes no on-chain
-state. See [focused verification](../reports/local-preparation-busy/VERIFICATION.md).
-
-## Two-transaction contribution operation
-
-**Historical pre-V2 fixture scope:** the commands and wrapping observations in
-this subsection refer to the earlier WETH-accounting local build. Existing 8902
-state/journals are preserved. Do not restart it with V2 sources or assume that an
-old launch command qualifies a new V2 fixture; verify a separate coherent build,
-configuration and state directory first.
-
-For those local rehearsals, use `--named-assets --native-input` with a new port/state
-directory; it substitutes local-only native admission, not production venue pins.
-Never restart an existing lab expecting persisted chain recovery: preserve its
-owned Anvil process and state, or use a separately verified web-only recovery.
-Stop a pending UI flow without repeating a confirmed transaction; reread balances
-and allowance before preparing again. Old unsigned drafts expire/cannot be replayed.
-
-The holder approves exactly the required ERC20 amount once, then explicitly confirms
-Entry. Direct approval must simulate successfully; a reset-only token is unsupported
-rather than silently adding a third send. Already sufficient allowance needs no
-approval. ETH wrapped atomically inside Entry in that pre-V2 native-input fixture;
-the older WETH-only pool could not offer that path. Current native Entry and
-pool custody instead use actual ETH without wrapping. The local fixed activation is
-$100; top-ups start at $5. This does not change production Entry's $100 minimum.
-
-Verify receipt success, increased confirmed LP and unchanged unrelated NFTs before
-celebration. Failure of the atomic Entry call reverts conversion/LP effects,
-including any wrapping in the historical pre-V2 fixture; approval and paid gas
-are separate. No governance/keeper permission
-changes. [Runbook](LOCAL_WEBSITE.md#local-contribution-flow---2026-10-20) and
-[evidence](../reports/local-contribution-flow/VERIFICATION.md).
-
-
-## Two browsers using local wallets
-
-Chrome and Codex may select different disposable accounts on the same running
-loopback deployment. Reload both pages after a client update; account selection
-and saved pending intent remain in each browser's session storage. No operator
-permission, service restart or Anvil reset is required for this fix.
-
-A newer unsigned draft triggers a real confirmed-state read and up to three
-preparations if the other browser keeps changing state. Review the final wallet,
-amount and operation before confirming. If state changes after review, an explicit
-rejection sends nothing and refreshes balances; review again manually. If the
-response is ambiguous, use Refresh to recover the identical saved operation ID.
-Do not clear pending storage or create a replacement operation to bypass recovery.
-A definite server rejection of a recovered intent is safe to clear; unresolved
-outcomes remain blocked. Verify receipt and confirmed balances for success.
-
-Stop by cancelling an unsigned review. Rollback means restoring the prior client
-and reloading; it does not undo transactions and restores the stale-cache bug.
-Keep both chains and their state intact. [Evidence](../reports/local-wallet-concurrency/VERIFICATION.md).
-
-
-### Local submission lock recovery - 2026-10-20
-
-The exact `/action` pre-handler busy response now waits with the identical saved
-operation ID and payload (30 attempts maximum within a 90-second request timeout).
-This is the narrow exception to earlier notes saying submissions never retry.
-Lost responses and ambiguous outcomes still require saved-intent recovery; state
-changes after review still require a new review. Reload both browsers to pick up
-the client fix; use Recover status for a saved pending intent. Do not clear session
-storage, repeat a confirmed approval or restart/reset Anvil. No permissions or
-contract changes. Reverting the client restores the immediate lock error without
-undoing transactions. [64 scoped cases and actual lock probe](../reports/local-wallet-concurrency/VERIFICATION.md#submission-lock-follow-up---2026-10-20).
-
-
-## Independent local wallet confirmations - 2026-10-20
-
-Typed local wallet drafts now pin the sender nonce. Another wallet's transaction
-no longer invalidates an otherwise valid review. The server still binds the exact
-saved draft/revision/account and freshly simulates unchanged calldata within the
-reviewed gas ceiling; same-wallet nonce changes, expiry, owner changes and invalid
-execution still require fresh review. Legacy operator actions keep global revision
-checks. This supersedes the earlier rule rejecting every cross-wallet revision.
-
-Reload both browsers after the guarded web-only upgrade on 8898. Old unsigned
-reviews are invalidated: review afresh. Recover saved pending outcomes by the same
-operation ID before starting new work; never clear storage to bypass uncertainty.
-No new authority or contract function is introduced. Cancel an unsigned review to
-stop; restoring old service code restores the global conflict behavior, not prior
-chain state. Verify receipts and confirmed ownership/LP after execution. Never
-reset Anvil to resolve a browser confirmation issue. The guarded external recovery
-script preserves existing contracts and positions; ordinary launcher restart does
-not promise persistence. Port 8896 remains on the earlier service until separately
-reloaded. [70 distinct Python cases and two actual local mints](../reports/local-wallet-concurrency/NONCE_VERIFICATION.md).
-
-
-## Capacity decision and manual acceptance - 2026-10-20
-
-The user reports the six local two-wallet flows passed; see the
-[manual acceptance record](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
-This report does not change operator functions, roles, configuration, limits or
-stop/restart procedures. The dedicated 10/25/100-user load campaign is deferred;
-do not run it automatically or raise worker limits as part of this decision.
-Continue using bounded API admission, independent user-wallet signing and saved
-transaction recovery for the production integration. The shared local signer
-and lock remain test-only. Production capacity is unverified, and accepting real
-funds still requires the outstanding dependency and release qualification.
-
-### Queued wallet transaction recovery
-
-If recovery reports a changed or blocked transaction number, use the
-[wallet queue procedure](BROWSER_WALLET.md#queued-or-changed-transaction-numbers).
-Preserve the original hash and review; Close does not cancel a submission.
-Inspect the node and wallet before any separately approved reconciliation.
-Do not reset Anvil, fill nonce gaps, or erase unresolved journals. The diagnostic
-does not add cancellation, replacement discovery or nonlocal signing.
-
-For the authorized nonce 35 incident, follow the [one-time reconciliation](../reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md). Node cleanup is complete; the user browser/MetaMask step remains pending.
-
-### Real local API rehearsal and complete wallet totals
-
-Use [the isolated API runbook](LOCAL_API_REHEARSAL.md) to exercise actual local
-contracts and reviewed preparations with the unchanged Anvil-only signer. It
-explains build/configuration pins, exact RPC/account selection, bounded summary
-chunks, missing-value handling, recovery and safe stop/restart. Operator authority
-is local fixture ownership only; no public contract/role/provider is configured.
-
-## Collection data operations - 2026-10-23
-
-Use [the confirmed collection procedure](COLLECTION_READS.md) for endpoint setup,
-complete inventory/current LP semantics, matched API/proxy/frontend deployment,
-refresh, stop/rollback and stale/reorg/indexer recovery. This is a read-only
-service change; no contract function, permission, key or transaction is added.
-
 
 <a id="callable-contract-reference"></a>
 

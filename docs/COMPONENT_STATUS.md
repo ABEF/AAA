@@ -7,23 +7,16 @@ profiles and journals remain separately decoded. See [profile boundaries](POSITI
 [pruning review](../reports/architecture-pruning-20261025/REVIEW.md) and the
 [feature/evidence reference](IMPLEMENTATION_STATUS.md). Production NOT APPROVED.
 
-The current reference covers **31 contracts, 608 functions and 13 receive hooks**.
-The [latest cleanup](../reports/deep-cleanup-20261025/REVIEW.md) preserves function
-encodings/storage and adds explicit role logs. Normal 37-object gates pass with
-75 closed production inputs (44 project / 31 dependencies); 265 final ABI/AST inputs
-include 131 project/test/script and 134 dependencies. 32 scoped Solidity and 41 Python
-methods pass. Reference snapshot 2 rejects dependency/build drift. Vault runtime
-22,852 leaves 1,724; Access creation 42,256+96 fixed arguments totals 42,352, leaving
-6,800. RoyaltyFactory 69-byte runtime margin stays tight. Production NOT APPROVED;
-actual services, complete release regression/static analysis and independent audit
-remain open. Existing deployments and journals are unchanged.
+Use the linked source for component boundaries, the [feature/evidence reference](IMPLEMENTATION_STATUS.md)
+for source-scoped verification and the [sole Todo](../TODO.md) for remaining work.
+This map does not repeat dated test totals or bytecode margins as current approval.
 
 ## On-chain identity, entry and custody
 
 | Component | Current responsibility | Remaining qualification |
 | --- | --- | --- |
 | [AccessController](../src/ZZZAccessController.sol) | Direct selected governance wallet; separate keeper/guardian permissions; 16 fixed module bindings; 2-step governance handover. No timelock, generic executor or role-grant API. | Actual authority wallets/Safe configuration and signing/recovery rehearsal. Governance and external recipients remain trusted. |
-| [Vault](../src/ZZZVault.sol) | Direct0.05 ETH dormant mint; source-bound$100 activation/$5 growth; nonredeemable per-NFT shares; one physical LP per bucket; local custody and exact classified backing. | Actual venue/asset behavior, maximal target-chain gas and independent accounting review. |
+| [Vault](../src/ZZZVault.sol) | Direct 0.05 ETH dormant mint; source-bound $100 activation / $5 growth; nonredeemable per-NFT shares; one physical LP per bucket; local custody and exact classified backing. | Actual venue/asset behavior, maximal target-chain gas and independent accounting review. |
 | [ActivationAssets](../src/ZZZActivationAssets.sol) | One pre-seal fixed ZZZ plus native ETH as user inputs; reviewed source policies and dependency-independent disabling. | Actual token/proxy/code/decimal/feed policy and complete deployment inventory. Stablecoins are royalty options, not contribution inputs. |
 | [PoolRegistry](../src/ZZZPoolRegistry.sol) | One contribution pool at a time; pinned hookless native ETH/ZZZ admission; generic ERC20 pools must contain the same fixed ZZZ. Supports reviewed future fee tiers or WETH/ZZZ; no arbitrary unrelated pair. | Actual pool/runtime/price/deposit/operation qualification. Pool admission does not qualify conversion routes or another user input. |
 | [ActivationEntry](../src/ZZZActivationEntry.sol) | Authenticates owner and exact Vault call; captures source USD and caller loss maximum; direct/native or typed single-hop v3/v4 paths; exact approvals and callback-safe context. | Actual route funding/fees, whole-operation trace and browser-wallet/target-chain rehearsal. |
@@ -44,11 +37,11 @@ returns reuse a slot; maintenance is per shared position, not per 1,000 NFTs.
 | --- | --- | --- |
 | [FeeController](../src/ZZZFeeController.sol) | Actual local LP receipts only; fixed 80/10/5/5 allocation, separate compound/buyback reserves and incumbent raw-unit dust. Creator inboxes and remote intake are removed. | Currency rounding economics, actual fee collection and independent accounting review. |
 | [Rewards](../src/ZZZRewards.sol) | Individual bucket-share indices, equal activated collective indices, fractions and current-owner claims; native ETH credits without reallocation. | Actual token/native recipients, worst-case asset costs and complete indexed history. |
-| [Membership](../src/ZZZMembership.sol) | One equal share per activated NFT; incumbent checkpoints/dust before entry; no top-up/rarity/age weighting. Canonical export is eligibility only, with no inherited asset custody. | Maximal4-bucket entry gas and persistence across custody/whole-collection handoff. |
+| [Membership](../src/ZZZMembership.sol) | One equal share per activated NFT; incumbent checkpoints/dust before entry; no top-up/rarity/age weighting. Canonical export is eligibility only, with no inherited asset custody. | Maximal 4-bucket entry gas and persistence across custody/whole-collection handoff. |
 | [LPRewardConverter](../src/ZZZLPRewardConverter.sol) | Converts only earned holder/collective source balances into the same NFTs' ETH credits; retains backing/fractions. | Cheaper qualified ZZZ route at the default 1% limit, conversion latency, gas and operation. |
 | [RoyaltyRewards](../src/ZZZRoyaltyRewards.sol) | Separate funded 1/2/3 royalty ledger; optional-currency outage cohorts; paused currency custody/full original-asset return. | Actual marketplace receipts, token/recipient behavior, conversion/late-receipt and custody rehearsal. |
 | [RoyaltyConverter](../src/ZZZRoyaltyConverter.sol) | Guarded batch conversion into ETH without changing NFT entitlements; explicit wrapper dependency only for operations using one. | Reviewed conversion routes/feeds/wrapper where used and keeper execution/recovery. |
-| [ClaimRouter](../src/ZZZClaimRouter.sol) | Up to32 mixed NFT/asset/ledger claims; duplicates/current-owner checks, direct payout and atomic rollback. | Target-chain maximal gas, frontend chunking, simulated requests and actual recipient acceptance. |
+| [ClaimRouter](../src/ZZZClaimRouter.sol) | Up to 32 mixed NFT/asset/ledger claims; duplicates/current-owner checks, direct payout and atomic rollback. | Target-chain maximal gas, frontend chunking, simulated requests and actual recipient acceptance. |
 | [Oracle](../src/ZZZOracle.sol) | Two-source reviewed USD policies, freshness/fingerprint/bounds and 3% disagreement rejection; governed reviewed sequencer replacement. | Actual independent sources, proxy/common-mode/uptime policies and real provider support. |
 | [Optional Pyth reader](../src/ZZZPythPriceFeed.sol) | Immutable bounded Core observation reader; original time/confidence/precision checks; no funds or updater. | Actual Core/source review, updater service and independent source selection. |
 | [Strategy](../src/ZZZStrategy.sol),[Compounder](../src/ZZZCompounder.sol) | Eligibility/range/cooldown and attributed LP/idle reinvestment. Optional reviewed keeper selection of +/-25% / +/-50% ZZZ-price-in-ETH widths. | Volatility/MEV/backtesting, thresholds, real gas and recovery rehearsals. |

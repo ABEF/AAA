@@ -1,141 +1,124 @@
-**Current policy, 2026-10-25:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
-
 # LP holder rewards settled in ETH
 
-The user approved a **1% maximum execution loss, network gas separate**, on
-2026-10-20. This applies to LP reward conversion, separately from contribution
-and maintenance limits. Production routes, feeds, operating qualification and
-independent release approval remain required. See [the central task](../TODO.md#task-lp-eth-settlement).
-
-**Native V2 candidate, 2026-10-24:** native ETH earned by the LP is allocated and
-indexed directly in ETH. It needs no conversion. The conversion procedure below
-applies only to already-earned ERC20 balances, including ZZZ or an explicit WETH
-route. The candidate is undeployed; see
-[native-port verification and remaining gates](../reports/native-eth-port/VERIFICATION.md).
+The current undeployed candidate uses native accounting 3, fee-intake 1, direct
+governance 2 and local canonical V4. Native ETH fees are indexed directly in ETH;
+only already-earned ERC20 balances, including ZZZ, need conversion. The default
+conversion loss cap is **1%**, governed up to **10%**, with gas paid separately by
+the keeper. See [execution policy](EXECUTION_LOSS_POLICY.md) and the
+[sole task](../TODO.md#task-lp-eth-settlement).
 
 ## Accounting and claims
 
-The existing 80/10/5/5 allocation runs first. Only whole units already earned in
-the **80% individual and 10% equal collective ledgers** can be converted.
-Principal, compound/buyback reserves, orphaned receipts, index dust and other
-NFT balances are not conversion inputs. Checkpointing uses the NFT's historical
-share and membership indices before spending anything; source fractions remain.
+The fixed 80/10/5/5 fee allocation happens first. Only whole units earned in the
+80% individual and 10% equal-collective ledgers may be converted. Principal,
+compound/buyback reserves, quarantined funds, index dust, source fractions and
+unselected NFTs' balances are not conversion input. Checkpointing preserves
+historical shares and equal membership before spending balances.
 
-`Rewards.convertBatch(address,uint256[],bytes32,uint256,uint256)` accepts 1-32
-sorted, distinct minted NFT IDs and one admitted non-native source asset. It
-converts their earned balances once, then credits the same NFTs in native ETH.
-Cumulative integer allocation conserves every output wei across individual and
-collective components; individual rounding may differ by less than one wei.
-Neither current shares nor royalty rarity redistributes those credits. Transfers
-carry source balances and converted ETH to the new owner.
+`Rewards.convertBatch(address token,uint256[] ids,bytes32 routeId,uint256 minimumETH,uint256 deadline)`
+accepts 1-32 sorted, distinct minted NFT IDs and one admitted non-native source.
+An authorized keeper converts the selected NFTs' earned whole balances once.
+Output ETH is cumulatively allocated back to the same NFTs and their original
+individual/collective components, conserving every received wei. Today's shares,
+rarity or other holders do not reweight it. Transfers carry both unconverted
+balances and ETH credits to the current owner.
 
-The dedicated [LP converter](../src/ZZZLPRewardConverter.sol) reuses the fixed-ledger
-[royalty conversion executor](../src/ZZZRoyaltyConverter.sol), as a **separate
-deployment and custody path**. Reviewed WETH unwraps exactly without a swap or
-USD oracle. Other admitted currencies use a reviewed typed V3 route, fresh
-independent oracle quote, at least 99% of quoted output, a stronger supplied
-minimum if present, and a deadline no more than ten minutes ahead. Source spend,
-wrapped output, unwrapping and ETH delivery are measured exactly. Approvals are
-for the exact batch and reset to zero. Network gas is paid separately by the keeper.
+`ZZZLPRewardConverter` and `ZZZRoyaltyConverter` share the neutral
+[ZZZRewardConverter base](../src/base/ZZZRewardConverter.sol), but are separate
+instances with immutable bound ledgers, storage and balances. Neither can spend
+the other ledger or principal. They support:
 
-Any failed swap, oracle check, unwrap, balance delta, callback guard or minimum
-reverts the whole batch, restoring source balances and liabilities. Native ETH
-is asset `address(0)` at Rewards asset index zero; there remain at most 32 ERC20
-assets, for 33 total. Direct native fee receipts enter the individual-share and
-equal-collective indices with the same checkpoint/fraction rules as ERC20 fees.
-Converted ETH is added only to the same NFTs' existing component balances; it
-never enters those indices a second time. Unsolicited ETH sent to Rewards does
-not become claimable income. Plain transfers to an optional registered creator
-inbox instead follow that inbox's documented receipt/cohort policy.
+| Path | Required checks |
+| --- | --- |
+| Typed static hookless v4 source-to-native swap | Reviewed immutable executor policy, current independent source/ETH quote, exact full input, measured native output and no wrapper dependency. |
+| Typed v3 source-to-WETH swap followed by unwrap | Reviewed router/factory/pool and wrapper/proxy policy; current independent quote, exact swap/output and exact native unwrap. |
+| Admitted WETH directly unwrapped | Exact 1:1 native output and reviewed wrapper behavior; no price-based swap is implied. |
 
-The configured standard claim selects native ETH from both LP and royalty ledgers.
-Unconverted balances are displayed separately as **awaiting ETH conversion**.
-`Rewards.claim(id, sourceToken)` remains an explicit source-currency recovery
-option, and ClaimRouter can prepare it when explicitly selected. It pays the
-current owner directly and prevents a later second payout through conversion.
-Claims remain available during an ordinary strategy pause. Canonical locks still
-apply, and a recipient rejecting ETH reverts its claim without losing the balance.
-The public website remains a simulation and signing remains Anvil-only. Explicit
-native V2 API/keeper accounting profiles are implemented as a candidate; the
-website native manifest and actual backend/inventory/service qualification remain open.
+Swapped output must meet the greater of the caller's positive minimum and
+`ceil(oracleQuote * (10000 - conversionLossBps) / 10000)`. At the 1% default this
+is 99%; it is not a permanently fixed floor. Deadline is current and at most ten
+minutes ahead. Exact approvals clear after use; prefunds cannot provide missing
+input/output. A failed swap, quote, delta, wrapper, callback or minimum reverts
+the whole batch and restores balances/liabilities. Native ETH itself is not a
+conversion input.
+
+Rewards admits ETH at asset index zero plus at most 32 ERC20 currencies. Native
+venue income uses the normal individual/equal-collective indices. Converted ETH
+credits those same NFTs directly rather than entering the indices again.
+Unsolicited donations do not become earned LP income; creator inboxes are removed.
+
+The standard claim selects ETH from both LP and royalty ledgers. Backed but
+unconverted ZZZ remains **awaiting ETH conversion**, never relabelled as ETH.
+An explicit `Rewards.claim(id,sourceToken)` can instead pay its current owner in
+the original currency, including through ClaimRouter when selected. A claim
+consumes that balance before any later conversion, preventing duplicate payout.
+Ordinary pause preserves funded claims; canonical locks and recipient acceptance
+retain their own guards. A broken source token can also block a source claim.
 
 ## Operator procedure
 
-| Step | Authority, operation and verification |
+| Step | Operation and required verification |
 | --- | --- |
-| Native fees | Harvest the native LP through the authorized maintenance path. Verify `FeesAllocated`, funded ETH rewards, separate reserves and unchanged principal classification. Do not schedule `convertBatch` for native asset zero. |
-| Install before sealing | Bootstrap deploys `ZZZLPRewardConverter(controller,rewards,wrappedETH)`; governance calls `Rewards.bindConverter(candidate)` once. Verify `ledger()`, `access()`, `wrapper()` and `Rewards.converter()`, addresses, code and implementation dependencies. This binding cannot be added or replaced after sealing. Core sealing alone does not certify that it was configured: require it in the product release inventory. |
-| Review the wrapper | Governance calls `configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))` with code/admin/implementation/owner pins and review hash, then `setEnabled(true)`. Follow the same proxy-risk review as [royalty conversion](ROYALTY_SETTLEMENT.md); a ticker or runtime hash alone is insufficient. |
-| Admit a swap | Governance calls `addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))` for source/router/factory/pool/fee and their hashes/review. Verify returned route ID, pair, exact routing interfaces, liquidity and independent feeds; simulate full conversion. No arbitrary calldata or output recipient is configurable. |
-| Change or stop a route | `setRouteEnabled(routeId,false)` and `setEnabled(false)` stop without querying failed dependencies. For replacement routes, admit and verify a new immutable route record, switch the keeper configuration, then disable the old route. Re-enabling performs dependency checks. Governance is immediate through the AccessController; no waiting period is introduced. |
-| Run a batch | An authorized keeper uses confirmed balances, sorted IDs, minimum output and fresh deadline. Simulate, submit through the existing serial sender, wait for confirmed receipt, and verify `LPRewardsConverted`, source/native liabilities, zero allowances and unchanged principal/shares. Conversion is not `Claimed`. |
-| Recover a failure | Inspect sanitized failure logs and confirmed transaction/nonce state first. Repair/review the route, price or wrapper before retrying. Do not weaken the 1% floor. While conversion is stopped, earned source balances and already-settled ETH remain backed; an owner can explicitly claim the source asset. Broken source tokens can also prevent that fallback. |
-| Stop/restart services | Disable `lp_conversion.enabled` and reconcile any pending transaction before switching workers/hosts. Preserve the serial keeper state, nonce, receipt anchor and scan cursor. Re-enable only with reviewed configuration and fresh simulation; do not reset the state to bypass an uncertain submission. |
+| Bind before sealing | Deploy `ZZZLPRewardConverter(controller,rewards,wrappedETH)` and bind it once through `Rewards.bindConverter(candidate)`. `wrappedETH` may be zero for v4-native-only use. Verify ledger/controller/runtime and the immutable wrapper choice. Generic seal does not certify this optional binding: the product inventory must. |
+| Admit a native v4 route | Call `addV4Route(Policy)` with the exact [14-word policy](TYPED_V4_ROUTES.md), non-native source and native output. Review actual prices/depth/fees and executor-parent/runtime bindings. No wrapper is needed for this path. |
+| Configure an actual wrapper path | `configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))` uses runtime, admin, implementation, admin owner, admin-runtime, implementation-runtime and review-hash fields in that order. Use only a genuinely reviewed wrapper; runtime alone cannot prove proxy safety. |
+| Admit v3 conversion | `addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))` fields are source, router, factory, pool, fee, source hash, router hash, factory hash, pool hash, review hash. Output is the converter's immutable wrapper. |
+| Enable/change policy | Direct governance sets `setEnabled(true)` and may call `setConversionLossBps(value)` within 0-1000 bps. Enabling alone proves no route is usable; execution checks its required dependencies. Existing stronger minimums remain. |
+| Stop/rotate | `setEnabled(false)` or `setRouteEnabled(id,false)` needs no failing dependency read. New routes are append-only; route re-enable validates them. Review/reconcile pending transactions before replacing worker configuration. |
+| Run and confirm | Select sorted IDs, actual whole balances, positive minimum ETH and fresh deadline. Simulate, submit once through the serial sender, confirm receipt and `LPRewardsConverted`, exact liabilities/output, cleared approvals and unchanged principal/shares. It is not a claim. |
+| Failure/restart | Inspect sanitized error and saved hash/nonce first. Repair/review dependencies, then re-simulate current balances. Preserve journals, gas budgets, cursors and backing; never reset state to force a retry. |
 
-The route fields above follow their Solidity structs exactly. The fixed converter
-algorithm and wrapper address cannot be replaced after binding; unsupported
-venues/wrappers require a reviewed successor deployment and the supported handoff.
-Immediate governance can admit harmful dependencies; the accepted governance trust
-and independent-review requirement remain.
+The fixed converter algorithm, ledger and wrapper identity cannot be replaced
+after binding. Supported new routes remain configurable; unsupported algorithms
+or a different immutable wrapper need compatible reviewed replacement code.
+A harmful governance-approved dependency remains an accepted trust risk.
 
 ## Keeper configuration and scheduling
 
-`lp_conversion` is disabled by default. It has the same bounded settings as
-`royalty_conversion`: `enabled`, `max_nfts_per_cycle` (1-32),
-`max_gas_to_output_bps`, and `assets` entries containing `asset`, `route_id`,
-`minimum_source_units`, `minimum_output_wei`. Asset zero is never an input;
-WETH uses the zero bytes32 route. Add runtime-pinned `rewards`, `lp_converter`,
-`lp_nft`, `lp_wrapper`, `oracle` entries alongside the existing keeper contracts.
+`lp_conversion` is opt-in and disabled by default. Settings are `enabled`,
+`profile`, `max_nfts_per_cycle` (1-32), `max_gas_to_output_bps`, and `assets`
+entries with `asset`, `route_id`, `minimum_source_units`, `minimum_output_wei`.
+Choose the actual reviewed profile explicitly:
 
-The worker checks module bindings, code, route, limits and balances at one confirmed
-canonical block hash. It scans a bounded NFT window, rotates currencies even on a
-currency failure and sends at most one transaction through shared pending/nonce/gas
-recovery. A persistent three-way priority rotates LP conversion, royalty conversion
-and maintenance; fees must be economical under separate absolute and relative gas
-budgets. `conversion_turn` is 0-2; each stream retains its own scan cursor. Existing
-`next_first` fields are retained for state compatibility but no longer choose
-conversion priority. With 1,000 NFTs and multiple source currencies, a complete scan takes many cycles; qualify conversion latency and economical batch thresholds before launch. Polling is not a promise of immediately claimable ETH. Error logs use `lp_conversion_deferred` or
-`lp_conversion_uneconomic` without keys, RPC secrets or raw signer errors.
+- `v4_native`: pins `rewards`, `lp_converter`, `lp_nft`, `oracle` and
+  `lp_v4_executor`; no `lp_wrapper` dependency is implied.
+- `v3_wrapper_configurable`: pins the corresponding `lp_wrapper` and current
+  governed-cap converter. WETH unwrap uses zero route ID.
+- `v3_wrapper`: historical fixed-cap worker semantics only; never relabel a saved
+  journal or silently use it for the current configurable deployment.
+
+The worker validates bindings, route, policy, balances and simulation at one
+confirmed canonical hash. It scans bounded windows and rotates currencies even
+on an individual failure. LP conversion, royalty conversion and maintenance share
+a serial sender and persistent three-way `conversion_turn` priority (0-2), with
+separate cursors. Old `next_first` fields remain for state compatibility, not
+priority selection. All existing absolute/daily gas and pending recovery limits
+apply; relative gas-to-output is a separate operator economy guard.
+
+A complete 1,000-NFT scan can take many cycles. Polling is not an immediately
+claimable-ETH promise. Logs distinguish `lp_conversion_deferred` from
+`lp_conversion_uneconomic` without secrets. Disable scheduling and reconcile any
+pending hash before moving hosts; restore from actual chain/journal state, not a
+new nonce counter.
 
 ## History, replacements and qualification
 
-`LPRewardsConverted` records source and native amounts for both reward components.
-The indexer/API reports `lp_conversions` separately from `royalty_conversions`
-and actual lifetime `Claimed` events. Earnings remain the original processed
-LP/royalty allocations, valued at today's reviewed prices; conversion credits,
-claims and imported balances are never new earnings. Reconciliation subtracts
-source conversions and adds native credits before comparing current claimables.
-Missing complete predecessor history remains unavailable, not zero.
+`LPRewardsConverted` records both source and native component amounts. API
+`lp_conversions`, separate royalties and actual lifetime claims must remain
+separate. Earnings are the original processed LP allocations plus royalties,
+valued at today's reviewed prices. Conversion, claim and imported/returned
+backing are not new income. Missing complete predecessor history is unavailable.
 
-Same-chain handoff exports native and source Rewards balances, both component
-ledgers, nonzero native indices/fractions and exact classified backing. Vault
-native principal/quarantine, Fees native reserves/dust/quarantine and Rewards
-native liabilities each have separate custody/backing rows. Receiver native slot0
-is never exported again as its separate legacy native-quarantine slot2. Funding
-first transfers into the destination companion and then acknowledges with zero
-`msg.value`; abort reverses that sequence. Destination prefunds cannot substitute
-for source backing. The `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2` schema rejects legacy
-V1 handoff; no old-source compatibility or cross-chain canonical import is claimed.
+Compatible local canonical V4 carries native/source balances, component indices,
+fractions and exact classified backing, with checked funding and funded abort.
+Destination prefunds cannot replace source backing. Old wrapped/native-2 schemas
+are not current-3 imports, and external custody does not move canonical NFTs.
 
-### Historical WETH local fixture
-
-The earlier named local fixture deployed this converter, processed allocated local
-LP fees into reserve-backed test ETH, and prepared native LP-plus-royalty claims.
-Its $1 mock prices and deterministic venue do not qualify Robinhood routes.
-It has not been upgraded or reset for native V2. Never restart an existing user's
-fixture implicitly; start a separate session for a newly reviewed profile.
-
-See [scoped verification](../reports/lp-eth-settlement/VERIFICATION.md),
-[operator manual](OPERATOR_MANUAL.md) and [release approval](RELEASE_CHECKLIST.md).
-That settlement report retains its original WETH-checkpoint scope; current native
-changes and focused evidence are in the separate native-port report. The selected
-pool's observed approximately 1.101% swap fee exceeds the unchanged 1% full-balance
-ZZZ conversion cap at reference prices. A cheaper independently qualified route,
-typed v4 conversion support, actual feeds/services and independent audit remain
-open; no invented route or raised execution limit is implied.
+The selected pool's recorded approximately 1.101% combined fee does not qualify
+a full ZZZ conversion at the default 1% cap. Qualify a cheaper funded route or
+explicitly review changed policy; never widen a signed review or invent output.
+Typed v4 support exists, but actual routes/feeds, wallet/API and keeper services,
+target gas, recovery rehearsals and independent audit remain open. Earlier
+[settlement evidence](../reports/lp-eth-settlement/VERIFICATION.md) and
+[native-port evidence](../reports/native-eth-port/VERIFICATION.md) retain their
+original source scopes. No existing fixture, service or public signer is changed.

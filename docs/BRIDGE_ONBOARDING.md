@@ -1,37 +1,9 @@
-# Future chain, pool and bridge onboarding
+# Historical bridge onboarding
 
-The vault, economic bridge adapter and custody router are bound once and remain fixed after sealing. The router can start with no policies: local mint, activation and permanent top-ups do not require a bridge. Outbound migration is unavailable until governance approves a provider policy, registers compatible routes and explicitly enables that source policy. This framework is implemented; actual bridge SDK wrappers and funded cross-chain validation are still pending. The current candidate uses $100 activation and 80/10/5/5 LP allocation with equal activated-NFT collective membership; earlier bridge/reward reports retain their original revision scope. Fresh alignment verification remains in progress.
+**Historical reference, not current operator instructions.** Integrated bridge/router/provider paths are removed from the current release. External bridging is performed by a trusted recipient after source-chain custody exit; it does not relocate canonical NFT/reward rights.
 
-## Immutable identities
-
-`TransportPolicy` identifies a reviewed/versioned provider, both EVM chain IDs, source/destination routers and SDK wrappers, wrapper runtime and channel-configuration hashes, provider-specific channel ID, and review-evidence digest. Its ID is `keccak256(abi.encode(policy))`. Registration is append-only. The evidence digest is a reference, not on-chain proof or an audit certificate.
-
-The registry stores `transportPolicyId(routeId)` permanently. A route ID is now `keccak256(abi.encode(route, policyId))`, including the full economic vault/adapter/receiver/pool and ordered asset mapping. `Route` remains unchanged; shared custody uses version-3 economic messages, and `add(Route,bytes32)` replaces the old registration ABI and route IDs must be regenerated. The version-1 transport envelope contains the policy ID and version-3 whole-bucket message bytes. Indexers/operators must use the emitted policy-bound IDs.
-
-Changing providers, channels, settings or peers requires a new policy and new routes. An existing migration plan cannot silently switch providers. Existing nonces and replay domains span providers: `keccak256(abi.encode(sourceChain, sourceEconomicAdapter, nonce))`.
-
-## Approval and execution
-
-After sealing, only the governance controller can register policies/routes or enable a source policy. Both governance execution and approved principal moves have zero mandatory delay. Guardians can pause outbound operations. Neither governance nor a provider has a router withdrawal, arbitrary-call, refund, upgrade or delegatecall entrypoint.
-
-For each future hop, review destination vault permanence and authorities, supported pool, asset equivalence/decimals, local and remote wrapper identities, bridge security/finality/backing, fee payment and recovery. Deploy and verify destination peers and wrappers separately. Register the identical policy/route on participating chains, plus canonical remote-only metadata for onward custody history. Register return, source-completion ACK, canonical-location ACK and legacy reward routes. Enable the source policy only after staged delivery evidence. The canonical chain may record remote-only graph metadata; it cannot verify remote runtime code on-chain.
-
-`propose` and `execute` both check source readiness before closing LP. The router checks it again before sending. Each local wrapper must report this router and the captured channel configuration, and its runtime hash must match. Sends transfer only the route's exact logical token vector with temporary, cleared approvals; partial consumption, zero receipts, configuration drift during send and pre-existing balance changes revert atomically. Native value is the caller-supplied bridge operating fee, not principal or mint revenue.
-
-## Pending messages and recovery
-
-Disabling a route or source policy stops new sends. It does not erase historical policies or prevent authenticated, exactly funded pending inbound settlement, even during a pause. Old providers can settle their own bound routes; they cannot settle a new provider's route. Wrong origin, provider, envelope policy, ordered tokens, amounts or replay reject. Failed handoff reverts funding and replay markers so the authentic delivery can be retried. Destination LP activation and ACK retries remain separate operations.
-
-A wrapper must authenticate source chain/router with its SDK, enforce finality and backed asset equivalence, then atomically hand off exactly two logical principal entries (a zero slot is allowed), one reward entry or zero ACK entries. Providers with per-token messages, dust trimming or separate compose execution need separately reviewed staging/normalization logic. These behaviors are not implemented by the router. No timeout withdrawal is safe merely because a bridge is slow.
-
-## Trust and limits
-
-Governance still chooses future custody code and bridge providers. Immediate governance provides no advance notice or guarantee of principal safety. Runtime hashes do not detect implementation upgrades behind unchanged proxy bytecode; configuration getters are useful only if reviewed wrappers faithfully commit to all actual settings. Bridge administrators, verification networks, remote chains and asset backing remain external trust assumptions. Inbound code/configuration drift deliberately fails closed and can halt settlement; do not mutate an active wrapper/channel, and preserve old immutable wrappers for pending messages.
-
-Migration supports future EVM chains and equivalent assets in identical nominal units. It does not promise arbitrary asset conversion, bridge availability, capital value, satellite user top-ups or migration of the economic NFT. NFTs, nonredeemable share ledgers, equal activated membership, immutable rarity/color and royalty rights stay on the canonical chain. Custody moves do not create another NFT, membership or royalty weight. Current marked LP artwork valuation is explicitly unavailable while custody is remote or in flight; rights and claims do not depend on a fabricated remote valuation. Actual providers, multi-chain rehearsal and an independent security/deployment review are required before funded use.
-
-Before approving a principal route, reserve its destination pool for the stable canonical bucket using governance-approved `Vault.reservePool(poolId,bucketId)`. Reservations are permanent and remain occupied while liquidity is away. A different bucket cannot enter that pool, and automatic merging of unrelated share ledgers is unsupported. Check destination reservation evidence before source approval; the source cannot query another chain.
-
-The schema-4 release manifest requires the route's auxiliary `bucket_id` and `source_pool_id`, plus independently reviewed `bucket_reservations` for its source and destination pools. Each record binds the canonical home chain/vault/original pool hash to the observed local `Vault.poolBucket` value at the exact inventoried block. It also names the independent reviewer and passing evidence for the release commit. The gate rejects a valid reservation belonging to another bucket, a stale observation block, or a differently valued canonical asset pair. These metadata checks do not add the auxiliary fields to the on-chain route hash and do not authenticate remote state; reviewers must verify the observations before enabling a source policy or approving principal release.
-
-Funded remote owner rewards retain canonical bucket-share attribution. Undelivered collective rewards retain collection/delivery-time equal membership rather than an unimplemented historical earned-at-venue snapshot. Existing indexed rewards, locally pending creator receipts and funded canonical dust are settled before new eligibility. Royalty receipts have their own activated 1/2/3 ledger and are not mixed into principal migration messages. No actual VRF coordinator, selected native/Pons liquidity integration or production transport is established by these rules.
+Use [current guidance](GOVERNED_CUSTODY_HANDOFF.md), [the documentation map](README.md) and
+[sole Todo](../TODO.md). [Original source-scoped text](https://github.com/ABEF/AAA/blob/a5fad3e744da3d2ecbde01611c3f0b5371736784/docs/BRIDGE_ONBOARDING.md)
+is retained in Git with the historical evidence that referred to it. This short
+entry preserves existing report links without presenting retired functions as
+available calls. No historical verification is reclassified as current.

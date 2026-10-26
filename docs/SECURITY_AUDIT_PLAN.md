@@ -1,121 +1,13 @@
 # Security audit plan
 
-## Full current-candidate audit - 2026-10-25
-
-[Scope, findings and fixes](../reports/full-audit-20261025/REVIEW.md),
-[principal execution](../reports/full-audit-20261025/PRINCIPAL.md),
-[ownership/custody rights](../reports/full-audit-20261025/RIGHTS.md) and
-[services](../reports/full-audit-20261025/SERVICES.md) cover the current fixed
-ETH/ZZZ/accounting3/governance2/localV4 source. Fresh analyzer findings are
-reviewed against actual call paths; detector labels are not confirmed exploit
-counts or independent approval. Backend composition defects are fixed without
-changing financial rights or permissions. Complete release regression, live
-dependencies, authority/marketplace/operations and independent audit stay open.
-
-## Current smaller architecture - 2026-10-25
-
-Read [the pruning review](../reports/architecture-pruning-20261025/REVIEW.md),
-[verification](../reports/architecture-pruning-20261025/VERIFICATION.md) and
-[Position3 guide](POSITION_V3.md). Current source removes the zero-delay scheduler,
-seven Position provenance fields, unused remote states, zero-asset backing hooks,
-single-feed shadow storage and obsolete research/bridge tooling. Direct governance2,
-accounting3 and local canonicalV4 are explicit; old deployments/journals stay old.
-
-The source-bound reference now has31contracts/608functions/13receive hooks.
-49distinct selected Solidity behaviors and512distinct Python methods pass across
-recorded source scopes, not a fresh full regression.127inputs typecheck and36normal
-object gates pass. Access total initcode42,177 leaves6,975bytes; Vault runtime22,852
-leaves1,724bytes. RoyaltyFactory's69-byte runtime margin remains tight. The two
-runtime increases are individually explained in the exact bytecode comparison.
-
-Native website3 integration, actual feeds/routes/VRF/authorities/OpenSea/services,
-operating and economic/gas qualification plus independent audit stay open. No
-deployment, public transaction, website source/build/server, existing Anvil/NFT/
-LP/balance/journal or monitor action. Production NOT APPROVED. The dated sections
-below retain their original source/evidence scope and do not qualify newer code.
-
-## October25 consistency and security fixes
-
-The [day review](../reports/daily-security-20261025/REVIEW.md) fixes native-pool
-identity admission, makes Buyback use the same immutable ZZZ as activation and
-normal exit, removes historical venue reads from funded incumbent dust settlement,
-and rejects poisoned indexer log provenance before committing a batch. No new
-custody right, token migration setter or automatic history repair is introduced.
-
-[Scoped verification](../reports/daily-security-20261025/VERIFICATION.md):28 distinct
-Solidity behaviors across recorded fixture scopes,35 affected Python methods,
-124-input ABI/AST and36 normal object gates. Current reference:31 contracts,
-643 functions. Registry runtime10,131; Vault23,889 with687 bytes of headroom.
-Access retains only29 bytes with minimal role arguments; actual release arrays
-remain unqualified. Older sections below retain their original source scope.
-Real services, marketplace/authority rehearsals and independent audit remain open.
-Production NOT APPROVED; no running deployment, website or service changed.
-
-The [on-chain safety/cost follow-up](../reports/onchain-safety/REVIEW.md) covers
-bounded uptime calls, memory-only strategy prices, packed contribution bounds
-and static-loop reward contexts. Independently review the exact optimized source,
-live dependency gas/proxy behavior and all retained guards; internal parity tests
-and gas savings do not close any production security workstream.
-
-**Current execution policy (2026-10-25):** governance may configure contribution,
-conversion and maintenance loss limits within hard 10% ceilings. The new candidate
-defaults are 2%/1%/3%, with gas separate; earlier 1% contribution evidence retains
-its original source scope. Changing a default does not update an existing sealed
-deployment. Captured operation policy, original approved custody floors, stronger
-caller/venue minima and backing remain. [Exact controls and risks](EXECUTION_LOSS_POLICY.md),
-[typed v4 routes](TYPED_V4_ROUTES.md). The candidate remains undeployed and
-production NOT APPROVED.
-
-
-## Selected-pool and broader native-design review - 2026-10-24
-
-The [internal audit](../reports/daily-security-20261024/REVIEW.md) fixes fee-aware
-ERC20/native sizing and evidence-reader robustness, and corrects exit operations.
-It also audits the broader [native ETH design](NATIVE_ETH_ARCHITECTURE.md): currency
-identity, native indices, historical reserves, two-stage canonical funding/abort,
-nonduplicated receiver backing and versioned backend traces. The [native V2 candidate](../reports/native-eth-port/VERIFICATION.md) now implements
-these paths with scoped local checks. Explicit ETH/WETH conversion, legacy-schema
-import, target-chain/service qualification and independent approval remain open.
-The earlier WETH checkpoint evidence retains its original source scope.
-
-## Current governed-custody scope (2026-10-25)
-
-Review the [governed handoff](GOVERNED_CUSTODY_HANDOFF.md) and [current native evidence](../reports/native-eth-port/VERIFICATION.md); earlier [custody evidence](../reports/custody-handoff/VERIFICATION.md) retains its WETH-accounting source scope. The user explicitly accepts sending principal and separately tracked royalty funds to an external EOA/contract chosen by governance. This is a public authority/trust boundary, not an enforced guarantee of return. Normal exit/completion retain the approval's captured absolute floor (3% loss by default); those checks do not protect funds while outside protocol control. Raw emergency mode has explicit raw minima and no USD-loss guarantee.
-
-This release uses either an atomic supported local pool change or a source-chain
-custody-only handoff. Governance may send assets to an EOA/contract whose operator
-then performs token migration or bridging externally. No integrated bridge,
-remote ledger or finality provider is needed for that supported handoff. It does
-not move canonical NFTs, make external assets currently claimable or guarantee
-that the custodian returns funds.
-
-Audit the exact source/share/nonce snapshots, close/all-ZZZ conversion atomicity,
-explicit raw-mode selection, donation/other-ledger exclusion, actual local LP
-backing, 1:10 decimal handling and no timeout/partial recovery. Royalty exit must
-preserve original per-NFT liabilities/quarantine and ownership rights, suspend
-only the exited currency, require actual full restoration and never distribute
-that restoration as new income. Check native-currency activation deferral and
-replay. Whole-collection capture must reject all outstanding custody. Review the
-immutable matching ZZZ buyback target and retained strict burn verification. Token migration uses custody exit and a fresh reviewed deployment, not retargeting.
-
-The old v3 bridge/pair execution contracts are retired; their historical tests are not current evidence. Adapt and independently qualify the release inventory, hosting/keeper/API status handling, real markets/native pins, operational recovery and holder disclosures before real funds.
-
-
-Reviewed 2026-10-19. **Undeployed candidate; not approved for real funds.**
-These seven workstreams define acceptance evidence, not completed audit claims.
-Status lives in the [central Todo](../TODO.md#security--audit) and
-[task ledger](project-todo.json); production approval stays in the
-[release approval record](RELEASE_CHECKLIST.md).
-
-The current [internal NFT-rights review](../reports/nft-rights-audit/REVIEW.md),
-[implementation assessment](../reports/nft-rights-audit/IMPLEMENTATION.md) and
-[coverage map](../reports/nft-rights-audit/COVERAGE.md) distinguish actual source,
-executed tests and mocked dependencies. They do not replace an independent audit.
-
-The [review of October 18 changes](../reports/daily-security-20261018/REVIEW.md)
-adds a cross-change assessment and an API availability reproduction. Its VRF/
-handoff, escrow, governance and operating findings are owned by existing central
-Todo tasks; it does not close these workstreams or authorize production.
+Current threat model: local native ETH/fixedZZZ, accounting3/directgovernance2/
+fee intake1/localV4; fixed80/10/5/5 and separate eligible rarity royalties.
+No creator inbox, integrated bridge or remote-proof interface remains. Same-chain
+handoff and trusted source-chain custody are separate; no forced return or
+post-halt canonical recovery is promised. [Full internal audit](../reports/full-audit-20261025/REVIEW.md)
+and [latest backend fixes](../reports/backend-remediation-20261026/REVIEW.md)
+retain their evidence scope, not independent release approval. The seven workstreams
+below map to [the single security Todo](../TODO.md#security--audit).
 
 ## Priorities and evidence
 
@@ -140,7 +32,7 @@ Immediate governance controls supported feeds, assets, routes, destinations
 and bounded strategy settings. Guardians can pause; keepers have no redemption
 function. Governance and migration delays are fixed at zero; there is no advance notice window.
 
-- Audit the absence of a notice window: compromised governance can act immediately; no guardian veto or delay is promised. Verify zero controller constructor/single/batch scheduling delay and rejection of delay updates. Custody approvals have fresh deadlines, not a waiting period.
+- Audit the absence of a notice window: compromised governance can act immediately; no guardian veto or delay is promised. Verify direct governance authentication, two-step wallet replacement and the absence of timelock scheduling/executor selectors. Custody approvals have fresh deadlines, not a waiting period.
 - Build and test a complete role/call matrix, including bootstrap, callbacks,
   compromised keepers/guardians, governance operations and forbidden module rebinding.
 - Verify all post-seal changes preserve custody and historical liabilities. Audit

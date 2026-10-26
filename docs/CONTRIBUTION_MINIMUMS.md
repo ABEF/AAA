@@ -1,17 +1,11 @@
-**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
-
 # Activation and LP top-up minimums
 
 The production candidate requires **$100 original input value to activate** and
 **$5 original input value to increase an already activated NFT's LP**. Values use
 reviewed Oracle prices and token decimals; five tokens do not necessarily equal
-five dollars. Native V2 values actual ETH at address zero using its two-source USD policy; legacy wrapper profiles retain their historical meaning.
+five dollars. Current accounting 3 values actual ETH at address zero using its
+two-source USD policy. Native ETH and fixed ZZZ are the only original inputs;
+legacy deployments retain their actual profiles.
 
 [Activation Entry](../src/ZZZActivationEntry.sol) checks the original input floor.
 The Vault also checks it through its fixed [Budget](../src/ZZZMigrationBudget.sol)
@@ -32,8 +26,8 @@ not promise that every route or market condition will support a $5 transaction.
 1. Read the selected pool's complete `accounting(poolId)` configuration and current
    authority/canonical state. The deployed binary must include these floors.
 2. To allow $5 top-ups, set `minDepositUSD` to `5e18` in the full reviewed config.
-   Governance calls `configure` or `configureNative` as appropriate through the
-   AccessController's exact-operation procedure. These calls still perform full
+   Governance calls `configure` or `configureNative` as appropriate directly from the
+   selected governance wallet; Access has no generic/scheduled executor. These calls still perform full
    token, price and venue validation. Preserve unrelated parameters and selection.
 3. Simulate the exact call, execute, confirm the getter/event and re-prepare quotes.
    Independently check original source value, actual new LP, unchanged incumbent
@@ -52,8 +46,10 @@ still tracked in the [central Todo](../TODO.md#task-activation-assets).
 
 New ERC-20 allowance targets the pinned Entry and the exact requested source
 amount in verified token decimals. The production preparer returns only an
-approval draft when allowance is insufficient, resetting an existing nonzero
-insufficient allowance to zero first. After confirmation it prepares again.
+approval draft when allowance is insufficient, replacing it with exactly the
+requested amount even when the previous allowance is smaller and nonzero.
+Tokens requiring a separate zero-reset fail simulation and are unsupported by
+this at-most-two-send flow. After approval confirmation, prepare again.
 It never requests an unlimited or arbitrary larger approval. Sufficient existing
 allowance is reused; it is not automatically revoked or reduced. Cancelling or
 failing the later contribution can leave an approval in place. Native ETH requires
@@ -62,23 +58,21 @@ no ERC-20 approval and must equal the requested transaction value.
 Entry pulls exactly `amountIn`; its downstream router/Vault allowances are bounded
 to the relevant amount and cleared after use. Ownership, lifecycle, expiry and
 execution checks still apply to the separately confirmed contribution. The
-local TEST-1 wallet follows explicit exact-approval/Entry confirmations; it is
-not production extension-wallet integration or proof that every token behaves
-like the mock. The port-4179 static site does not sign wallet transactions.
+local disposable wallets exercise explicit exact-approval/Entry confirmations;
+they are not public-wallet qualification or proof that every actual token behaves
+like a mock. Public website deployment remains null and signing Anvil-only.
 
 ## Local integration and preservation
 
-The current launcher source configures its disposable pool minimum to $5, while
-activation retains the contract's $100 floor. Its whole-token TEST-1 input accepts
-5-99,999 for increases and 100-99,999 for activation. The normal static preview
-accepts USD examples in USDC, ZZZ, ETH or USDG; this does not qualify public routes.
+Existing deployments retain the minimums compiled into their actual bytecode.
+Source edits do not patch their storage, reset NFTs or change saved journals.
+Historical mock currencies and older USDC/USDG examples do not describe the
+current ETH/ZZZ production input policy. A separately copied $1 rehearsal is
+local-only and cannot qualify the production $100 activation floor.
 
-New preview writes enforce $5. Existing v7 histories retain smaller historical
-top-ups when replayed; user holdings are not reset. The isolated $1 activation
-rehearsal continues to change only its copied activation floor, not production.
-
-Existing running Anvil deployments are not patched by editing source. This change
-did not restart port 8892, change its pool configuration or discard its state.
-Rebuild with source-matched artifacts and start a separate disposable session to
-exercise the new deployed rule. Preserve wanted receipts before intentionally
-replacing a session; see [local setup](LOCAL_TEST_STACK.md).
+Preserve historical preview events and wanted receipts rather than rejecting or
+rewriting them to fit a new display rule. Use a separate source-matched disposable
+session for a newly reviewed profile; see [local setup](LOCAL_TEST_STACK.md).
+Actual routes, dual-price observations, wallet/API services and target-chain gas
+remain release work. A minimum is not a capital guarantee: current LP value can
+fall after execution, and holders cannot redeem principal.

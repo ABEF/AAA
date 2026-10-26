@@ -1,18 +1,11 @@
-**Current policy, 2026-10-25:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
-
 # Selected Robinhood ETH / ZZZ pool
 
-## User decision - 2026-10-24
+## Selected integration target
 
 The selected integration target is the existing pool
 `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`.
-This replaces Pons and the earlier proposed 0.30% pool. Selection is not release approval.
+This supersedes the Pons and proposed 0.30% targets. Pool selection is not release
+approval; the recorded observation below is not a live price or depth claim.
 
 | Property | Verified selection |
 | --- | --- |
@@ -41,22 +34,53 @@ Native admission and accounting no longer consult WETH or its proxy policy.
 No dynamic fees, custom hooks or other native tokens are admitted. WETH/ZZZ uses
 ordinary hookless `configure`. Exactly one pool accepts contributions at a time.
 
-The native-accounting V2 candidate uses native ETH at the venue and throughout
+The accounting-3 candidate uses native ETH at the venue and throughout
 principal/fee/reward custody; it does not normalize ETH to WETH. It preserves
 prefunds, requires exact declared payable budgets and clears exact ERC20 allowances. Vault harvests before increasing LP so old
 native fees cannot silently pay new principal. Unexpected offsets fail atomically.
 Ordinary venue fees earned by PoPL's own LP receive the unchanged 80/10/5/5 split.
-Pons creator payments are optional historical work, not a dependency of this pool.
+Creator-payment inboxes and hook-revenue intake are removed, not optional launch
+services. Actual venue fees from PoPL's own liquidity fund the allocation.
 Royalties stay separate; ZZZ-side holder fees still require reviewed ETH conversion.
-The user retained the1% conversion-loss cap, gas separate, and requires a cheaper
-approved conversion route. The selected approximately1.101% fee does not qualify
-a full ZZZ-reward conversion at reference prices; never raise the cap to force it.
+The default reward-conversion loss cap is 1%, gas separate; governance can
+change future conversion policy within its 10% ceiling. At the 1% default, the
+recorded approximately 1.101% selected-pool fee does not qualify a full ZZZ reward
+conversion at reference prices. A cheaper approved route is required; do not
+silently widen a review or relabel backed ZZZ as converted ETH.
+
+## Native admission and settlement safeguards
+
+`configureNative` verifies Robinhood chain 4663 and the pinned Core,
+PositionManager, StateView, Permit2 and fixed ZZZ runtimes/wiring. Initialized
+slot state must match the static PoolKey fee. Dynamic fees, custom hooks, other
+native pairs and mismatched source ZZZ fail closed. `accounting` and
+`isNativePool` recheck native venue bindings; `get` returns stored configuration.
+All preserve the real `address(0)` currency identity. There is no wrapper-valued
+native-asset alias to use as an alternative identity.
+
+LiquidityManager uses exact declared native budgets, actual LP ownership/key/
+ticks/liquidity and measured balance deltas. It preserves its own and the
+PositionManager's prefunds, clears exact token/Permit2 approvals and refunds only
+the unused authenticated budget. Vault harvests before increasing LP, preventing
+older native fees from paying new principal. Unexpected offsets, partial fills,
+malformed callbacks and unrelated ETH cannot create principal or earned fees.
+Collection/close sends authenticated core credits to Vault; actual fees are
+classified separately from principal and reserves. Changed Uniswap protocol
+fees do not by themselves freeze collection/close; swaps still require actual
+net outputs and all configured minima.
+
+Native principal custody, raw exit and exact native return do not call WETH.
+An operation explicitly using a reviewed WETH/v3 conversion route retains that
+wrapper/proxy dependency; native admission does not prove its safety. A broken
+pool, token or recipient can still prevent settlement. No universal sweep or
+withdrawal is provided. [Native architecture](NATIVE_ETH_ARCHITECTURE.md) covers
+the full custody and ledger boundary.
 
 ## Move funds versus exit
 
 | Intent | Operation | Boundary |
 | --- | --- | --- |
-| Another fee tier with the identical actual ETH/ZZZ pair | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)`; old `movePool` remains an alias | Atomic actual destination LP; unchanged NFT shares; one captured aggregate maintenance cap (3% default, governance maximum10%), gas separate; no external custody. |
+| Another fee tier with the identical actual ETH/ZZZ pair | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)`; the obsolete Migration `movePool` alias is removed | Atomic actual destination LP; unchanged NFT shares; one captured aggregate maintenance cap (3% default, governance maximum 10%), gas separate; no external custody. |
 | Send principal to your regular address | Approve request, globally pause, then `Migration.exit(id)` | Normal mode converts all attributed principal to configured ZZZ before sending; recipient custody is explicitly trusted. |
 | Swap impossible / prices unavailable | Separately approve `rawExit=true`, then `exit(id)` | Transfers attributed native ETH/ZZZ under raw close minima; no 3% USD guarantee; never automatic fallback. |
 
@@ -65,7 +89,7 @@ unimplemented and are rejected; they need a reviewed explicit conversion boundar
 Different-pair returns through separately approved external custody remain a
 manual path, with actual new-token funding and destination LP checks. Moving LP does not silently enable destination deposits or alter
 routes. [Exact operator steps](GOVERNED_CUSTODY_HANDOFF.md#move-funds-without-external-custody).
-The aggregate maintenance cap defaults to3% and governance can change it up to10%
+The aggregate maintenance cap defaults to 3% and governance can change it up to 10%
 after sealing. Existing stricter pool/caller limits remain. Normal custody plans
 retain their original absolute floor; explicit raw exit is a separate risk approval.
 Native raw exit/recovery do not call WETH, but still depend on actual core/token
@@ -75,17 +99,20 @@ exit guarantee through failed external dependencies.
 ## Remaining qualification
 
 The selected pool fee applies only to the swapped portion of a contribution.
-The default contribution budget is2%, requiring at least98% of conservative upper
+The default contribution budget is 2%, requiring at least 98% of conservative upper
 input value as actual new LP; caller-bound policy and full execution checks still
-apply. The separate1% reward-conversion cap requires a cheaper qualified route. Independent ZZZ/USD pricing,
-ETH/ZZZ/USDG/USDC routes, full conversion/gas economics, production inventory,
+apply. The separate 1% reward-conversion cap requires a cheaper qualified route. Independent ZZZ/USD pricing,
+ETH/ZZZ contribution and reward-conversion routes, any optional royalty-currency
+conversion, full execution/gas economics, production inventory,
 VRF, authorities, marketplace support, operating rehearsals and independent audit
 remain open. Bounded post-seal request/buyback controls and typed v4 conversion are implemented;
 actual provider/market qualification remains open. Atomic ETH/WETH different-pair
 movement is unsupported; explicit external custody remains a distinct trusted path. Existing fork observations
 retain their original WETH-accounting source scope; local native fixtures do not
-qualify live services. Fresh version2 backend/keeper pins and actual native wallet/service acceptance
-are required. The native read/unsigned website profile is implemented locally; old 8902 state/journals remain unchanged and public deployment is null.
+qualify live services. Fresh accounting-3 / fee-intake-1 / governance-2 runtime pins and actual native
+wallet/service acceptance are required. Historical native-2 website reads do not
+qualify current-3 integration. Existing fixtures/journals keep their original
+profiles and public deployment is null.
 
 [Native candidate evidence](../reports/native-eth-port/VERIFICATION.md) |
 [Earlier selected-pool evidence](../reports/hookless-pool/VERIFICATION.md) |

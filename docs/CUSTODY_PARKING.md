@@ -10,6 +10,8 @@ Current [Position3](POSITION_V3.md) uses None0/Active1/Outbound2/Dormant3/Parked
 and accrued rights remain attached; LP token ID becomes zero and returned
 principal is attributed to that bucket's idle ledger. Closed LP earns no fees.
 
+<a id="authority-and-exact-authorization"></a>
+
 ## Authorization and input review
 
 The system must be sealed, canonically operating and paused. The actual selected

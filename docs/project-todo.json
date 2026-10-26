@@ -628,7 +628,7 @@
           "status": "todo",
           "title": "Identify two defensible independent ZZZ USD sources",
           "text": "Ask the ZZZ team for actual independent on-chain pricing/provider options and underlying market references. No pair is selected. Two adapters reading the same thin pool cannot establish independent economic pricing.",
-          "href": "docs/PRODUCTION_SERVICES.md#usd-prices-and-sequencer-status",
+          "href": "docs/PRODUCTION_SERVICES.md#dependency-inventory",
           "acceptance": [
             "Ask for two defensible independent ZZZ/USD source proposals: provider, target chain, public source/adapter addresses, denomination/decimals, underlying reporters/markets, heartbeat/deviation/history, admins/upgrades and outage support. Record absence or a shared sole market honestly rather than inventing a provider.",
             "If suitable sources do not exist, discuss a supportable authenticated on-chain pricing design and independent market coverage. Team approval is input, not security qualification. Do not substitute the contribution pool instantaneous price, two wrappers of one feed, an unverified web API or an assumed stablecoin peg.",
@@ -641,7 +641,7 @@
           "status": "todo",
           "title": "Confirm ZZZ token and selected pool controls",
           "text": "Confirm ZZZ token controls, upgrade/migration authorities and liquidity plans. The selected pool is hookless; no creator-payment or Pons-hook integration is required.",
-          "href": "docs/ROBINHOOD_POOL.md#network-and-pool-identity",
+          "href": "docs/POOL_SELECTION.md",
           "acceptance": [
             "Confirm the selected existing hookless ETH/ZZZ venue and independent token/pool controllers; the former Pons fee-recipient and hook-control questions are conditional historical research, not assumed new-pool authorities.",
             "Confirm intended chain/token/pool identities, published verified sources, deployment provenance and current market plan. Distinguish observations from team commitments; independently match the physical PoolKey and deployed code.",
@@ -911,7 +911,8 @@
             "[Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.",
             "[Day audit](reports/day-readiness-20261025/REVIEW.md) fixes a pre-existing contract/API/replay boundary mismatch during native royalty custody. Review converted-credit enrollment and both old/new NFT cohorts; no principal/reward rights or permissions change. Verified source/mocked API history is not hosted-provider qualification.",
             "[Full current-candidate audit](reports/full-audit-20261025/REVIEW.md) traces principal, ownership/economic/custody and service boundaries; fixes current activation and history-audit composition. Fresh source-scoped static analysis is manually triaged separately from real-service/independent qualification. No new principal redemption, delayed governance, signing or deployment authority.",
-            "[Backend remediation](reports/backend-remediation-20261026/VERIFICATION.md): five Python reporting modules hardened; final167distinct affected methods pass (31new/136existing). Malformed core values and inconsistent history fail closed; genuine outages remain unavailable. No Solidity, schema, signing, database/service or website rollout; actual provider/history/operations qualification and independent audit remain open."
+            "[Backend remediation](reports/backend-remediation-20261026/VERIFICATION.md): five Python reporting modules hardened; final167distinct affected methods pass (31new/136existing). Malformed core values and inconsistent history fail closed; genuine outages remain unavailable. No Solidity, schema, signing, database/service or website rollout; actual provider/history/operations qualification and independent audit remain open.",
+            "[Documentation consistency review](reports/documentation-cleanup-20261026/README.md): current instructions consolidated by contract/backend/frontend responsibilities; removed obsolete procedures/profile examples and merged five redundant pages. Historical reports retain source scope, original dirty docs are backed up and no implementation/service/deployment change is inferred. Task IDs/statuses and live qualification gates are unchanged."
           ]
         }
       ]

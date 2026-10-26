@@ -646,7 +646,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-zzz-price"></a>
 
-- [ ] **[Identify two defensible independent ZZZ USD sources](docs/PRODUCTION_SERVICES.md#usd-prices-and-sequencer-status)** - To do. Ask the ZZZ team for actual independent on-chain pricing/provider options and underlying market references. No pair is selected. Two adapters reading the same thin pool cannot establish independent economic pricing.
+- [ ] **[Identify two defensible independent ZZZ USD sources](docs/PRODUCTION_SERVICES.md#dependency-inventory)** - To do. Ask the ZZZ team for actual independent on-chain pricing/provider options and underlying market references. No pair is selected. Two adapters reading the same thin pool cannot establish independent economic pricing.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -660,7 +660,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-market-controls"></a>
 
-- [ ] **[Confirm ZZZ token and selected pool controls](docs/ROBINHOOD_POOL.md#network-and-pool-identity)** - To do. Confirm ZZZ token controls, upgrade/migration authorities and liquidity plans. The selected pool is hookless; no creator-payment or Pons-hook integration is required.
+- [ ] **[Confirm ZZZ token and selected pool controls](docs/POOL_SELECTION.md)** - To do. Confirm ZZZ token controls, upgrade/migration authorities and liquidity plans. The selected pool is hookless; no creator-payment or Pons-hook integration is required.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -935,6 +935,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Day audit](reports/day-readiness-20261025/REVIEW.md) fixes a pre-existing contract/API/replay boundary mismatch during native royalty custody. Review converted-credit enrollment and both old/new NFT cohorts; no principal/reward rights or permissions change. Verified source/mocked API history is not hosted-provider qualification.
   - [Full current-candidate audit](reports/full-audit-20261025/REVIEW.md) traces principal, ownership/economic/custody and service boundaries; fixes current activation and history-audit composition. Fresh source-scoped static analysis is manually triaged separately from real-service/independent qualification. No new principal redemption, delayed governance, signing or deployment authority.
   - [Backend remediation](reports/backend-remediation-20261026/VERIFICATION.md): five Python reporting modules hardened; final167distinct affected methods pass (31new/136existing). Malformed core values and inconsistent history fail closed; genuine outages remain unavailable. No Solidity, schema, signing, database/service or website rollout; actual provider/history/operations qualification and independent audit remain open.
+  - [Documentation consistency review](reports/documentation-cleanup-20261026/README.md): current instructions consolidated by contract/backend/frontend responsibilities; removed obsolete procedures/profile examples and merged five redundant pages. Historical reports retain source scope, original dirty docs are backed up and no implementation/service/deployment change is inferred. Task IDs/statuses and live qualification gates are unchanged.
 
   </details>
 
@@ -1095,4 +1096,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `0b16f62b1dbfe79ff4e1272dcb67e20f6f4a43a3ce79bcf8c1b7eb7741b7f099`.
+Snapshot SHA-256: `cee3997ed66ea59809ec035732018999f337b9b2d4b4496cb0b7b27a68db8637`.

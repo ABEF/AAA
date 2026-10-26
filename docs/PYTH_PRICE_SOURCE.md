@@ -9,7 +9,7 @@ publish prices, verify Pyth updates itself, accept payments, own funds, change a
 source, or add a new protocol authority. No production reader is deployed or admitted.
 
 This is a compatible source shape, **not approval of Pyth or a production source
-pair**. The current [research and evidence](../reports/release-services-20261025/feeds-routes/REVIEW.md)
+pair**. The dated [research and evidence](../reports/release-services-20261025/feeds-routes/REVIEW.md)
 identify candidate ETH/USD, USDG/USD and USDC/USD products. No ZZZ/USD entry was
 found in the downloaded Chainlink or Pyth catalogs. Catalog absence is not proof
 that no custom service exists. ZZZ still needs two independently reviewed sources,
@@ -68,9 +68,9 @@ be counted as independent providers merely because their addresses differ.
    proof/signing/update architecture. Pin and independently review these upstream
    dependencies. The reader's runtime check does not detect a proxy implementation
    change behind unchanged proxy bytecode.
-2. Agree and fund an update service. Pyth's current sponsored-feed list does not
-   list Robinhood. A deployment address does not promise that its stored prices
-   are fresh. Core updates may require an authenticated data subscription,
+2. Agree and fund an update service. The 2026-10-25 research snapshot found no
+   Robinhood sponsored feed; recheck actual current service coverage and terms
+   during qualification. A deployment address does not promise fresh prices. Core updates may require an authenticated data subscription,
    signed-update submission, update fees and network gas. Keep credentials in
    the service's protected secret mechanism, outside reports, Git and logs.
 3. Select and document the maximum age and confidence policy from real data.

@@ -1,5 +1,12 @@
 # Existing website connected to disposable contracts
 
+This guide records the historical pre-native/pricing-V2 Anvil `/app/` fixture.
+Its mock assets, 1% guard, calldata and journals belong to that exact profile.
+Fresh current-artifact launcher startup is blocked; current accounting 3 accepts
+ETH/fixed ZZZ and defaults to 2% contribution loss. Do not relabel or reset an
+existing fixture to match it. See [current compatibility](LOCAL_API_REHEARSAL.md#current-compatibility-boundary).
+No URL or port in this history establishes a currently running service.
+
 **Browser-wallet option (2026-10-20):** open the local mount with the exact
 `?wallet=browser` query to use independent EIP-1193 signing and the separate
 unsigned/receipt-observation path. Read [setup, approvals and recovery](BROWSER_WALLET.md)
@@ -32,11 +39,11 @@ fees and exercising a local rebalance. Never expose this server to the Internet.
    the local operator fulfills its original mock randomness request. The art
    explorer does not choose mint traits. The interactive fixture caps minting
    at 20, while the unmodified NFT supply cap is 1,000.
-4. Activate or add LP with whole 100–99,999 TEST-1. It is already one member of
-   the local pair and its test feed marks it at $1. If allowance is insufficient,
-   review an exact approval first. This does not activate or add LP. Reopen the
-   NFT, retain/check the amount, acknowledge the commitment, then separately
-   review the Entry transaction. The contract enforces at least 99% marginal
+4. This fixture activates with exactly 100 TEST-1 and grows LP with whole 5–99,999
+   units. TEST-1 is a local pair member marked at mock $1. If allowance is
+   insufficient, review an exact approval first; approval adds no LP. After its
+   confirmation, prepare and explicitly confirm a fresh complete Entry review.
+   This historical contract requires at least 99% marginal
    deployed LP; gas is shown separately. This does not qualify a public swap route.
 5. Claim LP fees and royalties together for one NFT, or review a wallet batch
    of at most ten NFTs / 32 currency operations. Larger portfolios require a
@@ -153,7 +160,6 @@ review remain open. The local adapter must never be reused as a public signer.
 Stopping/restarting follows the local-stack runbook; it creates a new deployment,
 not a persistent chain recovery. No contract or governance configuration changed.
 
-
 ### Activation review feedback and targeted artwork status
 
 Contribution validation, preparation progress and errors appear beside the review
@@ -176,12 +182,14 @@ $1 mock USD estimate, not a live market quote. After exact approval, the next LP
 review opens automatically but still requires explicit confirmation. The window
 stays open during receipt and balance reads; artwork follows confirmed LP only.
 
-The local wallet and production unsigned preparation now replace an insufficient
+The local wallet and matching historical unsigned preparation replace an insufficient
 allowance with the exact requested amount, never an automatic zero reset or unlimited
 approval. Direct approval must simulate successfully; reset-only tokens are
 unsupported by the two-transaction flow. An already sufficient allowance is reused.
 Governed Entry pulls only from its authenticated caller. Native ETH needs no wallet
-approval and is wrapped inside Entry atomically for a compatible native pool.
+approval and is wrapped inside this historical Entry for its compatible fixture.
+The current accounting 3 native-ETH candidate has a different settlement/profile;
+these wrapper instructions do not apply to it.
 
 Use the separate launcher profile `--named-assets --native-input` to test native
 ETH. It substitutes `LocalNativeRegistry` admission on chain 31337 and retains the
@@ -201,7 +209,6 @@ The fixed activation amount is a local UI/API product rule; real quote rounding
 and price-drift policy must be resolved before asserting contract-level equality.
 See [scoped verification](../reports/local-contribution-flow/VERIFICATION.md).
 
-
 ## Independent local wallet confirmations - 2026-10-20
 
 Typed local wallet drafts now pin the sender nonce. Another wallet's transaction
@@ -211,7 +218,7 @@ reviewed gas ceiling; same-wallet nonce changes, expiry, owner changes and inval
 execution still require fresh review. Legacy operator actions keep global revision
 checks. This supersedes the earlier rule rejecting every cross-wallet revision.
 
-Reload both browsers after the guarded web-only upgrade on 8898. Old unsigned
+For the historical 8898 upgrade, both browsers needed reloading. Old unsigned
 reviews are invalidated: review afresh. Recover saved pending outcomes by the same
 operation ID before starting new work; never clear storage to bypass uncertainty.
 No new authority or contract function is introduced. Cancel an unsigned review to
@@ -219,9 +226,9 @@ stop; restoring old service code restores the global conflict behavior, not prio
 chain state. Verify receipts and confirmed ownership/LP after execution. Never
 reset Anvil to resolve a browser confirmation issue. The guarded external recovery
 script preserves existing contracts and positions; ordinary launcher restart does
-not promise persistence. Port 8896 remains on the earlier service until separately
-reloaded. [70 distinct Python cases and two actual local mints](../reports/local-wallet-concurrency/NONCE_VERIFICATION.md).
-
+not promise persistence. The record's 8896/8898 status is historical; inspect the
+actual manifest/process instead of assuming either is running or upgraded.
+[70 distinct Python cases and two actual local mints](../reports/local-wallet-concurrency/NONCE_VERIFICATION.md).
 
 ## Capacity decision and manual acceptance - 2026-10-20
 

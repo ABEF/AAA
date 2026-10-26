@@ -1,17 +1,9 @@
 # Historical creator-revenue measurement
 
-The former Pons creator-payment agreement and sampled-liquidity measurement tool
-are **retired from the current release**. PoPL receives actual fees earned by its
-own position in the selected hookless ETH/ZZZ pool; it does not calculate a creator
-invoice or depend on a promised creator payout.
+**Historical reference, not current operator instructions.** Creator-share measurement tools and creator-payment agreement gates are removed for the selected hookless pool. Token/feed/dependency questions for the ZZZ team remain in the sole Todo.
 
-The old calculation code, tests and guide are preserved as exact historical text
-in [the retirement archive](../reports/obsolete-code-20261025/retired-tools/).
-They are not importable runtime tools or current test evidence. Earlier reports
-retain their original source scope.
-
-For current accounting, use [economics](ECONOMICS.md),
-[the simplified release boundary](SIMPLIFIED_RELEASE.md) and
-[the operator manual](OPERATOR_MANUAL.md). Marketplace NFT royalties remain a
-separate funded ledger; removing creator-payment measurements does not remove
-royalty receipts, guarded conversion, claims or historical earnings.
+Use [current guidance](POOL_SELECTION.md), [the documentation map](README.md) and
+[sole Todo](../TODO.md). [Original source-scoped text](https://github.com/ABEF/AAA/blob/a5fad3e744da3d2ecbde01611c3f0b5371736784/docs/REVENUE_SHARE.md)
+is retained in Git with the historical evidence that referred to it. This short
+entry preserves existing report links without presenting retired functions as
+available calls. No historical verification is reclassified as current.

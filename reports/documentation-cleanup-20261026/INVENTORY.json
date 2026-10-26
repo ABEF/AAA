@@ -1,0 +1,1424 @@
+{
+  "initial_main": "a5fad3e744da3d2ecbde01611c3f0b5371736784",
+  "reviewed_tracked_md": 348,
+  "current_md_inventory": {
+    "AGENTS.md": {
+      "sha256": "accc99159f2a754348b76a924b7ba3e6773d314c79407ba31d581db1f7ab9f72",
+      "classification": "current or explicitly versioned guide"
+    },
+    "PROJECT_CONTEXT.md": {
+      "sha256": "32fef82e712774dfa5416f85c08b2eb31a81f4b0409ef40980c7cfbe360aa6c6",
+      "classification": "current or explicitly versioned guide"
+    },
+    "README.md": {
+      "sha256": "3f52f6d9a342c19e836c7f79f4540cd58b2b309d2f9b87b43c9896512b7abce5",
+      "classification": "current or explicitly versioned guide"
+    },
+    "SECURITY.md": {
+      "sha256": "4c63b3843adf078f5c33525ac3c39c111b0ddfea3edfaf8de049179e1fc02338",
+      "classification": "current or explicitly versioned guide"
+    },
+    "TODO.md": {
+      "sha256": "44f07c8e5a0ded5bc35e9316f0a1176672e63d07c988a30690e035b12c7dcae1",
+      "classification": "generated sole Todo"
+    },
+    "design/nft-metadata/palette-system-v1/README.md": {
+      "sha256": "63372de7faee067324ca052c46f769a3066e55775641b66bd6f1dcbf0387aee0",
+      "classification": "historical catalogue/fixture"
+    },
+    "docs/ACTIVATION_ENTRY.md": {
+      "sha256": "9552c5bf05bfcce5d08288ceae0ad671602b5927eba4388bcf142f85eed59c09",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ACTIVATION_PREPARATION.md": {
+      "sha256": "a7f076eb77f79c6b21f23b8fb8f9cdcca53c752b1288e44bfec126c93dc9679a",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ACTIVATION_ROUTING.md": {
+      "sha256": "e6680cd3dfac681b2946c484d5050f8c0fbca41064e219d743a1fb0d95330d5b",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/API_INGRESS.md": {
+      "sha256": "a95f23047ec14cf26bb31a3cae1ccf039c8cf1df3b75685f40152c1f3cd9ad7f",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ARCHITECTURE.md": {
+      "sha256": "eb6a4451d1d43aa1f5cf35b045fea1554c7003baf42a901c6a37ce244e53ce6e",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ARCHITECTURE_EVOLUTION.md": {
+      "sha256": "0919e6a16e4eb3a2be75e95a7eabc1c22ad9883cd20187f5e3a96f107d5a43f4",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ARTWORK_PUBLICATION.md": {
+      "sha256": "e16159b92bcb3c808a8433f06a4d603c0f8c2ec25213165e11c2929276c31be2",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/AUDIT.md": {
+      "sha256": "750d66b792415f1ec16a569294a5f7119a6397ea356ef686d7856fc6a4e1a38e",
+      "classification": "historical reference pointer"
+    },
+    "docs/BRIDGE_ONBOARDING.md": {
+      "sha256": "d59f6628217c84071862c417b250d20121a4a3b80889234e332143136846fa7a",
+      "classification": "historical reference pointer"
+    },
+    "docs/BROWSER_WALLET.md": {
+      "sha256": "c56d848a7ba43d7f09669daa24be46b9bbc556a1e51047e46ba7c622073d9598",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/CANONICAL_HANDOFF.md": {
+      "sha256": "c3b385a29d83668dc8a16a22c7ec3cba4232269d0c9b2dc508b2df5d8bed8da5",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/CANONICAL_MIGRATION_DESIGN.md": {
+      "sha256": "ca8206fd4d07f30923dee07d908d1b716d26c8078afe148b8e8f4c860ac2dab6",
+      "classification": "historical reference pointer"
+    },
+    "docs/CHANGELOG.md": {
+      "sha256": "1f3f86ff37a2586edb235314b553eabb1d527a0a6f33699483a95d58c050d467",
+      "classification": "historical chronology"
+    },
+    "docs/CHANGE_AND_RECOVERY.md": {
+      "sha256": "1da7ebefd6e599c3b8e9719206215a3ce9e464430817b04d835d714d1d644d0b",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/CLAIM_ROUTER.md": {
+      "sha256": "8d8fef89fba441b369354368a898c05fae0ee72fe52231c0b4bb9ae4882f488d",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/COLLECTION_READS.md": {
+      "sha256": "ba657db9c222c1774186dc935e2ee817d97c280ec6569a4026fda10e10d7b20e",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/COMPONENT_STATUS.md": {
+      "sha256": "fd836e7858e28b1e598feef485388f522af5b115e63a59beafd14bb6ba4e7ef2",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/CONCURRENT_SERVICES.md": {
+      "sha256": "6516de8abd0a3d5d823a8446f1388b5ff0d7142ddc6adae4d9d97ae29862d528",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/CONTRACT_FUNCTIONS.md": {
+      "sha256": "84bb36b5645ac170747cd79bffbe3850ca67fe19fe53ae38908a2098e2ae8b5e",
+      "classification": "generated callable reference"
+    },
+    "docs/CONTRIBUTION_MINIMUMS.md": {
+      "sha256": "aad6ade3e6d296d8cfe66488620fa127530ce29930c5bd7f36a0b0e8ab6abe5c",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/CUSTODY_PARKING.md": {
+      "sha256": "1ebfba26574cf441c828992c36b87db18445ccfc3c3630134c3a54c74ccad7c3",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/DEPLOYMENT_ADDRESSES.md": {
+      "sha256": "ef1b65057c447615fc7aa5ef157262856c147cdd5bf5b79cf1f37acf4ec81faa",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/DEPLOYMENT_WEBSITE.md": {
+      "sha256": "12876f18a1c8fcdef1a5c6b52b5a728ada77e2c234bd99ed894a115854e99bbd",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/DEVELOPMENT.md": {
+      "sha256": "e8e91402556785c2ac2706a2f23d629ab5c9f16a5b036ffddff0398395c7910a",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/DYNAMIC_LIQUIDITY.md": {
+      "sha256": "29d0d76e91d24ce889e58740bf2488288f0d27c594a09a2751739c2232a721c1",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/EARNINGS_HISTORY.md": {
+      "sha256": "6b0b1f22860e506f5760d92e4848a0fa51c6254c0479538e8972ed961823e190",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ECONOMICS.md": {
+      "sha256": "8913e80ce7ddf1b1c60ce893a3642abeb0ebf5dc120d6d50f5ef07d8761d181e",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/EXECUTION_LOSS_POLICY.md": {
+      "sha256": "708522a09e4cb2978b68dd77385e96e33e0a1f6c8e3a3cb0343348586b584531",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/EXTERNAL_REWARDS.md": {
+      "sha256": "669ce07d88b9bd80e5174c390f602a54722fea0fa7215c834cdf57c99c15b471",
+      "classification": "historical reference pointer"
+    },
+    "docs/FRONTEND_API.md": {
+      "sha256": "4fc6c1238c81783a3c8dc5b00b06fd38d5081fa1f5cadf30a47abba7bb03f17f",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/FRONTEND_HISTORY.md": {
+      "sha256": "951779318205536eaf74aabd549fda0d7d870a09c029be83cecba27e3ac1d1a0",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/FRONTEND_LIFECYCLE.md": {
+      "sha256": "47458f7e2ed00d4b4c161c6b52e1b5e87ceeac5d0f531be3d4f1a81c5cf71939",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/FRONTEND_LINEAGE.md": {
+      "sha256": "2c05ccbb200cca8611caface20b8a778da67cfde3a82d44a535643b9eb1447a1",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/FRONTEND_TRANSACTIONS.md": {
+      "sha256": "d27c1879d9d9347ae63abc3ae0f22f69580577f7e70bc04afb39acd3cb93ac9e",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/FROZEN_REVIEW_BUNDLE.md": {
+      "sha256": "aff86822af7ecea31b785cd6469b795f91cf4ac04c00a9187a2e211a1af502a7",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/GOVERNANCE.md": {
+      "sha256": "7da2f2a1f2dcb333549500093f5c820874ae868a191f0ae78ad16e8e06f274be",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/GOVERNED_CUSTODY_HANDOFF.md": {
+      "sha256": "c4ef0dbddb0215c7e61297c1279b2c9100822239a676c66eb822d46fbf09d09b",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/HISTORY_AUDIT.md": {
+      "sha256": "3f4bba2589dfb03378666f11f68f8965eb2ea488a902bf6daf9d5ab4abf2414f",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/HOLDER_PREFLIGHT.md": {
+      "sha256": "d9e736ffac5babf0e32b6551b3456f520d8f2e04f84f161beeef60a94061edb0",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/IDLE_AND_DUST.md": {
+      "sha256": "11d0ab331452bfed2f9a4953a74c23704b192a4c9c5cefad1a48d2b43fa2d38a",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "sha256": "bdda3aabd4895f64357cbae6e609b9a6ece278ff69f62430ea98dfde04b376dc",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/INDEXER_RECOVERY.md": {
+      "sha256": "047004dbbb99ced07bdedb462253bc9dc9ae529eec8f2e083ffcf2f0f7828b4d",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/INTEGRATION_CAMPAIGN.md": {
+      "sha256": "585343e4f416faa27a5335dfb9ffdce2cea9f45a3a7360fbb44c4c2fd8159c38",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "sha256": "48a9f75f045a691c57dd0edf25d0f558cf62281c98e74254429032e3d420495d",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/KEEPER_REHEARSALS.md": {
+      "sha256": "cda19931c62e59a0b3ffc0b6744b64dac30af0901ed2d0041e7aa3b6c0ab7830",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/LOCAL_API_REHEARSAL.md": {
+      "sha256": "b859d7e65eb8e0da6c89d2c195466dcf128d5066c05a031674ddfdf50419c20e",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/LOCAL_TEST_STACK.md": {
+      "sha256": "62125a3146b83aa239dbf137ad01b68e5c0e25ab47f1d34a2d54b198902e1153",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/LOCAL_WEBSITE.md": {
+      "sha256": "687b49f0aaf8fdbf7ce1412a305b2e74f51bd3e43a758e15aa05eec7a0e50536",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/LP_ETH_SETTLEMENT.md": {
+      "sha256": "a28eba318dc2ca2f555ba944295e5a4cd052df65753539fe3f9cad2df4adf3da",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/MIGRATION_SAFETY.md": {
+      "sha256": "74ab22e2ad3a125195b46c08e620e65cd9923f848fc7bb01880da4a296d9208c",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/MINT_INTEGRATION_QUALIFICATION.md": {
+      "sha256": "3e8cc11af337c809c45f23ce6f93c28269bb69bfd45418e7f438367e81217dd7",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/NATIVE_ETH_ARCHITECTURE.md": {
+      "sha256": "fccb1927bf7a226bd97a3dbbf452f7dc30962f6a00170161e63338eaca483c21",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/NATIVE_WEBSITE_PROFILE.md": {
+      "sha256": "d34719cdc35f4676b88e58d17b65ac9bd72a80c9461ca8c6fceef4e53faa8959",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/NFT_METADATA.md": {
+      "sha256": "19d032f473ca8d87c5881f5a56e0b7440bb4238d29c225303717042a89a3583e",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ONE_DOLLAR_REHEARSAL.md": {
+      "sha256": "a2da31259f9b97284011c908252a060d75fa962c8244d4a5850f4d5daa5278fe",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/OPERATIONS.md": {
+      "sha256": "49a26462ceb3afef822170bd32e8db67e38426071c4990ceed9163fd584f7ed4",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "fc75544ffdc717f9515d12e1c00f679fc2f8d320a37bcd71e427e3f89c161476",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/PAIR_MIGRATION.md": {
+      "sha256": "a34eb7e0a40b4cbec1a97adfd7fecc02606bc505eb187246c7ebc63403ee23d8",
+      "classification": "historical reference pointer"
+    },
+    "docs/POOL_SELECTION.md": {
+      "sha256": "ef5a0ef65d707998f12bb354b7bc18c1d041e38da77c9714cdb525256b403bc2",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/POSITION_V3.md": {
+      "sha256": "b3fbd4cdf59ce96cff89f672a66ac29f408c59f0d1099b21346aef1cdb6566b1",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/POST_SEAL_POLICY.md": {
+      "sha256": "33feeab9510aef83c331f6b590871bcf485493104e6d198e62351cb1b28ae9fe",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/PRICE_SECURITY.md": {
+      "sha256": "c6bc1322cb3ea4ba63fdc00d18fe5ab43b069081716bda7d909e43f80f2d845c",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/PRODUCTION_PREFLIGHT.md": {
+      "sha256": "cee531303ae8a3c22953fef97cd0bd5c0b11f4ce192437b4e6d0aae516bb2495",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/PRODUCTION_SERVICES.md": {
+      "sha256": "ad8e9148599c554f9b49d96c095124d198b0d9fcdb67dcb7c064ab45dff8de14",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/PYTH_PRICE_SOURCE.md": {
+      "sha256": "6b62fb7cd614b2f5a3124870727fb8b1ec26581702f98db0a77ea7f999b70f29",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/RANGE_POLICY_UPDATES.md": {
+      "sha256": "46dd5e7f52f21c91b323dd9ade9dede6845189066a54beb5737b6ca5650fa6f3",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/README.md": {
+      "sha256": "faf880241855e19638792bff21b3ab1cc46573a16bc6959f06c28edda90c3464",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "sha256": "f9b697d485636d390bf0a880cc64dda8e9f74ad9dc644c77a73cb63907fc1104",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/REVENUE_SHARE.md": {
+      "sha256": "e6b54914aa3041da5a3dae83faf8c63def35af9ef0124e72fe6680a98280ddcd",
+      "classification": "historical reference pointer"
+    },
+    "docs/ROADMAP.md": {
+      "sha256": "aad5e3311a4f8e2cf6d080770816e44918cfcb76f4973dda5989bc05ecd8e6eb",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ROBINHOOD_POOL.md": {
+      "sha256": "6d4f57a7f70186a48f1b1c7b2122907df79fa18c77992bea355df8a70ee8c92c",
+      "classification": "historical reference pointer"
+    },
+    "docs/ROYALTY_REPORTING.md": {
+      "sha256": "b3434875ea9bb9cdcc461420e6af533e6180cf66b0043278ee75ffd1fadeeb63",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/ROYALTY_SETTLEMENT.md": {
+      "sha256": "f2ddaf2e2edced08587bb1bca990ac60b422ee06fada51c98d625b56937dc01d",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/RPC_PREPARATION_QUALIFICATION.md": {
+      "sha256": "2fe601e9c62e6a7baac340f1eae8b6066644319f72873b37cf6c5ac6a6f04628",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/SECURITY.md": {
+      "sha256": "0618a83c0dccedddbe5afc1c89a2791ca4317b93af3500ae0e80233bef2c6705",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/SECURITY_AUDIT_PLAN.md": {
+      "sha256": "a6b57c32c3b27375194666e607cfe6adbdebc7c93afa18d40a7bb845e724d3ec",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/SIMPLIFIED_RELEASE.md": {
+      "sha256": "058420b6e3f626242ac6e36c875ffa917406618a1f15c6c106be2c15ca68642b",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/TODO_WORKFLOW.md": {
+      "sha256": "8cf43955d38b4f09f3e8025269243667f190b08e8326ba2aa35a6ec93820b267",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/TYPED_V4_ROUTES.md": {
+      "sha256": "76f04b32d53ee610d0b6c785ca6f1d1db642011f8361e8ba361e101a2c3cd925",
+      "classification": "current or explicitly versioned guide"
+    },
+    "docs/WORK_HANDOFF.md": {
+      "sha256": "709c94654da5e05d0ff5a8ebc160b58d7aead4b8797434ac4f74af81a5c4388a",
+      "classification": "current or explicitly versioned guide"
+    },
+    "reports/CI_REPAIR.md": {
+      "sha256": "110d1a34a0c2ed9f543203591f7a42ab774be8165453f7440b9098e00f8300a4",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/IMPLEMENTATION_UPDATE.md": {
+      "sha256": "cb5abb172b99d65246fdc1663a814a02a0032b758705505a58842ba6e9ccf39f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/PRODUCTION_READINESS.md": {
+      "sha256": "2c9114e02ef0ebf1f524bbb287d37938f535345eb64e17f48e7042b96e5cd409",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/README.md": {
+      "sha256": "62628b2d548afc69e5024e4965dfc7c1d759530fd6606f741ae3b9e91d78c18e",
+      "classification": "historical evidence index"
+    },
+    "reports/activation-preparation/VERIFICATION.md": {
+      "sha256": "70cf39303ce0ee93d146770f8397be6b9bd487c2b8a1335086aba9f7b7086a7d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/activation-route-observation/VERIFICATION.md": {
+      "sha256": "3503e151486045317af4a472f9b50390ab8f4d669065759459b007d5624e5542",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/api-admission/VERIFICATION.md": {
+      "sha256": "539c09afa6500e960e9e3a557ab98097b083a383a04c0c922e115289f70ed14e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/api-chain-rehearsal/PUBLICATION.md": {
+      "sha256": "288a509e99724e60c21bfa0388265a4f898181f8f669ecff75a549c1fb00be4f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/api-chain-rehearsal/VERIFICATION.md": {
+      "sha256": "91531f63b17c98439741435e83373f9784b823f637af26c80b4202c05a38ab4c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/api-work-limits/VERIFICATION.md": {
+      "sha256": "03fcd4b383cf03f63f03ad18f78a3f548c86e7981e8ed1adb49b9a494d2974f2",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-evolution-ci/README.md": {
+      "sha256": "cc71524b3cdf0ef4d13c7f65365ea558982701b0727fb78003d0d11d768d4505",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-evolution/INTERNAL_DOC_REVIEW.md": {
+      "sha256": "8af31423cc6c3494ca5b0084d2a357a597c0c42fae40fdcb32b39e88b8b3c0ed",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-evolution/REVIEW.md": {
+      "sha256": "b27e1df0e267d78a4a1f942aa13a24c04be1b2f85d8bbdb76458d3b80e082929",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-evolution/REVISED_PROMPT.md": {
+      "sha256": "ed87f10aeb69f44e9097fb62bfd5154788b8243eec2f0def2e76d78916c5a5db",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-evolution/VERIFICATION.md": {
+      "sha256": "b5a9ea339bfb5a2626dbde1bde6887daa472c3845c4db90a209077a81a03e35c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-evolution/capacity/README.md": {
+      "sha256": "6957aa4663d46681ef18d617152da19f85fb00c50b19927aaba74f53e68f9128",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-evolution/static-analysis/README.md": {
+      "sha256": "c9e8dae9be9e3ff5efa4f571aded5d582aa8c51abc4e13ee11ae8711b87cbb50",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-pruning-20261025/PUBLICATION.md": {
+      "sha256": "84ffc5a73ea2e1765380adce093acbc5ebc31c52dd510bd3c2b395d7918e8638",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-pruning-20261025/REVIEW.md": {
+      "sha256": "0028e850f2201d3a23278d1c55665eb76d58bfb76656cffa21ff7cdabb50ea25",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-pruning-20261025/VERIFICATION.md": {
+      "sha256": "39301df5ade690b4ddf5b21a4a516ec5057780776ec7817c3bb39f3ba98c418b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/architecture-pruning-20261025/fixture-repairs/README.md": {
+      "sha256": "abb85e88a99c9580756c809eb80e7a4a2d18092ee80d65fa3ce6f73903f2c5da",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/artwork-palette/README.md": {
+      "sha256": "ea5f441cf1d87eff1e025a07f41d8ab74d479a5e5ae576967d8008f0fef8ad41",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/artwork-palettes/README.md": {
+      "sha256": "0b4a5977fae3bb51c008e7120002c5e7d5aa03a23ae13a6c0fc44b59fd24c2fd",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/auditability-refactor-20261025/PUBLICATION.md": {
+      "sha256": "cc07a1e3662806706aa65ce06db76f7c71902583cb8a0b52d6da1b1ff749d709",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/auditability-refactor-20261025/REVIEW.md": {
+      "sha256": "c931e11f53062459d74670ea705fdedd6b7ab5e802504023d7f91e677b2a8953",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/auditability-refactor-20261025/VERIFICATION.md": {
+      "sha256": "c42890793a1938554085d51260436ad2db4754a091ae953ac690f462f927ba98",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/auditability-refactor-20261025/compiler-comparison.md": {
+      "sha256": "8907e1ba3441e638a07752f7d10c97eafa83ae0240ef9f2a668ee1fc760ac213",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/auditability-refactor-20261025/solidity/SELECTION.md": {
+      "sha256": "6946347af98483c1e836e63c0093d47df9fe34b6d4a4b6dbfe14c96eff833b77",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/backend-remediation-20261026/HISTORY.md": {
+      "sha256": "248c02fa5651f8c43137a1fa2ee889b3c73e2b2701da38465ec5a58d35a5e8fd",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/backend-remediation-20261026/OPERATIONS.md": {
+      "sha256": "82ad23336e65e63d522e3c7b7ae8d9649a3e8c07cd6dcdbcf02599ba8427cbd9",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/backend-remediation-20261026/PROFILE.md": {
+      "sha256": "7b953dac19c17372d34a7f0a57bcf80d0dd896c458710a77b3797fe8bdacae3b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/backend-remediation-20261026/PUBLICATION.md": {
+      "sha256": "b6826c066e566d7dffb27332dd76aa29cd785139abada48b3ad8c2b1b49a7884",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/backend-remediation-20261026/REVIEW.md": {
+      "sha256": "0f3b0b3c651bbe158f48606ee8046745fd26004d74d9d5a6e96c7b0d8f9dce19",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/backend-remediation-20261026/VERIFICATION.md": {
+      "sha256": "8113623a3babf14a6759ea7aebc0a5560ca6e54ee314fbb2bc8032cbe5b16262",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/ACCOUNT_CHOOSER.md": {
+      "sha256": "56a4afd2ca4fcbcca1d6dd5e5b175054ba8a4074a6839b03adadfce6e97255fc",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/AUTHORIZED_ACCOUNTS.md": {
+      "sha256": "cb10a7c3385ccc9ed63bf550c7fa4240ec684a655322029004cab250ea944e8d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/AUTO_CONFIRMATION.md": {
+      "sha256": "9df5b46a8a0fe3c0a34638455f7dba3009374f09320d4814171ae06b9e3858ad",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/CHAIN_READER.md": {
+      "sha256": "faa0c687e77d9047e064a205f5bf7e01d8e95c4a6cba3317b4e5ec2148d34c93",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/CONNECTION_RECOVERY.md": {
+      "sha256": "9969df7a9ffd3f450e600c36cfadf5d2058f9f1317e5015e8ff24ec893672f28",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md": {
+      "sha256": "ecdf73e2b6bf9e917b223ab63ad708b5a11d83cb01db1d5dbc10ebb817f71b96",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/FRESH_SELECTION.md": {
+      "sha256": "a65cf3ea69ca855b805d47bf351c06239c770ce4d728b36b8ce52f4d4c129cc8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/LIFECYCLE_REVIEW.md": {
+      "sha256": "af832ea6deabe9a41ad6eba49e6b7bfdefa3b5bf9c553306b79d77c87bb30ef6",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/MINT_LOADING.md": {
+      "sha256": "5e8858b1b5d7826447d34e1b3c37fdbe1e1b5eaad7e1e69ce19820acebf7d956",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/MINT_WAIT_PERFORMANCE.md": {
+      "sha256": "694cdb5d1da529dad9170b74834edbef2571049ae805bcec795333f7c5072c30",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/NUMERIC_NONCE.md": {
+      "sha256": "78287b1ac49d50844b96d1152a556a8451c88269c506c05b7d0ec917ffbd0c78",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/PENDING_NONCE.md": {
+      "sha256": "6e4ee75204437f66d393fea8d3821b23b16061db576d6b9e6044c2f15a32d963",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/PUBLICATION.md": {
+      "sha256": "fcbe11aa9dd5482d2114cb8b1ad424088e23fa99ba20a9c493405fcfbcb4faef",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/RPC_QUANTITIES.md": {
+      "sha256": "739c49304263d5628f5310da4bf739f61cf4092da6adef5c8dadd56ec15e7df4",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/VERIFICATION.md": {
+      "sha256": "3797278f33c69a37b07ab2968e533bd3e7778e82643eaacfe8f61c182db01d59",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md": {
+      "sha256": "664c8f5c681b18b6bd07c89126d1bb705d06d74294ed13c3b12c6de68f10596b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/browser-wallet/pending-nonce/PUBLICATION.md": {
+      "sha256": "91bfdd850740684ff0636a45ac87bbc386cdb40efa63f29bf25ae43f6199e0b8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/canonical-handoff/REVIEW.md": {
+      "sha256": "14d2a42d83ce73e93f3734483e85c5d0e5e68209624c0114dfaee3524c7c51c9",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/canonical-handoff/VERIFICATION.md": {
+      "sha256": "5dbd9423ab74a1d2908729f8fc4288b758bddc6cbdae4472769c9bf906203e36",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/canonical-handoff/diagnostic/regression/README.md": {
+      "sha256": "226de07c3d5ff0358f7ffe31dc6a7da94dbcad39f185207a0672743a0bf34aa9",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/canonical-handoff/keeper/resume-20261018/README.md": {
+      "sha256": "2d9e9c5e4f9e5945c932e94ab9480b9c0dfb9c61d33f43f85de1e5c8508b31b4",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/canonical-handoff/regression/README.md": {
+      "sha256": "6c56d618468ce6fd7b463b7783edab8d2c0cd97528d6d7869554f8b635de9bbf",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/canonical-handoff/static/README.md": {
+      "sha256": "bdc75fc4974eaf90d231a320f94f6e5772005afa7eaa9ab27ce8a22adb5ea794",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/canonical-preparation/keeper/README.md": {
+      "sha256": "aa3072ab11e00f5ae69bd88620674e93423d4482f22d5f6121ebaded804f8a2d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/collection-reads/PUBLICATION.md": {
+      "sha256": "58dca9332dee52aec38b43f3e89ddadaf4e89e84f0453bda7023613582b818a1",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/collection-reads/VERIFICATION.md": {
+      "sha256": "22d25b1f8dddcc4344823a6b469275c394f2cb0b311ab16c30a78d474aba936b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/CORE_REVIEW.md": {
+      "sha256": "3a260198fb35710b9620131825a6d7fc4971980bf9272cd105da5b2029c3cb89",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/COVERAGE.md": {
+      "sha256": "2368509de542519179f1f55ca2f97039892d28b2ed64122e9c6deb48d12c2892",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/PROMPT.md": {
+      "sha256": "8a6db677eb547184f37c2060e385f1440641112b46da20add864ec8bbd26a131",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/PUBLICATION.md": {
+      "sha256": "bcb1cf588108a96627246cc135192d2706e0a13091c310e872ec03ffa3524888",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/REVIEW.md": {
+      "sha256": "a1b56e9a90c11022a57d1bc870c462d9eb1bd75ef877b894e9ac5c86ff49dc44",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/VERIFICATION.md": {
+      "sha256": "51fc84c619346707fea727e09863299eeb7d15d2d3bc30b0ea740318ec910ff2",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/backend/indexer/TOOL_RESULTS.md": {
+      "sha256": "84c31c104e1b0e8dfe1c3dec87c33bf9ac43436b96f2127f4f9411675fa6ac58",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/core/VERIFICATION.md": {
+      "sha256": "073c24415e211fe92feb7728b15817be4df737762f0994f64e51bbf624cf444f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/comprehensive-improvement-20261025/entry/VERIFICATION.md": {
+      "sha256": "0b54c88d732f06a2ae1c12d3826f13921d4ada621b511c6a68f11d69a9cba5c6",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/concurrent-services/VERIFICATION.md": {
+      "sha256": "86451e92ff1c1e43b8f2bd658ccbeb1be495935cb044f1711e109eac22f02dc9",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/custody-handoff/PUBLICATION.md": {
+      "sha256": "8f2040f04cd1b314b27587cd5700d1a6ad688e026c78e6b8b1b356743472fe3c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/custody-handoff/REVIEW.md": {
+      "sha256": "818de4099ce86953a89c6d9a6d13ae2eb65c210628d7e1b13777410f0d580dba",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/custody-handoff/VERIFICATION.md": {
+      "sha256": "fa016ba5490ad7df8eec9990447abdc651018217dd897cf9adf82b28049ba329",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/daily-security-20261018/REVIEW.md": {
+      "sha256": "e1648fb1fde4bc9917170bae1595f9c3115c1a405ac6a70ac512d6c0b9d91636",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/daily-security-20261024/PUBLICATION.md": {
+      "sha256": "8f6d3a9b1125190d14cabd43635de6bb7fbd716f49e897f017546acdfecfbf52",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/daily-security-20261024/REVIEW.md": {
+      "sha256": "a5390643425366408e8a1610a0ad01a42c830ad9f480648c7a65570acdb61eba",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/daily-security-20261025/NECESSITY.md": {
+      "sha256": "d7530d0d70ad7ac6989fada91b70f5321f222978af5bb9f4fc1923b306dad249",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/daily-security-20261025/PUBLICATION.md": {
+      "sha256": "4563ad9224f78e3c534a5bbec3416ca45499a7caf4b0438f01cc19277b3938a8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/daily-security-20261025/REVIEW.md": {
+      "sha256": "36f510957d68f4e23df15e04fc8005a9924fcf902074b9384f6700f8d1aa18ba",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/daily-security-20261025/SERVICE_REVIEW.md": {
+      "sha256": "e1d785c538ee1cfb679884e20910663ca152534581529e07d20779dba66dd680",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/daily-security-20261025/VERIFICATION.md": {
+      "sha256": "99811f6440be8c1ab0cdd1f708b3cf28b78b71e3bf24da6c21b1ed6caa2c10c8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/ADAPTED_PROMPT.md": {
+      "sha256": "bc02035ef6e094a13924fb385120fb2aa00ddf2a2c1f1164ffa0016290675c52",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/PRESERVATION.md": {
+      "sha256": "d6a15c4193ebdd0489c803d1444934d55de02f9ca27d6021c1925395853c5ec6",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/PUBLICATION.md": {
+      "sha256": "2d49c0ee50c8f79855aeb92f6b47de7473e1cafcb41aa04d437db81b07af6cbc",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/READINESS.md": {
+      "sha256": "d5f6099f28d7550f0acfdab61029bc7c2739798d8c7fc403b9ad4719dfae913d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/REVIEW.md": {
+      "sha256": "2f51e9a8dee423bcae8dcc5d193ad81a927093b417146e913744afac7943532a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/SCOPE.md": {
+      "sha256": "9d3d407676cf3209a0a5c07167842db07a434270dd0f74e952604ce1dbe9beef",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/VERIFICATION.md": {
+      "sha256": "3e5de534ccaa01499c4d08b7b6a2290ef84465a763696c2453564ca6663d8fa2",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/evidence-review.md": {
+      "sha256": "b8cb65a9a36d1a0637f68d1662b5ed705902a9b9c66503730a816592bce05dac",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/native-assertion-matrix.md": {
+      "sha256": "21ed20be2260e0669f06fcffdf658c126773287a9f7efb025b0de9f24b730f99",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/role-gas.md": {
+      "sha256": "23f66c052bb6eaafe071f616a6f371fbc8ef9d36c9de7055a534940378118c5f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/royalty-matrix.md": {
+      "sha256": "1b73c3e5ce7fea3df1a0beea93927da2566c04a2a07064ce6e655e0c828a701f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/solidity/NATIVE_CUSTODY_BOUNDARY.md": {
+      "sha256": "9c0d8b4f37925ea2e2cce00c1aa29edca10229ee300431205cacc5edfd5998aa",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/day-readiness-20261025/solidity/NATIVE_REGRESSIONS.md": {
+      "sha256": "cab0a87f4c7ac6b46982c2e1a2251e92caad635ca6b31e14ee1705a4ed1396b2",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/ADAPTED_PROMPT.md": {
+      "sha256": "3131f7e2e42373a97f3074b07a12ed5a9b1665c37c04da17242e6e8f2772374a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/PUBLICATION.md": {
+      "sha256": "c00b2c1c4b9d6cbaac087a4e68b1af825146a551183145e577081ed8e0b849e0",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/REVIEW.md": {
+      "sha256": "dd8fa193a3570c6469c53f2d5585c5246add844efe364a7192d823c3d284527b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/UPSTREAM.md": {
+      "sha256": "2b170731155987e10d89cf46b3ae973c1ee71ba0286c6097cbc063a98cf6fce6",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/VERIFICATION.md": {
+      "sha256": "ebe0b3844d22a4eaccf1bfe837b8488b2ee367285e9cc18ca7312aece2da2420",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/compiler-comparison.md": {
+      "sha256": "fde90e20e2d4de6703192572523d0fcfed521b8074480504bec15b854edbafcb",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/custody-review.md": {
+      "sha256": "58bcf84cfdd9dfa48029f53deb83c4cb773df88aed3eb8013d9568492d72c18e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/initial-compiler-comparison.md": {
+      "sha256": "f96a6259e764ff8711dc5734d41d9700863ef25172628318bcce80b1fad738b6",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/rewards-review.md": {
+      "sha256": "312ab67a4c927148935a26604300ca20f10b17859b71b5140893b388905c4a42",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/solidity/SELECTED_VERIFICATION.md": {
+      "sha256": "68996fe946a6464884026510d16ce7c230ad5e9c7bbc2f1e1bf35745e3356e45",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deep-cleanup-20261025/venue-review.md": {
+      "sha256": "b1c95353b04b71d5e805c56e972aa7eb3fb2b8e112991547114f8b81a3891c4e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deployment-adapter/PUBLICATION.md": {
+      "sha256": "c2f52090f1a09e5b8ca3a11136a6d8bb059c01828c4647ffc5b1f27bb5476da8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deployment-adapter/VERIFICATION.md": {
+      "sha256": "95989c29d2cccc3199401697371a17c2c869f348110b7af4397025f75394c900",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deployment-local-wallet/PUBLICATION.md": {
+      "sha256": "93a132400ff62495cb3fc78bee48349f59ca15f6b476da91954b5a906c08f934",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/deployment-local-wallet/VERIFICATION.md": {
+      "sha256": "9b9d966681e766132e7b492cd464385a58d2ed9fff4c3c5814d087913c1928bf",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/documentation-cleanup-20261026/README.md": {
+      "sha256": "425e0815d380faba848a33015c8052cc52a0268213bebdcbc9ddd40819a9d98e",
+      "classification": "current or explicitly versioned guide"
+    },
+    "reports/dynamic-liquidity/PROMPT.md": {
+      "sha256": "59b1e5803759e19ca04d927e87704b9b656e95fb78b52a71c3d6025d3be8855c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/dynamic-liquidity/REVIEW.md": {
+      "sha256": "5d49430876800f3367b75a3b9e6e1b000727fbcebe891bcabd7a1fe5f4dd7a2b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/dynamic-liquidity/VERIFICATION.md": {
+      "sha256": "3210d2878373bb536d3fc1d8984a77a11f679a0c746e78ba7d80c676b469a33f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/earnings-history/VERIFICATION.md": {
+      "sha256": "b3e75363eaa0e6a54459c9a997cc04c32922a09de57c17edc804e566a55a3a5c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/frontend-lifecycle/VERIFICATION.md": {
+      "sha256": "2242cbba0d87fe4d0e298222566bf82de2fa4831393d152358abc035348530b2",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/frontend-lineage/VERIFICATION.md": {
+      "sha256": "ed76fb70e8b01708f3de3b3e5b584101e4f1533af46720ae0af37884689cee6a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/frontend-state/VERIFICATION.md": {
+      "sha256": "6597044351a76582528b81fdabf7d3a536ae85309b7c37e7198360fae34ea80a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/COVERAGE.md": {
+      "sha256": "3d3930bb2b36597db759187fe205bd531b094859577147b2053a4920b7ae4fe3",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/PRINCIPAL.md": {
+      "sha256": "4fbccc2cd50cc0b857da584b179d6f1959e94f753bd883ce38dcaad20b433d9e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/PUBLICATION.md": {
+      "sha256": "64a63f693a9b9d6b8106e9ac1ab7028abc701542246306e077b187b5c1b70d7d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/READINESS.md": {
+      "sha256": "75dff33d8ca4fc5488e3e90bef5a3569b47fb854c806a09f043e250896ced46e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/REVIEW.md": {
+      "sha256": "f2d8005b978878ccba3a2f90bb94b451438e4d43d5a1bfa63ad30f1cd0cefe5d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/RIGHTS.md": {
+      "sha256": "aaf5f3fb8d94935197f08fd1f7e740b43ad28040839651752da45b2fe2c7b1e1",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/SERVICES.md": {
+      "sha256": "ce381b09b8d2c633c0e7ac5f9a29f2efa71f1dbc9ef500c303a929a1f600edf1",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/UPSTREAM.md": {
+      "sha256": "509330ac4794be738fea991e770e83d4556af7d6521cb1a6a040298abf55b6a8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/VERIFICATION.md": {
+      "sha256": "bb4a267748b1acfa0713c2e79620959e37c7a3093ff23f8156e7966c04cd0590",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/full-audit-20261025/static-rights-review.md": {
+      "sha256": "ddeb6bf53800067fd8e03e925ba97df010e4008eef8f0b6a1942e9941daf9a7a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/future-bridge/README.md": {
+      "sha256": "7e7b561c50e82d6c95a600f6deb0d947388df5377374e21655915c84bc348f3f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/gap-hardening/README.md": {
+      "sha256": "1e5ae44343440a14ab6769e297325e174c33e2fa59ab7606084043dc89025e55",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/gap-hardening/fork/README.md": {
+      "sha256": "29910c0ff863bb4de90df67e9e25cdabe5b63c0574535c18863efda3ab0ae347",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/gap-hardening/static-analysis/README.md": {
+      "sha256": "6c4ecc082632fee6bb90ca4bffb9889146b55b74c8a8819aba9f08d52bff523e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/history-audit/VERIFICATION.md": {
+      "sha256": "648b010cfd92d6daeb0959b90f241ba2b8c0f6961213349aff6a0d54607df170",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/history/ARCHITECTURE-per-nft.md": {
+      "sha256": "02de38abf61485a28d02b73684e3ee35252077539832dfaea67ce0eaeb8154a8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/history/README.md": {
+      "sha256": "8a160bf5873d34432aaa8aef5815a86451e2c666cdac15f1e711b95e2a47a8dc",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/history/README.v0.2.md": {
+      "sha256": "a25a8406264e7b0e691c54003f7afc73b80f6c303fa8daddfe2f56765793e634",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/history/retired-v3-tests/README.md": {
+      "sha256": "00e938c7abe211ee7b31f0505cce1ef3a4b91b3a7710652d513d3a803bf200eb",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/holder-preflight/VERIFICATION.md": {
+      "sha256": "b1dba7067903bee26983a59c540ce0630367b720a4aa6fbd1f91e8b05848e5fc",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/hookless-pool/PUBLICATION.md": {
+      "sha256": "fd9982b60b7299d94d4a245119322043383678f0817e73eff0747deb89aa26eb",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/hookless-pool/REVIEW.md": {
+      "sha256": "e6a6830aedd26e6460255662e17d8eb1acbebb8160e9591828f29dc7374171f3",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/hookless-pool/VERIFICATION.md": {
+      "sha256": "a3f70cd7016a65a079e3873efaff239e178e8eceb097e4625c75ce3f93fd2e7b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/immediate-governance/REVIEW.md": {
+      "sha256": "f3c3bb5179fe863d357f596251a8a714ed5095946dfafdef5772a988232debf3",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/immediate-governance/VERIFICATION.md": {
+      "sha256": "43f067e91310db3ebbbb881d9f1778dc89dc7ad0d76f937c64fc40b33bbc3c42",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/keeper-recovery/REVIEW.md": {
+      "sha256": "7f4985a912e05a0b50c20639903d83c0a4d4053aec5a39f4230b7e0fc2ffb838",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/keeper-rehearsal/README.md": {
+      "sha256": "a340c99a87edc741ae1655c04347866925c41649203ce8b26d755063dd57a9af",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/liquidity-operations-20261025/PLAN.md": {
+      "sha256": "04865f800ed0d445590af63baed7e8b23552e718a0baa09710b78f04730ffa38",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/liquidity-operations-20261025/PUBLICATION.md": {
+      "sha256": "becab5e85bf487405fb92ffe4dafbcbc7fea069724ca79dbf646ad2ac8579fc3",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/liquidity-operations-20261025/REVIEW.md": {
+      "sha256": "e926014dee45258e3076e7464a7d5deb9dd0abc2b637849e8aedac65cf055e96",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/liquidity-operations-20261025/VERIFICATION.md": {
+      "sha256": "c3530a6b71b38987a95f88389a69429b335f7d9c65761fa381534a5530b7959b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/liquidity-operations-20261025/keeper-range/VERIFICATION.md": {
+      "sha256": "5b8b25152f2b618fc4212a5b75bc873e424e51fe464d5ed3f23fa131f7c14465",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/liquidity-operations-20261025/solidity/README.md": {
+      "sha256": "0db9b8383f60de05ee1c0d6ca19d853571983abdf62191e6ee64222b4c18a72f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/local-contribution-flow/VERIFICATION.md": {
+      "sha256": "91c7f63fa7c9a092e40900006bc12f73297e6f45a4c87cc6b8519ef5a86c379d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/local-preparation-busy/VERIFICATION.md": {
+      "sha256": "0c2c97fb8427abb76171a361b1d220830c43142a0e9368fda0cbbf1baacd02eb",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/local-stack/VERIFICATION.md": {
+      "sha256": "e5d3c2b2e365fdd5a57f49823bdeebeb024064238eb5b0377226da82d0f46439",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md": {
+      "sha256": "b15050b9a471f23ae5d7621e19bfbd9676f18124423c6d7e594a828913bb4d0f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/local-wallet-concurrency/NONCE_VERIFICATION.md": {
+      "sha256": "5bb4e2ca9977bf8a935027f6f23dd50f12df2313ec0afe8dc514876037bd6566",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/local-wallet-concurrency/VERIFICATION.md": {
+      "sha256": "463e588eadf838ac6b1a298c082995d16b8550042a5046412928bd832f5cc463",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/local-website/VERIFICATION.md": {
+      "sha256": "e3390c911983f714ae2ee561202f2e22e88b267e8e1e0e454ed70103ef81cbaf",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/lp-eth-settlement/VERIFICATION.md": {
+      "sha256": "2865680e9ac391355236bffcb75862ad6925cfbc0776be022cd221ae43a3f994",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/migration-safety/REVIEW.md": {
+      "sha256": "8828e9fd424ed60f01f569caef3fd6199d9b6114035aa657d0dc18584216efe9",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/migration-safety/VERIFICATION.md": {
+      "sha256": "471da3a1ce743c7bc32dc89537065c00e6e6197338a3b53fdb413d61c8dfab8f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/migration-safety/config-review/finding.md": {
+      "sha256": "617e6248da3c96577771a003e7f6c2031f2566f99493cf68213bd819fc146373",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/migration-safety/static-analysis/README.md": {
+      "sha256": "5a7f8c6f42d9ac757509b498abcaf1823854d8048d7242c31a8c5145a4a0fb71",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-eth-port/PUBLICATION.md": {
+      "sha256": "a88b589cb6ab7d1cc1a41d29765f3a522b5107db82240cb24103cf80ac24d8c8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-eth-port/REVIEW.md": {
+      "sha256": "67f72a47da3f1d19b8def46fb8dbe1eead1cc2949fb98733cdf8654b8fa598f1",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-eth-port/VERIFICATION.md": {
+      "sha256": "b0d002db74c6696abc1981be1c7b9807a21fa74020445a7bb941b24b18984a0d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-preflight/PUBLICATION.md": {
+      "sha256": "6f5d46c2b0b0a4d1c1dc592a0cd8ff31750dc5290ea22f1de4bb6eacddac024e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-preflight/REVIEW.md": {
+      "sha256": "2ebf9cbc19cbf8bd65f756ca0c3094d6c272141fb4533dfae8cdbeb3f82f25fc",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-preflight/VERIFICATION.md": {
+      "sha256": "2c97a2422df1b3e02ae9b4aa632ae55f48901d857b1c452d85d776dece4908f8",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-readiness-20261025/PUBLICATION.md": {
+      "sha256": "2e4c462297a9bb3180ef5a3a0a032f36569b165d01060e9f1684073cbe52b7b3",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-readiness-20261025/REVIEW.md": {
+      "sha256": "97dd5fa35fc74772858a25c9fda3ff13edb92535c78e5db9151125fd7b900a2e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-readiness-20261025/VERIFICATION.md": {
+      "sha256": "2a204cc5df6a680dba01db70a411317558640050d8fa99b97c7fd28120b51a9c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-readiness-20261025/vault/VERIFICATION.md": {
+      "sha256": "a31bd18c6db838298f5af71504d4553769192634420110ebdcb83a78f638a12b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-readiness-20261025/website-staged/VERIFICATION.md": {
+      "sha256": "5d5bc549b2f213a78245b6564f90c3d941f8526ceb5f2a646dad12070bc38f1d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/native-readiness-20261025/website-staged/post-review/VERIFICATION.md": {
+      "sha256": "ceaba45047ad7751476c2d379a2f87cf85e0cfdad4274593bfa3e70e38966355",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/nft-rights-audit/COVERAGE.md": {
+      "sha256": "342d4db228c78879bcb3f523f23e3490736eff7f3e40c1e8b6412a71e3d78dc6",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/nft-rights-audit/IMPLEMENTATION.md": {
+      "sha256": "baaff4b9a0feb322c694e4d01677d9a652ff9481b3d4b0b4e777b6efd58baf17",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/nft-rights-audit/README.md": {
+      "sha256": "70055c02dee1b345e0fddf0ec8861c22fd80d3b1a3c5a74e6be4cf563199b5d1",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/nft-rights-audit/REVIEW.md": {
+      "sha256": "ade3fabc8940f780d7f082b95d717e46f0795cc7654c6de917bea720e10a78a0",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/nft-rights-audit/REVISED_PROMPT.md": {
+      "sha256": "3721428129e2c3abbea1e6dd262d8c12eaf1f985b5c6db21b6cf09fa3d6c7f3b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/nft-rights-audit/VERIFICATION.md": {
+      "sha256": "0efd0fbc40270c3a9eb08480478b399ce97dd784e648c498c71bdd9410d422b1",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/obsolete-code-20261025/PUBLICATION.md": {
+      "sha256": "48aa04b727463b1ad9a97be89bf20f617d351e15669df16e29266546e2e8f118",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/obsolete-code-20261025/REVIEW.md": {
+      "sha256": "4192809ca1092a718a350415788c0b1d55bf80e995edf257d2e8bb9f530bea4c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/obsolete-code-20261025/SERVICE_REVIEW.md": {
+      "sha256": "f0983cf5f4810389ac9b2d36dd9477846ecf56feb05a4c26060995fe91addfc1",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/obsolete-code-20261025/VERIFICATION.md": {
+      "sha256": "1599dc4092a767d990460aad3b8e4dcd66ca4cc0d0e0be094645d2290f018459",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/obsolete-code-20261025/retired-tools/README.md": {
+      "sha256": "72f7378b391aab5e5af30926afa954f2822a6692137d01d8823dbd238a57836c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/onchain-safety/PUBLICATION.md": {
+      "sha256": "f4622a9354a39c3dc24b1c78eabb6bc131aa7e79da6206b8443101aba7db27d9",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/onchain-safety/REVIEW.md": {
+      "sha256": "48a2519eb98f1349c054fd4834df644e2b932ac5ff36fe7052f013dfccb979ba",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/onchain-safety/VERIFICATION.md": {
+      "sha256": "d4eb328d6cd9c7b2a4c5d235b4a6450dc0a60dfecfafca37a83dc6581fc88ab5",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/one-dollar-rehearsal/VERIFICATION.md": {
+      "sha256": "c0f74b052aa75fbe3ec08fac14831057b8ff9c4ecdc7590dad17454b2d74d912",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/operations-hardening/static-analysis/README.md": {
+      "sha256": "03cd8272a4b1b463ff6db9c33859eaefcde39e8f9c3de5f5c9e801e797b8a041",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/operator-controls/REVIEW.md": {
+      "sha256": "4fb584de982402e93f30904e7a6a964df0fa584b40c8e5216595eb8c60d96e61",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/operator-controls/VERIFICATION.md": {
+      "sha256": "5ac2bcf7f1060430a8af186b06d247512b42b2192dbbfd918c31cbf5a838dd9a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/pair-composition/PUBLICATION.md": {
+      "sha256": "004fe13c0050009349bdb4fe5a304d49db7cbbca0e615dee0413c26789da6471",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/pair-composition/VERIFICATION.md": {
+      "sha256": "2c450ec3cba755fd71e1ac9c41e86c691587270af20f5999f83177396469d1b0",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/pooled/README.md": {
+      "sha256": "660e14d967c23490b453fba9da6e4a4e47f7063969ae21a75150b32a9f792f9c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/pooled/cross-platform-slither-review.md": {
+      "sha256": "03ac5d6b9888648158c8495828bef8a5f28cd61f9157296bda7b8ab61d738fb9",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/pooled/high-medium-secondary-review.md": {
+      "sha256": "57c2a2dc4dad8f45e6467faca32f26b3d02a34a93dff1cf4db6f3a8eea8e381e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/position-summary/VERIFICATION.md": {
+      "sha256": "bd1fe34488a002ba0aaf4d2bb0ebefc92ef69dc9058d35be00ab8746c4170f3b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/post-seal-controls/PUBLICATION.md": {
+      "sha256": "b0b34592f7bbd56d7351625799bdfe00091e73021c513ed2aee7c15e23b1f364",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/post-seal-controls/REVIEW.md": {
+      "sha256": "2f3d85d102a60681093a07af7b0861eab20bd40a52c427dee413c87e81c8fc95",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/post-seal-controls/VERIFICATION.md": {
+      "sha256": "244df304e749f01b3f95fb937d41793245a4f4bc327e20dac95b5c30bd6c8ddd",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/preproduction-audit-20261025/ECONOMICS.md": {
+      "sha256": "94be6ee546cb94f0a6f56a73e65c67492b86ecffe361860d52b168ce0a2c7118",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/preproduction-audit-20261025/PLAN.md": {
+      "sha256": "50da791a05709ba5b0696d5adca2b18e80732719d16fe10f4d997e1f164f2967",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/preproduction-audit-20261025/PUBLICATION.md": {
+      "sha256": "07e2a11dbad31b9b5bebfb02a595cd69fe6174ef77ffdf5bd2e27fd05267d198",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/preproduction-audit-20261025/REVIEW.md": {
+      "sha256": "ac1a7eadf452f7db20c58bac8c73b9d60fb4738e1404682e2177e12f83f441ff",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/preproduction-audit-20261025/VERIFICATION.md": {
+      "sha256": "bbdfde7abd4baeeb353505ea3f3a9522c6d823d991752c6b6fffb4ae7107f45a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/preproduction-audit-20261025/services/REVIEW.md": {
+      "sha256": "e5d841856e5857ae7036a1d20efb9e6d43670171340c70c9d654646fdb853f29",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/price-reference-20261025/OBSERVATION.md": {
+      "sha256": "f396983f48b49609986e8151b9e27f92bf995a91e6eed571ce71fd86460a0a60",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/price-reference-20261025/PUBLICATION.md": {
+      "sha256": "bea243dbad39b9df877a6740ef2802f48b57f75f26a3bca87f80bf1cc047c100",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/price-security/PUBLICATION.md": {
+      "sha256": "143cc0a49eee730f6e3a9304c079097fe4c04ac5d2951cbb6f73e2fddc958f51",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/price-security/REVIEW.md": {
+      "sha256": "2b02250dcf20931f323bf8c94d0551da9f314d133d553568575c193d4adf8b4a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/price-security/VERIFICATION.md": {
+      "sha256": "8ee9492f9d36be266e13874d5c6a00651f951d5098e715b1b62165ae8127c82d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/production/AUDIT_PACKAGE.md": {
+      "sha256": "5f42b090bdd5a066813e1538d9c283360ab3b3e3ed09203496014b5384aaf846",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/range-policy/REVIEW.md": {
+      "sha256": "6a1559589b98ff87499ddb463157dcebad94d534e45821d304ddf3b86c2aa80b",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/range-policy/VERIFICATION.md": {
+      "sha256": "b90990808bef1897d858a327147698e1bd1f801dd0c7f60e55ed76c7a1d6d509",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/real-service-readiness-20261025/RESEARCH.md": {
+      "sha256": "b840baf3459db1250c615496d73f2bc70bc99dfd3b3d1e164802e84ef655828f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/real-service-readiness-20261025/VERIFICATION.md": {
+      "sha256": "03a59b9f281eeafbacecaf110aad50e83146caa6efddff878fe6affd938b909c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/real-service-readiness-20261025/public-rpc/README.md": {
+      "sha256": "839ab646650e633b93005cc649bbe0a305ba6c7c692e6afa97a94ee040b54b05",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-hardening/README.md": {
+      "sha256": "919ee675ec08a57e83a08b46ca03649d49286200547fdbab2f32c9ac03a7285a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-hardening/keeper-review.md": {
+      "sha256": "a92e03b5a87f575f265e1249abedc7e445e567c9e1d9cfa93feaff25bc803e5e",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-hardening/selected-market-review.md": {
+      "sha256": "543feda8191fee9bc4bce49795d7ff774b28319ba56b7855f46518d294fb113f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-hardening/static-analysis/README.md": {
+      "sha256": "fba434e59b07d169f455560080f39252a62f00e5600388d3b041d3b6b2e65b56",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-progress/README.md": {
+      "sha256": "335e4dc42d97319b5e65d187a5f5e31396185aacee3191b8dcd18a73016d665a",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-progress/creator-revenue-20261015.md": {
+      "sha256": "0879ee0c930b4e8cc4dfa103dd71ce763ff2ea5a00e4993c7c7cfdc51d7aa538",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-progress/static-analysis/README.md": {
+      "sha256": "93b70f7b6fddf564c2f4b40e43c8819b85de6ac5b99cfccf1dfdca0b3510c160",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/PUBLICATION.md": {
+      "sha256": "bf44671152eac80fc395c3ec92cf895134b48719036558c3a07b273b44244b3c",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/REVIEW.md": {
+      "sha256": "a18c1db762379ad00d2af31384d794f6f50149627c49923116479a8211a7db84",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/VERIFICATION.md": {
+      "sha256": "9bc208598810e8752d50ae69a3d0adc7fe953988b30057239c9562e7679425f0",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/feeds-routes/REVIEW.md": {
+      "sha256": "3949012336225ac2e7d1f6c194ecc8e769ad802d23c2700478ea5ebc46f68f10",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/feeds-routes/VERIFICATION.md": {
+      "sha256": "9ecac79cb66880e9081de0fd6c915862fb9365f9f683e07702e69f2cbd099747",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/function-reference/VERIFICATION.md": {
+      "sha256": "a9d66c80be67b0250323ad0601d2d2d5905e3a22472daa06432504b6f5192333",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/operations-audit/REVIEW.md": {
+      "sha256": "ae489bb97f47891d36f56a93a6e88fff05b2cda42cb0c82f35200f4677b9714d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/vrf-opensea/RESEARCH.md": {
+      "sha256": "e11681b3b21ad423580279e46c6b94b60a9f1547dde2f93fefb38790dd0197de",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/release-services-20261025/vrf-opensea/VERIFICATION.md": {
+      "sha256": "1250799cd2224a37af3912b39894bc8e39f62f4eb5b2866b4588cdd1c065105f",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/reward-funding/README.md": {
+      "sha256": "372d717c24fa83ea8aec9f6ab00911737e7d0999588364f1e9527ea2b06344c7",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/reward-funding/secondary-review.md": {
+      "sha256": "f15ef796b2e3b6b40f7ad72e08ec6fe0b3419326e78bf79a552fe742fe60fef6",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/royalty-conversion/REVIEW.md": {
+      "sha256": "6c489c730af38d223217693086fd35d1f57d9c1905b191a38da0d431ea5f961d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/royalty-conversion/VERIFICATION.md": {
+      "sha256": "792c5d0d3e10cfaff45a5145e100abcde2bfb39a34b36514207d4ba4f945bb70",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/royalty-reporting/REVIEW.md": {
+      "sha256": "c8bbeead4feb236f69f04739f2e14e8a6834be6926d36b15095e27811b465373",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/royalty-reporting/VERIFICATION.md": {
+      "sha256": "921a4e38715888564d61684d3964ff346d7ddf08886107d5c404401448088d63",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/simplification-20261025/PUBLICATION.md": {
+      "sha256": "e64ec4c91fb0a7e17c63090d4b653de437a7a4dc313cefe92ebdfabd3587bd02",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/simplification-20261025/REVIEW.md": {
+      "sha256": "7f9f92628e2c3507353c23c747c34c7a96779135790c5e221464fe2d64879aee",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/simplification-20261025/VERIFICATION.md": {
+      "sha256": "5adda17ff69121afde1e9a4f95075f607fa587d90f0fd27c3c667e4af09474d4",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/simplification-20261025/retired-test-fixtures/README.md": {
+      "sha256": "34c0f95aa064bb3210d433f0feb3a9c0d8add499f8302a6608f9a37e83df01f6",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/simplification-20261025/solidity/VERIFICATION.md": {
+      "sha256": "4e4b05cb6c390b50becf47a29db412214a9903be0f00ed0ce3f7f43da3ee34c1",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md": {
+      "sha256": "27251f47667db730c4cbb0c28ee812aee70b9d8be0f56c55e0898a749dcd08e4",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/topup-and-reward-review/REVIEW.md": {
+      "sha256": "4aa90370bc787d34c952ca5054613ea41ea4baf215c2f71c9495225b4339187d",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/topup-and-reward-review/REWARD_CALCULATION.md": {
+      "sha256": "4e353027191ab7813c69766ec57bac750e346084e53757ba9f2f5863229f4635",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/topup-and-reward-review/VERIFICATION.md": {
+      "sha256": "6ee1b7f69374cfedd3a0c9cdd9c5fcf797e5c1b4f2e2ce86726eb9e0447b6631",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/twin-circuits/VERIFICATION.md": {
+      "sha256": "4a29e2d2626021fabc89da4fa8cb91a63c0d27a8bc2f18f0f925120c2e04d4b3",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/typed-v4-routes/PUBLICATION.md": {
+      "sha256": "8dbdbae27011309fd2cb57cd7a1c2cf8101e781cc4ca31c7a3cba0a1830d6baf",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/typed-v4-routes/REVIEW.md": {
+      "sha256": "24383be1d762f800237fd050fbbf2fabb5fe101ae31bb780026eeebf5f829c73",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/typed-v4-routes/VERIFICATION.md": {
+      "sha256": "740c0520128938b47747de4da40ad23fd4ad35905486bb889ff364b783cec017",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/wallet-earnings/PUBLICATION.md": {
+      "sha256": "a966fedd62f966a6ac33162a3b0da408bbed4ba2307617c4c3d4c15c2a33a2fe",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/wallet-earnings/VERIFICATION.md": {
+      "sha256": "772bdf3386330493e47dbd36862f94b9c25c171049926eebda00f5822e8724ca",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/wallet-preparation/VERIFICATION.md": {
+      "sha256": "4cc85bf334fb16050c890b12c7dc820fb69fd1591b96605b252caec7a8946ecc",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/website-alignment/README.md": {
+      "sha256": "8d3be88c9d2ea54a4b0c052c3ba961cb20cbd54484f5ba49ae472467cb5813b9",
+      "classification": "historical source-scoped evidence"
+    },
+    "reports/website-polish/VERIFICATION.md": {
+      "sha256": "e92c83438ed40e6d97ca5f39ef102e70964b99f14b6684e76b020609ef50dd3c",
+      "classification": "historical source-scoped evidence"
+    },
+    "test/legacy/README.md": {
+      "sha256": "2ad1d5061f813114a5cead424be12536110d20635147a8d8e48a20189ba20001",
+      "classification": "historical catalogue/fixture"
+    }
+  },
+  "removed_and_merged": {
+    "base": "a5fad3e744da3d2ecbde01611c3f0b5371736784",
+    "merged_into": {
+      "docs/PRODUCT.md": "README.md and docs/ECONOMICS.md",
+      "docs/ACTIVATION_ASSETS.md": "docs/ACTIVATION_ENTRY.md and docs/OPERATOR_MANUAL.md",
+      "docs/NATIVE_POOL_ADAPTER.md": "docs/POOL_SELECTION.md",
+      "docs/OPENSEA_MINT.md": "docs/MINT_INTEGRATION_QUALIFICATION.md",
+      "docs/REFERENCES.md": "docs/DEVELOPMENT.md and reports/full-audit-20261025/UPSTREAM.md"
+    },
+    "original_sha256": {
+      "docs/PRODUCT.md": "e3329c9c05564707a358c02c8cf7c8fcf466e162fb723c232f2707686716a53e",
+      "docs/ACTIVATION_ASSETS.md": "22b2b610a75273dbb6139aa6435f311cc88e0bab61246736d4309e5e7870a5e5",
+      "docs/NATIVE_POOL_ADAPTER.md": "cf56b537e8e8a132e6f60d4fa0b02728cd962c0a17f11157bf213bbd2c3a6486",
+      "docs/OPENSEA_MINT.md": "8ae3b061cca6f51b399f3ea45d1ca75ca64bd3ba73696930acbfcd35f73165ce",
+      "docs/REFERENCES.md": "682bc0abf817f959181cb63fdd2d8dbcd6ba31a9e10bdf5f9087c07ef776702e"
+    }
+  },
+  "original_dirty_archive_sha256": {
+    "AGENTS.md": "a5b499ee6dffebb669b484c980128d308d377ef1b8879026ec71e65f628aaa23",
+    "PROJECT_CONTEXT.md": "36ad0d926d507a5d4e522718ec46857283723384809b6d5452e2c67f5cb69683",
+    "docs/ACTIVATION_ENTRY.md": "48fab3b740c72bb3ef49c450b4b0aa8b9e8406df894a29bad9e1659ff50128fd",
+    "docs/ACTIVATION_ROUTING.md": "0c382b2091168d5b97ff0d9477a5806f99d00d8ff4b44353a85dc0d75a373203",
+    "docs/CHANGELOG.md": "2501eef5d009cf90b3b7b42350b98a331c90f9f8cd21e2cb52d0a9a81ecf7dd5",
+    "docs/CLAIM_ROUTER.md": "3b72d5847895873c234b25ead9f2d79cb3232d4e88ff89f3f77c56c0cdcf36b4",
+    "docs/DEVELOPMENT.md": "53c9a1b4e458ff420f97b6ad493f411eb7d22692c9d1da0cb4e227d26b0ede50",
+    "docs/FRONTEND_HISTORY.md": "b81fcbb0b05a167c6b948e099ebcab19683371ee004a2cc51def929a8f7b5802",
+    "docs/OPERATIONS.md": "efa04c4a3be249bea597b586f2d6424bef1ea00f243cc932ee0d67704db92d34",
+    "docs/PRODUCTION_SERVICES.md": "b8b74f638917040da482b8d096285c6d9602f0d40dfed34e361cfd6b447250d1",
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "archive_location": "External documentation-cleanup-20261026/baseline and original-drafts, not bundled/committed.",
+  "old_total_md_lines": 42752,
+  "new_total_md_lines": 31308,
+  "lines_removed_net": 11444,
+  "historical_reports_unchanged": 256
+}

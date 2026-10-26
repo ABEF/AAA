@@ -1,227 +1,152 @@
-# Historical architecture evolution review
-
-This document records the October16 design and its source-bound review. It is
-not the current component or operator specification. Integrated bridge, creator
-inbox and pair-executor descriptions below are historical. Use [current architecture](ARCHITECTURE.md),
-[simplified release](SIMPLIFIED_RELEASE.md) and the [operator manual](OPERATOR_MANUAL.md).
-No retired feature is admitted by retaining this evidence.
-
 # Architecture evolution and trust boundaries
 
-## Current boundary - 2026-10-25
+This is the current change-boundary guide for the undeployed candidate, not a
+second roadmap. [Architecture](ARCHITECTURE.md) explains interactions,
+[components](COMPONENT_STATUS.md) maps source ownership, and the [sole Todo](../TODO.md)
+tracks unfinished work. Production is NOT APPROVED.
 
-The current candidate is local [Position3](POSITION_V3.md), eight words,
-accounting3 and `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. Governance calls
-modules directly through its selected wallet; no Access scheduler, role arrays
-or generic executor remains. ETH and one fixed ZZZ are contribution inputs.
-`Migration.moveFunds` is the supported same-ordered-pair local move; its old
-Migration `movePool` alias is removed. Normal exit consolidates to fixed ZZZ;
-explicit raw exit sends the actual ETH/ZZZ pair to the trusted source-chain
-custodian. A replacement ZZZ requires custody exit and fresh deployment.
-
-Same-chain whole-collection handoff preserves NFT ownership and both funded
-ledgers. Integrated bridges, remote position/reward fields, creator inboxes and
-issuer-token replacement inside this deployment are removed. Old accounting1/2
-readers and evidence remain historical, without journal upgrades or cross-codec
-V4 import. See [current custody procedures](GOVERNED_CUSTODY_HANDOFF.md),
-[simplified release](SIMPLIFIED_RELEASE.md) and the [current source-scoped review](../reports/architecture-pruning-20261025/REVIEW.md).
-No production approval follows from the historical discussion below.
-
-## Historical October16 review and later historical checkpoints
-
-The remainder records its original design/evidence only. Words such as
-"current", "implemented", "timelock", "remote" and `movePool` below describe the
-recorded source scope, not callable current behavior or operating instructions.
-
-Design reviewed 2026-10-16 against baseline `37bf0d2`. This document separates
-current capabilities from proposed changes. The [central Todo](../TODO.md) owns
-progress; the [review brief](../reports/architecture-evolution/REVISED_PROMPT.md)
-defines execution and evidence scope. No production deployment is approved.
-The [deployment address inventory](DEPLOYMENT_ADDRESSES.md) separates selected
-wallets, generated contract/helper addresses and reviewed external dependencies.
+The current profile is accounting 3 / direct governance 2 / fee-intake 1 /
+local canonical V4. Native ETH and one fixed ZZZ are the only contribution
+inputs. The current contracts contain no integrated bridge, creator-payment
+inbox, remote reward intake or post-seal ZZZ replacement. Historical profiles
+retain their own codecs and evidence; changing a configuration version does
+not upgrade deployed storage, journals or ownership.
 
 ## What can actually evolve
 
-| Transition | Current boundary |
+| Change | Current boundary |
 | --- | --- |
-| Rebalance the shared position's range | Implemented strategy, cooldown and execution guards; one LP serves many NFTs. |
-| Move to another local pool with the same ordered accounting pair | Supported within the fixed Uniswap v4 manager and admitted pools. |
-| Move ZZZ/WETH principal to ZZZ/USDC | The separate typed local companion implements conversion under one 3% budget, retained home identities and historical ledgers. Actual markets/routes remain unqualified. Ordinary movePool still rejects changed pairs. |
-| Reverse local currency slots | Rejected by local move; cross-chain import has its own explicit slot mapping. |
-| Add a new hookless ERC20 v4 pool | Governed configuration, within existing manager/asset/price guards. |
-| Add an arbitrary hook, native pool or new DEX | Unsupported by the fixed manager; the selected native/Pons exception is narrowly pinned. |
-| Add a future EVM chain with equivalent assets | Append-only route/transport framework exists. Provider, remote custody, finality and capacity require qualification. |
-| Treat WETH18 as USDC6 through route mapping | Unsupported; v3 transports raw amounts and requires equivalent declared decimals, not a conversion. Equal decimals alone do not prove equivalence. |
-| Repeat A -> B -> C -> home -> B | Compatible-asset fixture coverage exists; no production bridge qualification. Stable home identity and historical funded obligations remain. |
-| Move canonical NFT ownership and both reward ledgers | Same-chain canonical handoff is implemented in the candidate; complete future-chain relocation remains unfinished. Moving LP alone does not change the canonical chain. |
+| Tune range, cooldown, triggers or execution limits | Direct governance through bounded setters. An optional reviewed keeper rule selects only the 25% / 50% presets; physical LP replacement remains guarded maintenance. |
+| Select another contribution pool | Admit the supported pool, preserve historical bucket identities and deliberately switch the one enabled contribution pool. Admission alone does not move liquidity or qualify routes. |
+| Move LP to another local fee tier | `Migration.moveFunds` atomically redeploys the same actual ordered pair, preserving NFT shares and the captured maintenance floor. |
+| Change ETH to WETH accounting or another pair | Not an atomic `moveFunds` operation. Explicitly approved external custody can perform conversion, followed by actually funded local completion into an admitted pool containing the same fixed ZZZ. |
+| Add another hookless static-fee local v4 pool | Within the sealed manager's supported rules. Native pools are pinned Robinhood ETH/ZZZ; generic ERC20 pairs must contain the same ZZZ. |
+| Add an arbitrary hook, new DEX algorithm or native token | Unsupported by configuration. Requires separately reviewed compatible code and an appropriate replacement plan. |
+| Replace the ZZZ token contract | No setter exists. The selected approach is custody exit, external issuer exchange and a fresh reviewed deployment; continuity of existing NFT rights needs its own concrete plan. |
+| Hand assets to an EOA/contract for external work | An exact approved paused custody exit. Source contracts cannot compel the recipient to return assets or prove external bridging/exchange. |
+| Replace the complete collection on this chain | Compatible canonical V4 handoff carries ownership, both ledgers, shares and exact classified backing, with checked retirement/activation or funded abort. |
+| Relocate canonical ownership/rewards to another chain or recover after chain halt | Not implemented. Moving tokens externally is not movement or revocation of the original NFT/accounting system. |
 
-Sources: [Vault](../src/ZZZVault.sol), [Migration](../src/ZZZMigration.sol),
-[route registry](https://github.com/ABEF/AAA/blob/4830cc92c905581fe898cd33317695f9b42f885c/src/ZZZMigrationRegistry.sol), [manager](../src/ZZZLiquidityManager.sol),
-[fee controller](../src/ZZZFeeController.sol), [change matrix](CHANGE_AND_RECOVERY.md).
+Native ETH and WETH are distinct assets. Reversed currency slots, unrelated
+pairs and an old schema cannot bypass their explicit admission/import guards.
+The removed Migration `movePool` alias is not a current operator entry point;
+use the exact [function reference](CONTRACT_FUNCTIONS.md).
 
-A future remote destination could implement another venue behind a reviewed
-compatible custody/receiver interface. The source does not verify that remote
-implementation's semantics. This is external custody admission, not an available
-local DEX adapter. Current same-chain bridge routes are rejected, so they cannot
-be used to substitute a new local Vault for the fixed canonical ledger.
+<a id="three-layers-with-two-distinct-trust-domains"></a>
+## Trust boundaries
 
-## Three layers, with two distinct trust domains
-
-| Layer | Enforced locally | Remaining trust |
+| Domain | Enforced locally | Remaining trust |
 | --- | --- | --- |
-| Fixed rights and accounting | NFT owner checks; nonredeemable principal; stable per-NFT shares; asset-specific claims; fixed 80/10/5/5 and separate royalties; one-time module binding | Correct initial deployment, admitted token behavior and canonical-chain availability |
-| Governed configuration | Timelock, exact operations, parameter bounds, asset/route admission and guardian pause limits | Multisig diligence, honest price truth, suitable strategy and safe admitted destinations |
-| Custody evolution | Typed local release/import, identities, epochs, replay protection and measured token deltas | Provider backing/finality, remote implementation/admin powers, token equivalence and external venue liveness |
+| Ownership and accounting | Current-owner claims; nonredeemable per-NFT shares; separate funded LP and royalty ledgers; fixed 80/10/5/5 allocation; exact backing | Correct deployment and dependency behavior, canonical-chain availability |
+| Configuration | Fixed core bindings and ZZZ; typed calls; bounded policy; separate guardian/keeper roles | The selected immediate governance quorum, honest feeds, safe configuration and suitable operating rules |
+| External custody and replacement | Exact request/snapshot, raw transfers, stored floors, actual local funding and one canonical retirement/activation | Honest external recipient/replacement code and operator execution; source contracts cannot recover stolen external assets |
 
-The local immutable rules do not prove safety of arbitrary external custodians.
-A malicious approved provider can consume the exact approved principal and
-return a receipt without funding a destination. Pinning its code prevents an
-unreviewed replacement; it does not make initially malicious code honest.
-No generic rescue, unrestricted call, proxy or owner withdrawal is proposed.
-
-Keep **80/10/5/5 immutable**. Holders cannot redeem to reject new economics, and
-variable percentages introduce policy epochs, delayed remote-fee boundaries,
-dust transitions and governance extraction risk. A minimum combined owner share
-would not protect the individual/equal-collective split. Separately funded future
-incentives are conceptually possible without debiting existing rights, but are
-not implemented or approved by this review.
+Governance has no protocol timelock, generic executor or hidden role-grant path.
+Its wallet/Safe applies its own signatures and nonce policy. Sealing removes
+bootstrap and rebinding powers; it does not make immediate governance or a
+custody recipient trustless. A malicious quorum can approve unsafe prices,
+a dishonest recipient or reviewed-but-unsafe replacement code. No holder
+redemption, universal rescue/sweep or arbitrary change to allocation is added.
 
 ## Permanent destination capacity: bounded repair
 
-Baseline `reservePool` bound identity without reserving one of four slots. Other
-arrivals could fill the destination before an earlier reserved import. The
-implemented repair uses the existing bounded `buckets` array as an idempotent set:
-validate pool ownership; find an existing bucket before checking capacity;
-register a new identity once; then commit the pool mapping atomically.
+The Vault admits at most four historical/reserved bucket identities. A
+reservation permanently occupies one slot; aliases and returns for the same
+bucket reuse that slot. A reserved `None` entry has no shares or principal and
+must be skipped by upkeep before price or venue reads. All 1,000 NFTs may still
+share a single funded bucket: bucket count is not the number of NFTs or funded
+pools. Distinct buckets do not merge, and unsafe slot recycling is not supported.
 
-Reservations are permanent, including after cancellation, departure or timeout.
-Multiple pool aliases for the same bucket use one slot. A reservation alone has
-`None` status, zero shares and no principal; consumers must skip it before price
-or pool reads. All 1,000 NFTs can still share one existing active identity.
-`bucketCount` therefore means admitted/historical identities, not funded pools.
-
-This fixes local admission only. Source governance still must establish the
-reviewed destination's confirmed reservation before departure; the source does
-not authenticate a remote reservation proof. Arbitrary IDs reserved by malicious
-governance can exhaust capacity. There is deliberately no unsafe slot recycling.
+Governance must review destination alias ownership and capacity before moving
+or exiting. Reservation protects local admission, not external custody, venue
+liveness or return funding. Arbitrary reservations by governance can exhaust
+capacity; the bounded set is not a recovery guarantee.
 
 <a id="different-pair-migration-proposed-composition-epochs"></a>
 ## Different-pair migration and composition epochs
 
-Update 2026-10-23: the candidate now has an immutable typed **local** converter,
-fixed-price aggregate budget, historical compound share/NAV protection and
-same-chain successor epoch/backing records. Read the [operator and accounting
-procedure](PAIR_MIGRATION.md) and [scoped evidence](../reports/pair-composition/VERIFICATION.md).
-The ordinary ordered-pair guards remain. Composed buckets cannot use V3
-principal bridging; authenticated multi-currency cross-chain messages and
-full future-chain handoff remain unfinished before sealing.
+The former typed pair executor and bridge/message stack are removed. A different
+accounting pair is handled, when supported, by [approved external custody](GOVERNED_CUSTODY_HANDOFF.md):
+exit, execute the reviewed conversion externally and actually fund/deploy the
+admitted local destination. Normal completion preserves its original approved
+absolute floor; explicit raw mode uses its separately approved raw minima.
+Neither relabels historical claim currencies or creates remote backing.
 
-Do not remove the Vault's pair checks. Current `homeToken0/1` identifies remote
-reward paths, canonical liabilities and the immutable creator-payment inbox.
-Replacing those addresses would relabel old obligations; a new Vault alone cannot
-replace the original immutable NFT/Rewards binding.
-
-The implemented local extension preserves home identity, NFT/share ledgers and
-existing asset indexes with an authenticated **custody composition epoch**.
-The epoch follows same-chain canonical records. A future bridge must bind that
-epoch in every principal proposal/message/ACK; the current V3 path rejects
-nonzero epochs instead of guessing how to map currencies. Admission history
-must remain bounded without discarding obligations.
-
-| Value category | Conversion rule |
+| Value | Required treatment |
 | --- | --- |
-| Migrating principal, attributed idle, designated compound capital | May convert through exact typed routes into fixed custody, under one budget. |
-| Owner/collective allocated or claimable fees | Keep in their historical currency and ledger; do not convert or resplit. |
-| Royalties | Separate funded ledger; unaffected by LP migration. |
-| Buyback reserves | Separate obligation and reviewed execution path; cannot subsidize migration. |
-| Donations and other buckets' balances | Excluded from migrating value and loss-floor checks. |
-| Late creator receipts / unharvested or in-flight fees | Retain authenticated old intake paths and explicit processing semantics; never erase or relabel them. |
+| Principal and attributed idle | Exact bucket custody and actual destination LP/funding; never borrow another bucket's assets. |
+| Designated compound | Purpose-bound incumbent backing; historical currencies remain accounted through composition changes. |
+| Owner/collective LP claims | Preserve existing liabilities and fractions. Guarded reward conversion credits the same NFTs without recognizing new income. |
+| Royalties | Separate eligible cohorts, funding, conversion and full original-currency custody return. |
+| Buyback reserves, donations and quarantines | Keep their existing classifications; they cannot pay an entrant's LP minimum or make a custody plan appear funded. |
 
-The local atomic conversion snapshots bucket,
-shares, epoch, routes, custody and a fresh trusted price vector; settle old local
-receipts/dust and old remote funding obligations; close the old position; convert
-principal through an immutable typed helper; redeploy; verify total outcome;
-otherwise revert. Fixed recipients, exact temporary approvals and measured
-deltas are mandatory. The user-contribution Entry is not a principal converter.
-
-Old creator inboxes remain available for late receipts in their original pair.
-Their old-currency 5% compound is backed in Fees, included in incumbent share
-pricing and NFT marked NAV, and convertible by a reviewed consolidation call.
-New external payout currencies still need append-only inbox/asset admission. Remote
-lifetime counters must cover all historical currencies, not merely the current
-pair. Version-3 two-currency principal messages cannot represent this design
-without a new authenticated message/accounting version.
-
-The Vault/Migration currently have little runtime headroom. Typed immutable
-helpers can contain route execution, but cannot solve missing ledger semantics.
-Do not trade away checks or raise standard EVM limits to fit this feature.
+The local composition epoch identifies a changed accounting pair and historical
+backing; it is not a bridge message or a license to change fixed ZZZ. Normal
+recovery requires every original actually sent asset and quantity. An issuer
+exchange can make that return impossible unless a concrete continuity plan is
+reviewed before irreversibly exchanging or burning the original assets.
 
 ## Accepted migration execution budget
 
-The user chose **at most 3% aggregate execution loss per migration, gas separate**.
-Activation/top-ups retain the **1%** original-input budget. The current candidate
-enforces the 3% floor for atomic same-ordered-pair `movePool` and parked `resume`,
-using one pre-callback price vector and exact designated compounding. The separate
-typed local conversion now enforces the same aggregate floor across close,
-conversion and redeployment. Both cover retained LP plus attributed idle, with
-the existing 5% idle cap. Arbitrary conversion, asynchronous bridging and an
-earlier parking close remain outside this atomic budget. On 2026-10-18 the user approved the same aggregate cap for
-ordinary rebalancing; the candidate now uses the same helper checkpoints there. See [implemented scope](MIGRATION_SAFETY.md).
+The default contribution / conversion / maintenance loss caps are **2% / 1% /
+3%**, with gas separate and governance hard maxima of 10%. Captured operation
+policy, signed caller maxima, stronger venue minima and original approved
+custody floors still apply. A caller does not gain three fresh budgets for
+close, swap and redeployment.
 
-For an atomic move, compare attributed principal before/after using one fresh
-trusted price vector. Conversion fees, slippage, bridge charges deducted from
-principal if supported, and redeployment costs consume the same budget. Track
-deployed and attributed idle separately; idle retained in custody is not lost,
-but acceptable deployment/idle proportions require explicit guards. An operator
-must never treat three separate 3% leg allowances as one 3% transaction limit.
+Atomic maintenance values starting principal plus released compound and final
+LP plus attributed idle at one starting price vector. Contributions additionally
+require actual marginal deployed LP at the captured floor, excluding incumbent
+capital; the default is 98%. The separate 5% idle ceiling remains. Parking and
+a later custody approval are distinct transactions: preserve reviewed pre-parking
+minima rather than pretending the contract cached a single cross-transaction
+price vector. Explicit raw exit makes no USD-loss guarantee.
 
-Asynchronous delivery introduces market movement between close and arrival.
-Define source valuation, nominal backing, quote expiry, conversion minima and
-retry custody before claiming an end-to-end bound. An oracle-controlled USD
-check is not independent protection from governance-controlled false prices.
-Ten maximum-loss moves retain only about **73.74%** of starting value before
-market moves. Record cumulative costs and migration frequency; an arbitrary
-cumulative hard cap is not inferred from approval of a per-move limit.
+Repeated permitted losses can compound. At the default 3%, ten worst-case
+operations retain about 73.74% before market changes and gas. There is no
+cumulative hard cap; profitability, turnover and strategy review remain required.
+See [loss policy](EXECUTION_LOSS_POLICY.md), [migration safety](MIGRATION_SAFETY.md)
+and [idle classification](IDLE_AND_DUST.md).
 
 <a id="canonical-chain-continuity-requires-a-separate-decision"></a>
-
 ## Controlled canonical migration
 
-**Decision, 2026-10-17:** the user selected controlled whole-protocol migration
-while the original chain still works. Post-halt recovery is deferred. The
-[canonical migration design](CANONICAL_MIGRATION_DESIGN.md) specifies the full
-transition. A [same-chain handoff](CANONICAL_HANDOFF.md) is now implemented as a
-development candidate; cross-chain support must still be built and qualified
-before sealing, not treated as a later bridge-provider setting.
-The cross-chain proof/finality model remains an explicit qualification decision.
+Compatible [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership
+and accounting, exports/imports all required domains and exact backing, and
+activates exactly one successor when the source retires. Source and successor
+must use the compatible local V4 schema; old remote/home fields are not filled
+with invented values. Pending draws, external custody, missing backing or
+incompatible contract holders must be resolved under the checked procedure.
 
-The alternatives considered were:
-
-1. Keep the fixed home chain: least extra authority, but permanent chain loss
-   leaves canonical ownership and claims inaccessible.
-2. Planned canonical transfer while the source operates: requires a purpose-built
-   freeze/export protocol for ownership, immutable traits, shares, both ledgers,
-   fractions, backed reserves and in-flight obligations; one finalized successor
-   epoch, disabled source rights and replay prevention. Direct same-chain support
-   exists; cross-chain canonical relocation remains unimplemented.
-3. Recovery after irreversible halt: needs an explicit checkpoint/finality or
-   recovery authority. A snapshot cannot prove the old chain will never resume,
-   and a second NFT collection does not revoke the first. Not implemented.
-
-Do not silently select an emergency administrator or claim that a mirror NFT
-solves this. The fixed VRF coordinator has a related continuity boundary: an
-unfulfilled early mint blocks ordered reveal and later activation. Any fallback
-must preserve randomness fairness and prevent administrator rerolls.
+External bridging alone cannot transfer canonical ownership or revoke source
+claims. No complete cross-chain import/finality system or post-halt recovery
+exists in this release. A new chain or token deployment must not be advertised
+as automatic continuity for existing holders. Preserve rights and liabilities
+through a separately reviewed cutover plan while the original chain works.
 
 ## Operating and release boundary
 
-Read-only projections and Anvil keeper rehearsals do not qualify real wallet
-transactions, market feeds, real routes, bridge funding, replacement-host recovery
-or canonical disaster recovery. Frontend IDs must retain exact uint256 strings;
-wallet preparation must pin chain/account/targets and handle stale drafts and
-canonical receipts independently of an API response.
+Local tests and Anvil rehearsals do not qualify real feeds, conversion depth,
+VRF, authority wallets, OpenSea primary mint, target-chain gas or operating and
+recovery services. The two-source price policy still needs independently
+qualified observations with the selected 3% disagreement tolerance. Public
+website deployment remains null and its signer Anvil-only; old native-2 views
+are not current accounting-3 wallet integration.
 
-Same-pair supported flows remain distinct from the conversion and canonical
-relocation designs above. Real bridging starts disabled. Independent audit,
-target-chain services/gas, authority selection and operating qualification remain
-required. Current release decision: **NOT APPROVED**.
+The [operator manual](OPERATOR_MANUAL.md) owns stop/restart and exact call
+procedures. Release requires actual dependency/service qualification and an
+independent audit with remediation. Documentation changes perform no deployment,
+public transaction, service action or existing-state migration.
+
+## Historical evidence
+
+The October 16 design and later superseded bridge/pair/inbox work remain in
+[source-scoped architecture review](../reports/architecture-evolution/REVIEW.md),
+[verification](../reports/architecture-evolution/VERIFICATION.md) and its
+[review brief](../reports/architecture-evolution/REVISED_PROMPT.md). Later
+[pair-composition evidence](../reports/pair-composition/VERIFICATION.md),
+[custody evidence](../reports/custody-handoff/VERIFICATION.md) and
+[current-profile pruning review](../reports/architecture-pruning-20261025/REVIEW.md)
+retain their own recorded source identities. They do not re-enable removed
+selectors or prove later code. Current procedures above supersede obsolete
+operating instructions; historical reports are preserved unchanged.

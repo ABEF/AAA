@@ -1,7 +1,7 @@
 # Keeper service qualification and rehearsal
 
-This is an operating candidate, not production approval. The protocol is still
-undeployed. No public signing or real funds are needed for the isolated rehearsal.
+This is an operating candidate, not production approval. Public production contracts are still
+undeployed; local/staging deployments are separate fixtures. No public signing or real funds are needed for the isolated rehearsal.
 
 ## Repeatable isolated rehearsal
 
@@ -26,7 +26,7 @@ confirmed receipt anchors. An aged maintenance timestamp tests current-state
 evaluation instead of replaying missed intervals. **It is not a multi-day soak**.
 
 The venue models the keeper-facing ABI and counters only. It does not qualify
-Uniswap/Pons trading, price feeds, real rewards/royalties, gas economics, metadata
+the selected hookless Uniswap v4 trading, price feeds, real rewards/royalties, gas economics, metadata
 marketplace refresh, real server isolation, systemd lifecycle or Robinhood services.
 
 ## Read-only checks and snapshots
@@ -95,15 +95,15 @@ The [recovery runbook](KEEPER_RECOVERY.md) supplies recovery procedures. The [re
 ## Authorized staging host, 2026-10-16
 
 The user selected the existing website server for an isolated service account.
-The stage uses `/opt/zzz-keeper-staging`, `/var/lib/zzz-keeper-staging`, account
+The recorded installation used `/opt/zzz-keeper-staging`, `/var/lib/zzz-keeper-staging`, account
 `zzz-stage`, and `zzz-stage-anvil` / `zzz-stage-keeper` systemd services. The
-fixture chain is **31337**, listening only on `127.0.0.1:18545`. Both services
+fixture chain is **31337**, listening only on `127.0.0.1:18545`. The recorded services
 deny non-loopback IP traffic and run with CPU, memory, task and filesystem limits.
 Only disposable locally created test ETH is used. Never promote this configuration,
 venue or signer to a public chain. Website files and nginx configuration are not
 part of this installation.
 
-`zzz-stage-observer.timer` exports health and a recovery snapshot every five minutes.
+The recorded `zzz-stage-observer.timer` exports health and a recovery snapshot every five minutes.
 Its account cannot access signing files and has no IP network access. Snapshot
 retention is bounded at 10,000 observer files: reaching that limit produces a
 backup failure requiring operator review, never silent evidence deletion.
@@ -116,16 +116,18 @@ outside Git on the operator's desktop; this is not a keeper wallet key. The
 `scripts/check-staging-monitor.py` client verifies age/chain/hash and stores
 off-host snapshots without overwriting them.
 
-A chat heartbeat checks this read-only export every 30 minutes and reports
-meaningful failures/recoveries. **It depends on the desktop being available**;
-it is not an independent always-on production alert service. Recorded observations
-must preserve gaps, not label them continuous uptime. Production still requires
-an independent monitor and chosen alert destination.
+The desktop chat heartbeat was paused at the user's request on 2026-10-17.
+Earlier observations depended on desktop availability and must retain gaps; they
+do not prove uninterrupted uptime or current service health. Do not resume it
+without authorization. Production needs an independent always-on monitor and
+verified alert destination. Pausing the chat monitor did not itself stop staging.
 
 Operational evidence, including the full process suite, actual systemd crash
 recovery, off-host snapshot round trip, access restrictions and website checks,
 is recorded in [the rehearsal report](../reports/keeper-rehearsal/README.md).
-The sustained soak has started; a multi-day pass cannot be claimed on its first day.
+Those records are historical observations, not a current health check or a
+completed production multi-day soak. Record actual dates, fixture versions and
+monitor gaps before claiming any later operating interval.
 
 To stop only this staging environment, an authorized operator can stop
 `zzz-stage-observer.timer`, `zzz-stage-keeper.service`, then

@@ -1,79 +1,44 @@
 # Activation and top-up preparation
 
-## Current accounting3 composition - 2026-10-25
-
-Preparation uses the confirmed Projection profile's `dormant_status`:3 for
-current local accounting3,5 for compatible historical profiles. Growth still
-requires Active=1. Current fee-intake1 source-policy reads accept address(0)
-only as the typed `isContributionAsset(address)` asset argument. They do not
-relax contract-target/owner address validation, runtime/feed/route bindings,
-canonicality, exact approval amounts or captured execution floors. The
-[composition regressions](../reports/full-audit-20261025/SERVICES.md) cover
-native activation, fixed-ZZZ approval, growth and historical-profile rejection/
-compatibility. Source support is not a live route or wallet qualification.
-
-
-## Current release simplification - 2026-10-25
-
-[Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
-fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
-pool moves, external custody exit/recovery, royalty currencies and complete
-collection handoff. Current fee/custody profiles and canonical schema are
-explicit; old deployments/journals keep historical profiles.
-
-The current native service profile is
-`accounting_v2_routing_v2_pricing_v2_review_v1`. Reviewed responses include
-`reviewed_maximum_loss_bps` and `provenance.review_policy_version`; existing
-`execution_limit_bps` remains the actual captured cap. Explicit legacy review0
-responses retain their original shape and selector. No null new field or
-runtime-error fallback is used to impersonate compatibility.
-
-## Reviewed Entry policy V1 - 2026-10-25
-
-The current undeployed pricing-V2 candidate uses
-`executeReviewed(Request,uint16 maximumLossBps)` with explicit
-`review_policy_version: 1` in activation/release profiles and matching Entry/Pricing
-getters. It rejects a captured governed cap above the caller maximum before
-funds move, retaining all final price/LP/policy checks. Legacy execute is disabled
-on the new code; historical pricing-V1/local deployments retain original ABI.
-Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
-and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
-Native-V2 browser integration and actual provider/wallet qualification remain open;
-no existing chain, website build, journal or public signer was upgraded.
-
-**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
-
-
-## Composed-bucket share pricing - 2026-10-23
-
-The current Budget result call includes the exact bucket ID. The parser supports
-that eight-argument signature and the explicit historical seven-argument signature;
-unknown/ambiguous calls fail. Historical compound Oracle.value calls are read only
-from the current result frame, verified against reviewed same-block token/feed
-pins and included in incumbent share pricing. They never satisfy new input's
-captured marginal-deployed floor (98% at the current 2% default). Missing historical token/price review refuses a draft.
-Legacy local deployments remain readable; public response shape, exact approvals,
-unsigned preparation and Anvil-only signing policy are unchanged. See
-[verification scope](../reports/pair-composition/VERIFICATION.md).
-
 The backend prepares an **unsigned, fully simulated Entry transaction** for a
 reviewed deployment. It does not sign, broadcast, approve a deployment or connect
 the public website. The associated current-NAV guard and rebalance budget are described in [dynamic liquidity](DYNAMIC_LIQUIDITY.md). Qualification of
 actual Robinhood routes, feeds, trace providers and network fees remains in
 [the central task](../TODO.md#task-activation-quotes).
 
+## Current deployment and review profile
+
+The read configuration selects accounting 3 / fee-intake 1; deployment checks
+require direct governance 2 and local canonical V4. Activation uses explicit
+routing 2 / pricing 2 / review policy 1. These are separate version fields,
+not a synthetic service-profile string or an upgrade of an existing deployment.
+Only native ETH and fixed ZZZ are original inputs. Their two-source policies
+use the reviewed 3% disagreement tolerance.
+
+`executeReviewed(Request,maximumLossBps)` encodes the review's captured current
+contribution cap. Responses expose `reviewed_maximum_loss_bps`, actual
+`execution_limit_bps` and `provenance.review_policy_version`. A later cap above
+the signed maximum rejects; a tighter policy remains binding. Default
+contribution loss is 2%, conversion 1%, maintenance 3%, each with a 10% hard
+maximum and network gas separate. No fallback to an old Entry selector occurs.
+
+Preparation uses profile-specific dormant status 3 for the current code and 5
+for explicit historical profiles; growth requires Active 1. Native zero is a
+typed currency argument, never a contract target or owner. Existing deployments,
+journals and historical ABI readers keep their original profile.
+
+Historical non-current compound is included only in incumbent share pricing.
+The trace parser authenticates the exact current bucket-bearing Budget result
+frame, with separate explicit historical decoding. Same-block token/dual-price
+review is required for nonzero historical backing; it never satisfies a new
+contribution's marginal deployed-LP floor. See [price security](PRICE_SECURITY.md).
+
 ## Values returned to the wallet
 
 | Value | Source and meaning |
 | --- | --- |
 | Current attached LP value | `NFT.currentLPValue(tokenId)` at the confirmed block: the NFT's share of marked deployed LP, attributed idle and compound reserves. It is not lifetime deposits, a withdrawal entitlement or claimable fees. Unavailable valuation is `null`, never an invented zero. |
-| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Native V2 prices actual ETH directly at currency zero; historical V1 retains its wrapper mapping. No assumed stablecoin peg. |
+| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Current accounting 3 prices actual ETH directly at currency zero; historical profiles retain their original mapping. No assumed USD peg. |
 | New deployed LP | The successful Entry/Vault execution's **marginal** deployment, taken from the fixed budget helper's accounting inputs. Incumbent liquidity, idle and compound cannot subsidize the new contribution. |
 | New share issuance and LP units | Budget output and `SharesAdded`, cross-checked with the one LiquidityManager mint/increase and its PositionManager liquidity readings. Physical LP units belong to the shared pool; NFT shares are reported separately. |
 | Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the captured contribution execution limit (2% by default). |
@@ -109,8 +74,9 @@ LP/royalty claim balances remain separate. The website still shows examples.
    using the built-in `callTracer` with logs. Check original input, helper result,
    share event and actual liquidity delta. The internal probe is never returned
    for signing and still executes the contract's captured deployed-LP floor.
-5. Derive conversion-output and liquidity minima using the requested 0..100 bps
-   tolerance. Resimulate **exactly the calldata returned to the wallet**. Economic
+5. Derive conversion-output and liquidity minima using the requested 0..1000 bps
+   tolerance. This only supplies additional output/LP minima; it cannot relax the
+   captured contribution floor or stronger venue guards. Resimulate **exactly the calldata returned to the wallet**. Economic
    outputs must agree at the same snapshot; gas may differ with calldata.
 6. Estimate gas at that same hash; verify native balance, price/gas ceilings and
    final canonical hash, chain, confirmation depth, deployment anchor and age.
@@ -158,25 +124,25 @@ examples deliberately contain placeholders, not purported live addresses.
 
 ## Activation configuration schema 1
 
-All top-level fields below are required; additional fields are rejected.
+The current profile requires the base fields and explicit version fields below;
+additional or missing fields are rejected. Historical profiles have their own
+exact shape, not null placeholders for newly required fields.
 
-The current parent read-service configuration explicitly selects `accounting_version: 3`,
-`fee_intake_version: 1`, Vault version3 and the local V4 canonical schema. It also
-checks direct governance2. New activation requires routing2/pricing2/review1;
-old accounting1/2 profiles remain separate historical configurations.
-The nested activation schema number stays1. Native V2 permits32 ERC20s plus ETH
-(`address: zero`, `code_hash: null`, decimals18, independently pinned ETH feed).
-Native admission uses `NATIVE_ASSET_CODE_HASH()`, not a WETH runtime. Legacy V1
-configuration remains separate. Exact ETH value is checked on Entry-to-Vault and
-Vault-to-manager calls, not only on the outer transaction.
+Use current accounting 3 / fee-intake 1 in the parent read configuration. The
+nested activation schema remains 1. Native ETH has address zero, code hash null,
+18 decimals and its own two-source policy; on-chain admission uses
+`NATIVE_ASSET_CODE_HASH()`. Exact ETH value is verified at Entry-to-Vault and
+Vault-to-manager boundaries, not only on the outer transaction.
 
 | Field | Contents |
 | --- | --- |
 | `schema` | Integer `1`. |
-| `contracts` | Exactly `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`; each has `address` and `code_hash`. These are distinct from the read-service's eight bindings. |
-| `tokens` | 2..32 ERC20 objects in V1; V2 permits those32 plus one native ETH entry. Fields: `address`, `code_hash`, `decimals`, `feed`, `feed_code_hash`, `feed_decimals`, `max_age`. Input and both accounting currencies must be present; decimals0..18, age1..86400 seconds. Native code hash is null and decimals are18. |
+| `routing_version`, `pricing_version`, `review_policy_version` | Explicit integers `2`, `2`, `1` for this candidate. |
+| `contracts` | Exactly `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `v4_executor`, `contribution_pricing`; each has `address` and `code_hash`, distinct from the read-service's eight bindings. |
+| `tokens` | 2..33 reviewed currency descriptors, at most 32 ERC20s plus ETH. Current fields: `address`, `code_hash`, `decimals`, `price_policy`; input, pair currencies and required nonzero historical backing must be present. `price_policy` contains `policy_id`, `ordinal`, `policy`. The policy includes `token`, `primary`, `secondary`, `maxDeviationBps`, `assetDecimals`, `reviewHash`; each source includes `source`, `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`. Token/feed precision is 0..18 and source age 1..86400 seconds. Native code hash is null and decimals 18. No legacy single-feed keys in pricing 2. |
 | `dependencies` | 1..64 `{address, code_hash}` entries covering PositionManager, PoolManager, StateView, Permit2 and every applicable conversion router/factory/pool, sequencer, implementation or other reviewed dependency. |
-| `sources` | 1..64 `{pool_id, source_asset, route_id, asset_policy_id}` entries. One selected route per input/pool; zero route is direct/native input. Native V2 uses zero source and its explicit native policy; V1 retains the original wrapper policy. |
+| `sources` | 1..64 `{pool_id, source_asset, route_id, asset_policy_id, route_kind}` entries. One route per input/pool: kind 0 direct, 1 v3, 2 v4. For fee-intake 1, source identities must contain native ETH and exactly one reviewed ZZZ; no third input. Zero route is direct; nonzero native-source conversion requires v4. |
+| `range_policy_version`, `range_policies` | Optional explicit range profile 1 adds a required list of `{pool_id, orientation, keeper}` reviewed policies covering every source pool. Its absence/profile 0 retains the explicit historical raw-direction interpretation; it does not verify a newer range policy. See [range policy](RANGE_POLICY_UPDATES.md). |
 | `sequencer` | `{address, policy_id}` exactly matching Oracle. Explicit zero/zero only when that absence was reviewed for this network; no implicit omission. |
 | `call_pins` | Up to 128 `{target, data, expected}` exact getter checks on pinned contracts, tokens, feeds or dependencies. Include implementation/admin or wrapper policy getters where applicable. |
 | `storage_pins` | Up to 64 `{target, slot, expected}` exact storage checks; 32-byte words. Include applicable proxy implementation/admin/beacon slots and pin the implementation code in dependencies. |
@@ -236,4 +202,6 @@ gas. The backend cannot guarantee execution or remove oracle/governance/venue ri
 Geth documents the [built-in call tracer and logs](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers)
 and [hash-selected debug calls](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug).
 Local compatibility evidence is in the [scoped verification](../reports/activation-preparation/VERIFICATION.md);
-it does not qualify a hosted production RPC or an actual stable-to-Pons route.
+it does not qualify a hosted production RPC or an actual ETH/ZZZ route. Current
+feature evidence and remaining gates are maintained in the [feature reference](IMPLEMENTATION_STATUS.md)
+and [sole Todo](../TODO.md).

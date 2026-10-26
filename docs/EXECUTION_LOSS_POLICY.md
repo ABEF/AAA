@@ -1,6 +1,6 @@
 # Governed execution-loss limits
 
-Decision updated 2026-10-24: governance may change all three execution-loss
+Governance may change all three execution-loss
 categories immediately after sealing, with an immutable **10% hard maximum**.
 Current defaults remain **2% contribution, 1% reward conversion, 3% maintenance**.
 These are per-operation ceilings, not targets or protection against market losses.
@@ -25,7 +25,7 @@ swaps unavailable; it is not a stop flag or a fee waiver.
 2. Choose a justified ceiling, retaining cheaper routes, meaningful minima and
    independent prices. Raising a ceiling authorizes more possible economic loss.
    It does not repair a failed dependency or prove execution is reasonable.
-3. Through the existing immediate governance controller, call the Budget's
+3. From the current governance wallet/Safe, directly call the Budget's
    `setLossLimits(uint16 contribution,uint16 maintenance)`, or the
    relevant converter's `setConversionLossBps(uint16)`. Values must be 0-1,000.
    Read and preserve the other Budget limit when changing only one. LP and royalty
@@ -59,7 +59,7 @@ bound cumulative turnover, impermanent loss, depegs or future price changes.
 Governance remains trusted and has no advance-warning delay.
 
 Current activation preparation uses explicit `routing_version: 2` and reviewed
-native accounting V2/runtime pins. It reads the current contribution cap and
+current accounting3/runtime pins. It reads the current contribution cap and
 cross-checks the packed `contributionResult(...,uint32)` trace. Legacy profiles
 retain their old `uint16`/fixed-1% interpretation; no missing-getter fallback.
 Current conversion workers explicitly use `v4_native` or
@@ -72,9 +72,10 @@ Existing Anvil state, saved reviews and public simulation are unchanged. See
 [typed routes](TYPED_V4_ROUTES.md), the [operator manual](OPERATOR_MANUAL.md),
 [feature evidence](IMPLEMENTATION_STATUS.md) and [central Todo](../TODO.md).
 
-The public website remains simulated. The native-V2 read/unsigned profile is
-implemented in source; actual wallet/service qualification and public signing
-remain open. Existing local deployments/journals keep their original semantics.
+The public website remains simulated. Historical native2 source/read profiles
+do not match current accounting3 merely through a configuration edit. Current
+website/service qualification and public signing remain open; existing local
+deployments/journals keep their original semantics.
 
 <a id="review-time-policy-binding-remains-open"></a>
 
@@ -88,8 +89,8 @@ is retained. The maximum is 0..1,000 bps and is encoded in signed calldata.
 Before pulling tokens or converting funds, Pricing captures the current governed
 contribution cap and rejects it if greater than the caller maximum. A lower
 governed cap can tighten the operation. Existing final checks enforce the captured
-actual policy; callbacks cannot weaken it mid-operation. Legacy `execute(Request)`
-and the old Entry basis initializer fail closed on this new code.
+actual policy; callbacks cannot weaken it mid-operation. The legacy `execute(Request)` and unreviewed Entry basis initializer are not
+provided by this new code; unknown old selectors revert, with no fallback.
 
 This binds a maximum loss policy, not a future USD price, range, strategy setting,
 venue configuration or assured execution. Exact output/liquidity minima, deadline,
@@ -102,11 +103,11 @@ Current pricing-V2 activation preparation and schema-5 release inventory require
 explicit `review_policy_version: 1`, matching getters, runtime pins and exact new
 selector/trace. The response carries `reviewed_maximum_loss_bps` separately from
 the captured `execution_limit_bps`; provenance includes the policy version.
-Historical pricing-V1/local profiles keep their old semantics. Old native-V2
-activation configurations require an explicit upgrade; missing getters/RPC errors
+Historical pricing-V1/local profiles keep their old semantics. Old native2
+activation configurations require an explicit source-matched replacement profile; missing getters/RPC errors
 never mean legacy support. Read-only historical profiles remain separate.
 
 The historical Anvil profile retains its original policy and runtime; never
-reinterpret saved journals. The implemented native-V2 read/unsigned profile
-requires the reviewed selector and current limit checks; real wallet/provider
+reinterpret saved journals. The current read/unsigned integration must explicitly require accounting3, the
+reviewed selector and current limit checks; actual wallet/provider
 acceptance and public signing remain [open](../TODO.md#task-reviewed-contribution-policy). [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).

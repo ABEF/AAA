@@ -1,19 +1,13 @@
-**Current policy, 2026-10-25:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. The new candidate defaults are 2% contribution, 1% conversion
-and 3% maintenance; earlier 1% contribution evidence retains its original source
-scope. Existing sealed deployments do not acquire a changed default automatically;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Use the live policy and captured plan floor in the procedures
-below; percentages are examples only when explicitly labelled as defaults.
-Actual routes, services and independent audit remain open.
-
 # Governed custody handoff
 
-Undeployed candidate. Replaces the old v3 LP bridge stack and typed pair executor;
-the separate whole-collection ownership/reward handoff is retained. **This release
-does not need a protocol bridge.** Governance can select another supported local
+**Undeployed candidate; production NOT APPROVED.** Contribution/conversion/
+maintenance loss defaults are 2% / 1% / 3%, gas separate, each governed up to
+10%. Existing caller/venue minima and approved custody floors remain binding;
+read the captured plan rather than recomputing it from a newer policy.
+[Execution policy](EXECUTION_LOSS_POLICY.md) defines those bounds.
+
+The separate whole-collection ownership/reward handoff is retained. **This release
+has no integrated bridge.** Governance can select another supported local
 pool or hand custody to an address on the current chain. Any subsequent token
 migration or bridging is performed externally by that custodian. See the
 [native ETH candidate verification](../reports/native-eth-port/VERIFICATION.md).
@@ -78,7 +72,8 @@ never sends principal to your wallet.
 1. With the source ZZZ already bound once, governance reviews and admits the
    initialized, hookless destination with
    `PoolRegistry.configureNative` (static native ETH/ZZZ on the pinned Robinhood
-   core) or ordinary `configure` (WETH/ZZZ). Set destination deposits disabled;
+   core). For an already ERC20-accounted source, ordinary `configure` can admit
+   a destination with the identical ordered pair. Set destination deposits disabled;
    operations must be enabled. Verify real key, fees, spacing, reference
    price, depth and destination reservation conflicts. A wrapper review applies only
    when an actual WETH operation is being proposed. No new core deployment is
@@ -198,7 +193,8 @@ token quantities. External Uniswap swaps can change those quantities even while
 PoPL is globally paused. A separately mined active approval and exit can therefore
 become incompatible. Parking first removes this moving quantity from the snapshot
 without weakening its exactness. If using the supported direct active exit instead,
-review approval and exit as one controller batch; it still fails closed if the
+review and simulate approval plus exit as an atomic batch supported by the
+selected governance wallet; Access itself has no batch executor. It still fails closed if the
 reviewed snapshot changed before inclusion, and its captured maintenance budget
 includes the in-transaction close and conversion. Never bypass a stale snapshot
 check.
@@ -335,7 +331,8 @@ units of their named assets; the deadline is a Unix timestamp. Obtain currencies
 from Registry accounting, not token symbols. The request's review hash is not a
 delivery or backing proof.
 
-The removed remote verification and three-argument recovery selectors revert.
+The obsolete remote verification and three-argument recovery selectors are absent
+from the current contract.
 There is no remote status or proof-based write-off. A sent plan closes only after
 actual local LP completion or a full original-currency return. Historical reports
 retain their old source scope; they do not establish compatibility with this ABI.
@@ -438,9 +435,9 @@ runtime pins, `Vault.ACCOUNTING_VERSION() == 3` and
 `AccessController.GOVERNANCE_VERSION() == 2`. [Position3](POSITION_V3.md) is
 eight words and the canonical schema is local V4. Legacy Position1/2 readers
 and saved journals retain their exact historical profile; neither automatic
-codec upgrade nor V4 import from an older schema exists. The existing 8902 fixture
-and its saved transactions remain unchanged; the public website deployment is
-null and actual current-profile wallet/service integration still requires qualification.
+codec upgrade nor V4 import from an older schema exists. Existing local fixtures and saved transactions remain under their original
+profiles; the public website deployment is null and actual current-profile
+wallet/service integration still requires qualification.
 
 Alert on pending custody age, unauthorized state changes, token/recipient code
 changes and missing returns. There is no remote-proof service to operate. A crash can resume from contract

@@ -1,3 +1,12 @@
+# Historical change record
+
+This dated chronology preserves source-specific development context. Its older
+assets, caps, profiles, missing-feature statements, publication status and test
+counts do not override [current rules](SIMPLIFIED_RELEASE.md), [feature reference](IMPLEMENTATION_STATUS.md)
+or [current context](../PROJECT_CONTEXT.md). Use [Git history](https://github.com/ABEF/AAA/commits/main/)
+and [reports](../reports/README.md) for exact changes/evidence; do not append status
+checkpoints to current runbooks.
+
 ## Full candidate audit checkpoint - 2026-10-25
 
 See [audit](../reports/full-audit-20261025/REVIEW.md) and
@@ -157,7 +166,7 @@ reward ledgers remain unchanged. Confirmed backend context exposes both trigger
 causes. See [design](RANGE_POLICY_UPDATES.md) and [scoped verification](../reports/range-policy/VERIFICATION.md).
 Production parameters/services and independent qualification remain open.
 
-# Product alignment candidate — 2026-10-15
+# Operations hardening candidate - 2026-10-16
 
 ## 2026-10-18 - Dynamic liquidity and rebalance budget
 
@@ -165,6 +174,19 @@ Added the explicitly approved 3% aggregate ordinary-rebalance cap, a metadata
 spot/oracle guard, current-LP/share-denominator API context and out-of-range
 contribution warnings with honest eligibility timing. Original-source 1%, gas
 separation and reward economics remain. See [review/evidence](../reports/dynamic-liquidity/VERIFICATION.md).
+
+Local, undeployed development changes; the [feature reference](IMPLEMENTATION_STATUS.md) records evidence, the [central Todo](../TODO.md) tracks remaining work, and the [release record](RELEASE_CHECKLIST.md) records approval.
+
+- Strict keeper receipt/transaction consistency, final canonicality/depth checks, inclusion-day spending and atomic recovery checkpoints.
+- Canonical block-hash activation quote reads and stale/future snapshot rejection; no silent numerical-block fallback.
+- Fork-runner preflight/execution deadlines, sanitized progress and cancellable relay cleanup; incomplete runs fail.
+- Entry cleanup callback, owner-change rollback and activation-source disable/re-enable lifecycle regressions.
+- Four historical Vault buckets after combined 16-bucket tests exceeded the unchanged 12M gas budget. One bucket still serves the complete 1,000-NFT collection; migrations/returns of existing buckets reuse their slots. Actual Entry/venue gas remains unqualified.
+- A regression demonstrating the unresolved destination-capacity reservation race; real bridging stays disabled pending implementation and review.
+
+The earlier alignment entry below predates the accepted $100 **gross original-source** activation rule with a shared 1% execution/undeployed limit and separate gas. Its 16-bucket limit and verification scope are historical.
+
+# Historical product alignment candidate - 2026-10-15
 
 Undeployed breaking development changes, with verification and release gates recorded in [the alignment review](../reports/website-alignment/README.md). This is not an upgrade of deployed contracts.
 
