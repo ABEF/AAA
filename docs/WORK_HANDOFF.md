@@ -8,9 +8,10 @@ Reviewed 2026-10-26. Read [instructions](../AGENTS.md), [current context](../PRO
 [Backend fee integrity](../reports/backend-remediation-20261026/REVIEW.md) is
 published in379ae19; [receipt](../reports/backend-remediation-20261026/PUBLICATION.md)
 verifies publication.167affected Python methods pass,54input pins; no Solidity/
-economic/schema/signing change. The next docs cleanup consolidates current guides,
-removes redundant pages and preserves historical evidence. Check Git for its
-actual publication; a local file is not proof of a push.
+economic/schema/signing change. Documentation cleanup5114a1c consolidates current guides, removes five redundant
+pages and preserves historical evidence. Both contract and website memory heads
+were verified; [receipt](../reports/documentation-cleanup-20261026/PUBLICATION.md)
+records the exact scope. Later receipt updates do not change implementation.
 
 ## Continue here
 

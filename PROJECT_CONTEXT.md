@@ -51,6 +51,13 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
+Documentation consolidation [5114a1c](https://github.com/ABEF/AAA/commit/5114a1c62a8519c91233983d9123b137a24bbc60) and
+website memory-only7dd7c35 are published on main, exact remote heads verified.
+[Cleanup receipt](reports/documentation-cleanup-20261026/PUBLICATION.md) records
+five redundant removals, current-guide consistency and preserved historical scope.
+No implementation/deployment changed; this current paragraph replaces status
+rather than adding another session-history preamble.
+
 Last functional publication: [379ae19](https://github.com/ABEF/AAA/commit/379ae19dbb9c5a45a4ebb5c83be18007b67bc816),
 backend fee integrity; [receipt](reports/backend-remediation-20261026/PUBLICATION.md).
 167distinct affected Python methods pass (31new/136existing),54inputs pinned.

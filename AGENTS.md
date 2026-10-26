@@ -74,6 +74,8 @@ before changing behavior. This file contains current instructions, not a timelin
 - Run useful affected checks; reuse unchanged Solidity/dependency/build evidence
   only with exact source pins. Do not inflate counts by adding overlapping runs.
   No gate relaxation, invented provider qualification or global audit guarantee.
+- [Documentation cleanup/publication](reports/documentation-cleanup-20261026/PUBLICATION.md)
+  records the consolidated current guides and original-draft preservation.
 - Current source/evidence references: [backend fee integrity](reports/backend-remediation-20261026/VERIFICATION.md),
   [full candidate audit](reports/full-audit-20261025/VERIFICATION.md),
   [cleanup compiler comparison](reports/deep-cleanup-20261025/compiler-comparison.md).
