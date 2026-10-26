@@ -51,16 +51,17 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest local candidate: [reward review](reports/reward-allocation-20261026/REVIEW.md)
+Latest functional publication [0ee9650](https://github.com/ABEF/AAA/commit/0ee9650904603f27b2f663b45d3f5534bef5ba4f): [reward review](reports/reward-allocation-20261026/REVIEW.md)
 and [verification](reports/reward-allocation-20261026/VERIFICATION.md). Allocation is
 at harvest; claims preserve other NFT entitlements and reserves. Two new Solidity
 methods pass, including 1,000 randomized claim schedules. The keeper fixes buyback
 starvation through priority/currency rotation, with376 affected Python methods:
 370 pass / 6 explicit skips and no failures/errors. Production 44 Solidity/ABI/economics
 are unchanged. Actual operating rollout remains unapproved; journals/services and
-the website remain untouched. Publication must be verified separately.
+the website remain untouched. Exact main publication is verified in the
+[receipt](reports/reward-allocation-20261026/PUBLICATION.md).
 
-Last verified published baseline is3ad0e3f (docs receipt), with functional885af8e:
+The preceding published baseline is3ad0e3f (docs receipt), with functional885af8e:
 [keeper/LP review](reports/keeper-lp-audit-20261026/REVIEW.md) and
 [receipt](reports/keeper-lp-audit-20261026/PUBLICATION.md). It binds loaded-config
 health and rejects malformed conversion flags. Website memory-onlyfd8c3e8 remains
