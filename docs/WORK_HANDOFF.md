@@ -9,8 +9,11 @@ Reviewed 2026-10-26. Read [instructions](../AGENTS.md), [current context](../PRO
 [verification](../reports/keeper-lp-audit-20261026/VERIFICATION.md) record config-bound
 health, strict conversion flags, current3native rehearsal source and range enum
 test repair.354affected Python passes/5Unix skips;9range passes incl1000fuzz.
-Production Solidity/ABI/economics unchanged. Publication is recorded separately;
-check actual Git/remote receipt. Old journals and installed services are not upgraded.
+Production Solidity/ABI/economics unchanged. Implementation885af8e and website
+memoryfd8c3e8 are pushed on main; exact remote heads verified in
+[receipt](../reports/keeper-lp-audit-20261026/PUBLICATION.md). Old journals and
+installed services are not upgraded. Fresh Linux/actual-provider qualification
+remains open; use Git for the later docs-only receipt checkpoint.
 
 ## Continue here
 

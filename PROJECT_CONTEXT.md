@@ -51,14 +51,15 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest local keeper/LP candidate: [audit](reports/keeper-lp-audit-20261026/REVIEW.md),
-[verification](reports/keeper-lp-audit-20261026/VERIFICATION.md). Three keeper
-Python files change observation integrity; current fixture/rehearsal and range-test
-repairs improve qualification.354affected Python passes/5Unix skips,9range passes;
-production44Solidity/ABI/economics unchanged. Unix current-fixture process and
-actual services remain unqualified. Publication is recorded separately, not
-inferred from a local save; existing runtime/state remains unchanged.
-
+Latest functional publication [885af8e](https://github.com/ABEF/AAA/commit/885af8edaadbc4fa7f8da8021c1d2d2fe66a4a6d):
+[keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md),
+[verification](reports/keeper-lp-audit-20261026/VERIFICATION.md) and
+[publication receipt](reports/keeper-lp-audit-20261026/PUBLICATION.md). Website
+memory-onlyfd8c3e8; both remote heads verified. Health binds exact loaded config;
+conversion flags reject malformed observations. Current3native rehearsal and
+range-test repairs improve qualification:354Python passes/5Unix skips,9range
+passes including1000fuzz. Production44Solidity/ABI/economics unchanged. Actual
+Linux process/target services remain unqualified; existing runtime unchanged.
 
 Documentation consolidation [5114a1c](https://github.com/ABEF/AAA/commit/5114a1c62a8519c91233983d9123b137a24bbc60) and
 website memory-only7dd7c35 are published on main, exact remote heads verified.
@@ -67,7 +68,7 @@ five redundant removals, current-guide consistency and preserved historical scop
 No implementation/deployment changed; this current paragraph replaces status
 rather than adding another session-history preamble.
 
-Last functional publication: [379ae19](https://github.com/ABEF/AAA/commit/379ae19dbb9c5a45a4ebb5c83be18007b67bc816),
+Earlier fee-integrity publication: [379ae19](https://github.com/ABEF/AAA/commit/379ae19dbb9c5a45a4ebb5c83be18007b67bc816),
 backend fee integrity; [receipt](reports/backend-remediation-20261026/PUBLICATION.md).
 167distinct affected Python methods pass (31new/136existing),54inputs pinned.
 No Solidity changed in that fix. The previous full audit's current399-finding
