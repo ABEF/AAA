@@ -8,6 +8,10 @@ external custody for recovery or migration.
 **Status: undeployed candidate; production NOT APPROVED.** The
 [public website](https://popldemo.0xwave.com) simulates transactions. Existing
 Anvil deployments retain their original code; public signing remains disabled.
+The separate [poplint integration site](https://www.poplint.0xwave.com/) targets
+current-contract reads and unsigned reviews. [Environment boundaries](docs/SITE_ENVIRONMENTS.md)
+keep its build, server root and configuration distinct from the unchanged demo;
+no configured deployment means unavailable integration data, never examples.
 
 | Current design | Implementation and remaining boundary |
 | --- | --- |
@@ -55,6 +59,7 @@ retains its source scope. Neither establishes production approval.
 | --- | --- |
 | Progress and remaining work | **[Project Todo](TODO.md)** - the single task list, with expandable acceptance criteria |
 | Questions for the token/pool creator | [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team) - independent ZZZ pricing, token controls and market continuity |
+| Current selected-pool fork | [Current native harness and evidence](reports/current-pool-fork-20261026/VERIFICATION.md) - exact real-pool snapshot, explicit substitutes and remaining qualification |
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
 | Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, range/assets/pools, emergency stops and restart procedures |
 | Documentation map | [Current guides and historical references](docs/README.md) |

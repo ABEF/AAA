@@ -1,0 +1,10 @@
+{
+  "integration_lineage_only_hook_installed": true,
+  "hook_sha256": "286308371a8e13c92f37b8868178dc7ae024d7107d48579267897bbdbd040d09",
+  "syntax_checked": true,
+  "unrelated_lineage_noop": true,
+  "matching_lineage_nginx_test_reload": true,
+  "certbot_timer_enabled_active": true,
+  "demo_before_after_unchanged": true,
+  "keeper_or_monitor_changed": false
+}

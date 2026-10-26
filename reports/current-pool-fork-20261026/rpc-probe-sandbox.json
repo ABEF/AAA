@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-26",
+  "read_only": true,
+  "providers": [
+    {
+      "provider": "official",
+      "public_url": "https://rpc.mainnet.chain.robinhood.com",
+      "reads": [
+        {
+          "method": "eth_chainId",
+          "failure": "URLError",
+          "http_status": null
+        }
+      ],
+      "elapsed_seconds": 0.03
+    },
+    {
+      "provider": "pinax",
+      "public_url": "https://robinhood.rpc.pinax.network",
+      "reads": [
+        {
+          "method": "eth_chainId",
+          "failure": "URLError",
+          "http_status": null
+        }
+      ],
+      "elapsed_seconds": 0.36
+    },
+    {
+      "provider": "blockvectra",
+      "public_url": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "reads": [
+        {
+          "method": "eth_chainId",
+          "failure": "URLError",
+          "http_status": null
+        }
+      ],
+      "elapsed_seconds": 0.06
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "website_commit": "f23c5599185997da1f36c4f64fea021b3f99b27a",
+  "public_files": 5593,
+  "archive_bytes": 271125342,
+  "archive_sha256": "02327cb7217956cf07da5f7499e14b9b4e58b1afdf270f424e652fee6771b582",
+  "site_identity": {
+    "schema": 1,
+    "environment": "poplint-integration",
+    "hosts": [
+      "poplint.0xwave.com",
+      "www.poplint.0xwave.com"
+    ],
+    "canonical_origin": "https://www.poplint.0xwave.com",
+    "demo_origin": "https://www.popldemo.0xwave.com",
+    "source_revision": "f23c5599185997da1f36c4f64fea021b3f99b27a",
+    "deployment_configured": false,
+    "deployment_id": null,
+    "public_signing": false,
+    "expected_contract_profile": {
+      "accounting_version": 3,
+      "governance_version": 2,
+      "fee_intake_version": 1,
+      "pricing_version": 2,
+      "routing_version": 2,
+      "review_policy_version": 1,
+      "canonical": "ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4"
+    },
+    "configuration_status": "unconfigured",
+    "source_sha256": "328aa135895ff1f8ac0877b6c0d37cb2d4691539d94910c65033f03ad0227c7a",
+    "asset_files": 5590
+  }
+}

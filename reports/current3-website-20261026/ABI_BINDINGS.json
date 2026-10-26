@@ -1,0 +1,8 @@
+{
+  "website_source_sha256": "ee715a6d93e2a27c2999eff34142725b16b2382b0031bd57f49eb00e321969be",
+  "selectors": 33,
+  "all_signatures_present_in_current_compiler_bound_reference": true,
+  "six_module_ids_match_actual_Ids_labels": true,
+  "canonical_schema_matches_source_label": true,
+  "production_code_changed": false
+}

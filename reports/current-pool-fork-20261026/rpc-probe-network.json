@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-26",
+  "read_only": true,
+  "providers": [
+    {
+      "provider": "official",
+      "public_url": "https://rpc.mainnet.chain.robinhood.com",
+      "reads": [
+        {
+          "method": "eth_chainId",
+          "failure": "URLError",
+          "http_status": null
+        }
+      ],
+      "elapsed_seconds": 0.08
+    },
+    {
+      "provider": "pinax",
+      "public_url": "https://robinhood.rpc.pinax.network",
+      "reads": [
+        {
+          "method": "eth_chainId",
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "result": "0x1237"
+          }
+        },
+        {
+          "method": "eth_getBlockByNumber",
+          "response": {
+            "number": "0x5bf5fd5",
+            "hash": "0x0ba14c22200dfc717bbd2c8b5b8842329775374d06f46e30c65e273f067ecbc3"
+          }
+        }
+      ],
+      "elapsed_seconds": 1.44
+    },
+    {
+      "provider": "blockvectra",
+      "public_url": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "reads": [
+        {
+          "method": "eth_chainId",
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "result": "0x1237"
+          }
+        },
+        {
+          "method": "eth_getBlockByNumber",
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "error": {
+              "code": -32011,
+              "message": "block reference is outside the public history window",
+              "data": {
+                "reason": "state_window",
+                "docs_url": "https://docs.blockvectra.com/en/errors/#state_window",
+                "retryable": false,
+                "request_id": "01a17a50-016e-754e-b56f-25d0c6f09976"
+              }
+            }
+          }
+        }
+      ],
+      "elapsed_seconds": 0.94
+    }
+  ]
+}

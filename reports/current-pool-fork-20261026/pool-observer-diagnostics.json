@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-26",
+  "keyless_read_only": true,
+  "outcome": "HTTPError",
+  "observations": [
+    {
+      "request_methods": [
+        "eth_chainId",
+        "eth_getBlockByNumber"
+      ],
+      "response_shape": "list",
+      "responses": [
+        {
+          "id": 0,
+          "error_code": null,
+          "error_message": "",
+          "has_result": true
+        },
+        {
+          "id": 1,
+          "error_code": null,
+          "error_message": "",
+          "has_result": true
+        }
+      ]
+    },
+    {
+      "failure_source": [
+        [
+          "request.py",
+          492,
+          "_call_chain"
+        ],
+        [
+          "request.py",
+          639,
+          "http_error_default"
+        ]
+      ]
+    }
+  ]
+}

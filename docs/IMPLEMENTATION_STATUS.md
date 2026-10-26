@@ -1,6 +1,6 @@
 # Feature and evidence reference
 
-Reviewed 2026-10-26. This describes capabilities and evidence, not a second Todo.
+Reviewed 2026-10-27. This describes capabilities and evidence, not a second Todo.
 Use [the single task list](../TODO.md) for status, [operator manual](OPERATOR_MANUAL.md)
 for procedures, [component map](COMPONENT_STATUS.md) for code boundaries and
 [release record](RELEASE_CHECKLIST.md) for approval. **Production NOT APPROVED.**
@@ -48,11 +48,16 @@ safe by a documentation claim or simulated example.
 
 ## Frontend boundary
 
-The separate public website simulates financial actions. Published native2 reads/
-unsigned reviews and Anvil-only browser signing are historical supported profiles,
-not current3 public acceptance. Current3 integration and ETH/fixedZZZ/cap copy
-alignment remain open. Existing local test state, signer policy and public-null
-deployment are preserved. See [website profile](NATIVE_WEBSITE_PROFILE.md),
+Popldemo keeps its existing public simulation. The separate poplint build now
+implements an explicit schema3/accounting3 reader and unsigned-review profile,
+including ETH/fixedZZZ admission, current module/canonical/runtime checks and
+correct captured contribution limits. [Scoped verification](../reports/current3-website-20261026/VERIFICATION.md)
+records451affected JS passes, including46new methods and six real Python API DTO
+fixtures with synthetic dependencies; no actual providers or public transactions
+are qualified. Missing integration configuration shows unconfigured, never demo
+balances. Native2/historical local profiles, signer policy and journals remain.
+[Environment procedures](SITE_ENVIRONMENTS.md) keep the two public targets separate.
+Actual current3 contracts/API/feeds/routes/marketplace/service acceptance remain open. See [website profile](NATIVE_WEBSITE_PROFILE.md),
 [deployment integration](DEPLOYMENT_WEBSITE.md) and [browser wallet](BROWSER_WALLET.md).
 
 ## Current evidence and limits
@@ -116,3 +121,16 @@ the last backend publication. No new full test count, live provider approval,
 published CI result, operating uptime or independent audit is inferred. Actual
 OpenSea/VRF/prices/routes/authorities/artwork/services/gas/operations and audit
 remediation remain release gates. Documentation/publication does not deploy.
+
+
+## Current selected-pool fork scope
+
+[Current native harness verification](../reports/current-pool-fork-20261026/VERIFICATION.md)
+records11distinct successful EVM methods across affected source-bound runs and
+11focused transport/runner methods. The whole final11-method suite was not rerun.
+The actual pinned native ETH/ZZZ venue, runtime parents, fees, swaps, shared
+native/ZZZ contributions, small growth, transfer-following fees and atomic
+unsafe-growth rollback are exercised. Explicit mock governance/randomness/USD
+sources and fork-only funding do not qualify live services, prices, gas,
+rebalancing or sustainable revenue. The maintained whole runner still rejects
+missing/skipped/failed cases. Production Solidity and economic rules are unchanged.

@@ -1,0 +1,20 @@
+{
+  "folder": "attempt4-affected",
+  "source_receipt_sha256": "6ba6dbfe4b66223f1b8f95492ba000133019219dd6b68124518ac0ab3915f8b4",
+  "raw_results_sha256": "3af22a69c853d883b12da681f088c1e39c4b1b0a2fcd5952884a4007c3586f0b",
+  "process_exit_code": 1,
+  "successful_whole_attempt": false,
+  "elapsed_seconds": 331.672,
+  "archive_attempts": 162,
+  "results": {
+    "testCurrentBothSwapDirectionsUseActualNetOutput()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentVaultActivationGrowthUsesOneBackedSharedLP()": {
+      "status": "Failure",
+      "reason": "Slippage()"
+    }
+  },
+  "source_inputs_unchanged": true
+}

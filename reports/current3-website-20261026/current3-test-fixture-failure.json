@@ -1,0 +1,8 @@
+{
+  "scope": "New three-case extension to43passing current3 tests",
+  "tests": 46,
+  "passes": 45,
+  "failures": 1,
+  "cause": "Synthetic one-item collection copied source NFT mint_ordinal444 but declared count1; production integrity guard correctly rejected it.",
+  "correction": "Set synthetic collection ordinal1, preserving ordinal<=count guard. Real Python DTO fixture is unchanged."
+}

@@ -59,11 +59,34 @@ it is not a new full release regression or production qualification.
 
 ## Fork and operating qualification
 
-Current fork qualification is blocked until an actual native accounting3 fixture
-replaces the archived wrapped fixture; the runner rejects it before RPC/Forge.
-Do not copy old Pons/WETH fork commands or fixtures as current selected-pool
-qualification. Actual fork/service evidence must name its real chain, block,
-dependencies and substitutes. Three layers remain: local adversarial tests,
+The separate [current native-pool harness](../test/CurrentNativePoolFork.t.sol)
+and [bounded read-only runner](../scripts/run-current-pool-fork.py) replace the
+archived wrapped fixture for this campaign. [Verification](../reports/current-pool-fork-20261026/VERIFICATION.md)
+records11distinct successful methods across source-bound affected runs, not a
+fresh whole final11-case pass. Pinax served the fixed chain4663 block; mock
+governance/VRF/correlated USD feeds and fork-funded balances are explicit.
+ETH100 activation, ETH5 growth and ZZZ100 activation pass in the stated fixture;
+an unfillable larger growth quote correctly reverts with atomic backing intact.
+
+From the repository root, replace the executable/output placeholders:
+
+```sh
+python scripts/run-current-pool-fork.py --solc REVIEWED_SOLC_0_8_26_PATH --output NEW_EVIDENCE_DIRECTORY
+```
+
+Forge must be on PATH or supplied with `--forge`. The runner checks the pinned
+Forge/solc versions, strips inherited compiler overrides, verifies the effective
+normal Forge configuration and actual source inputs, creates an exclusive output, uses
+the keyless Pinax endpoint by default, and permits only read RPC methods through
+its bounded serialized relay. Optional `ROBINHOOD_FORK_RPC_URL` comes from outside
+Git; do not paste credentials into commands or logs. It never broadcasts. A
+future whole run must contain all11expected methods with no skips; the legacy
+dirty runner and old fixture evidence were not repurposed.
+
+Actual feeds/routes, real keeper/rebalance and target-gas qualification remain
+open. Provider batching hit a documented429; serialized archive success is not
+production SLA/provider approval. Do not copy old Pons/WETH fixtures as current
+evidence or add overlapping attempts to the11-method count. Three layers remain: local adversarial tests,
 selected Robinhood mainnet fork and Robinhood Testnet wallet/operator rehearsals.
 See [release preflight](PRODUCTION_PREFLIGHT.md) and [sole Todo](../TODO.md).
 

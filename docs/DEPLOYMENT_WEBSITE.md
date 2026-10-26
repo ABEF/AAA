@@ -10,7 +10,7 @@ unavailable, and the shared signer remains Anvil-only.
 | --- | --- |
 | Historical schema 1 | Wrapped-asset/single-feed local deployments, original 1% contribution policy and original journals |
 | Published schema 2/native2 | Accounting 2, dual pricing 2, routing 2 and reviewed Entry 1; see [exact native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
-| Current contract accounting 3/localV4 | Requires a separately matched website reader/manifest and operating qualification; relabeling native2 is unsupported |
+| Current schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified. Relabeling native2 is unsupported |
 
 The older tables below describe published and historical adapters, not approval
 for accounting-3 deployment. Native2 supports a captured governed contribution cap;

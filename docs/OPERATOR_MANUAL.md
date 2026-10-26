@@ -54,6 +54,8 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Resolve pending artwork reveals or replace all contracts; recover failed holder-file/CLI input | [Mint and metadata](#mint-and-metadata), [whole-collection replacement](#whole-collection-replacement) |
 | Change managers/keys, replace a server, update software or contain stalled RPC | [Authorities](#authorities), [services](#services-and-server-recovery) |
 | Use a browser wallet locally, recover pending transactions or inspect exact approvals | [Browser-wallet signing and recovery](BROWSER_WALLET.md) |
+| Run the current selected-pool read-only fork harness | [Development and fork qualification](DEVELOPMENT.md#fork-and-operating-qualification) |
+| Publish poplint without changing the demo | [Demo/integration environment map](SITE_ENVIRONMENTS.md) |
 | Configure reviewed API holdings; rehearse wallet sends on local Anvil only | [Reviewed website API profile](DEPLOYMENT_WEBSITE.md) |
 | Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
 

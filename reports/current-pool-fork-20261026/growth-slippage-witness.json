@@ -1,0 +1,32 @@
+{
+  "reviewed": "2026-10-27",
+  "source_file": "src/ZZZLiquidityManager.sol",
+  "function": "unlockCallback(bytes)",
+  "failure_guard": "uint256(int256(outputDelta)) < minOut",
+  "guard_selector": "0x7dd37f70",
+  "native_requested_and_actual_spent_wei": "19240206012453380",
+  "actual_output_zzz_raw": "3816812783295234678051",
+  "minimum_output_zzz_raw": "3821657217445631430489",
+  "shortfall_zzz_raw": "4844434150396752438",
+  "shortfall_relative_to_minimum_percent": "0.1267626549100795034909165196",
+  "quote_witnesses": [
+    {
+      "index": 2819,
+      "oracle": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+      "quote_raw": "3899650221883297378051"
+    }
+  ],
+  "input_delta_negative": true,
+  "input_fully_consumed": true,
+  "output_delta_positive": true,
+  "actual_output_below_minimum": true,
+  "last_callback_trace_index": 2835,
+  "last_core_swap_trace_index": 2836,
+  "exact_external_trace_file_sha256": "3af22a69c853d883b12da681f088c1e39c4b1b0a2fcd5952884a4007c3586f0b",
+  "pool_fixture_minimum_usd_18": "100000000000000000000",
+  "fixed_test_eth_usd_18": "2000000000000000000000",
+  "pool_state": "Pinned actual fork after two successful native-only activations under correlated fixed test references",
+  "cause_limit": "This proves the net-output guard failed. It does not separately quantify source disagreement, price movement, market depth or each fee component.",
+  "production_changed": false,
+  "widened_caps": false
+}

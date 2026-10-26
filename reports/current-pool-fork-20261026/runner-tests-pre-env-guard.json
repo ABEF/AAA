@@ -1,0 +1,41 @@
+{
+  "reviewed": "2026-10-27",
+  "record_type": "Summary of actual tool-captured unittest CLI execution; not an extra test run",
+  "tool_chunk_id": "5babcc",
+  "command": [
+    "python",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "tests_python.test_current_pool_fork_runner",
+    "-v"
+  ],
+  "exit_code": 0,
+  "tests_run": 10,
+  "passed": 10,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "duration_seconds_from_cli": 0.772,
+  "executed_methods": [
+    "CurrentPoolForkRunnerTest.test_actual_redirect_is_not_followed_or_logged",
+    "CurrentPoolForkRunnerTest.test_empty_source_inventory_fails_closed",
+    "CurrentPoolForkRunnerTest.test_exact_complete_current_inventory_is_required",
+    "CurrentPoolForkRunnerTest.test_fork_relay_cannot_send_transactions_or_manage_wallets",
+    "CurrentPoolForkRunnerTest.test_old_or_extra_suite_is_not_current_qualification",
+    "CurrentPoolForkRunnerTest.test_optout_skip_or_failed_setup_cannot_be_a_pass",
+    "CurrentPoolForkRunnerTest.test_parser_limit_failures_are_sanitized_on_both_boundaries",
+    "CurrentPoolForkRunnerTest.test_strict_archive_json_cannot_override_or_invent_values",
+    "CurrentPoolForkRunnerTest.test_strict_request_json_stops_before_archive_transport",
+    "CurrentPoolForkRunnerTest.test_upstream_error_cannot_echo_path_credentials"
+  ],
+  "source_sha256_after": {
+    "scripts/run-current-pool-fork.py": "3f00319abb86d21fce54c81174ff174b048c2d7daac1798532aec066390a06a6",
+    "tests_python/test_current_pool_fork_runner.py": "255c3be9b1ea798e69355cc299eaf1042ce9e9948c83c04ede5a8bd17eaffa39",
+    "zzz_ops/rpc.py": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea"
+  },
+  "earlier_scope": "Earlier6 methods overlap this selection; no added pass count. One initialsource-text assertion was removed, and real boundary behavior checks added."
+}

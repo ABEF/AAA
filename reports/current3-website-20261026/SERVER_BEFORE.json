@@ -1,0 +1,40 @@
+{
+  "demo_root": "/var/www/aaa-website/releases/9be6d11748db2db5adfd6d80ac75e029459a7d5d",
+  "demo_public_files_sha256": {
+    "index.html": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+    "app.js": "22b60108f08059211d5cca181e87cbfcea4781a60a1aaeb45391d9b3a92d08d3",
+    "SHA256SUMS": "d0c203552943a587a1962e5910e27cfa20a12c2a532296121fa6e05380c29d9c"
+  },
+  "enabled_sites": {
+    "/etc/nginx/sites-enabled/aaa-website": {
+      "target": "/etc/nginx/sites-available/aaa-website",
+      "sha256": "b577c59bf632ead30d400a1d319153a1e5258a14adc0892a48b46a81e87b112f"
+    },
+    "/etc/nginx/sites-enabled/aaa-website-popldemo": {
+      "target": "/etc/nginx/sites-available/aaa-website-popldemo",
+      "sha256": "6093262b2f885c50a8bb3a3c185f4fcf9f4a24af78296502b97e8f7060254ddb"
+    },
+    "/etc/nginx/sites-enabled/default": {
+      "target": "/etc/nginx/sites-available/default",
+      "sha256": "ce0901350a021608139b5639cf4ccd7717bef8c3a9e4f79031eb46386b67b03f"
+    }
+  },
+  "dns": {
+    "popldemo.0xwave.com": [
+      "46.225.185.212"
+    ],
+    "www.popldemo.0xwave.com": [
+      "46.225.185.212"
+    ],
+    "poplint.0xwave.com": [
+      "46.225.185.212"
+    ],
+    "www.poplint.0xwave.com": [
+      "46.225.185.212"
+    ]
+  },
+  "nginx_active": "active",
+  "nginx_test_exit": 0,
+  "certbot_installed": true,
+  "integration_root_exists": false
+}

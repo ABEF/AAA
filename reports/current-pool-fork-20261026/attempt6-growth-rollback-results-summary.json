@@ -1,0 +1,16 @@
+{
+  "folder": "attempt6-growth-rollback",
+  "source_receipt_sha256": "a56be7804286bcdeb477c3cd388c361359d91ec1905213fdd80a2b3eb65a478d",
+  "raw_results_sha256": "3d010bc89d72166d089aacb90626dbd3fa88f8e97566b6746570ecf33b15f68c",
+  "process_exit_code": 0,
+  "successful_whole_attempt": true,
+  "elapsed_seconds": 331.703,
+  "archive_attempts": 163,
+  "results": {
+    "testCurrentVaultUnfillableGrowthRevertsFundsAndAccounting()": {
+      "status": "Success",
+      "reason": null
+    }
+  },
+  "source_inputs_unchanged": true
+}

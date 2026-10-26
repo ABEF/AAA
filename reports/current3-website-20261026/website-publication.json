@@ -1,0 +1,31 @@
+{
+  "commit": "f23c5599185997da1f36c4f64fea021b3f99b27a",
+  "branch": "main",
+  "parent": "fd8c3e8f65f60c2000f78e0bb2f293f8e2196036",
+  "exact_remote_head_verified": true,
+  "files": [
+    ".gitignore",
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "SITE_ENVIRONMENTS.md",
+    "package.json",
+    "deployment-api.js",
+    "deployment-native.js",
+    "deployment-view.js",
+    "tests/deployment-current.test.mjs",
+    "tests/helpers/deployment-current-fixture.mjs",
+    "tests/fixtures/deployment-current-api.json",
+    "integration-config.js",
+    "integration-app.js",
+    "integration.css",
+    "integration.html",
+    "build-integration.mjs",
+    "deploy/install-integration-release.sh",
+    "deploy/popl-integration.nginx.conf",
+    "tests/integration-site.test.mjs",
+    ".gitattributes"
+  ],
+  "demo_server_changed": false,
+  "public_signing": false
+}

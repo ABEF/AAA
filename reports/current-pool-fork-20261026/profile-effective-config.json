@@ -1,0 +1,54 @@
+{
+  "reviewed": "2026-10-27",
+  "observed_utc": "2026-10-26T23:31:22.389574+00:00",
+  "scope": "Actual Forge config command only; no compile,EVM orRPC",
+  "injected_foundry_dapp_override_names": [
+    "FOUNDRY_PROFILE",
+    "FOUNDRY_OPTIMIZER_RUNS",
+    "FOUNDRY_CODE_SIZE_LIMIT",
+    "DAPP_REMAPPINGS"
+  ],
+  "only_profile_default_reaches_child": true,
+  "configuration": {
+    "src": "src",
+    "test": "test",
+    "script": "script",
+    "libs": [
+      "lib",
+      "node_modules"
+    ],
+    "optimizer": true,
+    "optimizer_runs": 1,
+    "optimizer_details": {
+      "yul": false
+    },
+    "via_ir": true,
+    "evm_version": "cancun",
+    "ffi": false,
+    "allow_paths": [],
+    "libraries": [],
+    "disable_block_gas_limit": false,
+    "gas_limit": 1073741824,
+    "dynamic_test_linking": false,
+    "always_use_create_2_factory": false,
+    "code_size_limit": null,
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "v4-core/=node_modules/@uniswap/v4-core/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "forge-std/=lib/forge-std/src/",
+      "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+      "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+      "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+      "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/"
+    ],
+    "solc": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "profile": "default",
+    "secrets_excluded": true
+  },
+  "raw_config_saved": false,
+  "public_network_used": false
+}

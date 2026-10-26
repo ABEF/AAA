@@ -1,0 +1,16 @@
+{
+  "folder": "attempt5-small-growth",
+  "source_receipt_sha256": "452396f40383c8a59ca695c69a18b5f0edfa314e8aa4b8053f6d59c298493843",
+  "raw_results_sha256": "f7cad67215db452ab76fdcc540bb9a30254ed2fc1685846cbcd4d9354abf7b8b",
+  "process_exit_code": 0,
+  "successful_whole_attempt": true,
+  "elapsed_seconds": 328.656,
+  "archive_attempts": 165,
+  "results": {
+    "testCurrentVaultActivationGrowthUsesOneBackedSharedLP()": {
+      "status": "Success",
+      "reason": null
+    }
+  },
+  "source_inputs_unchanged": true
+}

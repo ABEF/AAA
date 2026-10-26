@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed 2026-10-26. [AGENTS.md](AGENTS.md) owns work instructions;
+Reviewed 2026-10-27. [AGENTS.md](AGENTS.md) owns work instructions;
 [README](README.md) explains the product and code; [Todo](TODO.md) alone owns task
 status. This is the current snapshot, not an append-only session transcript.
 
@@ -58,7 +58,7 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest functional publication [2a9c65b](https://github.com/ABEF/AAA/commit/2a9c65bf2d4dc27cc4eb16a8ba8b629f07f2f22b): [review](reports/system-adversarial-20261026/REVIEW.md),
+Last backend/keeper security publication [2a9c65b](https://github.com/ABEF/AAA/commit/2a9c65bf2d4dc27cc4eb16a8ba8b629f07f2f22b): [review](reports/system-adversarial-20261026/REVIEW.md),
 [coverage](reports/system-adversarial-20261026/COVERAGE.md) and
 [verification](reports/system-adversarial-20261026/VERIFICATION.md). All608 functions,
 31 constructors and13 receivers have multiple static cases;1,987 scenario instances
@@ -115,15 +115,25 @@ qualification. No full new regression, green-CI or independent audit is implied.
 **Undeployed; production NOT APPROVED.** Actual feeds/routes/RPC/VRF/authorities,
 OpenSea primary-mint integration, artwork hosting, explicit current3 website and
 service acceptance, gas/strategy economics, operating rehearsals and independent
-audit/remediation remain open in the sole Todo. No deployment was requested.
+audit/remediation remain open in the sole Todo. No public contract deployment was requested.
 
 ## Workspace and continuation
 
 Contract checkout: `C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2`.
 Website checkout: `C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website` (`ABEF/AAA-website`).
 Public demonstration: [popldemo.0xwave.com](https://popldemo.0xwave.com).
-Published native website reader still targets accounting2; current3 integration
-and example-copy alignment are separate work. Current selectors must be ETH/fixed
+Separate integration: [www.poplint.0xwave.com](https://www.poplint.0xwave.com).
+The user explicitly requested keeping popldemo live and unchanged while building
+poplint for current-contract integration; never exchange roots/configs/installers.
+Poplint now serves websitef23c559 with HTTPS and a separate certificate-renewal
+hook; website main77501ce includes the final operating docs/hook. Demo remains
+on9be6d1, unchanged by before/after hashes. See the [serving receipt](reports/current3-website-20261026/DEPLOYMENT.md).
+[SITE_ENVIRONMENTS](docs/SITE_ENVIRONMENTS.md) owns the hostname/build/server map.
+The extra purchase-rights UI task was declined, not implemented.
+Historical native2 readers retain accounting2. The new explicit current3 reader
+and unsigned-review implementation belongs to poplint and has451affected JS
+passes including46new methods; real contracts/API/provider qualification remains
+open. Current3 fixtures use real Python DTO code with synthetic dependencies. Current selectors must be ETH/fixed
 ZZZ only and reflect the captured2% default contribution budget (98% deployed),
 not historical stablecoin/99% examples. Public transactions are disabled by user
 decision, not a missing permission to enable them.
@@ -142,3 +152,11 @@ documentation and older checkpoints are backed up outside Git; unrelated code
 drafts remain untouched. See [resume instructions](docs/WORK_HANDOFF.md) and
 [documentation map](docs/README.md). Verify Git/remote publication separately from
 local saves; publication does not deploy the website or contracts.
+
+
+Current selected-pool harness/RPC: [verification](reports/current-pool-fork-20261026/VERIFICATION.md)
+records11successful distinct methods across scoped runs,11runner methods and a
+usable keyless Pinax archive at block96,427,989. No fresh whole final11suite or
+production provider/feed/VRF/authority qualification is claimed. Both inputs,
+small growth and actual fee/ownership behavior pass under stated fixtures;
+unfillable larger growth is rejected with atomic rollback. No guard was widened.

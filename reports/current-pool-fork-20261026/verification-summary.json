@@ -1,0 +1,78 @@
+{
+  "reviewed": "2026-10-27",
+  "campaign_started": "2026-10-26",
+  "unique_successful_evm_methods": 11,
+  "fresh_whole_final_suite_run": false,
+  "successful_scopes": {
+    "testCurrentDisabledPoolStillCollectsAndCloses": {
+      "scope": "attempt2",
+      "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+      "status": "Success"
+    },
+    "testCurrentHarvestIsActualPoolFeesAndCannotRepeat": {
+      "scope": "attempt2",
+      "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+      "status": "Success"
+    },
+    "testCurrentMintIncreaseCloseKeepsNativeCustody": {
+      "scope": "attempt2",
+      "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+      "status": "Success"
+    },
+    "testCurrentMissingNativeBudgetCannotSpendPrefunds": {
+      "scope": "attempt2",
+      "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+      "status": "Success"
+    },
+    "testCurrentNativeAndTokenPrefundsStayOutsidePrincipal": {
+      "scope": "attempt2",
+      "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+      "status": "Success"
+    },
+    "testCurrentNativeIdentityAndStaticHooklessPool": {
+      "scope": "attempt2",
+      "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+      "status": "Success"
+    },
+    "testCurrentRecipientRejectsETHCollectionAtomically": {
+      "scope": "attempt2",
+      "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+      "status": "Success"
+    },
+    "testCurrentVaultHarvestClaimsFollowTransferAndReserveBacking": {
+      "scope": "attempt2",
+      "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+      "status": "Success"
+    },
+    "testCurrentBothSwapDirectionsUseActualNetOutput": {
+      "scope": "attempt4-affected",
+      "raw_results_sha256": "3af22a69c853d883b12da681f088c1e39c4b1b0a2fcd5952884a4007c3586f0b",
+      "status": "Success"
+    },
+    "testCurrentVaultActivationGrowthUsesOneBackedSharedLP": {
+      "scope": "attempt5-small-growth",
+      "raw_results_sha256": "f7cad67215db452ab76fdcc540bb9a30254ed2fc1685846cbcd4d9354abf7b8b",
+      "status": "Success"
+    },
+    "testCurrentVaultUnfillableGrowthRevertsFundsAndAccounting": {
+      "scope": "attempt6-growth-rollback",
+      "raw_results_sha256": "3d010bc89d72166d089aacb90626dbd3fa88f8e97566b6746570ecf33b15f68c",
+      "status": "Success"
+    }
+  },
+  "missing_methods": [],
+  "final_fixture_sha256": "06ceec138f209a57d742f1270fb4df85097294293d1cbfbfebe5f074f0db3fae",
+  "production_sources_unchanged": 44,
+  "normal_gates_reused": 37,
+  "focused_runner_methods": 11,
+  "counts_not_summed_across_overlapping_attempts": true,
+  "large_growth_feasible": false,
+  "large_growth_guard_and_atomic_rollback_verified": true,
+  "source_provider_or_price_qualification": false,
+  "public_transactions": false,
+  "services_or_existing_anvil_changed": false,
+  "production_approval": false,
+  "successful_run_profiles_verified_from_artifacts": 4,
+  "environment_guard_evm_rerun": false,
+  "effective_config_probe_without_rpc": true
+}

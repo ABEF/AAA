@@ -1,0 +1,7 @@
+{
+  "file": "deployment-view.js",
+  "only_one_logical_line_changed_from_baseline": true,
+  "same_normalized_source_as_tested": true,
+  "before_sha256": "2c7b5ff03e0ef9358129cf5fa667950b7475c18c3512c9648bcb4a9ebd26827e",
+  "after_sha256": "ea782bcba9affd129115c510bbb1de7bbea70a099561e194372a14662e13497e"
+}

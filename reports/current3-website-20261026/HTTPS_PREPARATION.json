@@ -1,0 +1,7 @@
+{
+  "dns_verified": true,
+  "integration_http_bootstrap_only": true,
+  "separate_certificate_issued": true,
+  "existing_demo_root_config_and_public_hashes_unchanged": true,
+  "public_contracts_or_api_deployed": false
+}

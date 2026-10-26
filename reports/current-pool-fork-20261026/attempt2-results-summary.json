@@ -1,0 +1,52 @@
+{
+  "folder": "attempt2",
+  "source_receipt_sha256": "f8ab83ba45a0a16b94fc223912e11e30396bee0ef21e839e99941da38416a0b0",
+  "raw_results_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+  "process_exit_code": 1,
+  "successful_whole_attempt": false,
+  "elapsed_seconds": 333.922,
+  "archive_attempts": 174,
+  "results": {
+    "testCurrentBothSwapDirectionsUseActualNetOutput()": {
+      "status": "Failure",
+      "reason": "assertion failed: 0 != 1792809434"
+    },
+    "testCurrentDisabledPoolStillCollectsAndCloses()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentHarvestIsActualPoolFeesAndCannotRepeat()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentMintIncreaseCloseKeepsNativeCustody()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentMissingNativeBudgetCannotSpendPrefunds()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentNativeAndTokenPrefundsStayOutsidePrincipal()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentNativeIdentityAndStaticHooklessPool()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentRecipientRejectsETHCollectionAtomically()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentVaultActivationGrowthUsesOneBackedSharedLP()": {
+      "status": "Failure",
+      "reason": "InvalidAmount()"
+    },
+    "testCurrentVaultHarvestClaimsFollowTransferAndReserveBacking()": {
+      "status": "Success",
+      "reason": null
+    }
+  },
+  "source_inputs_unchanged": true
+}

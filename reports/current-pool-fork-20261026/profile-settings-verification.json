@@ -1,0 +1,550 @@
+{
+  "reviewed": "2026-10-27",
+  "scope": "Read existing successful-run artifacts/cache; no EVM or compiler re-execution",
+  "normal_expected": {
+    "evmVersion": "cancun",
+    "viaIR": true,
+    "optimizer": {
+      "enabled": true,
+      "runs": 1,
+      "details": {
+        "yul": false
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "v4-core/=node_modules/@uniswap/v4-core/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "forge-std/=lib/forge-std/src/"
+    ],
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "storageLayout",
+          "evm.bytecode.object",
+          "evm.deployedBytecode.object"
+        ]
+      }
+    }
+  },
+  "successful_scopes": [
+    {
+      "scope": "attempt2",
+      "cache_sha256": "c33185774a8fe79eeee6d37571bfa88fbc9f9e14868a59ddabd27c26fbd0f3d1",
+      "actual_cache_default_solc_settings": {
+        "optimizer": {
+          "enabled": true,
+          "runs": 1,
+          "details": {
+            "yul": false
+          }
+        },
+        "metadata": {
+          "useLiteralContent": false,
+          "bytecodeHash": "ipfs",
+          "appendCBOR": true
+        },
+        "outputSelection": {
+          "*": {
+            "*": [
+              "abi",
+              "evm.bytecode.object",
+              "evm.bytecode.sourceMap",
+              "evm.bytecode.linkReferences",
+              "evm.deployedBytecode.object",
+              "evm.deployedBytecode.sourceMap",
+              "evm.deployedBytecode.linkReferences",
+              "evm.deployedBytecode.immutableReferences",
+              "evm.methodIdentifiers",
+              "metadata"
+            ]
+          }
+        },
+        "evmVersion": "cancun",
+        "viaIR": true,
+        "libraries": {}
+      },
+      "actual_artifact_metadata": {
+        "ZZZVault.sol/ZZZVault.json": {
+          "sha256": "b63533d647825f65b10061fc6ea565c388338af72f3e3b3ee22ce58a4a8c2457",
+          "compiler": {
+            "version": "0.8.26+commit.8a97fa7a"
+          },
+          "settings": {
+            "remappings": [
+              "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+              "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+              "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+              "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+              "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+              "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+              "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+              "v4-core/=node_modules/@uniswap/v4-core/"
+            ],
+            "optimizer": {
+              "runs": 1,
+              "details": {
+                "peephole": true,
+                "inliner": true,
+                "jumpdestRemover": true,
+                "orderLiterals": true,
+                "deduplicate": true,
+                "cse": true,
+                "constantOptimizer": true,
+                "yul": false,
+                "simpleCounterForLoopUncheckedIncrement": true
+              }
+            },
+            "metadata": {
+              "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+              "src/ZZZVault.sol": "ZZZVault"
+            },
+            "evmVersion": "cancun",
+            "libraries": {},
+            "viaIR": true
+          }
+        },
+        "CurrentNativePoolFork.t.sol/CurrentNativePoolForkTest.json": {
+          "sha256": "8ba9bd701a78c9e7f49332fec426521cd5ca42a672f51669ac13f746ae44d68d",
+          "compiler": {
+            "version": "0.8.26+commit.8a97fa7a"
+          },
+          "settings": {
+            "remappings": [
+              "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+              "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+              "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+              "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+              "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+              "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+              "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+              "v4-core/=node_modules/@uniswap/v4-core/"
+            ],
+            "optimizer": {
+              "runs": 1,
+              "details": {
+                "peephole": true,
+                "inliner": true,
+                "jumpdestRemover": true,
+                "orderLiterals": true,
+                "deduplicate": true,
+                "cse": true,
+                "constantOptimizer": true,
+                "yul": false,
+                "simpleCounterForLoopUncheckedIncrement": true
+              }
+            },
+            "metadata": {
+              "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+              "test/CurrentNativePoolFork.t.sol": "CurrentNativePoolForkTest"
+            },
+            "evmVersion": "cancun",
+            "libraries": {},
+            "viaIR": true
+          }
+        }
+      },
+      "normal_compiler_settings_match": true
+    },
+    {
+      "scope": "attempt4-affected",
+      "cache_sha256": "db2d696a6da62b22c718d378b9273f80507eb1025e04b6382ed2b874895c3d7c",
+      "actual_cache_default_solc_settings": {
+        "optimizer": {
+          "enabled": true,
+          "runs": 1,
+          "details": {
+            "yul": false
+          }
+        },
+        "metadata": {
+          "useLiteralContent": false,
+          "bytecodeHash": "ipfs",
+          "appendCBOR": true
+        },
+        "outputSelection": {
+          "*": {
+            "*": [
+              "abi",
+              "evm.bytecode.object",
+              "evm.bytecode.sourceMap",
+              "evm.bytecode.linkReferences",
+              "evm.deployedBytecode.object",
+              "evm.deployedBytecode.sourceMap",
+              "evm.deployedBytecode.linkReferences",
+              "evm.deployedBytecode.immutableReferences",
+              "evm.methodIdentifiers",
+              "metadata"
+            ]
+          }
+        },
+        "evmVersion": "cancun",
+        "viaIR": true,
+        "libraries": {}
+      },
+      "actual_artifact_metadata": {
+        "ZZZVault.sol/ZZZVault.json": {
+          "sha256": "b63533d647825f65b10061fc6ea565c388338af72f3e3b3ee22ce58a4a8c2457",
+          "compiler": {
+            "version": "0.8.26+commit.8a97fa7a"
+          },
+          "settings": {
+            "remappings": [
+              "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+              "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+              "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+              "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+              "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+              "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+              "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+              "v4-core/=node_modules/@uniswap/v4-core/"
+            ],
+            "optimizer": {
+              "runs": 1,
+              "details": {
+                "peephole": true,
+                "inliner": true,
+                "jumpdestRemover": true,
+                "orderLiterals": true,
+                "deduplicate": true,
+                "cse": true,
+                "constantOptimizer": true,
+                "yul": false,
+                "simpleCounterForLoopUncheckedIncrement": true
+              }
+            },
+            "metadata": {
+              "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+              "src/ZZZVault.sol": "ZZZVault"
+            },
+            "evmVersion": "cancun",
+            "libraries": {},
+            "viaIR": true
+          }
+        },
+        "CurrentNativePoolFork.t.sol/CurrentNativePoolForkTest.json": {
+          "sha256": "9b6e15567164397db957a0f5764ac530eb492cfcda01dd3945523d5d60d37789",
+          "compiler": {
+            "version": "0.8.26+commit.8a97fa7a"
+          },
+          "settings": {
+            "remappings": [
+              "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+              "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+              "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+              "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+              "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+              "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+              "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+              "v4-core/=node_modules/@uniswap/v4-core/"
+            ],
+            "optimizer": {
+              "runs": 1,
+              "details": {
+                "peephole": true,
+                "inliner": true,
+                "jumpdestRemover": true,
+                "orderLiterals": true,
+                "deduplicate": true,
+                "cse": true,
+                "constantOptimizer": true,
+                "yul": false,
+                "simpleCounterForLoopUncheckedIncrement": true
+              }
+            },
+            "metadata": {
+              "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+              "test/CurrentNativePoolFork.t.sol": "CurrentNativePoolForkTest"
+            },
+            "evmVersion": "cancun",
+            "libraries": {},
+            "viaIR": true
+          }
+        }
+      },
+      "normal_compiler_settings_match": true
+    },
+    {
+      "scope": "attempt5-small-growth",
+      "cache_sha256": "fd3e8bccef1c3e2d787c82f4c8ff36315fba297a4e0586be2dc89b6a342e9f6d",
+      "actual_cache_default_solc_settings": {
+        "optimizer": {
+          "enabled": true,
+          "runs": 1,
+          "details": {
+            "yul": false
+          }
+        },
+        "metadata": {
+          "useLiteralContent": false,
+          "bytecodeHash": "ipfs",
+          "appendCBOR": true
+        },
+        "outputSelection": {
+          "*": {
+            "*": [
+              "abi",
+              "evm.bytecode.object",
+              "evm.bytecode.sourceMap",
+              "evm.bytecode.linkReferences",
+              "evm.deployedBytecode.object",
+              "evm.deployedBytecode.sourceMap",
+              "evm.deployedBytecode.linkReferences",
+              "evm.deployedBytecode.immutableReferences",
+              "evm.methodIdentifiers",
+              "metadata"
+            ]
+          }
+        },
+        "evmVersion": "cancun",
+        "viaIR": true,
+        "libraries": {}
+      },
+      "actual_artifact_metadata": {
+        "ZZZVault.sol/ZZZVault.json": {
+          "sha256": "b63533d647825f65b10061fc6ea565c388338af72f3e3b3ee22ce58a4a8c2457",
+          "compiler": {
+            "version": "0.8.26+commit.8a97fa7a"
+          },
+          "settings": {
+            "remappings": [
+              "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+              "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+              "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+              "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+              "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+              "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+              "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+              "v4-core/=node_modules/@uniswap/v4-core/"
+            ],
+            "optimizer": {
+              "runs": 1,
+              "details": {
+                "peephole": true,
+                "inliner": true,
+                "jumpdestRemover": true,
+                "orderLiterals": true,
+                "deduplicate": true,
+                "cse": true,
+                "constantOptimizer": true,
+                "yul": false,
+                "simpleCounterForLoopUncheckedIncrement": true
+              }
+            },
+            "metadata": {
+              "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+              "src/ZZZVault.sol": "ZZZVault"
+            },
+            "evmVersion": "cancun",
+            "libraries": {},
+            "viaIR": true
+          }
+        },
+        "CurrentNativePoolFork.t.sol/CurrentNativePoolForkTest.json": {
+          "sha256": "313ffd2a42750ea62e6620b5ae22c66a59c80055735b9699e1dd5c7a4a3df393",
+          "compiler": {
+            "version": "0.8.26+commit.8a97fa7a"
+          },
+          "settings": {
+            "remappings": [
+              "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+              "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+              "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+              "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+              "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+              "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+              "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+              "v4-core/=node_modules/@uniswap/v4-core/"
+            ],
+            "optimizer": {
+              "runs": 1,
+              "details": {
+                "peephole": true,
+                "inliner": true,
+                "jumpdestRemover": true,
+                "orderLiterals": true,
+                "deduplicate": true,
+                "cse": true,
+                "constantOptimizer": true,
+                "yul": false,
+                "simpleCounterForLoopUncheckedIncrement": true
+              }
+            },
+            "metadata": {
+              "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+              "test/CurrentNativePoolFork.t.sol": "CurrentNativePoolForkTest"
+            },
+            "evmVersion": "cancun",
+            "libraries": {},
+            "viaIR": true
+          }
+        }
+      },
+      "normal_compiler_settings_match": true
+    },
+    {
+      "scope": "attempt6-growth-rollback",
+      "cache_sha256": "bb845813af4187a6bba9c7773166377090629907f168fa4ec9d3cd3c2cdac883",
+      "actual_cache_default_solc_settings": {
+        "optimizer": {
+          "enabled": true,
+          "runs": 1,
+          "details": {
+            "yul": false
+          }
+        },
+        "metadata": {
+          "useLiteralContent": false,
+          "bytecodeHash": "ipfs",
+          "appendCBOR": true
+        },
+        "outputSelection": {
+          "*": {
+            "*": [
+              "abi",
+              "evm.bytecode.object",
+              "evm.bytecode.sourceMap",
+              "evm.bytecode.linkReferences",
+              "evm.deployedBytecode.object",
+              "evm.deployedBytecode.sourceMap",
+              "evm.deployedBytecode.linkReferences",
+              "evm.deployedBytecode.immutableReferences",
+              "evm.methodIdentifiers",
+              "metadata"
+            ]
+          }
+        },
+        "evmVersion": "cancun",
+        "viaIR": true,
+        "libraries": {}
+      },
+      "actual_artifact_metadata": {
+        "ZZZVault.sol/ZZZVault.json": {
+          "sha256": "b63533d647825f65b10061fc6ea565c388338af72f3e3b3ee22ce58a4a8c2457",
+          "compiler": {
+            "version": "0.8.26+commit.8a97fa7a"
+          },
+          "settings": {
+            "remappings": [
+              "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+              "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+              "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+              "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+              "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+              "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+              "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+              "v4-core/=node_modules/@uniswap/v4-core/"
+            ],
+            "optimizer": {
+              "runs": 1,
+              "details": {
+                "peephole": true,
+                "inliner": true,
+                "jumpdestRemover": true,
+                "orderLiterals": true,
+                "deduplicate": true,
+                "cse": true,
+                "constantOptimizer": true,
+                "yul": false,
+                "simpleCounterForLoopUncheckedIncrement": true
+              }
+            },
+            "metadata": {
+              "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+              "src/ZZZVault.sol": "ZZZVault"
+            },
+            "evmVersion": "cancun",
+            "libraries": {},
+            "viaIR": true
+          }
+        },
+        "CurrentNativePoolFork.t.sol/CurrentNativePoolForkTest.json": {
+          "sha256": "84d77ac640608dbd44d1818a4b60f31f352fddd34a18486d9799d3bd228c1a0f",
+          "compiler": {
+            "version": "0.8.26+commit.8a97fa7a"
+          },
+          "settings": {
+            "remappings": [
+              "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+              "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+              "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+              "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+              "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+              "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+              "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+              "v4-core/=node_modules/@uniswap/v4-core/"
+            ],
+            "optimizer": {
+              "runs": 1,
+              "details": {
+                "peephole": true,
+                "inliner": true,
+                "jumpdestRemover": true,
+                "orderLiterals": true,
+                "deduplicate": true,
+                "cse": true,
+                "constantOptimizer": true,
+                "yul": false,
+                "simpleCounterForLoopUncheckedIncrement": true
+              }
+            },
+            "metadata": {
+              "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+              "test/CurrentNativePoolFork.t.sol": "CurrentNativePoolForkTest"
+            },
+            "evmVersion": "cancun",
+            "libraries": {},
+            "viaIR": true
+          }
+        }
+      },
+      "normal_compiler_settings_match": true
+    }
+  ],
+  "all_used_actual_run_settings_match": true,
+  "future_guard": "Strip inheritedFOUNDRY_/DAPP_overrides and enforce sanitized effective configuration before network start."
+}

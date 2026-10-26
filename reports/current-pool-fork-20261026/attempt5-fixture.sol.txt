@@ -1,0 +1,278 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {Test} from "forge-std/Test.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
+import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+import {ZZZOracle} from "../src/ZZZOracle.sol";
+import {ZZZStrategy} from "../src/ZZZStrategy.sol";
+import {ZZZVault} from "../src/ZZZVault.sol";
+import {ZZZNFT} from "../src/ZZZNFT.sol";
+import {ZZZMembership} from "../src/ZZZMembership.sol";
+import {ZZZRewards} from "../src/ZZZRewards.sol";
+import {ZZZFeeController} from "../src/ZZZFeeController.sol";
+import {ZZZBuyback} from "../src/ZZZBuyback.sol";
+import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
+import {Ids, PoolKey, PoolConfig, PositionStatus} from "../src/libraries/ZZZTypes.sol";
+import {IPositionManagerMinimal, IStateViewMinimal} from "../src/interfaces/IZZZ.sol";
+import {MockAccess, MockFeed} from "./mocks/Mocks.sol";
+import {MockVRF} from "./mocks/MockVRF.sol";
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
+
+interface ICurrentForkHeaderVm {
+    function getRawBlockHeader(uint256 blockNumber) external returns (bytes memory);
+}
+interface ICurrentForkPermit2 {
+    function allowance(address owner, address token, address spender)
+        external view returns (uint160 amount, uint48 expiration, uint48 nonce);
+}
+contract CurrentForkRewardAllowlist {
+    function isAsset(address) external pure returns (bool) { return true; }
+}
+contract CurrentForkForceETH {
+    constructor(address payable recipient) payable { selfdestruct(recipient); }
+}
+
+/// @notice Selected REAL native ETH/ZZZ pool and deployed core/periphery/token.
+/// Fork-only storage funding, MockAccess, MockVRF and correlated test USD feeds
+/// are explicit substitutes. No state is published, and these feeds DO NOT
+/// qualify independent pricing, actual-dollar routes, governance or randomness.
+/// Only this new suite is current-accounting3 qualification; archived wrapped
+/// suites and the unrelated old Pons pool are not silently counted with it.
+contract CurrentNativePoolForkTest is Test, IERC721Receiver {
+    using DualOracleFixture for ZZZOracle;
+    uint256 private constant FORK_BLOCK = 96_427_989;
+    bytes32 private constant FORK_HASH = 0x0ba14c22200dfc717bbd2c8b5b8842329775374d06f46e30c65e273f067ecbc3;
+    bytes32 private constant POOL = 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b;
+    address private constant CORE = 0x8366a39CC670B4001A1121B8F6A443A643e40951;
+    address private constant POSM = 0x58daec3116aae6D93017bAAea7749052E8a04fA7;
+    address private constant STATE = 0xF3334192D15450CdD385c8B70e03f9A6bD9E673b;
+    address private constant PERMIT2 = 0x000000000022D473030F116dDEE9F6B43aC78BA3;
+    address private constant ZZZ = 0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a;
+    address private constant ALICE = address(0xA11CE);
+    address private constant BOB = address(0xB0B);
+    MockAccess private access;
+    ZZZPoolRegistry private pools;
+    ZZZLiquidityManager private manager;
+    ZZZOracle private oracle;
+    ZZZStrategy private strategy;
+    IPositionManagerMinimal private positions;
+    bool private rejectETH;
+
+    receive() external payable { require(!rejectETH, "test recipient rejects ETH"); }
+    function onERC721Received(address,address,uint256,bytes calldata) external pure returns (bytes4) {
+        return IERC721Receiver.onERC721Received.selector;
+    }
+    function setUp() public {
+        if (!vm.envOr("RUN_CURRENT_POOL_FORK", false)) {
+            vm.skip(true, "Opt-in current selected-pool fork; not an offline pass"); return;
+        }
+        string memory rpc = vm.envOr("ROBINHOOD_RPC_URL", string(""));
+        require(bytes(rpc).length != 0, "Explicit read-only fork RPC required");
+        vm.createSelectFork(rpc, FORK_BLOCK);
+        assertEq(block.chainid, 4663); assertEq(block.number, FORK_BLOCK);
+        assertEq(keccak256(ICurrentForkHeaderVm(address(vm)).getRawBlockHeader(FORK_BLOCK)), FORK_HASH);
+        assertEq(CORE.codehash, 0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626);
+        assertEq(POSM.codehash, 0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2);
+        assertEq(STATE.codehash, 0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6);
+        assertEq(PERMIT2.codehash, 0x5208783f52488f7d3493e5e38311ab707c1d75457fe472a19b0b4d57d66a7fca);
+        assertEq(ZZZ.codehash, 0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597);
+        positions = IPositionManagerMinimal(POSM);
+        assertEq(positions.poolManager(), CORE); assertEq(positions.permit2(), PERMIT2);
+        assertEq(IStateViewMinimal(STATE).poolManager(), CORE);
+        (uint160 spot,,,uint24 fee) = IStateViewMinimal(STATE).getSlot0(POOL);
+        assertGt(spot, 0); assertEq(fee, 10020);
+
+        access = new MockAccess(); oracle = new ZZZOracle(address(access), address(0));
+        strategy = new ZZZStrategy(address(access)); pools = new ZZZPoolRegistry(address(access));
+        manager = new ZZZLiquidityManager(address(access), POSM, STATE, CORE, PERMIT2);
+        access.bind(Ids.VAULT,address(this)); access.bind(Ids.POOLS,address(pools));
+        access.bind(Ids.ORACLE,address(oracle)); access.bind(Ids.STRATEGY,address(strategy));
+        access.bind(Ids.LIQUIDITY,address(manager)); access.bind(Ids.REWARDS,address(new CurrentForkRewardAllowlist()));
+        // TEST ONLY: a fixed $2000/ETH and spot-derived ZZZ ratio. The paired
+        // mirror feeds are correlated fixtures, not independently reviewed data.
+        uint256 ratioQ96 = Math.mulDiv(uint256(spot),uint256(spot),uint256(1)<<96);
+        uint256 zzzUSD = Math.mulDiv(2000e18,uint256(1)<<96,ratioQ96);
+        oracle.setTestFeed(address(0),address(new MockFeed(18,2000e18)),1 days);
+        oracle.setTestFeed(ZZZ,address(new MockFeed(18,int256(zzzUSD))),1 days);
+        pools.activationAssets().configureZZZ(ZZZ,ZZZ.codehash,keccak256("TEST_ONLY_FIXED_ZZZ_REVIEW"));
+        assertEq(pools.configureNative(_config()),POOL);
+        access.seal();
+        strategy.setRangeOrientation(POOL,1);
+        vm.deal(address(this),100 ether); vm.deal(ALICE,100 ether); vm.deal(BOB,100 ether);
+        deal(ZZZ,address(this),10_000_000 ether);
+        IERC20(ZZZ).approve(address(manager),type(uint256).max);
+    }
+    function _config() private pure returns (PoolConfig memory c) {
+        c = PoolConfig(PoolKey(address(0),ZZZ,10020,200,address(0)),
+            true,true,5000,500,100,200,600,100e18,1_000_000e18);
+    }
+    function _mint() private returns (uint256 id) {
+        (int24 lower,int24 upper,) = strategy.target(POOL);
+        (id,,) = manager.mint{value:0.01 ether}(POOL,lower,upper,0.01 ether,2000 ether,1,block.timestamp+100);
+        positions.approve(address(manager),id);
+    }
+    function _approvalsCleared() private view {
+        assertEq(IERC20(ZZZ).allowance(address(manager),PERMIT2),0);
+        (uint160 amount,uint48 expiration,) = ICurrentForkPermit2(PERMIT2).allowance(address(manager),ZZZ,POSM);
+        // Real Permit2 maps a reset's expiration=0 to this block's timestamp;
+        // an unused approval still has zero expiration. Neither may retain an
+        // amount or a future expiration after the operation.
+        assertEq(amount,0); assertLe(expiration,uint48(block.timestamp));
+    }
+    function _swap(bool nativeIn,uint256 amount) private returns (uint256 out) {
+        uint256 minimum = Math.mulDiv(oracle.quote(nativeIn?address(0):ZZZ,nativeIn?ZZZ:address(0),amount),9800,10000);
+        out = manager.swap{value:nativeIn?amount:0}(POOL,nativeIn,amount,minimum,block.timestamp+100);
+        assertGe(out,minimum); _approvalsCleared();
+    }
+    function testCurrentNativeIdentityAndStaticHooklessPool() public view {
+        PoolConfig memory c = pools.accounting(POOL);
+        assertEq(c.key.currency0,address(0)); assertEq(c.key.currency1,ZZZ);
+        assertEq(c.key.hooks,address(0)); assertEq(c.key.fee,10020);
+        assertEq(keccak256(abi.encode(c.key)),POOL); assertTrue(pools.isNativePool(POOL));
+        assertEq(pools.contributionPool(),POOL);
+    }
+    function testCurrentMintIncreaseCloseKeepsNativeCustody() public {
+        uint256 prefund = POSM.balance; uint256 id = _mint();
+        assertEq(positions.ownerOf(id),address(this));
+        (PoolKey memory key,) = positions.getPoolAndPositionInfo(id);
+        assertEq(keccak256(abi.encode(key)),POOL);
+        uint128 beforeLiquidity = positions.getPositionLiquidity(id);
+        manager.collect(POOL,id,block.timestamp+100);
+        manager.increase{value:0.001 ether}(POOL,id,0.001 ether,200 ether,1,block.timestamp+100);
+        assertGt(positions.getPositionLiquidity(id),beforeLiquidity);
+        (uint256 a0,uint256 a1) = manager.amounts(id);
+        uint256 nativeBefore = address(this).balance; uint256 zzzBefore = IERC20(ZZZ).balanceOf(address(this));
+        manager.close(POOL,id,block.timestamp+100);
+        assertGe(address(this).balance,nativeBefore+a0); assertGe(IERC20(ZZZ).balanceOf(address(this)),zzzBefore+a1);
+        assertEq(POSM.balance,prefund); assertEq(address(manager).balance,0); _approvalsCleared();
+        vm.expectRevert(); positions.ownerOf(id);
+    }
+    function testCurrentBothSwapDirectionsUseActualNetOutput() public {
+        uint256 zzzBefore = IERC20(ZZZ).balanceOf(address(this)); uint256 outZZZ = _swap(true,0.0001 ether);
+        assertEq(IERC20(ZZZ).balanceOf(address(this)),zzzBefore+outZZZ);
+        uint256 nativeBefore = address(this).balance; uint256 outNative = _swap(false,1 ether);
+        assertEq(address(this).balance,nativeBefore+outNative); assertEq(address(manager).balance,0);
+    }
+    function testCurrentHarvestIsActualPoolFeesAndCannotRepeat() public {
+        uint256 id = _mint(); _swap(true,0.0001 ether); _swap(false,1 ether);
+        uint256 nativeBefore = address(this).balance; uint256 zzzBefore = IERC20(ZZZ).balanceOf(address(this));
+        manager.collect(POOL,id,block.timestamp+100);
+        assertTrue(address(this).balance>nativeBefore || IERC20(ZZZ).balanceOf(address(this))>zzzBefore);
+        nativeBefore = address(this).balance; zzzBefore = IERC20(ZZZ).balanceOf(address(this));
+        manager.collect(POOL,id,block.timestamp+100);
+        assertEq(address(this).balance,nativeBefore); assertEq(IERC20(ZZZ).balanceOf(address(this)),zzzBefore);
+        _approvalsCleared();
+    }
+    function testCurrentMissingNativeBudgetCannotSpendPrefunds() public {
+        uint256 id = _mint(); new CurrentForkForceETH{value:1 ether}(payable(address(manager)));
+        uint128 liquidity = positions.getPositionLiquidity(id); uint256 zzzBefore = IERC20(ZZZ).balanceOf(address(this));
+        vm.expectRevert(); manager.increase(POOL,id,0.001 ether,200 ether,1,block.timestamp+100);
+        assertEq(address(manager).balance,1 ether); assertEq(positions.getPositionLiquidity(id),liquidity);
+        assertEq(IERC20(ZZZ).balanceOf(address(this)),zzzBefore);
+    }
+    function testCurrentNativeAndTokenPrefundsStayOutsidePrincipal() public {
+        uint256 existingNative=POSM.balance;
+        new CurrentForkForceETH{value:123}(payable(address(manager)));
+        new CurrentForkForceETH{value:456}(payable(POSM));
+        deal(ZZZ,address(manager),789);
+        uint256 id = _mint(); manager.close(POOL,id,block.timestamp+100);
+        assertEq(address(manager).balance,123); assertEq(IERC20(ZZZ).balanceOf(address(manager)),789);
+        assertEq(POSM.balance,existingNative+456); _approvalsCleared();
+    }
+    function testCurrentDisabledPoolStillCollectsAndCloses() public {
+        uint256 id = _mint(); pools.disablePool(POOL,true,true);
+        vm.expectRevert(); manager.increase{value:0.001 ether}(POOL,id,0.001 ether,200 ether,1,block.timestamp+100);
+        vm.expectRevert(); manager.swap{value:0.0001 ether}(POOL,true,0.0001 ether,1,block.timestamp+100);
+        manager.collect(POOL,id,block.timestamp+100); manager.close(POOL,id,block.timestamp+100);
+        vm.expectRevert(); positions.ownerOf(id);
+    }
+    function testCurrentRecipientRejectsETHCollectionAtomically() public {
+        uint256 id = _mint(); _swap(true,0.0001 ether); _swap(false,1 ether);
+        rejectETH=true; vm.expectRevert(); manager.collect(POOL,id,block.timestamp+100);
+        rejectETH=false; uint256 nativeBefore=address(this).balance;
+        manager.collect(POOL,id,block.timestamp+100); assertGt(address(this).balance,nativeBefore);
+    }
+
+    struct System { ZZZVault vault; ZZZNFT nft; MockVRF vrf; ZZZMembership membership; ZZZRewards rewards; ZZZFeeController fees; }
+    function _system() private returns (System memory s) {
+        access.beginBootstrap();
+        s.vault=new ZZZVault(address(access),block.chainid,payable(address(0x7EA5)));
+        s.nft=new ZZZNFT(address(access),"ipfs://TEST_ONLY/"); s.vrf=new MockVRF();
+        s.membership=new ZZZMembership(address(access)); s.rewards=new ZZZRewards(address(access));
+        s.fees=new ZZZFeeController(address(access));
+        access.bind(Ids.VAULT,address(s.vault)); access.bind(Ids.NFT,address(s.nft));
+        access.bind(Ids.MEMBERSHIP,address(s.membership)); access.bind(Ids.REWARDS,address(s.rewards));
+        access.bind(Ids.FEES,address(s.fees)); access.bind(Ids.MIGRATION,address(this));
+        access.bind(Ids.BUYBACK,address(new ZZZBuyback(address(access),ZZZ,1000e18)));
+        access.setKeeper(address(this),true); s.rewards.addAsset(ZZZ);
+        s.nft.configureRandomness(address(s.vrf),bytes32(uint256(1)),1,3,500000,false);
+        CanonicalFixture.bind(address(access)); access.seal();
+    }
+    function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
+    function _issue(System memory s,address owner) private returns (uint256 id) {
+        vm.prank(owner); id=s.vault.mintDormant{value:0.05 ether}();
+        s.vrf.fulfill(s.nft.requestOf(id),0,0); s.nft.finalizeTraits(id);
+    }
+    function _entry(uint256 id,uint256 value,bool grow) private {
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,POOL,address(0),value,bytes32(0),0,1,block.timestamp+100,grow);
+        ZZZActivationEntry entry=pools.activationEntry();
+        vm.prank(ALICE); entry.executeReviewed{value:value}(request,200);
+    }
+    function testCurrentVaultActivationGrowthUsesOneBackedSharedLP() public {
+        System memory s=_system();
+        // Separate declared fixture policy: allow the product's $5 growth
+        // minimum. Global $100 activation and all200bps execution guards stay.
+        // This changes no deployed pool, live configuration, feed or liquidity.
+        PoolConfig memory c=_config(); c.minDepositUSD=5e18; pools.configureNative(c);
+        uint256 a=_issue(s,ALICE); uint256 b=_issue(s,ALICE);
+        _entry(a,0.05 ether,false); uint256 bucket=s.vault.nftBucket(a);
+        assertEq(s.rewards.claimable(a,address(0)),0);
+        uint256 lp=s.vault.group(bucket).lpTokenId; uint128 oldLiquidity=positions.getPositionLiquidity(lp);
+        uint256 shares=s.vault.sharesOf(a); _entry(a,0.0025 ether,true);
+        // Exercise the other admitted input rather than forcing repeated
+        // one-sided ETH swaps through a fixed-price/finite-depth snapshot.
+        uint256 sourceAmount=Math.mulDiv(100e18,1e18,oracle.price(ZZZ),Math.Rounding.Ceil);
+        assertTrue(IERC20(ZZZ).transfer(ALICE,sourceAmount));
+        ZZZActivationEntry entry=pools.activationEntry();
+        vm.prank(ALICE); IERC20(ZZZ).approve(address(entry),sourceAmount);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(b,POOL,ZZZ,sourceAmount,bytes32(0),0,1,block.timestamp+100,false);
+        vm.prank(ALICE); entry.executeReviewed(request,200);
+        assertEq(IERC20(ZZZ).allowance(ALICE,address(entry)),0);
+        assertEq(IERC20(ZZZ).allowance(address(entry),address(s.vault)),0);
+        assertEq(s.vault.ACCOUNTING_VERSION(),3); assertEq(s.vault.bucketCount(),1);
+        assertEq(s.vault.nftBucket(b),bucket); assertEq(s.vault.group(bucket).lpTokenId,lp);
+        assertGt(positions.getPositionLiquidity(lp),oldLiquidity); assertGt(s.vault.sharesOf(a),shares);
+        assertEq(positions.ownerOf(lp),address(s.vault)); assertEq(s.membership.totalEligible(),2);
+        (bool available,uint256 value)=s.nft.currentLPValue(a); assertTrue(available); assertGe(value,102.9e18);
+        // Later entry swaps may legitimately earn funded fees for incumbents.
+        assertGe(address(s.rewards).balance,s.rewards.liabilities(address(0)));
+    }
+    function testCurrentVaultHarvestClaimsFollowTransferAndReserveBacking() public {
+        System memory s=_system(); uint256 id=_issue(s,ALICE); _entry(id,0.05 ether,false);
+        uint256 bucket=s.vault.nftBucket(id);
+        // A separate test-authorized trader generates real swap fees without
+        // spending or altering any recorded Vault principal/idle asset.
+        uint256 lp=s.vault.group(bucket).lpTokenId;
+        MockAccess traderAccess=new MockAccess();
+        traderAccess.bind(Ids.VAULT,address(this)); traderAccess.bind(Ids.POOLS,address(pools));
+        traderAccess.bind(Ids.STRATEGY,address(strategy)); traderAccess.bind(Ids.ORACLE,address(oracle));
+        ZZZLiquidityManager trader=new ZZZLiquidityManager(address(traderAccess),POSM,STATE,CORE,PERMIT2);
+        traderAccess.seal();
+        uint256 minimum=Math.mulDiv(oracle.quote(address(0),ZZZ,0.0001 ether),9800,10000);
+        trader.swap{value:0.0001 ether}(POOL,true,0.0001 ether,minimum,block.timestamp+100);
+        s.vault.collectFees(bucket,block.timestamp+100);
+        uint256 claimable=s.rewards.claimable(id,address(0)); assertGt(claimable,0);
+        assertGt(s.fees.compoundBalance(bucket,address(0)),0); assertGt(s.fees.buybackBalance(address(0)),0);
+        vm.prank(ALICE); s.nft.transferFrom(ALICE,BOB,id);
+        vm.prank(ALICE); vm.expectRevert(); s.rewards.claim(id,address(0));
+        uint256 beforeETH=BOB.balance; vm.prank(BOB); uint256 paid=s.rewards.claim(id,address(0));
+        assertEq(paid,claimable); assertEq(BOB.balance,beforeETH+paid); assertEq(s.rewards.claimable(id,address(0)),0);
+        assertEq(s.vault.group(bucket).lpTokenId,lp); assertEq(positions.ownerOf(lp),address(s.vault));
+        assertGe(address(s.rewards).balance,s.rewards.liabilities(address(0)));
+    }
+}

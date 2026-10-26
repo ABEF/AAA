@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-26",
+  "source_files": [
+    "integration-config.js",
+    "integration-app.js",
+    "integration.css",
+    "integration.html",
+    "build-integration.mjs",
+    "deploy/install-integration-release.sh",
+    "deploy/popl-integration.nginx.conf",
+    "tests/integration-site.test.mjs"
+  ],
+  "source_sha256": {
+    "integration-config.js": "1f26a461470493b45dc8e31f7e31f8a8676e8a9ebb35cb50296bdfe845cc65d4",
+    "integration-app.js": "10479c4fc069b93f0008d96495ffe46936c040d12b1c4b692c477e7624bec2cf",
+    "integration.css": "99781ee00b5a9531309778e5a881ffde32aa87b7b80a35cb5e214e612541a79d",
+    "integration.html": "ee754e1fb967738f379a7efeb295448cb11b179a7bcb224e2c7507a651be9baf",
+    "build-integration.mjs": "ed41ff051f6a3093d49d61ae0488de9d31f068c9bf2fcb06fbe0f9384968ad25",
+    "deploy/install-integration-release.sh": "3474cd128f7474a328120d77cab5e5f4ea51cdec5ac1dce07044b8c9d320907c",
+    "deploy/popl-integration.nginx.conf": "356ecf3f7e3d771bdc01efe43e59d07b139d50b3df3847c262b4998070883582",
+    "tests/integration-site.test.mjs": "b160f7897c78ff296d12f5d58926aca6fa576d13a32d763bf0cbaec0784eb088"
+  },
+  "node_syntax_checks": [
+    "integration-app.js",
+    "integration-config.js",
+    "build-integration.mjs"
+  ],
+  "final_focused_method_count": 7,
+  "final_passes": 7,
+  "failures": 0,
+  "skips": 0,
+  "same_methods_not_summed_across_iterations": true,
+  "actual_artifact_files_and_checksums_verified": 5592,
+  "demo_deployment_config_changed": false,
+  "existing_signer_changed": false,
+  "original_repository_or_existing_dist_changed": false,
+  "host_or_public_service_qualified": false,
+  "browser": {
+    "checks": [
+      {
+        "case": "unconfigured-desktop",
+        "passed": true,
+        "view": {
+          "width": 1440,
+          "height": 1000
+        },
+        "no_api_or_demo_boot": true,
+        "no_horizontal_overflow": true
+      },
+      {
+        "case": "unconfigured-mobile",
+        "passed": true,
+        "view": {
+          "width": 390,
+          "height": 844
+        },
+        "no_api_or_demo_boot": true,
+        "no_horizontal_overflow": true
+      },
+      {
+        "case": "configured-current3-read-growth-route",
+        "passed": true,
+        "actual_python_nft_protocol_dtos": true,
+        "mock_wallet_and_rpc": true,
+        "synthetic_wallet_inventory_and_readiness": true,
+        "optional_history_deliberately_unavailable": true,
+        "no_mint_or_demo_fallback": true
+      }
+    ],
+    "errors": [],
+    "live_services_qualified": false,
+    "public_signing_enabled": false,
+    "limits": "Headless browser with intercepted local transport. Actual Python NFT/protocol DTOs use synthetic dependency/RPC fixtures; no extension, public chain, deployed API or public signing qualification."
+  },
+  "browser_attempts": [
+    "Bundled Playwright Chromium executable absent; used installed Chrome with an isolated headless profile.",
+    "Initial harness regex incorrectly matched integration-app.js as the separate demo app.js; corrected exact-path assertion. No product defect was hidden."
+  ],
+  "build_iterations": "Initial sequential IO pass took112s; bounded16file IO final variant previously took18s; final changed template/security checks rerun in one7-method source-pinned scope. Earlier runs overlap and are not additional coverage."
+}

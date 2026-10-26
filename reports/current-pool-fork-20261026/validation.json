@@ -1,0 +1,21 @@
+{
+  "reviewed": "2026-10-27",
+  "source_pins": 1885,
+  "normal_reused_pins": 79,
+  "original_dirty_files_preserved": 4,
+  "unique_evm_methods": 11,
+  "focused_python_methods": 11,
+  "fresh_whole_final_suite_run": false,
+  "historical_failed_and_empty_attempts_retained": true,
+  "independent_read_only_review": "CLEAR; no further material issues in strict transport, scopes or safeguard witnesses.",
+  "all_owned_sources_frozen": true,
+  "production_solidity_changed": false,
+  "public_transactions": false,
+  "existing_services_or_anvil_changed": false,
+  "production_approval": false,
+  "actual_successful_run_normal_profiles_verified": 4,
+  "future_environment_config_guard_verified": true,
+  "no_further_evm_runs": true,
+  "runner_eof_format_python_ast_identical": true,
+  "focused_runner_receipt_refreshed_after_format": true
+}

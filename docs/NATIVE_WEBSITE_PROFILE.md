@@ -2,7 +2,8 @@
 
 This guide records the published website accounting 2/pricing 2/Entry-review1
 manifest. The newer contract candidate is [accounting 3/localV4](POSITION_V3.md)
-and still requires an explicitly matching website integration and qualification.
+and now has a [separate explicit current3 website profile](CURRENT_WEBSITE_PROFILE.md).
+Actual reviewed deployment/API/provider qualification remains open.
 Do not relabel this profile or an existing Anvil journal as 3. Native2 source
 support is not evidence that accounting-3 wallet flows are qualified. Public
 `DEPLOYMENT` remains null and the shared signer stays Anvil-only.

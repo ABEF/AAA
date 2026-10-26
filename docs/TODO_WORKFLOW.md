@@ -20,6 +20,9 @@ its end, while retaining exact procedures and failure/recovery boundaries.
 | [Engineering roadmap](ROADMAP.md) | Work sequence and dependencies, linked to the owning Todo tasks | Sequencing, prerequisites or pre-seal boundaries change |
 
 The [security audit plan](SECURITY_AUDIT_PLAN.md) explains threat models and review criteria. It does not carry a separate task status. The old implementation/release filenames remain stable for existing links; neither is another Todo.
+A user-declined task may retain its stable ID with status `excluded` (Not planned);
+this is neither implemented work nor a launch blocker. Record the decision without
+changing the underlying economic or security rules.
 
 Questions requiring the token/pool creator belong in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team). Record the dated answer, responsible party and evidence there; keep implementation and independent qualification in the linked technical task. An answer does not close its technical release gate. Preserve stable IDs when moving a task between sections.
 

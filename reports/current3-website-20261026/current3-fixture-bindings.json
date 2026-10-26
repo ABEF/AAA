@@ -1,0 +1,21 @@
+{
+  "scope": "Actual Python DTO serialization with byte-level synthetic RPC/venue/feed fixtures. No deployment, live source, browser extension or public transaction qualification.",
+  "fixture_sha256": "b77f3f72c336937c81f382c8c7918099b85fce682c226db1cdfddaad154141b2",
+  "source_sha256": {
+    "frontend_api/service.py": "335b6a87bd3a2161da9a403d8aeaaa81a542e37e3c6ab36ec43c921a0ab61b44",
+    "frontend_api/activation.py": "9ab3cc60bd63f4731b01331cc14ac3bddd7830b2b14513dd751012e9bd08cd68",
+    "frontend_api/activation_config.py": "aa1fa5a48acbe08378c823a1ae59abef9a3a0da88001a8fbac7a7df7eb7483b7",
+    "frontend_api/activation_trace.py": "dafc3b91593a1d74a40d0125962f16aaea62b1909be1e31b440bcc03ee57c284",
+    "frontend_api/transactions.py": "033f2b4319bb578fc8d9c27ba8f4e6ea86447f57692beed4bb8ec3aff35d09b4",
+    "tests_python/test_current_activation_profile.py": "270da42852f3413d42d27c07efe7903d9b08fe48cab6ca858db78135266e6670",
+    "zzz_ops/position.py": "129f8070c887792991bcfab6fd2a8993c673eb9560e27efd4a26964754371cea"
+  },
+  "fixtures": [
+    "activate_eth",
+    "increase_eth",
+    "activate_zzz",
+    "increase_zzz",
+    "approve_zzz",
+    "claim_eth_both"
+  ]
+}

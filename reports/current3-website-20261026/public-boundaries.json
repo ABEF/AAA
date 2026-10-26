@@ -1,0 +1,43 @@
+{
+  "boundary_checks_passed": true,
+  "routes": {
+    "/": {
+      "status": 200,
+      "content_type": "text/html",
+      "sha256": "ee754e1fb967738f379a7efeb295448cb11b179a7bcb224e2c7507a651be9baf",
+      "headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
+        "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "no-referrer",
+        "X-Robots-Tag": "noindex, nofollow"
+      }
+    },
+    "/integration-config.js": {
+      "status": 200,
+      "content_type": "application/javascript",
+      "sha256": "c19c730519aff79210b9f2d0c5325af34408f0a1ab8c4cf7d9d3ef705a841f3a",
+      "matches_release": true
+    },
+    "/app.js": {
+      "status": 404
+    },
+    "/domain.js": {
+      "status": 404
+    },
+    "/deployment-config.js": {
+      "status": 404
+    },
+    "/.git/config": {
+      "status": 403
+    },
+    "/deploy/install-integration-release.sh": {
+      "status": 404
+    },
+    "/api/protocol": {
+      "status": 503
+    }
+  },
+  "public_backend_configured": false,
+  "public_signing": false
+}

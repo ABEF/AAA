@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-26",
+  "attempt": "attempt1",
+  "scope": "Actual selected-pool mainnet fork at fixed block96427989",
+  "successful": false,
+  "tests_run": 10,
+  "passed": 4,
+  "failed": 6,
+  "skips": 0,
+  "results": {
+    "testCurrentBothSwapDirectionsUseActualNetOutput()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentDisabledPoolStillCollectsAndCloses()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentHarvestIsActualPoolFeesAndCannotRepeat()": {
+      "status": "Failure",
+      "reason": "assertion failed: 1792809434 != 0"
+    },
+    "testCurrentMintIncreaseCloseKeepsNativeCustody()": {
+      "status": "Failure",
+      "reason": "assertion failed: 1792809434 != 0"
+    },
+    "testCurrentMissingNativeBudgetCannotSpendPrefunds()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentNativeAndTokenPrefundsStayOutsidePrincipal()": {
+      "status": "Failure",
+      "reason": "assertion failed: 1792809434 != 0"
+    },
+    "testCurrentNativeIdentityAndStaticHooklessPool()": {
+      "status": "Success",
+      "reason": null
+    },
+    "testCurrentRecipientRejectsETHCollectionAtomically()": {
+      "status": "Failure",
+      "reason": "assertion failed: 1792809434 != 0"
+    },
+    "testCurrentVaultActivationGrowthUsesOneBackedSharedLP()": {
+      "status": "Failure",
+      "reason": "Unauthorized()"
+    },
+    "testCurrentVaultHarvestClaimsFollowTransferAndReserveBacking()": {
+      "status": "Failure",
+      "reason": "Unauthorized()"
+    }
+  },
+  "fixture_corrections": [
+    {
+      "failure": "Real Permit2 expiration field",
+      "explanation": "Calling approve(...,amount0,expiration0) sets expiration to block.timestamp, not literal0. Amount is exactly0. Installed Allowance.updateAmountAndExpiration confirms; final expectation keeps zero amount and correct actual expiration."
+    },
+    {
+      "failure": "Unauthorized Entry test sender",
+      "explanation": "vm.prank(ALICE) applied to the external activationEntry getter before execute. Cache the getter first; no production authorization changed."
+    }
+  ],
+  "external_evidence": "current-pool-fork-20261026/attempt1 and attempt1 source snapshots under recorded external evidence root",
+  "production_changed": false
+}

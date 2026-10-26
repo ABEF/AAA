@@ -1,0 +1,364 @@
+"""Read-only, bounded fork execution for the current selected native ETH/ZZZ pool.
+
+This independent current-profile runner does not modify the historical runner or
+its existing dirty draft. Public endpoint success is not production RPC approval.
+"""
+from __future__ import annotations
+import argparse, hashlib, json, locale, math, os, re, shutil, signal, subprocess, sys, tempfile, threading, time
+from pathlib import Path
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import urllib.error, urllib.parse, urllib.request
+ROOT=Path(__file__).resolve().parents[1]
+MAX_REQUEST=1024*1024
+MAX_RESPONSE=8*1024*1024
+MAX_PROCESS_OUTPUT=128*1024*1024
+PROCESS_CLEANUP_SECONDS=5
+READ_METHODS=frozenset({'eth_chainId','eth_gasPrice','eth_blockNumber','eth_getBlockByNumber','eth_getBlockByHash','eth_getCode','eth_getStorageAt','eth_getBalance','eth_getTransactionCount','eth_getLogs','eth_call','eth_getTransactionByHash','eth_getTransactionReceipt','web3_clientVersion'})
+SUITE='test/CurrentNativePoolFork.t.sol:CurrentNativePoolForkTest'
+FORGE_COMMIT='05794498bf47257b144e2e2789a1d5bf8566be0e'
+class _WindowsJobProcess:
+    """Start suspended, assign a kill-on-close job, then allow child execution."""
+    def __init__(self,command,environment,stdin,stdout,stderr):
+        import ctypes
+        from ctypes import wintypes
+        import msvcrt
+        import _winapi
+        class Limits(ctypes.Structure):
+            _fields_=[('process_time',ctypes.c_longlong),('job_time',ctypes.c_longlong),
+                ('flags',wintypes.DWORD),('minimum_working_set',ctypes.c_size_t),
+                ('maximum_working_set',ctypes.c_size_t),('active_processes',wintypes.DWORD),
+                ('affinity',ctypes.c_size_t),('priority',wintypes.DWORD),('scheduling',wintypes.DWORD)]
+        class IoCounters(ctypes.Structure):
+            _fields_=[(name,ctypes.c_ulonglong) for name in ('reads','writes','other','read_bytes','write_bytes','other_bytes')]
+        class ExtendedLimits(ctypes.Structure):
+            _fields_=[('basic',Limits),('io',IoCounters),('process_memory',ctypes.c_size_t),
+                ('job_memory',ctypes.c_size_t),('peak_process_memory',ctypes.c_size_t),('peak_job_memory',ctypes.c_size_t)]
+        kernel=ctypes.WinDLL('kernel32',use_last_error=True)
+        kernel.CreateJobObjectW.argtypes=[wintypes.LPVOID,wintypes.LPCWSTR]
+        kernel.CreateJobObjectW.restype=wintypes.HANDLE
+        kernel.SetInformationJobObject.argtypes=[wintypes.HANDLE,ctypes.c_int,wintypes.LPVOID,wintypes.DWORD]
+        kernel.SetInformationJobObject.restype=wintypes.BOOL
+        kernel.AssignProcessToJobObject.argtypes=[wintypes.HANDLE,wintypes.HANDLE]
+        kernel.AssignProcessToJobObject.restype=wintypes.BOOL
+        kernel.ResumeThread.argtypes=[wintypes.HANDLE];kernel.ResumeThread.restype=wintypes.DWORD
+        kernel.TerminateJobObject.argtypes=[wintypes.HANDLE,wintypes.UINT]
+        kernel.TerminateJobObject.restype=wintypes.BOOL
+        self.kernel,self.api,self.job,self.process=kernel,_winapi,None,None
+        self.assigned=False
+        thread=None;handles=[]
+        try:
+            self.job=kernel.CreateJobObjectW(None,None)
+            if not self.job:raise ctypes.WinError(ctypes.get_last_error())
+            limits=ExtendedLimits();limits.basic.flags=0x2000  # JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
+            if not kernel.SetInformationJobObject(self.job,9,ctypes.byref(limits),ctypes.sizeof(limits)):
+                raise ctypes.WinError(ctypes.get_last_error())
+            current=_winapi.GetCurrentProcess()
+            for stream in (stdin,stdout,stderr):
+                handles.append(_winapi.DuplicateHandle(current,msvcrt.get_osfhandle(stream.fileno()),
+                    current,0,True,_winapi.DUPLICATE_SAME_ACCESS))
+            startup=subprocess.STARTUPINFO();startup.dwFlags|=subprocess.STARTF_USESTDHANDLES
+            startup.hStdInput,startup.hStdOutput,startup.hStdError=handles
+            startup.lpAttributeList={'handle_list':handles}
+            # CREATE_SUSPENDED prevents a compiler descendant from escaping the
+            # job between CreateProcess and AssignProcessToJobObject.
+            flags=0x00000004|subprocess.CREATE_NO_WINDOW|0x00000400
+            self.process,thread,self.pid,_=_winapi.CreateProcess(None,subprocess.list2cmdline(command),
+                None,None,True,flags,environment,None,startup)
+            if not kernel.AssignProcessToJobObject(self.job,self.process):
+                raise ctypes.WinError(ctypes.get_last_error())
+            self.assigned=True
+            if kernel.ResumeThread(thread)==0xffffffff:raise ctypes.WinError(ctypes.get_last_error())
+        except BaseException:
+            self.close()
+            raise
+        finally:
+            if thread is not None:_winapi.CloseHandle(thread)
+            for handle in handles:_winapi.CloseHandle(handle)
+
+    def wait(self,timeout):
+        if self.api.WaitForSingleObject(self.process,max(1,math.ceil(timeout*1000)))==self.api.WAIT_TIMEOUT:
+            raise subprocess.TimeoutExpired('fork subprocess',timeout)
+        return self.api.GetExitCodeProcess(self.process)
+
+    def close(self):
+        # TerminateJobObject also covers descendants after the parent exits.
+        # Closing the final job handle independently enforces kill-on-close.
+        if self.job is not None:
+            self.kernel.TerminateJobObject(self.job,1)
+            self.api.CloseHandle(self.job);self.job=None
+        if self.process is not None:
+            if not self.assigned and self.api.WaitForSingleObject(self.process,0)==self.api.WAIT_TIMEOUT:
+                self.api.TerminateProcess(self.process,1)
+            self.api.WaitForSingleObject(self.process,PROCESS_CLEANUP_SECONDS*1000)
+            self.api.CloseHandle(self.process);self.process=None
+
+def run_process_tree(command,*,capture_output=True,text=True,check=False,timeout,env=None):
+    """Bound the process tree and avoid descendant-held capture pipe hangs.
+
+    Implements only the subprocess.run options used by this runner, retaining
+    the injectable run interface for command adapters and offline tests.
+    """
+    if capture_output is not True or text is not True or check is not False:
+        raise ValueError('Fork subprocess requires captured text output without check')
+    if isinstance(timeout,bool) or not isinstance(timeout,(int,float)) or not math.isfinite(timeout) or timeout<=0:
+        raise ValueError('Fork subprocess requires a positive finite timeout')
+    with open(os.devnull,'rb') as stdin,tempfile.TemporaryFile() as stdout,tempfile.TemporaryFile() as stderr:
+        process=None
+        try:
+            if os.name=='nt':process=_WindowsJobProcess(command,env,stdin,stdout,stderr)
+            else:process=subprocess.Popen(command,stdin=stdin,stdout=stdout,stderr=stderr,env=env,start_new_session=True)
+            returncode=process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            # Do not attach captured output or credential-bearing exception text.
+            raise subprocess.TimeoutExpired(command,timeout) from None
+        finally:
+            if process is not None:
+                if os.name=='nt':process.close()
+                else:
+                    try:os.killpg(process.pid,signal.SIGKILL)
+                    except ProcessLookupError:pass
+                    try:process.wait(timeout=PROCESS_CLEANUP_SECONDS)
+                    except subprocess.TimeoutExpired:pass
+        captured=[]
+        for name,stream in (('stdout',stdout),('stderr',stderr)):
+            stream.seek(0,os.SEEK_END);size=stream.tell()
+            if size>MAX_PROCESS_OUTPUT:
+                # Fixed labels and numeric sizes only; never echo rejected data.
+                print(f'Fork subprocess output rejected: stream={name} bytes={size} limit_bytes={MAX_PROCESS_OUTPUT}',
+                    file=sys.stderr,flush=True)
+                raise ValueError('Fork subprocess output exceeds size limit')
+            stream.seek(0);value=stream.read(MAX_PROCESS_OUTPUT+1)
+            if len(value)>MAX_PROCESS_OUTPUT:raise ValueError('Fork subprocess output exceeds size limit')
+            captured.append(value.decode(locale.getpreferredencoding(False)).replace('\r\n','\n').replace('\r','\n'))
+        return subprocess.CompletedProcess(command,returncode,*captured)
+
+def error(status,request_id,message,code=-32098):
+    return status,json.dumps({'jsonrpc':'2.0','id':request_id,'error':{'code':code,'message':message}}).encode()
+
+class Relay:
+    def __init__(self,upstream,*,interval=1.25,post=None,clock=time.monotonic,sleep=time.sleep):
+        if not isinstance(upstream,str) or not upstream.strip():raise ValueError('Explicit upstream RPC is required')
+        try:
+            parsed=urllib.parse.urlsplit(upstream)
+            secure=parsed.scheme=='https' or parsed.scheme=='http' and parsed.hostname in ('localhost','127.0.0.1','::1')
+            valid=secure and bool(parsed.hostname) and not parsed.fragment
+            parsed.port  # Reject malformed ports without reporting the input URL.
+        except ValueError:valid=False
+        if not valid:raise ValueError('Upstream requires HTTPS or loopback HTTP')
+        if isinstance(interval,bool) or not isinstance(interval,(int,float)) or not math.isfinite(interval) or interval<1.25:
+            raise ValueError('Archive relay interval must be at least 1.25 seconds')
+        self.upstream=upstream;self.interval=interval;self.post=post or self._post
+        self.clock=clock;self.sleep=sleep;self.next_request=0.0;self.lock=threading.Lock()
+        self.stopped=threading.Event();self.archive_attempts=0
+        # Upstream exceptions and credential-bearing error bodies never enter logs.
+        self.private=[upstream]+[value for value in (parsed.username,parsed.password) if value]
+        self.private.extend(value for _,value in urllib.parse.parse_qsl(parsed.query) if value)
+
+    def cancel(self):
+        """Stop queued requests/backoff; an active socket still has its 30s timeout."""
+        self.stopped.set()
+
+    def _wait(self,seconds):
+        if self.stopped.is_set():return False
+        if self.sleep is time.sleep:return not self.stopped.wait(seconds)
+        # Preserve the injected deterministic clock used by offline cadence tests.
+        self.sleep(seconds)
+        return not self.stopped.is_set()
+
+    def _post(self,body):
+        request=urllib.request.Request(self.upstream,data=body,headers={'Content-Type':'application/json'})
+        try:
+            with urllib.request.urlopen(request,timeout=30) as response:return response.status,response.read(MAX_RESPONSE+1)
+        except urllib.error.HTTPError as exc:
+            with exc:return exc.code,exc.read(MAX_RESPONSE+1)
+
+    def handle(self,body):
+        if not isinstance(body,bytes) or len(body)>MAX_REQUEST:return error(413,None,'RPC request exceeds size limit')
+        try:request=json.loads(body)
+        except (UnicodeError,json.JSONDecodeError):return error(400,None,'Malformed JSON-RPC request',-32600)
+        if not isinstance(request,dict) or request.get('jsonrpc')!='2.0' or 'id' not in request or \
+            not (request['id'] is None or type(request['id']) in (int,str)) or not isinstance(request.get('params',[]),list):
+            return error(400,None,'Malformed JSON-RPC request',-32600)
+        method=request.get('method');request_id=request['id']
+        if not isinstance(method,str) or method not in READ_METHODS:
+            identifier=method if isinstance(method,str) and re.fullmatch(r'[A-Za-z0-9_]{1,64}',method) else 'invalid'
+            return error(403,request_id,f'RPC method denied by the fork read-only allowlist: {identifier}',-32601)
+        # A queued handler must not wait behind every other request at shutdown.
+        while not self.stopped.is_set():
+            if self.lock.acquire(timeout=.1):break
+        else:return error(503,request_id,'Archive relay stopped')
+        try:
+            for attempt in range(3):
+                if self.stopped.is_set():return error(503,request_id,'Archive relay stopped')
+                delay=max(0.0,self.next_request-self.clock())
+                if delay and not self._wait(delay):return error(503,request_id,'Archive relay stopped')
+                self.next_request=self.clock()+self.interval
+                self.archive_attempts+=1
+                try:status,response=self.post(body)
+                except (OSError,ValueError,TimeoutError):return error(502,request_id,'Archive RPC transport failed')
+                if self.stopped.is_set():return error(503,request_id,'Archive relay stopped')
+                if status==429:
+                    if attempt<2:
+                        if not self._wait(6*(2**attempt)):return error(503,request_id,'Archive relay stopped')
+                        continue
+                    return error(429,request_id,'Archive RPC rate limit persisted after three attempts')
+                if status!=200:return error(status if 400<=status<=599 else 502,request_id,'Archive RPC HTTP request failed')
+                if not isinstance(response,bytes) or len(response)>MAX_RESPONSE:
+                    return error(502,request_id,'Archive RPC response exceeds size limit')
+                try:payload=json.loads(response)
+                except (UnicodeError,json.JSONDecodeError):return error(502,request_id,'Archive RPC returned malformed JSON')
+                if not isinstance(payload,dict) or payload.get('jsonrpc')!='2.0' or 'id' not in payload or \
+                    type(payload['id']) is not type(request_id) or payload['id']!=request_id or \
+                    ('result' in payload)==('error' in payload):
+                    return error(502,request_id,'Archive RPC response identity or envelope mismatch')
+                if 'error' in payload:
+                    # Never persist arbitrary upstream messages/data: a provider
+                    # may echo an API key from its URL path in an error payload.
+                    detail=payload['error']
+                    code=detail.get('code') if isinstance(detail,dict) else None
+                    if type(code) is not int or not -(2**31)<=code<2**31:
+                        return error(502,request_id,'Archive RPC returned malformed error')
+                    return error(200,request_id,'Archive RPC rejected the read',code)
+                return status,response  # Successful result bytes are not repaired or substituted.
+        finally:self.lock.release()
+        raise AssertionError('Bounded retry loop must return')
+
+class RelayServer:
+    def __init__(self,relay):
+        self.relay=relay
+        class Handler(BaseHTTPRequestHandler):
+            def log_message(self,*args):pass
+            def do_POST(self):
+                try:length=int(self.headers.get('Content-Length',''))
+                except ValueError:length=-1
+                if not 0<=length<=MAX_REQUEST:status,payload=error(413,None,'Invalid RPC request length')
+                else:
+                    self.connection.settimeout(30)
+                    try:status,payload=relay.handle(self.rfile.read(length))
+                    except (OSError,TimeoutError):status,payload=error(400,None,'Incomplete RPC request')
+                self.send_response(status);self.send_header('Content-Type','application/json')
+                self.send_header('Content-Length',str(len(payload)))
+                try:self.end_headers();self.wfile.write(payload)
+                except OSError:pass  # Forge may have already aborted its local request.
+        self.server=ThreadingHTTPServer(('127.0.0.1',0),Handler)
+        # An active upstream read is bounded separately. Closing the listening
+        # server must not join a queue of blocked RPC handler threads.
+        self.server.daemon_threads=True
+        self.server.block_on_close=False
+        self.url=f'http://127.0.0.1:{self.server.server_port}'
+        self.thread=threading.Thread(target=self.server.serve_forever,daemon=True)
+    def start(self):self.thread.start()
+    def close(self):
+        self.relay.cancel()
+        if self.thread.is_alive():self.server.shutdown()
+        self.server.server_close()
+        if self.thread.is_alive():self.thread.join(timeout=5)
+
+def expected_tests(root=ROOT):
+    source=(root/SUITE.split(':')[0]).read_text(encoding='utf-8')
+    source=re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"','',source)
+    names=re.findall(r'\bfunction\s+(test[A-Za-z0-9_]*)\s*\(',source)
+    if not names or len(names)!=len(set(names)):raise ValueError('Ambiguous or empty current fork inventory')
+    return set(names)
+
+def verify_results(raw,root=ROOT):
+    data=json.loads(raw)
+    if not isinstance(data,dict) or set(data)!= {SUITE}:raise ValueError('Exact current fork suite must execute')
+    suite=data[SUITE]
+    results=suite.get('test_results') if isinstance(suite,dict) else None
+    if not isinstance(results,dict):raise ValueError('Missing current fork results')
+    names=[]
+    for signature,result in results.items():
+        match=re.fullmatch(r'(test\w+)\(\)',signature)
+        if not match or not isinstance(result,dict) or result.get('status')!='Success':
+            raise ValueError('Every current fork test must succeed without skips')
+        names.append(match[1])
+    if len(names)!=len(set(names)) or set(names)!=expected_tests(root):
+        raise ValueError('Complete source inventory was not executed')
+    return len(names)
+
+def source_pins(root=ROOT):
+    paths=[*root.glob('src/**/*.sol'),root/'test/CurrentNativePoolFork.t.sol',
+           root/'test/mocks/Mocks.sol',root/'test/mocks/MockVRF.sol',
+           root/'test/helpers/CanonicalFixture.sol',root/'test/helpers/DualOracleFixture.sol',
+           root/'scripts/run-current-pool-fork.py',root/'foundry.toml',root/'package-lock.json']
+    # Pin installed sources as inputs, not an assumed upstream audit or runtime match.
+    for dependency in ('@openzeppelin/contracts','@uniswap/v4-core','@uniswap/v4-periphery'):
+        paths.extend((root/'node_modules'/dependency).rglob('*.sol'))
+    paths.extend((root/'lib/forge-std/src').rglob('*.sol'))
+    return {p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted(set(paths)) if p.is_file()}
+
+def main(argv=None):
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--rpc-env',default='ROBINHOOD_FORK_RPC_URL',help='Endpoint environment variable; default is keyless Pinax if unset')
+    parser.add_argument('--forge',default=shutil.which('forge') or 'forge')
+    parser.add_argument('--solc',required=True,help='Reviewed solc0.8.26 executable')
+    parser.add_argument('--output',type=Path,required=True,help='New exclusive evidence directory')
+    parser.add_argument('--timeout',type=int,default=1500)
+    args=parser.parse_args(argv)
+    if not re.fullmatch(r'[A-Z][A-Z0-9_]{0,79}',args.rpc_env):raise ValueError('Invalid RPC environment name')
+    if not 1<=args.timeout<=1500:raise ValueError('Deadline outside1..1500 seconds')
+    upstream=os.environ.get(args.rpc_env,'https://robinhood.rpc.pinax.network')
+    relay=Relay(upstream)  # Validates HTTPS or explicit loopback; never echoes credentials.
+    before=source_pins(); expected=expected_tests()
+    # Complete result selection and version checks precede network activity.
+    version=run_process_tree([args.forge,'--version'],timeout=30)
+    if version.returncode or not re.search(r'\bVersion:\s*1\.4\.4(?:-v1\.4\.4)?(?:\s|$)',version.stdout) or FORGE_COMMIT not in version.stdout:
+        raise ValueError('Pinned Forge1.4.4 commit required')
+    compiler=run_process_tree([args.solc,'--version'],timeout=30)
+    if compiler.returncode or '0.8.26+commit.8a97fa7a' not in compiler.stdout:
+        raise ValueError('Pinned solc0.8.26 required')
+    args.output.mkdir(parents=True,exist_ok=False)
+    server=RelayServer(relay); stopped=threading.Event()
+    def progress():
+        while not stopped.wait(30):
+            print(json.dumps({'fork_progress_seconds':int(time.monotonic()-start),'archive_attempts':relay.archive_attempts}),file=sys.stderr,flush=True)
+    environment=dict(os.environ)
+    for key in list(environment):
+        if any(part in key.upper() for part in ('PRIVATE_KEY','MNEMONIC','RPC_URL','RPC_HEADERS','JWT_SECRET')):
+            environment.pop(key,None)
+    environment.update(RUN_CURRENT_POOL_FORK='true',ROBINHOOD_RPC_URL=server.url)
+    command=[args.forge,'test','--root',str(ROOT),'--use',args.solc,
+             '--match-path',SUITE.split(':')[0],'--match-contract','^CurrentNativePoolForkTest$',
+             '--threads','1','--no-storage-caching','--json','-vvv',
+             '--out',str(args.output/'out'),'--cache-path',str(args.output/'cache')]
+    start=time.monotonic(); thread=threading.Thread(target=progress,daemon=True)
+    receipt={'date':'2026-10-26','chain_id':4663,'block':96427989,
+       'block_hash':'0x0ba14c22200dfc717bbd2c8b5b8842329775374d06f46e30c65e273f067ecbc3',
+       'pool_id':'0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b',
+       'suite':SUITE,'expected_test_count':len(expected),'source_sha256_before':before,
+       'read_only_rpc_allowlist':sorted(READ_METHODS),'public_transactions':False,
+       'substitutes':['MockAccess/governance','MockVRF','correlated USD fixtures','fork-only ETH/token balance funding'],
+       'production_provider_or_price_qualification':False,'production_approval':False}
+    server.start();thread.start()
+    code=1
+    try:
+        try:
+            process=run_process_tree(command,env=environment,timeout=args.timeout)
+            (args.output/'forge-results.json').write_text(process.stdout,encoding='utf-8')
+            (args.output/'forge-stderr.log').write_text(process.stderr,encoding='utf-8')
+            receipt['process_exit_code']=process.returncode
+            if process.returncode==0:
+                receipt['passed_tests']=verify_results(process.stdout)
+                code=0
+        except subprocess.TimeoutExpired:
+            receipt['failure']='Bounded fork process tree deadline exceeded';code=124
+        except (ValueError,OSError) as ex:
+            receipt['failure']=type(ex).__name__+' during current fork result verification'
+    finally:
+        stopped.set();server.close();thread.join(timeout=5)
+        receipt.update(elapsed_seconds=round(time.monotonic()-start,3),archive_attempts=relay.archive_attempts,
+                       source_sha256_after=source_pins(),successful=code==0)
+        receipt['source_inputs_unchanged']=before==receipt['source_sha256_after']
+        if not receipt['source_inputs_unchanged']:receipt['successful']=False;code=1
+        (args.output/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
+    print(json.dumps({key:receipt[key] for key in ('successful','expected_test_count','elapsed_seconds','archive_attempts','source_inputs_unchanged')}))
+    return code
+
+if __name__=='__main__':
+    try:raise SystemExit(main())
+    except (ValueError,OSError,subprocess.SubprocessError) as ex:
+        print(json.dumps({'successful':False,'failure':type(ex).__name__,'detail':'Current fork preflight failed; transport details withheld'}),file=sys.stderr)
+        raise SystemExit(2)
+

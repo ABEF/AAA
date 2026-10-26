@@ -1,0 +1,5 @@
+{
+  "date": "2026-10-26",
+  "returncode": 1,
+  "failure": "Bounded selected-pool observer rejected transport/state/dependency; no qualified observation written."
+}

@@ -1,0 +1,60 @@
+{
+  "reviewed": "2026-10-27",
+  "chain_id": 4663,
+  "block": 96427989,
+  "block_hash": "0x0ba14c22200dfc717bbd2c8b5b8842329775374d06f46e30c65e273f067ecbc3",
+  "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+  "pool_key": [
+    "0x0000000000000000000000000000000000000000",
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    10020,
+    200,
+    "0x0000000000000000000000000000000000000000"
+  ],
+  "slot0_witness": {
+    "trace_phase": "Setup",
+    "trace_index": 19,
+    "raw_return": "0x00000000000000000000000000000000000001c233db8898e9d40151590c79a3000000000000000000000000000000000000000000000000000000000001dd5800000000000000000000000000000000000000000000000000000000003e83e80000000000000000000000000000000000000000000000000000000000002724",
+    "sqrt_price_x96": "35668722266736931982419400882595",
+    "tick": 122200,
+    "static_lp_fee_pips": 10020,
+    "protocol_fee_pips": [
+      1000,
+      1000
+    ],
+    "combined_fee_pips": [
+      11010,
+      11010
+    ]
+  },
+  "contracts_required_by_passed_current_fork_setup": {
+    "core": {
+      "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "runtime_keccak": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626"
+    },
+    "positions": {
+      "address": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "runtime_keccak": "0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2"
+    },
+    "state": {
+      "address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+      "runtime_keccak": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6"
+    },
+    "permit2": {
+      "address": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+      "runtime_keccak": "0x5208783f52488f7d3493e5e38311ab707c1d75457fe472a19b0b4d57d66a7fca"
+    },
+    "zzz": {
+      "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      "runtime_keccak": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597"
+    }
+  },
+  "witness_file": "attempt2/forge-results.json in external current-pool-fork-20261026 evidence",
+  "witness_file_sha256": "d065e3ef54e232716242675e1e233bbdaad46eb93d5d2df8a84b062b4b72e0ed",
+  "executed_method": "testCurrentNativeIdentityAndStaticHooklessPool()",
+  "executed_method_status": "Success",
+  "runtime_check_scope": "Five exact runtime assertions and wiring required by successful new suite setup; this is not a new HTTP initialization-log or complete provider qualification.",
+  "batch_observer_qualification": false,
+  "live_price_or_depth_claim": false,
+  "production_approval": false
+}

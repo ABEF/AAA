@@ -1,0 +1,11 @@
+test_empty_source_inventory_fails_closed (current_fork_tests.CurrentPoolForkRunnerTest.test_empty_source_inventory_fails_closed) ... ok
+test_exact_complete_current_inventory_is_required (current_fork_tests.CurrentPoolForkRunnerTest.test_exact_complete_current_inventory_is_required) ... ok
+test_fork_relay_cannot_send_transactions_or_manage_wallets (current_fork_tests.CurrentPoolForkRunnerTest.test_fork_relay_cannot_send_transactions_or_manage_wallets) ... ok
+test_old_or_extra_suite_is_not_current_qualification (current_fork_tests.CurrentPoolForkRunnerTest.test_old_or_extra_suite_is_not_current_qualification) ... ok
+test_optout_skip_or_failed_setup_cannot_be_a_pass (current_fork_tests.CurrentPoolForkRunnerTest.test_optout_skip_or_failed_setup_cannot_be_a_pass) ... ok
+test_upstream_error_cannot_echo_path_credentials (current_fork_tests.CurrentPoolForkRunnerTest.test_upstream_error_cannot_echo_path_credentials) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.017s
+
+OK

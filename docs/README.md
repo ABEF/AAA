@@ -1,6 +1,6 @@
 # Documentation map
 
-Reviewed2026-10-26. [Root README](../README.md) introduces PoPL and its code.
+Reviewed2026-10-27. [Root README](../README.md) introduces PoPL and its code.
 [TODO.md](../TODO.md) is the only task/status list; [feature reference](IMPLEMENTATION_STATUS.md)
 states what exists and what was verified. **Undeployed; production NOT APPROVED.**
 Current guides below describe accounting3/directgovernance2/fee1/localV4.
@@ -33,6 +33,7 @@ Historical reports and explicitly legacy local profiles retain their own semanti
 
 | Topic | Scope |
 | --- | --- |
+| Demo versus integration release targets | [Environment map](SITE_ENVIRONMENTS.md): popldemo remains the existing simulation; poplint has its own current3 build/root/configuration and no demo fallback. |
 | Published website read/review profile | [Native website boundary](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Published native2 is not current3 acceptance; public signing remains disabled. |
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 local build](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |

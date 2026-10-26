@@ -1,0 +1,19 @@
+{
+  "reviewed": "2026-10-26",
+  "sources": [
+    {
+      "url": "https://docs.robinhood.com/chain/connecting/",
+      "use": "Chain4663, ETH gas and documented publicendpoint; rate-limited publicaccess is not production hosting"
+    },
+    {
+      "url": "https://pinax.network/chain/robinhood",
+      "use": "Provider documents Robinhood archiveRPC at robinhood.rpc.pinax.network; actualreads still require qualification"
+    },
+    {
+      "url": "https://docs.blockvectra.com/en/guides/robinhood-chain/",
+      "use": "Additionalkeylesscandidate; actualprobe rejected selected historicalblock outsidepublicwindow"
+    }
+  ],
+  "credentials_used": false,
+  "provider_qualification": false
+}

@@ -1,0 +1,53 @@
+TAP version 13
+# Subtest: unconfigured integration is explicitly distinct from the unchanged public demo config
+ok 1 - unconfigured integration is explicitly distinct from the unchanged public demo config
+  ---
+  duration_ms: 1.5364
+  type: 'test'
+  ...
+# Subtest: an integration build cannot initialize on the demo, a lookalike host, HTTP public origin or file origin
+ok 2 - an integration build cannot initialize on the demo, a lookalike host, HTTP public origin or file origin
+  ---
+  duration_ms: 0.4499
+  type: 'test'
+  ...
+# Subtest: current deployment is validated without relabeling legacy manifests or changing input limits
+ok 3 - current deployment is validated without relabeling legacy manifests or changing input limits
+  ---
+  duration_ms: 2.8561
+  type: 'test'
+  ...
+# Subtest: null or malformed configuration never loads a wallet/view or discovers API configuration
+ok 4 - null or malformed configuration never loads a wallet/view or discovers API configuration
+  ---
+  duration_ms: 0.4712
+  type: 'test'
+  ...
+# Subtest: output guards refuse demo dist, absolute paths, traversal and unrelated deployment roots
+ok 5 - output guards refuse demo dist, absolute paths, traversal and unrelated deployment roots
+  ---
+  duration_ms: 0.2761
+  type: 'test'
+  ...
+# Subtest: integration artifact includes only reviewed public files with environment identity and reproducible checksums
+ok 6 - integration artifact includes only reviewed public files with environment identity and reproducible checksums
+  ---
+  duration_ms: 18188.4861
+  type: 'test'
+  ...
+# Subtest: separate deployment templates cannot select or overwrite the demo document root
+ok 7 - separate deployment templates cannot select or overwrite the demo document root
+  ---
+  duration_ms: 2.461
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18319.1094
+

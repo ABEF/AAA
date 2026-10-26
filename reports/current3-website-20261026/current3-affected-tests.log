@@ -1,0 +1,2718 @@
+TAP version 13
+# Subtest: actual Python response accepted and independently reconstructed: activate_zzz
+ok 1 - actual Python response accepted and independently reconstructed: activate_zzz
+  ---
+  duration_ms: 116.0153
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_eth
+ok 2 - actual Python response accepted and independently reconstructed: activate_eth
+  ---
+  duration_ms: 3.5861
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdc
+ok 3 - actual Python response accepted and independently reconstructed: activate_usdc
+  ---
+  duration_ms: 22.0261
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdg
+ok 4 - actual Python response accepted and independently reconstructed: activate_usdg
+  ---
+  duration_ms: 30.9503
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_zzz
+ok 5 - actual Python response accepted and independently reconstructed: increase_zzz
+  ---
+  duration_ms: 21.5582
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_usdc_5
+ok 6 - actual Python response accepted and independently reconstructed: increase_usdc_5
+  ---
+  duration_ms: 3.2577
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_eth_5
+ok 7 - actual Python response accepted and independently reconstructed: increase_eth_5
+  ---
+  duration_ms: 4.1451
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_zzz
+ok 8 - actual Python response accepted and independently reconstructed: approve_zzz
+  ---
+  duration_ms: 14.964
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_usdc
+ok 9 - actual Python response accepted and independently reconstructed: approve_usdc
+  ---
+  duration_ms: 2.4685
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: mint
+ok 10 - actual Python response accepted and independently reconstructed: mint
+  ---
+  duration_ms: 2.8574
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: claim
+ok 11 - actual Python response accepted and independently reconstructed: claim
+  ---
+  duration_ms: 7.2621
+  type: 'test'
+  ...
+# Subtest: token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+ok 12 - token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+  ---
+  duration_ms: 1.0251
+  type: 'test'
+  ...
+# Subtest: activation uses oracle token price, exact $100 plus at most a raw rounding unit
+ok 13 - activation uses oracle token price, exact $100 plus at most a raw rounding unit
+  ---
+  duration_ms: 3.2974
+  type: 'test'
+  ...
+# Subtest: production config requires HTTPS and never enables signing or accepts unknown switches
+ok 14 - production config requires HTTPS and never enables signing or accepts unknown switches
+  ---
+  duration_ms: 2.0797
+  type: 'test'
+  ...
+# Subtest: reject chain without any submission
+ok 15 - reject chain without any submission
+  ---
+  duration_ms: 0.7334
+  type: 'test'
+  ...
+# Subtest: reject API configuration without any submission
+ok 16 - reject API configuration without any submission
+  ---
+  duration_ms: 1.6088
+  type: 'test'
+  ...
+# Subtest: reject stale snapshot without any submission
+ok 17 - reject stale snapshot without any submission
+  ---
+  duration_ms: 1.0854
+  type: 'test'
+  ...
+# Subtest: reject canonical hash without any submission
+ok 18 - reject canonical hash without any submission
+  ---
+  duration_ms: 3.5382
+  type: 'test'
+  ...
+# Subtest: reject target without any submission
+ok 19 - reject target without any submission
+  ---
+  duration_ms: 4.3537
+  type: 'test'
+  ...
+# Subtest: reject value without any submission
+ok 20 - reject value without any submission
+  ---
+  duration_ms: 1.7899
+  type: 'test'
+  ...
+# Subtest: reject data without any submission
+ok 21 - reject data without any submission
+  ---
+  duration_ms: 1.6628
+  type: 'test'
+  ...
+# Subtest: reject extra transaction field without any submission
+ok 22 - reject extra transaction field without any submission
+  ---
+  duration_ms: 1.8818
+  type: 'test'
+  ...
+# Subtest: reject deadline without any submission
+ok 23 - reject deadline without any submission
+  ---
+  duration_ms: 1.6902
+  type: 'test'
+  ...
+# Subtest: reject overlong expiry without any submission
+ok 24 - reject overlong expiry without any submission
+  ---
+  duration_ms: 2.3861
+  type: 'test'
+  ...
+# Subtest: reject sender without any submission
+ok 25 - reject sender without any submission
+  ---
+  duration_ms: 2.7417
+  type: 'test'
+  ...
+# Subtest: reject fee identity without any submission
+ok 26 - reject fee identity without any submission
+  ---
+  duration_ms: 1.7597
+  type: 'test'
+  ...
+# Subtest: reject unqualified fee model without any submission
+ok 27 - reject unqualified fee model without any submission
+  ---
+  duration_ms: 2.2292
+  type: 'test'
+  ...
+# Subtest: reject gas ceiling without any submission
+ok 28 - reject gas ceiling without any submission
+  ---
+  duration_ms: 2.2217
+  type: 'test'
+  ...
+# Subtest: reject fee arithmetic without any submission
+ok 29 - reject fee arithmetic without any submission
+  ---
+  duration_ms: 4.0604
+  type: 'test'
+  ...
+# Subtest: reject runtime without any submission
+ok 30 - reject runtime without any submission
+  ---
+  duration_ms: 2.2816
+  type: 'test'
+  ...
+# Subtest: reject state override without any submission
+ok 31 - reject state override without any submission
+  ---
+  duration_ms: 2.4692
+  type: 'test'
+  ...
+# Subtest: reject LP shortfall without any submission
+ok 32 - reject LP shortfall without any submission
+  ---
+  duration_ms: 1.6409
+  type: 'test'
+  ...
+# Subtest: reject LP units shortfall without any submission
+ok 33 - reject LP units shortfall without any submission
+  ---
+  duration_ms: 2.7621
+  type: 'test'
+  ...
+# Subtest: reject shares zero without any submission
+ok 34 - reject shares zero without any submission
+  ---
+  duration_ms: 2.8096
+  type: 'test'
+  ...
+# Subtest: reject wrong source valuation without any submission
+ok 35 - reject wrong source valuation without any submission
+  ---
+  duration_ms: 1.9707
+  type: 'test'
+  ...
+# Subtest: reject price changed without any submission
+ok 36 - reject price changed without any submission
+  ---
+  duration_ms: 1.9048
+  type: 'test'
+  ...
+# Subtest: reject owner changed without any submission
+ok 37 - reject owner changed without any submission
+  ---
+  duration_ms: 1.9151
+  type: 'test'
+  ...
+# Subtest: reject unrevealed without any submission
+ok 38 - reject unrevealed without any submission
+  ---
+  duration_ms: 1.6354
+  type: 'test'
+  ...
+# Subtest: reject lifecycle stopped without any submission
+ok 39 - reject lifecycle stopped without any submission
+  ---
+  duration_ms: 1.3205
+  type: 'test'
+  ...
+# Subtest: approval is exact, not unlimited, and requires another complete simulation
+ok 40 - approval is exact, not unlimited, and requires another complete simulation
+  ---
+  duration_ms: 9.2267
+  type: 'test'
+  ...
+# Subtest: top-up below $5 and activation above/below exact amount are rejected
+ok 41 - top-up below $5 and activation above/below exact amount are rejected
+  ---
+  duration_ms: 4.6762
+  type: 'test'
+  ...
+# Subtest: claim only selects funded ETH, never source tokens or duplicate NFTs
+ok 42 - claim only selects funded ETH, never source tokens or duplicate NFTs
+  ---
+  duration_ms: 2.8572
+  type: 'test'
+  ...
+# Subtest: mint does not allocate liquidity or reserve a returned NFT
+ok 43 - mint does not allocate liquidity or reserve a returned NFT
+  ---
+  duration_ms: 2.0817
+  type: 'test'
+  ...
+# Subtest: an expiry or reorg during the final checks invalidates the prepared review
+ok 44 - an expiry or reorg during the final checks invalidates the prepared review
+  ---
+  duration_ms: 2.8832
+  type: 'test'
+  ...
+# Subtest: portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+ok 45 - portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+  ---
+  duration_ms: 5.0609
+  type: 'test'
+  ...
+# Subtest: a 1,000-ID wallet fetches only eight card projections with at most two in flight
+ok 46 - a 1,000-ID wallet fetches only eight card projections with at most two in flight
+  ---
+  duration_ms: 113.5173
+  type: 'test'
+  ...
+# Subtest: mint readiness and malformed values fail closed
+ok 47 - mint readiness and malformed values fail closed
+  ---
+  duration_ms: 4.8706
+  type: 'test'
+  ...
+# Subtest: wallet changes discard late portfolio responses
+ok 48 - wallet changes discard late portfolio responses
+  ---
+  duration_ms: 4.2482
+  type: 'test'
+  ...
+# Subtest: unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+ok 49 - unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+  ---
+  duration_ms: 45.0402
+  type: 'test'
+  ...
+# Subtest: API request transport excludes credentials and redirects; size and error results are bounded
+ok 50 - API request transport excludes credentials and redirects; size and error results are bounded
+  ---
+  duration_ms: 2.437
+  type: 'test'
+  ...
+# Subtest: aborted request never retries or ignores cancellation
+ok 51 - aborted request never retries or ignores cancellation
+  ---
+  duration_ms: 0.4094
+  type: 'test'
+  ...
+# Subtest: ordinary addresses accepted; multiple authorized accounts require explicit selection
+ok 52 - ordinary addresses accepted; multiple authorized accounts require explicit selection
+  ---
+  duration_ms: 4.6429
+  type: 'test'
+  ...
+# Subtest: restore uses read-only permission checks and isolated deployment storage
+ok 53 - restore uses read-only permission checks and isolated deployment storage
+  ---
+  duration_ms: 0.8595
+  type: 'test'
+  ...
+# Subtest: account changes and disconnects invalidate prior selections and reviews
+ok 54 - account changes and disconnects invalidate prior selections and reviews
+  ---
+  duration_ms: 0.5121
+  type: 'test'
+  ...
+# Subtest: revoked remembered account never silently restores a different account
+ok 55 - revoked remembered account never silently restores a different account
+  ---
+  duration_ms: 0.4687
+  type: 'test'
+  ...
+# Subtest: cancelled/late connection cannot revive a disconnected account
+ok 56 - cancelled/late connection cannot revive a disconnected account
+  ---
+  duration_ms: 0.2862
+  type: 'test'
+  ...
+# Subtest: published default keeps the public demo and local signer boundaries
+ok 57 - published default keeps the public demo and local signer boundaries
+  ---
+  duration_ms: 31.0499
+  type: 'test'
+  ...
+# Subtest: actual Python response validates and aggregates current LP exactly
+ok 58 - actual Python response validates and aggregates current LP exactly
+  ---
+  duration_ms: 7.475
+  type: 'test'
+  ...
+# Subtest: complete collection sums only after all pages and uses no wallet permissions
+ok 59 - complete collection sums only after all pages and uses no wallet permissions
+  ---
+  duration_ms: 6.5964
+  type: 'test'
+  ...
+# Subtest: missing chunk rejects entire collection
+ok 60 - missing chunk rejects entire collection
+  ---
+  duration_ms: 3.1133
+  type: 'test'
+  ...
+# Subtest: changed inventory rejects entire collection
+ok 61 - changed inventory rejects entire collection
+  ---
+  duration_ms: 2.5004
+  type: 'test'
+  ...
+# Subtest: wrong block rejects entire collection
+ok 62 - wrong block rejects entire collection
+  ---
+  duration_ms: 2.3582
+  type: 'test'
+  ...
+# Subtest: wrong contract rejects entire collection
+ok 63 - wrong contract rejects entire collection
+  ---
+  duration_ms: 2.5063
+  type: 'test'
+  ...
+# Subtest: duplicate ordinal rejects entire collection
+ok 64 - duplicate ordinal rejects entire collection
+  ---
+  duration_ms: 3.8274
+  type: 'test'
+  ...
+# Subtest: wrong id rejects entire collection
+ok 65 - wrong id rejects entire collection
+  ---
+  duration_ms: 3.3094
+  type: 'test'
+  ...
+# Subtest: invalid owner rejects entire collection
+ok 66 - invalid owner rejects entire collection
+  ---
+  duration_ms: 4.2979
+  type: 'test'
+  ...
+# Subtest: invalid trait rejects entire collection
+ok 67 - invalid trait rejects entire collection
+  ---
+  duration_ms: 2.4294
+  type: 'test'
+  ...
+# Subtest: wrong weight rejects entire collection
+ok 68 - wrong weight rejects entire collection
+  ---
+  duration_ms: 3.052
+  type: 'test'
+  ...
+# Subtest: wrong stage rejects entire collection
+ok 69 - wrong stage rejects entire collection
+  ---
+  duration_ms: 3.8326
+  type: 'test'
+  ...
+# Subtest: invented total rejects entire collection
+ok 70 - invented total rejects entire collection
+  ---
+  duration_ms: 2.6432
+  type: 'test'
+  ...
+# Subtest: fake active count rejects entire collection
+ok 71 - fake active count rejects entire collection
+  ---
+  duration_ms: 4.2674
+  type: 'test'
+  ...
+# Subtest: unavailable LP leaves exact eligibility and positions available
+ok 72 - unavailable LP leaves exact eligibility and positions available
+  ---
+  duration_ms: 3.8211
+  type: 'test'
+  ...
+# Subtest: empty collection is verified zero and malformed inventory rejected
+ok 73 - empty collection is verified zero and malformed inventory rejected
+  ---
+  duration_ms: 3.3511
+  type: 'test'
+  ...
+# Subtest: abort and unavailable middle page never publish a partial collection
+ok 74 - abort and unavailable middle page never publish a partial collection
+  ---
+  duration_ms: 5.8837
+  type: 'test'
+  ...
+# Subtest: 1000 NFTs are bounded to 63 read requests, not a load qualification
+ok 75 - 1000 NFTs are bounded to 63 read requests, not a load qualification
+  ---
+  duration_ms: 53.7962
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_zzz
+ok 76 - actual Python response accepted and independently reconstructed: activate_zzz
+  ---
+  duration_ms: 66.4585
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_eth
+ok 77 - actual Python response accepted and independently reconstructed: activate_eth
+  ---
+  duration_ms: 3.4488
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdc
+ok 78 - actual Python response accepted and independently reconstructed: activate_usdc
+  ---
+  duration_ms: 2.9807
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdg
+ok 79 - actual Python response accepted and independently reconstructed: activate_usdg
+  ---
+  duration_ms: 2.9447
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_zzz
+ok 80 - actual Python response accepted and independently reconstructed: increase_zzz
+  ---
+  duration_ms: 2.753
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_usdc_5
+ok 81 - actual Python response accepted and independently reconstructed: increase_usdc_5
+  ---
+  duration_ms: 2.5418
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_eth_5
+ok 82 - actual Python response accepted and independently reconstructed: increase_eth_5
+  ---
+  duration_ms: 3.7673
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_zzz
+ok 83 - actual Python response accepted and independently reconstructed: approve_zzz
+  ---
+  duration_ms: 10.2387
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_usdc
+ok 84 - actual Python response accepted and independently reconstructed: approve_usdc
+  ---
+  duration_ms: 9.1454
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: mint
+ok 85 - actual Python response accepted and independently reconstructed: mint
+  ---
+  duration_ms: 24.7226
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: claim
+ok 86 - actual Python response accepted and independently reconstructed: claim
+  ---
+  duration_ms: 2.1193
+  type: 'test'
+  ...
+# Subtest: token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+ok 87 - token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+  ---
+  duration_ms: 0.7625
+  type: 'test'
+  ...
+# Subtest: activation uses oracle token price, exact $100 plus at most a raw rounding unit
+ok 88 - activation uses oracle token price, exact $100 plus at most a raw rounding unit
+  ---
+  duration_ms: 2.1487
+  type: 'test'
+  ...
+# Subtest: production config requires HTTPS and never enables signing or accepts unknown switches
+ok 89 - production config requires HTTPS and never enables signing or accepts unknown switches
+  ---
+  duration_ms: 3.4687
+  type: 'test'
+  ...
+# Subtest: reject chain without any submission
+ok 90 - reject chain without any submission
+  ---
+  duration_ms: 0.7644
+  type: 'test'
+  ...
+# Subtest: reject API configuration without any submission
+ok 91 - reject API configuration without any submission
+  ---
+  duration_ms: 1.4455
+  type: 'test'
+  ...
+# Subtest: reject stale snapshot without any submission
+ok 92 - reject stale snapshot without any submission
+  ---
+  duration_ms: 1.0398
+  type: 'test'
+  ...
+# Subtest: reject canonical hash without any submission
+ok 93 - reject canonical hash without any submission
+  ---
+  duration_ms: 1.1746
+  type: 'test'
+  ...
+# Subtest: reject target without any submission
+ok 94 - reject target without any submission
+  ---
+  duration_ms: 2.6761
+  type: 'test'
+  ...
+# Subtest: reject value without any submission
+ok 95 - reject value without any submission
+  ---
+  duration_ms: 3.2088
+  type: 'test'
+  ...
+# Subtest: reject data without any submission
+ok 96 - reject data without any submission
+  ---
+  duration_ms: 2.5655
+  type: 'test'
+  ...
+# Subtest: reject extra transaction field without any submission
+ok 97 - reject extra transaction field without any submission
+  ---
+  duration_ms: 2.243
+  type: 'test'
+  ...
+# Subtest: reject deadline without any submission
+ok 98 - reject deadline without any submission
+  ---
+  duration_ms: 2.5536
+  type: 'test'
+  ...
+# Subtest: reject overlong expiry without any submission
+ok 99 - reject overlong expiry without any submission
+  ---
+  duration_ms: 1.8401
+  type: 'test'
+  ...
+# Subtest: reject sender without any submission
+ok 100 - reject sender without any submission
+  ---
+  duration_ms: 4.1174
+  type: 'test'
+  ...
+# Subtest: reject fee identity without any submission
+ok 101 - reject fee identity without any submission
+  ---
+  duration_ms: 2.6708
+  type: 'test'
+  ...
+# Subtest: reject unqualified fee model without any submission
+ok 102 - reject unqualified fee model without any submission
+  ---
+  duration_ms: 1.9486
+  type: 'test'
+  ...
+# Subtest: reject gas ceiling without any submission
+ok 103 - reject gas ceiling without any submission
+  ---
+  duration_ms: 5.5786
+  type: 'test'
+  ...
+# Subtest: reject fee arithmetic without any submission
+ok 104 - reject fee arithmetic without any submission
+  ---
+  duration_ms: 2.4177
+  type: 'test'
+  ...
+# Subtest: reject runtime without any submission
+ok 105 - reject runtime without any submission
+  ---
+  duration_ms: 5.286
+  type: 'test'
+  ...
+# Subtest: reject state override without any submission
+ok 106 - reject state override without any submission
+  ---
+  duration_ms: 1.9271
+  type: 'test'
+  ...
+# Subtest: reject LP shortfall without any submission
+ok 107 - reject LP shortfall without any submission
+  ---
+  duration_ms: 1.5004
+  type: 'test'
+  ...
+# Subtest: reject LP units shortfall without any submission
+ok 108 - reject LP units shortfall without any submission
+  ---
+  duration_ms: 1.2851
+  type: 'test'
+  ...
+# Subtest: reject shares zero without any submission
+ok 109 - reject shares zero without any submission
+  ---
+  duration_ms: 2.5274
+  type: 'test'
+  ...
+# Subtest: reject wrong source valuation without any submission
+ok 110 - reject wrong source valuation without any submission
+  ---
+  duration_ms: 1.4053
+  type: 'test'
+  ...
+# Subtest: reject price changed without any submission
+ok 111 - reject price changed without any submission
+  ---
+  duration_ms: 2.2471
+  type: 'test'
+  ...
+# Subtest: reject owner changed without any submission
+ok 112 - reject owner changed without any submission
+  ---
+  duration_ms: 1.544
+  type: 'test'
+  ...
+# Subtest: reject unrevealed without any submission
+ok 113 - reject unrevealed without any submission
+  ---
+  duration_ms: 1.315
+  type: 'test'
+  ...
+# Subtest: reject lifecycle stopped without any submission
+ok 114 - reject lifecycle stopped without any submission
+  ---
+  duration_ms: 0.9724
+  type: 'test'
+  ...
+# Subtest: approval is exact, not unlimited, and requires another complete simulation
+ok 115 - approval is exact, not unlimited, and requires another complete simulation
+  ---
+  duration_ms: 19.2992
+  type: 'test'
+  ...
+# Subtest: top-up below $5 and activation above/below exact amount are rejected
+ok 116 - top-up below $5 and activation above/below exact amount are rejected
+  ---
+  duration_ms: 12.9177
+  type: 'test'
+  ...
+# Subtest: claim only selects funded ETH, never source tokens or duplicate NFTs
+ok 117 - claim only selects funded ETH, never source tokens or duplicate NFTs
+  ---
+  duration_ms: 3.963
+  type: 'test'
+  ...
+# Subtest: mint does not allocate liquidity or reserve a returned NFT
+ok 118 - mint does not allocate liquidity or reserve a returned NFT
+  ---
+  duration_ms: 2.2275
+  type: 'test'
+  ...
+# Subtest: an expiry or reorg during the final checks invalidates the prepared review
+ok 119 - an expiry or reorg during the final checks invalidates the prepared review
+  ---
+  duration_ms: 3.6077
+  type: 'test'
+  ...
+# Subtest: portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+ok 120 - portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+  ---
+  duration_ms: 9.398
+  type: 'test'
+  ...
+# Subtest: a 1,000-ID wallet fetches only eight card projections with at most two in flight
+ok 121 - a 1,000-ID wallet fetches only eight card projections with at most two in flight
+  ---
+  duration_ms: 53.3079
+  type: 'test'
+  ...
+# Subtest: mint readiness and malformed values fail closed
+ok 122 - mint readiness and malformed values fail closed
+  ---
+  duration_ms: 4.0826
+  type: 'test'
+  ...
+# Subtest: wallet changes discard late portfolio responses
+ok 123 - wallet changes discard late portfolio responses
+  ---
+  duration_ms: 2.4087
+  type: 'test'
+  ...
+# Subtest: unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+ok 124 - unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+  ---
+  duration_ms: 40.612
+  type: 'test'
+  ...
+# Subtest: API request transport excludes credentials and redirects; size and error results are bounded
+ok 125 - API request transport excludes credentials and redirects; size and error results are bounded
+  ---
+  duration_ms: 5.8499
+  type: 'test'
+  ...
+# Subtest: aborted request never retries or ignores cancellation
+ok 126 - aborted request never retries or ignores cancellation
+  ---
+  duration_ms: 0.6632
+  type: 'test'
+  ...
+# Subtest: ordinary addresses accepted; multiple authorized accounts require explicit selection
+ok 127 - ordinary addresses accepted; multiple authorized accounts require explicit selection
+  ---
+  duration_ms: 1.5053
+  type: 'test'
+  ...
+# Subtest: restore uses read-only permission checks and isolated deployment storage
+ok 128 - restore uses read-only permission checks and isolated deployment storage
+  ---
+  duration_ms: 0.6246
+  type: 'test'
+  ...
+# Subtest: account changes and disconnects invalidate prior selections and reviews
+ok 129 - account changes and disconnects invalidate prior selections and reviews
+  ---
+  duration_ms: 0.585
+  type: 'test'
+  ...
+# Subtest: revoked remembered account never silently restores a different account
+ok 130 - revoked remembered account never silently restores a different account
+  ---
+  duration_ms: 0.3309
+  type: 'test'
+  ...
+# Subtest: cancelled/late connection cannot revive a disconnected account
+ok 131 - cancelled/late connection cannot revive a disconnected account
+  ---
+  duration_ms: 0.8205
+  type: 'test'
+  ...
+# Subtest: published default keeps the public demo and local signer boundaries
+ok 132 - published default keeps the public demo and local signer boundaries
+  ---
+  duration_ms: 151.4859
+  type: 'test'
+  ...
+# Subtest: source-bound current3 Python DTO reconstructs activate_eth
+ok 133 - source-bound current3 Python DTO reconstructs activate_eth
+  ---
+  duration_ms: 94.9137
+  type: 'test'
+  ...
+# Subtest: source-bound current3 Python DTO reconstructs increase_eth
+ok 134 - source-bound current3 Python DTO reconstructs increase_eth
+  ---
+  duration_ms: 8.2408
+  type: 'test'
+  ...
+# Subtest: source-bound current3 Python DTO reconstructs activate_zzz
+ok 135 - source-bound current3 Python DTO reconstructs activate_zzz
+  ---
+  duration_ms: 10.6776
+  type: 'test'
+  ...
+# Subtest: source-bound current3 Python DTO reconstructs increase_zzz
+ok 136 - source-bound current3 Python DTO reconstructs increase_zzz
+  ---
+  duration_ms: 14.4005
+  type: 'test'
+  ...
+# Subtest: source-bound current3 Python DTO reconstructs approve_zzz
+ok 137 - source-bound current3 Python DTO reconstructs approve_zzz
+  ---
+  duration_ms: 10.8637
+  type: 'test'
+  ...
+# Subtest: source-bound current3 Python DTO reconstructs claim_eth_both
+ok 138 - source-bound current3 Python DTO reconstructs claim_eth_both
+  ---
+  duration_ms: 6.6913
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects missing accounting
+ok 139 - current3 manifest rejects missing accounting
+  ---
+  duration_ms: 2.1155
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects missing governance
+ok 140 - current3 manifest rejects missing governance
+  ---
+  duration_ms: 1.8922
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects old governance
+ok 141 - current3 manifest rejects old governance
+  ---
+  duration_ms: 2.0304
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects old fees
+ok 142 - current3 manifest rejects old fees
+  ---
+  duration_ms: 1.9877
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects old canonical
+ok 143 - current3 manifest rejects old canonical
+  ---
+  duration_ms: 1.8742
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects unknown setting
+ok 144 - current3 manifest rejects unknown setting
+  ---
+  duration_ms: 1.8619
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects stablecoin source
+ok 145 - current3 manifest rejects stablecoin source
+  ---
+  duration_ms: 3.6521
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects wrapper input
+ok 146 - current3 manifest rejects wrapper input
+  ---
+  duration_ms: 2.2444
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects missing ZZZ
+ok 147 - current3 manifest rejects missing ZZZ
+  ---
+  duration_ms: 3.367
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects third source
+ok 148 - current3 manifest rejects third source
+  ---
+  duration_ms: 1.651
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects missing handoff pin
+ok 149 - current3 manifest rejects missing handoff pin
+  ---
+  duration_ms: 1.4739
+  type: 'test'
+  ...
+# Subtest: current3 manifest rejects missing fees pin
+ok 150 - current3 manifest rejects missing fees pin
+  ---
+  duration_ms: 1.4722
+  type: 'test'
+  ...
+# Subtest: schema3 cannot be a relabelled schema2 or legacy configuration
+ok 151 - schema3 cannot be a relabelled schema2 or legacy configuration
+  ---
+  duration_ms: 3.7952
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects accounting2
+ok 152 - current3 chain verification rejects accounting2
+  ---
+  duration_ms: 6.2363
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects timelock governance
+ok 153 - current3 chain verification rejects timelock governance
+  ---
+  duration_ms: 9.6658
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects old fee intake
+ok 154 - current3 chain verification rejects old fee intake
+  ---
+  duration_ms: 2.8321
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects unsealed
+ok 155 - current3 chain verification rejects unsealed
+  ---
+  duration_ms: 3.1836
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects wrong canonical chain
+ok 156 - current3 chain verification rejects wrong canonical chain
+  ---
+  duration_ms: 3.063
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects wrong canonical schema
+ok 157 - current3 chain verification rejects wrong canonical schema
+  ---
+  duration_ms: 2.9337
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects wrong fixed ZZZ
+ok 158 - current3 chain verification rejects wrong fixed ZZZ
+  ---
+  duration_ms: 9.8458
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects missing source policy
+ok 159 - current3 chain verification rejects missing source policy
+  ---
+  duration_ms: 4.8933
+  type: 'test'
+  ...
+# Subtest: current3 chain verification rejects zero governance
+ok 160 - current3 chain verification rejects zero governance
+  ---
+  duration_ms: 3.6556
+  type: 'test'
+  ...
+# Subtest: current3 checks handoff/fee runtime and controller module parents
+ok 161 - current3 checks handoff/fee runtime and controller module parents
+  ---
+  duration_ms: 16.4338
+  type: 'test'
+  ...
+# Subtest: current3 immutable checks cache only successful exact canonical block verification
+ok 162 - current3 immutable checks cache only successful exact canonical block verification
+  ---
+  duration_ms: 10.3416
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects old provenance
+ok 163 - current3 dormant NFT rejects old provenance
+  ---
+  duration_ms: 12.7149
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects retired remote
+ok 164 - current3 dormant NFT rejects retired remote
+  ---
+  duration_ms: 1.4984
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects retired inbound
+ok 165 - current3 dormant NFT rejects retired inbound
+  ---
+  duration_ms: 1.3836
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects dormant accrued rewards
+ok 166 - current3 dormant NFT rejects dormant accrued rewards
+  ---
+  duration_ms: 1.4517
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects dormant positive principal
+ok 167 - current3 dormant NFT rejects dormant positive principal
+  ---
+  duration_ms: 1.9476
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects dormant shares
+ok 168 - current3 dormant NFT rejects dormant shares
+  ---
+  duration_ms: 1.1465
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects dormant bucket
+ok 169 - current3 dormant NFT rejects dormant bucket
+  ---
+  duration_ms: 1.1532
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects dormant entitlement
+ok 170 - current3 dormant NFT rejects dormant entitlement
+  ---
+  duration_ms: 1.2611
+  type: 'test'
+  ...
+# Subtest: current3 dormant NFT rejects dormant historical contribution
+ok 171 - current3 dormant NFT rejects dormant historical contribution
+  ---
+  duration_ms: 1.4957
+  type: 'test'
+  ...
+# Subtest: current3 active/parked/outbound retain unclaimed rights and honest unavailable NAV
+ok 172 - current3 active/parked/outbound retain unclaimed rights and honest unavailable NAV
+  ---
+  duration_ms: 1.776
+  type: 'test'
+  ...
+# Subtest: current3 local share denominator, rarity weight and current evolution must reconcile
+ok 173 - current3 local share denominator, rarity weight and current evolution must reconcile
+  ---
+  duration_ms: 7.6813
+  type: 'test'
+  ...
+# Subtest: optional unknown reward currency stays unavailable without erasing a healthy native claim
+ok 174 - optional unknown reward currency stays unavailable without erasing a healthy native claim
+  ---
+  duration_ms: 1.4053
+  type: 'test'
+  ...
+# Subtest: current3 review shows its captured cap rather than historical99% policy
+ok 175 - current3 review shows its captured cap rather than historical99% policy
+  ---
+  duration_ms: 1.5724
+  type: 'test'
+  ...
+# Subtest: current3 fixture uses the actual eight-word current Position and keeps HTTP schema2
+ok 176 - current3 fixture uses the actual eight-word current Position and keeps HTTP schema2
+  ---
+  duration_ms: 2.6432
+  type: 'test'
+  ...
+# Subtest: current3 unavailable contribution prices or wider contribution cap do not erase valid NFT reads
+ok 177 - current3 unavailable contribution prices or wider contribution cap do not erase valid NFT reads
+  ---
+  duration_ms: 13.3758
+  type: 'test'
+  ...
+# Subtest: current3 collection rejects retired custody states while preserving verified one-NFT totals
+ok 178 - current3 collection rejects retired custody states while preserving verified one-NFT totals
+  ---
+  duration_ms: 84.6094
+  type: 'test'
+  ...
+# Subtest: legacy contribution presentation retains its original one-percent policy
+ok 179 - legacy contribution presentation retains its original one-percent policy
+  ---
+  duration_ms: 2.5889
+  type: 'test'
+  ...
+# Subtest: native form describes an approved ceiling without claiming it is the captured limit
+ok 180 - native form describes an approved ceiling without claiming it is the captured limit
+  ---
+  duration_ms: 0.7805
+  type: 'test'
+  ...
+# Subtest: native review displays captured policy and the verified marginal LP floor, with no fixed 99 percent
+ok 181 - native review displays captured policy and the verified marginal LP floor, with no fixed 99 percent
+  ---
+  duration_ms: 169.7206
+  type: 'test'
+  ...
+# Subtest: missing, mismatched or injected native policy is never rendered as an approved review
+ok 182 - missing, mismatched or injected native policy is never rendered as an approved review
+  ---
+  duration_ms: 0.7332
+  type: 'test'
+  ...
+# Subtest: schema2 native manifest requires explicit versions, ceiling, policy IDs and true ETH identity
+ok 183 - schema2 native manifest requires explicit versions, ceiling, policy IDs and true ETH identity
+  ---
+  duration_ms: 14.1776
+  type: 'test'
+  ...
+# Subtest: native read verifies parents/versions once per exact confirmed block and never requests ETH runtime
+ok 184 - native read verifies parents/versions once per exact confirmed block and never requests ETH runtime
+  ---
+  duration_ms: 11.8061
+  type: 'test'
+  ...
+# Subtest: valid runtime at wrong parent, wrong version or missing getter cannot obtain native readiness
+ok 185 - valid runtime at wrong parent, wrong version or missing getter cannot obtain native readiness
+  ---
+  duration_ms: 6.2747
+  type: 'test'
+  ...
+# Subtest: native cap reads current governed value under the explicitly approved ceiling, including zero
+ok 186 - native cap reads current governed value under the explicitly approved ceiling, including zero
+  ---
+  duration_ms: 8.502
+  type: 'test'
+  ...
+# Subtest: changed source price or admission identity never silently falls back to another policy
+ok 187 - changed source price or admission identity never silently falls back to another policy
+  ---
+  duration_ms: 12.4017
+  type: 'test'
+  ...
+# Subtest: dual bounds reject zero, inverted, oversized, missing fingerprint and malformed ABI
+ok 188 - dual bounds reject zero, inverted, oversized, missing fingerprint and malformed ABI
+  ---
+  duration_ms: 14.3112
+  type: 'test'
+  ...
+# Subtest: schema2 supports the complete49-currency union without increasing native ledger bounds
+ok 189 - schema2 supports the complete49-currency union without increasing native ledger bounds
+  ---
+  duration_ms: 1.0066
+  type: 'test'
+  ...
+# Subtest: staged native read API has no submission capability and keeps public profiles unsigned
+ok 190 - staged native read API has no submission capability and keeps public profiles unsigned
+  ---
+  duration_ms: 0.7122
+  type: 'test'
+  ...
+# Subtest: actual current Python native DTO independently reconstructs activate_eth
+ok 191 - actual current Python native DTO independently reconstructs activate_eth
+  ---
+  duration_ms: 64.7654
+  type: 'test'
+  ...
+# Subtest: actual current Python native DTO independently reconstructs increase_eth
+ok 192 - actual current Python native DTO independently reconstructs increase_eth
+  ---
+  duration_ms: 14.6978
+  type: 'test'
+  ...
+# Subtest: actual current Python native DTO independently reconstructs activate_usdg
+ok 193 - actual current Python native DTO independently reconstructs activate_usdg
+  ---
+  duration_ms: 5.9213
+  type: 'test'
+  ...
+# Subtest: actual current Python native DTO independently reconstructs approve_usdg
+ok 194 - actual current Python native DTO independently reconstructs approve_usdg
+  ---
+  duration_ms: 17.0674
+  type: 'test'
+  ...
+# Subtest: actual current Python native DTO independently reconstructs claim_eth_both
+ok 195 - actual current Python native DTO independently reconstructs claim_eth_both
+  ---
+  duration_ms: 9.7856
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects old selector
+ok 196 - native unsigned preparation rejects old selector
+  ---
+  duration_ms: 4.7836
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects changed caller maximum
+ok 197 - native unsigned preparation rejects changed caller maximum
+  ---
+  duration_ms: 3.9995
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects reported caller maximum
+ok 198 - native unsigned preparation rejects reported caller maximum
+  ---
+  duration_ms: 13.9182
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects reported captured cap
+ok 199 - native unsigned preparation rejects reported captured cap
+  ---
+  duration_ms: 6.2136
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects loss floor
+ok 200 - native unsigned preparation rejects loss floor
+  ---
+  duration_ms: 4.5522
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects pricing profile
+ok 201 - native unsigned preparation rejects pricing profile
+  ---
+  duration_ms: 3.5318
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects missing review profile
+ok 202 - native unsigned preparation rejects missing review profile
+  ---
+  duration_ms: 3.6408
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects read accounting downgrade
+ok 203 - native unsigned preparation rejects read accounting downgrade
+  ---
+  duration_ms: 1.7781
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects NFT accounting missing
+ok 204 - native unsigned preparation rejects NFT accounting missing
+  ---
+  duration_ms: 3.1163
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects governed cap widened
+ok 205 - native unsigned preparation rejects governed cap widened
+  ---
+  duration_ms: 6.393
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects unreviewed Oracle policy
+ok 206 - native unsigned preparation rejects unreviewed Oracle policy
+  ---
+  duration_ms: 5.9942
+  type: 'test'
+  ...
+# Subtest: native unsigned preparation rejects changed pricing parent
+ok 207 - native unsigned preparation rejects changed pricing parent
+  ---
+  duration_ms: 9.2097
+  type: 'test'
+  ...
+# Subtest: native typed-v4 route disable or kind substitution cannot become a valid review
+ok 208 - native typed-v4 route disable or kind substitution cannot become a valid review
+  ---
+  duration_ms: 11.119
+  type: 'test'
+  ...
+# Subtest: synthetic source bounds use upper-input budget, never lower-only98 instead of98.98
+ok 209 - synthetic source bounds use upper-input budget, never lower-only98 instead of98.98
+  ---
+  duration_ms: 5.4397
+  type: 'test'
+  ...
+# Subtest: synthetic raw-unit input rounds its upper USD mark upward before applying the floor
+ok 210 - synthetic raw-unit input rounds its upper USD mark upward before applying the floor
+  ---
+  duration_ms: 9.5255
+  type: 'test'
+  ...
+# Subtest: synthetic zero and1000bps policies are explicit, correctly encoded and never inferred
+ok 211 - synthetic zero and1000bps policies are explicit, correctly encoded and never inferred
+  ---
+  duration_ms: 14.912
+  type: 'test'
+  ...
+# Subtest: unavailable contribution price read does not block unrelated confirmed NFT reads
+ok 212 - unavailable contribution price read does not block unrelated confirmed NFT reads
+  ---
+  duration_ms: 6.1154
+  type: 'test'
+  ...
+# Subtest: a cap above this client review ceiling stops contribution reviews, not ordinary position reads
+ok 213 - a cap above this client review ceiling stops contribution reviews, not ordinary position reads
+  ---
+  duration_ms: 3.837
+  type: 'test'
+  ...
+# Subtest: a legacy manifest rejects declared native protocol and NFT data instead of guessing a profile
+ok 214 - a legacy manifest rejects declared native protocol and NFT data instead of guessing a profile
+  ---
+  duration_ms: 3.1207
+  type: 'test'
+  ...
+# Subtest: native combined claims reject omitted LP entitlement or a substituted royalty selection
+ok 215 - native combined claims reject omitted LP entitlement or a substituted royalty selection
+  ---
+  duration_ms: 8.8907
+  type: 'test'
+  ...
+# Subtest: native manifest cannot omit ETH from its reviewed reward inventory
+ok 216 - native manifest cannot omit ETH from its reviewed reward inventory
+  ---
+  duration_ms: 1.6163
+  type: 'test'
+  ...
+# Subtest: missing ETH in either native claim ledger rejects reads and claims before a partial total can appear
+ok 217 - missing ETH in either native claim ledger rejects reads and claims before a partial total can appear
+  ---
+  duration_ms: 10.0959
+  type: 'test'
+  ...
+# Subtest: portfolio attaches complete validated NFT earnings without changing confirmed LP
+ok 218 - portfolio attaches complete validated NFT earnings without changing confirmed LP
+  ---
+  duration_ms: 11.5684
+  type: 'test'
+  ...
+# Subtest: portfolio treats malformed raw amount as unavailable earnings while retaining LP
+ok 219 - portfolio treats malformed raw amount as unavailable earnings while retaining LP
+  ---
+  duration_ms: 7.9441
+  type: 'test'
+  ...
+# Subtest: portfolio treats invalid current price as unavailable earnings while retaining LP
+ok 220 - portfolio treats invalid current price as unavailable earnings while retaining LP
+  ---
+  duration_ms: 5.1193
+  type: 'test'
+  ...
+# Subtest: portfolio treats inflated USD total as unavailable earnings while retaining LP
+ok 221 - portfolio treats inflated USD total as unavailable earnings while retaining LP
+  ---
+  duration_ms: 6.3226
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_zzz
+ok 222 - actual Python response accepted and independently reconstructed: activate_zzz
+  ---
+  duration_ms: 87.9277
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_eth
+ok 223 - actual Python response accepted and independently reconstructed: activate_eth
+  ---
+  duration_ms: 4.0549
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdc
+ok 224 - actual Python response accepted and independently reconstructed: activate_usdc
+  ---
+  duration_ms: 3.4229
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdg
+ok 225 - actual Python response accepted and independently reconstructed: activate_usdg
+  ---
+  duration_ms: 3.9212
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_zzz
+ok 226 - actual Python response accepted and independently reconstructed: increase_zzz
+  ---
+  duration_ms: 6.4014
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_usdc_5
+ok 227 - actual Python response accepted and independently reconstructed: increase_usdc_5
+  ---
+  duration_ms: 8.8867
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_eth_5
+ok 228 - actual Python response accepted and independently reconstructed: increase_eth_5
+  ---
+  duration_ms: 4.8794
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_zzz
+ok 229 - actual Python response accepted and independently reconstructed: approve_zzz
+  ---
+  duration_ms: 6.4869
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_usdc
+ok 230 - actual Python response accepted and independently reconstructed: approve_usdc
+  ---
+  duration_ms: 2.4381
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: mint
+ok 231 - actual Python response accepted and independently reconstructed: mint
+  ---
+  duration_ms: 2.3732
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: claim
+ok 232 - actual Python response accepted and independently reconstructed: claim
+  ---
+  duration_ms: 2.1263
+  type: 'test'
+  ...
+# Subtest: token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+ok 233 - token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+  ---
+  duration_ms: 0.8606
+  type: 'test'
+  ...
+# Subtest: activation uses oracle token price, exact $100 plus at most a raw rounding unit
+ok 234 - activation uses oracle token price, exact $100 plus at most a raw rounding unit
+  ---
+  duration_ms: 2.4162
+  type: 'test'
+  ...
+# Subtest: production config requires HTTPS and never enables signing or accepts unknown switches
+ok 235 - production config requires HTTPS and never enables signing or accepts unknown switches
+  ---
+  duration_ms: 1.8026
+  type: 'test'
+  ...
+# Subtest: reject chain without any submission
+ok 236 - reject chain without any submission
+  ---
+  duration_ms: 0.8731
+  type: 'test'
+  ...
+# Subtest: reject API configuration without any submission
+ok 237 - reject API configuration without any submission
+  ---
+  duration_ms: 1.0967
+  type: 'test'
+  ...
+# Subtest: reject stale snapshot without any submission
+ok 238 - reject stale snapshot without any submission
+  ---
+  duration_ms: 1.0017
+  type: 'test'
+  ...
+# Subtest: reject canonical hash without any submission
+ok 239 - reject canonical hash without any submission
+  ---
+  duration_ms: 1.1478
+  type: 'test'
+  ...
+# Subtest: reject target without any submission
+ok 240 - reject target without any submission
+  ---
+  duration_ms: 2.4915
+  type: 'test'
+  ...
+# Subtest: reject value without any submission
+ok 241 - reject value without any submission
+  ---
+  duration_ms: 2.196
+  type: 'test'
+  ...
+# Subtest: reject data without any submission
+ok 242 - reject data without any submission
+  ---
+  duration_ms: 1.8248
+  type: 'test'
+  ...
+# Subtest: reject extra transaction field without any submission
+ok 243 - reject extra transaction field without any submission
+  ---
+  duration_ms: 2.2801
+  type: 'test'
+  ...
+# Subtest: reject deadline without any submission
+ok 244 - reject deadline without any submission
+  ---
+  duration_ms: 2.4623
+  type: 'test'
+  ...
+# Subtest: reject overlong expiry without any submission
+ok 245 - reject overlong expiry without any submission
+  ---
+  duration_ms: 2.3764
+  type: 'test'
+  ...
+# Subtest: reject sender without any submission
+ok 246 - reject sender without any submission
+  ---
+  duration_ms: 2.8014
+  type: 'test'
+  ...
+# Subtest: reject fee identity without any submission
+ok 247 - reject fee identity without any submission
+  ---
+  duration_ms: 3.1128
+  type: 'test'
+  ...
+# Subtest: reject unqualified fee model without any submission
+ok 248 - reject unqualified fee model without any submission
+  ---
+  duration_ms: 1.8811
+  type: 'test'
+  ...
+# Subtest: reject gas ceiling without any submission
+ok 249 - reject gas ceiling without any submission
+  ---
+  duration_ms: 5.2932
+  type: 'test'
+  ...
+# Subtest: reject fee arithmetic without any submission
+ok 250 - reject fee arithmetic without any submission
+  ---
+  duration_ms: 2.4852
+  type: 'test'
+  ...
+# Subtest: reject runtime without any submission
+ok 251 - reject runtime without any submission
+  ---
+  duration_ms: 5.0458
+  type: 'test'
+  ...
+# Subtest: reject state override without any submission
+ok 252 - reject state override without any submission
+  ---
+  duration_ms: 1.8275
+  type: 'test'
+  ...
+# Subtest: reject LP shortfall without any submission
+ok 253 - reject LP shortfall without any submission
+  ---
+  duration_ms: 1.7436
+  type: 'test'
+  ...
+# Subtest: reject LP units shortfall without any submission
+ok 254 - reject LP units shortfall without any submission
+  ---
+  duration_ms: 3.731
+  type: 'test'
+  ...
+# Subtest: reject shares zero without any submission
+ok 255 - reject shares zero without any submission
+  ---
+  duration_ms: 3.5922
+  type: 'test'
+  ...
+# Subtest: reject wrong source valuation without any submission
+ok 256 - reject wrong source valuation without any submission
+  ---
+  duration_ms: 2.0054
+  type: 'test'
+  ...
+# Subtest: reject price changed without any submission
+ok 257 - reject price changed without any submission
+  ---
+  duration_ms: 4.2683
+  type: 'test'
+  ...
+# Subtest: reject owner changed without any submission
+ok 258 - reject owner changed without any submission
+  ---
+  duration_ms: 4.2862
+  type: 'test'
+  ...
+# Subtest: reject unrevealed without any submission
+ok 259 - reject unrevealed without any submission
+  ---
+  duration_ms: 4.6627
+  type: 'test'
+  ...
+# Subtest: reject lifecycle stopped without any submission
+ok 260 - reject lifecycle stopped without any submission
+  ---
+  duration_ms: 1.5657
+  type: 'test'
+  ...
+# Subtest: approval is exact, not unlimited, and requires another complete simulation
+ok 261 - approval is exact, not unlimited, and requires another complete simulation
+  ---
+  duration_ms: 13.0586
+  type: 'test'
+  ...
+# Subtest: top-up below $5 and activation above/below exact amount are rejected
+ok 262 - top-up below $5 and activation above/below exact amount are rejected
+  ---
+  duration_ms: 5.685
+  type: 'test'
+  ...
+# Subtest: claim only selects funded ETH, never source tokens or duplicate NFTs
+ok 263 - claim only selects funded ETH, never source tokens or duplicate NFTs
+  ---
+  duration_ms: 4.9872
+  type: 'test'
+  ...
+# Subtest: mint does not allocate liquidity or reserve a returned NFT
+ok 264 - mint does not allocate liquidity or reserve a returned NFT
+  ---
+  duration_ms: 2.3127
+  type: 'test'
+  ...
+# Subtest: an expiry or reorg during the final checks invalidates the prepared review
+ok 265 - an expiry or reorg during the final checks invalidates the prepared review
+  ---
+  duration_ms: 8.27
+  type: 'test'
+  ...
+# Subtest: portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+ok 266 - portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+  ---
+  duration_ms: 9.0402
+  type: 'test'
+  ...
+# Subtest: a 1,000-ID wallet fetches only eight card projections with at most two in flight
+ok 267 - a 1,000-ID wallet fetches only eight card projections with at most two in flight
+  ---
+  duration_ms: 95.3215
+  type: 'test'
+  ...
+# Subtest: mint readiness and malformed values fail closed
+ok 268 - mint readiness and malformed values fail closed
+  ---
+  duration_ms: 4.995
+  type: 'test'
+  ...
+# Subtest: wallet changes discard late portfolio responses
+ok 269 - wallet changes discard late portfolio responses
+  ---
+  duration_ms: 2.6181
+  type: 'test'
+  ...
+# Subtest: unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+ok 270 - unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+  ---
+  duration_ms: 47.6929
+  type: 'test'
+  ...
+# Subtest: API request transport excludes credentials and redirects; size and error results are bounded
+ok 271 - API request transport excludes credentials and redirects; size and error results are bounded
+  ---
+  duration_ms: 9.8614
+  type: 'test'
+  ...
+# Subtest: aborted request never retries or ignores cancellation
+ok 272 - aborted request never retries or ignores cancellation
+  ---
+  duration_ms: 0.498
+  type: 'test'
+  ...
+# Subtest: ordinary addresses accepted; multiple authorized accounts require explicit selection
+ok 273 - ordinary addresses accepted; multiple authorized accounts require explicit selection
+  ---
+  duration_ms: 1.3882
+  type: 'test'
+  ...
+# Subtest: restore uses read-only permission checks and isolated deployment storage
+ok 274 - restore uses read-only permission checks and isolated deployment storage
+  ---
+  duration_ms: 0.5775
+  type: 'test'
+  ...
+# Subtest: account changes and disconnects invalidate prior selections and reviews
+ok 275 - account changes and disconnects invalidate prior selections and reviews
+  ---
+  duration_ms: 0.3848
+  type: 'test'
+  ...
+# Subtest: revoked remembered account never silently restores a different account
+ok 276 - revoked remembered account never silently restores a different account
+  ---
+  duration_ms: 0.3341
+  type: 'test'
+  ...
+# Subtest: cancelled/late connection cannot revive a disconnected account
+ok 277 - cancelled/late connection cannot revive a disconnected account
+  ---
+  duration_ms: 0.3111
+  type: 'test'
+  ...
+# Subtest: published default keeps the public demo and local signer boundaries
+ok 278 - published default keeps the public demo and local signer boundaries
+  ---
+  duration_ms: 12.2194
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: mint
+ok 279 - typed local API transaction confirms: mint
+  ---
+  duration_ms: 15.747
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: activate_eth
+ok 280 - typed local API transaction confirms: activate_eth
+  ---
+  duration_ms: 9.2267
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: activate_zzz
+ok 281 - typed local API transaction confirms: activate_zzz
+  ---
+  duration_ms: 7.7693
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: activate_usdc
+ok 282 - typed local API transaction confirms: activate_usdc
+  ---
+  duration_ms: 7.4472
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: activate_usdg
+ok 283 - typed local API transaction confirms: activate_usdg
+  ---
+  duration_ms: 9.7854
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: increase_zzz
+ok 284 - typed local API transaction confirms: increase_zzz
+  ---
+  duration_ms: 10.5841
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: increase_usdc_5
+ok 285 - typed local API transaction confirms: increase_usdc_5
+  ---
+  duration_ms: 13.9808
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: increase_eth_5
+ok 286 - typed local API transaction confirms: increase_eth_5
+  ---
+  duration_ms: 10.9937
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: approve_usdc
+ok 287 - typed local API transaction confirms: approve_usdc
+  ---
+  duration_ms: 8.1247
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: approve_zzz
+ok 288 - typed local API transaction confirms: approve_zzz
+  ---
+  duration_ms: 13.0407
+  type: 'test'
+  ...
+# Subtest: typed local API transaction confirms: claim
+ok 289 - typed local API transaction confirms: claim
+  ---
+  duration_ms: 5.3374
+  type: 'test'
+  ...
+# Subtest: all nonlocal/nonloopback signing profiles reject; shared signer and public config unchanged
+ok 290 - all nonlocal/nonloopback signing profiles reject; shared signer and public config unchanged
+  ---
+  duration_ms: 9.9901
+  type: 'test'
+  ...
+# Subtest: rejection clears only the unsent operation; a fresh review can continue
+ok 291 - rejection clears only the unsent operation; a fresh review can continue
+  ---
+  duration_ms: 9.5204
+  type: 'test'
+  ...
+# Subtest: expiry, account changes and dependency mutation block before signing
+ok 292 - expiry, account changes and dependency mutation block before signing
+  ---
+  duration_ms: 8.0466
+  type: 'test'
+  ...
+# Subtest: wrong network requires explicit switch and fresh verified review
+ok 293 - wrong network requires explicit switch and fresh verified review
+  ---
+  duration_ms: 7.2619
+  type: 'test'
+  ...
+# Subtest: uncertain submission retains journal and recovers same hash after reload without a second send
+ok 294 - uncertain submission retains journal and recovers same hash after reload without a second send
+  ---
+  duration_ms: 8.1983
+  type: 'test'
+  ...
+# Subtest: confirmed transaction plus lagging API stays confirmed and recovers without resubmission
+ok 295 - confirmed transaction plus lagging API stays confirmed and recovers without resubmission
+  ---
+  duration_ms: 8.1552
+  type: 'test'
+  ...
+# Subtest: successful approval does not change NFT or LP; next complete review does not send automatically
+ok 296 - successful approval does not change NFT or LP; next complete review does not send automatically
+  ---
+  duration_ms: 14.9405
+  type: 'test'
+  ...
+# Subtest: a second approval is never silently chained after the first confirmed approval
+ok 297 - a second approval is never silently chained after the first confirmed approval
+  ---
+  duration_ms: 14.0771
+  type: 'test'
+  ...
+# Subtest: no LP presentation until confirmed effect: missing event
+ok 298 - no LP presentation until confirmed effect: missing event
+  ---
+  duration_ms: 7.4226
+  type: 'test'
+  ...
+# Subtest: no LP presentation until confirmed effect: wrong amount
+ok 299 - no LP presentation until confirmed effect: wrong amount
+  ---
+  duration_ms: 3.2739
+  type: 'test'
+  ...
+# Subtest: no LP presentation until confirmed effect: removed event
+ok 300 - no LP presentation until confirmed effect: removed event
+  ---
+  duration_ms: 3.9014
+  type: 'test'
+  ...
+# Subtest: no LP presentation until confirmed effect: not active
+ok 301 - no LP presentation until confirmed effect: not active
+  ---
+  duration_ms: 4.5278
+  type: 'test'
+  ...
+# Subtest: no LP presentation until confirmed effect: no shares
+ok 302 - no LP presentation until confirmed effect: no shares
+  ---
+  duration_ms: 4.8286
+  type: 'test'
+  ...
+# Subtest: no LP presentation until confirmed effect: unavailable value
+ok 303 - no LP presentation until confirmed effect: unavailable value
+  ---
+  duration_ms: 4.0552
+  type: 'test'
+  ...
+# Subtest: a revert clears after verified failure and does not pretend LP succeeded
+ok 304 - a revert clears after verified failure and does not pretend LP succeeded
+  ---
+  duration_ms: 3.624
+  type: 'test'
+  ...
+# Subtest: one operation cannot submit concurrently twice or across tabs
+ok 305 - one operation cannot submit concurrently twice or across tabs
+  ---
+  duration_ms: 6.7162
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_zzz
+ok 306 - actual Python response accepted and independently reconstructed: activate_zzz
+  ---
+  duration_ms: 114.7771
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_eth
+ok 307 - actual Python response accepted and independently reconstructed: activate_eth
+  ---
+  duration_ms: 12.394
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdc
+ok 308 - actual Python response accepted and independently reconstructed: activate_usdc
+  ---
+  duration_ms: 5.4039
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdg
+ok 309 - actual Python response accepted and independently reconstructed: activate_usdg
+  ---
+  duration_ms: 4.1178
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_zzz
+ok 310 - actual Python response accepted and independently reconstructed: increase_zzz
+  ---
+  duration_ms: 9.8255
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_usdc_5
+ok 311 - actual Python response accepted and independently reconstructed: increase_usdc_5
+  ---
+  duration_ms: 2.8369
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_eth_5
+ok 312 - actual Python response accepted and independently reconstructed: increase_eth_5
+  ---
+  duration_ms: 7.6963
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_zzz
+ok 313 - actual Python response accepted and independently reconstructed: approve_zzz
+  ---
+  duration_ms: 3.0935
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_usdc
+ok 314 - actual Python response accepted and independently reconstructed: approve_usdc
+  ---
+  duration_ms: 6.5154
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: mint
+ok 315 - actual Python response accepted and independently reconstructed: mint
+  ---
+  duration_ms: 3.6208
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: claim
+ok 316 - actual Python response accepted and independently reconstructed: claim
+  ---
+  duration_ms: 3.4557
+  type: 'test'
+  ...
+# Subtest: token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+ok 317 - token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+  ---
+  duration_ms: 0.9354
+  type: 'test'
+  ...
+# Subtest: activation uses oracle token price, exact $100 plus at most a raw rounding unit
+ok 318 - activation uses oracle token price, exact $100 plus at most a raw rounding unit
+  ---
+  duration_ms: 2.5486
+  type: 'test'
+  ...
+# Subtest: production config requires HTTPS and never enables signing or accepts unknown switches
+ok 319 - production config requires HTTPS and never enables signing or accepts unknown switches
+  ---
+  duration_ms: 2.079
+  type: 'test'
+  ...
+# Subtest: reject chain without any submission
+ok 320 - reject chain without any submission
+  ---
+  duration_ms: 2.9689
+  type: 'test'
+  ...
+# Subtest: reject API configuration without any submission
+ok 321 - reject API configuration without any submission
+  ---
+  duration_ms: 3.0504
+  type: 'test'
+  ...
+# Subtest: reject stale snapshot without any submission
+ok 322 - reject stale snapshot without any submission
+  ---
+  duration_ms: 1.0208
+  type: 'test'
+  ...
+# Subtest: reject canonical hash without any submission
+ok 323 - reject canonical hash without any submission
+  ---
+  duration_ms: 2.856
+  type: 'test'
+  ...
+# Subtest: reject target without any submission
+ok 324 - reject target without any submission
+  ---
+  duration_ms: 2.6205
+  type: 'test'
+  ...
+# Subtest: reject value without any submission
+ok 325 - reject value without any submission
+  ---
+  duration_ms: 2.3013
+  type: 'test'
+  ...
+# Subtest: reject data without any submission
+ok 326 - reject data without any submission
+  ---
+  duration_ms: 2.3608
+  type: 'test'
+  ...
+# Subtest: reject extra transaction field without any submission
+ok 327 - reject extra transaction field without any submission
+  ---
+  duration_ms: 1.9535
+  type: 'test'
+  ...
+# Subtest: reject deadline without any submission
+ok 328 - reject deadline without any submission
+  ---
+  duration_ms: 2.0445
+  type: 'test'
+  ...
+# Subtest: reject overlong expiry without any submission
+ok 329 - reject overlong expiry without any submission
+  ---
+  duration_ms: 2.3317
+  type: 'test'
+  ...
+# Subtest: reject sender without any submission
+ok 330 - reject sender without any submission
+  ---
+  duration_ms: 6.6306
+  type: 'test'
+  ...
+# Subtest: reject fee identity without any submission
+ok 331 - reject fee identity without any submission
+  ---
+  duration_ms: 2.7899
+  type: 'test'
+  ...
+# Subtest: reject unqualified fee model without any submission
+ok 332 - reject unqualified fee model without any submission
+  ---
+  duration_ms: 1.8001
+  type: 'test'
+  ...
+# Subtest: reject gas ceiling without any submission
+ok 333 - reject gas ceiling without any submission
+  ---
+  duration_ms: 2.0943
+  type: 'test'
+  ...
+# Subtest: reject fee arithmetic without any submission
+ok 334 - reject fee arithmetic without any submission
+  ---
+  duration_ms: 1.8566
+  type: 'test'
+  ...
+# Subtest: reject runtime without any submission
+ok 335 - reject runtime without any submission
+  ---
+  duration_ms: 5.4016
+  type: 'test'
+  ...
+# Subtest: reject state override without any submission
+ok 336 - reject state override without any submission
+  ---
+  duration_ms: 3.7274
+  type: 'test'
+  ...
+# Subtest: reject LP shortfall without any submission
+ok 337 - reject LP shortfall without any submission
+  ---
+  duration_ms: 3.5472
+  type: 'test'
+  ...
+# Subtest: reject LP units shortfall without any submission
+ok 338 - reject LP units shortfall without any submission
+  ---
+  duration_ms: 6.2697
+  type: 'test'
+  ...
+# Subtest: reject shares zero without any submission
+ok 339 - reject shares zero without any submission
+  ---
+  duration_ms: 1.9982
+  type: 'test'
+  ...
+# Subtest: reject wrong source valuation without any submission
+ok 340 - reject wrong source valuation without any submission
+  ---
+  duration_ms: 5.7183
+  type: 'test'
+  ...
+# Subtest: reject price changed without any submission
+ok 341 - reject price changed without any submission
+  ---
+  duration_ms: 1.6338
+  type: 'test'
+  ...
+# Subtest: reject owner changed without any submission
+ok 342 - reject owner changed without any submission
+  ---
+  duration_ms: 1.5313
+  type: 'test'
+  ...
+# Subtest: reject unrevealed without any submission
+ok 343 - reject unrevealed without any submission
+  ---
+  duration_ms: 8.8974
+  type: 'test'
+  ...
+# Subtest: reject lifecycle stopped without any submission
+ok 344 - reject lifecycle stopped without any submission
+  ---
+  duration_ms: 5.3958
+  type: 'test'
+  ...
+# Subtest: approval is exact, not unlimited, and requires another complete simulation
+ok 345 - approval is exact, not unlimited, and requires another complete simulation
+  ---
+  duration_ms: 10.109
+  type: 'test'
+  ...
+# Subtest: top-up below $5 and activation above/below exact amount are rejected
+ok 346 - top-up below $5 and activation above/below exact amount are rejected
+  ---
+  duration_ms: 5.7746
+  type: 'test'
+  ...
+# Subtest: claim only selects funded ETH, never source tokens or duplicate NFTs
+ok 347 - claim only selects funded ETH, never source tokens or duplicate NFTs
+  ---
+  duration_ms: 5.0151
+  type: 'test'
+  ...
+# Subtest: mint does not allocate liquidity or reserve a returned NFT
+ok 348 - mint does not allocate liquidity or reserve a returned NFT
+  ---
+  duration_ms: 2.7984
+  type: 'test'
+  ...
+# Subtest: an expiry or reorg during the final checks invalidates the prepared review
+ok 349 - an expiry or reorg during the final checks invalidates the prepared review
+  ---
+  duration_ms: 3.3617
+  type: 'test'
+  ...
+# Subtest: portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+ok 350 - portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+  ---
+  duration_ms: 5.743
+  type: 'test'
+  ...
+# Subtest: a 1,000-ID wallet fetches only eight card projections with at most two in flight
+ok 351 - a 1,000-ID wallet fetches only eight card projections with at most two in flight
+  ---
+  duration_ms: 120.5389
+  type: 'test'
+  ...
+# Subtest: mint readiness and malformed values fail closed
+ok 352 - mint readiness and malformed values fail closed
+  ---
+  duration_ms: 4.045
+  type: 'test'
+  ...
+# Subtest: wallet changes discard late portfolio responses
+ok 353 - wallet changes discard late portfolio responses
+  ---
+  duration_ms: 2.1677
+  type: 'test'
+  ...
+# Subtest: unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+ok 354 - unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+  ---
+  duration_ms: 47.2536
+  type: 'test'
+  ...
+# Subtest: API request transport excludes credentials and redirects; size and error results are bounded
+ok 355 - API request transport excludes credentials and redirects; size and error results are bounded
+  ---
+  duration_ms: 1.9043
+  type: 'test'
+  ...
+# Subtest: aborted request never retries or ignores cancellation
+ok 356 - aborted request never retries or ignores cancellation
+  ---
+  duration_ms: 0.6104
+  type: 'test'
+  ...
+# Subtest: ordinary addresses accepted; multiple authorized accounts require explicit selection
+ok 357 - ordinary addresses accepted; multiple authorized accounts require explicit selection
+  ---
+  duration_ms: 1.5027
+  type: 'test'
+  ...
+# Subtest: restore uses read-only permission checks and isolated deployment storage
+ok 358 - restore uses read-only permission checks and isolated deployment storage
+  ---
+  duration_ms: 0.6081
+  type: 'test'
+  ...
+# Subtest: account changes and disconnects invalidate prior selections and reviews
+ok 359 - account changes and disconnects invalidate prior selections and reviews
+  ---
+  duration_ms: 0.5378
+  type: 'test'
+  ...
+# Subtest: revoked remembered account never silently restores a different account
+ok 360 - revoked remembered account never silently restores a different account
+  ---
+  duration_ms: 0.3966
+  type: 'test'
+  ...
+# Subtest: cancelled/late connection cannot revive a disconnected account
+ok 361 - cancelled/late connection cannot revive a disconnected account
+  ---
+  duration_ms: 0.4109
+  type: 'test'
+  ...
+# Subtest: published default keeps the public demo and local signer boundaries
+ok 362 - published default keeps the public demo and local signer boundaries
+  ---
+  duration_ms: 7.3955
+  type: 'test'
+  ...
+# Subtest: actual Python collection and wallet responses validate without invented USD
+ok 363 - actual Python collection and wallet responses validate without invented USD
+  ---
+  duration_ms: 7.5426
+  type: 'test'
+  ...
+# Subtest: all pages aggregate exact currencies before current-price valuation
+ok 364 - all pages aggregate exact currencies before current-price valuation
+  ---
+  duration_ms: 3.8777
+  type: 'test'
+  ...
+# Subtest: wrong owner rejects entire earnings total
+ok 365 - wrong owner rejects entire earnings total
+  ---
+  duration_ms: 3.6685
+  type: 'test'
+  ...
+# Subtest: different block rejects entire earnings total
+ok 366 - different block rejects entire earnings total
+  ---
+  duration_ms: 2.3126
+  type: 'test'
+  ...
+# Subtest: missing currency rejects entire earnings total
+ok 367 - missing currency rejects entire earnings total
+  ---
+  duration_ms: 2.1372
+  type: 'test'
+  ...
+# Subtest: duplicate currency rejects entire earnings total
+ok 368 - duplicate currency rejects entire earnings total
+  ---
+  duration_ms: 7.0367
+  type: 'test'
+  ...
+# Subtest: invented USD rejects entire earnings total
+ok 369 - invented USD rejects entire earnings total
+  ---
+  duration_ms: 2.793
+  type: 'test'
+  ...
+# Subtest: negative earnings rejects entire earnings total
+ok 370 - negative earnings rejects entire earnings total
+  ---
+  duration_ms: 4.6548
+  type: 'test'
+  ...
+# Subtest: claims as income rejects entire earnings total
+ok 371 - claims as income rejects entire earnings total
+  ---
+  duration_ms: 2.3405
+  type: 'test'
+  ...
+# Subtest: missing chunk rejects entire earnings total
+ok 372 - missing chunk rejects entire earnings total
+  ---
+  duration_ms: 2.2216
+  type: 'test'
+  ...
+# Subtest: changed inventory rejects entire earnings total
+ok 373 - changed inventory rejects entire earnings total
+  ---
+  duration_ms: 3.2882
+  type: 'test'
+  ...
+# Subtest: wrong IDs rejects entire earnings total
+ok 374 - wrong IDs rejects entire earnings total
+  ---
+  duration_ms: 2.3506
+  type: 'test'
+  ...
+# Subtest: wrong window rejects entire earnings total
+ok 375 - wrong window rejects entire earnings total
+  ---
+  duration_ms: 3.8833
+  type: 'test'
+  ...
+# Subtest: day exceeds lifetime rejects entire earnings total
+ok 376 - day exceeds lifetime rejects entire earnings total
+  ---
+  duration_ms: 5.3449
+  type: 'test'
+  ...
+# Subtest: cancel or missing middle response never returns a partial wallet total
+ok 377 - cancel or missing middle response never returns a partial wallet total
+  ---
+  duration_ms: 6.4263
+  type: 'test'
+  ...
+# Subtest: production mint preparation rejected before network calls
+ok 378 - production mint preparation rejected before network calls
+  ---
+  duration_ms: 1.148
+  type: 'test'
+  ...
+# Subtest: collection holder allocations exclude compound buyback quarantine and gross duplicate
+ok 379 - collection holder allocations exclude compound buyback quarantine and gross duplicate
+  ---
+  duration_ms: 0.5474
+  type: 'test'
+  ...
+# Subtest: empty holdings reject invented positive history and verify zero without prices
+ok 380 - empty holdings reject invented positive history and verify zero without prices
+  ---
+  duration_ms: 14.2312
+  type: 'test'
+  ...
+# Subtest: 1000 holdings use exactly 63 bounded earnings requests
+ok 381 - 1000 holdings use exactly 63 bounded earnings requests
+  ---
+  duration_ms: 44.5169
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_zzz
+ok 382 - actual Python response accepted and independently reconstructed: activate_zzz
+  ---
+  duration_ms: 73.1142
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_eth
+ok 383 - actual Python response accepted and independently reconstructed: activate_eth
+  ---
+  duration_ms: 4.1927
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdc
+ok 384 - actual Python response accepted and independently reconstructed: activate_usdc
+  ---
+  duration_ms: 3.2073
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdg
+ok 385 - actual Python response accepted and independently reconstructed: activate_usdg
+  ---
+  duration_ms: 4.8237
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_zzz
+ok 386 - actual Python response accepted and independently reconstructed: increase_zzz
+  ---
+  duration_ms: 4.7665
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_usdc_5
+ok 387 - actual Python response accepted and independently reconstructed: increase_usdc_5
+  ---
+  duration_ms: 5.639
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_eth_5
+ok 388 - actual Python response accepted and independently reconstructed: increase_eth_5
+  ---
+  duration_ms: 4.6485
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_zzz
+ok 389 - actual Python response accepted and independently reconstructed: approve_zzz
+  ---
+  duration_ms: 4.3713
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_usdc
+ok 390 - actual Python response accepted and independently reconstructed: approve_usdc
+  ---
+  duration_ms: 3.2845
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: mint
+ok 391 - actual Python response accepted and independently reconstructed: mint
+  ---
+  duration_ms: 4.6873
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: claim
+ok 392 - actual Python response accepted and independently reconstructed: claim
+  ---
+  duration_ms: 2.5423
+  type: 'test'
+  ...
+# Subtest: token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+ok 393 - token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+  ---
+  duration_ms: 0.8461
+  type: 'test'
+  ...
+# Subtest: activation uses oracle token price, exact $100 plus at most a raw rounding unit
+ok 394 - activation uses oracle token price, exact $100 plus at most a raw rounding unit
+  ---
+  duration_ms: 2.9089
+  type: 'test'
+  ...
+# Subtest: production config requires HTTPS and never enables signing or accepts unknown switches
+ok 395 - production config requires HTTPS and never enables signing or accepts unknown switches
+  ---
+  duration_ms: 1.8259
+  type: 'test'
+  ...
+# Subtest: reject chain without any submission
+ok 396 - reject chain without any submission
+  ---
+  duration_ms: 0.7934
+  type: 'test'
+  ...
+# Subtest: reject API configuration without any submission
+ok 397 - reject API configuration without any submission
+  ---
+  duration_ms: 5.6363
+  type: 'test'
+  ...
+# Subtest: reject stale snapshot without any submission
+ok 398 - reject stale snapshot without any submission
+  ---
+  duration_ms: 2.009
+  type: 'test'
+  ...
+# Subtest: reject canonical hash without any submission
+ok 399 - reject canonical hash without any submission
+  ---
+  duration_ms: 1.9163
+  type: 'test'
+  ...
+# Subtest: reject target without any submission
+ok 400 - reject target without any submission
+  ---
+  duration_ms: 2.4332
+  type: 'test'
+  ...
+# Subtest: reject value without any submission
+ok 401 - reject value without any submission
+  ---
+  duration_ms: 3.8391
+  type: 'test'
+  ...
+# Subtest: reject data without any submission
+ok 402 - reject data without any submission
+  ---
+  duration_ms: 1.9932
+  type: 'test'
+  ...
+# Subtest: reject extra transaction field without any submission
+ok 403 - reject extra transaction field without any submission
+  ---
+  duration_ms: 1.9983
+  type: 'test'
+  ...
+# Subtest: reject deadline without any submission
+ok 404 - reject deadline without any submission
+  ---
+  duration_ms: 1.7202
+  type: 'test'
+  ...
+# Subtest: reject overlong expiry without any submission
+ok 405 - reject overlong expiry without any submission
+  ---
+  duration_ms: 4.3542
+  type: 'test'
+  ...
+# Subtest: reject sender without any submission
+ok 406 - reject sender without any submission
+  ---
+  duration_ms: 3.6861
+  type: 'test'
+  ...
+# Subtest: reject fee identity without any submission
+ok 407 - reject fee identity without any submission
+  ---
+  duration_ms: 1.8724
+  type: 'test'
+  ...
+# Subtest: reject unqualified fee model without any submission
+ok 408 - reject unqualified fee model without any submission
+  ---
+  duration_ms: 2.8056
+  type: 'test'
+  ...
+# Subtest: reject gas ceiling without any submission
+ok 409 - reject gas ceiling without any submission
+  ---
+  duration_ms: 2.0242
+  type: 'test'
+  ...
+# Subtest: reject fee arithmetic without any submission
+ok 410 - reject fee arithmetic without any submission
+  ---
+  duration_ms: 4.393
+  type: 'test'
+  ...
+# Subtest: reject runtime without any submission
+ok 411 - reject runtime without any submission
+  ---
+  duration_ms: 2.088
+  type: 'test'
+  ...
+# Subtest: reject state override without any submission
+ok 412 - reject state override without any submission
+  ---
+  duration_ms: 7.9613
+  type: 'test'
+  ...
+# Subtest: reject LP shortfall without any submission
+ok 413 - reject LP shortfall without any submission
+  ---
+  duration_ms: 1.8913
+  type: 'test'
+  ...
+# Subtest: reject LP units shortfall without any submission
+ok 414 - reject LP units shortfall without any submission
+  ---
+  duration_ms: 4.6276
+  type: 'test'
+  ...
+# Subtest: reject shares zero without any submission
+ok 415 - reject shares zero without any submission
+  ---
+  duration_ms: 1.7559
+  type: 'test'
+  ...
+# Subtest: reject wrong source valuation without any submission
+ok 416 - reject wrong source valuation without any submission
+  ---
+  duration_ms: 2.0293
+  type: 'test'
+  ...
+# Subtest: reject price changed without any submission
+ok 417 - reject price changed without any submission
+  ---
+  duration_ms: 2.2267
+  type: 'test'
+  ...
+# Subtest: reject owner changed without any submission
+ok 418 - reject owner changed without any submission
+  ---
+  duration_ms: 2.5777
+  type: 'test'
+  ...
+# Subtest: reject unrevealed without any submission
+ok 419 - reject unrevealed without any submission
+  ---
+  duration_ms: 1.7472
+  type: 'test'
+  ...
+# Subtest: reject lifecycle stopped without any submission
+ok 420 - reject lifecycle stopped without any submission
+  ---
+  duration_ms: 1.1239
+  type: 'test'
+  ...
+# Subtest: approval is exact, not unlimited, and requires another complete simulation
+ok 421 - approval is exact, not unlimited, and requires another complete simulation
+  ---
+  duration_ms: 10.3826
+  type: 'test'
+  ...
+# Subtest: top-up below $5 and activation above/below exact amount are rejected
+ok 422 - top-up below $5 and activation above/below exact amount are rejected
+  ---
+  duration_ms: 4.5738
+  type: 'test'
+  ...
+# Subtest: claim only selects funded ETH, never source tokens or duplicate NFTs
+ok 423 - claim only selects funded ETH, never source tokens or duplicate NFTs
+  ---
+  duration_ms: 3.1699
+  type: 'test'
+  ...
+# Subtest: mint does not allocate liquidity or reserve a returned NFT
+ok 424 - mint does not allocate liquidity or reserve a returned NFT
+  ---
+  duration_ms: 2.0395
+  type: 'test'
+  ...
+# Subtest: an expiry or reorg during the final checks invalidates the prepared review
+ok 425 - an expiry or reorg during the final checks invalidates the prepared review
+  ---
+  duration_ms: 3.9623
+  type: 'test'
+  ...
+# Subtest: portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+ok 426 - portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+  ---
+  duration_ms: 5.6166
+  type: 'test'
+  ...
+# Subtest: a 1,000-ID wallet fetches only eight card projections with at most two in flight
+ok 427 - a 1,000-ID wallet fetches only eight card projections with at most two in flight
+  ---
+  duration_ms: 109.315
+  type: 'test'
+  ...
+# Subtest: mint readiness and malformed values fail closed
+ok 428 - mint readiness and malformed values fail closed
+  ---
+  duration_ms: 3.2296
+  type: 'test'
+  ...
+# Subtest: wallet changes discard late portfolio responses
+ok 429 - wallet changes discard late portfolio responses
+  ---
+  duration_ms: 7.1473
+  type: 'test'
+  ...
+# Subtest: unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+ok 430 - unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+  ---
+  duration_ms: 40.6204
+  type: 'test'
+  ...
+# Subtest: API request transport excludes credentials and redirects; size and error results are bounded
+ok 431 - API request transport excludes credentials and redirects; size and error results are bounded
+  ---
+  duration_ms: 1.4483
+  type: 'test'
+  ...
+# Subtest: aborted request never retries or ignores cancellation
+ok 432 - aborted request never retries or ignores cancellation
+  ---
+  duration_ms: 0.4754
+  type: 'test'
+  ...
+# Subtest: ordinary addresses accepted; multiple authorized accounts require explicit selection
+ok 433 - ordinary addresses accepted; multiple authorized accounts require explicit selection
+  ---
+  duration_ms: 1.2914
+  type: 'test'
+  ...
+# Subtest: restore uses read-only permission checks and isolated deployment storage
+ok 434 - restore uses read-only permission checks and isolated deployment storage
+  ---
+  duration_ms: 0.7446
+  type: 'test'
+  ...
+# Subtest: account changes and disconnects invalidate prior selections and reviews
+ok 435 - account changes and disconnects invalidate prior selections and reviews
+  ---
+  duration_ms: 0.4863
+  type: 'test'
+  ...
+# Subtest: revoked remembered account never silently restores a different account
+ok 436 - revoked remembered account never silently restores a different account
+  ---
+  duration_ms: 0.3348
+  type: 'test'
+  ...
+# Subtest: cancelled/late connection cannot revive a disconnected account
+ok 437 - cancelled/late connection cannot revive a disconnected account
+  ---
+  duration_ms: 0.2832
+  type: 'test'
+  ...
+# Subtest: published default keeps the public demo and local signer boundaries
+ok 438 - published default keeps the public demo and local signer boundaries
+  ---
+  duration_ms: 19.0246
+  type: 'test'
+  ...
+# Subtest: all holdings totals cross card and summary page boundaries
+ok 439 - all holdings totals cross card and summary page boundaries
+  ---
+  duration_ms: 7.6649
+  type: 'test'
+  ...
+# Subtest: empty wallet verifies zero
+ok 440 - empty wallet verifies zero
+  ---
+  duration_ms: 3.4216
+  type: 'test'
+  ...
+# Subtest: unavailable LP in any chunk poisons only LP total
+ok 441 - unavailable LP in any chunk poisons only LP total
+  ---
+  duration_ms: 2.2803
+  type: 'test'
+  ...
+# Subtest: unavailable ETH is never a partial total
+ok 442 - unavailable ETH is never a partial total
+  ---
+  duration_ms: 1.7835
+  type: 'test'
+  ...
+# Subtest: different owner rejects whole total
+ok 443 - different owner rejects whole total
+  ---
+  duration_ms: 1.8438
+  type: 'test'
+  ...
+# Subtest: changed inventory rejects whole total
+ok 444 - changed inventory rejects whole total
+  ---
+  duration_ms: 1.9916
+  type: 'test'
+  ...
+# Subtest: repeated chunk rejects whole total
+ok 445 - repeated chunk rejects whole total
+  ---
+  duration_ms: 2.1643
+  type: 'test'
+  ...
+# Subtest: skipped chunk rejects whole total
+ok 446 - skipped chunk rejects whole total
+  ---
+  duration_ms: 2.1706
+  type: 'test'
+  ...
+# Subtest: wrong NFT rejects whole total
+ok 447 - wrong NFT rejects whole total
+  ---
+  duration_ms: 2.6566
+  type: 'test'
+  ...
+# Subtest: different snapshot rejects whole total
+ok 448 - different snapshot rejects whole total
+  ---
+  duration_ms: 2.8708
+  type: 'test'
+  ...
+# Subtest: cancel between chunks discards total
+ok 449 - cancel between chunks discards total
+  ---
+  duration_ms: 2.1975
+  type: 'test'
+  ...
+# Subtest: duplicate inventory rejected
+ok 450 - duplicate inventory rejected
+  ---
+  duration_ms: 1.3907
+  type: 'test'
+  ...
+# Subtest: complete 1000-item collection remains bounded to 63 requests
+ok 451 - complete 1000-item collection remains bounded to 63 requests
+  ---
+  duration_ms: 26.9265
+  type: 'test'
+  ...
+1..451
+# tests 451
+# suites 0
+# pass 451
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 984.3763
+
+STDERR

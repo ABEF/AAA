@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-STATUSES={'done':'Implemented','progress':'In progress','todo':'To do'}
+STATUSES={'done':'Implemented','progress':'In progress','todo':'To do','excluded':'Not planned'}
 
 def render():
     data=json.loads((ROOT/'docs/project-todo.json').read_text(encoding='utf-8-sig'))
@@ -28,15 +28,17 @@ def render():
     counts={key:sum(t['status']==key for t in tasks) for key in STATUSES}
     md=f"# Project Todo\n\n**Reviewed {data['reviewed']} | Contracts undeployed | Not approved for production**\n\n"
     md+='The single task list for the whole PoPL project. Open a task\'s acceptance criteria for the detailed release requirements. There is no Todo page on the public website.\n\n'
-    md+=f"**{counts['todo']} To do | {counts['progress']} In progress | {counts['done']} Implemented locally**\n\n"
+    excluded=f" | {counts['excluded']} Not planned" if counts['excluded'] else ''
+    md+=f"**{counts['todo']} To do | {counts['progress']} In progress | {counts['done']} Implemented locally{excluded}**\n\n"
     md+='Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.\n\n'
     md+='[Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) | [Release approval record](docs/RELEASE_CHECKLIST.md) | [Update procedure](docs/TODO_WORKFLOW.md)\n\n'
     md+='[Smart contracts](#smart-contracts) | [Backend](#backend) | [Frontend](#frontend) | [Creator tasks](#creator-tasks--zzz-team) | [Testing](#testing--qualification) | [Security](#security--audit) | [Operations](#launch--operations) | [Future migration](#future-migration)\n\n'
     for area in data['areas']:
         md+=f"## {area['title']}\n\n{area['caption']}\n\n"
-        for task in sorted(area['tasks'],key=lambda t:('todo','progress','done').index(t['status'])):
+        for task in sorted(area['tasks'],key=lambda t:('todo','progress','done','excluded').index(t['status'])):
             md+=f"<a id=\"task-{task['id']}\"></a>\n\n"
-            md+=f"- [{'x' if task['status']=='done' else ' '}] **[{task['title']}]({task['href']})** - {STATUSES[task['status']]}. {task['text']}\n\n"
+            marker='' if task['status']=='excluded' else f"[{'x' if task['status']=='done' else ' '}] "
+            md+=f"- {marker}**[{task['title']}]({task['href']})** - {STATUSES[task['status']]}. {task['text']}\n\n"
             if task.get('acceptance'):
                 md+='  <details>\n  <summary>Acceptance criteria</summary>\n\n'
                 for item in task['acceptance']:md+=f'  - {item}\n'

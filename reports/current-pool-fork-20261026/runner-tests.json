@@ -1,0 +1,13 @@
+{
+  "tests_run": 6,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "seconds": 0.016,
+  "successful": true,
+  "source_sha256": {
+    "scripts/run-current-pool-fork.py": "83826050d84f964e9ce91ed896c6652a8171e44565855f1e34d130edfc02166c",
+    "tests_python/test_current_pool_fork_runner.py": "9896f1145cdd15a7aac3550a11f1c4e869c600c33dbdbbc22d293e910e8bf9a1"
+  },
+  "scope": "Six final focused inventory/result-integrity and read-only/redaction methods; earlier six preliminary methods overlap five and are not added."
+}

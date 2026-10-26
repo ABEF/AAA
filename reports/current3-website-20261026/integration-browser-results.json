@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "case": "unconfigured-desktop",
+      "passed": true,
+      "view": {
+        "width": 1440,
+        "height": 1000
+      },
+      "no_api_or_demo_boot": true,
+      "no_horizontal_overflow": true
+    },
+    {
+      "case": "unconfigured-mobile",
+      "passed": true,
+      "view": {
+        "width": 390,
+        "height": 844
+      },
+      "no_api_or_demo_boot": true,
+      "no_horizontal_overflow": true
+    },
+    {
+      "case": "configured-current3-read-growth-route",
+      "passed": true,
+      "actual_python_nft_protocol_dtos": true,
+      "mock_wallet_and_rpc": true,
+      "synthetic_wallet_inventory_and_readiness": true,
+      "optional_history_deliberately_unavailable": true,
+      "no_mint_or_demo_fallback": true
+    }
+  ],
+  "errors": [],
+  "live_services_qualified": false,
+  "public_signing_enabled": false,
+  "limits": "Headless browser with intercepted local transport. Actual Python NFT/protocol DTOs use synthetic dependency/RPC fixtures; no extension, public chain, deployed API or public signing qualification."
+}

@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed 2026-10-26. Read [current context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed 2026-10-27. Read [current context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md) and the relevant [operator procedure](docs/OPERATOR_MANUAL.md)
 before changing behavior. This file contains current instructions, not a timeline.
 
@@ -15,6 +15,10 @@ before changing behavior. This file contains current instructions, not a timelin
 - Preserve existing local Anvil services, port8902, NFTs, LP, balances, transaction
   journals and website dist overlay. Do not reset/relabel old deployments to
   match newer source profiles. Historical codecs and receipt recovery remain.
+- Public sites are distinct: `popldemo.0xwave.com` keeps the existing simulation;
+  `poplint.0xwave.com` is the separately built current-contract read/unsigned-review
+  site. See [environment map](docs/SITE_ENVIRONMENTS.md); never use the demo
+  installer/root/dist for poplint. Missing integration configuration is not demo data.
 - Browser signing remains **Anvil-only**; public `DEPLOYMENT` remains null.
   The staging heartbeat was paused by the user; do not restart it.
 - Never print, log or commit keys, credentialed endpoints, keystores or passwords.
@@ -82,6 +86,14 @@ before changing behavior. This file contains current instructions, not a timelin
   policies, governance and codecs belong to explicitly historical evidence. Do not
   turn deferred work or deliberately disabled public signing into an approval.
   Documentation-only synchronization does not close implementation/release tasks.
+- Current integration/source operations are documented in [site boundaries](docs/SITE_ENVIRONMENTS.md)
+  and [serving evidence](reports/current3-website-20261026/DEPLOYMENT.md). Current
+  contract work targets poplint; leave the existing popldemo release untouched.
+  Poplint remains unconfigured/read-unsigned, never an Anvil/public-signing bridge.
+- [Current fork verification](reports/current-pool-fork-20261026/VERIFICATION.md)
+  records11distinct successful methods across scoped runs, not a fresh whole
+  suite; retain mock-price/VRF/authority and real swap-floor limitations. New
+  runner is read-only and independent of the preserved old dirty runner/tests.
 - [Documentation cleanup/publication](reports/documentation-cleanup-20261026/PUBLICATION.md)
   records the consolidated current guides and original-draft preservation.
 - Latest keeper/LP source-scoped review: [audit](reports/keeper-lp-audit-20261026/REVIEW.md)

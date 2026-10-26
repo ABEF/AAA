@@ -1,0 +1,8 @@
+{
+  "successful": false,
+  "process_exit_code": 0,
+  "archive_attempts": 0,
+  "raw_stdout": "No tests found in project! Forge looks for functions that start with `test`\n",
+  "reason": "Anchored name-only regex did not match Forge signatures; exact result verification rejected an empty selection. Corrected prefix selector still requires exact returned names.",
+  "original_receipt_sha256": "c9a2bfd6d5a87dbe2290509e6f134d30253542534277f863a0bed5bef09080db"
+}

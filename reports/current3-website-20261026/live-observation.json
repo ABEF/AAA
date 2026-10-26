@@ -1,0 +1,104 @@
+{
+  "demo_before_after_unchanged": true,
+  "demo_root": "/var/www/aaa-website/releases/9be6d11748db2db5adfd6d80ac75e029459a7d5d",
+  "integration_root": "/var/www/popl-integration/releases/f23c5599185997da1f36c4f64fea021b3f99b27a",
+  "integration_identity": {
+    "schema": 1,
+    "environment": "poplint-integration",
+    "hosts": [
+      "poplint.0xwave.com",
+      "www.poplint.0xwave.com"
+    ],
+    "canonical_origin": "https://www.poplint.0xwave.com",
+    "demo_origin": "https://www.popldemo.0xwave.com",
+    "source_revision": "f23c5599185997da1f36c4f64fea021b3f99b27a",
+    "deployment_configured": false,
+    "deployment_id": null,
+    "public_signing": false,
+    "expected_contract_profile": {
+      "accounting_version": 3,
+      "governance_version": 2,
+      "fee_intake_version": 1,
+      "pricing_version": 2,
+      "routing_version": 2,
+      "review_policy_version": 1,
+      "canonical": "ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4"
+    },
+    "configuration_status": "unconfigured",
+    "source_sha256": "328aa135895ff1f8ac0877b6c0d37cb2d4691539d94910c65033f03ad0227c7a",
+    "asset_files": 5590
+  },
+  "integration_config_exists": true,
+  "nginx_test_exit": 0,
+  "nginx_active": "active",
+  "http": {
+    "https://www.popldemo.0xwave.com/": {
+      "status": 200,
+      "final_url": "https://www.popldemo.0xwave.com/",
+      "sha256": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+      "content_type": "text/html"
+    },
+    "https://popldemo.0xwave.com/": {
+      "status": 200,
+      "final_url": "https://popldemo.0xwave.com/",
+      "sha256": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+      "content_type": "text/html"
+    },
+    "http://poplint.0xwave.com/": {
+      "status": 200,
+      "final_url": "https://www.poplint.0xwave.com/",
+      "sha256": "ee754e1fb967738f379a7efeb295448cb11b179a7bcb224e2c7507a651be9baf",
+      "content_type": "text/html"
+    },
+    "http://www.poplint.0xwave.com/": {
+      "status": 200,
+      "final_url": "https://www.poplint.0xwave.com/",
+      "sha256": "ee754e1fb967738f379a7efeb295448cb11b179a7bcb224e2c7507a651be9baf",
+      "content_type": "text/html"
+    },
+    "https://poplint.0xwave.com/": {
+      "status": 200,
+      "final_url": "https://www.poplint.0xwave.com/",
+      "sha256": "ee754e1fb967738f379a7efeb295448cb11b179a7bcb224e2c7507a651be9baf",
+      "content_type": "text/html"
+    },
+    "https://www.poplint.0xwave.com/": {
+      "status": 200,
+      "final_url": "https://www.poplint.0xwave.com/",
+      "sha256": "ee754e1fb967738f379a7efeb295448cb11b179a7bcb224e2c7507a651be9baf",
+      "content_type": "text/html"
+    },
+    "https://www.poplint.0xwave.com/site-identity.json": {
+      "status": 200,
+      "final_url": "https://www.poplint.0xwave.com/site-identity.json",
+      "sha256": "4e5c9c38cc0c7e8f597a8b46520ef1a5646a878d34b049d4262a09a1d511e641",
+      "content_type": "application/json",
+      "identity": {
+        "schema": 1,
+        "environment": "poplint-integration",
+        "hosts": [
+          "poplint.0xwave.com",
+          "www.poplint.0xwave.com"
+        ],
+        "canonical_origin": "https://www.poplint.0xwave.com",
+        "demo_origin": "https://www.popldemo.0xwave.com",
+        "source_revision": "f23c5599185997da1f36c4f64fea021b3f99b27a",
+        "deployment_configured": false,
+        "deployment_id": null,
+        "public_signing": false,
+        "expected_contract_profile": {
+          "accounting_version": 3,
+          "governance_version": 2,
+          "fee_intake_version": 1,
+          "pricing_version": 2,
+          "routing_version": 2,
+          "review_policy_version": 1,
+          "canonical": "ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4"
+        },
+        "configuration_status": "unconfigured",
+        "source_sha256": "328aa135895ff1f8ac0877b6c0d37cb2d4691539d94910c65033f03ad0227c7a",
+        "asset_files": 5590
+      }
+    }
+  }
+}

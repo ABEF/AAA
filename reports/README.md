@@ -1,5 +1,14 @@
 # Verification evidence
 
+[Current3 website integration](current3-website-20261026/VERIFICATION.md) and
+[separate poplint serving](current3-website-20261026/DEPLOYMENT.md) record451JS
+passes, seven shell/build checks and three scoped browser cases. Live HTTPS
+is unconfigured/read-unsigned; demo remains unchanged. These are separate scopes.
+[Current-pool fork](current-pool-fork-20261026/VERIFICATION.md) records11distinct
+successful methods across8+1+1+1scopes and11runner cases, with exact pinned
+dependencies, explicit mock services and retained failures; not a fresh whole
+final suite, independent audit or production qualification.
+
 [Systematic adversarial review](system-adversarial-20261026/REVIEW.md),
 [function/source coverage](system-adversarial-20261026/COVERAGE.md) and
 [verification](system-adversarial-20261026/VERIFICATION.md) distinguish652 callable

@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-Reviewed 2026-10-26. This page explains dependencies and sequence; [TODO.md](../TODO.md)
+Reviewed 2026-10-27. This page explains dependencies and sequence; [TODO.md](../TODO.md)
 is the only status list. [Feature reference](IMPLEMENTATION_STATUS.md) records what
 exists, while [release approval](RELEASE_CHECKLIST.md) remains NOT APPROVED.
 
@@ -34,8 +34,10 @@ without conflating earned, claimable and claimed amounts.
 
 ## 3. Integrate the exact current deployment profile
 
-Align the explicit current3 website/API/wallet profile and ETH/fixedZZZ example
-copy. Public signing remains disabled. Existing native2 or legacy Anvil profiles
+Use the separate [poplint integration target](SITE_ENVIRONMENTS.md) for the
+explicit current3 website/API reader and unsigned reviews. Preserve the existing
+popldemo simulation, root, configuration and content; do not roll integration
+changes into that live demo. Public signing remains disabled. Existing native2 or legacy Anvil profiles
 are not upgraded by relabeling. Rehearse approval/contribution/claim/recovery and
 account/network changes against the exact reviewed configuration. See
 [website boundary](NATIVE_WEBSITE_PROFILE.md) and [wallet task](../TODO.md#task-wallet).
@@ -57,7 +59,13 @@ For market/input acceptance, retain the [exact slot0 consistency checks](../repo
 and exercise both out-of-range directions, valid tick boundaries and actual
 funded donations against the qualified deployment. Consistent observations do
 not authenticate an RPC, and funded fee history does not prove organic volume.
-These local cases do not close the provider/liquidity/operating gates.
+The [current selected-pool fork](../reports/current-pool-fork-20261026/VERIFICATION.md)
+adds11distinct successful real-venue methods with explicit mock services and
+retained failed/repaired attempts; it is not a fresh whole final suite. Native
+and fixed-ZZZ entry, small growth, actual fee harvest/transfer rights and
+unfillable-growth rollback are covered at one pinned block. These cases do not
+close actual independent pricing, cheaper conversion routes, keeper economics,
+provider/service or operating gates.
 
 The [per-callable adversarial matrix](../reports/system-adversarial-20261026/COVERAGE.md)
 provides an exact source-review starting point for the independent auditor, not
