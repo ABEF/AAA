@@ -14,7 +14,9 @@ or source drift. One new actual-v4 outage/harvest/claim case passes. Production
 Solidity/ABI/economic rights remain unchanged. The first wider regression failure
 is preserved and corrected without changing its existing assertion.
 
-Local code/docs are saved; verify publication separately before reporting pushed.
+Implementation [97cbd16](https://github.com/ABEF/AAA/commit/97cbd16a4d849ef9b630b319bf7146fdd5575150)
+is pushed on main; the exact remote head is verified in the
+[publication receipt](../reports/reward-resilience-20261026/PUBLICATION.md).
 Installed services/Anvil/NFT/LP/balances/journals, website and monitor remain
 untouched. Earlier [allocation](../reports/reward-allocation-20261026/VERIFICATION.md)
 and [keeper/LP](../reports/keeper-lp-audit-20261026/VERIFICATION.md) receipts retain

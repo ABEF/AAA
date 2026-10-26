@@ -58,15 +58,16 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest local candidate: [adversarial reward review](reports/reward-resilience-20261026/REVIEW.md)
+Latest functional publication [97cbd16](https://github.com/ABEF/AAA/commit/97cbd16a4d849ef9b630b319bf7146fdd5575150): [adversarial reward review](reports/reward-resilience-20261026/REVIEW.md)
 and [verification](reports/reward-resilience-20261026/VERIFICATION.md). Keeper
 maintenance RPC failure no longer suppresses an independently guarded due harvest;
 configuration/ABI faults still fail closed and pending intents stop scheduling.
 Current3 claim drafts reject contradictory inactive rewards/global activation data.
 Final 443Python methods: 437 pass / 6 explicit skips, stable source pins; one new actual-v4
 outage/harvest/claim case passes. Production 44 Solidity/ABI/economics unchanged.
-Existing services/Anvil/journals/website remain untouched. Source publication must
-be verified separately; actual operating/provider/independent qualification stays open.
+Existing services/Anvil/journals/website remain untouched. Exact main publication
+is verified in the [receipt](reports/reward-resilience-20261026/PUBLICATION.md);
+actual operating/provider/independent qualification stays open.
 
 Prior allocation/fairness publication0ee9650 and
 [receipt](reports/reward-allocation-20261026/PUBLICATION.md) retain their scope;
