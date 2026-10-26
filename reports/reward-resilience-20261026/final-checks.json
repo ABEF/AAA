@@ -1,0 +1,52 @@
+{
+  "observed_at_utc": "2026-10-26T20:22:12.047648+00:00",
+  "unique_affected_python_methods": 443,
+  "passes": 437,
+  "skips": [
+    [
+      "tests_python.test_keeper.KeeperTests.test_cast_cli_accepts_generated_command_without_signing",
+      "Foundry cast is not installed"
+    ],
+    [
+      "tests_python.test_keeper_recovery.RecoveryTests.test_runtime_permissions_and_symlinks_fail_closed",
+      "Unix runtime ownership and permissions required"
+    ],
+    [
+      "tests_python.test_state.StateTests.test_atomic_state_repairs_existing_unix_permissions",
+      "Unix private-file permissions required"
+    ],
+    [
+      "tests_python.test_state.StateTests.test_concurrent_lock_rejected",
+      "Unix fcntl process locking required"
+    ],
+    [
+      "tests_python.test_state.StateTests.test_lock_released",
+      "Unix fcntl process locking required"
+    ],
+    [
+      "tests_python.test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file",
+      "Unix symlink/permission semantics required"
+    ]
+  ],
+  "source_inputs_unchanged": 149,
+  "new_keeper_methods": 16,
+  "new_claim_integrity_methods": 14,
+  "new_actual_v4_methods": 1,
+  "first_wider_failure_preserved_and_corrected": true,
+  "production_solidity_changed": false,
+  "normal_size_static_evidence_reused": true,
+  "fresh_full_solidity_static_audit": false,
+  "task_ids_statuses_preserved": 65,
+  "local_doc_file_targets_checked": 835,
+  "local_doc_file_target_errors": [],
+  "doc_scope": "Local file targets only, not remote liveness or anchor validation.",
+  "original_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "public_transactions_submitted": false,
+  "installed_services_changed": false,
+  "production_approved": false
+}

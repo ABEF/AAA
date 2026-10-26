@@ -611,6 +611,14 @@ shorter than the polling cadence cannot make checks run more often. Pending
 receipts, other eligible jobs, pause/lifecycle and execution/gas guards can delay
 execution; this is not an exact wall-clock promise.
 
+If a price-dependent maintenance read/simulation fails, the keeper logs
+`maintenance_deferred`; a due harvest can still pass its own normal checks for
+the authenticated active bucket. This does not permit rebalancing with stale
+prices. Invalid configuration/ABI, bad bucket identity, global pause and canonical
+locks still fail closed. Treat degraded health as an issue to repair even when
+fees were successfully collected. If any pending intent was saved, reconcile it
+first; no fallback job may continue after an ambiguous submission.
+
 Set `maintenance.harvest=false` to stop only scheduled standalone harvests;
 implicit/manual harvesting and funded claims retain their existing behavior.
 To roll back a schedule change, restore the prior reviewed config and repeat

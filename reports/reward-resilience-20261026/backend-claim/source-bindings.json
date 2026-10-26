@@ -1,0 +1,27 @@
+{
+  "old_revision": "da7ec983394d94d7812e054260398eca71418ff7",
+  "old_transactions_sha256": "b6bcb84046860ebe7d8d659c9bc61c2bd7fe87830191c7de16293152b19ce15c",
+  "final_transactions_sha256": "033f2b4319bb578fc8d9c27ba8f4e6ea86447f57692beed4bb8ec3aff35d09b4",
+  "final_tests_sha256": "63c418880dd1a905ce2c07f24121d593baf160a0877185c1d0ee537202b181e2",
+  "same_final_tests_before_after": true,
+  "negative_control_methods_run": 14,
+  "negative_control_failure_records": 14,
+  "negative_control_failing_method_count": 6,
+  "negative_control_failing_methods": [
+    "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_activation_is_read_once_per_distinct_nft_across_assets_and_ledgers",
+    "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_activation_view_outage_cannot_fall_back_to_positive_claimable",
+    "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review",
+    "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_later_inactive_nft_prevents_entire_mixed_batch_review",
+    "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_malformed_activation_abi_cannot_be_treated_as_active",
+    "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_out_of_range_current_activation_weight_fails_before_simulation"
+  ],
+  "negative_control_errors": 0,
+  "new_methods_passed": 14,
+  "minimal_existing_module_counts": {
+    "test_frontend_transactions": 23,
+    "test_frontend_transaction_http": 14,
+    "test_claim_activation_integrity": 14
+  },
+  "schemas_authority_signer_changed": false,
+  "scope": "Offline unsigned-preparer integrity fixtures, no live RPC or signing."
+}

@@ -266,6 +266,7 @@ Custody, ownership and reward accounting.
   - Allocation occurs when actual local LP fees are harvested; the equal collective denominator is activated membership at that receipt, not the number of unclaimed NFTs. Claims pay already funded entitlement and never reallocate, compound or buy back. [Timing and arithmetic](docs/ECONOMICS.md#allocation-reinvestment-and-claim-timing).
   - [Reward review](reports/reward-allocation-20261026/REVIEW.md) and [verification](reports/reward-allocation-20261026/VERIFICATION.md): two new Solidity methods pass, including1,000 randomized early/deferred claim schedules with four NFTs, two currencies, dust/fractions, activation, top-up and transfer. Exact owner/collective/reserve isolation and total funding conservation hold in scoped fixtures; no production Solidity or economic rule changed.
   - Keeper compounding and buyback remain separate guarded jobs; contributions/rebalances can also reinvest designated compound. Sample standalone compound is disabled and buybacks are empty. Actual routes/fixed-ZZZ burn semantics, economical batch thresholds, gas/latency/backlog monitoring and operating qualification remain in the linked keeper/conversion release tasks.
+  - [Actual-v4 outage proof](reports/reward-resilience-20261026/VERIFICATION.md) collects real swap fees and pays both owners while fixture prices are stale, with no LP/share/reserve loss. No production Solidity/rate/right changed; unchanged allocation/claim-order evidence is reused with exact source pins. Actual token/feed/route/burn behavior and independent qualification remain open.
 
   </details>
 
@@ -465,6 +466,7 @@ The data and services behind the app.
   - Implemented: exact typed intent/owner/ledger checks, no arbitrary target or overrides, mint-only/global/preparation gates, canonical lock rejection, selected-asset verification, short client expiry, shared work budgets and supervised opt-in HTTP. Default GET-only; no signer/broadcast.
   - A required operator fee policy binds the reviewed read configuration and fee evidence, gas-price and total network-fee ceilings. Missing complete fee accounting or canonical gas estimation fails closed. Native value and gas are separate; future claims cannot fund upfront gas.
   - [Current scoped verification](reports/wallet-preparation/VERIFICATION.md) records focused Python/HTTP/worker cases and reusable compiler ABI evidence. No Solidity change or repeated contract suite. Actual deployment/VRF/RPC/fee manifests, ingress/load and wallet signing/receipt rehearsals remain with the service and frontend tasks.
+  - [Adversarial reward review](reports/reward-resilience-20261026/REVIEW.md): current3 claim preparation now rejects positive rewards for never-activated NFTs and malformed/unreadable global activation data before a draft. One bounded mapping read per distinct NFT; existing current-owner/ordinal/asset/snapshot/simulation checks remain. Historical, parked/outbound and deferred-currency rights are preserved. Final combined443methods yield437passes/6explicit skips, including14new claim-integrity methods; local checks do not qualify live wallets/services.
 
   </details>
 
@@ -1045,6 +1047,7 @@ Decisions and rehearsals before real funds.
   - [Keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) binds health to exact loaded config, rejects malformed conversion controls, repairs obsolete range-test domain and selects current3/fee1/native rehearsal source. Final affected Python354pass/5Unix skips (359methods),9range methods incl1000fuzz; unchanged production Solidity/permissions/economics. Linux current-fixture process/systemd, actual feeds/routes/gas/services and independent audit remain open. Deploy matching health writer/checker only under separate rollout; never patch old hashes or reset journals.
   - [Reward scheduling review](reports/reward-allocation-20261026/REVIEW.md): three source-bound old-code starvation failures become passing cases; final376 unique keeper methods yield370 passes/6 explicit skips. Preserve pending-first recovery, existing conversion turns and optional validated priority/currency cursors; no journal reset, extra successful submission per cycle, economic change or installed-service rollout. Qualify actual batch economics, backlog alerts and execution latency before production.
   - The [standalone harvest schedule procedure](docs/OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval) documents maintenance.harvest_interval_seconds (example14400/four hours), positive-second settings, bucket override precedence, the separate polling interval and the last successful standalone-harvest receipt timer. Config changes require controlled restart, pending/journal preservation and fresh config-bound health; no contract call, resealing or automatic live rollout. Actual production interval/batch economics remain unqualified.
+  - [Adversarial reward review](reports/reward-resilience-20261026/REVIEW.md) isolates maintenance RPC outages from an independently simulated enabled/due harvest after bucket authentication. Malformed config/ABI stays fail-closed; pending intents stop subsequent maintenance/conversion/harvest work. Final443distinct Python methods pass437/skip6; one actual-v4 test verifies stale prices stop rebalance but preserve fee collection, claims, physical LP and reserves. Preserve first wider failure and its narrower catch correction; qualify actual rollout/provider/gas/recovery separately.
 
   </details>
 
@@ -1114,4 +1117,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `96cfed70b5b24d0bda4fce09e1941b21a5fb143987fddf7ccea94190f00d91b7`.
+Snapshot SHA-256: `b7270d74c109dba0fd93669ada3f83a314b64085dbdcb472bac5d3485bd13a9d`.

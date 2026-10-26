@@ -105,6 +105,14 @@ simulation, after gas estimation and before recording a new intent. Health repor
 successful maintenance or delete pending state to bypass it. The existing staging
 deployment has not been upgraded; qualify controller, fixture and keeper together.
 
+`maintenance_deferred` means a price-dependent upkeep dependency failed. The
+keeper may still independently simulate a due fee-only harvest after authenticating
+the active bucket; no principal movement or maintenance price check is bypassed.
+Malformed configuration/ABI remains fail-closed. Do not treat a successful harvest
+as repaired prices or healthy maintenance. Caught conversion/maintenance/harvest
+errors with a saved pending intent now stop all further scheduling; use the
+original hash/review and normal reconciliation, never reset the journal to resume.
+
 - JSON logs identify action, bucket and transaction where available. Errors include type and source location; raw error bodies, signer output, credentials and full tracebacks are excluded.
 - Separate `health_path` defaults to the state filename with `.health.json`. It reports heartbeat time, last success, pending flag, skipped buckets and failure count. `running`, `awaiting_receipt`, `recovery_required`, `degraded`, `error` and `halted` are not successful maintenance. Dry-run success is explicitly labelled.
 - Configure `receipt_fee_policy` only after qualifying the actual chain: `included` requires all network costs in the chain's qualified gas accounting; `separate_l1_fee` requires an explicit L1 fee field on every receipt and a positive reviewed allowance. The example is `unverified`, which blocks live startup. An allowance is a conservative estimate, not an enforceable cap on external L1 charges.

@@ -17,14 +17,14 @@ Anvil deployments retain their original code; public signing remains disabled.
 | Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
-The [reward review](reports/reward-allocation-20261026/REVIEW.md) verifies allocation
-and repeated claim isolation, and fixes keeper buyback starvation during busy
-maintenance. [Verification](reports/reward-allocation-20261026/VERIFICATION.md)
-records two new Solidity methods (including 1,000 randomized schedules) and370 affected
-Python passes/6 explicit skips. Production Solidity/economic rights are unchanged;
-the keeper still requires separately authorized operating qualification/rollout.
-Earlier [keeper/LP hardening](reports/keeper-lp-audit-20261026/REVIEW.md) retains
-its exact source scope.
+The [adversarial reward review](reports/reward-resilience-20261026/REVIEW.md)
+isolates maintenance outages from guarded fee collection, rejects contradictory
+inactive claim drafts and consistently stops scheduling after a saved pending
+intent. [Verification](reports/reward-resilience-20261026/VERIFICATION.md) records
+437 affected Python passes/6 explicit skips and one new actual-v4 outage/harvest/
+claim case. Production Solidity/economic rights are unchanged; installed services
+are not updated by publication. Earlier [allocation/claim-order evidence](reports/reward-allocation-20261026/VERIFICATION.md)
+and [keeper/LP hardening](reports/keeper-lp-audit-20261026/REVIEW.md) retain scope.
 
 Current rules and code boundaries are summarized below. [Feature/evidence reference](docs/IMPLEMENTATION_STATUS.md)
 and [documentation map](docs/README.md) distinguish current instructions, legacy

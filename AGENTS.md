@@ -87,6 +87,11 @@ before changing behavior. This file contains current instructions, not a timelin
   claim-order conservation and fixes off-chain buyback scheduling fairness.
   Allocation is at harvest; LP claims never run compound/buyback. Rollout and
   actual schedule/route/burn/gas qualification remain separate; preserve journals.
+- [Reward resilience review](reports/reward-resilience-20261026/REVIEW.md) isolates
+  maintenance RPC failures from independently guarded due harvests; malformed
+  configuration/ABI still fails closed. Pending intents stop all scheduling.
+  Current3 unsigned claims reject contradictory inactive rewards; preserve legacy,
+  parked/outbound and deferred-currency rights. No installed service was changed.
 - Current source/evidence references: [backend fee integrity](reports/backend-remediation-20261026/VERIFICATION.md),
   [full candidate audit](reports/full-audit-20261025/VERIFICATION.md),
   [cleanup compiler comparison](reports/deep-cleanup-20261025/compiler-comparison.md).

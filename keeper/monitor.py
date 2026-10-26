@@ -1124,6 +1124,7 @@ class Keeper:
     def _convert_rewards(self, worker) -> bool:
         try: return worker.scan_once()
         except (ValueError,RpcError) as exc:
+            if self.state.get('pending'): raise
             self.blocked_actions += 1
             log(worker.key+'_deferred',**error_context(exc))
             return False
@@ -1224,18 +1225,33 @@ class Keeper:
                 if status == 'active':
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
-                    if not preparing and self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):
-                        if self.submit('strategy','applyKeeperRange(bytes32)',('0x'+fields[0],),f'range_policy:{bucket}'): return
-                    if not preparing and self.view('strategy','needsRebalance(uint256)',bucket):
-                        if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
-                    if not preparing and item.get('compound',True):
-                        reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
-                        if self._compound_due(bucket,tokens,reserves,item,now,fields):
-                            if self.submit('compounder','compound(uint256,uint128,uint256)',(bucket,minimum,deadline),f'compound:{bucket}'): return
+                    maintenance_failed = False
+                    if not preparing:
+                        try:
+                            if self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):
+                                if self.submit('strategy','applyKeeperRange(bytes32)',('0x'+fields[0],),f'range_policy:{bucket}'): return
+                            if self.view('strategy','needsRebalance(uint256)',bucket):
+                                if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
+                            if item.get('compound',True):
+                                reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
+                                if self._compound_due(bucket,tokens,reserves,item,now,fields):
+                                    if self.submit('compounder','compound(uint256,uint128,uint256)',(bucket,minimum,deadline),f'compound:{bucket}'): return
+                        except RpcError as exc:
+                            # Fee collection has no price dependency or principal
+                            # movement. Only an authenticated active bucket may
+                            # proceed to its separately guarded due harvest.
+                            # Config/ABI ValueError stays fail-closed outside.
+                            if self.state.get('pending'): raise
+                            maintenance_failed = True
+                            self.blocked_actions += 1
+                            log('maintenance_deferred',bucket_id=str(bucket),**error_context(exc))
                     interval = positive(item.get('harvest_interval_seconds',14400),'harvest_interval_seconds')
                     if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
+                        if maintenance_failed:
+                            _,fresh = self._head(); deadline = fresh+180
                         if self.submit('vault','collectFees(uint256,uint256)',(bucket,deadline),f'harvest:{bucket}'): return
             except (ValueError,RpcError) as exc:
+                if self.state.get('pending'): raise
                 self.skipped_buckets += 1
                 log('bucket_skipped',bucket_id=str(bucket),**error_context(exc))
         if batch: self.save()

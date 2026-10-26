@@ -1,0 +1,66 @@
+{
+  "run": 14,
+  "failures": [
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_activation_is_read_once_per_distinct_nft_across_assets_and_ledgers",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 116, in test_activation_is_read_once_per_distinct_nft_across_assets_and_ledgers\n    self.assertEqual(len(self.weight_reads(rpc)), 1)\nAssertionError: 0 != 1\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_activation_view_outage_cannot_fall_back_to_positive_claimable",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 97, in test_activation_view_outage_cannot_fall_back_to_positive_claimable\n    with patch.object(rpc, 'call', side_effect=outage), self.assertRaises(RpcError):\n                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review (royalty=False, asset='0x0000000000000000000000000000000000000000')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 61, in test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review\n    with self.assertRaisesRegex(ProjectionError, 'Inactive NFT'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review (royalty=False, asset='0x0000000000000000000000000000000000000014')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 61, in test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review\n    with self.assertRaisesRegex(ProjectionError, 'Inactive NFT'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review (royalty=False, asset='0x0000000000000000000000000000000000000015')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 61, in test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review\n    with self.assertRaisesRegex(ProjectionError, 'Inactive NFT'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review (royalty=True, asset='0x0000000000000000000000000000000000000000')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 61, in test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review\n    with self.assertRaisesRegex(ProjectionError, 'Inactive NFT'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review (royalty=True, asset='0x0000000000000000000000000000000000000015')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 61, in test_dormant_positive_lp_or_royalty_balance_cannot_become_a_wallet_review\n    with self.assertRaisesRegex(ProjectionError, 'Inactive NFT'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_later_inactive_nft_prevents_entire_mixed_batch_review",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 127, in test_later_inactive_nft_prevents_entire_mixed_batch_review\n    with self.assertRaisesRegex(ProjectionError, 'Inactive NFT'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_malformed_activation_abi_cannot_be_treated_as_active (raw='0x')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 85, in test_malformed_activation_abi_cannot_be_treated_as_active\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_malformed_activation_abi_cannot_be_treated_as_active (raw='0x01')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 85, in test_malformed_activation_abi_cannot_be_treated_as_active\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_malformed_activation_abi_cannot_be_treated_as_active (raw='0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 85, in test_malformed_activation_abi_cannot_be_treated_as_active\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_malformed_activation_abi_cannot_be_treated_as_active (raw='0xgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 85, in test_malformed_activation_abi_cannot_be_treated_as_active\n    with self.assertRaises(ProjectionError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_out_of_range_current_activation_weight_fails_before_simulation (weight=4)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 76, in test_out_of_range_current_activation_weight_fails_before_simulation\n    with self.assertRaisesRegex(ProjectionError, 'weight'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ],
+    [
+      "tests_python.test_claim_activation_integrity.ClaimActivationIntegrityTests.test_out_of_range_current_activation_weight_fails_before_simulation (weight=115792089237316195423570985008687907853269984665640564039457584007913129639935)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_claim_activation_integrity.py\", line 76, in test_out_of_range_current_activation_weight_fails_before_simulation\n    with self.assertRaisesRegex(ProjectionError, 'weight'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ProjectionError not raised\n"
+    ]
+  ],
+  "errors": [],
+  "skips": [],
+  "transactions_sha256": "b6bcb84046860ebe7d8d659c9bc61c2bd7fe87830191c7de16293152b19ce15c",
+  "tests_sha256": "63c418880dd1a905ce2c07f24121d593baf160a0877185c1d0ee537202b181e2",
+  "expected_negative_control": true
+}

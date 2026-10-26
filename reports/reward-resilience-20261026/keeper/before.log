@@ -1,0 +1,158 @@
+test_adaptive_range_failure_does_not_block_due_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_adaptive_range_failure_does_not_block_due_harvest) ... FAIL
+test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) ... 
+  test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) (key='lp_conversion', error='RpcError') ... FAIL
+  test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) (key='lp_conversion', error='ValueError') ... FAIL
+  test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) (key='royalty_conversion', error='RpcError') ... FAIL
+  test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) (key='royalty_conversion', error='ValueError') ... FAIL
+test_bucket_identity_failure_never_uses_harvest_fallback (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_bucket_identity_failure_never_uses_harvest_fallback) ... ok
+test_compound_reserve_read_failure_does_not_block_due_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_compound_reserve_read_failure_does_not_block_due_harvest) ... FAIL
+test_conversion_read_failure_before_intent_still_defers_only_that_job (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_conversion_read_failure_before_intent_still_defers_only_that_job) ... ok
+test_disabled_or_not_due_harvest_is_not_forced_after_price_failure (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_disabled_or_not_due_harvest_is_not_forced_after_price_failure) ... ok
+test_fallback_failed_harvest_simulation_never_releases_a_new_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_fallback_failed_harvest_simulation_never_releases_a_new_intent) ... FAIL
+test_fallback_retains_actual_simulation_and_gas_cap (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_fallback_retains_actual_simulation_and_gas_cap) ... FAIL
+test_global_pause_and_canonical_lock_still_block_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_global_pause_and_canonical_lock_still_block_harvest) ... ok
+test_pending_recovery_runs_before_maintenance_or_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_pending_recovery_runs_before_maintenance_or_harvest) ... ok
+test_post_intent_harvest_error_is_not_swallowed_by_bucket_handler (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_post_intent_harvest_error_is_not_swallowed_by_bucket_handler) ... FAIL
+test_post_intent_maintenance_error_stops_every_new_action (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_post_intent_maintenance_error_stops_every_new_action) ... FAIL
+test_preparation_retains_existing_harvest_only_behavior (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_preparation_retains_existing_harvest_only_behavior) ... ok
+test_rebalance_simulation_failure_falls_back_to_independent_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_rebalance_simulation_failure_falls_back_to_independent_harvest) ... FAIL
+test_slow_failed_maintenance_uses_fresh_harvest_deadline (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_slow_failed_maintenance_uses_fresh_harvest_deadline) ... FAIL
+test_strategy_price_failure_does_not_block_due_fee_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_strategy_price_failure_does_not_block_due_fee_harvest) ... FAIL
+
+======================================================================
+FAIL: test_adaptive_range_failure_does_not_block_due_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_adaptive_range_failure_does_not_block_due_harvest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 92, in test_adaptive_range_failure_does_not_block_due_harvest
+    self._assert_harvest(submit)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 59, in _assert_harvest
+    submit.assert_called_once_with('vault', 'collectFees(uint256,uint256)',
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 960, in assert_called_once_with
+    raise AssertionError(msg)
+AssertionError: Expected 'submit' to be called once. Called 0 times.
+
+======================================================================
+FAIL: test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) (key='lp_conversion', error='RpcError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 163, in test_both_conversion_workers_rethrow_any_saved_pending_intent
+    with self.subTest(key=key, error=error.__name__), self.assertRaises(error):
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) (key='lp_conversion', error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 163, in test_both_conversion_workers_rethrow_any_saved_pending_intent
+    with self.subTest(key=key, error=error.__name__), self.assertRaises(error):
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) (key='royalty_conversion', error='RpcError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 163, in test_both_conversion_workers_rethrow_any_saved_pending_intent
+    with self.subTest(key=key, error=error.__name__), self.assertRaises(error):
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_both_conversion_workers_rethrow_any_saved_pending_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_both_conversion_workers_rethrow_any_saved_pending_intent) (key='royalty_conversion', error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 163, in test_both_conversion_workers_rethrow_any_saved_pending_intent
+    with self.subTest(key=key, error=error.__name__), self.assertRaises(error):
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_compound_reserve_read_failure_does_not_block_due_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_compound_reserve_read_failure_does_not_block_due_harvest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 86, in test_compound_reserve_read_failure_does_not_block_due_harvest
+    self._assert_harvest(submit)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 59, in _assert_harvest
+    submit.assert_called_once_with('vault', 'collectFees(uint256,uint256)',
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 960, in assert_called_once_with
+    raise AssertionError(msg)
+AssertionError: Expected 'submit' to be called once. Called 0 times.
+
+======================================================================
+FAIL: test_fallback_failed_harvest_simulation_never_releases_a_new_intent (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_fallback_failed_harvest_simulation_never_releases_a_new_intent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 198, in test_fallback_failed_harvest_simulation_never_releases_a_new_intent
+    self.assertEqual(self.k.blocked_actions, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_fallback_retains_actual_simulation_and_gas_cap (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_fallback_retains_actual_simulation_and_gas_cap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 181, in test_fallback_retains_actual_simulation_and_gas_cap
+    self.assertIn('eth_estimateGas', methods)
+AssertionError: 'eth_estimateGas' not found in ['eth_getCode', 'eth_getCode', 'eth_call', 'eth_call', 'eth_call', 'eth_call', 'eth_call', 'eth_getBlockByNumber', 'eth_call', 'eth_call', 'eth_call', 'eth_call', 'eth_call', 'eth_call', 'eth_call', 'eth_getBlockByNumber']
+
+======================================================================
+FAIL: test_post_intent_harvest_error_is_not_swallowed_by_bucket_handler (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_post_intent_harvest_error_is_not_swallowed_by_bucket_handler)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 150, in test_post_intent_harvest_error_is_not_swallowed_by_bucket_handler
+    self.assertRaises(ValueError):
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_post_intent_maintenance_error_stops_every_new_action (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_post_intent_maintenance_error_stops_every_new_action)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 137, in test_post_intent_maintenance_error_stops_every_new_action
+    self.assertRaises(RpcError):
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_rebalance_simulation_failure_falls_back_to_independent_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_rebalance_simulation_failure_falls_back_to_independent_harvest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 77, in test_rebalance_simulation_failure_falls_back_to_independent_harvest
+    self.assertEqual([call.args[1] for call in calls.call_args_list],
+AssertionError: Lists differ: ['rebalance(uint256,uint128,uint256)'] != ['rebalance(uint256,uint128,uint256)', 'collectFees(uint256,uint256)']
+
+Second list contains 1 additional elements.
+First extra element 1:
+'collectFees(uint256,uint256)'
+
+- ['rebalance(uint256,uint128,uint256)']
++ ['rebalance(uint256,uint128,uint256)', 'collectFees(uint256,uint256)']
+
+======================================================================
+FAIL: test_slow_failed_maintenance_uses_fresh_harvest_deadline (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_slow_failed_maintenance_uses_fresh_harvest_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 96, in test_slow_failed_maintenance_uses_fresh_harvest_deadline
+    self._assert_harvest(submit)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 59, in _assert_harvest
+    submit.assert_called_once_with('vault', 'collectFees(uint256,uint256)',
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 960, in assert_called_once_with
+    raise AssertionError(msg)
+AssertionError: Expected 'submit' to be called once. Called 0 times.
+
+======================================================================
+FAIL: test_strategy_price_failure_does_not_block_due_fee_harvest (tests_python.test_keeper_harvest_isolation.KeeperHarvestIsolationTests.test_strategy_price_failure_does_not_block_due_fee_harvest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 65, in test_strategy_price_failure_does_not_block_due_fee_harvest
+    self._assert_harvest(submit)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_harvest_isolation.py", line 59, in _assert_harvest
+    submit.assert_called_once_with('vault', 'collectFees(uint256,uint256)',
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 960, in assert_called_once_with
+    raise AssertionError(msg)
+AssertionError: Expected 'submit' to be called once. Called 0 times.
+
+----------------------------------------------------------------------
+Ran 16 tests in 3.280s
+
+FAILED (failures=13)

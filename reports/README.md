@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Adversarial rewards/keeper review](reward-resilience-20261026/REVIEW.md) and
+[verification](reward-resilience-20261026/VERIFICATION.md) record maintenance
+outage isolation, consistent pending-error stops and impossible inactive claim
+draft rejection. Final 443methods yield 437 passes/6 explicit skips; one new actual-v4
+outage/harvest/claim case passes. The first wider regression failure is preserved
+and corrected without relaxing its assertion. No production Solidity/service change.
+
 [Reward allocation review](reward-allocation-20261026/REVIEW.md) and
 [verification](reward-allocation-20261026/VERIFICATION.md) distinguish harvest
 allocation, NFT claims, compounding and actual burns. Two new accounting methods

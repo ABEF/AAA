@@ -85,6 +85,16 @@ Stop/review/restart through the recovery procedure with journals intact; changin
 source/config here does not roll out to an installed service. Before production,
 qualify actual batch economics, schedule latency and recovery with these jobs on.
 
+Price-dependent range/rebalance/compound RPC failures log `maintenance_deferred`
+and degrade health. After bucket identity/status are authenticated, a due,
+enabled fee-only harvest may still use its own unchanged simulation, gas, code,
+nonce and lifecycle checks, with a fresh deadline after a slow failure. It does
+not move principal or waive a price guard for maintenance. Malformed configuration
+or ABI values still skip the bucket; invalid identity, pause/canonical locks and
+disabled/not-due harvesting never enter this path. A saved pending intent stops
+further work immediately, including conversion-error handlers; recover that exact
+intent before another action. See [review/evidence](../reports/reward-resilience-20261026/REVIEW.md).
+
 ## Maintenance and range policy
 
 The keeper discovers shared custody buckets; it does not rebalance each NFT.

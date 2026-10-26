@@ -1,0 +1,29 @@
+{
+  "mode": "affected",
+  "original_revision": null,
+  "source_sha256": {
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "zzz_ops/rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "zzz_ops/ethereum_fees.py": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "zzz_ops/range_policy.py": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+    "zzz_ops/position.py": "129f8070c887792991bcfab6fd2a8993c673eb9560e27efd4a26964754371cea",
+    "keeper/royalties.py": "7354c3187d8aad49bbfef7debe4fed7c9cecd4e484178470580559756175ccb9",
+    "keeper/monitor.py": "d759ecd5c28b004d57444fec05031d66c8d902e55f73a9f6f52ef6f1fbaea38d",
+    "tests_python/test_keeper.py": "b0888376bd8dbf1d81766a17f46aa7ed6690a024d50ade90551a59c1bd7e0154",
+    "tests_python/test_keeper_harvest_isolation.py": "3dd5b801d87052649787dc44451ca97cbaa24dc2c1eed5470bc2650e2c4c87ed",
+    "tests_python/test_keeper_native.py": "de3c87393cf62a5b2e2458416e29d50c48a03dc84c3a789fcc3559f87e660e70",
+    "tests_python/test_keeper_maintenance_policy.py": "b1b2b5b244d545879669e39d92a205cda0c96ac19a3bb0296f12e805d026b787"
+  },
+  "source_changes_during_run": [],
+  "original_monitor_sha256": null,
+  "candidate_monitor_sha256": "d759ecd5c28b004d57444fec05031d66c8d902e55f73a9f6f52ef6f1fbaea38d",
+  "tests_run": 33,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "elapsed_seconds": 6.5,
+  "no_signing_or_services": true
+}

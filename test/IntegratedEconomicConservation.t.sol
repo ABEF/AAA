@@ -248,6 +248,44 @@ contract IntegratedEconomicConservationTest is Test {
         vm.startPrank(owner);rewards.claim(id,address(0));rewards.claim(id,address(token));royalties.claim(id,address(0));vm.stopPrank();
     }
 
+    /// Price-dependent principal movement must stop during an oracle outage,
+    /// while actual fee-only collection and already-funded payouts stay usable.
+    function testActualV4StalePricesBlockRebalanceButPreserveHarvestAndClaimAccounting() public {
+        _deepenExternalLiquidity();
+        uint256 a = _mint(ALICE); uint256 b = _mint(BOB);
+        _contribute(ALICE, a, 100 ether, false); _contribute(BOB, b, 100 ether, false);
+        _assertBacking();
+        uint256 bucket = vault.nftBucket(a);
+        uint256 lp = vault.group(bucket).lpTokenId;
+        uint128 liquidity = positions.getPositionLiquidity(lp);
+        uint256 sharesA = vault.sharesOf(a); uint256 sharesB = vault.sharesOf(b);
+        uint256 nativeCredit = credited[0]; uint256 tokenCredit = credited[1];
+        _trade(true, 10 ether); _trade(false, 10 ether);
+        vm.warp(block.timestamp + 3601); // Both admitted fixture feeds are stale.
+        vm.expectRevert(abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector, address(0)));
+        oracle.price(address(0));
+        vm.expectRevert(abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector, address(0)));
+        vault.rebalance(bucket, 1, block.timestamp + 100);
+        // CAROL has neither keeper nor governance authority: this call only
+        // collects pool fees to protocol ledgers, never principal to its caller.
+        vm.prank(CAROL); vault.collectFees(bucket, block.timestamp + 100);
+        _assertBacking();
+        assertGt(credited[0], nativeCredit); assertGt(credited[1], tokenCredit);
+        assertEq(vault.group(bucket).lpTokenId, lp);
+        assertEq(positions.getPositionLiquidity(lp), liquidity);
+        assertEq(positions.ownerOf(lp), address(vault));
+        assertEq(vault.sharesOf(a), sharesA); assertEq(vault.sharesOf(b), sharesB);
+        bytes32 reserves = keccak256(abi.encode(fees.compoundBalance(bucket, address(0)),
+            fees.compoundBalance(bucket, address(token)), fees.buybackBalance(address(0)),
+            fees.buybackBalance(address(token)), fees.accounted(address(0)), fees.accounted(address(token))));
+        uint256 beforeB = rewards.claimable(b, address(0));
+        _claim(ALICE, a); assertEq(rewards.claimable(b, address(0)), beforeB);
+        _claim(BOB, b); _assertBacking();
+        assertEq(reserves, keccak256(abi.encode(fees.compoundBalance(bucket, address(0)),
+            fees.compoundBalance(bucket, address(token)), fees.buybackBalance(address(0)),
+            fees.buybackBalance(address(token)), fees.accounted(address(0)), fees.accounted(address(token)))));
+    }
+
     function testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded() public {
         _deepenExternalLiquidity();
         uint256 a=_mint(ALICE);uint256 b=_mint(BOB);uint256 dormant=_mint(CAROL);

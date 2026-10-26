@@ -49,6 +49,9 @@ Qualify the [separate revenue jobs](OPERATIONS.md#reward-timing-and-maintenance-
 with actual batch sizes, gas, harvest/conversion/compound/burn latency and backlog
 alerts. The local claim-conservation and buyback-fairness checks do not enable
 the placeholder service or turn allocated reserves into executed trades.
+Exercise [maintenance-outage harvest isolation and claim-integrity checks](../reports/reward-resilience-20261026/REVIEW.md)
+under actual provider/service conditions, including degraded health and saved
+pending recovery. Local fault fixtures do not close those operating gates.
 
 ## 4. Freeze and approve a complete release
 

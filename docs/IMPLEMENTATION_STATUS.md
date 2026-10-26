@@ -41,9 +41,9 @@ safe by a documentation claim or simulated example.
 | Confirmed read API | Runtime/module/canonical/owner/physical LP/share checks at a confirmed block. Native ETH inventory and both claim ledgers required; impossible inactive rewards reject. Missing values stay unavailable. | [API](FRONTEND_API.md), [collection reads](COLLECTION_READS.md), [lifecycle](FRONTEND_LIFECYCLE.md) |
 | Earnings and claims history | NFT/collection/current-holdings24h/all-time processed earnings, separate LP/collective/royalties and lifetime claims through verified same-chain epochs. Today's original-currency prices; claims/conversions/imports not new income. | [Earnings](EARNINGS_HISTORY.md), [lineage](FRONTEND_LINEAGE.md), [royalty reporting](ROYALTY_REPORTING.md) |
 | Fee-integrity reconciliation | Current fee1 verifies actual module version, exact funded-credit/allocation pairs and pinned observed-key dust. Malformed summary data rejects; genuine outages null affected metrics. Authentic full logs/timestamps remain necessary. | [Latest fixes](../reports/backend-remediation-20261026/REVIEW.md) |
-| Unsigned transaction preparation | Complete Entry simulation/newLP/caller cap checks, exact approval step, expiry and separate gas. Bounded claim preparation and opt-in direct-mint drafts exist. Current production qualification and website mint capability reject the unsupported OpenSea path; the preparer itself is not a universal public-mint block. No user signer in API. | [Activation preparation](ACTIVATION_PREPARATION.md), [transactions](FRONTEND_TRANSACTIONS.md) |
+| Unsigned transaction preparation | Complete Entry simulation/newLP/caller cap checks, exact approval step, expiry and separate gas. Bounded current3 claims reject contradictory inactive balances/malformed activation data before a wallet draft. Parked/outbound and optional-currency deferral rights remain. Opt-in direct-mint drafts exist; production/website mint gates reject unsupported OpenSea integration, while the preparer itself is not a universal public-mint block. No user signer in API. | [Activation preparation](ACTIVATION_PREPARATION.md), [transactions](FRONTEND_TRANSACTIONS.md) |
 | Request and index resilience | Per-client admission, finite supervised workers/deadlines/RPC budgets; anchored SQLite replay/reorg handling and independent-provider history-window audit. Real hosting/capacity qualification remains open. | [Ingress](API_INGRESS.md), [concurrency](CONCURRENT_SERVICES.md), [index recovery](INDEXER_RECOVERY.md), [history audit](HISTORY_AUDIT.md) |
-| Keeper | Discovers shared buckets, simulates eligible upkeep, persists intents/receipts/budgets, recovers nonce/fee state without automatic resend. Buyback priority/currency rotation prevents persistent maintenance or a first currency monopolizing all opportunities. Optional metadata notifications; dry-run default. | [Reward timing/fairness](OPERATIONS.md#reward-timing-and-maintenance-schedule), [recovery](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
+| Keeper | Discovers shared buckets, simulates eligible upkeep, persists intents/receipts/budgets and recovers without automatic resend. Authenticated due harvesting can continue after maintenance RPC failure; malformed configuration/ABI still fails closed, and saved pending errors stop work. Buyback priority/currency rotation prevents starvation. Optional metadata notifications; dry-run default. | [Reward timing/fairness](OPERATIONS.md#reward-timing-and-maintenance-schedule), [recovery](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
 | Release tooling | Current schema5 inventory/pinned observer, RPC/mint qualification gates, immutable artwork bundle and frozen review export. Tools do not deploy or replace approval. | [Preflight](PRODUCTION_PREFLIGHT.md), [review package](FROZEN_REVIEW_BUNDLE.md) |
 
 ## Frontend boundary
@@ -56,6 +56,14 @@ deployment are preserved. See [website profile](NATIVE_WEBSITE_PROFILE.md),
 [deployment integration](DEPLOYMENT_WEBSITE.md) and [browser wallet](BROWSER_WALLET.md).
 
 ## Current evidence and limits
+
+[Adversarial reward review](../reports/reward-resilience-20261026/REVIEW.md): the
+final affected scope has 443 unique methods, 437 passes/6 explicit skips, zero errors
+or failures and stable source pins. One new actual-v4 test proves stale prices
+block rebalancing while actual fee collection and backed claims preserve LP,
+NFT shares and reserves. [Verification](../reports/reward-resilience-20261026/VERIFICATION.md)
+preserves the first wider regression failure and its narrower exception-boundary
+correction. No contract/rate/permission/API-schema change or service rollout.
 
 [Reward allocation review](../reports/reward-allocation-20261026/REVIEW.md) checks
 exact split, claim isolation and randomized order/frequency, and fixes buyback

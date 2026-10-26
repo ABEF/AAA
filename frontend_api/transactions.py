@@ -170,6 +170,7 @@ class Transactions:
             health = {}
             lp_assets, royalty_assets = p._admitted(block, asset_health=health)
             checked = set()
+            inactive = set()
             for entry in claims:
                 if entry.asset not in (royalty_assets if entry.royalty else lp_assets):
                     raise TransactionInputError('Asset is not admitted by the selected claim ledger')
@@ -183,11 +184,24 @@ class Transactions:
                         raise ProjectionError('Inconsistent NFT mint identity')
                     if p._addr('nft', 'ownerOf(uint256)', entry.token_id, block=block) != owner:
                         raise TransactionInputError('Wallet does not own every selected NFT')
+                    if p.accounting_version == 3:
+                        # Current activation gives a permanent global royalty
+                        # weight, even if one optional currency is deferred.
+                        # Zero means never activated, not parked/outbound LP.
+                        # Mirror the current read projection's integrity guard
+                        # without querying optional currencies or historic codecs.
+                        weight = p._uint('royalties', 'weightOf(uint256)', entry.token_id, block=block)
+                        if weight > 3:
+                            raise ProjectionError('NFT activation weight exceeds the reviewed bound')
+                        if weight == 0:
+                            inactive.add(entry.token_id)
                     checked.add(entry.token_id)
                 role = 'royalties' if entry.royalty else 'rewards'
                 amount = p._uint(role, 'claimable(uint256,address)', entry.token_id, entry.asset, block=block)
                 if amount == 0:
                     raise TransactionInputError('Selected claim has no funded balance')
+                if entry.token_id in inactive:
+                    raise ProjectionError('Inactive NFT has reward entitlement')
                 asset = p.assets[entry.asset]
                 details.append({'token_id': str(entry.token_id), 'asset': entry.asset, 'royalty': entry.royalty,
                                 'symbol': asset.symbol, 'decimals': asset.decimals, 'view_raw': str(amount)})

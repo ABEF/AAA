@@ -5,24 +5,20 @@ Reviewed 2026-10-26. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
-[Reward review](../reports/reward-allocation-20261026/REVIEW.md) and
-[verification](../reports/reward-allocation-20261026/VERIFICATION.md) record fixed
-allocation timing, two new claim-conservation methods (1,000 fuzz runs), and keeper
-buyback priority/currency fairness. Final376 affected Python methods:370 pass / 6skips,
-no failures/errors or source drift. Production contracts/economics unchanged;
-running services/journals untouched. Implementation [0ee9650](https://github.com/ABEF/AAA/commit/0ee9650904603f27b2f663b45d3f5534bef5ba4f)
-is pushed on main, exact remote head verified. See the
-[publication receipt](../reports/reward-allocation-20261026/PUBLICATION.md).
+[Reward resilience review](../reports/reward-resilience-20261026/REVIEW.md) and
+[verification](../reports/reward-resilience-20261026/VERIFICATION.md) record:
+independent guarded harvesting after maintenance RPC failures; fail-closed invalid
+configuration/ABI; consistent stop after pending errors; current3 inactive claim
+draft integrity. Final 443affected Python methods: 437 pass / 6 skips, no failures/errors
+or source drift. One new actual-v4 outage/harvest/claim case passes. Production
+Solidity/ABI/economic rights remain unchanged. The first wider regression failure
+is preserved and corrected without changing its existing assertion.
 
-[Keeper/LP audit](../reports/keeper-lp-audit-20261026/REVIEW.md) and
-[verification](../reports/keeper-lp-audit-20261026/VERIFICATION.md) record config-bound
-health, strict conversion flags, current3native rehearsal source and range enum
-test repair.354affected Python passes/5Unix skips;9range passes incl1000fuzz.
-Production Solidity/ABI/economics unchanged. Implementation885af8e and website
-memoryfd8c3e8 are pushed on main; exact remote heads verified in
-[receipt](../reports/keeper-lp-audit-20261026/PUBLICATION.md). Old journals and
-installed services are not upgraded. Fresh Linux/actual-provider qualification
-remains open; use Git for the later docs-only receipt checkpoint.
+Local code/docs are saved; verify publication separately before reporting pushed.
+Installed services/Anvil/NFT/LP/balances/journals, website and monitor remain
+untouched. Earlier [allocation](../reports/reward-allocation-20261026/VERIFICATION.md)
+and [keeper/LP](../reports/keeper-lp-audit-20261026/VERIFICATION.md) receipts retain
+their own exact scope; actual qualification and independent audit are still open.
 
 ## Continue here
 

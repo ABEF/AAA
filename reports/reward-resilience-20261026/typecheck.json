@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "errors": [],
+  "changed_inputs": [
+    "test/IntegratedEconomicConservation.t.sol"
+  ],
+  "source_count": 265,
+  "seconds": 16.25,
+  "input_sha256": "9ebdf47993a5e8eaece1759df3188f03d523d2d4ec23e135f6fb1a115cd3a04f",
+  "output_sha256": "bb8327001036bb2aaa34adcaa8860f42e9bb6e74b0b12d9aef7642f30b77fc79"
+}

@@ -61,3 +61,7 @@ reports/liquidity-operations-20261025/** -text whitespace=cr-at-eol,-blank-at-eo
 # Preserve the original Windows reward-scheduler negative-control receipts.
 reports/reward-allocation-20261026/keeper-negative-control.json -text whitespace=cr-at-eol
 reports/reward-allocation-20261026/keeper-negative-control.log -text whitespace=cr-at-eol
+
+# Preserve source-bound native reward resilience diagnostics and receipt bytes.
+reports/reward-resilience-20261026/** -text whitespace=cr-at-eol
+reports/reward-resilience-20261026/**/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -58,15 +58,19 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest functional publication [0ee9650](https://github.com/ABEF/AAA/commit/0ee9650904603f27b2f663b45d3f5534bef5ba4f): [reward review](reports/reward-allocation-20261026/REVIEW.md)
-and [verification](reports/reward-allocation-20261026/VERIFICATION.md). Allocation is
-at harvest; claims preserve other NFT entitlements and reserves. Two new Solidity
-methods pass, including 1,000 randomized claim schedules. The keeper fixes buyback
-starvation through priority/currency rotation, with376 affected Python methods:
-370 pass / 6 explicit skips and no failures/errors. Production 44 Solidity/ABI/economics
-are unchanged. Actual operating rollout remains unapproved; journals/services and
-the website remain untouched. Exact main publication is verified in the
-[receipt](reports/reward-allocation-20261026/PUBLICATION.md).
+Latest local candidate: [adversarial reward review](reports/reward-resilience-20261026/REVIEW.md)
+and [verification](reports/reward-resilience-20261026/VERIFICATION.md). Keeper
+maintenance RPC failure no longer suppresses an independently guarded due harvest;
+configuration/ABI faults still fail closed and pending intents stop scheduling.
+Current3 claim drafts reject contradictory inactive rewards/global activation data.
+Final 443Python methods: 437 pass / 6 explicit skips, stable source pins; one new actual-v4
+outage/harvest/claim case passes. Production 44 Solidity/ABI/economics unchanged.
+Existing services/Anvil/journals/website remain untouched. Source publication must
+be verified separately; actual operating/provider/independent qualification stays open.
+
+Prior allocation/fairness publication0ee9650 and
+[receipt](reports/reward-allocation-20261026/PUBLICATION.md) retain their scope;
+1,000claim-order fuzz and normal build/static evidence are not rerun by implication.
 
 The preceding published baseline is3ad0e3f (docs receipt), with functional885af8e:
 [keeper/LP review](reports/keeper-lp-audit-20261026/REVIEW.md) and

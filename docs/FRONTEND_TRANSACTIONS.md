@@ -131,6 +131,15 @@ ledger inventory and core bindings, but isolate an unselected currency's failed
 runtime/decimal check. Selected currency failures reject the whole draft;
 terminal work limits are never swallowed. Actual simulation remains decisive.
 
+For accounting3 claims, the preparer reads the global activation weight once per
+distinct selected NFT at that same block. Only 0..3 is valid; weight0 plus a positive
+LP/royalty claim balance is contradictory core data and rejects the draft. Missing
+or malformed activation data also fails closed. This matches NFT read integrity;
+the weight is not used to calculate the payout. Activated parked/outbound NFTs
+and optional-currency deferrals retain their earned rights. Historical profiles
+do not acquire this getter requirement. No optional currency read is added merely
+to check activation. [Scoped review](../reports/reward-resilience-20261026/REVIEW.md).
+
 Claims use an exact, narrowly encoded array and an exact sender/value simulation.
 Results must contain the canonical uint256 array offset, count and bounded size.
 Returned `view_raw` and `simulated_raw` are separate raw token-unit strings.
@@ -229,6 +238,11 @@ because a royalty receipt is admitted.
 ```sh
 python -m unittest tests_python.test_frontend_transactions tests_python.test_frontend_transaction_http tests_python.test_wallet_preparation -v
 ```
+
+Current activation-integrity regressions are in
+`tests_python.test_claim_activation_integrity`; the latest
+[combined affected report](../reports/reward-resilience-20261026/VERIFICATION.md)
+records the exact selected modules and source pins without adding overlapping runs.
 
 Tests cover exact intent/ABI, uint256 precision, mixed/native claims, 32-operation
 limits, owners, caps, pause-independent claims, unavailable balances, deployment
