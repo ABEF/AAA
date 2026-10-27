@@ -1,0 +1,134 @@
+[
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testBelowMinimumSwapRollsBackAndCanRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testBurnReentryCannotSpendASecondBudgetEvenWithKeeperRole()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testDisabledPoolStopsSwapWithoutBlockingClaimsOrDirectBurn()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testExpiredAndOverlongDeadlineCannotReleaseReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testFuzzSplitBurnCannotConsumeIndividualOrCompoundReserve(uint96)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testManipulatedSpotRejectedByRealStrategyGuard()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testNoOpBurnRejectsAndRestoresEverythingBeforeRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testPartialBurnRejectsAndRestoresEverythingBeforeRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testPausedBuybackLeavesFundedClaimsAvailable()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testPostSwapPriceDeviationRollsBackSettledSwapAndReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testReserveTransferFailureRestoresAccountingAndCanRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testRevertingBurnDoesNotBlockLPClaims()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testStaleFeedRejectsWithoutReleasingFundsAndRecoversAfterRefresh()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testStaleOutputFeedRollsBackReleasedInputReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testUnapprovedRouteCannotReleaseReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testUnauthorizedCallerAndDirectReserveReleaseRejected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testVenueReentryCannotSpendASecondBudgetEvenWithKeeperRole()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testWrongPairAdmissionCannotExpandBuybackAuthority()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testZeroOverReserveAndOverTradeBudgetRejected()",
+    "status": "Success",
+    "reason": null
+  }
+]

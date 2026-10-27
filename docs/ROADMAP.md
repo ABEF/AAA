@@ -16,7 +16,7 @@ exists, while [release approval](RELEASE_CHECKLIST.md) remains NOT APPROVED.
 
 Current maintenance candidate: [compound cadence V2](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) is coordinated on-chain with LP replacement and rebalance/range priority. Match keeper/helper versions and qualify actual economics/services; no24-hour default or new cumulative-loss breaker is assumed.
 
-Next session: review [keeper-originated manipulation](../TODO.md#task-security-keeper-manipulation)
+Current source has completion/health safeguards ([scope](../reports/manipulation-hardening-20261027/VERIFICATION.md)). Continue economic review of [keeper-originated manipulation](../TODO.md#task-security-keeper-manipulation)
 and [outside-actor manipulation](../TODO.md#task-security-external-manipulation).
 Use actual Robinhood ordering, independent prices and attacker/protocol profit
 witnesses; protected submission and economic safety are not already qualified.

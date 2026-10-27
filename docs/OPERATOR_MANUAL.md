@@ -26,6 +26,15 @@ single-owner Safe. Production wallet addresses/type remain unselected. For a
 Safe, use its own signing flow so the Safe is the target caller; for a direct
 account, that account itself submits the call. See [governance](GOVERNANCE.md).
 
+Keeper `Vault.rebalance`, `Compounder.compound` and `Buyback.execute` require
+the original keeper to remain authorized and the protocol unpaused through
+completion, including after external callbacks. A failed completion reverts
+the operation and the callback's state changes together. This is not a way to
+interrupt another transaction: send normal pause/revocation from the appropriate
+guardian/governance wallet, preserve any pending hash, then reconcile its receipt
+and gas. It adds no withdrawal power or economic-parameter change. See the
+[scoped review](../reports/manipulation-hardening-20261027/REVIEW.md).
+
 ## Find the right procedure
 
 Production minting is intended for OpenSea; the website Mint page is a demo.

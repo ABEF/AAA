@@ -226,3 +226,13 @@ The old staging heartbeat is paused, not continuous monitoring evidence. Existin
 Anvil/services/journals and historical profiles must remain unchanged unless a
 specific operating change is authorized. Rehearse off-host restore, alerts and
 current target-chain runtime/provider/gas before production approval.
+
+Current paid-revert reporting uses `confirmed_reverts`,
+`active_revert_cooldowns` and `next_revert_retry_after`; matching writer/checker
+deployment is required. An active existing action cooldown reports
+`revert_cooldown` even after restart or an unrelated successful harvest. Other
+eligible work and existing loop backoff continue unchanged. Its expiry permits
+a retry, not a claim that execution/market conditions recovered. Unknown markers
+or chain time cannot report healthy. See the
+[recovery procedure](KEEPER_RECOVERY.md#logs-health-and-fallback) and
+[scoped evidence](../reports/manipulation-hardening-20261027/VERIFICATION.md).

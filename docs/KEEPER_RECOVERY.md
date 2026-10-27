@@ -233,9 +233,18 @@ errors with a saved pending intent now stop all further scheduling; use the
 original hash/review and normal reconciliation, never reset the journal to resume.
 
 - JSON logs identify action, bucket and transaction where available. Errors include type and source location; raw error bodies, signer output, credentials and full tracebacks are excluded.
-- Separate `health_path` defaults to the state filename with `.health.json`. It reports heartbeat time, last success, pending flag, skipped buckets and failure count. `running`, `awaiting_receipt`, `recovery_required`, `degraded`, `error` and `halted` are not successful maintenance. Dry-run success is explicitly labelled.
+- Separate `health_path` defaults to the state filename with `.health.json`. It reports heartbeat time, last success, pending flag, skipped buckets and failure count. `running`, `awaiting_receipt`, `recovery_required`, `revert_cooldown`, `degraded`, `error` and `halted` are not successful maintenance. Dry-run success is explicitly labelled.
 - Configure `receipt_fee_policy` only after qualifying the actual chain: `included` requires all network costs in the chain's qualified gas accounting; `separate_l1_fee` requires an explicit L1 fee field on every receipt and a positive reviewed allowance. The example is `unverified`, which blocks live startup. An allowance is a conservative estimate, not an enforceable cap on external L1 charges.
 - Reverted actions retain their gas costs and receive a durable cooldown (default one hour). Other eligible work can proceed, while repeated failures remain visible. Gas/budget rejections mark the cycle degraded.
+- Current health writer/checker additionally require `confirmed_reverts`,
+  `active_revert_cooldowns` and `next_revert_retry_after`. A durably reconciled
+  paid revert cannot immediately assert health; `revert_cooldown` reports active
+  existing per-action restrictions, including after restart/unrelated success.
+  Counts use fresh chain time. Expiry means retry eligibility, not a successful
+  transaction or repaired market. No journal schema, fee/nonce accounting,
+  retry limit, independent job or loop backoff is changed. Unknown/malformed
+  markers or unavailable clock fail health. Roll out the matching writer/checker
+  together only under separate authorization; never patch health/journal data.
 - RPC reads have bounded retries and chain-checked endpoint fallback. Failed cycles back off. A failing bucket is logged and marked degraded while independent buckets remain checkable. Never execute with stale prices or an unreviewed chain/route as a fallback.
 - Storage failures and unexpected program errors stop the loop. A failed initial health write prevents signing. The systemd unit limits restart storms and stops the keeper plus signer child processes together. Shutdown detected before intent persistence prevents a new submission; a submission already underway must finish or be reconciled from durable state. Invalid state/configuration still needs intervention.
 - Monitor stale/missing heartbeats, sustained errors, long-pending/ambiguous transactions, stale heads, low balance, backup age and role/code changes from a separate host. A dead server cannot alert about itself. Configure journal retention/rotation and alert routing before launch.

@@ -169,6 +169,9 @@ class Keeper:
         self.cycle_failures = 0
         self.skipped_buckets = 0
         self.blocked_actions = 0
+        self.confirmed_reverts = 0
+        self.active_revert_cooldowns = None
+        self.next_revert_retry_after = None
         self.strategy_paused = False
         self.preparing = None
         self.canonical_lifecycle = None
@@ -304,6 +307,9 @@ class Keeper:
         start = time.monotonic()
         self.skipped_buckets = 0
         self.blocked_actions = 0
+        self.confirmed_reverts = 0
+        self.active_revert_cooldowns = None
+        self.next_revert_retry_after = None
         def health(status: str, **extra: Any) -> None:
             atomic_json(self.health_path,{'time':dt.datetime.now(dt.timezone.utc).isoformat(),
                 'status':status,'live':self.live,'chain_id':self.chain,'sender':self.sender,
@@ -311,6 +317,9 @@ class Keeper:
                 'last_success_at':self.last_success_at,'consecutive_failures':self.cycle_failures,
                 'skipped_buckets':self.skipped_buckets,'pending':bool(self.state.get('pending')),
                 'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,
+                'confirmed_reverts':self.confirmed_reverts,
+                'active_revert_cooldowns':self.active_revert_cooldowns,
+                'next_revert_retry_after':self.next_revert_retry_after,
                 'preparation_active':self.preparing,
                 'canonical_state':self.canonical_lifecycle,
                 'lp_exit_started':self.principal_exit_started,
@@ -320,6 +329,7 @@ class Keeper:
         health('running')  # A failed health write stops the cycle before signing.
         try:
             self.cycle()
+            self._observe_revert_cooldowns()
         except Exception as exc:
             self.cycle_failures += 1
             details = error_context(exc)
@@ -340,13 +350,35 @@ class Keeper:
             status = 'canonical_locked'
         else:
             self.cycle_failures = 0
-            self.last_success_at = dt.datetime.now(dt.timezone.utc).isoformat()
-            status = 'healthy' if self.live else 'dry_run'
+            if not self.confirmed_reverts:
+                self.last_success_at = dt.datetime.now(dt.timezone.utc).isoformat()
+            # A paid failure remains an observable restriction until its
+            # existing action cooldown expires, including after restart or
+            # another job succeeds. It does not stop independent scheduling or
+            # introduce additional loop backoff.
+            status = ('revert_cooldown' if self.active_revert_cooldowns else
+                ('degraded' if self.confirmed_reverts else ('healthy' if self.live else 'dry_run')))
         health(status)
-        log('cycle_completed',status=status,skipped_buckets=self.skipped_buckets,pending=pending)
+        log('cycle_completed',status=status,skipped_buckets=self.skipped_buckets,pending=pending,
+            confirmed_reverts=self.confirmed_reverts,
+            active_revert_cooldowns=self.active_revert_cooldowns,next_revert_retry_after=self.next_revert_retry_after)
         return not (self.skipped_buckets or self.blocked_actions)
 
     def save(self) -> None: atomic_json(self.path,self.state)
+
+    def _observe_revert_cooldowns(self) -> None:
+        """Summarize existing paid-revert restrictions without changing the journal."""
+        deadlines = self.state.get('retry_after',{})
+        count,earliest = 0,None
+        if deadlines:
+            _,timestamp = self._head()
+            for value in deadlines.values():
+                deadline = positive(value,'retry_after',zero=True)
+                if timestamp < deadline:
+                    count += 1
+                    earliest = deadline if earliest is None else min(earliest,deadline)
+        self.active_revert_cooldowns = count
+        self.next_revert_retry_after = earliest
 
     def _validate_maintenance_settings(self,settings: dict[str,Any],*,allow_retired: bool = False) -> None:
         if not isinstance(settings,dict): raise ValueError('Maintenance settings must be an object')
@@ -738,6 +770,7 @@ class Keeper:
         except Exception:
             self.state = previous_state
             raise
+        if not success: self.confirmed_reverts += 1
         log('confirmed' if success else 'reverted',transaction=tx_hash,cost_wei=str(cost),action=pending['key'])
         return False
 

@@ -148,6 +148,14 @@ profit after costs and protocol loss, rather than treating a passing guard as
 economic safety. Retain pause/revocation, bounded retries and turnover/loss
 alerts; update the operator procedure for each justified change.
 
+The [current scoped hardening](../reports/manipulation-hardening-20261027/REVIEW.md)
+adds post-callback keeper/pause checks to rebalance, compound and buyback and
+keeps paid-revert cooldowns visible in matching health/checkers. Controlled
+privileged/dependency callback and inert receipt fixtures do not establish
+unprofitable manipulation. The delegated economic-attack simulation was blocked
+by a platform security screen; actual profit, post-close depth and fee/ordering
+qualification remain open in the task ledger.
+
 ### Outside-actor manipulation
 
 The [dedicated task](../TODO.md#task-security-external-manipulation) owns status.

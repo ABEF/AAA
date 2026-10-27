@@ -1,5 +1,7 @@
 # Verification evidence
 
+[Manipulation-related hardening, 2026-10-27](manipulation-hardening-20261027/VERIFICATION.md): paid-revert health correction, post-callback keeper/pause completion checks and explicitly open economic/ordering qualification. No service or deployment change.
+
 [Coordinated compound cadence, 2026-10-27](maintenance-cadence-20261027/VERIFICATION.md):
 fresh capability2, rebalance/range priority, independent harvesting, pinned keeper
 eligibility and source-bound normal sizes. Keeper-originated and outside-actor

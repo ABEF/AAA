@@ -1,0 +1,350 @@
+[
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperBuybackCompletionTest",
+    "method": "testBuybackRejectsKeeperRevocationDuringBurnAndRollsBack()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperBuybackCompletionTest",
+    "method": "testBuybackRejectsPauseDuringBurnAndRollsBack()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperBuybackCompletionTest",
+    "method": "testBuybackUnchangedAuthorityCallbackStillBurnsOnlyReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperCompoundCompletionTest",
+    "method": "testCompoundChecksOriginalKeeperAndAllowsUnchangedAuthority()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperCompoundCompletionTest",
+    "method": "testCompoundRejectsOriginalKeeperRevocationAndRollsBack()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperCompoundCompletionTest",
+    "method": "testCompoundRejectsPauseDuringVaultCallAndRollsBack()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperRebalanceCompletionTest",
+    "method": "testRebalanceRejectsKeeperRevocationDuringCloseAndRollsBack()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperRebalanceCompletionTest",
+    "method": "testRebalanceRejectsPauseDuringCloseAndRollsBack()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperCompletion.t.sol:KeeperRebalanceCompletionTest",
+    "method": "testRebalanceUnchangedAuthorityCallbackStillSucceeds()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testAvailablePreapprovedRangeSelectionTakesPriorityBeforeItIsApplied()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testBucketClocksAreIndependent()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testCompoundThenCompoundUsesOwnExactBoundary()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testEligibleRebalanceRejectsCompoundBeforeFeeOrClockMutation()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testFirstCompoundWaitsAfterCreationAtExactBoundary()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testGovernedIntervalChangeAndOperationsDisableAreRespected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testLateCompoundFailureRollsBackBackingAndCooldownForRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testMissingAndDormantBucketsCannotCompound()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testRebalanceThenCompoundWaitsWithoutBlockingHarvestOrClaim()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testRecentCompoundCannotPostponeAnEligibleRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testTopUpDoesNotResetCadenceOrSuppressHarvest()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testNativeBuybackSpendsOnlyItsClassifiedReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testNativeFailedActivationAndIncreaseKeepFundsAndTraits()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testNativeFeesFollowOwnerThroughGrowthAndRepeatedRebalances()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testNativeForcedETHDuringCloseCannotSubsidizePrincipal()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testNativeForcedETHDuringHarvestCannotBecomeFeeIncome()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testNativeHolderExitUsesActualManagerAndPreservesRewardsWithoutPrices()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testNativePrefundsCannotSatisfyMissingValueOrBecomeNFTPrincipal()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+    "method": "testRetiredBridgeSelectorsRemainUncallable()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+    "method": "testCompoundCannotMaskLossAndFailedHarvestRollsBackRewards()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+    "method": "testDonationsAndClaimableFeesCannotPayRebalanceLoss()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+    "method": "testFuzzThreePercentCloseBoundary(uint16)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+    "method": "testPriceChangesDuringHarvestCannotHideExecutionLoss()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+    "method": "testRebalanceSnapshotCannotBeReenteredDuringClose()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+    "method": "testRepeatedSnapshotsClearAndExistingIdleCapStillApplies()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+    "method": "testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testBelowMinimumSwapRollsBackAndCanRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testBurnReentryCannotSpendASecondBudgetEvenWithKeeperRole()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testDisabledPoolStopsSwapWithoutBlockingClaimsOrDirectBurn()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testExpiredAndOverlongDeadlineCannotReleaseReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testFuzzSplitBurnCannotConsumeIndividualOrCompoundReserve(uint96)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testManipulatedSpotRejectedByRealStrategyGuard()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testNoOpBurnRejectsAndRestoresEverythingBeforeRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testPartialBurnRejectsAndRestoresEverythingBeforeRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testPausedBuybackLeavesFundedClaimsAvailable()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testPostSwapPriceDeviationRollsBackSettledSwapAndReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testReserveTransferFailureRestoresAccountingAndCanRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testRevertingBurnDoesNotBlockLPClaims()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testStaleFeedRejectsWithoutReleasingFundsAndRecoversAfterRefresh()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testStaleOutputFeedRollsBackReleasedInputReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testUnapprovedRouteCannotReleaseReserve()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testUnauthorizedCallerAndDirectReserveReleaseRejected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testVenueReentryCannotSpendASecondBudgetEvenWithKeeperRole()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testWrongPairAdmissionCannotExpandBuybackAuthority()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+    "method": "testZeroOverReserveAndOverTradeBudgetRejected()",
+    "status": "Success",
+    "reason": null
+  }
+]

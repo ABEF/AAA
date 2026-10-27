@@ -67,5 +67,6 @@ contract ZZZBuyback is ZZZModule, ReentrancyGuard {
         if (IBurnable(zzz).totalSupply() + acquired != supplyBefore ||
             IERC20(zzz).balanceOf(address(this)) != beforeZZZ) revert InvalidState();
         emit BoughtAndBurned(token, amount, acquired);
+        if (!access.keeperAuthorized(msg.sender) || access.paused()) revert Unauthorized();
     }
 }

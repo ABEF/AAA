@@ -101,7 +101,8 @@ before changing behavior. This file contains current instructions, not a timelin
   runner is read-only and independent of the preserved old dirty runner/tests.
 - [Documentation cleanup/publication](reports/documentation-cleanup-20261026/PUBLICATION.md)
   records the consolidated current guides and original-draft preservation.
-- Latest keeper/LP source-scoped review: [audit](reports/keeper-lp-audit-20261026/REVIEW.md)
+- Current manipulation-related hardening: [review](reports/manipulation-hardening-20261027/REVIEW.md) and [verification](reports/manipulation-hardening-20261027/VERIFICATION.md). Paid-revert health markers require matching writer/checker rollout; do not alter journals to pass. Rebalance/compound/buyback recheck keeper/pause at completion. Economic profitability/ordering work remains open; no new24-hour or cumulative limit.
+- Earlier keeper/LP source-scoped review: [audit](reports/keeper-lp-audit-20261026/REVIEW.md)
   and [verification](reports/keeper-lp-audit-20261026/VERIFICATION.md). Health binds
   loaded config; deploy checker/writer together, never alter journals to pass.
 - [Reward allocation review](reports/reward-allocation-20261026/REVIEW.md) verifies

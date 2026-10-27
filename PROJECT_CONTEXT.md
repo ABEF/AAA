@@ -41,7 +41,7 @@ not additional people. A single-owner governance configuration is supported;
 actual production wallet type/addresses remain unselected. Keep the keeper's
 limited service key separate from the governance key.
 
-Next-session security priorities are the explicit Todo tasks for
+Current security work includes paid-revert health visibility and post-callback keeper/pause completion checks for rebalance, compound and buyback. See [scoped review](reports/manipulation-hardening-20261027/REVIEW.md). Actual economic qualification remains open in the explicit Todo tasks for
 [keeper-originated manipulation](TODO.md#task-security-keeper-manipulation) and
 [outside-actor manipulation](TODO.md#task-security-external-manipulation). Qualify
 actual prices, pool depth/fees and Robinhood ordering; no private submission

@@ -51,8 +51,16 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
     if type(lifecycle) is not int or lifecycle not in range(5): reasons.append('canonical_state_unknown')
     elif lifecycle != 0: reasons.append('canonical_lifecycle_locked')
     if lifecycle == 0 and type(data.get('preparation_active')) is not bool: reasons.append('preparation_state_unknown')
-    for field in ('skipped_buckets','blocked_actions','consecutive_failures'):
+    for field in ('skipped_buckets','blocked_actions','consecutive_failures','confirmed_reverts'):
         if type(data.get(field)) is not int or data[field] != 0: reasons.append(field)
+    cooldowns = data.get('active_revert_cooldowns')
+    retry_after = data.get('next_revert_retry_after')
+    if (type(cooldowns) is not int or cooldowns < 0 or 'next_revert_retry_after' not in data or
+            (cooldowns == 0 and retry_after is not None) or
+            (cooldowns > 0 and (type(retry_after) is not int or retry_after <= 0))):
+        reasons.append('revert_cooldown_state_unknown')
+    elif cooldowns:
+        reasons.append('reverted_actions_in_cooldown')
     if data.get('last_success_at') is None:
         reasons.append('no_successful_cycle_yet')
     else:
@@ -61,6 +69,7 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
     return {'ok':not reasons,'reasons':reasons,'heartbeat_age_seconds':round(age,3),
             'preparation_active':data.get('preparation_active'),
             'canonical_state':lifecycle,
+            'active_revert_cooldowns':cooldowns,'next_revert_retry_after':retry_after,
             'scope':'health_file_only; use an off-host scheduler and alert receiver'}
 
 

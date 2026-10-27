@@ -7,10 +7,10 @@
       "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
       "src/ZZZActivationEntry.sol": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
-      "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
+      "src/ZZZBuyback.sol": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
       "src/ZZZCanonicalHandoff.sol": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
-      "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
       "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
       "src/ZZZCustodyValidation.sol": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
@@ -32,7 +32,7 @@
       "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
       "src/ZZZStrategy.sol": "0543a8e348bccd30ca130b46b75e7b67aaef512eb0d2e082faaa0db6ac2e7292",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZVault.sol": "117896c10e74801ffe86079b8a431d94b004e4bc0e8d7609061b52092510e49d",
+      "src/ZZZVault.sol": "9d1b9a7412cee44e9f8e4660e704573d25a2a9c5c952a3865445220fe120e770",
       "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZModule.sol": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
@@ -200,9 +200,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "162abccb784917cb5cbbb8da2e166e0ed1776393fadfb4fa07e1a6a97cc5e0af",
-    "compiler_output_sha256": "b5fb0403b2b1f52f0dfb02e93befb215a72fe3dda0dc9ec4ea08c8a4e070df0f",
-    "size_evidence_sha256": "abbcf4ee1a80d4822d04a7c7a8818b9853ba323d31048815750c121a883e7908",
+    "compiler_input_sha256": "9190de31f9bf4470f8b0bf783eb8334778e8f1385b2b9121a4db95c884fe9fec",
+    "compiler_output_sha256": "9ae4e962f6d1cc1512eb43712297df631fcd4a64aa489183a6971c851c6450e0",
+    "size_evidence_sha256": "6f941b53b960d56e3458e454fe0590b4f587a22ab6f53050789f43ebf08b84c9",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -18035,7 +18035,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "8b8eed45880eaac58c9fbaeb0bbe06052fe470762ddc8124ee5e18f4c0bcfcf8",
+  "notes_sha256": "6ec7928545452fbd3a23d2ea79ff22e339348665ed86f3b5222fbd8ea2e7b5a5",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -20953,7 +20953,7 @@
           "name": "execute",
           "state_mutability": "nonpayable",
           "purpose": "Release classified buyback reserves, acquire ZZZ if necessary, then verify an actual supply-reducing burn.",
-          "access": "Authorized keeper; live/operating.",
+          "access": "Authorized keeper; live/operating. Original keeper authorization and unpaused state are rechecked after external work.",
           "status": "documented",
           "inputs": [
             {
@@ -20995,7 +20995,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Upper-bound input valuation enforces operating budget; exact balance/supply changes and swap guards apply. No arbitrary treasury payout. Inputs: Raw source amount, approved pair pool for swapping, and fresh deadline. Direct ZZZ input is burned without a swap."
+          "notes": "Upper-bound input valuation enforces operating budget; exact balance/supply changes and swap guards apply. No arbitrary treasury payout. Inputs: Raw source amount, approved pair pool for swapping, and fresh deadline. Direct ZZZ input is burned without a swap. A callback changing those conditions makes the entire operation revert, including that callback change; separate operator pause/revocation transactions remain unchanged."
         },
         {
           "signature": "maxTradeUSD()",
@@ -22381,7 +22381,7 @@
           "name": "compound",
           "state_mutability": "nonpayable",
           "purpose": "Ask Vault to reinvest one bucket’s designated compound reserve and attributed idle.",
-          "access": "Authorized keeper; live/operating.",
+          "access": "Authorized keeper; live/operating. Original keeper authorization and unpaused state are rechecked after external work.",
           "status": "documented",
           "inputs": [
             {
@@ -22414,7 +22414,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Runs once for the shared physical LP, not once per NFT. Vault enforces exact execution/maintenance/cooldown rules. Inputs: Bucket ID, positive minimum LP increase and Unix deadline; no payout recipient."
+          "notes": "Runs once for the shared physical LP, not once per NFT. Vault enforces exact execution/maintenance/cooldown rules. Inputs: Bucket ID, positive minimum LP increase and Unix deadline; no payout recipient. A callback changing those conditions makes the entire operation revert, including that callback change; separate operator pause/revocation transactions remain unchanged."
         }
       ]
     },
@@ -40643,7 +40643,7 @@
           "name": "rebalance",
           "state_mutability": "nonpayable",
           "purpose": "Replace a shared LP at the strategy’s eligible target range after fee settlement.",
-          "access": "Authorized keeper; live/operating and on-chain eligibility/cooldown required.",
+          "access": "Authorized keeper; live/operating and on-chain eligibility/cooldown required. Original keeper authorization and unpaused state are rechecked after external work.",
           "status": "documented",
           "inputs": [
             {
@@ -40676,7 +40676,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Captures the maintenance cap and starting prices; preserves shares and earned fees. No per-NFT rebalance is needed. Inputs: id is a bucket ID, with a positive LP minimum and fresh deadline. Permanently rejected once collective LP exit starts, including after ordinary unpause."
+          "notes": "Captures the maintenance cap and starting prices; preserves shares and earned fees. No per-NFT rebalance is needed. Inputs: id is a bucket ID, with a positive LP minimum and fresh deadline. Permanently rejected once collective LP exit starts, including after ordinary unpause. A callback changing those conditions makes the entire operation revert, including that callback change; separate operator pause/revocation transactions remain unchanged."
         },
         {
           "signature": "reservePool(bytes32,uint256)",

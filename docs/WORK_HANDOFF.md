@@ -82,7 +82,9 @@ open. Never infer deployment approval from source/docs or local fixture success.
 
 Fresh Budget capability2 coordinates all standalone compounding (including no-swap work) with the last physical LP creation/replacement and compound. Eligible rebalance/preapproved range selection has priority; compound never changes lastRebalance. Hourly harvest and existing holder claims remain independent. Read [operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) and [scoped evidence](../reports/maintenance-cadence-20261027/VERIFICATION.md). Current accounting4 keeper compound scheduling must pin the helper address/runtime/version2 and use compoundReady; old services, journals, Anvil and both sites are untouched.
 
-Next requested work: [keeper-originated manipulation](../TODO.md#task-security-keeper-manipulation)
+Current source adds post-callback keeper/pause completion checks to rebalance, compound and buyback, and durable-cooldown health visibility after paid reverts. [New evidence](../reports/manipulation-hardening-20261027/VERIFICATION.md) owns the changed-source scope. Matching writer/checker rollout remains unperformed; journals, sites and services are untouched.
+
+Remaining requested work: [keeper-originated manipulation](../TODO.md#task-security-keeper-manipulation)
 and [outside-actor manipulation](../TODO.md#task-security-external-manipulation).
 Read the linked audit cases before changing policy. No24-hour default, cumulative
 loss budget, protected provider or public signing was approved. A fresh read of

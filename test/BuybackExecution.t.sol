@@ -309,15 +309,17 @@ contract BuybackExecutionTest is Test {
         vm.expectRevert(INVALID_CONFIGURATION); buyback.execute(address(input), RESERVE, keccak256("unapproved"), block.timestamp);
         assertEq(_ledger(address(input)), beforeState); _claimBoth(address(input));
     }
-    function testApprovedWrongPairCannotDivertBuybackFunds() public {
+    function testWrongPairAdmissionCannotExpandBuybackAuthority() public {
         _fund(address(input), GROSS); MockToken third = new MockToken(18);
         oracle.setTestFeed(address(third), address(inputFeed), 3600); rewards.addAsset(address(third));
         PoolConfig memory wrongConfig = _configuration(address(input), address(third));
-        // Alternate swap/maintenance routes are not additional contribution pools.
+        // Even the synthetic ERC20 fixture requires the immutable ZZZ identity.
+        // Do not bypass admission to manufacture an obsolete approved wrong pair.
         wrongConfig.depositsEnabled = false;
-        bytes32 wrongPool = pools.configure(wrongConfig);
-        bytes32 beforeState = _ledger(address(input)); vm.expectRevert(INVALID_CONFIGURATION);
-        buyback.execute(address(input), RESERVE, wrongPool, block.timestamp);
+        bytes32 wrongPool = keccak256(abi.encode(wrongConfig.key));
+        bytes32 beforeState = _ledger(address(input));
+        vm.expectRevert(INVALID_CONFIGURATION); pools.configure(wrongConfig);
+        assertFalse(pools.exists(wrongPool));
         assertEq(_ledger(address(input)), beforeState);
     }
     function testDisabledPoolStopsSwapWithoutBlockingClaimsOrDirectBurn() public {

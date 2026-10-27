@@ -470,6 +470,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _redeploy(id, minimumLiquidity, deadline);
         _migrationCheckpoint(id, 2);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
+        if (!access.keeperAuthorized(msg.sender) || access.paused()) revert Unauthorized();
     }
 
     /// @notice Migration commits terminal LP retirement through this lock so it

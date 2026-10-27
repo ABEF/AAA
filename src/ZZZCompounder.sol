@@ -11,5 +11,6 @@ contract ZZZCompounder is ZZZModule {
         _deadline(deadline);
         if (minimumLiquidity == 0) revert InvalidAmount();
         IZZZVault(access.module(Ids.VAULT)).compound(id, minimumLiquidity, deadline);
+        if (!access.keeperAuthorized(msg.sender) || access.paused()) revert Unauthorized();
     }
 }

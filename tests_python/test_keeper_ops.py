@@ -28,6 +28,7 @@ class OpsTests(unittest.TestCase):
         self.health = {'time':stamp,'last_success_at':stamp,'chain_id':1,'sender':A,'status':'healthy','live':True,
             'configuration_sha256':digest(self.cfg),
             'pending':False,'strategy_paused':False,'preparation_active':False,'canonical_state':0,
+            'confirmed_reverts':0,'active_revert_cooldowns':0,'next_revert_retry_after':None,
             'skipped_buckets':0,'blocked_actions':0,'consecutive_failures':0}
         original = self.rpc.call
         def call(method,params):

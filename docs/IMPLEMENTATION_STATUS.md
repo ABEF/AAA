@@ -25,6 +25,8 @@ original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLEC
 
 Fresh Budget compound capability2 enforces the current interval after max(lastCompound,lastRebalance), and yields to an eligible rebalance or available adaptive range selection. Rebalance never waits on compound. The accounting4 keeper uses a pinned compoundReady read; hourly harvesting/claims and historical1/2/3 readers remain independent. See [operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) and [scoped verification](../reports/maintenance-cadence-20261027/VERIFICATION.md). No live service or site changes.
 
+Current [manipulation-related hardening](../reports/manipulation-hardening-20261027/VERIFICATION.md) adds keeper/pause completion checks for rebalance/compound/buyback and corrects paid-revert health visibility across restart/unrelated success. It introduces no new economic caps, roles or custody path. Actual profitability, real market/feed/ordering and service qualification remain open; defensive checks are not attack-profit evidence.
+
 ## Smart contracts
 
 | Capability | Implemented behavior and boundary | Reference |
