@@ -21,7 +21,7 @@ Value/evolution is current marked on-chain LP NAV, not historic dollars contribu
 | LP revenue | Actual fees split80%NFT LP shares/10%equal activated collective/5%compound/5%ZZZ buyback-burn. |
 | Royalties | ERC-2981 requests5%; actual eligible receipts shared100% at rarity weights1/2/3. Not universal marketplace enforcement. |
 | Custody | No holder redemption during normal operation. Governance may irreversibly close LP and return proportional actual ETH+ZZZ directly to current NFT owners; no external custodian. |
-| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; rebalance uses separate trigger/cooldown/guards. Approved ranges may use ZZZ-price-in-ETH +/-25/50%. Polling is not an exact execution promise. |
+| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; rebalance uses separate trigger/cooldown/guards. Approved ranges may use ZZZ-price-in-ETH +/-25/50%. Polling is not an exact execution promise. Compound capability2 coordinates standalone work with LP replacement and prioritizes rebalance/adaptive selection; it never resets the rebalance clock. |
 
 Current source profile is accounting4/governance2/fee intake1/custody3/pricing2/
 routing2/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
@@ -40,6 +40,12 @@ Dedicated keeper/guardian/bootstrap/recipient accounts describe capabilities,
 not additional people. A single-owner governance configuration is supported;
 actual production wallet type/addresses remain unselected. Keep the keeper's
 limited service key separate from the governance key.
+
+Next-session security priorities are the explicit Todo tasks for
+[keeper-originated manipulation](TODO.md#task-security-keeper-manipulation) and
+[outside-actor manipulation](TODO.md#task-security-external-manipulation). Qualify
+actual prices, pool depth/fees and Robinhood ordering; no private submission
+provider, universal anti-MEV guarantee or24-hour default is approved.
 
 ## Artwork and financial reporting
 

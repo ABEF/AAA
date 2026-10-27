@@ -19,7 +19,7 @@
       "src/ZZZLiquidityManager.sol": "925dd46418ac3145718564437cb2d3f3bb031fd807401d98b1035a20b4720f26",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
       "src/ZZZMigration.sol": "93c4f9fe3047d3386864240a4a2c8491953758f5a02524b17b0d0100018157c0",
-      "src/ZZZMigrationBudget.sol": "725cd438f066977dcbb75db1bb0c78769cc95153971b73e0f4ef1d87c3a5f56b",
+      "src/ZZZMigrationBudget.sol": "836b746e4665a9ba6bee4dda2ffdbe73d20ac1c0132ab1d882b0a53678119dc1",
       "src/ZZZNFT.sol": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
       "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
       "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
@@ -37,7 +37,7 @@
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZModule.sol": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
       "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
-      "src/interfaces/IZZZ.sol": "9b78355998cc92a14aaf64f759c2425741aeeb87ef35988afffb657afb0731a9",
+      "src/interfaces/IZZZ.sol": "19a21ef3208ba4e65940f12f19cf468cc96217d0d6070f362094db2384d691a7",
       "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
       "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
@@ -200,9 +200,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "c817af5a70f5de7e78e08aa5dd875717875d4d47840c62cf1b57a88298c369d9",
-    "compiler_output_sha256": "b469dfa12b32b02598c575b2e5bcedf228f72ffc767ef2d0d7fdd9ca4965ec3b",
-    "size_evidence_sha256": "306b1ccf486456c5e51f8510be310e7721dd196c48fab5d9427a06c9db04869a",
+    "compiler_input_sha256": "162abccb784917cb5cbbb8da2e166e0ed1776393fadfb4fa07e1a6a97cc5e0af",
+    "compiler_output_sha256": "b5fb0403b2b1f52f0dfb02e93befb215a72fe3dda0dc9ec4ea08c8a4e070df0f",
+    "size_evidence_sha256": "abbcf4ee1a80d4822d04a7c7a8818b9853ba323d31048815750c121a883e7908",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -7941,6 +7941,25 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "compoundReady",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "contributionLossBps",
           "outputs": [
@@ -8480,7 +8499,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "0f972817beceabbf40dc2a8ba11cf624c1c12ee1b6a7fda64951113a24c94ea2"
+      "abi_sha256": "81518e62e3a035b1b12ad047f4afde22ae9ebc9b83a3ee8c7b47ed1ff30c7368"
     },
     "ZZZNFT": {
       "source": "src/ZZZNFT.sol",
@@ -18016,7 +18035,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "b86fab438a84acd06df02417ef7823c17db33fc8b5665cc60f5e0ce511cc100b",
+  "notes_sha256": "8b8eed45880eaac58c9fbaeb0bbe06052fe470762ddc8124ee5e18f4c0bcfcf8",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -27520,7 +27539,7 @@
           "kind": "function",
           "name": "IDLE_COMPOUNDING_VERSION",
           "state_mutability": "view",
-          "purpose": "Identify the explicit idle-only reinvestment compatibility version.",
+          "purpose": "Identify the compound cadence compatibility version: 2 coordinates all standalone compounding with LP replacement and rebalance priority.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -27532,7 +27551,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "The explicit idle-only reinvestment compatibility version."
+              "explanation": "2 for the coordinated cadence; historical 1 retains its separate compound clock."
             }
           ],
           "native_value": null,
@@ -27874,6 +27893,39 @@
           "notes": null
         },
         {
+          "signature": "compoundReady(uint256)",
+          "kind": "function",
+          "name": "compoundReady",
+          "state_mutability": "view",
+          "purpose": "Check V2 compound cadence and strategy priority for a shared LP bucket.",
+          "access": "Anyone; read-only. Only fixed Vault can execute the guarded checkpoint.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "id",
+              "label": "id",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Canonical shared bucket ID, not an individual NFT or Uniswap position NFT ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True only for active physical LP with operations enabled, current interval elapsed since max(lastCompound,lastRebalance), no eligible rebalance and no available preapproved range selection."
+            }
+          ],
+          "native_value": null,
+          "notes": "May revert on unavailable dependencies. Not complete transaction readiness: Vault still enforces lifecycle, authorization, deadline, pricing and value guards. Does not delay harvesting/claims or reset the rebalance clock."
+        },
+        {
           "signature": "contributionLossBps()",
           "kind": "function",
           "name": "contributionLossBps",
@@ -28146,7 +28198,7 @@
           "kind": "function",
           "name": "lastCompound",
           "state_mutability": "view",
-          "purpose": "Read the independent successful idle/compound maintenance timestamp for a bucket.",
+          "purpose": "Read the last successful standalone compound timestamp; V2 readiness also considers Position.lastRebalance and strategy priority.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -28168,7 +28220,7 @@
               "type": "uint64",
               "canonical_type": "uint64",
               "internal_type": "uint64",
-              "explanation": "The independent successful idle/compound maintenance timestamp for a bucket."
+              "explanation": "Last successful standalone compound time; zero before one. Local operating state, not an imported NFT entitlement."
             }
           ],
           "native_value": null,
@@ -41633,7 +41685,7 @@
   "gaps": [],
   "counts": {
     "contracts": 31,
-    "functions": 606,
+    "functions": 607,
     "constructors": 31,
     "receive_hooks": 13,
     "fallback_hooks": 0,

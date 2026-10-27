@@ -14,6 +14,13 @@ Reviewed 2026-10-27. This page explains dependencies and sequence; [TODO.md](../
 is the only status list. [Feature reference](IMPLEMENTATION_STATUS.md) records what
 exists, while [release approval](RELEASE_CHECKLIST.md) remains NOT APPROVED.
 
+Current maintenance candidate: [compound cadence V2](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) is coordinated on-chain with LP replacement and rebalance/range priority. Match keeper/helper versions and qualify actual economics/services; no24-hour default or new cumulative-loss breaker is assumed.
+
+Next session: review [keeper-originated manipulation](../TODO.md#task-security-keeper-manipulation)
+and [outside-actor manipulation](../TODO.md#task-security-external-manipulation).
+Use actual Robinhood ordering, independent prices and attacker/protocol profit
+witnesses; protected submission and economic safety are not already qualified.
+
 ## 1. Close immutable integration boundaries
 
 Qualify and finish [OpenSea primary mint](../TODO.md#task-opensea-mint), preserving

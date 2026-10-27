@@ -1,0 +1,68 @@
+[
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testAvailablePreapprovedRangeSelectionTakesPriorityBeforeItIsApplied()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testBucketClocksAreIndependent()",
+    "status": "Failure",
+    "reason": "Slippage()"
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testCompoundThenCompoundUsesOwnExactBoundary()",
+    "status": "Failure",
+    "reason": "Slippage()"
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testEligibleRebalanceRejectsCompoundBeforeFeeOrClockMutation()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testFirstCompoundWaitsAfterCreationAtExactBoundary()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testGovernedIntervalChangeAndOperationsDisableAreRespected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testLateCompoundFailureRollsBackBackingAndCooldownForRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testMissingAndDormantBucketsCannotCompound()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testRebalanceThenCompoundWaitsWithoutBlockingHarvestOrClaim()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testRecentCompoundCannotPostponeAnEligibleRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testTopUpDoesNotResetCadenceOrSuppressHarvest()",
+    "status": "Success",
+    "reason": null
+  }
+]

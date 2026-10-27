@@ -75,6 +75,7 @@ interface IZZZStrategy {
     function target(bytes32 poolId) external view returns (int24 lower, int24 upper, uint160 referenceX96);
     function validatePrice(bytes32 poolId) external view returns (uint160 spotX96);
     function needsRebalance(uint256 id) external view returns (bool);
+    function keeperRangeTarget(bytes32 poolId) external view returns (uint16);
     function compoundPlan(uint256 id, uint256 amount0, uint256 amount1) external view returns (bool, uint256, uint256);
     function swapPlan(bytes32 poolId, uint256 amount0, uint256 amount1)
         external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut);

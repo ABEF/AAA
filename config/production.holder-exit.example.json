@@ -9,5 +9,5 @@
   "deployment_authorized": false,
   "contracts": null,
   "services": null,
-  "qualification": "Explicit blocked inventory scaffold. Complete and review real runtime bindings, principal-exit API/keeper pins, native-only LP admission, batching/gas, target-chain rehearsals and independent audit. This is not accepted production inventory; the release gate stays closed."
+  "qualification": "Explicit blocked inventory scaffold. Complete and review real runtime bindings, Budget compound capability2 and exact keeper helper pins/readiness, principal-exit API/keeper pins, native-only LP admission, batching/gas, target-chain rehearsals and independent audit. This is not accepted production inventory; the release gate stays closed."
 }

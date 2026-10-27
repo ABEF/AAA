@@ -1,5 +1,10 @@
 # Verification evidence
 
+[Coordinated compound cadence, 2026-10-27](maintenance-cadence-20261027/VERIFICATION.md):
+fresh capability2, rebalance/range priority, independent harvesting, pinned keeper
+eligibility and source-bound normal sizes. Keeper-originated and outside-actor
+economic manipulation remain explicit [open work](../TODO.md#task-security-keeper-manipulation).
+
 [Collective holder return, 2026-10-27](holder-collective-exit-20261027/VERIFICATION.md): fresh accounting4/custody3/V5, actual per-NFT ETH+ZZZ principal and retained royalty/reward rights;133affected Solidity passes,37normal object gates and separate backend/keeper scopes. Source-only; no deployment or production approval.
 
 

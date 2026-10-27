@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testBucketClocksAreIndependent()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testCompoundThenCompoundUsesOwnExactBoundary()",
+    "status": "Success",
+    "reason": null
+  }
+]

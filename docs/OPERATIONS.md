@@ -95,7 +95,7 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 | Job | Reviewed operating policy | Confirmed evidence |
 | --- | --- | --- |
 | Harvest | `maintenance.harvest=true`, `harvest_interval_seconds`; permissionless manual `Vault.collectFees` is also available. Contribution/rebalance/compound paths harvest as well. | `FeesCollected`, matching funded `PoolRewardsCredited`/`FeesAllocated`, actual receipt and separate reserves. Uncollected pool fees are not claimable yet. |
-| Compound | `maintenance.compound=true`, `compound_interval_seconds`, currency-specific `compound_thresholds` plus actual minimum LP and all guards. Contributions/rebalances can already reinvest the same bucket's reserve. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
+| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting4 also requires the exact Budget pin, capability2 and `compoundReady`; all standalone compounds yield to range maintenance. Contributions/rebalances can already reinvest the same bucket's reserve. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
 | Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
 | Collective principal delivery | Opt-in accounting4 `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
@@ -150,6 +150,24 @@ snapshot/lifecycle, execution loss and gas checks must pass. Optional reviewed
 +/-25/50% width selection in ZZZ-price-in-ETH is explicitly enabled and bounded
 by governance's policy; the keeper cannot invent a new range/algorithm.
 [Range procedure](RANGE_POLICY_UPDATES.md).
+
+Fresh accounting4 standalone compounding requires Budget capability2:
+`now >= max(lastCompound,lastRebalance) + current minRebalanceInterval`, plus
+no eligible rebalance and no available preapproved adaptive-range selection.
+The rule includes no-swap compounds and the first compound after LP creation.
+Rebalance eligibility ignores `lastCompound`, preserving range priority. The
+independent hourly harvest schedule, funded claims and guarded user contributions
+are unaffected; successful contributions may still reinvest designated reserves.
+
+Every due accounting4 compound job, even reserve-only, authenticates
+`idle_compounding_budget`, `code_hashes.idle_compounding_budget`, its Vault binding,
+capability2 and `compoundReady`. Historical accounting1/2/3/helper1 settings retain
+their explicit old meaning. Helper readiness is not a substitute for keeper
+authorization, pause/lifecycle, simulation, fee or execution guards. If a
+preapproved adaptive action is available but local range scheduling is disabled,
+compound can wait indefinitely: review/enable that job or deliberately adjust
+the approved policy, rather than bypassing it. No running config/service changes
+follow from these source instructions.
 
 Enable LP/royalty conversion, idle-only compounding, buyback and metadata watching
 only under their reviewed configs/bindings/budgets. They are separate jobs;

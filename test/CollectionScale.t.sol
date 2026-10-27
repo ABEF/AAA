@@ -201,7 +201,9 @@ contract CollectionScaleTest is PooledVaultFixture {
         for (uint256 i; i < COUNT; ++i) { _assertIdentity(i, bucket); _assertEntitlement(i); }
 
         uint256 oldLP = vault.group(bucket).lpTokenId;
+        policy.setNeed(false);
         compounder.compound(bucket, 1, block.timestamp + 100);
+        policy.setNeed(true);
         vault.rebalance(bucket, 1, block.timestamp + 100);
         assertTrue(vault.group(bucket).lpTokenId != oldLP);
         vm.expectRevert(); venue.ownerOf(oldLP);
@@ -303,9 +305,11 @@ contract CollectionScaleTest is PooledVaultFixture {
         result.mixedBatch = start - gasleft(); vm.pauseGasMetering();
         assertEq(claimed[0], 0); for (uint256 i = 1; i < 5; ++i) assertGt(claimed[i], 0);
 
+        policy.setNeed(false);
         _cool(holders[last]); vm.resumeGasMetering(); start = gasleft();
         compounder.compound(bucket, 1, block.timestamp + 100);
         result.compound = start - gasleft(); vm.pauseGasMetering();
+        policy.setNeed(true);
         _cool(holders[last]); vm.resumeGasMetering(); start = gasleft();
         vault.rebalance(bucket, 1, block.timestamp + 100);
         result.rebalance = start - gasleft(); vm.pauseGasMetering();

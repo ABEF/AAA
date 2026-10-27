@@ -383,7 +383,8 @@ contract IntegratedEconomicConservationTest is Test {
         assertGt(grossHarvested[0],credited[0]);assertGt(grossHarvested[1],credited[1]);
         assertEq(rewards.claimable(dormant,address(0)),0);assertEq(royalties.claimable(dormant,address(0)),0);
         _contribute(ALICE,a,5 ether,true);assertGt(vault.sharesOf(a),sharesA);assertEq(vault.sharesOf(b),sharesB);
-        _trade(true,10 ether);_trade(false,10 ether);compounder.compound(bucket,1,block.timestamp+100);
+        _trade(true,10 ether);_trade(false,10 ether);
+        vm.warp(block.timestamp+600);compounder.compound(bucket,1,block.timestamp+100);
         uint256 afterGrowth=vault.sharesOf(a);uint256 previousLP=vault.group(bucket).lpTokenId;
         vm.warp(block.timestamp+601);registry.setRange(1100);vault.rebalance(bucket,1,block.timestamp+100);
         assertTrue(vault.group(bucket).lpTokenId!=previousLP);assertEq(vault.sharesOf(a),afterGrowth);
@@ -556,6 +557,7 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(fees.compoundBalance(bucket,address(0)),0);assertEq(fees.compoundBalance(bucket,address(token)),0);
         assertGt(p.idle0+p.idle1,0,"non-vacuous idle-only input");
         _royalty(1 ether);royalties.sync(address(0));uint256 royalty=royalties.claimable(id,address(0));
+        vm.warp(block.timestamp+600);
         compounder.compound(bucket,1,block.timestamp+100);
         assertGt(positions.getPositionLiquidity(p.lpTokenId),beforeLiquidity,"actual LP increased");
         Position memory afterCompound=vault.group(bucket);
@@ -563,7 +565,7 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),shares);
         assertEq(royalties.claimable(id,address(0)),royalty);
         assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
-        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),1);_assertBacking();
+        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),2);_assertBacking();
         vm.expectRevert();compounder.compound(bucket,1,block.timestamp+100);
         assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
     }
@@ -573,6 +575,7 @@ contract IntegratedEconomicConservationTest is Test {
         uint256 bucket=vault.nftBucket(id);Position memory p=vault.group(bucket);
         uint128 beforeLiquidity=positions.getPositionLiquidity(p.lpTokenId);uint256 shares=vault.sharesOf(id);
         _assertBacking();
+        vm.warp(block.timestamp+600); // Exercise the late LP failure, not cooldown.
         vm.expectRevert();compounder.compound(bucket,type(uint128).max,block.timestamp+100);
         // Foundry records logs from reverted calls as well. They are not chain
         // receipts and must not enter the independent committed-income ghost.
@@ -582,6 +585,27 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(vault.group(bucket).idle0,p.idle0);assertEq(vault.group(bucket).idle1,p.idle1);_assertBacking();
         compounder.compound(bucket,1,block.timestamp+100);
         assertGt(positions.getPositionLiquidity(p.lpTokenId),beforeLiquidity);_assertBacking();
+    }
+
+    function testActualV4CompoundYieldsToRangeRebalanceWithoutDelayingIt() public {
+        uint256 id=_mint(ALICE);_contribute(ALICE,id,100 ether,false);
+        uint256 bucket=vault.nftBucket(id);uint256 shares=vault.sharesOf(id);
+        vm.warp(block.timestamp+600);
+        assertTrue(vault.migrationBudget().compoundReady(bucket));
+        compounder.compound(bucket,1,block.timestamp+100);
+        uint256 compounded=block.timestamp;uint256 oldLP=vault.group(bucket).lpTokenId;
+        registry.setRange(1100);
+        assertFalse(vault.migrationBudget().compoundReady(bucket));
+        vm.expectRevert();compounder.compound(bucket,1,block.timestamp+100);
+        // The successful compound in this same block cannot postpone the
+        // governed, now-eligible range replacement.
+        vault.rebalance(bucket,1,block.timestamp+100);
+        assertTrue(vault.group(bucket).lpTokenId!=oldLP);
+        assertEq(vault.group(bucket).lastRebalance,compounded);
+        assertEq(vault.migrationBudget().lastCompound(bucket),compounded);
+        assertEq(vault.sharesOf(id),shares);
+        assertFalse(vault.migrationBudget().compoundReady(bucket));
+        vault.collectFees(bucket,block.timestamp+100);_assertBacking();
     }
 
     function testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate() public {

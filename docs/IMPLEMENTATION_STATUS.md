@@ -23,6 +23,8 @@ routing2/reviewed Entry1 and canonical
 is a terminal local status. Historical1/2/3 deployments/readers/journals retain
 original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLECTIVE_EXIT.md).
 
+Fresh Budget compound capability2 enforces the current interval after max(lastCompound,lastRebalance), and yields to an eligible rebalance or available adaptive range selection. Rebalance never waits on compound. The accounting4 keeper uses a pinned compoundReady read; hourly harvesting/claims and historical1/2/3 readers remain independent. See [operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) and [scoped verification](../reports/maintenance-cadence-20261027/VERIFICATION.md). No live service or site changes.
+
 ## Smart contracts
 
 | Capability | Implemented behavior and boundary | Reference |

@@ -40,6 +40,8 @@ independent production approval is implied. Qualify actual fixed-ZZZ burn
 semantics; unknown currencies at retired royalty receivers remain unsupported.
 Deployment and reviewer fields below remain unapproved.
 
+Budget compound capability2 and the matching accounting4 keeper must be qualified together: pin the helper runtime/bindings, read compoundReady, exercise priority/cooldown/recovery and retain independent hourly harvest. [Source-scoped cadence evidence](../reports/maintenance-cadence-20261027/VERIFICATION.md) does not qualify actual pool economics, feeds, hostile ordering, target gas or operating services. Earlier evidence keeps its original source scope.
+
 ## Current candidate and evidence limits
 
 | Boundary | Current status |

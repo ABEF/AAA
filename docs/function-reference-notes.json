@@ -4087,10 +4087,10 @@
       "purpose": "Fixed Vault companion enforcing captured contribution/maintenance execution budgets, actual deployed/idle backing and fair per-NFT share issuance. No external-custody conversion path.",
       "functions": {
         "IDLE_COMPOUNDING_VERSION()": {
-          "purpose": "Identify the explicit idle-only reinvestment compatibility version.",
+          "purpose": "Identify the compound cadence compatibility version: 2 coordinates all standalone compounding with LP replacement and rebalance priority.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The explicit idle-only reinvestment compatibility version."
+            "0": "2 for the coordinated cadence; historical 1 retains its separate compound clock."
           }
         },
         "MAX_LOSS_BPS()": {
@@ -4251,14 +4251,25 @@
           }
         },
         "lastCompound(uint256)": {
-          "purpose": "Read the independent successful idle/compound maintenance timestamp for a bucket.",
+          "purpose": "Read the last successful standalone compound timestamp; V2 readiness also considers Position.lastRebalance and strategy priority.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT ID."
           },
           "outputs": {
-            "0": "The independent successful idle/compound maintenance timestamp for a bucket."
+            "0": "Last successful standalone compound time; zero before one. Local operating state, not an imported NFT entitlement."
           }
+        },
+        "compoundReady(uint256)": {
+          "purpose": "Check V2 compound cadence and strategy priority for a shared LP bucket.",
+          "access": "Anyone; read-only. Only fixed Vault can execute the guarded checkpoint.",
+          "inputs": {
+            "0": "Canonical shared bucket ID, not an individual NFT or Uniswap position NFT ID."
+          },
+          "outputs": {
+            "0": "True only for active physical LP with operations enabled, current interval elapsed since max(lastCompound,lastRebalance), no eligible rebalance and no available preapproved range selection."
+          },
+          "notes": "May revert on unavailable dependencies. Not complete transaction readiness: Vault still enforces lifecycle, authorization, deadline, pricing and value guards. Does not delay harvesting/claims or reset the rebalance clock."
         },
         "maintenanceLossBps()": {
           "purpose": "Read the current future-operation principal maintenance cap in basis points.",

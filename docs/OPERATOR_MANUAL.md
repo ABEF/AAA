@@ -517,7 +517,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | Operation | Entry point / owner of action | Verify and recover |
 | --- | --- | --- |
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
-| Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)`; contributions/rebalances also pull the bucket's compound reserve | Uses attributed backing, actual pool and guards; funds never pass through keeper. Holder claim balances are separate. Poll/threshold changes are off-chain; insufficient funds or unsafe execution waits/reverts. |
+| Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)`; contributions/rebalances also pull the bucket's compound reserve | Standalone V2 compound waits after both the last compound and LP replacement, and yields to eligible rebalance/range selection. Uses attributed backing and guards; funds never pass through keeper. Holder claim balances are separate. |
 | Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and normal exit. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires custody exit and a fresh reviewed deployment. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
@@ -548,6 +548,46 @@ ETH receipts fund ETH claims immediately; ZZZ portions still use their separate
 reviewed conversion path for ETH settlement. Reserving the5% allocations does
 not execute compounding or buybacks. Sealed/live active custody and other guards
 remain; no harvesting after terminal LP exit.
+
+### Coordinate compounding with rebalancing
+
+Fresh Budget `IDLE_COMPOUNDING_VERSION() == 2` checks every standalone compound,
+including no-swap/idle-only work. Read `Budget.compoundReady(bucketId)` before
+preparing `Compounder.compound(bucketId,minimumLiquidity,deadline)`:
+
+- The active physical LP must have operations enabled. The current pool
+  `minRebalanceInterval` must have elapsed since **both** `Position.lastRebalance`
+  and `Budget.lastCompound(bucketId)`. First compounding also waits after activation.
+- A currently eligible `Strategy.needsRebalance(bucketId)` or available
+  `Strategy.keeperRangeTarget(poolId)` takes priority. Apply the reviewed range
+  action if applicable, then prepare the guarded rebalance. A policy enabled
+  on-chain with its keeper job disabled can leave compound waiting; resolve the
+  intended policy/job configuration rather than bypassing the contract check.
+- Compound does not write `lastRebalance`. A later eligible rebalance can proceed
+  even if compound just succeeded. This priority exception means the rule is
+  not a universal minimum gap between every possible pair of swaps. No24-hour
+  default or cumulative-loss budget is introduced.
+
+The pool configuration controls the on-chain interval (600seconds-7days); use
+the existing reviewed pool configuration procedure to change it. The keeper's
+`compound_interval_seconds` is only an additional local scheduling delay.
+Fresh accounting4 due standalone compound also requires
+`idle_compounding_budget` to match `Vault.migrationBudget()`, its `vault()`
+back-reference and `code_hashes.idle_compounding_budget`; version must be2.
+This binding is required for reserve-only as well as idle-only compounding.
+Historical1/2/3 deployments retain their V1 reads and journal identity.
+
+`compoundReady` is a cadence/strategy view, not authorization or successful
+simulation: sealing, lifecycle, keeper authority, deadline, price and loss/idle
+guards still apply to execution. Failed operations roll back the compound clock
+and funds. Harvesting and holder claims neither use nor reset this cooldown.
+Hourly harvest remains a separate job; do not combine it with a compulsory swap.
+For stop/restart, disable compound scheduling/revoke the keeper as appropriate,
+reconcile pending hashes, then restore only reviewed pins/configuration. Never
+reset journals or relabel an old deployment as V2 to force eligibility.
+
+See [idle/range policy](IDLE_AND_DUST.md) and
+[source-scoped verification](../reports/maintenance-cadence-20261027/VERIFICATION.md).
 
 ### Change the standalone harvesting interval
 

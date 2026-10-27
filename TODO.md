@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 34 In progress | 22 Implemented locally | 1 Not planned**
+**10 To do | 34 In progress | 22 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -300,7 +300,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-liquidity-placement-idle"></a>
 
-- [x] **[Bounded placement and attributed-idle reinvestment](docs/IDLE_AND_DUST.md)** - Implemented. Implemented candidate uses at most two actual-state balancing passes, skips precision corrections, and reinvests attributed idle through guarded compound with a successful-operation cooldown. Contribution default is now2%; conversion1% and maintenance3% are unchanged. Scoped installed-v4, rollback, cooldown and normal-size verification is recorded; real routes, depth/gas economics and independent qualification remain open.
+- [x] **[Bounded placement and attributed-idle reinvestment](docs/IDLE_AND_DUST.md)** - Implemented. Bounded placement and attributed-idle reinvestment are implemented. Fresh Budget capability2 coordinates standalone compound with the last LP replacement/compound and prioritizes eligible rebalance or adaptive range selection. Hourly harvest and holder claims stay independent. Contribution2%/conversion1%/maintenance3% defaults remain; actual market/MEV/operating qualification remains open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -308,6 +308,7 @@ Custody, ownership and reward accounting.
   - [Scoped verification](reports/liquidity-operations-20261025/VERIFICATION.md) must prove the former shallow selected-fee case at an explicitly retained1% cap, thinner-market rejection, second-swap rollback and actual idle-only LP growth. Preserve exact principal shares, incumbent fees, royalties, prefunds, approvals and fixed-price budgets; do not count idle as marginal deployed LP.
   - Keep classified reward fractions/division dust, compound/buyback and quarantined/unknown funds backed. No universal clear/sweep, operator dust recipient, principal redemption or claim haircut. Contribution default2%, conversion1%, maintenance3%, hard governed maxima10%; gas separate.
   - Qualify full actual target-chain routes, independent sources, real depth/ticks, maximal cold gas and economic thresholds. Substituted maximum-state gas and actual two-pass small-fixture gas are separate evidence; do not combine them into a production worst-case claim.
+  - [Coordinated maintenance](reports/maintenance-cadence-20261027/VERIFICATION.md): require now >= max(lastCompound,lastRebalance) + current pool interval for all standalone compound, including no-swap/first post-activation work. Reject when rebalance or preapproved range selection is eligible. Compound cannot postpone rebalance. No24-hour default/cumulative loss cap, user contribution restriction or harvest/claim timer is introduced. Fresh accounting4 keeper requires the exact pinned V2 budget and compoundReady; old profiles/journals stay unchanged.
 
   </details>
 
@@ -831,6 +832,36 @@ Three required testing layers, with source-bound evidence.
 
 Seven audit workstreams. Local checks are partial evidence; independent review and release sign-off remain open. See [the security audit plan](docs/SECURITY_AUDIT_PLAN.md) for acceptance criteria and priorities.
 
+<a id="task-security-keeper-manipulation"></a>
+
+- [ ] **[Assess keeper-originated manipulation and repeated maintenance losses](docs/SECURITY_AUDIT_PLAN.md#keeper-originated-manipulation)** - To do. Next-session priority: assess a malicious or compromised keeper trading through separate wallets around maintenance. Compound cadence V2 reduces redundant turnover, but does not establish unprofitable attacks or replace real price/depth qualification.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Model keeper-controlled timing, separate attacker wallets and coordinated traders around eligible rebalance, compound, buyback and conversion. Identify actual authority, deterministic sizing/range controls, caller minimums and remaining discretion; distinguish governance-only pool moves.
+  - Exercise compound/rebalance/range-selection ordering, changed price eligibility, current interval boundaries, multiple keeper processes and failed-call rollback. Rebalance must retain priority; do not introduce a symmetric lock allowing compound to postpone needed range maintenance.
+  - Measure attacker profit after trading fees/gas and protocol loss at one fixed starting-price vector, including remaining depth after our old LP is removed. A 3% operation ceiling or a cooldown is not proof of economic safety. Choose actual fee-aware swap/spot/turnover bounds from evidence.
+  - Respect the approved per-operation-only policy: repeated permitted losses can accumulate. Add turnover/loss/revert alerts and keeper pause/revocation procedures; no cumulative contract budget,24-hour default or economic-rights change without an explicit decision.
+  - Reuse exact unchanged evidence; run focused adversarial cases that could change a decision. Record demonstrated attacks, remediation, rejected configurations and remaining unknowns in the feature/evidence reference and operator guide. Actual strategy economics and independent review remain release gates.
+
+  </details>
+
+<a id="task-security-external-manipulation"></a>
+
+- [ ] **[Assess outside-actor price manipulation, ordering and MEV exposure](docs/SECURITY_AUDIT_PLAN.md#outside-actor-manipulation)** - To do. Next-session priority: qualify external trading/price and transaction-ordering risks for actual Robinhood execution. No protected-submission provider or anti-MEV guarantee is approved.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Use Robinhood's actual first-come-first-served sequencer/no-public-mempool model. Distinguish prior price manipulation, predictable maintenance, RPC/provider leakage, sequencer trust, backrunning and JIT liquidity from Ethereum-style public-mempool sandwiches. Do not assume the same attack availability on both chains.
+  - Test flash-funded and multi-block price manipulation, liquidity withdrawal/addition around our own LP close, failed-transaction gas grief, fresh but correlated or stale feeds, and bounded price disagreement. Keep 3% source agreement distinct from spot deviation, swap output bounds and aggregate maintenance loss.
+  - Capture attacker/protocol raw asset balances, gas/trading costs, fee receipts and final pool/LP state at pinned real-pool snapshots. Account for attacks that profit inside permitted execution tolerances; normal backrun/LP fee income alone is not proof of a protocol exploit.
+  - Evaluate protected/direct-sequencer submission only with reviewed provider behavior, fees, availability, confidentiality and failure/recovery policy. A provider's private auction may reveal pool/direction before ordering; no implicit auction mode, public fallback, unsupported Flashbots endpoint or production signing.
+  - Assess whether depth-aware trade limits, stricter fee-aware output/spot bounds or submission changes materially reduce exposure without preventing necessary maintenance. Verify justified changes and document residual sequencer/provider/oracle trust. No claim that all MEV or all attacker profit is eliminated.
+
+  </details>
+
 <a id="task-security-governance"></a>
 
 - [ ] **[Governance, permissions & sealing](docs/SECURITY_AUDIT_PLAN.md#1-governance-permissions-and-sealing)** - In progress. Audit every role, governance controller, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers.
@@ -1064,6 +1095,7 @@ Decisions and rehearsals before real funds.
   - The [standalone harvest schedule procedure](docs/OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval) documents maintenance.harvest_interval_seconds (accounting4 default/example3600seconds/one hour, historical omitted-field defaults14400seconds/four hours), positive-second settings, bucket override precedence, the separate polling interval and the last successful standalone-harvest receipt timer. Config changes require controlled restart, pending/journal preservation and fresh config-bound health; no contract call, resealing or automatic live rollout. Actual production interval/batch economics remain unqualified.
   - [Adversarial reward review](reports/reward-resilience-20261026/REVIEW.md) isolates maintenance RPC outages from an independently simulated enabled/due harvest after bucket authentication. Malformed config/ABI stays fail-closed; pending intents stop subsequent maintenance/conversion/harvest work. Final443distinct Python methods pass437/skip6; one actual-v4 test verifies stale prices stop rebalance but preserve fee collection, claims, physical LP and reserves. Preserve first wider failure and its narrower catch correction; qualify actual rollout/provider/gas/recovery separately.
   - The [confirmed no-progress I/O gap and source watchdog](reports/system-adversarial-20261026/WATCHDOG.md) distinguish inactivity timeout from total elapsed time. Qualify matching source/unit on systemd>=240:120s main-process progress, no background heartbeat, control-group SIGKILL/no core, late-pulse rejection and preserved pending intent/no automatic resend. Standalone commands remain unsupervised; unit text and inert tests do not prove real host cleanup.
+  - Fresh accounting4 compound scheduling authenticates the exact budget runtime/Vault bindings/capability2 and reads contract compoundReady, including other keepers and physical LP replacement. Local intervals are additional delays only. Preserve independent due harvest on guarded maintenance outages; reject malformed ABI/unknown capability; qualify actual deployment/service before enabling.
 
   </details>
 
@@ -1133,4 +1165,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `89cd1303eeb7b9c07d961a4b2f5b4a9ad6f8de8cd280858c117149f4745deb64`.
+Snapshot SHA-256: `27ade541b129c99af0223330bf85682cc61872eb5ea335af4108a8182c370342`.

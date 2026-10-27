@@ -23,9 +23,12 @@ import {MockAccess,MockToken,MockPools,MockFeed} from "./mocks/Mocks.sol";
 contract VaultPolicyMock {
     bool public need=true;
     uint256 public swapAmount;
+    uint16 public rangeTarget;
     function setSwapAmount(uint256 amount) external {swapAmount=amount;}
+    function setRangeTarget(uint16 value) external {rangeTarget=value;}
     function setNeed(bool v) external {need=v;}
     function needsRebalance(uint256) external view returns(bool){return need;}
+    function keeperRangeTarget(bytes32) external view returns(uint16){return rangeTarget;}
     function target(bytes32) external pure returns(int24,int24,uint160){return(-600,600,uint160(1<<96));}
     function validatePrice(bytes32) external pure returns(uint160){return uint160(1<<96);}
     function validateExitPrice(bytes32) external pure returns(uint160){return uint160(1<<96);}
@@ -167,7 +170,8 @@ contract VaultAccountingTest is PooledVaultFixture {
         assertEq(_record(id).idle0,10);assertEq(rewards.claimable(id,address(t0)),90);assertEq(fees.compoundBalance(_bucket(),address(t0)),5);
     }
     function testCompoundingAddsOnlyDesignatedShare() public {
-        uint256 id=activatedPosition();venue.setFees(100,100);compounder.compound(_bucket(),1,block.timestamp+100);
+        uint256 id=activatedPosition();venue.setFees(100,100);policy.setNeed(false);
+        compounder.compound(_bucket(),1,block.timestamp+100);
         Position memory p=_record(id);assertEq(p.idle0+venue.a0(p.lpTokenId),1005);
         assertEq(rewards.claimable(id,address(t0)),90);assertEq(fees.buybackBalance(address(t0)),5);assertTrue(membership.eligible(id));assertEq(vault.contributionUSD(id),2000e18);
     }

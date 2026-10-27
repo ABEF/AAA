@@ -12,6 +12,14 @@ Required versions: Vault accounting4, Migration custody3, governance2, fee
 intake1, pricing2, routing2, reviewed Entry1 and canonical
 `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
 
+The current Budget companion additionally exposes compound capability2:
+`compoundReady(bucket)` coordinates every standalone compound with the last LP
+creation/replacement and compound, with rebalance/adaptive-range priority. It
+does not change the Position tuple or reward rights. Fresh accounting4 keeper
+work must authenticate the exact matching helper/runtime/version; historical
+V1 deployments and journals retain their old behavior. See the
+[operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing).
+
 `Access.lpExitStarted` permanently stops principal/mint activity independently
 of pause/canonical state. Transfers, earned LP claims, future royalties and
 royalty claims continue. Closed buckets retain share/membership accounting;

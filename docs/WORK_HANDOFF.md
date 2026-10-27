@@ -5,12 +5,17 @@ Reviewed 2026-10-27. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
-Published contract source/evidence checkpoint:
-[8be0f89](https://github.com/ABEF/AAA/commit/8be0f89fd982253ddae7bef2ebfc36b497d836b1).
-Website main77501ce and served artifactf23c559 are different identifiers;
+Current fresh source is accounting4/custody3/canonicalV5 with compound cadence2.
+The earlier holder-return publication was1870cc1; hourly harvest baseline was
+74aaa7c. The [cadence verification](../reports/maintenance-cadence-20261027/VERIFICATION.md)
+owns the latest changed-source evidence and remaining qualification. Verify
+actual main/remote heads before reporting publication; source publication is not deployment.
+Website main and served artifactf23c559 are different identifiers;
 the unchanged demo serves9be6d1. Documentation commits after these checkpoints
 do not deploy contracts, websites or services.
 
+The earlier accounting3 source checkpoint was
+[8be0f89](https://github.com/ABEF/AAA/commit/8be0f89fd982253ddae7bef2ebfc36b497d836b1).
 The separate [poplint current3 integration](../reports/current3-website-20261026/DEPLOYMENT.md)
 is served over HTTPS from website sourcef23c559; website main77501ce adds operating
 docs and its verified certificate-renewal hook without redeploying the artifact.
@@ -72,6 +77,17 @@ its exact source. Poplint/demo/services/Anvil are not changed by this source tas
 Affected source verification is recorded in [holder-return evidence](../reports/holder-collective-exit-20261027/VERIFICATION.md):133Solidity methods,37normal object gates and scoped backend/keeper checks pass. Complete actual profile4 release inventory/UI/service acceptance before production. Actual feeds/routes/VRF/OpenSea/authorities,
 metadata hosting, gas/strategy/operating rehearsals and independent review remain
 open. Never infer deployment approval from source/docs or local fixture success.
+
+## Current maintenance cadence
+
+Fresh Budget capability2 coordinates all standalone compounding (including no-swap work) with the last physical LP creation/replacement and compound. Eligible rebalance/preapproved range selection has priority; compound never changes lastRebalance. Hourly harvest and existing holder claims remain independent. Read [operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) and [scoped evidence](../reports/maintenance-cadence-20261027/VERIFICATION.md). Current accounting4 keeper compound scheduling must pin the helper address/runtime/version2 and use compoundReady; old services, journals, Anvil and both sites are untouched.
+
+Next requested work: [keeper-originated manipulation](../TODO.md#task-security-keeper-manipulation)
+and [outside-actor manipulation](../TODO.md#task-security-external-manipulation).
+Read the linked audit cases before changing policy. No24-hour default, cumulative
+loss budget, protected provider or public signing was approved. A fresh read of
+the old Pons6538 pool confirmed coreLP/protocol0 and1%hookbase/30%Pons-share at
+block98,951,183; it is not our selected hookless5011 pool and no pool was switched.
 
 ## Preservation and publication
 

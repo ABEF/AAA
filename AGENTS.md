@@ -44,6 +44,7 @@ before changing behavior. This file contains current instructions, not a timelin
   and a caller maximum. Defaults: contribution2%, conversion1%, maintenance3%;
   each governance ceiling10%, gas separate. Do not confuse source agreement,
   budget retention, idle ceilings or caller minima with each other.
+- Fresh Budget compound capability2 uses max(lastCompound,lastRebalance) plus the current pool interval, and yields to eligible rebalance/adaptive range selection. It covers all standalone compound, not user contributions/harvest/claims. Rebalance never waits on the compound clock. Authenticate the V2 helper for accounting4 keeper work; preserve historical V1 readers/journals.
 - Fixed LP allocation80/10/5/5: individual shares / equal activated collective /
   compound / ZZZ buyback-burn. Rarity affects only actual received royalties at
   Commun1/Rare2/Legendary3. No Power score or configurable split.

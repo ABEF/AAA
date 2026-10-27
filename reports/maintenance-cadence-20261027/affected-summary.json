@@ -1,0 +1,380 @@
+[
+  {
+    "suite": "test/CollectionScale.t.sol:CollectionScaleTest",
+    "method": "testAll1000NFTsPreserveIndependentRightsAndFundedConservation()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/CollectionScale.t.sol:CollectionScaleTest",
+    "method": "testColdOperationsAtOneAnd1000NFTsStayBounded()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+    "method": "testCompoundAndLaterContributionKeepIncumbentValueAndEarnedRights()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+    "method": "testFivePercentTracksLossNewPhysicalLpAndAppreciation()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+    "method": "testFuzzShareRoundingAndRepeatedRebalancePreserveValue(uint96,uint8)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+    "method": "testRepeatedReplacementTransferRoyaltiesAndFailedRebalanceRollback()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ApprovedTwoPercentDefaultAndStricterOnePercentApplyToActivationAndGrowth()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4BalancedJoinsCannotCaptureOldIncomeOrPrefundsAndPreserveShares()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4CompoundYieldsToRangeRebalanceWithoutDelayingIt()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ContributionsAboveOldRangePreserveIncumbentsAndRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ContributionsBelowOldRangePreserveIncumbentsAndRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4CoreDonationCannotGiveNewcomerPastFundedFees()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4IdleOnlyCompoundGrowsLPWithoutMovingSharesOrTakingPrefunds()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4InverseZZZPriceRangeDeploysGrowsAndKeepsFeeAccounting()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4LateSourceRoundCallbackRollsBackLPFundsEligibilityAndFees()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4SecondBalancingSwapFailureRollsBackTheFirstSwapAndAllEntitlements()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4StalePricesBlockRebalanceButPreserveHarvestAndClaimAccounting()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4UnfeasibleDepthStillRollsBackEveryLedger()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "Found 1 instances: testFailedLateCompoundRollsBackBackingAndCooldownForRetry",
+    "status": "Failure",
+    "reason": "`testFail*` has been removed. Consider changing to test_Revert[If|When]_Condition and expecting a revert"
+  },
+  {
+    "suite": "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest",
+    "method": "invariant_rightsAndActualFundingConserved()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest",
+    "method": "testMinimumBoundTopUpActuallyExecutesAndConservesRights()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest",
+    "method": "testReceiptActivationTransferPauseAndMixedClaimSequence()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest",
+    "method": "invariant_pooledCustodyAndClaimsConserved()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest",
+    "method": "testMembershipHistoryAndPausedClaims()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationAcceptsExactly98LPAtCurrentTwoPercentBoundary()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationCannotCollectHistoricalSharedRewards()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationCannotIssueSecondNFTOrChargeAnotherMintFee()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationHonorsStricterPoolMinimum()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationLeavesExactAttributedIdle()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationRejects100InputWhenActualLPIsBelow98()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationRequiresAtLeast100USDInput()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testCompoundingAddsOnlyDesignatedShare()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testDonationNeverBecomesAnotherNFTPrincipal()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testDormantCannotTopUpCollectCompoundRebalanceOrMigrate()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testDormantMintForwardsPriceWithoutLiquidityOrRewards()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testDormantTransferOnlyNewOwnerCanActivate()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testExactly100ActualLPActivates()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testFeesNotPrincipal()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testFuzzMintRejectsAnyOverpayment(uint256)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testFuzzMintRejectsAnyUnderpayment(uint256)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testMostlyIdleActivationRejected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testNFTUserCannotTransferUnderlyingLP()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testNoOwnerWithdrawalEntrypoint()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testOldDepositSelectorCannotBypassPaidMint()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testOnlyKeeperCanRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testPauseBlocksActivationKeepsDormantNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testPauseBlocksMint()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testRebalanceReplacesLPButPreservesEconomicNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testReceiverReentrancyCannotMintSecondNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testRejectingNFTReceiverRollsBackMintAndPayment()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testRejectingTreasuryRollsBackNFTAndPayment()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testSatelliteCannotIssueAnotherCollection()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testSelfProceedsRecipientRejected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testTopUpKeepsBothNFTsAndCheckpointsFees()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testTreasuryReentrancyCannotMintSecondNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testUnsealedSystemCannotMint()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testVenueFailureRollsBackActivationKeepsPaidDormantNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testWrongChainCannotActivateCanonicalDormantNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testZeroProceedsRecipientRejected()",
+    "status": "Success",
+    "reason": null
+  }
+]

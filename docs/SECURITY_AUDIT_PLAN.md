@@ -83,7 +83,7 @@ at 33 (32 ERC20 plus native), and royalty slots at 17 including native.
 - For the idle-compounding candidate, verify the existing LP is increased,
   whole-bucket starting prices/cap and exact released compound are captured,
   venue guards and the 5% idle ceiling remain, and failures roll back the
-  independent compound cooldown. Check both bounded balancing passes and their
+  coordinated compound cadence. Check both bounded balancing passes and their
   one-basis-point input cutoff, including thin pools and callback receipts.
   Reduced dust must not become an unbounded swap loop or waive the marginal
   deployed-LP contribution floor.
@@ -128,6 +128,46 @@ journals and budgets supplement on-chain controls, not replace them.
   broadcasts, restart and signer rotation without duplicate execution or budget reset.
 - Qualify monitoring and failure alerts using the [recovery runbook](KEEPER_RECOVERY.md)
   and [operating rehearsals](KEEPER_REHEARSALS.md), including off-host recovery.
+
+### Keeper-originated manipulation
+
+The [dedicated task](../TODO.md#task-security-keeper-manipulation) owns status.
+Model a compromised keeper trading through separate wallets, timing valid
+maintenance and coordinating other traders. Fixed sizing/ranges/recipients,
+fresh prices and loss bounds reduce discretion but do not prove no profitable
+attack. Compound cadence V2 is implemented mitigation: first compound waits after
+LP creation/replacement; all standalone compound yields to eligible rebalance or
+adaptive selection. Rebalance retains priority and does not read lastCompound.
+No24-hour production default or cumulative-loss restriction is selected.
+
+Evaluate every relevant swap surface separately: rebalance, compound, buyback
+and reward conversion. Include repeated permissible losses, current fee/depth,
+the liquidity remaining after our old LP closes, and input/output bounds that
+could leave extraction profitable. Focused fork evidence must record attacker
+profit after costs and protocol loss, rather than treating a passing guard as
+economic safety. Retain pause/revocation, bounded retries and turnover/loss
+alerts; update the operator procedure for each justified change.
+
+### Outside-actor manipulation
+
+The [dedicated task](../TODO.md#task-security-external-manipulation) owns status.
+Use Robinhood's actual [sequencer-arrival ordering](https://docs.robinhood.com/chain/differences-from-ethereum/)
+and [absence of a public mempool](https://github.com/chainstacklabs/robinhood-chain-sequencer-feed).
+Do not assume Ethereum-style pending transaction visibility. Evaluate predictive
+price manipulation, flash-funded/multi-block activity, RPC/provider information
+leakage, sequencer trust, backrunning, liquidity removal/addition/JIT and failed
+maintenance gas grief. Distinguish legitimate external LP fee/arbitrage revenue
+from an exploitable protocol loss.
+
+Review actual independent sources, stale/correlated data and bounded divergence.
+The3% feed agreement band, spot tolerance, swap minimum and total maintenance
+loss limit are different controls. Qualify depth-aware/fee-aware bounds against
+raw asset and gas/trading-cost witnesses. Protected submission is optional and
+unqualified: provider auction hints can reveal pool/direction before ordering.
+Assess confidentiality, fees, fallback/recovery and sequencing assumptions;
+do not enable a private-labelled method or an unsupported Flashbots endpoint
+as an assumed security upgrade. Actual hostile-ordering and independent review
+remain open; the timing fix alone is not a no-MEV guarantee.
 
 ## 5. External dependencies and revenue accounting
 

@@ -87,7 +87,9 @@ contract PooledAccountingHandler is PooledVaultFixture {
     function compound() external {
         if(ac.paused())return;uint256 bucket=vault.poolBucket(poolId);
         if(fees.compoundBalance(bucket,address(t0))+fees.compoundBalance(bucket,address(t1))==0)return;
+        policy.setNeed(false);
         compounder.compound(bucket,1,block.timestamp+100);
+        policy.setNeed(true);
     }
     function assertConservation() external view {
         uint256 bucket=vault.poolBucket(poolId);Position memory p=vault.group(bucket);

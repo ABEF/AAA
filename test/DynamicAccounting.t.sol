@@ -42,6 +42,7 @@ contract DynamicAccountingTest is PooledVaultFixture {
         // while individual/collective claims and buyback are excluded from NAV.
         assertEq(rewards.claimable(id,address(t0)),90);assertEq(rewards.claimable(other,address(t0)),810);
         assertEq(_value(id),5025e17);uint256 valueBefore=_value(id);
+        policy.setNeed(false); // Eligible rebalances have priority over compound.
         compounder.compound(_bucket(),1,block.timestamp+100);
         assertEq(vault.sharesOf(id),oldShare);assertEq(_value(id),valueBefore);
         uint256 supply=vault.bucketTotalShares(_bucket());

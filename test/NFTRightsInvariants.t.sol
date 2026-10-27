@@ -169,7 +169,9 @@ contract NFTRightsHandler is PooledVaultFixture {
         if (ac.paused()) return;
         if (rebalancePosition) vault.rebalance(_bucket(), 1, block.timestamp + 100);
         else if (fees.compoundBalance(_bucket(), address(t0)) + fees.compoundBalance(_bucket(), address(t1)) != 0) {
+            policy.setNeed(false);
             compounder.compound(_bucket(), 1, block.timestamp + 100);
+            policy.setNeed(true);
         }
     }
 

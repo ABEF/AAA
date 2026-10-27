@@ -148,6 +148,24 @@ width. Selection only updates desired configuration; a separately confirmed
 guarded rebalance applies physical ticks. Cooldown, pending-tick mismatch and
 configuration fingerprints still constrain it. See [range operations](RANGE_POLICY_UPDATES.md).
 
+### Standalone compounding gives range maintenance priority
+
+Fresh accounting4 Budget capability2 permits a standalone compound only after
+`max(lastCompound, lastRebalance) + current minRebalanceInterval`, including
+after LP creation and for jobs with no swap. It also waits if a rebalance is
+eligible or the preapproved adaptive-range rule already has a nonzero target.
+`Budget.compoundReady(bucket)` reports that decision; authorization, lifecycle,
+prices, simulation and execution limits remain independent requirements.
+
+The priority is one-way: rebalancing keeps its existing `lastRebalance` clock,
+so compounding cannot postpone it. Hourly standalone harvesting, funded claims
+and guarded user contributions remain independent; a contribution may still
+reinvest its bucket's reserve in the same successful operation. Historical
+accounting1/2/3 keeps capability1 semantics. Fresh keeper jobs must pin and verify
+Budget capability2 before trusting `compoundReady`, even for reserve-only work.
+An eligible adaptive policy with its local range job disabled can defer compound;
+review the policy/job instead of forcing reinvestment past it.
+
 ## Aggregate rebalance budget
 
 The Budget snapshots the current `maintenanceLossBps()` as `L` (default 300,

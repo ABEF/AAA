@@ -393,26 +393,43 @@ class Keeper:
                 if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16) == 0:
                     raise ValueError('Idle compounding requires an exact reviewed budget runtime pin')
 
-    def _idle_compound_checkpoint(self,bucket: int,fields: list[str]) -> tuple[int,int]:
-        """Authenticate the opt-in companion without changing journal identity."""
-        budget = address(self.config['idle_compounding_budget'])
-        pin = self.config['code_hashes']['idle_compounding_budget'].lower()
+    def _compound_budget(self,version: int) -> str:
+        """Authenticate the reviewed companion before trusting maintenance eligibility."""
+        try:
+            budget = address(self.config.get('idle_compounding_budget'))
+        except ValueError as exc:
+            raise RpcError('Compounding requires a reviewed budget binding') from exc
+        pin = self.config.get('code_hashes',{}).get('idle_compounding_budget','')
+        if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16) == 0:
+            raise RpcError('Compounding requires an exact reviewed budget runtime pin')
         code = self.rpc.call('eth_getCode',[budget,'latest'])
         if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
-                '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin:
-            raise RpcError('Idle compounding budget runtime differs from the reviewed profile')
+                '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower():
+            raise RpcError('Compounding budget runtime differs from the reviewed profile')
         def read(signature: str,*args: int) -> int:
             return uint_result(self.rpc.eth_call(budget,calldata(signature,*args)))
         if self.view('vault','migrationBudget()') != int(budget,16) or \
-                read('vault()') != int(self.contracts['vault'],16) or read('IDLE_COMPOUNDING_VERSION()') != 1:
-            raise RpcError('Idle compounding budget capability or Vault binding differs')
-        last = read('lastCompound(uint256)',bucket)
+                read('vault()') != int(self.contracts['vault'],16) or read('IDLE_COMPOUNDING_VERSION()') != version:
+            raise RpcError('Compounding budget capability or Vault binding differs')
+        return budget
+
+    def _idle_compound_checkpoint(self,bucket: int,fields: list[str]) -> tuple[int,int]:
+        """Preserve the explicitly opted-in historical V1 cooldown reader."""
+        budget = self._compound_budget(1)
+        last = uint_result(self.rpc.eth_call(budget,calldata('lastCompound(uint256)',bucket)))
         if last >= 1 << 64: raise RpcError('Malformed compound checkpoint')
         config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)','0x'+fields[0])))
         if len(config) != 14 or not 600 <= int(config[11],16) <= 604800:
             raise RpcError('Malformed on-chain compound cooldown')
         if int(config[6],16) != 1: raise RpcError('Pool operations are not enabled for idle compounding')
         return last,int(config[11],16)
+
+    def _compound_ready(self,bucket: int) -> bool:
+        """Fresh V2 contract policy coordinates compound with physical LP maintenance."""
+        budget = self._compound_budget(2)
+        ready = uint_result(self.rpc.eth_call(budget,calldata('compoundReady(uint256)',bucket)))
+        if ready not in (0,1): raise RpcError('Malformed compound eligibility')
+        return ready == 1
 
     def _adaptive_range_target(self,pool: str,now: int) -> int:
         # Opt-in only; historical profiles never call new Strategy getters.
@@ -455,6 +472,10 @@ class Keeper:
         else:
             threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
             due = any(amount >= threshold for amount in reserves)
+        if due and self.accounting_version == 4:
+            # Authoritative shared cooldown includes other keepers and the last
+            # rebalance. Never infer it solely from this sender's journal.
+            return self._compound_ready(bucket)
         if due and item.get('compound_idle',False):
             chain_last,chain_interval = self._idle_compound_checkpoint(bucket,fields)
             if now < max(last,chain_last)+max(interval,chain_interval): return False

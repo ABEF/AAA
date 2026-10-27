@@ -7,14 +7,14 @@ default-disabled policy lets it select **only** the reviewed 25%/50% presets und
 governance-approved rules. Selecting a width and moving physical LP are distinct
 transactions; neither gives the keeper general configuration or custody power.
 
-The following is an undeployed candidate. [Current scoped evidence](../reports/liquidity-operations-20261025/VERIFICATION.md)
+The following is an undeployed candidate. [Earlier scoped evidence](../reports/liquidity-operations-20261025/VERIFICATION.md)
 and [remaining release gates](../TODO.md) distinguish implemented controls from
 actual provider, strategy/backtest and operating qualification.
 
 ## From approval to execution
 
 1. Governance reviews the complete pool configuration and executes the exact
-   `PoolRegistry.configure` or selected-pool `configureNative` call. Bootstrap
+   selected-pool `PoolRegistry.configureNative` call. Bootstrap
    and keeper addresses cannot perform these complete configuration calls after
    sealing. The controller has no
    mandatory governance time delay; review and the maintenance cooldown are
@@ -68,8 +68,9 @@ asymmetric raw Uniswap interval before outward tick rounding. Lower denominators
 round up and upper bounds round outwards so inversion cannot trim an endpoint.
 It is not a promise to hold half the capital in each token. A config change that rounds
 to the same ticks needs no replacement. Changing slippage or deposit limits
-alone does not create a range-update trigger. Contributions and compounding
-continue using the current physical position's ticks until replacement.
+alone does not create a range-update trigger. Contributions use the current
+physical ticks until replacement. Fresh capability2 standalone compounding also
+uses those ticks but waits whenever rebalance or adaptive range selection is due.
 
 ## Scope and safeguards
 
@@ -158,22 +159,35 @@ captured maintenance loss and deployment minima. This is not an administrative
 sweep or a withdrawal: principal stays in the shared LP or its attributed idle
 ledger. Raw donations, other buckets' cash and claim reserves are excluded.
 
-Keeper idle scheduling is disabled by default. To enable it on the matching
-reviewed deployment, set `maintenance.compound_idle=true`, provide an exact
-`idle_compounding_budget` address and `code_hashes.idle_compounding_budget`, and
-set `compound_thresholds` for **both actual pool currencies** plus an explicit
-`compound_interval_seconds` from 600 to 604800. Currency-zero is native ETH only
-under explicit native accounting profiles 2 or 3; use 3 for the current candidate. The keeper checks the Budget runtime, mutual Vault
-binding and `IDLE_COMPOUNDING_VERSION()==1` before using attributed idle.
+Keeper idle scheduling is disabled by default. Fresh accounting4 due compounds,
+including reserve-only jobs, require an exact `idle_compounding_budget` address
+and `code_hashes.idle_compounding_budget`. The keeper verifies runtime, mutual
+Vault binding and `IDLE_COMPOUNDING_VERSION()==2`, then reads `compoundReady`.
+To additionally use attributed idle, set `maintenance.compound_idle=true`,
+`compound_thresholds` for **both actual pool currencies** and an explicit
+`compound_interval_seconds` from600to604800. Currency zero is native ETH under
+the explicit profile. Historical accounting1/2/3 retains its original helper1
+reader and journal; changing a version field never upgrades an old deployment.
 
 Thresholds are positive **raw units per currency**, such as independently chosen
 ETH-wei and ZZZ-unit amounts. They are never summed across currencies or inferred
 from a shared decimal count. An incomplete map stops that bucket's compound
 attempt. The keeper combines only that currency's attributed idle and compound
 reserve. It waits for both its confirmed local checkpoint/interval and the
-on-chain Budget `lastCompound`/pool cooldown, including work by another keeper.
-Rebalances retain their separate eligibility. A threshold is a scheduling rule,
+on-chain Budget decision, including work by another keeper. Capability2 requires
+`now >= max(lastCompound,lastRebalance) + current minRebalanceInterval` for all
+standalone compounds, including no-swap work and immediately after LP creation.
+It yields to eligible `needsRebalance` or nonzero `keeperRangeTarget`. Rebalances
+retain their existing eligibility and ignore `lastCompound`, so a compound cannot
+delay needed range replacement. This read is not authorization or a guarantee
+that the complete transaction will succeed. A threshold is a scheduling rule,
 not a gas/value profitability guarantee: review simulated costs and turnover.
+
+If the on-chain adaptive policy offers a selection but local `adaptive_range`
+is disabled, standalone compounding remains deferred. Enable the reviewed job,
+or deliberately review and disable/change the on-chain policy; do not bypass the
+priority check. Independent harvesting, claims and guarded user contributions
+continue under their own controls and do not reset this standalone wait.
 
 The old `minimum_compound_units` remains a compatibility option for reserve-only
 profiles; one raw value across different decimals is unsuitable as a production
@@ -199,8 +213,11 @@ the matching Strategy runtime. Ordinary rebalance retains its call and role; opt
 `next_keeper_check_at` and `expected_execution_at` remain null without qualified
 fresh telemetry. A polling interval is not a guaranteed rebalance schedule.
 
-See [current scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md),
-[current review](../reports/liquidity-operations-20261025/REVIEW.md), the earlier
+See the earlier [scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md)
+and [review](../reports/liquidity-operations-20261025/REVIEW.md), plus
 [manual-range evidence](../reports/range-policy/VERIFICATION.md) in its original
 source scope, [idle/dust classification](IDLE_AND_DUST.md) and remaining
 [strategy qualification](../TODO.md#task-security-strategy).
+
+Those historical reports retain their original timing/capability scope; they do
+not verify the later capability2 compound-priority rule described above.

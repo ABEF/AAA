@@ -23,7 +23,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     address public immutable vault;
     IZZZAccess public immutable access;
     uint16 public constant MAX_LOSS_BPS = 1000;
-    uint256 public constant IDLE_COMPOUNDING_VERSION = 1;
+    uint256 public constant IDLE_COMPOUNDING_VERSION = 2;
     uint16 public contributionLossBps = 200;
     uint16 public maintenanceLossBps = 300;
     struct Snapshot {
@@ -39,7 +39,8 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     }
     Snapshot private snapshot;
     bool private compoundIncluded;
-    /// @notice Local operating cooldown, not an NFT entitlement or imported ledger.
+    /// @notice Last successful standalone compound. Local operating state, not
+    /// an NFT entitlement/imported ledger; LP replacement time is kept by Vault.
     mapping(uint256 => uint64) public lastCompound;
     mapping(uint256 => uint64) public compositionEpoch;
     error Unauthorized();
@@ -95,6 +96,21 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     function validateCanonicalWriter(address caller) external view onlyVault {
         if (caller != access.module(Ids.VAULT_CANONICAL) || IZZZCanonicalAccess(address(access)).canonicalState() != 2) revert Unauthorized();
     }
+    /// @notice Compound waits after either LP creation/replacement or compound,
+    /// and yields to an eligible rebalance or preapproved range selection.
+    /// Rebalance never reads lastCompound:
+    /// a keeper cannot compound first to postpone needed range maintenance.
+    /// Applies to all standalone compound calls, including ones needing no swap.
+    function compoundReady(uint256 id) public view returns (bool) {
+        Position memory p = IZZZVault(vault).group(id);
+        if (p.status != PositionStatus.Active || p.lpTokenId == 0) return false;
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        uint256 previous = lastCompound[id];
+        if (p.lastRebalance > previous) previous = p.lastRebalance;
+        if (!c.operationsEnabled || block.timestamp < previous + c.minRebalanceInterval) return false;
+        IZZZStrategy strategy = IZZZStrategy(access.module(Ids.STRATEGY));
+        return !strategy.needsRebalance(id) && strategy.keeperRangeTarget(p.poolId) == 0;
+    }
     /// @dev Called before fee settlement, token callbacks or closing the old LP.
     /// Only attributed assets enter the starting denominator.
     function checkpoint(uint256 id, uint8 phase) external onlyVault {
@@ -102,11 +118,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         else if (phase == 1) _includeCompound(id);
         else if (phase == 2) _afterMove(id);
         else if (phase == 3) {
-            Position memory p = IZZZVault(vault).group(id);
-            if (p.lpTokenId == 0) revert InvalidState();
-            uint256 previous = lastCompound[id];
-            if (previous != 0 && block.timestamp < previous +
-                IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId).minRebalanceInterval) revert InvalidState();
+            if (!compoundReady(id)) revert InvalidState();
             _beforeMove(id);
             lastCompound[id] = uint64(block.timestamp);
         }
