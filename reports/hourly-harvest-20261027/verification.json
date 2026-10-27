@@ -1,0 +1,22 @@
+{
+  "reviewed": "2026-10-27",
+  "command": "python -X utf8 -m unittest tests_python.test_hourly_harvest tests_python.test_keeper_harvest_isolation tests_python.test_holder_exit_profile.HolderExitKeeperTests -v",
+  "methods": 23,
+  "passes": 23,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "new_methods_included": 3,
+  "network_or_signing": false,
+  "source_sha256": {
+    "keeper/monitor.py": "5a530d5b9d31e6b68f89f98417e19849d7fd3592f09798fbd3173273fa071342",
+    "keeper/config.holder-exit.example.json": "fb70d3c89005b561ff899f3df653563b19f6c0fca20d4712181a83bdf1270f81",
+    "tests_python/test_hourly_harvest.py": "b0ea5b8623879ad6a4f3a5b0de627f194ec508464c3b9780a6dd8872ae6c62fc",
+    "tests_python/test_keeper_harvest_isolation.py": "3dd5b801d87052649787dc44451ca97cbaa24dc2c1eed5470bc2650e2c4c87ed",
+    "tests_python/test_holder_exit_profile.py": "821657fde8d674489b7aa2c8938db69b62db408cd2a359806fb1d0fa58c54fae"
+  },
+  "solidity_changed": false,
+  "solidity_tests_rerun": false,
+  "services_changed": false,
+  "historical_examples_changed": false
+}

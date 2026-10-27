@@ -57,7 +57,7 @@
     "compound_interval_seconds": 3600,
     "minimum_compound_units": 1000,
     "harvest": true,
-    "harvest_interval_seconds": 14400
+    "harvest_interval_seconds": 3600
   },
   "bucket_overrides": {},
   "metadata_refresh": {

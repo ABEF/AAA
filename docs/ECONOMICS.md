@@ -68,6 +68,10 @@ distribution transaction every minute. `Vault.collectFees` collects actual fees,
 then FeeController funds the four allocations in that same transaction. Joining,
 growing, rebalancing and standalone compounding also harvest fees along their
 guarded paths. Uncollected venue fees are not yet a holder's funded claim balance.
+The current accounting4 keeper defaults to a standalone harvest every hour,
+independent of rebalance eligibility. This is a nominal off-chain schedule, not
+a wall-clock contract timer. Governance can also call the same collectFees
+function manually; all actual allocation arithmetic stays on-chain.
 
 | Event | What changes | What does not happen |
 | --- | --- | --- |

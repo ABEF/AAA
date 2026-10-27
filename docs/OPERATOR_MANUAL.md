@@ -532,20 +532,33 @@ Stop scheduled compounding/buybacks using reviewed keeper configuration or by st
 
 Before enabling automated revenue operations, review the actual
 [schedule and reserve checks](OPERATIONS.md#reward-timing-and-maintenance-schedule).
-The example polls every600seconds and schedules standalone harvests every4hours;
+The current accounting4 example polls every600seconds and schedules standalone
+harvests every3600seconds (one hour), independently from rebalancing;
 standalone compounding is off and `buybacks` is empty. These are blocked sample
 settings, not an enabled production promise. Do not put swaps/compounding inside
 the holder claim: a failed strategy or buyback should not block funded LP claims.
+
+For a manual independent harvest, governance can call
+`Vault.collectFees(bucketId,deadline)` directly; the deadline must be no more
+than ten minutes ahead. The same transaction collects actual shared-position
+fees and allocates80/10/5/5 to indices/reserves. The function is permissionless:
+a caller pays gas but cannot choose the split or recipients, move principal or
+initiate collective exit. The keeper normally submits it automatically. Native
+ETH receipts fund ETH claims immediately; ZZZ portions still use their separate
+reviewed conversion path for ETH settlement. Reserving the5% allocations does
+not execute compounding or buybacks. Sealed/live active custody and other guards
+remain; no harvesting after terminal LP exit.
 
 ### Change the standalone harvesting interval
 
 As the sole operator, edit the **actual keeper service configuration**. The
 setting is `maintenance.harvest_interval_seconds`, in seconds. The current
-[example](../keeper/config.example.json) uses **14400 = 4 hours**. This is an
+[accounting4 example](../keeper/config.holder-exit.example.json) uses **3600 = 1 hour**.
+The historical accounting3 example retains14400seconds. This is an
 off-chain scheduling change: no governance contract call, redeployment or
 unsealing is required, and the 80/10/5/5 split does not change.
 
-For a **one-hour** interval, merge these fields into the existing `maintenance`
+To use the current **one-hour** schedule, merge these fields into the existing `maintenance`
 object, keeping its other settings intact:
 
 ```json

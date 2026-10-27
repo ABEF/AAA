@@ -1292,7 +1292,10 @@ class Keeper:
                             maintenance_failed = True
                             self.blocked_actions += 1
                             log('maintenance_deferred',bucket_id=str(bucket),**error_context(exc))
-                    interval = positive(item.get('harvest_interval_seconds',14400),'harvest_interval_seconds')
+                    # Fresh accounting4 defaults to hourly independent collection;
+                    # historical profiles keep their original omitted-field schedule.
+                    default_harvest = 3600 if self.accounting_version == 4 else 14400
+                    interval = positive(item.get('harvest_interval_seconds',default_harvest),'harvest_interval_seconds')
                     if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
                         if maintenance_failed:
                             _,fresh = self._head(); deadline = fresh+180

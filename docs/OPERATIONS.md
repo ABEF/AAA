@@ -100,8 +100,10 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
 | Collective principal delivery | Opt-in accounting4 `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
 
-The sample configuration polls600seconds, harvests every14,400seconds, disables
-standalone compounding and has an empty buyback list. These are inactive/placeholder
+The accounting4 sample polls600seconds and schedules independent standalone
+harvests every3600seconds (one hour). It disables standalone compounding and has
+an empty buyback list. Historical profiles/example3 retain the original omitted-
+field14400second/four-hour schedule; explicit per-bucket/global intervals win. These are inactive/placeholder
 choices, not qualified production settings. Choose intervals/batches from actual
 revenue, decimals, gas and market depth; a common raw threshold across ETH/ZZZ is
 not a common economic value. Network gas is paid by the keeper separately; it is

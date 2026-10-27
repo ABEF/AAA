@@ -20,8 +20,8 @@ Value/evolution is current marked on-chain LP NAV, not historic dollars contribu
 | Prices | Two independently reviewed USD sources per priced asset,3% disagreement band; no qualified live pair yet. |
 | LP revenue | Actual fees split80%NFT LP shares/10%equal activated collective/5%compound/5%ZZZ buyback-burn. |
 | Royalties | ERC-2981 requests5%; actual eligible receipts shared100% at rarity weights1/2/3. Not universal marketplace enforcement. |
-| Custody | Holder cannot redeem principal. Immediate governance can trigger collective holder return; return is trusted, not forced. |
-| Maintenance | One shared LP per admitted pool/strategy; one pool accepts contributions at a time. Reviewed keeper ranges may use ZZZ-price-in-ETH +/-25/50%; polling is not a guaranteed rebalance. |
+| Custody | No holder redemption during normal operation. Governance may irreversibly close LP and return proportional actual ETH+ZZZ directly to current NFT owners; no external custodian. |
+| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; rebalance uses separate trigger/cooldown/guards. Approved ranges may use ZZZ-price-in-ETH +/-25/50%. Polling is not an exact execution promise. |
 
 Current source profile is accounting4/governance2/fee intake1/custody3/pricing2/
 routing2/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
