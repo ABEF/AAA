@@ -1,5 +1,12 @@
 # Dynamic contributions, LP replacement and current NFT value
 
+Fresh accounting4 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
+rewards and future royalty eligibility. Direct payouts are separate from income;
+no holder principal withdrawal exists during normal operation. LP cannot reopen
+after exit starts. Historical deployments keep their original rules.
+
+
 This is the accounting and integration reference for the **undeployed candidate;
 production NOT APPROVED**. Inputs are native ETH or the fixed deployment ZZZ.
 It does not qualify live feeds, routes, a keeper schedule or production funds.
@@ -7,7 +14,7 @@ Remaining work belongs to the [central Todo](../TODO.md#task-security-share-acco
 
 [Execution-loss policy](EXECUTION_LOSS_POLICY.md) defaults to 2% contribution,
 1% conversion and 3% maintenance; direct governance may configure each up to 10%.
-Stronger venue/caller minima and captured normal-custody floors remain binding.
+Stronger venue/caller minima and captured operation policy remain binding.
 Network gas is separate. Historical fixed-limit profiles keep their own meaning.
 
 ## One shared LP, independent NFT accounts
@@ -34,6 +41,7 @@ One shared pool does not require 1,000 independent rebalances.
 | Replace LP | [Vault `rebalance`](../src/ZZZVault.sol) | Harvest, release designated compound, close, balance and mint atomically; update current physical LP ID. Share counts persist. |
 | Read current value | [LiquidityManager `amounts`](../src/ZZZLiquidityManager.sol), [Metadata `currentValue`](../src/ZZZNFTMetadata.sol) | Current position liquidity/ticks/spot determine token amounts; fresh, deviation-checked oracle prices mark those actual amounts. |
 | Fund and claim | [Fees](../src/ZZZFeeController.sol), [LP rewards](../src/ZZZRewards.sol), [royalties](../src/ZZZRoyaltyRewards.sol) | Actual receipts back separate ledgers. Ownership transfer carries accrued unclaimed rights with the NFT. |
+| Retire LP and return principal | [Collective holder return](HOLDER_COLLECTIVE_EXIT.md), [Migration](../src/ZZZMigration.sol) | Governance alone starts retirement and closes buckets; bounded allocation/direct-payout calls then return actual ETH/ZZZ by frozen shares to current owners. Normal holders need no action. Earned fees/royalties stay separate; rejected recipients retain retry/exceptional owner fallback. |
 
 ## Contributions at a changed price
 
@@ -157,8 +165,9 @@ This reuses the same checkpoints as same-ordered-pair moves/resumes; the existin
 At default L=300 it is a 97% **LP plus idle** floor, not a 97%-deployed promise,
 a target loss, an impermanent-loss hedge or protection against repeated cumulative erosion.
 It does not qualify a malicious venue that lies about retained amounts, dishonest
-starting oracle prices or unsupported different-pair conversion. External custody
-is separately approved and has no integrated bridge/remote-ledger guarantee.
+starting oracle prices or unsupported different-pair conversion. No external
+custodian, issuer-exchange or bridge path remains. Collective raw ETH/ZZZ return
+is a terminal operation with reviewed raw minima, not another rebalance budget.
 
 ## Current value, metadata and frontend
 
@@ -167,13 +176,29 @@ current deployed token amounts, attributed idle and designated compound reserves
 It excludes claimable LP fees, royalties, buyback reserves and unallocated gifts.
 The `contributionUSD` counter is historical gross input, never current LP value.
 Current value is an oracle mark, not an executable redemption quote: holders
-cannot redeem principal.
+cannot redeem principal during normal operation. Collective retirement instead
+apportions actual closed ETH/ZZZ; it does not promise historical USD or token quantities.
 
 The price guard also applies to metadata; a pool spot outside its admitted oracle
 deviation produces unavailable value. Honest marks remain readable when pool
-operations are disabled. Outbound/parked custody and dependency failures
+operations are disabled. Parked custody and dependency failures
 stay unavailable, not zero or an invented historical price. Activation and its
 royalty weight persist through falling value and unavailable valuation.
+
+Fresh accounting4/custody3 uses canonical
+`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. After a bucket closes for holder return,
+Exited5 reports confirmed zero LP and terminal `lp_exited`/`LP exited`, while
+retaining royalty eligibility. Pending5%compound joins returned principal;
+earned LP/royalties, buyback reserves and unrelated funds do not. Principal
+allocations/payouts are never added to earnings or reward claim totals. All new
+mint/LP work and canonical replacement remain blocked once exit starts, even
+after ordinary unpause. Historical readers/journals keep their original profiles.
+Permissionless delivery calls cannot initiate exit or choose another beneficiary.
+The operator may submit batches or enable the reviewed optional keeper
+`principal_distribution` job. It uses the existing budgeted transaction/recovery
+path, allocates only after governance closes all buckets, and directly pays
+current owners without holder action. Source implementation is disabled by
+default; no actual service or production operating qualification is implied.
 
 `tokenURI` dynamically selects the artwork stage from current value. Market
 movement does not itself emit an event. The existing bounded ordinal refresh

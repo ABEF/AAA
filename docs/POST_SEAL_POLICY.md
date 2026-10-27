@@ -1,142 +1,99 @@
 # Post-seal configuration and public-chain rehearsals
 
-Sealing fixes core implementations, bindings and the deployment's ZZZ identity.
-Supported operating settings remain governed within their existing bounds. This
-page describes the current candidate's boundary; the [sole Todo](../TODO.md#task-post-seal-configuration)
-owns qualification work and the [operator manual](OPERATOR_MANUAL.md) owns exact
-procedures. It authorizes no deployment, transaction or signer extension.
+Sealing fixes core implementations, bindings and the one ZZZ identity. Immediate
+governance can change supported policy within guards, not rewrite NFT rights.
+The fresh source is [accounting4/custody3/canonical V5](POSITION_V4.md), undeployed
+and **NOT APPROVED**. The [sole Todo](../TODO.md#task-post-seal-configuration)
+owns qualification; the [operator manual](OPERATOR_MANUAL.md) owns exact procedures.
 
 ## Configuration boundary
 
-Contribution, conversion and maintenance loss defaults are **2% / 1% / 3%**,
-with separate network gas and hard 10% maxima. Caller/venue minima and already
-approved custody floors remain binding. See [execution policy](EXECUTION_LOSS_POLICY.md)
-and [typed routes](TYPED_V4_ROUTES.md).
-
-| Category | Requirement | Current boundary |
+| Category | What remains configurable | Limit |
 | --- | --- | --- |
-| Governance wallet | Current `GOVERNANCE_VERSION=2` wallet calls target modules directly, with no Timelock queue or generic executor. | `proposeGovernance(candidate)` by the current wallet, then `acceptGovernance()` by the candidate, has no delay. Zero proposal cancels. Operating canonical state and inactive preparation are mandatory. Keeper/guardian grants and the immutable mint recipient do not rotate with governance. Bootstrap is erased at seal; lost governance has no hidden admin rescue. |
-| Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, explicit price orientation, approved two-width keeper selection, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.setOperatingTradeUSD` sets a USD18 execution ceiling from zero through immutable `maxTradeUSD`; zero stops buybacks before prices or reserves are queried. |
-| Assets and conversions | Enable/disable/re-enable native ETH and the fixed pre-seal ZZZ input; rotate reviewed routes when liquidity changes. Marketplace royalty admission is separate. | No third contribution currency or post-seal ZZZ replacement is supported. Bind matching contribution/normal-exit ZZZ identities before sealing; issuer migration uses custody exit and a fresh reviewed deployment. Entry and LP/royalty converters retain pinned append-only typed v3/v4 route controls. Native v4 output needs no wrapper; v3 converters keep their own wrapper checks. Real qualification remains open; routes do not add a new input identity or algorithm. |
-| Pools and pricing | Change the sole contribution pool, reviewed two-source USD policies and supported strategy settings through existing immediate governance. | `Oracle.setDualFeed` appends a policy with two distinct source/independence identities, runtime pins, per-source ages and 0-500 bps disagreement. The selected disagreement tolerance is 300 bps (3%); both sources must pass. Old `setFeed` is not a current callable function. No missing-source/spot/peg fallback. Entry freezes prices and operating limits before transfers/conversion; new settings cannot replace that captured basis. Live source independence/proxy/depeg/gas qualification remains open. |
-| Randomness operation | Tune future callback gas and confirmations within contract and actual provider bounds; preserve pending requests and ordered draws. | After initial configuration, `NFT.setRandomnessRequestSettings` changes only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/gas lane, subscription and payment mode stay fixed. It cannot repair or reroll an old request. |
-| Services | Rotate qualified RPCs, hosting and compatible API/keeper settings without resetting transaction journals or changing deployment identity. | Current accounting3/fee1 uses eight-word local Positions and LP-only V4 canonical schema, with distinct state paths. Historical accounting1/2 rows/statuses/journals retain their original profile; changing a version field is not migration. Off-chain configuration does not alter sealed bytecode. Keep the shared signer Anvil-only and public `DEPLOYMENT` null until separately authorized and qualified. |
-| Economic rights and safety | Preserve supply/rarity inventory, revealed traits, ownership, earned rewards, backing, the 80/10/5/5 allocation and approved execution-loss limits. | No reset, confiscation, arbitrary sweep, generic executor or unbounded upgrade is introduced. A reviewed replacement uses the explicit handoff and preserves rights; it is not a way to erase them. |
+| Governance | Direct governance wallet and proposal/acceptance handover, without delay. | No generic executor/timelock; guardian/keeper and immutable mint recipient do not rotate automatically. Lost governance has no hidden administrator rescue. |
+| Routine LP operation | Roles, pause, supported range/orientation, triggers, cooldowns, approved +/-25/50% keeper selection and operating ceilings. | Applies only before `lpExitStarted`. Ordinary unpause cannot undo collective exit. |
+| Inputs | Enable/disable/re-enable native ETH and the fixed ZZZ with reviewed append-only source policies. | No third input or post-seal replacement ZZZ. Source, Buyback and settlement identities must match before seal. |
+| LP pools | Admit initialized pinned static hookless native ETH/fixedZZZ fee tiers; one contribution pool at a time. | No generic ERC20/WETH LP admission or arbitrary different-pair movement. Movement and deposit/route cutover are separate actions. |
+| Conversion venues | Reviewed typed single-hop v3/v4 routes for contributions or already-earned LP/royalty balances. | Conversion admission does not add an LP currency or input. Explicit wrapper-dependent routes still need wrapper qualification. |
+| Pricing | Reviewed two-source USD policies, source runtimes/independence, ages and0-500bps agreement setting; selected tolerance300bps. Governed sequencer-source replacement. | Both feeds must pass; no peg/spot/missing-source fallback. Captured operation prices/policy cannot be replaced mid-call. |
+| Loss policy | Contribution2%, conversion1%, maintenance3% defaults, each governance ceiling10%; separate converter settings. | Stronger caller/venue minima and separate gas remain. Raw collective principal return uses raw minima, not a3% USD guarantee. |
+| Randomness requests | Future confirmations3-200 and callback gas200,000-10,000,000 via `setRandomnessRequestSettings`. | Coordinator, key/lane, subscription and payment mode fixed; no reroll/repair of old requests. Actual provider bounds may be narrower. |
+| Buyback | `setOperatingTradeUSD` from zero through immutable `maxTradeUSD`; zero stops buys before price/reserve reads. | Fixed ZZZ target; no administrator withdrawal of reserves or automatic keeper salary. |
+| Royalties | Admit reviewed marketplace currencies and configure guarded conversion. | Actual received receipts and original per-NFT rights remain; no external royalty-custody exit/drain. |
+| Services | Qualified RPC/hosting/API/keeper settings with preserved deployment and pending records. | A config edit does not change deployed code, safely migrate a journal or qualify a new source profile. |
 
-Adding a route or feed is security-sensitive even when it is configurable.
-Governance retains immediate authorization with no new waiting period. Every
-control still needs an explicit caller, bounds, events, dependency checks,
-stop/reopen behavior and old-transaction/pending-state handling. A global pause
-does not bypass preparation or terminal canonical locks.
+Adding/changing a route or feed is security-sensitive despite immediate governance.
+Review actual caller, bounds, events, dependency powers, pending transactions and
+stop/restart behavior. Source-code configuration does not qualify live feeds,
+routes, VRF, authorities or services. Historical
+[post-seal-control evidence](../reports/post-seal-controls/VERIFICATION.md) retains
+its own source scope.
 
-The randomness-settings and buyback-ceiling setters emit previous/new-value
-events and use immediate governance. Their [source-scoped evidence](../reports/post-seal-controls/VERIFICATION.md)
-is separate from live provider qualification.
-They work during an ordinary pause, but reject preparation, canonical lifecycle
-locks and reentry. A successor reviews its own operating settings; these are not
-imported NFT economic entitlements. Actual provider acceptance can be narrower
-than the contract bounds and still needs independent qualification.
+The selected pool's observed approximately1.101% swap fee cannot qualify a
+full-balance ZZZ conversion at the default1% ceiling at reference prices. Require
+a cheaper reviewed route or leave balances backed and report unavailable. Do not
+silently widen policy or use spot to manufacture independent valuation.
 
-For randomness observations, the blocked production template now distinguishes
-`immutable_provider_configuration: true` from the exact mutable field list
-`["requestConfirmations","callbackGasLimit"]`. The old ambiguous
-`immutable_configuration` flag is rejected in that NFT record. Capture current
-getters and retain original request transactions when reviewing pending draws.
+## Irreversible exit boundary
 
-The selected pool's observed approximately 1.101% swap fee means it is not a
-qualified full-balance conversion route at reference prices. Require a cheaper,
-independently reviewed route; until then keep earned source balances backed and
-report conversion unavailable. Do not silently increase the limit or substitute
-pool spot prices for independent valuation.
+Governance can pause and start [collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+The permanent lock prevents new mint/principal work even after unpause. Actual
+ETH/ZZZ close proceeds, attributed idle and pending compound become holder
+principal by frozen shares. Existing LP rewards, royalties and buyback reserves
+remain classified separately; future NFT royalties continue.
 
-## Pricing implementation and source qualification
+There is no chosen custody recipient, all-ZZZ exit, full-balance royalty drain,
+external return/completion ingress, bridge or generic sweep. Failed recipient
+payouts remain backed and can use current-owner fallback. Same-chain canonical
+replacement is available only before LP exit starts; its V5 importer cannot
+carry terminal holder-principal accounting or reopen an exited deployment.
 
-[Dual-source pricing and factual LP checks](PRICE_SECURITY.md) are implemented as
-an undeployed pricing-V2 candidate. Governance can replace the reviewed source
-pair, ages and disagreement within explicit bounds after sealing; the Oracle-created
-pricing companion remains fixed and holds no funds. Versioned inventories and
-backend configurations require explicit pricing V2 and all 15 helper bindings.
-A new source policy is an operational change requiring fresh review/observations,
-not a rewrite of NFT rights or historical price profiles. No actual ETH/ZZZ source pair or optional admitted royalty/conversion-asset
-source pair is qualified. Failure of either source stops affected price-dependent
-work; raw funded claims and explicit raw custody paths retain their own rules.
+## Native implementation and profile qualification
 
-## Native implementation versus configurable policy
+Native ETH remains the actual zero currency through LP, fees, principal and
+payouts. Only explicit conversion routes may use WETH. Current services/inventory
+must select accounting4, custody3, fee1, governance2, pricing2, routing2, reviewed
+Entry1 and exact holder-exit V5 schema/runtime/parent pins. Position length alone
+does not identify a profile. Historical accounting1/2/3 deployments and journals
+keep their own meanings. The served accounting3 poplint artifact is not a
+qualified accounting4 integration; public deployment stays null and browser
+signing remains Anvil-only.
 
-The current native candidate implements actual ETH custody, fee indices, principal
-return and same-chain canonical funding. Local canonical V4 rejects older handoff codecs;
-existing wrapped/native-2 deployments and journals are not upgraded by changing configuration.
-Record accounting 3 / fee-intake 1 / direct governance 2 runtime pins and local
-canonical V4 in fresh API/keeper profiles. Retain historical deployment semantics
-and saved transactions without relabelling them. The public website deployment
-stays null; its native-2 reader is not a qualified current-3 integration.
-
-Atomic pool moves currently require identical actual ordered currencies. ETH and
-WETH are distinct: moving between those pools needs an explicit reviewed boundary
-that is not implemented. Admitting a WETH destination or changing a route cannot
-supply missing code. A separately approved external custody exit/manual conversion
-and actual funded local completion is a different, governed path. Typed v4
-conversion is implemented with [scoped qualification limits](TYPED_V4_ROUTES.md). The two bounded controls are implemented as a
-candidate; they do not qualify actual VRF, routes, inventory or services.
-
-See [native verification scope](../reports/native-eth-port/VERIFICATION.md) for the
-candidate and remaining gates; this policy is not a live release approval.
+[Dual-source prices and actual LP](PRICE_SECURITY.md) are implemented, but actual
+independent ETH/ZZZ feed pairs and routes remain unqualified. Feed failure stops
+affected price-dependent work. Funded claims and raw collective closes retain
+their own dependency/minimum rules; neither promises recovery through a broken
+token or venue. [Native boundary](NATIVE_ETH_ARCHITECTURE.md).
 
 ## Testing with real funds on Robinhood
 
-Use a **separate, clearly named mainnet rehearsal deployment**, dedicated disposable
-funds and reviewed per-operation/campaign limits. Preserve production economics
-and guards when qualifying production behavior. A reduced-minimum test build is
-a different candidate and does not verify the unchanged $100 activation rule.
-The current $1 rehearsal is local-only. Production mint is intended for OpenSea;
-direct local mint evidence does not qualify an OpenSea primary mint.
+A future authorized rehearsal needs a separate clearly named deployment,
+disposable funds, exact reviewed code/configuration and per-operation/campaign
+limits. Preserve production economics when qualifying production behavior;
+a local$1-minimum build does not verify the$100 production floor. Direct mint
+evidence does not qualify the required OpenSea primary-mint path.
 
-Before any operator-run public transaction, record exact source/runtime/configuration,
-chain, asset/venue/feed/provider identities, roles, funding and actual signer
-permissions. Simulate exact calldata and retain receipts and balance/liability
-assertions. Real swaps create fees only according to actual venue execution;
-funded royalty distribution tests and genuine marketplace royalty receipt tests
-must be identified separately. This design discussion does not approve public
-signing, deployment, sealing or use of real funds.
+Record exact chain, contracts/runtimes, assets/venues, feed/provider policies,
+authorities and signer scope before public execution. Simulate exact calldata;
+retain receipts, balance changes and liability assertions. Genuine venue fees,
+funded distribution tests and actual marketplace royalty receipt tests are
+different evidence. No public deployment/signing/transaction is authorized here.
 
-After the campaign:
+At the end of an authorized disposable campaign:
 
-1. Stop new mints with `NFT.setMintPaused(true)`, disable affected contributions
-   and pause economic work as appropriate. Reconcile every submitted transaction.
-2. Use the approved paused custody exit to close attributed LP principal if the
-   venue and assets remain usable. Normal all-ZZZ and explicit raw exits have
-   different guarantees; a failed normal exit never selects raw mode automatically.
-   The current accounting3 candidate sends actual ETH/ZZZ in a raw exit without
-   calling WETH. Core/token runtime bindings, usable settlement and a recipient
-   that accepts ETH remain required; wrapper independence is not a guarantee
-   against every external failure. See [native scope](NATIVE_ETH_ARCHITECTURE.md).
-3. Claim funded rewards as their current NFT owners. Account separately for
-   compounding/buyback reserves, royalties, rounding dust, mint payments and gas.
-   A principal exit does not empty every contract or erase any liability.
-   `RoyaltyRewards.exitCustody` preserves liabilities and is not a settlement/reset.
-4. Archive manifests, journals, receipts, final balances and remaining obligations;
-   remove rehearsal addresses from active service/UI configuration. Public-chain
-   and marketplace history remains. No public burn/reset or standalone deployment
-   retirement function exists; canonical retirement requires an actual checked,
-   funded successor handoff and preserves economic rights.
-5. Use a fresh, separately reviewed deployment for the final collection. It has a
-   different address/collection identity. Rehearsal NFTs do not become final NFTs
-   automatically, and already spent gas, swap fees, losses or burned assets cannot
-   be refunded by a reset.
+1. Stop new mints/contributions; reconcile pending transactions and preserve journals.
+2. If appropriate, govern the irreversible collective exit, close buckets,
+   apportion actual ETH/ZZZ and distribute to current test NFT owners. There is
+   no custody-wallet shortcut, withdrawal reset or3% promise on raw return.
+3. Claim earned rewards as current owners; account separately for pending
+   principal, royalties, buyback reserve, rounding dust, mint proceeds and gas.
+   Compounding belongs in returned principal, not an administrator sweep.
+4. Archive manifests, receipts, remaining liabilities and final state. Removing
+   rehearsal addresses from services does not erase chain or marketplace history.
+5. Use a fresh reviewed deployment for the final collection. Test NFTs do not
+   become final NFTs automatically, and spent gas/fees/losses are not refundable.
 
-Do not admit unrelated public holders to a disposable rehearsal. If outside holders
-or unresolved liabilities exist, stopping services does not remove their rights.
-There is no guarantee that a failed token, pool or external custody recipient
-will permit full recovery. Do not add a production deletion/sweep backdoor to make
-test cleanup easier.
-
-## Review scope
-
-This policy distinguishes implemented configuration controls from external
-qualification and operating rehearsals. Source-bound native evidence is
-recorded separately; earlier WETH reports retain their original scope. Current controls were
-read in `ZZZAccessController`, `ZZZNFT`, `ZZZActivationEntry`, `ZZZRoyaltyConverter`,
-`ZZZLPRewardConverter`, `ZZZBuyback`, `ZZZMigration`, `ZZZVault` and
-`ZZZCanonicalHandoff`. Updating this policy performs no public transaction,
-service action or change to existing chain state. Any later setter/executor requires focused tests for its
-changed behavior, code-size checks and refreshed operator/inventory guidance.
+Do not include unrelated public holders in a disposable rehearsal. Existing NFT
+and unpaid rights survive stopping services. Actual target-chain operating,
+receiver-failure/recovery and gas rehearsals plus independent audit/remediation
+remain [release requirements](RELEASE_CHECKLIST.md).

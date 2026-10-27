@@ -58,44 +58,20 @@ build/static receipts retain scope; actual qualification remains open.
 
 ## Continue here
 
-For the next session, use the current fork's swap-floor witness to guide actual
-quote/feed/route qualification. ETH/fixed-ZZZ inputs and all captured limits stay
-unchanged. The reader and harness are implemented; actual provider/price/route,
-contracts/API, OpenSea/VRF and operating approval are still open. Do not interpret
-poplint's unconfigured status as an error to fix using invented addresses.
-Reuse unchanged source-bound checks; run new verification only for changed code,
-configuration, dependencies or unresolved findings. No unattended work, monitor
-restart or public signing/deployment is requested for the overnight interval.
+The user replaced external custody exits with irreversible collective return to
+NFT holders. Fresh source is accounting4/custody3/canonicalV5. Read
+[holder exit](HOLDER_COLLECTIVE_EXIT.md) and [profile](POSITION_V4.md): current
+owners receive proportional actual ETH+ZZZ, automatic bounded pushes have owner
+fallback, pending compound joins principal, and old rewards/future royalties
+remain. LP earnings end at final close. No external principal/royalty recipient,
+bridge or recovery-to-pool ingress remains. New LP admission is native ETH/ZZZ
+only; old deployment/schema/journal meanings stay intact.
 
-The user is the sole human operator and controls governance. Use that model in
-the [operator manual](OPERATOR_MANUAL.md#one-operator-and-governance-wallet);
-separate account capabilities do not require extra people or an operator role.
-The [harvest schedule procedure](OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval)
-explains the four-hour example, exact JSON setting, overrides, receipt-based timer
-and controlled restart/health/rollback. It changes no live config or contract;
-do not infer that a production harvesting service has been enabled.
-
-1. Use the [single task ledger](../TODO.md). Its [documentation reconciliation](../reports/documentation-sync-20261026/README.md)
-   removes stale present-tense input, floor, governance and codec instructions;
-   that earlier document-only campaign retained its65statuses. The current user
-   decision now marks only purchase-rights as Not planned; all stable IDs remain.
-2. Qualify actual independent ETH/ZZZ prices, RPC/history and a cheaper ZZZ-to-ETH
-   conversion route within the default1% cap. Source agreement is not quote
-   feasibility or proof of full historical ingestion. Select actual authorities.
-3. The current3 website reader/unsigned-review implementation is verified in
-   [scoped evidence](../reports/current3-website-20261026/VERIFICATION.md). Use
-   [poplint only](SITE_ENVIRONMENTS.md) for integration and keep the live demo
-   unchanged. Bind actual reviewed contracts/API before claiming live data.
-   Public signing stays disabled;
-   existing Anvil profiles/journals are never relabeled or reset. Production mint
-   remains an unfinished supported OpenSea primary-mint/VRF integration.
-4. Under separate operating authorization, qualify matching source/unit on Linux,
-   including stalled RPC/signer descendants, group termination, lock release and
-   original pending/journal/nonce recovery with no automatic resend. Source-only
-   watchdog support and old staging receipts do not close this gate.
-5. Qualify target-chain depth/gas/strategy economics, backups/alerts and metadata
-   hosting; freeze exact source/configuration for independent review/remediation.
-   Production remains NOT APPROVED.
+The earlier accounting3 fork and poplint evidence above remains historical to
+its exact source. Poplint/demo/services/Anvil are not changed by this source task.
+Affected source verification is recorded in [holder-return evidence](../reports/holder-collective-exit-20261027/VERIFICATION.md):133Solidity methods,37normal object gates and scoped backend/keeper checks pass. Complete actual profile4 release inventory/UI/service acceptance before production. Actual feeds/routes/VRF/OpenSea/authorities,
+metadata hosting, gas/strategy/operating rehearsals and independent review remain
+open. Never infer deployment approval from source/docs or local fixture success.
 
 ## Preservation and publication
 

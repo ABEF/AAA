@@ -32,7 +32,7 @@ Claims contain 1-32 operations, not 32 NFTs times every asset. Each operation
 names an actual decimal-string uint256 token ID, an admitted asset and a strict
 boolean selecting royalties or LP rewards. Duplicate operations are rejected;
 the same NFT/asset in the two different ledgers is valid. Native address zero is
-allowed for royalties and, under explicit accounting 2/3, native LP rewards. The same NFT
+allowed for royalties and, under explicit accounting 2/3/4, native LP rewards. The same NFT
 and native asset may select both distinct ledgers in one exact batch. Historical
 profiles do not gain native-LP semantics from a manifest change. Every selected NFT must belong to the supplied
 wallet, and every selected operation must have a positive funded balance.
@@ -131,7 +131,7 @@ ledger inventory and core bindings, but isolate an unselected currency's failed
 runtime/decimal check. Selected currency failures reject the whole draft;
 terminal work limits are never swallowed. Actual simulation remains decisive.
 
-For accounting3 claims, the preparer reads the global activation weight once per
+For accounting3/4 claims, the preparer reads the global activation weight once per
 distinct selected NFT at that same block. Only 0..3 is valid; weight0 plus a positive
 LP/royalty claim balance is contradictory core data and rejects the draft. Missing
 or malformed activation data also fails closed. This matches NFT read integrity;
@@ -139,6 +139,16 @@ the weight is not used to calculate the payout. Activated parked/outbound NFTs
 and optional-currency deferrals retain their earned rights. Historical profiles
 do not acquire this getter requirement. No optional currency read is added merely
 to check activation. [Scoped review](../reports/reward-resilience-20261026/REVIEW.md).
+
+Accounting4 requires the additional pinned `principal_exit` module, custody3 and
+holder-exit canonical V5. Its irreversible LP-exit flag blocks new mint and
+activation/top-up drafts, including after unpause; earned LP/royalty claims stay
+available to the current owner. Principal returns appear separately in read
+responses and cannot be submitted as ClaimRouter reward operations. No backend
+principal-payout draft endpoint or public signer is introduced. Historical1/2/3
+readers and existing Anvil journals keep their original configuration. The served
+poplint artifact remains its unconfigured accounting3 build until separately
+reviewed; source publication changes neither that website nor its signer.
 
 Claims use an exact, narrowly encoded array and an exact sender/value simulation.
 Results must contain the canonical uint256 array offset, count and bounded size.

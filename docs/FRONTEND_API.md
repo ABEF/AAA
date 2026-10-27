@@ -8,11 +8,11 @@ current-profile website integration and actual dependencies are not qualified.
 
 ## Current deployment profile
 
-Use explicit `accounting_version: 3` and `fee_intake_version: 1` with read
-configuration **schema 2**. The service checks Vault accounting 3, direct
+Use explicit `accounting_version: 4` and `fee_intake_version: 1` with read
+configuration **schema 2**. The service checks Vault accounting 4, direct
 Access governance 2, actual governance identity and canonical
-`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. The [Position codec](POSITION_V3.md)
-has eight words; current dormant/parked states are 3/4. No retired remote fields
+`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. The Position codec
+has eight words; dormant/parked/exited states are 3/4/5. No retired remote fields
 are synthesized. Both LP and royalty ledgers support native ETH; current LP
 inventory must actually begin with ETH. Validated never-activated NFTs cannot
 report positive available rewards. Malformed wallet-summary core data rejects;
@@ -25,11 +25,28 @@ configuration](EARNINGS_HISTORY.md), [royalty reporting](ROYALTY_REPORTING.md) a
 Native USD policies use direct address zero and dual-source pricing 2; no wrapper
 runtime or single-source fallback is invented.
 
-Explicit accounting 1/2 readers remain for reviewed historical deployments.
+Explicit accounting 1/2/3 readers remain for reviewed historical deployments.
 Omitting accounting version selects legacy1, not the release candidate. Preserve
-old addresses, codecs, journals and snapshots. Current V4 lineage requires
-accounting 3 predecessors; it does not migrate an older Position codec. Source
+old addresses, codecs, journals and snapshots. Current V5 lineage requires
+accounting 4 predecessors; historical V4 requires accounting 3. Neither imports
+another accounting/canonical profile. Source
 publication never changes an existing API, Anvil deployment or website server.
+
+Accounting4 also requires `contracts.principal_exit: {address, code_hash}` for
+the fixed Migration module. Every read verifies its runtime, Access/module
+bindings and `CUSTODY_VERSION()==3`. The existing served poplint artifact remains
+an unconfigured accounting3 reader; source publication does not upgrade it to4.
+Public signing remains disabled and the local signer remains Anvil-only.
+
+After governance starts collective exit, `lifecycle.lp_exit_started` is permanent.
+Mint/contribution preparation stops; NFT transfers and earned LP/royalty claims
+remain available. Exited NFTs report verified zero LP and `evolution: lp_exited`,
+while retaining their royalty weight. NFT/collection rows include a separate
+`principal_return`: phase, current-owner beneficiary, allocated/paid flags and
+ETH/ZZZ `allocated_raw`, `remaining_raw`, `claimable_raw`. Unallocated or not-yet
+claimable values are null. Paid allocations remain historical amounts with zero
+remaining principal. These amounts never enter rewards, earnings or previously
+claimed reward totals. No principal-payout transaction endpoint is implemented.
 
 ## Implemented endpoint
 
@@ -122,7 +139,7 @@ specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genui
 ```json
 {
   "schema": 2,
-  "accounting_version": 3,
+  "accounting_version": 4,
   "fee_intake_version": 1,
   "chain_id": 46630,
   "rpc_urls": ["https://<reviewed-provider>"],
@@ -138,7 +155,8 @@ specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genui
     "royalties": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
     "claim_router": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
     "handoff": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
-    "vault_canonical": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"}
+    "vault_canonical": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
+    "principal_exit": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"}
   },
   "assets": [
     {"address": "0x0000000000000000000000000000000000000000", "decimals": 18, "symbol": "ETH", "code_hash": null},
@@ -147,7 +165,7 @@ specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genui
 }
 ```
 
-Choose `deployment_block` at or after all eight pinned contracts and immutable helpers
+Choose `deployment_block` at or after all nine pinned contracts and immutable helpers
 exist and the access controller is sealed. Pin its independently checked block
 hash. Chain 46630 is Robinhood Testnet; chain 4663 is Robinhood mainnet. Network
 choice, twelve confirmations and 120 seconds above are examples requiring a

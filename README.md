@@ -2,8 +2,9 @@
 
 PoPL connects transferable NFTs to vault-managed liquidity. Activation attaches
 an LP allocation and unlocks funded LP fees plus a separate share of NFT-sale
-royalties. Holders cannot redeem principal; governance can approve trusted
-external custody for recovery or migration.
+royalties. Holders cannot redeem principal during normal operation. Governance can end LP
+activity and return actual ETH+ZZZ proportionally to current NFT holders, while
+NFTs keep transfers, future royalties and previously earned rewards.
 
 **Status: undeployed candidate; production NOT APPROVED.** The
 [public website](https://popldemo.0xwave.com) simulates transactions. Existing
@@ -15,10 +16,10 @@ no configured deployment means unavailable integration data, never examples.
 
 | Current design | Implementation and remaining boundary |
 | --- | --- |
-| Market and custody | Robinhood v4 native ETH/ZZZ, selected pool `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`: static 1.002% LP fee, no hook; recorded combined fee about 1.101%. Protocol fees can change. Accounting V3 retains actual ETH and only local custody states. [Pool decision](docs/POOL_SELECTION.md), [current profile](docs/POSITION_V3.md). |
+| Market and custody | Robinhood v4 native ETH/fixed ZZZ, selected hookless/static pool 0x5011...afe1b. Accounting4 appends terminal Exited5; production LP admission is native ETH/ZZZ only. [Pool](docs/POOL_SELECTION.md), [profile](docs/POSITION_V4.md). |
 | Contributions and prices | Native ETH or one fixed ZZZ only. Source admission, the native pool, immutable buyback and normal exit use that same reviewed ZZZ identity. Minimum $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
 | Maintenance and conversion | Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
-| Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
+| Movement and recovery | Same-native-pair moves and parking before exit. Governance may permanently close all LP and return actual ETH+ZZZ by NFT shares through bounded direct payouts; NFTs keep transfers/future royalties/old rewards. No external custody address or bridge. [Holder exit](docs/HOLDER_COLLECTIVE_EXIT.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
 The [systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
@@ -93,15 +94,15 @@ flowchart LR
 | Component group | Responsibility and relationship | Source / design |
 | --- | --- | --- |
 | **NFT identity and artwork** | Records the current owner and immutable revealed traits. Metadata reads the NFT's current attached LP value to select its evolution. | [NFT](src/ZZZNFT.sol), [metadata](src/ZZZNFTMetadata.sol), [trait/reveal design](docs/NFT_METADATA.md) |
-| **Activation and admission** | Reviewed Entry authenticates the owner, binds the captured loss policy to the caller maximum and accepts only native ETH/fixed ZZZ. Registry admits only pools containing that ZZZ, including reviewed future ERC20 pairs, and permits one contribution pool at a time. Other pool currencies do not become user inputs. | [Entry](src/ZZZActivationEntry.sol), [typed v4 helper](src/ZZZV4RouteExecutor.sol), [asset policies](src/ZZZActivationAssets.sol), [pool registry](src/ZZZPoolRegistry.sol) |
-| **Custody and per-NFT shares** | Vault owns the physical LP and records each NFT's nonredeemable shares. Its 8-field local Position replaces unused remote/home copies. LiquidityManager executes typed venue operations; the budget helper checks contribution and maintenance loss limits. | [Vault](src/ZZZVault.sol), [local profile](docs/POSITION_V3.md), [LiquidityManager](src/ZZZLiquidityManager.sol), [budget helper](src/ZZZMigrationBudget.sol) |
+| **Activation and admission** | Reviewed Entry accepts native ETH/fixed ZZZ, binds owner and captured execution policy. Registry admits only native ETH/fixedZZZ LP and one contribution pool at a time; reward conversion venues remain separate. Terminal exit blocks contributions. | [Entry](src/ZZZActivationEntry.sol), [Registry](src/ZZZPoolRegistry.sol) |
+| **Custody and per-NFT shares** | Vault owns the physical LP and records each NFT's nonredeemable shares. Its 8-field local Position replaces unused remote/home copies. LiquidityManager executes typed venue operations; the budget helper checks contribution and maintenance loss limits. | [Vault](src/ZZZVault.sol), [local profile](docs/POSITION_V4.md), [LiquidityManager](src/ZZZLiquidityManager.sol), [budget helper](src/ZZZMigrationBudget.sol) |
 | **LP revenue accounting** | Actual local venue collections feed FeeController. It allocates receipts to holder/collective balances and separate compound/buyback reserves. Membership gives each activated NFT one collective share. | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol) |
 | **Royalties and claims** | RoyaltyRewards preserves per-NFT entitlements, isolates optional currency outages and credits batch-converted ETH to the same NFTs. Current owners claim through either ledger or ClaimRouter. | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [converter](src/ZZZRoyaltyConverter.sol), [ClaimRouter](src/ZZZClaimRouter.sol), [operator flow](docs/ROYALTY_SETTLEMENT.md) |
 | **Valuation and maintenance** | Oracle requires two reviewed USD sources per asset. Its fixed pricing companion freezes contribution prices/limits and verifies marginal LP; Strategy defines guarded ranges and eligibility. Keeper maintenance stays within on-chain limits. | [Oracle](src/ZZZOracle.sol), [contribution pricing](src/ZZZContributionPricing.sol), [price security](docs/PRICE_SECURITY.md), [optional Pyth source](src/ZZZPythPriceFeed.sol), [Strategy](src/ZZZStrategy.sol), [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) |
 | **Governance and permissions** | The selected governance wallet calls modules directly; AccessController checks that authority, guardian pause and keeper permissions. Governance replacement requires proposal and acceptance. No timelock queue, executor or OpenZeppelin role grants remain. Sealing fixes module bindings. | [AccessController](src/ZZZAccessController.sol), [authority and change boundaries](docs/CHANGE_AND_RECOVERY.md) |
-| **Recovery and migration** | Migration atomically moves LP between admitted pools with identical actual currencies and governs all-ZZZ or explicit raw custody exits. Native raw exit sends ETH/ZZZ without WETH. Actual funded local LP is required for completion; external custody is trusted. A separate versioned handoff carries ownership, ledgers and backing to one compatible replacement. Cross-version/future-chain handoff is outside this release. | [Migration](src/ZZZMigration.sol), [CanonicalHandoff](src/ZZZCanonicalHandoff.sol), [handoff scope](docs/CANONICAL_HANDOFF.md) |
+| **LP movement and holder return** | Migration keeps guarded same-pair moves/parking before exit. Collective exit closes all LP, includes pending compound, allocates actual ETH+ZZZ and pays current NFT owners in isolated batches. No external custodian. Whole-collection replacement is separate and blocked after exit. | [Migration](src/ZZZMigration.sol), [holder procedure](docs/HOLDER_COLLECTIVE_EXIT.md), [canonical handoff](docs/CANONICAL_HANDOFF.md) |
 
-**Custody authority:** holders cannot redeem principal. Governance can send it to an approved external EOA/contract, which is explicitly trusted to preserve/return it. Royalty custody separately suspends the exited currency until full backing returns. The source cannot force an external custodian to return funds.
+**Exit authority:** governance can irreversibly return principal to current NFT owners by their shares. It cannot choose a treasury/custody recipient. Failed automatic payouts stay backed for retry or a recipient chosen by the actual owner. Royalties and earned rewards are not swept.
 
 Many NFTs share **one physical LP per pool/strategy**, with independent share accounts. Maintenance operates on the shared position. The registry permits **one deposits-enabled contribution pool at a time**, selected for the existing hookless ETH/ZZZ pool after qualification. Governance can disable it and enable a reviewed replacement without deleting historical pools; [switch procedure](docs/OPERATOR_MANUAL.md#one-contribution-pool-at-a-time). The Vault allows four permanently admitted/historical custody buckets, including reservations and imports. An existing bucket's migration or return reuses its slot. See the [detailed interactions](docs/ARCHITECTURE.md) and [complete module/helper map](docs/COMPONENT_STATUS.md).
 
@@ -120,7 +121,7 @@ Read services serve confirmed chain state. Transaction preparation returns an un
 | **Claim and local-mint preparation** | Builds up to 32 owner-authenticated LP/royalty claim operations with canonical simulation and separate gas estimates. Opt-in direct-mint drafts exist; the production qualification gate and website mint capability reject unsupported OpenSea primary minting. A draft alone does not approve public minting. Short-lived unsigned reviews only; no signer. | [Preparer](frontend_api/transactions.py), [configuration and wallet rules](docs/FRONTEND_TRANSACTIONS.md), [mint qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) |
 | **Activation preparation** | Checks asset/route/feed bindings, simulates the complete Entry call, measures new LP, and returns exact unsigned calldata and separate gas. Missing approval produces an approval step before re-quoting. | [Preparation](frontend_api/activation.py), [opt-in endpoint](frontend_api/activation_server.py), [integration sequence](docs/ACTIVATION_PREPARATION.md) |
 | **Keeper** | Discovers shared buckets, checks eligibility, simulates and submits authorized upkeep. Persists intents, receipts and budgets for recovery; optional metadata watching uses the same bounded transaction path. | [Monitor](keeper/monitor.py), [execution](keeper/ops.py), [recovery runbook](docs/KEEPER_RECOVERY.md) |
-| **Release preflight** | Explicit current accounting-V3/governance-V2 inventory validation and bounded read-only same-block observation. Actual service/evidence qualification stays separate; no signer or deployment authority. | [Gate](scripts/validate-production-config.py), [observer](scripts/observe-production-config.py), [operator sequence](docs/PRODUCTION_PREFLIGHT.md) |
+| **Release preflight** | Historical accounting3 inventory/observer remains source-scoped. Fresh accounting4/custody3/V5 inventory qualification is required; old ready results do not approve this source. No deployment authority. | [Preflight](docs/PRODUCTION_PREFLIGHT.md), [profile](docs/POSITION_V4.md) |
 
 These services require qualified RPC/archive providers, feeds, configuration and operating procedures. Hosting and live integration remain open. The API does not hold user keys; the contracts still enforce transaction permissions and accounting.
 
@@ -148,7 +149,7 @@ The target live flow is **website -> read/preparation API -> user wallet confirm
 | **Add liquidity** | Contributions from **$5 in conservative original input value** grow the same NFT under the captured contribution limit; gas is separate. Higher pool minima apply. Existing holders' assets cannot subsidize the new LP floor; a top-up adds no collective membership. |
 | **Hold or transfer** | The current owner can claim its funded balances. Transfers carry the LP allocation, remaining unclaimed balances and future fee rights. A seller can claim before a transfer, so an earlier listing balance is not guaranteed to the buyer. |
 
-**LP principal cannot be redeemed by holders.** It remains managed by the protocol for rebalancing, compounding and approved migration. A right to future funded fees has no expiry, but does not guarantee future revenue or capital value.
+**LP principal cannot be redeemed by holders during operation.** Governance may permanently end LP activity and return actual proportional ETH+ZZZ to them; existing rewards and future royalty rights survive. A right to future funded fees has no expiry, but does not guarantee future revenue or capital value.
 
 Activation and growth accept **native ETH or the fixed ZZZ token only**. USDG,
 USDC and WETH are not user input options. Independent ETH/ZZZ feed pairs and
@@ -223,7 +224,7 @@ separates authority wallets, deployed contracts and network dependencies.
 Governance can enable/disable the fixed inputs and configure supported routes,
 feeds, pools, royalty currencies and strategy parameters within existing controls.
 It cannot retarget ZZZ burns or replace the contribution/normal-exit token. An
-issuer migration uses custody exit and a fresh reviewed deployment. New algorithms
+issuer migration has no external custody executor; collective exit returns actual ETH+ZZZ to holders. New algorithms
 or unsupported venues also require separately reviewed code; they are not an
 in-place upgrade. See the [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md).
 
@@ -237,12 +238,12 @@ retain their independent guards. See [scoped verification](reports/operator-cont
 | Situation | Supported path and limits | Reference |
 | --- | --- | --- |
 | **Pause and park LP** | Governance can close LP into Vault custody while globally paused, using an exact snapshot and raw output minimums. Parking omits source-price reads; resume requires fresh valuation and execution guards. Failed tokens or venues can still prevent movement. | [Custody parking](docs/CUSTODY_PARKING.md) |
-| **Move LP between local pools** | Atomic moves require the same ordered actual currencies and the governed aggregate loss floor. Different-pair or ETH/WETH conversion uses explicit trusted external custody, followed by actual funded local completion or full original-asset recovery. Moving LP alone does not relocate NFT ownership or reward ledgers. | [Move/exit procedure](docs/GOVERNED_CUSTODY_HANDOFF.md), [migration safety](docs/MIGRATION_SAFETY.md) |
+| **Move LP between local pools** | Atomic moves retain native ETH/fixed ZZZ, unchanged NFT shares and the captured maintenance floor. No different-pair or ETH/WETH custody conversion exists. | [Pool movement](docs/GOVERNED_CUSTODY_HANDOFF.md) |
 | **Review replacement NFT holders** | A confirmed owner/code inventory identifies contracts and delegated accounts requiring escrow release/claim review; rescan after freeze. Complete inventory is not migration approval. | [Holder preflight](docs/HOLDER_PREFLIGHT.md) |
-| **Replace the whole deployment on the same chain** | The handoff candidate freezes and carries NFT ownership, both reward ledgers and exact classified backing to one replacement. Retirement/activation is atomic, with a restored funded abort path before retirement. Reviewed replacement code is an accepted governance trust boundary. | [Canonical handoff](docs/CANONICAL_HANDOFF.md) |
-| **External migration or bridge** | Exit to the explicitly trusted source-chain custodian. The custodian performs external operations; this does not move NFT ownership or reward ledgers. Integrated cross-chain code is removed. | [Current release boundary](docs/SIMPLIFIED_RELEASE.md) |
+| **Replace the whole deployment on the same chain** | Canonical V5 carries ownership, reward ledgers and exact backing with atomic retirement/activation and funded abort. Available before LP exit only; terminal payout ledger is not imported. | [Canonical handoff](docs/CANONICAL_HANDOFF.md) |
+| **End LP activity and return principal** | Governance-triggered permanent shutdown pays actual proportional ETH+ZZZ to current holders. Old rewards remain claimable; NFTs keep future royalties/transfers. No external custody/bridge executor. | [Holder exit](docs/HOLDER_COLLECTIVE_EXIT.md) |
 
-**No integrated bridge is required or retained.** Local capacity reservation, guarded same-chain moves and explicit external custody remain. The [security audit plan](docs/SECURITY_AUDIT_PLAN.md) covers these cross-contract and external-dependency risks.
+**No integrated bridge is required or retained.** Local capacity reservation, guarded same-pair moves and collective holder return remain. The [security audit plan](docs/SECURITY_AUDIT_PLAN.md) covers these cross-contract and external-dependency risks.
 
 ## Keeper and operating services
 

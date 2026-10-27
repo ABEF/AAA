@@ -20,15 +20,19 @@ Value/evolution is current marked on-chain LP NAV, not historic dollars contribu
 | Prices | Two independently reviewed USD sources per priced asset,3% disagreement band; no qualified live pair yet. |
 | LP revenue | Actual fees split80%NFT LP shares/10%equal activated collective/5%compound/5%ZZZ buyback-burn. |
 | Royalties | ERC-2981 requests5%; actual eligible receipts shared100% at rarity weights1/2/3. Not universal marketplace enforcement. |
-| Custody | Holder cannot redeem principal. Immediate governance can approve external custody; return is trusted, not forced. |
+| Custody | Holder cannot redeem principal. Immediate governance can trigger collective holder return; return is trusted, not forced. |
 | Maintenance | One shared LP per admitted pool/strategy; one pool accepts contributions at a time. Reviewed keeper ranges may use ZZZ-price-in-ETH +/-25/50%; polling is not a guaranteed rebalance. |
 
-Current source profile is accounting3/governance2/fee intake1/custody2/pricing2/
-routing2/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`.
-Current Position has eight fields. Same-chain ownership/ledger handoff and
-same-actual-pair pool movement remain. External exit handles issuer exchanges
-or outside bridging; integrated bridges/creator inboxes/remote ledgers are removed.
-There is no post-seal ZZZ identity replacement or timelock operation machinery.
+Current source profile is accounting4/governance2/fee intake1/custody3/pricing2/
+routing2/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
+Current Position has eight fields and explicit Exited5. Production LP pools use
+native ETH/fixed ZZZ only. Same-pair moves, parking and pre-exit same-chain
+handoff remain. External principal/royalty custody exits, all-ZZZ exit conversion,
+recovery ingress and arbitrary handoff recipients are removed. Exit includes
+pending compound, preserves earned rewards and future royalties, and permanently
+blocks reopening LP or canonical replacement. See
+[holder exit](docs/HOLDER_COLLECTIVE_EXIT.md). Existing Anvil and accounting3
+poplint remain unchanged; their evidence does not qualify accounting4.
 
 The user is the single human operator and controls the governance wallet as well
 as project services. There is no separate operator authority or committee.
@@ -52,13 +56,13 @@ and past owners. Ready to claim is remaining funded balances, and lifetime claim
 is actual payouts. Claims/conversions/imports are not new income; reserves are not
 NFT funds. USD history uses today's confirmed prices of original earned currencies.
 Pending royalties may be claimable before processed history. Retired royalty receivers forward only already admitted
-currencies; unknown new ERC20 receipts have no rescue path. Raw principal exit
-does not override that separate royalty boundary. Authentic complete
+currencies; unknown new ERC20 receipts have no rescue path. Collective principal return does not
+override that separate royalty admission boundary. Authentic complete
 logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Latest published functional checkpoint: contract
+Earlier accounting3 integration checkpoint: contract
 [8be0f89](https://github.com/ABEF/AAA/commit/8be0f89fd982253ddae7bef2ebfc36b497d836b1)
 and website main77501ce. Poplint servesf23c559; the unchanged demo serves9be6d1.
 Subsequent handoff/documentation commits do not deploy new artifacts. Next
@@ -66,6 +70,8 @@ session should start from the [resume instructions](docs/WORK_HANDOFF.md),
 current fork witness and remaining actual feed/route/API qualification, without
 repeating unchanged suites. Poplint's unconfigured page is expected until real
 reviewed bindings exist; do not replace it with demo or historical Anvil data.
+
+The current holder-return candidate has [scoped verification](reports/holder-collective-exit-20261027/VERIFICATION.md):133distinct affected Solidity methods,37normal object gates and exact EVM/compiler source bindings. Profile4/backend/keeper delivery checks pass with documented historical fixture repairs/platform skip. New source remains undeployed and requires actual release qualification. Optional post-close keeper allocation/direct delivery is implemented but disabled; governance alone starts/closes LP, and successful delivery requires no holder action. NFT runtime has176bytes of headroom. Existing served sites/Anvil/journals/services remain unchanged.
 
 Last backend/keeper security publication [2a9c65b](https://github.com/ABEF/AAA/commit/2a9c65bf2d4dc27cc4eb16a8ba8b629f07f2f22b): [review](reports/system-adversarial-20261026/REVIEW.md),
 [coverage](reports/system-adversarial-20261026/COVERAGE.md) and

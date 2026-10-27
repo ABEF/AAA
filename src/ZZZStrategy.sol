@@ -125,7 +125,7 @@ contract ZZZStrategy is ZZZModule {
         if (next != 0) { c.rangeBps = next; _range(c,ref); }
     }
     /// @notice Keeper supplies a pool only; the reviewed on-chain rule chooses width.
-    function applyKeeperRange(bytes32 poolId) external onlyKeeper live operating returns(uint16 next) {
+    function applyKeeperRange(bytes32 poolId) external onlyKeeper live operating principalOperating returns(uint16 next) {
         next = keeperRangeTarget(poolId);
         if (next == 0) revert InvalidState();
         uint16 previous = IZZZPools(access.module(Ids.POOLS)).get(poolId).rangeBps;

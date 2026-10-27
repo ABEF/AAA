@@ -30,13 +30,13 @@ before changing behavior. This file contains current instructions, not a timelin
 
 ## Current architecture and rules
 
-- Fresh candidate: accounting3, direct governance2, fee intake1, custody2,
-  pricing2, routing2, reviewed Entry1 and local canonical V4. See
-  [exact profile](docs/POSITION_V3.md) and [inventory](docs/PRODUCTION_PREFLIGHT.md).
+- Fresh candidate: accounting4, direct governance2, fee intake1, custody3,
+  pricing2, routing2, reviewed Entry1 and local canonical V5. See
+  [exact profile](docs/POSITION_V4.md) and [inventory](docs/PRODUCTION_PREFLIGHT.md).
   No automatic historical profile/journal migration or dummy module bindings.
 - One fixed deployment ZZZ token and native ETH are the only contribution inputs.
-  Buyback and normal exit use that same ZZZ. Token identity is not replaceable
-  after seal; issuer migration uses custody exit and a fresh reviewed deployment.
+  Buyback and collective holder return use that same ZZZ. Token identity is not
+  replaceable after seal. Issuer/chain migration has no external custody executor.
   Marketplace royalty currencies and optional conversion routes are separate.
 - Activation minimum $100; growth minimum $5, subject to stronger pool minima.
   Two independently reviewed USD sources per priced asset; agreement tolerance
@@ -53,11 +53,15 @@ before changing behavior. This file contains current instructions, not a timelin
   actual dependency/fee/route qualification remains required.
 - No creator-payment inboxes, integrated bridges, remote-proof intake or remote
   ownership/reward ledgers in current contracts. Retain compatible same-chain
-  handoff, same-pair pool moves, parking and governed external custody.
-- Governance acts directly, with no timelock scheduler/executor. Normal custody
-  exit converts to fixed ZZZ under approved limits; explicit raw exit sends actual
-  ETH/ZZZ without swaps or an aggregate loss promise. External custody is trusted;
-  the source cannot force return. Exit does not migrate canonical NFT/reward rights.
+  handoff before LP exit, same-native-pair pool moves and parking. No external
+  principal or royalty custody-address exit remains. All production LP pools are ETH/ZZZ.
+- Governance acts directly, without timelock machinery. A paused collective exit
+  permanently stops new principal/mint activity, closes all ETH/ZZZ buckets and
+  allocates actual principal plus pending compound by NFT shares. Bounded direct
+  payouts go only to current owners, with owner fallback for rejecting receivers.
+  NFTs retain transfers/future royalties/old reward claims. Buyback and reward
+  liabilities stay separate; no external recipient, swap exit or sweep exists.
+  Post-exit canonical replacement is blocked; see the holder-exit runbook.
 - One human operator (the user) controls governance and operates the services;
   operator and governance are not separate people or approval roles. Keep the
   automated keeper's limited key/capability distinct from governance. No extra

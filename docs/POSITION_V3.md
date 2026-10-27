@@ -1,5 +1,9 @@
 # Local Position and direct governance profile
 
+Historical accounting3 codec. Fresh source uses [accounting4](POSITION_V4.md);
+never relabel existing deployments or journals.
+
+
 The undeployed candidate uses `ACCOUNTING_VERSION() == 3`,
 `GOVERNANCE_VERSION() == 2` and canonical schema
 `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. Routing/pricing remain 2,

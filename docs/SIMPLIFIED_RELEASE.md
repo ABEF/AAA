@@ -1,103 +1,72 @@
 # Simplified release boundary
 
-The current candidate accepts **native ETH or the explicitly reviewed ZZZ token**
-for activation and growing attached LP. No stablecoin or WETH user input is
-admitted. The ZZZ identity is bound once before sealing. An issuer token migration uses
-custody exit and a fresh deployment; ordinary asset admission cannot enable a
-third contribution currency. This is separate from pool accounting and marketplace royalty currencies.
+The fresh undeployed [accounting4/custody3 profile](POSITION_V4.md) accepts only
+native ETH and one fixed ZZZ for contributions and LP custody. It replaces
+external custody exits with [collective principal return to NFT holders](HOLDER_COLLECTIVE_EXIT.md).
+Production is **NOT APPROVED**; existing deployments and journals are unchanged.
 
 ## Kept, removed and why
 
 | Component | Current purpose |
 | --- | --- |
-| Vault, Liquidity and Strategy | Shared LP custody, actual placement, harvesting, approved range management and guarded maintenance. |
-| Fees and Rewards | Allocate physically received local LP fees at 80/10/5/5, preserving each NFT's earned rights and equal collective membership. |
-| NFT royalty receiver and ledger | Account for royalties actually received, including admitted non-ETH marketplace settlement currencies and their guarded ETH conversion. This feature remains. |
-| Migration | Same-chain pool movement, parked custody, explicitly approved normal/raw exit to the chosen external custodian, exact funded return and local redeployment. |
-| Canonical handoff | Same-chain replacement of NFT ownership, shares, reward ledgers and exact backing, with one active deployment and funded abort. |
-| Creator-payment inboxes | Removed. The selected hookless pool supplies actual LP fees directly; there is no creator-payment agreement or inbox service to operate. |
-| Integrated bridge and remote fee accounting | Removed. The custodian may perform an external token migration or bridge outside PoPL. This does not migrate canonical NFT ownership or create verified remote LP value. |
-| Legacy always-reverting functions | Removed from the callable ABI; old selectors reject rather than expose a misleading operation. |
+| Vault / Liquidity / Strategy | Shared native ETH/ZZZ LP, per-NFT shares, actual placement/harvest and constrained range maintenance. |
+| Fees / Rewards / Membership | Actual80/10/5/5 fee allocation, share-weighted individual and equal activated collective rights; separate compound/buyback reserves. |
+| NFT / royalty ledger / converters | Fixed trait draw, transferable ownership and separate rarity-weighted actual royalties, including admitted currencies and guarded conversion. Future royalties continue after LP exit. |
+| Migration / parking helper | Same-pair pool moves and reversible parking before exit, or irreversible collective close/apportion/direct holder payout. No arbitrary recipient. |
+| Canonical handoff | Same-chain ownership/accounting/backing replacement with funded abort, only before collective LP exit. |
+| External principal and royalty custody exits | Removed, including all-ZZZ consolidation, chosen custody recipients, return/completion ingress and royalty drains. |
+| Generic ERC20 LP pools | Removed from production admission so every funded bucket can return ETH+ZZZ. Separate ERC20 conversion venues/royalty currencies remain. |
+| Creator inboxes, bridges and remote ledgers | Removed; the hookless LP earns actual venue fees directly. No remote transport, synthetic LP or bridge operator is configured. |
 
-Keeping separate ledgers and bounded companions serves custody and bytecode
-limits. Combining them solely to reduce the contract count would not simplify
-economic verification. Historical readers and old event decoders remain because
-removing old income or transaction history would corrupt recovery and reporting.
+Separate ledgers and bounded helpers preserve economic domains and deployment
+size. Historical codecs/event readers remain where needed to inspect real old
+state; they do not re-enable removed current selectors. Earlier
+[cleanup](../reports/obsolete-code-20261025/REVIEW.md) and
+[Position3](POSITION_V3.md) evidence retains its recorded scope.
 
-## Residual cleanup
+## Authority and configuration
 
-The [follow-up review](../reports/obsolete-code-20261025/REVIEW.md) removes unused
-Registry wrapper-review records, creator-payment measurement tooling and orphaned
-internal declarations. Converter-specific wrapping checks remain active. New
-Registry storage is for a fresh deployment only; existing Anvil code/journals
-retain their original layouts. That earlier follow-up retained its recorded
-profile. The subsequent [Position3 cleanup](POSITION_V3.md) changes the fresh
-deployment ABI/storage and V4 schema while preserving economic rights; old
-local runtimes are not upgraded by this source change.
+The selected governance wallet calls modules directly. There is no timelock,
+scheduler or generic executor. Governance replacement is proposal/acceptance;
+sealing fixes modules and erases bootstrap. The sole human operator may control
+all project accounts, but the automated keeper key retains limited authority.
 
-## Direct governance
+Before sealing, bind the same reviewed ZZZ in source assets, Buyback and
+Migration. After sealing, supported source/route/feed/range/role settings remain
+configurable within guards; ZZZ identity and80/10/5/5 do not. Defaults remain
+contribution2%, conversion1%, maintenance3%, each bounded at10%, gas separate.
+Use [post-seal policy](POST_SEAL_POLICY.md) and the [operator manual](OPERATOR_MANUAL.md).
 
-After sealing, the selected governance wallet calls approved module functions
-directly. Access has no timelock scheduler, proposer/executor/canceller roles or
-generic execution function. Its own multisig policy supplies signatures/nonces.
-Governance replacement is two-step (`proposeGovernance` / `acceptGovernance`);
-sealing permanently removes bootstrap and fixes module bindings. Guardian pause
-and keeper maintenance remain separate powers.
+## Choosing the action
 
-## Operator changes
-
-1. Configure the reviewed ZZZ identity in `PoolRegistry.activationAssets()` with
-   `configureZZZ(token, codeHash, reviewHash)` once before sealing, using actual
-   token/runtime and dual-price evidence. Rebinding is rejected.
-   Native ETH uses its explicit native identity. Disable/re-enable these two
-   inputs through their append-only source policies. Deploy/bind immutable Buyback with the same ZZZ before calling
-   `Migration.configureZZZ`; this one-time binding validates both identities.
-   Configure the source before any pool admission and before sealing; seal rejects unset/mismatched bindings.
-   Changing the token identity
-   requires custody exit and a fresh deployment.
-2. Keep contribution, conversion and maintenance defaults at **2%, 1% and 3%**,
-   respectively; governance maxima remain 10%, with gas separate. A smaller
-   caller maximum still applies. No silent loss-cap widening or sweep is added.
-3. Use `Migration.moveFunds` for a supported same-chain, same-ordered-pair pool
-   move. Review and select the contribution pool separately. ETH and WETH remain
-   distinct assets; a different pair requires the trusted custody workflow.
-4. For custody exit, pause, review parking, capture the stable source snapshot,
-   approve the exact local request and execute `exit`. Ordinary exit converts to
-   reviewed ZZZ under its budget; explicit raw exit performs no swap and uses raw
-   minima. Failure never automatically downgrades normal exit to raw exit.
-5. Use `recover(id, deadline)` to return **all actually sent assets**, or the
-   reviewed local completion path to deploy funded assets. An externally bridged
-   balance is outside PoPL custody and is not reported as redeemable remote LP.
-   There is no built-in finality verifier, remote completion or bridge operator.
-6. No creator-inbox synchronization exists. LP harvesting, compounding,
-   buyback and royalty conversion remain separate bounded keeper jobs.
-
-A fresh deployment does not automatically move existing NFTs or erase earned
-rewards. Preserve ownership, shares and both ledgers through the reviewed funded
-same-chain handoff when replacing an existing collection; resolve outstanding
-custody first. External exit alone is not collection migration or a reset.
+1. To change fee tier while keeping LP active, admit the reviewed native ETH/ZZZ
+   destination, use `Migration.moveFunds`, verify actual destination LP and
+   deliberately switch contributions/routes. Shares and accrued rewards remain.
+2. To wait through an outage, use exact approved paused parking. Principal stays
+   attributed inside Vault; resuming requires fresh same-pair execution guards.
+3. To permanently stop LP, use `beginCollectiveExit`, close all buckets, allocate
+   1-32 ordinals per call and distribute 1-32 NFTs per call. The operator pays
+   current holders automatically; rejected recipients retain an owner fallback.
+4. Pending compound joins returned principal. Earned LP rewards, royalties and
+   the designated buyback reserve remain separate. No reset/sweep erases them.
+5. NFTs remain transferable and royalty-eligible; LP earnings end at closing.
+   Unpause cannot reopen LP, minting or canonical replacement after exit starts.
+6. An issuer token exchange or new chain is no longer an operator-custody path.
+   Holders receive actual old ETH/ZZZ; a new token/project requires fresh review
+   and does not automatically import the old collection or its rights.
 
 ## Explicit compatibility boundary
 
-Current profiles require explicit `accounting_version: 3`,
-`Vault.ACCOUNTING_VERSION() == 3`, `AccessController.GOVERNANCE_VERSION() == 2`,
-`fee_intake_version: 1`, `Fees.FEE_INTAKE_VERSION() == 1`,
-`Migration.CUSTODY_VERSION() == 2`, and canonical schema
-`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. There are 15 current inventory helpers, including the fixed noncustodial source-policy factory;
-the deleted reward-receiver factory is not a zero-address placeholder.
+The source requires accounting4, custody3, governance2, fee intake1, pricing2,
+routing2, reviewed Entry1 and canonical
+`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Position remains eight words; statuses
+are None0, Active1, reserved Outbound2, Dormant3, Parked4, Exited5. Canonical group
+rows retain twelve words; V5 peers must match exactly and cannot hand off after
+LP exit because that importer does not carry terminal principal liabilities.
 
-The Position is eight words with None0/Active1/Outbound2/Dormant3/Parked4.
-The canonical Vault group row is twelve words; it has no remote home/location
-fields. Older Position1/2 codecs remain read-only historical profiles, not V4
-importers or upgrade paths.
-
-The fee header is two words and each fee bucket row four words. Old inbox/remote
-rows cannot be imported under this schema. Old local deployments, journals and
-source-bound evidence retain their original profile. Absence/zero fee profile
-means historical inspection, never current release qualification. No running
-deployment is upgraded or reset by these source changes.
-
-Read the [operator manual](OPERATOR_MANUAL.md), [callable reference](CONTRACT_FUNCTIONS.md)
-and [audit scope](../reports/simplification-20261025/REVIEW.md). Public signing,
-real dependencies, OpenSea qualification, operating rehearsals and independent
-release approval remain open. This candidate is not approved for real funds.
+No automatic historical profile migration exists. Old Anvil deployments,
+nonces/journals, published website artifacts and historical verification keep
+their original identities. Read the [function reference](CONTRACT_FUNCTIONS.md),
+[feature evidence](IMPLEMENTATION_STATUS.md) and [sole Todo](../TODO.md) for actual
+implementation/verification and remaining release work. No public deployment,
+transaction, signing extension or service rollout is authorized by this document.

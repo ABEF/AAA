@@ -30,6 +30,9 @@ contract MetadataVaultMock {
     function mint(address owner, uint256 id) external { nft.mint(owner, id); }
     function setPosition(Position memory candidate) external { position = candidate; }
     function group(uint256) external view returns (Position memory) { return position; }
+    function nftStatus(uint256 id) external view returns (PositionStatus) {
+        return nftBucket[id] == 0 ? PositionStatus.Dormant : position.status;
+    }
     function contribute(uint256 id, uint256 shares, uint256 supply) external {
         nftBucket[id] = 1; sharesOf[id] = shares; bucketTotalShares[1] = supply;
         nft.notifyContribution(id);
@@ -113,6 +116,22 @@ contract NFTMetadataTest is Test {
         vm.prank(ALICE);nft.transferFrom(ALICE,BOB,444);assertEq(nft.ownerOf(444),BOB);
         pricePolicy.setFail(false);(available,value)=nft.currentLPValue(444);
         assertTrue(available);assertEq(value,2000e18);
+    }
+
+    function testExitedPrincipalIsExplicitZeroWithoutPricesAndKeepsRoyaltyRights() public {
+        _active(444, 0, 0);
+        home.status = PositionStatus.Exited; home.lpTokenId = 0;
+        vault.setPosition(home); pricePolicy.setFail(true); venue.setFail(true);
+        (bool available, uint256 value) = nft.currentLPValue(444);
+        assertTrue(available); assertEq(value, 0); _stage(444, 4);
+        string memory json = _json(444);
+        assertTrue(vm.parseJsonBool(json, ".lp_exited"));
+        assertEq(_stringAttribute(json, "Evolution"), "LP exited");
+        assertTrue(vm.parseJsonBool(json, ".royalty_activated"));
+        assertEq(vm.parseJsonString(json, ".lp_value_usd_18"), "0");
+        assertEq(nft.royaltyRewards().weightOf(444), 1);
+        vm.prank(ALICE); nft.transferFrom(ALICE, BOB, 444);
+        assertEq(nft.ownerOf(444), BOB); assertEq(nft.royaltyRewards().weightOf(444), 1);
     }
 
     function testMintRequiresFixedVRFAndRollbackLeavesNoRequest() public {

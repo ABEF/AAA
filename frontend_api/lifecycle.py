@@ -48,7 +48,16 @@ def read_lifecycle(p, block):
         raise ProjectionError('Original deployment has unexpected identity origin')
 
     operating = state == 0
-    return {
+    lp_exit = False
+    lp_phase = 0
+    if p.accounting_version == 4:
+        lp_exit = _bool(p._call(access, 'lpExitStarted()', block=block)[0])
+        lp_phase = p._uint('principal_exit', 'exitPhase()', block=block)
+        if lp_phase > 3 or lp_exit != bool(lp_phase):
+            raise ProjectionError('Collective exit phase differs from its irreversible lock')
+        if lp_exit and (not operating or preparation):
+            raise ProjectionError('Collective LP exit conflicts with canonical handoff')
+    result = {
         'state': STATES[state], 'state_code': state,
         'handoff_phase': PHASES[phase], 'preparation_active': preparation, 'paused': paused,
         # An inert importer initially holds its constructor's own identity,
@@ -64,7 +73,12 @@ def read_lifecycle(p, block):
         'peer_deployments_verified': False,
         'claims_available_by_lifecycle': operating,
         'transfers_available_by_lifecycle': operating,
-        'new_economic_work_available_by_lifecycle': operating and not preparation and not paused,
+        'new_economic_work_available_by_lifecycle': operating and not preparation and not paused and not lp_exit,
         'scope': 'Confirmed same-chain lifecycle only. Flags are lifecycle permissions, not execution guarantees. '
                  'Peer addresses are source commitments; no peer code or cross-chain finality is verified.',
     }
+    if p.accounting_version == 4:
+        result['lp_exit_started'] = lp_exit
+        result['lp_exit_phase_code'] = lp_phase
+        result['lp_exit_phase'] = ('operating', 'closing', 'allocating', 'ready')[lp_phase]
+    return result

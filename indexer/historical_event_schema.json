@@ -104,6 +104,32 @@
     "name": "RemoteAccountingImported",
     "signature": "RemoteAccountingImported(uint256,address,uint256,uint256,bool)"
   },
+  "0x1f9419d9541ced6d1dc665bb98795f8032ace8a40b7c0d91715ea72fb37f56cc": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "handoffId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalExited",
+    "signature": "PrincipalExited(uint256,bytes32,uint256,uint256)"
+  },
   "0x1f9a280b429e275456caba36ae05580d4846000396d10ea85b8a4f756f22df8a": {
     "fields": [
       {
@@ -177,6 +203,27 @@
     "name": "LocationConfirmed",
     "signature": "LocationConfirmed(uint256,uint256,address)"
   },
+  "0x2f4e1bc8891173724266b2249bc625d5f1e3569d2d8c4ae47c5c6e6db26a379e": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "lpTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "CustodyCompleted",
+    "signature": "CustodyCompleted(bytes32,uint256,uint256)"
+  },
   "0x35f2c394d2dc25fafb1b477d5744e3903afd28415142c68afc549eca0193181c": {
     "fields": [
       {
@@ -239,6 +286,32 @@
     ],
     "name": "ExternalRewardsFunded",
     "signature": "ExternalRewardsFunded(uint256,address,uint256)"
+  },
+  "0x541d2af57c89150ea20c0c7b30bd53aa85503de2b8bfae8f5d2cf585df10303d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "previousRequest",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "newRequest",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "destinationPool",
+        "type": "bytes32"
+      }
+    ],
+    "name": "DestinationBound",
+    "signature": "DestinationBound(bytes32,bytes32,bytes32,bytes32)"
   },
   "0x573ecbd82bb44aa34b4cfe9a63c5beccf84cfbdbe01028c886f25d5c3183e725": {
     "fields": [
@@ -345,6 +418,63 @@
     "name": "CustodyApproved",
     "signature": "CustodyApproved(bytes32,uint256,address,uint256)"
   },
+  "0x74c86b4771882a858100c05cb152701493afca53ac4f8af8a3abd03cd3b5fdd0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "token0",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "token1",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "rawExit",
+        "type": "bool"
+      }
+    ],
+    "name": "CustodyAssetsSent",
+    "signature": "CustodyAssetsSent(bytes32,address,uint256,address,uint256,bool)"
+  },
+  "0x750bec14b00588affd885c4d2d63b5f94b25436ffecad5bfe4b3a71ba50e164b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltyCustodyReturned",
+    "signature": "RoyaltyCustodyReturned(bytes32,address,uint256)"
+  },
   "0x7ba23be9189f8ae1184a411b958e9993e217a63818ceefdb0fccfbc4456b5edf": {
     "fields": [
       {
@@ -370,6 +500,37 @@
     ],
     "name": "Sent",
     "signature": "Sent(bytes32,bytes32,uint256,uint8)"
+  },
+  "0x83e5ec060c98f40f146ea90000e56e8b9728caced63c545598e844cd036d8777": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RoyaltyCustodyExited",
+    "signature": "RoyaltyCustodyExited(bytes32,address,address,uint256,bytes32)"
   },
   "0x906e5c2a5da54d2af5a8c402c4a9035d97a3742b44a5e391da95d561a84bf7a6": {
     "fields": [
@@ -433,6 +594,17 @@
     ],
     "name": "CustodyRemoteVerified",
     "signature": "CustodyRemoteVerified(bytes32,bytes32)"
+  },
+  "0xa01c9086afe07a794ba190ad8a40ec1f62e395273c75e0ae7278ddf079f31c71": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      }
+    ],
+    "name": "CustodyCancelled",
+    "signature": "CustodyCancelled(bytes32)"
   },
   "0xa8456eb5cd823feca8f5635ef5c39ef504d80aba38683292cc84b8913924a8bb": {
     "fields": [
@@ -596,6 +768,32 @@
     "name": "BuybackTargetChanged",
     "signature": "BuybackTargetChanged(address,address,bytes32)"
   },
+  "0xd1d97bcb9d35b49bde445ee9a275adba90e46d9941fe4ec565b0dc7b5700c46c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CustodySent",
+    "signature": "CustodySent(bytes32,uint256,address,uint256)"
+  },
   "0xd99b076a34941b2d36ccab51cfc066547e4fcb8750f0451a2c58806038b56c1d": {
     "fields": [
       {
@@ -689,6 +887,74 @@
     ],
     "name": "RouteTransportBound",
     "signature": "RouteTransportBound(bytes32,bytes32)"
+  },
+  "0xf2c1b7aa697c2640f4e119e61e2dd6f4a345faeae93d020d34f2d8f23229f7cb": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "lpTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "deployed",
+        "type": "bool"
+      }
+    ],
+    "name": "PrincipalReturned",
+    "signature": "PrincipalReturned(uint256,uint256,bool)"
+  },
+  "0xf3ad8d7f3eed8b3d3483d448c73239c4d90dc4952650619674daa28fd44830f0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CustodyRecovered",
+    "signature": "CustodyRecovered(bytes32,uint256,uint256)"
+  },
+  "0xf5a85f6bd22231f5f3fc3492eb53e86cafdea16c71ca2726359e7a885ba87d0a": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationCustody",
+        "type": "address"
+      }
+    ],
+    "name": "CustodyApproved",
+    "signature": "CustodyApproved(bytes32,uint256,address,address)"
   },
   "0xfa52367867acff4a12c8d11f2c1e1eee45f2d0be3b36d754b7a70241df84bace": {
     "fields": [

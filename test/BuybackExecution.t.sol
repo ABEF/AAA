@@ -14,7 +14,8 @@ import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+// TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
+import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";

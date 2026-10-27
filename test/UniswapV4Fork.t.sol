@@ -14,7 +14,8 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+// TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
+import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";

@@ -14,6 +14,7 @@ abstract contract ZZZModule {
     error Expired();
     error Preparing();
     error CanonicalLocked();
+    error LPExitLocked();
     constructor(address controller) {
         if (controller.code.length == 0) revert InvalidConfiguration();
         access = IZZZAccess(controller);
@@ -53,6 +54,14 @@ abstract contract ZZZModule {
     function _checkOperating() internal view {
         if (access.preparationActive()) revert Preparing();
         _checkAccounting();
+    }
+    /// @dev Collective principal exit is terminal, independently of pause and
+    /// canonical ownership. Check after callbacks so retirement cannot begin
+    /// inside an otherwise valid contribution or maintenance operation.
+    modifier principalOperating() {
+        if (access.lpExitStarted()) revert LPExitLocked();
+        _;
+        if (access.lpExitStarted()) revert LPExitLocked();
     }
     modifier onlyHandoff() {
         if (msg.sender != access.canonicalHandoff()) revert Unauthorized();

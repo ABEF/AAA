@@ -238,14 +238,6 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     function validateUnwind(uint256 id) external view onlyVault {
         IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault).group(id).poolId);
     }
-    function validateRelease(uint256 id) external view onlyVault {
-        Position memory p = IZZZVault(vault).group(id);
-        if (p.status != PositionStatus.Parked || p.lpTokenId != 0) revert InvalidState();
-    }
-    function validateHandoff(uint256 id) external view onlyVault {
-        Position memory p = IZZZVault(vault).group(id);
-        if (p.status != PositionStatus.Outbound || p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0) revert InvalidState();
-    }
     function validateRebalance(uint256 id, uint128 minimumLiquidity) external view onlyVault {
         if (minimumLiquidity == 0 || !IZZZStrategy(access.module(Ids.STRATEGY)).needsRebalance(id)) revert InvalidState();
     }
@@ -258,30 +250,6 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     function assertIdleLoss(uint256 id, uint256 beforeValue) external view onlyVault {
         uint16 slippage = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId).maxSlippageBps;
         if (beforeValue == 0 || idleValue(id) < Math.mulDiv(beforeValue, 10000 - slippage, 10000)) revert Slippage();
-    }
-    /// @notice The end-to-end custody minimum cannot weaken a swap's own floor.
-    /// A looser overall request is tightened here, not passed to an adapter that
-    /// must reject it. This never relaxes the original approved Migration budget.
-    function _handoffMinimum(uint256 id,address input,address output,uint256 amount,uint256 requested)
-        private view returns(uint256) {
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId);
-        uint256 floor = Math.mulDiv(IZZZOracle(access.module(Ids.ORACLE)).quote(input,output,amount),
-            10000-c.maxSlippageBps,10000);
-        return Math.max(requested,floor);
-    }
-    struct HandoffSwap { bool direction; address input; uint256 amount; uint256 held; uint256 minimum; }
-    /// @dev Read-only extraction; custody, approval and exact sends stay in Vault.
-    function handoffPlan(uint256 id,address zzz,uint256 minimumZZZ) external view onlyVault returns(HandoffSwap memory plan) {
-        Position memory p = IZZZVault(vault).group(id);
-        if (!access.paused() || p.status != PositionStatus.Parked || p.lpTokenId != 0) revert InvalidState();
-        (address t0,address t1) = poolTokens(p.poolId);
-        if (zzz == address(0) || (zzz != t0 && zzz != t1)) revert InvalidConfiguration();
-        plan.direction = zzz == t1;
-        plan.input = plan.direction ? t0 : t1;
-        plan.amount = plan.direction ? p.idle0 : p.idle1;
-        plan.held = plan.direction ? p.idle1 : p.idle0;
-        if (plan.amount != 0) plan.minimum = _handoffMinimum(id,plan.input,zzz,plan.amount,
-            minimumZZZ > plan.held ? minimumZZZ-plan.held : 1);
     }
     function validateContribution(uint256 id, uint256 bucket, uint256 inputUSD, uint256 inputTotal,
         uint128 minimumLiquidity, bool activation) external onlyVault returns (address token0, address token1, uint32 limits) {

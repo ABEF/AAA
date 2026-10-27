@@ -244,7 +244,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         vm.prank(ALICE); entry.executeReviewed(request,200);
         assertEq(IERC20(ZZZ).allowance(ALICE,address(entry)),0);
         assertEq(IERC20(ZZZ).allowance(address(entry),address(s.vault)),0);
-        assertEq(s.vault.ACCOUNTING_VERSION(),3); assertEq(s.vault.bucketCount(),1);
+        assertEq(s.vault.ACCOUNTING_VERSION(),4); assertEq(s.vault.bucketCount(),1);
         assertEq(s.vault.nftBucket(b),bucket); assertEq(s.vault.group(bucket).lpTokenId,lp);
         assertGt(positions.getPositionLiquidity(lp),oldLiquidity); assertGt(s.vault.sharesOf(a),shares);
         assertEq(positions.ownerOf(lp),address(s.vault)); assertEq(s.membership.totalEligible(),2);

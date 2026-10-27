@@ -1,5 +1,15 @@
 # Feature and evidence reference
 
+Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
+[Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
+and royalty custody exits. Governance permanently ends LP and pays actual
+ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
+No external recipient/bridge/return ingress remains. Whole-collection handoff
+is available only before exit. Earlier source-scoped evidence and accounting3
+service/inventory/website qualification remain historical to their original pins.
+See [profile4](POSITION_V4.md); new release qualification remains open.
+
+
 Reviewed 2026-10-27. This describes capabilities and evidence, not a second Todo.
 Use [the single task list](../TODO.md) for status, [operator manual](OPERATOR_MANUAL.md)
 for procedures, [component map](COMPONENT_STATUS.md) for code boundaries and
@@ -7,11 +17,11 @@ for procedures, [component map](COMPONENT_STATUS.md) for code boundaries and
 
 ## Current profile
 
-Fresh source uses accounting3/direct governance2/fee intake1/custody2/pricing2/
-routing2/reviewed Entry1 and canonical `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`.
-There is one fixed ZZZ identity and native ETH contribution input, not stablecoin
-admission, WETH principal accounting, creator inboxes or integrated bridges.
-Historical readers remain explicit; existing deployments/journals are unchanged.
+Fresh source uses accounting4/direct governance2/fee intake1/custody3/pricing2/
+routing2/reviewed Entry1 and canonical
+`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Eight Position words remain; Exited5
+is a terminal local status. Historical1/2/3 deployments/readers/journals retain
+original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLECTIVE_EXIT.md).
 
 ## Smart contracts
 
@@ -26,8 +36,8 @@ Historical readers remain explicit; existing deployments/journals are unchanged.
 | Royalties and claims | ERC-2981 requests5%;100%actual eligible royalties use rarity1/2/3, separate from LP. Outage isolation protects old cohorts. Current owner claims; unclaimed balances/fractions follow NFT. Bounded ClaimRouter and separate source-to-ETH converters preserve attribution. | [Settlement](ROYALTY_SETTLEMENT.md), [ClaimRouter](CLAIM_ROUTER.md), [LP settlement](LP_ETH_SETTLEMENT.md) |
 | Maintenance | Shared-position rebalance/compound, bounded two-pass placement and attributed idle reinvestment. Reviewed optional keeper widths +/-25/50% in ZZZ price in ETH; cooldown/price/venue/captured aggregate guards. | [Ranges](RANGE_POLICY_UPDATES.md), [idle](IDLE_AND_DUST.md), [loss limits](EXECUTION_LOSS_POLICY.md) |
 | Governance and containment | One human operator controls the direct governance wallet and services; no separate operator role or multi-person committee. Two-step wallet replacement, guardian pause and limited keeper capabilities remain; no timelock queue/executor. Sealing fixes module/token bindings. Mint-only pause and dependency-free pool disable are implemented. | [Governance](GOVERNANCE.md), [post-seal controls](POST_SEAL_POLICY.md) |
-| Movement and external exit | Same-actual-pair local pool move, paused parking, approved normal fixed-ZZZ exit or explicit raw actual-asset exit. Trusted recipient, exact funded recovery/local completion; no generic sweep, remote proof or forced return. | [Custody handoff](GOVERNED_CUSTODY_HANDOFF.md), [recovery matrix](CHANGE_AND_RECOVERY.md) |
-| Collection replacement | Same-chain localV4 handoff freezes/transfers complete NFT/ledger/backing state to one replacement with funded abort. Existing draws must finish. External custody alone does not relocate these rights; future-chain transport is excluded. | [Canonical handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
+| Movement and collective return | Native ETH/fixedZZZ same-pair moves/parking before exit; governance may irreversibly close all LP and allocate actual ETH+ZZZ by shares. Isolated direct batches pay current owners; owner fallback handles rejected transfers. No external custody recipient or royalty drain. Pending compound joins principal; rewards/buyback remain separate. | [Holder exit](HOLDER_COLLECTIVE_EXIT.md), [scoped review](../reports/holder-collective-exit-20261027/REVIEW.md) |
+| Collection replacement | Same-chain canonical V5 carries ownership/ledgers/backing with funded abort only before collective exit. Terminal payout ledger is not imported; post-exit preparation/replacement stays blocked even after all principal is paid. | [Canonical handoff](CANONICAL_HANDOFF.md) |
 
 Defaults remain2%contribution/1%conversion/3%maintenance, governance ceilings10%,
 gas separate and stronger caller/venue minima retained. Raw exit has explicit raw
@@ -38,13 +48,13 @@ safe by a documentation claim or simulated example.
 
 | Capability | Implemented behavior and boundary | Reference |
 | --- | --- | --- |
-| Confirmed read API | Runtime/module/canonical/owner/physical LP/share checks at a confirmed block. Native ETH inventory and both claim ledgers required; impossible inactive rewards reject. Missing values stay unavailable. | [API](FRONTEND_API.md), [collection reads](COLLECTION_READS.md), [lifecycle](FRONTEND_LIFECYCLE.md) |
+| Confirmed read API | Explicit accounting4/custody3/V5 pins, irreversible flag and phase, known-zero Exited LP and retained royalty eligibility. Principal return is a separate exact ETH/ZZZ allocation/paid view; it is not earnings. Historical1/2/3 remain separate. | [API](FRONTEND_API.md), [principal reader](../frontend_api/principal_return.py) |
 | Earnings and claims history | NFT/collection/current-holdings24h/all-time processed earnings, separate LP/collective/royalties and lifetime claims through verified same-chain epochs. Today's original-currency prices; claims/conversions/imports not new income. | [Earnings](EARNINGS_HISTORY.md), [lineage](FRONTEND_LINEAGE.md), [royalty reporting](ROYALTY_REPORTING.md) |
 | Fee-integrity reconciliation | Current fee1 verifies actual module version, exact funded-credit/allocation pairs and pinned observed-key dust. Malformed summary data rejects; genuine outages null affected metrics. Authentic full logs/timestamps remain necessary. | [Latest fixes](../reports/backend-remediation-20261026/REVIEW.md) |
 | Unsigned transaction preparation | Complete Entry simulation/newLP/caller cap checks, exact approval step, expiry and separate gas. Bounded current3 claims reject contradictory inactive balances/malformed activation data before a wallet draft. Parked/outbound and optional-currency deferral rights remain. Opt-in direct-mint drafts exist; production/website mint gates reject unsupported OpenSea integration, while the preparer itself is not a universal public-mint block. No user signer in API. | [Activation preparation](ACTIVATION_PREPARATION.md), [transactions](FRONTEND_TRANSACTIONS.md) |
 | Request and index resilience | Strict RPC chain quantities/unique finite JSON/exclusive envelopes and sanitized bounded parser-failure failover; per-client admission, finite supervised workers/deadlines/RPC budgets; anchored SQLite replay/reorg handling and independent-provider history-window audit. Real hosting/capacity qualification remains open. | [Ingress](API_INGRESS.md), [concurrency](CONCURRENT_SERVICES.md), [index recovery](INDEXER_RECOVERY.md), [history audit](HISTORY_AUDIT.md) |
 | Keeper | Optional main-process systemd progress watchdog supervises stalled I/O in the reviewed120s example unit; standalone commands still lack this hard supervisor. Discovers shared buckets, simulates eligible upkeep, persists intents/receipts/budgets and recovers without automatic resend. Authenticated due harvesting can continue after maintenance RPC failure; malformed configuration/ABI still fails closed, and saved pending errors stop work. Buyback priority/currency rotation prevents starvation. Optional metadata notifications; dry-run default. | [Reward timing/fairness](OPERATIONS.md#reward-timing-and-maintenance-schedule), [recovery](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
-| Release tooling | Bounded strict/sanitized holder inventory input and argument handling; exact integer slot0 consistency/fee validation in both observed and manually supplied states; current schema5 inventory/pinned observer, RPC/mint qualification gates, immutable artwork bundle and frozen review export. Tools do not deploy or replace approval. | [Preflight](PRODUCTION_PREFLIGHT.md), [review package](FROZEN_REVIEW_BUNDLE.md) |
+| Release tooling | Default gate explicitly blocks unqualified accounting4 inventory; historical schema5/accounting3 consistency is not current approval. Strict JSON/file bounds, guarded observers and immutable evidence remain. No deployment authority. | [Preflight](PRODUCTION_PREFLIGHT.md), [blocked fresh scaffold](../config/production.holder-exit.example.json) |
 
 ## Frontend boundary
 
@@ -61,6 +71,9 @@ Actual current3 contracts/API/feeds/routes/marketplace/service acceptance remain
 [deployment integration](DEPLOYMENT_WEBSITE.md) and [browser wallet](BROWSER_WALLET.md).
 
 ## Current evidence and limits
+
+[Holder-return verification](../reports/holder-collective-exit-20261027/VERIFICATION.md) records133distinct affected Solidity passes,37normal object gates,16new profile4 methods and11new automatic-delivery methods. Separate historical/common scopes and platform skip are explicit; no combined full-regression or live approval is implied. Optional keeper delivery is implemented/disabled, and actual source4 website/services remain open.
+
 
 [Systematic adversarial review](../reports/system-adversarial-20261026/REVIEW.md)
 and [coverage](../reports/system-adversarial-20261026/COVERAGE.md) map every one

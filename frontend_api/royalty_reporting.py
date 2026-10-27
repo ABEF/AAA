@@ -102,6 +102,10 @@ class Reporting:
             if count > total or eligible != (ordinal != 0 and ordinal <= count):
                 raise ProjectionError('Inconsistent royalty currency eligibility')
             if asset == ZERO and count != total:
+                if p.accounting_version == 4:
+                    # There is no native-token read fault or external custody
+                    # path in this fresh ledger. Never invoke removed selectors.
+                    raise ProjectionError('Inconsistent native royalty eligibility')
                 # ETH has no optional-token read failure. A native prefix may
                 # lag only after an authenticated custody exit; it can still lag
                 # after full return until the next sync enrolls waiting NFTs.

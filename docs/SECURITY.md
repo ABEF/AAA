@@ -1,5 +1,12 @@
 # Security model and invariants
 
+Fresh accounting4 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
+rewards and future royalty eligibility. Direct payouts are separate from income;
+no holder principal withdrawal exists during normal operation. LP cannot reopen
+after exit starts. Historical deployments keep their original rules.
+
+
 **Undeployed development candidate; production NOT APPROVED.** This describes the
 current native-ETH, fixed-ZZZ, local-LP design. Source-scoped internal evidence
 verifies particular revisions and scenarios; it does not establish a fresh full
@@ -14,20 +21,20 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
   compounding and buyback reserves; Rewards holds LP claim liabilities. The NFT's
   separate royalty ledger accounts for actual marketplace receipts. Principal,
   LP income, royalties, donations and mint proceeds must not subsidize each other.
-- Holders and keepers cannot redeem principal. **Governance can approve its
-  departure to a trusted external EOA or contract through the explicit custody
-  workflow.** This is a real custody power, not an on-chain guarantee of return.
-  There is no generic Vault executor, arbitrary sweep or automatic raw fallback.
+- Holders and keepers cannot redeem principal during normal operation.
+  **Governance can irreversibly stop LP and return actual ETH/ZZZ to NFT owners.**
+  There is no configurable external custodian, all-ZZZ conversion exit, generic
+  Vault executor or principal sweep. A terminal exit cannot reopen after unpause.
 - The current governance wallet directly configures reviewed feeds, routes,
   pools, roles and bounded parameters; Access authenticates it without a
   timelock, queued operation or forwarding executor. Sealing fixes
-  module bindings and the once-configured ZZZ contribution/normal-exit identity.
-  Guardians may pause; governance resumes. A pause does not veto governance's
-  separately authorized custody departure. See the [operator manual](OPERATOR_MANUAL.md).
+  module bindings and the single ZZZ contribution/buyback/principal-return identity.
+  Guardians may pause; governance resumes ordinary operations. Governance starts
+  collective retirement only while paused; later unpause cannot undo it. See the [operator manual](OPERATOR_MANUAL.md).
 - Native ETH is the actual zero-address currency, not WETH. Optional conversion
-  routes may depend on a wrapper; native custody and raw exit do not require one.
+  routes may depend on a wrapper; native LP custody and holder return do not.
   Only ETH and the fixed reviewed ZZZ are contribution inputs. Other admitted
-  royalty or internal accounting currencies do not become user input options.
+  royalty/conversion currencies do not become contribution or principal-pool options.
 
 ## Contributions, shared accounting and execution
 
@@ -59,7 +66,7 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
    other buckets, existing fractions, ownership and fee reserves.
 7. At most one pool accepts new contributions at a time. Up to four permanently
    admitted/historical buckets bound settlement work. Pools are static hookless
-   v4; native ETH/ZZZ admission pins the selected chain/dependencies. Same-chain
+   v4 with native ETH/fixed ZZZ only; admission pins the selected chain/dependencies. Same-chain
    pool moves require identical ordered actual currencies; ETH and WETH differ.
    Local fixtures do not qualify worst-case real token, venue or keeper gas.
 
@@ -87,17 +94,19 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
 5. Healthy royalty currencies settle before a new NFT joins. A failed optional
    ERC20 balance/synchronization call defers only that currency's new eligibility;
    recovery assigns previously unseen receipts to the earlier cohort before
-   enrolling waiting NFTs. Native custody-outage deferral, gas bounds and full
-   backing checks remain. Not every technical activation failure is isolated.
+   enrolling waiting NFTs. Native ETH has no token balance-read failure or
+   external-custody deferral in accounting4. Gas bounds and full backing checks
+   remain. Not every technical activation failure is isolated.
 6. LP/royalty conversions debit the selected NFTs' source entitlements and credit
-   actual ETH to those same NFTs. Conversion, claim, transfer and custody return
+   actual ETH to those same NFTs. Conversion, claim, transfer and principal return
    are not new earnings. No backing can be counted both as raw funds and as
    converted credit. Retired-currency liabilities remain backed and identifiable.
 7. Current NFT ownership authorizes claims; transfer approvals alone do not.
    Whole balances, fractions and unclaimed rights follow the NFT. Debiting before
    payout and exact amount/destination checks protect against double claims and
    callbacks. Ordinary strategy pause does not disable funded claims, although
-   canonical lifecycle locks, an exited currency or broken dependencies can.
+   canonical lifecycle locks or broken dependencies can. LP exit does not remove
+   previously earned claims or future rarity-weighted royalty eligibility.
 8. There is no burn/reset, dead-address rescue or administrator sweep of funded
    liabilities, unsupported assets or prefunds. An NFT sent to an unusable owner
    can strand its rights. Exact token deltas reject ordinary transfer taxes;
@@ -116,32 +125,44 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
   collection capture also requires completed reveal. Provider authenticity,
   funding and actual fulfillment remain release gates, not ABI assumptions.
 - Artwork follows current marked attached LP/idle/compound value and can downgrade
-  across $1,000/$10,000 tiers. Valuation can be unavailable during custody or
+  across $1,000/$10,000 tiers. Valuation can be unavailable while parked or during
   dependency faults. Metadata grants no financial permissions and claims do not
-  depend on a successful metadata price read.
+  depend on a successful metadata price read. Exited5 reports verified zero LP;
+  terminal `LP exited` uses the existing Activated image, preserving rarity/traits.
 - The retained **same-chain** whole-collection handoff freezes ownership and both
   ledgers, exports authentic complete rows, transfers exact classified backing,
   and atomically retires/activates one compatible successor. Full funded abort,
-  donation quarantine and terminal-state guards remain. Outstanding principal
-  or royalty custody and unreadable backing can prevent capture. Governance's
+  donation quarantine and terminal-state guards remain. Collective LP exit blocks
+  canonical replacement permanently; the schema does not transport principal-return
+  liabilities. Unreadable backing can prevent ordinary pre-exit capture. Governance's
   choice of reviewed replacement code remains a trust assumption.
 
 ## Exit, operations and remaining limits
 
-Normal custody exit parks/closes under reviewed minima, converts attributed
-principal to the deployment's fixed ZZZ and sends it to the approved recipient.
-The original normal-exit absolute floor survives later configuration changes.
-Explicit **raw emergency exit** performs no swap and sends the actual pool assets
-(currently ETH/ZZZ) under raw minima, with no fabricated USD-loss guarantee. Failed swaps/transfers revert
-that exit; no failure automatically selects raw mode. Recovery requires all
-actually sent assets; local completion requires actual funded destination LP.
+The current profile is accounting4/custody3/canonical
+`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Governance starts collective retirement
+while paused. Every funded bucket must be actual native ETH/fixed ZZZ before the
+irreversible lock. Final collection classifies fees normally; pending5%compound
+joins principal. Exact close deltas and raw minima protect that bucket's returned
+assets. No swap or oracle-dependent USD-loss promise is part of holder return.
 
-An external custodian may perform an issuer migration or bridge outside PoPL.
-There is **no integrated bridge, remote proof intake, remote LP valuation or
-cross-chain NFT/reward-ledger handoff**. External exit does not relocate NFT
-ownership or erase liabilities. The source cannot force return, recover a halted
-chain, replace sealed code or override lost governance quorum. See
-[custody procedure](GOVERNED_CUSTODY_HANDOFF.md) and [recovery boundaries](CHANGE_AND_RECOVERY.md).
+All buckets close before bounded deterministic ordinal allocation and payout.
+Cumulative rounding assigns every raw unit against frozen bucket shares, without
+an administrator dust recipient. Shares/membership remain to preserve prior
+reward indices and royalty rights. Separate direct-payout batches authenticate
+each current NFT owner, mark paid before transfers and isolate failed recipients.
+One failed owner cannot block other owners. An owner-only fallback recipient is
+exceptional recovery, not a required holder claim. A contract that rejects ETH
+cannot be forced to receive it; failed venue/token behavior can still stop
+closure or settlement. Exact backing, reentrancy and duplicate-payment guards
+must hold throughout, including recipient callbacks and NFT transfers.
+
+There is **no external-custodian exit, integrated bridge, issuer exchange, remote
+proof intake or cross-chain NFT/reward-ledger handoff**. No administrative call
+can reopen LP or import a replacement after retirement begins. The source cannot
+recover a halted chain, replace sealed code or override lost governance keys.
+See [holder-return procedure](HOLDER_COLLECTIVE_EXIT.md) and
+[recovery boundaries](CHANGE_AND_RECOVERY.md).
 
 Keepers execute authorized upkeep within on-chain range/cooldown/output/loss
 guards and pay gas. Optional switching between reviewed +/-25% and +/-50% widths

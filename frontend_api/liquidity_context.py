@@ -56,7 +56,7 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         eligible = _bool(read('strategy', 'needsRebalance(uint256)', bucket)[0])
         range_pending = _bool(read('strategy', 'rangeUpdatePending(uint256)', bucket)[0])
         ref = int(read('oracle', 'referenceX96(address,address)',
-                       _address_word(config[0], native=p.accounting_version in (2, 3)), _address_word(config[1]))[0], 16)
+                       _address_word(config[0], native=p.accounting_version in (2, 3, 4)), _address_word(config[1]))[0], 16)
         if not 0 < ref < 2**160:
             raise ProjectionError('Invalid oracle reference price')
         root_ratio = (center * 10**18 // ref if orientation == 1 else ref * 10**18 // center)

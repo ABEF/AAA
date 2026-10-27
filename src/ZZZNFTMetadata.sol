@@ -37,6 +37,7 @@ contract ZZZNFTMetadata {
         uint256 bucket = vault.nftBucket(id);
         uint256 shares = vault.sharesOf(id); uint256 supply = vault.bucketTotalShares(bucket);
         Position memory position = vault.group(bucket);
+        if (bucket != 0 && shares != 0 && supply >= shares && position.status == PositionStatus.Exited) return 0;
         if (bucket == 0 || shares == 0 || supply < shares || position.status != PositionStatus.Active ||
             position.lpTokenId == 0) revert ValuationUnavailable();
         PoolConfig memory config = IZZZPools(access.module(Ids.POOLS)).accounting(position.poolId);
@@ -67,12 +68,15 @@ contract ZZZNFTMetadata {
             image = string.concat("data:image/svg+xml;base64,", Base64.encode(bytes(
                 '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="800"><rect width="640" height="800" fill="#030a1d"/><ellipse cx="320" cy="365" rx="150" ry="210" fill="#08142a" stroke="#46637a"/><text x="320" y="680" fill="#aac7d8" text-anchor="middle" font-size="20">Awaiting verifiable randomness</text></svg>')));
         }
-        string memory description = !input.traitsReady ? "Dormant NFT. Verifiable rarity, palette and circuit reveal pending." :
+        string memory description = input.stage == 4 ?
+            "LP exited. Returned principal entitlement, unclaimed rewards and future royalty rights follow this NFT." :
+            !input.traitsReady ? "Dormant NFT. Verifiable rarity, palette and circuit reveal pending." :
             input.valuationAvailable ? "Permanent LP fee rights follow this NFT. Rarity weights only NFT-sale royalties." :
             "Current LP valuation unavailable. Activated artwork is a fallback; royalty eligibility and fee rights remain.";
         bytes memory json = abi.encodePacked('{"name":"PoPL #', Strings.toString(input.id),
             '","description":"', description, '","image":"', Strings.escapeJSON(image),
             '","valuation_available":', input.valuationAvailable ? "true" : "false",
+            ',"lp_exited":', input.stage == 4 ? "true" : "false",
             ',"royalty_activated":', input.royaltyWeight != 0 ? "true" : "false",
             ',"lp_value_usd_18":', input.valuationAvailable ? string.concat('"', Strings.toString(input.valueUSD), '"') : "null",
             ',"attributes":[{"trait_type":"Rarity","value":"', rarity,
@@ -131,10 +135,12 @@ contract ZZZNFTMetadata {
         return labels[value];
     }
     function _stage(uint8 value) private pure returns (string memory) {
+        if (value == 4) return "LP exited";
         string[4] memory labels = ["Dormant", "Activated", "Enhanced", "Singularity"];
         return labels[value];
     }
     function _stageFile(uint8 value) private pure returns (string memory) {
+        if (value == 4) return "activated";
         string[4] memory labels = ["dormant", "activated", "enhanced", "singularity"];
         return labels[value];
     }

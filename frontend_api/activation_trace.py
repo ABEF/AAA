@@ -239,7 +239,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         review_policy_version=reviewed,maximum_loss_bps=req.get('maximum_loss_bps'))
     if tx['data'].lower()!=expected_data:
         raise ProjectionError('Unsigned Entry selector or reviewed maximum differs from its explicit profile')
-    native_profile = req.get('accounting_version', 1) in (2, 3)
+    native_profile = req.get('accounting_version', 1) in (2, 3, 4)
     dual_pricing = req.get('pricing_version',1)==2
     topic_word = lambda n: '0x' + f'{n:064x}'
     source = event(root, pins['entry'], SOURCE,

@@ -747,6 +747,11 @@
     "name": "V4RouteRecorded",
     "signature": "V4RouteRecorded(bytes32,address,bytes32)"
   },
+  "0x4331fc1f78bb5740f84cc57fb5b1b754cf963cc944edc2c7e60bd7db1f9ca2b8": {
+    "fields": [],
+    "name": "LPExitStarted",
+    "signature": "LPExitStarted()"
+  },
   "0x465cc2dc0625be46d859c4c26505717b9f6a4a8ef6ff7d72fb3afb8669c92244": {
     "fields": [
       {
@@ -778,6 +783,37 @@
     ],
     "name": "Activated",
     "signature": "Activated(uint256,uint256)"
+  },
+  "0x49c6ff63ba90c8bdc36d3ffa536ce42d9b92a72727348f9587641938f79a1381": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "ethAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalPaid",
+    "signature": "PrincipalPaid(uint256,address,address,uint256,uint256)"
   },
   "0x4bda33d198725cbe85036110b83cb80b958bcc6838a00e4b5ee9897bc36f770e": {
     "fields": [
@@ -1688,6 +1724,27 @@
     "name": "RoyaltyConverted",
     "signature": "RoyaltyConverted(uint256,address,uint256,uint256)"
   },
+  "0x8d705c20e993c2fbca837c9fb3e20eef6ac5a6a5641b37287de60154ea7da8a8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "mintedCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "bucketCount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CollectiveExitStarted",
+    "signature": "CollectiveExitStarted(bytes32,uint256,uint256)"
+  },
   "0x8f76021ad32ade2d458f62ee3fe48b296cc8859b41bb6e46325eb46250784330": {
     "fields": [
       {
@@ -2139,6 +2196,22 @@
     "name": "PrincipalActivated",
     "signature": "PrincipalActivated(bytes32,uint256)"
   },
+  "0xb22e2c4d889445d25de97cc2b7ef93a994f15db4f6e69ef3128464eb40b62b7e": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "totalETH",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "totalZZZ",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalDistributionReady",
+    "signature": "PrincipalDistributionReady(uint256,uint256)"
+  },
   "0xb25823483ce218e984d1f3e1e31b375af0182b859381e050fb54597002af4bba": {
     "fields": [
       {
@@ -2154,6 +2227,32 @@
     ],
     "name": "RouteEnabled",
     "signature": "RouteEnabled(bytes32,bool)"
+  },
+  "0xb32328f4699dd00219677ca822325c15d7c2a37c9091872ce0358aa07a6b404c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "ethAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalAllocated",
+    "signature": "PrincipalAllocated(uint256,uint256,uint256,uint256)"
   },
   "0xb969f0ab9501336670614935773c380be93ea2f2b43a9f7e94f036c299b79afc": {
     "fields": [
@@ -2633,6 +2732,43 @@
     "name": "RewardPaymentProcessed",
     "signature": "RewardPaymentProcessed(uint256,uint256,uint256)"
   },
+  "0xe71c14a372c863a6eabc7116ceae3649565c2a724ae99f091ab4dc9e0ae98efd": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "totalShares",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "ethAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "BucketClosed",
+    "signature": "BucketClosed(uint256,uint256,uint256,uint256)"
+  },
+  "0xe996334639a327187c0dce394ffb19b1a9be37bfd557edee542668683a8526f8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalDeferred",
+    "signature": "PrincipalDeferred(uint256)"
+  },
   "0xead2d22dd54e6d3db7ec6836aca3d4307e591a6a933d12cddcdf06ad59efede8": {
     "fields": [
       {
@@ -2870,6 +3006,27 @@
     ],
     "name": "OperatingTradeLimitChanged",
     "signature": "OperatingTradeLimitChanged(uint256,uint256)"
+  },
+  "0xf8f19355b2bfacc2dc140f80edf3d4f7b4e6d3fec471304871b4ecc719bfaf9a": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amountETH",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amountZZZ",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalReturnedToHolders",
+    "signature": "PrincipalReturnedToHolders(uint256,uint256,uint256)"
   },
   "0xfa52367867acff4a12c8d11f2c1e1eee45f2d0be3b36d754b7a70241df84bace": {
     "fields": [

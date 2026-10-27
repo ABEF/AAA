@@ -1,5 +1,15 @@
 # Release approval record - NOT APPROVED
 
+Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
+[Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
+and royalty custody exits. Governance permanently ends LP and pays actual
+ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
+No external recipient/bridge/return ingress remains. Whole-collection handoff
+is available only before exit. Earlier source-scoped evidence and accounting3
+service/inventory/website qualification remain historical to their original pins.
+See [profile4](POSITION_V4.md); new release qualification remains open.
+
+
 Latest [systematic adversarial review](../reports/system-adversarial-20261026/REVIEW.md)
 adds a source-review matrix for every inventoried callable and corrects read-RPC/holder-tool input
 integrity/failure handling and adds source-only systemd progress supervision.
@@ -34,13 +44,13 @@ Deployment and reviewer fields below remain unapproved.
 
 | Boundary | Current status |
 | --- | --- |
-| Accounting and identity | Native ETH/fixed ZZZ, accounting V3 with 8-field local Position and `None=0`, `Active=1`, `Outbound=2`, `Dormant=3`, `Parked=4`. Routing2/pricing2/review1 remain distinct; canonical LP-only V4 rejects older layouts. Historical Anvil/journals keep their original profiles. [Profile](POSITION_V3.md). |
+| Accounting and identity | Native ETH/fixedZZZ, accounting4 eight-word local Position, Exited5, custody3, governance2, routing2/pricing2/review1 and canonical holder-exit V5. Historical profiles are not relabelled. [Profile](POSITION_V4.md). |
 | Governance | Governance V2 is the selected wallet/Safe calling functions directly. No timelock, queued/predecessor executor or OpenZeppelin role grants. Two-step governance handover; separate guardian/keeper and immutable mint recipient. 16 module bindings fixed at seal. |
 | Economic controls | Defaults 2% contribution/1% conversion/3% maintenance, each maximum 10%, gas separate. Caller-reviewed Entry maximum and stronger venue minima remain. Approved normal custody floors cannot be weakened later. Per-operation limits do not cap future market loss or repeated turnover. |
-| Pool/input policy | User input is only native ETH or fixed ZZZ. All Registry LP pairs must contain that ZZZ; reviewed future WETH/ZZZ/fee-tier replacements remain possible. One contribution pool at a time. Stablecoins may be separate royalty currencies, not contribution inputs. |
+| Pool/input policy | Only native ETH/fixedZZZ inputs and production LP pairs. One contribution pool at a time; reviewed same-pair fee tiers remain possible. Separate conversion/royalty currencies do not expand principal assets. |
 | Source verification | Use the exact source bindings and scopes in the evidence table above. Current internal static coverage passes; no full frozen-release regression, actual-service or independent approval is recorded. A later backend-only fix does not rerun unchanged Solidity by implication. |
 | Refactor compatibility | [Comparison](../reports/deep-cleanup-20261025/compiler-comparison.md) preserves function encodings and all recursive storage. Explicit additions are guardian/initial role logs; duplicated/noncallable error metadata is removed. No rights, rates, input currencies or authority changes. Reference evidence schema 2 is distinct from on-chain profiles. |
-| Code-size qualification | Captured normal evidence: Vault runtime 22,852/1,724 margin; Access creation 42,256+96 static arguments=42,352/6,800 margin; RoyaltyFactory runtime margin 69. Exact frozen release artifacts and actual dynamic constructor/URI arguments still require qualification; these are not fresh target-gas observations. |
+| Code-size qualification | Fresh normal37object gates pass: Vault23,523 runtime (1,053 margin), NFT24,400 (176 margin), Migration18,358 (6,218 margin). NFT remains tight. Access creation40,580+96static arguments. Exact release metadata URI/arguments and target gas still require qualification. |
 | Actual dependencies | The [current selected-pool fork](../reports/current-pool-fork-20261026/VERIFICATION.md) has11distinct successful real-venue methods at one pinned block using explicit mock services. Actual independent feeds, conversion routes, VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and maximal target-chain gas remain unqualified. |
 | Website/wallets | Popldemo remains the existing simulation; poplint has a separate current3 read/unsigned-review build and no invented deployment/data. Source checks include451affected JS passes; actual current contracts/API/providers/extension acceptance remain unqualified. Signing remains Anvil-only and historical local deployments/journals are unchanged. [Environment map](SITE_ENVIRONMENTS.md). |
 | Operations/audit | Target-chain/Linux failure and recovery rehearsals, independent audit/remediation, frozen-source review and final configuration/sign-off remain required. |
@@ -62,7 +72,7 @@ is not production capacity. The 10/25/100-user campaign remains deferred, not pa
 | Compiler, dependency lock and bytecode/artifact manifest | No release-specific approved record |
 | Actual module/helper/authority addresses and immutable bindings | Not selected and independently approved |
 | Source-bound evidence bundle and hashes | No final release bundle accepted |
-| Release mode | Same-chain pool moves and explicit source-chain custody exit/return; compatible same-chain whole-collection handoff. No integrated bridge or remote ledger. Exact configuration unapproved. |
+| Release mode | Native same-pair moves/parking before exit; irreversible collective ETH+ZZZ return to current NFT holders, retained royalties and old rewards. No external custody. Whole-collection V5 handoff only before exit. |
 | Decision date and accountable release owner | Not recorded |
 | Accepted residual risks and rationale | Not approved |
 
@@ -80,8 +90,8 @@ network, manifests and evidence. Missing criteria need an explicit scope-based
 reason, not silent removal. A passing validator, local mocks, internal static
 review, an exported audit package or old CI does not supply independent sign-off.
 
-The exact release inventory must bind governance2/accounting3/routing2/pricing2/
-review1 and canonical V4 to actual runtime/helper/parent identities. Service
+The exact release inventory must bind governance2/accounting4/custody3/routing2/pricing2/
+review1 and canonical holder-exit V5 to actual runtime/helper/parent identities. Service
 observations remain separate from reviewed provider policy. Governance multisig
 signers/threshold, guardian/keeper gas and recovery, feeds/routes/updaters and VRF
 funding must all be real selected choices, not example addresses.
@@ -99,30 +109,24 @@ to submit public transactions.
 
 ## Initial launch and movement boundary
 
-Principal belongs to its independently accounted NFT shares; holders cannot
-redeem it. `moveFunds` atomically moves between admitted pools with the same
-ordered actual assets. Another ETH/ZZZ fee tier is compatible after review;
-ETH/WETH or other pair conversion is not an atomic move.
+Principal is nonredeemable by holders during operation. Governance may move the
+shared position between admitted native ETH/fixedZZZ fee tiers or temporarily
+park it. Captured ordinary maintenance limits and stronger venue minima remain.
 
-Normal paused custody exit converts attributed principal to fixed ZZZ under its
-captured floor. Explicit raw exit sends actual pair assets under reviewed raw
-minima, without a USD-loss promise or automatic fallback. The external EOA/contract
-is trusted: source contracts cannot prevent diversion or compel return. Completion
-requires actual funded LP; recovery requires full actual sent assets. Royalty
-custody has a separate paused currency path retaining liabilities and suspension.
+Governance may instead irreversibly end LP, close each bucket without swaps/USD
+oracles, include pending compound and allocate actual ETH+ZZZ to NFT holders.
+Direct payout batches isolate failed recipients and preserve owner fallback.
+Unpaid rights follow ownership; old earned rewards and future royalties remain.
+No external custody recipient, all-ZZZ conversion exit, bridge, royalty drain or
+return-to-LP ingress exists. Verify all bucket closes and exact backing before
+Ready; a permanently broken venue/token or lost governance can block completion.
 
-No integrated bridge/provider, remote destination ledger or cross-chain canonical
-activation is required or retained. The custodian can independently bridge or
-perform an issuer exchange, but this does not relocate NFT ownership or reward
-ledgers. Issuer migration requires a fresh reviewed deployment of the new fixed
-ZZZ; there is no post-seal identity replacement setter.
-
-Qualify complete same-chain handoff of frozen owners, both ledgers and classified
-backing, with full abort, late receipts, contract-holder compatibility and atomic
-retirement/activation. Current V4 rejects older rows; no automatic storage/journal
-upgrade exists. Future-chain transport, old-schema import and post-halt ownership
-recovery are outside this release. See [custody procedure](GOVERNED_CUSTODY_HANDOFF.md),
-[canonical scope](CANONICAL_HANDOFF.md) and [architecture evolution](ARCHITECTURE_EVOLUTION.md).
+Current canonical V5 handoff preserves ownership/ledgers/backing with funded
+abort **before** exit. It cannot import terminal principal payouts, so preparation
+and replacement remain blocked after exit, even when all holders were paid.
+Historical reports/Anvil and the served accounting3 website do not qualify these
+changed rights. See [holder exit](HOLDER_COLLECTIVE_EXIT.md) and
+[canonical scope](CANONICAL_HANDOFF.md).
 
 ## Acceptance references
 

@@ -63,6 +63,18 @@ contract AccessControllerTest is Test {
         vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector);ac.seal();
         vm.clearMockedCalls();ac.seal();assertTrue(ac.isSealed());
     }
+    function testHolderExitRequiresPausedVaultAndPermanentlyBlocksCanonicalReplacement() public {
+        fill();ac.seal();address boundVault=ac.module(Ids.VAULT);address handoff=ac.canonicalHandoff();
+        vm.expectRevert(ZZZAccessController.Unauthorized.selector);ac.startLPExit();
+        vm.prank(boundVault);vm.expectRevert(ZZZAccessController.Unauthorized.selector);ac.startLPExit();
+        vm.prank(guardian);ac.setPaused(true);vm.prank(boundVault);ac.startLPExit();assertTrue(ac.lpExitStarted());
+        vm.prank(address(0xA0A0));ac.setPaused(false);assertTrue(ac.lpExitStarted());assertFalse(ac.paused());
+        vm.prank(boundVault);vm.expectRevert(ZZZAccessController.Unauthorized.selector);ac.startLPExit();
+        ZZZAccessController.PreparationNotice memory notice;
+        vm.prank(address(0xA0A0));vm.expectRevert(ZZZAccessController.Unauthorized.selector);ac.startPreparation(notice);
+        vm.prank(handoff);vm.expectRevert(ZZZAccessController.Unauthorized.selector);ac.canonicalTransition(1,false,false);
+        assertEq(ac.canonicalState(),0);assertFalse(ac.preparationActive());
+    }
     function testSealErasesBootstrap() public {fill();ac.seal();assertEq(ac.bootstrap(),address(0));assertTrue(ac.isSealed());}
     function testFuzzTerminalCanonicalStateCannotReopen(uint8 seed) public {
         fill();ac.seal();address handoff=ac.canonicalHandoff();uint8 terminal=uint8(3+(seed%2));

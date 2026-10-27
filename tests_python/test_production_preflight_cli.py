@@ -24,19 +24,19 @@ class ProductionPreflightCLITests(unittest.TestCase):
     def test_historical_governed_layout_keeps_exact_block(self):
         report=gate.validate({'custody_architecture':'governed-v1','ready':True})
         self.assertFalse(report['ready']);self.assertFalse(report['deployment_authorized'])
-        self.assertEqual(report['issues'][0]['code'],'current_profile_required')
+        self.assertEqual(report['issues'][0]['code'],'holder_exit_qualification_pending')
 
-    def test_native_schema_dispatch_lists_real_missing_requirements(self):
+    def test_accounting3_never_qualifies_fresh_holder_exit_release(self):
         report=gate.validate({'schema_version':5,'accounting_version':3,'mint_integration_version':1,'fee_intake_version':1,'custody_architecture':'governed-v1'})
-        self.assertEqual(report['schema_version'],5)
+        self.assertEqual(report['schema_version'],6)
         self.assertFalse(report['ready']);self.assertFalse(report['deployment_authorized'])
         self.assertNotIn('custody.inventory_schema_pending',[i['code'] for i in report['issues']])
-        self.assertGreater(len(report['issues']),1)
+        self.assertEqual(report['issues'][0]['code'],'holder_exit_qualification_pending')
 
     def test_float_version_cannot_enter_new_profile(self):
         report=gate.validate({'schema_version':5.0,'custody_architecture':'governed-v1'})
-        self.assertFalse(report['ready']);self.assertEqual(report['schema_version'],5)
-        self.assertEqual(report['issues'][0]['code'],'current_profile_required')
+        self.assertFalse(report['ready']);self.assertEqual(report['schema_version'],6)
+        self.assertEqual(report['issues'][0]['code'],'holder_exit_qualification_pending')
 
     def test_default_validation_never_imports_historical_engine(self):
         import builtins
@@ -70,7 +70,7 @@ class ProductionPreflightCLITests(unittest.TestCase):
                     patch('builtins.__import__',side_effect=current_only), redirect_stdout(output):
                 self.assertEqual(gate.main(),1)
             report=json.loads(output.getvalue())
-            self.assertEqual(report['issues'][0]['code'],'current_profile_required')
+            self.assertEqual(report['issues'][0]['code'],'holder_exit_qualification_pending')
             self.assertFalse(report['deployment_authorized'])
 
     def test_duplicate_keys_and_nonfinite_numbers_are_rejected(self):
@@ -138,13 +138,13 @@ class ProductionPreflightCLITests(unittest.TestCase):
                 status,report=self.fixture_main(config)
                 self.assertEqual(status,1)
                 self.assertFalse(report['ready'])
-                self.assertIn('current_profile_required',{i['code'] for i in report['issues']})
+                self.assertIn('holder_exit_qualification_pending',{i['code'] for i in report['issues']})
                 self.assertTrue(report['current_release_gate'])
                 self.assertFalse(report['production_qualification_supported'])
                 self.assertFalse(report['deployment_authorized'])
         status,report=self.fixture_main({'schema_version':4})
         self.assertEqual(status,1)
-        self.assertIn('current_profile_required',{i['code'] for i in report['issues']})
+        self.assertIn('holder_exit_qualification_pending',{i['code'] for i in report['issues']})
 
     def test_explicit_historical_mode_can_only_report_consistency(self):
         from tests_python.test_production_v2 import fixture
@@ -166,17 +166,17 @@ class ProductionPreflightCLITests(unittest.TestCase):
                 status,report=self.fixture_main(config)
                 self.assertEqual(1,status)
                 self.assertFalse(report['ready'])
-                self.assertIn('current_profile_required',{i['code'] for i in report['issues']})
+                self.assertIn('holder_exit_qualification_pending',{i['code'] for i in report['issues']})
                 self.assertFalse(report['production_qualification_supported'])
                 self.assertFalse(report['deployment_authorized'])
 
-    def test_current_profile_still_blocks_unimplemented_opensea_primary_mint(self):
+    def test_opensea_readiness_cannot_bypass_new_holder_exit_profile_gate(self):
         from tests_python.test_mint_integration_qualification import current_fixture
         status,report=self.fixture_main(current_fixture())
         self.assertEqual(status,1)
-        self.assertEqual({'mint.opensea_unsupported'},{i['code'] for i in report['issues']})
+        self.assertEqual({'holder_exit_qualification_pending'},{i['code'] for i in report['issues']})
         self.assertTrue(report['current_release_gate'])
-        self.assertTrue(report['production_qualification_supported'])
+        self.assertFalse(report['production_qualification_supported'])
         self.assertFalse(report['deployment_authorized'])
 
     def test_historical_opt_in_does_not_erase_current_source_incompatibility(self):

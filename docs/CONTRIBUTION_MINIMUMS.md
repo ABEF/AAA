@@ -1,9 +1,16 @@
 # Activation and LP top-up minimums
 
+Fresh accounting4 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
+rewards and future royalty eligibility. Direct payouts are separate from income;
+no holder principal withdrawal exists during normal operation. LP cannot reopen
+after exit starts. Historical deployments keep their original rules.
+
+
 The production candidate requires **$100 original input value to activate** and
 **$5 original input value to increase an already activated NFT's LP**. Values use
 reviewed Oracle prices and token decimals; five tokens do not necessarily equal
-five dollars. Current accounting 3 values actual ETH at address zero using its
+five dollars. Current accounting4 values actual ETH at address zero using its
 two-source USD policy. Native ETH and fixed ZZZ are the only original inputs;
 legacy deployments retain their actual profiles.
 
@@ -26,7 +33,7 @@ not promise that every route or market condition will support a $5 transaction.
 1. Read the selected pool's complete `accounting(poolId)` configuration and current
    authority/canonical state. The deployed binary must include these floors.
 2. To allow $5 top-ups, set `minDepositUSD` to `5e18` in the full reviewed config.
-   Governance calls `configure` or `configureNative` as appropriate directly from the
+   Governance calls `configureNative` for the supported native ETH/fixedZZZ pool directly from the
    selected governance wallet; Access has no generic/scheduled executor. These calls still perform full
    token, price and venue validation. Preserve unrelated parameters and selection.
 3. Simulate the exact call, execute, confirm the getter/event and re-prepare quotes.
@@ -75,4 +82,12 @@ rewriting them to fit a new display rule. Use a separate source-matched disposab
 session for a newly reviewed profile; see [local setup](LOCAL_TEST_STACK.md).
 Actual routes, dual-price observations, wallet/API services and target-chain gas
 remain release work. A minimum is not a capital guarantee: current LP value can
-fall after execution, and holders cannot redeem principal.
+fall after execution, and holders cannot redeem principal during normal operation.
+Fresh accounting4/custody3/canonicalV5 permanently stops activation and growth
+once governance begins collective LP retirement, even after ordinary unpause.
+Only governance starts/closes that exit; later permissionless allocation and
+direct delivery cannot redirect the fixed current-owner entitlements. Normal
+holders need no transaction to receive principal; failed receivers have retry or
+exceptional owner-only fallback. The optional keeper `principal_distribution`
+job implements bounded allocation/delivery after governance closure; it is
+disabled by default and no installed service has been changed.

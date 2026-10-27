@@ -1,0 +1,18 @@
+{
+  "reviewed": "2026-10-27",
+  "files": {
+    "reports/holder-collective-exit-20261027/backend-profile-final.log": "784a7b46bad0dac030c1036ef5d1fdb96a57a41ac4abb99055f8e012442586a5",
+    "reports/holder-collective-exit-20261027/backend-profile-results.log": "a392fea341b8d9a3d714d98bd2740e61427cc39db7fe6b450bd06b1d9877ffa5",
+    "reports/holder-collective-exit-20261027/event-release-final.log": "c4bfce47e611ddae5a21da320c17df26727527d94bf92862bf9311acad646775",
+    "reports/holder-collective-exit-20261027/execution-source-binding.json": "d72681d645d9e9328588355e2146bb96f792d57cb7a282cd62815350780ff709",
+    "reports/holder-collective-exit-20261027/lifecycle-verified-command.json": "722d7faaedb40c3cddac9975a87cc44f0090453d91e8200c17f47a9868c9c328",
+    "reports/holder-collective-exit-20261027/principal-automation-existing-keeper.log": "372589484f875c7f1fbd73ba383819583baa64b2879ee12a825937a94b61c1ec",
+    "reports/holder-collective-exit-20261027/principal-automation-final-tests.log": "9459ce3d4b6e4067819e18be87028ca5de3384c4febebcc6a470a755460963ab",
+    "reports/holder-collective-exit-20261027/principal-automation-tests.log": "e901d7c6388da02166abd46e0a57a54022df696cc3b7a701b543af4dacb704e4",
+    "reports/holder-collective-exit-20261027/production-size-gates.json": "306b1ccf486456c5e51f8510be310e7721dd196c48fab5d9427a06c9db04869a",
+    "reports/holder-collective-exit-20261027/REVIEW.md": "79424e7a0a5cdfae8be059994757d577a2bc4ce7e8ef877ffc8035bd284b7a02",
+    "reports/holder-collective-exit-20261027/tests-final-command.json": "6c06b32e6fb614b286c96657acaa975b68288b30416313a22874ea5dc9a896cf",
+    "reports/holder-collective-exit-20261027/verification-metadata.json": "353a453829cb45b71d79cbf3cf9e6a32bc864c80966ad415404a077d2c77d468",
+    "reports/holder-collective-exit-20261027/VERIFICATION.md": "079e75b66ec4ee5be91583c6e1225ac60f10ecf1da818769827aa509a3dbc6de"
+  }
+}

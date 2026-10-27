@@ -40,16 +40,19 @@ def read(p, wallet_address, block_number, offset):
         # activated; eligibility is permanent. Read actual views anyway so an
         # unavailable or contradictory response is never replaced with zero.
         inactive=False
-        if p.accounting_version==3:
+        if p.accounting_version in (3,4):
             weight=p._uint('royalties','weightOf(uint256)',identifier,block=block)
             if weight>3:raise ProjectionError('Wallet NFT royalty weight exceeds the reviewed bound')
             inactive=weight==0
+        exited = p.accounting_version == 4 and p._uint('vault','nftStatus(uint256)',identifier,block=block) == 5
         # Keep each metric independent: unreadable LP never becomes a zero sum.
         try:
             value=p._call(p.contracts['nft'].address,'currentLPValue(uint256)',identifier,block=block,words=2)
             available=_bool(value[0]);amount=int(value[1],16)
             if not available and amount:raise ProjectionError('Unavailable LP contains a value')
             if inactive and available and amount:raise ProjectionError('Inactive NFT has attached LP value')
+            if exited and (not available or amount or not life['lp_exit_started']):
+                raise ProjectionError('Exited NFT must have verified zero remaining LP')
             lp_ok=lp_ok and available;total_lp+=amount
         except (WorkLimit,ProjectionError):raise
         except RpcError:lp_ok=False

@@ -87,9 +87,19 @@ currencies stay unavailable/null. Activated NFTs retain owed rewards while
 parked/outbound or after a market-value downgrade. Current LP inventory must
 actually include native ETH first. See [current backend verification](../reports/backend-remediation-20261026/VERIFICATION.md).
 
-## Native custody history and recovery
+## Current native eligibility and historical custody
 
-The current source accepts a delayed native eligibility prefix only with a
+Accounting4 removes every external royalty-custodian exit/return and their
+getters. ETH eligibility must therefore match total activations; a lag rejects
+as inconsistent data and never calls the removed `custodyNonce` selector.
+Collective LP exit does not remove royalty weights or eligible membership.
+Future receipts and current-owner claims continue; returned principal is not
+royalty income, conversion credit or a royalty claim.
+
+The following rules apply only to explicitly pinned historical accounting1/2/3
+ledgers that implemented external custody. They do not enable a fresh exit:
+
+The historical reader accepts a delayed native eligibility prefix only with a
 verified nonzero `custodyNonce(address(0))` and consistent cohort counts/weights.
 This getter and `eligibleWeight` / `totalWeight` are required only when that
 native prefix lags. Old pinned runtimes lacking the required getter fail closed.

@@ -1,6 +1,6 @@
 """Explicit V3 read profile and raw-codec boundaries, using pinned offline RPC."""
 import unittest
-from frontend_api.service import Projection, ProjectionError
+from frontend_api.service import Projection, ProjectionError, ZERO
 from zzz_ops.abi import keccak256
 from zzz_ops.position import decode_position, status_name, position_word_count
 from tests_python.test_frontend_api import MockRPC, configuration, addr
@@ -16,6 +16,12 @@ class LocalPositionAPITests(unittest.TestCase):
         self.rpc.put(addr(1),'governance()',values=(addr(40),))
         self.row=[444,9,0,0,2000*10**18,2**96,990,1]
         self.rpc.put(addr(3),'group(uint256)',(5,),self.row)
+        # This historical native V3 fixture must admit ETH as the real ledger
+        # does; the wrapped V1 base fixture has no native LP index.
+        self.rpc.put(addr(4),'assetCount()',values=(3,))
+        for ordinal,asset in enumerate((ZERO,addr(20),addr(21))):
+            self.rpc.put(addr(4),'assets(uint256)',(ordinal,),(asset,))
+        self.rpc.put(addr(4),'claimable(uint256,address)',(self.rpc.nft_id,ZERO),(0,))
     def projection(self):return Projection(self.config,self.rpc,clock=lambda:1000)
     def read(self):return self.projection().nft(self.rpc.nft_id)
 
@@ -33,6 +39,8 @@ class LocalPositionAPITests(unittest.TestCase):
         self.rpc.put(addr(3),'nftStatus(uint256)',(i,),(3,))
         self.rpc.put(addr(3),'nftBucket(uint256)',(i,),(0,));self.rpc.put(addr(3),'sharesOf(uint256)',(i,),(0,))
         self.rpc.put(addr(5),'weightOf(uint256)',(i,),(0,));self.rpc.put(addr(2),'currentLPValue(uint256)',(i,),(1,0))
+        for role,assets in ((4,(ZERO,addr(20),addr(21))),(5,(ZERO,addr(21)))):
+            for asset in assets:self.rpc.put(addr(role),'claimable(uint256,address)',(i,asset),(0,))
         dormant=self.read();self.assertEqual('dormant',dormant['position']['status'])
         self.assertFalse(dormant['position']['activated']);self.assertIsNone(dormant['position']['local_custody'])
         self.rpc.configure();self.setUp()
@@ -62,7 +70,7 @@ class LocalPositionAPITests(unittest.TestCase):
         self.assertEqual('remote',status_name(2,3));self.assertEqual('dormant',status_name(3,3))
         self.assertEqual('parked',status_name(2,6));self.assertEqual('parked',status_name(3,4))
         self.assertEqual(15,position_word_count(2));self.assertEqual(8,position_word_count(3))
-        for version in (True,0,4,'3'):
+        for version in (True,0,5,'3'):
             with self.assertRaises(ValueError):position_word_count(version)
         for index,value in ((5,1<<160),(6,1<<64)):
             row=list(self.row);row[index]=value

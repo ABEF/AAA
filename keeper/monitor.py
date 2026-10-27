@@ -26,6 +26,7 @@ from zzz_ops.range_policy import observe as observe_range_policy, verify as veri
 from zzz_ops.position import decode_position
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 from keeper.watchdog import ProgressWatchdog, ProgressRPC
+from keeper.principal import PrincipalDistribution, BATCH as PRINCIPAL_BATCH, encode_batch as encode_principal_batch
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
 NATIVE_ASSET = '0x'+'0'*40
@@ -47,6 +48,12 @@ PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('buyback','execute(address,uint256,bytes32,uint256)'),
     ('royalties',ROYALTY_BATCH),
     ('rewards',ROYALTY_BATCH),
+))
+LP_EXIT_BLOCKED_ACTIONS = frozenset((
+    ('strategy','applyKeeperRange(bytes32)'),
+    ('vault','rebalance(uint256,uint128,uint256)'),
+    ('compounder','compound(uint256,uint128,uint256)'),
+    ('vault','collectFees(uint256,uint256)'),
 ))
 
 def log(event: str, **fields: Any) -> None:
@@ -92,18 +99,18 @@ class Keeper:
         self.configuration_sha256 = hashlib.sha256(json.dumps(
             config,sort_keys=True,separators=(',',':')).encode()).hexdigest()
         self.accounting_version = config.get('accounting_version',1)
-        if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3):
+        if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4):
             raise ValueError('Unsupported keeper accounting version')
         self.fee_intake_version = config.get('fee_intake_version',0)
         if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0,1) or \
-                (self.fee_intake_version == 1 and self.accounting_version not in (2,3)) or \
-                (self.accounting_version == 3 and self.fee_intake_version != 1):
+                (self.fee_intake_version == 1 and self.accounting_version not in (2,3,4)) or \
+                (self.accounting_version in (3,4) and self.fee_intake_version != 1):
             raise ValueError('Unsupported keeper fee-intake profile')
         self.chain = positive(config['chain_id'],'chain_id')
         self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
         self.sender = address(config['sender'])
         self.contracts = {k:address(v) for k,v in config['contracts'].items()}
-        for name in ('access','vault','strategy','fees','compounder','buyback','pools'):
+        for name in ('access','vault','strategy','fees','compounder','buyback','pools') + (('principal_exit',) if self.accounting_version == 4 else ()):
             if name not in self.contracts: raise ValueError(f'Missing contract: {name}')
         adaptive = config.get('adaptive_range',{})
         if not isinstance(adaptive,dict) or type(adaptive.get('enabled',False)) is not bool:
@@ -165,6 +172,7 @@ class Keeper:
         self.strategy_paused = False
         self.preparing = None
         self.canonical_lifecycle = None
+        self.principal_exit_started = None
         self.stop_requested = lambda: False
         self.last_success_at = None
         self.confirmations = positive(config.get('confirmations',12),'confirmations')
@@ -174,6 +182,7 @@ class Keeper:
         self._configure_metadata()
         self.royalties = RoyaltyAutomation(self)
         self.lp_rewards = RoyaltyAutomation(self, lp=True)
+        self.principal_distribution = PrincipalDistribution(self)
         turn = self.state.get('conversion_turn',0)
         if type(turn) is not int or not 0 <= turn <= 2: raise ValueError('Invalid conversion scheduling state')
         if type(self.state.get('buyback_priority',False)) is not bool:
@@ -304,6 +313,7 @@ class Keeper:
                 'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,
                 'preparation_active':self.preparing,
                 'canonical_state':self.canonical_lifecycle,
+                'lp_exit_started':self.principal_exit_started,
                 'pending_action':(self.state.get('pending') or {}).get('key'),
                 'pending_day':(self.state.get('pending') or {}).get('day'),
                 'duration_seconds':round(time.monotonic()-start,3),**extra})
@@ -375,7 +385,7 @@ class Keeper:
         for override in ({},*self.overrides.values()):
             settings = {**self.maintenance,**override}
             if settings.get('compound_idle',False):
-                if self.accounting_version not in (2,3) or not settings.get('compound_thresholds') or \
+                if self.accounting_version not in (2,3,4) or not settings.get('compound_thresholds') or \
                         not 600 <= positive(settings.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True) <= 604800:
                     raise ValueError('Idle compounding requires native V2, currency thresholds and an explicit 600-604800-second interval')
                 address(self.config.get('idle_compounding_budget'))
@@ -454,7 +464,7 @@ class Keeper:
         return uint_result(self.rpc.eth_call(self.contracts[name],self._calldata(signature,*args)))
 
     def _asset(self,value: Any) -> str:
-        if self.accounting_version in (2,3) and isinstance(value,str) and value.lower() == NATIVE_ASSET:
+        if self.accounting_version in (2,3,4) and isinstance(value,str) and value.lower() == NATIVE_ASSET:
             return NATIVE_ASSET
         return address(value)
 
@@ -497,6 +507,30 @@ class Keeper:
                 raise RpcError('LP-only fee-controller runtime differs from the reviewed keeper profile')
             if self.view('fees','FEE_INTAKE_VERSION()') != 1:
                 raise RpcError('LP-only fee-intake version differs from the reviewed keeper profile')
+        if self.accounting_version == 4:
+            for name in ('access', 'principal_exit'):
+                pin = self.config.get('code_hashes',{}).get(name, '')
+                code = self.rpc.call('eth_getCode', [self.contracts[name], 'latest'])
+                if (not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or
+                        not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or
+                        '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower()):
+                    raise RpcError('Holder-exit runtime differs from the reviewed keeper profile')
+            module = '0x'+keccak256(b'ZZZMigration').hex()
+            if (self.view('access','module(bytes32)',module) != int(self.contracts['principal_exit'],16) or
+                    self.view('principal_exit','access()') != int(self.contracts['access'],16) or
+                    self.view('principal_exit','CUSTODY_VERSION()') != 3):
+                raise RpcError('Holder-exit module binding or capability differs')
+
+    def lp_exit_started(self) -> bool:
+        # Historical controllers have no such getter. Their profiles and
+        # pending journals must never inherit a fabricated retirement state.
+        if self.accounting_version != 4: return False
+        value = self.view('access','lpExitStarted()')
+        phase = self.view('principal_exit','exitPhase()')
+        if value not in (0,1) or not 0 <= phase <= 3 or bool(value) != bool(phase):
+            raise RpcError('Inconsistent collective LP exit lifecycle')
+        self.principal_exit_started = bool(value)
+        return bool(value)
 
     def preparation_active(self) -> bool:
         """Current deployments must expose this strict ABI; no legacy fallback."""
@@ -532,7 +566,10 @@ class Keeper:
         if self.canonical_state() != 0: return True
         # Read even for drain actions: unsupported deployments cannot silently
         # inherit new-source compatibility. Reconciliation remains independent.
-        return self.preparation_active() and (name,signature) in PREPARATION_BLOCKED_ACTIONS
+        preparing = self.preparation_active()
+        exiting = self.lp_exit_started()
+        return (preparing and (name,signature) in PREPARATION_BLOCKED_ACTIONS or
+                exiting and (name,signature) in LP_EXIT_BLOCKED_ACTIONS)
 
     def _validate_signer(self) -> None:
         self.cast = shutil.which(self.config.get('cast_binary','cast'))
@@ -707,7 +744,7 @@ class Keeper:
             valid = False
         if not valid: raise RpcError('Pending transaction identity mismatch')
 
-    def submit(self, name: str, signature: str, args: tuple[int|str,...], key: str, *, value: int = 0,
+    def submit(self, name: str, signature: str, args: tuple[int|str|list[int],...], key: str, *, value: int = 0,
                metadata_observation: dict[str,Any] | None = None, maximum_cost: int | None = None) -> bool:
         if self.state.get('pending'): return False
         if signature == 'bridgeRewards(uint256,address,bytes32)':
@@ -727,7 +764,11 @@ class Keeper:
             log('action_cooldown',action=key,retry_after=retry_after)
             return False
         to = self.metadata_nft if name == 'nft' and self.metadata_enabled else self.contracts[name]
-        data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
+        if name == 'principal_exit' and signature == PRINCIPAL_BATCH:
+            if len(args) != 1: raise ValueError('Principal delivery accepts exactly one array')
+            data = encode_principal_batch(args[0])
+        else:
+            data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
         if metadata_observation is not None:
             self._validate_metadata_payload(metadata_observation)
             self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
@@ -860,15 +901,14 @@ class Keeper:
             raise ValueError('Malformed metadata block hash')
         return value
 
-    @staticmethod
-    def _validate_metadata_record(record: Any) -> None:
+    def _validate_metadata_record(self, record: Any) -> None:
         if not isinstance(record,dict): raise ValueError('Malformed metadata observation')
         ordinal = positive(record.get('ordinal'),'metadata ordinal')
         token = positive(record.get('token_id'),'metadata token ID',zero=True)
         if type(record.get('ordinal')) is not int or record.get('token_id') != str(token) or \
             ordinal > MAX_METADATA_SUPPLY or token >= 1 << 256 or \
             type(record.get('available')) is not bool or type(record.get('traits_ready')) is not bool or \
-            type(record.get('stage')) is not int or not 0 <= record['stage'] <= 3 or \
+            type(record.get('stage')) is not int or not 0 <= record['stage'] <= (4 if self.accounting_version == 4 else 3) or \
             not record['available'] and record['stage'] != 1 or \
             not record['traits_ready'] and (record['stage'] != 0 or not record['available']):
             raise ValueError('Noncanonical metadata state')
@@ -1065,7 +1105,7 @@ class Keeper:
         if status in ('none','dormant'): return fields,[]
         if int(fields[0],16) == 0:
             raise RpcError('Malformed shared-pool state')
-        if self.accounting_version != 3:
+        if self.accounting_version not in (3,4):
             if int(fields[8],16) == 0 or int(fields[13],16) == 0:
                 raise RpcError('Missing shared-pool provenance')
             for index in (9,10,12,14): self._address_word(fields[index])
@@ -1079,7 +1119,9 @@ class Keeper:
             raise RpcError('Active shared pool has no LP position')
         if status == 'parked' and int(fields[1],16) != 0:
             raise RpcError('Parked shared pool still has an LP position')
-        if status == 'parked' and self.accounting_version != 3 and (
+        if status == 'exited' and (int(fields[1],16) or int(fields[2],16) or int(fields[3],16) or not self.lp_exit_started()):
+            raise RpcError('Exited shared pool retains principal or lacks its lifecycle lock')
+        if status == 'parked' and self.accounting_version not in (3,4) and (
                 position['location_chain'] != self.chain or position['location_vault'] != self.contracts['vault']):
             raise RpcError('Parked principal is not in this local vault')
         config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool_id)))
@@ -1090,7 +1132,7 @@ class Keeper:
         if len(accounting) != 14 or accounting[1:] != config[1:]:
             raise RpcError('Accounting configuration differs from the venue policy')
         tokens = [self._asset_word(accounting[0]),self._address_word(accounting[1])]
-        if self.accounting_version in (2,3):
+        if self.accounting_version in (2,3,4):
             if accounting != config: raise RpcError('Native accounting currencies differ from actual venue currencies')
         elif int(config[0],16) == 0:
             wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
@@ -1173,6 +1215,7 @@ class Keeper:
 
     def cycle(self) -> None:
         if self.poll_pending(): return
+        self.principal_distribution.configure()
         self._validate_maintenance_config()
         buybacks = self._buyback_tasks()
         self._validate_accounting_version()
@@ -1180,8 +1223,11 @@ class Keeper:
         paused = self.view('access','paused()') != 0
         self.strategy_paused = paused
         preparing = self.preparation_active()
+        lp_exit = self.lp_exit_started()
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
+        if lp_exit and self.principal_distribution.enabled:
+            if self.principal_distribution.run(): return
         # Three-way durable priority: LP conversion, royalty conversion, then
         # maintenance. One busy stream cannot consume every serial nonce slot.
         workers = (self.lp_rewards,self.royalties)
@@ -1223,7 +1269,7 @@ class Keeper:
                 # pauses and while the physical LP is away. No principal moves.
                 if self.fee_intake_version == 0 and item.get('sync_external_rewards',True) and self._sync_external(bucket): return
                 if paused: continue
-                if status == 'active':
+                if status == 'active' and not lp_exit:
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
                     maintenance_failed = False

@@ -1,5 +1,12 @@
 # NFT traits, royalties and live artwork
 
+Fresh accounting4 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
+rewards and future royalty eligibility. Direct payouts are separate from income;
+no holder principal withdrawal exists during normal operation. LP cannot reopen
+after exit starts. Historical deployments keep their original rules.
+
+
 ## Fixed royalty trait versus activation
 
 Revealed metadata always reports the fixed rarity weight (Commun1 / Rare2 /
@@ -42,7 +49,24 @@ Traits remain bound to the NFT through transfers, additions and migration. `pale
 
 `currentLPValue` returns availability and current 18-decimal oracle-USD marked principal/idle/compound NAV proportional to NFT shares. It does not include unclaimed rewards, arbitrary donations or historical contribution USD. Enhanced starts at$1,000 and Singularity at$10,000; losses may downgrade artwork. An activated NFT below$100 remains activated.
 
-External/in-flight local custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate live external-custody prices. Claims and migration do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
+Parked local custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate prices. Claims and collective principal return do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
+
+Fresh accounting4/custody3 uses canonical
+`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Confirmed collective closure marks
+Exited5 and `currentLPValue` returns available/zero without a price-feed read.
+`evolution` returns terminal stage4 and metadata labels `LP exited`; it reuses
+the existing Activated image, not a new fifth artwork evolution or a Dormant NFT.
+The original four visual evolutions and immutable rarity/palette/pattern remain.
+Royalty weight and future receipt eligibility persist; unpaid principal follows
+NFT ownership separately from fees/royalties. Governance alone starts/closes
+retirement. Operator-submitted bounded batches directly pay current owners;
+holders take no action in the normal flow. A rejecting receiver can retry or
+use the exceptional owner-authorized fallback; universal receipt cannot be
+forced. Optional keeper `principal_distribution` implements bounded automatic
+allocation/direct delivery after governance closure; it is disabled by default,
+uses existing transaction/recovery limits and needs real operating qualification.
+Mint/activation/growth cannot restart, and canonical import/replacement is
+blocked permanently after exit begins. Historical profiles keep their old ABI.
 
 The optional keeper watcher observes confirmed-block evolution, valuation availability and reveal state and uses the existing simulated/budgeted serial transaction path. It defaults to disabled, validates the canonical deployment and live runtime pins, and separates observations from confirmed notifications. This is a separate NFT scan; LP rebalancing still operates once per shared pool. See [operating details](OPERATIONS.md#optional-metadata-notifications) and [current verification](../reports/release-hardening/README.md). Immutable artwork publication and actual marketplace cache integration remain release gates: a changed view or emitted event does not guarantee an instant external refresh.
 

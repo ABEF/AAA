@@ -7,20 +7,81 @@ scope, and the [central Todo](../TODO.md#task-keeper-recovery) for remaining wor
 
 ## Deployment and journal identity
 
-Current configuration explicitly selects `accounting_version: 3` and
+Current configuration explicitly selects `accounting_version: 4` and
 `fee_intake_version: 1`, the exact chain/deployment identity, real Vault/Fees
 addresses and independently reviewed deployed runtimes in `code_hashes`.
 A compiler template is not a deployed runtime pin. Verify actual version getters
 before new work; pending receipt recovery always runs first.
 
-Current Positions have eight local words and statuses None0/Active1/Outbound2/
-Dormant3/Parked4; only Active1 runs ordinary LP upkeep. Accounting1/2 retain their
+Current Positions have eight local words and terminal Exited5 in addition to
+Dormant3/Parked4; only Active1 before collective exit runs ordinary LP upkeep.
+Accounting1/2 retain their
 original fifteen-word rows/status meanings (historical Remote3 is not Dormant3).
 A missing version in an old journal means legacy1, not current support. A mismatch
 stops without rewriting pending hashes, nonces, costs or receipts. Restore the
 original matching release/profile; never upgrade a journal by editing its version.
-The example's separate `keeper-local-position-v3-lp-only` paths do not upgrade an
-installed service or supply reviewed runtime pins.
+Accounting3 retains its original local codec and journal, without terminal
+holder-exit interpretation. The new blocked
+[holder-exit example](../keeper/config.holder-exit.example.json) uses distinct
+`keeper-holder-exit-v4-lp-only` paths. It requires `contracts.principal_exit` and
+independently reviewed `code_hashes.access` / `code_hashes.principal_exit`, in
+addition to Vault/Fees pins. No example upgrades an installed service.
+
+For accounting4, verify `CUSTODY_VERSION()==3`, the fixed Migration/module/access
+binding, and consistent `Access.lpExitStarted()` / `Migration.exitPhase()`.
+Recovery of an already-saved transaction remains first. Once exit starts, the
+keeper schedules no range change, rebalance, compound or standalone harvest,
+even after ordinary unpause. It may still process previously earned LP/royalty
+conversion and separately configured buyback reserves while ordinary controls
+permit. Governance alone starts exit and closes every funded bucket. The optional
+`principal_distribution` worker then allocates and directly delivers principal
+in bounded batches, including while paused; it never initiates or closes LP.
+It is disabled by default and is not enabled on any installed service here.
+Never restart LP as a recovery shortcut: retirement is irreversible. Metadata
+profile4 accepts terminal stage4; old metadata journals cannot be relabeled.
+
+### Optional automatic principal delivery
+
+For a reviewed accounting4 deployment, replace the disabled object in the keeper
+configuration with the following complete object, using the actual NFT runtime:
+
+```json
+{
+  "principal_distribution": {
+    "enabled": true,
+    "batch_size": 32,
+    "nft": {"address": "0x<reviewed NFT address>", "code_hash": "0x<runtime keccak256>"}
+  }
+}
+```
+
+The worker checks NFT runtime, Access owner/module binding, frozen minted count
+(at most1000), allocation cursor and ordinal identity. Phase2 submits only
+`allocatePrincipal(batch_size)`; Ready3 scans at most32 ordinals and submits
+`distributePrincipal(ids)` for unpaid nonzero allocations. Recipients and amounts
+are fixed on-chain by current NFT ownership, not supplied by keeper configuration.
+The ordinary signer, simulation, nonce/receipt journal and transaction/day/gas
+budgets apply; no new key or signing path exists. Normal holders need no action
+or payout gas. A rejecting receiver is retried on a later rotation and retains
+exceptional owner fallback; payment cannot be forced into every contract.
+
+The saved `principal_distribution_cursor` is scan progress, never a paid marker.
+It is persisted before submission; every rotation rereads actual ledger paid
+flags, including deferred recipients. Recovery of pending hashes precedes job
+configuration/scheduling. A bad newly added job cannot bypass or erase an old
+pending transaction. Do not delete a journal or reset its cursor to manufacture
+completion. Actual source/unit rollout, gas economics, backlog/deferral alerts,
+outage/restart and full1000-NFT delivery remain production qualification tasks.
+
+The ordinary configured poll interval and confirmation depth apply: allocation
+and payout use multiple transactions, with only one saved pending action at a
+time. At32NFTs per batch,1000NFTs need many cycles; do not promise immediate or
+same-block distribution. Review `interval_seconds`, confirmations and gas/tx/day
+budgets for a deliberate service rollout/restart without silently changing an
+existing schedule. Once the pinned module reports both `remainingETH()` and
+`remainingZZZ()` zero, the worker stops rescanning the paid inventory. NFT pins,
+a funded limited keeper wallet and actual service/operating qualification are
+required before enabling this source-only job.
 
 Native compound/buyback jobs use currency zero and zero user call value: Fees
 funds its classified reserve. Native venue fees need no conversion; a separate

@@ -7,6 +7,8 @@ interface IZZZAccess {
     function module(bytes32 key) external view returns (address);
     function isSealed() external view returns (bool);
     function paused() external view returns (bool);
+    function lpExitStarted() external view returns (bool);
+    function startLPExit() external;
     function preparationActive() external view returns (bool);
     function canonicalHandoff() external view returns (address);
     function royaltyFactory() external view returns (address);
@@ -110,11 +112,13 @@ interface IZZZVault {
     function park(uint256 id, uint256 deadline) external;
     function resume(uint256 id, bytes32 poolId, uint128 minimumLiquidity, uint256 deadline) external;
     function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external;
-    function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
-        external returns (uint256 amount0, uint256 amount1);
+    function beginLPExit() external;
+    function exitBucketToHolders(uint256 id, uint256 minimumETH, uint256 minimumZZZ, uint256 deadline)
+        external returns (uint256 amountETH, uint256 amountZZZ);
     function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) external;
 }
 interface IZZZMigration {
+    function currentZZZ() external view returns (address);
     function activePlan(uint256 bucketId) external view returns (bytes32);
     function custodyEpoch(uint256 id) external view returns (uint64);
 }

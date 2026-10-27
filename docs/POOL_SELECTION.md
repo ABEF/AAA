@@ -31,10 +31,12 @@ LP; token permissions, market depth and external governance remain separate risk
 ETH/ZZZ fee tiers on the same pinned Robinhood core. It checks the real slot fee,
 code/wiring, admitted native/token assets and feeds, and existing strategy bounds.
 Native admission and accounting no longer consult WETH or its proxy policy.
-No dynamic fees, custom hooks or other native tokens are admitted. WETH/ZZZ uses
-ordinary hookless `configure`. Exactly one pool accepts contributions at a time.
+No dynamic fees, custom hooks, other native tokens or ERC20-only LP pairs are
+admitted. `configure` is removed; separate ERC20 conversion venues do not become
+principal pools. Exactly one pool accepts contributions at a time. This keeps
+every funded bucket returnable to NFT holders as native ETH+fixedZZZ.
 
-The accounting-3 candidate uses native ETH at the venue and throughout
+The accounting-4 candidate uses native ETH at the venue and throughout
 principal/fee/reward custody; it does not normalize ETH to WETH. It preserves
 prefunds, requires exact declared payable budgets and clears exact ERC20 allowances. Vault harvests before increasing LP so old
 native fees cannot silently pay new principal. Unexpected offsets fail atomically.
@@ -69,32 +71,31 @@ classified separately from principal and reserves. Changed Uniswap protocol
 fees do not by themselves freeze collection/close; swaps still require actual
 net outputs and all configured minima.
 
-Native principal custody, raw exit and exact native return do not call WETH.
+Native principal custody, collective close and exact holder payouts do not call WETH.
 An operation explicitly using a reviewed WETH/v3 conversion route retains that
 wrapper/proxy dependency; native admission does not prove its safety. A broken
 pool, token or recipient can still prevent settlement. No universal sweep or
 withdrawal is provided. [Native architecture](NATIVE_ETH_ARCHITECTURE.md) covers
 the full custody and ledger boundary.
 
-## Move funds versus exit
+## Move funds, park or end LP
 
-| Intent | Operation | Boundary |
+| Intent | Current operation | Boundary |
 | --- | --- | --- |
-| Another fee tier with the identical actual ETH/ZZZ pair | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)`; the obsolete Migration `movePool` alias is removed | Atomic actual destination LP; unchanged NFT shares; one captured aggregate maintenance cap (3% default, governance maximum 10%), gas separate; no external custody. |
-| Send principal to your regular address | Approve request, globally pause, then `Migration.exit(id)` | Normal mode converts all attributed principal to configured ZZZ before sending; recipient custody is explicitly trusted. |
-| Swap impossible / prices unavailable | Separately approve `rawExit=true`, then `exit(id)` | Transfers attributed native ETH/ZZZ under raw close minima; no 3% USD guarantee; never automatic fallback. |
+| Another native ETH/ZZZ fee tier | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)` | Atomic actual destination LP, unchanged shares and one captured maintenance cap; default3%, governance maximum10%, gas separate. Deliberate contribution/route cutover. |
+| Wait through an outage | Exact approved paused `Migration.park`; guarded `resume` later | Principal stays attributed in Vault. Parking uses raw close-only minima and no source USD prices; resume needs healthy guarded deployment. |
+| Permanently return principal to NFT holders | Paused governance `beginCollectiveExit`, then `closeBucket`, bounded allocation and direct payout batches | Actual ETH/ZZZ and pending compound by shares; no swaps, historical USD guarantee or arbitrary recipient. NFTs keep transfers, royalties and earned rewards. |
 
-ETH and WETH are distinct currencies. Atomic moves between their pools remain
-unimplemented and are rejected; they need a reviewed explicit conversion boundary.
-Different-pair returns through separately approved external custody remain a
-manual path, with actual new-token funding and destination LP checks. Moving LP does not silently enable destination deposits or alter
-routes. [Exact operator steps](GOVERNED_CUSTODY_HANDOFF.md#move-funds-without-external-custody).
-The aggregate maintenance cap defaults to 3% and governance can change it up to 10%
-after sealing. Existing stricter pool/caller limits remain. Normal custody plans
-retain their original absolute floor; explicit raw exit is a separate risk approval.
-Native raw exit/recovery do not call WETH, but still depend on actual core/token
-bindings, successful settlement and recipient transfers; there is no universal
-exit guarantee through failed external dependencies.
+The holder-exit lock permanently stops mint/contribution/LP work and canonical
+replacement, including after unpause. Failed recipients retain backed rights and
+current-owner fallback; venue/token failures can still delay close or payment.
+Raw minima/exact settlement remain; no aggregate3% USD guarantee or automatic
+swap fallback applies. [Full procedure](HOLDER_COLLECTIVE_EXIT.md).
+
+ETH/WETH are distinct, and this release does not admit a WETH/ZZZ LP destination.
+Different-pair movement, operator custody address exit, all-ZZZ consolidation,
+external return/completion ingress and integrated bridges are removed. A new
+ZZZ token or chain requires fresh review; old rights do not move automatically.
 
 ## Remaining qualification
 
@@ -106,12 +107,12 @@ ETH/ZZZ contribution and reward-conversion routes, any optional royalty-currency
 conversion, full execution/gas economics, production inventory,
 VRF, authorities, marketplace support, operating rehearsals and independent audit
 remain open. Bounded post-seal request/buyback controls and typed v4 conversion are implemented;
-actual provider/market qualification remains open. Atomic ETH/WETH different-pair
-movement is unsupported; explicit external custody remains a distinct trusted path. Existing fork observations
-retain their original WETH-accounting source scope; local native fixtures do not
-qualify live services. Fresh accounting-3 / fee-intake-1 / governance-2 runtime pins and actual native
-wallet/service acceptance are required. Historical native-2 website reads do not
-qualify current-3 integration. Existing fixtures/journals keep their original
+actual provider/market qualification remains open. Current-accounting4 holder
+payouts need their own target-chain/receiver/gas qualification. Historical fork
+observations retain their exact source scope; local fixtures do not qualify live
+services. Fresh accounting4/custody3/fee1/governance2/canonicalV5 runtime pins and
+actual native wallet/service acceptance are required. Historical native2 and
+served accounting3 website artifacts do not qualify accounting4 integration. Existing fixtures/journals keep their original
 profiles and public deployment is null.
 
 [Native candidate evidence](../reports/native-eth-port/VERIFICATION.md) |

@@ -10,7 +10,7 @@ Network gas is separate. The candidate is undeployed and not production approved
 | --- | --- | --- |
 | Activation and top-ups | Vault's immutable `migrationBudget()`: `contributionLossBps()` | At least `grossUSD - floor(grossUSD * cap / 10,000)` must be added as marginal deployed LP. Incumbent principal, idle, compound and donations cannot subsidize it. |
 | LP-fee / royalty conversion | Each fixed-ledger converter: `conversionLossBps()` | Native ETH output must meet `ceil(independentOracleQuote * (10,000 - cap) / 10,000)` and the stronger caller minimum. Each converter has its own setting. Exact WETH unwrap remains 1:1. |
-| Rebalance, atomic pool move/resume and normal external custody | Budget: `maintenanceLossBps()`; custody plan: `minimumRetainedUSD(id)` | Atomic maintenance retains the capped starting principal plus released compound, measured at one starting price vector. Normal external custody preserves the absolute floor captured at approval. |
+| Rebalance and atomic same-pair pool move/resume | Budget: `maintenanceLossBps()` | Retain the capped starting principal plus released compound, measured at one starting price vector. This does not apply a USD floor to raw collective holder return. |
 
 `MAX_LOSS_BPS()` is 1,000 basis points (10%) in these current modules. One basis
 point is 0.01%. A setting of 100 means 1%, 300 means 3%, and zero requires no
@@ -20,8 +20,8 @@ swaps unavailable; it is not a stop flag or a fee waiver.
 ## Operator procedure
 
 1. Read the exact sealed deployment, controller, Budget/converter bindings and
-   current settings at a confirmed block. Inspect pending transactions and custody
-   approvals before changing policy. Never use a default as an on-chain observation.
+   current settings at a confirmed block. Inspect pending maintenance/conversion
+   transactions before changing policy. Never use a default as an on-chain observation.
 2. Choose a justified ceiling, retaining cheaper routes, meaningful minima and
    independent prices. Raising a ceiling authorizes more possible economic loss.
    It does not repair a failed dependency or prove execution is reasonable.
@@ -44,11 +44,11 @@ captures its ceiling at the initial checkpoint. A later callback cannot silently
 weaken the in-progress check. The reviewed Entry path additionally rejects inclusion-time policy above
 the caller maximum; other governance configuration is not frozen by a quote.
 
-For normal external custody, approval stores an absolute minimum retained value.
-Raising the global limit later does **not** weaken that plan's exit/completion. Cancel and separately review a new unsent approval if a different
-budget is intended. Exact outgoing raw/ZZZ and destination minimums still apply.
-Raw emergency exit remains explicit and separately approved, with raw-asset
-minimums and no USD-loss guarantee. Normal failure never selects raw mode.
+Collective holder exit closes actual ETH/ZZZ without swaps or USD oracle reads.
+It uses explicit raw total-principal minima and exact backing/deltas, not a
+3% aggregate USD-loss promise. Pending compound joins principal. Changing any
+loss setting cannot reopen LP after `lpExitStarted`, redirect principal or alter
+previously earned rewards. [Exit procedure](HOLDER_COLLECTIVE_EXIT.md).
 
 ## Independent safeguards and version boundaries
 
@@ -59,7 +59,7 @@ bound cumulative turnover, impermanent loss, depegs or future price changes.
 Governance remains trusted and has no advance-warning delay.
 
 Current activation preparation uses explicit `routing_version: 2` and reviewed
-current accounting3/runtime pins. It reads the current contribution cap and
+current accounting4/runtime pins. It reads the current contribution cap and
 cross-checks the packed `contributionResult(...,uint32)` trace. Legacy profiles
 retain their old `uint16`/fixed-1% interpretation; no missing-getter fallback.
 Current conversion workers explicitly use `v4_native` or
@@ -73,7 +73,7 @@ Existing Anvil state, saved reviews and public simulation are unchanged. See
 [feature evidence](IMPLEMENTATION_STATUS.md) and [central Todo](../TODO.md).
 
 The public website remains simulated. Historical native2 source/read profiles
-do not match current accounting3 merely through a configuration edit. Current
+do not match current accounting4 merely through a configuration edit. Current
 website/service qualification and public signing remain open; existing local
 deployments/journals keep their original semantics.
 
@@ -108,6 +108,6 @@ activation configurations require an explicit source-matched replacement profile
 never mean legacy support. Read-only historical profiles remain separate.
 
 The historical Anvil profile retains its original policy and runtime; never
-reinterpret saved journals. The current read/unsigned integration must explicitly require accounting3, the
+reinterpret saved journals. The current read/unsigned integration must explicitly require accounting4, the
 reviewed selector and current limit checks; actual wallet/provider
 acceptance and public signing remain [open](../TODO.md#task-reviewed-contribution-policy). [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).

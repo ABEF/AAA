@@ -23,29 +23,6 @@ contract NativeCustodyOracle {
     function tokenDecimals(address) external pure returns(uint8){return 0;}
     function value(address,uint256 amount) external pure returns(uint256){return amount*1e18;}
 }
-contract NativeCustodyVault {
-    Position private p;
-    MockToken public immutable token;
-    uint256 public immutable canonicalChainId=block.chainid;
-    uint256 public acceptedNative;
-    bool public reject;
-    constructor(MockToken t){token=t;}
-    receive() external payable {}
-    function set(Position memory next) external {p=next;}
-    function setReject(bool value) external {reject=value;}
-    function group(uint256) external view returns(Position memory){return p;}
-    function bucketTotalShares(uint256) external pure returns(uint256){return 7;}
-    function poolBucket(bytes32) external pure returns(uint256){return 1;}
-    function releaseForMigration(uint256,bytes32,uint256) external returns(uint256 x,uint256 y){
-        x=p.idle0;y=p.idle1;p.idle0=0;p.idle1=0;p.status=PositionStatus.Outbound;
-        ExactAsset.push(address(0),msg.sender,x);ExactAsset.push(address(token),msg.sender,y);
-    }
-    function acceptHandoff(uint256,bytes32 pool,uint256 a0,uint256 a1,uint128 minimum,uint256) external payable {
-        require(!reject && msg.value==a0,"native budget");
-        require(token.transferFrom(msg.sender,address(this),a1));acceptedNative=msg.value;
-        p.poolId=pool;p.idle0=a0;p.idle1=a1;p.status=minimum==0?PositionStatus.Parked:PositionStatus.Active;
-    }
-}
 contract NativeCanonicalVault {
     uint256 public immutable canonicalChainId=block.chainid;
     uint256 public constant sequence=0;
@@ -80,64 +57,6 @@ contract OldNativeFeeSchema {
     bytes32 public constant SCHEMA=keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2");
 }
 contract RejectNativeCustody {receive() external payable {revert("recipient rejects");}}
-
-contract NativeCustodyTest is Test {
-    MockAccess ac;MockToken token;MockPools pools;NativeCustodyVault vault;ZZZMigration migration;
-    bytes32 pool;address custody=address(0xC057);bytes32 review=keccak256("native custody unit");
-    function setUp() public {
-        ac=new MockAccess();token=new MockToken(0);pools=new MockPools();vault=new NativeCustodyVault(token);
-        migration=new ZZZMigration(address(ac));ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.POOLS,address(pools));
-        ac.bind(Ids.MIGRATION,address(migration));ac.bind(Ids.REWARDS,address(new NativeCustodyAssets()));
-        ac.bind(Ids.ORACLE,address(new NativeCustodyOracle()));ac.seal();
-        PoolConfig memory c;c.key=PoolKey(address(0),address(token),3000,60,address(0));c.operationsEnabled=true;
-        pool=keccak256(abi.encode(c.key));pools.set(pool,c);
-        Position memory p;p.poolId=pool;p.status=PositionStatus.Parked;p.idle0=100;p.idle1=100;vault.set(p);
-        vm.deal(address(vault),100);token.mint(address(vault),100);vm.deal(address(this),1 ether);
-    }
-    function _request() private view returns(ZZZMigration.Request memory r){
-        r.bucket=1;r.sourceSnapshot=migration.sourceSnapshot(1);r.recipient=custody;r.recipientCodeHash=custody.codehash;
-        r.destinationCustody=custody;r.output0=address(0);r.output1=address(token);
-        r.rawExit=true;r.exitMinimum0=100;r.exitMinimum1=100;r.deadline=block.timestamp+100;r.reviewHash=review;
-    }
-    function _exit() private returns(bytes32 id){id=migration.approve(_request());ac.setPaused(true);migration.exit(id);}
-    function _tokens() private {token.mint(address(this),100);token.approve(address(migration),100);}
-    function testRawNativeExitHasNoZZZOrWrapperDependencyAndPreservesPrefund() public {
-        vm.deal(address(migration),13);bytes32 id=_exit();
-        assertEq(custody.balance,100);assertEq(token.balanceOf(custody),100);assertEq(address(migration).balance,13);
-        (ZZZMigration.Status status,uint256 a0,uint256 a1,,)=migration.state(id);
-        assertEq(uint256(status),uint256(ZZZMigration.Status.Sent));assertEq(a0,100);assertEq(a1,100);
-        assertEq(migration.currentZZZ(),address(0)); // Unset is not an ETH-as-ZZZ identity.
-    }
-    function testRecoveryRequiresExactNativeValueDespitePrefunds() public {
-        bytes32 id=_exit();_tokens();vm.deal(address(migration),200);
-        vm.expectRevert();migration.recover(id,block.timestamp+100);
-        vm.expectRevert();migration.recover{value:101}(id,block.timestamp+100);
-        migration.recover{value:100}(id,block.timestamp+100);
-        assertEq(vault.acceptedNative(),100);assertEq(address(migration).balance,200);
-        assertEq(vault.group(1).idle0,100);assertEq(token.allowance(address(migration),address(vault)),0);
-    }
-    function testLocalCompletionForwardsExactNativeBudgetAndPreservesShares() public {
-        bytes32 id=_exit();migration.bindLocalDestination(id,pool,100,100,review);ac.setPaused(false);_tokens();
-        vm.expectRevert();migration.completeLocal(id,100,100,1,block.timestamp+100);
-        migration.completeLocal{value:100}(id,100,100,1,block.timestamp+100);
-        assertEq(vault.acceptedNative(),100);assertEq(uint256(vault.group(1).status),uint256(PositionStatus.Active));
-        assertEq(migration.outstandingCount(),0);
-    }
-    function testRecoveryFailureRollsBackETHAndTokens() public {
-        bytes32 id=_exit();_tokens();vault.setReject(true);uint256 eth=address(this).balance;
-        vm.expectRevert();migration.recover{value:100}(id,block.timestamp+100);
-        assertEq(address(this).balance,eth);assertEq(token.balanceOf(address(this)),100);
-        assertEq(uint256(vault.group(1).status),uint256(PositionStatus.Outbound));
-    }
-    function testRejectingRecipientRollsBackWholeNativeExit() public {
-        custody=address(new RejectNativeCustody());bytes32 id=migration.approve(_request());ac.setPaused(true);
-        vm.expectRevert();migration.exit(id);assertEq(address(vault).balance,100);assertEq(token.balanceOf(address(vault)),100);
-        assertEq(uint256(vault.group(1).status),uint256(PositionStatus.Parked));
-    }
-    function testUnsolicitedNativeTransferToMigrationFails() public {
-        (bool ok,)=address(migration).call{value:1}("");assertFalse(ok);
-    }
-}
 
 contract NativeCanonicalFundingTest is Test {
     function _access() private returns(MockAccess a){a=new MockAccess();a.bind(Ids.CANONICAL,address(this));}
@@ -198,7 +117,7 @@ contract NativeCanonicalFundingTest is Test {
     }
     function testCanonicalSchemaNamesNativeAccountingVersion() public {
         MockAccess a=_access();ZZZCanonicalHandoff handoff=new ZZZCanonicalHandoff(address(a));
-        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3"));
+        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_V1"));
     }

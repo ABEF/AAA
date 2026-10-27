@@ -1,5 +1,15 @@
 # Current native production inventory and read-only preflight
 
+Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
+[Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
+and royalty custody exits. Governance permanently ends LP and pays actual
+ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
+No external recipient/bridge/return ingress remains. Whole-collection handoff
+is available only before exit. Earlier source-scoped evidence and accounting3
+service/inventory/website qualification remain historical to their original pins.
+See [profile4](POSITION_V4.md); new release qualification remains open.
+
+
 
 ## Current release scope
 

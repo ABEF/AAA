@@ -19,24 +19,17 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 
 
-def _current_profile(config: Any) -> bool:
-    return isinstance(config,dict) and all(type(config.get(key)) is int and config[key] == expected
-        for key,expected in (('schema_version',5),('accounting_version',3),('mint_integration_version',1),('fee_intake_version',1)))
-
-
 def validate(config: Any, *, expected_commit: str | None = None, now: int | None = None) -> dict[str,Any]:
     """Evaluate current release only; old configuration never enters legacy code."""
-    if not _current_profile(config):
-        return {'schema_version':5,'status':'blocked','ready':False,'deployment_authorized':False,
-            'current_release_gate':True,'production_qualification_supported':False,
-            'issues':[{'code':'current_profile_required','path':'current_release_profile',
-                'message':'Current release requires schema5, accounting_version3, mint_integration_version1 and fee_intake_version1. Use explicit --historical-consistency only for historical inspection.'}],
-            'limitations':['Historical layouts are not evaluated by the default current gate. No deployment, sealing, signing or movement is authorized.']}
-    from zzz_ops.production_v2 import validate as validate_native
-    result=validate_native(config,expected_commit=expected_commit,now=now)
-    result['current_release_gate']=True
-    result['deployment_authorized']=False
-    return result
+    # Accounting4 changes terminal rights and removes external custody. The
+    # historical accounting3 inventory/observer cannot qualify that new ABI.
+    # Keep this explicit release gate closed until the new inventory acceptance
+    # is independently implemented and reviewed; never reuse a historical ready.
+    return {'schema_version':6,'status':'blocked','ready':False,'deployment_authorized':False,
+        'current_release_gate':True,'production_qualification_supported':False,
+        'issues':[{'code':'holder_exit_qualification_pending','path':'current_release_profile',
+            'message':'Fresh source requires accounting4/custody3/canonical holder-exit V5. Its production inventory and operating qualification remain open. Accounting3 is historical; use explicit --historical-consistency only for inspection.'}],
+        'limitations':['Source implementation and focused tests do not qualify actual release bindings, services or deployment.']}
 
 
 def read_config(path: Path) -> Any:

@@ -1,41 +1,65 @@
 # Configuration changes and recovery boundaries
 
-The holder cannot redeem principal. Immediate direct governance can change
-supported operating policy and approve trusted external custody; it cannot patch
-sealed implementations or replace the deployment's ZZZ identity. External custody
-return is not enforced. See [current profile](POSITION_V3.md) and the
-[operator manual](OPERATOR_MANUAL.md) for exact inputs/authority/verification.
+The undeployed candidate uses [accounting4 / custody3 / canonical V5](POSITION_V4.md).
+Sealing fixes code, bindings and the single ZZZ identity. Governance changes
+supported policy directly, without a timelock; it cannot rewrite NFT rights or
+send principal/royalties to a custodian. Production is **NOT APPROVED**.
 
 ## What can change
 
-| Change | Control and retained protection |
+| Need | Current supported action and limit |
 | --- | --- |
-| Enable, disable or re-enable ETH/fixed ZZZ contributions | Configure the reviewed source ZZZ once, deploy/bind Buyback with that same immutable token, then call `Migration.configureZZZ` once before sealing. Migration rejects an unbound/mismatched Buyback; source/normal-exit identities must match at seal. Native pool admission additionally requires the pinned Robinhood ZZZ identity. After seal, the immutable `ZZZActivationAssets` helper permits append-only enable/disable policies only for native ETH and that fixed ZZZ. Enabling requires code/decimal/dual-price checks; disable queries no failed dependency. A third input or replacement ZZZ is rejected. Earned rights and recovery do not depend on the admission flag. |
-| Change the ZZZ token contract | No token-replacement or Buyback retargeting setter exists. Contribution, immutable Buyback and normal-exit pins describe one fixed ZZZ token. An issuer exchange requires explicit custody exit and a fresh reviewed deployment; NFT ownership, accrued rewards and purpose-bound reserves need their own preservation plan. Configuration of one deployment cannot relabel existing economic rights. |
-| Disable a pool during dependency failure | Governed `PoolRegistry.disablePool(poolId,stopDeposits,stopOperations)` only clears selected flags of an admitted pool, without token/oracle/venue calls. Re-enabling still requires full configure/configureNative checks. Global pause permits configuration; preparation/canonical locks do not. |
-| Pause only new NFT mints | Governed `NFT.setMintPaused(bool)` blocks new requests/mints without pausing pending reveals or existing LP/claim/transfer paths. Clearing it does not override other controls. This operational setting must be reviewed independently on a replacement. |
-| Reconfigure a pool after disabling a currency | Initial pool admission never overwrites a known asset policy. Reconfiguration cannot silently re-enable it. A zero amount on a disabled side does not block contribution of the enabled side. |
-| Route an approved ETH/ZZZ contribution | The immutable [Entry child](ACTIVATION_ENTRY.md) authenticates the owner and original ETH/fixed-ZZZ input, then uses exact native funding or an admitted typed v3/v4 route. Actual marginal LP must meet the captured contribution budget (2% default, at least98% deployed), caller maximum and stronger minima; gas is separate. Route admission does not add another contribution currency. Marketplace royalties have independent asset policies. |
-| Replace a retired token-price feed | Post-seal immediate governance calls `ZZZOracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`. Both independently reviewed sources must pass runtime/precision/round/freshness/disagreement admission. A new immutable policy/history entry is activated; update approved inventory/API/keeper policies afterward. The retired `setFeed` selector is not a current function. No redeployment, caller-supplied price or automatic spot/single-source fallback. |
-| Replace a failed sequencer-status feed | `ZZZOracle.setSequencerFeed` appends a reviewed nonzero source/code policy by a direct governance-wallet call to Oracle, without querying the failed old source. Uptime and recovery grace remain mandatory; a configured safeguard cannot be removed by setting zero. |
-| Disable new strategy operations in a pool | New LP mint, increase and guarded swaps stop; typed collect/close remain available under custody, actual currency, runtime and real-key checks. Current native paths do not query WETH policy. Ordinary Vault exit validation ignores the source operations flag but still requires a valid oracle and acceptable spot deviation. Separately reviewed paused parking has raw-token authorization instead of a source USD read. |
-| Move LP to another supported local pool | Governed `ZZZMigration.moveFunds` closes and redeploys the whole bucket through the Vault; Both pools must have identical actual ordered currencies and the destination must be admitted and enabled. Actual destination LP, unchanged shares and one fixed-price aggregate loss floor (3% default; governance maximum 10%) are required; gas separate. Another native ETH/ZZZ fee tier is supported. ETH and WETH are distinct; atomic conversion between those pools is not implemented and fails the pair guard. Use separately approved external custody/manual conversion and funded completion, or implement a reviewed boundary before sealing. Contribution pool/routes require deliberate cutover. |
-| Convert principal into another local pair | The former pair executor is removed. Use separately approved external custody, perform the issuer exchange/conversion outside the source contracts and fund actual local destination LP through `completeLocal`. Normal mode retains the absolute floor recorded at approval (97% by default); raw mode uses its explicit destination minima. This is not an atomic arbitrary-pair `moveFunds` operation. |
-| Park a paused shared LP during a source-price outage | Sealed, paused `ZZZMigration.park` requires the exact governance-approved LP/share/deposit/location/epoch/nonce snapshot, ordered currencies, reviewed close-only raw minima and a current deadline. It collects venue fees separately, closes the LP and keeps all principal attributed inside Vault. Old idle, donations and compound reserves cannot satisfy the close minimums. Parking does not read source USD/sequencer prices; actual core/token/runtime and venue bindings remain mandatory. Current native does not call WETH or its policy. |
-| Resume parked principal | After unpause, governed `resume` requires valid valuation, an enabled destination with the same actual ordered currencies, actual LP and normal swap/idle/captured aggregate guards. Parking is not a bypass of destination validation. |
-| Exit to external custody | Approve an exact request, pause globally and call `exit`. Normal mode consolidates attributed principal into the fixed deployment ZZZ with stricter swap minima and the absolute approval floor (97% by default). Explicit `rawExit` sends both actual assets without swap/USD reads or a3% guarantee; the bootstrap identity check adds no Buyback call or source-policy dependency to that operation. Never downgrade normal failure automatically. Current native sends ETH/ZZZ without WETH, while venue/token/runtime failures can still block it. |
-| Complete or recover external custody | `completeLocal` requires real approved destination assets and actual LP, preserving original normal/raw limits and shares. A sent local holding plan may bind one reserved destination through `bindLocalDestination`. `recover` requires all actual sent assets/quantities back into parked custody. Both require exact declared native `msg.value`, or zero ETH for an ERC20-only return; old prefunds are not funding. No timeout or accounting-only completion exists. |
-| Use external custody for an issuer migration or future chain | The approved recipient receives on the source chain and performs external operations under trusted custody. PoPL has no remote-confirmation/verifier/proof API. Only full actually-sent source-asset funding can call `recover(id,deadline)`; approved `completeLocal` instead requires actual local destination LP and its original floors. No timeout, external bridge receipt or multisig assertion substitutes for backing. External custody does not relocate canonical NFT ownership or reward ledgers; a replacement ZZZ identity uses exit and a fresh reviewed deployment. |
-| Change keepers, guardians or strategy settings | Existing governed configuration and direct governance controller; guardian pause is not asset-withdrawal or upgrade authority. |
-| Change the Vault, reward ledgers or mint/trait rules after sealing | No generic implementation replacement exists. A reviewed funded same-chain handoff preserves ownership, traits, ledgers and backing in compatible replacement code; operating configuration does not authorize arbitrary implementation swaps. |
+| Rotate governance | Current wallet calls `Access.proposeGovernance`, proposed wallet calls `acceptGovernance`. No delay; zero proposal cancels. Keepers, guardians and mint recipient do not rotate with it. |
+| Stop minting only | Governance `NFT.setMintPaused(true)`; existing transfers, LP and claims continue. It does not cancel an already requested reveal. |
+| Stop ordinary economic activity | Governance/guardian pauses; only governance unpauses. Claims and transfers remain while canonical state is operating. Pause does not undo terminal LP exit. |
+| Enable/disable ETH or fixed ZZZ contributions | Source-policy controls in `PoolRegistry.activationAssets()`. Identity is configured once before seal; no third input or replacement ZZZ setter. Source disable does not revoke earned rights. |
+| Disable an admitted pool during an outage | `PoolRegistry.disablePool(poolId,stopDeposits,stopOperations)` only clears flags without token, oracle or venue reads. Re-enabling before terminal exit requires full `configureNative` validation. |
+| Change contribution pool or fee tier | Admit an initialized, pinned, static hookless native ETH/fixedZZZ destination using `configureNative`. Only one contribution pool can be enabled. LP movement and contribution/route cutover are separate reviewed steps. |
+| Move the existing LP | Before collective exit, `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)` atomically closes/redeploys the same actual ETH/ZZZ pair under the captured maintenance budget. Shares and bucket identity remain. No WETH/other-pair destination or external recipient. |
+| Change range/trigger/cooldown | Governance updates supported pool parameters/orientation; a later eligible rebalance applies actual ticks. Optional reviewed keeper policy selects only +/-25% or +/-50% ZZZ-price-in-ETH widths. See [range procedure](OPERATOR_MANUAL.md#range-and-strategy). |
+| Change execution-loss limits | Budget contribution/maintenance and separate converters are bounded at 10%; defaults2%/3% and1%. Captured policy, stronger caller/venue minima and gas separation remain. [Exact procedure](EXECUTION_LOSS_POLICY.md). |
+| Rotate a conversion route | Admit/enable a reviewed pinned typed route; a conversion venue is not an LP contribution pool or a new input identity. Already-earned entitlements remain with the same NFTs. |
+| Replace USD feeds or sequencer feed | Review new sources, independence/runtime/proxy controls, ages and disagreement. `Oracle.setDualFeed` requires both sources; selected disagreement tolerance3%. Sequencer replacement cannot disable an installed safeguard by setting zero. No peg/spot/missing-source fallback. |
+| Tune randomness requests | Future confirmation/callback settings only; provider/lane/subscription/payment mode are fixed. Original pending requests cannot be rerolled. |
+| Tune buyback amount | `Buyback.setOperatingTradeUSD` ranges from zero through immutable `maxTradeUSD`; zero stops buys. Target ZZZ is immutable, and reserves cannot be sent to governance. |
+| Rotate service host/RPC | Preserve original deployment identity, versioned configuration, pending intents, nonce and receipt journals. A config edit does not upgrade deployed code. [Recovery](KEEPER_RECOVERY.md). |
 
+## Pause, park, resume or permanently exit
 
-## Implementation and qualification limits
+**Parking is reversible; collective holder exit is irreversible.** Before exit,
+paused governance can use `Migration.park` with exact LP/share/epoch/nonce and raw
+close minima. It harvests and closes into attributed Vault idle without USD
+oracle reads. Old idle, donations and pending compound cannot satisfy parking's
+close-only minima. Actual venue/token/runtime checks still apply. Resume uses an
+admitted same-pair destination and fresh guarded deployment, retaining the
+captured maintenance budget.
 
-Defaults are contribution2%/conversion1%/maintenance3%, maxima10%, gas separate,
-with captured caller/plan/venue minima preserved. Actual services/routes/feed pairs,
-VRF/OpenSea/current3website/operating acceptance and independent audit remain open.
-Typed v3/v4 conversion exists; arbitrary algorithm/venue changes and ETH/WETH
-principal conversion are not supplied by a configuration setter. No integrated
-bridge/remote-proof/creator-inbox service is required. Historical specifications
-and evidence retain their original profile and never authorize current calls.
+For permanent shutdown, paused governance calls
+`Migration.beginCollectiveExit(reviewHash)`. Each bucket closes without swaps,
+then exact principal is apportioned by NFT shares and paid in bounded direct
+batches to current owners. Pending compound joins principal; earned LP rewards,
+royalties and buyback reserve stay separate. Failed recipients retain backed
+rights and an owner-only fallback. [Complete operator steps](HOLDER_COLLECTIVE_EXIT.md).
+Unpause cannot reopen minting, contributions, maintenance or canonical replacement.
+
+No `exit` to a chosen address, all-ZZZ consolidation, `completeLocal`, `recover`,
+royalty-custody drain, bridge or generic sweep remains. A token issuer migration
+cannot be executed on holders' behalf by a custody wallet: holders receive the
+actual old ETH/ZZZ and handle any issuer exchange themselves. New ZZZ or another
+chain requires a fresh reviewed project; no existing rights move automatically.
+
+## Whole-collection replacement
+
+Before `lpExitStarted`, compatible [same-chain canonical V5 handoff](CANONICAL_HANDOFF.md)
+can carry NFT ownership, shares, both ledgers and exact backing to one reviewed
+replacement. It requires complete reveals, parked buckets, authenticated records,
+funded legs and atomic retirement/activation; partial failure requires exact
+abort restoration. Governance's choice of successor code remains trusted.
+
+After collective exit starts, that handoff is permanently blocked because its
+importer does not carry the terminal principal-payout ledger. No admin-only
+reopening, post-halt recovery or cross-chain transport exists.
+
+Actual feeds/routes/VRF/authorities, OpenSea, accounting4 services/UI, target gas,
+operating rehearsals and independent review remain [open](../TODO.md). Historical
+reports and deployed Anvil profiles keep their original scope and code.

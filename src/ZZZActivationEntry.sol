@@ -202,7 +202,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
     /// @notice The signed maximum includes conversion and placement loss; gas is separate.
     /// A tighter execution-time policy is allowed, but never a wider one than reviewed.
     function executeReviewed(Request calldata request, uint16 maximumLossBps)
-        external payable live operating nonReentrant {
+        external payable live operating principalOperating nonReentrant {
         _deadline(request.deadline);
         address vault = _vault();
         if (request.amountIn == 0 || request.minimumLiquidity == 0 || _owner(request.nftId) != msg.sender) revert Unauthorized();

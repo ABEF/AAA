@@ -2,7 +2,8 @@
 pragma solidity 0.8.26;
 
 import {Test} from "forge-std/Test.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+// TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
+import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig} from "../src/libraries/ZZZTypes.sol";

@@ -4,7 +4,8 @@ pragma solidity 0.8.26;
 import {Test} from "forge-std/Test.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+// TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
+import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";

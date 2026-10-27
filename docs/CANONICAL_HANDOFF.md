@@ -1,5 +1,7 @@
 # Canonical handoff: same-chain implementation
 
+
+
 This is the implementation and operating reference for the undeployed handoff
 candidate. It is not release approval. The [central Todo](../TODO.md#task-security-chain-recovery)
 owns remaining work; the [canonical migration design](CANONICAL_MIGRATION_DESIGN.md) records deferred
@@ -11,22 +13,23 @@ original source scope. **Production NOT APPROVED.**
 ## Supported boundary
 
 The current coordinator binds
-`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4")`, matching
-accounting3 eight-word local Positions and LP-only fee intake1. Both peers must
-expose this exact schema. Older WETH/native V1/V2/V3 codecs are rejected, not
+`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5")`, matching
+accounting4 eight-word local Positions and LP-only fee intake1. Both peers must
+expose this exact schema. Older WETH/native V1/V2/V3/V4 codecs are rejected, not
 reinterpreted. Native ETH is asset zero; every admitted principal, reserve and
 reward currency remains explicit. Current Positions contain no remote location
-or composition-epoch fields. See [the profile](POSITION_V3.md).
+or composition-epoch fields. See [the profile](POSITION_V4.md).
 
 The candidate transfers the collection and classified economic state to one
-replacement **on the same chain**. Every nonempty bucket must first be parked
-at the current Vault, every draw must be complete, and principal/royalty external
-custody must be fully resolved. The retired LP bridge/pair executor stack cannot
-be bound to this candidate; historical records do not qualify remote closure.
+replacement **on the same chain, before collective LP exit starts**. Every
+nonempty bucket must be parked at Vault and every draw complete. Once
+`lpExitStarted` is set, preparation/transition/freeze are permanently blocked,
+even after all holder payouts: this importer does not carry terminal principal
+liabilities or authorize reopening LP. No external principal/royalty custody
+request exists. [Holder exit](HOLDER_COLLECTIVE_EXIT.md) is a separate terminal path.
 
 This release has no integrated bridge, remote ledger or cross-chain canonical
-activation. An external principal custodian may bridge independently; that does
-not transfer NFT ownership or reward accounting. A future-chain protocol would
+activation, and no operator-custody address can move funds externally. A future-chain protocol would
 need separately reviewed transport, verified finality and replay/ownership
 boundaries; post-halt recovery is deferred. There is no multisig-only or timeout
 override. Same-chain retirement/activation is atomic: a reorganization reverts
@@ -68,7 +71,7 @@ does not authorize a finality, backing or source-retirement override.
 | --- | --- | --- |
 | Prepare destination | Still operates. | Bootstrap binds modules, calls `prepareImport(sourceController)`, configures dependencies and seals. Importer remains inert. |
 | Announce | Governance-approved `startPreparation` names the already sealed importer and exact deployment/review commitments. New work stops; claims, transfers, reveal and permitted drains remain. | Bound to this source only. |
-| Drain and freeze | Reveal all existing mints, resolve plans, return/park custody, then governance-approved `freeze`. Global state changes before any balance observations. | Receives the source handoff identity and domain sizes. |
+| Drain and freeze | Reveal all existing mints and park every funded LP, then governance-approved `freeze`; `lpExitStarted` must remain false. Global state changes before any balance observations. | Receives the source handoff identity and domain sizes. |
 | Settle cutoffs | Phase 8 keeps all rights frozen. Six ordered, permissionless `settle(slot)` calls finalize only the captured amounts; retries cannot repeat a domain. Only completion changes the source to exportable phase 1. | Remains inert; no import or funding can proceed yet. |
 | Export/import | `exportRows` commits complete settled domains in batches of at most eight. | `importRows` verifies each exact source record and builds the same rolling roots. Imported ownership and claims remain disabled. |
 | Fund | Each one-use leg transfers the exact captured asset into its fixed peer module/companion first. Principal and each reward/reserve class stay separate. | The coordinator verifies the actual receipt, then calls `canonicalAccept` with zero `msg.value`. Companions forward already-funded ETH once; prefunds cannot replace a funding leg. |
@@ -81,7 +84,8 @@ fractions, reserves, admitted assets and quarantine classifications survive.
 New VRF requests use a new namespace, preserving historical request provenance.
 Operator approvals are deliberately not imported. Existing minted IDs and later
 mints use the original collection/Vault identity; current custody routing is
-remapped to the replacement. No NFT principal becomes redeemable.
+remapped to the replacement. Ordinary holder redemption remains unavailable;
+a later collective LP shutdown requires its separate governance action.
 
 ## Backing, cutoffs and late receipts
 
@@ -133,12 +137,12 @@ recovery promise is made for a broken or malicious token.
 
 ## Integration and qualification
 
-Fresh API/keeper profiles explicitly select accounting version3 and fee intake1,
+Fresh API/keeper profiles explicitly select accounting version4, custody3 and fee intake1,
 and verify `Vault.ACCOUNTING_VERSION()` plus reviewed runtime pins. Legacy WETH profiles and
 predecessor epochs retain their own currency/version interpretation; saved nonce,
 receipt and pending journals cannot be reset or reinterpreted as a native upgrade.
-The historical native2 website reader cannot serve current accounting3 merely
-by relabeling a manifest. Current website/service acceptance remains open; public
+Historical native2/accounting3 website artifacts cannot serve accounting4 merely
+by relabeling a manifest. Accounting4 website/service acceptance remains open; public
 DEPLOYMENT is null, signing stays Anvil-only and existing fixtures are unchanged.
 
 Keeper reads `canonicalState()` strictly and stops all new transaction submissions
@@ -170,5 +174,6 @@ manual](OPERATOR_MANUAL.md#whole-collection-replacement) and the read-only
 `/v1/mint-readiness` observation. No pending-request carry/reroll path is selected.
 An unanswered original request still blocks this replacement; postpone/cancel
 preparation and resolve it with the original provider. Ordinary LP pool migration
-has no reveal-completion requirement. Escrow compatibility requires separate
+has no reveal-completion requirement. Collective holder return also does not
+require completed reveals, and permanently disables this canonical path. Escrow compatibility requires separate
 rehearsal before freeze; no owner rewrite is authorized.

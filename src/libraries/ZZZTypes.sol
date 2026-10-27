@@ -42,9 +42,10 @@ struct PoolConfig {
     uint256 maxPositionUSD;
 }
 
-// Accounting V3 is local custody only. Historical V2 decoders retain their own
-// fifteen-word Position and status meanings; never reinterpret them as this ABI.
-enum PositionStatus { None, Active, Outbound, Dormant, Parked }
+// Accounting V4 adds terminal holder settlement. Historical V2/V3 decoders
+// retain their own profile and status meanings; never relabel deployed state.
+// Outbound is retained as a reserved wire value, with no external-custody path.
+enum PositionStatus { None, Active, Outbound, Dormant, Parked, Exited }
 struct Position {
     bytes32 poolId;
     uint256 lpTokenId;

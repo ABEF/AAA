@@ -1,5 +1,9 @@
 # Deployment address inventory
 
+Fresh undeployed source: [accounting4 / custody3 / canonical V5](POSITION_V4.md).
+Governance can permanently close LP and return actual ETH+ZZZ to NFT holders;
+there is no external principal/royalty custody recipient. Production is **NOT APPROVED**.
+
 ## Mint proceeds and approval boundary
 
 The immutable mint recipient gains no management powers. Current direct mint
@@ -9,26 +13,27 @@ recipient; gas is separate. No platform rate or marketplace contract is approved
 This requires a compatible mint implementation before sealing; an inventory
 entry cannot create it. [Integration requirements](MINT_INTEGRATION_QUALIFICATION.md).
 
-## Governance authority versus custody recipient
+## Governance and principal recipients
 
-These are distinct identities. Governance authorizes exact configuration, pool
-movement and paused custody exits by calling their modules directly. Access
-authenticates the current governance wallet; it does not forward the call. The reviewed
-exit recipient receives and controls assets, without gaining protocol governance.
-They can use the same wallet only as an explicit reviewed custody/security choice.
+Governance authorizes supported settings, same-pair movement, reversible parking
+and an irreversible collective holder exit. It does not choose a wallet to receive
+LP principal. The fixed Migration module pays each NFT's actual current owner;
+only that owner can choose a fallback recipient for a failed automatic payout.
 
-| Balance | Does principal exit transfer it? |
+| Balance | Collective exit treatment |
 | --- | --- |
-| Attributed LP principal and included bucket idle | Yes: normal mode closes/converts to ZZZ; explicit raw mode sends actual pair assets, native ETH/ZZZ for the selected pool, without a swap. |
-| Claimable LP-owner/collective rewards | No automatic sweep. Their liabilities and backing remain classified in the reward ledgers. |
-| NFT-sale royalties | Not by principal exit; the royalty ledger has its own reviewed paused full-currency custody exit/return. |
-| Mint proceeds already paid | No: they are already at the immutable mint recipient. |
-| Ownership and reward accounting | Not relocated by moving principal. Same-chain whole-collection handoff is a distinct verified path. |
+| Actual LP close proceeds, attributed idle and pending compound | Exact ETH+fixedZZZ apportioned by frozen shares and paid in bounded batches; no historical USD guarantee. |
+| Earned individual/collective LP rewards | Existing ledgers/backing remain claimable by current NFT owners, separately from principal return. |
+| Royalties and future receipts | Continue in the separate royalty ledger under preserved activated rarity weights; no external custody drain. |
+| Buyback reserve, quarantine and unsolicited prefunds | Not swept into principal or an administrator address. Purpose-bound accounting remains. |
+| Mint proceeds already paid | Already held by immutable mint recipient; no management privilege follows. |
+| NFT ownership and reward accounting | Stay live through LP exit; before exit only, compatible canonical V5 can carry them to one reviewed same-chain successor. |
 
-Authority addresses, multisig threshold/signers and provider-specific subscription
-ownership remain unselected. No public role or wallet was configured by this update.
-
-**Current candidate:** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor and optional remote-proof custody paths are removed; whole-collection handoff remains separate. The current accounting3 candidate holds and sends actual ETH/ZZZ; native ETH is asset zero, not WETH. Atomic ETH/WETH moves remain unsupported until an explicit conversion boundary is implemented. A reviewed source-chain custodian may bridge externally; no integrated bridge or remote ownership/reward ledger is supplied. Actual production inventory, services and independent qualification remain open. Earlier evidence retains its original scope. [Native accounting verification](../reports/native-eth-port/VERIFICATION.md).
+Authority wallets and provider-specific subscription ownership remain unselected.
+The selected native ETH/fixedZZZ pool and supported fee-tier replacements are the
+only admitted LP pair; ERC20 conversion venues remain separate. See
+[holder return](HOLDER_COLLECTIVE_EXIT.md) and [pool selection](POOL_SELECTION.md).
+Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
 public addresses. Complete the [production manifest](../config/production.example.json)
@@ -37,7 +42,7 @@ review evidence. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
 [release record](RELEASE_CHECKLIST.md) records final sign-off.
 
-Use [schema-5 preflight](PRODUCTION_PREFLIGHT.md) for the current layout; older
+Use [versioned preflight](PRODUCTION_PREFLIGHT.md) with explicit accounting4 for this layout; older
 schemas/profiles remain historical inspection only. Record each module/helper
 below once, together with exact deployed runtime (including immutables), parent
 bindings, source/implementation/admin controls and configuration history. A
@@ -61,7 +66,6 @@ the schema and record the chosen wallet accurately rather than inventing people.
 | Mint proceeds recipient | Select the immutable proceeds recipient: current direct mint pays exactly 0.05 ETH; the required OpenSea path pays net of its actual platform fee from the same 0.05 ETH buyer total. A treasury may fill this role; it has no custody authority merely by receiving mint payments. |
 | Deployment/bootstrap signer | Select the temporary deployment account. It performs write-once bindings and configuration before seal; sealing permanently clears bootstrap. |
 | VRF subscription owner/funder | Identify the selected service's subscription ownership, authorized consumers and funding arrangements. These depend on the qualified coordinator, not a PoPL administrator setter. |
-| External custody recipient | For each approved principal/royalty exit, review the exact recipient, chain, EOA/contract status and code hash, custody controls and recovery plan. Recipient custody/liveness is a governance trust, not a holder redemption right. |
 
 The **governance controller is a deployed contract**, `ZZZAccessController`, not
 another wallet. Its version2 constructor takes exactly three nonzero addresses:
@@ -90,7 +94,7 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | Manifest name | Contract |
 | --- | --- |
 | `access` | `ZZZAccessController` — authenticates direct governance and fixes sealed module bindings |
-| `vault` | `ZZZVault` — permanent principal custody and NFT share ledger |
+| `vault` | `ZZZVault` — shared LP custody, NFT shares and terminal principal release to the fixed holder-settlement module |
 | `nft` | `ZZZNFT` — canonical ownership, fixed trait draw and royalty request |
 | `liquidity` | `ZZZLiquidityManager` — fixed venue settlement |
 | `rewards` | `ZZZRewards` — funded LP-owner and equal-collective claims |
@@ -99,7 +103,7 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `strategy` | `ZZZStrategy` — fixed range/execution calculations |
 | `compounder` | `ZZZCompounder` — bounded keeper compounding coordination |
 | `buyback` | `ZZZBuyback` — reviewed purchase and supply-reducing burn |
-| `migration` | `ZZZMigration` — governed custody plans, parking and resume |
+| `migration` | `ZZZMigration` — same-pair moves/parking and irreversible exact holder-principal settlement |
 | `oracle` | `ZZZOracle` — configured price and uptime policy |
 | `pools` | `ZZZPoolRegistry` — eligible pools, native identity and input helpers |
 | `canonical` | `ZZZCanonicalHandoff` - fixed canonical lifecycle and exact handoff coordinator |
@@ -133,9 +137,10 @@ addresses or present them as new current helpers.
 The ZZZ contribution identity is fixed per deployment. `ActivationAssets.configureZZZ`
 is a one-time bootstrap operation before sealing; governance cannot replace that
 identity later. Enable/disable and reviewed route/price policy remain distinct
-controls. A future ZZZ contract migration uses custody exit, an external issuer
-exchange and a fresh reviewed deployment. That exchange alone does not transfer
-the original NFT ownership or reward ledgers.
+controls. For an issuer exchange, collective exit returns actual old ETH/ZZZ to holders;
+there is no operator custody wallet to exchange it on their behalf. A new fixed
+token/project requires fresh review and does not automatically move old NFT
+ownership, royalties or reward ledgers.
 
 ## Existing network dependencies
 
@@ -145,7 +150,7 @@ identities, not ticker symbols or addresses copied from another chain.
 | Dependency group | Required address inventory |
 | --- | --- |
 | Uniswap v4 settlement | PoolManager, PositionManager, StateView and Permit2; verify every constructor/getter relationship. |
-| Assets | Reviewed current ZZZ and native ETH contribution identities, any explicitly used WETH wrapper, every LP currency, reward asset and royalty asset. Review decimals, backing, transfer behavior and proxy powers. Native ETH is address zero, not an ERC20 address. A royalty currency does not become an activation input. |
+| Assets | Reviewed current ZZZ and native ETH contribution identities, any explicitly used conversion wrapper, the fixed ETH/ZZZ LP pair, reward assets and royalty assets. Review decimals, backing, transfer behavior and proxy powers. Native ETH is address zero, not an ERC20 address. A royalty currency does not become an activation input. |
 | Selected hookless native venue | Exact ETH/ZZZ PoolKey/ID, static fee and spacing, zero hook, pinned core/position/state/Permit2 runtimes and wiring; native asset-zero identity and reviewed native USD feed. Native settlement does not require WETH policy. Record Uniswap's protocol-fee controller separately. No Pons hook/factory/creator payout is required. |
 | Valuation | Explicit `pricing_version: 2`; every priced asset's full two-source policy, append-only ID/ordinal, source runtimes, independence IDs, USD denomination, decimals, reviewed ages/disagreement and proxy/admin/implementation authorities. Observe both raw rounds and `priceBounds` fingerprint at the same confirmed block. Genuine sequencer status or independently approved initial no-feed chain policy remains separate. |
 | Randomness | Qualified VRF coordinator and its implementation/admin/operator identities, subscription consumers and payment asset where applicable. A matching ABI is not qualification. |
@@ -157,47 +162,40 @@ Current selected-market identities and dated observations are retained in
 record remaining qualification; none is production approval. A v4 **pool ID is a
 bytes32 identity**, not a wallet or a separate pool-contract address. Native
 admission supports initialized static, hookless ETH/ZZZ fee tiers on the pinned
-Robinhood deployment; supported ERC20 pools use ordinary admission. Registration
-does not enable arbitrary venues. Actual independent source pairs for ETH/ZZZ and any separately priced royalty conversion assets, plus VRF qualification, remain unset. No stable peg is assumed. See [pricing requirements](PRICE_SECURITY.md).
+Robinhood deployment; generic ERC20 LP admission is removed. Separate typed
+conversion venues do not become LP pools. Registration does not qualify a route. Actual independent source pairs for ETH/ZZZ and any separately priced royalty conversion assets, plus VRF qualification, remain unset. No stable peg is assumed. See [pricing requirements](PRICE_SECURITY.md).
 
-## External custody and whole-collection replacement
+## Collective holder return and whole-collection replacement
 
-Atomic supported local moves need no external recipient. A separately approved
-external exit records the exact source-chain recipient, recipient code hash (including an EOA's
-actual code hash), destination custody and optional local destination pool, snapshot,
-raw minimums, mode and review hash. Normal exit sends configured ZZZ; explicit raw
-exit sends both actual accounting assets: native ETH/ZZZ for the selected pool.
-`completeLocal` and `recover` require exactly the declared native amount as
-`msg.value`, or zero ETH for ERC20-only funding. Wrapper independence does not
-remove core/token/recipient failure risks. Record actual departure amounts and outstanding
-liabilities; no blanket sweep or automatic raw fallback is available.
+Record `Migration.CUSTODY_VERSION()==3`, `currentZZZ()`, exact runtime and fixed
+Vault/controller/validation bindings. Bootstrap configures that same ZZZ once;
+sealing rejects an unset/mismatched contribution/settlement identity. This is
+not a recipient or replaceable token contract.
 
-Record `Migration.CUSTODY_VERSION() == 2` and the `ZZZ_CUSTODY_V2` request-ID
-domain. Requests have no destination-chain or verifier fields. There is no remote
-completion/proof endpoint or remote ledger to configure. `recover(id,deadline)`
-requires full actual original-currency funding; external bridging by the recipient
-does not close a source plan. The old bridge/router/receiver and remote-proof
-instructions are historical, not current configuration.
+At collective exit, record `Access.lpExitStarted`, review hash, snapshotted NFT
+count/buckets/shares, raw close minima/deadlines, actual close receipts, allocation
+cursor, per-NFT principal, payouts and remaining backing. `Exited=5` means known
+zero attached LP; unpaid principal is a separate ledger following current NFT
+ownership. Operator batching cannot select beneficiaries. Receiver failures keep
+rights backed and permit current-owner fallback. Pending compound joins principal;
+earned rewards, royalties and buyback reserve remain separate.
 
-For normal all-ZZZ exit, configure `Migration.currentZZZ()` exactly once during
-bootstrap before sealing and verify that it equals `ActivationAssets.zzz()` with
-the reviewed runtime hash. Sealing rejects an unset or mismatched identity. It
-is not a future governance replacement target. The explicit raw exit later
-avoids normal-target price/swap dependencies; its actual-asset minima, custody
-authorization and transfers still apply.
+No external recipient, all-ZZZ conversion exit, `completeLocal`, `recover`, royalty
+custody exit, request-ID domain or bridge provider is configured. No automatic
+fallback swaps or generic sweep exists. See [operator steps](HOLDER_COLLECTIVE_EXIT.md).
 
-Whole-collection ownership/reward relocation is a separate canonical handoff,
-currently implemented only as a same-chain candidate. It cannot capture while
-principal or royalty custody is outstanding. A destination address or a review
-hash alone proves neither return funding nor safe remote accounting. See the
-[governed custody procedure](GOVERNED_CUSTODY_HANDOFF.md) and [canonical handoff](CANONICAL_HANDOFF.md).
+Whole-collection handoff is available only before exit starts, with compatible
+same-chain V5 peers and exact classified funding. Afterward it is permanently
+blocked even when all principal has been paid, because the importer cannot carry
+terminal payout accounting or safely reopen LP. A future royalty-only successor
+requires separately reviewed schema/code. [Canonical procedure](CANONICAL_HANDOFF.md).
 
 ## Configuration that is not a wallet address
 
 Record chain IDs; deployment/confirmed block hashes; runtime/initcode identities; the accounting version and canonical schema;
 actual governance signers/threshold and direct governance version2; VRF key hash, subscription ID,
 confirmations and callback budget; pool keys/IDs and strategy bounds; conversion
-route IDs; source-chain custody version/request/snapshot/review identities;
+route IDs; holder-exit version/review and per-NFT settlement identities;
 content CIDs and metadata URI; RPC URLs; API/indexer
 origins; keeper monitoring, backup and alert endpoints. Secrets and private keys
 must remain outside source, manifests and Git.
@@ -226,8 +224,8 @@ helper has no custody of LP principal. The conversion limit defaults to 1%, gove
 
 ## Native accounting and canonical version inventory
 
-Record `Vault.ACCOUNTING_VERSION() == 3` and the canonical coordinator's
-`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4")` with their exact
+Record `Vault.ACCOUNTING_VERSION() == 4` and the canonical coordinator's
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5")` with their exact
 runtime pins. Current release inventory also declares `fee_intake_version: 1`,
 with the current 15-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
 the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier
@@ -241,8 +239,8 @@ already transferred native funding once. Abort reverses the same classified legs
 
 Current Position rows contain eight words: pool ID, LP token ID, idle0, idle1,
 depositUSD, centerX96, lastRebalance and status. Their status meanings are None0,
-Active1, Outbound2, Dormant3, Parked4; no home/location cross-chain fields exist.
-Use fresh accounting3 API/keeper configuration and distinct state paths.
+Active1, reserved Outbound2, Dormant3, Parked4, Exited5; no home/location cross-chain fields exist.
+Use fresh accounting4 API/keeper configuration and distinct state paths.
 Keep per-deployment predecessor profiles, original currencies and saved journals;
 never reinterpret old WETH as ETH or reset pending transactions to change versions.
 The existing 8902 fixture remains on its old profile. Public `DEPLOYMENT` remains

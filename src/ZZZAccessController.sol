@@ -28,6 +28,8 @@ contract ZZZAccessController {
     address public bootstrap;
     bool public isSealed;
     bool public paused;
+    /// @notice Irreversible principal retirement; ownership and rewards remain live.
+    bool public lpExitStarted;
     bool public preparationActive;
     address public immutable royaltyFactory;
     address public immutable activationAssetsFactory;
@@ -49,6 +51,7 @@ contract ZZZAccessController {
     event ModuleBound(bytes32 indexed id, address indexed implementation);
     event SystemSealed();
     event PauseChanged(bool paused);
+    event LPExitStarted();
     event KeeperChanged(address indexed account, bool enabled);
     event GuardianChanged(address indexed account, bool enabled);
     event PreparationStarted(bytes32 indexed noticeHash, uint256 indexed nonce,
@@ -97,10 +100,18 @@ contract ZZZAccessController {
     function keeperAuthorized(address caller) external view returns (bool) {
         return isSealed && canonicalState == 0 && keepers[caller];
     }
+    /// @notice Only the Vault's nonreentrant Migration entry can commit this
+    /// terminal lock. Ordinary unpause cannot reopen contributions or maintenance.
+    function startLPExit() external {
+        if (msg.sender != module[Ids.VAULT] || !isSealed || !paused || lpExitStarted ||
+            preparationActive || canonicalState != 0) revert Unauthorized();
+        lpExitStarted = true;
+        emit LPExitStarted();
+    }
     /// @dev Only the immutable coordinator may change canonical authority.
     /// Pause/unpause and ordinary governance never bypass terminal retirement.
     function canonicalTransition(uint8 state, bool settling, bool clearPreparation) external {
-        if (msg.sender != canonicalHandoff() || msg.sender == address(0) || state > 4 || (settling && state != 1)) revert Unauthorized();
+        if (lpExitStarted || msg.sender != canonicalHandoff() || msg.sender == address(0) || state > 4 || (settling && state != 1)) revert Unauthorized();
         // States 3/4 are terminal; any impossible higher state also fails closed.
         if (canonicalState > 2) revert InvalidConfiguration();
         canonicalState = state;
@@ -110,7 +121,7 @@ contract ZZZAccessController {
     /// @notice Announce a cancellable preparation window through the existing
     /// controller, without a waiting period. The source remains the sole canonical authority.
     function startPreparation(PreparationNotice calldata notice) external {
-        if (msg.sender != governance || !isSealed || preparationActive || canonicalState != 0) revert Unauthorized();
+        if (msg.sender != governance || !isSealed || preparationActive || lpExitStarted || canonicalState != 0) revert Unauthorized();
         if (IZZZVault(module[Ids.VAULT]).canonicalChainId() != block.chainid ||
             notice.destinationChain != block.chainid || notice.successorController == address(0) ||
             (notice.destinationChain == block.chainid && notice.successorController == address(this)) ||

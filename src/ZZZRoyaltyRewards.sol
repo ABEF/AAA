@@ -32,8 +32,8 @@ interface IZZZRoyaltyConverter {
 
 /// @notice Separate, funded NFT-sale royalty ledger. LP trading fees never enter
 /// this allocation. The immutable NFT admits assets and activates each NFT once.
-/// Current owners inherit unclaimed balances. Governed external custody pauses
-/// that currency until full backing returns; no administrator holder-claim or weight override.
+/// Current owners inherit unclaimed balances. No external-custodian exit,
+/// administrator holder-claim or weight override exists.
 contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     using SafeERC20 for IERC20;
     uint256 public constant SCALE = 1e36;
@@ -64,20 +64,11 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     struct Join { uint256 first; uint256 last; uint256 baseline; }
     mapping(address => Join[]) private deferredJoins;
     uint256 public constant ACTIVATION_SYNC_GAS = 250_000;
-    // Explicit temporary external custody. Original per-NFT liabilities remain;
-    // this currency cannot be claimed/synced until fully funded back here.
-    mapping(address => uint256) public custodyAmount;
-    mapping(address => uint256) public custodyNonce;
-    mapping(address => bytes32) public custodyId;
-    uint256 public custodyCount;
 
     error Unauthorized();
     error InvalidConfiguration();
     error InvalidState();
     error NativeTransferFailed();
-    error CustodyInTransit();
-    event RoyaltyCustodyExited(bytes32 indexed id,address indexed asset,address indexed recipient,uint256 amount,bytes32 reviewHash);
-    event RoyaltyCustodyReturned(bytes32 indexed id,address indexed asset,uint256 amount);
     event AssetAdded(address indexed asset, uint256 quarantined);
     event Activated(uint256 indexed id, uint256 weight);
     event RoyaltiesReceived(address indexed asset, uint256 amount, bool eligible);
@@ -201,7 +192,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         for (uint256 i; i < assets.length; ++i) {
             address asset = assets[i];
             bool ok = true;
-            if (asset == address(0)) { if(custodyAmount[asset]!=0) ok=false; else _sync(asset); }
+            if (asset == address(0)) _sync(asset);
             else {
                 // Reserve enough gas for the complete isolated call and tail.
                 // Caller underfunding cannot deliberately defer a healthy read.
@@ -249,41 +240,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if (low < joins.length && ordinal >= joins[low].first) paid = Math.max(paid, joins[low].baseline);
     }
 
-    /// @notice Full admitted currency only, separate from LP principal. Explicit
-    /// paused governance approval accepts recipient custody/liveness risk.
-    /// Unknown currencies must first pass the existing admission/quarantine policy.
-    function exitCustody(address asset,address recipient,uint256 expectedBalance,uint256 nonce,
-        bytes32 recipientCodeHash,bytes32 reviewHash) external nonReentrant economic returns(bytes32 id) {
-        IZZZAccess c=IZZZAccess(canonicalController);
-        if(!c.canConfigure(msg.sender) || !c.isSealed() || !c.paused() || c.preparationActive() ||
-            !isAsset[asset] || custodyAmount[asset]!=0 || recipient==address(0) || recipient==address(this) ||
-            recipient.codehash!=recipientCodeHash || reviewHash==bytes32(0) || nonce!=custodyNonce[asset] ||
-            expectedBalance==0 || _canonicalBalance(asset)!=expectedBalance) revert InvalidState();
-        _sync(asset);
-        id=keccak256(abi.encode("ZZZ_ROYALTY_CUSTODY_V1",block.chainid,address(this),asset,recipient,
-            expectedBalance,nonce,reviewHash,index[asset],accounted[asset]));
-        custodyAmount[asset]=expectedBalance;custodyId[asset]=id;++custodyNonce[asset];++custodyCount;
-        if(asset==address(0)) {
-            (bool ok,)=payable(recipient).call{value:expectedBalance}("");if(!ok) revert NativeTransferFailed();
-        } else ExactToken.push(asset,recipient,expectedBalance);
-        if(c.preparationActive() || c.canonicalState()!=0) revert InvalidState();
-        emit RoyaltyCustodyExited(id,asset,recipient,expectedBalance,reviewHash);
-    }
-    /// @notice Exact full raw-asset restoration, not new royalty income. No timeout,
-    /// conversion fiction, redirected holder payments or bookkeeping-only completion.
-    function returnCustody(address asset,bytes32 expectedId) external payable nonReentrant economic {
-        uint256 amount=custodyAmount[asset];bytes32 id=custodyId[asset];
-        if(amount==0 || expectedId!=id) revert InvalidState();
-        if(asset==address(0)) { if(msg.value!=amount) revert InvalidState(); }
-        else { if(msg.value!=0) revert InvalidState();ExactToken.pull(asset,msg.sender,amount); }
-        delete custodyAmount[asset];delete custodyId[asset];--custodyCount;
-        if(_canonicalBalance(asset)<accounted[asset]) revert InvalidState();
-        // Later receipts remain pending, allocated by the normal eligibility rules.
-        emit RoyaltyCustodyReturned(id,asset,amount);
-    }
-
     function pending(address asset) external view returns (uint256) {
-        if(custodyAmount[asset]!=0) revert CustodyInTransit();
         if (_reentrancyGuardEntered()) revert InvalidState();
         if (!isAsset[asset]) revert InvalidConfiguration();
         uint256 balance = _canonicalBalance(asset);
@@ -292,7 +249,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     }
 
     function _sync(address asset) private returns (uint256 amount) {
-        if(custodyAmount[asset]!=0) revert CustodyInTransit();
         uint256 balance = _canonicalBalance(asset);
         if (balance < accounted[asset]) revert InvalidState();
         amount = balance - accounted[asset];
@@ -374,7 +330,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
 
     /// @dev Includes actual pending receipts at the CURRENT membership weight.
     function claimable(uint256 id, address asset) external view returns (uint256) {
-        if(custodyAmount[asset]!=0) revert CustodyInTransit();
         // External consumers must not value an intermediate conversion/payment
         // balance during a token, router or recipient callback.
         if (_reentrancyGuardEntered()) revert InvalidState();
@@ -400,7 +355,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     uint256[] private canonicalPending;
     bool private canonicalCutoffSettled;
     function canonicalCapture() external canonicalOnly {
-        if(custodyCount!=0) revert CustodyInTransit();
         _canonicalBeginCapture();
         delete canonicalPending;
         canonicalCutoffSettled = false;

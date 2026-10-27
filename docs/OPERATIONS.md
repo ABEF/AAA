@@ -6,12 +6,18 @@ for authority/exact calls and [recovery runbook](KEEPER_RECOVERY.md) for journal
 
 ## Current deployment and configuration
 
-Use explicit accounting3, fee intake1, direct governance2, custody2, pricing2,
-routing2 and canonical localV4 with actual runtime/module bindings. The existing
-[keeper example](../keeper/config.example.json) is dry-run with placeholders,
+Use explicit accounting4, fee intake1, direct governance2, custody3, pricing2,
+routing2 and `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5` with actual bindings. The
+[holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
 not a working deployment. Review the operator-owned schema5 production inventory,
 all17core/15helper bindings, exact assets/routes/feeds/authorities and gas policy
 under [preflight](PRODUCTION_PREFLIGHT.md). The blocked example must stay blocked.
+
+Pin `contracts.principal_exit` and its runtime plus the Access runtime. The
+keeper checks fixed module/access ownership and custody version3. Existing
+accounting1/2/3 configurations, journals and the old example remain historical
+profiles; do not edit their version to use new code. The served poplint artifact
+is still an unconfigured accounting3 build, not a deployed profile4 frontend.
 
 Current contributions are native ETH/fixedZZZ, minimum$100 activation/$5growth.
 Actual marginal newLP is measured; default2%contribution/1%conversion/3%maintenance
@@ -92,6 +98,7 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 | Compound | `maintenance.compound=true`, `compound_interval_seconds`, currency-specific `compound_thresholds` plus actual minimum LP and all guards. Contributions/rebalances can already reinvest the same bucket's reserve. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
 | Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
+| Collective principal delivery | Opt-in accounting4 `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
 
 The sample configuration polls600seconds, harvests every14,400seconds, disables
 standalone compounding and has an empty buyback list. These are inactive/placeholder
@@ -179,10 +186,20 @@ or reset budgets. Reconcile chain state and original receipts before restart.
 Keeper downtime does not erase LP or accrued rights; it can leave out-of-range
 inventory unproductive until safe upkeep succeeds. Gas/market loss remains possible.
 
-Guardian pause/mint-only pause/pool disable affect different paths. Paused custody
-parking and approved external exit use their own governance/snapshot/raw minima;
-no scheduler, bridge or generic sweep exists. Raw exit never becomes an automatic
-fallback. External custody is trusted and cannot be forced to return funds.
+Guardian pause/mint-only pause/pool disable affect different paths. Paused local
+parking retains principal inside the Vault. Governance can instead start an
+irreversible collective exit: close all fixed ETH/ZZZ buckets without swaps,
+allocate actual returned principal by frozen NFT shares, then distribute it in
+bounded batches to current owners. Rejecting recipients retain an owner-only
+fallback claim. No external-custody address exit, bridge or generic sweep exists.
+Pending compound joins principal; earned LP/royalty claims and designated buyback
+reserves remain separate. NFTs transfer and retain future royalty eligibility.
+`lp_exit_started` prevents all new LP/mint work even after unpause. Confirmed
+pending transaction recovery still runs; previously earned conversions and
+configured buybacks may continue. Optional automatic allocation/direct delivery
+is source-implemented but disabled by default; the keeper never initiates exit or
+closes buckets. No service was enabled here. See
+[delivery configuration](KEEPER_RECOVERY.md#optional-automatic-principal-delivery).
 [Containment and exact management procedures](OPERATOR_MANUAL.md).
 
 The old staging heartbeat is paused, not continuous monitoring evidence. Existing

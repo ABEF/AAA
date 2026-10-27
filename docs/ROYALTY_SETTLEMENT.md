@@ -1,7 +1,7 @@
 # Marketplace royalty settlement
 
-The undeployed current profile is accounting 3 / fee-intake 1 / direct governance
-2 / local canonical V4. This page covers marketplace receipts, distinct from
+The undeployed current profile is accounting 4 / fee-intake 1 / direct governance
+2 / holder-exit canonical V5. This page covers marketplace receipts, distinct from
 activation contributions and venue LP fees. Conversion loss defaults to **1%**,
 governed up to **10%**, with network gas separate. See [execution policy](EXECUTION_LOSS_POLICY.md)
 and the [sole task](../TODO.md#task-royalty-eth-settlement).
@@ -119,7 +119,10 @@ index baselines in the existing row format. Converted ETH and remaining source
 currency are separate classified backing. Import/abort/late-forwarding keep the
 existing lifecycle rules; converter configuration is not economic state imported
 from the source. The current release has no cross-chain NFT/ledger transport;
-external custody does not establish that capability.
+collective principal return does not establish that capability. The current
+receiver has no external-custodian exit or return function. Governance-triggered
+LP retirement leaves already activated NFTs' rarity weights, unclaimed royalties
+and future royalty receipts intact. Returned ETH/ZZZ principal is not royalties.
 
 ## Operator procedure
 

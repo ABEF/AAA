@@ -8,7 +8,8 @@ using DualOracleFixture for FixtureOracleType;
 import {Test} from "forge-std/Test.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+// TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
+import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {Ids, PoolConfig, PoolKey} from "../src/libraries/ZZZTypes.sol";

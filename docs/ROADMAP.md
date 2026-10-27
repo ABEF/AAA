@@ -1,5 +1,15 @@
 # Engineering roadmap
 
+Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
+[Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
+and royalty custody exits. Governance permanently ends LP and pays actual
+ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
+No external recipient/bridge/return ingress remains. Whole-collection handoff
+is available only before exit. Earlier source-scoped evidence and accounting3
+service/inventory/website qualification remain historical to their original pins.
+See [profile4](POSITION_V4.md); new release qualification remains open.
+
+
 Reviewed 2026-10-27. This page explains dependencies and sequence; [TODO.md](../TODO.md)
 is the only status list. [Feature reference](IMPLEMENTATION_STATUS.md) records what
 exists, while [release approval](RELEASE_CHECKLIST.md) remains NOT APPROVED.
@@ -13,9 +23,8 @@ qualify the actual proof-verifying randomness provider. Direct mint/mock VRF
 tests do not establish that integration.
 
 Approve artwork root, fixed ZZZ identity, authority/module bindings, conversion
-and custody/recovery behavior before sealing. Issuer token migration uses external
-custody and a fresh deployment; no replacement-token setter or integrated bridge
-is required. Same-chain collection handoff and its real backing must retain all
+and collective holder-return behavior before sealing. Governance shutdown returns
+actual ETH+ZZZ to holders, with no external custodian or issuer-exchange executor. Same-chain collection handoff and its real backing must retain all
 ownership/reward rights. See [current boundaries](SIMPLIFIED_RELEASE.md).
 
 ## 2. Qualify real dependencies alongside integration
@@ -85,6 +94,7 @@ unaffected suites during routine documentation or backend fixes.
 
 Deployment, public signing and real-fund rehearsal require separate authorization.
 The three verification layers remain local adversarial tests, selected Robinhood
-mainnet fork and Robinhood Testnet/operator rehearsals. External custody is trusted
-and can perform outside bridging; future-chain canonical NFT/ledger relocation
-and post-halt recovery are outside this release.
+mainnet fork and Robinhood Testnet/operator rehearsals. Qualify holder-exit batch
+gas, failure isolation, current-owner rights and separate principal reporting.
+Future-chain canonical relocation, post-exit successor import and post-halt
+recovery are outside this release.

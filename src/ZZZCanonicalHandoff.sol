@@ -28,7 +28,7 @@ interface ICanonicalHelpers {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5");
     // Numeric values are wire-compatible; coordinator phases and Access states
     // are separate state machines. Constants add no public getter or storage.
     uint8 private constant PHASE_IDLE = 0;
@@ -180,7 +180,7 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
 
     function freeze() external governance nonReentrant {
         if (
-            (phase != PHASE_IDLE && phase != PHASE_ACTIVE_REPLACEMENT) || !access.preparationActive()
+            access.lpExitStarted() || (phase != PHASE_IDLE && phase != PHASE_ACTIVE_REPLACEMENT) || !access.preparationActive()
                 || access.canonicalState() != STATE_OPERATING || !access.preparationReadyDestination()
         ) {
             revert InvalidState();

@@ -16,11 +16,12 @@ import {
     IZZZLiquidity,
     IPositionManagerMinimal,
     IZZZRewards,
-    IZZZActivationEntry
+    IZZZActivationEntry,
+    IZZZMigration
 } from "./interfaces/IZZZ.sol";
 
-/// @notice Non-upgradeable custody. Holders cannot redeem principal.
-/// Governance may release it to explicitly trusted external custody through Migration.
+/// @notice Non-upgradeable custody. No holder redemption during operation.
+/// Governance may irreversibly settle actual principal to NFT holders.
 /// Deposits, idle assets, compound reserves and earned fees are separate ledgers.
 contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     mapping(uint256 => Position) private positions; // Custody is keyed by stable bucket, never NFT.
@@ -45,7 +46,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     address payable public immutable mintProceedsRecipient;
     ZZZMigrationBudget public immutable migrationBudget;
     uint256 public constant MINT_PRICE = 0.05 ether;
-    uint256 public constant ACCOUNTING_VERSION = 3;
+    uint256 public constant ACCOUNTING_VERSION = 4;
     event DormantMinted(uint256 indexed nftId, address indexed owner, uint256 mintPrice);
     event Activated(
         uint256 indexed nftId, address indexed owner, bytes32 indexed poolId, uint256 amount0, uint256 amount1
@@ -54,8 +55,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     event FeesCollected(uint256 indexed bucketId, uint256 amount0, uint256 amount1);
     event Rebalanced(uint256 indexed bucketId, uint256 oldLpTokenId, uint256 newLpTokenId, uint160 centerX96);
     event Compounded(uint256 indexed bucketId, uint256 amount0, uint256 amount1);
-    event PrincipalExited(uint256 indexed bucketId, bytes32 indexed handoffId, uint256 amount0, uint256 amount1);
-    event PrincipalReturned(uint256 indexed bucketId, uint256 lpTokenId, bool deployed);
+    event PrincipalReturnedToHolders(uint256 indexed bucketId, uint256 amountETH, uint256 amountZZZ);
     event PrincipalParked(uint256 indexed bucketId, uint256 oldLpTokenId);
 
     constructor(address controller, uint256 nftHomeChain, address payable mintRecipient) ZZZModule(controller) {
@@ -105,7 +105,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
 
     /// @notice Permanently reserve capacity before approving a route. Pool
     /// reservations cannot be reassigned or released on cancellation/timeout.
-    function reservePool(bytes32 pool, uint256 bucket) external onlyGovernance {
+    function reservePool(bytes32 pool, uint256 bucket) external onlyGovernance principalOperating {
         _reserve(pool, bucket);
     }
 
@@ -194,7 +194,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
 
     /// @notice Paid issuance creates no LP, collective membership or fee entitlement. Proceeds are
     /// forwarded separately and never enter the permanently locked principal ledger.
-    function mintDormant() external payable live operating nonReentrant returns (uint256 id) {
+    function mintDormant() external payable live operating principalOperating nonReentrant returns (uint256 id) {
         // Companion preserves the exact price and home-chain issuance checks.
         id = canonicalModule().validateMint(msg.value, ++sequence);
         if (minted[id]) revert InvalidState();
@@ -213,7 +213,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         uint256 amount1,
         uint128 minimumLiquidity,
         uint256 deadline
-    ) external payable live operating nonReentrant {
+    ) external payable live operating principalOperating nonReentrant {
         _requireOwner(id, true);
         uint256 bucket = poolBucket[poolId];
         if (bucket == 0 || positions[bucket].status == PositionStatus.None) {
@@ -237,6 +237,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         payable
         live
         operating
+        principalOperating
         nonReentrant
     {
         _requireOwner(id, false);
@@ -345,7 +346,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         emit FeesCollected(bucketId, fee0, fee1);
     }
 
-    function collectFees(uint256 id, uint256 deadline) external live nonReentrant canonicalAccounting {
+    function collectFees(uint256 id, uint256 deadline) external live nonReentrant canonicalAccounting principalOperating {
         _deadline(deadline);
         _active(id);
         _harvest(id, deadline);
@@ -365,6 +366,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         onlyModule(Ids.COMPOUNDER)
         live
         operating
+        principalOperating
         nonReentrant
     {
         _deadline(deadline);
@@ -455,6 +457,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         onlyKeeper
         live
         operating
+        principalOperating
         nonReentrant
     {
         _deadline(deadline);
@@ -469,78 +472,48 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
     }
 
-    /// @notice The fixed handoff converts the complete other side into its reviewed ZZZ.
-    function consolidateHandoff(uint256 id, address zzz, uint256 minimumZZZ, uint256 deadline)
-        external
-        onlyModule(Ids.MIGRATION)
-        operating
-        nonReentrant
-    {
-        _deadline(deadline);
-        Position storage p = positions[id];
-        ZZZMigrationBudget.HandoffSwap memory plan = migrationBudget.handoffPlan(id, zzz, minimumZZZ);
-        if (plan.amount != 0) {
-            uint256 out = _swap(p, plan.direction, plan.input, plan.amount, plan.minimum, deadline);
-            if (plan.direction) _idle(id, 0, plan.held + out);
-            else _idle(id, plan.held + out, 0);
-        }
-        if ((plan.direction ? p.idle1 : p.idle0) < minimumZZZ) revert Slippage();
+    /// @notice Migration commits terminal LP retirement through this lock so it
+    /// cannot start reentrantly inside contribution, harvest or maintenance.
+    function beginLPExit() external onlyModule(Ids.MIGRATION) operating nonReentrant {
+        access.startLPExit();
     }
 
-    /// @notice Release only already parked, attributed principal to the fixed handoff module.
-    /// It cannot sweep donations, claimable fees, royalties or another bucket.
-    function releaseForMigration(uint256 id, bytes32 handoffId, uint256 deadline)
-        external
-        onlyModule(Ids.MIGRATION)
-        operating
-        nonReentrant
-        returns (uint256 amount0, uint256 amount1)
+    /// @notice Close one fixed ETH/ZZZ bucket into the holder settlement module.
+    /// No swap or USD price dependency. Only attributed principal and its 5%
+    /// compound reserve leave; earned fees, buyback reserves and donations do not.
+    function exitBucketToHolders(uint256 id, uint256 minimumETH, uint256 minimumZZZ, uint256 deadline)
+        external onlyModule(Ids.MIGRATION) operating nonReentrant
+        returns (uint256 amountETH, uint256 amountZZZ)
     {
         _deadline(deadline);
+        if (!access.paused() || !access.lpExitStarted()) revert InvalidState();
         Position storage p = positions[id];
-        migrationBudget.validateRelease(id);
+        if ((p.status != PositionStatus.Active && p.status != PositionStatus.Parked) || bucketTotalShares[id] == 0)
+            revert InvalidState();
         (address token0, address token1) = _tokens(id);
-        amount0 = p.idle0;
-        amount1 = p.idle1;
-        if (amount0 == 0 && amount1 == 0) revert InvalidAmount();
+        if (token0 != address(0) || token1 != IZZZMigration(msg.sender).currentZZZ()) revert InvalidConfiguration();
+        // Final harvest runs while Active, as required by funded fee allocation.
+        if (p.status == PositionStatus.Active) _harvestVenue(id, deadline);
+        IZZZFees fees = IZZZFees(_moduleFees());
+        fees.flushDust(id, token0);
+        fees.flushDust(id, token1);
+        _pullCompound(id);
+        if (p.status == PositionStatus.Active) _close(id, deadline);
+        if (p.lpTokenId != 0) revert InvalidState();
+        amountETH = p.idle0;
+        amountZZZ = p.idle1;
+        if (amountETH < minimumETH || amountZZZ < minimumZZZ) revert Slippage();
         _idle(id, 0, 0);
-        p.status = PositionStatus.Outbound;
-        ExactAsset.push(token0, msg.sender, amount0);
-        ExactAsset.push(token1, msg.sender, amount1);
-        emit PrincipalExited(id, handoffId, amount0, amount1);
-    }
-
-    /// @notice The fixed handoff funds this call in exact tokens. No accounting-only receipt.
-    /// A zero minimum is reserved by that module for full raw-token recovery into parking.
-    function acceptHandoff(
-        uint256 id,
-        bytes32 pool,
-        uint256 amount0,
-        uint256 amount1,
-        uint128 minimumLiquidity,
-        uint256 deadline
-    ) external payable onlyModule(Ids.MIGRATION) operating nonReentrant {
-        _deadline(deadline);
-        Position storage p = positions[id];
-        migrationBudget.validateHandoff(id);
-        _reserve(pool, id);
-        p.poolId = pool;
-        (address token0, address token1) = _tokens(id);
-        _receiveAssets(token0, token1, amount0, amount1);
-        _idle(id, amount0, amount1);
-        p.status = PositionStatus.Parked;
-        if (minimumLiquidity != 0) {
-            if (access.paused()) revert Paused();
-            _redeploy(id, minimumLiquidity, deadline);
-            p.status = PositionStatus.Active;
-        }
+        p.status = PositionStatus.Exited;
         migrationBudget.recordComposition(id);
-        emit PrincipalReturned(id, p.lpTokenId, minimumLiquidity != 0);
+        ExactAsset.push(token0, msg.sender, amountETH);
+        ExactAsset.push(token1, msg.sender, amountZZZ);
+        emit PrincipalReturnedToHolders(id, amountETH, amountZZZ);
     }
 
     /// @notice Only the fixed Migration module can park an LP. Its governed
     /// request binds exact custody and raw close minimums. No assets leave Vault.
-    function park(uint256 id, uint256 deadline) external onlyModule(Ids.MIGRATION) nonReentrant canonicalAccounting {
+    function park(uint256 id, uint256 deadline) external onlyModule(Ids.MIGRATION) nonReentrant canonicalAccounting principalOperating {
         _deadline(deadline);
         _active(id);
         if (!access.paused() || positions[id].lpTokenId == 0) revert InvalidState();
@@ -556,6 +529,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         onlyModule(Ids.MIGRATION)
         live
         operating
+        principalOperating
         nonReentrant
     {
         _deadline(deadline);
@@ -569,6 +543,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         onlyModule(Ids.MIGRATION)
         live
         operating
+        principalOperating
         nonReentrant
     {
         _deadline(deadline);
@@ -649,7 +624,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         if (msg.sender != access.module(Ids.VAULT_CANONICAL)) revert Unauthorized();
     }
 
-    // No holder redemption or generic sweep. Governed custody handoff is explicit in the fixed Migration module.
+    // No individual early redemption, external custody recipient or generic sweep.
     function _modulePools() private view returns (address) {
         return access.module(Ids.POOLS);
     }

@@ -37,20 +37,12 @@ contract ZZZPoolRegistry is ZZZModule {
         activationAssets = ZZZActivationAssets(ZZZActivationAssetsFactory(access.activationAssetsFactory()).create());
         activationEntry = new ZZZActivationEntry(controller, address(this), address(activationAssets));
     }
-    function configure(PoolConfig calldata config) external onlyGovernance returns (bytes32 poolId) {
-        PoolKey memory k = config.key;
-        address fixedZZZ=activationAssets.zzz();
-        if (fixedZZZ==address(0) || (k.currency0!=fixedZZZ && k.currency1!=fixedZZZ) ||
-            k.currency0 >= k.currency1 || k.currency0.code.length == 0 || k.currency1.code.length == 0 ||
-            k.hooks != address(0)) revert InvalidConfiguration();
-        return _configure(config, k.currency0, k.currency1);
-    }
     /// @notice Admit a static hookless ETH/ZZZ pool, including future fee tiers.
     /// The selected launch identity does not prevent governed moves after sealing.
-    /// Bind the fixed contribution/exit ZZZ before native admission. Otherwise
-    /// matching but wrong source/exit settings could strand normal all-ZZZ exit.
+    /// Only native ETH/fixed ZZZ LP is admitted: every funded bucket must remain
+    /// settleable to holders as ETH + ZZZ. ERC20 conversion venues are separate.
     /// Runtime/wiring are rechecked on every accounting/isNativePool read.
-    function configureNative(PoolConfig calldata config) external onlyGovernance returns (bytes32 poolId) {
+    function configureNative(PoolConfig calldata config) external onlyGovernance principalOperating returns (bytes32 poolId) {
         PoolKey memory key = config.key;
         if (key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000 ||
             activationAssets.zzz() != ZZZ) {
@@ -85,12 +77,13 @@ contract ZZZPoolRegistry is ZZZModule {
         // writes below are local: there is no callback requiring a second read.
         if (access.paused()) revert Paused();
         if (access.preparationActive()) revert Preparing();
+        if (access.lpExitStarted()) revert LPExitLocked();
         PoolConfig storage c = pools[poolId];
         if (!exists[poolId] || !c.operationsEnabled || (width != 2500 && width != 5000) ||
             c.triggerBps >= width || c.maxSpotDeviationBps >= width) revert InvalidConfiguration();
         c.rangeBps = width; // Strategy emits the successful old/new width and review hash.
     }
-    function _configure(PoolConfig calldata config, address token0, address token1) private returns (bytes32 poolId) {
+    function _configure(PoolConfig calldata config, address token0, address token1) internal returns (bytes32 poolId) {
         PoolKey memory k = config.key;
         poolId = keccak256(abi.encode(k));
         if (poolId == bytes32(0) || (config.depositsEnabled && contributionPool != bytes32(0) &&

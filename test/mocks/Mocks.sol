@@ -15,7 +15,7 @@ interface IMockSealIdentity { function zzz() external view returns(address); }
 contract MockAccess {
     mapping(bytes32=>address) public module;
     mapping(address=>bool) public keepers;
-    bool public isSealed; bool public paused; bool public preparationActive;
+    bool public isSealed; bool public paused; bool public preparationActive; bool public lpExitStarted;
     uint8 public canonicalState;
     bool public canonicalSettling;
     address public immutable royaltyFactory;
@@ -39,6 +39,10 @@ contract MockAccess {
     // bootstrap phase. Real AccessController has no unseal function.
     function beginBootstrap() external {isSealed=false;}
     function setPaused(bool a) external {paused=a;}
+    function startLPExit() external {
+        require(msg.sender==module[Ids.VAULT] && isSealed && paused && !lpExitStarted && !preparationActive && canonicalState==0);
+        lpExitStarted=true;
+    }
     function setKeeper(address a,bool b) external {keepers[a]=b;}
 }
 contract MockToken is ERC20 {

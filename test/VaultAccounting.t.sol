@@ -189,13 +189,6 @@ contract VaultAccountingTest is PooledVaultFixture {
         vm.prank(alice);vault.increase(id,100,100,1,block.timestamp+100);
         assertEq(_record(id).lpTokenId,lp);assertEq(rewards.claimable(id,address(t0)),90);assertTrue(membership.eligible(id));assertEq(vault.contributionUSD(id),2200e18);
     }
-    function testMigrationReleaseOnlyGoesToBoundModule() public {
-        uint256 id=activatedPosition();vm.prank(alice);vm.expectRevert();vault.releaseForMigration(_bucket(),bytes32(uint256(1)),block.timestamp+100);
-        ac.setPaused(true);vault.park(_bucket(),block.timestamp+100);
-        (uint256 a,uint256 b)=vault.releaseForMigration(_bucket(),bytes32(uint256(1)),block.timestamp+100);
-        assertEq(a,1000);assertEq(b,1000);assertEq(uint256(_record(id).status),uint256(PositionStatus.Outbound));
-        assertEq(vault.totalIdle(address(t0)),0);assertEq(nft.ownerOf(id),alice);
-    }
     function testSatelliteCannotIssueAnotherCollection() public {
         vm.chainId(block.chainid+1);vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
         assertEq(vault.sequence(),0);
@@ -281,7 +274,7 @@ contract VaultAccountingTest is PooledVaultFixture {
         vm.expectRevert();vault.collectFees(_bucket(),block.timestamp+100);
         vm.expectRevert();compounder.compound(_bucket(),1,block.timestamp+100);
         vm.expectRevert();vault.rebalance(_bucket(),1,block.timestamp+100);
-        vm.expectRevert();vault.releaseForMigration(_bucket(),bytes32(uint256(1)),block.timestamp+100);
+        vm.expectRevert();vault.exitBucketToHolders(_bucket(),0,0,block.timestamp+100);
         assertEq(membership.totalEligible(),0);assertEq(_record(id).lpTokenId,0);
     }
     function testActivationRequiresAtLeast100USDInput() public {
@@ -289,13 +282,18 @@ contract VaultAccountingTest is PooledVaultFixture {
         vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,49,50,1,block.timestamp+100);
         assertEq(uint256(_record(id).status),uint256(PositionStatus.Dormant));assertEq(t0.balanceOf(alice),100000);
     }
-    function testActivationRejects100InputWhenActualLPIsBelow99() public {
-        venue.setSpendBps(9900);
+    function testActivationRejects100InputWhenActualLPIsBelow98() public {
+        venue.setSpendBps(9700);
         uint256 id=_mint(alice);
-        // Integer rounding deploys only $98; the $100 input requires at least $99 LP.
+        // Integer rounding deploys $96; current 2% policy requires at least $98 LP.
         vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,50,50,1,block.timestamp+100);
         assertEq(uint256(_record(id).status),uint256(PositionStatus.Dormant));assertFalse(membership.eligible(id));
         assertEq(vault.totalIdle(address(t0)),0);assertEq(t0.balanceOf(alice),100000);assertEq(venue.next(),1);
+    }
+    function testActivationAcceptsExactly98LPAtCurrentTwoPercentBoundary() public {
+        uint256 id=_mint(alice);venue.setSpendBps(9800);_activate(alice,id,50,50);
+        Position memory p=_record(id);assertEq(venue.a0(p.lpTokenId)+venue.a1(p.lpTokenId),98);
+        assertEq(p.idle0+p.idle1,2);assertTrue(membership.eligible(id));assertEq(vault.contributionUSD(id),100e18);
     }
     function testExactly100ActualLPActivates() public {
         uint256 id=_mint(alice);venue.setSpendBps(10000);_activate(alice,id,50,50);

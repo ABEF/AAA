@@ -5,7 +5,8 @@ import {Test} from "forge-std/Test.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+// TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
+import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZActivationAssetsFactory} from "../src/ZZZActivationAssetsFactory.sol";
 import {IZZZAccess} from "../src/interfaces/IZZZ.sol";
 import {MockAccess,MockToken,MockFeed,BoundDummy} from "./mocks/Mocks.sol";

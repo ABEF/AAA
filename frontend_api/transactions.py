@@ -184,7 +184,7 @@ class Transactions:
                         raise ProjectionError('Inconsistent NFT mint identity')
                     if p._addr('nft', 'ownerOf(uint256)', entry.token_id, block=block) != owner:
                         raise TransactionInputError('Wallet does not own every selected NFT')
-                    if p.accounting_version == 3:
+                    if p.accounting_version in (3, 4):
                         # Current activation gives a permanent global royalty
                         # weight, even if one optional currency is deferred.
                         # Zero means never activated, not parked/outbound LP.

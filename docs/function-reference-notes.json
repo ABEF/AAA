@@ -151,7 +151,8 @@
           "access": "Current governance directly, sealed canonical operating state.",
           "inputs": {
             "notice": "Explicit current chain ID, successor controller distinct from source, deployment commitment and nonzero review hash. A notice alone never authorizes a freeze/import."
-          }
+          },
+          "notes": "Starts a cancellable same-chain canonical preparation window only before collective LP exit. A terminal lpExitStarted flag permanently rejects replacement preparation."
         },
         "cancelPreparation(bytes32)": {
           "purpose": "Cancel the exact active preparation notice while the source is still operating. Does not rewind a frozen/retired handoff or move custody. Exact noticeHash prevents cancelling a later announcement.",
@@ -181,7 +182,7 @@
           "access": "Anyone; read-only."
         },
         "governance()": {
-          "purpose": "Read the current governance wallet. It may approve trusted custody exits/configuration but cannot silently change sealed module identities.",
+          "purpose": "Read the current governance wallet, which configures allowed policy and may initiate collective principal return to holders; cannot replace sealed module identities.",
           "access": "Anyone; read-only."
         },
         "pendingGovernance()": {
@@ -198,6 +199,18 @@
         "acceptGovernance()": {
           "purpose": "The exact proposed wallet accepts authority atomically and clears the proposal. No delay or controller-held transaction funds. Old governance loses authority.",
           "access": "Pending nonzero governance wallet only, operating canonical state and no preparation."
+        },
+        "lpExitStarted()": {
+          "purpose": "Read the irreversible collective LP-retirement flag, separate from ordinary pause and canonical state.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "True once the fixed Vault commits governance-triggered holder exit; cannot be cleared or bypassed by unpausing."
+          }
+        },
+        "startLPExit()": {
+          "purpose": "Commit irreversible collective LP retirement through the Vault nonreentrant barrier; does not itself close LP or pay holders.",
+          "access": "Only the fixed Vault, sealed and paused, in canonical operating state with no preparation active.",
+          "notes": "Invoked only by the fixed Migration begin path. Once set, principal operations and canonical replacement cannot reopen the LP; reward claims, transfers and royalties remain separate."
         }
       },
       "constructor": {
@@ -211,7 +224,7 @@
       }
     },
     "ZZZPoolRegistry": {
-      "purpose": "Govern reviewed pool identities/parameters and the sole contribution pool; create fixed asset-admission and Entry helpers.",
+      "purpose": "Admit reviewed native ETH/fixed-ZZZ pools and strategy parameters, with one contribution pool enabled at a time; create fixed source/Entry helpers.",
       "functions": {
         "access()": {
           "purpose": "Read the immutable controller binding.",
@@ -263,25 +276,16 @@
             "c": "PoolConfig tuple: key plus deposit/operation flags, range/trigger/deviation/slippage bps, cooldown seconds and USD18 position bounds."
           }
         },
-        "configure(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))": {
-          "purpose": "Admit/update a hookless ERC20 pool and its governed operating parameters. Both currencies must have code and ascending addresses. Prices/reward currencies and limits must validate. At most one pool may enable contributions; disable the previous contribution pool first. Configuration does not itself migrate or rebalance physical LP.",
-          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
-          "inputs": {
-            "config": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Price displacement trigger in BPS, at least 100 and strictly below rangeBps.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..200 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum governed pool/position value in USD18, at least minDepositUSD."
-          },
-          "outputs": {
-            "poolId": "Actual PoolKey-derived poolId; immutable currency/fee identity changes create a different pool."
-          }
-        },
         "configureNative(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))": {
-          "purpose": "Admit or reconfigure a static hookless native ETH/ZZZ pool. The source ZZZ identity must already match the pinned native token; initialized venue, runtime, prices, assets, bounds and one-contribution-pool checks remain.",
+          "purpose": "Admit or reconfigure a reviewed static hookless native ETH/fixed-ZZZ pool, including compatible future fee tiers. Every funded bucket remains returnable to holders as actual ETH + ZZZ.",
           "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
-            "config": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Price displacement trigger in BPS, at least 100 and strictly below rangeBps.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..200 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum governed pool/position value in USD18, at least minDepositUSD."
+            "config": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Price displacement trigger in BPS, at least 100 and strictly below rangeBps.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..200 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap."
           },
           "outputs": {
             "poolId": "Actual PoolKey-derived poolId; eligible future fee tiers remain possible."
-          }
+          },
+          "notes": "Only native ETH/fixed ZZZ LP is admitted in this fresh profile. No generic ERC20 LP-admission function remains. Cannot reconfigure after terminal LP exit begins. Actual initialized venue/runtime/price/parameter validation is still required."
         },
         "disablePool(bytes32,bool,bool)": {
           "purpose": "Stop new deposits and/or ordinary operations on an admitted pool without querying external tokens, venue or prices. True means DISABLE, false leaves the existing state unchanged. At least one flag must be true. Disabling deposits clears this pool as contributionPool. Re-enable only through full configure/configureNative.",
@@ -433,7 +437,7 @@
           }
         },
         "configureZZZ(address,bytes32,bytes32)": {
-          "purpose": "Configure the ZZZ ERC20 identity exactly once before sealing and record its validated initial source policy. Reconfiguration, even to the same address, is rejected. New-token migration uses custody exit and a separately reviewed deployment.",
+          "purpose": "Configure the fixed ZZZ ERC20 once before sealing and record its validated source policy. Reconfiguration, even to the same address, is rejected. A new token requires a separately reviewed deployment; collective exit returns actual existing ETH + ZZZ to NFT owners, not an administrator.",
           "access": "Bootstrap governance only, before access.isSealed(), while zzz is unset. It requires current code, decimals and valid dual-price admission; live contributions cannot run before sealing.",
           "inputs": {
             "token": "Nonzero ERC20 contract to serve as this deployment's fixed ZZZ source.",
@@ -871,25 +875,25 @@
           }
         },
         "currentLPValue(uint256)": {
-          "purpose": "Read current oracle-USD marked principal/idle/compound value attributed to this NFT’s shares. Excludes claimable fees, royalties and arbitrary donations. Unknown NFT reverts; dormant returns available=true,value=0; active dependency/custody failure returns available=false,value=0, which must display unavailable.",
+          "purpose": "Read current pro-rata attached principal/idle/compound NAV in USD18, excluding rewards, royalties and prefunds. Dormant and terminal Exited return available=true,value=0. Active dependency failure returns unavailable, never guessed zero.",
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "id is the actual NFT ID."
           },
           "outputs": {
-            "available": "True only for a valid current mark (dormant is true/zero); false means unavailable, never a valid zero.",
-            "valueUSD": "NFT pro-rata current principal/idle/compound NAV in USD18; excludes claimable rewards. Zero when unavailable must not be displayed as valued zero."
+            "available": "True for a valid current mark or known dormant/Exited zero; false means unavailable.",
+            "valueUSD": "Current attributed LP NAV in USD18; Exited zero needs no Oracle/venue read. Reward and principal-settlement balances are separate."
           }
         },
         "evolution(uint256)": {
-          "purpose": "Read artwork evolution from current attached LP value and persistent activation. Current market value can downgrade art. Unavailable active valuation reports available=false with Activated fallback stage; it does not revoke rights.",
+          "purpose": "Read market-value artwork evolution or the terminal LP-exited lifecycle label, without changing persistent royalty eligibility.",
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "id is NFT ID."
           },
           "outputs": {
-            "available": "Whether current valuation is available; does not change activation or economic rights.",
-            "stage": "0 Dormant;1 Activated;2 Enhanced at $1000;3 Singularity at $10000. Active unavailable valuation returns1 as explicitly labeled fallback."
+            "available": "Whether the mark/lifecycle is known. Exited is true without price dependencies.",
+            "stage": "0Dormant;1Activated;2Enhanced at$1000;3Singularity at$10000;4LP exited. Stage4 reuses activated artwork and does not introduce a fifth evolution image. Unavailable active mark returns1 as explicit fallback."
           }
         },
         "tokenURI(uint256)": {
@@ -900,7 +904,8 @@
           },
           "outputs": {
             "0": "Embedded base64 JSON data URI; unavailable valuation is explicitly marked with Activated fallback artwork."
-          }
+          },
+          "notes": "Terminal Exited metadata sets lp_exited=true, zero attached LP NAV and the LP exited lifecycle trait while preserving royalty activation. Principal payout balances are separate; marketplace cache refresh is not a new image generation."
         },
         "refreshMetadata(uint256)": {
           "purpose": "Emit an ERC4906 notification for an existing NFT. No valuation read, artwork generation, funds movement or guarantee of immediate marketplace cache refresh.",
@@ -941,7 +946,7 @@
           }
         },
         "transferFrom(address,address,uint256)": {
-          "purpose": "Transfer the NFT and all its associated LP allocation and unclaimed economic rights to the next holder. No principal redemption. Safe overloads validate ERC721Receiver on contract recipients; transferFrom does not, so incompatible contract custody may trap the NFT. Frozen/importing/retired/cancelled ordinary transfers revert.",
+          "purpose": "Transfer the NFT and all its associated LP allocation and unclaimed economic rights to the next holder. No individual principal redemption during ordinary operation. After collective exit, unpaid principal and remaining rewards follow current ownership; already paid principal does not. Safe overloads validate ERC721Receiver on contract recipients; transferFrom does not, so incompatible contract custody may trap the NFT. Frozen/importing/retired/cancelled ordinary transfers revert.",
           "access": "Owner, token-approved address or approved-for-all operator; canonical accounting must be operating.",
           "inputs": {
             "from": "Current canonical NFT owner.",
@@ -950,7 +955,7 @@
           }
         },
         "safeTransferFrom(address,address,uint256)": {
-          "purpose": "Transfer the NFT and all its associated LP allocation and unclaimed economic rights to the next holder. No principal redemption. Safe overloads validate ERC721Receiver on contract recipients; transferFrom does not, so incompatible contract custody may trap the NFT. Frozen/importing/retired/cancelled ordinary transfers revert.",
+          "purpose": "Transfer the NFT and all its associated LP allocation and unclaimed economic rights to the next holder. No individual principal redemption during ordinary operation. After collective exit, unpaid principal and remaining rewards follow current ownership; already paid principal does not. Safe overloads validate ERC721Receiver on contract recipients; transferFrom does not, so incompatible contract custody may trap the NFT. Frozen/importing/retired/cancelled ordinary transfers revert.",
           "access": "Owner, token-approved address or approved-for-all operator; canonical accounting must be operating.",
           "inputs": {
             "from": "Current canonical NFT owner.",
@@ -959,7 +964,7 @@
           }
         },
         "safeTransferFrom(address,address,uint256,bytes)": {
-          "purpose": "Transfer the NFT and all its associated LP allocation and unclaimed economic rights to the next holder. No principal redemption. Safe overloads validate ERC721Receiver on contract recipients; transferFrom does not, so incompatible contract custody may trap the NFT. Frozen/importing/retired/cancelled ordinary transfers revert.",
+          "purpose": "Transfer the NFT and all its associated LP allocation and unclaimed economic rights to the next holder. No individual principal redemption during ordinary operation. After collective exit, unpaid principal and remaining rewards follow current ownership; already paid principal does not. Safe overloads validate ERC721Receiver on contract recipients; transferFrom does not, so incompatible contract custody may trap the NFT. Frozen/importing/retired/cancelled ordinary transfers revert.",
           "access": "Owner, token-approved address or approved-for-all operator; canonical accounting must be operating.",
           "inputs": {
             "from": "Current canonical NFT owner.",
@@ -1063,13 +1068,13 @@
           }
         },
         "currentValue(uint256)": {
-          "purpose": "Calculate an activated NFT’s current on-chain pro-rata principal, attributed idle and compounded NAV. Reverts ValuationUnavailable for absent shares/local active custody/physical LP or failed fresh spot-oracle validation. Does not include claimable reward balances.",
+          "purpose": "Calculate current pro-rata attached principal, attributed idle and compound NAV. A valid Exited bucket returns known zero without prices; absent/inconsistent shares, unavailable active custody/LP or failed fresh spot-oracle reads revert ValuationUnavailable.",
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "id is NFT ID, resolved to shared bucket and shares."
           },
           "outputs": {
-            "valueUSD": "valueUSD in USD18 after per-NFT floor rounding; NFT.currentLPValue wraps failure as unavailable."
+            "valueUSD": "USD18 after per-NFT floor rounding; known Exited zero is separate from claimable principal and fees. NFT.currentLPValue labels ordinary valuation failure unavailable."
           }
         },
         "render((uint256,uint8,uint8,uint8,uint8,bool,bool,uint256,uint8,string))": {
@@ -1080,7 +1085,8 @@
           },
           "outputs": {
             "0": "data:application/json;base64 URI; unavailable active valuation uses explicit fallback metadata."
-          }
+          },
+          "notes": "Stage4 is terminal LP exited: JSON lp_exited=true, zero attached LP and persistent royalty activation. It resolves the existing activated artwork file; there is no fifth generated artwork."
         }
       },
       "constructor": {
@@ -1503,14 +1509,13 @@
       }
     },
     "ZZZVault": {
-      "purpose": "Custody of shared physical LPs, independent nonredeemable NFT shares, actual contributions and typed principal maintenance.",
+      "purpose": "Shared native ETH/fixed-ZZZ LP custody, independent NFT shares and guarded maintenance; governance-triggered terminal principal return to holders, with earned rewards and royalties preserved.",
       "functions": {
         "ACCOUNTING_VERSION()": {
-          "purpose": "Read accounting profile3, with eight-word local Position and local statuses; old accounting1/2 rows require their separate historical codecs.",
+          "purpose": "Read accounting profile4: eight-word local Position plus terminal Exited status5. Historical accounting1/2/3 deployments keep their original separate profiles.",
           "access": "Anyone; read-only.",
-          "notes": "Returns: Version number 2; do not reinterpret WETH-era state or journals as V2.",
           "outputs": {
-            "0": "Version number 2; do not reinterpret WETH-era state or journals as V2."
+            "0": "4. This fresh-deployment ABI/lifecycle version does not relabel or upgrade old contracts or journals."
           }
         },
         "MAX_BUCKETS()": {
@@ -1529,20 +1534,6 @@
             "0": "Wei: 0.05 ETH. Planned OpenSea platform-fee handling is separate and unimplemented."
           }
         },
-        "acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256)": {
-          "purpose": "Receive actual approved return/completion assets and optionally deploy the replacement LP.",
-          "access": "Only fixed Migration; canonical/operation guards apply.",
-          "notes": "Zero minimumLiquidity is reserved for full raw-asset recovery into Parked custody; positive minimum requires live LP creation. No bookkeeping-only restoration.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Exact admitted destination/reserved pool identity.",
-            "2": "Raw units of actual ordered currency0; native ETH uses wei.",
-            "3": "Raw units of actual ordered currency1.",
-            "4": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
-            "5": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          },
-          "value": "Exactly the native component of approved amount0/amount1, otherwise zero; caller is fixed Migration."
-        },
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
@@ -1554,7 +1545,7 @@
         "activate(uint256,bytes32,uint256,uint256,uint128,uint256)": {
           "purpose": "Attach initial liquidity to an owned, revealed dormant NFT and join the selected shared bucket.",
           "access": "Current NFT owner or the authenticated fixed Activation Entry; live/operating.",
-          "notes": "Issues nonredeemable shares only after actual LP/value checks; royalties and collective eligibility begin without past rewards. Inputs: id is an NFT ID; amounts are ordered pair raw units, native value must match; positive minimumLiquidity and deadline required.",
+          "notes": "Issues nonredeemable shares only after actual LP/value checks; royalties and collective eligibility begin without past rewards. Inputs: id is an NFT ID; amounts are ordered pair raw units, native value must match; positive minimumLiquidity and deadline required. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID.",
             "1": "Exact admitted bytes32 hash of the v4 PoolKey, not a pool contract address.",
@@ -1563,7 +1554,7 @@
             "4": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
             "5": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
           },
-          "value": "Exactly the declared native pair input if currency0 is ETH; zero for an all-ERC20 pair. ERC20 amounts use exact caller/Entry transfers."
+          "value": "Exactly amount0 wei for the admitted native ETH/fixed-ZZZ pair; fixed ZZZ is pulled exactly from the authenticated owner/Entry."
         },
         "bucketAt(uint256)": {
           "purpose": "Enumerate permanently registered bucket identities by zero-based list index.",
@@ -1634,7 +1625,7 @@
         "collectFees(uint256,uint256)": {
           "purpose": "Harvest physically received local venue LP fees and fund their allocation; creator inbox synchronization is removed.",
           "access": "Permissionless while live and canonical accounting is active.",
-          "notes": "One bucket harvest serves all its NFTs. This is not a holder payout and cannot withdraw principal. Inputs: id is the shared bucket ID; deadline is a Unix timestamp.",
+          "notes": "One bucket harvest serves all its NFTs. This is not a holder payout and cannot withdraw principal. Inputs: id is the shared bucket ID; deadline is a Unix timestamp. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
@@ -1643,22 +1634,11 @@
         "compound(uint256,uint128,uint256)": {
           "purpose": "Harvest and reinvest this bucket’s designated compound reserve and attributed idle into its LP.",
           "access": "Only the fixed Compounder module; live/operating.",
-          "notes": "Preserves NFT shares; captured maintenance budget, independent cooldown and idle ceiling apply. Inputs: id is a bucket ID; minimumLiquidity is the actual minimum increase, with execution deadline.",
+          "notes": "Preserves NFT shares; captured maintenance budget, independent cooldown and idle ceiling apply. Inputs: id is a bucket ID; minimumLiquidity is the actual minimum increase, with execution deadline. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
             "2": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          }
-        },
-        "consolidateHandoff(uint256,address,uint256,uint256)": {
-          "purpose": "Swap the parked bucket’s entire non-ZZZ side into the reviewed ZZZ before normal custody departure.",
-          "access": "Only fixed Migration; paused holding-plan workflow.",
-          "notes": "Touches attributed principal only; stronger per-swap floor remains. Raw emergency exit skips this conversion.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual reviewed nonzero ZZZ currency in the held pair.",
-            "2": "Minimum raw ZZZ output retained before normal external custody departure.",
-            "3": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
           }
         },
         "contributionUSD(uint256)": {
@@ -1673,15 +1653,15 @@
           }
         },
         "group(uint256)": {
-          "purpose": "Read the eight-word accounting3 local shared Position: pool, LP ID, attributed idle pair, deposit mark, center, rebalance time and local status. No home/satellite/location fields.",
+          "purpose": "Read the eight-word accounting4 shared Position: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status.",
           "access": "Anyone; read-only.",
-          "notes": "Use current NFT valuation for its fractional NAV; the bucket record is not one NFT’s individual LP.",
           "inputs": {
-            "0": "Canonical shared bucket ID, not an NFT ordinal."
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
           },
           "outputs": {
-            "0": "One shared bucket’s pool, LP NFT, attributed idle, status, identity and location record."
-          }
+            "0": "Shared Position tuple. Status0None/1Active/2reservedOutbound/3Dormant/4Parked/5Exited. Exited has no LP or attributed idle; historical shares remain for reward rights."
+          },
+          "notes": "A bucket is shared backing, not an individual NFT allocation. USD contribution marks are not current NAV."
         },
         "homePoolId(uint256)": {
           "purpose": "Read the bucket’s original canonical home-pool identity, preserved across supported moves.",
@@ -1696,7 +1676,7 @@
         "increase(uint256,uint256,uint256,uint128,uint256)": {
           "purpose": "Add liquidity and fairly priced shares to an already activated NFT.",
           "access": "Current NFT owner or authenticated fixed Entry; live/operating.",
-          "notes": "$5 value floor, configured limits and marginal deployed-LP policy apply; preserves rarity and old entitlements. Inputs: id is an NFT ID; amounts are actual ordered-pair raw units, not USD; deadline and minimum LP bound execution.",
+          "notes": "$5 value floor, configured limits and marginal deployed-LP policy apply; preserves rarity and old entitlements. Inputs: id is an NFT ID; amounts are actual ordered-pair raw units, not USD; deadline and minimum LP bound execution. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID.",
             "1": "Raw units of actual ordered currency0; native ETH uses wei.",
@@ -1716,7 +1696,7 @@
         "mintDormant()": {
           "purpose": "Mint a dormant canonical NFT, record its identity and forward the exact direct-mint payment.",
           "access": "Any payer while live/operating; mint/provider/supply guards apply.",
-          "notes": "Creates no LP, collective membership or reward eligibility; payment and mint roll back together. Returns: Canonical hashed NFT ID, not a sequential ordinal.",
+          "notes": "Creates no LP, collective membership or reward eligibility; payment and mint roll back together. Returns: Canonical hashed NFT ID, not a sequential ordinal. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "outputs": {
             "0": "Canonical hashed NFT ID, not a sequential ordinal."
           },
@@ -1733,7 +1713,7 @@
         "movePool(uint256,bytes32,uint128,uint256)": {
           "purpose": "Atomically close/redeploy an active bucket into another admitted same-actual-pair pool.",
           "access": "Only fixed Migration; live/operating.",
-          "notes": "Preserves bucket/NFT shares, settles fees and enforces one captured maintenance budget.",
+          "notes": "Preserves bucket/NFT shares, settles fees and enforces one captured maintenance budget. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Exact admitted destination pool identity; actual pair restrictions remain.",
@@ -1753,14 +1733,13 @@
           }
         },
         "nftStatus(uint256)": {
-          "purpose": "Read local status:0None,1Active,2Outbound external custody,3Dormant,4Parked. Status meanings are selected by accounting3, never inferred from row length.",
+          "purpose": "Read an NFT lifecycle from mint existence, bucket membership and current bucket status.",
           "access": "Anyone; read-only.",
-          "notes": "An activated NFT can remain eligible while its bucket is parked/outbound; status is not a claimable amount.",
           "inputs": {
-            "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID."
+            "0": "Actual canonical PoPL NFT ID; not the display number, mint ordinal or shared bucket ID."
           },
           "outputs": {
-            "0": "The NFT’s dormant or attached bucket custody status."
+            "0": "0None for unminted,3Dormant for minted without LP; otherwise bucket status1Active/4Parked/5Exited. Reserved outbound2 has no fresh-deployment custody-exit path."
           }
         },
         "onERC721Received(address,address,uint256,bytes)": {
@@ -1780,7 +1759,7 @@
         "park(uint256,uint256)": {
           "purpose": "Close the physical LP into attributed pair assets retained by the Vault.",
           "access": "Only fixed Migration, using its reviewed paused parking workflow.",
-          "notes": "No external recipient or holder withdrawal; exact close bounds still apply and failed tokens/venues may block it.",
+          "notes": "No external recipient or holder withdrawal; exact close bounds still apply and failed tokens/venues may block it. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
@@ -1800,31 +1779,17 @@
         "rebalance(uint256,uint128,uint256)": {
           "purpose": "Replace a shared LP at the strategy’s eligible target range after fee settlement.",
           "access": "Authorized keeper; live/operating and on-chain eligibility/cooldown required.",
-          "notes": "Captures the maintenance cap and starting prices; preserves shares and earned fees. No per-NFT rebalance is needed. Inputs: id is a bucket ID, with a positive LP minimum and fresh deadline.",
+          "notes": "Captures the maintenance cap and starting prices; preserves shares and earned fees. No per-NFT rebalance is needed. Inputs: id is a bucket ID, with a positive LP minimum and fresh deadline. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
             "2": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
           }
         },
-        "releaseForMigration(uint256,bytes32,uint256)": {
-          "purpose": "Send a parked bucket’s exact attributed pair balances to fixed Migration for its approved custody plan.",
-          "access": "Only fixed Migration; valid local parked custody required.",
-          "notes": "Sets the bucket Outbound; cannot sweep donations, other buckets, holder fees or royalties. Returns: Actual raw amount0 and amount1 released; either may be native ETH.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Exact approved custody-plan identity attached to the principal departure event; not a recipient selector.",
-            "2": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          },
-          "outputs": {
-            "0": "Exact raw currency0 principal released to fixed Migration.",
-            "1": "Exact raw currency1 principal released to fixed Migration."
-          }
-        },
         "reservePool(bytes32,uint256)": {
           "purpose": "Permanently associate an admitted pool identity with an existing canonical bucket.",
           "access": "Governance via the controller; lifecycle guards apply.",
-          "notes": "Does not move funds or enable contributions. Aliases cannot be reassigned and permanent bucket capacity is bounded.",
+          "notes": "Does not move funds or enable contributions. Aliases cannot be reassigned and permanent bucket capacity is bounded. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Exact admitted destination/reserved pool identity.",
             "1": "Canonical shared bucket ID, not an NFT ordinal."
@@ -1833,7 +1798,7 @@
         "resume(uint256,bytes32,uint128,uint256)": {
           "purpose": "Redeploy a parked bucket into an approved same-actual-pair pool.",
           "access": "Only fixed Migration; live/operating.",
-          "notes": "Fresh deployment/maintenance guards apply; native ETH and WETH are different assets.",
+          "notes": "Fresh deployment/maintenance guards apply; native ETH and WETH are different assets. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Exact admitted destination pool identity; actual pair restrictions remain.",
@@ -1868,10 +1833,30 @@
           "outputs": {
             "0": "All attributed idle principal held by Vault in one currency."
           }
+        },
+        "beginLPExit()": {
+          "purpose": "Enter the nonreentrant Vault barrier and permanently set Access.lpExitStarted for an already validated collective holder exit.",
+          "access": "Only fixed Migration; operating canonical lifecycle; Access additionally requires sealed and globally paused.",
+          "notes": "Rejects initiation inside an in-flight Vault contribution, harvest or maintenance callback. No principal moves in this call."
+        },
+        "exitBucketToHolders(uint256,uint256,uint256,uint256)": {
+          "purpose": "Final-harvest and close one ETH/fixed-ZZZ bucket, transfer only classified principal and pending compound to the fixed holder-settlement module, and mark Exited.",
+          "access": "Only fixed Migration; sealed module authorization, operating lifecycle, global pause and irreversible LP-exit flag.",
+          "inputs": {
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID.",
+            "1": "Minimum total native ETH returned in wei, including close proceeds, attributed idle and released compound; zero is an explicit raw minimum.",
+            "2": "Minimum total fixed-ZZZ raw units returned, including close proceeds, attributed idle and released compound; zero is an explicit raw minimum.",
+            "3": "Inclusive Unix timestamp in seconds, no earlier than this block and no more than ten minutes ahead."
+          },
+          "outputs": {
+            "0": "Actual native ETH principal transferred to fixed Migration, in wei.",
+            "1": "Actual fixed-ZZZ principal transferred to fixed Migration, in token raw units."
+          },
+          "notes": "No swap or USD-oracle dependency. Preserves per-NFT shares, membership, earned LP rewards, royalties, buyback reserves and unsolicited prefunds. Raw output minima are not a USD execution-loss promise."
         }
       },
       "constructor": {
-        "purpose": "Deploy and bind Custody of shared physical LPs, independent nonredeemable NFT shares, actual contributions and typed principal maintenance.",
+        "purpose": "Deploy shared ETH/fixed-ZZZ principal custody and per-NFT share accounting with immutable Budget; governed collective exit returns actual principal to current NFT holders.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
           "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",
@@ -2976,7 +2961,7 @@
         "claim(uint256,address)": {
           "purpose": "Synchronize and pay one NFT’s funded royalty balance to its current owner.",
           "access": "Current NFT owner; active economic state.",
-          "notes": "Ordinary operational pause does not seize rights. A currency in external custody cannot be claimed. Returns: Raw currency amount actually paid.",
+          "notes": "Ordinary pause and collective LP exit do not revoke royalty rights. A failed currency or receiver can still make this claim revert; actual paid raw units are not new earnings.",
           "inputs": {
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID.",
             "1": "Actual currency address; zero denotes native ETH in native-aware paths."
@@ -3032,44 +3017,6 @@
             "0": "The fixed royalty-only ETH executor, if bound before sealing."
           }
         },
-        "custodyAmount(address)": {
-          "purpose": "Read the full original raw amount that must return for an exited royalty currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
-          },
-          "outputs": {
-            "0": "The full original raw amount that must return for an exited royalty currency."
-          }
-        },
-        "custodyCount()": {
-          "purpose": "Count outstanding external royalty-currency custody records.",
-          "access": "Anyone; read-only.",
-          "notes": "Whole-collection capture must not proceed while custody is outstanding.",
-          "outputs": {
-            "0": "Outstanding external royalty-currency custody records."
-          }
-        },
-        "custodyId(address)": {
-          "purpose": "Read the exact outstanding custody record hash for a royalty currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
-          },
-          "outputs": {
-            "0": "The exact outstanding custody record hash for a royalty currency."
-          }
-        },
-        "custodyNonce(address)": {
-          "purpose": "Read the next anti-replay nonce for that currency’s custody departure.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
-          },
-          "outputs": {
-            "0": "The next anti-replay nonce for that currency’s custody departure."
-          }
-        },
         "eligibleCount(address)": {
           "purpose": "Read how many activated NFTs have joined this currency’s royalty cohort.",
           "access": "Anyone; read-only.",
@@ -3100,22 +3047,6 @@
           },
           "outputs": {
             "0": "The sum of rarity weights enrolled for one royalty currency."
-          }
-        },
-        "exitCustody(address,address,uint256,uint256,bytes32,bytes32)": {
-          "purpose": "Send one admitted royalty currency’s entire exact balance to a separately approved external custodian.",
-          "access": "Governance via controller while sealed, paused and not preparing.",
-          "notes": "Trusts recipient custody/liveness; suspends that currency only, preserving liabilities/quarantine. Not part of principal exit. Inputs: Bind expected full balance, current nonce, recipient code hash and review hash. Returns: Unique custody record ID.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in native-aware paths.",
-            "1": "Explicit approved external custodian, whose return/liveness is trusted.",
-            "2": "Exact complete current raw currency balance; mismatch rejects custody departure.",
-            "3": "Exact current anti-replay nonce; stale authorizations fail.",
-            "4": "Reviewed recipient code identity; explicitly bind an EOA or contract as required.",
-            "5": "Nonzero commitment to independently reviewed policy; the hash does not perform the review."
-          },
-          "outputs": {
-            "0": "Unique custody record ID."
           }
         },
         "forwardLate(address)": {
@@ -3217,16 +3148,6 @@
           "outputs": {
             "0": "Actual unaccounted receipts in one admitted currency."
           }
-        },
-        "returnCustody(address,bytes32)": {
-          "purpose": "Restore the full exact original currency amount for an outstanding royalty custody record.",
-          "access": "Any funder in active economic state; exact record and funding required.",
-          "notes": "ETH requires exact msg.value; ERC20 pulls from caller. Restoration is not fresh royalty income.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in native-aware paths.",
-            "1": "Exact outstanding custody record hash; must match its actual original funding obligation."
-          },
-          "value": "Exactly custodyAmount(asset) for asset zero (native ETH); zero for ERC20, whose exact full amount is pulled."
         },
         "sync(address)": {
           "purpose": "Recognize actual newly arrived royalty funds and advance that currency’s eligible-weight index.",
@@ -3826,7 +3747,7 @@
           }
         },
         "zzz()": {
-          "purpose": "Read the immutable deployment ZZZ token used for every buyback burn; contribution and normal-exit setup must match it.",
+          "purpose": "Read the immutable deployment ZZZ token used for every buyback burn; contribution admission and collective principal settlement bind the same identity.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "The immutable deployment ZZZ token; there is no retargeting setter."
@@ -3849,259 +3770,321 @@
       }
     },
     "ZZZMigration": {
-      "purpose": "Source-chain pool movement, approved all-ZZZ/raw custody exit, exact funded recovery/local LP return; no remote-proof or integrated bridge path.",
+      "purpose": "Governed same-pair movement/local parking while operating, or irreversible collective ETH+ZZZ principal settlement to current NFT holders. No external custody address, consolidation exit or sweep.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Read the fixed controller that supplies module, governance, keeper and lifecycle authorization.",
           "access": "Anyone; read-only.",
-          "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "Bound AccessController address; reading it grants no authority."
           }
         },
-        "activePlan(uint256)": {
-          "purpose": "Read the outstanding plan ID associated with a shared bucket.",
+        "CUSTODY_VERSION()": {
+          "purpose": "Read the explicit holder-settlement compatibility version.",
           "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID."
-          },
           "outputs": {
-            "0": "The outstanding plan ID associated with a shared bucket."
+            "0": "3; custody2 external-recipient request/status APIs are not present."
           }
         },
-        "bindLocalDestination(bytes32,bytes32,uint256,uint256,bytes32)": {
-          "purpose": "Set one reviewed local return pool for an already sent holding-only plan.",
-          "access": "Governance via controller; operating lifecycle.",
-          "notes": "One-time destination binding preserves original departure, mode, shares and loss floor; does not itself return funds.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID.",
-            "1": "Exact admitted destination/reserved pool identity.",
-            "2": "Minimum actual raw destination/close currency0 amount; native currency0 is wei.",
-            "3": "Minimum actual raw destination/close currency1 amount.",
-            "4": "Nonzero commitment to independently reviewed policy; the hash does not perform the review."
+        "MAX_BATCH()": {
+          "purpose": "Read the maximum ordinal count or NFT-ID count accepted by one bounded allocation/distribution call.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "32. Allocation counts mint ordinals; distribution counts supplied NFT IDs."
           }
         },
-        "cancel(bytes32)": {
-          "purpose": "Cancel an approved custody plan that has not sent any assets.",
-          "access": "Drain-authorized governance through controller.",
-          "notes": "A Sent plan cannot be cancelled or written off; complete or restore it using actual funding.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID."
-          }
-        },
-        "completeLocal(bytes32,uint256,uint256,uint128,uint256)": {
-          "purpose": "Fund an approved local destination and actually mint its replacement LP in one transaction.",
-          "access": "Any funder satisfying the existing approved plan and live/operating guards.",
-          "notes": "Preserves NFT shares and original normal floor or raw destination minima; cannot pretend external LP exists. Inputs: Plan ID, exact ordered destination amounts/native value, positive minimumLiquidity and deadline.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID.",
-            "1": "Exact raw amount of actual ordered currency0.",
-            "2": "Exact raw amount of actual ordered currency1.",
-            "3": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
-            "4": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          },
-          "value": "Exactly the approved local destination’s native component in a0/a1, otherwise zero; ERC20 backing is actually pulled."
-        },
-        "configureZZZ(address,bytes32,bytes32)": {
-          "purpose": "Bind the fixed normal-exit ZZZ once before sealing. Requires the already-bound immutable Buyback and contribution-source identity to match; validates code, admitted rewards and price before storing the exit pin.",
-          "access": "Only authorized configuration while unsealed, once, with no outstanding custody plans. Bind the immutable Buyback module first.",
-          "notes": "The source identity and immutable buyback token must already match. No post-seal token replacement, in-flight relabeling or native-ETH-as-ZZZ identity is allowed.",
-          "inputs": {
-            "0": "The one nonzero ZZZ ERC20 address shared by source admission, immutable buyback and normal exit; never native ETH.",
-            "1": "Exact reviewed runtime-code hash, not automatically copied observation.",
-            "2": "Nonzero commitment to independently reviewed policy; the hash does not perform the review."
+        "PAYOUT_GAS()": {
+          "purpose": "Read the fixed gas budget forwarded to each isolated automatic payout subcall.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "180000 gas. Expensive/rejecting recipients retain backing and may use owner-authenticated fallback with their chosen transaction gas."
           }
         },
         "currentZZZ()": {
-          "purpose": "Identify the approved ZZZ used by future normal custody exits.",
+          "purpose": "Read the one fixed ZZZ identity whose actual raw principal is returned alongside native ETH.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The approved ZZZ used by future normal custody exits."
-          }
-        },
-        "custodyEpoch(uint256)": {
-          "purpose": "Read a bucket’s departure epoch used to invalidate stale custody snapshots.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID."
-          },
-          "outputs": {
-            "0": "A bucket’s departure epoch used to invalidate stale custody snapshots."
-          }
-        },
-        "exit(bytes32)": {
-          "purpose": "Execute an approved paused principal departure to its exact external recipient.",
-          "access": "Governance via controller while globally paused.",
-          "notes": "Normal closes/converts all attributed principal to ZZZ; explicit raw mode sends actual pair assets without swapping. Any failure reverts; no automatic raw fallback.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID."
-          }
-        },
-        "invalidateParking(uint256)": {
-          "purpose": "Advance a bucket’s parking nonce to invalidate an unused reviewed parking authorization.",
-          "access": "Drain-authorized governance.",
-          "notes": "Does not stop already mined operations, cancel a sent plan or change principal.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
-          }
-        },
-        "minimumRetainedUSD(bytes32)": {
-          "purpose": "Read the original approved absolute retained-value floor for normal custody completion.",
-          "access": "Anyone; read-only.",
-          "notes": "Returns: USD18; raw mode has no fabricated USD guarantee.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID."
-          },
-          "outputs": {
-            "0": "USD18; raw mode has no fabricated USD guarantee."
-          }
-        },
-        "moveFunds(uint256,bytes32,uint128,uint256)": {
-          "purpose": "Atomically move active shared LP to another admitted pool with the identical ordered actual currencies.",
-          "access": "Governance via controller; live.",
-          "notes": "Never sends assets to an external custodian; one captured maintenance budget and unchanged NFT shares. ETH≠WETH.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Exact admitted destination/reserved pool identity.",
-            "2": "Minimum actual Uniswap liquidity units on movement/resume.",
-            "3": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          }
-        },
-        "outstandingCount()": {
-          "purpose": "Count approved or sent principal plans still requiring cancellation/completion/recovery.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "Approved or sent principal plans still requiring cancellation/completion/recovery."
-          }
-        },
-        "park((uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32))": {
-          "purpose": "Close the exact reviewed LP into Vault custody with source-bound raw minima.",
-          "access": "Drain-authorized governance while paused.",
-          "notes": "Binds position/shares/value/epoch/nonce and pair; no asset transfer to an outside address. Source price need not be healthy.",
-          "inputs": {
-            "0": "Exact reviewed parking/request tuple with snapshot, minima, recipients and lifecycle identity."
-          }
-        },
-        "parkingNonce(uint256)": {
-          "purpose": "Read the next anti-replay parking authorization nonce for a bucket.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT ID."
-          },
-          "outputs": {
-            "0": "The next anti-replay parking authorization nonce for a bucket."
-          }
-        },
-        "request(bytes32)": {
-          "purpose": "Read the full request bound to an approved custody plan.",
-          "access": "Anyone; read-only.",
-          "notes": "Includes raw/normal mode, exact minima, recipient and original deadline.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID."
-          },
-          "outputs": {
-            "0": "The full request bound to an approved custody plan."
-          }
-        },
-        "resume(uint256,bytes32,uint128,uint256)": {
-          "purpose": "Deploy a parked shared bucket into a reviewed same-actual-pair pool.",
-          "access": "Governance via controller; live.",
-          "notes": "Fresh deployment and maintenance checks; does not choose or fund external custody.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Exact admitted destination/reserved pool identity.",
-            "2": "Minimum actual Uniswap liquidity units on movement/resume.",
-            "3": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          }
-        },
-        "sequence()": {
-          "purpose": "Read the custody-approval sequence used to derive unique plan IDs.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The custody-approval sequence used to derive unique plan IDs."
-          }
-        },
-        "sourceSnapshot(uint256)": {
-          "purpose": "Compute the exact bucket/position/share/epoch/ZZZ snapshot bound by custody approval.",
-          "access": "Anyone; read-only.",
-          "notes": "A changed LP or accounting state invalidates an old plan; use the stable parked snapshot.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an NFT ordinal."
-          },
-          "outputs": {
-            "0": "The exact bucket/position/share/epoch/ZZZ snapshot bound by custody approval."
-          }
-        },
-        "state(bytes32)": {
-          "purpose": "Read custody V2 status (0 none, 1 approved, 2 sent, 3 completed, 4 recovered, 5 cancelled), actual sent amounts, starting USD and departure block.",
-          "access": "Anyone; read-only.",
-          "notes": "Returns: Status, actual sent0, sent1, startingUSD and departure block; startingUSD is USD18, not sentZZZ, and status is not proof of recoverability.",
-          "inputs": {
-            "0": "Exact approved principal-custody plan ID."
-          },
-          "outputs": {
-            "0": "Custody status enum:0None,1Approved,2Sent,3RemoteVerified,4Completed,5Recovered,6Cancelled.",
-            "1": "Actual raw currency0 sent at departure.",
-            "2": "Actual raw currency1 sent at departure.",
-            "3": "Approval-time starting principal value in USD18; not sentZZZ.",
-            "4": "Source-chain block number of actual departure."
-          }
-        },
-        "validation()": {
-          "purpose": "Locate the immutable read-only companion that validates parking, requests and destinations.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable read-only companion that validates parking, requests and destinations."
+            "0": "Bootstrap-bound ZZZ ERC20, matching contribution-source admission and immutable Buyback; never a custody beneficiary."
           }
         },
         "zzzCodeHash()": {
-          "purpose": "Read the approved runtime pin for the current future-exit ZZZ target.",
+          "purpose": "Read the runtime-code identity reviewed when the fixed ZZZ token was bootstrap-bound.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The approved runtime pin for the current future-exit ZZZ target."
+            "0": "Stored reviewed runtime hash; it is not a proof of token behavior or proxy/admin independence."
           }
         },
-        "approve((uint256,bytes32,address,bytes32,address,bytes32,address,address,uint256,uint256,bool,uint256,uint256,uint256,uint256,bytes32))": {
-          "purpose": "Approve an exact source-chain custody V2 request: bucket/source snapshot, recipient/runtime, local destination/assets/raw minima, exit mode, normal ZZZ minimum, deadline and review. It authorizes no remote ledger or bridge.",
-          "access": "Governance via controller; operating lifecycle.",
-          "notes": "Normal mode captures the absolute retained-USD floor; raw mode explicitly accepts token minima without a USD guarantee. Custodian return is trusted, not enforced. Inputs: Request tuple binds bucket, snapshot, recipient/code pin, destination, currencies/minima, rawExit mode, deadline and review hash. Returns: Unique plan ID; no principal moves at approval.",
+        "exitPhase()": {
+          "purpose": "Read the collective exit workflow phase, separate from canonical lifecycle and ordinary pause.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "0Operating;1Closing funded buckets;2Allocating immutable mint inventory;3Ready for holder payouts. No cancellation or return to Operating."
+          }
+        },
+        "exitReviewHash()": {
+          "purpose": "Read governance's nonzero review commitment for the irreversible collective exit.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Committed review hash; zero before initiation. The hash itself does not perform a safety review."
+          }
+        },
+        "exitMintedCount()": {
+          "purpose": "Read the immutable mint-inventory length captured when exit started.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Captured NFT count, at most1000, including dormant/unrevealed NFTs. New mints are permanently stopped."
+          }
+        },
+        "allocationCursor()": {
+          "purpose": "Read the next one-based captured mint ordinal to apportion.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "0 before allocation;1 at its start;exitMintedCount+1 after complete inventory verification. This is not a token ID."
+          }
+        },
+        "remainingBuckets()": {
+          "purpose": "Count snapshotted funded buckets still awaiting an exact principal close.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Remaining closures; zero once every funded bucket closed. It is not the number of unpaid NFTs."
+          }
+        },
+        "remainingETH()": {
+          "purpose": "Read aggregate classified native principal not yet paid to NFT holders.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Wei backed by settlement custody; excludes unsolicited prefunds and separate fee/royalty ledgers."
+          }
+        },
+        "remainingZZZ()": {
+          "purpose": "Read aggregate classified fixed-ZZZ principal not yet paid to NFT holders.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed-ZZZ raw units backed by settlement custody; excludes unsolicited prefunds and separate ledgers."
+          }
+        },
+        "settlementBucketCount()": {
+          "purpose": "Read the number of funded buckets captured for this collective exit.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "At most Vault.MAX_BUCKETS=4. Empty reservations are omitted."
+          }
+        },
+        "settlementBucketAt(uint256)": {
+          "purpose": "Enumerate captured funded bucket IDs.",
+          "access": "Anyone; read-only.",
           "inputs": {
-            "0": "Exact reviewed parking/request tuple with snapshot, minima, recipients and lifecycle identity."
+            "0": "Zero-based index strictly below settlementBucketCount."
           },
           "outputs": {
-            "0": "Unique plan ID; no principal moves at approval."
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
           }
         },
-        "recover(bytes32,uint256)": {
-          "purpose": "Restore all actually sent assets under the original custody plan, preserving NFT shares and earned rights. No proof argument or remote completion exists.",
-          "access": "Any exact funder; valid plan/lifecycle and any required authenticated closure proof.",
-          "notes": "Normal mode restores sent ZZZ; raw mode restores both actual currencies. No partial funding, timeout unlock, haircut or new income. Inputs: Plan ID, deadline and proof; source-chain custody uses its reviewed local proof form, native funding must match exactly.",
+        "bucketSettlement(uint256)": {
+          "purpose": "Read one bucket's frozen denominator, actual returned amounts and cumulative allocation progress.",
+          "access": "Anyone; read-only.",
           "inputs": {
-            "id": "Exact sent custody plan identifier.",
-            "deadline": "Inclusive Unix transaction deadline within the existing bounded window."
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
           },
-          "value": "Exactly the originally sent native component, otherwise zero; complete original raw-asset funding is required."
+          "outputs": {
+            "0": "Frozen total bucket shares. Zero means the bucket was not captured.",
+            "1": "Actual native ETH returned for this bucket, in wei.",
+            "2": "Actual fixed-ZZZ returned for this bucket, in raw units.",
+            "3": "Sum of NFT shares already apportioned for this bucket.",
+            "4": "Cumulative ETH assigned to NFTs, in wei.",
+            "5": "Cumulative ZZZ assigned to NFTs, in raw units.",
+            "6": "True only after exact bucket closing and funding succeeded."
+          }
         },
-        "CUSTODY_VERSION()": {
-          "purpose": "Read the explicit local-only request/status ABI version, currently 2.",
-          "access": "Anyone; read-only."
+        "principalOf(uint256)": {
+          "purpose": "Read the NFT's original principal allocation and processing/payment markers.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Actual canonical PoPL NFT ID; not the display number, mint ordinal or shared bucket ID."
+          },
+          "outputs": {
+            "0": "Original allocated native ETH in wei; retained as history after payment.",
+            "1": "Original allocated fixed-ZZZ raw units; retained after payment.",
+            "2": "Whether its captured mint ordinal was processed; false is not proof of zero entitlement.",
+            "3": "Whether this NFT's nonzero allocation has already been paid once."
+          },
+          "notes": "These amounts are principal, not LP income, royalty income, current attached LP or cumulative earnings. Unpaid rights follow the NFT."
+        },
+        "claimablePrincipal(uint256)": {
+          "purpose": "Read remaining ETH+ZZZ principal entitlement after complete settlement allocation.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Actual canonical PoPL NFT ID; not the display number, mint ordinal or shared bucket ID."
+          },
+          "outputs": {
+            "0": "Unpaid native ETH wei, or zero once paid.",
+            "1": "Unpaid fixed-ZZZ raw units, or zero once paid."
+          },
+          "notes": "Reverts NotReady before phase3 or for an unprocessed/nonexistent NFT; never guess an unallocated amount as zero. A processed dormant/zero-output NFT legitimately has zero principal."
+        },
+        "custodyEpoch(uint256)": {
+          "purpose": "Read the bucket epoch used by exact local parking authorizations.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
+          },
+          "outputs": {
+            "0": "Epoch increments on terminal bucket closure; there are no external custody departure plans."
+          }
+        },
+        "parkingNonce(uint256)": {
+          "purpose": "Read the next anti-replay nonce for a local parking authorization.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
+          },
+          "outputs": {
+            "0": "Nonce increments on successful parking or explicit invalidation."
+          }
+        },
+        "activePlan(uint256)": {
+          "purpose": "Read the reserved compatibility value used by pre-exit canonical/shared-accounting checks.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
+          },
+          "outputs": {
+            "0": "Always bytes32(0): this implementation has no external custody plans. Use exitPhase and Access.lpExitStarted for holder exit."
+          }
+        },
+        "outstandingCount()": {
+          "purpose": "Read the reserved count for removed external-custody plans.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Always0. This does not indicate that holder principal is paid; inspect remainingETH/remainingZZZ and per-NFT paid markers."
+          }
+        },
+        "validation()": {
+          "purpose": "Locate the immutable read-only local parking validator.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "ZZZCustodyValidation deployed by this Migration; has no principal custody or recipient-selection authority."
+          }
+        },
+        "configureZZZ(address,bytes32,bytes32)": {
+          "purpose": "Bind the fixed ZZZ token once before sealing, matching source admission, Rewards admission and immutable Buyback.",
+          "access": "Authorized bootstrap configuration only; unsealed and currentZZZ unset.",
+          "inputs": {
+            "0": "Nonzero ZZZ ERC20 with code, exactly matching contribution source and Buyback.zzz.",
+            "1": "Exact reviewed token runtime-code hash.",
+            "2": "Nonzero review commitment."
+          },
+          "notes": "No post-seal token replacement or external beneficiary is configured. No Oracle price call is required by this identity binding."
+        },
+        "beginCollectiveExit(bytes32)": {
+          "purpose": "Validate every funded bucket and captured mint inventory, then irreversibly start collective principal return.",
+          "access": "Current governance through controller; sealed, paused, canonical operating and not preparing.",
+          "inputs": {
+            "0": "Nonzero review commitment covering irreversible shutdown and the operator's close/distribution plan."
+          },
+          "notes": "Accepts only native ETH/fixed-ZZZ funded buckets in Active/Parked state. Does not close LP or pay anyone yet. The Vault barrier sets lpExitStarted; no cancellation/reopening is available. Does not require NFT reveal completion, prices or swaps."
+        },
+        "closeBucket(uint256,uint256,uint256,uint256)": {
+          "purpose": "Final-harvest and close one captured bucket into exact ETH+ZZZ settlement backing.",
+          "access": "Current governance; terminal exit in Closing, paused and canonical operating.",
+          "inputs": {
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID.",
+            "1": "Minimum total returned native ETH wei, including attributed idle and released compound. Zero is deliberate raw acceptance.",
+            "2": "Minimum total returned fixed-ZZZ raw units, including attributed idle and released compound. Zero is deliberate raw acceptance.",
+            "3": "Inclusive Unix timestamp in seconds, no earlier than this block and no more than ten minutes ahead."
+          },
+          "notes": "Each captured bucket closes once. Excludes earned rewards, royalties, buyback reserves and prefunds. No swap/USD-oracle or aggregate USD-loss promise. Last closure starts ordinal allocation. Broken venue/token or failed minima revert that close."
+        },
+        "allocatePrincipal(uint256)": {
+          "purpose": "Advance deterministic proportional principal apportionment over bounded captured mint ordinals.",
+          "access": "Anyone in canonical operating state, not preparing; requires Allocating phase.",
+          "inputs": {
+            "0": "Maximum mint ordinals to process in this call,1..32; includes dormant ordinals."
+          },
+          "notes": "Cumulative floor differences allocate every raw unit in immutable mint order, by preserved bucket shares. Final checks prove all denominators/output totals. Emits ERC-4906 updates for funded NFT IDs. No payout occurs until all buckets/inventory pass."
+        },
+        "distributePrincipal(uint256[])": {
+          "purpose": "Attempt automatic principal pushes to current NFT owners in isolated bounded subcalls.",
+          "access": "Anyone; Ready phase and canonical operating lifecycle, not preparing. Ordinary pause does not block payouts.",
+          "inputs": {
+            "0": "1..32 actual NFT IDs. Already-paid, unallocated and zero-output entries are skipped; duplicates cannot pay twice."
+          },
+          "outputs": {
+            "0": "Number of nonzero NFT allocations successfully paid by this call; a deferred/low-gas batch may pay fewer than requested."
+          },
+          "notes": "The caller cannot choose recipients. Each ETH+ZZZ payment is atomic with a180000gas inner budget. Receiver failure emits PrincipalDeferred and preserves that entitlement; low outer gas stops before another attempt. No automatic retry or expiry."
+        },
+        "payCurrentOwner(uint256)": {
+          "purpose": "Self-only isolation boundary used by automatic distribution to pay the current owner.",
+          "access": "Only this Migration contract calling itself from the bounded distribution path.",
+          "inputs": {
+            "0": "Actual canonical PoPL NFT ID; not the display number, mint ordinal or shared bucket ID."
+          },
+          "notes": "Not a public-authorized withdrawal entry. Marks paid before transfers and verifies backing; a failed inner call rolls back both ETH and ZZZ payment for that NFT."
+        },
+        "claimPrincipal(uint256,address)": {
+          "purpose": "Recover an unpaid nonzero principal allocation to an owner-chosen recipient.",
+          "access": "Actual current NFT owner only, not ERC721 approvals; Ready phase and canonical operating lifecycle, not preparing.",
+          "inputs": {
+            "0": "Actual canonical PoPL NFT ID; not the display number, mint ordinal or shared bucket ID.",
+            "1": "Nonzero recipient chosen by the current owner; cannot be this settlement contract."
+          },
+          "notes": "Optional fallback for rejecting/expensive automatic receivers. Pays the same one-time ETH+ZZZ allocation; does not claim LP fees or royalties, spend another NFT backing or reopen LP. Ordinary pause does not block this fallback."
+        },
+        "moveFunds(uint256,bytes32,uint128,uint256)": {
+          "purpose": "Atomically move a live shared LP to an admitted native ETH/fixed-ZZZ pool with identical actual currencies.",
+          "access": "Current governance; live and before irreversible LP exit.",
+          "inputs": {
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID.",
+            "1": "Exact initialized/admitted destination PoolKey hash, not a pool contract address.",
+            "2": "Minimum actual replacement Uniswap liquidity units; not token units or USD.",
+            "3": "Inclusive Unix timestamp in seconds, no earlier than this block and no more than ten minutes ahead."
+          },
+          "notes": "Preserves NFT shares and captured maintenance budget; no external custodian or principal payout. A different fee tier is a different pool ID."
+        },
+        "resume(uint256,bytes32,uint128,uint256)": {
+          "purpose": "Deploy a locally parked bucket into an admitted same-actual-pair LP.",
+          "access": "Current governance; live and before irreversible LP exit.",
+          "inputs": {
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID.",
+            "1": "Reviewed admitted same-pair destination pool ID.",
+            "2": "Minimum actual new Uniswap liquidity units.",
+            "3": "Inclusive Unix timestamp in seconds, no earlier than this block and no more than ten minutes ahead."
+          },
+          "notes": "Requires fresh ordinary deployment/maintenance guards. Cannot resume Exited principal or clear lpExitStarted."
+        },
+        "park((uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32))": {
+          "purpose": "Close an exactly reviewed active LP into attributed Vault idle while retaining protocol custody.",
+          "access": "Drain-authorized governance while paused, before collective LP exit.",
+          "inputs": {
+            "0": "ParkingRequest(bucketId,poolId,lpTokenId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash). Match current position/shares/depositUSD/epoch/nonce and actual pair. Minima bound actual close proceeds in raw units; token0 native ETH uses wei. Review hash nonzero; deadline bounded."
+          },
+          "notes": "No external beneficiary or principal distribution; no USD-oracle dependency. Retained for normal incident parking before terminal shutdown."
+        },
+        "invalidateParking(uint256)": {
+          "purpose": "Increment the local parking nonce to invalidate an unused authorization.",
+          "access": "Drain-authorized governance before irreversible LP exit.",
+          "inputs": {
+            "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
+          },
+          "notes": "Does not undo mined parking, change principal, cancel collective exit or reopen retired LP."
         }
       },
       "constructor": {
-        "purpose": "Deploy and bind Governed atomic same-pair pool movement and separately approved trusted external-custody exit/completion/recovery.",
-        "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
+        "purpose": "Bind governed local LP movement/parking and irreversible proportional holder settlement to one fixed AccessController; deploy the read-only parking validator.",
+        "access": "Deployment only; binding/seal admission remains separate.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
+          "0": "Exact fixed AccessController address with code."
         }
       },
       "receive": {
-        "purpose": "Receive native attributed principal released by the fixed Vault.",
-        "access": "Only fixed Vault.",
-        "value": "Actual authorized exit principal; return/completion funders use the explicit payable methods."
+        "purpose": "Receive native attributed principal released by the fixed Vault during bucket settlement.",
+        "access": "Only the fixed Vault.",
+        "value": "Exact native principal close/idle/compound proceeds. Other forced ETH is not assigned to NFTs."
       }
     },
     "ZZZMigrationBudget": {
-      "purpose": "Fixed Vault companion enforcing captured execution budgets, factual deployment, custody checks and fair contribution accounting.",
+      "purpose": "Fixed Vault companion enforcing captured contribution/maintenance execution budgets, actual deployed/idle backing and fair per-NFT share issuance. No external-custody conversion path.",
       "functions": {
         "IDLE_COMPOUNDING_VERSION()": {
           "purpose": "Identify the explicit idle-only reinvestment compatibility version.",
@@ -4237,19 +4220,6 @@
             "1": "Verified net contribution value in USD18."
           }
         },
-        "handoffPlan(uint256,address,uint256)": {
-          "purpose": "Describe the exact parked non-ZZZ principal side to convert before normal custody exit.",
-          "access": "Only fixed Vault; valid paused parked bucket.",
-          "notes": "Does not execute, approve a recipient or sweep other assets. Returns: Direction, input asset/amount, held ZZZ and enforced swap minimum.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual reviewed nonzero ZZZ currency in the held pair.",
-            "2": "Minimum raw ZZZ output retained before normal external custody departure."
-          },
-          "outputs": {
-            "0": "Direction, input asset/amount, held ZZZ and enforced swap minimum."
-          }
-        },
         "historicalCompoundValue(uint256)": {
           "purpose": "Value historical compound reserves attributable to incumbent bucket shares.",
           "access": "Anyone; read-only.",
@@ -4376,13 +4346,6 @@
             "2": "Packed limits uint32: low16 venue bps, high16 captured contribution-loss bps."
           }
         },
-        "validateHandoff(uint256)": {
-          "purpose": "Require a genuinely Outbound, empty source bucket before exact return funding.",
-          "access": "Only fixed Vault.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
-          }
-        },
         "validateLPReceiver(address)": {
           "purpose": "Accept LP NFTs only from the fixed manager’s bound position manager.",
           "access": "Only fixed Vault.",
@@ -4435,13 +4398,6 @@
             "1": "Minimum actual Uniswap liquidity units to create/add; not token units or USD."
           }
         },
-        "validateRelease(uint256)": {
-          "purpose": "Require local parked custody and no physical LP before principal release.",
-          "access": "Only fixed Vault.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
-          }
-        },
         "validateReservation(bytes32,uint256)": {
           "purpose": "Check that a nonzero admitted pool identity is unused or already reserved for this same bucket.",
           "access": "Only fixed Vault.",
@@ -4489,7 +4445,7 @@
       }
     },
     "ZZZCustodyValidation": {
-      "purpose": "Immutable read-only Migration companion checking exact parking/request/destination policy without custody authority.",
+      "purpose": "Immutable read-only local parking validator. No external custody recipient, request, destination, conversion or recovery authority.",
       "functions": {
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
@@ -4506,39 +4462,17 @@
             "0": "The immutable Migration parent alone permitted to call these validation routines."
           }
         },
-        "validateDestination(bytes)": {
-          "purpose": "Check the reserved local destination, admitted currencies and approved custody pairing.",
-          "access": "Only the bound active Migration module; read-only.",
-          "notes": "Normal mode reads fresh destination prices; raw mode deliberately supplies no USD guarantee. Inputs: ABI-encoded exact Request struct. Returns: Price0,price1 and decimal scales for the approved fixed-price completion check; raw mode returns four zeros.",
-          "inputs": {
-            "0": "ABI-encoded exact validation struct; never arbitrary executor calldata."
-          },
-          "outputs": {
-            "0": "Reviewed output0 price in USD18, or zero in explicit raw mode.",
-            "1": "Reviewed output1 price in USD18, or zero in explicit raw mode.",
-            "2": "10**output0Decimals, or zero in raw mode.",
-            "3": "10**output1Decimals, or zero in raw mode."
-          }
-        },
         "validateParking(bytes)": {
-          "purpose": "Check a paused parking authorization against exact position, shares, epoch, nonce and raw output minima.",
-          "access": "Only bound Migration; read-only.",
-          "notes": "Requires no source USD price; failed venue/token execution can still prevent parking. Inputs: ABI bytes encode the reviewed Parking tuple, not arbitrary external calls.",
+          "purpose": "Validate the exact local parking tuple against active LP, shares, deposit mark, pair, epoch and nonce.",
+          "access": "Only its deploying fixed Migration; read-only.",
           "inputs": {
-            "0": "ABI-encoded exact validation struct; never arbitrary executor calldata."
-          }
-        },
-        "validateRequest(bytes)": {
-          "purpose": "Validate one decoded custody request against sealed local backing, snapshot, recipient, mode and exact minima.",
-          "access": "Only the bound active Migration module; read-only.",
-          "notes": "Does not approve the plan or move funds. Inputs: ABI bytes must encode the exact Request struct; arbitrary calldata is not executed.",
-          "inputs": {
-            "0": "ABI-encoded exact validation struct; never arbitrary executor calldata."
-          }
+            "0": "ABI-encoded Parking(bucketId,poolId,lpTokenId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash). Minima are raw close proceeds; native token0 uses wei. reviewHash must be nonzero."
+          },
+          "notes": "Requires sealed, paused, nonterminal LP operation. Does not transfer principal or query USD prices."
         }
       },
       "constructor": {
-        "purpose": "Deploy and bind Immutable read-only Migration companion checking exact parking/request/destination policy without custody authority.",
+        "purpose": "Deploy one immutable read-only local parking validator for the creating Migration contract; no recipient, request/destination or custody execution path.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
           "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
@@ -4556,10 +4490,10 @@
           }
         },
         "SCHEMA()": {
-          "purpose": "Read ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3; incompatible older inbox/remote fee snapshots cannot import.",
+          "purpose": "Read the explicit same-chain canonical compatibility domain for the accounting4 holder-exit candidate.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The native same-chain canonical encoding/compatibility domain hash."
+            "0": "keccak256(\"ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5\"). Older schemas and terminal principal ledgers are not imported by this protocol."
           }
         },
         "SLOTS()": {
@@ -4680,7 +4614,7 @@
         "freeze()": {
           "purpose": "Freeze ownership/accounting and atomically capture six source-domain cutoffs for the reviewed sealed importer.",
           "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
-          "notes": "Requires parked backing/no outstanding custody and compatible source/destination; no holder/guardian escape hatch."
+          "notes": "Requires source/destination compatibility and parked classified backing. Permanently rejected after collective LP exit starts; terminal principal ledgers cannot be omitted by canonical replacement."
         },
         "fund(uint8,uint256)": {
           "purpose": "Transfer one exact classified source backing leg to the matching successor module.",

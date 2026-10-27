@@ -53,7 +53,8 @@ def read(p, block_number, offset):
         bucket = p._uint('vault', 'nftBucket(uint256)', identifier, block=block)
         shares = p._uint('vault', 'sharesOf(uint256)', identifier, block=block)
         weight = p._uint('royalties', 'weightOf(uint256)', identifier, block=block)
-        if not 1 <= status < (5 if p.accounting_version == 3 else len(STATUS)) or weight > 3 or (weight > 0) != (shares > 0) or (shares > 0) != (bucket > 0) or (status == p.dormant_status) != (weight == 0):
+        limit = 6 if p.accounting_version == 4 else 5 if p.accounting_version == 3 else len(STATUS)
+        if not 1 <= status < limit or weight > 3 or (weight > 0) != (shares > 0) or (shares > 0) != (bucket > 0) or (status == p.dormant_status) != (weight == 0):
             raise ProjectionError('Collection activation state differs')
         if weight and (not ready or weight != rarity + 1):
             raise ProjectionError('Collection royalty weight differs from rarity')
@@ -66,9 +67,10 @@ def read(p, block_number, offset):
             if not weight:
                 raise
             available, amount = False, 0
-        if (not available and amount) or (status not in (1, p.dormant_status) and available) or (status == p.dormant_status and (not available or amount)):
+        exited = p.accounting_version == 4 and status == 5
+        if (not available and amount) or (status not in (1, p.dormant_status) and not exited and available) or (status == p.dormant_status and (not available or amount)) or (exited and (not available or amount or not life['lp_exit_started'])):
             raise ProjectionError('Collection LP valuation contradicts custody')
-        stage = 0 if not weight else 3 if available and amount >= 10000 * 10**18 else 2 if available and amount >= 1000 * 10**18 else 1
+        stage = 4 if exited else 0 if not weight else 3 if available and amount >= 10000 * 10**18 else 2 if available and amount >= 1000 * 10**18 else 1
         active += bool(weight)
         total += amount
         all_available = all_available and available
@@ -76,6 +78,10 @@ def read(p, block_number, offset):
             position=dict(status=status_name(p.accounting_version,status), activated=bool(weight), royalty_weight=weight,
                 principal_redeemable=False, current_lp_value=dict(available=available, raw=str(amount) if available else None,
                 decimals=18, unit='USD', source='NFT.currentLPValue'), evolution=EVOLUTION[stage], evolution_value_available=available)))
+        if p.accounting_version == 4:
+            from frontend_api.principal_return import read as principal_return
+            rows[-1]['principal_return'] = principal_return(p, identifier, status, shares, owner, life, block)
+            rows[-1]['position']['principal_redeemable'] = rows[-1]['principal_return']['holder_claim_available_by_lifecycle']
     p._finish(header)
     return dict(schema=1, chain_id=p.chain, nft_contract=p.contracts['nft'].address, available=True,
         count=count, inventory_sha256=hashlib.sha256(','.join(map(str, ids)).encode('ascii')).hexdigest(),

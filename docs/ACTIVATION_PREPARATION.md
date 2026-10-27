@@ -8,12 +8,19 @@ actual Robinhood routes, feeds, trace providers and network fees remains in
 
 ## Current deployment and review profile
 
-The read configuration selects accounting 3 / fee-intake 1; deployment checks
-require direct governance 2 and local canonical V4. Activation uses explicit
+The read configuration selects accounting 4 / fee-intake 1; deployment checks
+require direct governance 2, custody3 and holder-exit canonical V5. Activation uses explicit
 routing 2 / pricing 2 / review policy 1. These are separate version fields,
 not a synthetic service-profile string or an upgrade of an existing deployment.
 Only native ETH and fixed ZZZ are original inputs. Their two-source policies
 use the reviewed 3% disagreement tolerance.
+
+The parent read configuration requires the additional `principal_exit` runtime
+pin. It must exactly equal the nested activation `migration` address/code hash;
+this is an intentional alias, not another contract. Once `lpExitStarted` is true,
+activation/growth drafts stop before approval, pricing or route work, including
+after ordinary unpause. Existing profile3 deployments retain their old schema;
+the served poplint artifact is not automatically upgraded or enabled for signing.
 
 `executeReviewed(Request,maximumLossBps)` encodes the review's captured current
 contribution cap. Responses expose `reviewed_maximum_loss_bps`, actual
@@ -38,7 +45,7 @@ contribution's marginal deployed-LP floor. See [price security](PRICE_SECURITY.m
 | Value | Source and meaning |
 | --- | --- |
 | Current attached LP value | `NFT.currentLPValue(tokenId)` at the confirmed block: the NFT's share of marked deployed LP, attributed idle and compound reserves. It is not lifetime deposits, a withdrawal entitlement or claimable fees. Unavailable valuation is `null`, never an invented zero. |
-| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Current accounting 3 prices actual ETH directly at currency zero; historical profiles retain their original mapping. No assumed USD peg. |
+| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Current accounting 4 prices actual ETH directly at currency zero; historical profiles retain their original mapping. No assumed USD peg. |
 | New deployed LP | The successful Entry/Vault execution's **marginal** deployment, taken from the fixed budget helper's accounting inputs. Incumbent liquidity, idle and compound cannot subsidize the new contribution. |
 | New share issuance and LP units | Budget output and `SharesAdded`, cross-checked with the one LiquidityManager mint/increase and its PositionManager liquidity readings. Physical LP units belong to the shared pool; NFT shares are reported separately. |
 | Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the captured contribution execution limit (2% by default). |
@@ -138,7 +145,7 @@ The current profile requires the base fields and explicit version fields below;
 additional or missing fields are rejected. Historical profiles have their own
 exact shape, not null placeholders for newly required fields.
 
-Use current accounting 3 / fee-intake 1 in the parent read configuration. The
+Use current accounting 4 / fee-intake 1 in the parent read configuration. The
 nested activation schema remains 1. Native ETH has address zero, code hash null,
 18 decimals and its own two-source policy; on-chain admission uses
 `NATIVE_ASSET_CODE_HASH()`. Exact ETH value is verified at Entry-to-Vault and

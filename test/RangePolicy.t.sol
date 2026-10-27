@@ -6,7 +6,8 @@ using DualOracleFixture for FixtureOracleType;
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+// TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
+import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";

@@ -76,7 +76,7 @@ class ActivationTransactions:
         if '0x'+p._call(pins['activation_assets'],'activePolicy(address)',source,block=block)[0] != policy_id:
             raise ProjectionError('Active source policy differs from the reviewed policy')
         policy=p._call(pins['activation_assets'],'policies(bytes32)',policy_id,block=block,words=6)
-        if (_address_word(policy[0],native=p.accounting_version in (2, 3))!=source or not _bool(policy[1]) or
+        if (_address_word(policy[0],native=p.accounting_version in (2, 3, 4))!=source or not _bool(policy[1]) or
                 '0x'+policy[2]!=(NATIVE_ASSET_CODE_HASH if source==ZERO else cfg.tokens[source]['code_hash']) or
                 int(policy[3],16)==0 or int(policy[4],16)!=cfg.tokens[source]['decimals']):
             raise ProjectionError('Source asset is disabled or its admission changed')
@@ -141,8 +141,8 @@ class ActivationTransactions:
         req['pricing_timestamp']=header['timestamp']
         expire_at(min(now+DRAFT_SECONDS,header['timestamp']+SNAPSHOT_AGE),p.clock)
         life=p._verify_deployment(block)
-        if life['paused'] or life['preparation_active']:
-            raise ActivationInputError('New contributions are paused or canonical preparation is active')
+        if not life['new_economic_work_available_by_lifecycle']:
+            raise ActivationInputError('New contributions are unavailable during pause, preparation or collective exit')
         ordinal=p._uint('nft','mintOrdinalOf(uint256)',req['id'],block=block)
         if ordinal==0: raise UnknownNFT('NFT has no canonical mint ordinal')
         if ordinal>1000 or p._uint('nft','tokenAtOrdinal(uint256)',ordinal,block=block)!=req['id']:
@@ -160,7 +160,7 @@ class ActivationTransactions:
         if ('0x'+keccak256(bytes.fromhex(''.join(actual[:5]))).hex()!=req['pool'] or actual[1:]!=account[1:] or
                 not _bool(account[5]) or not _bool(account[6])):
             raise ProjectionError('Pool identity/configuration is invalid or contributions are disabled')
-        native_profile = p.accounting_version in (2, 3)
+        native_profile = p.accounting_version in (2, 3, 4)
         req['token0'] = _address_word(account[0], native=native_profile)
         req['token1'] = _address_word(account[1])
         if req['token0']==req['token1']: raise ProjectionError('Invalid accounting pair')

@@ -1,13 +1,25 @@
 # Security audit plan
 
-Current threat model: local native ETH/fixedZZZ, accounting3/directgovernance2/
-fee intake1/localV4; fixed80/10/5/5 and separate eligible rarity royalties.
-No creator inbox, integrated bridge or remote-proof interface remains. Same-chain
-handoff and trusted source-chain custody are separate; no forced return or
-post-halt canonical recovery is promised. [Full internal audit](../reports/full-audit-20261025/REVIEW.md)
-and [systematic adversarial coverage/fixes](../reports/system-adversarial-20261026/REVIEW.md)
-retain their evidence scope, not independent release approval. The seven workstreams
-below map to [the single security Todo](../TODO.md#security--audit).
+Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
+[Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
+and royalty custody exits. Governance permanently ends LP and pays actual
+ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
+No external recipient/bridge/return ingress remains. Whole-collection handoff
+is available only before exit. Earlier source-scoped evidence and accounting3
+service/inventory/website qualification remain historical to their original pins.
+See [profile4](POSITION_V4.md); new release qualification remains open.
+
+
+Current threat model: native ETH/fixedZZZ, accounting4/directgovernance2/fee1/
+custody3/holder-exitV5; fixed80/10/5/5 and separate eligible rarity royalties.
+Governance may irreversibly end LP and pay current holders proportionally. It
+cannot choose an external recipient through the removed custody APIs. Immediate
+configuration and reviewed replacement-code approval remain governance trust
+boundaries; removing direct custody exits does not prove arbitrary successor
+code honest. Whole-collection replacement is blocked after LP exit starts.
+Historical internal reports retain their original source scope and do not
+provide independent release approval. The seven workstreams below map to
+[the security Todo](../TODO.md#security--audit).
 
 ## Priorities and evidence
 
@@ -215,22 +227,25 @@ on failure; matching local checksums do not authenticate observations.
 
 ## Current composition and historical-code boundary
 
-Audit `Migration.moveFunds`/`movePool`/`resume` only for the supported same ordered
-actual currencies; ETH and WETH are distinct. Different-pair and issuer exchange
-now use the explicit governed custody path: reviewed source snapshot, normal
-all-ZZZ or separately approved raw exit, external recipient action, then actual
-destination LP funding through `completeLocal` or exact original-asset `recover`.
-Verify no normal failure automatically selects raw mode. Read the live cap before
-approval and preserve the plan's original `minimumRetainedUSD` despite later
-configuration or destination binding. External custody has no enforced return
-guarantee and does not migrate canonical ownership by itself.
+Audit Migration.moveFunds/movePool/resume only for admitted native ETH/fixedZZZ
+fee tiers before collective exit. External custody, conversion exit, issuer
+exchange and bridge executors are removed. Verify irreversible start authorization
+and Vault callback barrier; final fee/dust/compound classification; every bucket's
+shares and exact output conservation; 1,000-ordinal bounded allocation; current
+owner, paid markers and callback/gas isolation in direct payouts; and owner-only
+fallback. No principal payment may enter fee history or consume reward/buyback
+backing. A failed bucket close can block Ready; a failed recipient cannot block
+other Ready payouts. Test missing/duplicate inventory, zero output under explicit
+minima, partial closure/transfers and no reopening after unpause. Raw close has
+no oracle-dependent aggregate USD guarantee.
 
 Review the current Vault/Budget/canonical interfaces, exact transient native/
 token balances and allowances, other-bucket/donation isolation, current and
 historical compound, entry marginal NAV, local fee dust/late venue receipts, composition
 epochs and successor import. Authenticate complete records and exact classified
 backing; native receiver protection must not be counted twice. Whole-collection
-capture rejects outstanding principal or royalty custody. Repeated successor and
+capture rejects lpExitStarted permanently; canonical V5 does not import the
+terminal principal payout ledger. Repeated successor and
 funded-abort paths need version-compatible source/destination code and actual
 dependency qualification.
 

@@ -84,6 +84,7 @@ contract NativeVaultFlowsTest is Test {
     address payable private constant TREASURY = payable(address(0x7EA5));
     receive() external payable {}
     function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
+    function currentZZZ() external view returns(address) { return address(token); }
     function setUp() public {
         vm.warp(1_000_000); access = new MockAccess(); token = new NativeFlowToken(); wrapper = new BoundaryWETH();
         wrapper.failures(true,true);
@@ -125,7 +126,7 @@ contract NativeVaultFlowsTest is Test {
     function testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper() public {
         uint256 id = _mint(ALICE); _entry(ALICE,id,100 ether,false);
         uint256 shares = vault.sharesOf(id); uint256 bucket = vault.nftBucket(id);
-        assertGt(shares,0); assertTrue(membership.eligible(id)); assertEq(vault.ACCOUNTING_VERSION(),3);
+        assertGt(shares,0); assertTrue(membership.eligible(id)); assertEq(vault.ACCOUNTING_VERSION(),4);
         assertEq(vault.contributionUSD(id),100 ether); assertEq(wrapper.totalSupply(),0);
         (bool available,uint256 beforeValue) = nft.currentLPValue(id); assertTrue(available); assertGe(beforeValue,99 ether);
         _entry(ALICE,id,5 ether,true);
@@ -158,22 +159,6 @@ contract NativeVaultFlowsTest is Test {
         uint256 shares = vault.sharesOf(id); beforeETH = ALICE.balance;
         positions.retain(true); vm.expectRevert(); _entry(ALICE,id,5 ether,true);
         assertEq(ALICE.balance,beforeETH); assertEq(vault.sharesOf(id),shares);
-    }
-    function testNativeRawPrincipalDepartureAndFullReturnIgnoreBrokenWrapper() public {
-        uint256 id = _mint(ALICE); _entry(ALICE,id,100 ether,false); uint256 bucket = vault.nftBucket(id);
-        positions.fees(vault.group(bucket).lpTokenId,1 ether,0);
-        access.setPaused(true); vault.park(bucket,block.timestamp+100);
-        uint256 holderFees = rewards.claimable(id,address(0)); uint256 shares = vault.sharesOf(id);
-        uint256 beforeETH = address(this).balance;
-        (uint256 a0,uint256 a1) = vault.releaseForMigration(bucket,keccak256("raw exit"),block.timestamp+100);
-        assertEq(address(this).balance,beforeETH+a0); assertGt(a0,0); assertGt(a1,0);
-        assertEq(rewards.claimable(id,address(0)),holderFees); assertEq(vault.sharesOf(id),shares);
-        token.approve(address(vault),a1);
-        vm.expectRevert(); vault.acceptHandoff(bucket,poolId,a0,a1,0,block.timestamp+100);
-        vault.acceptHandoff{value:a0}(bucket,poolId,a0,a1,0,block.timestamp+100);
-        assertEq(uint256(vault.group(bucket).status),uint256(PositionStatus.Parked));
-        assertEq(vault.totalIdle(address(0)),a0); assertEq(vault.sharesOf(id),shares);
-        assertEq(rewards.claimable(id,address(0)),holderFees); assertEq(wrapper.totalSupply(),0);
     }
     function testNativePrefundsCannotSatisfyMissingValueOrBecomeNFTPrincipal() public {
         uint256 id = _mint(ALICE); new BoundaryForce{value:7 ether}(payable(address(vault)));
@@ -213,16 +198,24 @@ contract NativeVaultFlowsTest is Test {
         assertEq(address(vault).balance,beforeETH); assertEq(vault.sharesOf(id),shares);
         assertEq(vault.group(bucket).lpTokenId,lp); assertEq(uint256(vault.group(bucket).status),uint256(PositionStatus.Active));
     }
-    function testNativeNormalConsolidationKeepsStricterSwapFloorAndFeeBacking() public {
-        uint256 id=_mint(ALICE); _entry(ALICE,id,100 ether,false); uint256 bucket=vault.nftBucket(id);
-        positions.fees(vault.group(bucket).lpTokenId,1 ether,0); access.setPaused(true);
-        vault.park(bucket,block.timestamp+100); Position memory p=vault.group(bucket);
-        uint256 earned=rewards.claimable(id,address(0)); uint256 reserve=fees.compoundBalance(bucket,address(0));
-        uint256 minimum=(p.idle0+p.idle1)*97/100;
-        vault.consolidateHandoff(bucket,address(token),minimum,block.timestamp+100);
-        assertEq(vault.group(bucket).idle0,0); assertGe(vault.group(bucket).idle1,minimum);
-        assertEq(rewards.claimable(id,address(0)),earned); assertEq(fees.compoundBalance(bucket,address(0)),reserve);
-        assertEq(wrapper.totalSupply(),0);
+    function testNativeHolderExitUsesActualManagerAndPreservesRewardsWithoutPrices() public {
+        uint256 id = _mint(ALICE); _entry(ALICE,id,100 ether,false);
+        uint256 bucket = vault.nftBucket(id); uint256 shares = vault.sharesOf(id);
+        positions.fees(vault.group(bucket).lpTokenId,1 ether,0);
+        access.setPaused(true); vault.beginLPExit();
+        vm.warp(block.timestamp + 4000); // USD sources are now stale; raw close must still work.
+        uint256 beforeETH = address(this).balance; uint256 beforeZZZ = token.balanceOf(address(this));
+        (uint256 returnedETH,uint256 returnedZZZ) = vault.exitBucketToHolders(bucket,0,0,block.timestamp+100);
+        assertGt(returnedETH,0); assertGt(returnedZZZ,0);
+        assertEq(address(this).balance,beforeETH+returnedETH); assertEq(token.balanceOf(address(this)),beforeZZZ+returnedZZZ);
+        assertEq(uint256(vault.group(bucket).status),uint256(PositionStatus.Exited));
+        assertEq(vault.sharesOf(id),shares); assertEq(vault.totalIdle(address(0)),0);
+        assertEq(fees.compoundBalance(bucket,address(0)),0); assertGt(fees.buybackBalance(address(0)),0);
+        uint256 earned = rewards.claimable(id,address(0)); assertGt(earned,0);
+        (bool available,uint256 value) = nft.currentLPValue(id); assertTrue(available); assertEq(value,0);
+        uint256 beforeOwner=ALICE.balance; vm.prank(ALICE); rewards.claim(id,address(0));
+        assertEq(ALICE.balance,beforeOwner+earned); assertEq(wrapper.totalSupply(),0);
+        access.setPaused(false); vm.expectRevert(); vault.resume(bucket,poolId,1,block.timestamp+100);
     }
     function testRetiredBridgeSelectorsRemainUncallable() public {
         (bool ok,)=address(vault).call(abi.encodeWithSignature("finalizeImport(uint256,uint128,uint256)",1,1,block.timestamp));

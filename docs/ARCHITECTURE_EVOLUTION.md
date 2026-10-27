@@ -5,10 +5,10 @@ second roadmap. [Architecture](ARCHITECTURE.md) explains interactions,
 [components](COMPONENT_STATUS.md) maps source ownership, and the [sole Todo](../TODO.md)
 tracks unfinished work. Production is NOT APPROVED.
 
-The current profile is accounting 3 / direct governance 2 / fee-intake 1 /
-local canonical V4. Native ETH and one fixed ZZZ are the only contribution
+The current profile is accounting4 / direct governance2 / fee-intake1 /
+custody3 / `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Native ETH and one fixed ZZZ are the only contribution
 inputs. The current contracts contain no integrated bridge, creator-payment
-inbox, remote reward intake or post-seal ZZZ replacement. Historical profiles
+inbox, remote reward intake, external-custodian exit or post-seal ZZZ replacement. Historical profiles
 retain their own codecs and evidence; changing a configuration version does
 not upgrade deployed storage, journals or ownership.
 
@@ -19,12 +19,13 @@ not upgrade deployed storage, journals or ownership.
 | Tune range, cooldown, triggers or execution limits | Direct governance through bounded setters. An optional reviewed keeper rule selects only the 25% / 50% presets; physical LP replacement remains guarded maintenance. |
 | Select another contribution pool | Admit the supported pool, preserve historical bucket identities and deliberately switch the one enabled contribution pool. Admission alone does not move liquidity or qualify routes. |
 | Move LP to another local fee tier | `Migration.moveFunds` atomically redeploys the same actual ordered pair, preserving NFT shares and the captured maintenance floor. |
-| Change ETH to WETH accounting or another pair | Not an atomic `moveFunds` operation. Explicitly approved external custody can perform conversion, followed by actually funded local completion into an admitted pool containing the same fixed ZZZ. |
-| Add another hookless static-fee local v4 pool | Within the sealed manager's supported rules. Native pools are pinned Robinhood ETH/ZZZ; generic ERC20 pairs must contain the same ZZZ. |
+| Change ETH to WETH accounting or another pair | Not supported by this deployment's principal-pool admission or `moveFunds`. Separate reward-conversion routes do not expand LP admission. |
+| Add another hookless static-fee local v4 pool | Supported only for native ETH/the same fixed ZZZ on the pinned Robinhood dependencies, before collective exit starts. |
 | Add an arbitrary hook, new DEX algorithm or native token | Unsupported by configuration. Requires separately reviewed compatible code and an appropriate replacement plan. |
-| Replace the ZZZ token contract | No setter exists. The selected approach is custody exit, external issuer exchange and a fresh reviewed deployment; continuity of existing NFT rights needs its own concrete plan. |
-| Hand assets to an EOA/contract for external work | An exact approved paused custody exit. Source contracts cannot compel the recipient to return assets or prove external bridging/exchange. |
-| Replace the complete collection on this chain | Compatible canonical V4 handoff carries ownership, both ledgers, shares and exact classified backing, with checked retirement/activation or funded abort. |
+| Replace the ZZZ token contract | No setter or issuer-exchange call exists. Governance may return actual ETH/ZZZ to holders; any later token exchange/new deployment is separate, without automatic continuity. |
+| Return LP principal to NFT holders | Governance starts irreversible collective retirement while paused. Operator closes/allocates bounded batches and directly pays current NFT owners. Normal recipients take no action; rejected payouts remain backed for retry or exceptional owner-only fallback. |
+| Hand assets to an operator/custodian for external work | Removed. No external custody address, all-ZZZ conversion exit, arbitrary transfer or funded local return path remains. |
+| Replace the complete collection on this chain | Before collective exit only: compatible accounting4/canonicalV5 handoff carries ownership, both ledgers, shares and backing, with checked retirement/activation or funded abort. Replacement is permanently blocked after LP exit begins. |
 | Relocate canonical ownership/rewards to another chain or recover after chain halt | Not implemented. Moving tokens externally is not movement or revocation of the original NFT/accounting system. |
 
 Native ETH and WETH are distinct assets. Reversed currency slots, unrelated
@@ -39,14 +40,16 @@ use the exact [function reference](CONTRACT_FUNCTIONS.md).
 | --- | --- | --- |
 | Ownership and accounting | Current-owner claims; nonredeemable per-NFT shares; separate funded LP and royalty ledgers; fixed 80/10/5/5 allocation; exact backing | Correct deployment and dependency behavior, canonical-chain availability |
 | Configuration | Fixed core bindings and ZZZ; typed calls; bounded policy; separate guardian/keeper roles | The selected immediate governance quorum, honest feeds, safe configuration and suitable operating rules |
-| External custody and replacement | Exact request/snapshot, raw transfers, stored floors, actual local funding and one canonical retirement/activation | Honest external recipient/replacement code and operator execution; source contracts cannot recover stolen external assets |
+| Collective holder return | Irreversible lifecycle; exact raw principal, frozen shares, cumulative allocation, current-owner direct payout, isolated failures and one-time payment | Operator transaction/gas availability, functioning venue/token, and recipient ability to receive funds |
+| Pre-exit canonical replacement | Exact classified backing and one canonical retirement/activation | Reviewed compatible replacement code and safe governance approval |
 
 Governance has no protocol timelock, generic executor or hidden role-grant path.
 Its wallet/Safe applies its own signatures and nonce policy. Sealing removes
-bootstrap and rebinding powers; it does not make immediate governance or a
-custody recipient trustless. A malicious quorum can approve unsafe prices,
-a dishonest recipient or reviewed-but-unsafe replacement code. No holder
-redemption, universal rescue/sweep or arbitrary change to allocation is added.
+bootstrap and rebinding powers; it does not make immediate governance trustless.
+A compromised governance wallet can approve unsafe prices/parameters or reviewed-
+but-unsafe replacement code before retirement. Collective holder return cannot
+select an operator beneficiary. No normal holder redemption, universal rescue,
+principal sweep or arbitrary allocation change is added.
 
 ## Permanent destination capacity: bounded repair
 
@@ -57,50 +60,50 @@ must be skipped by upkeep before price or venue reads. All 1,000 NFTs may still
 share a single funded bucket: bucket count is not the number of NFTs or funded
 pools. Distinct buckets do not merge, and unsafe slot recycling is not supported.
 
-Governance must review destination alias ownership and capacity before moving
-or exiting. Reservation protects local admission, not external custody, venue
-liveness or return funding. Arbitrary reservations by governance can exhaust
+Governance must review destination alias ownership and capacity before moving.
+Reservation protects local admission, not venue liveness or a capital-value
+guarantee. Arbitrary reservations by governance can exhaust
 capacity; the bounded set is not a recovery guarantee.
 
 <a id="different-pair-migration-proposed-composition-epochs"></a>
-## Different-pair migration and composition epochs
+## Principal retirement and accounting separation
 
-The former typed pair executor and bridge/message stack are removed. A different
-accounting pair is handled, when supported, by [approved external custody](GOVERNED_CUSTODY_HANDOFF.md):
-exit, execute the reviewed conversion externally and actually fund/deploy the
-admitted local destination. Normal completion preserves its original approved
-absolute floor; explicit raw mode uses its separately approved raw minima.
-Neither relabels historical claim currencies or creates remote backing.
+Different-pair conversion, the bridge/message stack and external custody exits
+are removed. Current LP admission is native ETH/fixed ZZZ only. Pool movement
+before retirement preserves the same actual pair and bucket identity; it cannot
+exchange the token contract or turn ETH into WETH. Historical profile readers
+retain old composition/claim records without re-enabling those operations.
 
 | Value | Required treatment |
 | --- | --- |
-| Principal and attributed idle | Exact bucket custody and actual destination LP/funding; never borrow another bucket's assets. |
-| Designated compound | Purpose-bound incumbent backing; historical currencies remain accounted through composition changes. |
+| Principal and attributed idle | At collective exit, return actual ETH/ZZZ proportional to frozen bucket shares, never another bucket's assets. |
+| Designated compound | Pending5%compound joins that bucket's returned principal; already reinvested compound is already inside LP. |
 | Owner/collective LP claims | Preserve existing liabilities and fractions. Guarded reward conversion credits the same NFTs without recognizing new income. |
-| Royalties | Separate eligible cohorts, funding, conversion and full original-currency custody return. |
-| Buyback reserves, donations and quarantines | Keep their existing classifications; they cannot pay an entrant's LP minimum or make a custody plan appear funded. |
+| Royalties | Preserve eligible cohorts, existing liabilities, future receipts and current-owner claims; no external royalty-custodian drain. |
+| Buyback reserves, donations and quarantines | Keep their existing classifications; exclude them from holder principal and newcomer LP execution budgets. |
 
-The local composition epoch identifies a changed accounting pair and historical
-backing; it is not a bridge message or a license to change fixed ZZZ. Normal
-recovery requires every original actually sent asset and quantity. An issuer
-exchange can make that return impossible unless a concrete continuity plan is
-reviewed before irreversibly exchanging or burning the original assets.
+The terminal Exited5 status reports zero remaining LP and preserves NFT shares
+for existing reward indices. Unpaid principal belongs to the NFT's current owner.
+Deterministic bounded allocation precedes all payout; direct payout batches mark
+each NFT paid once, with reverting receiver calls isolated. A receiver cannot be
+forced to accept ETH: retry or an owner-authorized fallback is exceptional recovery.
+Actual venue/token faults can still prevent closure/payment. LP earnings end after
+all LP closes; NFT transfers and future rarity-weighted royalties continue.
 
 ## Accepted migration execution budget
 
 The default contribution / conversion / maintenance loss caps are **2% / 1% /
 3%**, with gas separate and governance hard maxima of 10%. Captured operation
-policy, signed caller maxima, stronger venue minima and original approved
-custody floors still apply. A caller does not gain three fresh budgets for
+policy, signed caller maxima and stronger venue minima still apply. A caller does not gain three fresh budgets for
 close, swap and redeployment.
 
 Atomic maintenance values starting principal plus released compound and final
 LP plus attributed idle at one starting price vector. Contributions additionally
 require actual marginal deployed LP at the captured floor, excluding incumbent
-capital; the default is 98%. The separate 5% idle ceiling remains. Parking and
-a later custody approval are distinct transactions: preserve reviewed pre-parking
-minima rather than pretending the contract cached a single cross-transaction
-price vector. Explicit raw exit makes no USD-loss guarantee.
+capital; the default is 98%. The separate 5% idle ceiling remains. Governed
+parking and collective closure use independently reviewed raw output minima,
+without swaps or oracle-valued aggregate loss promises. They do not claim one
+cached price vector across separate operator transactions.
 
 Repeated permitted losses can compound. At the default 3%, ten worst-case
 operations retain about 73.74% before market changes and gas. There is no
@@ -114,8 +117,10 @@ and [idle classification](IDLE_AND_DUST.md).
 Compatible [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership
 and accounting, exports/imports all required domains and exact backing, and
 activates exactly one successor when the source retires. Source and successor
-must use the compatible local V4 schema; old remote/home fields are not filled
-with invented values. Pending draws, external custody, missing backing or
+must use accounting4 and the compatible holder-exit V5 schema; old remote/home
+fields are not filled with invented values. Collective exit permanently blocks
+canonical replacement because the transport does not import principal-return
+liabilities. Before retirement, pending draws, missing backing or
 incompatible contract holders must be resolved under the checked procedure.
 
 External bridging alone cannot transfer canonical ownership or revoke source
@@ -131,7 +136,8 @@ VRF, authority wallets, OpenSea primary mint, target-chain gas or operating and
 recovery services. The two-source price policy still needs independently
 qualified observations with the selected 3% disagreement tolerance. Public
 website deployment remains null and its signer Anvil-only; old native-2 views
-are not current accounting-3 wallet integration.
+are not accounting4 wallet integration. The served unconfigured poplint artifact
+retains its accounting3 reader until a separately reviewed frontend update.
 
 The [operator manual](OPERATOR_MANUAL.md) owns stop/restart and exact call
 procedures. Release requires actual dependency/service qualification and an

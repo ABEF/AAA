@@ -3,18 +3,19 @@ import re
 
 LEGACY_STATUS = ('none', 'active', 'outbound', 'remote', 'inbound', 'dormant', 'parked')
 LOCAL_STATUS = ('none', 'active', 'outbound', 'dormant', 'parked')
+HOLDER_EXIT_STATUS = LOCAL_STATUS + ('exited',)
 COMMON = ('pool_id', 'lp_token_id', 'idle0', 'idle1', 'deposit_usd', 'center_x96', 'last_rebalance', 'status_code')
 
 
 def position_word_count(version):
-    if type(version) is not int or version not in (1, 2, 3):
+    if type(version) is not int or version not in (1, 2, 3, 4):
         raise ValueError('Unsupported Position profile')
-    return 8 if version == 3 else 15
+    return 8 if version in (3, 4) else 15
 
 
 def status_name(version, code):
     position_word_count(version)
-    statuses = LOCAL_STATUS if version == 3 else LEGACY_STATUS
+    statuses = HOLDER_EXIT_STATUS if version == 4 else LOCAL_STATUS if version == 3 else LEGACY_STATUS
     if type(code) is not int or not 0 <= code < len(statuses):
         raise ValueError('Unsupported Position status')
     return statuses[code]
@@ -30,7 +31,7 @@ def decode_position(words, version):
     result = dict(zip(COMMON, values[:8]))
     result['pool_id'] = '0x' + words[0].lower()
     result['status'] = status_name(version, values[7])
-    if version != 3:
+    if version not in (3, 4):
         result.update(home_chain=values[8], location_chain=values[13])
         for name, index in (('home_vault', 9), ('home_receiver', 10),
                             ('home_token0', 11), ('home_token1', 12), ('location_vault', 14)):
@@ -42,7 +43,7 @@ def decode_position(words, version):
 
 def is_local_position(position, version, chain, vault):
     position_word_count(version)
-    if version == 3:
+    if version in (3, 4):
         # The authenticated V3 Vault has no satellite/remote position mode.
         # This does not replace caller runtime, chain or module binding checks.
         return True

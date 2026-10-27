@@ -97,24 +97,28 @@ contract NativeSourceIdentityTest is Test {
         (address first, address second) = address(a) < address(b)
             ? (address(a), address(b)) : (address(b), address(a));
         c.key = PoolKey(first, second, 10020, 200, address(0));
-        vm.expectRevert(ZZZModule.InvalidConfiguration.selector); registry.configure(c);
+        _rejectGeneric(c);
         _unchanged(c, 0);
         MockToken unrelated = new MockToken(18);
         assets.configureZZZ(address(unrelated), address(unrelated).codehash, REVIEW);
-        vm.expectRevert(ZZZModule.InvalidConfiguration.selector); registry.configure(c);
+        _rejectGeneric(c);
         _unchanged(c, 1);
     }
-    function testGenericERC20AdmissionAllowsFixedZZZPairWithoutAddingThirdSource() public {
+    function testGenericERC20AdmissionCannotAddAnyLPWithFixedZZZPair() public {
         MockToken a = new MockToken(18); MockToken b = new MockToken(18);
         assets.configureZZZ(address(a), address(a).codehash, REVIEW);
         PoolConfig memory c = _config();
         (address first, address second) = address(a) < address(b)
             ? (address(a), address(b)) : (address(b), address(a));
         c.key = PoolKey(first, second, 10020, 200, address(0));
-        bytes32 id = registry.configure(c);
-        assertTrue(registry.exists(id)); assertEq(registry.contributionPool(), id);
-        assertEq(assets.zzz(), address(a));
+        _rejectGeneric(c); _unchanged(c, 1);
         assertTrue(assets.isContributionAsset(address(a)));
         assertFalse(assets.isContributionAsset(address(b)));
+    }
+    function _rejectGeneric(PoolConfig memory c) private {
+        // This retired selector has no production entry point or fallback.
+        (bool ok, bytes memory result) = address(registry).call(
+            abi.encodeWithSignature("configure(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))", c));
+        assertFalse(ok); assertEq(result.length, 0);
     }
 }

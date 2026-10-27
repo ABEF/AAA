@@ -1,0 +1,13 @@
+{
+  "schema_version": 6,
+  "accounting_version": 4,
+  "governance_version": 2,
+  "fee_intake_version": 1,
+  "custody_version": 3,
+  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5",
+  "production_approved": false,
+  "deployment_authorized": false,
+  "contracts": null,
+  "services": null,
+  "qualification": "Explicit blocked inventory scaffold. Complete and review real runtime bindings, principal-exit API/keeper pins, native-only LP admission, batching/gas, target-chain rehearsals and independent audit. This is not accepted production inventory; the release gate stays closed."
+}

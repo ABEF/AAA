@@ -1,14 +1,15 @@
 # Shared permanent-liquidity architecture
 
 **Undeployed candidate; production NOT APPROVED.** The current source uses native
-ETH accounting V3, direct governance V2 and the LP-only same-chain canonical V4
+ETH accounting V4, direct governance V2 and the LP-only same-chain canonical V5
 schema. This fresh-deployment ABI/storage change does not upgrade existing Anvil
-contracts or reinterpret their historical profiles. See [profile boundaries](POSITION_V3.md)
-and the [current review](../reports/architecture-pruning-20261025/REVIEW.md).
+contracts or reinterpret their historical profiles. See [profile boundaries](POSITION_V4.md)
+and [current feature/evidence boundaries](IMPLEMENTATION_STATUS.md). Earlier
+[pruning review](../reports/architecture-pruning-20261025/REVIEW.md) remains historical.
 
 Governance may configure contribution, conversion and maintenance loss limits
 within hard 10% ceilings; defaults are 2%/1%/3%, gas separate. Captured operation
-policy, original approved custody floors, stronger caller/venue minima and
+policy, stronger caller/venue minima and
 backing remain. [Exact controls](EXECUTION_LOSS_POLICY.md), [typed routes](TYPED_V4_ROUTES.md).
 
 
@@ -16,8 +17,7 @@ The collection uses one shared contribution pool at a time, initially the [selec
 
 Pool reservations now permanently admit a bucket into the same four-slot set.
 Aliases and returns reuse their slot; reserved None-state entries have no
-principal or shares and are skipped by maintenance. Admission does not prove
-external recipient custody or recovery. See [evolution and trust boundaries](ARCHITECTURE_EVOLUTION.md)
+principal or shares and are skipped by maintenance. Admission does not qualify market depth, conversion routes or service operation. See [evolution and trust boundaries](ARCHITECTURE_EVOLUTION.md)
 and its [source-scoped evidence](../reports/architecture-evolution/VERIFICATION.md). Current selected-pool changes have separate [verification](../reports/hookless-pool/VERIFICATION.md).
 
 Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.05 ETH dormant mint; $100 original gross source activation with the captured contribution floor (98% at default 2%) and gas separate; 80/10/5/5 LP allocation; equal activated collective membership; separate 5% marketplace royalties. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md).
@@ -41,16 +41,16 @@ explicit; wire phase values and financial ordering are unchanged. See the
 
 Only the canonical chain issues NFTs. Minting forwards the charge separately, requests verifiable randomness and creates a dormant ERC-721 with no LP or rewards. Mint and payment/request failures roll back atomically. The NFT enforces the 1,000 cap and excludes royalty/mint-receiver collisions. Before canonical sealing, the randomness configuration must exist; actual provider availability remains a deployment gate.
 
-Each approved pool/strategy has one bucket and one physical LP NFT. Bucket identity derives from the original chain/Vault/initial pool; each economic NFT has its own canonical identity, bucket association and nonredeemable shares. These stable identifiers do not require copied remote custody fields. `group(bucketId)` now returns eight local fields: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status. Local statuses are `None=0`, `Active=1`, `Outbound=2`, `Dormant=3`, `Parked=4`. Pool keys supply actual currencies; bound modules, snapshots and exact backing supply authorization. `nftBucket`, `sharesOf`, `contributionUSD` expose rights/history. Never sum one physical LP once per NFT. Contribution USD is not current NAV or a reward weight.
+Each approved pool/strategy has one bucket and one physical LP NFT. Bucket identity derives from the original chain/Vault/initial pool; each economic NFT has its own canonical identity, bucket association and nonredeemable shares. These stable identifiers do not require copied remote custody fields. `group(bucketId)` now returns eight local fields: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status. Local statuses are `None=0`, `Active=1`, `Outbound=2`, `Dormant=3`, `Parked=4`, `Exited=5`; `Outbound=2` is reserved. Pool keys supply actual currencies; bound modules, snapshots and exact backing supply authorization. `nftBucket`, `sharesOf`, `contributionUSD` expose rights/history. Never sum one physical LP once per NFT. Contribution USD is not current NAV or a reward weight.
 
 Native ETH and the deployment's fixed ZZZ are the only contribution inputs.
-Every admitted pool must contain that ZZZ. Native admission accepts the pinned
-hookless ETH/ZZZ market; generic ERC20 admission permits reviewed future ZZZ
-pairs, including WETH/ZZZ and other fee tiers, but no unrelated pair. Admission
-does not qualify its route or turn the other pool currency into a user input.
+Production admission accepts only initialized pinned static hookless native
+ETH/fixedZZZ pools, including reviewed fee-tier replacements. Generic ERC20/WETH
+LP admission is removed so all funded buckets remain returnable as ETH+ZZZ.
+Separate conversion venues do not become principal pools or new user inputs.
 Stablecoins may be admitted separately as marketplace royalty currencies.
 
-`poolBucket` permanently reserves venues for their buckets. Governance reviews destination capacity before a move and reserves an external-custody return destination when required by that workflow. Distinct buckets do not merge. NFT transfers change the current claimant without changing shares, membership, rarity or accrued balances. Operators cannot claim as owners; holders cannot redeem principal. Separately approved external custody is a governance trust described below.
+`poolBucket` permanently reserves venues for their buckets. Governance reviews destination capacity before a supported same-pair move. Distinct buckets do not merge. NFT transfers change the current claimant without changing shares, membership, rarity or accrued balances. Operators cannot claim as owners. Holders cannot redeem principal during normal operation; governance can trigger collective holder return.
 
 ## Entry and membership
 
@@ -72,25 +72,33 @@ The selected pool's actual earned venue fees fund this allocation when harvested
 
 ## NFT royalties and metadata
 
-The NFT owns immutable royalty/metadata helpers. ERC-2981 requests5%sale royalties payable directly to the separate receiver; 100% of eligible receipts is reserved for activated rarity weights1/2/3. NativeETH and up to 16reviewed ERC20assets use funded indexes, pre-join pending synchronization and current-owner claims. There is no LP revenue split or arbitrary administrator sweep in this ledger. Its separately approved paused per-currency custody exit preserves liabilities and explicitly trusts the recipient; it does not settle or erase holder rights. Pre-admission/constructor/zero-eligibility funds are quarantined.
+The NFT owns immutable royalty/metadata helpers. ERC-2981 requests5%sale royalties payable directly to the separate receiver; 100% of eligible receipts is reserved for activated rarity weights1/2/3. NativeETH and up to 16reviewed ERC20assets use funded indexes, pre-join pending synchronization and current-owner claims. There is no LP revenue split or arbitrary administrator sweep in this ledger. No external royalty-custody exit or administrator drain exists; eligibility and receipts continue after LP exit. Pre-admission/constructor/zero-eligibility funds are quarantined.
 
 VRF callbacks only store request-bound words. Permissionless reveal follows mint order, drawing without replacement to exact 600/300/100 quotas. A separate word draws a fixed artwork entry without replacement within that rarity. Eight base colors form 58 palettes, combined with four patterns: Flowing arcs, Segmented panels, Orbital rings and Twin circuit routes. Rarity, palette and pattern remain immutable; palette/pattern do not affect rewards, while rarity sets only the separate royalty weight. The 1,000-entry inventory has 200 monochrome, 500 bicolor and 300 tricolor slots, each with the 60/30/10 rarity mix; identical palette/pattern/rarity finishes occur at most four times and all 100 Legendary looks are unique. Missing earlier fulfillment blocks later reveal; no reroll/cancellation bypass exists. [NFT details](NFT_METADATA.md).
 
-The renderer selects among 2,784 supported palette/pattern/rarity/evolution SVG states, separate from the NFT supply. It values current local LP amounts, attributed idle and compound budgets using approved oracles, multiplied by shares/supply. Enhanced starts at $1,000 and Singularity at $10,000; market losses can downgrade artwork. External/parked custody or stale dependencies report unavailable, with labelled fallback art. Metadata never gates claims/migration. Reveal/contributions emit ERC-4906 notifications. Permissionless per-token and bounded ordinal-range calls notify actual hashed IDs without price reads. An optional confirmed-block watcher uses the existing keeper's serial budgeted transaction path; permanent content publication, staged watcher operation and marketplace cache integration remain production work.
+The renderer selects among 2,784 supported palette/pattern/rarity/evolution SVG states, separate from the NFT supply. It values current local LP amounts, attributed idle and compound budgets using approved oracles, multiplied by shares/supply. Enhanced starts at $1,000 and Singularity at $10,000; market losses can downgrade artwork. Parked custody or stale dependencies report unavailable, with labelled fallback art. Terminal Exited status has verified zero LP and explicit `LP exited` metadata, while royalty eligibility survives. Metadata never gates claims/migration. Reveal/contributions emit ERC-4906 notifications. Permissionless per-token and bounded ordinal-range calls notify actual hashed IDs without price reads. An optional confirmed-block watcher uses the existing keeper's serial budgeted transaction path; permanent content publication, staged watcher operation and marketplace cache integration remain production work.
 
 ## Maintenance and migration
 
 Keeper collect/rebalance/compound operations run once per bucket, with no NFT-holder loop. Bounded two-pass balancing reduces ratio-drift idle; idle-only compounding preserves the same bucket shares and captured maintenance budget. Explicit range orientation preserves legacy raw semantics or opts into ZZZ price in ETH. A default-disabled, governance-reviewed policy lets the keeper select only 2500/5000 half-widths; ordinary rebalance applies the physical ticks separately. No sweep or new custody recipient is introduced. They retain trigger, cooldown, oracle/spot, range, swap, minimum-liquidity and deadline guards. [Approved range changes](RANGE_POLICY_UPDATES.md) can trigger ordinary rebalance at a flat price after cooldown; comparison at the recorded center prevents price-drift churn. Pooling does not remove impermanent loss, swap costs or MEV; real strategy/gas economics remain unapproved.
 
-`Migration.moveFunds` atomically closes and deploys actual LP in another admitted pool with the same ordered accounting pair. Current native accounting preserves actual ETH identity and supports same-native-pair fee-tier changes. ETH/WETH atomic conversion is unsupported and rejected; WETH remains a distinct optional asset. One captured starting-price maintenance floor covers the complete move (3% loss by default, governed up to 10%), with gas separate; NFT shares and original bucket identity remain unchanged. Destination contributions and conversion routes are switched deliberately after verifying the resulting LP.
+`Migration.moveFunds` atomically closes and deploys actual LP in another admitted pool with the same ordered accounting pair. Current native accounting preserves actual ETH identity and supports same-native-pair fee-tier changes. ETH/WETH atomic conversion is unsupported and rejected; WETH can be used only by separately reviewed conversion routes, not LP admission. One captured starting-price maintenance floor covers the complete move (3% loss by default, governed up to 10%), with gas separate; NFT shares and original bucket identity remain unchanged. Destination contributions and conversion routes are switched deliberately after verifying the resulting LP.
 
-[Governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) provides source-chain principal exit and funded local recovery. Governance approves an exact request and pauses globally before `exit`. Normal exit converts only attributed principal into the fixed ZZZ under stricter swap minima and the captured aggregate maintenance floor. A separately approved `rawExit` bypasses swaps/USD valuation and sends both current accounting assets under explicit raw minima. It is never selected automatically after normal failure. Native raw proceeds are ETH/ZZZ without wrapper calls; venue/token/runtime failures can still prevent execution.
+[Collective holder exit](HOLDER_COLLECTIVE_EXIT.md) replaces external custody
+release/consolidation/recovery and royalty drains. A paused governance action
+permanently blocks new mint/principal work through a Vault reentrancy barrier.
+Each native ETH/fixedZZZ bucket is harvested, dust settled, pending compound
+included and LP closed into exact classified holder backing. NFT shares and
+membership remain so earned rewards and future royalties survive. Bounded
+ordinal apportionment reconciles every raw unit; isolated direct payout batches
+read current owners and retain failed liabilities for owner fallback.
 
-An approved recipient can be an EOA or contract and may bridge or migrate tokens externally. Once principal leaves, that recipient can lose or divert it; governance explicitly trusts its custody and liveness, and the source cannot compel return. NFT shares and LP/royalty liabilities stay recorded. Local completion requires actual destination LP, recovery requires the full actual sent assets, and normal completion retains its original approved absolute fixed-price floor, even if governance later changes policy. At the 3% default the retained fraction is 97%; compute minima with upward rounding. The current release uses source-chain custody only: the recipient handles any external bridge or issuer migration. Remote-proof custody branches are removed. No integrated bridge or remote NFT/reward ledger is provided. New contributions remain blocked while the principal plan/custody is outstanding.
-
-Holder rewards, royalties and compound/buyback reserves are separate domains and are not swept by principal exit. Royalty currencies have their own approved full-balance custody/return path preserving liabilities. Historical remote profiles remain historical only; their rows are not admitted by canonical V4. Retired bridge selectors and module IDs cannot be re-enabled by binding new addresses.
-
-[Parking](CUSTODY_PARKING.md) uses local custody status 4 in accounting V3; historical profile 2 retains its old enum decoder. While globally paused, a governance-approved Migration request binds exact custody/shares/LP, nonce, epoch, ordered currencies and raw principal-close minimums. Vault harvests venue fees separately, closes into attributed idle and keeps all principal. This path omits source USD reads; current venue/runtime/token checks remain, without a wrapper dependency for native pools. Keeper maintenance stops while Parked, but funded LP/royalty claims, NFT transfers and eligibility persist. Resume uses the same ordered pair and fresh ordinary deployment guards. A separately approved raw external exit may leave Parked custody without USD pricing; normal conversion/completion still requires its valuation and loss guards.
+Exited5 is distinct from Dormant3. Attached LP value becomes known zero, while
+principal return is a separate ledger, never fee income. Unpause cannot reopen
+LP or canonical replacement; V5 handoff is allowed only before exit. Normal
+same-pair pool moves/parking remain before exit. Production Registry no longer
+admits ERC20-only LP pairs; other assets remain possible conversion venues or
+royalty currencies, not principal pool currencies.
 
 ## Security domains and operational state
 
@@ -99,19 +107,19 @@ Holder rewards, royalties and compound/buyback reserves are separate domains and
 | Principal | Vault/manager custody, per-NFT nonredeemable shares, attributed idle/compound | Actual LP units and raw balances back NAV. Reward reserves, donations and prefunds cannot finance a newcomer. |
 | LP liabilities | Fees classification and Rewards individual/equal-collective indices | Only actual received funds create income; compound/buyback reserves are not holder claimable. |
 | Royalties | NFT-created separate receiver and rarity-weighted ledger | Only active eligibility; native/currency fractions and deferred cohorts survive transfers and conversion. |
-| Immediate governance | Compatible policies, roles, constrained custody approvals and reviewed replacement code | A compromised quorum can approve a dishonest recipient/replacement or prices. Sealing and limits do not remove this accepted trust. |
+| Immediate governance | Compatible policies, roles, collective shutdown and reviewed pre-exit replacement code | A compromised quorum can approve unsafe prices/settings or replacement code. Sealing and limits do not remove this accepted trust. |
 | Keeper and services | Bounded upkeep, unsigned preparation, confirmed views | No owner claim privilege, governance configuration or public signing authority follows from running a service. RPC history and availability still need qualification. |
 | Canonical lifecycle | Preparation/freeze/settlement/import/funding/abort/retirement | Exactly one active canonical deployment; no old-schema relabel, duplicate backing, unfunded activation or finality override. |
 
 Ordinary pause stops ordinary contributions/maintenance, while already funded
-claims remain available. Explicitly approved pause-only principal/royalty custody
-exits remain possible: **pause is not a prohibition on governance custody movement**.
+claims remain available. Governance can irreversibly begin holder return while paused; a guardian pause
+alone cannot start it. External principal/royalty custody exits are removed.
 Pool deposit/operation stops, mint-only pause and keeper stop are separate controls.
 See the [stop/restart matrix](OPERATOR_MANUAL.md#stop-controls).
 
 Do not promise that liquidity always earns, preserves USD value or can always be
 recovered. Range exits, repeated bounded execution loss, dependency/proxy failure,
-external recipient loss and a halted source chain are distinct risks. Two configured
+rejecting receivers and a halted source chain are distinct risks. Two configured
 addresses are not proof of independent prices. The [internal audit](../reports/preproduction-audit-20261025/REVIEW.md)
 separates inspected code, improved composition tests, accepted trust and live gates.
 
@@ -125,12 +133,14 @@ predecessor queue, generic executor or OpenZeppelin role grants. Governance
 replacement requires proposal and acceptance; a zero proposal cancels. Handover
 is blocked during preparation, frozen and retired states. Keeper/guardian roles
 and the immutable mint recipient remain separate. Bootstrap authority disappears
-on seal. Governance approval cannot prove an external recipient or replacement
-code preserves principal; immediate governance remains an accepted trust boundary.
+on seal. Governance approval cannot prove replacement code or dependencies safe;
+immediate governance remains an accepted trust boundary. No arbitrary custody
+recipient is available in the current source.
 
-The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and no outstanding principal/royalty custody. No integrated future-chain transport or post-halt recovery is provided. Missing immutable capabilities require a separately reviewed replacement while the source works, not a configuration edit.
+The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and `lpExitStarted == false`. It remains
+permanently blocked after collective LP exit begins. No integrated future-chain transport or post-halt recovery is provided. Missing immutable capabilities require a separately reviewed replacement while the source works, not a configuration edit.
 
-The LP adapter supports admitted hookless static-fee ERC20 Uniswap v4 pairs containing fixed ZZZ and initialized static, hookless native ETH/ZZZ fee tiers on pinned Robinhood dependencies. The selected pool has a static 1.002% LP fee and a recorded approximately 1.101% combined swap fee; only actual earned LP fees are PoPL revenue. Actual ETH identity is preserved. Other native pairs, dynamic native fees, hooks and pairs without fixed ZZZ are rejected.
+Production LP admission supports initialized static hookless native ETH/fixedZZZ fee tiers on pinned Robinhood dependencies. Generic ERC20-only LP admission is removed; separate conversion venues retain their own explicit checks. The selected pool has a static 1.002% LP fee and a recorded approximately 1.101% combined swap fee; only actual earned LP fees are PoPL revenue. Actual ETH identity is preserved. Other native pairs, dynamic native fees, hooks and pairs without fixed ZZZ are rejected.
 
 Use the [feature/evidence reference](IMPLEMENTATION_STATUS.md) for completed checks
 and their exact source scopes, and the [callable reference](CONTRACT_FUNCTIONS.md)
@@ -139,7 +149,7 @@ profiles are evidence for their recorded revision, not release approval.
 
 [Native custody](NATIVE_ETH_ARCHITECTURE.md) uses WETH only for reviewed operations
 that actually need it. Earlier [native V2 evidence](../reports/native-eth-port/VERIFICATION.md)
-predates current accounting V3 and retains that source scope. Atomic ETH/WETH
+predates current accounting V4 and retains that source scope. Atomic ETH/WETH
 conversion and old-schema import are unsupported. Actual route/provider/inventory
 qualification remains open. ZZZ conversion at the default 1% needs a cheaper
 qualified route; the selected pool does not qualify at reference prices. Actual

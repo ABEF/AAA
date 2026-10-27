@@ -4,7 +4,7 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
-import {Ids} from "./libraries/ZZZTypes.sol";
+import {Ids, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {IZZZVault, IZZZAccess} from "./interfaces/IZZZ.sol";
 import {ZZZRoyaltyRewards} from "./ZZZRoyaltyRewards.sol";
 import {ZZZClaimRouter} from "./ZZZClaimRouter.sol";
@@ -136,7 +136,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         emit MintPauseChanged(state);
     }
 
-    function mint(address to, uint256 id) external onlyModule(Ids.VAULT) operating nonReentrant {
+    function mint(address to, uint256 id) external onlyModule(Ids.VAULT) operating principalOperating nonReentrant {
         if (mintPaused) revert Paused();
         if (!randomnessConfigured) revert NotReady();
         if (mintedCount == MAX_SUPPLY) revert InvalidState();
@@ -235,19 +235,23 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     }
 
     function evolution(uint256 id) public view returns (bool available, uint8 stage) {
-        _requireOwned(id);
-        if (royaltyRewards.weightOf(id) == 0) return (true, 0);
         uint256 value;
         (available, value) = currentLPValue(id);
-        if (!available) return (false, 1);
-        return (true, value >= 10000e18 ? 3 : value >= 1000e18 ? 2 : 1);
+        stage = _stage(id, value, royaltyRewards.weightOf(id));
+    }
+
+    /// @dev One stage path keeps public reads and JSON metadata consistent.
+    /// Terminal stage4 reuses activated art without removing royalty eligibility.
+    function _stage(uint256 id, uint256 value, uint256 weight) private view returns (uint8) {
+        if (weight == 0) return 0;
+        if (IZZZVault(access.module(Ids.VAULT)).nftStatus(id) == PositionStatus.Exited) return 4;
+        return value >= 10000e18 ? 3 : value >= 1000e18 ? 2 : 1;
     }
 
     function tokenURI(uint256 id) public view override returns (string memory) {
-        _requireOwned(id);
         (bool available, uint256 value) = currentLPValue(id);
         uint8 weight = uint8(royaltyRewards.weightOf(id));
-        uint8 stage = weight == 0 ? 0 : value >= 10000e18 ? 3 : value >= 1000e18 ? 2 : 1;
+        uint8 stage = _stage(id, value, weight);
         return metadataRenderer.render(NFTMetadataInput(id, rarityOf[id], paletteOf[id], patternOf[id], stage, traitsReady[id],
             available, value, weight, metadataBase));
     }

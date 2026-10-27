@@ -57,11 +57,11 @@ class ActivationConfig:
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
-        if self.pricing_version == 2 and (self.routing_version != 2 or projection.accounting_version not in (2, 3)):
+        if self.pricing_version == 2 and (self.routing_version != 2 or projection.accounting_version not in (2, 3, 4)):
             raise ValueError('Dual pricing requires explicit native accounting and typed routing profiles')
-        if self.routing_version == 2 and projection.accounting_version not in (2, 3):
+        if self.routing_version == 2 and projection.accounting_version not in (2, 3, 4):
             raise ValueError('Typed routing requires native accounting version 2')
-        if projection.accounting_version == 3 and (self.routing_version != 2 or
+        if projection.accounting_version in (3, 4) and (self.routing_version != 2 or
                 self.pricing_version != 2 or self.review_policy_version != 1):
             raise ValueError('Local Position V3 requires typed routing, dual pricing and caller-bound review')
         _keys(config['contracts'], set(MODULES) | HELPERS |
@@ -71,16 +71,19 @@ class ActivationConfig:
         for role, item in config['contracts'].items():
             _keys(item, {'address', 'code_hash'}, 'activation contract')
             self.contracts[role] = Contract(address(item['address']), _hash(item['code_hash']))
-        addresses = [c.address for c in self.contracts.values()] + [c.address for c in projection.contracts.values()]
+        if projection.accounting_version == 4 and self.contracts['migration'] != projection.contracts['principal_exit']:
+            raise ValueError('Activation and read profiles must pin the same holder-exit module')
+        addresses = [c.address for c in self.contracts.values()] + [c.address for role,c in projection.contracts.items()
+            if role != 'principal_exit']
         if len(addresses) != len(set(addresses)):
             raise ValueError('Activation protocol bindings must have distinct addresses')
         self.accounting_version = projection.accounting_version
         self.tokens = {}
-        for token in bounded(config['tokens'], 33 if self.accounting_version in (2, 3) else 32, 'token inventory', 2):
+        for token in bounded(config['tokens'], 33 if self.accounting_version in (2, 3, 4) else 32, 'token inventory', 2):
             _keys(token, {'address', 'code_hash', 'decimals'} | ({'price_policy'} if self.pricing_version == 2 else
                 {'feed', 'feed_code_hash', 'feed_decimals', 'max_age'}), 'activation token')
             token = dict(token)
-            native = self.accounting_version in (2, 3) and token['address'] == ZERO
+            native = self.accounting_version in (2, 3, 4) and token['address'] == ZERO
             token['address'] = ZERO if native else address(token['address'])
             if self.pricing_version == 1: token['feed'] = address(token['feed'])
             if native:

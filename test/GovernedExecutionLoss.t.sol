@@ -2,7 +2,6 @@
 pragma solidity 0.8.26;
 
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
-import {HandoffVenue,CustodySourceIdentity} from "./CustodyHandoff.t.sol";
 import {BudgetAdversarialVenue} from "./MigrationBudgetAdversarial.t.sol";
 import {RebalanceBudgetPolicy} from "./RebalanceBudget.t.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
@@ -61,25 +60,6 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
     }
     function _migration() private returns(ZZZMigration m){m=new ZZZMigration(address(ac));ac.bind(Ids.MIGRATION,address(m));}
     function _rebalance() private {vault.rebalance(_bucket(),1,block.timestamp+100);}
-    function _custody() private returns(ZZZMigration m){
-        ac.bind(Ids.LIQUIDITY,address(new HandoffVenue(pools)));m=_migration();
-        pools.setActivationAssets(address(new CustodySourceIdentity(address(t1))));
-        ac.bind(Ids.BUYBACK,address(new ZZZBuyback(address(ac),address(t1),1e30)));
-        // TEST ONLY: restore initial bootstrap for the newly installed custody module.
-        vm.mockCall(address(ac),abi.encodeWithSignature("isSealed()"),abi.encode(false));
-        m.configureZZZ(address(t1),address(t1).codehash,REVIEW);vm.clearMockedCalls();activatedPosition();
-    }
-    function _request(ZZZMigration m,bool raw,uint256 minimum) private view returns(ZZZMigration.Request memory r){
-        r.bucket=_bucket();r.sourceSnapshot=m.sourceSnapshot(r.bucket);r.recipient=bob;r.recipientCodeHash=bob.codehash;
-        r.destinationCustody=address(vault);r.destinationPool=poolId;
-        r.output0=address(t0);r.output1=address(t1);r.minimum0=1;r.minimum1=1;r.minimumZZZ=minimum;
-        r.rawExit=raw;r.exitMinimum0=1000;r.exitMinimum1=1000;r.deadline=block.timestamp+100;r.reviewHash=REVIEW;
-    }
-    function _return(ZZZMigration m,bytes32 id,uint256 x,uint256 y) private {
-        t0.mint(address(this),x);t1.mint(address(this),y);t0.approve(address(m),x);t1.approve(address(m),y);
-        m.completeLocal(id,x,y,1,block.timestamp+100);
-    }
-
     function testDefaultsHardMaximumZeroAndGovernanceEvents() public {
         ZZZMigrationBudget b=_budget();assertEq(b.MAX_LOSS_BPS(),1000);
         assertEq(b.contributionLossBps(),200);assertEq(b.maintenanceLossBps(),300);
@@ -193,26 +173,5 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         adverse.reenter(address(b),abi.encodeCall(b.setLossLimits,(100,1000)));_rebalance();
         assertTrue(adverse.reentryAttempted());assertFalse(adverse.reentrySucceeded());
         assertEq(adverse.reentryError(),ZZZModule.InvalidConfiguration.selector);assertEq(b.maintenanceLossBps(),300);
-    }
-    function testNormalCustodyApprovalCannotBeWeakenedAfterPolicyIncrease() public {
-        ZZZMigration m=_custody();bytes32 id=m.approve(_request(m,false,1940));
-        assertEq(m.minimumRetainedUSD(id),1940e18);ac.setPaused(true);m.exit(id);
-        bytes32 commitment=keccak256(abi.encode(m.request(id)));uint256 retained=m.minimumRetainedUSD(id);_budget().setLossLimits(100,1000);
-        assertEq(keccak256(abi.encode(m.request(id))),commitment);assertEq(m.minimumRetainedUSD(id),retained);ac.setPaused(false);
-        t0.mint(address(this),900);t1.mint(address(this),900);t0.approve(address(m),900);t1.approve(address(m),900);
-        vm.expectRevert(ZZZModule.Slippage.selector);m.completeLocal(id,900,900,1,block.timestamp+100);
-        assertEq(uint256(vault.group(_bucket()).status),uint256(PositionStatus.Outbound));
-        _return(m,id,970,970);assertEq(m.outstandingCount(),0);
-    }
-    function testLoweringPolicyDoesNotRewriteAnApprovedCustodyBudget() public {
-        ZZZMigration m=_custody();_budget().setLossLimits(100,500);
-        bytes32 id=m.approve(_request(m,false,1900));assertEq(m.minimumRetainedUSD(id),1900e18);
-        _budget().setLossLimits(100,0);ac.setPaused(true);m.exit(id);ac.setPaused(false);
-        _return(m,id,950,950);assertEq(m.outstandingCount(),0);
-    }
-    function testRawEmergencyRetainsExplicitMinimaAndNoUSDBudget() public {
-        ZZZMigration m=_custody();_budget().setLossLimits(100,0);vm.warp(block.timestamp+4000);
-        bytes32 id=m.approve(_request(m,true,0));assertEq(m.minimumRetainedUSD(id),0);
-        ac.setPaused(true);m.exit(id);assertEq(t0.balanceOf(bob),101000);assertEq(t1.balanceOf(bob),101000);
     }
 }

@@ -3,14 +3,14 @@
 Reviewed2026-10-27. [Root README](../README.md) introduces PoPL and its code.
 [TODO.md](../TODO.md) is the only task/status list; [feature reference](IMPLEMENTATION_STATUS.md)
 states what exists and what was verified. **Undeployed; production NOT APPROVED.**
-Current guides below describe accounting3/directgovernance2/fee1/localV4.
+Current guides describe accounting4/directgovernance2/fee1/custody3/holder-exitV5.
 Historical reports and explicitly legacy local profiles retain their own semantics.
 
 ## 1. Smart contracts
 
 | Topic | Current guide |
 | --- | --- |
-| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [local profile](POSITION_V3.md), [simplified scope](SIMPLIFIED_RELEASE.md) |
+| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile](POSITION_V4.md), [simplified scope](SIMPLIFIED_RELEASE.md) |
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Atomic Entry](ACTIVATION_ENTRY.md), [routing](ACTIVATION_ROUTING.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |

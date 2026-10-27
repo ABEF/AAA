@@ -7,14 +7,16 @@ was updated. Remaining work belongs to the [read API task](../TODO.md#task-read-
 ## Configuration and response version
 
 Configuration and read responses use **schema 2**. The current release explicitly
-selects `accounting_version: 3`, `fee_intake_version: 1`, direct governance V2
-and the local V4 canonical schema. Its [Position codec](POSITION_V3.md) has eight
-words and statuses None0/Active1/Outbound2/Dormant3/Parked4. Legacy accounting1/2
+selects `accounting_version: 4`, `fee_intake_version: 1`, direct governance V2
+and `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Its Position codec has eight
+words and terminal Exited5 in addition to Dormant3/Parked4. Legacy accounting1/2/3
 readers keep their original profile; no old journal is upgraded or reinterpreted.
 Existing schema-1
 configurations fail closed. Add independently reviewed runtime/address pins for
 `contracts.handoff` and `contracts.vault_canonical`, using the same object format
-as the other six contracts. Eight distinct contracts are required. Every request
+as the other six contracts, plus the fixed `contracts.principal_exit` runtime pin.
+Nine distinct contracts are required for accounting4; historical accounting3
+retains its eight-pin configuration. Every request
 checks their runtime hashes and sealed controller/module/helper ownership links.
 An RPC-discovered peer is never automatically accepted as a new deployment.
 
@@ -54,6 +56,15 @@ exists, and all HTTP error bodies remain sanitized.
   the pinned source, not an independently reviewed destination deployment or a
   cross-chain finality proof. No automatic redirect or peer RPC call occurs.
 
+Accounting4 additionally reads the irreversible `lp_exit_started` flag and
+`lp_exit_phase` / `lp_exit_phase_code` (operating0/closing1/allocating2/ready3).
+The module phase and Access flag must agree. After
+collective exit begins, new economic work is false even if governance unpauses.
+Claims/transfers remain available while canonical state is operating. Terminal
+principal-return accounting is separate from funded reward/royalty balances.
+LP exit and canonical handoff cannot coexist; the old canonical transport does
+not carry principal-return liabilities, so replacement stays blocked after exit.
+
 ## History continuity
 
 An operating successor can expose its funded balances and independently checked
@@ -62,13 +73,14 @@ previous deployments. With the optional [complete predecessor configuration](FRO
 the API now verifies same-chain retirement/activation links and replays all prior
 LP/royalty claims. Without it, imported successor lifetime totals remain
 unavailable, even if current history contains nonzero claims. Invalid configured
-lineage fails closed; zero and partial totals are never substituted. V4 source
-and successor must use the same canonical schema and Position3 codec; historical
+lineage fails closed; zero and partial totals are never substituted. V5 source
+and successor require accounting4; historical V4 remains accounting3. They must
+use the same canonical schema and codec; historical
 reader support does not add cross-codec import compatibility.
 
 Wallet inventory describes current ownership only and does not classify imported
 transfers as paid sales. Cross-chain collection relocation is outside this release;
-source-chain custody exit alone cannot move the NFT or reward ledgers. Marketplace
+collective principal return does not move the NFT or reward ledgers. Marketplace
 cutover and operating qualification remain in the [central Todo](../TODO.md).
 
 ## Verification and operational scope

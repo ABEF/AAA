@@ -1,0 +1,77 @@
+{
+  "chain_id": 31337,
+  "accounting_model": "shared-pools-v2",
+  "rpc_urls": [
+    "http://127.0.0.1:8545"
+  ],
+  "sender": "0x1111111111111111111111111111111111111111",
+  "contracts": {
+    "access": "0x2222222222222222222222222222222222222222",
+    "vault": "0x3333333333333333333333333333333333333333",
+    "strategy": "0x4444444444444444444444444444444444444444",
+    "fees": "0x5555555555555555555555555555555555555555",
+    "compounder": "0x6666666666666666666666666666666666666666",
+    "buyback": "0x7777777777777777777777777777777777777777",
+    "pools": "0x8888888888888888888888888888888888888888",
+    "principal_exit": "0x9999999999999999999999999999999999999999"
+  },
+  "reviewed_for_live_use": false,
+  "royalty_conversion": {
+    "enabled": false
+  },
+  "lp_conversion": {
+    "enabled": false
+  },
+  "idle_compounding_budget": null,
+  "adaptive_range": {
+    "enabled": false
+  },
+  "code_hashes": {
+    "access": "0x<reviewed deployed runtime keccak256>",
+    "vault": "0x<reviewed deployed runtime keccak256>",
+    "fees": "0x<reviewed deployed runtime keccak256>",
+    "principal_exit": "0x<reviewed deployed runtime keccak256>"
+  },
+  "keystore": "/run/zzz/keystore.json",
+  "password_file": "/run/zzz/password",
+  "interval_seconds": 600,
+  "confirmations": 12,
+  "max_gas_limit": 2500000,
+  "max_gas_price_wei": "5000000000",
+  "max_transaction_cost_wei": "10000000000000000",
+  "max_daily_cost_wei": "50000000000000000",
+  "l1_fee_allowance_wei": "0",
+  "receipt_fee_policy": "unverified",
+  "revert_cooldown_seconds": 3600,
+  "state_path": "var/keeper-holder-exit-v4-lp-only.json",
+  "health_path": "var/keeper-holder-exit-v4-lp-only.health.json",
+  "lock_path": "var/keeper-holder-exit-v4-lp-only.lock",
+  "bucket_discovery": {
+    "maximum_count": 10000,
+    "max_per_cycle": 32
+  },
+  "maintenance": {
+    "minimum_liquidity": 1,
+    "compound": false,
+    "compound_idle": false,
+    "compound_interval_seconds": 3600,
+    "minimum_compound_units": 1000,
+    "harvest": true,
+    "harvest_interval_seconds": 14400
+  },
+  "bucket_overrides": {},
+  "metadata_refresh": {
+    "enabled": false,
+    "nft": null,
+    "maximum_count": 1000,
+    "max_per_cycle": 50,
+    "max_refresh_batch": 50,
+    "maximum_observation_age_blocks": 256
+  },
+  "buybacks": [],
+  "accounting_version": 4,
+  "fee_intake_version": 1,
+  "principal_distribution": {
+    "enabled": false
+  }
+}

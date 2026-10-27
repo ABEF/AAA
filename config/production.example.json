@@ -5,6 +5,7 @@
   "routing_version": 2,
   "custody_architecture": "governed-v1",
   "_notes": [
+    "HISTORICAL accounting3/custody2 inventory only. Fresh source is accounting4/custody3/canonical HOLDER_EXIT_V5. The default release gate blocks this inventory; use explicit historical inspection only. No external custody exits exist in current source.",
     "UNQUALIFIED EXAMPLE. No PoPL deployment, approved authority wallets, live price feeds, complete read-only observations or independent production evidence is supplied. Public signing and deployment are not authorized.",
     "Only known source-selected Robinhood native venue/token identities and hard pins are populated. They are intended references, not fresh on-chain observations or a service qualification. Observed fields and review evidence stay unset.",
     "Schema 5 is the explicit native/accounting-V2/routing-V2/pricing-V2/review-policy-V1 governed profile. The preserved schema-4 example remains historical and blocked for this layout; never relabel WETH ledgers or existing journals as native V2. Current Entry requires executeReviewed with a caller maximum; legacy execute fails closed.",
