@@ -102,6 +102,18 @@ Pause protocol maintenance or disable pool operations through the existing
 authorized controls during an incident. Restore only after dependency/policy,
 backing, runtime and pending-journal review; never reset a journal to force work.
 
+## Requested execution improvements
+
+[Current design review](LP_EXECUTION_POLICY.md) requests the best approved swap
+venue independently of the LP target, a depth-aware normally-one-swap plan and
+material-benefit-only residual correction. These are not implemented routing or
+solver features. Current contributions already keep the LP ID/ticks but can
+balance incumbent idle/compound; changing that requires preserving incumbent NAV,
+old fee membership and actual marginal deployed accounting. Attributed idle is
+already reinvestable through the guarded compound path above; no generic sweep
+is needed or authorized. Per-currency thresholds already exist; actual economic
+values remain to be qualified.
+
 ## Qualification boundary
 
 The earlier [scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md)

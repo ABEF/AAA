@@ -72,6 +72,8 @@ before changing behavior. This file contains current instructions, not a timelin
   and duplicate claims/conversions/imports. Earnings, claimable and claimed differ.
   Missing or inconsistent data must remain unavailable/error, never guessed zero.
 
+- Requested next LP operating policy is recorded in [execution decisions](docs/LP_EXECUTION_POLICY.md): manual +/-25/50% selection, twelve-hour outside-only upkeep with hourly eligible checks and durable 1-10-minute service jitter, best reviewed execution venues independent of the LP target and $1m cumulative contributions per NFT. Source has not implemented that scheduler/router; early-outside, deliberate width-change and separate compound-cadence decisions are pending. Do not silently interpret 1% centring tolerance as the old movement trigger or replace independent pricing with pool spot.
+
 ## Verification and documentation workflow
 
 - Maintain one task ledger: `docs/project-todo.json` -> generated `TODO.md`.

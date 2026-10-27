@@ -62,6 +62,7 @@ retains its source scope. Neither establishes production approval.
 | Questions for the token/pool creator | [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team) - independent ZZZ pricing, token controls and market continuity |
 | Current selected-pool fork | [Current native harness and evidence](reports/current-pool-fork-20261026/VERIFICATION.md) - exact real-pool snapshot, explicit substitutes and remaining qualification |
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
+| Requested next LP execution | [Manual range and best-execution policy](docs/LP_EXECUTION_POLICY.md) - decisions, current-source differences and unresolved timing; design only |
 | Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, range/assets/pools, emergency stops and restart procedures |
 | Documentation map | [Current guides and historical references](docs/README.md) |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |

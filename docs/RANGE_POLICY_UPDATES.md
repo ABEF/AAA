@@ -11,6 +11,18 @@ The following is an undeployed candidate. [Earlier scoped evidence](../reports/l
 and [remaining release gates](../TODO.md) distinguish implemented controls from
 actual provider, strategy/backtest and operating qualification.
 
+## Requested operating policy versus current source
+
+The operator-selected [execution policy](LP_EXECUTION_POLICY.md) requests manual
++/-25/50% widths, an initial twelve-hour interval, outside-only ordinary upkeep,
+hourly eligible range checks and durable 1-10-minute service jitter. These are
+**not implemented by changing the existing interval alone**. Current source below
+still uses reference movement or a pending width change; optional automated width
+selection should remain disabled. Early-outside and deliberate operator-change
+exceptions plus compound cadence are pending decisions. See the [operator calls
+and restart distinction](OPERATOR_MANUAL.md#operator-selected-lp-policy). Historical
+evidence does not verify this requested scheduler.
+
 ## From approval to execution
 
 1. Governance reviews the complete pool configuration and executes the exact

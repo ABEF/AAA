@@ -47,6 +47,19 @@ Current security work includes paid-revert health visibility and post-callback k
 actual prices, pool depth/fees and Robinhood ordering; no private submission
 provider, universal anti-MEV guarantee or24-hour default is approved.
 
+## Requested next LP policy
+
+The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manual
++/-25/50% ranges, initial twelve-hour outside-only upkeep with hourly eligible
+checks and durable 1-10-minute service jitter, reviewed best swap venues separate
+from the LP target, useful residual reinvestment and $1m cumulative per-NFT cap.
+These are design requirements, not implemented source or live settings. Early
+out-of-range execution, explicit in-range operator width changes and compound
+interval coupling await answers. Current router/eligibility/cadence remain as
+implemented. Hourly harvest stays independent; per-currency thresholds, growing
+existing LP and idle-only reinvestment already exist. No new volatility analysis,
+blanket dust sweep, cumulative breaker or staged migration was selected.
+
 ## Artwork and financial reporting
 
 Eight base colors,58 palettes, four stable pattern slots, three rarities and four

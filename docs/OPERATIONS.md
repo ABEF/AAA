@@ -84,6 +84,16 @@ Read [keeper recovery](KEEPER_RECOVERY.md), [service rehearsals](KEEPER_REHEARSA
 
 <a id="reward-timing-and-maintenance-schedule"></a>
 
+## Requested operator-selected LP policy
+
+The [decision record](LP_EXECUTION_POLICY.md) specifies intended manual +/-25/50%
+widths, outside-only twelve-hour upkeep with durable service jitter, reviewed
+best-route execution and a $1m cumulative per-NFT configuration. Current source
+has not acquired that scheduler/router. On-chain configuration reads normally
+need no restart; local JSON changes need controlled restart and journal/health
+reconciliation. Current compound shares the pool rebalance interval; that coupling
+is an explicit pending decision. See [operator procedure](OPERATOR_MANUAL.md#operator-selected-lp-policy).
+
 ## Reward timing and maintenance schedule
 
 Harvest funds the fixed80/10/5/5 allocation once. The10% is indexed equally across

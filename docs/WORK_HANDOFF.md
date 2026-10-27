@@ -78,6 +78,25 @@ Affected source verification is recorded in [holder-return evidence](../reports/
 metadata hosting, gas/strategy/operating rehearsals and independent review remain
 open. Never infer deployment approval from source/docs or local fixture success.
 
+## Next LP execution policy
+
+Read [the design/decision record](LP_EXECUTION_POLICY.md) and
+[owning task](../TODO.md#task-lp-execution-routing). User requests operator-chosen
++/-25/50% widths (no automatic volatility selection), initial twelve-hour upkeep,
+ordinary rebalance only outside the actual physical range, hourly eligible checks,
+1-10-minute service jitter, best approved swap venues independent of the target,
+useful dust reinvestment and $1m cumulative contributions per NFT. Three questions
+remain pending: hard twelve-hour wait after early exit, explicit width-change
+exception and separate compound interval. Do not choose answers by implementation.
+
+Current source still uses displacement-or-width-change eligibility, shares the
+pool interval with standalone compound and swaps in the LP pool. Contributions
+already retain LP ID/ticks; currency-specific thresholds and idle-only reinvestment
+already exist. Record current versus requested accurately. No Solidity/keeper/
+config, ABI, service, journal, site or funds changed for this documentation update;
+unchanged suites were not rerun. Next work needs selected decisions and focused
+new-source evidence. Preserve old deployments and unrelated drafts.
+
 ## Current maintenance cadence
 
 Fresh Budget capability2 coordinates all standalone compounding (including no-swap work) with the last physical LP creation/replacement and compound. Eligible rebalance/preapproved range selection has priority; compound never changes lastRebalance. Hourly harvest and existing holder claims remain independent. Read [operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) and [scoped evidence](../reports/maintenance-cadence-20261027/VERIFICATION.md). Current accounting4 keeper compound scheduling must pin the helper address/runtime/version2 and use compoundReady; old services, journals, Anvil and both sites are untouched.

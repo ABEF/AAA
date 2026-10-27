@@ -21,6 +21,19 @@ and [outside-actor manipulation](../TODO.md#task-security-external-manipulation)
 Use actual Robinhood ordering, independent prices and attacker/protocol profit
 witnesses; protected submission and economic safety are not already qualified.
 
+## LP execution policy before further implementation
+
+Implement the [reviewed policy task](../TODO.md#task-lp-execution-routing) only
+after resolving hard twelve-hour versus early-outside behavior, deliberate
+operator width changes and compound interval coupling. Keep operator-selected
++/-25/50% widths, independent hourly harvest and fixed economic rights. Prioritize
+bounded approved execution routes and complete post-close sizing, then normally-
+one-swap placement with meaningful residual handling. Do not promise globally
+optimal routing or turn optional timed 10% replacement into a release requirement
+without evidence. The [decision record](LP_EXECUTION_POLICY.md) distinguishes
+current source, requested behavior and outstanding decisions; existing services
+and regression evidence retain their exact scope.
+
 ## 1. Close immutable integration boundaries
 
 Qualify and finish [OpenSea primary mint](../TODO.md#task-opensea-mint), preserving

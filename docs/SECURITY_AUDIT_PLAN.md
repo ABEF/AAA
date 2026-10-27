@@ -129,6 +129,15 @@ journals and budgets supplement on-chain controls, not replace them.
 - Qualify monitoring and failure alerts using the [recovery runbook](KEEPER_RECOVERY.md)
   and [operating rehearsals](KEEPER_REHEARSALS.md), including off-host recovery.
 
+The [operator-selected execution design](LP_EXECUTION_POLICY.md) records the
+requested outside-only schedule, manual widths, best approved execution routes,
+useful residual handling and unresolved timing exceptions. Review route selection
+at full post-close size, on-chain versus service-only restrictions, jitter
+restart/reroll behavior, public contribution swaps, one/two-pass costs and proxy
+upstream changes. No source change or economic qualification is implied by this
+record. Timed 10% replacement is a separate optional state-machine design, not
+a small TWAP setting or a selected release feature.
+
 ### Keeper-originated manipulation
 
 The [dedicated task](../TODO.md#task-security-keeper-manipulation) owns status.

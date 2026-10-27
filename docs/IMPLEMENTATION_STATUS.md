@@ -48,6 +48,14 @@ gas separate and stronger caller/venue minima retained. Raw exit has explicit ra
 minima and no aggregate-loss guarantee. An unqualified route/feed cannot be made
 safe by a documentation claim or simulated example.
 
+Requested [operator-selected LP execution](LP_EXECUTION_POLICY.md) is recorded
+separately from these implemented capabilities: current Vault balancing still
+uses its LP pool; outside-only twelve-hour/jitter upkeep, stronger normally-one-
+swap sizing and new route selection are not implemented or qualified. Manual
+range selection, per-currency compound thresholds and idle reinvestment already
+exist. The $1m per-NFT cap is existing configuration, not a new function. No
+contract/keeper source or runtime changed in this design/documentation update.
+
 ## Backend and operations
 
 | Capability | Implemented behavior and boundary | Reference |

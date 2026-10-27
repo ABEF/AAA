@@ -343,6 +343,47 @@ constructor/call evidence. These events add visibility, not authority.
 
 Before execution, restoring the old configuration may clear the width mismatch; the independent price trigger can still permit a rebalance. After execution, going back requires another valid configuration and rebalance, with fresh costs/cooldown. Stop/reconcile in-flight keeper work around a policy change: its transaction is not bound to a historical configuration hash. See [range application](RANGE_POLICY_UPDATES.md).
 
+### Operator-selected LP policy
+
+The [LP execution decision record](LP_EXECUTION_POLICY.md) separates current
+functions from the requested outside-only schedule and best execution routing.
+The operator now selects +/-25% or +/-50%; no automatic volatility analysis is
+requested. Current optional automatic selection remains implemented but should
+stay disabled for this policy. Governance can call
+`Strategy.setKeeperRangePolicy(poolId,false,0,0,0,bytes32(0))`; disable local
+`adaptive_range.enabled` as well through a controlled configuration restart.
+
+For **current implemented configuration**, read the complete
+`PoolRegistry.get(poolId)` tuple, change only reviewed fields and governance-call
+`configureNative(fullConfig)`. `rangeBps=2500` means +/-25%, `5000` means +/-50%
+in orientation1 (ZZZ price in ETH). `minRebalanceInterval=43200` sets twelve
+hours. `maxPositionUSD=1000000000000000000000000` sets $1,000,000 cumulative
+contributions per NFT in USD18; it does not cap live NAV or guarantee capacity
+for $1bn across the collection. Preserve tokens, flags, fees and all other bounds.
+
+These on-chain values are read fresh: normally no keeper restart or reseal is
+needed. Width configuration does not immediately move LP; verify the desired
+configuration, `rangeUpdatePending`, current physical ticks and any successful
+replacement. A lower interval can make an old position eligible immediately;
+changing it does not reset its on-chain clock. Stop/reconcile submitted work
+around policy changes because current rebalance calldata has no historical
+configuration-hash binding. Do not erase pending intents or repeat a transaction.
+
+**Setting twelve hours alone does not implement outside-only upkeep or jitter.**
+Current `needsRebalance` still uses reference displacement or a pending width
+change. `triggerBps=100` is a 1% movement trigger, not permitted centring error.
+Current standalone compound also shares the pool interval: twelve hours delays
+that path too. Hard-cooldown versus early exit, deliberate width-change exception
+and a separate compound interval await explicit decisions; do not infer them.
+The proposed hourly range checks and durable 60-600-second jitter are not yet
+implemented. Service jitter cannot constrain an authorized key bypassing Python.
+
+Changing local JSON polling, thresholds or routing candidates requires a
+controlled keeper restart: configuration is loaded once, with no hot reload.
+Preserve the journal, pending hashes and nonce checkpoints; qualify a fresh
+matching config-bound health result. Do not restart existing services as part of
+this documentation change. [Recovery procedure](KEEPER_RECOVERY.md#logs-health-and-fallback).
+
 ### Editable pool parameters and coupled limits
 
 | Field | Current contract boundary | Practical meaning |
@@ -520,6 +561,13 @@ A real `PoolManager.donate` becomes funded fee growth and is allocated at harves
 like other actual LP receipts. An unsolicited raw Vault balance remains a prefund,
 not NFT income or new shares. Do not describe funded earnings alone as organic
 trading volume or a sustainable yield; donation/wash-flow intent is not classified.
+
+Hourly harvesting funds the 5% compound reserve; it does not require a compound
+transaction at the same time. Compound itself harvests first before releasing
+and reinvesting the reserve. Claims run neither job. Currency-specific
+`compound_thresholds` already exists; use reviewed raw thresholds for both
+actual ETH/ZZZ currencies. Idle compounding requires that map; the reserve-only
+legacy/common fallback is not a qualified production economic threshold.
 
 Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: individual LP shares / equal activated-NFT collective membership / compound reserve / buyback reserve. Rarity only weights the separate royalty ledger at x1/x2/x3. Allocation occurs at actual harvest. The 10% denominator is activated membership at that allocation, not remaining unclaimed NFTs; a claim never redistributes funds or runs the 5% jobs. Source: [timing and arithmetic](ECONOMICS.md#allocation-reinvestment-and-claim-timing).
 

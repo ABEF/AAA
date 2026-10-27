@@ -44,6 +44,14 @@ Budget compound capability2 and the matching accounting4 keeper must be qualifie
 
 Current completion checks and paired paid-revert health reporting have [scoped evidence](../reports/manipulation-hardening-20261027/VERIFICATION.md). Qualify actual callback/dependency behavior and matching writer/checker rollout; the current economic-manipulation tasks remain open. No live provider, operating service or independent production approval follows from these defensive checks.
 
+The [operator-selected LP execution record](LP_EXECUTION_POLICY.md) is design
+work only. It does not qualify a twelve-hour outside-only/jitter scheduler, a
+best-execution balancing router, a new solver or timed partial replacement.
+Resolve timing/compound decisions, implement the selected scope and bind fresh
+focused evidence before including it in a release. A $1m per-NFT contribution
+configuration does not establish $1bn shared-venue capacity. Source/ABI/runtime,
+installed services and prior verification remain unchanged by this record.
+
 ## Current candidate and evidence limits
 
 | Boundary | Current status |

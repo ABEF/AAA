@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 36 In progress | 22 Implemented locally | 1 Not planned**
+**8 To do | 37 In progress | 22 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -188,6 +188,28 @@ Custody, ownership and reward accounting.
 
   </details>
 
+<a id="task-lp-execution-routing"></a>
+
+- [ ] **[Reviewed best-route LP execution and operator-selected upkeep](docs/LP_EXECUTION_POLICY.md)** - In progress. Design recorded, source unchanged: operator-selected +/-25/50% widths, requested twelve-hour outside-only upkeep with hourly eligible checks and durable 1-10-minute service jitter, bounded best approved execution venues separate from the LP target, normally-one-swap sizing and useful residual reinvestment. Resolve timing/compound exceptions before implementation; no live settings or service rollout.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Resolve hard twelve-hour cooldown versus earlier genuine range exit, explicit in-range operator width-change application and separate standalone compound interval. Distinguish 1% approximate centring from triggerBps=100 displacement. Do not add automatic volatility analysis or silently retain the old movement trigger under an outside-only label.
+  - Implement authenticated physical lower<=tick<upper outside eligibility with legitimate downward-boundary semantics, authoritative cooldown and chosen operator exception. Design matching observation/API profile and preserve old codecs/deployments. Set the new cycle only from successful physical LP creation/replacement; contributions, harvest, reverts and restarts do not reset it.
+  - Implement restart-stable 60-600second service jitter after the selected eligible outside check, hourly checks while inside, fresh due-time validation and cancellation on return inside. Keep receipt reconciliation/hourly harvest independent; no blocking sleep, redraw to bypass recovery or missed-cycle replay. Jitter is not protection against an authorized key bypassing Python.
+  - Implement bounded governance-approved native ETH/fixedZZZ hookless static-v4 execution venues independently of the one LP contribution destination. Adding a future compatible pool after sealing should be reviewed configuration, not source editing. Current configureNative admission and separate Entry/converter routes do not redirect Vault balancing.
+  - Select best executable final deployed result among reviewed candidates at one captured independent valuation vector and target-range policy (not raw liquidity units or route-quoted USD), using exact full-size full-operation quotes at pinned state, including removal of our old LP, directional fees, impact across ticks, target ratio and residual value; gas separate. Retain inclusion-time admitted route/input/direction/recipient, output, captured loss/caller, final LP/idle and balance guards. Do not claim global optimality or on-chain best-route enforcement from an off-chain selector.
+  - Improve bounded sizing so one useful swap normally suffices; admit residual correction only for material net deployment improvement. Preserve thin-market feasibility, atomic rollback, actual marginal LP floors, incumbent NAV and old fee/membership allocation. User contributions increase current LP ticks and must not become an indirect full-bucket rebalance.
+  - Reuse existing attributed-idle compound and collective-return recovery. Keep principal idle, 5%compound/buyback reserves, reward fractions, fee dust, royalty cohorts and prefunds separate; no generic clear/sweep/external recipient. Existing per-currency compound thresholds are implemented; qualify actual values and consider requiring explicit maps for enabled profile4 scheduling without breaking historical readers.
+  - Intended maxPositionUSD is1000000000000000000000000 ($1m cumulative gross contribution per NFT). Existing governed configuration can set it; 1000NFTs permit $1bn contributions, not guaranteed NAV or sufficient venue capacity. Qualify total exposure/depth independently.
+  - Keep governed bounded economic configuration after seal, default2%/1%/3% and maximum10% loss caps, plus stronger caller and independent venue guards. No automatic relaxation, same-pool/stale/single-source price fallback, new custody authority or cumulative-loss breaker. Price/depth limits may legitimately reject impossible trades.
+  - Evaluate timed10% LP replacement as a separate optional design only if execution evidence justifies its old/new position, NAV/fee/share, entry/claim/transfer/exit, completion/abort/recovery and aggregate-loss complexity. Same-transaction slicing is not a time-weighted execution benefit.
+  - Add focused new-source verification after implementation; do not rerun or relabel unchanged suites for this design update. Update exact callable reference, operator restart/pending procedures, profile/runtime pins and evidence before release. No public transactions or operating rollout are authorized.
+  - Explicitly enumerate the new route module governed setters/defaults/hard ceilings, including independent route-level slippage. Current pool slippage has a separate2% hard ceiling; do not promise raising maintenance loss alone can overcome it or silently raise it without a reviewed decision. Economic configurability cannot waive token identity, recipients, invalid prices, unavailable liquidity or stronger user-signed bounds.
+
+  </details>
+
 <a id="task-lp-only-simplification"></a>
 
 - [x] **[Simplify the current ETH/ZZZ release](docs/SIMPLIFIED_RELEASE.md)** - Implemented. Fresh accounting4 keeps eight-word local Positions/direct governance2 and removes external custody recipients/royalty drains alongside prior retired bridge/creator/scheduler paths. Canonical holder-exit V5 is explicit; old deployments/readers/journals remain separate.
@@ -323,6 +345,7 @@ Custody, ownership and reward accounting.
   - Keeper supplies a pool only, never arbitrary width/config/assets/recipient or a force-rebalance bypass. Selection is one transaction; actual normal rebalance is separate and retains3% default captured maintenance, caller/venue minima, actual backing and idle guards.
   - Qualify threshold/cadence and narrowing/widening economics, MEV and turnover on actual markets. The signal is displacement from the last applied center, not continuous volatility or proof of sustained calm; a ten-minute poll is not an execution guarantee.
   - Use range_policy_version1 in API/schema5 current inventory and exact Strategy pins, complete reviewed/observed per-pool metadata and typed events. Historical version0 keeps its original raw semantics and getters; no silent migration of journals or deployed contracts.
+  - 2026-10-27 operating decision: operator manually selects +/-25/50%; optional automatic selection remains an implemented capability but should stay disabled for this policy. No new volatility analysis is requested. Outside-only timing is tracked separately in [execution design](docs/LP_EXECUTION_POLICY.md), not verified by historical adaptive tests.
 
   </details>
 
@@ -918,6 +941,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Respect the approved per-operation-only policy: repeated permitted losses can accumulate. Add turnover/loss/revert alerts and keeper pause/revocation procedures; no cumulative contract budget,24-hour default or economic-rights change without an explicit decision.
   - Reuse exact unchanged evidence; run focused adversarial cases that could change a decision. Record demonstrated attacks, remediation, rejected configurations and remaining unknowns in the feature/evidence reference and operator guide. Actual strategy economics and independent review remain release gates.
   - [Scoped hardening](reports/manipulation-hardening-20261027/VERIFICATION.md): distinguish privileged/dependency callback rejection from unprivileged price exploitation; preserve entire-operation rollback and separate normal pause/revocation. Paid reverts must remain observable during their existing retry cooldown across restart/unrelated success, without changing nonce/spend/retry/backoff or independent jobs.
+  - [Operator execution decisions](docs/LP_EXECUTION_POLICY.md): follow the new routing/upkeep task for manual widths, outside-only timing, compound coupling, route/size discretion, public entry-driven swaps, residual utility and one/two-pass fees. Keep the existing per-operation-only decision; independent turnover/loss alerts do not silently impose a cumulative breaker.
 
   </details>
 
@@ -934,6 +958,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Evaluate protected/direct-sequencer submission only with reviewed provider behavior, fees, availability, confidentiality and failure/recovery policy. A provider's private auction may reveal pool/direction before ordering; no implicit auction mode, public fallback, unsupported Flashbots endpoint or production signing.
   - Assess whether depth-aware trade limits, stricter fee-aware output/spot bounds or submission changes materially reduce exposure without preventing necessary maintenance. Verify justified changes and document residual sequencer/provider/oracle trust. No claim that all MEV or all attacker profit is eliminated.
   - [Review and limits](reports/manipulation-hardening-20261027/REVIEW.md): new defensive completion/health checks are not economic attack simulations. Preserve the platform-blocked simulation limitation; do not label local callback or inert RPC fixtures as a real-pool profitability campaign.
+  - [Requested schedule and routing](docs/LP_EXECUTION_POLICY.md): bounded service jitter is weak obfuscation, not private execution or a malicious-key constraint. Qualify full post-close depth and actual route output, possible new pools, proxy upstream changes and repeated contribution flow; distinguish time-sliced execution from a price TWAP. No automatic highest-liquidity spot oracle.
 
   </details>
 
@@ -1088,7 +1113,7 @@ Decisions and rehearsals before real funds.
   - Qualify independent production alerts/backups/retention, redundant RPCs and complete real fee accounting.
   - Qualify preparationActive() and canonicalState() against the exact deployment and keeper. Missing/malformed/reverted getters fail closed. Frozen/importing/retired/cancelled states block all new maintenance/drain/metadata submissions; canonical receipt recovery continues. Recheck state before simulation, after gas estimation and before intent persistence. The local 88-case targeted receipt does not update the older staging fixture/keeper or replace a new operating rehearsal.
   - Add/review authenticated freshness-bounded next-check/last-success telemetry for frontend warnings; do not infer an execution promise from a 600-second poll example. Offline, delayed, paused, pending or budget-limited operation must be explicit. Qualify the new aggregate rebalance guard against the exact keeper deployment.
-  - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
+  - Current accounting4 has no external custody-recipient or in-transit restoration job. Surface terminal holder-return phases and current-owner principal allocations separately from rewards; preserve historical profile3 recovery/decoders without enabling removed EOA/bridge/remote-value paths.
   - Review [the October25 keeper audit](reports/preproduction-audit-20261025/services/REVIEW.md) and rehearse original fee-review preservation, canonical signed-cap cost, included/separate L1 fees, legacy missing-review recovery and preflight version refusal on actual Linux/chain services. 199 distinct scoped passes and one Unix-only skip are not that qualification; no running journal was upgraded.
   - Qualify the new strict maintenance settings, per-currency thresholds/idle Budget pins, successful-operation cooldown and optional reviewed two-width policy on actual Linux/services. New retired bridge scheduling is removed; recovery of original pending hashes remains first, without deletion or resend. Configuration updates do not activate a running service.
   - Focused Linux CI selection now includes the new maintenance/range policy suites, preserving process-lock/recovery qualification as Linux-specific. No CI run or running service upgrade is inferred from a workflow edit; unchanged prior tests retain original source scope.
@@ -1099,6 +1124,7 @@ Decisions and rehearsals before real funds.
   - The [confirmed no-progress I/O gap and source watchdog](reports/system-adversarial-20261026/WATCHDOG.md) distinguish inactivity timeout from total elapsed time. Qualify matching source/unit on systemd>=240:120s main-process progress, no background heartbeat, control-group SIGKILL/no core, late-pulse rejection and preserved pending intent/no automatic resend. Standalone commands remain unsupervised; unit text and inert tests do not prove real host cleanup.
   - Fresh accounting4 compound scheduling authenticates the exact budget runtime/Vault bindings/capability2 and reads contract compoundReady, including other keepers and physical LP replacement. Local intervals are additional delays only. Preserve independent due harvest on guarded maintenance outages; reject malformed ABI/unknown capability; qualify actual deployment/service before enabling.
   - [Paid-revert health correction](reports/manipulation-hardening-20261027/VERIFICATION.md): matching writer/checker require confirmed_reverts, active_revert_cooldowns and next_revert_retry_after. Active existing per-action cooldowns remain visible after restart/unrelated success; expiry means retry eligibility, not repair. Qualify paired rollout separately and preserve all existing journals.
+  - [Operator policy and restart procedure](docs/OPERATOR_MANUAL.md#operator-selected-lp-policy): on-chain range/cooldown/cap updates are read fresh; JSON scheduling/threshold/candidate updates require controlled restart and matching config health. Reconcile pending calls around either change, retain journals and document the currently shared compound interval. Requested new scheduler is not enabled by this acceptance text.
 
   </details>
 
@@ -1168,4 +1194,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `e2694f2f11a2b70cc26c2d799d478457f3d2a3e059c813f57b0f8d5caefb9931`.
+Snapshot SHA-256: `404ab5fff4dbca7d0e4d2df9d7f3f88167dff19581b37b9fb4532ffeb529ed94`.
