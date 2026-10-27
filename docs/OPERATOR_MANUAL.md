@@ -345,7 +345,7 @@ constructor/call evidence. These events add visibility, not authority.
 4. The authorized keeper submits `Vault.rebalance(bucketId,minimumLiquidity,deadline)` when cooldown and guards permit. A width mismatch can trigger it even at a flat price. Polling every ten minutes is only an example; it is not a guaranteed rebalance deadline.
 5. Verify the new physical LP ID/ticks/center, retained value, attributed idle, unchanged NFT shares and continued claims. A successful replacement clears the width mismatch. A revert preserves the old position and leaves the desired change pending.
 
-Before execution, restoring the old configuration may clear the width mismatch; the independent price trigger can still permit a rebalance. After execution, going back requires another valid configuration and rebalance, with fresh costs/cooldown. Stop/reconcile in-flight keeper work around a policy change: its transaction is not bound to a historical configuration hash. See [range application](RANGE_POLICY_UPDATES.md).
+Before execution, restoring the old configuration may clear the width mismatch; actual physical range exit can still permit policy2 rebalance after cooldown. The movement trigger belongs to historical policy1. After execution, going back requires another valid configuration and rebalance, with fresh costs/cooldown. Stop/reconcile in-flight keeper work around a policy change: its transaction is not bound to a historical configuration hash. See [range application](RANGE_POLICY_UPDATES.md).
 
 ### Operator-selected LP policy
 
@@ -396,6 +396,59 @@ require fresh matching config-bound health. Old accounting4 keeper configs with
 no new policy field retain explicit historical mode1 behavior; never relabel an
 old runtime/journal as policy2. Accounting1/2/3 retain their own readers. No running
 service changes follow from editing an example. [Recovery](KEEPER_RECOVERY.md#logs-health-and-fallback).
+
+### Manual rebalance at a chosen time
+
+A keeper-authorized wallet can call the existing nonpayable function:
+
+`Vault.rebalance(bucketId,minimumLiquidity,deadline)`
+
+This is the same guarded LP replacement as automated upkeep. It bypasses only
+Python's hourly evaluation and random waiting; it cannot bypass the hard on-chain
+cooldown, actual-range/operator-update eligibility, pause/lifecycle, prices or
+execution/minimum/backing checks. Submission time is your choice; inclusion at
+an exact second is not guaranteed. No contract self-schedules a future call.
+
+| Input or caller | Required value |
+| --- | --- |
+| Caller | `Access.keeperAuthorized(wallet)` must be true. Governance status alone is insufficient. Governance may call `Access.setKeeper(wallet,true)` first. This grants the existing general keeper capability, not just one rebalance; revoke a temporary grant only after its work is reconciled. No new human role or mandatory new wallet is implied. |
+| `bucketId` | Read the real `Vault.poolBucket(poolId)` and `Vault.group(bucketId)`. It identifies the shared physical LP, not an individual NFT or its physical LP NFT ID. One call handles that bucket's NFT shares. Zero/missing/inactive custody is not eligible. |
+| `minimumLiquidity` | Positive raw Uniswap liquidity units, with a meaningful minimum derived from a fresh complete simulation. It is neither token units nor USD; do not copy the fixture value1 as production protection. |
+| `deadline` | Unix seconds; at execution `block.timestamp <= deadline <= block.timestamp+600`. Use a short fresh expiry, not a calendar schedule. |
+| Native transaction value | Zero: `rebalance` is nonpayable. The external transaction submitter funds network gas separately; wallet/Safe execution follows that wallet's normal gas workflow. |
+
+1. Verify exact chain/deployment/ABI/runtimes, selected pool, active LP/ticks,
+   current interval and `Strategy.needsRebalance(bucketId)`. A failed price/read
+   is unavailable, not false or permission to force execution. Initial12hours is
+   the intended governed hard interval, not an immutable override of every config.
+2. Coordinate the automated signer and reconcile any pending hash before manual
+   submission. Use the controlled service stop/recovery procedure if needed;
+   **do not globally pause to make this call**, because rebalance requires live,
+   unpaused operation. A broadcast transaction is not cancelled by stopping a host.
+3. Prefer an already available operator/governance wallet with its own reviewed
+   keeper grant when keeping the service signer's nonce lane separate. Do not
+   import the governance key into the keeper host. If the manual transaction uses
+   the automated keeper's same address outside its journal, its saved nonce/spend/
+   receipt checkpoint will become stale: restart alone cannot adopt that call.
+   Stop signing and use reviewed reconciliation before resuming; never patch a
+   nonce or delete state to silence the error. No automatic out-of-band importer
+   is promised. [Nonce recovery](KEEPER_RECOVERY.md#deployment-and-journal-identity).
+4. Simulate exact caller/target/value/calldata against fresh confirmed state and
+   review output LP, loss/idle minima, fees and separate gas. Then sign once from
+   the authorized wallet. The contract rechecks its guards at execution.
+5. Verify the canonical successful receipt, `Rebalanced`, actual new LP ID/ticks,
+   updated `lastRebalance`, retained backing and unchanged NFT shares/earned rights.
+   Failure reverts LP/accounting changes but spends gas. An unresolved result is
+   recovery of the same hash, not permission to submit another call.
+6. Before resuming automated work, reconcile any original pending intent and
+   same-key nonce/spend changes. With a separate manual signer, normal rediscovery
+   recognizes the new physical LP/clock and invalidates only its obsolete jitter
+   record. That timer update is not same-key nonce reconciliation. Resume through
+   the matching configuration/health procedure; no journal reset or reseal.
+
+[Current LP policy](LP_EXECUTION_POLICY.md), [range application](RANGE_POLICY_UPDATES.md),
+[callable function](CONTRACT_FUNCTIONS.md#zzzvault), [service recovery](KEEPER_RECOVERY.md).
+This procedure submits nothing by itself; current source is undeployed.
 
 ### Editable pool parameters and coupled limits
 
@@ -931,7 +984,7 @@ hash, edit/reset a journal or assume this digest authenticates the host/provider
 There is no in-process config reload: finalize config before constructing Keeper.
 
 
-Use the reviewed Linux/Unix release and separate service users. The keeper's sample ten-minute poll and four-hour harvest schedule are not guarantees. Change reviewed config for interval, thresholds, per-bucket overrides, minimum liquidity, gas/daily budgets, RPC providers and metadata scans; restart through the deployment's service manager after checking pending work. Do not guess a production unit name or reuse the isolated staging signer/config.
+Use the reviewed Linux/Unix release and separate service users. The fresh policy2 sample observes every60seconds and harvests hourly; historical ten-minute/four-hour examples retain their own scope. Neither schedule guarantees execution. Change reviewed config for interval, thresholds, per-bucket overrides, minimum liquidity, gas/daily budgets, RPC providers and metadata scans; restart through the deployment's service manager after checking pending work. Do not guess a production unit name or reuse the isolated staging signer/config.
 
 Read-only checks from the repository (replace paths with the actual reviewed configuration):
 

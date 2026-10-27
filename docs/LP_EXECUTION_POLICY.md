@@ -125,6 +125,18 @@ does not let that movement authorize ordinary replacement. Actual tick membershi
 or the deliberate operator width change decides eligibility after cooldown.
 Approximate centring does not select a new oracle/spot tolerance.
 
+## Direct manual execution
+
+An authorized wallet can submit `Vault.rebalance(bucket,minimumLiquidity,deadline)`
+at a chosen time. Governance alone does not imply keeper authorization; its
+`setKeeper` grant enables the existing capability. The call skips local hourly
+checking/jitter only. It retains all on-chain cooldown/range/lifecycle/execution
+checks and can be mined later than submission. No force-rebalance bypass exists.
+The submitter funds network gas. Reconcile automated pending work first. A manual
+transaction from the service's own key outside its journal needs explicit nonce/
+receipt/spend reconciliation before restart; new LP/timer discovery does not
+adopt it automatically. [Exact procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time).
+
 ## Harvest, compound and contributions
 
 Hourly harvesting collects actual LP fees and allocates 80/10/5/5 without swaps.

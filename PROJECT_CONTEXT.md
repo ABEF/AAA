@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed 2026-10-27. [AGENTS.md](AGENTS.md) owns work instructions;
+Reviewed 2026-10-28. [AGENTS.md](AGENTS.md) owns work instructions;
 [README](README.md) explains the product and code; [Todo](TODO.md) alone owns task
 status. This is the current snapshot, not an append-only session transcript.
 
@@ -60,6 +60,13 @@ after cooldown; compound has its own interval. Best-route balancing and a new
 sizing solver remain design work. [Scoped evidence](reports/maintenance-policy-20261027/VERIFICATION.md). Hourly harvest stays independent; per-currency thresholds, growing
 existing LP and idle-only reinvestment already exist. No new volatility analysis,
 blanket dust sweep, cumulative breaker or staged migration was selected.
+
+Manual execution uses the existing keeper-authorized Vault.rebalance; governance
+requires its own keeper grant if calling directly. It bypasses service jitter/hourly
+checks only. [Operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
+requires pending coordination and same-key out-of-band nonce/receipt/spend
+reconciliation; LP/timer rediscovery alone does not adopt an external transaction.
+Documentation synchronization changes no source, ABI, service or release status.
 
 ## Artwork and financial reporting
 

@@ -23,8 +23,8 @@ no configured deployment means unavailable integration data, never examples.
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
 The [systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
-maps all608 functions plus31 constructors/13 receivers to multiple source-reviewed
-edge cases. It fixes malformed RPC identity/JSON/failover and holder-inventory
+maps608 functions plus31 constructors/13 receivers at its original source revision
+to multiple reviewed edge cases. It fixes malformed RPC identity/JSON/failover and holder-inventory
 input/diagnostic defects, and adds a systemd main-progress watchdog for stalled
 keeper I/O. [Verification](reports/system-adversarial-20261026/VERIFICATION.md):
 244 unique affected Python methods:241 passes/3 explicit skips; unchanged Solidity evidence is reused.
@@ -63,7 +63,7 @@ retains its source scope. Neither establishes production approval.
 | Current selected-pool fork | [Current native harness and evidence](reports/current-pool-fork-20261026/VERIFICATION.md) - exact real-pool snapshot, explicit substitutes and remaining qualification |
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
 | Requested next LP execution | [Manual range and best-execution policy](docs/LP_EXECUTION_POLICY.md) - delivered upkeep policy and remaining routing/solver design |
-| Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, range/assets/pools, emergency stops and restart procedures |
+| Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, [manual rebalance](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time), emergency stops and restart procedures |
 | Documentation map | [Current guides and historical references](docs/README.md) |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
 | Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |

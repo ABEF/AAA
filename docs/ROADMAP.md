@@ -10,7 +10,7 @@ service/inventory/website qualification remain historical to their original pins
 See [profile4](POSITION_V4.md); new release qualification remains open.
 
 
-Reviewed 2026-10-27. This page explains dependencies and sequence; [TODO.md](../TODO.md)
+Reviewed 2026-10-28. This page explains dependencies and sequence; [TODO.md](../TODO.md)
 is the only status list. [Feature reference](IMPLEMENTATION_STATUS.md) records what
 exists, while [release approval](RELEASE_CHECKLIST.md) remains NOT APPROVED.
 
@@ -20,6 +20,11 @@ Current source has completion/health safeguards ([scope](../reports/manipulation
 and [outside-actor manipulation](../TODO.md#task-security-external-manipulation).
 Use actual Robinhood ordering, independent prices and attacker/protocol profit
 witnesses; protected submission and economic safety are not already qualified.
+
+Manual upkeep is documented in [the operator procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time):
+existing keeper authority and on-chain guards remain; same-key out-of-band signing
+requires journal reconciliation. This is a documentation clarification, not a
+new implementation or release qualification.
 
 ## LP execution next steps
 

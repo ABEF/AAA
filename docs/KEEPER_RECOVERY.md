@@ -203,6 +203,17 @@ the actual chain fee model before production.
 
 An unused signer can explicitly bootstrap using `python -m keeper.monitor --config REVIEWED_CONFIG --initialize-state`. This never signs; it requires reviewed deployment pins, a fresh head and zero latest/pending nonces, and refuses existing state. Legacy state without a nonce checkpoint requires reviewed migration, never deletion or a blind nonce insertion.
 
+## Manually submitted keeper operations
+
+Follow [manual rebalance](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
+when choosing to execute yourself. Coordinate pending automation without globally
+pausing a function that requires live operation. A separate already-authorized
+operator wallet avoids consuming the service key's nonce; no new human role is
+required. If the service's own address signs outside this journal, subsequent
+nonce checks fail closed until the external receipt/nonce/spend is independently
+reconciled. Restart, new LP discovery or deleting a jitter timer cannot adopt that
+transaction. Preserve evidence and never edit next_nonce to force signing.
+
 ## Maintenance policy2 schedule recovery
 
 Fresh accounting4 service configuration explicitly selects maintenance_policy_version2

@@ -90,8 +90,19 @@ There is no stored update request that can accidentally refer to a retired LP,
 be replayed, or require a cancellation nonce. Before execution, governance may
 restore the configuration matching the deployed range; this clears the pending
 mismatch. After replacement, another width change requires another governed
-configuration and remains subject to the cooldown. A separate price trigger may
-still authorize a normal rebalance.
+configuration and remains subject to the cooldown. Actual physical range exit
+can still authorize policy2 rebalance; a separate movement trigger belongs only
+to explicit historical policy1.
+
+## Manual execution
+
+Use [the manual rebalance procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
+for exact caller, shared bucket, simulated raw LP minimum, short expiry and
+separate gas. Direct `Vault.rebalance` skips service jitter/hourly checks, never
+contract cooldown or range/operator-update eligibility. Governance must also be
+keeper-authorized to call it. Reconcile service pending work and any same-key
+out-of-band nonce before restarting; the physical LP/timer refresh alone cannot
+repair a stale signer journal.
 
 ## Optional keeper selection: 25% or 50%
 

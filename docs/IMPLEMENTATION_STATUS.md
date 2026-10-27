@@ -10,7 +10,7 @@ service/inventory/website qualification remain historical to their original pins
 See [profile4](POSITION_V4.md); new release qualification remains open.
 
 
-Reviewed 2026-10-27. This describes capabilities and evidence, not a second Todo.
+Reviewed 2026-10-28. This describes capabilities and evidence, not a second Todo.
 Use [the single task list](../TODO.md) for status, [operator manual](OPERATOR_MANUAL.md)
 for procedures, [component map](COMPONENT_STATUS.md) for code boundaries and
 [release record](RELEASE_CHECKLIST.md) for approval. **Production NOT APPROVED.**
@@ -54,6 +54,12 @@ Vault balancing still uses its LP pool: best-execution route selection and the
 new normally-one-swap solver remain unimplemented. Manual widths, per-currency
 thresholds, growing existing LP and idle reinvestment already exist. The $1m
 per-NFT cap is existing configuration, not a new function or capacity proof.
+
+Manual `Vault.rebalance` already exists for keeper-authorized wallets; governance
+alone does not grant that capability. The [documented procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
+skips local jitter/hourly evaluation only, retains on-chain eligibility and
+separately handles same-key journal reconciliation. This documentation update
+adds no contract behavior, ABI, test pass, service rollout or production approval.
 
 ## Backend and operations
 

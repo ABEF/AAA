@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-10-27 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-28 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -208,6 +208,7 @@ Custody, ownership and reward accounting.
   - Add focused new-source verification after implementation; do not rerun or relabel unchanged suites for this design update. Update exact callable reference, operator restart/pending procedures, profile/runtime pins and evidence before release. No public transactions or operating rollout are authorized.
   - Explicitly enumerate the new route module governed setters/defaults/hard ceilings, including independent route-level slippage. Current pool slippage has a separate2% hard ceiling; do not promise raising maintenance loss alone can overcome it or silently raise it without a reviewed decision. Economic configurability cannot waive token identity, recipients, invalid prices, unavailable liquidity or stronger user-signed bounds.
   - Budget3 compoundInterval/setCompoundInterval supports governed600seconds-7days/default3600 independently from rebalance, max(lastCompound,lastRebalance) anchor, due-rebalance priority and no clock/backing rewrite. Fresh keeper enabled compound requires actual-currency thresholds; historicalfallback/readers remain separate. New callable reference/operator procedures and scoped verification must match exact source; source examples do not roll out services.
+  - [Manual operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time) documents existing keeper-granted direct Vault.rebalance, shared-bucket/raw-LP/short-expiry inputs and separate gas. It bypasses only local jitter/hourly checks; contract cooldown/range/price/lifecycle/value guards remain. Reconcile automated pending work and same-service-key external nonce/receipt/spend before restart; no automatic adoption or new force-rebalance permission.
 
   </details>
 
@@ -1129,6 +1130,7 @@ Decisions and rehearsals before real funds.
   - [Paid-revert health correction](reports/manipulation-hardening-20261027/VERIFICATION.md): matching writer/checker require confirmed_reverts, active_revert_cooldowns and next_revert_retry_after. Active existing per-action cooldowns remain visible after restart/unrelated success; expiry means retry eligibility, not repair. Qualify paired rollout separately and preserve all existing journals.
   - [Operator policy and restart procedure](docs/OPERATOR_MANUAL.md#operator-selected-lp-policy): on-chain range/cooldown/cap updates are read fresh; JSON scheduling/threshold/candidate updates require controlled restart and matching config health. Reconcile pending calls around either change, retain journals and document the separate Budget3 compound interval. New source/example configuration does not enable a running service.
   - [Maintenance policy2](reports/maintenance-policy-20261027/VERIFICATION.md): qualify the new journal namespace, exact Strategy/runtime/version pins, hourly-check/jitter boundaries/restart/save-failure, width-change exception, returned-inside pre-signing cancellation and independent harvest. Preserve original pending/spend/receipt/nonce state; old accounting4 absent-field keeper mode remains historical1, not an automatic migration.
+  - Manual operations using the service signer outside its journal must fail closed on changed nonce/checkpoints until reviewed reconciliation. New physical LP/timer identity is not transaction-history adoption. Rehearse this actual operating case without resetting journals or silently raising budgets; see [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Documentation alone does not close the operating gate.
 
   </details>
 
@@ -1198,4 +1200,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `c2b98b57f37b9bacae03a02a44204a7ddbb309c68b383cb65baac345d72df2ff`.
+Snapshot SHA-256: `044b6feb6ee7d763f4bc8bd2c8c4eff0fd8ca47c42289c484a7f04da8a172f9f`.

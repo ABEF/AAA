@@ -18123,7 +18123,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "70ba78c4af748ff736702e60516b53e1561cba0e554f7421deaf0cf90c36ca6b",
+  "notes_sha256": "6629858c744d9d109597473e523f41466692d68bc7f7034a36c4ab1d9a215f7d",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -40842,7 +40842,7 @@
           "name": "rebalance",
           "state_mutability": "nonpayable",
           "purpose": "Replace a shared LP at the strategy’s eligible target range after fee settlement.",
-          "access": "Authorized keeper; live/operating and on-chain eligibility/cooldown required. Original keeper authorization and unpaused state are rechecked after external work.",
+          "access": "Wallet must be keeper-authorized, including governance if it calls directly; live/operating and on-chain eligibility/cooldown required. Original keeper authorization and unpaused state are rechecked after external work.",
           "status": "documented",
           "inputs": [
             {
@@ -40870,12 +40870,12 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+              "explanation": "Unix seconds: at execution block.timestamp <= deadline <= block.timestamp+600; choose a short fresh expiry, not a future calendar schedule."
             }
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Captures the maintenance cap and starting prices; preserves shares and earned fees. No per-NFT rebalance is needed. Inputs: id is a bucket ID, with a positive LP minimum and fresh deadline. Permanently rejected once collective LP exit starts, including after ordinary unpause. A callback changing those conditions makes the entire operation revert, including that callback change; separate operator pause/revocation transactions remain unchanged."
+          "notes": "Captures the maintenance cap and starting prices; preserves shares and earned fees. No per-NFT rebalance is needed. Inputs: id is a bucket ID, with a positive LP minimum and fresh deadline. Permanently rejected once collective LP exit starts, including after ordinary unpause. A callback changing those conditions makes the entire operation revert, including that callback change; separate operator pause/revocation transactions remain unchanged. Direct manual submission bypasses only Python jitter/hourly checking, never contract guards. Nonpayable: no native transaction value, gas separate. Manual use of the service signing key outside its journal requires reviewed nonce/receipt/spend reconciliation before resuming automation."
         },
         {
           "signature": "reservePool(bytes32,uint256)",

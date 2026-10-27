@@ -1,6 +1,6 @@
 # Work handoff
 
-Reviewed 2026-10-27. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
+Reviewed 2026-10-28. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
 [README](../README.md), [Todo](../TODO.md) and the owning runbook before continuing.
 
 ## Latest functional state
@@ -95,6 +95,18 @@ LP target, full-size post-close sizing and normally-one-swap useful placement.
 Current Vault still swaps in its LP pool. $1m per-NFT cumulative cap is existing
 configuration, not a $1bn market-capacity guarantee. Timed10% replacement is a
 separate optional design. Preserve historical profiles and unrelated drafts.
+
+## Manual rebalance procedure
+
+[Operator instructions](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time) now
+cover the existing `Vault.rebalance(bucket,minLP,deadline)` path. Governance needs
+an actual keeper grant; direct submission bypasses local jitter/hourly checks,
+never cooldown/range/price/lifecycle/value guards. Coordinate pending automation;
+a same-service-key transaction outside its journal requires reviewed nonce/receipt/
+spend reconciliation. A new LP/timer refresh alone does not repair that journal.
+No source, ABI, sample config, service, site, journal, deployment or test result
+changed in this documentation synchronization. Reuse exact422deaf source evidence;
+best-route execution remains next functional work.
 
 ## Current maintenance cadence
 

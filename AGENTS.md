@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed 2026-10-27. Read [current context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed 2026-10-28. Read [current context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md) and the relevant [operator procedure](docs/OPERATOR_MANUAL.md)
 before changing behavior. This file contains current instructions, not a timeline.
 
@@ -73,6 +73,8 @@ before changing behavior. This file contains current instructions, not a timelin
   Missing or inconsistent data must remain unavailable/error, never guessed zero.
 
 - Requested next LP operating policy is recorded in [execution decisions](docs/LP_EXECUTION_POLICY.md): manual +/-25/50% selection, twelve-hour outside-only upkeep with hourly eligible checks and durable 1-10-minute service jitter, best reviewed execution venues independent of the LP target and $1m cumulative contributions per NFT. The approved timing slice is implemented in policy2/Budget3; best-route balancing and new solver remain pending. Twelve hours is a hard initial minimum, explicit range changes may apply inside after cooldown, and compounding has its own interval. Do not silently interpret 1% centring tolerance as the old movement trigger or replace independent pricing with pool spot.
+
+- Direct manual `Vault.rebalance` uses an actual keeper grant (governance alone is not enough), bypasses only service jitter/hourly checking and preserves all on-chain guards. Follow [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Same-service-key signing outside its journal requires reviewed nonce/receipt/spend reconciliation; restart or new LP/timer discovery alone cannot adopt it. No manual transaction/service change is authorized by updating these instructions.
 
 ## Verification and documentation workflow
 

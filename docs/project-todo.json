@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reviewed": "2026-10-27",
+  "reviewed": "2026-10-28",
   "areas": [
     {
       "id": "contracts",
@@ -338,7 +338,8 @@
             "Evaluate timed10% LP replacement as a separate optional design only if execution evidence justifies its old/new position, NAV/fee/share, entry/claim/transfer/exit, completion/abort/recovery and aggregate-loss complexity. Same-transaction slicing is not a time-weighted execution benefit.",
             "Add focused new-source verification after implementation; do not rerun or relabel unchanged suites for this design update. Update exact callable reference, operator restart/pending procedures, profile/runtime pins and evidence before release. No public transactions or operating rollout are authorized.",
             "Explicitly enumerate the new route module governed setters/defaults/hard ceilings, including independent route-level slippage. Current pool slippage has a separate2% hard ceiling; do not promise raising maintenance loss alone can overcome it or silently raise it without a reviewed decision. Economic configurability cannot waive token identity, recipients, invalid prices, unavailable liquidity or stronger user-signed bounds.",
-            "Budget3 compoundInterval/setCompoundInterval supports governed600seconds-7days/default3600 independently from rebalance, max(lastCompound,lastRebalance) anchor, due-rebalance priority and no clock/backing rewrite. Fresh keeper enabled compound requires actual-currency thresholds; historicalfallback/readers remain separate. New callable reference/operator procedures and scoped verification must match exact source; source examples do not roll out services."
+            "Budget3 compoundInterval/setCompoundInterval supports governed600seconds-7days/default3600 independently from rebalance, max(lastCompound,lastRebalance) anchor, due-rebalance priority and no clock/backing rewrite. Fresh keeper enabled compound requires actual-currency thresholds; historicalfallback/readers remain separate. New callable reference/operator procedures and scoped verification must match exact source; source examples do not roll out services.",
+            "[Manual operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time) documents existing keeper-granted direct Vault.rebalance, shared-bucket/raw-LP/short-expiry inputs and separate gas. It bypasses only local jitter/hourly checks; contract cooldown/range/price/lifecycle/value guards remain. Reconcile automated pending work and same-service-key external nonce/receipt/spend before restart; no automatic adoption or new force-rebalance permission."
           ]
         }
       ]
@@ -1080,7 +1081,8 @@
             "Fresh maintenance policy2 accounting4 compound scheduling authenticates the exact budget runtime/Vault bindings/capability3 and reads contract compoundReady, including other keepers and physical LP replacement. Local intervals are additional delays only. Preserve independent due harvest on guarded maintenance outages; reject malformed ABI/unknown capability; qualify actual deployment/service before enabling.",
             "[Paid-revert health correction](reports/manipulation-hardening-20261027/VERIFICATION.md): matching writer/checker require confirmed_reverts, active_revert_cooldowns and next_revert_retry_after. Active existing per-action cooldowns remain visible after restart/unrelated success; expiry means retry eligibility, not repair. Qualify paired rollout separately and preserve all existing journals.",
             "[Operator policy and restart procedure](docs/OPERATOR_MANUAL.md#operator-selected-lp-policy): on-chain range/cooldown/cap updates are read fresh; JSON scheduling/threshold/candidate updates require controlled restart and matching config health. Reconcile pending calls around either change, retain journals and document the separate Budget3 compound interval. New source/example configuration does not enable a running service.",
-            "[Maintenance policy2](reports/maintenance-policy-20261027/VERIFICATION.md): qualify the new journal namespace, exact Strategy/runtime/version pins, hourly-check/jitter boundaries/restart/save-failure, width-change exception, returned-inside pre-signing cancellation and independent harvest. Preserve original pending/spend/receipt/nonce state; old accounting4 absent-field keeper mode remains historical1, not an automatic migration."
+            "[Maintenance policy2](reports/maintenance-policy-20261027/VERIFICATION.md): qualify the new journal namespace, exact Strategy/runtime/version pins, hourly-check/jitter boundaries/restart/save-failure, width-change exception, returned-inside pre-signing cancellation and independent harvest. Preserve original pending/spend/receipt/nonce state; old accounting4 absent-field keeper mode remains historical1, not an automatic migration.",
+            "Manual operations using the service signer outside its journal must fail closed on changed nonce/checkpoints until reviewed reconciliation. New physical LP/timer identity is not transaction-history adoption. Rehearse this actual operating case without resetting journals or silently raising budgets; see [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Documentation alone does not close the operating gate."
           ]
         },
         {
