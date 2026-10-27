@@ -9,5 +9,18 @@
   "deployment_authorized": false,
   "contracts": null,
   "services": null,
-  "qualification": "Explicit blocked inventory scaffold. Complete and review real runtime bindings, Budget compound capability2 and exact keeper helper pins/readiness, principal-exit API/keeper pins, native-only LP admission, batching/gas, target-chain rehearsals and independent audit. This is not accepted production inventory; the release gate stays closed."
+  "qualification": "Explicit blocked inventory scaffold. Complete and review real runtime bindings, Strategy maintenance policy2/Budget compound capability3 and exact keeper helper pins/readiness, principal-exit API/keeper pins, native-only LP admission, batching/gas, target-chain rehearsals and independent audit. This is not accepted production inventory; the release gate stays closed.",
+  "maintenance_policy_version": 2,
+  "compound_capability_version": 3,
+  "initial_lp_policy": {
+    "rebalance_minimum_interval_seconds": 43200,
+    "compound_interval_seconds": 3600,
+    "range_selection": "operator",
+    "eligible_inside_check_seconds": 3600,
+    "service_jitter_seconds": [
+      60,
+      600
+    ],
+    "max_cumulative_contribution_usd18_per_nft": "1000000000000000000000000"
+  }
 }

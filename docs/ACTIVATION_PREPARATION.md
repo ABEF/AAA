@@ -12,6 +12,13 @@ The read configuration selects accounting 4 / fee-intake 1; deployment checks
 require direct governance 2, custody3 and holder-exit canonical V5. Activation uses explicit
 routing 2 / pricing 2 / review policy 1. These are separate version fields,
 not a synthetic service-profile string or an upgrade of an existing deployment.
+Accounting4 activation configuration also requires explicit
+`maintenance_policy_version`:1 for historical movement eligibility,2 for current
+outside-or-operator-range eligibility. Policy2 requires range_policy_version1,
+authenticates Strategy2 and Budget3 at the pinned hash, and reports actual
+outside state with obsolete movement-trigger fields null. Missing/malformed
+capabilities fail closed; keeper check/execution times remain unavailable without
+real telemetry. No historical deployment is upgraded by changing a field.
 Only native ETH and fixed ZZZ are original inputs. Their two-source policies
 use the reviewed 3% disagreement tolerance.
 

@@ -184,6 +184,7 @@ class HolderExitAPITests(unittest.TestCase):
         for increase in (False,True):
             with self.subTest(increase=increase):
                 rpc = A.CurrentActivationRPC(increase=increase)
+                rpc.config['maintenance_policy_version'] = 1
                 cfg = F.configuration()
                 cfg.update(accounting_version=4,fee_intake_version=1)
                 cfg['assets']=[cfg['assets'][0],dict(address=F.addr(21),decimals=18,

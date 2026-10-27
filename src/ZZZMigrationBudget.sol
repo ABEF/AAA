@@ -23,7 +23,8 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     address public immutable vault;
     IZZZAccess public immutable access;
     uint16 public constant MAX_LOSS_BPS = 1000;
-    uint256 public constant IDLE_COMPOUNDING_VERSION = 2;
+    uint256 public constant IDLE_COMPOUNDING_VERSION = 3;
+    uint32 public constant DEFAULT_COMPOUND_INTERVAL = 1 hours;
     uint16 public contributionLossBps = 200;
     uint16 public maintenanceLossBps = 300;
     struct Snapshot {
@@ -43,6 +44,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     /// an NFT entitlement/imported ledger; LP replacement time is kept by Vault.
     mapping(uint256 => uint64) public lastCompound;
     mapping(uint256 => uint64) public compositionEpoch;
+    mapping(bytes32 => uint32) private compoundIntervals;
     error Unauthorized();
     error InvalidState();
     error InvalidAmount();
@@ -53,6 +55,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     event MigrationValueChecked(uint256 indexed bucketId, uint256 beforeUSD, uint256 deployedUSD, uint256 idleUSD);
     event ContributionLossLimitChanged(uint16 previous, uint16 current);
     event MaintenanceLossLimitChanged(uint16 previous, uint16 current);
+    event CompoundIntervalChanged(bytes32 indexed poolId,uint32 previous,uint32 current);
 
     constructor(address controller) {
         vault = msg.sender;
@@ -69,6 +72,31 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         emit MaintenanceLossLimitChanged(maintenanceLossBps, maintenance);
         contributionLossBps = contribution;
         maintenanceLossBps = maintenance;
+    }
+    /// @notice Configure standalone compounding separately from rebalance.
+    /// This changes future eligibility, never a recorded clock or NFT backing.
+    function setCompoundInterval(bytes32 poolId,uint32 interval) external nonReentrant {
+        if (!access.canConfigure(msg.sender)) revert Unauthorized();
+        if (access.preparationActive()) revert Preparing();
+        if (access.canonicalState() != 0) revert CanonicalLocked();
+        if (interval < 600 || interval > 7 days || snapshot.value != 0) revert InvalidConfiguration();
+        _knownPool(poolId);
+        uint32 previous = _compoundInterval(poolId);
+        compoundIntervals[poolId] = interval;
+        emit CompoundIntervalChanged(poolId,previous,interval);
+    }
+    /// @notice Admitted pool policy, in seconds; one hour before its first setter.
+    function compoundInterval(bytes32 poolId) external view returns(uint32) {
+        _knownPool(poolId);
+        return _compoundInterval(poolId);
+    }
+    function _compoundInterval(bytes32 poolId) private view returns(uint32 interval) {
+        interval = compoundIntervals[poolId];
+        if (interval == 0) interval = DEFAULT_COMPOUND_INTERVAL;
+    }
+    function _knownPool(bytes32 poolId) private view {
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
+        if (poolId == bytes32(0) || c.key.tickSpacing <= 0 || keccak256(abi.encode(c.key)) != poolId) revert InvalidConfiguration();
     }
     modifier onlyVault() {
         if (msg.sender != vault) revert Unauthorized();
@@ -107,7 +135,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         uint256 previous = lastCompound[id];
         if (p.lastRebalance > previous) previous = p.lastRebalance;
-        if (!c.operationsEnabled || block.timestamp < previous + c.minRebalanceInterval) return false;
+        if (!c.operationsEnabled || block.timestamp < previous + _compoundInterval(p.poolId)) return false;
         IZZZStrategy strategy = IZZZStrategy(access.module(Ids.STRATEGY));
         return !strategy.needsRebalance(id) && strategy.keeperRangeTarget(p.poolId) == 0;
     }

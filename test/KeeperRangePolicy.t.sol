@@ -66,6 +66,8 @@ contract KeeperRangePolicyTest is Test {
     function _price(int256 rawToken1PerToken0) private {
         f0.set(rawToken1PerToken0,block.timestamp,block.timestamp);
         f1.set(1e8,block.timestamp,block.timestamp);
+        uint160 root = oracle.referenceX96(address(t0),address(t1));
+        venue.setMarket(root,TickMath.getTickAtSqrtPrice(root));
     }
     function _replace() private {
         (int24 lower,int24 upper,uint160 center) = strategy.target(pool);
@@ -113,14 +115,14 @@ contract KeeperRangePolicyTest is Test {
         _endpoints(selected,config.rangeBps,ref);
         _endpoints(selected,config.rangeBps,ref+1);
     }
-    function testInverseTriggerTreatsUpAndDownMovesInTheChosenPriceDirection() public {
+    function testInversePhysicalRangeReplacesMovementTriggerInBothDirections() public {
         strategy.setRangeOrientation(pool,1); _replace();
         config.triggerBps=1000; registry.configure(config);
         vm.warp(block.timestamp+600);
-        _price(111000000); assertFalse(strategy.needsRebalance(44)); // inverse decline <10%
-        _price(112000000); assertTrue(strategy.needsRebalance(44));
-        _price(91000000); assertFalse(strategy.needsRebalance(44)); // inverse rise <10%
-        _price(90000000); assertTrue(strategy.needsRebalance(44));
+        _price(112000000); assertFalse(strategy.needsRebalance(44)); // Still inside inverse +/-50%.
+        _price(210000000); assertTrue(strategy.needsRebalance(44));
+        _price(90000000); assertFalse(strategy.needsRebalance(44));
+        _price(64000000); assertTrue(strategy.needsRebalance(44));
     }
     function testPolicyIsDisabledByDefaultAndCannotChooseUnapprovedWidths() public {
         assertEq(strategy.keeperRangeTarget(pool),0);

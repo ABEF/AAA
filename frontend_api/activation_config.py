@@ -54,6 +54,16 @@ class ActivationConfig:
             raise ValueError('Unsupported explicit activation range-policy profile')
         if 'range_policy_version' in config: fields.add('range_policy_version')
         if self.range_policy_version == 1: fields.add('range_policies')
+        self.maintenance_policy_version = config.get('maintenance_policy_version', 0)
+        if type(self.maintenance_policy_version) is not int or self.maintenance_policy_version not in (0,1,2):
+            raise ValueError('Unsupported explicit activation maintenance-policy profile')
+        if 'maintenance_policy_version' in config: fields.add('maintenance_policy_version')
+        if projection.accounting_version == 4 and self.maintenance_policy_version not in (1,2):
+            raise ValueError('Accounting4 activation requires explicit maintenance_policy_version 1 or 2')
+        if projection.accounting_version != 4 and self.maintenance_policy_version != 0:
+            raise ValueError('Maintenance-policy activation profiles require explicit accounting4')
+        if self.maintenance_policy_version == 2 and self.range_policy_version != 1:
+            raise ValueError('Outside-only maintenance requires the explicit reviewed range-policy profile')
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
@@ -197,6 +207,11 @@ class ActivationConfig:
             bindings += [('entry', 'v4Executor()', 'v4_executor'), ('v4_executor', 'parent()', 'entry')]
         for role, method, expected in bindings:
             if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Activation helper binding changed')
+        if self.maintenance_policy_version == 2:
+            for role,method,version in (('strategy','MAINTENANCE_POLICY_VERSION()',2),
+                    ('budget','IDLE_COMPOUNDING_VERSION()',3)):
+                if int(read(role,method)[0],16) != version:
+                    raise ProjectionError('Outside-only maintenance/compound capability differs from the reviewed profile')
         if self.fee_intake_version == 1:
             if int(read('activation_assets', 'SOURCE_POLICY_VERSION()')[0],16) != 1 or \
                     _address_word(read('activation_assets', 'zzz()')[0]) != self.zzz_input:

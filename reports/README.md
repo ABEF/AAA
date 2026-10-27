@@ -1,5 +1,7 @@
 # Verification evidence
 
+[Outside-only upkeep / independent compound,2026-10-27](maintenance-policy-20261027/VERIFICATION.md): Strategy2/Budget3, durable service jitter, matching API profile and explicit historical readers;100affected Solidity methods,396Python passes/2skips and37normal gates. No service/deployment or economic-profitability approval.
+
 [Manipulation-related hardening, 2026-10-27](manipulation-hardening-20261027/VERIFICATION.md): paid-revert health correction, post-callback keeper/pause completion checks and explicitly open economic/ordering qualification. No service or deployment change.
 
 [Coordinated compound cadence, 2026-10-27](maintenance-cadence-20261027/VERIFICATION.md):

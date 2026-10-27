@@ -132,13 +132,17 @@ corrections are skipped. Retained idle still backs the same bucket. There is no
 general clear/sweep or operator dust recipient.
 
 Idle-only reinvestment uses the existing `Compounder.compound(bucket,minLP,deadline)`
-with current prices, actual LP, captured maintenance budget and pool cooldown.
+with current prices, actual LP, captured maintenance budget and its separate compound interval.
 `Budget.lastCompound(bucket)` changes only on success. Configure keeper opt-in,
 both actual currency thresholds and reviewed Budget pins using the specialist
 [keeper/range guide](RANGE_POLICY_UPDATES.md). Stop scheduling and reconcile pending
 hashes before changing services; do not reset journals or count principal as income.
 
 ### Explicit ZZZ-price orientation and two-range selection
+
+For the selected operating policy, choose the width manually in steps1-2 and keep
+automatic selection disabled. Steps3-6 describe the existing optional capability,
+not a required service or newly added volatility analysis.
 
 1. Read exact Strategy/Registry versions, runtimes, full pool config and physical
    ticks. New `RANGE_POLICY_VERSION()==1` profiles are explicit. Mode0 preserves
@@ -345,51 +349,60 @@ Before execution, restoring the old configuration may clear the width mismatch; 
 
 ### Operator-selected LP policy
 
-The [LP execution decision record](LP_EXECUTION_POLICY.md) separates current
-functions from the requested outside-only schedule and best execution routing.
-The operator now selects +/-25% or +/-50%; no automatic volatility analysis is
-requested. Current optional automatic selection remains implemented but should
-stay disabled for this policy. Governance can call
-`Strategy.setKeeperRangePolicy(poolId,false,0,0,0,bytes32(0))`; disable local
-`adaptive_range.enabled` as well through a controlled configuration restart.
+Fresh `Strategy.MAINTENANCE_POLICY_VERSION()==2` and Budget compound capability3
+implement the settled [LP policy](LP_EXECUTION_POLICY.md). Operator selects
++/-25% or +/-50%; keep optional automatic selection disabled using governance
+`Strategy.setKeeperRangePolicy(poolId,false,0,0,0,bytes32(0))` and local
+`adaptive_range.enabled=false`. No new volatility analysis is involved.
 
-For **current implemented configuration**, read the complete
-`PoolRegistry.get(poolId)` tuple, change only reviewed fields and governance-call
-`configureNative(fullConfig)`. `rangeBps=2500` means +/-25%, `5000` means +/-50%
-in orientation1 (ZZZ price in ETH). `minRebalanceInterval=43200` sets twelve
-hours. `maxPositionUSD=1000000000000000000000000` sets $1,000,000 cumulative
-contributions per NFT in USD18; it does not cap live NAV or guarantee capacity
-for $1bn across the collection. Preserve tokens, flags, fees and all other bounds.
+Read the complete `PoolRegistry.get(poolId)` tuple and governance-call
+`configureNative(fullConfig)` with reviewed fields: `rangeBps=2500` or `5000`
+in orientation1, `minRebalanceInterval=43200` (12 hours), and
+`maxPositionUSD=1000000000000000000000000` ($1m cumulative contributions per NFT,
+USD18). Preserve actual assets, flags, fees and all other limits. These are intended
+initial configuration values, not an installed deployment or $1bn capacity proof.
+Governance can later change the supported interval within600seconds-7days; the
+current interval is a hard minimum even when LP exits its range earlier.
 
-These on-chain values are read fresh: normally no keeper restart or reseal is
-needed. Width configuration does not immediately move LP; verify the desired
-configuration, `rangeUpdatePending`, current physical ticks and any successful
-replacement. A lower interval can make an old position eligible immediately;
-changing it does not reset its on-chain clock. Stop/reconcile submitted work
-around policy changes because current rebalance calldata has no historical
-configuration-hash binding. Do not erase pending intents or repeat a transaction.
+After cooldown, ordinary rebalance requires actual physical range exit
+(`tick < lower || tick >= upper`), or your deliberately configured desired-range
+mismatch. A width change can therefore be applied while the old LP is in range.
+`triggerBps` remains in the ABI/configuration but no longer authorizes ordinary
+replacement in policy2. It is not a tolerated centring error. Physical LP changes
+only after successful execution; top-ups do not recenter it or reset its clock.
 
-**Setting twelve hours alone does not implement outside-only upkeep or jitter.**
-Current `needsRebalance` still uses reference displacement or a pending width
-change. `triggerBps=100` is a 1% movement trigger, not permitted centring error.
-Current standalone compound also shares the pool interval: twelve hours delays
-that path too. Hard-cooldown versus early exit, deliberate width-change exception
-and a separate compound interval await explicit decisions; do not infer them.
-The proposed hourly range checks and durable 60-600-second jitter are not yet
-implemented. Service jitter cannot constrain an authorized key bypassing Python.
+Fresh keeper config must select `maintenance_policy_version=2`, match Strategy2
+runtime/controller/module bindings and Budget3 for enabled compound. Policy2
+uses one persisted 60-600second jitter for eligible outside or operator-directed
+replacement. While still inside, ordinary evaluations are one hour apart; a newly
+observed desired-range change can bypass that local wait, never the contract
+cooldown. A60second observation loop services due timers, receipts and hourly
+harvest without blocking. Revalidate fresh state at due time and just before
+signing; if back inside with no range change, cancel the attempt. Jitter survives
+restart and is not redrawn by top-ups/harvest. It cannot constrain a key bypassing
+Python or promise exact inclusion time. Failed/ambiguous calls retain normal
+pending/nonce/backoff recovery. Downtime never replays missed rebalances.
 
-Changing local JSON polling, thresholds or routing candidates requires a
-controlled keeper restart: configuration is loaded once, with no hot reload.
-Preserve the journal, pending hashes and nonce checkpoints; qualify a fresh
-matching config-bound health result. Do not restart existing services as part of
-this documentation change. [Recovery procedure](KEEPER_RECOVERY.md#logs-health-and-fallback).
+Range/cooldown/cap changes are read fresh on-chain: normally no restart or reseal.
+Width configuration is not an immediate LP replacement. Read `rangeUpdatePending`
+and verify actual new LP/ticks after confirmation. Lowering an interval can make
+an old position eligible immediately; it does not reset its clock. Stop/reconcile
+pending work around policy changes because rebalance calldata does not bind a
+historical configuration hash. Never erase pending intents or repeat a transaction.
+
+Local JSON changes (policy version, poll, thresholds or route candidates) require
+a controlled restart: no hot reload. Preserve journal/pending/nonce evidence and
+require fresh matching config-bound health. Old accounting4 keeper configs with
+no new policy field retain explicit historical mode1 behavior; never relabel an
+old runtime/journal as policy2. Accounting1/2/3 retain their own readers. No running
+service changes follow from editing an example. [Recovery](KEEPER_RECOVERY.md#logs-health-and-fallback).
 
 ### Editable pool parameters and coupled limits
 
 | Field | Current contract boundary | Practical meaning |
 | --- | --- | --- |
 | `rangeBps` | 100-5000, also greater than trigger and spot tolerance | Because `triggerBps >= 100` and must be smaller, 100 itself cannot form a valid complete configuration. Wider/narrower ranges still require representable ticks. |
-| `triggerBps` | At least 100 and less than range | Price movement from recorded center which can trigger upkeep. |
+| `triggerBps` | At least 100 and less than range | Retained ABI/config field; historical policy1 movement trigger. Policy2 ordinary eligibility uses actual range exit or an operator range change, never this movement field. |
 | `minRebalanceInterval` | 600 seconds-7 days | Minimum time between rebalances; a safety cooldown, not a governance delay. |
 | `maxSpotDeviationBps` | 1-500 and less than range | Spot/reference discrepancy permitted by guarded execution. Do not widen it simply to accept a manipulated market. |
 | `maxSlippageBps` | 1-200; pool fee must be strictly below it in equivalent units | Selected LP fee 10020 pips therefore requires at least 101 bps; actual protocol fee, impact and complete quote must also pass execution checks. This independent venue guard and the current governed contribution-loss ceiling must both pass. |
@@ -608,43 +621,39 @@ remain; no harvesting after terminal LP exit.
 
 ### Coordinate compounding with rebalancing
 
-Fresh Budget `IDLE_COMPOUNDING_VERSION() == 2` checks every standalone compound,
-including no-swap/idle-only work. Read `Budget.compoundReady(bucketId)` before
-preparing `Compounder.compound(bucketId,minimumLiquidity,deadline)`:
+Fresh Budget `IDLE_COMPOUNDING_VERSION()==3` exposes
+`compoundInterval(poolId)` and `compoundReady(bucketId)`. Default compound
+interval is3600seconds (one hour), independently from the12-hour rebalance
+configuration. This is earliest eligibility, not a promise to compound hourly.
 
-- The active physical LP must have operations enabled. The current pool
-  `minRebalanceInterval` must have elapsed since **both** `Position.lastRebalance`
-  and `Budget.lastCompound(bucketId)`. First compounding also waits after activation.
-- A currently eligible `Strategy.needsRebalance(bucketId)` or available
-  `Strategy.keeperRangeTarget(poolId)` takes priority. Apply the reviewed range
-  action if applicable, then prepare the guarded rebalance. A policy enabled
-  on-chain with its keeper job disabled can leave compound waiting; resolve the
-  intended policy/job configuration rather than bypassing the contract check.
-- Compound does not write `lastRebalance`. A later eligible rebalance can proceed
-  even if compound just succeeded. This priority exception means the rule is
-  not a universal minimum gap between every possible pair of swaps. No24-hour
-  default or cumulative-loss budget is introduced.
+Governance calls `Budget.setCompoundInterval(poolId,intervalSeconds)` on the
+exact address returned by `Vault.migrationBudget()`. Allowed600seconds-7days;
+verify admitted pool identity and `CompoundIntervalChanged`, then getter/readiness.
+This changes no clock, shares or backing. It may be configured during ordinary
+pause, but rejects preparation, non-operating canonical state and an active
+captured operation. It needs no keeper restart; local scheduling intervals remain
+additional delays and their JSON changes do require controlled restart.
 
-The pool configuration controls the on-chain interval (600seconds-7days); use
-the existing reviewed pool configuration procedure to change it. The keeper's
-`compound_interval_seconds` is only an additional local scheduling delay.
-Fresh accounting4 due standalone compound also requires
-`idle_compounding_budget` to match `Vault.migrationBudget()`, its `vault()`
-back-reference and `code_hashes.idle_compounding_budget`; version must be2.
-This binding is required for reserve-only as well as idle-only compounding.
-Historical1/2/3 deployments retain their V1 reads and journal identity.
+Every standalone compound, including idle-only/no-swap, waits until
+`max(lastCompound(bucket), Position.lastRebalance) + compoundInterval(poolId)`.
+It yields to eligible rebalance or available optional adaptive selection. Rebalance
+never reads lastCompound: compound cannot postpone the hard rebalance clock.
+Keep automatic width selection disabled for the chosen manual operating policy.
+Initial LP creation/replacement starts the compound wait; ordinary contributions
+and harvesting do not reset it. A failed compound rolls back clocks and funds.
 
-`compoundReady` is a cadence/strategy view, not authorization or successful
-simulation: sealing, lifecycle, keeper authority, deadline, price and loss/idle
-guards still apply to execution. Failed operations roll back the compound clock
-and funds. Harvesting and holder claims neither use nor reset this cooldown.
-Hourly harvest remains a separate job; do not combine it with a compulsory swap.
-For stop/restart, disable compound scheduling/revoke the keeper as appropriate,
-reconcile pending hashes, then restore only reviewed pins/configuration. Never
-reset journals or relabel an old deployment as V2 to force eligibility.
+Current keeper policy2 verifies exact Budget runtime, mutual Vault binding and
+capability3 before readiness. Enabled compound requires explicit positive
+`compound_thresholds` for both actual ETH/ZZZ currencies; use raw units per asset.
+Historical policy1/helper2 and older helper1 readers remain versioned separately.
+No automatic journal or runtime migration is provided. Readiness does not replace
+keeper authority, lifecycle, prices, gas, deadline or execution/backing checks.
 
-See [idle/range policy](IDLE_AND_DUST.md) and
-[source-scoped verification](../reports/maintenance-cadence-20261027/VERIFICATION.md).
+Harvest first creates the designated5% reserve; standalone compound also harvests
+before pulling/reinvesting it. Hourly harvesting and holder claims remain independent;
+claims never run compounding/buybacks. Stop new compounds through local scheduling
+or keeper revocation, reconcile pending hashes, and reopen only after fresh checks.
+[Idle ownership](IDLE_AND_DUST.md), [policy/evidence](LP_EXECUTION_POLICY.md).
 
 ### Change the standalone harvesting interval
 

@@ -150,8 +150,8 @@ configuration fingerprints still constrain it. See [range operations](RANGE_POLI
 
 ### Standalone compounding gives range maintenance priority
 
-Fresh accounting4 Budget capability2 permits a standalone compound only after
-`max(lastCompound, lastRebalance) + current minRebalanceInterval`, including
+Fresh maintenance policy2 Budget capability3 permits a standalone compound only after
+`max(lastCompound, lastRebalance) + compoundInterval(poolId)`, including
 after LP creation and for jobs with no swap. It also waits if a rebalance is
 eligible or the preapproved adaptive-range rule already has a nonzero target.
 `Budget.compoundReady(bucket)` reports that decision; authorization, lifecycle,
@@ -162,7 +162,11 @@ so compounding cannot postpone it. Hourly standalone harvesting, funded claims
 and guarded user contributions remain independent; a contribution may still
 reinvest its bucket's reserve in the same successful operation. Historical
 accounting1/2/3 keeps capability1 semantics. Fresh keeper jobs must pin and verify
-Budget capability2 before trusting `compoundReady`, even for reserve-only work.
+Budget capability3 before trusting `compoundReady`, even for reserve-only work.
+Explicit historical accounting4/helper2 retains its old shared interval. New compound
+interval defaults3600seconds and is governed600seconds-7days independently of
+rebalance. Policy2 rebalance uses actual physical range exit or an operator width
+change after the configured hard minimum. [Scope](../reports/maintenance-policy-20261027/VERIFICATION.md).
 An eligible adaptive policy with its local range job disabled can defer compound;
 review the policy/job instead of forcing reinvestment past it.
 

@@ -19,7 +19,7 @@
       "src/ZZZLiquidityManager.sol": "925dd46418ac3145718564437cb2d3f3bb031fd807401d98b1035a20b4720f26",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
       "src/ZZZMigration.sol": "93c4f9fe3047d3386864240a4a2c8491953758f5a02524b17b0d0100018157c0",
-      "src/ZZZMigrationBudget.sol": "836b746e4665a9ba6bee4dda2ffdbe73d20ac1c0132ab1d882b0a53678119dc1",
+      "src/ZZZMigrationBudget.sol": "65a6b58ba521f882e4d9dfc7d325f28a2816f6cae55f19977dd8ea8f50374d0b",
       "src/ZZZNFT.sol": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
       "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
       "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
@@ -30,7 +30,7 @@
       "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
       "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
       "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
-      "src/ZZZStrategy.sol": "0543a8e348bccd30ca130b46b75e7b67aaef512eb0d2e082faaa0db6ac2e7292",
+      "src/ZZZStrategy.sol": "8bf8221eedda2721f6d843f7e8dfc70a007a10ce1270b525c5f94ed2e0dc91ed",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
       "src/ZZZVault.sol": "9d1b9a7412cee44e9f8e4660e704573d25a2a9c5c952a3865445220fe120e770",
       "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
@@ -200,9 +200,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "9190de31f9bf4470f8b0bf783eb8334778e8f1385b2b9121a4db95c884fe9fec",
-    "compiler_output_sha256": "9ae4e962f6d1cc1512eb43712297df631fcd4a64aa489183a6971c851c6450e0",
-    "size_evidence_sha256": "6f941b53b960d56e3458e454fe0590b4f587a22ab6f53050789f43ebf08b84c9",
+    "compiler_input_sha256": "febcf865f0500dfe14607ac10a1740820827c21f8031597d2cb43d5dd6dfa625",
+    "compiler_output_sha256": "a4af7c78dda491c304be3d1910b26779594cd7c6c3ebc63cbe471ecfe15b984f",
+    "size_evidence_sha256": "03af86437997d51776452c2d3e86d039ab1f097bf745e08438e4c931b7aca4d2",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -7673,6 +7673,31 @@
           "anonymous": false,
           "inputs": [
             {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint32",
+              "name": "previous",
+              "type": "uint32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint32",
+              "name": "current",
+              "type": "uint32"
+            }
+          ],
+          "name": "CompoundIntervalChanged",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
               "indexed": false,
               "internalType": "uint16",
               "name": "previous",
@@ -7737,6 +7762,19 @@
           ],
           "name": "MigrationValueChecked",
           "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "DEFAULT_COMPOUND_INTERVAL",
+          "outputs": [
+            {
+              "internalType": "uint32",
+              "name": "",
+              "type": "uint32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
           "inputs": [],
@@ -7935,6 +7973,25 @@
               "internalType": "uint64",
               "name": "",
               "type": "uint64"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            }
+          ],
+          "name": "compoundInterval",
+          "outputs": [
+            {
+              "internalType": "uint32",
+              "name": "",
+              "type": "uint32"
             }
           ],
           "stateMutability": "view",
@@ -8236,6 +8293,24 @@
         {
           "inputs": [
             {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "interval",
+              "type": "uint32"
+            }
+          ],
+          "name": "setCompoundInterval",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "uint16",
               "name": "contribution",
               "type": "uint16"
@@ -8499,7 +8574,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "81518e62e3a035b1b12ad047f4afde22ae9ebc9b83a3ee8c7b47ed1ff30c7368"
+      "abi_sha256": "bffe26ad8aea665557ea4de93f6d868df647a41309c2c33c30cf5ff1016f25a3"
     },
     "ZZZNFT": {
       "source": "src/ZZZNFT.sol",
@@ -15426,6 +15501,19 @@
         },
         {
           "inputs": [],
+          "name": "MAINTENANCE_POLICY_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "RANGE_POLICY_VERSION",
           "outputs": [
             {
@@ -15796,7 +15884,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "1d12789347db2df441e07053ce4e665a6552d274360a935f8d826c08640c750e"
+      "abi_sha256": "5e3085ecfd521bbf2975848d1eb3d07639fceb2e7fae5b6163ab16ac49fc74a7"
     },
     "ZZZV4RouteExecutor": {
       "source": "src/ZZZV4RouteExecutor.sol",
@@ -18035,7 +18123,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "6ec7928545452fbd3a23d2ea79ff22e339348665ed86f3b5222fbd8ea2e7b5a5",
+  "notes_sha256": "70ba78c4af748ff736702e60516b53e1561cba0e554f7421deaf0cf90c36ca6b",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -27535,11 +27623,34 @@
           "notes": null
         },
         {
+          "signature": "DEFAULT_COMPOUND_INTERVAL()",
+          "kind": "function",
+          "name": "DEFAULT_COMPOUND_INTERVAL",
+          "state_mutability": "view",
+          "purpose": "Read initial standalone compound interval before a per-pool governance override.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint32",
+              "canonical_type": "uint32",
+              "internal_type": "uint32",
+              "explanation": "3600seconds (one hour), an eligibility minimum rather than a mandatory hourly trade."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "IDLE_COMPOUNDING_VERSION()",
           "kind": "function",
           "name": "IDLE_COMPOUNDING_VERSION",
           "state_mutability": "view",
-          "purpose": "Identify the compound cadence compatibility version: 2 coordinates all standalone compounding with LP replacement and rebalance priority.",
+          "purpose": "Identify compound capability3: independent per-pool compound interval with physical LP/compound anchor and rebalance priority.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -27551,7 +27662,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "2 for the coordinated cadence; historical 1 retains its separate compound clock."
+              "explanation": "3; historical capability2 used the pool rebalance interval, and capability1 retains its original separate clock."
             }
           ],
           "native_value": null,
@@ -27893,11 +28004,44 @@
           "notes": null
         },
         {
+          "signature": "compoundInterval(bytes32)",
+          "kind": "function",
+          "name": "compoundInterval",
+          "state_mutability": "view",
+          "purpose": "Read the admitted pool standalone-compound interval independently of its rebalance interval.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "poolId",
+              "label": "poolId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact admitted pool ID, not a shared bucket or NFT ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint32",
+              "canonical_type": "uint32",
+              "internal_type": "uint32",
+              "explanation": "Configured seconds, or3600 before the first override. Unknown/inconsistent pool identities revert."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "compoundReady(uint256)",
           "kind": "function",
           "name": "compoundReady",
           "state_mutability": "view",
-          "purpose": "Check V2 compound cadence and strategy priority for a shared LP bucket.",
+          "purpose": "Check capability3 independent compound interval and rebalance priority for a shared LP bucket.",
           "access": "Anyone; read-only. Only fixed Vault can execute the guarded checkpoint.",
           "status": "documented",
           "inputs": [
@@ -27919,7 +28063,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": "True only for active physical LP with operations enabled, current interval elapsed since max(lastCompound,lastRebalance), no eligible rebalance and no available preapproved range selection."
+              "explanation": "True only for active physical LP with operations enabled, compoundInterval(pool) elapsed since max(lastCompound,lastRebalance), no eligible rebalance and no available preapproved range selection."
             }
           ],
           "native_value": null,
@@ -28198,7 +28342,7 @@
           "kind": "function",
           "name": "lastCompound",
           "state_mutability": "view",
-          "purpose": "Read the last successful standalone compound timestamp; V2 readiness also considers Position.lastRebalance and strategy priority.",
+          "purpose": "Read last successful standalone compound timestamp; capability3 also considers physical LP replacement and its separate interval/strategy priority.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -28406,6 +28550,38 @@
           "outputs": [],
           "native_value": null,
           "notes": "Identifies backing composition; does not issue shares or value external assets."
+        },
+        {
+          "signature": "setCompoundInterval(bytes32,uint32)",
+          "kind": "function",
+          "name": "setCompoundInterval",
+          "state_mutability": "nonpayable",
+          "purpose": "Configure a pool standalone-compound interval without changing backing or recorded clocks.",
+          "access": "Governance through controller; no preparation/non-operating canonical state or active captured operation. Ordinary pause permits configuration.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "poolId",
+              "label": "poolId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact admitted pool ID whose ETH/ZZZ compound cadence will change."
+            },
+            {
+              "position": 1,
+              "name": "interval",
+              "label": "interval",
+              "type": "uint32",
+              "canonical_type": "uint32",
+              "internal_type": "uint32",
+              "explanation": "Seconds from600 through604800 (seven days)."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Emits CompoundIntervalChanged. A shorter interval may make work immediately eligible; it never resets lastCompound/lastRebalance or changes the pool rebalance interval. Existing local service intervals can impose additional delay."
         },
         {
           "signature": "setLossLimits(uint16,uint16)",
@@ -38048,6 +38224,29 @@
           "notes": null
         },
         {
+          "signature": "MAINTENANCE_POLICY_VERSION()",
+          "kind": "function",
+          "name": "MAINTENANCE_POLICY_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit upkeep eligibility version2: physical outside-range or deliberate operator range update after the governed hard interval.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "2 for outside-or-operator-range eligibility; not evidence that a historical deployment was upgraded."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "RANGE_POLICY_VERSION()",
           "kind": "function",
           "name": "RANGE_POLICY_VERSION",
@@ -38320,7 +38519,7 @@
           "kind": "function",
           "name": "needsRebalance",
           "state_mutability": "view",
-          "purpose": "Read whether an active shared bucket’s approved cooldown and price/range trigger allow considering rebalance. True is not a successful simulation or guarantee of execution; keeper still needs full loss/minimum/gas guards.",
+          "purpose": "Read whether active shared LP has passed its governed hard cooldown and is physically outside its actual ticks or has a deliberate desired-range update. Reference movement alone does not trigger policy2.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -38342,11 +38541,11 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": "Boolean price displacement or pending physical-range update after pool cooldown; unsupported/inactive positions return false."
+              "explanation": "True only after the configured cooldown for actual tick outside [lower,upper) or pending operator range change. Fresh independent price/spot and consistent tick/fee checks apply; inactive/disabled/not-due positions return false."
             }
           ],
           "native_value": null,
-          "notes": null
+          "notes": "Eligibility does not prove transaction success. Caller/execution/lifecycle/value/minimum/gas guards remain; service jitter cannot constrain a key calling contracts directly."
         },
         {
           "signature": "rangeOrientation(bytes32)",
@@ -41685,7 +41884,7 @@
   "gaps": [],
   "counts": {
     "contracts": 31,
-    "functions": 607,
+    "functions": 611,
     "constructors": 31,
     "receive_hooks": 13,
     "fallback_hooks": 0,

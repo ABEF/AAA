@@ -14,6 +14,8 @@ interface IRangeRegistry { function applyKeeperRange(bytes32 poolId,uint16 range
 /// @notice Bounded strategy policy. Only the vault commits physical LP changes.
 contract ZZZStrategy is ZZZModule {
     uint256 public constant RANGE_POLICY_VERSION = 1;
+    /// @notice Physical outside-range upkeep, with a governed range-change exception.
+    uint256 public constant MAINTENANCE_POLICY_VERSION = 2;
     /// 0 preserves historical token1/token0; 1 expresses token0/token1.
     mapping(bytes32 => uint8) public rangeOrientation;
     struct KeeperRangePolicy {
@@ -161,8 +163,23 @@ contract ZZZStrategy is ZZZModule {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (!c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval) return false;
         uint160 ref = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
-        uint256 delta = _displacement(p.poolId,p.centerX96,ref);
-        return delta >= uint256(c.triggerBps) * 1e14 || _rangeUpdatePending(p, c);
+        _checkedSpot(p.poolId,c,ref);
+        (int24 lower,int24 upper) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).ticks(p.lpTokenId);
+        if (lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) revert InvalidState();
+        int24 tick = _checkedPoolTick(p.poolId,c);
+        // A true range exit cannot bypass the governed minimum interval. A
+        // deliberate width/orientation change may still apply while in range.
+        return tick < lower || tick >= upper || _rangeUpdatePending(p,c);
+    }
+    /// @dev Preserve v4's exact downward-crossing tick, which may be one below
+    /// getTickAtSqrtPrice. Using a recomputed tick would misclassify that edge.
+    function _checkedPoolTick(bytes32 poolId,PoolConfig memory c) private view returns(int24 tick) {
+        uint160 price; uint24 protocol; uint24 fee;
+        (price,tick,protocol,fee) = IV4FeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId);
+        if (price < TickMath.MIN_SQRT_PRICE || price >= TickMath.MAX_SQRT_PRICE ||
+            tick < TickMath.MIN_TICK || tick >= TickMath.MAX_TICK || fee != c.key.fee ||
+            (protocol & 0xfff) > 1000 || protocol >> 12 > 1000) revert InvalidState();
+        if (price < TickMath.getSqrtPriceAtTick(tick) || price > TickMath.getSqrtPriceAtTick(tick+1)) revert InvalidState();
     }
     /// @notice A governed width/orientation change can require replacement at a flat price.
     /// Pending is not execution eligibility: cooldown, operations and all Vault

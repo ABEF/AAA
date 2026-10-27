@@ -143,6 +143,7 @@ contract IntegratedEconomicConservationTest is Test {
         royalties=nft.royaltyRewards();CanonicalFixture.bind(address(access));access.seal();
         PoolConfig memory c=registry.get(keccak256(abi.encode(PoolKey(address(0),address(token),10020,200,address(0)))));
         pool=keccak256(abi.encode(c.key));
+        vault.migrationBudget().setCompoundInterval(pool,600); // Explicit fixture cadence, independent of rebalances.
         key=CoreKey(Currency.wrap(address(0)),Currency.wrap(address(token)),10020,200,IHooks(address(0)));
         core.initialize(key,uint160(1<<96));
         core.setProtocolFeeController(address(this));core.setProtocolFee(key,uint24(1000|(1000<<12)));
@@ -565,7 +566,7 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),shares);
         assertEq(royalties.claimable(id,address(0)),royalty);
         assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
-        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),2);_assertBacking();
+        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),3);_assertBacking();
         vm.expectRevert();compounder.compound(bucket,1,block.timestamp+100);
         assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
     }

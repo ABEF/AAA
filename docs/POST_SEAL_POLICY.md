@@ -11,7 +11,8 @@ owns qualification; the [operator manual](OPERATOR_MANUAL.md) owns exact procedu
 | Category | What remains configurable | Limit |
 | --- | --- | --- |
 | Governance | Direct governance wallet and proposal/acceptance handover, without delay. | No generic executor/timelock; guardian/keeper and immutable mint recipient do not rotate automatically. Lost governance has no hidden administrator rescue. |
-| Routine LP operation | Roles, pause, supported range/orientation, triggers, cooldowns, approved +/-25/50% keeper selection and operating ceilings. | Applies only before `lpExitStarted`. Ordinary unpause cannot undo collective exit. |
+| Routine LP operation | Roles, pause, supported manual range/orientation, hard rebalance interval and operating ceilings. Policy2 uses actual outside ticks or explicit range change; the legacy movement field does not trigger replacement. | Applies only before `lpExitStarted`. Initial intended interval12hours remains governable. Ordinary unpause cannot undo collective exit. |
+| Compound cadence | Budget3 `setCompoundInterval(poolId,seconds)`, default3600 and governed600seconds-7days. | Independent interval; no clock/backing rewrite or compound postponement of due rebalance. |
 | Inputs | Enable/disable/re-enable native ETH and the fixed ZZZ with reviewed append-only source policies. | No third input or post-seal replacement ZZZ. Source, Buyback and settlement identities must match before seal. |
 | LP pools | Admit initialized pinned static hookless native ETH/fixedZZZ fee tiers; one contribution pool at a time. | No generic ERC20/WETH LP admission or arbitrary different-pair movement. Movement and deposit/route cutover are separate actions. |
 | Conversion venues | Reviewed typed single-hop v3/v4 routes for contributions or already-earned LP/royalty balances. | Conversion admission does not add an LP currency or input. Explicit wrapper-dependent routes still need wrapper qualification. |

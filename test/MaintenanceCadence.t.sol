@@ -15,6 +15,7 @@ contract MaintenanceCadenceTest is PooledVaultFixture {
         PoolConfig memory c = pools.get(poolId);
         c.minRebalanceInterval = uint32(INTERVAL);
         pools.set(poolId, c);
+        vault.migrationBudget().setCompoundInterval(poolId,uint32(INTERVAL));
         policy.setNeed(false);
     }
 
@@ -30,7 +31,7 @@ contract MaintenanceCadenceTest is PooledVaultFixture {
         uint256 id = activatedPosition();
         uint256 bucket = _bucket();
         uint256 created = vault.group(bucket).lastRebalance;
-        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(), 2);
+        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(), 3);
         venue.setFees(100, 100);
         vm.warp(created + INTERVAL - 1);
         assertFalse(_ready(bucket));
@@ -162,11 +163,9 @@ contract MaintenanceCadenceTest is PooledVaultFixture {
         uint256 bucket = _bucket();
         vm.warp(block.timestamp + INTERVAL);
         PoolConfig memory c = pools.get(poolId);
-        c.minRebalanceInterval = 1200;
-        pools.set(poolId, c);
+        vault.migrationBudget().setCompoundInterval(poolId,1200);
         assertFalse(_ready(bucket));
-        c.minRebalanceInterval = uint32(INTERVAL);
-        pools.set(poolId, c);
+        vault.migrationBudget().setCompoundInterval(poolId,uint32(INTERVAL));
         assertTrue(_ready(bucket));
         c.operationsEnabled = false;
         pools.set(poolId, c);
@@ -195,6 +194,7 @@ contract MaintenanceCadenceTest is PooledVaultFixture {
         c.key = PoolKey(address(t0), address(t1), 500, 60, address(0));
         bytes32 secondPool = keccak256(abi.encode(c.key));
         pools.set(secondPool, c); // Explicit mock admission of historical buckets.
+        vault.migrationBudget().setCompoundInterval(secondPool,uint32(INTERVAL));
         uint256 secondNFT = _mint(bob);
         vm.prank(bob);
         vault.activate(secondNFT, secondPool, 1000, 1000, 1, block.timestamp + 100);

@@ -21,7 +21,7 @@ Value/evolution is current marked on-chain LP NAV, not historic dollars contribu
 | LP revenue | Actual fees split80%NFT LP shares/10%equal activated collective/5%compound/5%ZZZ buyback-burn. |
 | Royalties | ERC-2981 requests5%; actual eligible receipts shared100% at rarity weights1/2/3. Not universal marketplace enforcement. |
 | Custody | No holder redemption during normal operation. Governance may irreversibly close LP and return proportional actual ETH+ZZZ directly to current NFT owners; no external custodian. |
-| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; rebalance uses separate trigger/cooldown/guards. Approved ranges may use ZZZ-price-in-ETH +/-25/50%. Polling is not an exact execution promise. Compound capability2 coordinates standalone work with LP replacement and prioritizes rebalance/adaptive selection; it never resets the rebalance clock. |
+| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; maintenance policy2 uses actual physical range exit or operator width update after the configured hard minimum (initial12hours). Operator selects ZZZ-price-in-ETH +/-25/50%; matching service adds durable1-10minute jitter/hourly ordinary inside checks. Compound capability3 has its own interval (default1hour); it yields to due rebalance and never resets that clock. Polling is not an execution promise. |
 
 Current source profile is accounting4/governance2/fee intake1/custody3/pricing2/
 routing2/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
@@ -53,10 +53,11 @@ The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manu
 +/-25/50% ranges, initial twelve-hour outside-only upkeep with hourly eligible
 checks and durable 1-10-minute service jitter, reviewed best swap venues separate
 from the LP target, useful residual reinvestment and $1m cumulative per-NFT cap.
-These are design requirements, not implemented source or live settings. Early
-out-of-range execution, explicit in-range operator width changes and compound
-interval coupling await answers. Current router/eligibility/cadence remain as
-implemented. Hourly harvest stays independent; per-currency thresholds, growing
+The timing decisions are settled and implemented in fresh Strategy2/Budget3 and
+matching versioned keeper/API source; no running settings/services changed.
+Twelve hours is a hard initial minimum; explicit width changes can apply inside
+after cooldown; compound has its own interval. Best-route balancing and a new
+sizing solver remain design work. [Scoped evidence](reports/maintenance-policy-20261027/VERIFICATION.md). Hourly harvest stays independent; per-currency thresholds, growing
 existing LP and idle-only reinvestment already exist. No new volatility analysis,
 blanket dust sweep, cumulative breaker or staged migration was selected.
 

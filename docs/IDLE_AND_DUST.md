@@ -58,9 +58,11 @@ harvest, adds only actually released designated compound, and checks retained
 LP plus idle afterward at that same price vector. The stricter venue idle-loss
 guard, actual LP increase and 5% idle ceiling still apply. NFT shares are unchanged.
 
-Fresh accounting4 requires Budget `IDLE_COMPOUNDING_VERSION()==2`. Every
+Fresh maintenance policy2 requires Budget `IDLE_COMPOUNDING_VERSION()==3`. Every
 standalone compound, including idle-only work or work requiring no swap, waits
-until `max(lastCompound(bucket), Position.lastRebalance) + minRebalanceInterval`.
+until `max(lastCompound(bucket), Position.lastRebalance) + compoundInterval(poolId)`.
+The independent pool interval defaults to3600seconds; governance tunes it through
+`setCompoundInterval(poolId,seconds)` within600seconds-7days, without resetting clocks.
 This includes the wait after initial LP creation or replacement. It also yields
 when `Strategy.needsRebalance(bucket)` is true or
 `Strategy.keeperRangeTarget(poolId)` offers an approved adaptive selection.
@@ -82,7 +84,7 @@ used to reconcile the operation.
 
 Keeper scheduling is separately opt-in. Fresh accounting4 requires
 `idle_compounding_budget` and its exact reviewed runtime pin for every due
-compound, including reserve-only jobs. It verifies capability2, mutual Vault
+compound, including reserve-only jobs. Fresh policy2 verifies capability3, mutual Vault
 binding and `compoundReady`; a missing/old helper is not silently accepted.
 Configure reviewed Budget/runtime pins,
 positive raw thresholds for **both actual currencies** and an explicit interval;
@@ -118,7 +120,8 @@ values remain to be qualified.
 
 The earlier [scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md)
 separates actual installed-v4 local execution from substituted feeds, tokens,
-VRF and maximum-state gas fixtures; it does not verify later capability2 timing.
+VRF and maximum-state gas fixtures; it does not verify later capability3 timing.
+Current upkeep source/evidence is [maintenance policy2](../reports/maintenance-policy-20261027/VERIFICATION.md).
 Real depth/ticks, dual sources, route costs,
 MEV/turnover, keeper profitability, exact-release size/gas and independent audit
 remain release requirements. Wider ranges and ten-minute checks do not guarantee

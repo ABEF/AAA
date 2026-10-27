@@ -217,7 +217,8 @@ class ActivationTransactions:
         req['bucket']=bucket
         liquidity_context=contribution_context(p,pins,req['pool'],bucket,position,account,header,block,
             range_policy_version=cfg.range_policy_version,
-            range_policy=cfg.range_policies.get(req['pool']))
+            range_policy=cfg.range_policies.get(req['pool']),
+            maintenance_policy_version=cfg.maintenance_policy_version)
         current=p._call(pins['nft'],'currentLPValue(uint256)',req['id'],block=block,words=2)
         available=_bool(current[0]);current_value=int(current[1],16)
         if not available and current_value: raise ProjectionError('Unavailable current NFT valuation contains a value')
@@ -286,6 +287,8 @@ class ActivationTransactions:
                               'deployment_configuration_sha256':p.identity,'activation_configuration_sha256':cfg.identity,
                               'accounting_version':p.accounting_version,'routing_version':cfg.routing_version,
                               'pricing_version':cfg.pricing_version,
+                              **({'maintenance_policy_version':cfg.maintenance_policy_version}
+                                 if cfg.maintenance_policy_version else {}),
                               **({'review_policy_version':1} if cfg.review_policy_version == 1 else {})},
                 'wallet_revalidation_required':True,'state_overrides':False,
                 'scope':'Confirmed-block unsigned preview. Wallet must recheck owner/network, exact calldata, '

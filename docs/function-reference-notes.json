@@ -1383,14 +1383,15 @@
           }
         },
         "needsRebalance(uint256)": {
-          "purpose": "Read whether an active shared bucket’s approved cooldown and price/range trigger allow considering rebalance. True is not a successful simulation or guarantee of execution; keeper still needs full loss/minimum/gas guards.",
+          "purpose": "Read whether active shared LP has passed its governed hard cooldown and is physically outside its actual ticks or has a deliberate desired-range update. Reference movement alone does not trigger policy2.",
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "id is SHARED BUCKET ID, not an individual NFT ID."
           },
           "outputs": {
-            "0": "Boolean price displacement or pending physical-range update after pool cooldown; unsupported/inactive positions return false."
-          }
+            "0": "True only after the configured cooldown for actual tick outside [lower,upper) or pending operator range change. Fresh independent price/spot and consistent tick/fee checks apply; inactive/disabled/not-due positions return false."
+          },
+          "notes": "Eligibility does not prove transaction success. Caller/execution/lifecycle/value/minimum/gas guards remain; service jitter cannot constrain a key calling contracts directly."
         },
         "rangeUpdatePending(uint256)": {
           "purpose": "Check whether existing physical LP ticks differ from current width/orientation policy at its recorded center. A pending update is not execution eligibility; pause, cooldown, current prices and loss guards still apply.",
@@ -1428,6 +1429,13 @@
             "0": "True swaps currency0→currency1; false the reverse.",
             "1": "Raw input token units/wei; zero means no planned conversion.",
             "2": "Raw output token units/wei after conservative price/fee/slippage guards; not gas or USD value."
+          }
+        },
+        "MAINTENANCE_POLICY_VERSION()": {
+          "purpose": "Read explicit upkeep eligibility version2: physical outside-range or deliberate operator range update after the governed hard interval.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "2 for outside-or-operator-range eligibility; not evidence that a historical deployment was upgraded."
           }
         }
       },
@@ -4087,10 +4095,10 @@
       "purpose": "Fixed Vault companion enforcing captured contribution/maintenance execution budgets, actual deployed/idle backing and fair per-NFT share issuance. No external-custody conversion path.",
       "functions": {
         "IDLE_COMPOUNDING_VERSION()": {
-          "purpose": "Identify the compound cadence compatibility version: 2 coordinates all standalone compounding with LP replacement and rebalance priority.",
+          "purpose": "Identify compound capability3: independent per-pool compound interval with physical LP/compound anchor and rebalance priority.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "2 for the coordinated cadence; historical 1 retains its separate compound clock."
+            "0": "3; historical capability2 used the pool rebalance interval, and capability1 retains its original separate clock."
           }
         },
         "MAX_LOSS_BPS()": {
@@ -4251,7 +4259,7 @@
           }
         },
         "lastCompound(uint256)": {
-          "purpose": "Read the last successful standalone compound timestamp; V2 readiness also considers Position.lastRebalance and strategy priority.",
+          "purpose": "Read last successful standalone compound timestamp; capability3 also considers physical LP replacement and its separate interval/strategy priority.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT ID."
@@ -4261,13 +4269,13 @@
           }
         },
         "compoundReady(uint256)": {
-          "purpose": "Check V2 compound cadence and strategy priority for a shared LP bucket.",
+          "purpose": "Check capability3 independent compound interval and rebalance priority for a shared LP bucket.",
           "access": "Anyone; read-only. Only fixed Vault can execute the guarded checkpoint.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or Uniswap position NFT ID."
           },
           "outputs": {
-            "0": "True only for active physical LP with operations enabled, current interval elapsed since max(lastCompound,lastRebalance), no eligible rebalance and no available preapproved range selection."
+            "0": "True only for active physical LP with operations enabled, compoundInterval(pool) elapsed since max(lastCompound,lastRebalance), no eligible rebalance and no available preapproved range selection."
           },
           "notes": "May revert on unavailable dependencies. Not complete transaction readiness: Vault still enforces lifecycle, authorization, deadline, pricing and value guards. Does not delay harvesting/claims or reset the rebalance clock."
         },
@@ -4445,6 +4453,32 @@
           "outputs": {
             "0": "The immutable Vault alone allowed to run authenticated custody checks and checkpoints."
           }
+        },
+        "DEFAULT_COMPOUND_INTERVAL()": {
+          "purpose": "Read initial standalone compound interval before a per-pool governance override.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "3600seconds (one hour), an eligibility minimum rather than a mandatory hourly trade."
+          }
+        },
+        "compoundInterval(bytes32)": {
+          "purpose": "Read the admitted pool standalone-compound interval independently of its rebalance interval.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "poolId": "Exact admitted pool ID, not a shared bucket or NFT ID."
+          },
+          "outputs": {
+            "0": "Configured seconds, or3600 before the first override. Unknown/inconsistent pool identities revert."
+          }
+        },
+        "setCompoundInterval(bytes32,uint32)": {
+          "purpose": "Configure a pool standalone-compound interval without changing backing or recorded clocks.",
+          "access": "Governance through controller; no preparation/non-operating canonical state or active captured operation. Ordinary pause permits configuration.",
+          "inputs": {
+            "poolId": "Exact admitted pool ID whose ETH/ZZZ compound cadence will change.",
+            "interval": "Seconds from600 through604800 (seven days)."
+          },
+          "notes": "Emits CompoundIntervalChanged. A shorter interval may make work immediately eligible; it never resets lastCompound/lastRebalance or changes the pool rebalance interval. Existing local service intervals can impose additional delay."
         }
       },
       "constructor": {

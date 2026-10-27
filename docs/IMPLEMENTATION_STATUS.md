@@ -23,7 +23,7 @@ routing2/reviewed Entry1 and canonical
 is a terminal local status. Historical1/2/3 deployments/readers/journals retain
 original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLECTIVE_EXIT.md).
 
-Fresh Budget compound capability2 enforces the current interval after max(lastCompound,lastRebalance), and yields to an eligible rebalance or available adaptive range selection. Rebalance never waits on compound. The accounting4 keeper uses a pinned compoundReady read; hourly harvesting/claims and historical1/2/3 readers remain independent. See [operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) and [scoped verification](../reports/maintenance-cadence-20261027/VERIFICATION.md). No live service or site changes.
+Fresh Strategy maintenance policy2 checks actual physical range exit or an operator range update after the hard governed interval (initial12hours). Matching keeper mode2 persists1-10minute jitter and hourly ordinary inside checks without blocking harvest/receipt recovery. Budget capability3 uses its separately governed compound interval after max(lastCompound,lastRebalance), yielding to due rebalance; it never resets that clock. Explicit API profiles verify Strategy2/Budget3 and preserve historical readers. [Operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing), [new scoped verification](../reports/maintenance-policy-20261027/VERIFICATION.md). No live service/site changes.
 
 Current [manipulation-related hardening](../reports/manipulation-hardening-20261027/VERIFICATION.md) adds keeper/pause completion checks for rebalance/compound/buyback and corrects paid-revert health visibility across restart/unrelated success. It introduces no new economic caps, roles or custody path. Actual profitability, real market/feed/ordering and service qualification remain open; defensive checks are not attack-profit evidence.
 
@@ -48,13 +48,12 @@ gas separate and stronger caller/venue minima retained. Raw exit has explicit ra
 minima and no aggregate-loss guarantee. An unqualified route/feed cannot be made
 safe by a documentation claim or simulated example.
 
-Requested [operator-selected LP execution](LP_EXECUTION_POLICY.md) is recorded
-separately from these implemented capabilities: current Vault balancing still
-uses its LP pool; outside-only twelve-hour/jitter upkeep, stronger normally-one-
-swap sizing and new route selection are not implemented or qualified. Manual
-range selection, per-currency compound thresholds and idle reinvestment already
-exist. The $1m per-NFT cap is existing configuration, not a new function. No
-contract/keeper source or runtime changed in this design/documentation update.
+The approved timing slice of [operator-selected LP execution](LP_EXECUTION_POLICY.md)
+is implemented; actual rollout and economic qualification remain open. Current
+Vault balancing still uses its LP pool: best-execution route selection and the
+new normally-one-swap solver remain unimplemented. Manual widths, per-currency
+thresholds, growing existing LP and idle reinvestment already exist. The $1m
+per-NFT cap is existing configuration, not a new function or capacity proof.
 
 ## Backend and operations
 

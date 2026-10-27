@@ -30,11 +30,13 @@
     "access": "0x<reviewed deployed runtime keccak256>",
     "vault": "0x<reviewed deployed runtime keccak256>",
     "fees": "0x<reviewed deployed runtime keccak256>",
-    "principal_exit": "0x<reviewed deployed runtime keccak256>"
+    "principal_exit": "0x<reviewed deployed runtime keccak256>",
+    "strategy": "0x<reviewed deployed runtime keccak256>",
+    "pools": "0x<reviewed deployed runtime keccak256>"
   },
   "keystore": "/run/zzz/keystore.json",
   "password_file": "/run/zzz/password",
-  "interval_seconds": 600,
+  "interval_seconds": 60,
   "confirmations": 12,
   "max_gas_limit": 2500000,
   "max_gas_price_wei": "5000000000",
@@ -55,7 +57,6 @@
     "compound": false,
     "compound_idle": false,
     "compound_interval_seconds": 3600,
-    "minimum_compound_units": 1000,
     "harvest": true,
     "harvest_interval_seconds": 3600
   },
@@ -73,5 +74,6 @@
   "fee_intake_version": 1,
   "principal_distribution": {
     "enabled": false
-  }
+  },
+  "maintenance_policy_version": 2
 }

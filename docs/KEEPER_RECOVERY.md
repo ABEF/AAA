@@ -203,6 +203,29 @@ the actual chain fee model before production.
 
 An unused signer can explicitly bootstrap using `python -m keeper.monitor --config REVIEWED_CONFIG --initialize-state`. This never signs; it requires reviewed deployment pins, a fresh head and zero latest/pending nonces, and refuses existing state. Legacy state without a nonce checkpoint requires reviewed migration, never deletion or a blind nonce insertion.
 
+## Maintenance policy2 schedule recovery
+
+Fresh accounting4 service configuration explicitly selects maintenance_policy_version2
+and authenticates Strategy2. Enabled standalone compound also authenticates Budget3.
+Accounting4 configs without this new field retain historical mode1; do not change
+the field/runtime pin to relabel a running deployment. API preparation separately
+requires explicit1or2 for accounting4.
+
+The optional outside_rebalance_v2 journal namespace stores only bounded scheduling
+records: stable deployment/pool/LP/clock identity, hourly ordinary check time or
+one persisted60-600second jitter. Top-ups, harvesting and balances cannot redraw
+it. Only obsolete scheduling records are pruned; existing pending, nonce, receipt,
+spend and history fields remain. Save failure prevents signing. Restore the same
+record after restart; never delete it to redraw a convenient delay. Downtime checks
+current state once, not missed rebalance cycles. A deliberate width change bypasses
+the local hourly wait but preserves on-chain cooldown and the jitter. Fresh eligibility
+is checked before simulation and after gas review. Jitter is not an on-chain guarantee.
+
+Use fast source-example60second observation while keeping hourly harvest separate.
+A local JSON change needs controlled restart and fresh matching health; changing
+on-chain range/rebalance/compound intervals normally does not. No existing service
+is upgraded by publishing this guide. [Exact policy/evidence](LP_EXECUTION_POLICY.md).
+
 ## Logs, health and fallback
 
 The heartbeat now includes `configuration_sha256`, a hash of the exact loaded

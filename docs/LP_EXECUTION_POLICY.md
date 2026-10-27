@@ -1,9 +1,11 @@
 # LP execution and operator-selected maintenance
 
-Reviewed 2026-10-27 against source main `9c8a43d`. This is a **design and decision
-record**, not an implemented strategy, configured deployment or operating
-rehearsal. [Todo](../TODO.md#task-lp-execution-routing) owns implementation status.
-Current source, old deployments, journals and sites retain their existing rules.
+Reviewed2026-10-27. Maintenance policy2 / Budget3 and the matching keeper/API
+implement the approved timing slice below; [verification](../reports/maintenance-policy-20261027/VERIFICATION.md)
+records exact scope. Best-route execution, a new sizing solver and timed slicing
+remain design work, not implemented features. No deployment/configuration or
+operating rehearsal is implied. [Todo](../TODO.md#task-lp-execution-routing) owns implementation status.
+Old deployments, journals and sites retain their actual historical code/profiles.
 
 ## Current behavior and requested direction
 
@@ -11,17 +13,17 @@ Current source, old deployments, journals and sites retain their existing rules.
 | --- | --- | --- |
 | Swap venue | Vault balancing always uses its LP bucket's pool. Buyback accepts an admitted pool; Entry/reward converters have separate typed routes. None discovers a globally best execution. | Select the best executable full-operation result among a bounded set of reviewed ETH/fixed-ZZZ venues, independently of the LP destination. |
 | Range choice | Governance selects the desired width; a separate optional keeper policy can automatically select 25%/50%. | Operator selects +/-25% or +/-50% in ZZZ price in ETH. No automatic volatility analysis or range switching is requested for this operating policy. Keep optional automation disabled. |
-| Rebalance trigger | Reference displacement from the recorded centre or a pending range change, after the pool cooldown. | Ordinary automatic replacement only outside the actual physical range; requested 12-hour interval, then 1-10-minute service jitter and hourly checks while still in range. Exceptions below need decisions. |
+| Rebalance trigger | Policy2 uses actual physical range exit or an explicit operator range change, after the governed hard pool cooldown. | Initial12-hour minimum even after early exit; matching service adds durable1-10minute jitter and hourly ordinary checks while eligible but inside. |
 | Contributions | The first activation creates the shared LP; later activations/top-ups increase it at its actual ticks. Balancing can swap attributed idle and released compound. | Keep an existing LP/range; improve marginal-input execution without making contributions an indirect full-bucket maintenance trigger. |
 | Residual assets | Attributed idle can already be reinvested, including without new fees, and joins collective principal return. | Combine useful residuals later; no zero-dust target, arbitrary sweep or external recipient. |
 | Per-NFT limit | Governance configures cumulative gross contributions through `maxPositionUSD`. | Intended configuration: $1,000,000 per NFT, not a guaranteed current NAV or a shared-market capacity allowance. |
 
-Three consequential decisions were asked and remain pending unless an answer is
-recorded here: whether 12 hours is hard even after an earlier range exit; whether
-an explicit governance width change may replace still-in-range LP after cooldown;
-and whether standalone compounding should receive a separate interval. The current
-compound helper uses the pool rebalance interval, so simply setting 12 hours also
-delays standalone compound. Do not select these answers by implementation default.
+Settled decisions: twelve hours is the initial hard rebalance minimum even after
+an early range exit; deliberate operator width changes may apply after cooldown
+while old LP is still in range; standalone compound has a separate configurable
+interval and hourly harvesting remains independent. Defaults do not install a
+production configuration. Jitter is service-only; outside/cooldown/value guards
+are enforced on-chain.
 
 ## Execution venue selection
 
@@ -82,15 +84,16 @@ does not contradict the promised economic configurability. Its final ceilings
 remain a design decision; this record does not silently raise the current 2%
 venue ceiling or weaken any caller's signed protection.
 
-## Requested outside-only schedule
+## Implemented outside-only upkeep policy2
 
-This is a proposed scheduler/state policy, **not current source behavior**:
+The new versioned source implements this scheduler/state policy:
 
 1. Anchor the cycle to confirmed physical LP creation/replacement, not a process
    start, top-up, refresh, failed attempt or last hourly harvest.
-2. Apply the requested 43,200-second interval. Explicitly settle whether genuine
-   early range exit can bypass that wait. With a hard interval, exit after one
-   hour can leave roughly eleven hours without conventional active-range fees.
+2. Apply the configured hard interval, initially43,200seconds. Genuine early range
+   exit does not bypass it. Exit after one hour can leave roughly eleven hours
+   without conventional active-range fees. Governance may deliberately change
+   the interval within supported bounds after observing actual economics.
 3. At an eligible evaluation, use the authenticated actual pool tick and the
    physical LP's real ticks. Active range is `lower <= tick < upper`. Preserve
    legitimate downward-boundary slot0 tick semantics; do not infer it from a
@@ -98,11 +101,14 @@ This is a proposed scheduler/state policy, **not current source behavior**:
 4. If still inside, persist another ordinary evaluation one hour later. Keep
    faster receipt/health observation independent; hourly decision checks can
    add nearly another hour after a later boundary crossing.
-5. If outside, choose one OS-CSPRNG delay of 60-600 seconds and persist it with
+5. If outside or an explicit operator range change is pending, choose one
+   OS-CSPRNG delay of60-600seconds and persist it with
    deployment, bucket, LP and policy identity. Do not block the event loop or
    redraw on every check/restart. Continue receipt handling and hourly harvest.
 6. At the due time, re-read actual range, prices, routes and economics; simulate
-   fresh exact calldata. If back inside, cancel the attempt. Submit only when
+   fresh exact calldata. If back inside with no operator range change, cancel
+   the attempt. A new explicit width request bypasses the local hourly wait,
+   never the hard contract cooldown. Submit only when
    the contract's actual outside/cooldown/authorization/execution rules pass.
 7. Reset the anchor only after confirmed successful LP replacement. Preserve
    ambiguous hashes, normal nonce recovery and paid-revert backoff. Recovery
@@ -113,12 +119,11 @@ or a keeper that bypasses Python. The twelve-hour lower bound and market state
 remain observable. No new VRF service, timestamp-derived secure randomness,
 timelock, cumulative-loss breaker or protected-RPC guarantee is selected.
 
-`triggerBps=100` currently means a 1% reference-price movement can permit a
-replacement even deep inside a wide range. It is **not** a 1% tolerance for an
-imperfect centre. The outside-only design must not accidentally retain that
-automatic trading trigger. The user's approximate-centre remark does not select
-a new oracle/spot tolerance. Deliberate operator range changes need an explicit
-exception decision because they can otherwise remain unapplied indefinitely.
+Historical policy1 used `triggerBps=100` as a1%reference-price movement trigger,
+not a centring tolerance. Policy2 retains the ABI field/configuration bounds but
+does not let that movement authorize ordinary replacement. Actual tick membership
+or the deliberate operator width change decides eligibility after cooldown.
+Approximate centring does not select a new oracle/spot tolerance.
 
 ## Harvest, compound and contributions
 
@@ -131,7 +136,8 @@ Currency-specific `compound_thresholds` already exists. Idle compounding require
 the actual-currency map; reserve-only historical/common scheduling can still use
 a shared raw-unit fallback. Do not describe the existing currency-aware feature
 as missing. Review explicit ETH/ZZZ economic thresholds for the fresh service;
-requiring them in profile4 would be a separate small implementation change.
+fresh keeper policy2 requires the map for enabled standalone compounding;
+historical scheduling retains its old explicit fallback.
 
 After the first activation creates a bucket's LP, contributions keep that existing
 LP ID/ticks. ETH-only or ZZZ-only funding
@@ -209,12 +215,16 @@ funded NFTs could admit $1bn of cumulative contributions. This is not promised
 NAV, executable depth or release capacity. No production binding is configured
 by this record. Shared exposure must still be supported by real execution depth.
 
-On-chain range/cooldown/cap changes are read fresh and normally need no keeper
+Budget3 compound interval is independent: default3600seconds, governed
+`setCompoundInterval(poolId,seconds)` within600seconds-7days, measured after
+max(lastCompound,lastRebalance), with due rebalance priority and no clock reset.
+On-chain range/cooldown/compound-interval/cap changes are read fresh and normally need no keeper
 restart. Local JSON schedule/threshold/route-candidate changes require controlled
 restart because there is no hot reload. Reconcile pending intents around either
 kind of policy change; a mined transaction cannot be undone by editing config.
 Current rebalance calldata does not bind a historical configuration hash.
 
-This review changed documentation only. No ABI, contract, keeper code/config,
-deployment, service, journal, site, signer or funds changed. No unchanged Solidity
-or keeper regression suite was rerun or relabelled as verification of this design.
+This upkeep change modifies versioned Strategy/Budget ABI and keeper/API source;
+actual deployments, services, journals, sites, signer policy and funds are unchanged.
+Verification is scoped to the delivered upkeep slice, not economic profitability,
+a globally optimal route, a live provider or the deferred timed-replacement design.

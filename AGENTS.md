@@ -44,7 +44,7 @@ before changing behavior. This file contains current instructions, not a timelin
   and a caller maximum. Defaults: contribution2%, conversion1%, maintenance3%;
   each governance ceiling10%, gas separate. Do not confuse source agreement,
   budget retention, idle ceilings or caller minima with each other.
-- Fresh Budget compound capability2 uses max(lastCompound,lastRebalance) plus the current pool interval, and yields to eligible rebalance/adaptive range selection. It covers all standalone compound, not user contributions/harvest/claims. Rebalance never waits on the compound clock. Authenticate the V2 helper for accounting4 keeper work; preserve historical V1 readers/journals.
+- Fresh Strategy maintenance policy2 uses actual physical tick range exit or deliberate operator range change after the configured hard interval (initial12hours), never the old movement trigger. Matching keeper policy2 adds durable60-600second service jitter/hourly ordinary inside checks; preserve manual widths and fast independent receipt/harvest work. Budget capability3 uses max(lastCompound,lastRebalance) plus its independent per-pool compoundInterval (default3600seconds, governed600seconds-7days), yields to due rebalance and never changes its clock. Fresh API configs declare policy2; explicit historical policy1/helper2 and older readers/journals remain separate. See [current evidence](reports/maintenance-policy-20261027/VERIFICATION.md).
 - Fixed LP allocation80/10/5/5: individual shares / equal activated collective /
   compound / ZZZ buyback-burn. Rarity affects only actual received royalties at
   Commun1/Rare2/Legendary3. No Power score or configurable split.
@@ -72,7 +72,7 @@ before changing behavior. This file contains current instructions, not a timelin
   and duplicate claims/conversions/imports. Earnings, claimable and claimed differ.
   Missing or inconsistent data must remain unavailable/error, never guessed zero.
 
-- Requested next LP operating policy is recorded in [execution decisions](docs/LP_EXECUTION_POLICY.md): manual +/-25/50% selection, twelve-hour outside-only upkeep with hourly eligible checks and durable 1-10-minute service jitter, best reviewed execution venues independent of the LP target and $1m cumulative contributions per NFT. Source has not implemented that scheduler/router; early-outside, deliberate width-change and separate compound-cadence decisions are pending. Do not silently interpret 1% centring tolerance as the old movement trigger or replace independent pricing with pool spot.
+- Requested next LP operating policy is recorded in [execution decisions](docs/LP_EXECUTION_POLICY.md): manual +/-25/50% selection, twelve-hour outside-only upkeep with hourly eligible checks and durable 1-10-minute service jitter, best reviewed execution venues independent of the LP target and $1m cumulative contributions per NFT. The approved timing slice is implemented in policy2/Budget3; best-route balancing and new solver remain pending. Twelve hours is a hard initial minimum, explicit range changes may apply inside after cooldown, and compounding has its own interval. Do not silently interpret 1% centring tolerance as the old movement trigger or replace independent pricing with pool spot.
 
 ## Verification and documentation workflow
 

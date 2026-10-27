@@ -1,0 +1,602 @@
+[
+  {
+    "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+    "method": "testCompoundPoliciesArePerAdmittedPool()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+    "method": "testDefaultCompoundHourIsIndependentOfTwelveHourRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+    "method": "testIntervalChangesNeverResetPhysicalOrCompoundClocks()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+    "method": "testOrdinaryPauseAllowsReviewedIntervalConfiguration()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+    "method": "testPreparationCanonicalAndActiveSnapshotRejectPolicyChanges()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+    "method": "testUnknownPoolBoundsAndUnprivilegedSetterFailClosed()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+    "method": "testCompoundAndLaterContributionKeepIncumbentValueAndEarnedRights()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+    "method": "testFivePercentTracksLossNewPhysicalLpAndAppreciation()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+    "method": "testFuzzShareRoundingAndRepeatedRebalancePreserveValue(uint96,uint8)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+    "method": "testRepeatedReplacementTransferRoyaltiesAndFailedRebalanceRollback()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ApprovedTwoPercentDefaultAndStricterOnePercentApplyToActivationAndGrowth()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4BalancedJoinsCannotCaptureOldIncomeOrPrefundsAndPreserveShares()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4CompoundYieldsToRangeRebalanceWithoutDelayingIt()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ContributionsAboveOldRangePreserveIncumbentsAndRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ContributionsBelowOldRangePreserveIncumbentsAndRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4CoreDonationCannotGiveNewcomerPastFundedFees()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4IdleOnlyCompoundGrowsLPWithoutMovingSharesOrTakingPrefunds()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4InverseZZZPriceRangeDeploysGrowsAndKeepsFeeAccounting()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4LateSourceRoundCallbackRollsBackLPFundsEligibilityAndFees()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4SecondBalancingSwapFailureRollsBackTheFirstSwapAndAllEntitlements()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4StalePricesBlockRebalanceButPreserveHarvestAndClaimAccounting()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4UnfeasibleDepthStillRollsBackEveryLedger()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testChangedConfigurationDisablesEligibilityUntilGovernanceReviewsAgain()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testExplicitOrientationPreservesLegacyUntilApprovedAndInvertsOutwardTicks()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testFuzzInverseEndpointsBracketExactTickNeighbors(int24,bool,bool)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testInversePhysicalRangeReplacesMovementTriggerInBothDirections()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testNarrowWidenHysteresisAndPhysicalApplicationRequireSeparateCheckpoints()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testPolicyIsDisabledByDefaultAndCannotChooseUnapprovedWidths()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testRegistryCallbackPreservesEveryControllerLifecycleAndStopGuard()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testStopsLocksAndBadPriceCannotEnableRangeSelection()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+    "method": "testThresholdBoundsOrientationAndCooldownAreGoverned()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testAvailablePreapprovedRangeSelectionTakesPriorityBeforeItIsApplied()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testBucketClocksAreIndependent()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testCompoundThenCompoundUsesOwnExactBoundary()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testEligibleRebalanceRejectsCompoundBeforeFeeOrClockMutation()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testFirstCompoundWaitsAfterCreationAtExactBoundary()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testGovernedIntervalChangeAndOperationsDisableAreRespected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testLateCompoundFailureRollsBackBackingAndCooldownForRetry()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testMissingAndDormantBucketsCannotCompound()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testRebalanceThenCompoundWaitsWithoutBlockingHarvestOrClaim()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testRecentCompoundCannotPostponeAnEligibleRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+    "method": "testTopUpDoesNotResetCadenceOrSuppressHarvest()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testActualExitBeforeTwelveHoursWaitsUntilExactBoundary()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testDeliberateWidthChangeAppliesInsideOnlyAfterCooldown()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testExactDownwardCrossingRetainsActualStoredTick()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testFreshnessAndExecutionReferenceAreNotReplacedByPoolSpot()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testGovernedCooldownChangeUsesOriginalPhysicalClock()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testInactiveDisabledAndMalformedPhysicalRangesCannotAuthorizeWork()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testInconsistentTickSqrtAndMalformedFeesRejectEligibility()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testPhysicalLowerIsInclusiveAndUpperExclusive()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testReturnInsideCancelsOrdinaryEligibility()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/OutsideOnlyUpkeep.t.sol:OutsideOnlyUpkeepTest",
+    "method": "testVersionAndOnePercentMoveInsideWideRangeDoNotAuthorizeReplacement()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testCurrentPhysicalPositionIsReadAndMalformedTicksFailClosed()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testDisabledOperationsAndStaleOracleCannotBypassNormalEligibility()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testFuzzAppliedWidthHasNoPersistentMismatch(uint16)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testInactiveAndMissingIdentityCannotAuthorizeRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testMarketMoveInsidePhysicalRangeDoesNotCreateChurn()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testNarrowingWaitsForCooldownThenAppliesOnce()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testRealSealedGovernanceCanImmediatelyApproveRangeChange()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+    "method": "testWideningAndReturningToDeployedPolicy()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationAcceptsExactly98LPAtCurrentTwoPercentBoundary()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationCannotCollectHistoricalSharedRewards()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationCannotIssueSecondNFTOrChargeAnotherMintFee()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationHonorsStricterPoolMinimum()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationLeavesExactAttributedIdle()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationRejects100InputWhenActualLPIsBelow98()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testActivationRequiresAtLeast100USDInput()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testCompoundingAddsOnlyDesignatedShare()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testDonationNeverBecomesAnotherNFTPrincipal()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testDormantCannotTopUpCollectCompoundRebalanceOrMigrate()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testDormantMintForwardsPriceWithoutLiquidityOrRewards()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testDormantTransferOnlyNewOwnerCanActivate()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testExactly100ActualLPActivates()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testFeesNotPrincipal()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testFuzzMintRejectsAnyOverpayment(uint256)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testFuzzMintRejectsAnyUnderpayment(uint256)",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testMostlyIdleActivationRejected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testNFTUserCannotTransferUnderlyingLP()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testNoOwnerWithdrawalEntrypoint()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testOldDepositSelectorCannotBypassPaidMint()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testOnlyKeeperCanRebalance()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testPauseBlocksActivationKeepsDormantNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testPauseBlocksMint()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testRebalanceReplacesLPButPreservesEconomicNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testReceiverReentrancyCannotMintSecondNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testRejectingNFTReceiverRollsBackMintAndPayment()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testRejectingTreasuryRollsBackNFTAndPayment()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testSatelliteCannotIssueAnotherCollection()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testSelfProceedsRecipientRejected()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testTopUpKeepsBothNFTsAndCheckpointsFees()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testTreasuryReentrancyCannotMintSecondNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testUnsealedSystemCannotMint()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testVenueFailureRollsBackActivationKeepsPaidDormantNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testWrongChainCannotActivateCanonicalDormantNFT()",
+    "status": "Success",
+    "reason": null
+  },
+  {
+    "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+    "method": "testZeroProceedsRecipientRejected()",
+    "status": "Success",
+    "reason": null
+  }
+]

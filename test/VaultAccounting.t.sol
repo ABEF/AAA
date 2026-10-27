@@ -171,6 +171,7 @@ contract VaultAccountingTest is PooledVaultFixture {
     }
     function testCompoundingAddsOnlyDesignatedShare() public {
         uint256 id=activatedPosition();venue.setFees(100,100);policy.setNeed(false);
+        vm.warp(block.timestamp+1 hours); // Separate default compound interval.
         compounder.compound(_bucket(),1,block.timestamp+100);
         Position memory p=_record(id);assertEq(p.idle0+venue.a0(p.lpTokenId),1005);
         assertEq(rewards.claimable(id,address(t0)),90);assertEq(fees.buybackBalance(address(t0)),5);assertTrue(membership.eligible(id));assertEq(vault.contributionUSD(id),2000e18);

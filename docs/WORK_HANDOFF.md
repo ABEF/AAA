@@ -5,7 +5,9 @@ Reviewed 2026-10-27. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
-Current fresh source is accounting4/custody3/canonicalV5 with compound cadence2.
+Current fresh source is accounting4/custody3/canonicalV5 with Strategy upkeep2 and
+Budget compound capability3. [New verification](../reports/maintenance-policy-20261027/VERIFICATION.md)
+owns this slice; earlier cadence2 evidence retains its original source scope.
 The earlier holder-return publication was1870cc1; hourly harvest baseline was
 74aaa7c. The [cadence verification](../reports/maintenance-cadence-20261027/VERIFICATION.md)
 owns the latest changed-source evidence and remaining qualification. Verify
@@ -80,26 +82,29 @@ open. Never infer deployment approval from source/docs or local fixture success.
 
 ## Next LP execution policy
 
-Read [the design/decision record](LP_EXECUTION_POLICY.md) and
-[owning task](../TODO.md#task-lp-execution-routing). User requests operator-chosen
-+/-25/50% widths (no automatic volatility selection), initial twelve-hour upkeep,
-ordinary rebalance only outside the actual physical range, hourly eligible checks,
-1-10-minute service jitter, best approved swap venues independent of the target,
-useful dust reinvestment and $1m cumulative contributions per NFT. Three questions
-remain pending: hard twelve-hour wait after early exit, explicit width-change
-exception and separate compound interval. Do not choose answers by implementation.
+The user settled all three timing choices: hard initial12-hour minimum even after
+early range exit; explicit operator width changes may apply inside after cooldown;
+compound has a separate governed interval and hourly harvesting stays independent.
+The new Strategy2/Budget3 and keeper/API policy2 implement the timing slice.
+Read [policy](LP_EXECUTION_POLICY.md), [verification](../reports/maintenance-policy-20261027/VERIFICATION.md)
+and [owning task](../TODO.md#task-lp-execution-routing). Keep manual +/-25/50% widths.
+No current deployment/service/journal/site/signing changes follow from publication.
 
-Current source still uses displacement-or-width-change eligibility, shares the
-pool interval with standalone compound and swaps in the LP pool. Contributions
-already retain LP ID/ticks; currency-specific thresholds and idle-only reinvestment
-already exist. Record current versus requested accurately. No Solidity/keeper/
-config, ABI, service, journal, site or funds changed for this documentation update;
-unchanged suites were not rerun. Next work needs selected decisions and focused
-new-source evidence. Preserve old deployments and unrelated drafts.
+Next functional work remains the best approved balancing venue independently of
+LP target, full-size post-close sizing and normally-one-swap useful placement.
+Current Vault still swaps in its LP pool. $1m per-NFT cumulative cap is existing
+configuration, not a $1bn market-capacity guarantee. Timed10% replacement is a
+separate optional design. Preserve historical profiles and unrelated drafts.
 
 ## Current maintenance cadence
 
-Fresh Budget capability2 coordinates all standalone compounding (including no-swap work) with the last physical LP creation/replacement and compound. Eligible rebalance/preapproved range selection has priority; compound never changes lastRebalance. Hourly harvest and existing holder claims remain independent. Read [operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) and [scoped evidence](../reports/maintenance-cadence-20261027/VERIFICATION.md). Current accounting4 keeper compound scheduling must pin the helper address/runtime/version2 and use compoundReady; old services, journals, Anvil and both sites are untouched.
+Fresh Budget capability3 uses max(lastCompound,lastRebalance) plus its independent
+per-pool compoundInterval, default3600seconds with governance600seconds-7days.
+It yields to due range maintenance; compound never changes lastRebalance. Keeper
+policy2 validates Strategy2/Budget3, persists60-600second jitter and hourly ordinary
+inside checks, and preserves pending-first recovery/hourly harvest. API accounting4
+configs explicitly select historical1 or current2. Existing configs/journals and
+sites remain pinned to their actual old versions. [Operator](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing).
 
 Current source adds post-callback keeper/pause completion checks to rebalance, compound and buyback, and durable-cooldown health visibility after paid reverts. [New evidence](../reports/manipulation-hardening-20261027/VERIFICATION.md) owns the changed-source scope. Matching writer/checker rollout remains unperformed; journals, sites and services are untouched.
 

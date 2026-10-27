@@ -2,7 +2,7 @@
 
 Governance can change the admitted pool's range through direct calls from the selected governance wallet.
 The keeper can then apply it through the ordinary `Vault.rebalance` path even
-if the price has not moved far enough to satisfy the price trigger. A separate,
+while the old position is still within its physical range. A separate,
 default-disabled policy lets it select **only** the reviewed 25%/50% presets under
 governance-approved rules. Selecting a width and moving physical LP are distinct
 transactions; neither gives the keeper general configuration or custody power.
@@ -11,17 +11,16 @@ The following is an undeployed candidate. [Earlier scoped evidence](../reports/l
 and [remaining release gates](../TODO.md) distinguish implemented controls from
 actual provider, strategy/backtest and operating qualification.
 
-## Requested operating policy versus current source
+## Selected operating policy and source versions
 
-The operator-selected [execution policy](LP_EXECUTION_POLICY.md) requests manual
-+/-25/50% widths, an initial twelve-hour interval, outside-only ordinary upkeep,
-hourly eligible range checks and durable 1-10-minute service jitter. These are
-**not implemented by changing the existing interval alone**. Current source below
-still uses reference movement or a pending width change; optional automated width
-selection should remain disabled. Early-outside and deliberate operator-change
-exceptions plus compound cadence are pending decisions. See the [operator calls
-and restart distinction](OPERATOR_MANUAL.md#operator-selected-lp-policy). Historical
-evidence does not verify this requested scheduler.
+Fresh `MAINTENANCE_POLICY_VERSION()==2` requires the configured hard cooldown,
+then actual physical range exit or an explicit desired-width/orientation change.
+Initial intended cooldown is12hours. Manual +/-25/50% widths are selected; leave
+optional automatic selection disabled. The matching keeper adds durable60-600s
+jitter, hourly ordinary checks while eligible but inside, and fast receipt/health/
+harvest observation. Source behavior does not install configuration or services.
+Budget capability3 has a separate compound interval. [Operator procedure](OPERATOR_MANUAL.md#operator-selected-lp-policy),
+[policy and limitations](LP_EXECUTION_POLICY.md), [verification](../reports/maintenance-policy-20261027/VERIFICATION.md).
 
 ## From approval to execution
 
@@ -36,8 +35,8 @@ evidence does not verify this requested scheduler.
    the bucket's **recorded creation/rebalance center**. Using today's price for
    this comparison would cause needless repeated replacements as prices drift.
 3. `needsRebalance` requires an active funded position, enabled operations,
-   the configured cooldown and a fresh reference price. Either the existing
-   price trigger or this range mismatch can then make it eligible.
+   the configured cooldown and a fresh reference price. Either
+   actual physical range exit or this range mismatch can then make it eligible.
 4. The existing keeper discovers that shared bucket and submits the ordinary
    rebalance. Vault's keeper/lifecycle/pause, deadline, price/deviation,
    swap/close/mint minimums, the **captured governed maintenance-loss budget**
@@ -57,7 +56,7 @@ evidence does not verify this requested scheduler.
   in ETH**, the usual token-price view requested for the new presets.
 
 Governance calls `setRangeOrientation(poolId,1)` to opt in. This changes the
-desired range and the direction used for `triggerBps`; it does not rewrite
+desired range and historical displacement orientation; it does not rewrite
 existing physical ticks, historical LP values or NFT rights. Inspect
 `rangeUpdatePending` and apply the normal rebalance when eligible. A direction
 change disables an active automatic policy and requires a separate new review.
@@ -81,7 +80,7 @@ round up and upper bounds round outwards so inversion cannot trim an endpoint.
 It is not a promise to hold half the capital in each token. A config change that rounds
 to the same ticks needs no replacement. Changing slippage or deposit limits
 alone does not create a range-update trigger. Contributions use the current
-physical ticks until replacement. Fresh capability2 standalone compounding also
+physical ticks until replacement. Fresh capability3 standalone compounding also
 uses those ticks but waits whenever rebalance or adaptive range selection is due.
 
 ## Scope and safeguards
@@ -174,7 +173,8 @@ ledger. Raw donations, other buckets' cash and claim reserves are excluded.
 Keeper idle scheduling is disabled by default. Fresh accounting4 due compounds,
 including reserve-only jobs, require an exact `idle_compounding_budget` address
 and `code_hashes.idle_compounding_budget`. The keeper verifies runtime, mutual
-Vault binding and `IDLE_COMPOUNDING_VERSION()==2`, then reads `compoundReady`.
+Vault binding and `IDLE_COMPOUNDING_VERSION()==3` for policy2, then reads `compoundReady`.
+Explicit historical policy1 retains its helper2 reader.
 To additionally use attributed idle, set `maintenance.compound_idle=true`,
 `compound_thresholds` for **both actual pool currencies** and an explicit
 `compound_interval_seconds` from600to604800. Currency zero is native ETH under
@@ -186,8 +186,8 @@ ETH-wei and ZZZ-unit amounts. They are never summed across currencies or inferre
 from a shared decimal count. An incomplete map stops that bucket's compound
 attempt. The keeper combines only that currency's attributed idle and compound
 reserve. It waits for both its confirmed local checkpoint/interval and the
-on-chain Budget decision, including work by another keeper. Capability2 requires
-`now >= max(lastCompound,lastRebalance) + current minRebalanceInterval` for all
+on-chain Budget decision, including work by another keeper. Capability3 requires
+`now >= max(lastCompound,lastRebalance) + compoundInterval(poolId)` for all
 standalone compounds, including no-swap work and immediately after LP creation.
 It yields to eligible `needsRebalance` or nonzero `keeperRangeTarget`. Rebalances
 retain their existing eligibility and ignore `lastCompound`, so a compound cannot
@@ -219,7 +219,10 @@ PoPL NFTs or reset claims.
 Confirmed activation/approval responses include `range_update_pending` and
 `eligibility_reason` (`range_update`, `price_trigger`, `price_and_range`, or null).
 The reason describes the observed trigger even while cooldown blocks execution.
-The API checks eligibility against cooldown and both trigger observations at
+Fresh policy2 uses reasons out_of_range/range_update/out_of_range_and_range_update,
+with obsolete price trigger fields null; explicit historical policy1 retains
+the listed movement reasons. The API checks eligibility against cooldown and
+profile-specific actual observations at
 the same pinned hash. Missing/malformed getters fail closed; manifests must bind
 the matching Strategy runtime. Ordinary rebalance retains its call and role; optional selection uses the separately versioned call above.
 `next_keeper_check_at` and `expected_execution_at` remain null without qualified
@@ -232,4 +235,5 @@ source scope, [idle/dust classification](IDLE_AND_DUST.md) and remaining
 [strategy qualification](../TODO.md#task-security-strategy).
 
 Those historical reports retain their original timing/capability scope; they do
-not verify the later capability2 compound-priority rule described above.
+not verify the later capability3 timing/outside policy. Use the new scoped
+[maintenance verification](../reports/maintenance-policy-20261027/VERIFICATION.md).

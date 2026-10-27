@@ -40,17 +40,16 @@ independent production approval is implied. Qualify actual fixed-ZZZ burn
 semantics; unknown currencies at retired royalty receivers remain unsupported.
 Deployment and reviewer fields below remain unapproved.
 
-Budget compound capability2 and the matching accounting4 keeper must be qualified together: pin the helper runtime/bindings, read compoundReady, exercise priority/cooldown/recovery and retain independent hourly harvest. [Source-scoped cadence evidence](../reports/maintenance-cadence-20261027/VERIFICATION.md) does not qualify actual pool economics, feeds, hostile ordering, target gas or operating services. Earlier evidence keeps its original source scope.
+Strategy maintenance policy2/Budget compound capability3 and matching keeper/API must be qualified together: exact runtime/bindings/version, physical outside/width exception, hard interval, durable jitter/recovery and independent compound cadence. [New source-scoped evidence](../reports/maintenance-policy-20261027/VERIFICATION.md) does not qualify actual pool economics, feeds, hostile ordering, target gas or operating services. Earlier capability2 evidence keeps its original scope.
 
 Current completion checks and paired paid-revert health reporting have [scoped evidence](../reports/manipulation-hardening-20261027/VERIFICATION.md). Qualify actual callback/dependency behavior and matching writer/checker rollout; the current economic-manipulation tasks remain open. No live provider, operating service or independent production approval follows from these defensive checks.
 
-The [operator-selected LP execution record](LP_EXECUTION_POLICY.md) is design
-work only. It does not qualify a twelve-hour outside-only/jitter scheduler, a
-best-execution balancing router, a new solver or timed partial replacement.
-Resolve timing/compound decisions, implement the selected scope and bind fresh
-focused evidence before including it in a release. A $1m per-NFT contribution
-configuration does not establish $1bn shared-venue capacity. Source/ABI/runtime,
-installed services and prior verification remain unchanged by this record.
+The [operator-selected LP execution record](LP_EXECUTION_POLICY.md) distinguishes
+implemented Strategy2/Budget3 scheduling and matching source-scoped evidence from
+the still-unimplemented best-execution balancing router, new solver and timed
+partial replacement. Actual scheduler/service/config qualification remains open. A $1m per-NFT contribution
+configuration does not establish $1bn shared-venue capacity. New Strategy/Budget ABI/helper runtimes and source profiles need exact release
+bindings. Installed services and historical verification remain unchanged.
 
 ## Current candidate and evidence limits
 
@@ -62,7 +61,7 @@ installed services and prior verification remain unchanged by this record.
 | Pool/input policy | Only native ETH/fixedZZZ inputs and production LP pairs. One contribution pool at a time; reviewed same-pair fee tiers remain possible. Separate conversion/royalty currencies do not expand principal assets. |
 | Source verification | Use the exact source bindings and scopes in the evidence table above. Current internal static coverage passes; no full frozen-release regression, actual-service or independent approval is recorded. A later backend-only fix does not rerun unchanged Solidity by implication. |
 | Refactor compatibility | [Comparison](../reports/deep-cleanup-20261025/compiler-comparison.md) preserves function encodings and all recursive storage. Explicit additions are guardian/initial role logs; duplicated/noncallable error metadata is removed. No rights, rates, input currencies or authority changes. Reference evidence schema 2 is distinct from on-chain profiles. |
-| Code-size qualification | Fresh normal37object gates pass: Vault23,783 runtime (793 margin), NFT24,400 (176 margin), Migration18,358 (6,218 margin). NFT remains tight. Access creation40,580+96static arguments. Exact release metadata URI/arguments and target gas still require qualification. |
+| Code-size qualification | Fresh normal37object gates pass: Vault23,783 runtime (793 margin), NFT24,400 (176 margin), Migration18,358 (6,218 margin). NFT remains tight. Vault creation45,813+96static arguments; Access creation40,580+96static arguments. Exact release metadata URI/arguments and target gas still require qualification. |
 | Actual dependencies | The [current selected-pool fork](../reports/current-pool-fork-20261026/VERIFICATION.md) has11distinct successful real-venue methods at one pinned block using explicit mock services. Actual independent feeds, conversion routes, VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and maximal target-chain gas remain unqualified. |
 | Website/wallets | Popldemo remains the existing simulation; poplint has a separate current3 read/unsigned-review build and no invented deployment/data. Source checks include451affected JS passes; actual current contracts/API/providers/extension acceptance remain unqualified. Signing remains Anvil-only and historical local deployments/journals are unchanged. [Environment map](SITE_ENVIRONMENTS.md). |
 | Operations/audit | Target-chain/Linux failure and recovery rehearsals, independent audit/remediation, frozen-source review and final configuration/sign-off remain required. |

@@ -15,9 +15,15 @@ See [profile4](POSITION_V4.md); new release qualification remains open.
 
 [Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
 fees, no creator inboxes or integrated cross-chain bridge. Preserve same-chain
-pool moves, external custody exit/recovery, royalty currencies and complete
-collection handoff. Current fee/custody profiles and canonical schema are
+native-pair pool moves/parking, collective holder principal return, royalty
+currencies and pre-exit same-chain collection handoff. Current fee/custody profiles and canonical schema are
 explicit; old deployments/journals keep historical profiles.
+
+Fresh maintenance policy2 additionally requires explicit Strategy2/Budget3 and
+matching API/keeper/version/runtime settings. The [blocked accounting4 scaffold](../config/production.holder-exit.example.json)
+records intended12-hour/manual-width policy and separate compound interval; the
+existing schema5 release observer does not accept it. Source checks or example
+values do not close accounting4 inventory, real-service or independent review.
 
 ## Mint qualification boundary
 

@@ -84,15 +84,15 @@ Read [keeper recovery](KEEPER_RECOVERY.md), [service rehearsals](KEEPER_REHEARSA
 
 <a id="reward-timing-and-maintenance-schedule"></a>
 
-## Requested operator-selected LP policy
+## Operator-selected LP policy
 
-The [decision record](LP_EXECUTION_POLICY.md) specifies intended manual +/-25/50%
-widths, outside-only twelve-hour upkeep with durable service jitter, reviewed
-best-route execution and a $1m cumulative per-NFT configuration. Current source
-has not acquired that scheduler/router. On-chain configuration reads normally
-need no restart; local JSON changes need controlled restart and journal/health
-reconciliation. Current compound shares the pool rebalance interval; that coupling
-is an explicit pending decision. See [operator procedure](OPERATOR_MANUAL.md#operator-selected-lp-policy).
+[Maintenance policy2](LP_EXECUTION_POLICY.md) implements outside-or-operator-range
+eligibility after the configured hard interval, durable service jitter and
+independent Budget3 compound cadence. Intended initial values are12hours,
+60-600second jitter, hourly eligible inside-range checks and $1m cumulative
+per-NFT contributions. The fresh sample observes every60seconds. Best-route
+balancing/solver improvements remain unimplemented; current Vault still swaps
+in its LP pool. [Operator calls/restart](OPERATOR_MANUAL.md#operator-selected-lp-policy).
 
 ## Reward timing and maintenance schedule
 
@@ -105,12 +105,12 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 | Job | Reviewed operating policy | Confirmed evidence |
 | --- | --- | --- |
 | Harvest | `maintenance.harvest=true`, `harvest_interval_seconds`; permissionless manual `Vault.collectFees` is also available. Contribution/rebalance/compound paths harvest as well. | `FeesCollected`, matching funded `PoolRewardsCredited`/`FeesAllocated`, actual receipt and separate reserves. Uncollected pool fees are not claimable yet. |
-| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting4 also requires the exact Budget pin, capability2 and `compoundReady`; all standalone compounds yield to range maintenance. Contributions/rebalances can already reinvest the same bucket's reserve. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
+| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting4 also requires the exact Budget pin, capability3 and `compoundReady` under policy2; all standalone compounds yield to range maintenance. Contributions/rebalances can already reinvest the same bucket's reserve. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
 | Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
 | Collective principal delivery | Opt-in accounting4 `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
 
-The accounting4 sample polls600seconds and schedules independent standalone
+The fresh policy2 accounting4 sample polls60seconds and schedules independent standalone
 harvests every3600seconds (one hour). It disables standalone compounding and has
 an empty buyback list. Historical profiles/example3 retain the original omitted-
 field14400second/four-hour schedule; explicit per-bucket/global intervals win. These are inactive/placeholder
@@ -155,14 +155,14 @@ intent before another action. See [review/evidence](../reports/reward-resilience
 
 The keeper discovers shared custody buckets; it does not rebalance each NFT.
 An example600-second poll is an eligibility check, not a guaranteed execution.
-Price/range movement or an approved width change, cooldown, fresh prices,
+Actual physical range exit or an approved width change, cooldown, fresh prices,
 snapshot/lifecycle, execution loss and gas checks must pass. Optional reviewed
 +/-25/50% width selection in ZZZ-price-in-ETH is explicitly enabled and bounded
 by governance's policy; the keeper cannot invent a new range/algorithm.
 [Range procedure](RANGE_POLICY_UPDATES.md).
 
-Fresh accounting4 standalone compounding requires Budget capability2:
-`now >= max(lastCompound,lastRebalance) + current minRebalanceInterval`, plus
+Fresh policy2 accounting4 standalone compounding requires Budget capability3:
+`now >= max(lastCompound,lastRebalance) + compoundInterval(poolId)`, plus
 no eligible rebalance and no available preapproved adaptive-range selection.
 The rule includes no-swap compounds and the first compound after LP creation.
 Rebalance eligibility ignores `lastCompound`, preserving range priority. The
@@ -171,7 +171,8 @@ are unaffected; successful contributions may still reinvest designated reserves.
 
 Every due accounting4 compound job, even reserve-only, authenticates
 `idle_compounding_budget`, `code_hashes.idle_compounding_budget`, its Vault binding,
-capability2 and `compoundReady`. Historical accounting1/2/3/helper1 settings retain
+capability3 and `compoundReady`. Explicit historical accounting4 policy1 uses
+helper2; historical accounting1/2/3/helper1 settings retain
 their explicit old meaning. Helper readiness is not a substitute for keeper
 authorization, pause/lifecycle, simulation, fee or execution guards. If a
 preapproved adaptive action is available but local range scheduling is disabled,

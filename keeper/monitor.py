@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import re
+import secrets
 import shutil
 import signal
 import stat
@@ -40,6 +41,9 @@ ASSET_ARGUMENTS = {
 MAX_METADATA_SUPPLY = 1000
 MAX_METADATA_BATCH = 50
 MAX_BUYBACK_TASKS = 32
+OUTSIDE_REBALANCE_STATE = 'outside_rebalance_v2'
+REBALANCE_CHECK_SECONDS = 3600
+MAX_OUTSIDE_SCHEDULES = 10000
 CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
 PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('strategy','applyKeeperRange(bytes32)'),
@@ -116,6 +120,15 @@ class Keeper:
         if not isinstance(adaptive,dict) or type(adaptive.get('enabled',False)) is not bool:
             raise ValueError('Adaptive range requires explicit boolean configuration')
         self.adaptive_range_enabled = adaptive.get('enabled',False)
+        # Absent accounting4 policy is explicitly the historical service mode.
+        # A fresh deployment must opt into version2; never probe/fallback from a
+        # failed getter or relabel a saved old deployment to activate new rules.
+        self.maintenance_policy_version = config.get('maintenance_policy_version',1 if self.accounting_version == 4 else 0)
+        if type(self.maintenance_policy_version) is not int or self.maintenance_policy_version not in (
+                (1,2) if self.accounting_version == 4 else (0,)):
+            raise ValueError('Unsupported keeper maintenance policy version')
+        if self.maintenance_policy_version == 2 and self.adaptive_range_enabled:
+            raise ValueError('Outside-only policy requires operator-selected ranges')
         if self.adaptive_range_enabled and (type(adaptive.get('policy_version')) is not int or adaptive['policy_version'] != 1):
             raise ValueError('Adaptive range requires the explicit reviewed policy version 1')
         if 'positions' in config or config.get('accounting_model',ACCOUNTING_MODEL) != ACCOUNTING_MODEL:
@@ -209,6 +222,23 @@ class Keeper:
             self._validate_checkpoint()
 
     def _validate_state(self) -> None:
+        schedules = self.state.get(OUTSIDE_REBALANCE_STATE,{})
+        if not isinstance(schedules,dict) or len(schedules) > min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+            raise ValueError('Malformed outside-rebalance schedule inventory')
+        for bucket,record in schedules.items():
+            if not isinstance(bucket,str) or str(positive(bucket,'schedule bucket')) != bucket or int(bucket) >= 1 << 256:
+                raise ValueError('Outside-rebalance bucket identity must be canonical')
+            if not isinstance(record,dict) or set(record) != {'identity','observed_at','next_check_at','execute_after'}:
+                raise ValueError('Malformed outside-rebalance schedule')
+            rpc_hash(record['identity'],'outside-rebalance identity')
+            for name in ('observed_at','next_check_at','execute_after'):
+                value = record[name]
+                if type(value) is not int or not 0 <= value < 1 << 64:
+                    raise ValueError('Malformed outside-rebalance schedule time')
+            observed,check,execute = (record[name] for name in ('observed_at','next_check_at','execute_after'))
+            if not (execute == 0 and check == observed+REBALANCE_CHECK_SECONDS or
+                    check == 0 and 60 <= execute-observed <= 600):
+                raise ValueError('Invalid outside-rebalance schedule bounds')
         for field in ('last','spent','retry_after'):
             values = self.state.get(field,{}) if field == 'retry_after' else self.state.get(field)
             if not isinstance(values,dict): raise ValueError('Malformed keeper counters')
@@ -416,6 +446,8 @@ class Keeper:
             self._validate_maintenance_settings(settings,allow_retired=allow_retired)
         for override in ({},*self.overrides.values()):
             settings = {**self.maintenance,**override}
+            if self.maintenance_policy_version == 2 and settings.get('compound',True) and not settings.get('compound_thresholds'):
+                raise ValueError('Fresh compounding requires explicit actual-currency thresholds')
             if settings.get('compound_idle',False):
                 if self.accounting_version not in (2,3,4) or not settings.get('compound_thresholds') or \
                         not 600 <= positive(settings.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True) <= 604800:
@@ -457,11 +489,102 @@ class Keeper:
         return last,int(config[11],16)
 
     def _compound_ready(self,bucket: int) -> bool:
-        """Fresh V2 contract policy coordinates compound with physical LP maintenance."""
-        budget = self._compound_budget(2)
+        """Read the exact historical V2 or separate-interval V3 companion policy."""
+        budget = self._compound_budget(3 if self.maintenance_policy_version == 2 else 2)
         ready = uint_result(self.rpc.eth_call(budget,calldata('compoundReady(uint256)',bucket)))
         if ready not in (0,1): raise RpcError('Malformed compound eligibility')
         return ready == 1
+
+    def _validate_upkeep_policy(self) -> None:
+        if self.maintenance_policy_version != 2: return
+        for name in ('strategy','pools'):
+            pin = self.config.get('code_hashes',{}).get(name,'')
+            code = self.rpc.call('eth_getCode',[self.contracts[name],'latest'])
+            if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16) == 0 or \
+                    not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower():
+                raise RpcError('Outside-only runtime differs from the reviewed profile')
+            module = '0x'+keccak256(('ZZZStrategy' if name == 'strategy' else 'ZZZPoolRegistry').encode()).hex()
+            if self.view(name,'access()') != int(self.contracts['access'],16) or \
+                    self.view('access','module(bytes32)',module) != int(self.contracts[name],16):
+                raise RpcError('Outside-only module binding differs from the reviewed profile')
+        if self.view('strategy','MAINTENANCE_POLICY_VERSION()') != 2:
+            raise RpcError('Outside-only maintenance policy version differs')
+
+    def _store_rebalance_schedule(self,bucket: int,record: dict[str,Any] | None) -> None:
+        # Durability precedes both waiting and any eventual signer. A failed save
+        # restores memory too; restart never draws a fresh delay to bypass it.
+        previous = self.state
+        updated = copy.deepcopy(previous)
+        schedules = updated.setdefault(OUTSIDE_REBALANCE_STATE,{})
+        if record is None:
+            if str(bucket) not in schedules: return
+            del schedules[str(bucket)]
+        else:
+            if str(bucket) not in schedules and len(schedules) >= min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+                raise ValueError('Outside-rebalance schedule inventory is full')
+            schedules[str(bucket)] = record
+        self.state = updated
+        try: self.save()
+        except BaseException:
+            self.state = previous
+            raise
+
+    def _rebalance_due(self,bucket: int,fields: list[str],now: int) -> bool:
+        if self.maintenance_policy_version != 2:
+            return bool(self.view('strategy','needsRebalance(uint256)',bucket))
+        position = decode_position(fields,self.accounting_version)
+        if position['status'] != 'active' or position['lp_token_id'] == 0:
+            return False
+        config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',position['pool_id'])))
+        if len(config) != 14 or '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex() != position['pool_id']:
+            raise RpcError('Outside-rebalance pool configuration differs')
+        interval = int(config[11],16)
+        if not 600 <= interval <= 604800 or int(config[6],16) not in (0,1):
+            raise RpcError('Malformed outside-rebalance interval or operation flag')
+        if type(now) is not int or not 0 <= now < (1 << 64)-REBALANCE_CHECK_SECONDS or position['last_rebalance'] > now:
+            raise RpcError('Invalid outside-rebalance chain clock')
+        orientation = self.view('strategy','rangeOrientation(bytes32)',position['pool_id'])
+        if orientation not in (0,1): raise RpcError('Malformed range orientation')
+        # Deliberately exclude balances, idle, NAV and prices: contributions and
+        # harvesting must not reset a replacement's waiting period or jitter.
+        basis = [2,self.chain,self.contracts['vault'],self.contracts['strategy'],
+            self.config['code_hashes']['strategy'],self.contracts['pools'],self.config['code_hashes']['pools'],
+            bucket,position['pool_id'],position['lp_token_id'],position['last_rebalance'],config,orientation]
+        identity = '0x'+keccak256(json.dumps(basis,separators=(',',':')).encode()).hex()
+        record = self.state.get(OUTSIDE_REBALANCE_STATE,{}).get(str(bucket))
+        if record is not None and record['identity'] != identity:
+            self._store_rebalance_schedule(bucket,None)
+            record = None
+        if record is not None and now < record['observed_at']:
+            raise RpcError('Outside-rebalance chain clock retreated')
+        if int(config[6],16) != 1 or now < position['last_rebalance']+interval:
+            return False
+        manual = self.view('strategy','rangeUpdatePending(uint256)',bucket)
+        if manual not in (0,1): raise RpcError('Malformed desired-range flag')
+        if record is not None and not manual and record['execute_after'] == 0 and now < record['next_check_at']:
+            return False
+        needed = self.view('strategy','needsRebalance(uint256)',bucket)
+        if needed not in (0,1): raise RpcError('Malformed outside-rebalance eligibility')
+        if not needed:
+            self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+                next_check_at=now+REBALANCE_CHECK_SECONDS,execute_after=0))
+            return False
+        if record is not None and record['execute_after']:
+            return now >= record['execute_after']
+        delay = 60+secrets.randbelow(541)
+        self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+            next_check_at=0,execute_after=now+delay))
+        log('rebalance_scheduled',bucket_id=str(bucket),execute_after=now+delay,manual_range=bool(manual))
+        return False
+
+    def _rebalance_submission_ready(self,args: tuple[int|str,...]) -> bool:
+        if self.maintenance_policy_version != 2: return True
+        if len(args) != 3 or type(args[0]) is not int:
+            raise ValueError('Malformed outside-rebalance submission')
+        fields,_ = self._bucket(args[0])
+        _,fresh = self._head()
+        return self._rebalance_due(args[0],fields,fresh)
 
     def _adaptive_range_target(self,pool: str,now: int) -> int:
         # Opt-in only; historical profiles never call new Strategy getters.
@@ -573,6 +696,7 @@ class Keeper:
                     self.view('principal_exit','access()') != int(self.contracts['access'],16) or
                     self.view('principal_exit','CUSTODY_VERSION()') != 3):
                 raise RpcError('Holder-exit module binding or capability differs')
+        self._validate_upkeep_policy()
 
     def lp_exit_started(self) -> bool:
         # Historical controllers have no such getter. Their profiles and
@@ -810,6 +934,7 @@ class Keeper:
             log('shutdown_before_submission',action=key); return False
         self._validate_accounting_version()
         if self._defer_for_lifecycle(name,signature): return False
+        if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
         if self.live: self._validate_checkpoint()
         _,timestamp = self._head()
         retry_after = positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
@@ -867,6 +992,7 @@ class Keeper:
         # A notice may become active during simulation, code/nonce or balance
         # reads. The on-chain guard still covers later inclusion-time races.
         if self._defer_for_lifecycle(name,signature): return False
+        if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
         pending['fee_review'] = {'schema':1,'gas_limit':gas_limit,'max_fee_per_gas':gas_price,
             'l1_fee_allowance_wei':positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True),
@@ -1318,6 +1444,8 @@ class Keeper:
                 self._validate_maintenance_settings(item)
                 fields,tokens = self._bucket(bucket)
                 status = decode_position(fields,self.accounting_version)['status']
+                if self.maintenance_policy_version == 2 and status != 'active':
+                    self._store_rebalance_schedule(bucket,None)
                 if status in ('none','dormant'): continue
                 # Canonical funded revenue and claims remain available during
                 # pauses and while the physical LP is away. No principal moves.
@@ -1331,7 +1459,7 @@ class Keeper:
                         try:
                             if self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):
                                 if self.submit('strategy','applyKeeperRange(bytes32)',('0x'+fields[0],),f'range_policy:{bucket}'): return
-                            if self.view('strategy','needsRebalance(uint256)',bucket):
+                            if self._rebalance_due(bucket,fields,fresh):
                                 if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
                             if item.get('compound',True):
                                 reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]

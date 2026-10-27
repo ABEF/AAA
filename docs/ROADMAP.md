@@ -14,25 +14,24 @@ Reviewed 2026-10-27. This page explains dependencies and sequence; [TODO.md](../
 is the only status list. [Feature reference](IMPLEMENTATION_STATUS.md) records what
 exists, while [release approval](RELEASE_CHECKLIST.md) remains NOT APPROVED.
 
-Current maintenance candidate: [compound cadence V2](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) is coordinated on-chain with LP replacement and rebalance/range priority. Match keeper/helper versions and qualify actual economics/services; no24-hour default or new cumulative-loss breaker is assumed.
+Current maintenance candidate: [compound cadence V3 / upkeep policy2](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) is coordinated on-chain with LP replacement and rebalance/range priority. Match keeper/helper versions and qualify actual economics/services; no24-hour default or new cumulative-loss breaker is assumed.
 
 Current source has completion/health safeguards ([scope](../reports/manipulation-hardening-20261027/VERIFICATION.md)). Continue economic review of [keeper-originated manipulation](../TODO.md#task-security-keeper-manipulation)
 and [outside-actor manipulation](../TODO.md#task-security-external-manipulation).
 Use actual Robinhood ordering, independent prices and attacker/protocol profit
 witnesses; protected submission and economic safety are not already qualified.
 
-## LP execution policy before further implementation
+## LP execution next steps
 
-Implement the [reviewed policy task](../TODO.md#task-lp-execution-routing) only
-after resolving hard twelve-hour versus early-outside behavior, deliberate
-operator width changes and compound interval coupling. Keep operator-selected
-+/-25/50% widths, independent hourly harvest and fixed economic rights. Prioritize
-bounded approved execution routes and complete post-close sizing, then normally-
-one-swap placement with meaningful residual handling. Do not promise globally
-optimal routing or turn optional timed 10% replacement into a release requirement
-without evidence. The [decision record](LP_EXECUTION_POLICY.md) distinguishes
-current source, requested behavior and outstanding decisions; existing services
-and regression evidence retain their exact scope.
+The three timing decisions are settled: hard initial12-hour minimum even outside,
+operator width application inside after cooldown, and independent compound interval.
+The [implemented source slice](../reports/maintenance-policy-20261027/VERIFICATION.md)
+includes Strategy2/Budget3, durable keeper jitter and matching API profile; qualify
+actual rollout/runtime/config/operations separately. Keep operator-selected widths,
+independent hourly harvest and fixed rights. Continue [execution routing](../TODO.md#task-lp-execution-routing):
+bounded approved swap venues and complete post-close sizing, then normally-one-
+swap placement with useful residual handling. Global optimality and optional timed
+10% replacement are not implemented or release claims. [Policy record](LP_EXECUTION_POLICY.md).
 
 ## 1. Close immutable integration boundaries
 

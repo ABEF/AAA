@@ -5,6 +5,8 @@ import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
 
 import {Test} from "forge-std/Test.sol";
+import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+import {IStateViewMinimal} from "../src/interfaces/IZZZ.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 // TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
 import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
@@ -21,12 +23,20 @@ contract RangePolicyRecord is BoundDummy {
     Position private record;
     mapping(uint256 => int24[2]) private ranges;
     mapping(uint256 => bool) private known;
+    uint160 private marketPrice = uint160(1<<96);
+    int24 private marketTick;
     constructor(address controller) BoundDummy(controller) {}
     function set(Position memory p) external { record = p; }
     function group(uint256) external view returns (Position memory) { return record; }
     function setTicks(uint256 id, int24 lower, int24 upper) external { ranges[id] = [lower, upper]; known[id] = true; }
     function ticks(uint256 id) external view returns (int24, int24) {
         require(known[id], "missing position"); return (ranges[id][0], ranges[id][1]);
+    }
+    function setMarket(uint160 price,int24 tick) external { marketPrice=price;marketTick=tick; }
+    function stateView() external view returns(IStateViewMinimal) { return IStateViewMinimal(address(this)); }
+    function spot(bytes32) external view returns(uint160) { return marketPrice; }
+    function getSlot0(bytes32) external view returns(uint160,int24,uint24,uint24) {
+        return(marketPrice,marketTick,0,3000);
     }
 }
 contract RangeRewardAdmission is BoundDummy {
@@ -78,6 +88,8 @@ contract RangePolicyTest is Test {
     }
     function _price(int256 price) private {
         f0.set(price, block.timestamp, block.timestamp); f1.set(1e8, block.timestamp, block.timestamp);
+        uint160 root = oracle.referenceX96(address(t0),address(t1));
+        venue.setMarket(root,TickMath.getTickAtSqrtPrice(root));
     }
     function testNarrowingWaitsForCooldownThenAppliesOnce() public {
         assertFalse(strategy.rangeUpdatePending(BUCKET)); _width(1000);
@@ -92,10 +104,11 @@ contract RangePolicyTest is Test {
         _width(5000); assertTrue(strategy.rangeUpdatePending(BUCKET)); assertTrue(strategy.needsRebalance(BUCKET));
         _width(1000); assertFalse(strategy.rangeUpdatePending(BUCKET)); assertFalse(strategy.needsRebalance(BUCKET));
     }
-    function testSmallMarketMoveDoesNotCreateRangeUpdateChurn() public {
+    function testMarketMoveInsidePhysicalRangeDoesNotCreateChurn() public {
         vm.warp(block.timestamp + 600); _price(101000000);
         assertFalse(strategy.rangeUpdatePending(BUCKET)); assertFalse(strategy.needsRebalance(BUCKET));
-        _price(110000000); assertFalse(strategy.rangeUpdatePending(BUCKET)); assertTrue(strategy.needsRebalance(BUCKET));
+        _price(110000000); assertFalse(strategy.rangeUpdatePending(BUCKET)); assertFalse(strategy.needsRebalance(BUCKET));
+        _price(160000000); assertTrue(strategy.needsRebalance(BUCKET));
         _replace(); vm.warp(block.timestamp + 600); assertFalse(strategy.needsRebalance(BUCKET));
     }
     function testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance() public {
