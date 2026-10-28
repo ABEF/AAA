@@ -1,0 +1,281 @@
+{
+  "prior_source_commit": "1cabb852ec565e2459a5d17bba063e424f6bf318",
+  "changed_sources": [
+    "src/ZZZPoolRegistry.sol",
+    "src/ZZZStrategy.sol"
+  ],
+  "only_comments_changed": true,
+  "settings_equal": true,
+  "exact_closed_inputs": 76,
+  "checks": [
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZActivationAssetsFactory.sol",
+      "contract": "ZZZActivationAssetsFactory",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "ZZZContributionPricing",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "contract": "ZZZLPBalancer",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZLPRewardConverter.sol",
+      "contract": "ZZZLPRewardConverter",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZPythPriceFeed.sol",
+      "contract": "ZZZPythPriceFeed",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZRoyaltyConverter.sol",
+      "contract": "ZZZRoyaltyConverter",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "contract": "ZZZV4RouteExecutor",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/libraries/ExactAsset.sol",
+      "contract": "ExactAsset",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/libraries/ExactToken.sol",
+      "contract": "ExactToken",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/libraries/ZZZArtwork.sol",
+      "contract": "ZZZArtwork",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/libraries/ZZZPriceMath.sol",
+      "contract": "ZZZPriceMath",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/libraries/ZZZTypes.sol",
+      "contract": "Ids",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    },
+    {
+      "source": "src/libraries/ZZZV3VenueValidation.sol",
+      "contract": "ZZZV3VenueValidation",
+      "abi_equal": true,
+      "recursive_storage_equal": true,
+      "creation_and_runtime_equal_except_compiler_metadata": true
+    }
+  ],
+  "normal_size_gates": 38,
+  "all_pass": true,
+  "method": "Exact Solidity tokens, ABI, recursive storage and bytecodes after replacing complete compiler CBOR metadata tails only. No Solidity execution test rerun. Fresh release runtime/source pins must use the new build."
+}

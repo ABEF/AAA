@@ -22,7 +22,15 @@ no configured deployment means unavailable integration data, never examples.
 | Movement and recovery | Same-native-pair moves and parking before exit. Governance may permanently close all LP and return actual ETH+ZZZ by NFT shares through bounded direct payouts; NFTs keep transfers/future royalties/old rewards. No external custody address or bridge. [Holder exit](docs/HOLDER_COLLECTIVE_EXIT.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
-The [systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
+The latest [two-day change audit](reports/two-day-audit-20261028/REVIEW.md)
+fixes keeper payout-retry starvation and current operating guidance. Its
+[verification](reports/two-day-audit-20261028/VERIFICATION.md) records137affected
+backend passes and38normal build gates. Solidity changes are comments only;
+ABI, storage and instructions are preserved, with refreshed compiler metadata.
+The [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) inventory includes the remaining
+keeper-personal-trading and outside-actor risks. No service or website changed.
+
+The earlier [systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
 maps608 functions plus31 constructors/13 receivers at its original source revision
 to multiple reviewed edge cases. It fixes malformed RPC identity/JSON/failover and holder-inventory
 input/diagnostic defects, and adds a systemd main-progress watchdog for stalled

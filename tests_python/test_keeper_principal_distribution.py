@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 
 from keeper.monitor import Keeper
-from keeper.principal import PrincipalDistribution, BATCH, encode_batch
+from keeper.principal import PrincipalDistribution, BATCH, PRIORITY, encode_batch
 from tests_python import test_holder_exit_profile as H
 from tests_python import test_frontend_api as F
 from zzz_ops.abi import calldata, keccak256
@@ -117,6 +117,131 @@ class PrincipalDistributionTests(unittest.TestCase):
             self.k.principal_distribution.run()
             self.assertEqual([10997,10998,10999,11000],submit.call_args.args[2][0])
         self.assertEqual(set(),self.paid)
+
+    def test_first_delivery_has_no_synthetic_genesis_cooldown(self):
+        self.rpc.now=100;self.count=4
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now), \
+                patch.object(self.k,'submit',return_value=True) as submit:
+            self.assertTrue(self.k.principal_distribution.run())
+        submit.assert_called_once()
+        self.assertNotIn('principal_distribute:1',self.k.state['last'])
+
+    def test_successful_zero_payment_receipt_throttles_retry_across_restart(self):
+        self.count=4;key='principal_distribute:1';sent=[]
+        def confirmed_attempt(role,signature,args,actual_key):
+            sent.append(args[0])
+            self.assertEqual(key,actual_key)
+            # Inert canonical-receipt transcript: success does NOT mean paid.
+            self.k.state['last'][key]=self.rpc.now;self.k.save()
+            return True
+        with patch.object(self.k,'submit',side_effect=confirmed_attempt):
+            self.assertTrue(self.k.principal_distribution.run())
+        self.assertEqual(set(),self.paid)
+        self.k=Keeper(self.cfg,rpc=self.rpc)
+        self.rpc.now+=3599
+        with patch('keeper.monitor.time.time',side_effect=lambda:self.rpc.now), \
+                patch.object(self.k,'submit',return_value=True) as submit:
+            self.assertFalse(self.k.principal_distribution.run());submit.assert_not_called()
+            self.rpc.now+=1
+            self.assertTrue(self.k.principal_distribution.run());submit.assert_called_once()
+        self.assertEqual([10001,10002,10003,10004],submit.call_args.args[2][0])
+        self.assertEqual(set(),self.paid)
+
+    def test_each_initial_batch_progresses_while_prior_batch_cools(self):
+        self.count=8;self.k.state['last']['principal_distribute:1']=self.rpc.now
+        with patch.object(self.k,'submit',return_value=True) as submit:
+            self.assertFalse(self.k.principal_distribution.run());submit.assert_not_called()
+            self.assertEqual(5,self.k.state['principal_distribution_cursor'])
+            self.assertTrue(self.k.principal_distribution.run())
+        self.assertEqual('principal_distribute:5',submit.call_args.args[3])
+        self.assertEqual([10005,10006,10007,10008],submit.call_args.args[2][0])
+
+    def test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata(self):
+        for count in (4,8):
+            with self.subTest(count=count):
+                self.count=count
+                self.k.state.pop(PRIORITY,None)
+                self.k.state['principal_distribution_cursor']=1
+                self.k.state['last']={}
+                self.k.state['buyback_priority']=False
+                self.k.principal_distribution.retry_interval=60
+                self.k.royalties.enabled=self.k.lp_rewards.enabled=True
+                self.k.metadata_enabled=True
+                self.k.state['metadata_refresh']={'next_first':True}
+                events=[]
+                def confirmed_attempt(role,signature,args,key):
+                    self.assertEqual('principal_exit',role)
+                    events.append('principal')
+                    self.k.state['last'][key]=self.rpc.now;self.k.save()
+                    return True
+                def convert(worker):
+                    events.append('royalties' if worker is self.k.royalties else 'lp_conversion')
+                    return True
+                def metadata():events.append('metadata');return True
+                def buyback(_tasks):events.append('buyback');return True
+                with patch('keeper.monitor.time.time',side_effect=lambda:self.rpc.now), \
+                        patch.object(self.k,'submit',side_effect=confirmed_attempt), \
+                        patch.object(self.k,'_convert_rewards',side_effect=convert), \
+                        patch.object(self.k,'_refresh_metadata',side_effect=metadata), \
+                        patch.object(self.k,'_buyback_tasks',return_value=['inert task']), \
+                        patch.object(self.k,'_buyback_once',side_effect=buyback):
+                    for _ in range(12):
+                        self.k.cycle();self.rpc.now+=60
+                for worker in ('principal','royalties','lp_conversion','metadata','buyback'):
+                    self.assertIn(worker,events)
+                self.assertEqual(set(),self.paid)
+
+    def test_priority_persists_across_restart_and_rolls_back_failed_save(self):
+        self.assertTrue(self.k.principal_distribution.prefer_first())
+        self.k=Keeper(self.cfg,rpc=self.rpc)
+        self.assertFalse(self.k.principal_distribution.prefer_first())
+        before=self.k.path.read_bytes();state=copy.deepcopy(self.k.state)
+        with patch.object(self.k,'save',side_effect=OSError('inert disk failure')):
+            with self.assertRaises(OSError):self.k.principal_distribution.prefer_first()
+            with self.assertRaises(OSError):self.k.principal_distribution._save_cursor(5)
+        self.assertEqual(state,self.k.state)
+        self.assertEqual(before,self.k.path.read_bytes())
+
+    def test_retry_interval_and_saved_priority_are_strictly_bounded(self):
+        for interval in (True,0,59,86401,'60'):
+            cfg=copy.deepcopy(self.cfg);cfg['principal_distribution']['retry_interval_seconds']=interval
+            with self.subTest(interval=interval),self.assertRaises(ValueError):Keeper(cfg,rpc=self.rpc)
+        for interval in (60,86400):
+            cfg=copy.deepcopy(self.cfg);cfg['principal_distribution']['retry_interval_seconds']=interval
+            self.assertEqual(interval,Keeper(cfg,rpc=self.rpc).principal_distribution.retry_interval)
+        self.k.state[PRIORITY]=1;self.k.save()
+        with self.assertRaises(ValueError):Keeper(self.cfg,rpc=self.rpc)
+
+    def test_new_priority_validation_waits_for_saved_pending_recovery(self):
+        self.k.state['next_nonce']=7
+        self.k.state['pending']=dict(key='principal_distribute:1',nonce=7,to=self.f.exit,
+            data=encode_batch([10001]),value=0,day='2026-10-27',hash='0x'+'a'*64)
+        self.k.state[PRIORITY]='invalid';self.k.save();before=self.k.path.read_bytes()
+        recovered=Keeper(self.cfg,rpc=self.rpc)
+        with patch.object(recovered,'poll_pending',return_value=True), \
+                patch.object(recovered.principal_distribution,'prefer_first') as priority:
+            recovered.cycle();priority.assert_not_called()
+        self.assertEqual(before,recovered.path.read_bytes())
+        recovered.state['pending']=None
+        with self.assertRaises(ValueError):recovered.cycle()
+
+    def test_prior_attempt_clock_rejects_future_or_malformed_values(self):
+        self.count=4
+        for timestamp in (True,'1',self.rpc.now+1,-1,1<<64):
+            self.k.state['last']['principal_distribute:1']=timestamp
+            with self.subTest(timestamp=timestamp),patch.object(self.k,'submit') as submit:
+                with self.assertRaises(RpcError):self.k.principal_distribution.run()
+                submit.assert_not_called()
+
+    def test_reverted_delivery_keeps_existing_paid_failure_cooldown(self):
+        self.count=4;key='principal_distribute:1'
+        self.k.state.setdefault('retry_after',{})[key]=self.rpc.now+3600
+        with patch('keeper.monitor.subprocess.run') as signer:
+            self.assertFalse(self.k.principal_distribution.run());signer.assert_not_called()
+        self.assertEqual(1,self.k.blocked_actions)
+        self.assertEqual(self.rpc.now+3600,self.k.state['retry_after'][key])
+        self.assertNotIn(key,self.k.state['last'])
+        self.assertIsNone(self.k.state['pending'])
 
     def test_zero_classified_principal_stops_repeated_paid_inventory_scans(self):
         self.count=1000;self.remaining=(0,0)

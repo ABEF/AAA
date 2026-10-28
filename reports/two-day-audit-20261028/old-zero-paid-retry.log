@@ -1,0 +1,15 @@
+test_successful_zero_payment_receipt_throttles_retry_across_restart (tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_successful_zero_payment_receipt_throttles_retry_across_restart) ... FAIL
+
+======================================================================
+FAIL: test_successful_zero_payment_receipt_throttles_retry_across_restart (tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_successful_zero_payment_receipt_throttles_retry_across_restart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_principal_distribution.py", line 144, in test_successful_zero_payment_receipt_throttles_retry_across_restart
+    self.assertFalse(self.k.principal_distribution.run());submit.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.149s
+
+FAILED (failures=1)

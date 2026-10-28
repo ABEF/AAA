@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "name": "function-reference",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_sha256": "7ad84b82a089f2952a7a406e37d285d4f7995168ae266c57161b6a552521f4ac"
+    },
+    {
+      "name": "todo",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_sha256": "84da3985b677083ac5dbd5a81b35925d8966cf6a0d6fc610df91cb30dce624ee"
+    },
+    {
+      "name": "source-consistency",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/source_checks.py",
+        "--output",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\two-day-audit-20261028\\source-checks.json"
+      ],
+      "exit_code": 0,
+      "log_sha256": "1c15dbc63c4f590d3fecb045066cb49cd137df7059501a3614641528b66d8103"
+    },
+    {
+      "name": "document-links",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\two-day-audit-20261028\\check-docs.py"
+      ],
+      "exit_code": 0,
+      "log_sha256": "bee1abf17e2de1cbd73467ece1ff4451fd6a9a0520d8888e5b041d19d5edb219"
+    },
+    {
+      "name": "diff-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "prior_normal_compiler_dependencies_build_settings_and_executable_equal": true,
+  "unchanged_solidity_test_sources": 94,
+  "only_comment_solidity_changes": [
+    "src/ZZZPoolRegistry.sol",
+    "src/ZZZStrategy.sol"
+  ],
+  "backend_postrun_source_drift": [],
+  "preserved_dirty_drift": [],
+  "historical_report_drift": [],
+  "production_approved": false,
+  "no_solidity_test_rerun": true,
+  "sites_services_journals_unchanged": true
+}

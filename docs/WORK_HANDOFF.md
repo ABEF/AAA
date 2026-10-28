@@ -5,12 +5,17 @@ Reviewed 2026-10-28. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Latest functional state
 
-Current fresh source is accounting4/custody3/canonicalV5 with Strategy upkeep2 and
-Budget compound capability3. [New verification](../reports/maintenance-policy-20261027/VERIFICATION.md)
-owns this slice; earlier cadence2 evidence retains its original source scope.
+Current fresh source is accounting4/custody3/canonicalV5 with Strategy upkeep2,
+Budget compound capability3 and separate LP routing1. The
+[two-day audit](../reports/two-day-audit-20261028/VERIFICATION.md) owns the latest
+retry/fairness fix and comment-only compiler comparison;
+[atomic execution](../reports/atomic-routing-20261028/VERIFICATION.md) and
+[maintenance policy](../reports/maintenance-policy-20261027/VERIFICATION.md) retain
+their exact scopes. Principal retry defaults1hour (60seconds-1day), with durable
+job priority, pending recovery first and on-chain paid truth. No service changed.
 The earlier holder-return publication was1870cc1; hourly harvest baseline was
 74aaa7c. The [cadence verification](../reports/maintenance-cadence-20261027/VERIFICATION.md)
-owns the latest changed-source evidence and remaining qualification. Verify
+is historical capability2 evidence, superseded by compound3/upkeep2 for fresh source. Verify
 actual main/remote heads before reporting publication; source publication is not deployment.
 Website main and served artifactf23c559 are different identifiers;
 the unchanged demo serves9be6d1. Documentation commits after these checkpoints
@@ -19,7 +24,7 @@ do not deploy contracts, websites or services.
 The earlier accounting3 source checkpoint was
 [8be0f89](https://github.com/ABEF/AAA/commit/8be0f89fd982253ddae7bef2ebfc36b497d836b1).
 The separate [poplint current3 integration](../reports/current3-website-20261026/DEPLOYMENT.md)
-is served over HTTPS from website sourcef23c559; website main77501ce adds operating
+is served over HTTPS from website sourcef23c559; website main e5bb216 includes the later resumption notes; earlier77501ce adds operating
 docs and its verified certificate-renewal hook without redeploying the artifact.
 The existing demo stays on9be6d1 with unchanged content/configuration/root hashes.
 Poplint's deployment/API config is null: no fabricated balances, public signing
@@ -104,7 +109,7 @@ Actual feed/venue/depth/gas/operating qualification remains open. $1m per-NFT cu
 configuration, not a $1bn market-capacity guarantee. Timed10% replacement is a
 separate optional design. Preserve historical profiles and unrelated drafts.
 
-Final scoped verification:98distinct Solidity methods, with33actual-router/
+Prior LP-routing verification:98distinct Solidity methods, with33actual-router/
 composition methods rerun after the solver fix and65unchanged reachable-source
 passes reused at exact metadata pins;173backend methods/31reference checks and
 38normal size gates pass. The strict thin-market0.01idle regression is preserved

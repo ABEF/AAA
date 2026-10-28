@@ -25,13 +25,13 @@
       "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
       "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
       "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
-      "src/ZZZPoolRegistry.sol": "7f106cc708f8a21ef2a2aea2614d9cf9d0506290c52f50ef383002035bc3cbf3",
+      "src/ZZZPoolRegistry.sol": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
       "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
       "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
-      "src/ZZZStrategy.sol": "8bf8221eedda2721f6d843f7e8dfc70a007a10ce1270b525c5f94ed2e0dc91ed",
+      "src/ZZZStrategy.sol": "eca7bd0581354ebb597961c2382408768dbf3e5d4969e10f776bef1a18e2ab74",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
       "src/ZZZVault.sol": "ad1f5e3439605d51295962743fae2e2997c5ba7824322039ffe5a20cc2ae4c99",
       "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
@@ -202,9 +202,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "6afb4cc75e24757e4b8e0cc78e660483b2708e9fc7cb9d232ffaee765c3264b5",
-    "compiler_output_sha256": "7b8765d0d1bb383b978e4a060511e3ef13d479a65710d5e77817257335ee6040",
-    "size_evidence_sha256": "3a5d47791760280ef2357f07aec2032866d0024a4ab8e908d2c1666dc6a8a9c7",
+    "compiler_input_sha256": "8a69d7f6bc4613ed4fbbe608c87b6c46b617a2657e9bf4ce85ca8d8708d71cd6",
+    "compiler_output_sha256": "21328ab1c94cc39a560d2f60c2c50c9e9da20207012babb1ae0c19f95cfa0d34",
+    "size_evidence_sha256": "33c02bb92c94eb3369f47f6d5828365aa30af76c374cad74da1b47920a9d7aa6",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",

@@ -18,7 +18,7 @@ for procedures, [component map](COMPONENT_STATUS.md) for code boundaries and
 ## Current profile
 
 Fresh source uses accounting4/direct governance2/fee intake1/custody3/pricing2/
-routing2/reviewed Entry1 and canonical
+Entry routing2/LP execution1/reviewed Entry1 and canonical
 `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Eight Position words remain; Exited5
 is a terminal local status. Historical1/2/3 deployments/readers/journals retain
 original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLECTIVE_EXIT.md).
@@ -26,6 +26,8 @@ original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLEC
 Fresh Strategy maintenance policy2 checks actual physical range exit or an operator range update after the hard governed interval (initial12hours). Matching keeper mode2 persists1-10minute jitter and hourly ordinary inside checks without blocking harvest/receipt recovery. Budget capability3 uses its separately governed compound interval after max(lastCompound,lastRebalance), yielding to due rebalance; it never resets that clock. Explicit API profiles verify Strategy2/Budget3 and preserve historical readers. [Operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing), [new scoped verification](../reports/maintenance-policy-20261027/VERIFICATION.md). No live service/site changes.
 
 Current [manipulation-related hardening](../reports/manipulation-hardening-20261027/VERIFICATION.md) adds keeper/pause completion checks for rebalance/compound/buyback and corrects paid-revert health visibility across restart/unrelated success. It introduces no new economic caps, roles or custody path. Actual profitability, real market/feed/ordering and service qualification remain open; defensive checks are not attack-profit evidence.
+
+The [two-day change audit](../reports/two-day-audit-20261028/VERIFICATION.md) fixes post-exit payout-retry starvation in source keeper scheduling. Canonical receipt clocks throttle repeated batches, durable priority alternates delivery with other jobs, and pending recovery stays first. Source comment corrections preserve ABI/storage/instructions; exact new compiler pins are recorded. No economic rule, signing path or running service changed. [Keeper safeguards](KEEPER_SAFEGUARDS.md) distinguishes contract guards from service policy.
 
 ## Smart contracts
 

@@ -1456,8 +1456,10 @@ class Keeper:
         lp_exit = self.lp_exit_started()
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
+        principal_first = False
         if lp_exit and self.principal_distribution.enabled:
-            if self.principal_distribution.run(): return
+            principal_first = self.principal_distribution.prefer_first()
+            if principal_first and self.principal_distribution.run(): return
         # Three-way durable priority: LP conversion, royalty conversion, then
         # maintenance. One busy stream cannot consume every serial nonce slot.
         workers = (self.lp_rewards,self.royalties)
@@ -1540,11 +1542,13 @@ class Keeper:
         if batch: self.save()
         if self.metadata_enabled and not metadata_first and self._refresh_metadata(): return
         if paused:
-            log('protocol_paused'); return
-        if preparing: return
-        if not buyback_first and self._buyback_once(buybacks): return
-        for i in ((turn+1)%2, turn%2):
-            if i != turn and workers[i].enabled and self._convert_rewards(workers[i]): return
+            log('protocol_paused')
+        elif not preparing:
+            if not buyback_first and self._buyback_once(buybacks): return
+            for i in ((turn+1)%2, turn%2):
+                if i != turn and workers[i].enabled and self._convert_rewards(workers[i]): return
+        if lp_exit and self.principal_distribution.enabled and not principal_first:
+            if self.principal_distribution.run(): return
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)

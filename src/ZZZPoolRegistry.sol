@@ -61,7 +61,7 @@ contract ZZZPoolRegistry is ZZZModule {
     }
     /// @notice Restrict an admitted pool without reading tokens, prices or venue
     /// dependencies. True flags DISABLE the respective capability; false keeps
-    /// its current state. Re-enabling requires full configure/configureNative.
+    /// its current state. Re-enabling requires full configureNative validation.
     function disablePool(bytes32 poolId, bool disableDeposits, bool disableOperations) external onlyGovernance {
         if (!exists[poolId] || (!disableDeposits && !disableOperations)) revert InvalidConfiguration();
         PoolConfig storage config = pools[poolId];

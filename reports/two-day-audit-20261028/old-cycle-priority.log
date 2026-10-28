@@ -1,0 +1,24 @@
+test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata (tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata) ... 
+  test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata (tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata) (count=4) ... FAIL
+  test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata (tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata) (count=8) ... FAIL
+
+======================================================================
+FAIL: test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata (tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata) (count=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_principal_distribution.py", line 191, in test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata
+    self.assertIn(worker,events)
+AssertionError: 'royalties' not found in ['principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal']
+
+======================================================================
+FAIL: test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata (tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata) (count=8)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_principal_distribution.py", line 191, in test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata
+    self.assertIn(worker,events)
+AssertionError: 'royalties' not found in ['principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal']
+
+----------------------------------------------------------------------
+Ran 1 test in 3.787s
+
+FAILED (failures=2)

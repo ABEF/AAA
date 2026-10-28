@@ -72,7 +72,7 @@ once governance finishes all closes. It uses a separately funded keeper wallet,
 reviewed module/NFT pins and existing transaction budgets/journal/recovery;
 it cannot start exit or close LP. It is disabled until explicitly configured and
 qualified. Its ordinary polling/confirmation interval and batch/gas limits affect
-completion time. See [operations](OPERATIONS.md). Manual delivery can also use
+completion time. Ready-phase retries default hourly (configurable60seconds-1day), measured from canonical batch receipts; durable scheduling alternates delivery with other jobs. A successful batch is not proof that every receiver accepted payment. See [configuration/retry/restart](KEEPER_RECOVERY.md#optional-automatic-principal-delivery) and [operations](OPERATIONS.md). Manual delivery can also use
 the governance wallet; normal holders neither submit transactions nor pay gas.
 
 ## Transfers, status and recovery

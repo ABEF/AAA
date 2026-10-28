@@ -1,4 +1,5 @@
 """Opt-in collective-exit delivery. No governance initiation, recipient or signer."""
+import copy
 import re
 
 from zzz_ops.abi import address, calldata, decode_words, keccak256
@@ -7,6 +8,7 @@ from zzz_ops.rpc import RpcError
 BATCH = 'distributePrincipal(uint256[])'
 MAX_BATCH = 32
 MAX_SUPPLY = 1000
+PRIORITY = 'principal_distribution_first'
 
 
 def encode_batch(ids):
@@ -41,11 +43,18 @@ class PrincipalDistribution:
                 raise ValueError('Disabled principal distribution accepts only its enable control')
             self.configured = True
             return
-        if keeper.accounting_version != 4 or set(cfg) != {'enabled','batch_size','nft'}:
+        if (keeper.accounting_version != 4 or
+                not {'enabled','batch_size','nft'} <= set(cfg) <=
+                    {'enabled','batch_size','nft','retry_interval_seconds'}):
             raise ValueError('Principal distribution requires explicit accounting4 and reviewed settings')
         self.batch = cfg['batch_size']
         if type(self.batch) is not int or not 1 <= self.batch <= MAX_BATCH:
             raise ValueError('Principal distribution batch must be one to32')
+        self.retry_interval = cfg.get('retry_interval_seconds',3600)
+        if type(self.retry_interval) is not int or not 60 <= self.retry_interval <= 86400:
+            raise ValueError('Principal delivery retry interval must be60-86400 seconds')
+        if type(keeper.state.get(PRIORITY,True)) is not bool:
+            raise ValueError('Invalid saved principal-distribution priority; preserve and review the journal')
         pin = cfg['nft']
         if not isinstance(pin,dict) or set(pin) != {'address','code_hash'}:
             raise ValueError('Principal distribution requires a reviewed NFT runtime pin')
@@ -61,6 +70,29 @@ class PrincipalDistribution:
         if type(cursor) is not int or not 1 <= cursor <= MAX_SUPPLY:
             raise ValueError('Invalid saved principal-distribution cursor; preserve and review the journal')
         self.configured = True
+
+    def _save_cursor(self, cursor):
+        previous = self.k.state
+        self.k.state = copy.deepcopy(previous)
+        self.k.state['principal_distribution_cursor'] = cursor
+        try:
+            self.k.save()
+        except BaseException:
+            self.k.state = previous
+            raise
+
+    def prefer_first(self):
+        """Alternate serial nonce priority durably, never payment truth."""
+        first = self.k.state.get(PRIORITY,True)
+        previous = self.k.state
+        self.k.state = copy.deepcopy(previous)
+        self.k.state[PRIORITY] = not first
+        try:
+            self.k.save()
+        except BaseException:
+            self.k.state = previous
+            raise
+        return first
 
     def _read(self, target, signature, *args, count=1):
         words = decode_words(self.k.rpc.eth_call(target,calldata(signature,*args)))
@@ -107,6 +139,17 @@ class PrincipalDistribution:
         if type(start) is not int or not 1 <= start <= count:
             raise RpcError('Principal-distribution cursor differs from the frozen inventory')
         end = min(start+self.batch,count+1)
+        key = f'principal_distribute:{start}'
+        _,now = k._head()
+        last = k.state['last'].get(key,0)
+        if type(last) is not int or not 0 <= last <= now < 1 << 64:
+            raise RpcError('Principal-distribution retry clock is inconsistent')
+        # A successful batch can defer EVERY receiver. Its canonical receipt
+        # clocks the next attempt, never proves a holder was paid. Paid-revert
+        # cooldowns remain enforced independently by the ordinary submit path.
+        if key in k.state['last'] and now < last+self.retry_interval:
+            self._save_cursor(1 if end > count else end)
+            return False
         ids = []
         for ordinal in range(start,end):
             identifier = self._read(self.nft,'tokenAtOrdinal(uint256)',ordinal)[0]
@@ -120,9 +163,8 @@ class PrincipalDistribution:
                 ids.append(identifier)
         # Persist scan progress before submit() can journal or broadcast. A failed
         # receiver/transaction is not marked paid here and is retried next rotation.
-        k.state['principal_distribution_cursor'] = 1 if end > count else end
-        k.save()
+        self._save_cursor(1 if end > count else end)
         if not ids:
             return False
         encode_batch(ids)  # Strictly validate before entering the signer path.
-        return k.submit('principal_exit',BATCH,(ids,),f'principal_distribute:{start}')
+        return k.submit('principal_exit',BATCH,(ids,),key)

@@ -1,5 +1,7 @@
 # Verification evidence
 
+[October27-28 change audit](two-day-audit-20261028/VERIFICATION.md): source review of the ten-commit window, principal retry/fairness correction and refreshed operator guidance. Comment-only Solidity fixes preserve ABI/storage/instructions with normal38size gates; prior execution evidence is reused explicitly, not rerun. No economic-attack immunity, service/site rollout or production approval.
+
 [Atomic LP routing and entrant isolation,2026-10-28](atomic-routing-20261028/VERIFICATION.md):
 immutable bounded reviewed venues, actual-core sizing/quote rollback, zero/one
 swap, entrant-only execution and exact context/balance guards. Explicit API/keeper

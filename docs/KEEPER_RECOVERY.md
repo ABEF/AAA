@@ -57,6 +57,7 @@ configuration with the following complete object, using the actual NFT runtime:
   "principal_distribution": {
     "enabled": true,
     "batch_size": 32,
+    "retry_interval_seconds": 3600,
     "nft": {"address": "0x<reviewed NFT address>", "code_hash": "0x<runtime keccak256>"}
   }
 }
@@ -71,6 +72,21 @@ The ordinary signer, simulation, nonce/receipt journal and transaction/day/gas
 budgets apply; no new key or signing path exists. Normal holders need no action
 or payout gas. A rejecting receiver is retried on a later rotation and retains
 exceptional owner fallback; payment cannot be forced into every contract.
+
+Ready-phase batch retries use `retry_interval_seconds` (default 3600; allowed
+60-86400). The clock is the existing confirmed canonical receipt timestamp for
+`principal_distribute:<first ordinal>`; success can mean every receiver deferred,
+so it never marks a holder paid. An absent receipt does not delay the first
+attempt. Paid reverts retain their independent existing cooldown. Fresh
+allocation batches remain prompt.
+
+Durable `principal_distribution_first` alternates the worker before/after the
+other jobs, preventing rejecting owners from monopolizing the serial nonce lane.
+Missing optional state uses the safe initial default; malformed state fails closed
+after pending recovery. Configuration changes require controlled restart with the
+same journal, refreshed config-bound health and reviewed gas/backlog limits; do
+not clear retry records to force payment. Other jobs still need their own healthy
+dependencies and ordinary permissions.
 
 The saved `principal_distribution_cursor` is scan progress, never a paid marker.
 It is persisted before submission; every rotation rereads actual ledger paid

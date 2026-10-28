@@ -31,7 +31,7 @@ before changing behavior. This file contains current instructions, not a timelin
 ## Current architecture and rules
 
 - Fresh candidate: accounting4, direct governance2, fee intake1, custody3,
-  pricing2, routing2, reviewed Entry1 and local canonical V5. See
+  pricing2, Entry routing2, LP execution1, reviewed Entry1 and local canonical V5. See
   [exact profile](docs/POSITION_V4.md) and [inventory](docs/PRODUCTION_PREFLIGHT.md).
   No automatic historical profile/journal migration or dummy module bindings.
 - One fixed deployment ZZZ token and native ETH are the only contribution inputs.
@@ -136,6 +136,8 @@ before changing behavior. This file contains current instructions, not a timelin
   [cleanup compiler comparison](reports/deep-cleanup-20261025/compiler-comparison.md).
   Actual feeds/routes/VRF/authorities/OpenSea, current3 website/services, target
   gas/operations, metadata hosting and independent audit/remediation remain open.
+
+- [Two-day change audit](reports/two-day-audit-20261028/REVIEW.md) covers the October27-28 changes. Principal delivery now uses canonical receipt-based per-batch retries and durable first/last job priority; pending recovery remains first and paid truth stays on-chain. Comment-only source corrections retain identical ABI/storage/instructions except compiler metadata. No installed service/site/journal changed. Maintain [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) alongside future execution changes.
 
 Archived checkpoints and original dirty documentation are preserved outside
 the checkout under the documentation-cleanup evidence directory recorded in

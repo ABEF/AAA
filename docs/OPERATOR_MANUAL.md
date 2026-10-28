@@ -125,6 +125,8 @@ actual dependencies, target-chain gas/operations and independent audit remain op
 
 ## Liquidity placement and keeper policy
 
+For post-exit automatic payouts, configure the [principal worker and retry interval](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). Repeated rejected batches default to hourly retry; serial-job priority alternates durably. Apply JSON changes through controlled restart, preserve the journal and refresh config-bound health; no contract update/resealing or new authority is required.
+
 Read [keeper safeguards](KEEPER_SAFEGUARDS.md) for the full protection inventory
 and the distinction between on-chain enforcement and bypassable service policy.
 

@@ -57,7 +57,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-pons-qualification"></a>
 
-- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. User selected Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic same-actual-pair pool moves are implemented. ETH/WETH are different actual assets and require the separately approved external-custody workflow. Real routes, feeds, gas/operations, inventory and audit remain open.
+- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. User selected Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic same-actual-pair pool moves are implemented. ETH/WETH are different actual assets; current in-protocol moves remain native ETH/fixed ZZZ only. A different pair needs reviewed redevelopment after collective holder return, not an external-custody executor. Real routes, feeds, gas/operations, inventory and audit remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -295,7 +295,7 @@ Custody, ownership and reward accounting.
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Use [the one-pool switch procedure](docs/OPERATOR_MANUAL.md#one-contribution-pool-at-a-time). Verify initial ZZZ/ETH selection, full destination validation, exact atomic switch/rollback and operator/runtime pins. Local evidence does not approve real destination liquidity or future-chain transport.
+  - Use [the one-pool switch procedure](docs/OPERATOR_MANUAL.md#one-contribution-pool-at-a-time). Verify initial ZZZ/ETH selection, full destination validation, exact atomic switch/rollback and operator/runtime pins. Local evidence does not approve real destination liquidity, target gas or operating safety.
   - [Incumbent dust liveness fix](reports/daily-security-20261025/REVIEW.md): historical admitted currencies come from stored Registry identity, not unavailable old venue accounting. Exact nonzero dust funding/settlement and current-pool validation still apply; newcomers receive no earlier rewards.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
@@ -949,6 +949,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Approved upkeep timing](reports/maintenance-policy-20261027/REVIEW.md) reduces in-range replacement opportunities with hard configured cooldown and separate compound interval. Service jitter is bypassable by a keeper key; real outside/price execution profitability, post-close depth and repeated-loss economics remain open. No cumulative breaker or new loss-cap relaxation.
   - [Atomic execution hardening](reports/atomic-routing-20261028/REVIEW.md) now restricts LP balancing to bounded reviewed venues, same chosen quote/execution, entrant-only budgets and zero/one actual swap. This reduces discretion/avoidable turnover but does not establish economic manipulation resistance, private ordering or profitability; real qualification stays open.
   - Maintain the [Keeper safeguards inventory](docs/KEEPER_SAFEGUARDS.md) with current architecture, contract guards, adjustable limits, service-only controls and residual risks. A documented protection is not live deployment, economic qualification or an independent audit; preserve the source/evidence distinction.
+  - Assess personally held ZZZ trading before/after an eligible rebalance, including keeper timing discretion and outside-actor ordering. Cooldown, deterministic routing, independent prices and per-operation limits reduce exposure but do not prove all such trades unprofitable; do not claim keeper profit or holder loss is inevitable either. No economic attack campaign was performed in the two-day audit.
 
   </details>
 
@@ -968,6 +969,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Requested schedule and routing](docs/LP_EXECUTION_POLICY.md): bounded service jitter is weak obfuscation, not private execution or a malicious-key constraint. Qualify full post-close depth and actual route output, possible new pools, proxy upstream changes and repeated contribution flow; distinguish time-sliced execution from a price TWAP. No automatic highest-liquidity spot oracle.
   - [Atomic execution hardening](reports/atomic-routing-20261028/REVIEW.md) now restricts LP balancing to bounded reviewed venues, same chosen quote/execution, entrant-only budgets and zero/one actual swap. This reduces discretion/avoidable turnover but does not establish economic manipulation resistance, private ordering or profitability; real qualification stays open.
   - Maintain the [Keeper safeguards inventory](docs/KEEPER_SAFEGUARDS.md) with current architecture, contract guards, adjustable limits, service-only controls and residual risks. A documented protection is not live deployment, economic qualification or an independent audit; preserve the source/evidence distinction.
+  - Assess personally held ZZZ trading before/after an eligible rebalance, including keeper timing discretion and outside-actor ordering. Cooldown, deterministic routing, independent prices and per-operation limits reduce exposure but do not prove all such trades unprofitable; do not claim keeper profit or holder loss is inevitable either. No economic attack campaign was performed in the two-day audit.
 
   </details>
 
@@ -1102,7 +1104,7 @@ Decisions and rehearsals before real funds.
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Stage live oracle/NAV thresholds, downward evolution and external-custody/stale unavailable labels; claims and migration must remain independent of metadata price reads.
+  - Stage live oracle/NAV thresholds, downward evolution and terminal holder-exit/stale unavailable labels; claims and migration must remain independent of metadata price reads.
   - Stage the implemented watcher with actual feeds, reviewed NFT runtime pins, RPC limits, confirmation recovery and gas budgets. Publish/pin the complete 2,784-state artwork manifest and independently verify its root, every path and actual marketplace rendering/ERC-4906 cache refresh.
   - Select an IPFS pinning provider and publish the verified complete artwork bundle; independently verify the resulting CID, all renderer paths and ongoing pin availability. Provider selection and publication were deferred; preparing a bundle alone does not establish hosting.
   - Exercise the added real strategy price guard, unavailable/recovery notifications and disabled-operations honest valuation in a live watcher/marketplace rehearsal; the local metadata suite does not establish cache behavior.
@@ -1112,7 +1114,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-keeper-guardrails"></a>
 
-- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery/lifecycle controls, captured fee-review schema1, config-bound health and strict conversion reads are implemented candidates. Buyback priority and currency rotation prevent continuous maintenance/first-currency starvation without changing the serial pending/nonce/gas path. Optional main-progress watchdog source/unit support is implemented; actual Linux group cleanup, preserved pending/no-resend recovery, provider/fee/alert/host rehearsals and independent operating approval remain open.
+- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery/lifecycle controls, captured fee-review schema1, config-bound health and strict conversion reads are implemented candidates. Buyback priority and currency rotation prevent continuous maintenance/first-currency starvation without changing the serial pending/nonce/gas path. Principal-return retries now use durable per-batch canonical receipt clocks and priority rotation to avoid post-exit starvation. Optional main-progress watchdog source/unit support is implemented; actual Linux group cleanup, preserved pending/no-resend recovery, provider/fee/alert/host rehearsals and independent operating approval remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1136,6 +1138,7 @@ Decisions and rehearsals before real funds.
   - [Operator policy and restart procedure](docs/OPERATOR_MANUAL.md#operator-selected-lp-policy): on-chain range/cooldown/cap updates are read fresh; JSON scheduling/threshold/candidate updates require controlled restart and matching config health. Reconcile pending calls around either change, retain journals and document the separate Budget3 compound interval. New source/example configuration does not enable a running service.
   - [Maintenance policy2](reports/maintenance-policy-20261027/VERIFICATION.md): qualify the new journal namespace, exact Strategy/runtime/version pins, hourly-check/jitter boundaries/restart/save-failure, width-change exception, returned-inside pre-signing cancellation and independent harvest. Preserve original pending/spend/receipt/nonce state; old accounting4 absent-field keeper mode remains historical1, not an automatic migration.
   - Manual operations using the service signer outside its journal must fail closed on changed nonce/checkpoints until reviewed reconciliation. New physical LP/timer identity is not transaction-history adoption. Rehearse this actual operating case without resetting journals or silently raising budgets; see [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Documentation alone does not close the operating gate.
+  - [Two-day audit](reports/two-day-audit-20261028/VERIFICATION.md): qualify rejecting receivers, successful zero-payment batches, restart-preserved retry clocks/priority, independent royalty/buyback/metadata progress and pending-first recovery. Ready-phase retry_interval_seconds defaults3600 (60-86400); no local paid cache, journal reset, resend, new authority or installed-service upgrade. Source fixture success is not actual gas/backlog/operating qualification.
 
   </details>
 
@@ -1205,4 +1208,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `1224300daacc72a8619e87016759f8e1706b52058856ea680ca58e5bffac4335`.
+Snapshot SHA-256: `7d30925495a070f182d700b65c6ceaf9322b17519f8a6dd3c4a224d7bd956834`.

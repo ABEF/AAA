@@ -1,6 +1,6 @@
 # Keeper safeguards
 
-Reviewed 2026-10-28 against source `1cabb85`: accounting4, Strategy maintenance2,
+Reviewed 2026-10-28 against the [two-day reviewed candidate](../reports/two-day-audit-20261028/VERIFICATION.md) (LP implementation `1cabb85`): accounting4, Strategy maintenance2,
 Budget compound3 and LP routing1. Entry source-routing2 is a separate capability.
 **Undeployed candidate; production NOT APPROVED.** This inventory describes
 implemented protections, not installed service settings or an independent audit.
@@ -151,7 +151,7 @@ These protect the automated service; they are not substitutes for contract guard
 - Sanitized logs and configuration-bound health records.
 - Optional progress watchdog for stalled execution.
 - Failure isolation: unavailable swap maintenance does not automatically block independently guarded harvesting.
-- Maintenance job rotation limits starvation between the corresponding funded jobs. Principal-return retries require separate fairness and retry controls; see the [recovery procedure](KEEPER_RECOVERY.md#optional-automatic-principal-delivery).
+- Durable job rotation prevents principal-return attempts from taking every serial submission slot. Confirmed batches use a persisted retry interval even if every receiver rejected payment; actual paid flags remain on-chain. See the [recovery procedure](KEEPER_RECOVERY.md#optional-automatic-principal-delivery).
 
 ## 9. Emergency containment
 
@@ -166,7 +166,7 @@ These protect the automated service; they are not substitutes for contract guard
 
 - A malicious keeper key can bypass Python jitter, simulations and software gas budgets; it still faces the contract guards.
 - Per-operation limits do not impose a cumulative-loss budget.
-- Front-running, back-running or profitable execution inside allowed tolerances is not ruled out.
+- Front-running, back-running or profitable execution inside allowed tolerances is not ruled out. A malicious keeper can trade personally around its chosen eligible submission time; deterministic sizing and cooldown constrain that opportunity but do not prove it unprofitable. Outside traders may attempt the same surrounding trades.
 - Governance can immediately loosen permitted settings or approve unsafe dependencies.
 - Feed independence, real depth/fees, transaction ordering, operating deployment and independent audit remain qualification work.
 

@@ -250,9 +250,8 @@ contract ZZZStrategy is ZZZModule {
         AssetPrice memory output = zeroForOne ? prices.second : prices.first;
         uint256 excess = zeroForOne ? v0 - desired0 : desired0 - v0;
         {
-            // Every admitted v4 pool is static and hookless. Size the net pair
-            // after its actual directional protocol + LP fee, including ERC20
-            // destinations reached by a native-to-WETH pool move.
+            // Every admitted v4 pool is static, hookless and native ETH/fixed ZZZ.
+            // Size the net pair after its actual directional protocol + LP fee.
             (,, uint24 protocol, uint24 lpFee) = IV4FeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId);
             uint256 pf = zeroForOne ? protocol & 0xfff : protocol >> 12;
             if (c.key.hooks != address(0) || lpFee != c.key.fee || pf > 1000) revert InvalidConfiguration();

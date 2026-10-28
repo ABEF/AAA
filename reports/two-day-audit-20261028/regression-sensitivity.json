@@ -1,0 +1,43 @@
+{
+  "scope": "Expected failures under exact archived methods, substituted only in inert fixtures. Not a candidate pass count.",
+  "baseline_head": "1cabb852ec565e2459a5d17bba063e424f6bf318",
+  "cases": [
+    {
+      "case": "old_cycle_priority",
+      "test": "test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata",
+      "archived_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\two-day-audit-20261028\\baseline\\keeper\\monitor.py",
+      "archived_source_sha256": "8ac2fc43102e082a817bcac731de1697e2c3b4f73cdf2f448f6537400ceaee0c",
+      "tests_run": 1,
+      "expected_failure_detected": true,
+      "failures": [
+        [
+          "tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata (count=4)",
+          "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_keeper_principal_distribution.py\", line 191, in test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata\n    self.assertIn(worker,events)\nAssertionError: 'royalties' not found in ['principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal']\n"
+        ],
+        [
+          "tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata (count=8)",
+          "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_keeper_principal_distribution.py\", line 191, in test_minimum_retry_interval_cannot_starve_conversions_buybacks_or_metadata\n    self.assertIn(worker,events)\nAssertionError: 'royalties' not found in ['principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal', 'principal']\n"
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "case": "old_zero_paid_retry",
+      "test": "test_successful_zero_payment_receipt_throttles_retry_across_restart",
+      "archived_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\two-day-audit-20261028\\baseline\\keeper\\principal.py",
+      "archived_source_sha256": "e3869317746f8ed3f7559d2549969724e00de44516535a58ebd1883dea559f05",
+      "tests_run": 1,
+      "expected_failure_detected": true,
+      "failures": [
+        [
+          "tests_python.test_keeper_principal_distribution.PrincipalDistributionTests.test_successful_zero_payment_receipt_throttles_retry_across_restart",
+          "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_keeper_principal_distribution.py\", line 144, in test_successful_zero_payment_receipt_throttles_retry_across_restart\n    self.assertFalse(self.k.principal_distribution.run());submit.assert_not_called()\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n"
+        ]
+      ],
+      "errors": []
+    }
+  ],
+  "successful": true,
+  "actual_network_disabled": true,
+  "actual_subprocess_disabled": true
+}

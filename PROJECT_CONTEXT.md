@@ -24,7 +24,7 @@ Value/evolution is current marked on-chain LP NAV, not historic dollars contribu
 | Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; maintenance policy2 uses actual physical range exit or operator width update after the configured hard minimum (initial12hours). Operator selects ZZZ-price-in-ETH +/-25/50%; matching service adds durable1-10minute jitter/hourly ordinary inside checks. Compound capability3 has its own interval (default1hour); it yields to due rebalance and never resets that clock. Polling is not an execution promise. |
 
 Current source profile is accounting4/governance2/fee intake1/custody3/pricing2/
-routing2/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
+Entry routing2/LP execution1/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
 Current Position has eight fields and explicit Exited5. Production LP pools use
 native ETH/fixed ZZZ only. Same-pair moves, parking and pre-exit same-chain
 handoff remain. External principal/royalty custody exits, all-ZZZ exit conversion,
@@ -71,7 +71,7 @@ requires its own keeper grant if calling directly. It bypasses service jitter/ho
 checks only. [Operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
 requires pending coordination and same-key out-of-band nonce/receipt/spend
 reconciliation; LP/timer rediscovery alone does not adopt an external transaction.
-Documentation synchronization changes no source, ABI, service or release status.
+The manual-execution clarification itself introduced no source/ABI/service change; later LP routing1 source and its exact evidence are separate.
 
 ## Artwork and financial reporting
 
@@ -94,75 +94,39 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Earlier accounting3 integration checkpoint: contract
-[8be0f89](https://github.com/ABEF/AAA/commit/8be0f89fd982253ddae7bef2ebfc36b497d836b1)
-and website main77501ce. Poplint servesf23c559; the unchanged demo serves9be6d1.
-Subsequent handoff/documentation commits do not deploy new artifacts. Next
-session should start from the [resume instructions](docs/WORK_HANDOFF.md),
-current fork witness and remaining actual feed/route/API qualification, without
-repeating unchanged suites. Poplint's unconfigured page is expected until real
-reviewed bindings exist; do not replace it with demo or historical Anvil data.
+Current LP implementation checkpoint is `1cabb85` on main. The latest
+[two-day review](reports/two-day-audit-20261028/REVIEW.md) covers the ten commits
+on October27-28 and fixes optional principal-delivery retry starvation. Confirmed
+batch receipts clock retries (default1hour, configurable60seconds-1day); durable
+priority alternates it with other jobs. Pending recovery remains first and
+on-chain paid flags remain authoritative. No running service was upgraded.
 
-The current holder-return candidate has [scoped verification](reports/holder-collective-exit-20261027/VERIFICATION.md):133distinct affected Solidity methods,37normal object gates and exact EVM/compiler source bindings. Profile4/backend/keeper delivery checks pass with documented historical fixture repairs/platform skip. New source remains undeployed and requires actual release qualification. Optional post-close keeper allocation/direct delivery is implemented but disabled; governance alone starts/closes LP, and successful delivery requires no holder action. NFT runtime has176bytes of headroom. Existing served sites/Anvil/journals/services remain unchanged.
+Two stale Solidity comments are corrected without changing tokens, ABI, recursive
+storage or compiled instructions (compiler metadata changes). New normal38size
+gates and exact pins are in [verification](reports/two-day-audit-20261028/VERIFICATION.md).
+Do not combine fresh backend tests with historical execution counts as one run.
+Prior [atomic routing](reports/atomic-routing-20261028/VERIFICATION.md),
+[upkeep policy](reports/maintenance-policy-20261027/VERIFICATION.md),
+[holder-return](reports/holder-collective-exit-20261027/VERIFICATION.md) and
+[earlier reports](reports/README.md) retain their original source/fixture scopes.
+Vault runtime24064, Manager24152 and NFT24400 leave512/424/176bytes; exact release
+constructor arguments, target gas and real dependencies still need qualification.
 
-Last backend/keeper security publication [2a9c65b](https://github.com/ABEF/AAA/commit/2a9c65bf2d4dc27cc4eb16a8ba8b629f07f2f22b): [review](reports/system-adversarial-20261026/REVIEW.md),
-[coverage](reports/system-adversarial-20261026/COVERAGE.md) and
-[verification](reports/system-adversarial-20261026/VERIFICATION.md). All608 functions,
-31 constructors and13 receivers have multiple static cases;1,987 scenario instances
-are not test passes. Shared RPC rejects malformed identity/ambiguous or nonfinite
-JSON/envelopes and keeps decoder limits in bounded failover. The keeper main
-path now supports optional systemd progress supervision; the source120s unit
-uses main notifications and group SIGKILL/no-core, preserving journal recovery.
-Actual host kill/restart qualification remains open; standalone RPC can still
-block beyond an inactivity timeout. Holder input reads
-are bounded/strict and invalid arguments no longer echo values.244 unique affected
-Python methods:241 passes/3 explicit skips,42 new included once; no failures/errors/drift. Actual
-contract-wallet callbacks remain supported; conditional preview differences are
-not fabricated accounting errors. Solidity/ABI/economics/services are unchanged.
-Exact main publication is verified in the [receipt](reports/system-adversarial-20261026/PUBLICATION.md);
-actual operating/provider/independent qualification remains open.
+[Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) distinguishes contract-enforced rules
+from software-only jitter/simulation/budgets. Keeper personal trading around its
+eligible submission time and external sandwiches remain economic qualification
+questions, not proved profitable attacks or eliminated risks. Preserve the
+platform-blocked simulation boundary; no attack campaign was run in this review.
 
-Prior market/input publication60bfb96/receiptc3289a8 retains its
-[exact scope](reports/market-adversarial-20261026/VERIFICATION.md):223affected
-Python methods and15actual-v4 composition cases. No unchanged Solidity/static/
-full keeper/website suite was rerun. Actual qualification and independent audit
-remain open.
+Website main is `e5bb216` (read-only local check); poplint still servesf23c559 and
+the unchanged demo9be6d1. Current3 unconfigured poplint is not accounting4 source
+acceptance. No site/source/build/server, Anvil/NFT/LP/balance, journal, public
+signing or monitor changes follow from this audit. Publication is not deployment.
 
-Earlier functional97cbd16 / receipt25ac8d4:
-[reward resilience](reports/reward-resilience-20261026/VERIFICATION.md),437affected
-Python passes/6skips and one new actual-v4 case retain their original source scope.
-No unchanged keeper/claim/full-contract suite was rerun by implication.
-
-Prior allocation/fairness publication0ee9650 and
-[receipt](reports/reward-allocation-20261026/PUBLICATION.md) retain their scope;
-1,000claim-order fuzz and normal build/static evidence are not rerun by implication.
-
-The preceding published baseline is3ad0e3f (docs receipt), with functional885af8e:
-[keeper/LP review](reports/keeper-lp-audit-20261026/REVIEW.md) and
-[receipt](reports/keeper-lp-audit-20261026/PUBLICATION.md). It binds loaded-config
-health and rejects malformed conversion flags. Website memory-onlyfd8c3e8 remains
-its prior verified state; no website update is implied by this contract task.
-
-Documentation consolidation [5114a1c](https://github.com/ABEF/AAA/commit/5114a1c62a8519c91233983d9123b137a24bbc60) and
-website memory-only7dd7c35 are published on main, exact remote heads verified.
-[Cleanup receipt](reports/documentation-cleanup-20261026/PUBLICATION.md) records
-five redundant removals, current-guide consistency and preserved historical scope.
-No implementation/deployment changed; this current paragraph replaces status
-rather than adding another session-history preamble.
-
-Earlier fee-integrity publication: [379ae19](https://github.com/ABEF/AAA/commit/379ae19dbb9c5a45a4ebb5c83be18007b67bc816),
-backend fee integrity; [receipt](reports/backend-remediation-20261026/PUBLICATION.md).
-167distinct affected Python methods pass (31new/136existing),54inputs pinned.
-No Solidity changed in that fix. The previous full audit's current399-finding
-static triage/47bindings and37object evidence retain their original scope.
-Reference:31contracts/608 functions. Vault runtime22,852; Access constructor total
-42,352 in the recorded normal build. Actual release constructor/gas still needs
-qualification. No full new regression, green-CI or independent audit is implied.
-
-**Undeployed; production NOT APPROVED.** Actual feeds/routes/RPC/VRF/authorities,
-OpenSea primary-mint integration, artwork hosting, explicit current3 website and
-service acceptance, gas/strategy economics, operating rehearsals and independent
-audit/remediation remain open in the sole Todo. No public contract deployment was requested.
+**Undeployed; production NOT APPROVED.** Real feeds/routes/RPC/VRF/authorities,
+OpenSea primary mint, artwork hosting, exact current-contract website/service
+acceptance, strategy/gas/operating rehearsals and independent audit/remediation
+remain open in the [sole Todo](TODO.md). No public deployment was requested.
 
 ## Workspace and continuation
 
@@ -173,7 +137,7 @@ Separate integration: [www.poplint.0xwave.com](https://www.poplint.0xwave.com).
 The user explicitly requested keeping popldemo live and unchanged while building
 poplint for current-contract integration; never exchange roots/configs/installers.
 Poplint now serves websitef23c559 with HTTPS and a separate certificate-renewal
-hook; website main77501ce includes the final operating docs/hook. Demo remains
+hook; operating commit77501ce adds that hook and local main e5bb216 adds resumption notes. Demo remains
 on9be6d1, unchanged by before/after hashes. See the [serving receipt](reports/current3-website-20261026/DEPLOYMENT.md).
 [SITE_ENVIRONMENTS](docs/SITE_ENVIRONMENTS.md) owns the hostname/build/server map.
 The extra purchase-rights UI task was declined, not implemented.

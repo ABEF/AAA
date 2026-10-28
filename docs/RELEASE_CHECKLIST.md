@@ -10,7 +10,9 @@ service/inventory/website qualification remain historical to their original pins
 See [profile4](POSITION_V4.md); new release qualification remains open.
 
 
-Latest [systematic adversarial review](../reports/system-adversarial-20261026/REVIEW.md)
+Latest [two-day audit](../reports/two-day-audit-20261028/VERIFICATION.md) fixes principal retry starvation and stale current guidance. The new service settings/priority must be qualified under the actual supervisor, preserved journal, gas budgets and rejecting receivers before rollout. Comment-only Solidity changes preserve ABI/storage/instructions while changing compiler metadata; use the new exact release pins. No production approval follows.
+
+Earlier [systematic adversarial review](../reports/system-adversarial-20261026/REVIEW.md)
 adds a source-review matrix for every inventoried callable and corrects read-RPC/holder-tool input
 integrity/failure handling and adds source-only systemd progress supervision.
 The244-method scope has241 passes/3 explicit skips; the652ABI

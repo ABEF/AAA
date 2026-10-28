@@ -26,6 +26,8 @@ existing keeper authority and on-chain guards remain; same-key out-of-band signi
 requires journal reconciliation. This is a documentation clarification, not a
 new implementation or release qualification.
 
+The [two-day audit](../reports/two-day-audit-20261028/REVIEW.md) adds bounded principal-return retries and serial-job fairness. Qualify the actual optional delivery worker with persisted retries, pending recovery, receiver deferral/backlog alerts and other post-exit work before enabling it. Keep [the safeguards inventory](KEEPER_SAFEGUARDS.md) current; publication is not service rollout.
+
 ## LP execution next steps
 
 The three timing decisions are settled: hard initial12-hour minimum even outside,
