@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-10-28 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-29 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -228,6 +228,7 @@ Custody, ownership and reward accounting.
   - Qualify exact helper/runtime/parent/profile bindings and matching keeper/API. Worker journals observations and clear-only resets, confirms reset receipts, preserves old profiles/journals and refreshes samples during post-ready jitter. Source evidence: [review and verification](reports/practical-improvements-20261028/VERIFICATION.md). No40%trigger, passive position, deployment or installed-service change.
   - The [buffer audit](reports/practical-improvements-20261028/VERIFICATION.md) captures raw evidence across full maintenance, restores only parent-authenticated post-exit orientation invalidation, narrows unrelated failures, suppresses repeat paid clears with canonical acknowledgement, restarts jitter for a new window and atomically records reset after failed related receipts. Fresh worker main polling is explicit60-300seconds; source sampling remains strict300. Actual timing/gas and operating rollout remain unqualified.
   - [Follow-up audit](reports/confirmation-followup-20261028/VERIFICATION.md) rejects foreign observations while any clear acknowledgement remains; initial raw group/pool/global faults invalidate known fresh windows without resetting unrelated jobs or blocking pending recovery. Actual helper/Budget pins are checked during cooldown. These local repairs do not qualify strict300-second receipts, live RPCs, gas or rollout.
+  - [Third-pass verification](reports/third-pass-20261028/VERIFICATION.md): The third pass closes the no-pending used-signer receipt-checkpoint reset gap before ordinary work; saved-intent recovery retains its old related-only tracking. Rehearse canonical checkpoint outages without reusing old evidence or resetting transaction journals.
 
   </details>
 
@@ -437,6 +438,7 @@ The data and services behind the app.
   - The [full service audit](reports/full-audit-20261025/SERVICES.md) fixes independent-history audit chain-ID composition with the actual Rpc adapter. Checked integers and canonical hexadecimal transport values remain strict; Boolean/floating/malformed inputs reject. Offline actual-adapter/SQLite evidence does not qualify archive provider completeness or a deployed service.
   - [Current fee conservation](reports/backend-remediation-20261026/HISTORY.md): actual fee-intake1 version, exact same-transaction/bucket/currency funded-credit pairing and pinned observed-key carried dust now reconcile. Independent LP-share and rarity weights, top-ups and verified same-chain continuity have scoped checks. Complete authentic history remains required: head checks do not prove every dust-only receipt or timestamp. Final affected167methods (31new/136existing) pass; service/pricing/capacity qualification remains open.
   - Actual PoolManager donations are funded fee growth, unlike unsolicited raw Vault prefunds. [Market/input review](reports/market-adversarial-20261026/REVIEW.md) preserves receipt-backed attribution but requires clear reporting: funded earnings do not prove organic volume or sustainable yield. No speculative APY or intent classification is added.
+  - [Third-pass verification](reports/third-pass-20261028/VERIFICATION.md): Current history guides explicitly distinguish accounting4/canonicalV5 from historical3/V4 royalty-custody replay. Indexer head admission now uses strict canonical bounded quantity validation; invalid responses cannot authorize new ingestion. Preserve independently proved rollback and complete authentic log qualification.
 
   </details>
 
@@ -838,6 +840,7 @@ Three required testing layers, with source-bound evidence.
   - Current [full review](reports/full-audit-20261025/REVIEW.md) leaves real feed/route/VRF/authority/OpenSea/current-website/service/target-gas and exact constructor qualification open. Fresh11Python/oneEVM scopes and reviewed static output are not global production approval. Preserve original failures, trusted custody disclosures and known admitted-only late-currency recovery scope.
   - [Keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) binds health to exact loaded config, rejects malformed conversion controls, repairs obsolete range-test domain and selects current3/fee1/native rehearsal source. Final affected Python354pass/5Unix skips (359methods),9range methods incl1000fuzz; unchanged production Solidity/permissions/economics. Linux current-fixture process/systemd, actual feeds/routes/gas/services and independent audit remain open. Deploy matching health writer/checker only under separate rollout; never patch old hashes or reset journals.
   - [Systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md) maps all 608 functions,31 constructors and13 receivers to multiple source-review cases;1,987 scenario instances are not execution tests. The final 244-method scope has 241 passes/3 explicit skips,42 new included once, with source-stage failures retained. Unchanged Solidity/static evidence is reused at exact pins; independent frozen-release audit/remediation and external qualification remain open.
+  - [Third-pass verification](reports/third-pass-20261028/VERIFICATION.md): Third-pass review covers35main commits on October26-28 Paris plus named earlier interacting dependencies, with the saved repo-specific prompt and source-bound coverage. Fresh affected regressions are separate from unchanged reused Solidity/build evidence, not a full-release approval.
 
   </details>
 
@@ -1170,6 +1173,7 @@ Decisions and rehearsals before real funds.
   - Fresh healthschema2 [telemetry/caching evidence](reports/practical-improvements-20261028/VERIFICATION.md) exports confirmed block/config/runtime/policy metadata with current versus last-success status and gas refusal diagnostics. Local file hashes are not runtime attestation. Matching writer/checker rollout, freshness/latency and actual operations remain unqualified; preserve journals and fresh pre-signing validation.
   - Qualify confirmation reset/clear acknowledgement/recovered foreign-window handling, failed receipt and save-failure atomicity, exact main-loop cadence and fresh jitter after a new window. The [local buffer audit](reports/practical-improvements-20261028/VERIFICATION.md) has39focused keeper passes and archived-code negative controls; actual service/key/RPC/recovery rollout remains open.
   - [Policy-health follow-up](reports/confirmation-followup-20261028/VERIFICATION.md) requires actual confirmation helper/Budget runtime/bindings even during cooldown/no compound and quality0. Fresh latest policy-only metadata is separate from confirmed quality evidence; stopped/incompatible/unavailable stay explicit, bad metadata cannot refresh last healthy time. Pending recovery adds no new dependency. After exit, only intentional stop/cadence is informational, not bad runtime/freshness. Qualify matching writer/checker and real services.
+  - [Third-pass verification](reports/third-pass-20261028/VERIFICATION.md): The third pass validates both optional LP/royalty conversion snapshot headers canonically, rejecting missing/null/future timestamps, wrong identities and reduced final confirmation depth through the existing worker failure boundary. One final head read after pricing refreshes the deadline only for quote-eligible conversion; disabled/low-amount paths retain existing work. No cap increase or broad exception fallback; actual service/provider qualification remains open.
 
   </details>
 
@@ -1189,6 +1193,7 @@ Decisions and rehearsals before real funds.
   - [Keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) binds health to exact loaded config, rejects malformed conversion controls, repairs obsolete range-test domain and selects current3/fee1/native rehearsal source. Final affected Python354pass/5Unix skips (359methods),9range methods incl1000fuzz; unchanged production Solidity/permissions/economics. Linux current-fixture process/systemd, actual feeds/routes/gas/services and independent audit remain open. Deploy matching health writer/checker only under separate rollout; never patch old hashes or reset journals.
   - Rehearse the [progress-watchdog operator procedure](docs/KEEPER_RECOVERY.md#stalled-rpc-and-progress-watchdog) with isolated blocked DNS/header/body and signer interruption. Verify loaded settings, all-descendant termination before restart, lock release, original journal/nonce/fee-budget preservation, hashless ambiguous intent blocking and no overlap/resend. Existing service/desktop monitor was not changed or resumed.
   - [Reset/health follow-up](reports/confirmation-followup-20261028/VERIFICATION.md): rehearse raw input outages, foreign observations after healthy empty clears, restart-preserved acknowledgements, pending-first recovery and truthful health degradation. Source-only fixes and398scoped Python passes do not establish actual recovery/service qualification.
+  - [Third-pass verification](reports/third-pass-20261028/VERIFICATION.md): Rehearse used-signer checkpoint/head faults with no pending intent, plus malformed conversion snapshots and other due jobs. These source-only fixes preserve original pending nonce/receipt/spend state and historical profiles; no live service or monitor was changed.
 
   </details>
 
@@ -1241,4 +1246,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `6d67a6dc9a19ea39637eda24bbf39f0b479c84a2df06828c3e536d6f447c3ad7`.
+Snapshot SHA-256: `93982ef45e0f2c3b264f2d9cf3371fc4000749ed065fa0062035a561bf53924e`.

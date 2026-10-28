@@ -45,7 +45,11 @@ records398 affected Python passes/one explicit skip and exact reused EVM/build
 pins. Earlier [payout-retry fixes](reports/two-day-audit-20261028/VERIFICATION.md)
 retain their own137-method/comment-only compiler scope. [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md)
 still distinguish contract guards, service controls and remaining market risks.
-No service or website changed.
+No service or website changed. The [third-pass review](reports/third-pass-20261028/REVIEW.md)
+then traces all35main commits on October26-28 and earlier interacting code, fixing
+checkpoint-reset and malformed ingestion/conversion snapshot paths. Its
+[repo-specific audit brief](docs/THIRD_PASS_AUDIT_PROMPT.md) and verification retain
+the exact scope, unchanged contract evidence and open production gates.
 
 The earlier [systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
 maps608 functions plus31 constructors/13 receivers at its original source revision

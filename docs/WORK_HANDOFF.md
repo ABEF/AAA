@@ -1,7 +1,32 @@
 # Work handoff
 
-Reviewed 2026-10-28. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
+Reviewed 2026-10-29. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
 [README](../README.md), [Todo](../TODO.md) and the owning runbook before continuing.
+
+## Latest third-pass audit
+
+The user requested a repo-specific exhaustive prompt first, then execution of a
+third pass including today/yesterday/day-before at the request time. The
+[saved brief](THIRD_PASS_AUDIT_PROMPT.md) freezes October26-28 Paris at cb0aadf:
+35commits,71changed source/config paths. Completion after midnight is October29,
+not an extension of the source window. See [review](../reports/third-pass-20261028/REVIEW.md)
+and [verification](../reports/third-pass-20261028/VERIFICATION.md).
+
+New fixes: a used signer's receipt-checkpoint error before work resets known
+fresh confirmation windows when no intent is pending; original pending isolation
+remains. Indexer head parsing rejects malformed quantities. Shared optional LP/
+royalty conversion validates canonical header/timestamp/depth and defers its own
+failed snapshot instead of leaking type errors or accepting future cutoffs.
+No Solidity/economic rights or running services changed. The same four original
+dirty files and prior reports stay intact. Current earnings/indexer guides now
+state4/V5 and label3/V4 custody compatibility as historical; security review no
+longer instructs testing the removed two-pass LP balancer.
+
+External baseline473committed files, three-day inventory/diff, negative controls
+and scoped verification are under `third-pass-20261028` beside earlier evidence.
+Use that record for exact methods/pins, not a sum of old test counts. Confirm
+actual local/GitHub heads before saying published. Real feed/route/VRF/authority,
+OpenSea, current website/service/gas/host and independent audit gates stay open.
 
 ## Current improvement work
 

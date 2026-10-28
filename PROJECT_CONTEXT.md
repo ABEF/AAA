@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed 2026-10-28. [AGENTS.md](AGENTS.md) owns work instructions;
+Reviewed 2026-10-29. [AGENTS.md](AGENTS.md) owns work instructions;
 [README](README.md) explains the product and code; [Todo](TODO.md) alone owns task
 status. This is the current snapshot, not an append-only session transcript.
 
@@ -86,6 +86,14 @@ totals reject custody/eligibility/NAV contradictions and retain independent ETH
 balances during a genuine LP outage. These are consistency fixes, not proof of
 provider authenticity, continuous persistence or production readiness.
 
+The [third-pass review](reports/third-pass-20261028/REVIEW.md) covers35main commits
+on October26-28 Paris at baselinecb0aadf, plus unchanged interacting dependencies.
+It fixes no-pending used-signer checkpoint faults bypassing window reset,
+noncanonical indexer head admission and conversion snapshot validation/isolation.
+The brief was frozen before the review crossed midnight into October29. Exact
+fresh/reused scopes and limits are in its verification record; no Solidity,
+economic-right, installed-service or production-approval change follows.
+
 ## Requested next LP policy
 
 The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manual
@@ -133,8 +141,8 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Published baseline is `ae56de6` on main, including confirmation1 and native-only
-Manager cleanup. The [follow-up review](reports/confirmation-followup-20261028/REVIEW.md)
+Published baseline for the third pass is `cb0aadf` on main, including
+confirmation1, native-only Manager cleanup and second-pass backend repairs. The [follow-up review](reports/confirmation-followup-20261028/REVIEW.md)
 adds backend/reset/physical-inventory consistency repairs without changing
 Solidity, economic rights or installed services. Earlier
 LP routing checkpoint`1cabb85` retains its original scope. The

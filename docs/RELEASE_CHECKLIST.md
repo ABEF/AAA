@@ -48,6 +48,11 @@ gates only at exact source/dependency/build pins. Recollect old schema6 inventor
 fields and qualify matching writer/checker plus added RPC latency before release.
 No Solidity, economic-rights, deployment or operating approval changed.
 
+The [third-pass record](../reports/third-pass-20261028/VERIFICATION.md) traces35main
+commits on October26-28 plus older interacting code. Fresh checkpoint and strict
+snapshot regressions are separate from exact reused Solidity/build evidence;
+neither closes real provider/service/operating or independent-audit approval.
+
 ## Evidence and approval boundary
 
 | Evidence | What it establishes; limits |

@@ -75,6 +75,12 @@ PoolKey/ticks to the Vault; and aligns wallet custody totals with NFT views.
 pins. Source Solidity/ABI/storage/economics and installed services are unchanged.
 Old schema6 inventories require fresh observation of new required physical fields.
 
+The [third-pass review](../reports/third-pass-20261028/REVIEW.md) adds focused
+keeper checkpoint and indexer/conversion snapshot repairs after tracing35main
+commits from October26-28. Solidity/economics remain unchanged; operator recovery,
+strict provider-input validation and source-scoped evidence are updated together.
+Prior reports remain scoped history, not additive full-release test counts.
+
 ## Smart contracts
 
 | Capability | Implemented behavior and boundary | Reference |

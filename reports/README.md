@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Third-pass three-day audit](third-pass-20261028/VERIFICATION.md): baselinecb0aadf,
+35main commits on October26-28 Paris, completed October29. Repo-specific prompt,
+changed/unchanged interaction review, used-signer checkpoint reset and strict
+indexer/conversion snapshot repairs. Fresh evidence and exact reused contract
+pins stay separate; no Solidity, service/site or production-approval change.
+
 [Confirmation follow-up,2026-10-28](confirmation-followup-20261028/VERIFICATION.md):
 additional foreign-window/raw-read resets, physical PosM PoolKey/range checks,
 actual policy helper health/preflight and consistent wallet custody totals.

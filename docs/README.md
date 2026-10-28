@@ -40,6 +40,11 @@ Historical reports and explicitly legacy local profiles retain their own semanti
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 local build](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 
+The [third-pass audit brief](THIRD_PASS_AUDIT_PROMPT.md) owns the frozen
+October26-28 review scope, invariants, adversarial workstreams and evidence rules.
+Its [results](../reports/third-pass-20261028/REVIEW.md) distinguish actual repairs
+from accepted limits and externally blocked qualification.
+
 ## Release, security and upkeep
 
 | Topic | Guide |

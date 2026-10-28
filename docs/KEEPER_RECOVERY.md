@@ -306,6 +306,12 @@ exact successful canonical reset receipt clears its marker; a failed/ambiguous
 reset retains pending/nonce/fee/retry recovery. Reset-only runtime/binding checks
 avoid condition/price reads and the source allows reset during ordinary pause.
 An off-chain failure alone never clears on-chain state.
+An existing signer receipt checkpoint is checked before ordinary work even
+when no transaction is pending. A failed canonical checkpoint/head read now
+invalidates known fresh confirmation windows before retry; recovery must
+clear/reobserve rather than reuse their old jitter/readiness. An original
+saved intent retains pending-first recovery and adds no global reset work.
+
 Relevant raw group/pool failures mark that bucket for reset. Initial global
 lifecycle/authority/head failures mark only known fresh windows, not unrelated
 historical buckets.

@@ -124,6 +124,17 @@ receiver has no external-custodian exit or return function. Governance-triggered
 LP retirement leaves already activated NFTs' rarity weights, unclaimed royalties
 and future royalty receipts intact. Returned ETH/ZZZ principal is not royalties.
 
+
+The shared optional conversion worker validates canonical latest/confirmed
+header numbers, nonzero hashes and timestamps before scanning. A confirmed
+timestamp cannot exceed either checked head; stale or reduced-depth
+snapshots defer that worker through its existing error boundary. A quote-eligible
+conversion adds one final head read after pricing and refreshes its deadline;
+disabled and low-amount paths retain their existing work. No price, gas,
+slippage or loss limit is widened.
+Retain the source balances and recorded pending intent; do not force a
+conversion, edit cursors or resend to hide an inconsistent provider.
+
 ## Operator procedure
 
 For collection pricing, the authorized marketplace owner/editor can request:

@@ -8,8 +8,8 @@ incomplete history distinct from zero balances and zero earnings.
 
 Use exact emitter inventories for the selected deployment profile, not familiar
 token names or an old Anvil manifest. Earnings needs all seven reviewed emitters
-from creation. Accounting3/canonical V4 and historical codecs remain distinct;
-adding emitters or changing profiles is not a cursor-only edit. Backfill and
+from creation. Fresh accounting4/canonical V5, historical3/V4 and older codecs
+remain distinct; adding emitters or changing profiles is not a cursor-only edit. Backfill and
 verify a separate database before switching consumers.
 
 The shared read-only RPC client refuses HTTP redirects, including redirects on
@@ -34,6 +34,14 @@ and their logs and rewind the cursor. A rollback reaching the configured start
 also needs its original explicit parent anchor; a changed genesis or an
 unproved ancestor requires operator review.
 
+The current head returned by `eth_blockNumber` must also be a canonical unsigned
+hex quantity within the signed63-bit database range. Missing prefixes, leading
+zeros, whitespace, wrong types and oversized values are `invalid_header`, never
+a successful idle cycle. Rejected head data cannot authorize a new ingestion
+batch; an earlier independently proved reorganization may already have rolled
+back under its separate checks. Retry a reviewed endpoint, preserving the database
+and cursor rather than coercing the response or weakening confirmations.
+
 ## Failure response
 
 The process emits `indexer_error` with an exception type. Locally generated
@@ -45,7 +53,7 @@ credentials or provider response bodies:
 | `invalid_log` | A confirmed log has malformed or inconsistent provenance, topics, data or bounds. The new batch and cursor are not committed. Preserve the response/range, deployment anchors and consistent database backup; compare a reviewed provider. |
 | `duplicate_log` | A batch repeats a block/log position or a transaction hash crosses block identities in the batch or stored history. Preserve evidence; do not delete rows or advance the cursor manually. |
 | `header_unavailable` | The provider cannot supply a required header. Retain the database and retry a reviewed endpoint with the required history. Check node synchronization, archive availability and provider limits. |
-| `invalid_header` / `inconsistent_header` | A header is malformed, misnumbered or supplies different metadata for the same hash. Preserve evidence and compare an independently reviewed provider. |
+| `invalid_header` / `inconsistent_header` | A head quantity/header is malformed, misnumbered, outside database bounds or supplies different metadata for the same hash. Preserve evidence and compare an independently reviewed provider. |
 | `unstable_ancestry` | Reads did not describe a stable contiguous chain. Retry after the reviewed confirmation boundary settles; persistent disagreement needs provider/finality review. |
 | `reorg_depth` / `unproved_ancestor` | No common ancestor was proved inside the configured boundary. Preserve the original database, configuration and observations; investigate chain identity and finality before approving a separate rebuild. |
 | `database_boundary` / `database_changed` | Stored blocks/cursor are inconsistent or another writer changed them. Stop competing writers and inspect a consistent backup. Do not edit rows or guess a cursor. |

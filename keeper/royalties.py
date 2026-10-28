@@ -91,15 +91,22 @@ class RoyaltyAutomation:
             if type(state.get('next_first')) is not bool: raise ValueError('Invalid royalty scheduling state')
 
     def scan_once(self):
+        from keeper.monitor import rpc_hash, rpc_quantity
         k=self.k; state=k.state[self.key]; contracts=k.contracts
         latest=k.rpc.call('eth_getBlockByNumber',['latest',False])
-        if not isinstance(latest,dict) or not re.fullmatch(r'0x[0-9a-fA-F]+',latest.get('number','')): raise RpcError('Invalid royalty head')
-        block=int(latest['number'],16)-k.confirmations
+        if not isinstance(latest,dict): raise RpcError('Invalid royalty head')
+        head=rpc_quantity(latest.get('number'),'conversion head number')
+        head_stamp=rpc_quantity(latest.get('timestamp'),'conversion head timestamp',minimum=1)
+        rpc_hash(latest.get('hash'),'conversion head hash')
+        block=head-k.confirmations
         if block < 0: raise RpcError('Insufficient royalty confirmations')
         header=k.rpc.call('eth_getBlockByNumber',[hex(block),False])
-        if not isinstance(header,dict) or header.get('number') != hex(block) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',header.get('hash','')):
+        if not isinstance(header,dict) or rpc_quantity(header.get('number'),'conversion anchor number')!=block:
             raise RpcError('Invalid royalty anchor')
-        selector={'blockHash':header['hash'],'requireCanonical':True}
+        stamp=rpc_quantity(header.get('timestamp'),'conversion anchor timestamp',minimum=1)
+        anchor_hash=rpc_hash(header.get('hash'),'conversion anchor hash')
+        if stamp>head_stamp: raise RpcError('Conversion anchor timestamp exceeds its head')
+        selector={'blockHash':anchor_hash,'requireCanonical':True}
         def read(name,sig,*args):
             data=native_quote(args[0],args[2]) if self.native_v4 and sig=='quote(address,address,uint256)' and args[1]==NATIVE else calldata(sig,*args)
             words=decode_words(k.rpc.call('eth_call',[{'to':contracts[name],'data':data},selector]))
@@ -174,9 +181,13 @@ class RoyaltyAutomation:
         # A successful balance read can recover the waiting cohort even if no
         # currently payable whole units exist. sync never swaps or pays anyone.
         recover=not self.lp and read(self.ledger,'eligibleCount(address)',asset)<read(self.ledger,'activationCount()')
-        _,now=k._head()
-        if now-int(header['timestamp'],16)>300: raise RpcError('Stale royalty snapshot')
-        if k.rpc.call('eth_getBlockByNumber',[hex(block),False])!=header: raise RpcError('Royalty anchor changed')
+        def validate_snapshot():
+            fresh_head,now=k._head()
+            if fresh_head-block+1<k.confirmations or head_stamp>now or not 0<=now-stamp<=300:
+                raise RpcError('Conversion snapshot is stale, future or lacks confirmations')
+            if k.rpc.call('eth_getBlockByNumber',[hex(block),False])!=header: raise RpcError('Royalty anchor changed')
+            return now
+        now=validate_snapshot()
         if total<policy['minimum_source_units']:
             if recover: return k.submit(self.ledger,'sync(address)',(asset,),f'royalty_sync:{asset}')
             return False
@@ -184,7 +195,9 @@ class RoyaltyAutomation:
         expected=total if unwrap else read('oracle','quote(address,address,uint256)',asset,quote_output,total)
         if expected<policy['minimum_output_wei']: return False
         minimum=expected if unwrap else (expected*(10000-loss)+9999)//10000
-        # Recheck after the last price read; the contract repeats its own floor.
-        if k.rpc.call('eth_getBlockByNumber',[hex(block),False])!=header: raise RpcError('Royalty anchor changed')
+        # Quotes can take time while the confirmed block itself stays unchanged.
+        # Recheck age/depth too and build the deadline from this final head.
+        # This adds one head RPC only for a quote-eligible conversion path.
+        now=validate_snapshot()
         return k.submit(self.ledger,BATCH,(asset,sorted(ids),route,minimum,now+180),
             f'{self.key}:{asset}:{first}:{last}',maximum_cost=minimum*self.gas_bps//10000)

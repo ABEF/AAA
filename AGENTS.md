@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed 2026-10-28. Read [current context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed 2026-10-29. Read [current context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md) and the relevant [operator procedure](docs/OPERATOR_MANUAL.md)
 before changing behavior. This file contains current instructions, not a timeline.
 
@@ -176,6 +176,16 @@ before changing behavior. This file contains current instructions, not a timelin
   that historical health writer did not export it. Current schema2 exports
   quality and separately anchored policy observations. The blocked2.5Mgas example is unqualified,
   not an operating recommendation; never widen it automatically.
+
+- [Third-pass review](reports/third-pass-20261028/REVIEW.md) freezes the
+  October26-28 Paris main window (35commits) at cb0aadf; completion after midnight
+  does not change that scope. Checkpoint faults for a used signer without pending
+  work now reset known confirmation windows; original pending recovery stays
+  first. Indexer head quantities and both conversion workers' header/timestamp
+  checks fail closed without broad catches or extra RPCs. Solidity/economics,
+  services/sites/Anvil/journals/signing are unchanged. The
+  [audit prompt](docs/THIRD_PASS_AUDIT_PROMPT.md) and source-bound coverage distinguish
+  reviewed code, fresh evidence, exact reuse and actual external qualification.
 
 - [Confirmation follow-up](reports/confirmation-followup-20261028/REVIEW.md)
   rejects foreign observations while any clear acknowledgement remains and

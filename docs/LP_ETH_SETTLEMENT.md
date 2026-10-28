@@ -55,6 +55,17 @@ consumes that balance before any later conversion, preventing duplicate payout.
 Ordinary pause preserves funded claims; canonical locks and recipient acceptance
 retain their own guards. A broken source token can also block a source claim.
 
+
+The shared optional conversion worker validates canonical latest/confirmed
+header numbers, nonzero hashes and timestamps before scanning. A confirmed
+timestamp cannot exceed either checked head; stale or reduced-depth
+snapshots defer that worker through its existing error boundary. A quote-eligible
+conversion adds one final head read after pricing and refreshes its deadline;
+disabled and low-amount paths retain their existing work. No price, gas,
+slippage or loss limit is widened.
+Retain the source balances and recorded pending intent; do not force a
+conversion, edit cursors or resend to hide an inconsistent provider.
+
 ## Operator procedure
 
 | Step | Operation and required verification |

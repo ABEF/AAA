@@ -135,7 +135,7 @@ class Indexer:
 
     def step(self)->int:
         self.reconcile()
-        head=int(self.rpc.call('eth_blockNumber',[]),16)
+        head=_header_quantity(self.rpc.call('eth_blockNumber',[]))
         safe=head-self.confirmations+1
         start=self.next_block
         if start>safe:return 0

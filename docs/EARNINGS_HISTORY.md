@@ -2,8 +2,9 @@
 
 This optional read-only backend reports processed collection and per-NFT
 earnings. It never harvests, synchronizes, converts, claims or signs. The current
-candidate uses accounting 3, fee intake 1 and same-chain canonical V4. The public
-website remains a simulation; current-profile service, website and provider
+candidate uses accounting4, fee intake1 and same-chain canonical V5. Explicit
+historical3/V4 readers retain their original deployment scope. The public demo
+remains a simulation; current-profile service, website and provider
 qualification remain open. See the [financial-history task](../TODO.md#task-financial-history).
 
 ## Fee allocation integrity
@@ -38,14 +39,16 @@ history audit. Never repair raw logs, assume zero or weaken the profile to force
 a report. Preserve the original database and diagnose using a separate replay
 copy with the same seven emitter bindings and confirmed cutoff.
 
-## Native royalty custody boundary
+## Historical native royalty custody compatibility
 
-Current replay accepts native deferral only within an authenticated custody
+Current accounting4 has no external royalty-custody exit/return function. LP
+holder principal return is not royalty income and never clears earned royalties.
+Historical3 replay accepts native deferral only within an authenticated custody
 exit/full-return interval. Returned backing is not royalty revenue. Ordinary
 post-return synchronization credits earlier unseen receipts to the earlier
 cohort before waiting NFTs join; conversions and claims still do not create
 income. Missing/mismatched events and full earnings reconciliation while backing
-is external remain unavailable, never zero. See [reporting and safe replay](ROYALTY_REPORTING.md#native-custody-history-and-recovery)
+is external remain unavailable, never zero. See [reporting and safe replay](ROYALTY_REPORTING.md#current-native-eligibility-and-historical-custody)
 and the [source-scoped correction](../reports/day-readiness-20261025/royalty-matrix.md).
 This is reader compatibility, not a running-service upgrade. Earlier
 [earnings verification](../reports/earnings-history/VERIFICATION.md) retains its

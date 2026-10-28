@@ -83,10 +83,19 @@ at 33 (32 ERC20 plus native), and royalty slots at 17 including native.
 - For the idle-compounding candidate, verify the existing LP is increased,
   whole-bucket starting prices/cap and exact released compound are captured,
   venue guards and the 5% idle ceiling remain, and failures roll back the
-  coordinated compound cadence. Check both bounded balancing passes and their
-  one-basis-point input cutoff, including thin pools and callback receipts.
-  Reduced dust must not become an unbounded swap loop or waive the marginal
+  coordinated compound cadence. Check the current bounded actual-core sizing
+  and zero/one balancing swap, reviewed venue selection after withdrawal, thin
+  pools, callback receipts and empty-catalog refusal; the retired two-pass path
+  is not a current execution requirement. Reduced dust must not become an
+  unbounded swap loop or waive the marginal
   deployed-LP contribution floor.
+
+Future external collateral/integration consumers must separately review
+callback-time NAV reads during an in-flight contribution or LP mutation. The
+current API reads a confirmed block; that does not establish that every internal
+transaction-time view is a safe external price oracle. No presently reachable
+user-controlled callback exploit or current collateral consumer was established
+by the third pass; do not relabel this integration caveat a proved fund-drain path.
 
 ## 3. NFT ownership and reward distribution
 

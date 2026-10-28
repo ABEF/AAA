@@ -61,6 +61,11 @@ matching health writer/checker, and qualify the extra pinned RPC reads, strict
 300-second receipt cadence and preserved pending recovery on actual services.
 These remain operating gates;398scoped Python passes do not close them.
 
+The [third-pass repairs](../reports/third-pass-20261028/REVIEW.md) also require
+operating qualification of used-signer checkpoint outages and malformed/future
+conversion/indexer observations. Preserve pending-first recovery, strict sampled
+cadence and separately guarded harvest; no new strategy decision or gate relaxation.
+
 ## LP execution next steps
 
 The three timing decisions are settled: hard initial12-hour minimum even outside,

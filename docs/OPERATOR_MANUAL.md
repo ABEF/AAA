@@ -343,6 +343,12 @@ feature by editing JSON. Preserve their exact readers and original journals.
    receipt before extending evidence. A failed reset transaction does not clear
    the requirement. Do not edit journals or resend an ambiguous transaction.
 
+An existing signer receipt checkpoint is checked before ordinary work even
+when no transaction is pending. A failed canonical checkpoint/head read now
+invalidates known fresh confirmation windows before retry; recovery must
+clear/reobserve rather than reuse their old jitter/readiness. An original
+saved intent retains pending-first recovery and adds no global reset work.
+
 Relevant raw group/pool read failures invalidate that bucket's fresh window; a failed
 initial global lifecycle/authority/head read marks only known fresh windows for
 reset. Unrelated router, compound, harvest or health-read failures degrade their

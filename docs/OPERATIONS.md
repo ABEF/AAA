@@ -270,6 +270,12 @@ before extending old evidence. Durable `confirmation_reset_v1` markers survive
 restart and clear only after the exact successful canonical reset receipt;
 failed/ambiguous resets retain normal retry/nonce recovery. Reset-only binding
 checks avoid price reads and the source permits reset during ordinary pause.
+An existing signer receipt checkpoint is checked before ordinary work even
+when no transaction is pending. A failed canonical checkpoint/head read now
+invalidates known fresh confirmation windows before retry; recovery must
+clear/reobserve rather than reuse their old jitter/readiness. An original
+saved intent retains pending-first recovery and adds no global reset work.
+
 Relevant raw group/pool faults mark that bucket; an initial global
 lifecycle/authority/head fault marks only known fresh windows.
 Unrelated router metadata, compound reserve, gas-estimate, health or harvest

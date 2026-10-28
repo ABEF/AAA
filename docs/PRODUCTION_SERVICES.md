@@ -1,6 +1,6 @@
 # Production service decisions
 
-Reviewed2026-10-26. This records required capabilities and actual selection limits;
+Reviewed2026-10-29. This records required capabilities and actual selection limits;
 [Todo](../TODO.md) alone owns status. **No production deployment is approved.**
 
 ## Dependency inventory
@@ -13,9 +13,9 @@ Reviewed2026-10-26. This records required capabilities and actual selection limi
 | RPC/archive | Same-block/hash canonical reads, authentic complete logs, trace/simulation/gas capabilities, bounded latency, reorg and backup provider behavior. Read-only probe success is not independent production approval. | [RPC qualification](RPC_PREPARATION_QUALIFICATION.md), [history audit](HISTORY_AUDIT.md) |
 | Randomness | Exact original subscription-v2.5 two-word request, proof-verifying actual coordinator, immutable lane/subscription/payment policy, funded consumer, same-request recovery/no reroll. No qualified provider yet. | [Mint/provider qualification](MINT_INTEGRATION_QUALIFICATION.md) |
 | OpenSea | Intended primary mint gross buyer0.05ETH, recipient net after actual platform fee, gas separate; canonical buyer/NFT/reveal integration. Current direct mint does not implement this. Secondary listing support is different evidence. | [Marketplace qualification](MINT_INTEGRATION_QUALIFICATION.md) |
-| Authorities | Named governance wallet/quorum, guardian, keeper gas signer, immutable mint recipient, bootstrap and original VRF reserve owner/funder; actual addresses deferred. Custody recipient is a separate plan-selected trusted address. | [Address inventory](DEPLOYMENT_ADDRESSES.md) |
+| Authorities | Named governance wallet/quorum, guardian, keeper gas signer, immutable mint recipient, bootstrap and original VRF reserve owner/funder; actual addresses deferred. No external custody recipient exists: collective principal return pays current NFT owners. | [Address inventory](DEPLOYMENT_ADDRESSES.md) |
 | Artwork | Matching2,784-state content-addressed root, independently verified manifest/CID, redundant retention/retrieval and marketplace cache rehearsals. Prepared bundle is not uploaded/pinned. | [Publication](ARTWORK_PUBLICATION.md) |
-| Read/API/indexer | Reviewed current3 runtime/profile, authentic predecessor/history coverage, bounded concurrency/deadlines, ingress identity, persistent storage/backups and verified recovery. No hosted acceptance yet. | [API](FRONTEND_API.md), [ingress](API_INGRESS.md), [recovery](INDEXER_RECOVERY.md) |
+| Read/API/indexer | Qualify fresh accounting4/custody3/V5 runtime/profile, authentic predecessor/history coverage, bounded concurrency/deadlines, ingress identity, persistent storage/backups and verified recovery. Served poplint remains the separate unconfigured current3 build; no fresh4 hosted acceptance yet. | [API](FRONTEND_API.md), [ingress](API_INGRESS.md), [recovery](INDEXER_RECOVERY.md) |
 | Keeper/monitoring | Supported Linux host, exact source/provider/signing-fee policy, gas funds, original journals, logs/alerts and off-host restore/rehearsals. Paused desktop heartbeat is not continuous monitoring. | [Operations](OPERATIONS.md), [rehearsals](KEEPER_REHEARSALS.md) |
 
 ## Cost and qualification rules

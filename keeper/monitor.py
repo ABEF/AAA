@@ -1830,8 +1830,15 @@ class Keeper:
         try:
             if self.poll_pending(): return
         except (ValueError,RpcError):
-            bucket=self._interrupted_confirmation_bucket(pending)
-            if bucket is not None:self._confirmation_recovery_interrupted.add(bucket)
+            # poll_pending also validates a used signer's receipt checkpoint
+            # when no intent exists. A failed canonical head/anchor read is a
+            # raw-state fault, before the later lifecycle/clock boundary.
+            if pending is None:
+                self._mark_known_confirmation_resets()
+            else:
+                # Saved-intent recovery stays independent of new reset work.
+                bucket=self._interrupted_confirmation_bucket(pending)
+                if bucket is not None:self._confirmation_recovery_interrupted.add(bucket)
             raise
         if self.rebalance_confirmation.version==1 and self._confirmation_recovery_interrupted:
             for bucket in self._confirmation_recovery_interrupted:
