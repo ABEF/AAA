@@ -6,6 +6,11 @@ The fresh source is [accounting4/custody3/canonical V5](POSITION_V4.md), undeplo
 and **NOT APPROVED**. The [sole Todo](../TODO.md#task-post-seal-configuration)
 owns qualification; the [operator manual](OPERATOR_MANUAL.md) owns exact procedures.
 
+Fresh execution-quality1 additionally permits governance to set the Strategy-owned
+additional oracle-relative loss limit after known core fees, initial1% and bounded
+0-10%. Gross venue, captured operation and caller floors remain independent;
+separate reward converters retain their own all-in policy. [Exact controls](EXECUTION_QUALITY.md).
+
 ## Configuration boundary
 
 | Category | What remains configurable | Limit |

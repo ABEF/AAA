@@ -17,6 +17,8 @@ interface ILPRegistryRevision { function configurationRevision() external view r
 /// This is a bounded search of reviewed venues, not a global optimum promise.
 contract ZZZLPBalancer is ZZZModule {
     uint256 public constant LP_ROUTING_VERSION = 1;
+    uint256 public constant EXECUTION_QUALITY_VERSION = 1;
+    uint256 public constant MAX_ADDITIONAL_LOSS_BPS = 1000;
     uint256 public constant MAX_EXECUTION_POOLS = 4;
     address public immutable liquidityManager;
     IPoolManagerMinimal public immutable poolManager;
@@ -27,7 +29,7 @@ contract ZZZLPBalancer is ZZZModule {
     uint32 public quoteGasLimit = 200000;
     bytes32 private pendingQuoteHash;
 
-    struct Prices { uint256 lower0; uint256 upper0; uint256 lower1; uint256 upper1; uint256 scale1; uint160 referenceX96; }
+    struct Prices { uint256 lower0; uint256 upper0; uint256 lower1; uint256 upper1; uint256 scale1; uint160 referenceX96; uint16 extraLoss; }
     struct Context { bytes32 target; uint160 spot; uint160 lower; uint160 upper; uint256 amount0; uint256 amount1; Prices prices; }
     struct Plan { bytes32 poolId; bool zeroForOne; uint256 amountIn; uint256 amountOut; uint256 minimumOut; uint160 sqrtAfter; uint160 targetSqrtAfter; uint64 revision; bytes32 fingerprint; }
     struct Evaluation { uint256 deployed; uint256 retained; uint256 imbalance; bool excess0; }
@@ -47,6 +49,10 @@ contract ZZZLPBalancer is ZZZModule {
     }
     function executionPoolCount() external view returns (uint256) { return venues.length; }
     function executionPoolAt(uint256 index) external view returns (bytes32) { return venues[index]; }
+    /// @notice Policy belongs to the fixed Strategy; never a keeper input.
+    function additionalLossBps() public view returns(uint16) {
+        return IZZZStrategy(access.module(Ids.STRATEGY)).additionalLossBps();
+    }
     /// @notice Captures target/venue controls, monotonic registry changes and
     /// both independently validated source rounds. Recheck after token callbacks.
     function policyFingerprint(bytes32 target, bytes32 venue) public view returns (bytes32) {
@@ -58,7 +64,8 @@ contract ZZZLPBalancer is ZZZModule {
         bytes32 route = venue == bytes32(0) ? bytes32(0) : keccak256(abi.encode(IZZZPools(registry).accounting(venue)));
         (int24 lower,int24 upper,uint160 referencePrice) = IZZZStrategy(access.module(Ids.STRATEGY)).target(target);
         return keccak256(abi.encode(registry,ILPRegistryRevision(registry).configurationRevision(),t,route,
-            address(oracle),access.module(Ids.STRATEGY),lower,upper,referencePrice,first,second));
+            address(oracle),access.module(Ids.STRATEGY),
+            IZZZStrategy(access.module(Ids.STRATEGY)).executionQualityRevision(),lower,upper,referencePrice,first,second));
     }
 
     /// @notice Empty removes all swap venues without consulting prices or core.
@@ -85,6 +92,11 @@ contract ZZZLPBalancer is ZZZModule {
         searchIterations = iterations; quoteGasLimit = gasLimit; ++executionRevision;
         emit SolverConfigured(executionRevision, iterations, gasLimit, reviewHash);
     }
+    function _fee(PoolConfig memory c, bool direction, uint24 protocol, uint24 fee) private pure returns (uint256) {
+        if (fee != c.key.fee || (protocol & 0xfff) > 1000 || protocol >> 12 > 1000) revert InvalidState();
+        uint256 selected = direction ? protocol & 0xfff : protocol >> 12;
+        return selected + fee - Math.mulDiv(selected,fee,1_000_000);
+    }
     function _pool(bytes32 id) private view returns (PoolConfig memory c) {
         c = IZZZPools(access.module(Ids.POOLS)).accounting(id);
         if (!c.operationsEnabled || c.key.currency0 != address(0) || c.key.currency1 == address(0) ||
@@ -98,6 +110,7 @@ contract ZZZLPBalancer is ZZZModule {
         uint8 d1 = oracle.tokenDecimals(token);
         p.scale1 = 10 ** d1;
         p.referenceX96 = ZZZPriceMath.referenceX96(p.lower0,p.lower1,18,d1,address(0));
+        p.extraLoss = additionalLossBps();
     }
     function _validSpot(uint160 price, uint160 referencePrice, uint16 deviation) private pure returns (bool) {
         if (price < TickMath.MIN_SQRT_PRICE || price >= TickMath.MAX_SQRT_PRICE) return false;
@@ -134,10 +147,14 @@ contract ZZZLPBalancer is ZZZModule {
         (used0,used1) = _values(x.prices,used0,used1);
         e.deployed = used0+used1;
     }
-    function _minimum(Prices memory p, bool direction, uint256 amount, uint16 loss) private pure returns (uint256) {
+    function _quoted(Prices memory p, bool direction, uint256 amount) private pure returns (uint256) {
         uint256 value = Math.mulDiv(amount,direction ? p.upper0 : p.upper1,direction ? 1e18 : p.scale1);
-        uint256 output = Math.mulDiv(value,direction ? p.scale1 : 1e18,direction ? p.lower1 : p.lower0);
-        return Math.mulDiv(output,10000-loss,10000);
+        return Math.mulDiv(value,direction ? p.scale1 : 1e18,direction ? p.lower1 : p.lower0);
+    }
+    function _minimum(Prices memory p, bool direction, uint256 amount, uint16 loss, uint256 fee) private pure returns (uint256) {
+        uint256 gross = Math.mulDiv(_quoted(p,direction,amount),10000-loss,10000);
+        uint256 netInput = Math.mulDiv(amount,1_000_000-fee,1_000_000);
+        return Math.max(gross,Math.mulDiv(_quoted(p,direction,netInput),10000-p.extraLoss,10000,Math.Rounding.Ceil));
     }
     /// @dev Fee-aware seed usually gives one quote for deep, small trades.
     function _seed(Context memory x, bool direction, uint256 fee) private pure returns (uint256 input,uint256 residual) {
@@ -190,11 +207,11 @@ contract ZZZLPBalancer is ZZZModule {
         PoolConfig memory target = _pool(x.target);
         if (c.key.currency1 != target.key.currency1) revert InvalidConfiguration();
         (uint160 beforePrice,,uint24 protocol,uint24 fee) = stateView.getSlot0(id);
-        uint256 protocolFee = direction ? protocol & 0xfff : protocol >> 12;
-        if (fee != c.key.fee || protocolFee > 1000 || !_validSpot(beforePrice,x.prices.referenceX96,c.maxSpotDeviationBps)) revert InvalidState();
+        uint256 swapFee = _fee(c,direction,protocol,fee);
+        if (!_validSpot(beforePrice,x.prices.referenceX96,c.maxSpotDeviationBps)) revert InvalidState();
         uint256 lo; uint256 hi = direction ? x.amount0 : x.amount1;
         if (hi > uint256(uint128(type(int128).max))) hi = uint256(uint128(type(int128).max));
-        (uint256 input,uint256 initialResidual) = _seed(x,direction,protocolFee+fee-Math.mulDiv(protocolFee,fee,1_000_000));
+        (uint256 input,uint256 initialResidual) = _seed(x,direction,swapFee);
         if (input == 0) return (best,0);
         if (input > hi) input = hi;
         best.revision = executionRevision;
@@ -207,7 +224,7 @@ contract ZZZLPBalancer is ZZZModule {
             if (!quoted) hi = input;
             else {
                 uint256 minimum = _minimum(x.prices,direction,input,
-                    c.maxSlippageBps < target.maxSlippageBps ? c.maxSlippageBps : target.maxSlippageBps);
+                    c.maxSlippageBps < target.maxSlippageBps ? c.maxSlippageBps : target.maxSlippageBps,swapFee);
                 if (minimum == 0) lo = input+1;
                 // Feasibility comes before the target-ratio bracket. Increasing
                 // an already excessive trade cannot repair impact/spot limits.

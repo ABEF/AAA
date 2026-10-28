@@ -15,7 +15,7 @@ Historical reports and explicitly legacy local profiles retain their own semanti
 | Contribution and actual added LP | [Atomic Entry](ACTIVATION_ENTRY.md), [routing](ACTIVATION_ROUTING.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
 | LP execution and upkeep | [Policy2/Budget3 and LP routing1](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing and entrant isolation. Distinguish source implementation from live operating qualification. |
-| Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md) |
+| Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
 | Movement and recovery | [Same-pair movement and holder return](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [same-chain collection handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
 | Callable inputs/outputs/permissions | [Generated source-bound function reference](CONTRACT_FUNCTIONS.md) |

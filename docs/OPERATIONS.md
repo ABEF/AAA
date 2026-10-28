@@ -4,6 +4,15 @@
 sign publicly or change running services. Start with the [operator manual](OPERATOR_MANUAL.md)
 for authority/exact calls and [recovery runbook](KEEPER_RECOVERY.md) for journals.
 
+Fresh fee-quality source uses explicit `execution_quality_version:1` with actual
+Strategy/Manager/helper capability/runtime/binding checks and observed policy
+owner/revision at one canonical block. Historical absent/0 is not silently
+upgraded. Quality RPC failure prevents a new guarded balance review; saved
+receipt recovery and independent harvest retain their existing paths. An on-chain
+cap setter needs no service restart, but a config/runtime/source rollout requires
+the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
+[Fee-adjusted scope and limits](EXECUTION_QUALITY.md).
+
 ## Current deployment and configuration
 
 Use explicit accounting4, fee intake1, direct governance2, custody3, pricing2,

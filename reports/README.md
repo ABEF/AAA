@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Fee-adjusted execution quality,2026-10-28](fee-impact-policy-20261028/VERIFICATION.md):
+separate Strategy-owned extra1% oracle-relative deterioration after actual core
+fees, retained gross/total/caller caps, callback policy binding and explicit
+reader profiles. Failed compiler attempts remain recorded; actual market/depth/
+service qualification and independent audit stay open. No strategy/site rollout.
+
+
 [October27-28 change audit](two-day-audit-20261028/VERIFICATION.md): source review of the ten-commit window, principal retry/fairness correction and refreshed operator guidance. Comment-only Solidity fixes preserve ABI/storage/instructions with normal38size gates; prior execution evidence is reused explicitly, not rerun. No economic-attack immunity, service/site rollout or production approval.
 
 [Atomic LP routing and entrant isolation,2026-10-28](atomic-routing-20261028/VERIFICATION.md):

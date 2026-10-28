@@ -76,6 +76,15 @@ before changing behavior. This file contains current instructions, not a timelin
 
 - Direct manual `Vault.rebalance` uses an actual keeper grant (governance alone is not enough), bypasses only service jitter/hourly checking and preserves all on-chain guards. Follow [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Same-service-key signing outside its journal requires reviewed nonce/receipt/spend reconciliation; restart or new LP/timer discovery alone cannot adopt it. No manual transaction/service change is authorized by updating these instructions.
 
+- Fresh execution-quality1 binds Strategy-owned additionalLossBps(default100,
+  governance0-1000), actual directional core fees and captured monotonic quality
+  revision. Existing gross/caller/operation floors and separate converter policy
+  remain. Explicit keeper/API execution_quality_version1/runtime/owner checks;
+  historical absent/0 stays historical. See [scope](docs/EXECUTION_QUALITY.md) and
+  [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md). Strategy storage
+  changes belong only to a fresh deployment. No passive/persistence/40% trigger
+  strategy or service/site/Anvil change is authorized by brainstorming.
+
 ## Verification and documentation workflow
 
 - Maintain one task ledger: `docs/project-todo.json` -> generated `TODO.md`.

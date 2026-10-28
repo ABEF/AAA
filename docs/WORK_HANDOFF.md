@@ -3,6 +3,17 @@
 Reviewed 2026-10-28. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
 [README](../README.md), [Todo](../TODO.md) and the owning runbook before continuing.
 
+## Current fee-quality work
+
+Fresh execution-quality1 adds the Strategy-owned1% additional oracle-relative loss
+floor after known directional core fees; gross/caller/total guards stay. Explicit
+keeper/API owner/revision/runtime checks preserve historical profiles. [Owning guide](EXECUTION_QUALITY.md)
+and [source-bound verification](../reports/fee-impact-policy-20261028/VERIFICATION.md)
+separate exact local evidence and retained failed build attempts from real release
+qualification. No service, journal, Anvil, site or signing policy changed. Rebalance
+strategy brainstorming (passive second position/persistent trigger/40%) was not
+implementation authorization. Verify actual main/remote before saying pushed.
+
 ## Latest functional state
 
 Current fresh source is accounting4/custody3/canonicalV5 with Strategy upkeep2,
@@ -114,8 +125,10 @@ composition methods rerun after the solver fix and65unchanged reachable-source
 passes reused at exact metadata pins;173backend methods/31reference checks and
 38normal size gates pass. The strict thin-market0.01idle regression is preserved
 and fixed by safeguarded interpolation, not relaxed. An infeasible seed now
-searches smaller valid inputs. Vault runtime24064 (512margin), Manager24152
-(424margin); Manager creation47826+160static arguments. Actual maximal target
+searches smaller valid inputs. Those routing-source sizes were Vault runtime24064 (512margin), Manager24152
+(424margin); Manager creation47826+160static arguments. Fresh fee-quality source
+passes38normal gates with Manager24148runtime (428margin), creation48938+160
+static arguments (only54bytes initcode headroom); use its new exact pins. Actual maximal target
 gas/URI/configuration remains unqualified. No service/site/Anvil/journal change.
 Raw evidence is under the task external root `atomic-routing-20261028/`; its
 verification record preserves initial failures, exact unchanged-suite reuse and

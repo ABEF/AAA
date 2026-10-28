@@ -1,0 +1,33 @@
+{
+  "status": "pass",
+  "observed_utc": "2026-10-28T04:27:55.339819+00:00",
+  "base_commit": "bf94b03158558296c0103a8ea06143f29c42d35f",
+  "source_build_dependency_and_backend_pins_match": true,
+  "preserved_dirty_paths": [
+    "reports/source-checks.json",
+    "scripts/run-fork-checks.py",
+    "tests_python/test_fork_runner.py",
+    "tests_python/test_frontend_history.py"
+  ],
+  "preserved_dirty_drift": false,
+  "todo_check": true,
+  "function_reference_check": true,
+  "doc_checks": {
+    "current_markdown_files": 24,
+    "local_links_checked": 1332,
+    "issues": [],
+    "preserved_dirty_drift": []
+  },
+  "diff_whitespace_check": true,
+  "published_source_scope": [
+    "src/ZZZLPBalancer.sol",
+    "src/ZZZLiquidityManager.sol",
+    "src/ZZZStrategy.sol",
+    "src/interfaces/IZZZ.sol"
+  ],
+  "excluded_forty_percent_trigger_and_passive_second_position": true,
+  "publish_paths": 53,
+  "production_approved": false,
+  "services_sites_anvil_journals_changed": false,
+  "publication": "pending commit/push; this check does not prove publication"
+}

@@ -71,6 +71,9 @@ interface IZZZOracle {
     function referenceX96(address token0, address token1) external view returns (uint160);
 }
 interface IZZZStrategy {
+    function additionalLossBps() external view returns (uint16);
+    function executionQualityRevision() external view returns (uint64);
+    function minimumOutput(bytes32 poolId, bool zeroForOne, uint256 amountIn) external view returns (uint256);
     function validateExitPrice(bytes32 poolId) external view returns (uint160);
     function target(bytes32 poolId) external view returns (int24 lower, int24 upper, uint160 referenceX96);
     function validatePrice(bytes32 poolId) external view returns (uint160 spotX96);

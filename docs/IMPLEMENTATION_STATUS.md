@@ -29,6 +29,13 @@ Current [manipulation-related hardening](../reports/manipulation-hardening-20261
 
 The [two-day change audit](../reports/two-day-audit-20261028/VERIFICATION.md) fixes post-exit payout-retry starvation in source keeper scheduling. Canonical receipt clocks throttle repeated batches, durable priority alternates delivery with other jobs, and pending recovery stays first. Source comment corrections preserve ABI/storage/instructions; exact new compiler pins are recorded. No economic rule, signing path or running service changed. [Keeper safeguards](KEEPER_SAFEGUARDS.md) distinguishes contract guards from service policy.
 
+Fresh execution-quality1 adds a Strategy-owned1% default additional-loss floor
+after actual directional LP/protocol fees to balancing and Manager swaps/buybacks.
+It preserves stronger gross/caller/operation limits and separate converter policy.
+Exact same-block reader capabilities and revisions are explicit; historical
+profiles remain separate. [Feature scope](EXECUTION_QUALITY.md), [verification](../reports/fee-impact-policy-20261028/VERIFICATION.md).
+No passive position, persistent/TWAP trigger or40% rebalance policy is implemented.
+
 ## Smart contracts
 
 | Capability | Implemented behavior and boundary | Reference |

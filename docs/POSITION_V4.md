@@ -31,6 +31,14 @@ whole-idle contribution trace; LP1 requires entrant-only balance/put witnesses
 and the physical-LP-only marginal baseline. Registry revision is appended; no
 installed deployment/journal is relabeled. [Policy](LP_EXECUTION_POLICY.md).
 
+Fresh fee-adjusted execution additionally declares `execution_quality_version:1`.
+Strategy, Manager and helper expose EXECUTION_QUALITY_VERSION1; readers bind the
+actual Strategy owner/runtime, forwarded cap/MAX and same-block quality revision.
+Absent/0 remains historical, not capability detection by failure. LP_ROUTING_VERSION
+stays1; current runtime pins distinguish this fresh source. Strategy gains policy
+state before its old mappings: this is a new undeployed layout, never a storage
+upgrade/relabel of preserved immutable deployments. [Scope](EXECUTION_QUALITY.md).
+
 `Access.lpExitStarted` permanently stops principal/mint activity independently
 of pause/canonical state. Transfers, earned LP claims, future royalties and
 royalty claims continue. Closed buckets retain share/membership accounting;

@@ -11,7 +11,7 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {ZZZLPBalancer} from "./ZZZLPBalancer.sol";
-import {IZZZPools, IZZZOracle, IZZZStrategy, IPositionManagerMinimal, IStateViewMinimal,
+import {IZZZPools, IZZZStrategy, IPositionManagerMinimal, IStateViewMinimal,
     IPermit2Minimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
 
 interface INativePoolAssets {
@@ -23,6 +23,7 @@ interface INativePoolAssets {
 contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
     uint256 public constant LP_ROUTING_VERSION = 1;
+    uint256 public constant EXECUTION_QUALITY_VERSION = 1;
     ZZZLPBalancer public immutable balancingRouter;
     IPositionManagerMinimal private immutable posm;
     IStateViewMinimal public immutable stateView;
@@ -252,19 +253,18 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         PoolConfig memory c = _config(poolId,true);
         address input = zeroForOne ? c.key.currency0 : c.key.currency1;
         if (msg.value != (input == address(0) ? amountIn : 0)) revert InvalidAmount();
+        bytes32 context = _balanceContext(poolId);
         if (input != address(0)) ExactToken.pull(input, msg.sender, amountIn);
         uint256 beforeNative = address(this).balance - msg.value;
         amountOut = _swapExact(poolId,c,zeroForOne,amountIn,minimumOut,msg.sender);
-        if (address(this).balance != beforeNative) revert InvalidState();
+        if (address(this).balance != beforeNative || _balanceContext(poolId) != context) revert InvalidState();
     }
     function _swapExact(bytes32 poolId, PoolConfig memory c, bool zeroForOne, uint256 amountIn, uint256 minimumOut,
         address recipient) private returns (uint256 amountOut) {
         IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
-        address input = zeroForOne ? c.key.currency0 : c.key.currency1;
         address output = zeroForOne ? c.key.currency1 : c.key.currency0;
-        uint256 protocolMinimum = Math.mulDiv(IZZZOracle(access.module(Ids.ORACLE)).quote(input,output,amountIn),
-            10000-c.maxSlippageBps,10000);
-        if (minimumOut == 0 || minimumOut < protocolMinimum) revert Slippage();
+        if (minimumOut == 0) revert Slippage();
+        minimumOut = Math.max(minimumOut,IZZZStrategy(access.module(Ids.STRATEGY)).minimumOutput(poolId,zeroForOne,amountIn));
         uint256 beforeOutput = _balance(output,recipient);
         bytes memory payload = abi.encode(c.key, zeroForOne, amountIn, minimumOut, recipient);
         pendingSwapHash = keccak256(payload);

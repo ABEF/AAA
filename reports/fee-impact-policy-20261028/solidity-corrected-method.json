@@ -1,0 +1,9 @@
+[
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_InvalidObservedStaticOrProtocolFeeFailsClosed()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  }
+]

@@ -33,6 +33,14 @@ accounting4 scaffold records this requirement; the historical schema5/accounting
 observer does not qualify this new helper or release. Empty catalog disables
 swaps, with no target fallback. [Operator procedure](OPERATOR_MANUAL.md#add-or-remove-an-execution-pool-after-sealing).
 
+Fresh execution-quality1 also requires explicit Strategy/Manager/helper
+`EXECUTION_QUALITY_VERSION()==1`, reviewed actual Strategy runtime/Access module
+binding, cross-checked forwarded cap/MAX and a same-block quality revision.
+The blocked scaffold records `execution_quality_version:1`; the historical
+schema5/accounting3 observer does not qualify this capability or accounting4.
+Complete that exact release inventory and runtime acceptance before deployment;
+neither a template field nor a source receipt approves it. [Scope](EXECUTION_QUALITY.md).
+
 ## Mint qualification boundary
 
 Current release CLI validation requires **schema5, accounting_version3,

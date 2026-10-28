@@ -22,6 +22,12 @@ no configured deployment means unavailable integration data, never examples.
 | Movement and recovery | Same-native-pair moves and parking before exit. Governance may permanently close all LP and return actual ETH+ZZZ by NFT shares through bounded direct payouts; NFTs keep transfers/future royalties/old rewards. No external custody address or bridge. [Holder exit](docs/HOLDER_COLLECTIVE_EXIT.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
+The fresh [fee-adjusted execution guard](docs/EXECUTION_QUALITY.md) caps additional
+oracle-relative deterioration beyond actual directional trading fees at1%, with
+bounded governance configuration. Stronger gross, captured operation and caller
+floors remain; separate converters retain their existing policy. [Scoped evidence](reports/fee-impact-policy-20261028/VERIFICATION.md)
+does not qualify actual markets or change installed services/sites.
+
 The latest [two-day change audit](reports/two-day-audit-20261028/REVIEW.md)
 fixes keeper payout-retry starvation and current operating guidance. Its
 [verification](reports/two-day-audit-20261028/VERIFICATION.md) records137affected

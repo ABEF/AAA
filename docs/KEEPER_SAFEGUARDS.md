@@ -1,7 +1,9 @@
 # Keeper safeguards
 
 Reviewed 2026-10-28 against the [two-day reviewed candidate](../reports/two-day-audit-20261028/VERIFICATION.md) (LP implementation `1cabb85`): accounting4, Strategy maintenance2,
-Budget compound3 and LP routing1. Entry source-routing2 is a separate capability.
+Budget compound3 and LP routing1. The later [execution-quality1 review](../reports/fee-impact-policy-20261028/REVIEW.md)
+adds an independent fee-aware floor; it does not relabel earlier evidence or
+deployments. Entry source-routing2 is a separate capability.
 **Undeployed candidate; production NOT APPROVED.** This inventory describes
 implemented protections, not installed service settings or an independent audit.
 
@@ -55,6 +57,7 @@ These controls provide the best sampled valid result among the reviewed candidat
 - **Actual pool-state validation.** Price, tick, fee and physical-range observations must be consistent, including legitimate boundary ticks.
 - **Conservative valuation.** Upper input prices and lower output/LP prices make execution floors harder to satisfy.
 - **Captured valuations.** Maintenance measures retained value against its starting price vector; repricing cannot simply conceal execution loss.
+- **Fee-aware additional-loss floor.** Current directional LP/protocol fees are separated from a default1% additional oracle-relative allowance. Conservative output bounds supplement existing gross/aggregate/caller limits; known fees remain costs under those limits. Spread, source uncertainty and rounding also consume the allowance, so it is not isolated AMM impact.
 
 Two different feed addresses or matching answers alone do not prove independence. [Price-security rules](PRICE_SECURITY.md).
 
@@ -69,6 +72,7 @@ These are distinct protections; increasing one does not remove the others.
 | Maintenance loss | 3% default, covering retained LP plus attributed idle |
 | Governance ceilings | The three loss categories can be configured up to 10% |
 | Venue slippage | Governed 1–1,000 bps; balancing uses the tighter target/selected-venue value |
+| Additional execution loss after known fees | 1% default; Strategy governs 0–1,000 bps with a nonzero review hash; existing all-in limits remain |
 | Spot/reference deviation | Governed 1–500 bps, separate from source agreement |
 | Final idle ceiling | 5%, with positive deployed LP required |
 | Caller protection | Minimum LP/output amounts remain enforced |
@@ -78,7 +82,8 @@ These are distinct protections; increasing one does not remove the others.
 | Contribution minimums | $100 activation / $5 growth, subject to stronger pool minimums |
 | NFT contribution ceiling | Governed cumulative per-NFT maximum; intended setting $1 million |
 
-Network gas is separate. Operating limits are not automatically increased after failure. [Loss-policy explanation](EXECUTION_LOSS_POLICY.md).
+Network gas is separate. Operating limits are not automatically increased after failure.
+[Loss-policy explanation](EXECUTION_LOSS_POLICY.md) and [fee-aware calculation](EXECUTION_QUALITY.md).
 
 ## 5. Rebalance timing and unnecessary-turnover prevention
 
@@ -110,7 +115,7 @@ Network gas is separate. Operating limits are not automatically increased after 
 - **Prefund isolation.** Accidental balances cannot subsidize an operation or another holder.
 - **Physical LP verification.** The actual owner, pool, ticks and liquidity increase are checked.
 - **Reentrancy and authenticated callbacks.** Unexpected callers or altered callback payloads reject.
-- **Configuration-change detection.** Monotonic revisions detect settings changed and then restored during callbacks.
+- **Configuration-change detection.** Registry/helper revisions and Strategy's separate quality-policy revision detect settings changed and then restored during callbacks.
 - **Complete execution context.** Source fingerprints, pool policies and target-range settings are checked across approvals, balancing and resets.
 - **Completion authorization checks.** Rebalance, compound and buyback recheck keeper authorization and pause state after external work.
 - **Atomic failure.** A failed final guard reverts the swaps, LP changes and accounting together. Spent gas remains spent.
@@ -125,8 +130,11 @@ Network gas is separate. Operating limits are not automatically increased after 
 - **Actual burn verification.** Checks both the ZZZ balance decrease and total-supply reduction.
 - **Fixed-ledger conversions.** Approved routes convert only authorized earned balances and return ETH to the same accounting domain.
 - **Exact receipts and minimum outputs.** Conversion cannot replace missing proceeds with another reserve.
+- **Manager buyback floor.** Direct Manager swaps also enforce the fee-aware quality minimum and retain a positive caller minimum. Separate V3/V4 LP-reward/royalty converters retain their existing all-in conversion limit (default1%); the new additional-loss cap does not apply to them.
 
-Important distinction: buybacks still allow the keeper to choose a permitted amount, admitted pool and execution time. The new LP route comparison does not automatically govern buybacks or reward conversion.
+Buyback routing remains separate: the keeper chooses a permitted amount,
+admitted pool and execution time, subject to the output guards above. LP venue
+comparison does not automatically choose routes for buybacks or reward conversion.
 
 ## 8. Keeper software and infrastructure safeguards
 
@@ -135,6 +143,7 @@ These protect the automated service; they are not substitutes for contract guard
 - Dry-run default and explicit reviewed live configuration.
 - Chain, signer, contract-code, module-binding and capability checks.
 - Canonical-block observations and fresh-head validation.
+- Explicit quality1 capability checks on Manager, Balancer and actual Strategy, including same-block policy-owner/quality-revision reporting and forwarded-cap agreement. Historical absent/zero configurations retain their old ABI reads. Reviews do not freeze quality policy until inclusion; signed caller loss limits remain binding.
 - Exact transaction simulation before signing.
 - Gas-limit, gas-price, per-transaction and daily spending ceilings.
 - Reviewed fee accounting, including applicable L1 costs.
@@ -184,10 +193,12 @@ separately confirmed approval is not reverted by a later failed contribution.
 - [Buyback](../src/ZZZBuyback.sol), [conversion guards](../src/base/ZZZRewardConverter.sol),
   [keeper](../keeper/monitor.py), [RPC](../zzz_ops/rpc.py) and [journal](../zzz_ops/state.py).
 - [Atomic routing review/verification](../reports/atomic-routing-20261028/VERIFICATION.md),
+  [fee-aware execution verification](../reports/fee-impact-policy-20261028/VERIFICATION.md),
   [timing verification](../reports/maintenance-policy-20261027/VERIFICATION.md),
   [completion/health review](../reports/manipulation-hardening-20261027/REVIEW.md).
 - [Keeper recovery](KEEPER_RECOVERY.md), [operating rehearsals](KEEPER_REHEARSALS.md)
   and [remaining outside-actor qualification](../TODO.md#task-security-external-manipulation).
+- [Execution-quality policy](EXECUTION_QUALITY.md) and [governance setting procedure](OPERATOR_MANUAL.md#set-additional-execution-loss).
 
 Update this inventory when authority, execution, accounting, pricing, limits,
 scheduling or recovery behavior changes; update the owning procedure and evidence

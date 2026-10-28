@@ -1,0 +1,40 @@
+{
+  "base_commit": "bf94b03158558296c0103a8ea06143f29c42d35f",
+  "observed_utc": "2026-10-28T04:26:41.423922+00:00",
+  "scope": "Fresh undeployed execution-quality1; no services, sites, Anvil, journals, signing-policy, custody or strategy-trigger changes",
+  "solidity": {
+    "distinct_methods": 55,
+    "passed_across_scopes": 55,
+    "initial_selection": {
+      "passed": 54,
+      "failed": 1,
+      "reason": "Error != expected error: InvalidConfiguration() != InvalidState()"
+    },
+    "corrected_expectation_only_rerun": 1,
+    "production_source_unchanged_between_runs": true,
+    "new_fee_quality_methods": 22,
+    "retained_affected_methods": 33,
+    "full_final_suite_rerun": false
+  },
+  "backend": {
+    "distinct_methods": 53,
+    "new_methods": 14,
+    "passed": 53,
+    "skips": 0,
+    "source_drift": false,
+    "prior51_not_additive": true
+  },
+  "normal_build": {
+    "gates": 38,
+    "pass": true,
+    "closed_sources": 76,
+    "project_sources": 45,
+    "normal_limits_unmodified": true,
+    "manager_initcode_including_static_args": 49098,
+    "manager_initcode_headroom": 54
+  },
+  "source_checks": "consistency-only; not security proof",
+  "runtime_services_changed": false,
+  "public_transactions": false,
+  "forty_percent_trigger_or_passive_position_implemented": false
+}

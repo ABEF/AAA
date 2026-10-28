@@ -87,3 +87,6 @@ reports/holder-collective-exit-20261027/** -text whitespace=cr-at-eol,-blank-at-
 reports/two-day-audit-20261028/** -text whitespace=cr-at-eol
 # unittest leaves an intentional space before a subtest failure diagnostic.
 reports/two-day-audit-20261028/old-cycle-priority.log whitespace=cr-at-eol,-blank-at-eol
+
+# Preserve exact fee-quality compiler and focused-test evidence bytes.
+reports/fee-impact-policy-20261028/** -text whitespace=cr-at-eol

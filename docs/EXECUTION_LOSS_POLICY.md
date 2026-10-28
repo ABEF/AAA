@@ -17,6 +17,18 @@ point is 0.01%. A setting of 100 means 1%, 300 means 3%, and zero requires no
 execution loss under the applicable measurement. Zero can deliberately make
 swaps unavailable; it is not a stop flag or a fee waiver.
 
+## Additional loss after known trading fees
+
+Fresh Strategy/Manager/balancer execution-quality1 separately limits additional
+oracle-relative deterioration to1% by default, governance-adjustable0-10% with
+`Strategy.setAdditionalLossBps(limit,reviewHash)`. Actual directional core trading
+fees are removed from input before computing its conservative output floor.
+The existing gross venue floor, caller minimum and captured contribution/
+maintenance caps remain independent and may be stricter. This is not an extra
+fee allowance on top of every gross cap. Separate LP/royalty converters keep
+their own all-in conversion limits. [Exact formula and scope](EXECUTION_QUALITY.md),
+[operator procedure](OPERATOR_MANUAL.md#set-additional-execution-loss).
+
 ## Operator procedure
 
 1. Read the exact sealed deployment, controller, Budget/converter bindings and

@@ -70,6 +70,12 @@ class ActivationConfig:
         if 'lp_routing_version' in config: fields.add('lp_routing_version')
         if self.lp_routing_version == 1 and (projection.accounting_version != 4 or self.maintenance_policy_version != 2):
             raise ValueError('LP routing requires explicit accounting4 and outside-only maintenance2')
+        self.execution_quality_version = config.get('execution_quality_version', 0)
+        if type(self.execution_quality_version) is not int or self.execution_quality_version not in (0,1):
+            raise ValueError('Unsupported explicit execution-quality profile')
+        if 'execution_quality_version' in config: fields.add('execution_quality_version')
+        if self.execution_quality_version == 1 and self.lp_routing_version != 1:
+            raise ValueError('Execution quality requires explicit LP-routing profile1')
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
@@ -242,7 +248,8 @@ class ActivationConfig:
                     lambda target, method, *args: p._call(target,method,*args,block=block),
                     liquidity=pins['liquidity'], router=pins['balancing_router'],
                     pool_manager=pins['pool_manager'], state_view=pins['state_view'],
-                    access=pins['access'], pools=pins['pools'])
+                    access=pins['access'], pools=pins['pools'],quality_version=self.execution_quality_version,
+                    strategy=pins['strategy'])
                 if execution_observation is not None: execution_observation.update(execution)
             except (ValueError, TypeError, KeyError) as exc:
                 raise ProjectionError('LP execution capability differs from the reviewed profile') from exc

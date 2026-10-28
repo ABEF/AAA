@@ -132,6 +132,11 @@ class Keeper:
         self.lp_routing_version = config.get('lp_routing_version',0)
         if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0,1):
             raise ValueError('Unsupported keeper LP-routing profile')
+        self.execution_quality_version = config.get('execution_quality_version',0)
+        if type(self.execution_quality_version) is not int or self.execution_quality_version not in (0,1):
+            raise ValueError('Unsupported keeper execution-quality profile')
+        if self.execution_quality_version == 1 and self.lp_routing_version != 1:
+            raise ValueError('Execution quality requires explicit LP-routing profile1')
         if self.lp_routing_version == 1:
             if self.accounting_version != 4 or self.maintenance_policy_version != 2:
                 raise ValueError('LP routing requires explicit accounting4 and maintenance2')
@@ -540,7 +545,8 @@ class Keeper:
         def read(target,method,*args):
             return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(method,*args)},block]))
         try:
-            for role in ('access','pools','liquidity','balancing_router','pool_manager','state_view'):
+            for role in ('access','pools','liquidity','balancing_router','pool_manager','state_view') + (
+                    ('strategy',) if self.execution_quality_version == 1 else ()):
                 expected=self.config.get('code_hashes',{}).get(role,'')
                 code=self.rpc.call('eth_getCode',[self.contracts[role],block])
                 if (not isinstance(expected,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',expected) or
@@ -553,7 +559,8 @@ class Keeper:
                     raise ValueError('LP execution module binding differs')
             self.lp_execution_observation=observe(read,liquidity=self.contracts['liquidity'],
                 router=self.contracts['balancing_router'],pool_manager=self.contracts['pool_manager'],
-                state_view=self.contracts['state_view'],access=self.contracts['access'],pools=self.contracts['pools'])
+                state_view=self.contracts['state_view'],access=self.contracts['access'],pools=self.contracts['pools'],
+                quality_version=self.execution_quality_version,strategy=self.contracts['strategy'])
         except (ValueError,TypeError,KeyError) as exc:
             raise RpcError('LP execution capability differs from the reviewed profile') from exc
 

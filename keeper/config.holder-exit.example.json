@@ -84,5 +84,6 @@
     "enabled": false
   },
   "maintenance_policy_version": 2,
-  "lp_routing_version": 1
+  "lp_routing_version": 1,
+  "execution_quality_version": 1
 }

@@ -28,6 +28,12 @@ new implementation or release qualification.
 
 The [two-day audit](../reports/two-day-audit-20261028/REVIEW.md) adds bounded principal-return retries and serial-job fairness. Qualify the actual optional delivery worker with persisted retries, pending recovery, receiver deferral/backlog alerts and other post-exit work before enabling it. Keep [the safeguards inventory](KEEPER_SAFEGUARDS.md) current; publication is not service rollout.
 
+The [implemented fee-quality slice](EXECUTION_QUALITY.md) separates known core
+trading fees from a1% default additional oracle-relative loss floor, retaining
+gross/caller/total limits. Qualify real depth/prices/gas and matching runtime/config
+before rollout; defensive local checks do not establish attacker-profit immunity.
+Passive inventory/persistence-trigger ideas remain discussion, not implementation.
+
 ## LP execution next steps
 
 The three timing decisions are settled: hard initial12-hour minimum even outside,

@@ -1,0 +1,387 @@
+[
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_BadCapOrMissingReviewRejectsWithoutMutation()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_DefaultAndSeparateCapabilityAreExplicit()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_DirectManagerSwapCannotBypassQualityWithWeakCallerMinimum()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_DirectSwapRejectsChangedRestoredQualityDuringInputPull()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_DirectSwapRejectsChangedRestoredVenueLimitDuringInputPull()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_DirectionalProtocolFeeAndCeilHaveExactRawBoundaries()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_EmptyOrOverflowingQuoteInputFailsClosed()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_InvalidObservedStaticOrProtocolFeeFailsClosed()",
+    "status": "Failure",
+    "reason": "Error != expected error: InvalidConfiguration() != InvalidState()",
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_LPBalanceRejectsChangedRestoredQualityDuringRefund()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_NetFeeQuoteUsesIndependentSourceBoundsRatherThanPoolSpot()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_NoSwapBalancedBudgetStillWorksAtZeroExtraCap()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_NonGovernanceCannotChangeQualityPolicy()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_ObservedProtocolFeeChangeUpdatesTheFloorWithoutReconfiguration()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_OrdinaryPauseAndPostExitRetainBuybackPolicyConfiguration()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_PreparationAndCanonicalLockStillBlockConfiguration()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_QualityUpdatesIncrementRevisionEvenWhenRestored()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_SelectedHighFeeKeepsStricterGrossVenueLimit()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_SelectedPlanCarriesAtLeastTheCurrentQualityFloor()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_StrongerCallerOutputMinimumRemainsEnforced()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_TokenDecimalsDoNotChangeTheFeeAdjustedValueRule()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_ZeroAndMaximumExtraCapsNeverEraseTheGrossFloor()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+    "method": "test_ZeroFeeIsNotMistakenForMissingPolicy()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ApprovedTwoPercentDefaultAndStricterOnePercentApplyToActivationAndGrowth()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4AtomicBalancingFailureRollsBackAllEntitlements()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4BalancedJoinsCannotCaptureOldIncomeOrPrefundsAndPreserveShares()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4CompoundYieldsToRangeRebalanceWithoutDelayingIt()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ContributionsAboveOldRangePreserveIncumbentsAndRebalance()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ContributionsBelowOldRangePreserveIncumbentsAndRebalance()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4CoreDonationCannotGiveNewcomerPastFundedFees()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4IdleOnlyCompoundGrowsLPWithoutMovingSharesOrTakingPrefunds()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4InverseZZZPriceRangeDeploysGrowsAndKeepsFeeAccounting()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4LateSourceRoundCallbackRollsBackLPFundsEligibilityAndFees()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4StalePricesBlockRebalanceButPreserveHarvestAndClaimAccounting()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+    "method": "testActualV4UnfeasibleDepthStillRollsBackEveryLedger()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_ActualSizeRoutingSelectsCheaperVenueAndPreservesQuotes()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_BalancedBudgetDoesNotChaseDust()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_ColdDeepSingleVenueFastPathWithinExistingGasGate()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_ColdFourVenueSearchWithinExistingGasGate()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_DisabledCandidateDoesNotFreezeHealthyRouting()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_EmptyCatalogNeverImplicitlySwapsInDestination()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_PartialInputEmptyVenueDoesNotBlockHealthyAlternative()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_PlannerFindsSmallerFeasibleSwapWhenSeedViolatesSpotLimit()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_QuoteUsesExternalDepthAfterActualOwnedLPClose()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_RefundCallbackCannotChangeAndRestoreRegistryPolicy()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_RefundCallbackCannotChangeCapturedPriceVector()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_RefundCallbackCannotChangeRoutingPolicy()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_RefundCallbackCannotChangeTargetOrientation()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_RoutesCanBeAdmittedAfterSealWithoutMovingLP()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_SolverBoundsAndQuoteAuthentication()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_ThinCheaperVenueCannotBeatDeepSafeVenue()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  },
+  {
+    "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+    "method": "test_UnknownDuplicateAndOverlongCatalogRejected()",
+    "status": "Success",
+    "reason": null,
+    "gas": null
+  }
+]

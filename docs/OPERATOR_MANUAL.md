@@ -298,6 +298,41 @@ LINK transfer, but adapters, updates, RPCs and VRF can cost money; review each
 actual product and upstream authority. [Price operating requirements](PRICE_SECURITY.md).
 
 
+### Set additional execution loss
+
+For fresh `EXECUTION_QUALITY_VERSION()==1`, governance calls
+`Strategy.setAdditionalLossBps(uint16 limit,bytes32 reviewHash)`. The initial limit
+is100bps (1%) beyond actual directional LP/protocol fees; allowed0-1000bps.
+Zero is a strict economic limit, not a disable switch. Use a nonzero review hash.
+This is separate from venue gross slippage, total contribution/maintenance loss,
+converter policy and caller minimums; the strongest relevant floor always wins.
+
+1. Resolve the sealed Strategy from Access, verify its runtime/Access binding and
+   capability, read current limit/MAX/revision and actual directional pool fees.
+   Reconcile pending keeper work before changing policy. Qualify fee/depth/price
+   assumptions; raising the setting accepts more possible loss.
+2. Simulate and call the setter from governance (or valid pre-seal bootstrap).
+   Ordinary global pause and post-LP-exit buyback configuration are supported;
+   preparation/canonical locks reject. No keeper authorization permits this setter.
+3. Confirm `AdditionalLossLimitChanged`, getter and incremented
+   `executionQualityRevision`. Reprepare unsigned reviews. Changing and restoring
+   policy mid-operation fails its captured fingerprint; later transactions use
+   current inclusion-time settings. Reviewed Entry maximum binds the contribution
+   cap, not a frozen copy of this quality setting.
+4. Fresh keeper/API configurations declare `execution_quality_version:1` with
+   reviewed Strategy/Manager/helper runtimes and bindings. Historical absent/0
+   profiles stay separate. For an off-chain config/release change, stop/reconcile,
+   preserve the journal, verify pins/dry run and restart the actual reviewed
+   service; an on-chain setter alone needs no process restart. Never relabel an
+   existing immutable deployment or delete pending state to pass a capability check.
+
+No installed service was changed. Direct Manager swaps/buybacks additionally
+require a constructible configured target range through the full context check;
+near TickMath bounds that can stop execution. Inspect configuration and simulated
+failure instead of bypassing prices/floors. Separate LP/royalty converters retain
+their own all-in conversion limits. See [fee-adjusted quality](EXECUTION_QUALITY.md)
+for exact fee/rounding scope, 2% gross-floor interaction and recovery boundaries.
+
 ## Typed conversion and loss-limit operations
 
 [Typed v4 route setup](TYPED_V4_ROUTES.md) covers new pools/routes, exact policy

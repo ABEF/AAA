@@ -1423,7 +1423,7 @@
             "amountIn": "Raw input token units/wei; zero means no planned conversion.",
             "minimumOut": "Raw output token units/wei after conservative price/fee/slippage guards; not gas or USD value."
           },
-          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent."
         },
         "compoundPlan(uint256,uint256,uint256)": {
           "purpose": "Calculate balancing of compound amounts against the bucket’s existing physical LP ticks. Uses current qualified prices and actual directional fees; does not execute, collect or compound assets.",
@@ -1446,6 +1446,56 @@
           "outputs": {
             "0": "2 for outside-or-operator-range eligibility; not evidence that a historical deployment was upgraded."
           }
+        },
+        "EXECUTION_QUALITY_VERSION()": {
+          "purpose": "Read fee-adjusted execution-quality capability1; historical contracts do not acquire it from a configuration edit.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh implementation."
+          }
+        },
+        "MAX_ADDITIONAL_LOSS_BPS()": {
+          "purpose": "Read the immutable maximum additional oracle-relative loss after known directional trading fees.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1000basis points (10%); independent gross and operation caps still apply."
+          }
+        },
+        "additionalLossBps()": {
+          "purpose": "Read Strategy-owned additional-loss limit, default100bps (1%); the balancer forwards this same policy.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Current0-1000bps limit, not the pool trading fee, gross venue limit or total contribution/maintenance limit."
+          }
+        },
+        "executionQualityRevision()": {
+          "purpose": "Read the monotonic fee-quality configuration revision; changes and restores remain detectable across callbacks.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "uint64 revision incremented by every successful quality setter."
+          }
+        },
+        "setAdditionalLossBps(uint16,bytes32)": {
+          "purpose": "Set the extra oracle-relative loss limit after actual directional core fees. Increment revision and emit previous/new values with review evidence.",
+          "access": "Governance or valid pre-seal bootstrap through canConfigure; operating lifecycle required. Ordinary global pause and post-LP-exit buybacks remain supported; preparation/canonical locks reject.",
+          "inputs": {
+            "limit": "0-1000basis points; initial100. Zero requires no additional measured deterioration and may make trades unavailable.",
+            "reviewHash": "Nonzero bytes32 commitment to reviewed rationale/configuration."
+          },
+          "notes": "Does not alter known fees, gross venue/caller/aggregate floors, NFT rights or reserves. No automatic widening. New source storage layout is not an existing deployment upgrade."
+        },
+        "minimumOutput(bytes32,bool,uint256)": {
+          "purpose": "Compute the stronger of the original gross oracle/venue floor and fee-adjusted additional-loss floor using actual directional core fees and fresh independently reviewed USD bounds.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "poolId": "Exact admitted operations-enabled pool ID.",
+            "direction": "True swaps native currency0 to ZZZ currency1; false the reverse.",
+            "amount": "Positive raw input units, at most uint128 maximum; wei for native ETH."
+          },
+          "outputs": {
+            "0": "Raw output floor: max(old gross floor, ceil(conservative quote of fee-net raw input * (10000-additionalLossBps)/10000)). Does not include a caller minimum or network gas."
+          },
+          "notes": "Read calculation is not a transaction/venue quote or a promise of execution. Manager additionally checks range/spot context, actual output and stronger caller minima. Separate reward converters retain their own policies."
         }
       },
       "constructor": {
@@ -2010,7 +2060,7 @@
         "swap(bytes32,bool,uint256,uint256,uint256)": {
           "purpose": "Execute a typed exact-input swap in an admitted pool with price/output/deadline checks.",
           "access": "Only the sealed fixed Vault or Buyback module.",
-          "notes": "No arbitrary recipient: outputs go to the authenticated caller; exact native call value and approval cleanup apply. Inputs: zeroForOne selects ordered currency0→1; raw input/minimumOut and Unix deadline bound execution. Returns: Actual raw output amount.",
+          "notes": "No arbitrary recipient: outputs go to the authenticated caller; exact native call value and approval cleanup apply. Inputs: zeroForOne selects ordered currency0→1; raw input/minimumOut and Unix deadline bound execution. Returns: Actual raw output amount. A zero minimum rejects. A positive caller minimum below protocol policy is raised to the stronger protocol floor rather than rejected solely for underspecification; stronger caller minima still bind. Full policy context is captured before input pull and rechecked after output. Direct swaps now also require a constructible configured target range; extreme TickMath ratios can prevent them.",
           "inputs": {
             "0": "Exact admitted bytes32 hash of the v4 PoolKey, not a pool contract address.",
             "1": "True swaps currency0→currency1; false swaps currency1→currency0.",
@@ -2085,6 +2135,13 @@
           },
           "value": "Exactly amount0 native wei. Network gas is separate.",
           "notes": "Contributions supply only entrant funds; maintenance supplies classified bucket idle. Exact refunds/prefund isolation, source/policy/context, physical LP and post-swap spot checks run after callbacks. No-swap is possible; final Vault marginal-LP/maintenance guards still apply."
+        },
+        "EXECUTION_QUALITY_VERSION()": {
+          "purpose": "Read fee-adjusted execution-quality capability1; historical contracts do not acquire it from a configuration edit.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh implementation."
+          }
         }
       },
       "constructor": {
@@ -5740,7 +5797,8 @@
           },
           "outputs": {
             "0": "Atomic policy/source commitment; not a quote or permission."
-          }
+          },
+          "notes": " Includes monotonic Strategy.executionQualityRevision, so changing then restoring the fee-quality cap during a callback still rejects."
         },
         "poolManager()": {
           "purpose": "Read the immutable v4 core used for reverted quotes.",
@@ -5770,20 +5828,6 @@
             "0": "Default200000gas; governed100000-300000. Low gas may skip a usable venue."
           }
         },
-        "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160)),bytes32,bool)": {
-          "purpose": "Evaluate one admitted venue using bounded actual-core quotes, directional fees and resulting LP ratio.",
-          "access": "Only helper self-call inside plan; other callers revert.",
-          "inputs": {
-            "x": "Captured Context: target pool, target spot and sqrt bounds, exact amounts, independent lower/upper asset prices/scales/reference.",
-            "id": "One explicit admitted candidate pool ID.",
-            "direction": "True means ETH→ZZZ; false ZZZ→ETH."
-          },
-          "outputs": {
-            "best": "Best valid sampled Plan for this venue, or empty.",
-            "bestValue": "Useful deployed USD18 value at the captured independent vector."
-          },
-          "notes": "Internal integration surface; raw quoted liquidity is not compared across changing prices."
-        },
         "searchIterations()": {
           "purpose": "Read the current search work bound per venue.",
           "access": "Anyone; read-only.",
@@ -5807,6 +5851,41 @@
           "outputs": {
             "0": "No successful output; valid execution deliberately reverts the quote payload."
           }
+        },
+        "EXECUTION_QUALITY_VERSION()": {
+          "purpose": "Read fee-adjusted execution-quality capability1; historical contracts do not acquire it from a configuration edit.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh implementation."
+          }
+        },
+        "MAX_ADDITIONAL_LOSS_BPS()": {
+          "purpose": "Read the immutable maximum additional oracle-relative loss after known directional trading fees.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1000basis points (10%); independent gross and operation caps still apply."
+          }
+        },
+        "additionalLossBps()": {
+          "purpose": "Read Strategy-owned additional-loss limit, default100bps (1%); the balancer forwards this same policy.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Current0-1000bps limit, not the pool trading fee, gross venue limit or total contribution/maintenance limit."
+          }
+        },
+        "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16)),bytes32,bool)": {
+          "purpose": "Evaluate one admitted venue using bounded actual-core quotes, directional fees and resulting LP ratio.",
+          "access": "Only helper self-call inside plan; other callers revert.",
+          "inputs": {
+            "x": "Captured Context: target pool, target spot and sqrt bounds, exact amounts, independent lower/upper asset prices/scales/reference. Includes captured Strategy additional-loss basis points in Prices.extraLoss.",
+            "id": "One explicit admitted candidate pool ID.",
+            "direction": "True means ETH→ZZZ; false ZZZ→ETH."
+          },
+          "outputs": {
+            "best": "Best valid sampled Plan for this venue, or empty.",
+            "bestValue": "Useful deployed USD18 value at the captured independent vector."
+          },
+          "notes": "Internal integration surface; raw quoted liquidity is not compared across changing prices."
         }
       },
       "constructor": {

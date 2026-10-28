@@ -47,6 +47,14 @@ Current security work includes paid-revert health visibility and post-callback k
 actual prices, pool depth/fees and Robinhood ordering; no private submission
 provider, universal anti-MEV guarantee or24-hour default is approved.
 
+Fresh execution-quality1 separates known actual directional core fees from a1%
+default additional oracle-relative loss floor (governance0-10%). Stronger gross,
+caller and operation floors stay; separate reward converters keep their own
+all-in policy. Strategy owns policy/revision; Manager/helper and explicit
+keeper/API profiles bind it. [Feature](docs/EXECUTION_QUALITY.md), [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md).
+No installed service/site/Anvil changed. Passive positions, persistent triggers
+and40% movement triggers remain brainstorming, not selected implementation.
+
 ## Requested next LP policy
 
 The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manual
@@ -109,8 +117,10 @@ Prior [atomic routing](reports/atomic-routing-20261028/VERIFICATION.md),
 [upkeep policy](reports/maintenance-policy-20261027/VERIFICATION.md),
 [holder-return](reports/holder-collective-exit-20261027/VERIFICATION.md) and
 [earlier reports](reports/README.md) retain their original source/fixture scopes.
-Vault runtime24064, Manager24152 and NFT24400 leave512/424/176bytes; exact release
-constructor arguments, target gas and real dependencies still need qualification.
+At that earlier checkpoint Vault24064, Manager24152 and NFT24400 left512/424/176
+runtime bytes. Fresh fee-quality source has Manager24148runtime (428margin),
+creation48938+160static arguments (54bytes initcode headroom);38normal gates pass.
+Exact release arguments, target gas and real dependencies still need qualification.
 
 [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) distinguishes contract-enforced rules
 from software-only jitter/simulation/budgets. Keeper personal trading around its

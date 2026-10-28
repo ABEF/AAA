@@ -5,6 +5,15 @@ Use the [rehearsal guide](KEEPER_REHEARSALS.md) for commands and evidence, the
 [keeper internal review](../reports/keeper-recovery/REVIEW.md) for its original
 scope, and the [central Todo](../TODO.md#task-keeper-recovery) for remaining work.
 
+Fresh fee-quality source uses explicit `execution_quality_version:1` with actual
+Strategy/Manager/helper capability/runtime/binding checks and observed policy
+owner/revision at one canonical block. Historical absent/0 is not silently
+upgraded. Quality RPC failure prevents a new guarded balance review; saved
+receipt recovery and independent harvest retain their existing paths. An on-chain
+cap setter needs no service restart, but a config/runtime/source rollout requires
+the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
+[Fee-adjusted scope and limits](EXECUTION_QUALITY.md).
+
 ## Deployment and journal identity
 
 Current configuration explicitly selects `accounting_version: 4` and

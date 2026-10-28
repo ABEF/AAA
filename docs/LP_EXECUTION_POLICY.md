@@ -6,7 +6,11 @@ Budget3. [Routing review](../reports/atomic-routing-20261028/REVIEW.md) and
 [verification](../reports/atomic-routing-20261028/VERIFICATION.md) own the new
 source scope; [earlier timing verification](../reports/maintenance-policy-20261027/VERIFICATION.md)
 retains its original scope. Actual venue/gas/economic qualification and operating
-rollout remain open. [Todo](../TODO.md#task-lp-execution-routing) owns status.
+rollout remain open. The separate [fee-aware execution-quality policy](EXECUTION_QUALITY.md)
+adds a governed additional-loss floor without removing all-in limits; its
+[review](../reports/fee-impact-policy-20261028/REVIEW.md) and
+[verification](../reports/fee-impact-policy-20261028/VERIFICATION.md) own that
+later source scope. [Todo](../TODO.md#task-lp-execution-routing) owns status.
 Old deployments, journals and sites retain their actual historical code/profiles.
 
 ## Current behavior and requested direction
@@ -72,12 +76,22 @@ after sealing without Solidity editing, redeployment or moving the LP destinatio
 
 `LP_ROUTING_VERSION()==1`, immutable helper/core/state/parent bindings and exact
 runtime pins identify this new capability independently of Entry routing2.
-The Registry's monotonic `configurationRevision` and the helper's
-`executionRevision`, full policies, source fingerprints and desired target ticks
-bind the atomic decision. Pulls/refunds cannot silently change policy, ownership,
+The Registry's monotonic `configurationRevision`, the helper's catalog/solver
+`executionRevision` and Strategy's `executionQualityRevision`, full policies,
+source fingerprints and desired target ticks bind the atomic decision. The
+quality revision detects changing and restoring the additional-loss setting;
+it is separate from the helper revision. Pulls/refunds cannot silently change policy, ownership,
 existing LP liquidity or outputs. Both layers verify exact raw balance changes;
 manager prefunds are preserved. Historical contracts/readers/journals do not gain
 this behavior by relabeling a configuration.
+
+Fee-aware quality explicitly advertises `EXECUTION_QUALITY_VERSION()==1` on
+Manager, helper and Strategy while retaining LP routing1. Fresh keeper/API
+configs select `execution_quality_version:1`; historical absent/zero profiles
+do not probe the new ABI. Same-block observations authenticate the real Strategy
+and its forwarded cap, reporting policy owner and quality revision. An unsigned
+review reports observed policy, not a frozen inclusion-time setting; the
+caller's signed total contribution maximum remains binding.
 
 ## Deterministic execution and adjustable economics
 
@@ -92,6 +106,14 @@ a governed 10% hard ceiling. The separately governed pool-slippage ceiling is
 now also 10% (1-1000bps); its operating value is not automatically raised.
 The tighter target/selected-venue slippage, pool/reference deviation, captured
 operation limits and caller minima remain independent.
+Strategy also governs a default1% additional-loss limit after known directional
+LP/protocol fees, adjustable0–10% with a nonzero review hash. The output floor
+uses conservative independent USD bounds and rounds up; the effective minimum
+retains the stronger gross venue and caller floors. Fees still count under all-in
+limits. This covers balancing and Manager direct/buyback swaps; separate reward
+converters retain their existing all-in conversion controls. It is oracle-relative
+loss, including spread/rounding/source uncertainty, not isolated price impact.
+See [calculation and capability boundaries](EXECUTION_QUALITY.md).
 Increasing one loss cap does not waive another guard. Parameter loosening is an
 explicit acceptance of worse execution, never a retry fallback or guarantee that
 a trade becomes possible. Preserve user-signed stronger limits. Empty liquidity,

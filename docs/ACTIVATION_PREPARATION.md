@@ -6,6 +6,15 @@ the public website. The associated current-NAV guard and rebalance budget are de
 actual Robinhood routes, feeds, trace providers and network fees remains in
 [the central task](../TODO.md#task-activation-quotes).
 
+Fresh fee-quality source uses explicit `execution_quality_version:1` with actual
+Strategy/Manager/helper capability/runtime/binding checks and observed policy
+owner/revision at one canonical block. Historical absent/0 is not silently
+upgraded. Quality RPC failure prevents a new guarded balance review; saved
+receipt recovery and independent harvest retain their existing paths. An on-chain
+cap setter needs no service restart, but a config/runtime/source rollout requires
+the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
+[Fee-adjusted scope and limits](EXECUTION_QUALITY.md).
+
 ## Current deployment and review profile
 
 The read configuration selects accounting 4 / fee-intake 1; deployment checks

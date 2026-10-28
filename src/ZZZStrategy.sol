@@ -16,6 +16,10 @@ contract ZZZStrategy is ZZZModule {
     uint256 public constant RANGE_POLICY_VERSION = 1;
     /// @notice Physical outside-range upkeep, with a governed range-change exception.
     uint256 public constant MAINTENANCE_POLICY_VERSION = 2;
+    uint256 public constant EXECUTION_QUALITY_VERSION = 1;
+    uint256 public constant MAX_ADDITIONAL_LOSS_BPS = 1000;
+    uint16 public additionalLossBps = 100;
+    uint64 public executionQualityRevision;
     /// 0 preserves historical token1/token0; 1 expresses token0/token1.
     mapping(bytes32 => uint8) public rangeOrientation;
     struct KeeperRangePolicy {
@@ -31,9 +35,48 @@ contract ZZZStrategy is ZZZModule {
     event RangeOrientationChanged(bytes32 indexed poolId,uint8 previous,uint8 current);
     event KeeperRangePolicyChanged(bytes32 indexed poolId,bool enabled,bytes32 configurationHash,bytes32 reviewHash);
     event KeeperRangeSelected(bytes32 indexed poolId,uint16 previous,uint16 current,bytes32 reviewHash);
+    event AdditionalLossLimitChanged(uint16 previous,uint16 current,uint64 revision,bytes32 indexed reviewHash);
     struct AssetPrice { uint256 lower; uint256 upper; uint256 scale; }
     struct PairPrices { AssetPrice first; AssetPrice second; uint160 referenceX96; }
     constructor(address controller) ZZZModule(controller) {}
+    /// @notice Extra oracle-relative loss after actual directional trading fees;
+    /// gross/caller/operation floors remain independent. Available for post-exit
+    /// buybacks and ordinary pause, but not preparation/canonical lifecycle locks.
+    function setAdditionalLossBps(uint16 limit,bytes32 reviewHash) external onlyGovernance operating {
+        if (limit > MAX_ADDITIONAL_LOSS_BPS || reviewHash == bytes32(0)) revert InvalidConfiguration();
+        uint16 previous = additionalLossBps;
+        additionalLossBps = limit;
+        ++executionQualityRevision;
+        emit AdditionalLossLimitChanged(previous,limit,executionQualityRevision,reviewHash);
+    }
+    /// @notice Inclusion-time minimum, not a keeper-selected price or swap quote.
+    /// Known fees are removed from raw input; rounding/impact/reference spread
+    /// still consumes the additional limit. Never exempts fees from gross caps.
+    function minimumOutput(bytes32 poolId,bool direction,uint256 amount) external view returns(uint256) {
+        if (amount == 0 || amount > type(uint128).max) revert InvalidAmount();
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
+        if (!c.operationsEnabled) revert InvalidState();
+        PairPrices memory prices = _pairPrices(c);
+        return _minimum(prices,direction,amount,c.maxSlippageBps,_swapFee(poolId,c,direction));
+    }
+    function _swapFee(bytes32 poolId,PoolConfig memory c,bool direction) private view returns(uint256) {
+        (,,uint24 protocol,uint24 fee) = IV4FeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId);
+        if (c.key.hooks != address(0) || fee != c.key.fee || fee > 100000 ||
+            (protocol & 0xfff) > 1000 || protocol >> 12 > 1000) revert InvalidConfiguration();
+        uint256 selected = direction ? protocol & 0xfff : protocol >> 12;
+        return selected+fee-Math.mulDiv(selected,fee,1_000_000);
+    }
+    function _quoted(PairPrices memory prices,bool direction,uint256 amount) private pure returns(uint256) {
+        AssetPrice memory input = direction ? prices.first : prices.second;
+        AssetPrice memory output = direction ? prices.second : prices.first;
+        return Math.mulDiv(Math.mulDiv(amount,input.upper,input.scale),output.scale,output.lower);
+    }
+    function _minimum(PairPrices memory prices,bool direction,uint256 amount,uint16 grossLoss,uint256 fee)
+        private view returns(uint256) {
+        uint256 gross = Math.mulDiv(_quoted(prices,direction,amount),10000-grossLoss,10000);
+        uint256 net = Math.mulDiv(amount,1_000_000-fee,1_000_000);
+        return Math.max(gross,Math.mulDiv(_quoted(prices,direction,net),10000-additionalLossBps,10000,Math.Rounding.Ceil));
+    }
     function _floor(int24 tick, int24 spacing) private pure returns (int24) {
         int24 quotient = tick / spacing;
         if (tick < 0 && tick % spacing != 0) --quotient;
@@ -247,15 +290,11 @@ contract ZZZStrategy is ZZZModule {
         uint256 desired0 = Math.mulDiv(v0 + v1, u0, u0 + u1);
         zeroForOne = v0 > desired0;
         AssetPrice memory input = zeroForOne ? prices.first : prices.second;
-        AssetPrice memory output = zeroForOne ? prices.second : prices.first;
         uint256 excess = zeroForOne ? v0 - desired0 : desired0 - v0;
+        uint256 fee = _swapFee(poolId,c,zeroForOne);
         {
             // Every admitted v4 pool is static, hookless and native ETH/fixed ZZZ.
             // Size the net pair after its actual directional protocol + LP fee.
-            (,, uint24 protocol, uint24 lpFee) = IV4FeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId);
-            uint256 pf = zeroForOne ? protocol & 0xfff : protocol >> 12;
-            if (c.key.hooks != address(0) || lpFee != c.key.fee || pf > 1000) revert InvalidConfiguration();
-            uint256 fee = pf + uint256(lpFee) - Math.mulDiv(pf, lpFee, 1_000_000);
             uint256 inputWeight = Math.mulDiv(zeroForOne ? u0 : u1, 1e18, u0 + u1);
             excess = Math.mulDiv(excess, 1e18, 1e18 - Math.mulDiv(inputWeight, fee, 1_000_000));
         }
@@ -263,8 +302,7 @@ contract ZZZStrategy is ZZZModule {
         if (amountIn > (zeroForOne ? amount0 : amount1)) revert InvalidState();
         // Preserve Oracle.quote's two floor operations exactly: upper-valued
         // source USD first, then lower-valued output raw units.
-        uint256 quoted = Math.mulDiv(Math.mulDiv(amountIn,input.upper,input.scale),output.scale,output.lower);
-        minimumOut = Math.mulDiv(quoted, 10000 - c.maxSlippageBps, 10000);
+        minimumOut = _minimum(prices,zeroForOne,amountIn,c.maxSlippageBps,fee);
         if (minimumOut == 0) amountIn = 0;
     }
 }

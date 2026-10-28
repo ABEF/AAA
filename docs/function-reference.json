@@ -15,9 +15,9 @@
       "src/ZZZCustodyValidation.sol": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
-      "src/ZZZLPBalancer.sol": "e8cd29abccd417c0ccafb652a2c3b2d11e6b68aace76dc5c231babc94b20c885",
+      "src/ZZZLPBalancer.sol": "6a5c5639a00fadbfddb6c3119c89ca53070ed59460549d91484f4fb6069d4b31",
       "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
-      "src/ZZZLiquidityManager.sol": "d9cf317c321063589c672a3c02779c016f2473816a42fc12db9b0d92f5c253a3",
+      "src/ZZZLiquidityManager.sol": "a648623a5a56f49e3f76ebbe8840bd5cfc6349cd8b70b0f0e3b2d690661e7457",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
       "src/ZZZMigration.sol": "93c4f9fe3047d3386864240a4a2c8491953758f5a02524b17b0d0100018157c0",
       "src/ZZZMigrationBudget.sol": "7ef31300bbea4a1311dee161b7bca3fc05f60f5b207db826d6b862bbe3e8fddb",
@@ -31,14 +31,14 @@
       "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
       "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
       "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
-      "src/ZZZStrategy.sol": "eca7bd0581354ebb597961c2382408768dbf3e5d4969e10f776bef1a18e2ab74",
+      "src/ZZZStrategy.sol": "0ddcc573d652770b5464597beadff4e4d4f60ce60e88e59d1e7e958835de01ba",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
       "src/ZZZVault.sol": "ad1f5e3439605d51295962743fae2e2997c5ba7824322039ffe5a20cc2ae4c99",
       "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZModule.sol": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
       "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
-      "src/interfaces/IZZZ.sol": "f163b83f6a2ded36a0bfd3673ba56465c41db5ff900bb5036109458490747a17",
+      "src/interfaces/IZZZ.sol": "ed408227aa39d39a8c8b08f0e1441c247c458cc82d5827a0981b5f30f8b58879",
       "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
       "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
@@ -202,9 +202,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "8a69d7f6bc4613ed4fbbe608c87b6c46b617a2657e9bf4ce85ca8d8708d71cd6",
-    "compiler_output_sha256": "21328ab1c94cc39a560d2f60c2c50c9e9da20207012babb1ae0c19f95cfa0d34",
-    "size_evidence_sha256": "33c02bb92c94eb3369f47f6d5828365aa30af76c374cad74da1b47920a9d7aa6",
+    "compiler_input_sha256": "3b5284a84f931935af55ab3cab18708e21c489296ee7f7f093d4036547981b1f",
+    "compiler_output_sha256": "6d9720a94f981945afe5712040ea053270aeb641dcf52b991c7112579237f6d1",
+    "size_evidence_sha256": "4d11326f6b4c9170ce59a0d2ce1fc9bcff8fbf54714231c4e71fbdb82f016ab6",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -5173,7 +5173,33 @@
         },
         {
           "inputs": [],
+          "name": "EXECUTION_QUALITY_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "LP_ROUTING_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "MAX_ADDITIONAL_LOSS_BPS",
           "outputs": [
             {
               "internalType": "uint256",
@@ -5205,6 +5231,19 @@
               "internalType": "contract IZZZAccess",
               "name": "",
               "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "additionalLossBps",
+          "outputs": [
+            {
+              "internalType": "uint16",
+              "name": "",
+              "type": "uint16"
             }
           ],
           "stateMutability": "view",
@@ -5571,6 +5610,11 @@
                       "internalType": "uint160",
                       "name": "referenceX96",
                       "type": "uint160"
+                    },
+                    {
+                      "internalType": "uint16",
+                      "name": "extraLoss",
+                      "type": "uint16"
                     }
                   ],
                   "internalType": "struct ZZZLPBalancer.Prices",
@@ -5702,7 +5746,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "cc06dccadb6cdbb6f17c2b1c1db88a792fb0f06fc501ddf0b34269d12b9a3aa2"
+      "abi_sha256": "0986f5ff749e182c9c60d0cad422b57266455826ab2179f1fd75489019aa3bfe"
     },
     "ZZZLPRewardConverter": {
       "source": "src/ZZZLPRewardConverter.sol",
@@ -6748,6 +6792,19 @@
         },
         {
           "inputs": [],
+          "name": "EXECUTION_QUALITY_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "LP_ROUTING_VERSION",
           "outputs": [
             {
@@ -7184,7 +7241,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "8fe3069185ed87b408668636556f9fbc6ab03ba98a90269e4383d0e54691aa5a"
+      "abi_sha256": "519804806e46b466461a37674b14060dbae453c67bc1397c7d10ac24d4304500"
     },
     "ZZZMembership": {
       "source": "src/ZZZMembership.sol",
@@ -16238,6 +16295,37 @@
           "anonymous": false,
           "inputs": [
             {
+              "indexed": false,
+              "internalType": "uint16",
+              "name": "previous",
+              "type": "uint16"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint16",
+              "name": "current",
+              "type": "uint16"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint64",
+              "name": "revision",
+              "type": "uint64"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "AdditionalLossLimitChanged",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
               "indexed": true,
               "internalType": "bytes32",
               "name": "poolId",
@@ -16323,7 +16411,33 @@
         },
         {
           "inputs": [],
+          "name": "EXECUTION_QUALITY_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "MAINTENANCE_POLICY_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "MAX_ADDITIONAL_LOSS_BPS",
           "outputs": [
             {
               "internalType": "uint256",
@@ -16355,6 +16469,19 @@
               "internalType": "contract IZZZAccess",
               "name": "",
               "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "additionalLossBps",
+          "outputs": [
+            {
+              "internalType": "uint16",
+              "name": "",
+              "type": "uint16"
             }
           ],
           "stateMutability": "view",
@@ -16413,6 +16540,19 @@
               "internalType": "uint256",
               "name": "",
               "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "executionQualityRevision",
+          "outputs": [
+            {
+              "internalType": "uint64",
+              "name": "",
+              "type": "uint64"
             }
           ],
           "stateMutability": "view",
@@ -16489,6 +16629,35 @@
         {
           "inputs": [
             {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "direction",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "minimumOutput",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "uint256",
               "name": "id",
               "type": "uint256"
@@ -16541,6 +16710,24 @@
             }
           ],
           "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint16",
+              "name": "limit",
+              "type": "uint16"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "setAdditionalLossBps",
+          "outputs": [],
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -16706,7 +16893,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "5e3085ecfd521bbf2975848d1eb3d07639fceb2e7fae5b6163ab16ac49fc74a7"
+      "abi_sha256": "6dd3299c50cdd53811d3f8d857208a12fe6b3ab6f338872de3aba31d1dfb1709"
     },
     "ZZZV4RouteExecutor": {
       "source": "src/ZZZV4RouteExecutor.sol",
@@ -18945,7 +19132,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "9aae4fba6fe46509319490c75c772866305bb88b19fdb64e8af99e72585b85d9",
+  "notes_sha256": "817a1cb7a97e93f24df2872d609ef2a8709bd9d9ca3e4b318124a70789fdf411",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -25015,6 +25202,29 @@
           "notes": null
         },
         {
+          "signature": "EXECUTION_QUALITY_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_QUALITY_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read fee-adjusted execution-quality capability1; historical contracts do not acquire it from a configuration edit.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh implementation."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "LP_ROUTING_VERSION()",
           "kind": "function",
           "name": "LP_ROUTING_VERSION",
@@ -25032,6 +25242,29 @@
               "canonical_type": "uint256",
               "internal_type": "uint256",
               "explanation": "Version1."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "MAX_ADDITIONAL_LOSS_BPS()",
+          "kind": "function",
+          "name": "MAX_ADDITIONAL_LOSS_BPS",
+          "state_mutability": "view",
+          "purpose": "Read the immutable maximum additional oracle-relative loss after known directional trading fees.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1000basis points (10%); independent gross and operation caps still apply."
             }
           ],
           "native_value": null,
@@ -25078,6 +25311,29 @@
               "canonical_type": "address",
               "internal_type": "contract IZZZAccess",
               "explanation": "Fixed controller address."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "additionalLossBps()",
+          "kind": "function",
+          "name": "additionalLossBps",
+          "state_mutability": "view",
+          "purpose": "Read Strategy-owned additional-loss limit, default100bps (1%); the balancer forwards this same policy.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint16",
+              "canonical_type": "uint16",
+              "internal_type": "uint16",
+              "explanation": "Current0-1000bps limit, not the pool trading fee, gross venue limit or total contribution/maintenance limit."
             }
           ],
           "native_value": null,
@@ -25450,7 +25706,7 @@
             }
           ],
           "native_value": null,
-          "notes": null
+          "notes": "Includes monotonic Strategy.executionQualityRevision, so changing then restoring the fee-quality cap during a callback still rejects."
         },
         {
           "signature": "poolManager()",
@@ -25606,7 +25862,7 @@
           "notes": null
         },
         {
-          "signature": "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160)),bytes32,bool)",
+          "signature": "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16)),bytes32,bool)",
           "kind": "function",
           "name": "routePlan",
           "state_mutability": "nonpayable",
@@ -25619,9 +25875,9 @@
               "name": "x",
               "label": "x",
               "type": "tuple",
-              "canonical_type": "(bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160))",
+              "canonical_type": "(bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16))",
               "internal_type": "struct ZZZLPBalancer.Context",
-              "explanation": "Captured Context: target pool, target spot and sqrt bounds, exact amounts, independent lower/upper asset prices/scales/reference.",
+              "explanation": "Captured Context: target pool, target spot and sqrt bounds, exact amounts, independent lower/upper asset prices/scales/reference. Includes captured Strategy additional-loss basis points in Prices.extraLoss.",
               "components": [
                 {
                   "position": 0,
@@ -25682,7 +25938,7 @@
                   "name": "prices",
                   "label": "prices",
                   "type": "tuple",
-                  "canonical_type": "(uint256,uint256,uint256,uint256,uint256,uint160)",
+                  "canonical_type": "(uint256,uint256,uint256,uint256,uint256,uint160,uint16)",
                   "internal_type": "struct ZZZLPBalancer.Prices",
                   "explanation": null,
                   "components": [
@@ -25738,6 +25994,15 @@
                       "type": "uint160",
                       "canonical_type": "uint160",
                       "internal_type": "uint160",
+                      "explanation": null
+                    },
+                    {
+                      "position": 6,
+                      "name": "extraLoss",
+                      "label": "extraLoss",
+                      "type": "uint16",
+                      "canonical_type": "uint16",
+                      "internal_type": "uint16",
                       "explanation": null
                     }
                   ]
@@ -27244,6 +27509,29 @@
           "notes": null
         },
         {
+          "signature": "EXECUTION_QUALITY_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_QUALITY_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read fee-adjusted execution-quality capability1; historical contracts do not acquire it from a configuration edit.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh implementation."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "LP_ROUTING_VERSION()",
           "kind": "function",
           "name": "LP_ROUTING_VERSION",
@@ -27931,7 +28219,7 @@
             }
           ],
           "native_value": "Exactly amountIn when the selected swap input is native ETH; otherwise zero.",
-          "notes": "No arbitrary recipient: outputs go to the authenticated caller; exact native call value and approval cleanup apply. Inputs: zeroForOne selects ordered currency0→1; raw input/minimumOut and Unix deadline bound execution. Returns: Actual raw output amount."
+          "notes": "No arbitrary recipient: outputs go to the authenticated caller; exact native call value and approval cleanup apply. Inputs: zeroForOne selects ordered currency0→1; raw input/minimumOut and Unix deadline bound execution. Returns: Actual raw output amount. A zero minimum rejects. A positive caller minimum below protocol policy is raised to the stronger protocol floor rather than rejected solely for underspecification; stronger caller minima still bind. Full policy context is captured before input pull and rechecked after output. Direct swaps now also require a constructible configured target range; extreme TickMath ratios can prevent them."
         },
         {
           "signature": "ticks(uint256)",
@@ -40173,6 +40461,29 @@
           "notes": null
         },
         {
+          "signature": "EXECUTION_QUALITY_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_QUALITY_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read fee-adjusted execution-quality capability1; historical contracts do not acquire it from a configuration edit.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh implementation."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "MAINTENANCE_POLICY_VERSION()",
           "kind": "function",
           "name": "MAINTENANCE_POLICY_VERSION",
@@ -40190,6 +40501,29 @@
               "canonical_type": "uint256",
               "internal_type": "uint256",
               "explanation": "2 for outside-or-operator-range eligibility; not evidence that a historical deployment was upgraded."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "MAX_ADDITIONAL_LOSS_BPS()",
+          "kind": "function",
+          "name": "MAX_ADDITIONAL_LOSS_BPS",
+          "state_mutability": "view",
+          "purpose": "Read the immutable maximum additional oracle-relative loss after known directional trading fees.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1000basis points (10%); independent gross and operation caps still apply."
             }
           ],
           "native_value": null,
@@ -40236,6 +40570,29 @@
               "canonical_type": "address",
               "internal_type": "contract IZZZAccess",
               "explanation": "Controller address; not a treasury or royalty payout address."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "additionalLossBps()",
+          "kind": "function",
+          "name": "additionalLossBps",
+          "state_mutability": "view",
+          "purpose": "Read Strategy-owned additional-loss limit, default100bps (1%); the balancer forwards this same policy.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint16",
+              "canonical_type": "uint16",
+              "internal_type": "uint16",
+              "explanation": "Current0-1000bps limit, not the pool trading fee, gross venue limit or total contribution/maintenance limit."
             }
           ],
           "native_value": null,
@@ -40342,6 +40699,29 @@
           ],
           "native_value": null,
           "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
+        },
+        {
+          "signature": "executionQualityRevision()",
+          "kind": "function",
+          "name": "executionQualityRevision",
+          "state_mutability": "view",
+          "purpose": "Read the monotonic fee-quality configuration revision; changes and restores remain detectable across callbacks.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint64",
+              "canonical_type": "uint64",
+              "internal_type": "uint64",
+              "explanation": "uint64 revision incremented by every successful quality setter."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "keeperRangePolicy(bytes32)",
@@ -40464,6 +40844,57 @@
           "notes": null
         },
         {
+          "signature": "minimumOutput(bytes32,bool,uint256)",
+          "kind": "function",
+          "name": "minimumOutput",
+          "state_mutability": "view",
+          "purpose": "Compute the stronger of the original gross oracle/venue floor and fee-adjusted additional-loss floor using actual directional core fees and fresh independently reviewed USD bounds.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "poolId",
+              "label": "poolId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact admitted operations-enabled pool ID."
+            },
+            {
+              "position": 1,
+              "name": "direction",
+              "label": "direction",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True swaps native currency0 to ZZZ currency1; false the reverse."
+            },
+            {
+              "position": 2,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive raw input units, at most uint128 maximum; wei for native ETH."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Raw output floor: max(old gross floor, ceil(conservative quote of fee-net raw input * (10000-additionalLossBps)/10000)). Does not include a caller minimum or network gas."
+            }
+          ],
+          "native_value": null,
+          "notes": "Read calculation is not a transaction/venue quote or a promise of execution. Manager additionally checks range/spot context, actual output and stronger caller minima. Separate reward converters retain their own policies."
+        },
+        {
           "signature": "needsRebalance(uint256)",
           "kind": "function",
           "name": "needsRebalance",
@@ -40561,6 +40992,38 @@
           ],
           "native_value": null,
           "notes": null
+        },
+        {
+          "signature": "setAdditionalLossBps(uint16,bytes32)",
+          "kind": "function",
+          "name": "setAdditionalLossBps",
+          "state_mutability": "nonpayable",
+          "purpose": "Set the extra oracle-relative loss limit after actual directional core fees. Increment revision and emit previous/new values with review evidence.",
+          "access": "Governance or valid pre-seal bootstrap through canConfigure; operating lifecycle required. Ordinary global pause and post-LP-exit buybacks remain supported; preparation/canonical locks reject.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "limit",
+              "label": "limit",
+              "type": "uint16",
+              "canonical_type": "uint16",
+              "internal_type": "uint16",
+              "explanation": "0-1000basis points; initial100. Zero requires no additional measured deterioration and may make trades unavailable."
+            },
+            {
+              "position": 1,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero bytes32 commitment to reviewed rationale/configuration."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Does not alter known fees, gross venue/caller/aggregate floors, NFT rights or reserves. No automatic widening. New source storage layout is not an existing deployment upgrade."
         },
         {
           "signature": "setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)",
@@ -40729,7 +41192,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent."
         },
         {
           "signature": "target(bytes32)",
@@ -43833,7 +44296,7 @@
   "gaps": [],
   "counts": {
     "contracts": 32,
-    "functions": 634,
+    "functions": 644,
     "constructors": 32,
     "receive_hooks": 13,
     "fallback_hooks": 0,

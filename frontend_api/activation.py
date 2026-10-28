@@ -132,6 +132,7 @@ class ActivationTransactions:
         req['accounting_version'] = p.accounting_version
         req['routing_version'] = cfg.routing_version
         req['lp_routing_version'] = cfg.lp_routing_version
+        req['execution_quality_version'] = cfg.execution_quality_version
         req['pricing_version'] = cfg.pricing_version
         req['review_policy_version'] = cfg.review_policy_version
         if cfg.routing_version == 1 and req['slippage'] > 100:
@@ -292,6 +293,7 @@ class ActivationTransactions:
                               'accounting_version':p.accounting_version,'routing_version':cfg.routing_version,
                               'pricing_version':cfg.pricing_version,
                               'lp_routing_version':cfg.lp_routing_version,
+                              'execution_quality_version':cfg.execution_quality_version,
                               **({'lp_execution':req['lp_execution']} if cfg.lp_routing_version == 1 else {}),
                               **({'maintenance_policy_version':cfg.maintenance_policy_version}
                                  if cfg.maintenance_policy_version else {}),
