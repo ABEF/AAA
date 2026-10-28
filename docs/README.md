@@ -48,6 +48,7 @@ Historical reports and explicitly legacy local profiles retain their own semanti
 | Actual service/deployment qualification | [Service decisions](PRODUCTION_SERVICES.md), [address inventory](DEPLOYMENT_ADDRESSES.md), [versioned preflight](PRODUCTION_PREFLIGHT.md), [RPC probes](RPC_PREPARATION_QUALIFICATION.md) |
 | Minting, randomness and content hosting | [OpenSea/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md), [artwork bundle/publication](ARTWORK_PUBLICATION.md) |
 | Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [frozen review export](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
+| Latest confirmation follow-up | [Review](../reports/confirmation-followup-20261028/REVIEW.md), [verification](../reports/confirmation-followup-20261028/VERIFICATION.md): keeper resets, physical LP/pool binding, policy health and custody totals; no Solidity or operating rollout. |
 | Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [latest fee-integrity evidence](../reports/backend-remediation-20261026/VERIFICATION.md) |
 
 ## Historical references

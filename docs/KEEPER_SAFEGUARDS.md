@@ -111,6 +111,12 @@ Matching worker records/clears observations with canonical receipts and keeps
 samples fresh during post-ready jitter. Hidden moves between observations and
 publicly visible pending upkeep remain limitations; strict300-second cadence/gap
 can repeatedly restart with receipt delays. No uninterrupted-price or MEV guarantee.
+Relevant raw bucket/pool faults invalidate that bucket; initial global
+lifecycle/authority/head faults mark only known fresh windows. Every foreign
+nonempty record requires another clear while a clear acknowledgement remains,
+even after an earlier healthy empty read. Only the worker's new observation
+intent atomically removes that acknowledgement. Unrelated job failures do not
+discard healthy evidence.
 [Exact policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
 
 ## 6. Deposit, accounting and callback protections
@@ -153,14 +159,16 @@ These protect the automated service; they are not substitutes for contract guard
 - Dry-run default and explicit reviewed live configuration.
 - Chain, signer, contract-code, module-binding and capability checks.
 - Canonical-block observations and fresh-head validation.
-- Explicit quality1 capability checks on Manager, Balancer and actual Strategy, including same-block policy-owner/quality-revision validation and forwarded-cap agreement. API reviews expose the metadata; current keeper health/logs do not. Historical absent/zero configurations retain their old ABI reads. Reviews do not freeze quality policy until inclusion; signed caller loss limits remain binding.
+- Explicit quality1 capability checks on Manager, Balancer and actual Strategy, including same-block policy-owner/quality-revision validation and forwarded-cap agreement. API reviews and confirmed keeper health expose the metadata. Historical absent/zero configurations retain their old ABI reads. Reviews do not freeze quality policy until inclusion; signed caller loss limits remain binding.
+- Independent confirmation1 policy preflight/health checks actual helper/Budget runtimes, versions and bindings even in cooldown with compounding disabled. Its latest canonical policy-only anchor reads no prices or bucket condition and proves neither readiness nor continuous history. Local source hashes identify files, not an attested running binary.
+- Explicit `stopped`/`incompatible_cadence`/`unavailable` health states; retained older evidence stays stale. Active-principal policy faults preserve the prior last-success time and increment failures while independent harvest remains available. Terminal LP exit makes intentional stop/cadence informational, with real bindings and freshness still enforced.
 - Exact transaction simulation before signing.
 - Gas-limit, gas-price, per-transaction and daily spending ceilings.
 - Reviewed fee accounting, including applicable L1 costs.
 - One pending transaction lane with nonce reconciliation.
 - Durable intent saved before the signer can broadcast.
 - No automatic resend after a timeout or ambiguous submission.
-- Pending recovery before new work, including during router outages.
+- Pending recovery before new work, including during router outages; cycles starting with or retaining a saved intent add no new quality/confirmation-policy dependency.
 - Canonical receipt, confirmation, reorg and checkpoint checks.
 - Actual spending recorded, including reverted-transaction gas.
 - Persistent failed-action cooldowns and bounded retry/backoff.

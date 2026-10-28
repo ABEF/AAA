@@ -36,7 +36,13 @@ their cooldown exception. Schema6 preflight, anchored keeper health and
 native-only Manager cleanup are implemented; exact bindings and actual operating
 qualification remain open. [Verification](reports/practical-improvements-20261028/VERIFICATION.md)
 distinguishes new checks, reused evidence and retained failed attempts.
-No uninterrupted-history proof or production approval is claimed. Earlier [payout-retry fixes](reports/two-day-audit-20261028/VERIFICATION.md)
+No uninterrupted-history proof or production approval is claimed. A separate
+[follow-up review](reports/confirmation-followup-20261028/REVIEW.md) fixes foreign
+window adoption after clears, raw-read reset gaps, physical LP/pool consistency,
+wallet custody totals and policy-health admission during cooldown. No Solidity
+or economic rights change; [verification](reports/confirmation-followup-20261028/VERIFICATION.md)
+records398 affected Python passes/one explicit skip and exact reused EVM/build
+pins. Earlier [payout-retry fixes](reports/two-day-audit-20261028/VERIFICATION.md)
 retain their own137-method/comment-only compiler scope. [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md)
 still distinguish contract guards, service controls and remaining market risks.
 No service or website changed.

@@ -175,7 +175,7 @@ class HolderExitAPITests(unittest.TestCase):
         # Only the configuration needed before the lifecycle barrier is present.
         # A regression past that barrier must fail this test rather than quote.
         draft.config = SimpleNamespace(routing_version=2, pricing_version=2,
-            lp_routing_version=0,
+            lp_routing_version=0, execution_quality_version=0, rebalance_confirmation_version=0,
             review_policy_version=1, sources={(pool,ZERO):('0x'+'0'*64,'0x'+'2'*64)})
         with self.assertRaisesRegex(ActivationInputError,'collective exit'):
             draft.prepare(dict(action='activate', wallet=F.addr(30), token_id=str(self.rpc.nft_id),

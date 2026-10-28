@@ -112,7 +112,7 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema-5 preflight](PRODUCTION_PREFLIGHT.md). Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema-6 preflight](PRODUCTION_PREFLIGHT.md), which separately observes17helpers; historicalschema5 is inspection-only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
 | Current website read/unsigned review | [Explicit native profile](NATIVE_WEBSITE_PROFILE.md). Current accounting3 must not be served with a historical accounting2 reader. Actual consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
@@ -321,6 +321,8 @@ feature by editing JSON. Preserve their exact readers and original journals.
    exact helper/runtime and actual Budget/Strategy/Vault bindings. Follow the
    controlled release/config restart procedure with preserved pending receipts,
    nonce and spend records. On-chain configuration alone needs no process restart.
+   Keeper preflight and health validate this policy even during LP cooldown and
+   with standalone compounding disabled; they read no bucket condition or price.
 4. After the hard12-hour cooldown the service checks every300seconds, rather than
    hourly, and records `observe(bucket)` through its normal simulation/fee/gas/
    journal/receipt path. The main `interval_seconds` must be at most300 to deliver
@@ -341,12 +343,15 @@ feature by editing JSON. Preserve their exact readers and original journals.
    receipt before extending evidence. A failed reset transaction does not clear
    the requirement. Do not edit journals or resend an ambiguous transaction.
 
-Only confirmation/raw-condition failures invalidate that window; an unrelated
-router, compound or health-read failure degrades its own job. A canonical clear
-acknowledgement suppresses repeated paid resets during the same outage, never
-authorizes cached readiness. Recovery reads actual state; a new nonempty record
-from another keeper requires a new clear before use. A new window draws new
-post-ready jitter; routine sample renewals preserve its existing delay.
+Relevant raw group/pool read failures invalidate that bucket's fresh window; a failed
+initial global lifecycle/authority/head read marks only known fresh windows for
+reset. Unrelated router, compound, harvest or health-read failures degrade their
+own work. A canonical clear acknowledgement suppresses repeated paid resets
+while waiting for recovery, never authorizes cached readiness. Every nonempty
+foreign record requires another clear while the acknowledgement remains, even
+after an earlier healthy empty read. Only our own new observation intent removes
+it atomically with pending persistence. New windows draw new post-ready jitter;
+routine sample renewals preserve the existing delay.
 
 Known failed observe/rebalance receipts require an explicit reset before ordinary
 worker retry. The failed transaction itself cannot persist a deletion: atomic
@@ -410,10 +415,19 @@ catalog/search/depth and complete operations, including network fee accounting,
 then deliberately set limits and daily budgets, simulate and dry-run. Reconcile
 pending work and preserve the journal before any config/release restart.
 
-Fresh keeper health schema2 exports the confirmed block/hash/time, config hash,
-runtime pins and execution/quality metadata, separating last successful observation
-from this cycle's unavailable/stale state. Local source-file hashes identify files;
-they do not attest the running binary or prove provider authenticity. Fresh
+Fresh keeper health schema2 separates confirmed execution/quality metadata from
+`rebalance_confirmation_health.policy`: a fresh latest canonical policy-only
+block/hash/time, config/source/runtime pins, helper/Budget versions and bindings.
+Confirmation1 requires this record independently of quality1, even during
+cooldown with compounding off. It proves neither sampled readiness nor continuous
+history. `stopped` means gap0; `incompatible_cadence` means a nonzero gap below300;
+`unavailable` retains any old observation explicitly as stale. These states
+degrade active-principal health without cancelling independent harvest. After
+explicit terminal `lp_exit_started:true`, health treats stop/cadence as
+informational; real bindings and freshness remain required. Saved pending work is recovered before
+any new policy/quality reads. Metadata failure cannot refresh `last_success_at`
+and increments failures. Local source hashes identify files, not the running
+binary or provider authenticity. Fresh
 healthy_v2/dry_run_v2 statuses require the matching checker; an old checker must
 fail closed. Roll out writer/checker together only after authorized operating
 qualification, with original journals intact. Discovery/health may reuse reads
@@ -1234,8 +1248,10 @@ Record the cause, affected block/time/object, containment and exact state; verif
 
 **Authority:** the service operator enables an unhosted read-only adapter; no
 governance permission or private key is needed. Wallet signatures and contracts
-authorize eventual payments/claims. Review the exact chain, anchor, eight core
-runtime/helper pins and admitted assets first. Bind the separate fee policy to
+authorize eventual payments/claims. Review the exact chain, anchor, nine core
+module pins for accounting4 (historical accounting3 uses eight), required helper
+pins and admitted assets first. The schema6 release inventory separately observes
+17helpers. Bind the separate fee policy to
 `Projection.identity`; document full network-fee semantics, gas-price ceiling
 and maximum suggested-limit cost. Placeholder reviews are not qualification.
 
@@ -1273,7 +1289,7 @@ adds no on-chain function, permission, config key, write action or service rollo
 | Current LP-only fee history | Keep explicit fee intake 1. Verify actual `FeeController.FEE_INTAKE_VERSION()`, sealed module/runtime pins, all seven emitters and the same confirmed cutoff. Replay requires exact funded-credit/allocation pairs and actual `dust(bucket,asset)` for observed keys. Native address zero is permitted only in that getter's currency argument. |
 | Fee/dust mismatch or malformed core value | Stop serving the affected report; preserve raw logs, database, request/config hash, cutoff and error. Compare a separate replay copy with authentic independent-provider windows. Do not edit/delete history, guess zero, relabel a profile or trigger a financial transaction to hide an error. |
 | Current accounting-3 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked/outbound NFTs retain eligible funded rewards. |
-| Wallet read budget | Current accounting 3 adds one pinned `weightOf(id)` read per NFT; historical read shapes remain. Keep 16-item chunks, finite request limits and complete same-block chunk verification. Requalify actual latency/budgets before rollout; no unbounded retry or limit relaxation. |
+| Wallet read budget | Accounting3/4 checks pinned `weightOf(id)` and `nftStatus(id)` per NFT. This follow-up adds one custody read to profile3; profile4 strengthens its existing status read. Historical1/2 read shapes remain. Keep16-item chunks, finite request limits and complete same-block chunk verification. Requalify actual latency/budgets before rollout; no unbounded retry or limit relaxation. |
 | Display totals | Ready to claim = funded LP plus royalty balances now. Earnings 24h/all time includes earlier claims and past owners; claims/conversions are not new income. Compound/buyback/gross receipts are not additional NFT claimable funds. |
 
 Recover by correcting provider/history/configuration evidence and rerunning the

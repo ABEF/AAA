@@ -28,7 +28,7 @@ from zzz_ops.position import decode_position
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 from keeper.watchdog import ProgressWatchdog, ProgressRPC
 from keeper.principal import PrincipalDistribution, BATCH as PRINCIPAL_BATCH, encode_batch as encode_principal_batch
-from keeper.health import HEALTH_SCHEMA, OBSERVATION_SCHEMA, source_hashes
+from keeper.health import HEALTH_SCHEMA, OBSERVATION_SCHEMA, source_hashes, observe_confirmation_health
 from keeper.rebalance_confirmation import RebalanceConfirmation, CHECK_SECONDS as CONFIRMATION_CHECK_SECONDS, STATE_NAMESPACE as CONFIRMATION_STATE
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
@@ -115,6 +115,8 @@ class Keeper:
         self._lp_validation_failed = False
         self.lp_execution_health = {'schema':OBSERVATION_SCHEMA,'state':'not_observed',
             'last_confirmed':None,'last_error':None}
+        self.confirmation_policy_health = {'schema':OBSERVATION_SCHEMA,'state':'not_observed',
+            'last_observed':None,'last_error':None}
         self.gas_review_health = {'state':'not_reviewed_this_cycle','last_review':None}
         self.accounting_version = config.get('accounting_version',1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4):
@@ -403,6 +405,7 @@ class Keeper:
     def run_cycle(self) -> bool:
         """Write a heartbeat separately from durable transaction recovery state."""
         start = time.monotonic()
+        previous_success, previous_failures = self.last_success_at, self.cycle_failures
         self.skipped_buckets = 0
         self.blocked_actions = 0
         self.confirmed_reverts = 0
@@ -413,6 +416,8 @@ class Keeper:
         started_pending = bool(self.state.get('pending'))
         self.lp_execution_health['state'] = ('pending_recovery' if started_pending else 'not_observed_this_cycle')
         self.lp_execution_health['last_error'] = None
+        self.confirmation_policy_health.update(
+            state='pending_recovery' if started_pending else 'not_observed_this_cycle',last_error=None)
         self.gas_review_health['state'] = 'not_reviewed_this_cycle'
         def health(status: str, **extra: Any) -> None:
             atomic_json(self.health_path,{'time':dt.datetime.now(dt.timezone.utc).isoformat(),
@@ -428,7 +433,8 @@ class Keeper:
                     'awaiting_healthy_read_buckets':sorted((bucket for bucket,record in
                         self.state.get(CONFIRMATION_CLEARS,{}).items() if record['awaiting_healthy_read']),key=int),
                     'scope':'last_observed_latest_state_not_continuous_evidence',
-                    'last_observation':self.rebalance_confirmation.last_observation},
+                    'last_observation':self.rebalance_confirmation.last_observation,
+                    'policy':self.confirmation_policy_health},
                 'last_success_at':self.last_success_at,'consecutive_failures':self.cycle_failures,
                 'skipped_buckets':self.skipped_buckets,'pending':bool(self.state.get('pending')),
                 'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,
@@ -449,6 +455,9 @@ class Keeper:
             # a new route dependency. These observations cannot authorize work.
             if not started_pending and not self.state.get('pending'):
                 self._observe_execution_health()
+                self.confirmation_policy_health=observe_confirmation_health(self,self.confirmation_policy_health)
+            elif self.rebalance_confirmation.version==1:
+                self.confirmation_policy_health['state']='pending_recovery'
         except Exception as exc:
             self.cycle_failures += 1
             details = error_context(exc)
@@ -482,15 +491,21 @@ class Keeper:
         # old success strings must not approve the new quality profile silently.
         if (self.execution_quality_version == 1 or self.rebalance_confirmation.version==1) and status in ('healthy','dry_run'):
             status += '_v2'
-        if (self.execution_quality_version == 1 and not pending and self.canonical_lifecycle in (None,0)
-                and self.lp_execution_health['state'] != 'observed_this_cycle'):
+        quality_fault=self.execution_quality_version==1 and self.lp_execution_health['state']!='observed_this_cycle'
+        confirmation_fault=(self.rebalance_confirmation.version==1 and
+            self.confirmation_policy_health['state']!='observed_this_cycle' and not (
+                self.principal_exit_started and self.confirmation_policy_health['state'] in ('stopped','incompatible_cadence')))
+        metadata_degraded=not pending and self.canonical_lifecycle in (None,0) and (quality_fault or confirmation_fault)
+        if metadata_degraded:
             status='degraded'
+            self.last_success_at=previous_success
+            self.cycle_failures=previous_failures+1
         health(status)
         self._lp_metadata_cache = None
         log('cycle_completed',status=status,skipped_buckets=self.skipped_buckets,pending=pending,
             confirmed_reverts=self.confirmed_reverts,
             active_revert_cooldowns=self.active_revert_cooldowns,next_revert_retry_after=self.next_revert_retry_after)
-        return not (self.skipped_buckets or self.blocked_actions)
+        return not (self.skipped_buckets or self.blocked_actions or metadata_degraded)
 
     def save(self) -> None: atomic_json(self.path,self.state)
 
@@ -805,17 +820,12 @@ class Keeper:
         clear=self.state.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
         if clear is not None:
             if status['observation_identity']!='0x'+'0'*64:
-                if clear['awaiting_healthy_read']:
-                    self._mark_confirmation_reset(bucket,force=True)
-                    self._rebalance_reset_due=bucket
-                    return False
-                previous=self.state;updated=copy.deepcopy(previous)
-                updated[CONFIRMATION_CLEARS].pop(str(bucket))
-                self.state=updated
-                try:self.save()
-                except BaseException:
-                    self.state=previous
-                    raise
+                # Our own observation intent atomically removes the clear ack.
+                # While it remains, a new nonempty record is foreign evidence,
+                # including after an earlier healthy empty recovery read.
+                self._mark_confirmation_reset(bucket,force=True)
+                self._rebalance_reset_due=bucket
+                return False
             elif clear['awaiting_healthy_read']:
                 previous=self.state;updated=copy.deepcopy(previous)
                 updated[CONFIRMATION_CLEARS][str(bucket)]['awaiting_healthy_read']=False
@@ -898,6 +908,12 @@ class Keeper:
             self.state=previous
             raise
         log('confirmation_reset_required',bucket_id=str(bucket))
+
+    def _mark_known_confirmation_resets(self) -> None:
+        """Invalidate only known fresh windows after an initial raw-state fault."""
+        if self.rebalance_confirmation.version!=1 or self.state.get('pending'):return
+        buckets=set(self.state.get(CONFIRMATION_STATE,{})) | set(self.state.get(CONFIRMATION_CLEARS,{}))
+        for bucket in sorted(buckets,key=int):self._mark_confirmation_reset(int(bucket))
 
     def _rebalance_submission_ready(self,args: tuple[int|str,...]) -> bool:
         if self.maintenance_policy_version != 2: return True
@@ -1664,9 +1680,13 @@ class Keeper:
         return self._asset('0x'+word[-40:])
 
     def _bucket(self,bucket: int) -> tuple[list[str],list[str]]:
-        fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('group(uint256)',bucket)))
-        try: position = decode_position(fields,self.accounting_version)
-        except ValueError as exc: raise RpcError('Unexpected or malformed vault group ABI') from exc
+        try:
+            fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('group(uint256)',bucket)))
+            position = decode_position(fields,self.accounting_version)
+        except (ValueError,RpcError) as exc:
+            self._mark_confirmation_reset(bucket)
+            if isinstance(exc,ValueError):raise RpcError('Unexpected or malformed vault group ABI') from exc
+            raise
         status = position['status']
         if status in ('none','dormant'): return fields,[]
         if int(fields[0],16) == 0:
@@ -1690,22 +1710,26 @@ class Keeper:
         if status == 'parked' and self.accounting_version not in (3,4) and (
                 position['location_chain'] != self.chain or position['location_vault'] != self.contracts['vault']):
             raise RpcError('Parked principal is not in this local vault')
-        config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool_id)))
-        if len(config) != 14 or '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex() != pool_id:
-            raise RpcError('Pool configuration does not match its identity')
-        if int(config[0],16) >= int(config[1],16): raise RpcError('Invalid venue currency ordering')
-        accounting = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('accounting(bytes32)',pool_id)))
-        if len(accounting) != 14 or accounting[1:] != config[1:]:
-            raise RpcError('Accounting configuration differs from the venue policy')
-        tokens = [self._asset_word(accounting[0]),self._address_word(accounting[1])]
-        if self.accounting_version in (2,3,4):
-            if accounting != config: raise RpcError('Native accounting currencies differ from actual venue currencies')
-        elif int(config[0],16) == 0:
-            wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
-            if len(wrapper) != 1 or self._address_word(wrapper[0]) != tokens[0] or tokens[0] == tokens[1]:
-                raise RpcError('Native accounting wrapper mismatch')
-        elif accounting[0] != config[0]:
-            raise RpcError('ERC20 accounting asset differs from the venue')
+        try:
+            config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool_id)))
+            if len(config) != 14 or '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex() != pool_id:
+                raise RpcError('Pool configuration does not match its identity')
+            if int(config[0],16) >= int(config[1],16): raise RpcError('Invalid venue currency ordering')
+            accounting = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('accounting(bytes32)',pool_id)))
+            if len(accounting) != 14 or accounting[1:] != config[1:]:
+                raise RpcError('Accounting configuration differs from the venue policy')
+            tokens = [self._asset_word(accounting[0]),self._address_word(accounting[1])]
+            if self.accounting_version in (2,3,4):
+                if accounting != config: raise RpcError('Native accounting currencies differ from actual venue currencies')
+            elif int(config[0],16) == 0:
+                wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
+                if len(wrapper) != 1 or self._address_word(wrapper[0]) != tokens[0] or tokens[0] == tokens[1]:
+                    raise RpcError('Native accounting wrapper mismatch')
+            elif accounting[0] != config[0]:
+                raise RpcError('ERC20 accounting asset differs from the venue')
+        except (ValueError,RpcError):
+            self._mark_confirmation_reset(bucket)
+            raise
         # Legacy WETH normalization is confined to version1; native versions2/3
         # keeps assetzero and never consults the optional wrapper getter.
         return fields,tokens
@@ -1817,14 +1841,18 @@ class Keeper:
         self._validate_maintenance_config()
         buybacks = self._buyback_tasks()
         self._validate_accounting_version()
-        if self.canonical_state() != 0: return
-        paused = self.view('access','paused()') != 0
-        self.strategy_paused = paused
-        if not paused:self._confirmation_pause_seen.clear()
-        preparing = self.preparation_active()
-        lp_exit = self.lp_exit_started()
-        if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
-        if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
+        try:
+            if self.canonical_state() != 0: return
+            paused = self.view('access','paused()') != 0
+            self.strategy_paused = paused
+            if not paused:self._confirmation_pause_seen.clear()
+            preparing = self.preparation_active()
+            lp_exit = self.lp_exit_started()
+            if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
+            if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
+        except (ValueError,RpcError):
+            self._mark_known_confirmation_resets()
+            raise
         principal_first = False
         if lp_exit and self.principal_distribution.enabled:
             principal_first = self.principal_distribution.prefer_first()
@@ -1854,7 +1882,10 @@ class Keeper:
             metadata_first = self.state['metadata_refresh']['next_first']
             self.state['metadata_refresh']['next_first'] = not metadata_first
             if metadata_first and self._refresh_metadata(): return
-        _,now = self._head()
+        try:_,now = self._head()
+        except (ValueError,RpcError):
+            self._mark_known_confirmation_resets()
+            raise
         batch = self._bucket_batch()
         for slot,bucket in batch:
             # Advance before a submission: submit() persists this cursor together

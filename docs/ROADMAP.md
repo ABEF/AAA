@@ -54,6 +54,13 @@ object gates. Counts are scoped, not a global security or production approval.
 
 [Review and evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
 
+The [follow-up repairs](../reports/confirmation-followup-20261028/VERIFICATION.md)
+close local reset/admission/reporting inconsistencies without changing Solidity.
+Before rollout, recollect schema6 physical ticks/PoolKey/PositionInfo, deploy a
+matching health writer/checker, and qualify the extra pinned RPC reads, strict
+300-second receipt cadence and preserved pending recovery on actual services.
+These remain operating gates;398scoped Python passes do not close them.
+
 ## LP execution next steps
 
 The three timing decisions are settled: hard initial12-hour minimum even outside,

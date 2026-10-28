@@ -191,8 +191,10 @@ class CurrentProductionTests(unittest.TestCase):
 
     def test_manual_range_exception_retains_raw_eligibility(self):
         F.active(self.cfg);row=self.chain['rebalance_confirmation']['observed']['buckets'][0]
+        bucket=self.chain['holder_exit']['observed']['buckets'][0];bucket['lp_ticks'][1]-=200
+        bucket.update(F.physical_position(self.chain['pools'][0],bucket['lp_ticks']))
         row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=True,stored_identity=P.ZERO_HASH,
-            first_seen=0,last_seen=0,stored_side=0,ready=True)
+            first_seen=0,last_seen=0,stored_side=0,ready=True,range_pending=True)
         self.assertTrue(self.result()['inventory_consistent'],self.result()['issues'])
         row['raw_needed']=False;self.assertIn('confirmation.raw_required',self.codes())
 
@@ -258,7 +260,7 @@ class CurrentProductionTests(unittest.TestCase):
         F.active(self.cfg);self.chain['holder_exit']['observed']['paused']=True
         self.assertIn('confirmation.lifecycle',self.codes())
         row=self.chain['rebalance_confirmation']['observed']['buckets'][0]
-        row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=False,ready=False)
+        row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=False,ready=False,range_pending=None)
         self.assertTrue(self.result()['inventory_consistent'],self.result()['issues'])
         observed,_rpc=self.observe()
         self.assertTrue(observed['chains'][0]['observation']['complete'],observed['chains'][0]['observation']['errors'])
@@ -268,7 +270,8 @@ class CurrentProductionTests(unittest.TestCase):
             cfg=F.active(copy.deepcopy(self.cfg));chain=cfg['chains'][0]
             if mode=='parked':
                 bucket=chain['holder_exit']['observed']['buckets'][0]
-                bucket['position'][1]=0;bucket['position'][7]=4;bucket.update(lp_owner=None,lp_liquidity=None)
+                bucket['position'][1]=0;bucket['position'][7]=4
+                bucket.update(lp_owner=None,lp_liquidity=None,lp_ticks=None,lp_pool_key=None,lp_position_info=None)
             elif mode=='cooldown':chain['holder_exit']['observed']['buckets'][0]['position'][6]=F.NOW-1
             else:chain['pools'][0]['operationsEnabled']=False
             self.assertIn('confirmation.raw_position',self.codes(cfg))
@@ -285,7 +288,7 @@ class CurrentProductionTests(unittest.TestCase):
     def test_paused_observer_does_not_require_the_manual_exception_dependency(self):
         F.active(self.cfg);self.chain['holder_exit']['observed']['paused']=True
         row=self.chain['rebalance_confirmation']['observed']['buckets'][0]
-        row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=False,ready=False)
+        row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=False,ready=False,range_pending=None)
         rpc=F.RPC(self.cfg);target=self.chain['modules']['strategy']['address']
         data=F.selector('rangeUpdatePending(uint256)')+F.O._word(7)
         rpc.overrides[target,data]='0x'

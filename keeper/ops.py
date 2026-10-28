@@ -15,7 +15,7 @@ import tempfile
 import time
 
 from keeper.monitor import Keeper, error_context, positive, rpc_quantity
-from keeper.health import execution_reasons, summary as health_summary
+from keeper.health import execution_reasons, observe_confirmation_health, summary as health_summary
 
 
 def digest(value):
@@ -108,10 +108,22 @@ def preflight(config, *, rpc=None):
     balance = rpc_quantity(keeper.rpc.call('eth_getBalance',[keeper.sender,'latest']),'balance')
     if balance < positive(config['max_transaction_cost_wei'],'max_transaction_cost_wei'):
         reasons.append('balance_below_transaction_budget')
+    confirmation = None
+    if keeper.rebalance_confirmation.version == 1:
+        # Pending recovery must not acquire a dependency on a new policy read.
+        # Otherwise validate the gate even before any bucket leaves cooldown.
+        if keeper.state.get('pending') is not None:
+            confirmation = {'schema':1,'state':'pending_recovery','last_observed':None,'last_error':None}
+        else:
+            confirmation = observe_confirmation_health(keeper)
+            if confirmation['state']=='stopped': reasons.append('rebalance_confirmation_stopped')
+            elif confirmation['state']=='incompatible_cadence': reasons.append('rebalance_confirmation_cadence_incompatible')
+            elif confirmation['state']!='observed_this_cycle': reasons.append('rebalance_confirmation_unavailable')
     # Recheck the existing anchor after the RPC calls; this is still a point-in-time observation.
     keeper._validate_checkpoint()
     return {'ok':not reasons,'reasons':reasons,'chain_id':keeper.chain,'head':head,'preparation_active':preparing,'canonical_state':lifecycle,
             'expected_nonce':expected,'latest_nonce':latest,'pending_nonce':pending,
+            'rebalance_confirmation_policy':confirmation,
             'scope':'read_only_point_in_time; not production approval or multi-host fencing'}
 
 

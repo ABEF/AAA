@@ -173,8 +173,24 @@ before changing behavior. This file contains current instructions, not a timelin
   reachable commits through b61aecb and separately records the pending buffer.
   Reused55Solidity/53backend/38size evidence remains source-bound; no new suite
   was run by this docs audit. The keeper validates quality metadata internally;
-  current health does not export it. The blocked2.5Mgas example is unqualified,
+  that historical health writer did not export it. Current schema2 exports
+  quality and separately anchored policy observations. The blocked2.5Mgas example is unqualified,
   not an operating recommendation; never widen it automatically.
+
+- [Confirmation follow-up](reports/confirmation-followup-20261028/REVIEW.md)
+  rejects foreign observations while any clear acknowledgement remains and
+  invalidates known windows on relevant raw bucket/pool/global read faults;
+  unrelated jobs and pending-first recovery remain independent. Preflight/health
+  validate actual helper/Budget pins even during cooldown without compounding.
+  Latest policy-only observations are separate from confirmed quality evidence;
+  metadata failure cannot advance last healthy time. Post-exit intentional stop
+  alone does not degrade remaining operations; bad bindings/freshness still do.
+  Schema6 now requires physical ticks, full PosM PoolKey/packed identity and a
+  recorded-centre range-update check; old observations must be recollected, not
+  defaulted. Wallet3/4 totals check custody as well as royalty eligibility.
+  [Verification](reports/confirmation-followup-20261028/VERIFICATION.md):399 distinct
+  affected Python methods,398pass/1missing-cast skip,53new; unchanged217Solidity/
+  39normal gates reused at exact pins. No source Solidity or operating state change.
 
 Archived checkpoints and original dirty documentation are preserved outside
 the checkout under the documentation-cleanup evidence directory recorded in

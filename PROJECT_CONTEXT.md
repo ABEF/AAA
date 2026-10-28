@@ -72,6 +72,20 @@ without reopening principal. Final evidence:217affected Solidity passes,
 272distinct source-scoped Python methods (271pass/1missing-cast skip),39normal
 object gates. Counts are scoped, not a global security or production approval.
 
+The [follow-up evidence](reports/confirmation-followup-20261028/VERIFICATION.md)
+records398 Python passes/one explicit missing-cast skip across399 distinct scoped
+methods,53 new. Existing217Solidity and39normal gates are reused only after exact
+source/test/dependency/build pin comparison. Relevant raw-state faults reset known
+confirmation windows; all clear acknowledgements reject foreign observations.
+Preflight and policy-only latest health validate actual helper/Budget pins even
+during cooldown; failure preserves the previous healthy time. Pending recovery
+does not add policy reads. Terminal stop is informational for remaining operations,
+without bypassing binding/freshness checks. Schema6 requires recollected ticks,
+full physical PoolKey/packed info and exact recorded-centre range policy. Wallet
+totals reject custody/eligibility/NAV contradictions and retain independent ETH
+balances during a genuine LP outage. These are consistency fixes, not proof of
+provider authenticity, continuous persistence or production readiness.
+
 ## Requested next LP policy
 
 The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manual
@@ -92,8 +106,8 @@ existing LP and idle-only reinvestment already exist. No new volatility analysis
 blanket dust sweep, cumulative breaker or staged migration was selected.
 
 Manual execution uses the existing keeper-authorized Vault.rebalance; governance
-requires its own keeper grant if calling directly. It bypasses service jitter/hourly
-check scheduling only. [Operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
+requires its own keeper grant if calling directly. It bypasses service jitter
+and service check scheduling only, never sampled on-chain readiness. [Operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
 requires pending coordination and same-key out-of-band nonce/receipt/spend
 reconciliation; LP/timer rediscovery alone does not adopt an external transaction.
 The manual-execution clarification itself introduced no source/ABI/service change; later LP routing1 source and its exact evidence are separate.
@@ -119,7 +133,10 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Current source checkpoint is `b61aecb` on main, including fee-quality1. Earlier
+Published baseline is `ae56de6` on main, including confirmation1 and native-only
+Manager cleanup. The [follow-up review](reports/confirmation-followup-20261028/REVIEW.md)
+adds backend/reset/physical-inventory consistency repairs without changing
+Solidity, economic rights or installed services. Earlier
 LP routing checkpoint`1cabb85` retains its original scope. The
 [two-day review](reports/two-day-audit-20261028/REVIEW.md) covers the ten commits
 on October27-28 and fixes optional principal-delivery retry starvation. Confirmed

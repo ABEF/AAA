@@ -23,7 +23,8 @@ Entry routing2/LP execution1/reviewed Entry1 and canonical
 is a terminal local status. Historical1/2/3 deployments/readers/journals retain
 original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLECTIVE_EXIT.md).
 
-Fresh Strategy maintenance policy2 checks actual physical range exit or an operator range update after the hard governed interval (initial12hours). Matching keeper mode2 persists1-10minute jitter and hourly ordinary inside checks without blocking harvest/receipt recovery. Budget capability3 uses its separately governed compound interval after max(lastCompound,lastRebalance), yielding to due rebalance; it never resets that clock. Explicit API profiles verify Strategy2/Budget3 and preserve historical readers. [Operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing), [new scoped verification](../reports/maintenance-policy-20261027/VERIFICATION.md). No live service/site changes.
+Fresh Strategy maintenance policy2 checks actual physical range exit or an operator range update after the hard governed interval (initial12hours). Historical keeper mode2 uses hourly inside checks; fresh confirmation1 checks
+eligible conditions every300seconds and persists1-10minute post-ready jitter without blocking harvest/receipt recovery. Budget capability3 uses its separately governed compound interval after max(lastCompound,lastRebalance), yielding to due rebalance; it never resets that clock. Explicit API profiles verify Strategy2/Budget3 and preserve historical readers. [Operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing), [new scoped verification](../reports/maintenance-policy-20261027/VERIFICATION.md). No live service/site changes.
 
 Current [manipulation-related hardening](../reports/manipulation-hardening-20261027/VERIFICATION.md) adds keeper/pause completion checks for rebalance/compound/buyback and corrects paid-revert health visibility across restart/unrelated success. It introduces no new economic caps, roles or custody path. Actual profitability, real market/feed/ordering and service qualification remain open; defensive checks are not attack-profit evidence.
 
@@ -63,6 +64,16 @@ without reopening principal. Final evidence:217affected Solidity passes,
 object gates. Counts are scoped, not a global security or production approval.
 
 [Review and evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
+
+The [independent follow-up](../reports/confirmation-followup-20261028/REVIEW.md)
+fixes foreign clear-window adoption and initial raw-read reset gaps; validates
+actual policy helper/Budget bindings during cooldown; exports separately anchored
+latest policy health without false healthy timestamps; binds physical PosM
+PoolKey/ticks to the Vault; and aligns wallet custody totals with NFT views.
+[Verification](../reports/confirmation-followup-20261028/VERIFICATION.md) records
+399distinct methods (398pass/1explicit skip,53new), plus exact reused Solidity/build
+pins. Source Solidity/ABI/storage/economics and installed services are unchanged.
+Old schema6 inventories require fresh observation of new required physical fields.
 
 ## Smart contracts
 

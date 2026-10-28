@@ -13,6 +13,7 @@ class Snapshot:
     def __init__(self,count=33):
         self.ids=list(range(1,count+1));self.history=True;self.chain=31337;self.start=1
         self.accounting_version=3;self.weights={i:1 for i in self.ids}
+        self.dormant_status=3
         self.max_age=120;self.clock=lambda:1000;self.confirmations=1;self.identity='d'*64
         self.contracts={'nft':SimpleNamespace(address='0x'+'3'*40)}
         self.header=dict(number=90,hash=HASH,timestamp=990);self.calls=[]
@@ -28,6 +29,7 @@ class Snapshot:
         self.calls.append((method,args,block));self.check(block)
         if method.startswith('balanceOf'):return len(self.ids)
         if method=='weightOf(uint256)':return self.weights[args[0]]
+        if method=='nftStatus(uint256)':return 3 if self.weights[args[0]]==0 else 1
         if args[0]==self.eth_missing:raise RpcError('unreadable')
         return args[0]*(2 if role=='rewards' else 3)
     def _addr(self,role,method,i,block):
@@ -53,7 +55,9 @@ class WalletSummaryTests(unittest.TestCase):
     def test_one_chunk_work_is_bounded_at_collection_cap(self):
         p=Snapshot(1000);r=read(p,OWNER,90,992)
         self.assertEqual(len(r['token_ids']),8);self.assertIsNone(r['next_offset'])
-        self.assertLessEqual(len(p.calls),1+8*5)
+        # Owner, weight, custody, LP value and two claim views per NFT.
+        # This adds one required custody read without widening runtime budgets.
+        self.assertEqual(len(p.calls),1+8*6)
     def test_empty_wallet_is_verified_zero(self):
         r=read(Snapshot(0),OWNER,90,0)
         self.assertEqual((r['lp_usd_18'],r['claimable_eth_wei']),('0','0'))

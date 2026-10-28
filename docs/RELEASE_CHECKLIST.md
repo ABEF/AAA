@@ -41,6 +41,13 @@ matching writer/checker services and real dependencies. The selected15-minute
 sampled window/check300/strictgap300 can restart repeatedly with receipt delays;
 it is not uninterrupted evidence. No40%/passive strategy is approved.
 
+The [confirmation follow-up](../reports/confirmation-followup-20261028/VERIFICATION.md)
+adds398 scoped Python passes/one explicit skip for reset, physical-inventory,
+policy-health and wallet-custody fixes; it reuses unchanged217Solidity/39normal
+gates only at exact source/dependency/build pins. Recollect old schema6 inventory
+fields and qualify matching writer/checker plus added RPC latency before release.
+No Solidity, economic-rights, deployment or operating approval changed.
+
 ## Evidence and approval boundary
 
 | Evidence | What it establishes; limits |

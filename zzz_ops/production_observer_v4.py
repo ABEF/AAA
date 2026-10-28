@@ -122,9 +122,15 @@ class Observer(O.Observer):
                     settlement=[int(w,16) for w in settlement[:6]]+[O._decode(settlement[6],False)])
                 if group[7]==1:
                     posm=self.chain['dependencies']['position_manager']['address']
+                    ticks=[int(word,16) for word in self.read(m['liquidity']['address'],'ticks(uint256)',group[1],count=2)]
+                    ticks=[tick-2**256 if tick>=2**255 else tick for tick in ticks]
+                    if not -887272<=ticks[0]<ticks[1]<=887272:raise ValueError('Invalid physical LP ticks')
+                    physical=self.read(posm,'getPoolAndPositionInfo(uint256)',group[1],count=6)
+                    P.verify_position_identity(physical[:5],physical[5],group[0],ticks)
                     row.update(lp_owner=O._decode(self.read(posm,'ownerOf(uint256)',group[1])[0],O.ZERO),
-                        lp_liquidity=uint(posm,'getPositionLiquidity(uint256)',group[1]))
-                else:row.update(lp_owner=None,lp_liquidity=None)
+                        lp_liquidity=uint(posm,'getPositionLiquidity(uint256)',group[1]),lp_ticks=ticks,
+                        lp_pool_key=physical[:5],lp_position_info=physical[5])
+                else:row.update(lp_owner=None,lp_liquidity=None,lp_ticks=None,lp_pool_key=None,lp_position_info=None)
                 observed['buckets'].append(row)
             for ordinal in range(1,observed['minted_count']+1):
                 identifier=uint(nft,'tokenAtOrdinal(uint256)',ordinal)
@@ -151,6 +157,7 @@ class Observer(O.Observer):
                 raw=O._decode(self.read(strategy,'needsRebalance(uint256)',bid)[0],False)
                 if ready!=O._decode(self.read(strategy,'rebalanceReady(uint256)',bid)[0],False):
                     raise ValueError('Strategy and helper confirmation readiness differ')
+                pending=None
                 if P.confirmation_controls_allow(self.chain):
                     pending=O._decode(self.read(strategy,'rangeUpdatePending(uint256)',bid)[0],False)
                     if O._decode(condition[2],False)!=(raw and pending):
@@ -158,7 +165,7 @@ class Observer(O.Observer):
                 result['buckets'].append(dict(id=bid,condition_side=int(condition[0],16),condition_identity='0x'+condition[1],
                     manual=O._decode(condition[2],False),stored_identity='0x'+stored[0],first_seen=int(stored[1],16),
                     last_seen=int(stored[2],16),stored_side=int(stored[3],16),
-                    ready=ready,raw_needed=raw))
+                    ready=ready,raw_needed=raw,range_pending=pending))
             return result
         self.chain['rebalance_confirmation']['observed']=self.attempt('rebalance_confirmation','confirmation.unavailable',capture)
 

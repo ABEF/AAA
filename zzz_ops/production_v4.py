@@ -5,6 +5,8 @@ do not reinterpret its removed custody model as this deployment's accounting.
 """
 from __future__ import annotations
 import copy
+from math import isqrt
+import re
 import time
 from zzz_ops import production_v2 as V
 from zzz_ops.abi import keccak256
@@ -70,6 +72,55 @@ def execution_expected(chain):
             additional_loss_bps=q.get('additional_loss_bps'),maximum_additional_loss_bps=1000,
             policy_owner=V._obj(m.get('strategy')).get('address'),quality_policy_revision=q.get('quality_policy_revision'),
             known_pool_fees_excluded_from_additional_limit=True,policy_frozen_by_wallet_review=False))
+
+
+def expected_position_ticks(pool, center):
+    """Exact Strategy._range at its recorded centre; never a spot-price trigger."""
+    from zzz_ops.tick_math import MIN_TICK, MAX_TICK, MIN_SQRT, MAX_SQRT, sqrt_price_at_tick
+    width=pool['rangeBps'];spacing=pool['tickSpacing'];orientation=pool['range_policy']['orientation']
+    if (type(center) is not int or not 0<center<2**160 or type(width) is not int or
+            not 100<=width<=5000 or type(spacing) is not int or not 1<=spacing<=32767 or
+            type(orientation) is not int or orientation not in (0,1)):
+        raise ValueError('Invalid recorded-centre range inputs')
+    below=isqrt((10000-width)*10**28);above_square=(10000+width)*10**28
+    above=isqrt(above_square)
+    if orientation==1:
+        lower=center*10**16//(above+(above*above<above_square))
+        upper=(center*10**16+below-1)//below
+    else:
+        lower=center*below//10**16;upper=center*above//10**16
+    if lower<=MIN_SQRT or upper>=MAX_SQRT:raise ValueError('Recorded-centre range exceeds TickMath')
+    def tick_at(price):
+        low,high=MIN_TICK,MAX_TICK
+        while low+1<high:
+            middle=(low+high)//2
+            if sqrt_price_at_tick(middle)<=price:low=middle
+            else:high=middle
+        return low
+    ticks=[tick_at(lower)//spacing*spacing,(tick_at(upper)//spacing+1)*spacing]
+    if not MIN_TICK<=ticks[0]<ticks[1]<=MAX_TICK:raise ValueError('Invalid recorded-centre tick range')
+    return ticks
+
+
+def verify_position_identity(key_words, info_word, pool_id, ticks):
+    """Pinned PosM1.0.3 PoolKey/PositionInfo, including its high200 PoolId bits."""
+    if (not isinstance(key_words,list) or len(key_words)!=5 or
+            any(not isinstance(word,str) or re.fullmatch(r'[0-9a-fA-F]{64}',word) is None for word in key_words) or
+            not isinstance(info_word,str) or re.fullmatch(r'[0-9a-fA-F]{64}',info_word) is None):
+        raise ValueError('Malformed physical PoolKey/PositionInfo ABI')
+    key=[int(word,16) for word in key_words];info=int(info_word,16)
+    spacing=key[3]-2**256 if key[3]>=2**255 else key[3]
+    if (any(key[index]>=2**160 for index in (0,1,4)) or key[2]>=2**24 or
+            not -(2**23)<=spacing<2**23):
+        raise ValueError('Noncanonical physical PoolKey field')
+    digest=int.from_bytes(keccak256(bytes.fromhex(''.join(key_words))),'big')
+    if type(pool_id) is not int or digest!=pool_id or info>>56!=digest>>56 or info&255 not in (0,1):
+        raise ValueError('Physical LP PoolKey/packed identity differs')
+    packed=[(info>>shift)&0xffffff for shift in (8,32)]
+    packed=[tick-2**24 if tick>=2**23 else tick for tick in packed]
+    if (not isinstance(ticks,list) or len(ticks)!=2 or any(type(tick) is not int for tick in ticks) or
+            packed!=ticks):
+        raise ValueError('Physical LP packed ticks differ from Manager ticks')
 
 
 def _anchor(g, chain, path, home, now):
@@ -225,7 +276,7 @@ def _holder_exit(g,chain,path):
     by_bucket={}; unpaid=[0,0]; sums={}; identifiers=set(); cumulative={}; previous={}; paid_total=[0,0]
     for index,row in enumerate(buckets):
         bp=f'{path}.holder_exit.buckets[{index}]'; b=g.obj(row,bp); bid=g.num(b.get('id'),bp+'.id',1)
-        g.keys(b,{'id','total_shares','position','settlement','lp_owner','lp_liquidity'},bp)
+        g.keys(b,{'id','total_shares','position','settlement','lp_owner','lp_liquidity','lp_ticks','lp_pool_key','lp_position_info'},bp)
         shares=g.num(b.get('total_shares'),bp+'.total_shares'); group=g.items(b.get('position'),bp+'.position',8,8)
         if len(group)!=8: continue
         g.check(bid not in by_bucket,bp+'.id','exit.bucket_duplicate','Read every registered bucket once.');by_bucket[bid]=b
@@ -236,11 +287,27 @@ def _holder_exit(g,chain,path):
         if not shares: g.check(state==lp==group[2]==group[3]==0,bp,'exit.empty','Empty buckets cannot hide principal.')
         else: g.check(state in (1,4,5) and (state!=1 or lp>0) and (state==1 or lp==0),bp,'exit.position_state','Validate active/parked/exited physical custody.')
         if shares and phase==0:g.check(state in (1,4),bp,'exit.premature_terminal','A terminal position requires collective exit.')
+        if state==5:g.check(group[2]==group[3]==0,bp,'exit.terminal_idle','Exited principal cannot retain Vault idle balances.')
         if state==1:g.check(b.get('lp_owner')==chain['modules']['vault']['address'] and type(b.get('lp_liquidity')) is int and
             0<b['lp_liquidity']<2**128,bp,'exit.lp_custody','Authenticate actual LP NFT ownership and positive uint128 liquidity.')
         else:g.check(b.get('lp_owner') is None and b.get('lp_liquidity') is None,bp,'exit.no_lp','No invented physical LP for closed/parked/empty buckets.')
         admitted={int(p['pool_id'],16) for p in chain['pools']}
         if shares:g.check(group[0] in admitted,bp,'exit.pool_identity','Registered principal must use an inventoried native ETH/ZZZ pool.')
+        if state==1:
+            pool=next((p for p in chain['pools'] if int(p['pool_id'],16)==group[0]),{})
+            ticks=b.get('lp_ticks');spacing=pool.get('tickSpacing')
+            g.check(isinstance(ticks,list) and len(ticks)==2 and all(type(t) is int for t in ticks) and
+                -887272<=ticks[0]<ticks[1]<=887272 and type(spacing) is int and spacing>0 and
+                all(t%spacing==0 for t in ticks),bp+'.lp_ticks','exit.lp_ticks',
+                'Read canonical physical Manager ticks at the same block; never infer them from target width.','bindings')
+            try:
+                verify_position_identity(b.get('lp_pool_key'),b.get('lp_position_info'),group[0],ticks)
+                physical_identity=True
+            except (ValueError,TypeError):physical_identity=False
+            g.check(physical_identity,bp,'exit.lp_pool_identity',
+                'Bind canonical PosM PoolKey and packed PositionInfo to the Vault pool and Manager ticks at the same block.','bindings')
+        else:g.check(b.get('lp_ticks') is None and b.get('lp_pool_key') is None and b.get('lp_position_info') is None,
+            bp,'exit.no_lp_ticks','Closed/parked/empty buckets have no physical LP ticks, PoolKey or PositionInfo.')
         settlement=g.items(b.get('settlement'),bp+'.settlement',7,7)
         if len(settlement)==7:
             ss,eth,zzz,allocated,ae,az,closed=settlement
@@ -333,7 +400,7 @@ def _confirmation(g,chain,path):
     by_bucket={b.get('id'):b for b in wanted}
     for row in buckets:
         rp=p+'.observed.buckets.'+str(row.get('id'))
-        g.keys(row,{'id','condition_side','condition_identity','manual','stored_identity','first_seen','last_seen','stored_side','ready','raw_needed'},rp)
+        g.keys(row,{'id','condition_side','condition_identity','manual','stored_identity','first_seen','last_seen','stored_side','ready','raw_needed','range_pending'},rp)
         side=g.num(row.get('condition_side'),rp+'.condition_side',0,2)
         stored_side=g.num(row.get('stored_side'),rp+'.stored_side',0,2)
         identity=g.hex(row.get('condition_identity'),rp+'.condition_identity',zero=True)
@@ -351,9 +418,32 @@ def _confirmation(g,chain,path):
         else:
             g.check(side==0 and identity==ZERO_HASH and row.get('manual') is False and row.get('ready') is False,
                 rp,'confirmation.lifecycle','Pause, preparation, unsealed or terminal lifecycle suppress helper conditions and readiness, not stored history or raw Strategy need.')
+        b=V._obj(by_bucket.get(row.get('id')));position=b.get('position',[])
+        pool=next((c for c in chain['pools'] if len(position)==8 and int(c['pool_id'],16)==position[0]),{})
+        active=len(position)==8 and position[7]==1 and position[1]>0 and position[5]>0
+        pending=False;outside=False;physical_side=0
+        if active:
+            ticks=b.get('lp_ticks')
+            if not (isinstance(ticks,list) and len(ticks)==2 and all(type(t) is int for t in ticks)):
+                raise ValueError('Missing physical LP range')
+            pending=ticks!=expected_position_ticks(pool,position[5])
+            tick=pool['slot0']['tick']
+            if type(tick) is not int:raise ValueError('Noncanonical physical pool tick')
+            physical_side=1 if tick<ticks[0] else 2 if tick>=ticks[1] else 0
+            outside=physical_side!=0
+        raw_expected=bool(active and pool.get('operationsEnabled') is True and
+            type(pool.get('minRebalanceInterval')) is int and position[6]+pool['minRebalanceInterval']<=stamp and
+            (outside or pending))
+        g.check(row.get('raw_needed') is raw_expected,rp,'confirmation.raw_physical',
+            'Raw eligibility must match the confirmed physical range, recorded-centre width policy and hard cooldown.')
+        g.check((type(row.get('range_pending')) is bool and row['range_pending']==pending) if allowed else
+            row.get('range_pending') is None,rp,'confirmation.range_pending',
+            'Cross-check the observed range-update view against exact recorded-centre ticks; lifecycle-suppressed reads remain unavailable.')
+        if allowed:
+            manual_expected=raw_expected and pending
+            g.check(row.get('manual') is manual_expected and side==(0 if not raw_expected or manual_expected else physical_side),
+                rp,'confirmation.physical_side','The ordinary side and manual exception must match actual LP ticks and range policy.')
         if row.get('raw_needed') is True:
-            b=V._obj(by_bucket.get(row.get('id')));position=b.get('position',[])
-            pool=next((c for c in chain['pools'] if len(position)==8 and int(c['pool_id'],16)==position[0]),{})
             g.check(len(position)==8 and position[7]==1 and position[1]>0 and position[5]>0 and
                 pool.get('operationsEnabled') is True and type(pool.get('minRebalanceInterval')) is int and
                 position[6]+pool['minRebalanceInterval']<=stamp,

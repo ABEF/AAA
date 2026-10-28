@@ -4,6 +4,7 @@ from zzz_ops import production_v4 as P
 from zzz_ops import production_v2 as V
 from zzz_ops import production_observer as O
 from zzz_ops.abi import keccak256
+from zzz_ops.tick_math import sqrt_price_at_tick
 from tests_python import test_production_v2 as old
 from tests_python.test_production_observer import CompositionRPC, encoded, selector, CODE, RUNTIME
 
@@ -71,6 +72,15 @@ def refresh_bindings(cfg):
     chain['observed_modules'].update({role:P.ZERO for role in V.RETIRED_MODULES})
 
 
+def physical_position(pool,ticks):
+    # Installed periphery1.0.3: high200 PoolId | upper24 | lower24 | subscriber8.
+    words=[f'{int(pool[key],16) if isinstance(pool[key],str) else pool[key]:064x}'
+        for key in ('currency0','currency1','fee','tickSpacing','hooks')]
+    info=(int(pool['pool_id'],16)>>56)<<56
+    info|=(ticks[0]%(2**24))<<8 | (ticks[1]%(2**24))<<32
+    return dict(lp_pool_key=words,lp_position_info=f'{info:064x}')
+
+
 def exited(cfg,phase=3,count=2):
     chain=cfg['chains'][0];e=chain['holder_exit']['observed'];pid=chain['pools'][0]['pool_id']
     e.update(phase=phase,lp_exit_started=True,paused=True,minted_count=count,exit_minted_count=count,
@@ -78,7 +88,7 @@ def exited(cfg,phase=3,count=2):
         balance_eth=107,balance_zzz=211,exit_review_hash=old.HASH,settlement_buckets=[7])
     e['buckets']=[dict(id=7,position=[int(pid,16),0,0,0,100,2**96,NOW-50000,5],total_shares=count,
         settlement=[count,100,200,count if phase==3 else 1,100 if phase==3 else 100//count,200 if phase==3 else 200//count,True],
-        lp_owner=None,lp_liquidity=None)]
+        lp_owner=None,lp_liquidity=None,lp_ticks=None,lp_pool_key=None,lp_position_info=None)]
     e['nfts']=[]
     for ordinal in range(1,count+1):
         allocated=phase==3 or ordinal<e['allocation_cursor']
@@ -88,20 +98,21 @@ def exited(cfg,phase=3,count=2):
             eth=eth,zzz=zzz,allocated=allocated,paid=False,claimable=[eth,zzz] if phase==3 else None))
     chain['nft_inventory']['observed_bindings'].update(mintedCount=count,nextToFinalize=1,remainingToReveal=1000,rarityRemaining=[600,300,100])
     chain['rebalance_confirmation']['observed']['buckets']=[dict(id=7,condition_side=0,condition_identity=P.ZERO_HASH,manual=False,
-        stored_identity=P.ZERO_HASH,first_seen=0,last_seen=0,stored_side=0,ready=False,raw_needed=False)]
+        stored_identity=P.ZERO_HASH,first_seen=0,last_seen=0,stored_side=0,ready=False,raw_needed=False,range_pending=None)]
     return cfg
 
 
 def active(cfg):
     chain=cfg['chains'][0];e=chain['holder_exit']['observed'];pid=chain['pools'][0]['pool_id']
     e['minted_count']=1
-    e['buckets']=[dict(id=7,position=[int(pid,16),99,0,0,100,2**96,NOW-50000,1],total_shares=1,
-        settlement=[0,0,0,0,0,0,False],lp_owner=chain['modules']['vault']['address'],lp_liquidity=100000)]
+    e['buckets']=[dict(id=7,position=[int(pid,16),99,0,0,100,sqrt_price_at_tick(-10000),NOW-50000,1],total_shares=1,
+        settlement=[0,0,0,0,0,0,False],lp_owner=chain['modules']['vault']['address'],lp_liquidity=100000,lp_ticks=[-14200,-3000],
+        **physical_position(chain['pools'][0],[-14200,-3000]))]
     e['nfts']=[dict(id=101,ordinal=1,reverse_ordinal=1,owner=old.addr(20000),bucket=7,shares=1,eth=0,zzz=0,
         allocated=False,paid=False,claimable=None)]
     chain['nft_inventory']['observed_bindings']['mintedCount']=1
     chain['rebalance_confirmation']['observed']['buckets']=[dict(id=7,condition_side=2,condition_identity=old.HASH,
-        manual=False,stored_identity=old.HASH,first_seen=NOW-900,last_seen=NOW-1,stored_side=2,ready=True,raw_needed=True)]
+        manual=False,stored_identity=old.HASH,first_seen=NOW-900,last_seen=NOW-1,stored_side=2,ready=True,raw_needed=True,range_pending=False)]
     return cfg
 
 
@@ -141,6 +152,12 @@ class RPC(CompositionRPC):
                     if row['position'][7]==1:
                         if data==selector('ownerOf(uint256)')+O._word(row['position'][1]):result=encoded(row['lp_owner'])
                         if data==selector('getPositionLiquidity(uint256)')+O._word(row['position'][1]):result=encoded(row['lp_liquidity'])
+                        if data==selector('getPoolAndPositionInfo(uint256)')+O._word(row['position'][1]):
+                            result='0x'+''.join(row['lp_pool_key'])+row['lp_position_info']
+            if target==m['liquidity']['address']:
+                for row in e['buckets']:
+                    if row['position'][7]==1 and data==selector('ticks(uint256)')+O._word(row['position'][1]):
+                        result=encoded(*[tick%(2**256) for tick in row['lp_ticks']])
             if target==m['vault']['address']:
                 if data==selector('MAX_BUCKETS()'):result=encoded(4)
                 if data==selector('bucketCount()'):result=encoded(len(e['buckets']))
@@ -166,7 +183,7 @@ class RPC(CompositionRPC):
                     bid=row['id']
                     if target==m['strategy']['address'] and data==selector('needsRebalance(uint256)')+O._word(bid):result=encoded(int(row['raw_needed']))
                     if target==m['strategy']['address'] and data==selector('rebalanceReady(uint256)')+O._word(bid):result=encoded(int(row['ready']))
-                    if target==m['strategy']['address'] and data==selector('rangeUpdatePending(uint256)')+O._word(bid):result=encoded(int(row['manual']))
+                    if target==m['strategy']['address'] and data==selector('rangeUpdatePending(uint256)')+O._word(bid):result=encoded(int(row['range_pending']))
                     if target==h['rebalance_confirmation']['address']:
                         if data==selector('condition(uint256)')+O._word(bid):result=encoded(row['condition_side'],row['condition_identity'],int(row['manual']))
                         if data==selector('observations(uint256)')+O._word(bid):result=encoded(row['stored_identity'],row['first_seen'],row['last_seen'],row['stored_side'])

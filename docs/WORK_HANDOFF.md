@@ -45,6 +45,34 @@ Prepared but unexecuted: the external practical-improvements directory contains
 applied during the subsequent buffer audit. Actual maximal-catalog/target gas
 qualification stays open; never turn this prepared patch into a passed result.
 
+## Follow-up audit and next steps
+
+The [follow-up review](../reports/confirmation-followup-20261028/REVIEW.md) closes
+additional keeper/admission/reporting gaps: foreign records cannot be adopted
+while any clear acknowledgement remains; initial raw bucket/pool/global faults
+reset known fresh windows. Actual policy helper/Budget checks now run even in
+cooldown/no-compound preflight and health, independently of quality version.
+Pending recovery stays first; post-exit intentional stop alone is informational.
+Metadata failure preserves prior last_success_at and returns failure explicitly.
+Schema6 adds physical ticks/PoolKey/PositionInfo and exact recorded-centre range
+consistency; recollect old inventories rather than adding defaults. Wallet3/4
+totals enforce custody/eligibility/NAV consistency. Profile3 adds one custody
+read per NFT; profile4 strengthens its existing read. Chunks and budgets stay
+unchanged. No Solidity or economic-right change.
+
+Evidence:399distinct affected Python methods,398pass/1explicit missing-cast skip,
+53new; unchanged217Solidity/39normal gates reused at exact pins. Full failures,
+corrected fixture/harness cases and exact source scopes are retained. External
+receipts and205committed baseline files are under the sibling
+`confirmation-second-review-20261028` evidence directory, with reader receipts in
+`second-review-readers`. The same four original dirty files remain preserved.
+Check actual Git/remote heads before reporting publication.
+
+Next: qualify matching writer/checker and policy-only latest RPC observations,
+physical inventory's extra pinned calls, strict cadence/reset/jitter/host recovery
+and complete-operation gas. The prepared cold-one-venue patch above stays
+unexecuted. No service/site/Anvil/journal/public signer/heartbeat changes occurred.
+
 ## Latest functional state
 
 Current fresh source is accounting4/custody3/canonicalV5 with Strategy upkeep2,

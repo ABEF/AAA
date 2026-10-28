@@ -44,13 +44,25 @@ def read(p, wallet_address, block_number, offset):
             weight=p._uint('royalties','weightOf(uint256)',identifier,block=block)
             if weight>3:raise ProjectionError('Wallet NFT royalty weight exceeds the reviewed bound')
             inactive=weight==0
-        exited = p.accounting_version == 4 and p._uint('vault','nftStatus(uint256)',identifier,block=block) == 5
+        status=None
+        if p.accounting_version in (3,4):
+            status=p._uint('vault','nftStatus(uint256)',identifier,block=block)
+            limit=6 if p.accounting_version==4 else 5
+            if type(status) is not int or not 1<=status<limit:
+                raise ProjectionError('Wallet NFT has unsupported canonical custody')
+            if (status==p.dormant_status)!=inactive:
+                raise ProjectionError('Wallet custody and royalty eligibility disagree')
+        exited = p.accounting_version == 4 and status == 5
         # Keep each metric independent: unreadable LP never becomes a zero sum.
         try:
             value=p._call(p.contracts['nft'].address,'currentLPValue(uint256)',identifier,block=block,words=2)
             available=_bool(value[0]);amount=int(value[1],16)
             if not available and amount:raise ProjectionError('Unavailable LP contains a value')
             if inactive and available and amount:raise ProjectionError('Inactive NFT has attached LP value')
+            if status is not None and status not in (1,p.dormant_status) and not exited and available:
+                raise ProjectionError('Wallet custody cannot report an active LP valuation')
+            if status is not None and status==p.dormant_status and (not available or amount):
+                raise ProjectionError('Dormant wallet NFT must have verified zero LP')
             if exited and (not available or amount or not life['lp_exit_started']):
                 raise ProjectionError('Exited NFT must have verified zero remaining LP')
             lp_ok=lp_ok and available;total_lp+=amount

@@ -68,17 +68,34 @@ uninterrupted prices between observations.
 
 The current observer cross-checks helper/Strategy readiness and, while lifecycle
 allows a candidate, the deliberate range-change exception. Offline validation
-rejects raw need without active cooled-down LP, or readiness during pause,
+also reads physical Manager ticks at that same canonical hash, reproduces the
+Strategy's exact integer range at the recorded centre, and checks raw eligibility,
+ordinary exit direction and the deliberate width-change exception against those
+ticks and the stored pool tick. Lower is inclusive and upper exclusive; an exact
+downward crossing retains the stored tick. It rejects raw need without active cooled-down LP, or readiness during pause,
 preparation or terminal exit. A paused deployment may legitimately retain raw
 Strategy need and old stored samples while its helper condition/readiness are
-zero/false; the inventory does not erase that history or invent a ready state.
+zero/false; its additional range-update observation remains null because that
+suppressed helper does not need the getter. The inventory does not erase history
+or invent a ready state. Required schema6 observation fields now include each
+bucket's `lp_ticks`, raw five-word `lp_pool_key` and raw `lp_position_info`
+word (all null without a physical LP), and each confirmation row's
+`range_pending` (null while lifecycle suppresses that read). Earlier schema6
+observations must be collected again; absent fields do not receive defaults.
+This source tooling remains undeployed and unqualified. Historical schema5 is
+unchanged and remains inspection-only.
 
 Holder accounting enumerates at most4registered buckets and1,000mint ordinals.
 It verifies eight-word positions, actual active LP ownership/liquidity, NFT share
 sums, frozen exit counts/cursors, closed backing and cumulative-floor allocation
-in mint order. Paid and claimable flags must reconcile with exact remaining
+in mint order. Each active PosM `getPoolAndPositionInfo` response is read at that
+same hash. Its canonical PoolKey must hash to the Vault's pool ID; the installed
+periphery1.0.3 packed info must contain that pool ID's high200-bit prefix and
+the same signed ticks returned by Manager, with its canonical subscriber flag.
+Paid and claimable flags must reconcile with exact remaining
 ETH+ZZZ liabilities. Accidental prefunds may exceed backing but cannot become
-allocated principal. No retired external custody or royalty-custody getter is
+allocated principal. Exited positions must have zero remaining Vault idle0/idle1.
+No retired external custody or royalty-custody getter is
 queried. A completed or ongoing collective exit is terminal for new LP/mint
 release readiness; old rewards and future royalties remain separate.
 

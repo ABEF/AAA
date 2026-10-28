@@ -276,6 +276,9 @@ The explicit `rebalance_confirmation_version:1` profile additionally pins
 `idle_compounding_budget`/runtime and their parent/Access/version bindings. Budget
 confirmation1 is required even with standalone compounding disabled. Never relabel
 an older Strategy/Budget or journal to imply the new gate exists.
+Read-only keeper preflight validates actual policy/runtime/capability/bindings
+even while every LP is in cooldown. Its policy-only read needs no price or bucket
+condition; a matching runtime pin alone cannot approve an unsupported Budget.
 `interval_seconds` must be explicitly configured as an integer60–300; the old
 600second default is refused for confirmation1. Work and receipt delays still
 add latency, so an admitted interval does not promise an exact sample schedule.
@@ -303,6 +306,9 @@ exact successful canonical reset receipt clears its marker; a failed/ambiguous
 reset retains pending/nonce/fee/retry recovery. Reset-only runtime/binding checks
 avoid condition/price reads and the source allows reset during ordinary pause.
 An off-chain failure alone never clears on-chain state.
+Relevant raw group/pool failures mark that bucket for reset. Initial global
+lifecycle/authority/head failures mark only known fresh windows, not unrelated
+historical buckets.
 
 Unrelated router metadata, compound reserve, quote-gas, health and harvest
 failures do not invalidate a healthy sampled window. Only an exception while
@@ -316,8 +322,9 @@ commit. Unrelated paid failures retain their normal accounting/cooldown only.
 The bounded `confirmation_clear_v1` ledger records a verified successful reset
 receipt and whether a healthy reread is still required. Persistent read faults
 after that known clear do not pay for another reset repeatedly. An empty recovered
-read restores ordinary observation work; a nonempty/foreign candidate at the
-first recovered read forces a new reset before use. A new observation intent
+read restores ordinary observation work but retains the acknowledgement. Any
+nonempty/foreign candidate while it remains forces another reset, including after
+an earlier healthy empty read. A new observation intent
 invalidates the acknowledgement atomically before signing. Failed persistence
 rolls back that invalidation and sends nothing; an ambiguous broadcast preserves
 the saved pending operation with the old acknowledgement invalidated. Never edit
@@ -348,15 +355,29 @@ digest and local source-file hashes. The current cycle state is separate from
 `last_confirmed`; an unavailable read cannot relabel retained evidence fresh.
 Hashes identify local files at keeper start, not an attested running binary or
 an authenticated market/provider. `rebalance_confirmation_health` separately
-reports its last latest-state observation and pending reset buckets.
+reports bucket observations/reset backlog and `policy`: a fresh latest canonical
+policy-only block/hash/time, actual helper/Budget capabilities/bindings and
+runtime/config/source identity. Confirmation1 requires this record independently
+of quality1, including during cooldown with compounding disabled. It reads no
+condition or prices and proves neither sampled readiness nor continuous history.
+
+Policy state `stopped` means gap0; `incompatible_cadence` means a nonzero gap
+below300seconds. Both degrade active-principal health and refuse preflight
+without blocking independently guarded hourly harvest. `unavailable` retains any
+prior observation explicitly as stale. After explicit terminal
+`lp_exit_started:true`, health treats stop/cadence as informational; freshness,
+actual bindings and all policy-shape checks still apply. A metadata failure preserves the prior
+`last_success_at`, increments failures and returns an unsuccessful cycle.
 
 For quality1 or confirmation1, success is `healthy_v2`/`dry_run_v2`, making older
 checkers fail closed. The matching new checker requires schema2 for these profiles;
 historical profiles keep their original success strings. Deploy writer/checker
 together through reviewed stop/reconcile/dry-run/restart, preserve journals and
 require new matching health. Missing or stale anchor/source/config/policy data
-does not pass. A cycle starting with saved pending work adds no new quality
-telemetry reads before recovery.
+does not pass. A cycle starting with or retaining saved pending work marks the
+policy `pending_recovery` and adds no new quality or confirmation-policy reads.
+Recover the original intent before acquiring those dependencies; retained
+observations cannot authorize a new call.
 
 `gas_review.last_review` contains estimated gas,125%-padded required gas,
 configured gas/gas-price/transaction/day limits and a sanitized refusal reason.

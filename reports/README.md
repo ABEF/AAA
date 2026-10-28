@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Confirmation follow-up,2026-10-28](confirmation-followup-20261028/VERIFICATION.md):
+additional foreign-window/raw-read resets, physical PosM PoolKey/range checks,
+actual policy helper health/preflight and consistent wallet custody totals.
+399distinct affected Python methods:398pass/1explicit skip,53new; unchanged217
+Solidity/39normal gates reused at exact pins. No source Solidity, economic rights
+or installed operating state changed. Earlier receipts remain immutable.
+
 [Confirmation and operational improvements,2026-10-28](practical-improvements-20261028/VERIFICATION.md):
 sampled15-minute/strict300-second confirmation, versioned worker/API and reset
 receipts, current schema6 preflight, healthschema2/canonical-block caching, native

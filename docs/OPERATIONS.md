@@ -42,6 +42,8 @@ and bind the same Vault/Access. An old raw-eligibility-only Budget is rejected.
 This profile also requires explicit integer `interval_seconds` from60through300.
 It cannot inherit the historical600second default. The outer loop includes work
 and receipt latency; even a permitted interval is not an exact sample guarantee.
+Read-only keeper preflight validates the actual helper/Budget runtime, capability,
+bindings and policy before cooldown expires and with compounding disabled.
 
 Pin `contracts.principal_exit` and its runtime plus the Access runtime. The
 keeper checks fixed module/access ownership and custody version3. Existing
@@ -92,15 +94,28 @@ statuses and journal meanings. New checks require schema2 for the new profiles;
 missing/mismatched/stale source, configuration, block or policy evidence cannot
 report healthy. Deploy writer/checker together only through an authorized
 stop/reconcile/dry-run/restart; never patch existing health or journal fields.
-Cycles that start with a saved transaction perform no new quality telemetry
-reads before recovery.
+Cycles that start with or retain a saved transaction perform no new quality or
+confirmation-policy reads; the policy state is `pending_recovery`. Recovery of
+the original intent remains first.
+
+`rebalance_confirmation_health.policy` independently requires a fresh latest
+canonical policy-only anchor for confirmation1, even with quality0, LP cooldown
+or compounding off. It records helper/Budget capabilities and bindings, runtime
+pins and config/source identity; it reads no bucket condition or price and proves
+neither readiness nor continuous history. `stopped` means gap0 and
+`incompatible_cadence` a nonzero gap below300; active-principal health/preflight
+refuse both. `unavailable` labels retained prior evidence stale. Independent
+hourly harvest continues under its own guards. After explicit terminal
+`lp_exit_started:true`, health treats stop/cadence as informational, while actual
+bindings and freshness remain required. Metadata failure preserves the prior `last_success_at`,
+increments failures and cannot report a successful cycle.
 
 `gas_review.last_review` exposes the actual estimate,125%-padded gas requirement,
 configured gas/gas-price/transaction/day caps and refusal reason. It remains a
 simulation estimate, not an inclusion-cost guarantee, and does not raise caps.
-`lp_execution_health` and `rebalance_confirmation_health` distinguish confirmed
-quality evidence from the last latest-state confirmation observation/reset
-backlog; neither is a guaranteed next execution time.
+`lp_execution_health` distinguishes confirmed quality evidence from the separate
+latest confirmation policy, bucket observation and reset backlog; none gives a
+guaranteed next execution time.
 
 Only successful discovery metadata at the exact same canonical hash and loaded
 configuration may be memoized within one cycle. No failure fallback or cross-cycle
@@ -255,13 +270,16 @@ before extending old evidence. Durable `confirmation_reset_v1` markers survive
 restart and clear only after the exact successful canonical reset receipt;
 failed/ambiguous resets retain normal retry/nonce recovery. Reset-only binding
 checks avoid price reads and the source permits reset during ordinary pause.
+Relevant raw group/pool faults mark that bucket; an initial global
+lifecycle/authority/head fault marks only known fresh windows.
 Unrelated router metadata, compound reserve, gas-estimate, health or harvest
 errors degrade their work but do not erase a healthy confirmation window.
 
 `confirmation_clear_v1` retains the successful canonical clear receipt. Repeated
 read failure in that same cleared episode waits for a healthy reread without
-paying for repeated resets. A foreign/nonempty candidate on the first recovered
-read forces another clear before use. A new observation intent atomically
+paying for repeated resets. Any foreign/nonempty candidate while the clear
+acknowledgement remains forces another clear, including after a healthy empty
+read. A new observation intent atomically
 invalidates the acknowledgement with pending persistence. No cached empty-state
 receipt authorizes readiness. Failed related on-chain receipts atomically queue
 their reset with fee/nonce recovery; unrelated failed receipts do not.
