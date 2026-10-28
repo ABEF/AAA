@@ -40,6 +40,7 @@ maintenance is per bucket, not per1,000 NFTs.
 | [Oracle](../src/ZZZOracle.sol) | Two-source USD bounds, freshness/fingerprint and3% disagreement; reviewed sequencer policy. | Independent sources, proxies/common-mode/uptime and provider support. |
 | [Optional Pyth source](../src/ZZZPythPriceFeed.sol) | Immutable bounded price/time/confidence reader, no funds/updater. | Actual Core/source/provider and updater review. |
 | [Strategy](../src/ZZZStrategy.sol),[Compounder](../src/ZZZCompounder.sol) | Trigger/cooldown/range and attributed reinvestment before exit; optional reviewed +/-25/50% width policy. | Volatility, MEV, gas and real strategy operations. |
+| [RebalanceConfirmation](../src/ZZZRebalanceConfirmation.sol) | Fixed Strategy child; receipt-backed sampled outside confirmation, clear-only resets and stable maintenance control fingerprint. Budget gates final readiness; no funds/recipient/execution authority. | Exact900/300 policy,300-second check latency/gas and matching keeper/API; samples cannot prove uninterrupted history. |
 | [Buyback](../src/ZZZBuyback.sol) | Spend only buyback reserve, acquire fixed ZZZ, verify actual supply burn; governed operating ceiling. | Actual conversion/burn, price policy and funded operation. |
 
 Defaults contribution2%/conversion1%/maintenance3%, maxima10%, gas separate.

@@ -90,7 +90,11 @@ evidence or add overlapping attempts to the11-method count. Three layers remain:
 selected Robinhood mainnet fork and Robinhood Testnet wallet/operator rehearsals.
 See [release preflight](PRODUCTION_PREFLIGHT.md) and [sole Todo](../TODO.md).
 
-Current profile: accounting3/governance2/fee1/localV4, ETH/fixedZZZ inputs,
+Fresh source profile: accounting4/custody3/governance2/fee1/canonicalV5 with
+maintenance2/compound3/LP1/quality1/confirmation1. Inventory uses schema6;
+historical schema5/accounting3 is inspection-only. Preserve actual historical
+Anvil profiles and immutable runtimes. The following local scaffolds remain
+historical accounting3/governance2/fee1/localV4, ETH/fixedZZZ inputs,
 $100activation/$5growth,2/1/3%defaults with10%ceilings, gas separate. Parked status
 is4, not a historical code6. Local scaffold is unsealed/local-only; it does not
 approve real addresses. The historical local-stack launcher rejects incompatible

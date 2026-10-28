@@ -21,7 +21,7 @@ Value/evolution is current marked on-chain LP NAV, not historic dollars contribu
 | LP revenue | Actual fees split80%NFT LP shares/10%equal activated collective/5%compound/5%ZZZ buyback-burn. |
 | Royalties | ERC-2981 requests5%; actual eligible receipts shared100% at rarity weights1/2/3. Not universal marketplace enforcement. |
 | Custody | No holder redemption during normal operation. Governance may irreversibly close LP and return proportional actual ETH+ZZZ directly to current NFT owners; no external custodian. |
-| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; maintenance policy2 uses actual physical range exit or operator width update after the configured hard minimum (initial12hours). Operator selects ZZZ-price-in-ETH +/-25/50%; matching service adds durable1-10minute jitter/hourly ordinary inside checks. Compound capability3 has its own interval (default1hour); it yields to due rebalance and never resets that clock. Polling is not an execution promise. |
+| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; maintenance policy2 uses actual physical range exit or operator width update after the configured hard minimum (initial12hours). Operator selects ZZZ-price-in-ETH +/-25/50%; matching confirmation1 service uses300-second eligible checks and durable1-10minute jitter after sampled readiness. Compound capability3 has its own interval (default1hour); it yields to due rebalance and never resets that clock. Polling is not an execution promise. |
 
 Current source profile is accounting4/governance2/fee intake1/custody3/pricing2/
 Entry routing2/LP execution1/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
@@ -53,15 +53,30 @@ caller and operation floors stay; separate reward converters keep their own
 all-in policy. Strategy owns policy/revision; Manager/helper and explicit
 keeper/API profiles bind it. [Feature](docs/EXECUTION_QUALITY.md), [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md).
 No installed service/site/Anvil changed. Passive positions and40% movement
-triggers remain discussion only. The user separately requested a configurable
-15-minute rebalance confirmation buffer; its observation/evidence method is
-undecided and no timer is implemented. [Decision boundary](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+triggers remain discussion only. Fresh confirmation1 implements a15-minute sampled
+on-chain window: after12hours check every300seconds, strict selected gap300seconds,
+restart on any greater gap. Constructor gap0 blocks ordinary readiness until
+governance configures reviewed900/300. Actual confirmation delays can repeatedly
+restart this strict policy; no hidden grace or continuous-history proof. Manual
+width exceptions retain cooldown. Budget captures stable controls across full
+maintenance; matching worker journals observations/resets and starts jitter only
+after readiness while continuing samples. [Policy](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer)
+and [source-scoped evidence](reports/practical-improvements-20261028/VERIFICATION.md).
+
+The deeper buffer audit also fixes unrelated-job resets, repeated paid clears,
+old-window jitter reuse, failed-related-receipt recovery, incompatible outer
+polling, clock retreat and contradictory lifecycle/ABI observations. Budget now
+captures raw observation state across maintenance; callback invalidation reverts
+the complete LP operation. Post-exit governance orientation remains available
+without reopening principal. Final evidence:217affected Solidity passes,
+272distinct source-scoped Python methods (271pass/1missing-cast skip),39normal
+object gates. Counts are scoped, not a global security or production approval.
 
 ## Requested next LP policy
 
 The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manual
-+/-25/50% ranges, initial twelve-hour outside-only upkeep with hourly eligible
-checks and durable 1-10-minute service jitter, reviewed best swap venues separate
++/-25/50% ranges, initial twelve-hour outside-only upkeep with300-second eligible
+checks under confirmation1 and durable1-10minute post-ready service jitter, reviewed best swap venues separate
 from the LP target, useful residual reinvestment and $1m cumulative per-NFT cap.
 The timing decisions are settled and implemented in fresh Strategy2/Budget3 and
 matching versioned keeper/API source; no running settings/services changed.
@@ -78,7 +93,7 @@ blanket dust sweep, cumulative breaker or staged migration was selected.
 
 Manual execution uses the existing keeper-authorized Vault.rebalance; governance
 requires its own keeper grant if calling directly. It bypasses service jitter/hourly
-checks only. [Operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
+check scheduling only. [Operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
 requires pending coordination and same-key out-of-band nonce/receipt/spend
 reconciliation; LP/timer rediscovery alone does not adopt an external transaction.
 The manual-execution clarification itself introduced no source/ABI/service change; later LP routing1 source and its exact evidence are separate.
@@ -121,14 +136,17 @@ Prior [atomic routing](reports/atomic-routing-20261028/VERIFICATION.md),
 [holder-return](reports/holder-collective-exit-20261027/VERIFICATION.md) and
 [earlier reports](reports/README.md) retain their original source/fixture scopes.
 At that earlier checkpoint Vault24064, Manager24152 and NFT24400 left512/424/176
-runtime bytes. Fresh fee-quality source has Manager24148runtime (428margin),
-creation48938+160static arguments (54bytes initcode headroom);38normal gates pass.
+runtime bytes. That fee-quality checkpoint had Manager24148runtime (428margin),
+creation48938+160static arguments (54bytes initcode headroom). Current native-only
+cleanup has Manager23765runtime (811margin), creation48548+160arguments
+(444initcode margin);39normal gates pass. Strategy24004runtime leaves572bytes.
 Exact release arguments, target gas and real dependencies still need qualification.
 
 The [Paris28October audit](reports/day-audit-20261028/REVIEW.md) reviews all five
 reachable day commits and revalidates exact existing evidence without new EVM
 or Python test runs. It corrects preflight/profile and keeper-reporting wording,
-records the unqualified example gas budget and the pending15-minute buffer.
+records the then-unqualified example gas budget and then-pending15-minute buffer;
+this historical checkpoint is superseded by the implementation/audit above.
 No new confirmed financial-accounting defect or production approval is claimed.
 
 [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) distinguishes contract-enforced rules

@@ -34,14 +34,35 @@ after actual directional LP/protocol fees to balancing and Manager swaps/buyback
 It preserves stronger gross/caller/operation limits and separate converter policy.
 Exact same-block reader capabilities and revisions are explicit; historical
 profiles remain separate. [Feature scope](EXECUTION_QUALITY.md), [verification](../reports/fee-impact-policy-20261028/VERIFICATION.md).
-No passive position or40% rebalance policy is implemented. The separately requested
-15-minute configurable confirmation buffer is not implemented; its evidence method
-remains undecided. [Scope](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+No passive position or40% rebalance policy is implemented. Fresh confirmation1
+adds a15-minute sampled on-chain window, five-minute checks after cooldown,
+strict300-second maximum receipt gap and journaled reset recovery. Greater gaps
+restart; actual latency can prevent progress. The constructor gap0 requires
+reviewed governance configuration. Stable controls are rechecked across full
+maintenance. Matching API exposes raw due versus buffered readiness without an
+execution promise. [Policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer)
+and [new evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
+
+The same improvement slice adds current schema6 preflight, healthschema2 metadata,
+exact-block/config discovery caching (fresh pre-signing checks retained), explicit
+gas refusal diagnostics and native-only Manager cleanup. Actual bindings, runtime
+writer/checker rollout, target gas and independent release qualification stay open.
 
 [The day audit](../reports/day-audit-20261028/VERIFICATION.md) revalidates the current
 55distinct Solidity/53backend/38normal-gate evidence at exact pins without new
 test runs. It corrects documentation and operating qualification gaps; it does
 not establish live readiness, manipulation immunity or a new implementation.
+
+The deeper buffer audit also fixes unrelated-job resets, repeated paid clears,
+old-window jitter reuse, failed-related-receipt recovery, incompatible outer
+polling, clock retreat and contradictory lifecycle/ABI observations. Budget now
+captures raw observation state across maintenance; callback invalidation reverts
+the complete LP operation. Post-exit governance orientation remains available
+without reopening principal. Final evidence:217affected Solidity passes,
+272distinct source-scoped Python methods (271pass/1missing-cast skip),39normal
+object gates. Counts are scoped, not a global security or production approval.
+
+[Review and evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
 
 ## Smart contracts
 
@@ -93,7 +114,7 @@ adds no contract behavior, ABI, test pass, service rollout or production approva
 | Unsigned transaction preparation | Complete Entry simulation/newLP/caller cap checks, exact approval step, expiry and separate gas. Bounded current3 claims reject contradictory inactive balances/malformed activation data before a wallet draft. Parked/outbound and optional-currency deferral rights remain. Opt-in direct-mint drafts exist; production/website mint gates reject unsupported OpenSea integration, while the preparer itself is not a universal public-mint block. No user signer in API. | [Activation preparation](ACTIVATION_PREPARATION.md), [transactions](FRONTEND_TRANSACTIONS.md) |
 | Request and index resilience | Strict RPC chain quantities/unique finite JSON/exclusive envelopes and sanitized bounded parser-failure failover; per-client admission, finite supervised workers/deadlines/RPC budgets; anchored SQLite replay/reorg handling and independent-provider history-window audit. Real hosting/capacity qualification remains open. | [Ingress](API_INGRESS.md), [concurrency](CONCURRENT_SERVICES.md), [index recovery](INDEXER_RECOVERY.md), [history audit](HISTORY_AUDIT.md) |
 | Keeper | Optional main-process systemd progress watchdog supervises stalled I/O in the reviewed120s example unit; standalone commands still lack this hard supervisor. Discovers shared buckets, simulates eligible upkeep, persists intents/receipts/budgets and recovers without automatic resend. Accounting4 defaults to hourly independent collectFees; historical defaults and explicit overrides are preserved. Authenticated due harvesting can continue after maintenance RPC failure; malformed configuration/ABI still fails closed, and saved pending errors stop work. Buyback priority/currency rotation prevents starvation. Optional metadata notifications; dry-run default. | [Reward timing/fairness](OPERATIONS.md#reward-timing-and-maintenance-schedule), [recovery](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
-| Release tooling | Default gate explicitly blocks unqualified accounting4 inventory; historical schema5/accounting3 consistency is not current approval. Strict JSON/file bounds, guarded observers and immutable evidence remain. No deployment authority. | [Preflight](PRODUCTION_PREFLIGHT.md), [blocked fresh scaffold](../config/production.holder-exit.example.json) |
+| Release tooling | Explicit schema6/accounting4/custody3/V5 observer and offline gate verify17helpers, holder-share/terminal payout/backing and policy bindings. Incomplete actual dependencies remain blocked; historical schema5 is inspection-only. Strict JSON/file/read bounds remain. No deployment authority. | [Preflight](PRODUCTION_PREFLIGHT.md), [blocked fresh scaffold](../config/production.holder-exit.example.json) |
 
 ## Frontend boundary
 

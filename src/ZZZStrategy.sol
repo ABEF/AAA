@@ -5,6 +5,7 @@ import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ZZZPriceMath} from "./libraries/ZZZPriceMath.sol";
+import {ZZZRebalanceConfirmation} from "./ZZZRebalanceConfirmation.sol";
 import {Ids, PoolConfig, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {IZZZPools, IZZZOracle, IZZZLiquidity, IZZZVault, IStateViewMinimal} from "./interfaces/IZZZ.sol";
 
@@ -16,6 +17,8 @@ contract ZZZStrategy is ZZZModule {
     uint256 public constant RANGE_POLICY_VERSION = 1;
     /// @notice Physical outside-range upkeep, with a governed range-change exception.
     uint256 public constant MAINTENANCE_POLICY_VERSION = 2;
+    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 1;
+    ZZZRebalanceConfirmation public immutable rebalanceConfirmation;
     uint256 public constant EXECUTION_QUALITY_VERSION = 1;
     uint256 public constant MAX_ADDITIONAL_LOSS_BPS = 1000;
     uint16 public additionalLossBps = 100;
@@ -38,7 +41,14 @@ contract ZZZStrategy is ZZZModule {
     event AdditionalLossLimitChanged(uint16 previous,uint16 current,uint64 revision,bytes32 indexed reviewHash);
     struct AssetPrice { uint256 lower; uint256 upper; uint256 scale; }
     struct PairPrices { AssetPrice first; AssetPrice second; uint160 referenceX96; }
-    constructor(address controller) ZZZModule(controller) {}
+    constructor(address controller) ZZZModule(controller) {
+        rebalanceConfirmation = new ZZZRebalanceConfirmation(controller);
+    }
+    /// @notice Separate from raw needsRebalance so pending upkeep blocks compound.
+    function rebalanceReady(uint256 id) external view returns(bool) { return rebalanceConfirmation.ready(id); }
+    function rebalanceObservation(uint256 id) external view returns(uint8 side,bytes32 identity,bool manual) {
+        return rebalanceConfirmation.condition(id);
+    }
     /// @notice Extra oracle-relative loss after actual directional trading fees;
     /// gross/caller/operation floors remain independent. Available for post-exit
     /// buybacks and ordinary pause, but not preparation/canonical lifecycle locks.
@@ -113,6 +123,7 @@ contract ZZZStrategy is ZZZModule {
             policy.enabled = false;
             emit KeeperRangePolicyChanged(poolId,false,policy.configurationHash,policy.reviewHash);
         }
+        rebalanceConfirmation.invalidatePolicy();
         emit RangeOrientationChanged(poolId,previous,orientation);
     }
     /// @notice Review actual price-displacement rules, not an inferred volatility model.

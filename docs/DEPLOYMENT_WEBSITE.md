@@ -9,11 +9,12 @@ unavailable, and the shared signer remains Anvil-only.
 | Profile | Scope |
 | --- | --- |
 | Historical schema 1 | Wrapped-asset/single-feed local deployments, original 1% contribution policy and original journals |
-| Published schema 2/native2 | Accounting 2, dual pricing 2, routing 2 and reviewed Entry 1; see [exact native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
-| Current schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified. Relabeling native2 is unsupported |
+| Historical schema2/native2 | Accounting2, dual pricing2, routing2 and reviewed Entry1; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
+| Served schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified |
+| Fresh accounting4/custody3/canonical V5 contracts | No compatible website profile is implemented. Add an explicit reviewed frontend profile and current module/runtime/exit-state handling before connecting these contracts; never relabel schema3 or an old journal |
 
-The older tables below describe published and historical adapters, not approval
-for accounting-3 deployment. Native2 supports a captured governed contribution cap;
+The legacy configuration and local-wallet procedures below retain their own
+profile scope; they are not instructions to configure fresh4. Native2 supports a captured governed contribution cap;
 the schema 1 99% fixture floor is not a universal current rule. The contract
 candidate accepts ETH/fixed ZZZ only and defaults to 2% contribution loss; manifest
 input admission, code/runtime pins and quote policy must match the selected
@@ -46,7 +47,7 @@ DEPLOYMENT stays null; this does not enable signing or qualify live hosting.
 | ETH claim review | One to eight selected NFTs, funded ETH LP/royalty entries only. Source currencies are disclosed separately and are never relabeled ETH. |
 | Mint | Production: demonstration only; mint preparation blocked pending qualified OpenSea integration/URL. Local rehearsal retains `Vault.mintDormant()` with exactly 0.05 ETH. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). |
 | Activation review | Token units from the reviewed Oracle, targeting exactly $100 in value with the smallest necessary raw-unit round-up. A changed price requires a new quote. |
-| Growth review | Published/historical manifests may expose ETH/ZZZ/USDC/USDG units. Current accounting 3 must restrict contributions to ETH/fixed ZZZ, with a verified $5 minimum; a compatible reader is still required. |
+| Growth review | Historical manifests may expose ETH/ZZZ/USDC/USDG units. Served current3 restricts contributions to ETH/fixed ZZZ and a verified $5 minimum. Fresh4 needs its own compatible profile with the same fixed contribution identities. |
 | Approval review | Exact selected amount to the pinned Entry, never unlimited or a hidden zero-reset sequence. Complete preparation must run again after an actual confirmed approval. |
 | LP execution review | Exact Entry calldata, selected NFT/pool/source/route, minimum output/liquidity and expiry; the trace must meet the selected version's captured marginal-LP floor. Legacy schema 1 uses 99%; native2 uses its reviewed governed cap. Show simulated LP added and gas separately. |
 | Submit | Nonlocal: unavailable. Local Anvil rehearsal: explicit wallet confirmation, independent preflight, same-hash recovery and confirmed-state reconciliation through the unchanged signer. |
@@ -56,7 +57,7 @@ Wallet-wide LP and claimable ETH totals aggregate every holding in bounded
 Missing/incomplete data remains unavailable. Historical current-holdings earnings
 use separately reconciled 16-NFT chunks at the same block. Collection holder
 allocations consume the existing earnings endpoint; full collection inventory/LP
-aggregation remains separate. See [definitions and operations](EARNINGS_HISTORY.md#current-holdings-totals). The
+aggregation uses the separately checked collection source. See [definitions and operations](EARNINGS_HISTORY.md#current-holdings-totals). The
 ordinary overview artwork/examples remain educational examples, not live totals.
 An account change invalidates a review; navigation closes it. Expiry is displayed
 and a new review is required. There is no automatic payment or approval retry. Local recovery only reads the saved transaction.
@@ -97,7 +98,9 @@ profile ignores this configuration and retains its own local wallet admission.
 1. Qualify the real deployment, Oracle/feed freshness, token/runtime/route
    inventory, fee semantics and RPC hash selectors first. Read the
    [production services record](PRODUCTION_SERVICES.md) and the central
-   [wallet task](../TODO.md#task-wallet). Unknowns remain open.
+   [wallet task](../TODO.md#task-wallet). Select a frontend profile that actually
+   supports that contract version. Fresh4 support remains open; native2/current3
+   builds cannot be made compatible by changing a version field.
 2. Run the existing read/mint-claim and activation services under their reviewed
    configurations. Keep their independent admission, Origin and resource limits.
    Reverse-proxy only the enumerated reviewed GET routes and exact POST
@@ -123,6 +126,9 @@ profile ignores this configuration and retains its own local wallet admission.
 - For a configuration/runtime/hash mismatch: stop preparation, investigate the
   reviewed deployment/service config and reissue a reviewed build. Never accept
   the changed target automatically or turn off identity checks to resume.
+- For an accounting4/holder-exit deployment: stop at the unsupported-profile
+  boundary until its frontend is implemented and qualified. Do not substitute
+  a schema3 manifest, historical API or example data to make the site load.
 - For a missing/failed input route: disable that input in the operator manifest
   and follow the on-chain [asset/route procedure](OPERATOR_MANUAL.md#activation-assets-and-routes).
   Removing a selector does not itself revoke on-chain acceptance or old allowances.

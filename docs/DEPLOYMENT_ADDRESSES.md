@@ -36,7 +36,7 @@ only admitted LP pair; ERC20 conversion venues remain separate. See
 Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
-public addresses. Complete the [production manifest](../config/production.example.json)
+public addresses. Complete the [production manifest](../config/production.holder-exit.example.json)
 with actual chain IDs, confirmed blocks, code/immutable bindings and independent
 review evidence. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
@@ -111,7 +111,13 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `vault_canonical` | `ZZZVaultCanonical` - shares, origin lineage and parked custody codec bound to Vault |
 | `fees_canonical` | `ZZZFeesCanonical` - LP-fee reserve codec bound to Fees |
 
-The current inventory has **15 fixed helpers**: thirteen created by their parent contracts and two separately deployed converters. This is a different set from the historical 15-helper profile: ActivationAssetsFactory replaces the removed RewardReceiverFactory. Every immutable-specific runtime and binding must be inventoried:
+The fresh source has **17 fixed helpers**: fifteen created by their parent
+contracts and two separately deployed converters. The Manager-created
+`ZZZLPBalancer` and Strategy-created `ZZZRebalanceConfirmation` add two helpers
+to the earlier LP-only15 layout; that earlier
+layout had already replaced RewardReceiverFactory with ActivationAssetsFactory.
+Do not reuse a historical15-helper inventory for this candidate. Every
+immutable-specific runtime and binding must be inventoried:
 
 | Creator | Helper addresses and bindings |
 | --- | --- |
@@ -120,6 +126,8 @@ The current inventory has **15 fixed helpers**: thirteen created by their parent
 | NFT constructor | `ZZZRoyaltyRewards` through the controller's fixed factory, plus `ZZZClaimRouter` and `ZZZNFTMetadata`; verify NFT/controller/royalty bindings. |
 | Oracle constructor | `ZZZContributionPricing`; verify `Oracle.contributionPricing()`, helper `oracle()`/`access()`, `active() == false` at the confirmed inventory anchor, and exact immutable-specific runtime. It holds no funds or approvals. |
 | Vault constructor | `ZZZMigrationBudget`; verify `Vault.migrationBudget`, helper `vault`/`access` bindings and deployed runtime. It has no custody or configurable executor. |
+| Liquidity Manager constructor | `ZZZLPBalancer`; verify `Manager.balancingRouter()`, helper `liquidityManager()`/`access()`/`poolManager()`/`stateView()`, exact runtime and explicit LP routing1/execution-quality1 capabilities. Inventory current venue/solver/quality policy separately from immutable bindings. The helper quotes candidates; Manager alone settles the selected swap. |
+| Strategy constructor | `ZZZRebalanceConfirmation`; verify `Strategy.rebalanceConfirmation()`, helper `strategy()`/`access()`, version1 on Strategy/Budget/helper and exact runtime. Record `duration()`, `maxObservationGap()`, `policyRevision()` and `reviewHash()`. Source defaults to900seconds with gap0, which blocks ordinary rebalancing. The selected operating policy is900seconds/strict300second maximum gap, configured only with an actual review hash; no latency grace or live qualification is implied. It holds no principal or reward ledger. |
 | Migration constructor | `ZZZCustodyValidation`; verify `Migration.validation`, helper `migration`/`access` bindings and runtime. It is read-only and has no custody/execution authority. |
 | Entry and converter constructors | Each creates a distinct `ZZZV4RouteExecutor`; verify its exact `parent()` and parent `v4Executor()` getter. |
 | Separate LP and royalty converters | Deploy each with its own immutable ledger/controller and explicit optional wrapper; bind each ledger before sealing if that conversion stream is required. Core seal validation does not prove an optional converter is configured. |
@@ -220,14 +228,14 @@ Native ETH LP fees enter holder/collective accounting directly; they do not
 need wrapping or conversion. ZZZ and other non-native holder fees require a
 separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol), bound
 once to Rewards before sealing. Its typed hookless v4 path settles actual ETH without a wrapper. The separate v3/unwrap profile still requires its reviewed wrapper. Record controller/ledger, parent-bound executor, current conversion cap, route/feed review and keeper pins. This
-helper has no custody of LP principal. The conversion limit defaults to 1%, governance-adjustable up to 10%, with gas separate. At the default cap the selected approximately 1.101%-fee pool still needs a cheaper independently qualified conversion route. [Schema-5 inventory and observation](PRODUCTION_PREFLIGHT.md) verify actual selected policy; no route is invented. See [setup and recovery](LP_ETH_SETTLEMENT.md).
+helper has no custody of LP principal. The conversion limit defaults to 1%, governance-adjustable up to 10%, with gas separate. At the default cap the selected approximately 1.101%-fee pool still needs a cheaper independently qualified conversion route. [Versioned inventory and observation](PRODUCTION_PREFLIGHT.md) must match the selected contract profile; no route is invented. See [setup and recovery](LP_ETH_SETTLEMENT.md).
 
 ## Native accounting and canonical version inventory
 
 Record `Vault.ACCOUNTING_VERSION() == 4` and the canonical coordinator's
 `SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5")` with their exact
 runtime pins. Current release inventory also declares `fee_intake_version: 1`,
-with the current 15-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
+with the fresh17-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
 the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier
 accounting2/fee1 uses the distinct LP-only V3 schema. Neither historical codec
 nor V1 WETH accounting can be imported into this current

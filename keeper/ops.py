@@ -15,6 +15,7 @@ import tempfile
 import time
 
 from keeper.monitor import Keeper, error_context, positive, rpc_quantity
+from keeper.health import execution_reasons, summary as health_summary
 
 
 def digest(value):
@@ -41,7 +42,9 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
         reasons.append('deployment_identity_mismatch')
     if data.get('configuration_sha256') != digest(config):
         reasons.append('configuration_mismatch')
+    reasons.extend(execution_reasons(data,config,now=now,max_age=max_age))
     expected = 'dry_run' if allow_dry_run else 'healthy'
+    if config.get('execution_quality_version',0) == 1 or config.get('rebalance_confirmation_version',0)==1:expected += '_v2'
     if data.get('status') != expected or data.get('live') is not (not allow_dry_run): reasons.append('maintenance_not_healthy')
     for field in ('pending','strategy_paused'):
         if data.get(field) is not False: reasons.append(field)
@@ -70,6 +73,8 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
             'preparation_active':data.get('preparation_active'),
             'canonical_state':lifecycle,
             'active_revert_cooldowns':cooldowns,'next_revert_retry_after':retry_after,
+            'health_schema':data.get('health_schema') if type(data.get('health_schema')) is int else None,
+            **health_summary(data),
             'scope':'health_file_only; use an off-host scheduler and alert receiver'}
 
 

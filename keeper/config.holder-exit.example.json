@@ -17,7 +17,8 @@
     "liquidity": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "balancing_router": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
     "pool_manager": "0xcccccccccccccccccccccccccccccccccccccccc",
-    "state_view": "0xdddddddddddddddddddddddddddddddddddddddd"
+    "state_view": "0xdddddddddddddddddddddddddddddddddddddddd",
+    "rebalance_confirmation": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
   },
   "reviewed_for_live_use": false,
   "royalty_conversion": {
@@ -40,7 +41,9 @@
     "liquidity": "0x<reviewed deployed runtime keccak256>",
     "balancing_router": "0x<reviewed deployed runtime keccak256>",
     "pool_manager": "0x<reviewed deployed runtime keccak256>",
-    "state_view": "0x<reviewed deployed runtime keccak256>"
+    "state_view": "0x<reviewed deployed runtime keccak256>",
+    "idle_compounding_budget": "0x<reviewed deployed runtime keccak256>",
+    "rebalance_confirmation": "0x<reviewed deployed runtime keccak256>"
   },
   "keystore": "/run/zzz/keystore.json",
   "password_file": "/run/zzz/password",
@@ -85,5 +88,6 @@
   },
   "maintenance_policy_version": 2,
   "lp_routing_version": 1,
-  "execution_quality_version": 1
+  "execution_quality_version": 1,
+  "rebalance_confirmation_version": 1
 }

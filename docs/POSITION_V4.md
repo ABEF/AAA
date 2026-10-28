@@ -16,7 +16,7 @@ Current maintenance policy2 additionally requires Strategy version2 and Budget
 compound capability3. `needsRebalance` uses actual physical range exit or deliberate
 range change after the configured hard interval. `compoundReady(bucket)` uses
 its independently configurable per-pool interval after last LP creation/replacement
-or compound, with rebalance/adaptive-range priority. This
+or compound, with raw rebalance priority. This
 does not change the Position tuple or reward rights. Fresh accounting4 keeper
 work must authenticate the exact matching helper/runtime/version; historical
 V1/V2 helper deployments and journals retain their old behavior. Activation configs
@@ -39,6 +39,24 @@ stays1; current runtime pins distinguish this fresh source. Strategy gains polic
 state before its old mappings: this is a new undeployed layout, never a storage
 upgrade/relabel of preserved immutable deployments. [Scope](EXECUTION_QUALITY.md).
 
+Fresh sampled confirmation additionally declares `rebalance_confirmation_version:1`.
+Strategy, Budget and the immutable Strategy-created `rebalanceConfirmation`
+helper expose capability1. Readers authenticate its exact runtime, Strategy and
+Access bindings at the same canonical block. `needsRebalance` remains the raw
+outside-or-operator-range candidate; `rebalanceReady` and helper `ready` add the
+recorded confirmation requirement. A deliberate operator range change keeps its
+raw cooldown/price guards and bypasses this observation window. Compound yields
+to the raw candidate, so it cannot postpone a ready rebalance; hourly harvest is
+independent.
+
+The intended policy is a900-second window, five-minute service checks after the
+hard12-hour cooldown and an exact300-second maximum recorded gap, with no grace.
+The source constructor's gap0 blocks ordinary rebalancing until reviewed governance
+configuration. Gap/duration, review hash and monotonic policy revision are observed;
+changed identity/side or a late sample restarts the window. These are bounded
+recorded observations, not proof of every intervening market price or a guaranteed
+execution time. Historical absent/0 retains its old readers and journals.
+
 `Access.lpExitStarted` permanently stops principal/mint activity independently
 of pause/canonical state. Transfers, earned LP claims, future royalties and
 royalty claims continue. Closed buckets retain share/membership accounting;
@@ -52,4 +70,9 @@ removed too. [Complete procedure](HOLDER_COLLECTIVE_EXIT.md).
 Canonical V5 handoff is available only before LP exit; afterward it stays
 blocked because its importer does not carry this terminal payout ledger.
 Accounting3 website/inventory and historical evidence do not automatically
-qualify this new profile. Public signing and deployment remain disabled.
+qualify this new profile. The current production-inventory gate is explicitly
+schema6, separate from API schema2 and activation schema1; it observes17helpers,
+including Balancer and confirmation. Missing actual bindings/reviews remain
+blocked. [Inventory](PRODUCTION_PREFLIGHT.md) and
+[scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+Public signing and deployment remain disabled.

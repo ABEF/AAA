@@ -1,29 +1,916 @@
 {
   "schema_version": 6,
+  "accounting_model": "shared-pools-native-v4",
   "accounting_version": 4,
-  "governance_version": 2,
+  "routing_version": 2,
+  "custody_architecture": "collective-holder-return-v3",
+  "_notes": [
+    "UNQUALIFIED schema6/accounting4/custody3/holder-exit V5 scaffold. No contract deployment, authority, price/provider, route, VRF, OpenSea or service approval is supplied. Nothing authorizes signing, deployment, sealing or rollout.",
+    "Module/helper addresses, runtime hashes and observations must be independently reviewed for actual immutable deployments. Known source-selected native venue/token references below are intended identities only; the observer never adopts a pin or supplies evidence.",
+    "Strategy2/Budget3/LP1/quality1 plus explicit observed-confirmation1 are required. Intended confirmation duration900 seconds; max observation gap and all actual revisions remain unset. An unset or zero gap blocks ordinary confirmed rebalance. The5minute service observation cadence is separate from the on-chain policy.",
+    "Native ETH and the fixed ZZZ are the only contribution inputs. Marketplace currencies and their conversions remain separate. No external custody recipient, issuer exchange executor or bridge is part of this release.",
+    "The validator can check this exact inventory but current Vault direct mint cannot implement OpenSea primary mint. That code-owned blocker remains even if every supplied evidence flag says passed."
+  ],
+  "release_commit": null,
+  "canonical_chain_id": 4663,
+  "economics": {
+    "reward_model": "conventional_lp_fees",
+    "mint_price_wei": "50000000000000000",
+    "minimum_activation_usd18": "100000000000000000000",
+    "minimum_top_up_usd18": "5000000000000000000",
+    "activation_minimum_basis": "gross_source_input",
+    "network_gas_separate": true,
+    "fee_split_bps": [
+      8000,
+      1000,
+      500,
+      500
+    ],
+    "collective_weights": "equal_activated_nfts",
+    "maximum_membership_dust_raw": 19
+  },
+  "nft_policy": {
+    "max_supply": 1000,
+    "rarity_counts": [
+      600,
+      300,
+      100
+    ],
+    "initial_rarity_bps": [
+      6000,
+      3000,
+      1000
+    ],
+    "rarity_distribution": "fixed_quotas_without_replacement",
+    "rarity_randomization": "vrf_mint_order_without_replacement",
+    "marketplace_royalty_bps": 500,
+    "received_royalty_distribution_bps": 10000,
+    "royalty_weights": [
+      1,
+      2,
+      3
+    ],
+    "royalty_eligibility": "activated_nfts_only",
+    "royalty_entitlement": "received_funds_only",
+    "evolution_basis": "current_attributed_lp_value_usd18",
+    "unavailable_valuation": "unavailable",
+    "randomness_policy": "verified_coordinator_two_words",
+    "evolution_thresholds_usd18": [
+      "0",
+      "100000000000000000000",
+      "1000000000000000000000",
+      "10000000000000000000000"
+    ],
+    "economic_review_evidence": null
+  },
+  "evidence": {
+    "toolchain": null,
+    "static_analysis": null,
+    "invariants": null,
+    "uniswap_fork": null,
+    "staging": null,
+    "operations_recovery": null,
+    "gas_benchmarks": null,
+    "deployment_review": null,
+    "economic_approval": null,
+    "independent_audit": null,
+    "remediation": null,
+    "native_accounting": null,
+    "typed_v4_routes": null,
+    "holder_return": null
+  },
+  "chains": [
+    {
+      "chain_id": 4663,
+      "genesis_hash": null,
+      "minimum_confirmations": null,
+      "observed_block": {
+        "number": null,
+        "hash": null,
+        "timestamp": null
+      },
+      "maximum_snapshot_age_seconds": 600,
+      "observation": null,
+      "modules": {
+        "access": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "vault": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "nft": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "liquidity": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "rewards": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "membership": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "fees": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "strategy": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "compounder": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "buyback": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "migration": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "oracle": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "pools": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "canonical": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "nft_canonical": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "vault_canonical": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        },
+        "fees_canonical": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
+        }
+      },
+      "helpers": {
+        "activation_assets": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "registry": null,
+            "SOURCE_POLICY_VERSION": 1,
+            "zzz": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+          }
+        },
+        "activation_entry": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "registry": null,
+            "activationAssets": null,
+            "v4Executor": null,
+            "REVIEW_POLICY_VERSION": 1
+          }
+        },
+        "migration_budget": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "vault": null,
+            "MAX_LOSS_BPS": 1000,
+            "contributionLossBps": 200,
+            "maintenanceLossBps": 300,
+            "IDLE_COMPOUNDING_VERSION": 3,
+            "REBALANCE_CONFIRMATION_VERSION": 1
+          }
+        },
+        "custody_validation": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "migration": null
+          }
+        },
+        "royalty_rewards": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "nft": null,
+            "canonicalController": null,
+            "converter": null
+          }
+        },
+        "metadata_renderer": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null
+          }
+        },
+        "claim_router": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "nft": null,
+            "royalties": null,
+            "MAX_CLAIMS": 32
+          }
+        },
+        "royalty_factory": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "controller": null
+          }
+        },
+        "lp_converter": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "ledger": null,
+            "v4Executor": null,
+            "wrapper": "0x0000000000000000000000000000000000000000",
+            "MAX_LOSS_BPS": 1000,
+            "conversionLossBps": 100,
+            "enabled": true
+          }
+        },
+        "royalty_converter": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "ledger": null,
+            "v4Executor": null,
+            "wrapper": "0x0000000000000000000000000000000000000000",
+            "MAX_LOSS_BPS": 1000,
+            "conversionLossBps": 100,
+            "enabled": true
+          }
+        },
+        "entry_v4_executor": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "parent": null
+          }
+        },
+        "lp_v4_executor": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "parent": null
+          }
+        },
+        "royalty_v4_executor": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "parent": null
+          }
+        },
+        "contribution_pricing": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "oracle": null,
+            "active": false,
+            "ENTRY_REVIEW_VERSION": 1
+          }
+        },
+        "activation_assets_factory": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "assetsOfRegistry": null
+          }
+        },
+        "balancing_router": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "liquidityManager": null,
+            "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "stateView": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+            "LP_ROUTING_VERSION": 1,
+            "EXECUTION_QUALITY_VERSION": 1,
+            "MAX_EXECUTION_POOLS": 4,
+            "MAX_ADDITIONAL_LOSS_BPS": 1000,
+            "additionalLossBps": 100,
+            "executionRevision": null,
+            "searchIterations": 8,
+            "quoteGasLimit": 200000
+          }
+        },
+        "rebalance_confirmation": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "strategy": null,
+            "REBALANCE_CONFIRMATION_VERSION": 1,
+            "duration": 900,
+            "maxObservationGap": null,
+            "policyRevision": null,
+            "reviewHash": null
+          }
+        }
+      },
+      "dependencies": {
+        "pool_manager": {
+          "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "runtime_hash": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626",
+          "observed_runtime_hash": null,
+          "bindings": {},
+          "observed_bindings": null,
+          "authority_review": null
+        },
+        "position_manager": {
+          "address": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+          "runtime_hash": "0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2",
+          "observed_runtime_hash": null,
+          "bindings": {
+            "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "permit2": "0x000000000022d473030f116ddee9f6b43ac78ba3"
+          },
+          "observed_bindings": null,
+          "authority_review": null
+        },
+        "state_view": {
+          "address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "runtime_hash": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6",
+          "observed_runtime_hash": null,
+          "bindings": {
+            "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+          },
+          "observed_bindings": null,
+          "authority_review": null
+        },
+        "permit2": {
+          "address": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+          "runtime_hash": "0x5208783f52488f7d3493e5e38311ab707c1d75457fe472a19b0b4d57d66a7fca",
+          "observed_runtime_hash": null,
+          "bindings": {},
+          "observed_bindings": null,
+          "authority_review": null
+        },
+        "zzz": {
+          "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          "runtime_hash": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+          "observed_runtime_hash": null,
+          "bindings": {},
+          "observed_bindings": null,
+          "authority_review": null,
+          "burn_model": "burn(uint256):exact_local_supply_reduction",
+          "burn_evidence": null
+        }
+      },
+      "observed_modules": null,
+      "constructor": {
+        "canonical_chain_id": 4663,
+        "mint_proceeds_recipient": null,
+        "maximum_buyback_usd18": null,
+        "nft_base_uri": null,
+        "recipient_payment_evidence": null
+      },
+      "operating_buyback_usd18": null,
+      "native_accounting": {
+        "asset": "0x0000000000000000000000000000000000000000",
+        "decimals": 18,
+        "runtime_hash": null,
+        "version": 4,
+        "canonical_schema": "0x6a881f125ed76de145247bfd82273ffb134bbdd506458a57527df4ecbacf5a25",
+        "wrapper_independent": true,
+        "eth_weth_principal_boundary": false,
+        "legacy_v1_import": false
+      },
+      "execution_loss_policy": {
+        "contribution_bps": 200,
+        "maintenance_bps": 300,
+        "lp_conversion_bps": 100,
+        "royalty_conversion_bps": 100,
+        "hard_maximum_bps": 1000,
+        "gas_separate": true
+      },
+      "contribution_pool": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "pools": [
+        {
+          "currency0": "0x0000000000000000000000000000000000000000",
+          "currency1": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          "fee": 10020,
+          "tickSpacing": 200,
+          "hooks": "0x0000000000000000000000000000000000000000",
+          "depositsEnabled": true,
+          "operationsEnabled": true,
+          "rangeBps": null,
+          "triggerBps": null,
+          "maxSpotDeviationBps": null,
+          "maxSlippageBps": null,
+          "minRebalanceInterval": null,
+          "minDepositUSD": "5000000000000000000",
+          "maxPositionUSD": null,
+          "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+          "observed_config": null,
+          "observed_accounting": null,
+          "slot0": null,
+          "liquidity": null,
+          "review_evidence": null,
+          "range_policy": {
+            "orientation": 1,
+            "keeper": {
+              "enabled": false,
+              "narrow_trigger_bps": 0,
+              "widen_trigger_bps": 0,
+              "minimum_interval_seconds": 0,
+              "configuration_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "review_hash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+            }
+          },
+          "observed_range_policy": null
+        }
+      ],
+      "tokens": [
+        {
+          "address": "0x0000000000000000000000000000000000000000",
+          "kind": "native",
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "decimals": 18,
+          "observed_decimals": null,
+          "non_rebasing": null,
+          "transfer_tax": null,
+          "price_policy": {
+            "policy_id": null,
+            "ordinal": null,
+            "policy": {
+              "token": "0x0000000000000000000000000000000000000000",
+              "primary": {
+                "source": null,
+                "expectedCodeHash": null,
+                "independenceId": null,
+                "maxAge": null,
+                "feedDecimals": null
+              },
+              "secondary": {
+                "source": null,
+                "expectedCodeHash": null,
+                "independenceId": null,
+                "maxAge": null,
+                "feedDecimals": null
+              },
+              "maxDeviationBps": 300,
+              "assetDecimals": 18,
+              "reviewHash": null
+            },
+            "observed_pricing_version": null,
+            "observed_policy_id": null,
+            "observed_policy": null,
+            "observed_policy_count": null,
+            "observed_ordinal_id": null,
+            "observed_bounds": null,
+            "sources": [
+              {
+                "source": null,
+                "runtime_hash": null,
+                "observed_runtime_hash": null,
+                "denomination": "USD",
+                "decimals": null,
+                "round_id": null,
+                "answer": null,
+                "started_at": null,
+                "updated_at": null,
+                "answered_in_round": null,
+                "review_evidence": null
+              },
+              {
+                "source": null,
+                "runtime_hash": null,
+                "observed_runtime_hash": null,
+                "denomination": "USD",
+                "decimals": null,
+                "round_id": null,
+                "answer": null,
+                "started_at": null,
+                "updated_at": null,
+                "answered_in_round": null,
+                "review_evidence": null
+              }
+            ],
+            "review_evidence": null
+          }
+        },
+        {
+          "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          "kind": "erc20",
+          "runtime_hash": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+          "observed_runtime_hash": null,
+          "decimals": 18,
+          "observed_decimals": null,
+          "non_rebasing": null,
+          "transfer_tax": null,
+          "price_policy": {
+            "policy_id": null,
+            "ordinal": null,
+            "policy": {
+              "token": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+              "primary": {
+                "source": null,
+                "expectedCodeHash": null,
+                "independenceId": null,
+                "maxAge": null,
+                "feedDecimals": null
+              },
+              "secondary": {
+                "source": null,
+                "expectedCodeHash": null,
+                "independenceId": null,
+                "maxAge": null,
+                "feedDecimals": null
+              },
+              "maxDeviationBps": 300,
+              "assetDecimals": 18,
+              "reviewHash": null
+            },
+            "observed_pricing_version": null,
+            "observed_policy_id": null,
+            "observed_policy": null,
+            "observed_policy_count": null,
+            "observed_ordinal_id": null,
+            "observed_bounds": null,
+            "sources": [
+              {
+                "source": null,
+                "runtime_hash": null,
+                "observed_runtime_hash": null,
+                "denomination": "USD",
+                "decimals": null,
+                "round_id": null,
+                "answer": null,
+                "started_at": null,
+                "updated_at": null,
+                "answered_in_round": null,
+                "review_evidence": null
+              },
+              {
+                "source": null,
+                "runtime_hash": null,
+                "observed_runtime_hash": null,
+                "denomination": "USD",
+                "decimals": null,
+                "round_id": null,
+                "answer": null,
+                "started_at": null,
+                "updated_at": null,
+                "answered_in_round": null,
+                "review_evidence": null
+              }
+            ],
+            "review_evidence": null
+          }
+        }
+      ],
+      "sequencer": {
+        "mode": null,
+        "address": null,
+        "review_evidence": null
+      },
+      "governance": {
+        "multisig": null,
+        "signers": [],
+        "threshold": null,
+        "keeper": null,
+        "guardian": null,
+        "sealed": null,
+        "bootstrap": null,
+        "role_history_complete": null,
+        "observed_roles": null,
+        "review_evidence": null
+      },
+      "canonical_handoff": {
+        "transport": "same_chain_only",
+        "remote_activation_enabled": false,
+        "state": null,
+        "phase": null,
+        "settling": null,
+        "preparation_active": null,
+        "incoming_source": null,
+        "origin_chain_id": 4663,
+        "origin_vault": null,
+        "review_evidence": null
+      },
+      "inventory_history": {
+        "complete": null,
+        "evidence": null
+      },
+      "reward_assets": {
+        "complete_admission_history": null,
+        "asset_count": null,
+        "observed_asset_count": null,
+        "assets": []
+      },
+      "nft_inventory": {
+        "randomness": {
+          "request_profile": "subscription_v25_two_words_v1",
+          "request_selector": "0x9b1c385e",
+          "num_words": 2,
+          "recovery_policy": null,
+          "funding": null,
+          "coordinator": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "keyHash": null,
+          "subscriptionId": null,
+          "requestConfirmations": null,
+          "callbackGasLimit": null,
+          "nativePayment": null,
+          "immutable_provider_configuration": true,
+          "mutable_request_parameters": [
+            "requestConfirmations",
+            "callbackGasLimit"
+          ],
+          "no_admin_reroll": true,
+          "review_evidence": null,
+          "integration_evidence": null
+        },
+        "observed_bindings": null,
+        "artwork_publication": {
+          "base_uri": null,
+          "manifest_sha256": null,
+          "asset_count": 2784,
+          "asset_paths": [],
+          "review_evidence": null
+        },
+        "royalty_assets": {
+          "complete_admission_history": null,
+          "asset_count": null,
+          "observed_asset_count": null,
+          "assets": []
+        }
+      },
+      "activation_sources": [],
+      "conversion_routes": [],
+      "services": {
+        "rpc": {
+          "status": "unqualified",
+          "profile": "eip1898_hash_pinned_debug_trace",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "pricing": {
+          "status": "unqualified",
+          "profile": "independent_dual_usd_v2",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "randomness": {
+          "status": "unqualified",
+          "profile": "verified_coordinator_two_words",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "keeper": {
+          "status": "unqualified",
+          "profile": "accounting4_upkeep2_compound3_lp1_quality1_confirmation1",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "api": {
+          "status": "unqualified",
+          "profile": "accounting4_custody3_holder_exit_v5_confirmation1",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "metadata": {
+          "status": "unqualified",
+          "profile": "content_addressed_v2",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "opensea": {
+          "status": "unqualified",
+          "profile": "primary_mint_current_nft",
+          "integration": {
+            "requested_product": "opensea_seadrop_v1",
+            "implementation_profile": "vault_direct_v1"
+          },
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null,
+          "collection_url": null
+        }
+      },
+      "_notes": [
+        "No observed value or production qualification is inferred from intended defaults."
+      ],
+      "lp_execution": {
+        "execution_revision": null,
+        "registry_configuration_revision": null,
+        "quality_policy_revision": null,
+        "additional_loss_bps": 100,
+        "search_iterations": 8,
+        "quote_gas_limit": 200000,
+        "execution_pools": [],
+        "observed": null,
+        "review_evidence": null
+      },
+      "rebalance_confirmation": {
+        "duration": 900,
+        "max_observation_gap": 300,
+        "policy_revision": null,
+        "review_hash": null,
+        "observed": null,
+        "review_evidence": null
+      },
+      "holder_exit": {
+        "observed": null,
+        "review_evidence": null
+      },
+      "maintenance": {
+        "compound_intervals": {
+          "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b": 3600
+        },
+        "observed_compound_intervals": null
+      }
+    }
+  ],
+  "pricing_version": 2,
+  "review_policy_version": 1,
+  "range_policy_version": 1,
+  "mint_integration_version": 1,
   "fee_intake_version": 1,
+  "governance_version": 2,
   "custody_version": 3,
-  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5",
-  "production_approved": false,
-  "deployment_authorized": false,
-  "contracts": null,
-  "services": null,
-  "qualification": "Explicit blocked inventory scaffold. Complete and review real runtime bindings, Strategy maintenance policy2/Budget compound capability3 and exact keeper helper pins/readiness, principal-exit API/keeper pins, native-only LP admission, batching/gas, target-chain rehearsals and independent audit. This is not accepted production inventory; the release gate stays closed.",
   "maintenance_policy_version": 2,
   "compound_capability_version": 3,
   "lp_routing_version": 1,
   "execution_quality_version": 1,
-  "lp_execution_qualification": "Unconfigured: pin LiquidityManager and balancingRouter runtimes, mutual manager/core/state/access bindings, bounded reviewed execution catalog and solver limits at one canonical block. Empty catalog disables swaps. Existing historical configs remain version0 and are never relabeled.",
-  "initial_lp_policy": {
-    "rebalance_minimum_interval_seconds": 43200,
-    "compound_interval_seconds": 3600,
-    "range_selection": "operator",
-    "eligible_inside_check_seconds": 3600,
-    "service_jitter_seconds": [
-      60,
-      600
-    ],
-    "max_cumulative_contribution_usd18_per_nft": "1000000000000000000000000"
-  }
+  "rebalance_confirmation_version": 1,
+  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5"
 }

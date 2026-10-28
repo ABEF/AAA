@@ -24,6 +24,13 @@ Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.0
 
 ## Shared implementation boundaries
 
+Fresh confirmation1 adds one Strategy-created, noncustodial helper. It records
+bounded on-chain outside samples and exposes raw-condition versus confirmed
+readiness. Budget gates ordinary rebalance and rechecks stable controls across
+the full close/swap/deploy operation. Matching keeper journals samples/resets;
+API reports one pinned snapshot without inventing execution time.
+[Exact900/300 policy and limits](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+
 [LiquidityManager](../src/ZZZLiquidityManager.sol) uses one private settlement
 helper for collect/close; each caller retains its fixed action and checks.
 [Entry](../src/ZZZActivationEntry.sol) and the converter base share an internal

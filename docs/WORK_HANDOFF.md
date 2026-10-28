@@ -3,22 +3,47 @@
 Reviewed 2026-10-28. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
 [README](../README.md), [Todo](../TODO.md) and the owning runbook before continuing.
 
-## Current fee-quality work
+## Current improvement work
 
-Fresh execution-quality1 adds the Strategy-owned1% additional oracle-relative loss
-floor after known directional core fees; gross/caller/total guards stay. Explicit
-keeper/API owner/revision/runtime checks preserve historical profiles. [Owning guide](EXECUTION_QUALITY.md)
-and [source-bound verification](../reports/fee-impact-policy-20261028/VERIFICATION.md)
-separate exact local evidence and retained failed build attempts from real release
-qualification. No service, journal, Anvil, site or signing policy changed. Rebalance
-passive-second-position/40% trigger discussion did not authorize implementation.
-The separate15-minute configurable confirmation buffer is requested but not
-implemented; sampled checks versus authenticated historical evidence awaits the
-user's choice. See [pending design](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
-The [day audit](../reports/day-audit-20261028/VERIFICATION.md) revalidates existing
-evidence, corrects current guide wording and leaves actual release gates open.
-Implementation b61aecb was published; verify actual heads before reporting this
-later documentation publication. No new EVM/Python test run or service change.
+Fresh confirmation1 adds a fixed Strategy child and Budget gate, with raw
+outside/cooldown eligibility kept separate. User selected sampled on-chain
+evidence,900-second duration,300-second checks after cooldown and strict300-second
+maximum receipt gap; greater gaps restart, with no hidden grace. Constructor gap0
+blocks ordinary readiness until governance configures a nonzero review hash.
+Manual width exception, independent harvest, compound priority and receipt
+recovery stay. Observations cannot detect every move between samples. Exact
+cadence/gap may repeatedly restart with confirmation delays; qualify timing.
+
+Keeper source adds journaled observation/reset recovery, health schema2 metadata
+and same-block/config discovery caching with fresh pre-signing checks. Current
+schema6 preflight covers accounting4/custody3/V5 and17helpers; historicalschema5
+remains inspection-only. Native-only Manager cleanup reduces deployment size.
+See [current review](../reports/practical-improvements-20261028/REVIEW.md),
+[verification](../reports/practical-improvements-20261028/VERIFICATION.md) and
+[operator procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation).
+
+Preserve four original dirty tracked files: reports/source-checks.json,
+scripts/run-fork-checks.py, tests_python/test_fork_runner.py and
+tests_python/test_frontend_history.py. Their baseline hashes and863 original
+source/doc copies are retained in the external practical-improvements evidence
+directory. No service/site/Anvil/journal/signing policy changed. Real market,
+OpenSea/VRF/authority/provider/service/gas qualification and independent audit
+remain open. Check actual local/remote heads before saying published.
+
+
+The deeper buffer audit also fixes unrelated-job resets, repeated paid clears,
+old-window jitter reuse, failed-related-receipt recovery, incompatible outer
+polling, clock retreat and contradictory lifecycle/ABI observations. Budget now
+captures raw observation state across maintenance; callback invalidation reverts
+the complete LP operation. Post-exit governance orientation remains available
+without reopening principal. Final evidence:217affected Solidity passes,
+272distinct source-scoped Python methods (271pass/1missing-cast skip),39normal
+object gates. Counts are scoped, not a global security or production approval.
+
+Prepared but unexecuted: the external practical-improvements directory contains
+`cold-one-venue-gas.patch` for a complete cold operation measurement. It was not
+applied during the subsequent buffer audit. Actual maximal-catalog/target gas
+qualification stays open; never turn this prepared patch into a passed result.
 
 ## Latest functional state
 
@@ -132,9 +157,11 @@ passes reused at exact metadata pins;173backend methods/31reference checks and
 38normal size gates pass. The strict thin-market0.01idle regression is preserved
 and fixed by safeguarded interpolation, not relaxed. An infeasible seed now
 searches smaller valid inputs. Those routing-source sizes were Vault runtime24064 (512margin), Manager24152
-(424margin); Manager creation47826+160static arguments. Fresh fee-quality source
-passes38normal gates with Manager24148runtime (428margin), creation48938+160
-static arguments (only54bytes initcode headroom); use its new exact pins. Actual maximal target
+(424margin); Manager creation47826+160static arguments. That fee-quality checkpoint
+passed38normal gates with Manager24148runtime (428margin), creation48938+160
+static arguments (54bytes initcode margin). Current native-only cleanup passes
+39normal gates: Manager23765runtime (811margin), creation48548+160arguments
+(444initcode margin), Strategy24004runtime (572margin). Use current exact pins. Actual maximal target
 gas/URI/configuration remains unqualified. No service/site/Anvil/journal change.
 Raw evidence is under the task external root `atomic-routing-20261028/`; its
 verification record preserves initial failures, exact unchanged-suite reuse and

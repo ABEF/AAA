@@ -38,6 +38,27 @@ bindings and `CUSTODY_VERSION()==3`. The existing served poplint artifact remain
 an unconfigured accounting3 reader; source publication does not upgrade it to4.
 Public signing remains disabled and the local signer remains Anvil-only.
 
+The optional activation companion uses an independent schema1 configuration;
+fresh source declares maintenance2, LP routing1, execution-quality1 and
+`rebalance_confirmation_version:1`. It additionally pins the immutable
+Strategy-created confirmation child and verifies Strategy/Budget/helper versions,
+parent/controller/runtime bindings and policy at one canonical hash. Its range
+context distinguishes raw `needsRebalance` candidates from confirmed
+`rebalanceReady` eligibility, with unconfigured/not-started/stale/confirming/ready
+states. Intended operation is a15-minute recorded window and five-minute checks
+after the hard12-hour cooldown, with an exact300-second maximum gap and no grace.
+The source constructor gap0 stops ordinary rebalancing until reviewed
+configuration; a delayed sample restarts the window. This is sampled evidence,
+not proof of uninterrupted prices or a promised execution time. Historical
+absent/0 remains a separate profile. See [preparation](ACTIVATION_PREPARATION.md).
+
+Production inventory schema6 is separate from read API schema2 and activation
+schema1. The new [schema6 observer/validator](PRODUCTION_PREFLIGHT.md) checks the
+accounting4/custody3/V5 profile and17helpers; actual source/service/dependency
+qualification remains blocked. The served poplint accounting3 artifact and
+preserved Anvil deployments are unchanged by this source work. See
+[scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+
 After governance starts collective exit, `lifecycle.lp_exit_started` is permanent.
 Mint/contribution preparation stops; NFT transfers and earned LP/royalty claims
 remain available. Exited NFTs report verified zero LP and `evolution: lp_exited`,
@@ -195,7 +216,7 @@ deployment anchor and header age, and uses EIP-1898
 `eth_getCode`. Providers that do not support hash-pinned calls fail closed; no
 fallback to `latest` or a number-only call is used.
 
-Every request verifies eight runtime pins; sealed module bindings; their common
+Every accounting4 request verifies nine runtime pins; sealed module bindings; their common
 controller; the Vault's home chain; NFT/royalty/helper ownership; and canonical
 lifecycle/origin. NFT and wallet requests additionally verify the full admitted
 asset inventory and asset code/decimals. The status endpoint omits those asset

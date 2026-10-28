@@ -17,8 +17,9 @@ The current holder-exit example remains deliberately blocked; its2.5Mgas cap is
 not adequate evidence for current routing. Earlier balance-only cold fixtures
 already exceeded it; complete current operation+25%padding and network-fee budgets
 need qualification. Refusal above the cap is correct, not permission to widen it
-automatically. Keeper quality metadata is validated internally, while API reviews
-return it; current keeper health/logs do not export owner/revision. See the
+automatically. Health schema2 now exports confirmed-block quality metadata and
+gas review diagnostics; local source hashes identify file bytes, not the running
+binary. The matching writer/checker must be rolled out together. See the
 [operator procedure](OPERATOR_MANUAL.md#qualify-current-routing-gas-and-telemetry).
 
 ## Current deployment and configuration
@@ -26,12 +27,21 @@ return it; current keeper health/logs do not export owner/revision. See the
 Use explicit accounting4, fee intake1, direct governance2, custody3, pricing2,
 routing2 and `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5` with actual bindings. The
 [holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
-not a working deployment. Review the operator-owned schema5 production inventory,
-its exact supported bindings, assets/routes/feeds/authorities and gas policy
-under [preflight](PRODUCTION_PREFLIGHT.md). The blocked accounting4 example must stay blocked: the historical schema5/
-accounting3 observer does not qualify profile4. LP routing1 additionally needs
+not a working deployment. Review the distinct fresh accounting4 inventory,
+its exact supported observer bindings, assets/routes/feeds/authorities and gas policy
+under [preflight](PRODUCTION_PREFLIGHT.md). Historical schema5/accounting3 records
+cannot be relabelled profile4; placeholder inventory remains blocked. LP routing1 additionally needs
 exact Manager/balancer/core/state runtime/parent pins and a reviewed execution
 catalog; source settings do not qualify a live service.
+
+`rebalance_confirmation_version:1` additionally pins the Strategy-created helper
+in `contracts.rebalance_confirmation` and its runtime. The existing
+`idle_compounding_budget` address/runtime is also mandatory, even when standalone
+compounding is disabled: the actual Vault Budget must advertise confirmation1
+and bind the same Vault/Access. An old raw-eligibility-only Budget is rejected.
+This profile also requires explicit integer `interval_seconds` from60through300.
+It cannot inherit the historical600second default. The outer loop includes work
+and receipt latency; even a permitted interval is not an exact sample guarantee.
 
 Pin `contracts.principal_exit` and its runtime plus the Access runtime. The
 keeper checks fixed module/access ownership and custody version3. Existing
@@ -65,6 +75,39 @@ site/type diagnostics and compare the same canonical block with a reviewed
 independent endpoint. Do not echo raw provider responses/credentials, reset a
 journal, resend a saved transaction or bypass strict decoding. Actual provider
 qualification remains open. [Review and evidence](../reports/system-adversarial-20261026/VERIFICATION.md).
+
+## Versioned health and execution diagnostics
+
+Matching schema2 writer/checker reports the last confirmed quality observation:
+canonical block/hash/time, observed head, configuration digest, reviewed runtime
+hashes, local source-file hashes and Strategy policy owner/revision/limit. The
+current cycle state is separate from `last_confirmed`; an outage preserves old
+evidence but labels it unavailable rather than fresh. Source identity is explicitly
+`local_files_at_keeper_start_not_runtime_attestation`. A health file is neither
+cryptographic proof of running code nor an independent RPC/market attestation.
+
+Quality1/confirmation1 successful statuses are `healthy_v2` or `dry_run_v2`, so
+an older checker fails closed. Historical profiles retain their old success
+statuses and journal meanings. New checks require schema2 for the new profiles;
+missing/mismatched/stale source, configuration, block or policy evidence cannot
+report healthy. Deploy writer/checker together only through an authorized
+stop/reconcile/dry-run/restart; never patch existing health or journal fields.
+Cycles that start with a saved transaction perform no new quality telemetry
+reads before recovery.
+
+`gas_review.last_review` exposes the actual estimate,125%-padded gas requirement,
+configured gas/gas-price/transaction/day caps and refusal reason. It remains a
+simulation estimate, not an inclusion-cost guarantee, and does not raise caps.
+`lp_execution_health` and `rebalance_confirmation_health` distinguish confirmed
+quality evidence from the last latest-state confirmation observation/reset
+backlog; neither is a guaranteed next execution time.
+
+Only successful discovery metadata at the exact same canonical hash and loaded
+configuration may be memoized within one cycle. No failure fallback or cross-cycle
+cache is used. Pre-simulation and pre-signing checks always reread a fresh header,
+runtime and policy. Confirmed telemetry adds bounded read work; the memoization
+removes repeated same-block discovery reads, not a claim of universally lower
+RPC usage. [Scoped evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
 
 ## Keeper progress watchdog
 
@@ -182,6 +225,51 @@ snapshot/lifecycle, execution loss and gas checks must pass. Optional reviewed
 +/-25/50% width selection in ZZZ-price-in-ETH is explicitly enabled and bounded
 by governance's policy; the keeper cannot invent a new range/algorithm.
 [Range procedure](RANGE_POLICY_UPDATES.md).
+
+### Recorded rebalance confirmation
+
+Fresh confirmation1 checks ordinary eligibility every300seconds after the hard
+cooldown, including when LP remains inside range. The selected observed window
+is900seconds with a **strict300-second maximum observation gap**; governance must
+configure the helper with the reviewed hash. Source starts with gap0, which stops
+ordinary confirmation until configured. There is no latency grace or earlier
+poll hidden in the worker: a gap above300seconds makes prior evidence unusable,
+and the next successful observation restarts the window.
+Receipt/block latency can therefore repeatedly restart it and requires actual
+operating qualification. A nonzero gap below the worker's300-second cadence is
+reported unsupported rather than spending gas on perpetual restarts.
+
+The worker submits one bounded `observe(bucket)` transaction on each due ordinary
+outside check; receipt delay does not suppress the next scheduled renewal.
+Observed readiness starts the existing durable60–600second jitter. Five-minute
+observations continue during that wait; final readiness is read again before
+submission. An approved manual width change bypasses the confirmation window,
+including when gap0, but retains cooldown, jitter and every execution guard.
+This is sampled evidence, not proof that price stayed outside between samples.
+
+The separate `observed_rebalance_v1` namespace never rewrites historical
+`outside_rebalance_v2` scheduling. Startup with an existing candidate, a confirmation/
+raw-eligibility read or clock fault, an observed pause, or an interrupted/failed
+related observation/rebalance requires a receipt-backed `resetObservation(bucket)`
+before extending old evidence. Durable `confirmation_reset_v1` markers survive
+restart and clear only after the exact successful canonical reset receipt;
+failed/ambiguous resets retain normal retry/nonce recovery. Reset-only binding
+checks avoid price reads and the source permits reset during ordinary pause.
+Unrelated router metadata, compound reserve, gas-estimate, health or harvest
+errors degrade their work but do not erase a healthy confirmation window.
+
+`confirmation_clear_v1` retains the successful canonical clear receipt. Repeated
+read failure in that same cleared episode waits for a healthy reread without
+paying for repeated resets. A foreign/nonempty candidate on the first recovered
+read forces another clear before use. A new observation intent atomically
+invalidates the acknowledgement with pending persistence. No cached empty-state
+receipt authorizes readiness. Failed related on-chain receipts atomically queue
+their reset with fee/nonce recovery; unrelated failed receipts do not.
+Incident resets discard only that bucket's fresh jitter. The jitter identity
+includes the condition and window's firstSeen, while normal lastSeen renewals do
+not redraw it; a newly completed window cannot reuse an old expired delay.
+Unknown hidden movements or pause/unpause between observations are not proven.
+Hourly harvest and saved-receipt recovery remain independent. [Verification](../reports/practical-improvements-20261028/VERIFICATION.md).
 
 Fresh policy2 accounting4 standalone compounding requires Budget capability3:
 `now >= max(lastCompound,lastRebalance) + compoundInterval(poolId)`, plus

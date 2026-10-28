@@ -29,6 +29,13 @@ contract VaultPolicyMock {
     function setRangeTarget(uint16 value) external {rangeTarget=value;}
     function setNeed(bool v) external {need=v;}
     function needsRebalance(uint256) external view returns(bool){return need;}
+    // TEST ONLY: this historical synthetic venue/accounting fixture does not
+    // model sampled timing. Mirror its existing need flag and provide stable
+    // empty evidence so the real Budget can bind the complete operation.
+    function rebalanceReady(uint256) external view returns(bool){return need;}
+    function rebalanceConfirmation() external view returns(address){return address(this);}
+    function controlFingerprint(bytes32) external pure returns(bytes32){return keccak256("vault-accounting fixture controls");}
+    function observations(uint256) external pure returns(bytes32,uint64,uint64,uint8){return(bytes32(0),0,0,0);}
     function keeperRangeTarget(bytes32) external view returns(uint16){return rangeTarget;}
     function target(bytes32) external pure returns(int24,int24,uint160){return(-600,600,uint160(1<<96));}
     function validatePrice(bytes32) external pure returns(uint160){return uint160(1<<96);}

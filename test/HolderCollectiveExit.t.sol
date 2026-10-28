@@ -62,6 +62,12 @@ contract HolderExitVenue is ERC721 {
     }
 }
 contract HolderExitPolicy {
+    // TEST ONLY disabled confirmation seam: this suite covers holder settlement,
+    // while real Strategy/helper confirmation is tested separately.
+    function rebalanceReady(uint256) external pure returns(bool) {return true;}
+    function rebalanceConfirmation() external view returns(address) {return address(this);}
+    function controlFingerprint(bytes32) external pure returns(bytes32) {return keccak256("holder-exit fixture controls");}
+    function observations(uint256) external pure returns(bytes32,uint64,uint64,uint8) {return(bytes32(0),0,0,0);}
     function needsRebalance(uint256) external pure returns(bool) {return true;}
     function target(bytes32) external pure returns(int24,int24,uint160) {return(-600,600,uint160(1<<96));}
     function validatePrice(bytes32) external pure returns(uint160) {return uint160(1<<96);}

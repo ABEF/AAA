@@ -19,7 +19,7 @@ Old deployments, journals and sites retain their actual historical code/profiles
 | --- | --- | --- |
 | Swap venue | Immutable Manager-created LPBalancer compares up to four explicitly reviewed native ETH/fixed-ZZZ static hookless v4 pools and executes the same selected route/size. | Best valid sampled final LP value among this list, not global or exact mathematical optimality. Buyback/Entry/reward converters retain separate routing. |
 | Range choice | Governance selects the desired width; a separate optional keeper policy can automatically select 25%/50%. | Operator selects +/-25% or +/-50% in ZZZ price in ETH. No automatic volatility analysis or range switching is requested for this operating policy. Keep optional automation disabled. |
-| Rebalance trigger | Policy2 uses actual physical range exit or an explicit operator range change, after the governed hard pool cooldown. | Initial12-hour minimum even after early exit; matching service adds durable1-10minute jitter and hourly ordinary checks while eligible but inside. |
+| Rebalance trigger | Policy2 uses actual physical range exit or an explicit operator range change, after the governed hard pool cooldown. Fresh confirmation1 additionally gates ordinary replacement. | Initial12-hour minimum even after early exit; fresh confirmation1 checks every300seconds, requires the reviewed sampled window, then adds durable1-10minute jitter. Historical policy2 without confirmation retains hourly ordinary checks. |
 | Contributions | First activation creates shared LP; later activations/top-ups increase its actual ticks. Only the new contribution can be swapped/deployed. | Incumbent idle/compound remains in old share NAV and available for guarded maintenance; it cannot subsidize the new marginal LP floor. |
 | Residual assets | Attributed idle can already be reinvested, including without new fees, and joins collective principal return. | Combine useful residuals later; no zero-dust target, arbitrary sweep or external recipient. |
 | Per-NFT limit | Governance configures cumulative gross contributions through `maxPositionUSD`. | Intended configuration: $1,000,000 per NFT, not a guaranteed current NAV or a shared-market capacity allowance. |
@@ -33,25 +33,48 @@ are enforced on-chain.
 
 ## Requested rebalance confirmation buffer
 
-The user requested a governance-configurable confirmation buffer and selected
-an initial **15minutes (900seconds)** on28October2026. It is **not implemented**:
-Strategy still evaluates the current tick/reference and cooldown; keeper jitter
-does not establish persistent eligibility. No timer getter, setter, transaction
-or historical-price provider is available from this request yet.
+Implemented in fresh `REBALANCE_CONFIRMATION_VERSION()==1`, using a fixed
+Strategy-created helper and the Budget execution gate. Selected operating policy:
+**15 minutes (900 seconds), checks every five minutes after the hard 12-hour
+cooldown, maximum confirmed-observation gap exactly300 seconds**. No grace is
+added: a greater gap restarts the window. With a300-second check cadence, receipt
+or RPC delays can repeatedly restart confirmation; qualify actual timing before
+operating and change policy explicitly if necessary. The helper starts with
+gap0 (ordinary confirmation stopped) until governance supplies a reviewed policy.
 
-One consequential choice remains unanswered: regular recorded on-chain
-observations with bounded gaps and resets, or authenticated historical evidence.
-The hookless pool has no built-in complete observation history. Endpoint checks
-and a TWAP average do not prove uninterrupted range exit; sampled confirmation
-must be labeled honestly. A stale/gapped/changed-LP or changed-policy record must
-not establish readiness. Bounds, gap/reset behavior and implementation/profile
-details need review after that evidence choice; do not invent defaults.
+`Strategy.needsRebalance(bucket)` remains raw physical outside/cooldown eligibility;
+`rebalanceReady(bucket)` additionally requires sampled confirmation. A deliberate
+operator width change keeps its explicit exception after cooldown. Compound
+yields to raw eligible rebalance, including while confirmation is pending. Hourly
+harvesting and pending receipt recovery remain independent.
 
-Keep existing12-hour cooldown, explicit operator-width exception, independent
-harvest/receipt recovery and fixed rights until a separately verified change.
-The40% movement trigger and passive second position remain discussion only.
-The [sole task](../TODO.md#task-rebalance-confirmation-buffer) owns status;
-[operator boundary](OPERATOR_MANUAL.md#pending-15-minute-rebalance-confirmation) explains what can be called today.
+The authorized keeper records `observe(bucket)` transactions. Same physical LP,
+exit side, price-policy identities and control revisions must match. Returning
+inside, crossing to the opposite side, a changed LP/policy, stale gap or a
+successfully observed read failure cancels/restarts evidence. A read-only error
+or reverted transaction does not clear on-chain state: the worker persists a
+reset requirement and confirms `resetObservation(bucket)` through its normal
+journal. Startup, interrupted recovery and observed pause also require reset.
+The reset is clear-only and allowed during ordinary pause; it grants no custody.
+
+This is **sampled confirmation**, not uninterrupted historical proof. Movement,
+faults or pause cycles entirely between observations can be missed. Public
+observations also reveal a pending maintenance window; no privacy/MEV guarantee
+is claimed. Independent prices, deterministic post-close sizing and execution
+floors remain essential. Service jitter starts after readiness, with observations
+continuing while it waits. Direct authorized calls bypass service jitter, never
+the on-chain buffer or hard cooldown.
+
+Budget captures stable Registry/Oracle/quality/confirmation controls before the
+whole maintenance operation and rechecks them after it, including the raw recorded
+observation tuple. Clearing/changing evidence in a callback cancels the operation;
+checking post-replacement readiness instead would incorrectly reject every new
+LP identity. Changed-and-restored monotonic revisions cannot pass. Normal feed rounds and contribution balances
+do not reset samples. Exact profiles/runtimes must be reviewed together; existing
+deployments and journals are never relabelled. The40% trigger/passive-position
+ideas remain discussion only. [Operator steps](OPERATOR_MANUAL.md#configure-rebalance-confirmation)
+and [scoped evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
+
 
 ## Execution venue selection
 
@@ -169,18 +192,23 @@ The new versioned source implements this scheduler/state policy:
    physical LP's real ticks. Active range is `lower <= tick < upper`. Preserve
    legitimate downward-boundary slot0 tick semantics; do not infer it from a
    rounded display price or an assumed +/-percentage.
-4. If still inside, persist another ordinary evaluation one hour later. Keep
-   faster receipt/health observation independent; hourly decision checks can
-   add nearly another hour after a later boundary crossing.
-5. If outside or an explicit operator range change is pending, choose one
-   OS-CSPRNG delay of60-600seconds and persist it with
-   deployment, bucket, LP and policy identity. Do not block the event loop or
-   redraw on every check/restart. Continue receipt handling and hourly harvest.
+4. In the fresh confirmation1 profile, evaluate eligible inside/outside positions
+   every300seconds. Inside observations invalidate any prior ordinary candidate;
+   outside candidates require receipt-backed samples and `rebalanceReady` under
+   the strict reviewed gap/window. Historical policy2 without this capability
+   keeps its original hourly checks; never relabel an old scheduler/journal.
+   Receipt handling, health and hourly harvesting remain independent.
+5. After ordinary confirmation is ready, or an explicit operator range change
+   passes its raw cooldown/price exception, choose one OS-CSPRNG delay of60-600
+   seconds and persist it with deployment, bucket, LP and policy identity. Do not
+   redraw on each check/restart. Continue five-minute observations while jitter
+   waits; a missed gap can revoke readiness and restart confirmation.
 6. At the due time, re-read actual range, prices, routes and economics; simulate
    fresh exact calldata. If back inside with no operator range change, cancel
-   the attempt. A new explicit width request bypasses the local hourly wait,
+   the attempt. A new explicit width request bypasses the ordinary local check wait,
    never the hard contract cooldown. Submit only when
-   the contract's actual outside/cooldown/authorization/execution rules pass.
+   the contract's actual outside/cooldown/confirmation/authorization/execution
+   rules pass.
 7. Reset the anchor only after confirmed successful LP replacement. Preserve
    ambiguous hashes, normal nonce recovery and paid-revert backoff. Recovery
    after downtime evaluates current state, never replays missed rebalances.
@@ -200,9 +228,11 @@ Approximate centring does not select a new oracle/spot tolerance.
 
 An authorized wallet can submit `Vault.rebalance(bucket,minimumLiquidity,deadline)`
 at a chosen time. Governance alone does not imply keeper authorization; its
-`setKeeper` grant enables the existing capability. The call skips local hourly
-checking/jitter only. It retains all on-chain cooldown/range/lifecycle/execution
-checks and can be mined later than submission. No force-rebalance bypass exists.
+`setKeeper` grant enables the existing capability. The call skips local checking
+and jitter only. Fresh ordinary rebalancing still requires on-chain confirmation
+readiness; a raw `needsRebalance` result is insufficient. It retains cooldown,
+range, lifecycle and execution checks and can be mined later than submission.
+No force-rebalance bypass exists.
 The submitter funds network gas. Reconcile automated pending work first. A manual
 transaction from the service's own key outside its journal needs explicit nonce/
 receipt/spend reconciliation before restart; new LP/timer discovery does not

@@ -71,6 +71,9 @@ interface IZZZOracle {
     function referenceX96(address token0, address token1) external view returns (uint160);
 }
 interface IZZZStrategy {
+    function rebalanceConfirmation() external view returns(address);
+    function rebalanceReady(uint256 id) external view returns(bool);
+    function rebalanceObservation(uint256 id) external view returns(uint8 side,bytes32 identity,bool manual);
     function additionalLossBps() external view returns (uint16);
     function executionQualityRevision() external view returns (uint64);
     function minimumOutput(bytes32 poolId, bool zeroForOne, uint256 amountIn) external view returns (uint256);

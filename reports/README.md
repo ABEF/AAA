@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Confirmation and operational improvements,2026-10-28](practical-improvements-20261028/VERIFICATION.md):
+sampled15-minute/strict300-second confirmation, versioned worker/API and reset
+receipts, current schema6 preflight, healthschema2/canonical-block caching, native
+Manager cleanup and corrected operator guides. Exact scopes, retained failures
+and operating limits are explicit; no installed service/site/Anvil changed.
+
 [Paris28October day audit](day-audit-20261028/VERIFICATION.md): all five reachable
 day commits throughb61aecb reviewed, exact raw evidence/source hashes revalidated,
 profile/telemetry/gas guidance corrected and requested15-minute buffer recorded

@@ -17,7 +17,7 @@ no configured deployment means unavailable integration data, never examples.
 | Current design | Implementation and remaining boundary |
 | --- | --- |
 | Market and custody | Robinhood v4 native ETH/fixed ZZZ, selected hookless/static pool 0x5011...afe1b. Accounting4 appends terminal Exited5; production LP admission is native ETH/ZZZ only. [Pool](docs/POOL_SELECTION.md), [profile](docs/POSITION_V4.md). |
-| Contributions and prices | Native ETH or one fixed ZZZ only. Source admission, the native pool, immutable buyback and normal exit use that same reviewed ZZZ identity. Minimum $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
+| Contributions and prices | Native ETH or one fixed ZZZ only. Source admission, the native pool, immutable buyback and collective holder return use that same reviewed ZZZ identity. Minimum $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
 | Maintenance and conversion | Keeper authorization/pause are rechecked after rebalance, compound and buyback callbacks. Paid-revert cooldowns remain visible in matching keeper health/checkers. [Scoped review](reports/manipulation-hardening-20261027/VERIFICATION.md). Maintenance policy2 permits ordinary replacement only outside the actual range, or for an operator width change, after the hard configured interval (initial12hours). Matching service adds durable1-10minute jitter; compound V3 has a separately governed interval after LP replacement/compound and yields to due rebalance. Hourly harvest stays independent. [Cadence procedure](docs/OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing). Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
 | Movement and recovery | Same-native-pair moves and parking before exit. Governance may permanently close all LP and return actual ETH+ZZZ by NFT shares through bounded direct payouts; NFTs keep transfers/future royalties/old rewards. No external custody address or bridge. [Holder exit](docs/HOLDER_COLLECTIVE_EXIT.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
@@ -28,11 +28,15 @@ bounded governance configuration. Stronger gross, captured operation and caller
 floors remain; separate converters retain their existing policy. [Scoped evidence](reports/fee-impact-policy-20261028/VERIFICATION.md)
 does not qualify actual markets or change installed services/sites.
 
-The [28October day audit](reports/day-audit-20261028/REVIEW.md) reviews all five
-day commits throughb61aecb, corrects preflight/telemetry guidance and records the
-pending15-minute confirmation buffer. It revalidates source-bound evidence rather
-than rerunning unchanged suites; no new confirmed financial-accounting defect
-or production approval is claimed. Earlier [payout-retry fixes](reports/two-day-audit-20261028/VERIFICATION.md)
+Fresh [confirmation1 and operational improvements](reports/practical-improvements-20261028/REVIEW.md)
+add a15-minute sampled on-chain window, five-minute checks after cooldown and
+strict300-second maximum observation gap. Greater gaps restart; confirmation
+latency can repeatedly restart this strict policy. Manual width changes retain
+their cooldown exception. Schema6 preflight, anchored keeper health and
+native-only Manager cleanup are implemented; exact bindings and actual operating
+qualification remain open. [Verification](reports/practical-improvements-20261028/VERIFICATION.md)
+distinguishes new checks, reused evidence and retained failed attempts.
+No uninterrupted-history proof or production approval is claimed. Earlier [payout-retry fixes](reports/two-day-audit-20261028/VERIFICATION.md)
 retain their own137-method/comment-only compiler scope. [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md)
 still distinguish contract guards, service controls and remaining market risks.
 No service or website changed.
@@ -83,7 +87,7 @@ retains its source scope. Neither establishes production approval.
 | Documentation map | [Current guides and historical references](docs/README.md) |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
 | Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |
-| Production inventory | [Preflight scope](docs/PRODUCTION_PREFLIGHT.md) - historical accounting3 tooling; fresh accounting4 inventory/gate remains blocked pending implementation and qualification |
+| Production inventory | [Preflight scope](docs/PRODUCTION_PREFLIGHT.md) - explicit schema6/accounting4 observer and validator; actual bindings/services remain unqualified, schema5 inspection is historical |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
 | Security and release | [Latest systematic internal review](reports/system-adversarial-20261026/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
@@ -313,7 +317,7 @@ Remaining work is tracked only in the [Project Todo](TODO.md). It includes:
 - **Integration and operations:** live frontend/backend flows, target-chain gas/strategy qualification and operating rehearsals.
 - **Independent assurance:** external audit, remediation and final configuration/release review.
 
-The [production inventory](config/production.example.json) records the exact deployment configuration and evidence. The [release approval record](docs/RELEASE_CHECKLIST.md) records the final go/no-go decision. Internal reviews and local passes do not replace either.
+The [production inventory](config/production.holder-exit.example.json) records the exact deployment configuration and evidence. The [release approval record](docs/RELEASE_CHECKLIST.md) records the final go/no-go decision. Internal reviews and local passes do not replace either.
 
 ## Try the local browser test
 

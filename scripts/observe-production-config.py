@@ -48,7 +48,11 @@ def main(argv=None):
         chain_id = config['chains'][0]['chain_id']
         endpoint = os.environ[args.rpc_env]
         rpc = Rpc([endpoint], chain_id, timeout=10, retries=2)
-        result = observe(config, rpc)
+        if type(config.get('schema_version')) is int and config['schema_version']==6:
+            from zzz_ops.production_observer_v4 import observe as observe_current
+            result = observe_current(config,rpc)
+        else:
+            result = observe(config, rpc)
         write_observation(args.output, result)
     except Exception:
         print('Inventory observation failed; previous output preserved. Check public configuration, canonical anchor and read RPC availability.', file=sys.stderr)

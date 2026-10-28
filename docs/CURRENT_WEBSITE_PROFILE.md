@@ -1,8 +1,12 @@
-# Current3 website reader and unsigned reviews
+# Served current3 website profile and fresh4 boundary
 
-This is the explicit current-contract profile for the separate
-[poplint integration target](SITE_ENVIRONMENTS.md). It does not upgrade a
-schema1/native2 deployment, activate public signing or deploy contracts.
+The separately served [poplint integration target](SITE_ENVIRONMENTS.md) uses the
+explicit current3 reader/unsigned-review profile below. Its reviewed deployment
+configuration remains absent. The fresh contract candidate is now
+[accounting4/custody3/canonical V5](POSITION_V4.md), which this website profile
+does not support. Neither source publication nor changing a manifest's version
+upgrades the served build, a schema1/native2 deployment or an existing journal.
+Public signing remains disabled.
 
 | Boundary | Required value |
 | --- | --- |
@@ -12,7 +16,7 @@ schema1/native2 deployment, activate public signing or deploy contracts.
 | Browser runtime pins | Distinct reviewed `access`, `nft`, `vault`, `entry`, `claim_router`, `oracle`, `pools`, `budget`, `activation_assets`, `contribution_pricing`, `fees`, `handoff` |
 | Inputs | Exactly native ETH/zero/18 and the fixed deployment ZZZ; reviewed runtime, decimals, policy IDs, typed route and enabled state |
 | HTTP response schema | Remains schema2; website manifest and API envelope versions are independent |
-| Position data | Current accounting3/local eight-word codec selected by the backend; frontend accepts only current custody/status/share/rarity/valuation invariants |
+| Position data | Accounting3/local eight-word codec selected by the backend; its status/valuation rules do not implement accounting4's terminal holder-exit state |
 | Budget | Explicit reviewed maximum contribution cap; default200bps permits98% marginal deployed LP. Captured actual governance cap and stronger caller/venue minima still apply |
 
 At a canonical pinned block, the browser verifies reviewed runtime code,
@@ -26,6 +30,18 @@ versions, inconsistent activation/rarity/share fields and contradictory valuatio
 states. Actual LP, ETH claimable and history may be unavailable independently;
 never invent zero or display an unconverted source balance as ETH. A confirmed
 claim is a payout, not new income or an artwork evolution.
+
+## Fresh4 integration still required
+
+A new explicitly versioned frontend profile must verify accounting4/custody3,
+canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`, current Manager/Balancer,
+execution-quality and rebalance-confirmation capabilities, exact runtimes and
+their parent/core bindings.
+It must distinguish terminal zero LP from unavailable data, unpaid holder
+principal from rewards, and continuing royalty rights from ended LP earnings.
+The backend's current accounting4 support or a matching eight-word position
+length does not establish browser compatibility. Do not deploy fresh contracts
+under schema3 or relabel the current3 artifact as fresh4.
 
 ## Configuration and rollout
 
@@ -46,8 +62,8 @@ claim is a payout, not new income or an artwork evolution.
    recovery retain their existing code/profile; this change does not authorize
    extending the signer, public minting or real-fund transactions.
 
-Current focused [verification](../reports/current3-website-20261026/VERIFICATION.md)
+The served-profile [verification](../reports/current3-website-20261026/VERIFICATION.md)
 uses actual Python projection/preparation DTO code with synthetic RPC, venue,
 price and authority dependencies. It verifies integration behavior, not real
 prices, provider authenticity, deployed contracts, marketplace operation or an
-independent audit. Production remains **NOT APPROVED**.
+independent audit. It is not fresh4 acceptance. Production remains **NOT APPROVED**.

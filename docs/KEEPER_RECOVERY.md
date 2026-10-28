@@ -246,7 +246,7 @@ nonce checks fail closed until the external receipt/nonce/spend is independently
 reconciled. Restart, new LP discovery or deleting a jitter timer cannot adopt that
 transaction. Preserve evidence and never edit next_nonce to force signing.
 
-## Maintenance policy2 schedule recovery
+## Versioned maintenance schedule recovery
 
 Fresh accounting4 service configuration explicitly selects maintenance_policy_version2
 and authenticates Strategy2. Enabled standalone compound also authenticates Budget3.
@@ -254,7 +254,7 @@ Accounting4 configs without this new field retain historical mode1; do not chang
 the field/runtime pin to relabel a running deployment. API preparation separately
 requires explicit1or2 for accounting4.
 
-The optional outside_rebalance_v2 journal namespace stores only bounded scheduling
+Historical policy2 without confirmation1 retains its `outside_rebalance_v2` namespace. It stores bounded scheduling
 records: stable deployment/pool/LP/clock identity, hourly ordinary check time or
 one persisted60-600second jitter. Top-ups, harvesting and balances cannot redraw
 it. Only obsolete scheduling records are pruned; existing pending, nonce, receipt,
@@ -264,10 +264,73 @@ current state once, not missed rebalance cycles. A deliberate width change bypas
 the local hourly wait but preserves on-chain cooldown and the jitter. Fresh eligibility
 is checked before simulation and after gas review. Jitter is not an on-chain guarantee.
 
-Use fast source-example60second observation while keeping hourly harvest separate.
+The historical source example polls60seconds while keeping hourly harvest separate.
 A local JSON change needs controlled restart and fresh matching health; changing
 on-chain range/rebalance/compound intervals normally does not. No existing service
 is upgraded by publishing this guide. [Exact policy/evidence](LP_EXECUTION_POLICY.md).
+
+### Sampled confirmation1 recovery
+
+The explicit `rebalance_confirmation_version:1` profile additionally pins
+`contracts.rebalance_confirmation`/runtime, the actual Vault's
+`idle_compounding_budget`/runtime and their parent/Access/version bindings. Budget
+confirmation1 is required even with standalone compounding disabled. Never relabel
+an older Strategy/Budget or journal to imply the new gate exists.
+`interval_seconds` must be explicitly configured as an integer60–300; the old
+600second default is refused for confirmation1. Work and receipt delays still
+add latency, so an admitted interval does not promise an exact sample schedule.
+
+New `observed_rebalance_v1` schedules ordinary checks every300seconds after the
+hard cooldown, including inside-range checks. The selected policy is a900second
+observed window with strict300second maximum sample gap. Initial source gap0
+stops ordinary readiness until governance configures900/300 with its review hash.
+No latency grace or earlier hidden observation is added. A gap above300seconds
+makes old evidence unusable; the next successful observation restarts the window.
+Receipt delays can cause repeated restarts. A nonzero gap below the fixed300second worker
+cadence is reported unsupported rather than triggering perpetual paid restarts.
+
+Once sampled readiness passes, the worker saves its60–600second jitter and keeps
+refreshing samples on due five-minute checks. It rereads readiness before any
+rebalance submission. A deliberate operator width change retains its source
+exception to the window, including gap0, while respecting cooldown/jitter/value
+guards. This is recorded sampling, not uninterrupted price-history proof.
+
+Startup with an existing chain candidate, a confirmation/raw-eligibility read or
+clock fault, an observed pause, or an interrupted/failed related observation/rebalance
+requires an explicit `resetObservation(bucket)` transaction before extending that
+candidate. `confirmation_reset_v1` stores bounded reset-needed markers. Only the
+exact successful canonical reset receipt clears its marker; a failed/ambiguous
+reset retains pending/nonce/fee/retry recovery. Reset-only runtime/binding checks
+avoid condition/price reads and the source allows reset during ordinary pause.
+An off-chain failure alone never clears on-chain state.
+
+Unrelated router metadata, compound reserve, quote-gas, health and harvest
+failures do not invalidate a healthy sampled window. Only an exception while
+actually reconciling an exactly identified observation/reset/rebalance is a
+related pending interruption; a later unrelated health-read failure is not.
+No pending fault rewrites its journal. Recover the same saved hash first;
+related reset work is deferred until recovery permits it. A failed related
+canonical receipt queues reset/jitter invalidation in the same fee/nonce journal
+commit. Unrelated paid failures retain their normal accounting/cooldown only.
+
+The bounded `confirmation_clear_v1` ledger records a verified successful reset
+receipt and whether a healthy reread is still required. Persistent read faults
+after that known clear do not pay for another reset repeatedly. An empty recovered
+read restores ordinary observation work; a nonempty/foreign candidate at the
+first recovered read forces a new reset before use. A new observation intent
+invalidates the acknowledgement atomically before signing. Failed persistence
+rolls back that invalidation and sends nothing; an ambiguous broadcast preserves
+the saved pending operation with the old acknowledgement invalidated. Never edit
+these markers to manufacture readiness or assume another keeper cannot write.
+
+Only that bucket's new scheduling record is discarded for a required reset.
+Jitter binds condition identity and firstSeen; lastSeen renewals preserve it,
+while a restarted window must receive a fresh post-readiness delay. Restart
+also rechecks existing candidates, so lost in-memory continuity cannot silently
+extend an old healthy record. Independent hourly harvesting remains available
+under its own guards. Neither this mechanism nor gap expiry detects every hidden
+movement or pause/unpause between samples. No installed service was changed.
+[Scoped implementation/evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
 
 ## Logs, health and fallback
 
@@ -278,6 +341,30 @@ Deploy matching writer/checker together only through an authorized rollout and
 require a fresh matching cycle after a reviewed config change. Never patch the
 hash, edit/reset a journal or assume this digest authenticates the host/provider.
 There is no in-process config reload: finalize config before constructing Keeper.
+
+Health schema2 adds `lp_execution_health`: the last confirmed block/hash/time,
+observed head, policy owner/revision/limit, reviewed runtime hashes, configuration
+digest and local source-file hashes. The current cycle state is separate from
+`last_confirmed`; an unavailable read cannot relabel retained evidence fresh.
+Hashes identify local files at keeper start, not an attested running binary or
+an authenticated market/provider. `rebalance_confirmation_health` separately
+reports its last latest-state observation and pending reset buckets.
+
+For quality1 or confirmation1, success is `healthy_v2`/`dry_run_v2`, making older
+checkers fail closed. The matching new checker requires schema2 for these profiles;
+historical profiles keep their original success strings. Deploy writer/checker
+together through reviewed stop/reconcile/dry-run/restart, preserve journals and
+require new matching health. Missing or stale anchor/source/config/policy data
+does not pass. A cycle starting with saved pending work adds no new quality
+telemetry reads before recovery.
+
+`gas_review.last_review` contains estimated gas,125%-padded required gas,
+configured gas/gas-price/transaction/day limits and a sanitized refusal reason.
+It is an estimate, not an inclusion guarantee or permission to widen limits.
+The shipped2.5Mgas ceiling remains unqualified and unchanged. Discovery may reuse
+successful metadata only within one exact canonical block/configuration/cycle;
+failures invalidate that cache. Pre-simulation and pre-signing reads remain fresh.
+[Verification](../reports/practical-improvements-20261028/VERIFICATION.md).
 
 
 The current keeper requires both `preparationActive()` and `canonicalState()` on

@@ -28,6 +28,8 @@ from zzz_ops.position import decode_position
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 from keeper.watchdog import ProgressWatchdog, ProgressRPC
 from keeper.principal import PrincipalDistribution, BATCH as PRINCIPAL_BATCH, encode_batch as encode_principal_batch
+from keeper.health import HEALTH_SCHEMA, OBSERVATION_SCHEMA, source_hashes
+from keeper.rebalance_confirmation import RebalanceConfirmation, CHECK_SECONDS as CONFIRMATION_CHECK_SECONDS, STATE_NAMESPACE as CONFIRMATION_STATE
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
 NATIVE_ASSET = '0x'+'0'*40
@@ -44,6 +46,8 @@ MAX_BUYBACK_TASKS = 32
 OUTSIDE_REBALANCE_STATE = 'outside_rebalance_v2'
 REBALANCE_CHECK_SECONDS = 3600
 MAX_OUTSIDE_SCHEDULES = 10000
+CONFIRMATION_RESETS = 'confirmation_reset_v1'
+CONFIRMATION_CLEARS = 'confirmation_clear_v1'
 CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
 PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('strategy','applyKeeperRange(bytes32)'),
@@ -52,12 +56,16 @@ PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('buyback','execute(address,uint256,bytes32,uint256)'),
     ('royalties',ROYALTY_BATCH),
     ('rewards',ROYALTY_BATCH),
+    ('rebalance_confirmation','observe(uint256)'),
+    ('rebalance_confirmation','resetObservation(uint256)'),
 ))
 LP_EXIT_BLOCKED_ACTIONS = frozenset((
     ('strategy','applyKeeperRange(bytes32)'),
     ('vault','rebalance(uint256,uint128,uint256)'),
     ('compounder','compound(uint256,uint128,uint256)'),
     ('vault','collectFees(uint256,uint256)'),
+    ('rebalance_confirmation','observe(uint256)'),
+    ('rebalance_confirmation','resetObservation(uint256)'),
 ))
 
 def log(event: str, **fields: Any) -> None:
@@ -102,6 +110,12 @@ class Keeper:
         # Export only the digest: endpoint and signer-file secrets stay private.
         self.configuration_sha256 = hashlib.sha256(json.dumps(
             config,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        self.source_files_sha256 = source_hashes()
+        self._lp_metadata_cache = None
+        self._lp_validation_failed = False
+        self.lp_execution_health = {'schema':OBSERVATION_SCHEMA,'state':'not_observed',
+            'last_confirmed':None,'last_error':None}
+        self.gas_review_health = {'state':'not_reviewed_this_cycle','last_review':None}
         self.accounting_version = config.get('accounting_version',1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4):
             raise ValueError('Unsupported keeper accounting version')
@@ -147,6 +161,12 @@ class Keeper:
                     raise ValueError('Missing reviewed LP execution runtime: '+role)
         if self.adaptive_range_enabled and (type(adaptive.get('policy_version')) is not int or adaptive['policy_version'] != 1):
             raise ValueError('Adaptive range requires the explicit reviewed policy version 1')
+        self.rebalance_confirmation=RebalanceConfirmation(self)
+        self._rebalance_observation_due=None
+        self._confirmation_seen_buckets=set()
+        self._confirmation_pause_seen=set()
+        self._confirmation_recovery_interrupted=set()
+        self._rebalance_reset_due=None
         if 'positions' in config or config.get('accounting_model',ACCOUNTING_MODEL) != ACCOUNTING_MODEL:
             raise ValueError('Keeper configuration must use the shared-pool accounting model')
         discovery = config.get('bucket_discovery',{})
@@ -242,23 +262,50 @@ class Keeper:
             self._validate_checkpoint()
 
     def _validate_state(self) -> None:
-        schedules = self.state.get(OUTSIDE_REBALANCE_STATE,{})
-        if not isinstance(schedules,dict) or len(schedules) > min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
-            raise ValueError('Malformed outside-rebalance schedule inventory')
-        for bucket,record in schedules.items():
-            if not isinstance(bucket,str) or str(positive(bucket,'schedule bucket')) != bucket or int(bucket) >= 1 << 256:
-                raise ValueError('Outside-rebalance bucket identity must be canonical')
-            if not isinstance(record,dict) or set(record) != {'identity','observed_at','next_check_at','execute_after'}:
-                raise ValueError('Malformed outside-rebalance schedule')
-            rpc_hash(record['identity'],'outside-rebalance identity')
-            for name in ('observed_at','next_check_at','execute_after'):
-                value = record[name]
-                if type(value) is not int or not 0 <= value < 1 << 64:
-                    raise ValueError('Malformed outside-rebalance schedule time')
-            observed,check,execute = (record[name] for name in ('observed_at','next_check_at','execute_after'))
-            if not (execute == 0 and check == observed+REBALANCE_CHECK_SECONDS or
-                    check == 0 and 60 <= execute-observed <= 600):
-                raise ValueError('Invalid outside-rebalance schedule bounds')
+        clears=self.state.get(CONFIRMATION_CLEARS,{})
+        if not isinstance(clears,dict) or len(clears)>min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+            raise ValueError('Malformed confirmation clear inventory')
+        for bucket,record in clears.items():
+            if (not isinstance(bucket,str) or str(positive(bucket,'confirmation clear bucket'))!=bucket or
+                    int(bucket)>=1<<256 or not isinstance(record,dict) or
+                    set(record)!={'number','hash','timestamp','nonce','awaiting_healthy_read'} or
+                    type(record['awaiting_healthy_read']) is not bool):
+                raise ValueError('Malformed confirmation clear acknowledgement')
+            rpc_hash(record['hash'],'confirmation clear block hash')
+            for name in ('number','timestamp','nonce'):
+                if type(record[name]) is not int or not 0<=record[name]<1<<256:
+                    raise ValueError('Malformed confirmation clear receipt')
+        resets=self.state.get(CONFIRMATION_RESETS,{})
+        if not isinstance(resets,dict) or len(resets)>min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+            raise ValueError('Malformed confirmation reset inventory')
+        for bucket,needed in resets.items():
+            if (not isinstance(bucket,str) or str(positive(bucket,'confirmation reset bucket'))!=bucket or
+                    int(bucket)>=1<<256 or needed is not True):
+                raise ValueError('Malformed confirmation reset marker')
+        for namespace in (OUTSIDE_REBALANCE_STATE,CONFIRMATION_STATE):
+            schedules = self.state.get(namespace,{})
+            if not isinstance(schedules,dict) or len(schedules) > min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+                raise ValueError('Malformed outside-rebalance schedule inventory')
+            for bucket,record in schedules.items():
+                if not isinstance(bucket,str) or str(positive(bucket,'schedule bucket')) != bucket or int(bucket) >= 1 << 256:
+                    raise ValueError('Outside-rebalance bucket identity must be canonical')
+                fields={'identity','observed_at','next_check_at','execute_after'}
+                if namespace==CONFIRMATION_STATE:fields.add('last_checked_at')
+                if not isinstance(record,dict) or set(record) != fields:
+                    raise ValueError('Malformed outside-rebalance schedule')
+                rpc_hash(record['identity'],'outside-rebalance identity')
+                for name in fields-{'identity'}:
+                    value = record[name]
+                    if type(value) is not int or not 0 <= value < 1 << 64:
+                        raise ValueError('Malformed outside-rebalance schedule time')
+                observed,check,execute = (record[name] for name in ('observed_at','next_check_at','execute_after'))
+                if namespace==CONFIRMATION_STATE:
+                    last=record['last_checked_at']
+                    valid=last>=observed and check==last+CONFIRMATION_CHECK_SECONDS and (
+                        execute==0 or 60<=execute-observed<=600)
+                else:valid=(execute==0 and check==observed+REBALANCE_CHECK_SECONDS or
+                    check==0 and 60<=execute-observed<=600)
+                if not valid:raise ValueError('Invalid outside-rebalance schedule bounds')
         for field in ('last','spent','retry_after'):
             values = self.state.get(field,{}) if field == 'retry_after' else self.state.get(field)
             if not isinstance(values,dict): raise ValueError('Malformed keeper counters')
@@ -361,10 +408,27 @@ class Keeper:
         self.confirmed_reverts = 0
         self.active_revert_cooldowns = None
         self.next_revert_retry_after = None
+        self._lp_metadata_cache = {}
+        self._lp_validation_failed = False
+        started_pending = bool(self.state.get('pending'))
+        self.lp_execution_health['state'] = ('pending_recovery' if started_pending else 'not_observed_this_cycle')
+        self.lp_execution_health['last_error'] = None
+        self.gas_review_health['state'] = 'not_reviewed_this_cycle'
         def health(status: str, **extra: Any) -> None:
             atomic_json(self.health_path,{'time':dt.datetime.now(dt.timezone.utc).isoformat(),
+                'health_schema':HEALTH_SCHEMA,
                 'status':status,'live':self.live,'chain_id':self.chain,'sender':self.sender,
                 'configuration_sha256':self.configuration_sha256,
+                'lp_execution_health':self.lp_execution_health,
+                'gas_review':self.gas_review_health,
+                'rebalance_confirmation_health':{
+                    'version':self.rebalance_confirmation.version,
+                    'check_interval_seconds':CONFIRMATION_CHECK_SECONDS if self.rebalance_confirmation.version==1 else None,
+                    'pending_reset_buckets':sorted(self.state.get(CONFIRMATION_RESETS,{}),key=int),
+                    'awaiting_healthy_read_buckets':sorted((bucket for bucket,record in
+                        self.state.get(CONFIRMATION_CLEARS,{}).items() if record['awaiting_healthy_read']),key=int),
+                    'scope':'last_observed_latest_state_not_continuous_evidence',
+                    'last_observation':self.rebalance_confirmation.last_observation},
                 'last_success_at':self.last_success_at,'consecutive_failures':self.cycle_failures,
                 'skipped_buckets':self.skipped_buckets,'pending':bool(self.state.get('pending')),
                 'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,
@@ -381,11 +445,16 @@ class Keeper:
         try:
             self.cycle()
             self._observe_revert_cooldowns()
+            # Saved intent/receipt recovery always comes first and never needs
+            # a new route dependency. These observations cannot authorize work.
+            if not started_pending and not self.state.get('pending'):
+                self._observe_execution_health()
         except Exception as exc:
             self.cycle_failures += 1
             details = error_context(exc)
             retryable = isinstance(exc,(RpcError,subprocess.TimeoutExpired))
             health('error' if retryable else 'halted',**details)
+            self._lp_metadata_cache = None
             log('cycle_failed',retryable=retryable,consecutive_failures=self.cycle_failures,**details)
             if not retryable: raise
             return False
@@ -409,7 +478,15 @@ class Keeper:
             # introduce additional loop backoff.
             status = ('revert_cooldown' if self.active_revert_cooldowns else
                 ('degraded' if self.confirmed_reverts else ('healthy' if self.live else 'dry_run')))
+        # Older checkers do not understand schema2 metadata requirements. Their
+        # old success strings must not approve the new quality profile silently.
+        if (self.execution_quality_version == 1 or self.rebalance_confirmation.version==1) and status in ('healthy','dry_run'):
+            status += '_v2'
+        if (self.execution_quality_version == 1 and not pending and self.canonical_lifecycle in (None,0)
+                and self.lp_execution_health['state'] != 'observed_this_cycle'):
+            status='degraded'
         health(status)
+        self._lp_metadata_cache = None
         log('cycle_completed',status=status,skipped_buckets=self.skipped_buckets,pending=pending,
             confirmed_reverts=self.confirmed_reverts,
             active_revert_cooldowns=self.active_revert_cooldowns,next_revert_retry_after=self.next_revert_retry_after)
@@ -532,16 +609,26 @@ class Keeper:
         if self.view('strategy','MAINTENANCE_POLICY_VERSION()') != 2:
             raise RpcError('Outside-only maintenance policy version differs')
 
-    def _validate_lp_routing(self) -> None:
-        """Fresh helper metadata and runtimes use one canonical, read-only block."""
+    def _lp_routing_snapshot(self,header: dict[str,Any],*,use_cache: bool = False) -> dict[str,Any]:
+        """Read one exact canonical state; only cycle discovery can reuse it."""
         if self.lp_routing_version != 1: return
         from zzz_ops.lp_execution import observe
-        header=self.rpc.call('eth_getBlockByNumber',['latest',False])
         if not isinstance(header,dict): raise RpcError('Missing LP execution header')
         block={'blockHash':rpc_hash(header.get('hash'),'LP execution block hash'),'requireCanonical':True}
-        rpc_quantity(header.get('number'),'LP execution block number')
+        number=rpc_quantity(header.get('number'),'LP execution block number')
         if abs(time.time()-rpc_quantity(header.get('timestamp'),'LP execution timestamp',minimum=1))>600:
             raise RpcError('Stale LP execution snapshot')
+        identity=hashlib.sha256(json.dumps(self.config,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        if identity != self.configuration_sha256:
+            raise RpcError('Loaded LP execution configuration changed; controlled restart required')
+        cache_key=(block['blockHash'],number,header['timestamp'],identity,
+            self.lp_routing_version,self.execution_quality_version)
+        cache=self._lp_metadata_cache if use_cache else None
+        if cache is not None and cache_key in cache:
+            # A canonical hash cache is never a fallback for a failed new head.
+            current=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if current != header: raise RpcError('Cached LP execution anchor changed')
+            return copy.deepcopy(cache[cache_key])
         def read(target,method,*args):
             return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(method,*args)},block]))
         try:
@@ -557,19 +644,72 @@ class Keeper:
                 if (read(self.contracts['access'],'module(bytes32)','0x'+keccak256(label.encode()).hex())!=[f'{int(self.contracts[role],16):064x}'] or
                         read(self.contracts[role],'access()')!=[f'{int(self.contracts["access"],16):064x}']):
                     raise ValueError('LP execution module binding differs')
-            self.lp_execution_observation=observe(read,liquidity=self.contracts['liquidity'],
+            observation=observe(read,liquidity=self.contracts['liquidity'],
                 router=self.contracts['balancing_router'],pool_manager=self.contracts['pool_manager'],
                 state_view=self.contracts['state_view'],access=self.contracts['access'],pools=self.contracts['pools'],
                 quality_version=self.execution_quality_version,strategy=self.contracts['strategy'])
         except (ValueError,TypeError,KeyError) as exc:
             raise RpcError('LP execution capability differs from the reviewed profile') from exc
+        if hashlib.sha256(json.dumps(self.config,sort_keys=True,separators=(',',':')).encode()).hexdigest() != identity:
+            raise RpcError('LP execution configuration changed during observation')
+        result={'metadata':observation,'block_number':number,'block_hash':block['blockHash'],
+            'block_timestamp':rpc_quantity(header.get('timestamp'),'LP execution timestamp',minimum=1),
+            'configuration_sha256':identity,
+            'runtime_code_hashes':{role:self.config['code_hashes'][role].lower()
+                for role in ('access','pools','liquidity','balancing_router','pool_manager','state_view')+(
+                    ('strategy',) if self.execution_quality_version == 1 else ())}}
+        if cache is not None:
+            if len(cache)>=8: cache.clear()
+            cache[cache_key]=copy.deepcopy(result)
+        return result
+
+    def _validate_lp_routing(self,*,use_cache: bool = False) -> None:
+        """Fresh pre-simulation/signing checks never reuse discovery metadata."""
+        if self.lp_routing_version != 1: return
+        try:
+            header=self.rpc.call('eth_getBlockByNumber',['latest',False])
+            result=self._lp_routing_snapshot(header,use_cache=use_cache)
+            self.lp_execution_observation=result['metadata']
+        except (RpcError,ValueError,TypeError,KeyError) as exc:
+            self._lp_validation_failed=True
+            if self._lp_metadata_cache is not None:self._lp_metadata_cache.clear()
+            self.lp_execution_health.update(state='unavailable',last_error=error_context(exc))
+            raise
+
+    def _observe_execution_health(self) -> None:
+        """Best-effort confirmed observation, separate from inclusion guards."""
+        if self.execution_quality_version != 1:
+            self.lp_execution_health['state']='not_configured'
+            return
+        if self._lp_validation_failed: return
+        try:
+            head=self.rpc.call('eth_getBlockByNumber',['latest',False])
+            if not isinstance(head,dict): raise RpcError('Missing observation head')
+            tip=rpc_quantity(head.get('number'),'observation head number')
+            rpc_hash(head.get('hash'),'observation head hash')
+            if tip+1<self.confirmations: raise RpcError('Insufficient observation confirmations')
+            number=tip-self.confirmations+1
+            header=head if number==tip else self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if not isinstance(header,dict) or rpc_quantity(header.get('number'),'observation number')!=number:
+                raise RpcError('Observation block number differs')
+            result=self._lp_routing_snapshot(header,use_cache=True)
+            canonical=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if canonical != header: raise RpcError('Confirmed observation anchor changed')
+            result.update(head_number=tip,observed_at_unix=int(time.time()),
+                source_files_sha256=self.source_files_sha256,
+                source_identity_scope='local_files_at_keeper_start_not_runtime_attestation')
+            self.lp_execution_health.update(state='observed_this_cycle',last_confirmed=result,last_error=None)
+        except (RpcError,ValueError,TypeError,KeyError) as exc:
+            if self._lp_metadata_cache is not None:self._lp_metadata_cache.clear()
+            self.lp_execution_health.update(state='unavailable',last_error=error_context(exc))
 
     def _store_rebalance_schedule(self,bucket: int,record: dict[str,Any] | None) -> None:
         # Durability precedes both waiting and any eventual signer. A failed save
         # restores memory too; restart never draws a fresh delay to bypass it.
         previous = self.state
         updated = copy.deepcopy(previous)
-        schedules = updated.setdefault(OUTSIDE_REBALANCE_STATE,{})
+        namespace=CONFIRMATION_STATE if self.rebalance_confirmation.version==1 else OUTSIDE_REBALANCE_STATE
+        schedules = updated.setdefault(namespace,{})
         if record is None:
             if str(bucket) not in schedules: return
             del schedules[str(bucket)]
@@ -583,7 +723,15 @@ class Keeper:
             self.state = previous
             raise
 
-    def _rebalance_due(self,bucket: int,fields: list[str],now: int) -> bool:
+    def _rebalance_due(self,bucket: int,fields: list[str],now: int,*,force: bool = False) -> bool:
+        try:return self._rebalance_due_checked(bucket,fields,now,force=force)
+        except (ValueError,RpcError):
+            if self.rebalance_confirmation.version==1:self._mark_confirmation_reset(bucket)
+            raise
+
+    def _rebalance_due_checked(self,bucket: int,fields: list[str],now: int,*,force: bool = False) -> bool:
+        self._rebalance_observation_due=None
+        self._rebalance_reset_due=None
         if self.maintenance_policy_version != 2:
             return bool(self.view('strategy','needsRebalance(uint256)',bucket))
         position = decode_position(fields,self.accounting_version)
@@ -605,6 +753,12 @@ class Keeper:
             self.config['code_hashes']['strategy'],self.contracts['pools'],self.config['code_hashes']['pools'],
             bucket,position['pool_id'],position['lp_token_id'],position['last_rebalance'],config,orientation]
         identity = '0x'+keccak256(json.dumps(basis,separators=(',',':')).encode()).hex()
+        if self.rebalance_confirmation.version==1:
+            record=self.state.get(CONFIRMATION_STATE,{}).get(str(bucket))
+            if record is not None and now<record['last_checked_at']:
+                raise RpcError('Confirmation chain clock retreated')
+            if int(config[6],16)!=1 or now<position['last_rebalance']+interval:return False
+            return self._confirmed_rebalance_due(bucket,identity,now,force=force)
         record = self.state.get(OUTSIDE_REBALANCE_STATE,{}).get(str(bucket))
         if record is not None and record['identity'] != identity:
             self._store_rebalance_schedule(bucket,None)
@@ -631,13 +785,131 @@ class Keeper:
         log('rebalance_scheduled',bucket_id=str(bucket),execute_after=now+delay,manual_range=bool(manual))
         return False
 
+    def _confirmed_rebalance_due(self,bucket: int,basis: str,now: int,*,force: bool = False) -> bool:
+        if self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket)):
+            self._rebalance_reset_due=bucket
+            return False
+        record=self.state.get(CONFIRMATION_STATE,{}).get(str(bucket))
+        if record is not None and now<record['last_checked_at']:
+            raise RpcError('Confirmation chain clock retreated')
+        # The five-minute cadence is an evaluation schedule, not an attestation
+        # or an inclusion-time guard. Submission always calls this with force.
+        manual=self.view('strategy','rangeUpdatePending(uint256)',bucket)
+        if manual not in (0,1):raise RpcError('Malformed desired-range flag')
+        if (not force and record is not None and not manual and now<record['next_check_at'] and
+                (record['execute_after']==0 or now<record['execute_after'])):
+            return False
+        status=self._confirmation_status(bucket)
+        if status['block_timestamp']<now:raise RpcError('Confirmation snapshot precedes the scheduling head')
+        now=status['block_timestamp']
+        clear=self.state.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
+        if clear is not None:
+            if status['observation_identity']!='0x'+'0'*64:
+                if clear['awaiting_healthy_read']:
+                    self._mark_confirmation_reset(bucket,force=True)
+                    self._rebalance_reset_due=bucket
+                    return False
+                previous=self.state;updated=copy.deepcopy(previous)
+                updated[CONFIRMATION_CLEARS].pop(str(bucket))
+                self.state=updated
+                try:self.save()
+                except BaseException:
+                    self.state=previous
+                    raise
+            elif clear['awaiting_healthy_read']:
+                previous=self.state;updated=copy.deepcopy(previous)
+                updated[CONFIRMATION_CLEARS][str(bucket)]['awaiting_healthy_read']=False
+                self.state=updated
+                try:self.save()
+                except BaseException:
+                    self.state=previous
+                    raise
+        if bucket not in self._confirmation_seen_buckets:
+            self._confirmation_seen_buckets.add(bucket)
+            if status['observation_identity']!='0x'+'0'*64:
+                self._mark_confirmation_reset(bucket)
+                self._rebalance_reset_due=bucket
+                return False
+        policy=[basis,status['policy_revision'],status['duration_seconds'],
+            status['maximum_gap_seconds'],status['review_hash'],status['manual'],
+            status['identity'] if not status['manual'] else None,
+            status['first_seen'] if not status['manual'] else None]
+        identity='0x'+keccak256(json.dumps(policy,separators=(',',':')).encode()).hex()
+        if record is not None and record['identity']!=identity:
+            self._store_rebalance_schedule(bucket,None);record=None
+        if not status['manual'] and 0<status['maximum_gap_seconds']<CONFIRMATION_CHECK_SECONDS:
+            self.blocked_actions+=1
+            log('confirmation_cadence_unsupported',bucket_id=str(bucket))
+            self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+                last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS,execute_after=0))
+            return False
+        if self.rebalance_confirmation.observation_due(status,now):
+            self._rebalance_observation_due=bucket
+        if not status['manual'] and status['maximum_gap_seconds']==0:
+            self.blocked_actions+=1
+            log('confirmation_policy_stopped',bucket_id=str(bucket))
+        if not status['ready']:
+            self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+                last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS,execute_after=0))
+            return False
+        if record is not None and record['execute_after']:
+            if now>=record['execute_after']:return True
+            updated=dict(record,last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS)
+            self._store_rebalance_schedule(bucket,updated)
+            return False
+        delay=60+secrets.randbelow(541)
+        self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+            last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS,execute_after=now+delay))
+        log('rebalance_scheduled',bucket_id=str(bucket),execute_after=now+delay,manual_range=status['manual'],
+            sampled_confirmation=True)
+        return False
+
+    def _confirmation_status(self,bucket: int) -> dict[str,Any]:
+        try:return self.rebalance_confirmation.status(bucket)
+        except (ValueError,RpcError):
+            self._mark_confirmation_reset(bucket)
+            raise
+
+    def _mark_confirmation_reset(self,bucket: int,*,force: bool = False) -> None:
+        if self.rebalance_confirmation.version!=1:return
+        already_needed=self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))
+        if already_needed and str(bucket) not in self.state.get(CONFIRMATION_STATE,{}):return
+        previous=self.state;updated=copy.deepcopy(previous)
+        clear=updated.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
+        schedules=updated.get(CONFIRMATION_STATE,{})
+        stale_schedule=schedules.pop(str(bucket),None)
+        if clear is not None and not force:
+            if clear['awaiting_healthy_read'] and stale_schedule is None:return
+            clear['awaiting_healthy_read']=True
+            self.state=updated
+            try:self.save()
+            except BaseException:
+                self.state=previous
+                raise
+            log('confirmation_recovery_read_required',bucket_id=str(bucket))
+            return
+        resets=updated.setdefault(CONFIRMATION_RESETS,{})
+        if str(bucket) not in resets and len(resets)>=min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+            raise ValueError('Confirmation reset inventory is full')
+        resets[str(bucket)]=True
+        self.state=updated
+        try:self.save()
+        except BaseException:
+            self.state=previous
+            raise
+        log('confirmation_reset_required',bucket_id=str(bucket))
+
     def _rebalance_submission_ready(self,args: tuple[int|str,...]) -> bool:
         if self.maintenance_policy_version != 2: return True
         if len(args) != 3 or type(args[0]) is not int:
             raise ValueError('Malformed outside-rebalance submission')
-        fields,_ = self._bucket(args[0])
-        _,fresh = self._head()
-        return self._rebalance_due(args[0],fields,fresh)
+        try:
+            fields,_ = self._bucket(args[0])
+            _,fresh = self._head()
+            return self._rebalance_due(args[0],fields,fresh,force=self.rebalance_confirmation.version==1)
+        except (ValueError,RpcError):
+            if self.rebalance_confirmation.version==1:self._mark_confirmation_reset(args[0])
+            raise
 
     def _adaptive_range_target(self,pool: str,now: int) -> int:
         # Opt-in only; historical profiles never call new Strategy getters.
@@ -933,8 +1205,27 @@ class Keeper:
         if success:
             updated['last'][pending['key']] = timestamp
             updated.setdefault('retry_after',{}).pop(pending['key'],None)
+            reset=re.fullmatch(r'rebalance_reset:([1-9][0-9]{0,77})',pending['key'])
+            if (reset is not None and pending['to']==self.contracts.get('rebalance_confirmation') and
+                    pending['data']==calldata('resetObservation(uint256)',int(reset[1]))):
+                updated.setdefault(CONFIRMATION_RESETS,{}).pop(reset[1],None)
+                clears=updated.setdefault(CONFIRMATION_CLEARS,{})
+                if reset[1] not in clears and len(clears)>=min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+                    raise RpcError('Confirmation clear inventory is full; preserve pending recovery')
+                clears[reset[1]]={
+                    'number':block,'hash':block_hash,'timestamp':timestamp,'nonce':pending['nonce'],
+                    'awaiting_healthy_read':True}
+                updated.get(CONFIRMATION_STATE,{}).pop(reset[1],None)
         else:
             updated.setdefault('retry_after',{})[pending['key']] = timestamp+self.retry_cooldown
+            failed_confirmation=self._interrupted_confirmation_bucket(pending)
+            if failed_confirmation is not None:
+                key=str(failed_confirmation)
+                resets=updated.setdefault(CONFIRMATION_RESETS,{})
+                if key not in resets and len(resets)>=min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+                    raise RpcError('Confirmation reset inventory is full; preserve pending recovery')
+                resets[key]=True
+                updated.get(CONFIRMATION_STATE,{}).pop(key,None)
         if metadata_records is not None: updated['metadata_refresh']['notified'] = metadata_records
         updated['pending'] = None
         updated['next_nonce'] = pending['nonce']+1
@@ -990,9 +1281,15 @@ class Keeper:
         lp_balance_action=(name,signature) in (('vault','rebalance(uint256,uint128,uint256)'),
             ('compounder','compound(uint256,uint128,uint256)'))
         if lp_balance_action:self._validate_lp_routing()
+        confirmation_action=name=='rebalance_confirmation' and signature in ('observe(uint256)','resetObservation(uint256)')
+        if confirmation_action:
+            if self.rebalance_confirmation.version!=1 or len(args)!=1:
+                raise ValueError('Observation requires the explicit reviewed confirmation profile')
+            if signature=='observe(uint256)':self._confirmation_status(args[0])
+            else:self.rebalance_confirmation.validate()
         if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
         if self.live: self._validate_checkpoint()
-        _,timestamp = self._head()
+        review_head,timestamp = self._head()
         retry_after = positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
         if timestamp < retry_after:
             self.blocked_actions += 1
@@ -1010,23 +1307,39 @@ class Keeper:
                 'metadata_observation':metadata_observation})
         tx = {'from':self.sender,'to':to,'data':data,'value':hex(value)}
         self.rpc.call('eth_call',[tx,'latest'])
+        gas_cap=positive(self.config['max_gas_limit'],'max_gas_limit')
+        price_cap=positive(self.config['max_gas_price_wei'],'max_gas_price_wei')
+        gas_review={'action':name+'.'+signature,'head_number':review_head,
+            'configuration_sha256':self.configuration_sha256,
+            'scope':'latest_simulation_estimate_not_inclusion_guarantee',
+            'gas_limit_cap':gas_cap,'gas_price_cap_wei':price_cap,'estimated_gas':None,
+            'transaction_cost_cap_wei':positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei'),
+            'daily_cost_cap_wei':positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'),
+            'padded_gas_required':None,'gas_price_wei':None,'state':'unavailable',
+            'reason':'estimate_or_price_unavailable'}
+        self.gas_review_health={'state':'reviewed_this_cycle','last_review':gas_review}
         estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[tx]),'estimated gas',minimum=1)
         gas_limit = (estimated*125+99)//100
+        gas_review.update(estimated_gas=estimated,padded_gas_required=gas_limit)
         gas_price = rpc_quantity(self.rpc.call('eth_gasPrice',[]),'gas price')
-        if gas_limit > positive(self.config['max_gas_limit'],'max_gas_limit') or \
-            gas_price > positive(self.config['max_gas_price_wei'],'max_gas_price_wei'):
+        gas_review['gas_price_wei']=gas_price
+        if gas_limit > gas_cap or gas_price > price_cap:
+            gas_review.update(state='blocked',reason='gas_limit_cap' if gas_limit>gas_cap else 'gas_price_cap')
             self.blocked_actions += 1
             log('gas_cap_exceeded',action=key); return False
         cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
         if maximum_cost is not None and cost > positive(maximum_cost,'maximum_cost',zero=True):
+            gas_review.update(state='blocked',reason='conversion_uneconomic',maximum_cost_wei=cost)
             self.blocked_actions += 1
             log('lp_conversion_uneconomic' if name == 'rewards' else 'royalty_conversion_uneconomic',action=key,gas_cost_wei=str(cost),maximum_cost_wei=str(maximum_cost))
             return False
         day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
         if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
             int(self.state['spent'].get(day,0))+cost > positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
+            gas_review.update(state='blocked',reason='cost_cap',maximum_cost_wei=cost)
             self.blocked_actions += 1
             log('cost_cap_exceeded',action=key); return False
+        gas_review.update(state='within_configured_caps',reason=None,maximum_cost_wei=cost)
         if self._defer_for_lifecycle(name,signature): return False
         if not self.live:
             log('dry_run',action=key,to=to,calldata=data,estimated_cost_wei=str(cost))
@@ -1034,6 +1347,9 @@ class Keeper:
         # Revalidate code after simulation and before signing; stop on mutable deployments.
         self._validate_code_hashes()
         if lp_balance_action:self._validate_lp_routing()
+        if confirmation_action:
+            if signature=='observe(uint256)':self._confirmation_status(args[0])
+            else:self.rebalance_confirmation.validate()
         nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),'pending nonce')
         latest_nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'latest']),'latest nonce')
         if nonce != latest_nonce or nonce != self.state.get('next_nonce'):
@@ -1056,7 +1372,20 @@ class Keeper:
             'maximum_cost_wei':cost,'receipt_fee_policy':self.fee_policy}
         self._fee_review(pending)
         if metadata_observation is not None: pending['metadata_observation'] = metadata_observation
-        self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
+        if confirmation_action and signature=='observe(uint256)':
+            # Once an intent can broadcast, the earlier empty-state receipt is
+            # no longer sufficient to suppress another incident reset. Persist
+            # this invalidation together with pending, before any signer call.
+            previous=self.state;updated=copy.deepcopy(previous)
+            updated.get(CONFIRMATION_CLEARS,{}).pop(str(args[0]),None)
+            updated['pending']=pending
+            self.state=updated
+            try:self.save()
+            except BaseException:
+                self.state=previous
+                raise
+        else:
+            self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
         # Foundry 1.4.4 accepts raw calldata as positional SIG; --data is invalid.
         command = [self.cast,'send',to,data,'--from',self.sender,'--keystore',str(self.keystore),
             '--password-file',str(self.password),'--chain',str(self.chain),'--nonce',str(nonce),
@@ -1450,8 +1779,40 @@ class Keeper:
         self.save()
         return False
 
+    def _interrupted_confirmation_bucket(self,pending: Any) -> int | None:
+        if self.rebalance_confirmation.version!=1 or not isinstance(pending,dict):return None
+        key=pending.get('key')
+        if not isinstance(key,str):return None
+        match=re.fullmatch(r'(rebalance|rebalance_observation|rebalance_reset):([1-9][0-9]{0,77})',key)
+        if match is None:return None
+        bucket=int(match[2])
+        if bucket>=1<<256:return None
+        data=pending.get('data')
+        if not isinstance(data,str):return None
+        data=data.lower()
+        if match[1]=='rebalance':
+            if (pending.get('to')==self.contracts['vault'] and len(data)==202 and
+                    re.fullmatch(r'0x[0-9a-f]{200}',data) is not None and
+                    data[:10]=='0x'+keccak256(b'rebalance(uint256,uint128,uint256)').hex()[:8] and
+                    data[10:74]==f'{bucket:064x}'):
+                return bucket
+        else:
+            method='observe(uint256)' if match[1]=='rebalance_observation' else 'resetObservation(uint256)'
+            if pending.get('to')==self.contracts['rebalance_confirmation'] and data==calldata(method,bucket):return bucket
+        return None
+
     def cycle(self) -> None:
-        if self.poll_pending(): return
+        pending=self.state.get('pending')
+        try:
+            if self.poll_pending(): return
+        except (ValueError,RpcError):
+            bucket=self._interrupted_confirmation_bucket(pending)
+            if bucket is not None:self._confirmation_recovery_interrupted.add(bucket)
+            raise
+        if self.rebalance_confirmation.version==1 and self._confirmation_recovery_interrupted:
+            for bucket in self._confirmation_recovery_interrupted:
+                self._mark_confirmation_reset(bucket)
+            self._confirmation_recovery_interrupted.clear()
         self.principal_distribution.configure()
         self._validate_maintenance_config()
         buybacks = self._buyback_tasks()
@@ -1459,6 +1820,7 @@ class Keeper:
         if self.canonical_state() != 0: return
         paused = self.view('access','paused()') != 0
         self.strategy_paused = paused
+        if not paused:self._confirmation_pause_seen.clear()
         preparing = self.preparation_active()
         lp_exit = self.lp_exit_started()
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
@@ -1509,18 +1871,29 @@ class Keeper:
                 # Canonical funded revenue and claims remain available during
                 # pauses and while the physical LP is away. No principal moves.
                 if self.fee_intake_version == 0 and item.get('sync_external_rewards',True) and self._sync_external(bucket): return
-                if paused: continue
+                if paused:
+                    if self.rebalance_confirmation.version==1 and status=='active' and not lp_exit:
+                        if bucket not in self._confirmation_pause_seen:
+                            self._mark_confirmation_reset(bucket)
+                            self._confirmation_pause_seen.add(bucket)
+                        if self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket)):
+                            if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
+                    continue
                 if status == 'active' and not lp_exit:
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
                     maintenance_failed = False
                     if not preparing:
                         try:
-                            self._validate_lp_routing()
+                            self._validate_lp_routing(use_cache=True)
                             if self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):
                                 if self.submit('strategy','applyKeeperRange(bytes32)',('0x'+fields[0],),f'range_policy:{bucket}'): return
                             if self._rebalance_due(bucket,fields,fresh):
                                 if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
+                            elif self._rebalance_reset_due is not None:
+                                if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
+                            elif self._rebalance_observation_due is not None:
+                                if self.submit('rebalance_confirmation','observe(uint256)',(bucket,),f'rebalance_observation:{bucket}'):return
                             if item.get('compound',True):
                                 reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
                                 if self._compound_due(bucket,tokens,reserves,item,now,fields):

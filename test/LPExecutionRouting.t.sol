@@ -274,4 +274,24 @@ contract LPExecutionRoutingTest is Test {
         manager.balance{value:100 ether}(target,0,100 ether,1 ether,block.timestamp+100);
         assertEq(first.answer(),1e8); assertEq(second.answer(),1e8); _assertPrefunds();
     }
+    function test_ManagerRejectsERC20PairBeforeAssetPull() public {
+        PoolKey memory invalid = PoolKey(address(token),address(0xBEEF),500,10,address(0));
+        bytes32 id = keccak256(abi.encode(invalid));
+        registry.configure(id,PoolConfig(invalid,false,true,2500,100,500,200,600,1e18,1e30));
+        uint256 beforeBalance = token.balanceOf(address(this));
+        uint256 beforeAllowance = token.allowance(address(this),address(manager));
+        vm.expectRevert(ZZZModule.InvalidState.selector);
+        manager.swap(id,true,100 ether,1,block.timestamp+100);
+        assertEq(token.balanceOf(address(this)),beforeBalance);
+        assertEq(token.allowance(address(this),address(manager)),beforeAllowance);
+        _assertPrefunds();
+    }
+    function test_ManagerRejectsNonNativeMintEvenIfRegistryClaimsNative() public {
+        PoolKey memory invalid = PoolKey(address(token),address(0xBEEF),500,10,address(0));
+        bytes32 id = keccak256(abi.encode(invalid));
+        registry.configure(id,PoolConfig(invalid,false,true,2500,100,500,200,600,1e18,1e30));
+        vm.expectRevert(ZZZModule.InvalidState.selector);
+        manager.mint(id,-100,100,0,100 ether,1,block.timestamp+100);
+        _assertPrefunds();
+    }
 }

@@ -44,7 +44,7 @@ before changing behavior. This file contains current instructions, not a timelin
   and a caller maximum. Defaults: contribution2%, conversion1%, maintenance3%;
   each governance ceiling10%, gas separate. Do not confuse source agreement,
   budget retention, idle ceilings or caller minima with each other.
-- Fresh Strategy maintenance policy2 uses actual physical tick range exit or deliberate operator range change after the configured hard interval (initial12hours), never the old movement trigger. Matching keeper policy2 adds durable60-600second service jitter/hourly ordinary inside checks; preserve manual widths and fast independent receipt/harvest work. Budget capability3 uses max(lastCompound,lastRebalance) plus its independent per-pool compoundInterval (default3600seconds, governed600seconds-7days), yields to due rebalance and never changes its clock. Fresh API configs declare policy2; explicit historical policy1/helper2 and older readers/journals remain separate. See [current evidence](reports/maintenance-policy-20261027/VERIFICATION.md).
+- Fresh Strategy maintenance policy2 uses actual physical tick range exit or deliberate operator range change after the configured hard interval (initial12hours), never the old movement trigger. Historical matching keeper policy2 adds durable60-600second service jitter/hourly ordinary inside checks; fresh confirmation1 below uses300-second checks; preserve manual widths and fast independent receipt/harvest work. Budget capability3 uses max(lastCompound,lastRebalance) plus its independent per-pool compoundInterval (default3600seconds, governed600seconds-7days), yields to due rebalance and never changes its clock. Fresh API configs declare policy2; explicit historical policy1/helper2 and older readers/journals remain separate. See [current evidence](reports/maintenance-policy-20261027/VERIFICATION.md).
 - Fixed LP allocation80/10/5/5: individual shares / equal activated collective /
   compound / ZZZ buyback-burn. Rarity affects only actual received royalties at
   Commun1/Rare2/Legendary3. No Power score or configurable split.
@@ -72,9 +72,9 @@ before changing behavior. This file contains current instructions, not a timelin
   and duplicate claims/conversions/imports. Earnings, claimable and claimed differ.
   Missing or inconsistent data must remain unavailable/error, never guessed zero.
 
-- Requested next LP operating policy is recorded in [execution decisions](docs/LP_EXECUTION_POLICY.md): manual +/-25/50% selection, twelve-hour outside-only upkeep with hourly eligible checks and durable 1-10-minute service jitter, best reviewed execution venues independent of the LP target and $1m cumulative contributions per NFT. Policy2/Budget3 timing and LP routing1 bounded reviewed-venue selection/actual-core sizing are implemented. Contributions swap/deploy only entrant budgets; incumbent idle/compound stays in NAV for guarded maintenance. Empty execution list disables swaps with no fallback. Fresh profiles bind Manager/balancer version/runtime/parent/core/state; Entry routing2 remains separate. Venue slippage is governed1-1000bps; operating values/caller/captured floors are not widened automatically. See [new review](reports/atomic-routing-20261028/REVIEW.md). Twelve hours is a hard initial minimum, explicit range changes may apply inside after cooldown, and compounding has its own interval. Do not silently interpret 1% centring tolerance as the old movement trigger or replace independent pricing with pool spot.
+- Requested next LP operating policy is recorded in [execution decisions](docs/LP_EXECUTION_POLICY.md): manual +/-25/50% selection, twelve-hour outside-only upkeep (fresh confirmation1 checks every300seconds after cooldown) and durable 1-10-minute service jitter, best reviewed execution venues independent of the LP target and $1m cumulative contributions per NFT. Policy2/Budget3 timing and LP routing1 bounded reviewed-venue selection/actual-core sizing are implemented. Contributions swap/deploy only entrant budgets; incumbent idle/compound stays in NAV for guarded maintenance. Empty execution list disables swaps with no fallback. Fresh profiles bind Manager/balancer version/runtime/parent/core/state; Entry routing2 remains separate. Venue slippage is governed1-1000bps; operating values/caller/captured floors are not widened automatically. See [new review](reports/atomic-routing-20261028/REVIEW.md). Twelve hours is a hard initial minimum, explicit range changes may apply inside after cooldown, and compounding has its own interval. Do not silently interpret 1% centring tolerance as the old movement trigger or replace independent pricing with pool spot.
 
-- Direct manual `Vault.rebalance` uses an actual keeper grant (governance alone is not enough), bypasses only service jitter/hourly checking and preserves all on-chain guards. Follow [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Same-service-key signing outside its journal requires reviewed nonce/receipt/spend reconciliation; restart or new LP/timer discovery alone cannot adopt it. No manual transaction/service change is authorized by updating these instructions.
+- Direct manual `Vault.rebalance` uses an actual keeper grant (governance alone is not enough), bypasses only service jitter/check scheduling and preserves all on-chain guards. Follow [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Same-service-key signing outside its journal requires reviewed nonce/receipt/spend reconciliation; restart or new LP/timer discovery alone cannot adopt it. No manual transaction/service change is authorized by updating these instructions.
 
 - Fresh execution-quality1 binds Strategy-owned additionalLossBps(default100,
   governance0-1000), actual directional core fees and captured monotonic quality
@@ -83,11 +83,28 @@ before changing behavior. This file contains current instructions, not a timelin
   historical absent/0 stays historical. See [scope](docs/EXECUTION_QUALITY.md) and
   [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md). Strategy storage
   changes belong only to a fresh deployment. Passive/40% trigger strategies
-  remain discussion only. A configurable15-minute confirmation buffer is now
-  requested, but sampled observations versus authenticated history remains
-  undecided; no timer is implemented. See [decision](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
-  Do not infer continuity proof from jitter, two samples or an average. No
-  service/site/Anvil change is authorized by brainstorming.
+  remain discussion only. Fresh confirmation1 adds a fixed Strategy child and
+  Budget gate. Selected duration900seconds/max observation gap300seconds;
+  constructor gap0 blocks ordinary readiness until reviewed configuration.
+  Matching keeper checks every300seconds after cooldown, with durable reset
+  requirements after faults/startup/pause and canonical receipt recovery. Greater
+  gaps restart; exact cadence/gap may repeatedly restart with receipt delays.
+  Preserve raw eligibility versus sampled readiness, manual width exception after
+  cooldown, compound yielding, independent harvest and jitter after readiness.
+  This is sampled evidence, never uninterrupted history/MEV protection. Match
+  helper/version/runtime/profile; never relabel old deployments/journals. See
+  [policy](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+  No service/site/Anvil change is authorized by source publication.
+
+- [Current buffer audit](reports/practical-improvements-20261028/VERIFICATION.md)
+  captures raw evidence across maintenance, preserves post-exit parent-only
+  orientation invalidation, scopes resets to relevant faults, prevents repeated
+  paid clears via canonical acknowledgements and requires fresh recovery reads.
+  Failed related receipts atomically require reset; new windows draw new jitter.
+  Confirmation1 requires explicit main poll60-300seconds; selected sample/gap300
+  is strict, not a promise. Preserve versioned journals and old services. Current
+  inventory schema6 observes17helpers; historical5 is inspection-only. Health2
+  writer/checker rollout remains unqualified; local file hashes are not attestation.
 
 ## Verification and documentation workflow
 

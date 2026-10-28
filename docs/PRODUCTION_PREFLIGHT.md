@@ -21,9 +21,9 @@ explicit; old deployments/journals keep historical profiles.
 
 Fresh maintenance policy2 additionally requires explicit Strategy2/Budget3 and
 matching API/keeper/version/runtime settings. The [blocked accounting4 scaffold](../config/production.holder-exit.example.json)
-records intended12-hour/manual-width policy and separate compound interval; the
-existing schema5 release observer does not accept it. Source checks or example
-values do not close accounting4 inventory, real-service or independent review.
+now uses the explicit schema6 validator and observer described below. It remains
+unconfigured: tooling implementation does not qualify actual bindings, markets,
+operating services or independent review. Schema5 remains historical.
 
 Fresh LP routing1 additionally requires the immutable Manager-created
 `balancingRouter`, reviewed runtime/parent/core/state/controller pins, monotonic
@@ -40,6 +40,70 @@ The blocked scaffold records `execution_quality_version:1`; the historical
 schema5/accounting3 observer does not qualify this capability or accounting4.
 Complete that exact release inventory and runtime acceptance before deployment;
 neither a template field nor a source receipt approves it. [Scope](EXECUTION_QUALITY.md).
+
+## Current schema6 observation and offline validation
+
+[Offline validator](../zzz_ops/production_v4.py) and
+[read-only observer](../zzz_ops/production_observer_v4.py) use accounting4,
+direct governance2, custody3 and holder-exit canonicalV5 explicitly. The profile
+also requires Strategy2/Budget3, Entry routing2/pricing2/review1, LP routing1,
+execution-quality1 and rebalance-confirmation1. Unknown, missing, boolean or
+historical versions fail closed; no getter-failure fallback upgrades old data.
+
+The inventory contains17modules including Access and17helpers. It includes the
+Manager-created Balancer and Strategy-created confirmation child, with exact
+reviewed runtimes, Access/module/parent/core/state bindings, catalog/solver and
+separate quality-policy revisions. All observations use one EIP-1898 canonical
+block, including actual ETH/fixed-ZZZ principal backing. Observed hashes never
+replace approved hashes. The separate observed-confirmation policy records
+duration, maximum gap, review hash and revision. The intended operating inventory
+records900seconds and an exact300-second maximum gap, with no grace. Its review
+hash, bindings and observations remain unset, so it stays blocked. The source
+constructor starts with gap0: stopped/unconfigured until governance configures
+a reviewed policy. A positive gap must be at most half the duration. Five-minute
+service checks at a five-minute maximum need real latency/restart qualification;
+a late recorded sample restarts confirmation. Per-bucket raw candidates, stored
+samples and confirmed readiness remain distinct. Samples are not proof of
+uninterrupted prices between observations.
+
+The current observer cross-checks helper/Strategy readiness and, while lifecycle
+allows a candidate, the deliberate range-change exception. Offline validation
+rejects raw need without active cooled-down LP, or readiness during pause,
+preparation or terminal exit. A paused deployment may legitimately retain raw
+Strategy need and old stored samples while its helper condition/readiness are
+zero/false; the inventory does not erase that history or invent a ready state.
+
+Holder accounting enumerates at most4registered buckets and1,000mint ordinals.
+It verifies eight-word positions, actual active LP ownership/liquidity, NFT share
+sums, frozen exit counts/cursors, closed backing and cumulative-floor allocation
+in mint order. Paid and claimable flags must reconcile with exact remaining
+ETH+ZZZ liabilities. Accidental prefunds may exceed backing but cannot become
+allocated principal. No retired external custody or royalty-custody getter is
+queried. A completed or ongoing collective exit is terminal for new LP/mint
+release readiness; old rewards and future royalties remain separate.
+
+Use reviewed public-data copies of the scaffold; do not invent deployment
+addresses or copy fixture hashes. With the actual confirmed anchor and reviewed
+bindings supplied, the existing commands dispatch schema6 explicitly:
+
+```bash
+python3 scripts/observe-production-config.py --config reviewed-v4.json --rpc-env POPL_RELEASE_RPC_URL --output observed-v4.json
+python3 scripts/validate-production-config.py --config observed-v4.json --expected-commit RELEASE_COMMIT --output preflight-v4.json
+```
+
+The observer permits read methods only, caps work at12,000RPC calls and60seconds,
+and retains the existing bounded input/output and atomic-output handling. A
+slow/incomplete provider or changed anchor cannot produce a complete accepted
+inventory. Actual1,000-NFT provider latency and hosting remain qualification,
+not a claim that this bounded tool completes on every endpoint.
+
+`inventory_consistent` describes supplied-data consistency. `ready` and
+`deployment_authorized` remain false: the current direct mint still lacks the
+required OpenSea primary-drop integration, and metadata cannot fabricate it.
+Real feeds/routes/VRF/authorities, complete history, service/gas rehearsals and
+independent audit evidence remain mandatory. The checked-in scaffold must return
+blocked. No command signs, deploys, seals, edits a journal or changes a service.
+See [scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md).
 
 ## Historical schema5 mint qualification boundary
 
@@ -105,8 +169,8 @@ canonical handoff, atomic ETH/WETH principal
 moves and legacy-schema import are not enabled by this inventory. Its historical
 external-recipient model must not be carried into current accounting4: fresh
 custody3 returns principal only to NFT holders, without an external custodian.
-Implement and review the new terminal/payout inventory separately; a pool move
-does not relocate NFT ownership.
+The separate schema6 observer checks terminal/payout accounting; its real
+qualification remains open. A pool move does not relocate NFT ownership.
 
 ## Two-source pricing records
 
@@ -141,7 +205,7 @@ The example must return blocked. Its known selected-pool references are intended
 identities, not passing runtime/feed/provider observations. Unknown PoPL addresses,
 wallets, independent ZZZ pricing, routes and service approvals remain unset.
 
-1. For historical inspection, copy its matching example without relabeling it accounting4. For the fresh release, start from the separately blocked holder-exit scaffold and implement its missing observer/gate first. Choose the exact source
+1. For historical inspection, copy its matching example without relabeling it accounting4. For the fresh release, use the schema6 holder-exit scaffold and current tools above. Choose the exact source
    commit, network/genesis, public authority addresses and actual deployment.
    Keep private keys, RPC credentials, API tokens and signer material outside it.
 2. Review intended module/helper/dependency addresses, immutable bindings and

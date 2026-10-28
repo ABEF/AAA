@@ -15,7 +15,8 @@ def signed_tick(word):
 
 
 def contribution_context(p, pins, pool, bucket, position, config, header, block,
-                         *, range_policy_version=0, range_policy=None, maintenance_policy_version=0):
+                         *, range_policy_version=0, range_policy=None, maintenance_policy_version=0,
+                         rebalance_confirmation_version=0):
     """All RPC reads use the caller's pinned hash, including approval previews."""
     def read(role, method, *args, count=1):
         return p._call(pins[role], method, *args, block=block, words=count)
@@ -43,6 +44,9 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         raise ProjectionError('Unsupported explicit range-policy profile')
     if type(maintenance_policy_version) is not int or maintenance_policy_version not in (0,1,2):
         raise ProjectionError('Unsupported explicit maintenance-policy profile')
+    if (type(rebalance_confirmation_version) is not int or rebalance_confirmation_version not in (0,1) or
+            rebalance_confirmation_version == 1 and (maintenance_policy_version != 2 or p.accounting_version != 4)):
+        raise ProjectionError('Unsupported explicit rebalance-confirmation profile')
     spacing = int(config[3], 16)
     def active_range(lower, upper):
         if spacing <= 0 or lower >= upper or lower % spacing or upper % spacing:
@@ -89,6 +93,28 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         in_range = active_range(lower, upper)
         lp, last, earliest, trigger, eligible, status = None, None, None, None, False, 'new_position'
         range_pending, reason = False, None
+    raw_eligible=eligible
+    confirmation=None
+    if rebalance_confirmation_version == 1:
+        from zzz_ops.rebalance_confirmation import observe as observe_confirmation
+        try:
+            confirmation=observe_confirmation(
+                lambda target,method,*args,count:p._call(target,method,*args,block=block,words=count),
+                strategy=pins['strategy'],budget=pins['budget'],
+                confirmation=pins['rebalance_confirmation'],access=pins['access'],
+                bucket=bucket if existing else None,timestamp=header['timestamp'],
+                raw_eligible=raw_eligible,range_pending=range_pending)
+        except (ValueError,TypeError,KeyError) as exc:
+            raise ProjectionError('Confirmed rebalance observations are inconsistent or unavailable') from exc
+        if existing:
+            if raw_eligible and not range_pending and confirmation['exit_side']!=(1 if tick<lower else 2):
+                raise ProjectionError('Confirmation direction differs from the confirmed physical range')
+            eligible=confirmation['ready_at_snapshot']
+            if raw_eligible and not eligible:
+                status={'unconfigured':'confirmation_unconfigured',
+                        'waiting_first_observation':'confirmation_not_started',
+                        'observation_stale':'confirmation_stale',
+                        'confirming':'confirmation_pending'}[confirmation['status']]
     utc = None if earliest is None else datetime.fromtimestamp(earliest, timezone.utc).isoformat()
     if status == 'eligible_now':
         timing = ('Rebalance eligible now for an approved range update; ' if range_pending else 'Rebalance eligible now; ') + 'execution awaits a keeper check and successful safety checks.'
@@ -101,6 +127,16 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         timing = 'Cooldown complete; the LP remains in its physical range. Rebalancing awaits range exit or an approved range update and safety checks.'
     elif status == 'waiting_for_price_trigger':
         timing = 'Cooldown complete; the next rebalance awaits the configured price trigger and safety checks.'
+    elif status == 'confirmation_unconfigured':
+        timing = 'Cooldown complete and the LP is outside range, but the on-chain confirmation gap policy is unconfigured or stopped.'
+    elif status == 'confirmation_not_started':
+        timing = 'Cooldown complete; recorded out-of-range confirmation has not started for this LP and policy.'
+    elif status == 'confirmation_stale':
+        timing = 'Recorded out-of-range observations are stale; confirmation must restart before rebalancing.'
+    elif status == 'confirmation_pending':
+        timing = (f'Cooldown complete; recorded out-of-range confirmation is in progress. '
+                  f"At least {confirmation['seconds_remaining']} seconds remain, with further timely observations required. "
+                  'This is sampled confirmation, not proof of uninterrupted price history.')
     else:
         timing = 'A new LP range will be created; there is no previous rebalance checkpoint.'
     warnings = []
@@ -118,10 +154,13 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
             'sqrt_price_x96': str(spot), 'in_range': in_range,
             'configured_target_half_width_bps': int(config[7], 16),
             **({'maintenance_policy_version':maintenance_policy_version} if maintenance_policy_version else {}),
+            **({'rebalance_confirmation_version':1,'rebalance_confirmation':confirmation}
+               if rebalance_confirmation_version else {}),
             'range_policy_version':range_policy_version, 'range_orientation':orientation,
             'range_price_unit':'token0_per_token1' if orientation == 1 else 'token1_per_token0',
             'keeper_range_policy':policy_metadata,
             'rebalance': {'status': status, 'eligible_at_snapshot': eligible,
+                          **({'raw_eligible_at_snapshot':raw_eligible} if rebalance_confirmation_version else {}),
                           'last_rebalance_at': last, 'cooldown_seconds': cooldown,
                           'earliest_eligible_at': earliest, 'earliest_eligible_utc': utc,
                           'price_trigger_met': trigger, 'trigger_bps': None if maintenance_policy_version == 2 else int(config[8], 16),

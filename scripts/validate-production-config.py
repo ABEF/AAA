@@ -21,14 +21,16 @@ sys.path.insert(0,str(ROOT))
 
 def validate(config: Any, *, expected_commit: str | None = None, now: int | None = None) -> dict[str,Any]:
     """Evaluate current release only; old configuration never enters legacy code."""
+    if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==6:
+        from zzz_ops.production_v4 import validate as validate_current
+        return validate_current(config,expected_commit=expected_commit,now=now)
     # Accounting4 changes terminal rights and removes external custody. The
     # historical accounting3 inventory/observer cannot qualify that new ABI.
-    # Keep this explicit release gate closed until the new inventory acceptance
-    # is independently implemented and reviewed; never reuse a historical ready.
+    # Only schema6 enters the current validator; never reuse a historical ready.
     return {'schema_version':6,'status':'blocked','ready':False,'deployment_authorized':False,
         'current_release_gate':True,'production_qualification_supported':False,
         'issues':[{'code':'holder_exit_qualification_pending','path':'current_release_profile',
-            'message':'Fresh source requires accounting4/custody3/canonical holder-exit V5. Its production inventory and operating qualification remain open. Accounting3 is historical; use explicit --historical-consistency only for inspection.'}],
+            'message':'Use explicit schema6/accounting4/custody3/canonical holder-exit V5 for the current inventory. Actual production qualification remains open. Accounting3 is historical; use explicit --historical-consistency only for inspection.'}],
         'limitations':['Source implementation and focused tests do not qualify actual release bindings, services or deployment.']}
 
 
@@ -72,7 +74,7 @@ def main() -> int:
         else:
             result=validate(config,expected_commit=args.expected_commit,now=int(time.time()))
     except (OSError,UnicodeError,ValueError,RecursionError,TypeError,KeyError,OverflowError) as exc:
-        result={'schema_version':4 if args.historical_consistency else 5,'status':'blocked','ready':False,
+        result={'schema_version':4 if args.historical_consistency else 6,'status':'blocked','ready':False,
             'deployment_authorized':False,'current_release_gate':not args.historical_consistency,
             'production_qualification_supported':False,
             'issues':[{'code':'config.unreadable','path':'config','message':type(exc).__name__}]}

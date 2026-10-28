@@ -33,10 +33,13 @@ market/service/production approval or passive strategy follows from this change.
 
 The [28October audit](../reports/day-audit-20261028/VERIFICATION.md) reviews the five
 day commits, rechecks existing raw evidence and corrects misleading current-profile/
-telemetry guidance. No new EVM/Python campaign was run. Fresh accounting4 release
-inventory, current gas/service telemetry and actual dependencies remain open.
-The requested15-minute confirmation buffer is not implemented or release evidence;
-the observation method is undecided. No40%/passive strategy is approved.
+telemetry guidance without a new EVM/Python campaign at that historical scope.
+Later [practical improvements](../reports/practical-improvements-20261028/VERIFICATION.md)
+implement confirmation1, schema6/accounting4 preflight, healthschema2/caching and
+native-only Manager cleanup. Qualify exact fresh bindings, actual timing/gas,
+matching writer/checker services and real dependencies. The selected15-minute
+sampled window/check300/strictgap300 can restart repeatedly with receipt delays;
+it is not uninterrupted evidence. No40%/passive strategy is approved.
 
 ## Evidence and approval boundary
 
@@ -77,7 +80,7 @@ bindings. Installed services and historical verification remain unchanged.
 | Pool/input policy | Only native ETH/fixedZZZ inputs and production LP pairs. One contribution pool at a time; reviewed same-pair fee tiers remain possible. Separate conversion/royalty currencies do not expand principal assets. |
 | Source verification | Use the exact source bindings and scopes in the evidence table above. Current internal static coverage passes; no full frozen-release regression, actual-service or independent approval is recorded. A later backend-only fix does not rerun unchanged Solidity by implication. |
 | Refactor compatibility | [Comparison](../reports/deep-cleanup-20261025/compiler-comparison.md) preserves function encodings and all recursive storage. Explicit additions are guardian/initial role logs; duplicated/noncallable error metadata is removed. No rights, rates, input currencies or authority changes. Reference evidence schema 2 is distinct from on-chain profiles. |
-| Code-size qualification | Fee-quality source normal38object gates pass: Vault24,064 runtime (512margin), Manager24,148 (428margin), LPBalancer22,387 (2189margin), Strategy23,344 (1232margin), NFT24,400 (176margin). Vault creation45,479+96static arguments; Manager48,938+160static arguments leaves only54bytes of initcode headroom. Retain failed fee-quality creation/stack attempts and earlier routing-size evidence at their exact source scope. Exact release URI/arguments and target gas remain unqualified; future additions require a fresh normal-limit check. |
+| Code-size qualification | Fresh source passes39normal object gates: Manager23765runtime (811margin), creation48548+160static arguments (444initcode margin); Vault24064runtime (512margin), creation46245+96static arguments; Strategy24004runtime (572margin); NFT24400runtime (176margin). Exact URI/arguments, deployed bindings and target gas remain unqualified. Preserve failed compile attempts and older source-scoped sizes; never waive normal limits. |
 | Actual dependencies | The [current selected-pool fork](../reports/current-pool-fork-20261026/VERIFICATION.md) has11distinct successful real-venue methods at one pinned block using explicit mock services. Actual independent feeds, conversion routes, VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and maximal target-chain gas remain unqualified. |
 | Website/wallets | Popldemo remains the existing simulation; poplint has a separate current3 read/unsigned-review build and no invented deployment/data. Source checks include451affected JS passes; actual current contracts/API/providers/extension acceptance remain unqualified. Signing remains Anvil-only and historical local deployments/journals are unchanged. [Environment map](SITE_ENVIRONMENTS.md). |
 | Operations/audit | Target-chain/Linux failure and recovery rehearsals, independent audit/remediation, frozen-source review and final configuration/sign-off remain required. |

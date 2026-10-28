@@ -32,14 +32,27 @@ The [implemented fee-quality slice](EXECUTION_QUALITY.md) separates known core
 trading fees from a1% default additional oracle-relative loss floor, retaining
 gross/caller/total limits. Qualify real depth/prices/gas and matching runtime/config
 before rollout; defensive local checks do not establish attacker-profit immunity.
-Passive inventory and40% triggers remain discussion only. The user separately
-requested a configurable15-minute confirmation buffer; implementation awaits the
-observation/evidence decision. [Owning task](../TODO.md#task-rebalance-confirmation-buffer).
-Finish that design without treating jitter or two samples as continuity proof.
+Passive inventory and40% triggers remain discussion only. Confirmation1 now
+implements a15-minute sampled window with five-minute eligible checks and strict
+300-second maximum confirmed gap. Qualify actual observation/reset/jitter timing;
+delays restart and no uninterrupted-price proof is claimed. [Owning task](../TODO.md#task-rebalance-confirmation-buffer).
 
 The [day audit](../reports/day-audit-20261028/REVIEW.md) records current gaps rather
-than reopening unchanged test campaigns: fresh accounting4 preflight, qualified
-gas budgets, actual quality telemetry and real dependencies remain open.
+than reopening unchanged test campaigns. Later [practical improvements](../reports/practical-improvements-20261028/VERIFICATION.md)
+implement schema6/accounting4 preflight and anchored quality telemetry. Real
+addresses/services, matching health writer/checker rollout and complete-operation
+target gas budgets remain unqualified.
+
+The deeper buffer audit also fixes unrelated-job resets, repeated paid clears,
+old-window jitter reuse, failed-related-receipt recovery, incompatible outer
+polling, clock retreat and contradictory lifecycle/ABI observations. Budget now
+captures raw observation state across maintenance; callback invalidation reverts
+the complete LP operation. Post-exit governance orientation remains available
+without reopening principal. Final evidence:217affected Solidity passes,
+272distinct source-scoped Python methods (271pass/1missing-cast skip),39normal
+object gates. Counts are scoped, not a global security or production approval.
+
+[Review and evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
 
 ## LP execution next steps
 

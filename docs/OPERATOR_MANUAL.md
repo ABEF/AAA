@@ -298,17 +298,70 @@ LINK transfer, but adapters, updates, RPCs and VRF can cost money; review each
 actual product and upstream authority. [Price operating requirements](PRICE_SECURITY.md).
 
 
-### Pending 15-minute rebalance confirmation
+<a id="pending-15-minute-rebalance-confirmation"></a>
 
-An initial15-minute governance-configurable buffer is requested, **not implemented**.
-There is no callable buffer setter/getter or installed confirmation service yet.
-The evidence choice (recorded observations versus authenticated history) remains
-open. Continue using the existing raw `needsRebalance` and guarded Vault call;
-do not advertise sustained-price confirmation. Increasing the12-hour cooldown
-or setting Python jitter does not require the trigger to remain true between checks.
-Do not reset or relabel journals to simulate this capability. Keep manual-width,
-harvest and pending-receipt behavior unchanged until reviewed source/profile work
-lands. [Owning design/task](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+### Configure rebalance confirmation
+
+For a fresh confirmation1 deployment, resolve `Strategy.rebalanceConfirmation()`
+from the sealed Access Strategy. Verify helper/Strategy/Budget capability1,
+runtime and Access/parent bindings. Old immutable deployments do not gain this
+feature by editing JSON. Preserve their exact readers and original journals.
+
+1. Governance calls the **helper**
+   `configure(uint32 secondsRequired,uint32 maximumGap,bytes32 reviewed)`.
+   Selected values are `900,300,<nonzero review hash>`:15 minutes with a strict
+   five-minute maximum confirmed observation gap. Duration bounds60seconds-7days;
+   maximumGap0 means stopped/unconfigured, otherwise at most half the duration.
+   Source construction starts gap0; no reviewed operating policy is invented.
+2. Simulate from the real governance wallet. Confirm `ConfirmationConfigured`,
+   duration/gap/review hash and increased `policyRevision`. Any reconfiguration,
+   including change-and-restore, invalidates old samples. Ordinary pause permits
+   configuration; preparation/canonical locks and principal exit block it.
+3. The matching keeper/API config declares `rebalance_confirmation_version:1`,
+   exact helper/runtime and actual Budget/Strategy/Vault bindings. Follow the
+   controlled release/config restart procedure with preserved pending receipts,
+   nonce and spend records. On-chain configuration alone needs no process restart.
+4. After the hard12-hour cooldown the service checks every300seconds, rather than
+   hourly, and records `observe(bucket)` through its normal simulation/fee/gas/
+   journal/receipt path. The main `interval_seconds` must be at most300 to deliver
+   that cadence; pending work or unavailable services may delay it. Every gap
+   greater than300 restarts the window. Scheduling at exactly300 provides no
+   latency allowance and may restart repeatedly. This strict choice is deliberate;
+   do not silently add grace or promise execution at a fixed time.
+5. Read `observations(bucket)` (identity,firstSeen,lastSeen,side), `condition(bucket)`
+   and `ready(bucket)` at one canonical block. Raw `Strategy.needsRebalance` is
+   not buffered readiness. Budget checks `Strategy.rebalanceReady` before execute.
+   Side1 is below,2 above. A deliberate width change bypasses confirmation only,
+   after the same hard cooldown. Compound yields while raw rebalance is due.
+6. The service starts durable1-10minute jitter after readiness, continuing samples
+   while waiting. Inside/opposite-side/changed-LP/policy/stale records restart.
+   Successfully observed dependency faults clear evidence. After an off-chain
+   fault, startup, interrupted recovery or observed pause, the worker persists a
+   clear-only reset requirement. Confirm its authorized `resetObservation(bucket)`
+   receipt before extending evidence. A failed reset transaction does not clear
+   the requirement. Do not edit journals or resend an ambiguous transaction.
+
+Only confirmation/raw-condition failures invalidate that window; an unrelated
+router, compound or health-read failure degrades its own job. A canonical clear
+acknowledgement suppresses repeated paid resets during the same outage, never
+authorizes cached readiness. Recovery reads actual state; a new nonempty record
+from another keeper requires a new clear before use. A new window draws new
+post-ready jitter; routine sample renewals preserve its existing delay.
+
+Known failed observe/rebalance receipts require an explicit reset before ordinary
+worker retry. The failed transaction itself cannot persist a deletion: atomic
+rollback restores its previous evidence, LP and accounting. If executing manually,
+reconcile the exact receipt and confirm `resetObservation` before rebuilding the
+window; never assume a failed call cleared it. A callback which clears/changes
+evidence during successful-path maintenance makes the whole operation revert.
+
+No transaction can prove every price between samples. Hidden moves and unobserved
+pause/fault cycles may be missed; observations also advertise pending upkeep.
+This is sampled confirmation, not continuous history, execution privacy or an
+anti-manipulation guarantee. Hourly fee harvest, claims and receipt recovery stay
+independent. To stop new ordinary readiness use reviewed gap0; governance cannot
+use the setter to authorize a premature ordinary rebalance. [Policy and limits](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+
 
 ### Set additional execution loss
 
@@ -357,11 +410,18 @@ catalog/search/depth and complete operations, including network fee accounting,
 then deliberately set limits and daily budgets, simulate and dry-run. Reconcile
 pending work and preserve the journal before any config/release restart.
 
-API reviews expose observed quality owner/revision. Current keeper code validates
-that metadata internally but its health/logs do not export it. Inspect the actual
-Strategy getters/events and reviewed pins; do not infer policy attestation from
-an absent health field. Adding anchored telemetry requires matching writer/checker
-review and operating qualification. No service was changed by this audit.
+Fresh keeper health schema2 exports the confirmed block/hash/time, config hash,
+runtime pins and execution/quality metadata, separating last successful observation
+from this cycle's unavailable/stale state. Local source-file hashes identify files;
+they do not attest the running binary or prove provider authenticity. Fresh
+healthy_v2/dry_run_v2 statuses require the matching checker; an old checker must
+fail closed. Roll out writer/checker together only after authorized operating
+qualification, with original journals intact. Discovery/health may reuse reads
+only at the identical block hash/config within one cycle; pre-signing validation
+stays fresh. Gas refusals report estimate,25%-padded requirement and configured
+ceiling/reason, without widening any budget. [Telemetry/recovery](KEEPER_RECOVERY.md)
+and [verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+No installed service changed.
 
 ## Typed conversion and loss-limit operations
 
@@ -484,17 +544,19 @@ mismatch. A width change can therefore be applied while the old LP is in range.
 replacement in policy2. It is not a tolerated centring error. Physical LP changes
 only after successful execution; top-ups do not recenter it or reset its clock.
 
-Fresh keeper config must select `maintenance_policy_version=2`, match Strategy2
-runtime/controller/module bindings and Budget3 for enabled compound. Policy2
-uses one persisted 60-600second jitter for eligible outside or operator-directed
-replacement. While still inside, ordinary evaluations are one hour apart; a newly
-observed desired-range change can bypass that local wait, never the contract
-cooldown. A60second observation loop services due timers, receipts and hourly
-harvest without blocking. Revalidate fresh state at due time and just before
-signing; if back inside with no range change, cancel the attempt. Jitter survives
-restart and is not redrawn by top-ups/harvest. It cannot constrain a key bypassing
-Python or promise exact inclusion time. Failed/ambiguous calls retain normal
-pending/nonce/backoff recovery. Downtime never replays missed rebalances.
+Fresh keeper config selects maintenance2, compound3 and confirmation1 with exact
+Strategy/Budget/helper runtimes and bindings. After cooldown, ordinary confirmation
+evaluations are300seconds apart, inside or outside; historical policy2 without
+confirmation retains hourly inside checks. The matching60second main loop handles
+due checks, receipts and independent hourly harvest. Once sampled readiness is
+true, it saves one60-600second jitter while continuing observations. A deliberate
+range change bypasses confirmation, never hard cooldown. Revalidate fresh state
+before submission; an ordinary return inside cancels readiness. Jitter survives
+restart; startup's explicit confirmation reset still requires fresh evidence.
+Top-ups/harvest do not redraw an existing schedule. Software jitter cannot
+constrain a key bypassing Python or promise exact inclusion. Failed/ambiguous
+calls keep normal pending/nonce/backoff recovery. Downtime does not replay missed
+rebalances. Follow [confirmation configuration](#configure-rebalance-confirmation).
 
 Range/cooldown/cap changes are read fresh on-chain: normally no restart or reseal.
 Width configuration is not an immediate LP replacement. Read `rangeUpdatePending`
@@ -517,8 +579,8 @@ A keeper-authorized wallet can call the existing nonpayable function:
 `Vault.rebalance(bucketId,minimumLiquidity,deadline)`
 
 This is the same guarded LP replacement as automated upkeep. It bypasses only
-Python's hourly evaluation and random waiting; it cannot bypass the hard on-chain
-cooldown, actual-range/operator-update eligibility, pause/lifecycle, prices or
+Python's evaluation schedule and random waiting; it cannot bypass sampled
+confirmation1, hard on-chain cooldown, actual-range/operator-update eligibility, pause/lifecycle, prices or
 execution/minimum/backing checks. Submission time is your choice; inclusion at
 an exact second is not guaranteed. No contract self-schedules a future call.
 
@@ -531,7 +593,11 @@ an exact second is not guaranteed. No contract self-schedules a future call.
 | Native transaction value | Zero: `rebalance` is nonpayable. The external transaction submitter funds network gas separately; wallet/Safe execution follows that wallet's normal gas workflow. |
 
 1. Verify exact chain/deployment/ABI/runtimes, selected pool, active LP/ticks,
-   current interval and `Strategy.needsRebalance(bucketId)`. A failed price/read
+   current interval, raw `Strategy.needsRebalance(bucketId)` and final
+   `Strategy.rebalanceReady(bucketId)`. For ordinary confirmation1, authorized
+   receipt-backed `observe(bucketId)` calls must establish the reviewed window
+   first; a raw true alone is insufficient. See the confirmation procedure.
+   A failed price/read
    is unavailable, not false or permission to force execution. Initial12hours is
    the intended governed hard interval, not an immutable override of every config.
 2. Coordinate the automated signer and reconcile any pending hash before manual
@@ -768,7 +834,8 @@ Stop scheduled compounding/buybacks using reviewed keeper configuration or by st
 
 Before enabling automated revenue operations, review the actual
 [schedule and reserve checks](OPERATIONS.md#reward-timing-and-maintenance-schedule).
-The current accounting4 example polls every600seconds and schedules standalone
+The current accounting4 example polls every60seconds, evaluates eligible
+confirmation every300seconds and schedules standalone
 harvests every3600seconds (one hour), independently from rebalancing;
 standalone compounding is off and `buybacks` is empty. These are blocked sample
 settings, not an enabled production promise. Do not put swaps/compounding inside

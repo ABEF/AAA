@@ -1289,7 +1289,7 @@
       }
     },
     "ZZZStrategy": {
-      "purpose": "Reviewed range, spot-deviation and directional swap plans; keepers execute only approved width rules and Vault commits physical LP.",
+      "purpose": "Reviewed range and spot-deviation policy, fee-adjusted swap floors and immutable sampled-confirmation child. Keepers execute guarded approved policy; only Vault commits physical LP changes.",
       "functions": {
         "access()": {
           "purpose": "Read the immutable controller binding.",
@@ -1325,7 +1325,8 @@
           "inputs": {
             "poolId": "Exact admitted pool ID.",
             "orientation": "0 raw token1/token0 or1 inverse token0/token1. Native ETH/ZZZ uses1 for ZZZ price in ETH; existing physical ticks do not change immediately."
-          }
+          },
+          "notes": "Every successful orientation setter invalidates confirmation policy revision, including changed-and-restored values; prior ordinary samples cannot authorize the new range policy."
         },
         "setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)": {
           "purpose": "Enable/disable reviewed on-chain switching between ±25% and ±50% in the approved price orientation. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Disabling needs no healthy Oracle/venue read. Enabling requires orientation 1, current width 2500/5000, ordered narrow/widen thresholds, consistent config and reviewHash. No keeper-selected arbitrary volatility model.",
@@ -1398,7 +1399,7 @@
           "outputs": {
             "0": "True only after the configured cooldown for actual tick outside [lower,upper) or pending operator range change. Fresh independent price/spot and consistent tick/fee checks apply; inactive/disabled/not-due positions return false."
           },
-          "notes": "Eligibility does not prove transaction success. Caller/execution/lifecycle/value/minimum/gas guards remain; service jitter cannot constrain a key calling contracts directly."
+          "notes": "Raw eligibility only: true may still be unconfigured, confirming or stale under confirmation1. Vault execution requires rebalanceReady; compound yields to this raw candidate. Caller/execution/lifecycle/value/minimum/gas guards remain; service jitter cannot constrain a key calling contracts directly."
         },
         "rangeUpdatePending(uint256)": {
           "purpose": "Check whether existing physical LP ticks differ from current width/orientation policy at its recorded center. A pending update is not execution eligibility; pause, cooldown, current prices and loss guards still apply.",
@@ -1496,10 +1497,48 @@
             "0": "Raw output floor: max(old gross floor, ceil(conservative quote of fee-net raw input * (10000-additionalLossBps)/10000)). Does not include a caller minimum or network gas."
           },
           "notes": "Read calculation is not a transaction/venue quote or a promise of execution. Manager additionally checks range/spot context, actual output and stronger caller minima. Separate reward converters retain their own policies."
+        },
+        "REBALANCE_CONFIRMATION_VERSION()": {
+          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
+          }
+        },
+        "rebalanceConfirmation()": {
+          "purpose": "Read the immutable noncustodial confirmation child created by this Strategy.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Exact ZZZRebalanceConfirmation address; authenticate runtime, Strategy and Access bindings before use."
+          }
+        },
+        "rebalanceReady(uint256)": {
+          "purpose": "Read buffered rebalance readiness after raw cooldown/range/price checks; a deliberate governed range change keeps its raw-guarded manual exception.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "id": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID."
+          },
+          "outputs": {
+            "0": "True for a valid manual range exception or matching fresh recorded observations spanning the configured duration; false for stopped/unstarted/stale evidence."
+          },
+          "notes": "Does not write samples, execute maintenance or guarantee transaction success. Read/dependency faults revert. The ordinary window is sampled evidence, not uninterrupted price proof."
+        },
+        "rebalanceObservation(uint256)": {
+          "purpose": "Read the current confirmed physical-side candidate and stable policy/LP identity; this is not the stored sample history.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "id": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID."
+          },
+          "outputs": {
+            "side": "0 no ordinary candidate/manual exception,1 below the lower tick,2 at or above the upper tick.",
+            "identity": "Stable current condition hash; zero when there is no ordinary candidate or the manual range exception applies.",
+            "manual": "True only for a deliberate range mismatch after raw cooldown/price checks; it bypasses the sampled window, not the raw guards."
+          },
+          "notes": "For stored first/last observations read the child observations(bucket). Faults revert; no observation transaction is sent."
         }
       },
       "constructor": {
-        "purpose": "Deploy bounded range/planning policy bound to its controller.",
+        "purpose": "Bind the controller and create the immutable noncustodial rebalance-confirmation child, initially900seconds with gap0/stopped; no operating review hash is invented.",
         "access": "Deployment only; module binding becomes fixed at seal.",
         "inputs": {
           "controller": "Exact collection controller."
@@ -1844,9 +1883,9 @@
           }
         },
         "rebalance(uint256,uint128,uint256)": {
-          "purpose": "Replace a shared LP at the strategy’s eligible target range after fee settlement.",
+          "purpose": "Replace a shared LP at the approved target after buffered Strategy readiness and fee settlement.",
           "access": "Wallet must be keeper-authorized, including governance if it calls directly; live/operating and on-chain eligibility/cooldown required. Original keeper authorization and unpaused state are rechecked after external work.",
-          "notes": "Captures the maintenance cap and starting prices; preserves shares and earned fees. No per-NFT rebalance is needed. Inputs: id is a bucket ID, with a positive LP minimum and fresh deadline. Permanently rejected once collective LP exit starts, including after ordinary unpause. A callback changing those conditions makes the entire operation revert, including that callback change; separate operator pause/revocation transactions remain unchanged. Direct manual submission bypasses only Python jitter/hourly checking, never contract guards. Nonpayable: no native transaction value, gas separate. Manual use of the service signing key outside its journal requires reviewed nonce/receipt/spend reconciliation before resuming automation.",
+          "notes": "Captures the maintenance cap and starting prices; preserves shares and earned fees. No per-NFT rebalance is needed. Inputs: id is a bucket ID, with a positive LP minimum and fresh deadline. Permanently rejected once collective LP exit starts, including after ordinary unpause. A callback changing those conditions makes the entire operation revert, including that callback change; separate operator pause/revocation transactions remain unchanged. Direct manual submission bypasses only Python jitter/hourly checking, never contract guards. Nonpayable: no native transaction value, gas separate. Manual use of the service signing key outside its journal requires reviewed nonce/receipt/spend reconciliation before resuming automation. Confirmation1 additionally requires a fresh matching sampled window, except a deliberate operator range change after raw guards. Maintenance captures stable Registry/source-policy/quality/confirmation controls across close, swap and redeployment; callback changes revert the full operation. Hourly fee harvest remains independent.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
@@ -1938,7 +1977,7 @@
       }
     },
     "ZZZLiquidityManager": {
-      "purpose": "Immutable typed Uniswap v4 position/swap executor; Vault retains LP ownership and all native/token deltas are checked.",
+      "purpose": "Immutable typed native ETH/fixed-ZZZ Uniswap v4 position/swap executor with bounded reviewed Balancer routing. Vault retains LP ownership; native/token deltas and operation contexts are checked. No ETH wrapper, arbitrary recipient or generic external-call path.",
       "functions": {
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
@@ -4199,7 +4238,7 @@
       }
     },
     "ZZZMigrationBudget": {
-      "purpose": "Fixed Vault companion enforcing captured contribution/maintenance execution budgets, actual deployed/idle backing and fair per-NFT share issuance. No external-custody conversion path.",
+      "purpose": "Fixed Vault companion enforcing captured contribution/maintenance budgets, stable full-operation policy controls, actual backing and fair NFT shares. Buffered readiness gates rebalancing; no external-custody conversion path.",
       "functions": {
         "IDLE_COMPOUNDING_VERSION()": {
           "purpose": "Identify compound capability3: independent per-pool compound interval with physical LP/compound anchor and rebalance priority.",
@@ -4264,9 +4303,9 @@
           }
         },
         "checkpoint(uint256,uint8)": {
-          "purpose": "Capture/extend/verify one atomic maintenance value budget using fixed starting prices.",
+          "purpose": "Capture/extend/verify one atomic maintenance budget using fixed starting prices and stable governance/source-policy controls across the complete close/swap/deploy operation.",
           "access": "Only fixed Vault.",
-          "notes": "Phases0=start,1=include exact compound,2=verify/clear,3=idle-compound start/cooldown; no cumulative policy or guardian withdrawal.",
+          "notes": "Phases0=start,1=include exact released compound,2=verify/clear,3=idle-compound start/cooldown. Capture Registry revision, active pair/sequencer policy IDs, execution-quality revision, confirmation revision and the raw bucket observation tuple (identity,firstSeen,lastSeen,side) before external work; require them unchanged after deployment. Clearing/changing recorded evidence during maintenance cancels the entire operation. Compare raw evidence rather than post-replacement readiness, since the intended new physical LP has a different condition identity. Normal feed rounds and expected physical LP changes do not invalidate this control hash. Aggregate loss and5% idle ceiling remain independent; no cumulative policy or withdrawal.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Internal maintenance checkpoint phase:0start,1compound,2verify,3idle-compoundstart."
@@ -4367,9 +4406,9 @@
             "0": "Canonical shared bucket ID, not an individual NFT or Uniswap position NFT ID."
           },
           "outputs": {
-            "0": "True only for active physical LP with operations enabled, compoundInterval(pool) elapsed since max(lastCompound,lastRebalance), no eligible rebalance and no available preapproved range selection."
+            "0": "True only for active physical LP with operations enabled, compoundInterval(pool) elapsed since max(lastCompound,lastRebalance), no raw needsRebalance candidate and no available preapproved range selection."
           },
-          "notes": "May revert on unavailable dependencies. Not complete transaction readiness: Vault still enforces lifecycle, authorization, deadline, pricing and value guards. Does not delay harvesting/claims or reset the rebalance clock."
+          "notes": "Raw rebalance priority applies while its confirmation is pending, stale or stopped, so compounding cannot postpone needed upkeep. May revert on unavailable dependencies. Vault additionally enforces lifecycle, authorization, deadline, pricing and value guards. Does not delay independent harvesting/claims or reset the rebalance clock."
         },
         "maintenanceLossBps()": {
           "purpose": "Read the current future-operation principal maintenance cap in basis points.",
@@ -4501,13 +4540,13 @@
           }
         },
         "validateRebalance(uint256,uint128)": {
-          "purpose": "Require a positive LP minimum and strategy-reported maintenance eligibility.",
+          "purpose": "Require a positive LP minimum and Strategy buffered rebalanceReady, preserving the raw-guarded deliberate range-change exception.",
           "access": "Only fixed Vault.",
-          "notes": "Does not let a keeper choose an arbitrary range or bypass cooldown.",
           "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Minimum actual Uniswap liquidity units to create/add; not token units or USD."
-          }
+            "id": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID.",
+            "minimumLiquidity": "Positive minimum actual Uniswap liquidity units for replacement, not token amounts or USD."
+          },
+          "notes": "Raw needsRebalance alone is insufficient. No arbitrary keeper range, cooldown bypass or observation writes; failed readiness reverts before fee collection/LP close."
         },
         "validateReservation(bytes32,uint256)": {
           "purpose": "Check that a nonzero admitted pool identity is unused or already reserved for this same bucket.",
@@ -4580,6 +4619,13 @@
           },
           "outputs": {
             "0": "Manager execution context hash; never an execution permission."
+          }
+        },
+        "REBALANCE_CONFIRMATION_VERSION()": {
+          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
           }
         }
       },
@@ -5895,6 +5941,157 @@
           "controller": "Fixed AccessController contract.",
           "core": "Reviewed same-v4 PoolManager used by the parent.",
           "state": "StateView contract bound to that core."
+        }
+      }
+    },
+    "ZZZRebalanceConfirmation": {
+      "purpose": "Immutable Strategy-created, noncustodial receipt-backed sampled rebalance confirmation. Stores bounded-gap outside-range observations and stable policy identity; no funds, approval, swap, payout or arbitrary execution authority. Samples are not proof of uninterrupted market prices.",
+      "functions": {
+        "REBALANCE_CONFIRMATION_VERSION()": {
+          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
+          }
+        },
+        "MAX_DURATION()": {
+          "purpose": "Read the immutable maximum confirmation-window duration.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "604800seconds (7days), not the current configured duration."
+          }
+        },
+        "access()": {
+          "purpose": "Read the immutable collection controller.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "AccessController address; this helper holds no principal or rewards."
+          }
+        },
+        "strategy()": {
+          "purpose": "Read the immutable creating Strategy authorized to invalidate its policy.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Exact parent Strategy address, not a keeper wallet."
+          }
+        },
+        "duration()": {
+          "purpose": "Read the required span between the first matching recorded sample and readiness.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Configured seconds; constructor900 (15minutes), governed60..604800."
+          }
+        },
+        "maxObservationGap()": {
+          "purpose": "Read the maximum permitted elapsed gap between recorded on-chain samples.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Seconds;0 is stopped/unconfigured. A positive value is at most duration/2. Intended900/300 policy has no grace; a gap greater than300 restarts."
+          }
+        },
+        "policyRevision()": {
+          "purpose": "Read monotonic confirmation-policy revision, incremented by configure and Strategy invalidation.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "uint64 revision; changed-and-restored settings cannot revive prior observations."
+          }
+        },
+        "reviewHash()": {
+          "purpose": "Read current governance-provided confirmation-policy review commitment.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "bytes32 review hash; constructorzero means no reviewed configuration. Hash presence alone is not independent approval."
+          }
+        },
+        "configure(uint32,uint32,bytes32)": {
+          "purpose": "Configure the sampled window and maximum gap, advancing policy revision so earlier samples cannot authorize the new policy.",
+          "access": "Governance or valid pre-seal bootstrap through canConfigure; operating canonical lifecycle and no principal exit. Ordinary pause is allowed.",
+          "inputs": {
+            "secondsRequired": "Required span in seconds,60..604800. Intended operating value900.",
+            "maximumGap": "0 stops ordinary confirmed rebalance, otherwise1..secondsRequired/2. Intended value300, no automatic grace.",
+            "reviewed": "Nonzero bytes32 commitment to reviewed cadence, receipt latency and policy."
+          },
+          "notes": "Emits ConfirmationConfigured. Does not transfer funds, rebalance, set a service polling interval or bypass the raw-guarded deliberate range-change exception."
+        },
+        "invalidatePolicy()": {
+          "purpose": "Advance confirmation revision after a Strategy orientation change without selecting a new duration/gap; retain post-LP-exit orientation configuration used by remaining buybacks.",
+          "access": "Only the immutable Strategy; operating canonical lifecycle. Ordinary pause and completed LP exit do not block this revision-only invalidation.",
+          "notes": "Emits ConfirmationInvalidated. Old stored samples remain visible but their identity cannot match the new revision; governance/keepers cannot call this entry directly. This grants no post-exit configure, observation, reset or LP operation."
+        },
+        "condition(uint256)": {
+          "purpose": "Read raw-eligible outside side and stable physical/configuration/source-policy identity, or the deliberate governed range-change exception.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "bucket": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID."
+          },
+          "outputs": {
+            "side": "0 no ordinary candidate/manual exception,1 below actual lower tick,2 at or above actual upper tick.",
+            "identity": "Keccak256 condition identity binding LP/ticks, desired configuration/orientation and stable policy controls; zero for absent/manual candidate.",
+            "manual": "True for pending deliberate range change only after raw cooldown/price eligibility; no buffer required for that exception."
+          },
+          "notes": "Sealed unpaused normal principal operation and the bound Strategy are required for a candidate. Faulty/inconsistent underlying reads can revert. Normal healthy feed rounds and balances do not reset identity; policy/revision/physical LP changes do."
+        },
+        "controlFingerprint(bytes32)": {
+          "purpose": "Hash stable controls captured across a complete close/swap/deploy operation, independently of physical LP replacement.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "poolId": "Exact admitted native ETH/fixed-ZZZ PoolKey hash; normal accounting dependency validation applies."
+          },
+          "outputs": {
+            "0": "Keccak256 of Registry identity/revision, active Oracle pair/sequencer policy IDs, execution-quality revision and confirmation revision."
+          },
+          "notes": "Excludes normal feed rounds, token balances and physical LP identity so intended maintenance can complete. Missing active pair policies or inconsistent native accounting revert. Does not quote price or prove provider authenticity."
+        },
+        "observations(uint256)": {
+          "purpose": "Read the last recorded sample history for a shared bucket, including stale or superseded records.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID."
+          },
+          "outputs": {
+            "identity": "Recorded stable condition hash; zero for empty/reset history.",
+            "firstSeen": "Unix seconds of the first matching sample in this recorded window, uint64.",
+            "lastSeen": "Unix seconds of the latest matching recorded sample, uint64.",
+            "side": "Recorded outside side1below/2above;0 for empty/reset."
+          },
+          "notes": "Stored values alone do not establish readiness; compare current condition, gap, policy and ready(bucket) at the same canonical block."
+        },
+        "ready(uint256)": {
+          "purpose": "Check current raw condition and matching recorded evidence without writing or extending samples.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "bucket": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID."
+          },
+          "outputs": {
+            "0": "True for a raw-guarded manual range exception, or positive configured gap with matching side/identity, elapsed duration and fresh last sample; otherwise false."
+          },
+          "notes": "Dependency/read faults revert. Raw cooldown/price/lifecycle checks remain; no guarantee of future inclusion or continuous price history."
+        },
+        "observe(uint256)": {
+          "purpose": "Record one current out-of-range sample; restart on changed identity/side or excessive gap, and clear evidence on no candidate, stop or observed read fault.",
+          "access": "Authorized keeper; sealed/unpaused, operating canonical lifecycle and no principal exit; nonreentrant.",
+          "inputs": {
+            "bucket": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID."
+          },
+          "outputs": {
+            "0": "Whether the newly recorded condition is ready, or true for a valid manual range exception. False includes successful clearing after a caught condition-read fault."
+          },
+          "notes": "A successful transaction/receipt is needed to advance or clear evidence. Emits Observed or ObservationReset; caught read faults clear in a successful transaction rather than reverting the deletion. No funds or LP move."
+        },
+        "resetObservation(uint256)": {
+          "purpose": "Delete recorded bucket evidence after an observed incident so it cannot be extended on recovery.",
+          "access": "Authorized keeper; operating canonical lifecycle and no principal exit. Ordinary global pause is allowed; nonreentrant.",
+          "inputs": {
+            "bucket": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID."
+          },
+          "notes": "Clear-only operation emits ObservationReset(reason5). Confirm its receipt before recording new evidence after an off-chain fault. Does not change policy, cooldown, LP, fees or rewards."
+        }
+      },
+      "constructor": {
+        "purpose": "Bind the deployed collection controller and creating Strategy; initialize duration900seconds, gap0/stopped, zero review hash and revision0.",
+        "access": "Deployment only; the release instance is created by its Strategy.",
+        "inputs": {
+          "controller": "Exact deployed AccessController address; missing controller code rejects."
         }
       }
     }

@@ -123,6 +123,12 @@ contract BudgetAdversarialPolicy {
     BudgetAdversarialVenue private venue;
     uint256 private amountIn;
     uint256 private plannedAtCount;
+    // TEST ONLY: same-pair move/loss fixtures use no sampled timer. Keep
+    // evidence/control stable; rebalance-specific subclasses supply readiness.
+    function rebalanceReady(uint256) external pure virtual returns(bool){return false;}
+    function rebalanceConfirmation() external view returns(address){return address(this);}
+    function controlFingerprint(bytes32) external pure returns(bytes32){return keccak256("adversarial-budget fixture controls");}
+    function observations(uint256) external pure returns(bytes32,uint64,uint64,uint8){return(bytes32(0),0,0,0);}
     function observeVenue(BudgetAdversarialVenue observed) external { venue = observed; }
     function setSwapAmount(uint256 value) external { amountIn = value; plannedAtCount = venue.swapCount(); }
     function validatePrice(bytes32) external pure returns (uint160) { return uint160(1 << 96); }

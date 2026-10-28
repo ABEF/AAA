@@ -97,6 +97,11 @@ contract MigrationBudgetScaleHarness {
     uint256 private amount0;
     uint256 private amount1;
     constructor(address access) { budget = new ZZZMigrationBudget(access); }
+    // TEST ONLY: isolate cached-price/loss rounding, not confirmation timing.
+    // The real helper/keeper buffer is exercised by its dedicated test suite.
+    function rebalanceConfirmation() external view returns(address){return address(this);}
+    function controlFingerprint(bytes32) external pure returns(bytes32){return keccak256("budget-scale fixture controls");}
+    function observations(uint256) external pure returns(bytes32,uint64,uint64,uint8){return(bytes32(0),0,0,0);}
     function setAmounts(uint256 a0, uint256 a1) external {
         position.poolId = bytes32(uint256(1));
         position.lpTokenId = 1;
@@ -132,6 +137,7 @@ contract MigrationBudgetScaleTest is Test {
         ac.bind(Ids.ORACLE, address(oracle));
         ac.bind(Ids.POOLS, address(pools));
         ac.bind(Ids.LIQUIDITY, address(harness));
+        ac.bind(Ids.STRATEGY, address(harness));
     }
     function testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss() public {
         harness.setAmounts(1000e6, 1 ether); // $3,000 principal.

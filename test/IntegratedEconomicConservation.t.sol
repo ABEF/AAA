@@ -27,6 +27,7 @@ import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZContributionPricing} from "../src/ZZZContributionPricing.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZCompounder} from "../src/ZZZCompounder.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
 import {ZZZActivationAssetsFactory} from "../src/ZZZActivationAssetsFactory.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
@@ -110,6 +111,7 @@ contract IntegratedEconomicConservationTest is Test {
     bytes32 private constant CREDIT=keccak256("PoolRewardsCredited(uint256,address,uint256,uint256)");
     bytes32 private constant CLAIM=keccak256("Claimed(uint256,address,address,uint256)");
     bytes32 private constant HARVEST=keccak256("FeesCollected(uint256,uint256,uint256)");
+    uint256 private callbackConfirmationBucket;
     receive() external payable {}
     function activePlan(uint256) external pure returns(bytes32) { return bytes32(0); }
 
@@ -313,6 +315,75 @@ contract IntegratedEconomicConservationTest is Test {
             ZZZOracle.SourcePolicy(address(second),address(second).codehash,keccak256("test-market-secondary"),3600,8),
             300,keccak256("test-only moved market observations; not provider qualification"));
     }
+    function _confirmOrdinaryRebalance(ZZZStrategy strategy,uint256 bucket) private {
+        // Explicit test policy: real confirmation samples without qualifying
+        // production service latency, real feeds or the installed keeper.
+        strategy.rebalanceConfirmation().configure(900,300,keccak256("test-only strict confirmation policy"));
+        assertFalse(strategy.rebalanceConfirmation().observe(bucket));
+        for(uint256 i;i<3;++i) {
+            vm.warp(block.timestamp+300);
+            bool ready=strategy.rebalanceConfirmation().observe(bucket);
+            assertEq(ready,i==2);
+        }
+        assertTrue(strategy.rebalanceReady(bucket));
+    }
+    /// @dev TEST ONLY authorized callback; the production token/provider must
+    /// separately be qualified. This callback clears real on-chain evidence.
+    function resetRebalanceEvidenceFromTokenCallback() external {
+        require(msg.sender==address(token));
+        ZZZStrategy(access.module(Ids.STRATEGY)).rebalanceConfirmation().resetObservation(callbackConfirmationBucket);
+    }
+    function _confirmationObservationHash(uint256 bucket) private view returns(bytes32) {
+        (bytes32 identity,uint64 first,uint64 last,uint8 side)=
+            ZZZStrategy(access.module(Ids.STRATEGY)).rebalanceConfirmation().observations(bucket);
+        return keccak256(abi.encode(identity,first,last,side));
+    }
+    function _maintenanceRollbackState(uint256 bucket,uint256 id) private view returns(bytes32) {
+        Position memory p=vault.group(bucket);
+        bytes32 principal=keccak256(abi.encode(keccak256(abi.encode(p)),vault.sharesOf(id),
+            vault.bucketTotalShares(bucket),positions.getPositionLiquidity(p.lpTokenId)));
+        bytes32 custody=keccak256(abi.encode(address(vault).balance,token.balanceOf(address(vault)),
+            address(manager).balance,token.balanceOf(address(manager)),address(core).balance,token.balanceOf(address(core))));
+        bytes32 reserves=keccak256(abi.encode(fees.compoundBalance(bucket,address(0)),
+            fees.compoundBalance(bucket,address(token)),fees.buybackBalance(address(0)),fees.buybackBalance(address(token))));
+        bytes32 liabilities=keccak256(abi.encode(fees.accounted(address(0)),fees.accounted(address(token)),
+            rewards.liabilities(address(0)),rewards.liabilities(address(token))));
+        return keccak256(abi.encode(principal,custody,reserves,liabilities,
+            _confirmationObservationHash(bucket),membership.totalEligible()));
+    }
+    function testActualV4ConfirmationResetDuringHarvestRollsBackEntireRebalance() public {
+        _deepenExternalLiquidity(); registry.setRange(2500);
+        ZZZStrategy strategy=ZZZStrategy(access.module(Ids.STRATEGY)); strategy.setRangeOrientation(pool,1);
+        uint256 id=_mint(ALICE); _contribute(ALICE,id,100 ether,false);
+        uint256 bucket=vault.nftBucket(id);
+        (,int24 upper)=manager.ticks(vault.group(bucket).lpTokenId);
+        core.unlock(abi.encode(uint8(4),false,uint256(1_000_000 ether),TickMath.getSqrtPriceAtTick(upper+600)));
+        vm.warp(block.timestamp+601); _matchFreshMarketPrices();
+        _confirmOrdinaryRebalance(strategy,bucket); _assertBacking();
+        bytes32 beforeState=_maintenanceRollbackState(bucket,id);
+        uint256 oldLP=vault.group(bucket).lpTokenId;
+        uint256 snapshot=vm.snapshotState();
+        // Positive control uses identical funded state, parameters and caps.
+        // A later Slippage assertion cannot be an unrelated thin-route failure.
+        vault.rebalance(bucket,1,block.timestamp+100);
+        assertTrue(vault.group(bucket).lpTokenId!=oldLP); _assertBacking();
+        assertTrue(vm.revertToState(snapshot)); vm.getRecordedLogs(); vm.recordLogs();
+        assertEq(_maintenanceRollbackState(bucket,id),beforeState,"positive control restores exact starting state");
+        assertTrue(strategy.rebalanceReady(bucket));
+        callbackConfirmationBucket=bucket;
+        // The real funded token-fee harvest resets Vault's allowance. The
+        // callback happens after initial readiness, before the LP replacement.
+        token.arm(address(vault),2,address(this),abi.encodeCall(this.resetRebalanceEvidenceFromTokenCallback,()));
+        vm.expectCall(address(strategy.rebalanceConfirmation()),abi.encodeWithSignature("resetObservation(uint256)",bucket),uint64(1));
+        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.mint.selector),uint64(1));
+        vm.expectRevert(ZZZMigrationBudget.Slippage.selector);
+        vault.rebalance(bucket,1,block.timestamp+100);
+        // Foundry exposes reverted logs; they are not receipts or earned fees.
+        vm.getRecordedLogs(); vm.recordLogs();
+        assertEq(_maintenanceRollbackState(bucket,id),beforeState,"all principal, evidence, fees and shares roll back");
+        assertTrue(strategy.rebalanceReady(bucket),"reverted reset cannot destroy earlier evidence");
+        _assertBacking();
+    }
     function _outOfRangeContributions(bool above) private {
         _deepenExternalLiquidity(); registry.setRange(2500);
         ZZZStrategy strategy=ZZZStrategy(access.module(Ids.STRATEGY));
@@ -346,6 +417,7 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(vault.group(bucket).lpTokenId,lp);
         uint256 finalA=vault.sharesOf(a);vm.warp(block.timestamp+601);_matchFreshMarketPrices();
         assertTrue(strategy.needsRebalance(bucket));
+        _confirmOrdinaryRebalance(strategy,bucket);
         vault.rebalance(bucket,1,block.timestamp+100);_assertBacking();
         uint256 next=vault.group(bucket).lpTokenId;assertTrue(next!=lp);
         assertEq(vault.sharesOf(a),finalA);assertEq(vault.sharesOf(b),sharesB);

@@ -1,0 +1,2063 @@
+{
+  "reviewed": "2026-10-28",
+  "base_commit": "cd10e35599b00d79b00c46553e96cdb0b3248cfb",
+  "solidity": {
+    "methods": 217,
+    "passes": 217,
+    "skips": 0,
+    "record": "buffer-composed-final-summary.json",
+    "source_drift": [],
+    "run_exit": {
+      "exit_code": 0,
+      "elapsed_seconds": 830.67
+    },
+    "tests": [
+      {
+        "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+        "method": "testCompoundPoliciesArePerAdmittedPool()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+        "method": "testDefaultCompoundHourIsIndependentOfTwelveHourRebalance()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+        "method": "testIntervalChangesNeverResetPhysicalOrCompoundClocks()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+        "method": "testOrdinaryPauseAllowsReviewedIntervalConfiguration()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+        "method": "testPreparationCanonicalAndActiveSnapshotRejectPolicyChanges()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+        "method": "testUnknownPoolBoundsAndUnprivilegedSetterFailClosed()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkedResumeRejectsChangedOrderedTokensAndDisabledDestination()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkedResumeRetainsStaleOracleAndVenueFailureRollbackThenPreservesShares()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingMinimaExcludeOldIdleCompoundAndDirectDonationsAndRollBack()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingNonceInvalidationAndSuccessfulExecutionPreventReplay()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingOneSidedPositionAllowsOneZeroMinimum()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingRebalanceInvalidatesScheduledLPTokenSnapshot()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingRejectsEveryStaleSnapshotAndInvalidAuthorizationField()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingRejectsOutboundCustodyEvenWithMatchingLPAndShareSnapshot()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingRequiresGovernancePausedSealedAndFixedMigrationModule()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingStaleOracleKeepsPrincipalAndFundedLPClaimRights()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CustodyParking.t.sol:CustodyParkingTest",
+        "method": "testParkingVenueFeesCannotSubsidizePrincipalMinimums()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_BadCapOrMissingReviewRejectsWithoutMutation()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_DefaultAndSeparateCapabilityAreExplicit()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_DirectManagerSwapCannotBypassQualityWithWeakCallerMinimum()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_DirectSwapRejectsChangedRestoredQualityDuringInputPull()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_DirectSwapRejectsChangedRestoredVenueLimitDuringInputPull()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_DirectionalProtocolFeeAndCeilHaveExactRawBoundaries()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_EmptyOrOverflowingQuoteInputFailsClosed()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_InvalidObservedStaticOrProtocolFeeFailsClosed()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_LPBalanceRejectsChangedRestoredQualityDuringRefund()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_NetFeeQuoteUsesIndependentSourceBoundsRatherThanPoolSpot()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_NoSwapBalancedBudgetStillWorksAtZeroExtraCap()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_NonGovernanceCannotChangeQualityPolicy()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_ObservedProtocolFeeChangeUpdatesTheFloorWithoutReconfiguration()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_OrdinaryPauseAndPostExitRetainBuybackPolicyConfiguration()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_PreparationAndCanonicalLockStillBlockConfiguration()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_QualityUpdatesIncrementRevisionEvenWhenRestored()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_SelectedHighFeeKeepsStricterGrossVenueLimit()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_SelectedPlanCarriesAtLeastTheCurrentQualityFloor()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_StrongerCallerOutputMinimumRemainsEnforced()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_TokenDecimalsDoNotChangeTheFeeAdjustedValueRule()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_ZeroAndMaximumExtraCapsNeverEraseTheGrossFloor()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/FeeAdjustedExecution.t.sol:FeeAdjustedExecutionTest",
+        "method": "test_ZeroFeeIsNotMistakenForMissingPolicy()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testActivationAndGrowthUseGovernedContributionLimitWithVenueFloorRetained()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testAtomicMoveUsesSamePolicyAndPreservesStrongPoolChecks()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testDefaultsHardMaximumZeroAndGovernanceEvents()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testGovernanceCallbackCannotWidenActiveMaintenanceSnapshot()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testLaterContributionsUseSamePolicyWithoutBorrowingIncumbentIdle()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testOnlyGovernanceAndOperatingLifecycleCanChangeLimits()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testPackedContributionCapStaysFixedDespiteLaterGovernanceChange()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testRebalanceUsesCurrentBoundedPolicyAndPreservesShares()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+        "method": "testRetainedValueRoundsUpAndCannotExceedHardMaximum()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testDormantHasNoPrincipalAndAllocationBoundsAreEnforced()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testDoubleClaimsDuplicateBatchAndReentrancyCannotPayTwice()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testExitCannotStartInsideAnInFlightContributionCallback()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testExitWithoutHealthyPricesOrEnabledPoolAndRawMinimumRollback()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testFinalHarvestAndPendingCompoundPreserveEarnedClaimsAndBuyback()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testFuzzCumulativeAllocationConservesEveryRawUnit(uint96,uint96,uint96)",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testGasConsumingRecipientIsIsolatedAndLaterRecipientPaid()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testObsoleteExternalCustodySelectorsAreAbsent()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testOnlyGovernanceStartsAndCannotReopenOrStartTwice()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testPrefundsNeverJoinPrincipalAndRemainAfterCompletePayout()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testPrincipalIsProportionalNotEqualAndExactAfterAutomaticPayout()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testRejectingRecipientDoesNotBlockOthersAndCanChooseFallback()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+        "method": "testUnpaidPrincipalAndPastRewardsFollowTransferAndFutureRoyaltiesContinue()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderExitScaleTest",
+        "method": "testAll1000OrdinalsFourBucketsAndZeroOutputConserveExactPrincipal()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderExitScaleTest",
+        "method": "testAllBucketsValidatedBeforeIrreversibleStart()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/HolderCollectiveExit.t.sol:HolderExitScaleTest",
+        "method": "testMissingOrInconsistentShareInventoryFailsClosedBeforeAnyPayout()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4ApprovedTwoPercentDefaultAndStricterOnePercentApplyToActivationAndGrowth()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4AtomicBalancingFailureRollsBackAllEntitlements()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4BalancedJoinsCannotCaptureOldIncomeOrPrefundsAndPreserveShares()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4CompoundYieldsToRangeRebalanceWithoutDelayingIt()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4ConfirmationResetDuringHarvestRollsBackEntireRebalance()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4ContributionsAboveOldRangePreserveIncumbentsAndRebalance()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4ContributionsBelowOldRangePreserveIncumbentsAndRebalance()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4CoreDonationCannotGiveNewcomerPastFundedFees()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4IdleOnlyCompoundGrowsLPWithoutMovingSharesOrTakingPrefunds()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4InverseZZZPriceRangeDeploysGrowsAndKeepsFeeAccounting()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4LateSourceRoundCallbackRollsBackLPFundsEligibilityAndFees()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4StalePricesBlockRebalanceButPreserveHarvestAndClaimAccounting()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+        "method": "testActualV4UnfeasibleDepthStillRollsBackEveryLedger()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/KeeperCompletion.t.sol:KeeperRebalanceCompletionTest",
+        "method": "testRebalanceRejectsKeeperRevocationDuringCloseAndRollsBack()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/KeeperCompletion.t.sol:KeeperRebalanceCompletionTest",
+        "method": "testRebalanceRejectsPauseDuringCloseAndRollsBack()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/KeeperCompletion.t.sol:KeeperRebalanceCompletionTest",
+        "method": "testRebalanceUnchangedAuthorityCallbackStillSucceeds()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_ActualSizeRoutingSelectsCheaperVenueAndPreservesQuotes()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_BalancedBudgetDoesNotChaseDust()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_ColdDeepSingleVenueFastPathWithinExistingGasGate()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_ColdFourVenueSearchWithinExistingGasGate()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_DisabledCandidateDoesNotFreezeHealthyRouting()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_EmptyCatalogNeverImplicitlySwapsInDestination()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_ManagerRejectsERC20PairBeforeAssetPull()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_ManagerRejectsNonNativeMintEvenIfRegistryClaimsNative()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_PartialInputEmptyVenueDoesNotBlockHealthyAlternative()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_PlannerFindsSmallerFeasibleSwapWhenSeedViolatesSpotLimit()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_QuoteUsesExternalDepthAfterActualOwnedLPClose()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_RefundCallbackCannotChangeAndRestoreRegistryPolicy()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_RefundCallbackCannotChangeCapturedPriceVector()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_RefundCallbackCannotChangeRoutingPolicy()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_RefundCallbackCannotChangeTargetOrientation()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_RoutesCanBeAdmittedAfterSealWithoutMovingLP()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_SolverBoundsAndQuoteAuthentication()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_ThinCheaperVenueCannotBeatDeepSafeVenue()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+        "method": "test_UnknownDuplicateAndOverlongCatalogRejected()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testAvailablePreapprovedRangeSelectionTakesPriorityBeforeItIsApplied()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testBucketClocksAreIndependent()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testCompoundThenCompoundUsesOwnExactBoundary()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testEligibleRebalanceRejectsCompoundBeforeFeeOrClockMutation()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testFirstCompoundWaitsAfterCreationAtExactBoundary()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testGovernedIntervalChangeAndOperationsDisableAreRespected()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testLateCompoundFailureRollsBackBackingAndCooldownForRetry()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testMissingAndDormantBucketsCannotCompound()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testRebalanceThenCompoundWaitsWithoutBlockingHarvestOrClaim()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testRecentCompoundCannotPostponeAnEligibleRebalance()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MaintenanceCadence.t.sol:MaintenanceCadenceTest",
+        "method": "testTopUpDoesNotResetCadenceOrSuppressHarvest()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testBudgetCannotBeArmedOrFinalizedByAnotherCaller()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testBudgetCountsAttributedIdleAndAllowsExactFivePercentIdle()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testBudgetMigrationBlocksCloseCallbackReentry()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testBudgetResumeStartsFromParkedPrincipalAndRollsBackBadMint()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testBudgetRetainsFinalLPCustodyCheck()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testBudgetRoundsRequiredRetentionUpAtOneWeiBoundary()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testBudgetWeightsLossByCachedAssetPricesRatherThanRawTokenTotals()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testCloseCallbackDoublingOraclePricesCannotEraseFourPercentLoss()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testFreshHarvestCompoundEntersDenominatorInsteadOfMaskingCloseLoss()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testFundedRewardBuybackAndPriorDonationsCannotSubsidizePrincipalLoss()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testHarvestCallbackPrincipalLossAndPriceChangeCannotPrecedeStartingSnapshot()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+        "method": "testMintCallbackPriceChangeCannotHideExcessAttributedIdle()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+        "method": "testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+        "method": "testMixedDecimalsRejectOneStableBaseUnitPastFloorDespiteHigherLiveFeed()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+        "method": "testReceiptIncludesOldAndNewDesignatedCompoundWithoutCountingRewardsBuybackOrDonations()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+        "method": "testRepeatedMovesStartFreshSnapshotsIncludingAttributedIdle()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+        "method": "testStaleBaselineFeedRejectsBeforeHarvestAndPreservesCustody()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativeBuybackSpendsOnlyItsClassifiedReserve()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativeFailedActivationAndIncreaseKeepFundsAndTraits()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativeFeesFollowOwnerThroughGrowthAndRepeatedRebalances()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativeForcedETHDuringCloseCannotSubsidizePrincipal()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativeForcedETHDuringHarvestCannotBecomeFeeIncome()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativeHolderExitUsesActualManagerAndPreservesRewardsWithoutPrices()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testNativePrefundsCannotSatisfyMissingValueOrBecomeNFTPrincipal()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+        "method": "testRetiredBridgeSelectorsRemainUncallable()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/PoolSwitching.t.sol:PoolSwitchingTest",
+        "method": "testChangedPairReversedOrderAndDisabledPoolRemainRejectedAtomically()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/PoolSwitching.t.sol:PoolSwitchingTest",
+        "method": "testFullCapacitySwitchAndReturnReuseTheExistingBucketSlot()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/PoolSwitching.t.sol:PoolSwitchingTest",
+        "method": "testPoolAlreadyAssignedToAnotherBucketCannotBeTakenBySwitch()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/PoolSwitching.t.sol:PoolSwitchingTest",
+        "method": "testRolePauseDeadlineMinimumAndSamePoolGuardsPreserveCustody()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/PoolSwitching.t.sol:PoolSwitchingTest",
+        "method": "testSamePairSwitchKeepsTwoNFTSharesFundedRewardsAndHomeIdentity()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/PoolSwitching.t.sol:PoolSwitchingTest",
+        "method": "testVenueFailureRollsBackCloseFeesCompoundAndNewPoolReservation()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+        "method": "testCompoundCannotMaskLossAndFailedHarvestRollsBackRewards()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+        "method": "testDonationsAndClaimableFeesCannotPayRebalanceLoss()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+        "method": "testFuzzThreePercentCloseBoundary(uint16)",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+        "method": "testPriceChangesDuringHarvestCannotHideExecutionLoss()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+        "method": "testRebalanceSnapshotCannotBeReenteredDuringClose()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+        "method": "testRepeatedSnapshotsClearAndExistingIdleCapStillApplies()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+        "method": "testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testBudgetSnapshotRejectsChangedAndRestoredConfirmationPolicy()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testBudgetSnapshotRejectsChangedAndRestoredQualityControls()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testBudgetSnapshotRejectsChangedAndRestoredRegistryControls()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testBudgetSnapshotRejectsResetEvidenceAfterReadiness()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testChangedAndRestoredRegistryPolicyRestarts()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testCollectiveExitPermanentlyBlocksObservationAndConfigurationMutation()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testConfigurationBoundsAndExplicitStop()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testContributionBalancesDoNotResetTheSamePhysicalWindow()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testCooldownMustElapseBeforeObservationWindowBegins()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testExactFifteenMinuteBoundaryWithFiveMinuteObservations()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testFreshDefaultIsExplicitlyUnconfiguredAndCannotRebalance()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testHealthyReferenceUpdatesDoNotResetStablePolicyWindow()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testInsideObservationClearsAndLaterExitStartsFresh()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testKeeperCanClearDuringOrdinaryPauseWithoutExtending()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testManualWidthExceptionPreservesRawCooldownAndPriceGuards()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testMaximumGapIsInclusiveAndOneSecondMoreRestarts()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testNewOraclePolicyRestartsWithoutNormalRoundFingerprinting()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testObservedPriceFailureClearsInSuccessfulTransaction()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testOppositeExitSideRestarts()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testOrientationChangeAndRestoreInvalidatesPriorEvidence()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testPendingConfirmationDoesNotAllowCompoundToBypassRawPriority()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testPostExitGovernanceOrientationCanChangeWithoutReopeningPrincipal()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testPreparationAndCanonicalLocksFailClosed()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testReplacementLPIdentityRestarts()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testSameBlockRepeatsDoNotAdvanceTime()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testSingleOldSampleAndLateEndpointCannotQualify()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "testUnauthorizedObserverCannotExtendOrClearEvidence()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+        "method": "test_FailedObservationTransactionDoesNotPretendItCleared()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testActivationAcceptsExactly98LPAtCurrentTwoPercentBoundary()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testActivationCannotCollectHistoricalSharedRewards()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testActivationCannotIssueSecondNFTOrChargeAnotherMintFee()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testActivationHonorsStricterPoolMinimum()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testActivationLeavesExactAttributedIdle()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testActivationRejects100InputWhenActualLPIsBelow98()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testActivationRequiresAtLeast100USDInput()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testCompoundingAddsOnlyDesignatedShare()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testDonationNeverBecomesAnotherNFTPrincipal()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testDormantCannotTopUpCollectCompoundRebalanceOrMigrate()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testDormantMintForwardsPriceWithoutLiquidityOrRewards()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testDormantTransferOnlyNewOwnerCanActivate()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testExactly100ActualLPActivates()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testFeesNotPrincipal()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testFuzzMintRejectsAnyOverpayment(uint256)",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testFuzzMintRejectsAnyUnderpayment(uint256)",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testMostlyIdleActivationRejected()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testNFTUserCannotTransferUnderlyingLP()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testNoOwnerWithdrawalEntrypoint()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testOldDepositSelectorCannotBypassPaidMint()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testOnlyKeeperCanRebalance()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testPauseBlocksActivationKeepsDormantNFT()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testPauseBlocksMint()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testRebalanceReplacesLPButPreservesEconomicNFT()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testReceiverReentrancyCannotMintSecondNFT()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testRejectingNFTReceiverRollsBackMintAndPayment()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testRejectingTreasuryRollsBackNFTAndPayment()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testSatelliteCannotIssueAnotherCollection()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testSelfProceedsRecipientRejected()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testTopUpKeepsBothNFTsAndCheckpointsFees()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testTreasuryReentrancyCannotMintSecondNFT()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testUnsealedSystemCannotMint()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testVenueFailureRollsBackActivationKeepsPaidDormantNFT()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testWrongChainCannotActivateCanonicalDormantNFT()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+        "method": "testZeroProceedsRecipientRejected()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      }
+    ]
+  },
+  "python": {
+    "distinct_methods": 272,
+    "passes": 271,
+    "skips": 1,
+    "passing_methods": [
+      "tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_current_dormant_activation_new_pool_and_active_growth_prepare",
+      "tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_current_native_policy_getter_is_typed_and_other_zero_uses_stay_rejected",
+      "tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_current_zzz_requires_only_exact_approval_before_fresh_review",
+      "tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_dormant_codes_cannot_be_mixed_between_profiles_and_nonactive_growth_is_rejected",
+      "tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_explicit_historical_profile_keeps_old_dormant_value_and_native_preparation",
+      "tests_python.test_execution_quality_profile.ExecutionQualityAPITests.test_all_quality_reads_use_the_same_canonical_snapshot",
+      "tests_python.test_execution_quality_profile.ExecutionQualityAPITests.test_default_and_governed_bounds_are_observed_without_changing_total_loss",
+      "tests_python.test_execution_quality_profile.ExecutionQualityAPITests.test_empty_policy_result_does_not_fall_back_to_historical",
+      "tests_python.test_execution_quality_profile.ExecutionQualityAPITests.test_historical_lp1_never_probes_new_quality_getters",
+      "tests_python.test_execution_quality_profile.ExecutionQualityAPITests.test_invalid_or_incompatible_explicit_profiles_are_rejected",
+      "tests_python.test_execution_quality_profile.ExecutionQualityAPITests.test_manager_helper_and_policy_mismatches_fail_closed",
+      "tests_python.test_execution_quality_profile.ExecutionQualityAPITests.test_strategy_owner_forwarding_and_revision_must_match",
+      "tests_python.test_execution_quality_profile.ExecutionQualityKeeperTests.test_bad_policy_or_capability_blocks_balancing_without_signing",
+      "tests_python.test_execution_quality_profile.ExecutionQualityKeeperTests.test_existing_pending_recovery_skips_unavailable_new_quality_metadata",
+      "tests_python.test_execution_quality_profile.ExecutionQualityKeeperTests.test_helper_outage_preserves_independent_due_harvest",
+      "tests_python.test_execution_quality_profile.ExecutionQualityKeeperTests.test_historical_lp1_preserves_no_quality_probe",
+      "tests_python.test_execution_quality_profile.ExecutionQualityKeeperTests.test_quality_is_pinned_to_one_block_without_signing",
+      "tests_python.test_execution_quality_profile.ExecutionQualityKeeperTests.test_strategy_binding_forwarding_revision_and_runtime_are_checked",
+      "tests_python.test_execution_quality_profile.ExecutionQualityKeeperTests.test_unknown_config_versions_require_explicit_lp1",
+      "tests_python.test_keeper.KeeperTests.test_bad_chain_state_rejected",
+      "tests_python.test_keeper.KeeperTests.test_broadcast_state_durable_before_signer",
+      "tests_python.test_keeper.KeeperTests.test_changed_code_rejected",
+      "tests_python.test_keeper.KeeperTests.test_confirmed_cost_is_applied_exactly_once",
+      "tests_python.test_keeper.KeeperTests.test_cost_cap",
+      "tests_python.test_keeper.KeeperTests.test_default_dry_run_never_signs",
+      "tests_python.test_keeper.KeeperTests.test_departed_groups_never_schedule_retired_bridge_operations",
+      "tests_python.test_keeper.KeeperTests.test_failed_checkpoint_preserves_in_memory_pending_and_costs",
+      "tests_python.test_keeper.KeeperTests.test_failed_tx_not_marked_success",
+      "tests_python.test_keeper.KeeperTests.test_gas_cap",
+      "tests_python.test_keeper.KeeperTests.test_gas_price_cap",
+      "tests_python.test_keeper.KeeperTests.test_head_retreat_below_confirmation_depth_preserves_pending",
+      "tests_python.test_keeper.KeeperTests.test_included_policy_rejects_conflicting_extra_fee",
+      "tests_python.test_keeper.KeeperTests.test_inclusion_day_cost_blocks_new_day_budget_overspend",
+      "tests_python.test_keeper.KeeperTests.test_incomplete_receipt_never_clears_pending_or_assumes_free_gas",
+      "tests_python.test_keeper.KeeperTests.test_insufficient_confirmations_waits",
+      "tests_python.test_keeper.KeeperTests.test_invalid_receipt_status_and_zero_gas_fail_closed",
+      "tests_python.test_keeper.KeeperTests.test_live_command_binds_sender_and_removes_ambient_wallet_overrides",
+      "tests_python.test_keeper.KeeperTests.test_live_requires_explicit_review",
+      "tests_python.test_keeper.KeeperTests.test_missing_and_dormant_groups_do_not_bridge_rewards",
+      "tests_python.test_keeper.KeeperTests.test_missing_transaction_identity_and_inclusion_fields_fail_closed",
+      "tests_python.test_keeper.KeeperTests.test_noncanonical_receipt_quantities_fail_closed",
+      "tests_python.test_keeper.KeeperTests.test_numeric_limits_reject_non_integer_json_values",
+      "tests_python.test_keeper.KeeperTests.test_optional_l1_fee_absent_but_explicit_zero_effective_price_supported",
+      "tests_python.test_keeper.KeeperTests.test_ordinary_receipt_reorg_after_transaction_read_retains_state",
+      "tests_python.test_keeper.KeeperTests.test_pending_transaction_inclusion_and_gas_limit_match_receipt",
+      "tests_python.test_keeper.KeeperTests.test_pending_waits",
+      "tests_python.test_keeper.KeeperTests.test_receipt_header_number_is_validated",
+      "tests_python.test_keeper.KeeperTests.test_receipt_reorg_not_confirmed",
+      "tests_python.test_keeper.KeeperTests.test_receipt_sender_target_and_hash_are_required_to_match",
+      "tests_python.test_keeper.KeeperTests.test_recovery_accepts_verified_pending_transaction",
+      "tests_python.test_keeper.KeeperTests.test_recovery_rejects_unknown_transaction_without_overwriting_state",
+      "tests_python.test_keeper.KeeperTests.test_recovery_rejects_wrong_candidate_without_overwriting_state",
+      "tests_python.test_keeper.KeeperTests.test_reverted_action_cannot_immediately_spend_again",
+      "tests_python.test_keeper.KeeperTests.test_reviewed_separate_l1_fee_cannot_be_omitted",
+      "tests_python.test_keeper.KeeperTests.test_simulation_failure_never_signs",
+      "tests_python.test_keeper.KeeperTests.test_stale_head_rejected",
+      "tests_python.test_keeper.KeeperTests.test_success_accounts_actual_cost",
+      "tests_python.test_keeper.KeeperTests.test_timeout_preserves_ambiguous_state",
+      "tests_python.test_keeper.KeeperTests.test_unknown_resolve_hash_rejected",
+      "tests_python.test_keeper.KeeperTests.test_valid_code_hash_accepted",
+      "tests_python.test_keeper.KeeperTests.test_wrong_calldata_fails_closed",
+      "tests_python.test_keeper.KeeperTests.test_wrong_receipt_transaction_hash_fails_closed",
+      "tests_python.test_keeper.KeeperTests.test_wrong_sender_fails_closed",
+      "tests_python.test_keeper.KeeperTests.test_wrong_transaction_hash_fails_closed",
+      "tests_python.test_keeper.KeeperTests.test_wrong_value_fails_closed",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_ambiguous_new_observe_atomically_invalidates_the_old_clear_ack",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_clear_ack_shape_and_bucket_inventory_are_strict_on_restore",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_observation_receipt_blocks_a_still_fresh_mature_window",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_observe_intent_save_preserves_clear_ack_and_never_signs",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_rebalance_receipt_atomically_invalidates_its_old_jitter",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_foreign_candidate_on_first_recovered_read_requires_another_clear",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_fresh_confirmation_requires_an_explicit_compatible_outer_poll",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_full_reset_inventory_preserves_failed_transaction_for_reconciliation",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_genuine_raw_clock_retreat_requires_reset_and_discards_old_jitter",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_postmaintenance_health_read_failure_does_not_clear_a_healthy_jitter",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_recovered_empty_record_allows_new_samples_without_duplicate_clear",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_restart_preserves_clear_ack_and_does_not_resend_a_known_empty_clear",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_restarted_or_changed_confirmed_window_gets_new_jitter_not_old_expired_timer",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_same_persistent_fault_after_clear_does_not_pay_for_another_reset",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_compound_reserve_fault_does_not_reset_confirmed_window",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_failed_harvest_receipt_preserves_confirmation_and_gas_accounting",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_pending_receipt_fault_preserves_journal_without_reset",
+      "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_router_metadata_fault_does_not_invalidate_price_observations",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_checker_rejects_missing_tampered_or_stale_observation_fields",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_confirmed_observation_binds_exact_block_config_source_and_runtime",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_cycles_do_not_reuse_metadata_or_change_transaction_journal",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_failure_retains_last_confirmed_but_never_labels_it_fresh",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_health_schema_and_profile_are_paired_without_relabeling_old_profiles",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_latest_validation_failure_cannot_be_hidden_by_an_older_confirmed_read",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_new_hash_or_config_change_never_reuses_old_metadata",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_pending_recovery_skips_metadata_and_does_not_rewrite_saved_state",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_reorg_future_and_unconfirmed_headers_cannot_produce_a_fresh_observation",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_same_block_discovery_reuses_metadata_but_fresh_validation_never_does",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_submission_rechecks_changed_policy_after_estimation_before_any_signer",
+      "tests_python.test_keeper_execution_telemetry.KeeperExecutionTelemetryTests.test_submission_rechecks_policy_before_simulation_even_with_a_warm_discovery_cache",
+      "tests_python.test_keeper_execution_telemetry.KeeperGasTelemetryTests.test_estimate_failure_retains_explicit_unavailable_diagnostics",
+      "tests_python.test_keeper_execution_telemetry.KeeperGasTelemetryTests.test_health_summary_never_echoes_arbitrary_diagnostic_strings",
+      "tests_python.test_keeper_execution_telemetry.KeeperGasTelemetryTests.test_padded_gas_and_configured_cap_are_reported_without_widening",
+      "tests_python.test_keeper_execution_telemetry.KeeperGasTelemetryTests.test_price_and_cost_caps_remain_distinct_from_gas_units",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_changed_reviewed_limits_or_provider_need_fresh_heartbeat",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_historical_profile_cannot_reuse_current_profile_heartbeat",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_legacy_heartbeat_without_configuration_binding_cannot_pass",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_malformed_binding_cannot_pass",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_matching_real_heartbeat_passes_without_exporting_configuration",
+      "tests_python.test_keeper_health_identity.KeeperHealthIdentityTests.test_same_signer_and_chain_cannot_reuse_another_vault_heartbeat",
+      "tests_python.test_keeper_ops.OpsTests.test_dry_run_requires_explicit_health_mode",
+      "tests_python.test_keeper_ops.OpsTests.test_first_pending_cycle_has_actionable_health_reasons",
+      "tests_python.test_keeper_ops.OpsTests.test_future_heartbeat_and_missing_counters_do_not_pass",
+      "tests_python.test_keeper_ops.OpsTests.test_healthy_requires_fresh_live_identity_and_success",
+      "tests_python.test_keeper_ops.OpsTests.test_missing_or_corrupt_health_never_looks_healthy",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_cannot_approve_wrong_native_accounting_abi",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_is_read_only_and_never_calls_signer",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_low_balance_or_revoked_role_cannot_pass",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_refuses_missing_state_nonce_drift_or_pending",
+      "tests_python.test_keeper_ops.OpsTests.test_preflight_unqualified_fee_or_review_cannot_pass",
+      "tests_python.test_keeper_ops.OpsTests.test_snapshot_corruption_age_configuration_and_identity",
+      "tests_python.test_keeper_ops.OpsTests.test_snapshot_is_exclusive_and_never_overwrites_state",
+      "tests_python.test_keeper_ops.OpsTests.test_snapshot_preserves_pending_budget_and_omits_secrets",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_clock_retreat_and_malformed_eligibility_fail_closed",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_confirmed_new_lp_invalidates_old_jitter_and_starts_new_chain_cooldown",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_direct_service_submission_cannot_skip_initial_jitter",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_downtime_evaluates_current_state_once_without_replaying_missed_cycles",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_enabled_fresh_compounding_requires_currency_map",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_exact_cooldown_schedules_one_bounded_delay_before_rebalance",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_failed_schedule_save_preserves_disk_and_never_reaches_submission",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_fresh_due_submission_revalidates_and_cancels_if_inside",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_historical_accounting4_absent_or_explicit1_does_not_probe_new_getters",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_hourly_inside_wait_preserves_independent_harvest",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_inactive_position_removes_only_its_new_schedule_namespace",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_initial_hard_cooldown_does_not_schedule_even_when_outside",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_inside_range_evaluates_hourly_without_drawing_jitter",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_malformed_version_getter_is_not_an_old_profile",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_manual_width_request_still_obeys_hard_cooldown",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_new_namespace_validation_rejects_malformed_and_oversized_records",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_new_profile_is_explicit_and_rejects_unknown_or_adaptive_configuration",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_operator_width_request_does_not_wait_for_the_next_hourly_check",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_pending_recovery_precedes_new_policy_or_schedule_reads",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_policy_change_discards_old_timer_and_requires_a_new_durable_delay",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_policy_version_runtime_and_controller_bindings_fail_without_legacy_fallback",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_range_return_during_gas_review_is_rechecked_before_durable_intent",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_restart_keeps_identical_jitter_without_redrawing",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_return_inside_cancels_queued_execution_and_resumes_hourly_checks",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_separate_compound_capability3_is_required_only_by_new_policy",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_topups_idle_and_harvest_do_not_redraw_or_reset_jitter",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_upper_random_delay_is_ten_minutes",
+      "tests_python.test_keeper_outside_schedule.KeeperOutsideScheduleTests.test_waiting_jitter_preserves_independent_due_hourly_harvest",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_bad_gap_version_and_contradictory_ready_never_submit_an_observation",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_budget_runtime_parent_and_confirmation_gate_are_required",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_confirmation_rejects_a_vault_outside_the_active_access_module",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_deliberate_width_change_bypasses_buffer_but_not_jitter",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_explicit_profile_and_helper_pins_fail_closed_without_legacy_fallback",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_hard_cooldown_does_not_submit_observations",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_inside_and_pending_conditions_are_checked_every_five_minutes",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_observed_pause_queues_reset_once_without_repeated_successful_noops",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_observed_rpc_fault_persists_reset_marker_without_claiming_chain_reset",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_outside_starts_observation_not_rebalance_or_jitter",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_pending_receipt_recovery_precedes_all_new_profile_reads",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_pending_rpc_fault_never_rewrites_pending_and_defers_reset_until_recovery",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_policy_condition_and_readiness_are_pinned_and_consistent",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_receipt_latency_does_not_skip_the_next_scheduled_observation",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_reset_journal_save_failure_preserves_prior_state_and_stops_work",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_reset_receipt_clears_only_its_marker_after_exact_canonical_success",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_reset_validation_does_not_need_prices_or_candidate_readiness",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_restart_with_existing_candidate_requires_a_receipt_backed_reset",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_sampled_readiness_starts_jitter_and_refreshes_samples_during_wait",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_subfive_minute_gap_is_not_paid_forever_by_the_five_minute_worker",
+      "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_unconfigured_gap_blocks_ordinary_work_but_independent_harvest_continues",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_ambiguous_pending_and_canonical_lock_keep_status_precedence_and_cooldown_marker",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_checker_cannot_ignore_active_cooldown_even_with_healthy_status",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_checker_rejects_current_paid_revert_or_unknown_flag_even_after_cooldown_expiry",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_checker_rejects_missing_or_malformed_required_cooldown_fields",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_clock_failure_after_valid_reconciliation_keeps_exact_paid_receipt_state",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_confirmed_paid_revert_is_unhealthy_without_reattempt_or_new_backoff",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_delayed_confirmation_still_reports_current_paid_revert_after_cooldown_expired",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_failed_receipt_checkpoint_write_preserves_pending_and_never_counts_revert",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_failure_remains_visible_after_restart_without_rewriting_journal",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_historical_journal_without_cooldowns_needs_no_new_rpc_or_journal_fields",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_independent_submission_keeps_its_existing_simulation_and_gas_path",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_only_future_cooldowns_count_with_bounded_earliest_deadline_summary",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_reorged_revert_is_still_pending_without_fee_or_revert_count",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_retry_boundary_uses_chain_clock_and_retains_expired_failure_record",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_success_for_the_same_action_clears_only_its_existing_restriction",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_unavailable_cooldown_clock_cannot_publish_health_or_modify_journal",
+      "tests_python.test_keeper_revert_health.KeeperRevertHealthTests.test_unrelated_successful_harvest_cannot_hide_rebalance_failure",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_actual_lower_inclusive_upper_exclusive_boundaries",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_approval_also_reports_actual_outside_state_without_submitting",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_both_actual_causes_are_explicit_and_do_not_promise_a_timer",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_contradictory_contract_eligibility_is_rejected_for_all_causes",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_downward_boundary_uses_stored_tick_not_sqrt_approximation",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_explicit_operator_width_change_is_eligible_inside_after_cooldown",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_historical_profile4_policy_retains_movement_semantics_and_no_new_reads",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_initial_position_does_not_invent_old_outside_eligibility",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_inside_range_ignores_large_reference_displacement",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_missing_malformed_or_wrong_capabilities_never_fall_back",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_new_capabilities_are_authenticated_once_at_same_pinned_block",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_new_policy_cannot_be_relabelled_as_earlier_accounting",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_new_policy_requires_explicit_range_metadata",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_profile4_policy_must_be_explicit_and_strict",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_range_change_still_waits_for_hard_cooldown",
+      "tests_python.test_liquidity_context_policy2.OutsideOnlyContextTests.test_twelve_hour_cooldown_is_not_bypassed_by_range_exit",
+      "tests_python.test_lp_execution_profile.KeeperLPExecutionProfileTests.test_bad_profile_or_missing_runtime_is_rejected_before_signer",
+      "tests_python.test_lp_execution_profile.KeeperLPExecutionProfileTests.test_capability_metadata_is_pinned_to_one_block_and_no_signer",
+      "tests_python.test_lp_execution_profile.KeeperLPExecutionProfileTests.test_live_startup_preserves_pending_recovery_during_helper_outage",
+      "tests_python.test_lp_execution_profile.KeeperLPExecutionProfileTests.test_next_balance_submission_still_requires_healthy_router_and_never_signs",
+      "tests_python.test_lp_execution_profile.KeeperLPExecutionProfileTests.test_router_observation_failure_does_not_block_independent_due_harvest",
+      "tests_python.test_lp_execution_profile.KeeperLPExecutionProfileTests.test_wrong_helper_parent_and_unbounded_metadata_rejected",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_current_new_lp_exact_balance_and_put_are_accepted",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_empty_catalog_reported_without_synthetic_target_fallback",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_exact_balance_budget_and_capped_put_cannot_include_incumbents",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_fresh_capped_contribution_preserves_incumbent_idle_and_compound",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_historical_profile_stays_explicit_zero_without_router_reads",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_new_swap_guard_ceiling_is_explicit_not_applied_to_historical_profiles",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_old_subsidizing_equation_is_rejected_under_new_profile",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_policy_boundary_change_rejected_and_expected_quote_revert_allowed",
+      "tests_python.test_lp_execution_profile.LPExecutionProfileTests.test_router_runtime_parent_version_and_solver_metadata_fail_closed",
+      "tests_python.test_production_v4.CurrentProductionTests.test_actual_backing_can_exceed_liability_but_not_fall_below_it",
+      "tests_python.test_production_v4.CurrentProductionTests.test_cap_zero_and_ten_percent_do_not_change_total_loss_policy",
+      "tests_python.test_production_v4.CurrentProductionTests.test_checked_in_fresh_scaffold_remains_unconfigured_and_blocked",
+      "tests_python.test_production_v4.CurrentProductionTests.test_closing_phase_preserves_parked_principal_without_inventing_payouts",
+      "tests_python.test_production_v4.CurrentProductionTests.test_complete_synthetic_inventory_is_consistent_but_never_primary_mint_ready",
+      "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_child_is_separately_pinned_and_observed",
+      "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_pending_stale_side_and_policy_changes_never_become_ready",
+      "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_requires_an_explicit_gap_not_an_invented_default",
+      "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_unavailable_boolean_or_version_is_never_a_fallback",
+      "tests_python.test_production_v4.CurrentProductionTests.test_conserved_but_wrong_per_nft_allocations_are_rejected",
+      "tests_python.test_production_v4.CurrentProductionTests.test_current_observer_composes_into_offline_gate_without_adopting_approval",
+      "tests_python.test_production_v4.CurrentProductionTests.test_each_current_profile_is_explicit_and_bool_is_not_a_version",
+      "tests_python.test_production_v4.CurrentProductionTests.test_empty_catalog_reports_swaps_disabled_without_target_fallback",
+      "tests_python.test_production_v4.CurrentProductionTests.test_fabricated_qualified_opensea_service_cannot_add_missing_contract_interface",
+      "tests_python.test_production_v4.CurrentProductionTests.test_failed_quality_read_is_unavailable_and_sanitized",
+      "tests_python.test_production_v4.CurrentProductionTests.test_false_boolean_does_not_stand_in_for_zero_open_findings_or_lifecycle",
+      "tests_python.test_production_v4.CurrentProductionTests.test_governed_venue_ceiling_is_current_not_historical_two_percent",
+      "tests_python.test_production_v4.CurrentProductionTests.test_live_lp_custody_is_verified_separately_from_nft_shares",
+      "tests_python.test_production_v4.CurrentProductionTests.test_malformed_inputs_return_blockers_not_zero_or_ready",
+      "tests_python.test_production_v4.CurrentProductionTests.test_manual_range_exception_retains_raw_eligibility",
+      "tests_python.test_production_v4.CurrentProductionTests.test_missing_holder_share_or_bucket_is_not_truncated",
+      "tests_python.test_production_v4.CurrentProductionTests.test_nested_exit_fields_cannot_add_a_retired_recipient_or_override_policy",
+      "tests_python.test_production_v4.CurrentProductionTests.test_no_retired_royalty_custody_or_timelock_getter_is_read",
+      "tests_python.test_production_v4.CurrentProductionTests.test_observer_checks_strategy_ready_and_manual_exception_at_same_hash",
+      "tests_python.test_production_v4.CurrentProductionTests.test_observer_work_bound_never_accepts_arbitrary_methods",
+      "tests_python.test_production_v4.CurrentProductionTests.test_old_schema_stays_explicit_historical_and_default_does_not_relabel",
+      "tests_python.test_production_v4.CurrentProductionTests.test_operating_raw_candidate_cannot_disappear_without_an_identity",
+      "tests_python.test_production_v4.CurrentProductionTests.test_paid_principal_is_not_repaid_and_remaining_is_exact",
+      "tests_python.test_production_v4.CurrentProductionTests.test_partial_allocation_prefix_is_conserved",
+      "tests_python.test_production_v4.CurrentProductionTests.test_paused_candidate_cannot_be_ready_but_can_retain_stored_history",
+      "tests_python.test_production_v4.CurrentProductionTests.test_paused_observer_does_not_require_the_manual_exception_dependency",
+      "tests_python.test_production_v4.CurrentProductionTests.test_phase_flag_cursor_and_share_boundary_contradictions_are_rejected",
+      "tests_python.test_production_v4.CurrentProductionTests.test_phase_three_payout_backing_and_current_owners_compose",
+      "tests_python.test_production_v4.CurrentProductionTests.test_position_precision_and_future_checkpoint_are_not_arbitrary_uint256",
+      "tests_python.test_production_v4.CurrentProductionTests.test_quality_revision_catalog_and_solver_observations_are_exact",
+      "tests_python.test_production_v4.CurrentProductionTests.test_raw_readiness_requires_active_cooled_operations_enabled_principal",
+      "tests_python.test_production_v4.CurrentProductionTests.test_reorg_discards_observation_instead_of_publishing_mixed_state",
+      "tests_python.test_production_v4.CurrentProductionTests.test_snapshot_age_future_and_incomplete_observations_fail_closed",
+      "tests_python.test_production_v4.CurrentProductionTests.test_thousand_nft_allocation_checks_are_bounded_and_conserve_rounding",
+      "tests_python.test_production_v4.CurrentProductionTests.test_unknown_fields_and_removed_custody_cannot_enter_current_profile",
+      "tests_python.test_production_v4.CurrentProductionTests.test_wrong_runtime_parent_owner_and_forwarded_quality_are_not_approved",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_bad_or_incomplete_configuration_profile_is_rejected",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_common_reader_requires_canonical_abi_words_from_every_caller",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_confirmation_reads_use_one_canonical_block",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_contradictory_helper_strategy_and_direction_reads_fail_closed",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_fabricated_early_or_stale_readiness_is_rejected",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_inside_range_does_not_reuse_an_old_outside_timer",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_live_window_reports_remaining_time_without_promising_execution",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_manual_range_exception_remains_explicit",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_missing_read_never_falls_back_to_raw_eligibility",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_old_explicit_profile_never_probes_confirmation_getters",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_paused_activation_stops_before_any_confirmation_read",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_policy_binding_versions_and_half_window_bound_are_checked",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_raw_due_and_fifteen_minute_sampled_ready_are_separate",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_stale_or_replaced_record_does_not_announce_eligibility",
+      "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_unconfigured_policy_is_not_invented_as_a_confirmed_buffer"
+    ],
+    "skipped_methods": [
+      "tests_python.test_keeper.KeeperTests.test_cast_cli_accepts_generated_command_without_signing"
+    ],
+    "selections": [
+      {
+        "path": "keeper/final/verification.json",
+        "methods": 160,
+        "failed_methods": [],
+        "skipped_methods": [
+          "tests_python.test_keeper.KeeperTests.test_cast_cli_accepts_generated_command_without_signing"
+        ],
+        "artifact_sha256": "2dd4cda496a92a7e537a12740ebf65dcf4eed24e56045ace98214b4e44f81dbd",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      },
+      {
+        "path": "keeper/active-vault-binding/verification.json",
+        "methods": 2,
+        "failed_methods": [],
+        "skipped_methods": [],
+        "artifact_sha256": "1393b178d66eeb71641471a0bbb6d899e04713976c48dc1f65dc027eca97d773",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      },
+      {
+        "path": "keeper/buffer-audit-final/verification.json",
+        "methods": 39,
+        "failed_methods": [],
+        "skipped_methods": [],
+        "artifact_sha256": "7a6a094d8ee757c5a95b46e8a91165422f929525a0d583e48648326cb08dc85b",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      },
+      {
+        "path": "api/attempt1/verification.json",
+        "methods": 63,
+        "failed_methods": [
+          "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_confirmation_reads_use_one_canonical_block",
+          "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_live_window_reports_remaining_time_without_promising_execution",
+          "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_raw_due_and_fifteen_minute_sampled_ready_are_separate"
+        ],
+        "skipped_methods": [],
+        "artifact_sha256": "4cc86847766ecdf3d53013d2150467f72213544d86d4ac3d006733310e42b8eb",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      },
+      {
+        "path": "api/attempt2/verification.json",
+        "methods": 13,
+        "failed_methods": [],
+        "skipped_methods": [],
+        "artifact_sha256": "45b96c343e414ca2c4266f483ca547aef483f3085b9cfa531083a1bbbbd4e6bb",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      },
+      {
+        "path": "preflight/final.json",
+        "methods": 36,
+        "failed_methods": [],
+        "skipped_methods": [],
+        "artifact_sha256": "1fc4c6cc5a6e3e69d177522bb1955fd9b96c8421714eed952e8ba0efca982076",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      },
+      {
+        "path": "preflight/operating-gap300.json",
+        "methods": 2,
+        "failed_methods": [],
+        "skipped_methods": [],
+        "artifact_sha256": "749d5a9e4c79471a0214e10440daab1184a5e9944e302e34199a27aac272a443",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      },
+      {
+        "path": "buffer-admission-audit/final.json",
+        "methods": 21,
+        "failed_methods": [],
+        "skipped_methods": [],
+        "artifact_sha256": "b6cd1a74e9b3ac5aea0bfb3727fa4989ec1bbe7d12eb0abd7fc1e6b904446429",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      },
+      {
+        "path": "final-reader-health/verification.json",
+        "methods": 31,
+        "failed_methods": [],
+        "skipped_methods": [],
+        "artifact_sha256": "98724385bb50aecfa8e62dfe6d6f27f5ae5b6a5e04615003047addf52174d7ea",
+        "source_scope": "Exact source pins retained in raw record; retries/overlaps counted once"
+      }
+    ],
+    "note": "Distinct union across source-scoped affected runs; not one whole-suite run. Earlier failed cases are superseded only by explicit corrected-case passes."
+  },
+  "normal_size_gates": 39,
+  "source_sha256": {
+    "config/production.holder-exit.example.json": "c6e6d3656b17c8f98fcb73f66f8f0cb1b681d752e8daedaa5c99c0c688bcf9cf",
+    "frontend_api/__init__.py": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+    "frontend_api/activation.py": "148a00e5802b008ef59962c856a063f491425ff4d2abb61f8ea8bf7089d0248b",
+    "frontend_api/activation_config.py": "2d464cd48609d6125ef7bb46bcfb7ac55feebdbb8080f454fac30ec47ba41a36",
+    "frontend_api/activation_server.py": "2c90810c594c0aa371a778332417d005bc9be15051041f610354bbc29f1e4179",
+    "frontend_api/activation_trace.py": "d42e97be019ff8eeb53647e0521dd37be13a694b34c693b71e0cce5c0c4c4655",
+    "frontend_api/activation_v4.py": "91827ad5eb3c6180a44dabba79609efe8ae2a17c080a5a93cf188603cff07ec0",
+    "frontend_api/admission.py": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+    "frontend_api/collection.py": "0c2793d6a6fcd356c2e65e70ab0e74adce07b12d4ecfefd1d11e750c67d1a473",
+    "frontend_api/earnings.py": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+    "frontend_api/earnings_prices.py": "bc33a4dcea22ed0ad94821f69190b0c009c0fbd133cfedbeae379e856d008bd2",
+    "frontend_api/earnings_replay.py": "044b3f349fd8ef6c1dcfd198aa82515b08cfea82c02284d4156fd790b285a46e",
+    "frontend_api/history.py": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+    "frontend_api/history_audit.py": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+    "frontend_api/http_runtime.py": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+    "frontend_api/lifecycle.py": "d9dd07e67e11268190fbaaa103fe35cf2ac5791bd47948778a1dd7ae00cb23c7",
+    "frontend_api/lineage.py": "d4c6b3aa644d29b0e1bc3cefd1b05198acec5074441d3107b01e97b138b687a1",
+    "frontend_api/liquidity_context.py": "217ce49bc99867ed2cc81e9b6d054eba8af01a4d8d86ff352dc5f5a8041bb9d9",
+    "frontend_api/mint_readiness.py": "3fcca923b2ce52d005a8fdbded5a269505660a80a8d760e52d3392be05f4836b",
+    "frontend_api/portfolio.py": "011bfe93cb55df924ebdb5e7891c33867f606fe7ba962817add607adaec9c388",
+    "frontend_api/principal_return.py": "0d94b8ee942d9af3a207d054e52ac3d55420beb98674d719f71502aa03c0a79d",
+    "frontend_api/royalty_reporting.py": "2d76c9985c4c8a8711b21c246f83b5519896c228be3db67862b1ac4961315af1",
+    "frontend_api/server.py": "84a71cc3c07ea44ffd54a8249ff7d98b2febd200373a30c1886f712abefc26c5",
+    "frontend_api/service.py": "5d08118792faceb518ea46ea43ae9495bbb4cab302e254fc9710657d8b492a85",
+    "frontend_api/transactions.py": "9730ad793398dbeecf721b7549849d35cb5b9edd30e52d263d9538ec23f769a3",
+    "frontend_api/wallet_earnings.py": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+    "frontend_api/worker.py": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+    "indexer/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "indexer/events.py": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+    "indexer/monitor.py": "6f50a2839a9abc174b5224a52f7aeca2584ab51492bebd963d30091a6b683e02",
+    "keeper/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "keeper/config.example.json": "02ad7b05d1a967bbf3c37af768b87bd34112dbe22dbfa30ba6e5a8079ee45295",
+    "keeper/config.holder-exit.example.json": "8435889acc2b914b0fb2aa349adf25da88709cc450dee37da8d000e5193960dd",
+    "keeper/health.py": "a3da4f95716d07e025d4a11b57d9889c9efb8cece52eb419d21a88fea3b1f743",
+    "keeper/monitor.py": "a2549773af215cfe028917d5b6621bbee03d1aa2b33ca0576cf1dfa4b8556dbe",
+    "keeper/ops.py": "63b0d91d8f48fa7262d5e49773de196f7cd714ec993f113d61ad228b40a16847",
+    "keeper/principal.py": "a1cc7ea153259ffeceb3ac131ce628a5e9f58194b3f4e0bcdba5e1f1961e0da4",
+    "keeper/probe.py": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+    "keeper/rebalance_confirmation.py": "15107654d911aaf19ebe55653df80fc173e8fbcc3b06f7c1c6b70bc17f733bf5",
+    "keeper/rehearsal/KeeperVenue.sol": "c260572305e0f6f7c278af457b0e823c4b82237eacb10bd863318890b2b5e7a3",
+    "keeper/royalties.py": "7354c3187d8aad49bbfef7debe4fed7c9cecd4e484178470580559756175ccb9",
+    "keeper/staging-install.sh": "fde49b9780dcdbb352e8286f8b649689c8b48aa021226d02a5b84bfa94d9b2ad",
+    "keeper/staging-monitor-install.sh": "a7e624900b81eba1f327ae66cb89d61081c8f5f08e99217d69511bf57f74bca0",
+    "keeper/staging.py": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5",
+    "keeper/staging_observer.py": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+    "keeper/watchdog.py": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+    "keeper/zzz-keeper.service": "4a76852eaa165879c350252b893fbd9cae7764722f01353e23ee1c6ee687e229",
+    "scripts/observe-production-config.py": "b174b3155aea20cb2e4ecd53fe7353e3e617864bfc24167e382930b01eec9deb",
+    "scripts/validate-production-config.py": "d4ff4ca58a0bc8089a3eb2b2c36b6582e54483aeece889ea005d62bbe15d9f85",
+    "src/ZZZAccessController.sol": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+    "src/ZZZBuyback.sol": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+    "src/ZZZCanonicalHandoff.sol": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+    "src/ZZZContributionPricing.sol": "6ef88cae05538c26f922a65f80d2ece5aca86c47db6f770aab1a2fb48d872d11",
+    "src/ZZZCustodyValidation.sol": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+    "src/ZZZLPBalancer.sol": "6a5c5639a00fadbfddb6c3119c89ca53070ed59460549d91484f4fb6069d4b31",
+    "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+    "src/ZZZLiquidityManager.sol": "c96633957b39e17340582bb8c4834b440112eee4d713aafb9c7f39b0018efb83",
+    "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+    "src/ZZZMigration.sol": "93c4f9fe3047d3386864240a4a2c8491953758f5a02524b17b0d0100018157c0",
+    "src/ZZZMigrationBudget.sol": "f45c8ef469cedb0209f2f4c3b3fdd156cc799809b958ebd79e4bdb739b975a30",
+    "src/ZZZNFT.sol": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+    "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+    "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+    "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+    "src/ZZZPoolRegistry.sol": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRebalanceConfirmation.sol": "663179fe6e6ba388e1150c8f2f3405ce6395fc7aeaa83ebcc40b38f524df3437",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+    "src/ZZZStrategy.sol": "8b34a535b4172620bb7f73060f55fbe7ef4f724fbfaa5ea4649d5aa4a52ff778",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "ad1f5e3439605d51295962743fae2e2997c5ba7824322039ffe5a20cc2ae4c99",
+    "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZModule.sol": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "src/interfaces/IZZZ.sol": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+    "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+    "tests_python/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python/dual_price_fixtures.py": "0d86e4aacddadac73ad36df90143959c9de686b9f1c6245a2703da40c70e2276",
+    "tests_python/fee_intake_fixtures.py": "96c3075fefe1b54da122b7836be309e7386955c33cbc86db65db1ab8ce650a33",
+    "tests_python/production_v4_fixtures.py": "69699f03a24d8c62481e4eaebf96ff00ac72ab4e50c76244772ad171e3ea2d49",
+    "tests_python/test_current_activation_profile.py": "270da42852f3413d42d27c07efe7903d9b08fe48cab6ca858db78135266e6670",
+    "tests_python/test_dual_price_integration.py": "4499983a9254a5ea0cf0d64a22d59a7ed2c59d494f4578e82719078362e9e7d1",
+    "tests_python/test_execution_quality_profile.py": "9c2f1b73737504ab150a12b237cd207f6ab3d2aceff182bda50a1a1ff5f339c5",
+    "tests_python/test_frontend_activation.py": "b786987370327064fa927d3cfa3e82a04dd02cc8e1d6d52f9f0ff23e77b750cd",
+    "tests_python/test_frontend_api.py": "a9334c246cb2ab5b073863dc1331a28fcbe3e4dec4e2912303ab1e6e7f8bd01c",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+    "tests_python/test_frontend_lineage.py": "8fa4e26de7de8157f6f7e3e479bf5e8860d9393d6043b93e868e6018dbdf0afe",
+    "tests_python/test_frontend_transactions.py": "1ef8a405b74fee67c24eab9ba7929b298c9d5d35e9bf4e5c7cde0ba0609f2fd9",
+    "tests_python/test_holder_exit_profile.py": "44509c83dd7cd93b47f2790f779590193f14d9f5068f8b96f1d3bb8960ef41ed",
+    "tests_python/test_keeper.py": "b0888376bd8dbf1d81766a17f46aa7ed6690a024d50ade90551a59c1bd7e0154",
+    "tests_python/test_keeper_confirmation_incidents.py": "abd2b65d71d0186923c6e336486512e633078f2f7804f138c67f3dcf4d66a92b",
+    "tests_python/test_keeper_execution_telemetry.py": "be1b737b92246a62a7a0f6aedddeec944a40f23c126cf4340143a74245707407",
+    "tests_python/test_keeper_health_identity.py": "a62bb0e0dfe04b3c311e92360e53a866a249b4cca6c469a5007e64ce57022f0e",
+    "tests_python/test_keeper_native.py": "de3c87393cf62a5b2e2458416e29d50c48a03dc84c3a789fcc3559f87e660e70",
+    "tests_python/test_keeper_ops.py": "38ce4fe7fe715f07f1b6bfb0952cb718dc45c1cc51cf135e6bf90f87703e1d71",
+    "tests_python/test_keeper_outside_schedule.py": "ffe5de6a23ef4f2e1dc24407bf93cbcb46b97b4ba38c08b75c85a312a59997a6",
+    "tests_python/test_keeper_rebalance_confirmation.py": "4bccd7e3c72e714c5feda4db4b457592e506b264ad454c413c08bf40fe92315d",
+    "tests_python/test_keeper_revert_health.py": "421a176d0cdeb5cdef96de3ac01eeacb6d30c0113f51cadfefd5b46a6cf54cb6",
+    "tests_python/test_liquidity_context_policy2.py": "61e149a232c5281e6ea8fe0ec5d8684c951405eda6f248a3128b45445f6617ed",
+    "tests_python/test_local_position_services.py": "2a5543286d3e7e4746c9d2393c857ed7c5dfb531340ffe7a66e115e14ffd5347",
+    "tests_python/test_lp_execution_profile.py": "dc10eca510d1050c56bab5bc9fe0eeb3fa9c05b98f97cfef93ee83a4eff6767e",
+    "tests_python/test_native_backend_boundary.py": "316741f6fccb2972a4e0092d28887ebdc56d9bf531d79942ce1ec9eb9383c05a",
+    "tests_python/test_production_observer.py": "d9dcd6eb41375d0b1db64ee646ceb1f34493952ad4f924100bee13e7dbd7312a",
+    "tests_python/test_production_v2.py": "b6f14406ca2651feddc87944edbcc171b04c3f43c87223926b96408ad91df376",
+    "tests_python/test_production_v4.py": "b98bf2fb2590322a968e46a0a866290931338a846297ec835c7169908a592a40",
+    "tests_python/test_rebalance_confirmation_api.py": "d3b4dd8e2a7f09a35b9ff10383c1a712c3bdaad8eb1f995496e289471da3dc8e",
+    "tests_python/test_royalty_reporting.py": "e62e9291c68c4d6ae25f940a29adad99bd48d518d8c2cbb4f0bd6dbd64e462d2",
+    "tests_python/test_typed_v4_activation.py": "09c07a9a237b3c12ca5e82b96c0765af17906b1338bc526a4acac9422dd1dc85",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/ethereum_fees.py": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "zzz_ops/function_reference.py": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+    "zzz_ops/historical_production.py": "daa3edd9f539e4e60722169fa5c29154b982e049788c3d42f1296c2e8dc4cd3f",
+    "zzz_ops/holder_preflight.py": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+    "zzz_ops/lp_execution.py": "c90bc83cbf28caa8d3d10a8dde1dda478ebb1deab8e17c583cbf7ef5395eef01",
+    "zzz_ops/position.py": "e196dc43f11e0d22af00c690855b223c4b469983fd7ba6fdb948ef3399bd6e92",
+    "zzz_ops/price_policy.py": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+    "zzz_ops/production_observer.py": "9829d153b472c7613a2446d7df6d4ca4b30ee4834745663a772fade629046dc7",
+    "zzz_ops/production_observer_v4.py": "b7c6c317957d3914b3a969ce73b5ed393bdf946bfabd66338232b99f11ca303b",
+    "zzz_ops/production_v2.py": "c4f2908375475cb5a80e7fbd250dc24ea7be59cceb851353a3583bb5682dfc21",
+    "zzz_ops/production_v4.py": "4f4e45e3e5a3febaa68bd2cb207d21ec75f0b22e582b285e9a8ae02510ecaa03",
+    "zzz_ops/range_policy.py": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+    "zzz_ops/rebalance_confirmation.py": "f43940aabed727dd85d49ce893d7a7bbeac2d8072a17d630945c978d15f3d110",
+    "zzz_ops/review_bundle.py": "b653a398c7a4a5b6a622db744a411291ff48b8c3b7d5eb74abd5d8478b3b1c80",
+    "zzz_ops/rpc.py": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "zzz_ops/tick_math.py": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea"
+  },
+  "preservation": {
+    "original_dirty_tracked": {
+      "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    },
+    "historical_report_files_unchanged": 2215
+  },
+  "not_done": [
+    "No deployment, public transaction, service/site/Anvil/journal mutation or signer expansion",
+    "Real providers/feeds/routes/VRF/authorities/OpenSea/operating/audit qualification remains open",
+    "Full actual target/maximal-catalog operation gas qualification remains open; external cold-one-venue patch prepared but not applied/executed"
+  ]
+}

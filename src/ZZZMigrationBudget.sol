@@ -8,6 +8,10 @@ import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.so
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IPositionManagerMinimal} from "./interfaces/IZZZ.sol";
 interface IPairAssets { function assetCount() external view returns(uint256); function assets(uint256) external view returns(address); }
 interface IPairVault { function migrationBudget() external view returns(ZZZMigrationBudget); }
+interface IConfirmationControl {
+    function controlFingerprint(bytes32) external view returns(bytes32);
+    function observations(uint256) external view returns(bytes32,uint64,uint64,uint8);
+}
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 
 interface IMigrationIdle { function totalIdle(address) external view returns(uint256); }
@@ -24,6 +28,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     IZZZAccess public immutable access;
     uint16 public constant MAX_LOSS_BPS = 1000;
     uint256 public constant IDLE_COMPOUNDING_VERSION = 3;
+    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 1;
     uint32 public constant DEFAULT_COMPOUND_INTERVAL = 1 hours;
     uint16 public contributionLossBps = 200;
     uint16 public maintenanceLossBps = 300;
@@ -37,6 +42,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         uint256 idle0;
         uint256 idle1;
         uint16 lossBps;
+        bytes32 confirmationControl;
     }
     Snapshot private snapshot;
     bool private compoundIncluded;
@@ -160,6 +166,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         Snapshot memory s;
         s.bucketId = id;
         s.lossBps = maintenanceLossBps;
+        s.confirmationControl = _confirmationControl(id,p.poolId);
         // Price validates feed/sequencer freshness. Reuse this exact vector after
         // close, swap and mint; callbacks cannot reprice away execution loss.
         s.price0 = oracle.price(c.key.currency0);
@@ -186,13 +193,15 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     function _afterMove(uint256 id) private {
         Snapshot memory s = snapshot;
         if (s.value == 0 || s.bucketId != id || !compoundIncluded) revert InvalidState();
-        (uint256 deployed, uint256 idle) = _values(IZZZVault(vault).group(id), s);
+        Position memory afterPosition = IZZZVault(vault).group(id);
+        (uint256 deployed, uint256 idle) = _values(afterPosition, s);
         uint256 retained = deployed + idle;
         // Round the captured retained-value floor up. Later policy changes cannot
         // weaken this operation's aggregate budget. Gas is
         // outside these custody ledgers. Keep the existing 5% idle ceiling under
         // this same vector, including when an admitted feed changes mid-call.
-        if (retained < s.value - Math.mulDiv(s.value, s.lossBps, 10000) || deployed == 0 ||
+        if (s.confirmationControl != _confirmationControl(id,afterPosition.poolId) ||
+            retained < s.value - Math.mulDiv(s.value, s.lossBps, 10000) || deployed == 0 ||
             idle > Math.mulDiv(retained, 500, 10000)) revert Slippage();
         delete snapshot;
         delete compoundIncluded;
@@ -272,7 +281,15 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault).group(id).poolId);
     }
     function validateRebalance(uint256 id, uint128 minimumLiquidity) external view onlyVault {
-        if (minimumLiquidity == 0 || !IZZZStrategy(access.module(Ids.STRATEGY)).needsRebalance(id)) revert InvalidState();
+        if (minimumLiquidity == 0 || !IZZZStrategy(access.module(Ids.STRATEGY)).rebalanceReady(id)) revert InvalidState();
+    }
+    function _confirmationControl(uint256 id,bytes32 poolId) private view returns(bytes32) {
+        IConfirmationControl confirmation = IConfirmationControl(
+            IZZZStrategy(access.module(Ids.STRATEGY)).rebalanceConfirmation());
+        (bytes32 identity,uint64 first,uint64 last,uint8 side) = confirmation.observations(id);
+        // Compare raw evidence, not post-replacement readiness (the new LP
+        // deliberately has a different identity). A callback reset must abort.
+        return keccak256(abi.encode(confirmation.controlFingerprint(poolId),identity,first,last,side));
     }
     function idleValue(uint256 id) public view returns (uint256) {
         Position memory p = IZZZVault(vault).group(id);

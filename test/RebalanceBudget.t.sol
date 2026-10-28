@@ -12,6 +12,9 @@ import {Ids,Position} from "../src/libraries/ZZZTypes.sol";
 
 contract RebalanceBudgetPolicy is BudgetAdversarialPolicy {
     function needsRebalance(uint256) external pure returns(bool){return true;}
+    // TEST ONLY: preserve this loss-budget fixture's old always-ready policy;
+    // real sampled confirmation is exercised separately in its dedicated suite.
+    function rebalanceReady(uint256) external pure override returns(bool){return true;}
 }
 contract RebalanceBudgetTest is PooledVaultFixture {
     BudgetAdversarialVenue adverse; RebalanceBudgetPolicy rebalancePolicy;

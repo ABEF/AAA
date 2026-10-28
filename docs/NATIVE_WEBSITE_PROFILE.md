@@ -1,18 +1,20 @@
-# Published native2 website read and unsigned profile
+# Historical native2 website read and unsigned profile
 
-This guide records the published website accounting 2/pricing 2/Entry-review1
-manifest. The newer contract candidate is [accounting 3/localV4](POSITION_V3.md)
-and now has a [separate explicit current3 website profile](CURRENT_WEBSITE_PROFILE.md).
-Actual reviewed deployment/API/provider qualification remains open.
-Do not relabel this profile or an existing Anvil journal as 3. Native2 source
-support is not evidence that accounting-3 wallet flows are qualified. Public
+This guide preserves the accounting2/pricing2/Entry-review1 manifest and its
+source-scoped evidence. The served poplint build has a separate
+[current3 profile](CURRENT_WEBSITE_PROFILE.md); the fresh contract candidate is
+[accounting4/custody3/canonical V5](POSITION_V4.md), with website integration
+still required. Native2 is neither the served integration profile nor fresh4
+acceptance. Do not relabel this profile or any existing Anvil journal. Public
 `DEPLOYMENT` remains null and the shared signer stays Anvil-only.
 
-The website has an explicit **schema-2 manifest** for accounting 2, pricing 2,
+The historical adapter has an explicit **schema-2 manifest** for accounting2, pricing2,
 routing 2 and reviewed Entry1. It is locally implemented; the public configuration
 remains null. Nonlocal submission is disabled. The shared signer, browser client
 and transaction coordinator are unchanged and remain Anvil-only. This does not
-qualify real native wallet/provider flows or approve deployment.
+qualify real native wallet/provider flows or approve deployment. The field and
+behavior descriptions below apply only to native2's reviewed source revision;
+they do not define the current contribution-asset or holder-exit policy.
 
 Read [scope and verification](../reports/native-readiness-20261025/VERIFICATION.md),
 [existing hosting/session procedure](DEPLOYMENT_WEBSITE.md),
