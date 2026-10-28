@@ -125,6 +125,9 @@ actual dependencies, target-chain gas/operations and independent audit remain op
 
 ## Liquidity placement and keeper policy
 
+Read [keeper safeguards](KEEPER_SAFEGUARDS.md) for the full protection inventory
+and the distinction between on-chain enforcement and bypassable service policy.
+
 Use [idle and dust ownership](IDLE_AND_DUST.md) before any cleanup. Contributions
 default to 2% (98% marginal deployed LP), conversion 1%, maintenance 3%, gas separate.
 Fresh LP routing1 selects one bounded route/size using actual-core quotes and

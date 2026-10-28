@@ -10,8 +10,11 @@ Use explicit accounting4, fee intake1, direct governance2, custody3, pricing2,
 routing2 and `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5` with actual bindings. The
 [holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
 not a working deployment. Review the operator-owned schema5 production inventory,
-all17core/15helper bindings, exact assets/routes/feeds/authorities and gas policy
-under [preflight](PRODUCTION_PREFLIGHT.md). The blocked example must stay blocked.
+its exact supported bindings, assets/routes/feeds/authorities and gas policy
+under [preflight](PRODUCTION_PREFLIGHT.md). The blocked accounting4 example must stay blocked: the historical schema5/
+accounting3 observer does not qualify profile4. LP routing1 additionally needs
+exact Manager/balancer/core/state runtime/parent pins and a reviewed execution
+catalog; source settings do not qualify a live service.
 
 Pin `contracts.principal_exit` and its runtime plus the Access runtime. The
 keeper checks fixed module/access ownership and custody version3. Existing
@@ -90,9 +93,11 @@ Read [keeper recovery](KEEPER_RECOVERY.md), [service rehearsals](KEEPER_REHEARSA
 eligibility after the configured hard interval, durable service jitter and
 independent Budget3 compound cadence. Intended initial values are12hours,
 60-600second jitter, hourly eligible inside-range checks and $1m cumulative
-per-NFT contributions. The fresh sample observes every60seconds. Best-route
-balancing/solver improvements remain unimplemented; current Vault still swaps
-in its LP pool. [Operator calls/restart](OPERATOR_MANUAL.md#operator-selected-lp-policy).
+per-NFT contributions. The fresh sample observes every60seconds. LP routing1 now
+compares up to four reviewed ETH/ZZZ execution venues independently of the LP
+destination, using post-close depth, bounded actual-core sizing and zero/one
+swap. Contributions balance/deploy only their own amounts; incumbent idle and
+compound remains in old NAV for guarded maintenance. [Protection inventory](KEEPER_SAFEGUARDS.md). [Operator calls/restart](OPERATOR_MANUAL.md#operator-selected-lp-policy).
 
 ## Reward timing and maintenance schedule
 
@@ -105,7 +110,7 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 | Job | Reviewed operating policy | Confirmed evidence |
 | --- | --- | --- |
 | Harvest | `maintenance.harvest=true`, `harvest_interval_seconds`; permissionless manual `Vault.collectFees` is also available. Contribution/rebalance/compound paths harvest as well. | `FeesCollected`, matching funded `PoolRewardsCredited`/`FeesAllocated`, actual receipt and separate reserves. Uncollected pool fees are not claimable yet. |
-| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting4 also requires the exact Budget pin, capability3 and `compoundReady` under policy2; all standalone compounds yield to range maintenance. Contributions/rebalances can already reinvest the same bucket's reserve. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
+| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting4 also requires the exact Budget pin, capability3 and `compoundReady` under policy2; all standalone compounds yield to range maintenance. Rebalance/guarded compound can reinvest the bucket's reserve; contributions only synchronize/release it into incumbent idle/NAV and deploy entrant funds. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
 | Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
 | Collective principal delivery | Opt-in accounting4 `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
@@ -167,7 +172,9 @@ no eligible rebalance and no available preapproved adaptive-range selection.
 The rule includes no-swap compounds and the first compound after LP creation.
 Rebalance eligibility ignores `lastCompound`, preserving range priority. The
 independent hourly harvest schedule, funded claims and guarded user contributions
-are unaffected; successful contributions may still reinvest designated reserves.
+are unaffected; contributions release designated reserves into incumbent idle/NAV
+but never use them to satisfy the entrant's LP floor. Configure reviewed idle
+compounding thresholds to pick up useful residuals without new fees.
 
 Every due accounting4 compound job, even reserve-only, authenticates
 `idle_compounding_budget`, `code_hashes.idle_compounding_budget`, its Vault binding,

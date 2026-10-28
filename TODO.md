@@ -948,6 +948,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Operator execution decisions](docs/LP_EXECUTION_POLICY.md): follow the new routing/upkeep task for manual widths, outside-only timing, compound coupling, route/size discretion, public entry-driven swaps, residual utility and one/two-pass fees. Keep the existing per-operation-only decision; independent turnover/loss alerts do not silently impose a cumulative breaker.
   - [Approved upkeep timing](reports/maintenance-policy-20261027/REVIEW.md) reduces in-range replacement opportunities with hard configured cooldown and separate compound interval. Service jitter is bypassable by a keeper key; real outside/price execution profitability, post-close depth and repeated-loss economics remain open. No cumulative breaker or new loss-cap relaxation.
   - [Atomic execution hardening](reports/atomic-routing-20261028/REVIEW.md) now restricts LP balancing to bounded reviewed venues, same chosen quote/execution, entrant-only budgets and zero/one actual swap. This reduces discretion/avoidable turnover but does not establish economic manipulation resistance, private ordering or profitability; real qualification stays open.
+  - Maintain the [Keeper safeguards inventory](docs/KEEPER_SAFEGUARDS.md) with current architecture, contract guards, adjustable limits, service-only controls and residual risks. A documented protection is not live deployment, economic qualification or an independent audit; preserve the source/evidence distinction.
 
   </details>
 
@@ -966,6 +967,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Review and limits](reports/manipulation-hardening-20261027/REVIEW.md): new defensive completion/health checks are not economic attack simulations. Preserve the platform-blocked simulation limitation; do not label local callback or inert RPC fixtures as a real-pool profitability campaign.
   - [Requested schedule and routing](docs/LP_EXECUTION_POLICY.md): bounded service jitter is weak obfuscation, not private execution or a malicious-key constraint. Qualify full post-close depth and actual route output, possible new pools, proxy upstream changes and repeated contribution flow; distinguish time-sliced execution from a price TWAP. No automatic highest-liquidity spot oracle.
   - [Atomic execution hardening](reports/atomic-routing-20261028/REVIEW.md) now restricts LP balancing to bounded reviewed venues, same chosen quote/execution, entrant-only budgets and zero/one actual swap. This reduces discretion/avoidable turnover but does not establish economic manipulation resistance, private ordering or profitability; real qualification stays open.
+  - Maintain the [Keeper safeguards inventory](docs/KEEPER_SAFEGUARDS.md) with current architecture, contract guards, adjustable limits, service-only controls and residual risks. A documented protection is not live deployment, economic qualification or an independent audit; preserve the source/evidence distinction.
 
   </details>
 
@@ -1203,4 +1205,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `993e4ee0111d15fa1786e75f2f29c771ba92de4244c7c6b3021ab7e0455ba3e2`.
+Snapshot SHA-256: `1224300daacc72a8619e87016759f8e1706b52058856ea680ca58e5bffac4335`.
