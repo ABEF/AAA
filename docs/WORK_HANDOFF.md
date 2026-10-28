@@ -11,8 +11,14 @@ keeper/API owner/revision/runtime checks preserve historical profiles. [Owning g
 and [source-bound verification](../reports/fee-impact-policy-20261028/VERIFICATION.md)
 separate exact local evidence and retained failed build attempts from real release
 qualification. No service, journal, Anvil, site or signing policy changed. Rebalance
-strategy brainstorming (passive second position/persistent trigger/40%) was not
-implementation authorization. Verify actual main/remote before saying pushed.
+passive-second-position/40% trigger discussion did not authorize implementation.
+The separate15-minute configurable confirmation buffer is requested but not
+implemented; sampled checks versus authenticated historical evidence awaits the
+user's choice. See [pending design](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+The [day audit](../reports/day-audit-20261028/VERIFICATION.md) revalidates existing
+evidence, corrects current guide wording and leaves actual release gates open.
+Implementation b61aecb was published; verify actual heads before reporting this
+later documentation publication. No new EVM/Python test run or service change.
 
 ## Latest functional state
 

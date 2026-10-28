@@ -82,8 +82,12 @@ before changing behavior. This file contains current instructions, not a timelin
   remain. Explicit keeper/API execution_quality_version1/runtime/owner checks;
   historical absent/0 stays historical. See [scope](docs/EXECUTION_QUALITY.md) and
   [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md). Strategy storage
-  changes belong only to a fresh deployment. No passive/persistence/40% trigger
-  strategy or service/site/Anvil change is authorized by brainstorming.
+  changes belong only to a fresh deployment. Passive/40% trigger strategies
+  remain discussion only. A configurable15-minute confirmation buffer is now
+  requested, but sampled observations versus authenticated history remains
+  undecided; no timer is implemented. See [decision](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+  Do not infer continuity proof from jitter, two samples or an average. No
+  service/site/Anvil change is authorized by brainstorming.
 
 ## Verification and documentation workflow
 
@@ -147,6 +151,13 @@ before changing behavior. This file contains current instructions, not a timelin
   gas/operations, metadata hosting and independent audit/remediation remain open.
 
 - [Two-day change audit](reports/two-day-audit-20261028/REVIEW.md) covers the October27-28 changes. Principal delivery now uses canonical receipt-based per-batch retries and durable first/last job priority; pending recovery remains first and paid truth stays on-chain. Comment-only source corrections retain identical ABI/storage/instructions except compiler metadata. No installed service/site/journal changed. Maintain [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) alongside future execution changes.
+
+- [Paris28October audit](reports/day-audit-20261028/REVIEW.md) covers the five
+  reachable commits through b61aecb and separately records the pending buffer.
+  Reused55Solidity/53backend/38size evidence remains source-bound; no new suite
+  was run by this docs audit. The keeper validates quality metadata internally;
+  current health does not export it. The blocked2.5Mgas example is unqualified,
+  not an operating recommendation; never widen it automatically.
 
 Archived checkpoints and original dirty documentation are preserved outside
 the checkout under the documentation-cleanup evidence directory recorded in

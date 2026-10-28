@@ -13,6 +13,14 @@ cap setter needs no service restart, but a config/runtime/source rollout require
 the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 [Fee-adjusted scope and limits](EXECUTION_QUALITY.md).
 
+The current holder-exit example remains deliberately blocked; its2.5Mgas cap is
+not adequate evidence for current routing. Earlier balance-only cold fixtures
+already exceeded it; complete current operation+25%padding and network-fee budgets
+need qualification. Refusal above the cap is correct, not permission to widen it
+automatically. Keeper quality metadata is validated internally, while API reviews
+return it; current keeper health/logs do not export owner/revision. See the
+[operator procedure](OPERATOR_MANUAL.md#qualify-current-routing-gas-and-telemetry).
+
 ## Current deployment and configuration
 
 Use explicit accounting4, fee intake1, direct governance2, custody3, pricing2,

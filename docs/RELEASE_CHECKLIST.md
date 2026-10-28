@@ -31,6 +31,13 @@ Use [new source-scoped evidence](../reports/fee-impact-policy-20261028/VERIFICAT
 and exact runtime/layout pins; earlier38-gate byte sizes are historical. No live
 market/service/production approval or passive strategy follows from this change.
 
+The [28October audit](../reports/day-audit-20261028/VERIFICATION.md) reviews the five
+day commits, rechecks existing raw evidence and corrects misleading current-profile/
+telemetry guidance. No new EVM/Python campaign was run. Fresh accounting4 release
+inventory, current gas/service telemetry and actual dependencies remain open.
+The requested15-minute confirmation buffer is not implemented or release evidence;
+the observation method is undecided. No40%/passive strategy is approved.
+
 ## Evidence and approval boundary
 
 | Evidence | What it establishes; limits |

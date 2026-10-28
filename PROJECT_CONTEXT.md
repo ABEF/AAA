@@ -52,8 +52,10 @@ default additional oracle-relative loss floor (governance0-10%). Stronger gross,
 caller and operation floors stay; separate reward converters keep their own
 all-in policy. Strategy owns policy/revision; Manager/helper and explicit
 keeper/API profiles bind it. [Feature](docs/EXECUTION_QUALITY.md), [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md).
-No installed service/site/Anvil changed. Passive positions, persistent triggers
-and40% movement triggers remain brainstorming, not selected implementation.
+No installed service/site/Anvil changed. Passive positions and40% movement
+triggers remain discussion only. The user separately requested a configurable
+15-minute rebalance confirmation buffer; its observation/evidence method is
+undecided and no timer is implemented. [Decision boundary](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
 
 ## Requested next LP policy
 
@@ -102,7 +104,8 @@ logs remain necessary despite exact index/credit/dust reconciliation.
 
 ## Source, evidence and release
 
-Current LP implementation checkpoint is `1cabb85` on main. The latest
+Current source checkpoint is `b61aecb` on main, including fee-quality1. Earlier
+LP routing checkpoint`1cabb85` retains its original scope. The
 [two-day review](reports/two-day-audit-20261028/REVIEW.md) covers the ten commits
 on October27-28 and fixes optional principal-delivery retry starvation. Confirmed
 batch receipts clock retries (default1hour, configurable60seconds-1day); durable
@@ -121,6 +124,12 @@ At that earlier checkpoint Vault24064, Manager24152 and NFT24400 left512/424/176
 runtime bytes. Fresh fee-quality source has Manager24148runtime (428margin),
 creation48938+160static arguments (54bytes initcode headroom);38normal gates pass.
 Exact release arguments, target gas and real dependencies still need qualification.
+
+The [Paris28October audit](reports/day-audit-20261028/REVIEW.md) reviews all five
+reachable day commits and revalidates exact existing evidence without new EVM
+or Python test runs. It corrects preflight/profile and keeper-reporting wording,
+records the unqualified example gas budget and the pending15-minute buffer.
+No new confirmed financial-accounting defect or production approval is claimed.
 
 [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) distinguishes contract-enforced rules
 from software-only jitter/simulation/budgets. Keeper personal trading around its

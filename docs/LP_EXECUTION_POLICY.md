@@ -31,6 +31,28 @@ interval and hourly harvesting remains independent. Defaults do not install a
 production configuration. Jitter is service-only; outside/cooldown/value guards
 are enforced on-chain.
 
+## Requested rebalance confirmation buffer
+
+The user requested a governance-configurable confirmation buffer and selected
+an initial **15minutes (900seconds)** on28October2026. It is **not implemented**:
+Strategy still evaluates the current tick/reference and cooldown; keeper jitter
+does not establish persistent eligibility. No timer getter, setter, transaction
+or historical-price provider is available from this request yet.
+
+One consequential choice remains unanswered: regular recorded on-chain
+observations with bounded gaps and resets, or authenticated historical evidence.
+The hookless pool has no built-in complete observation history. Endpoint checks
+and a TWAP average do not prove uninterrupted range exit; sampled confirmation
+must be labeled honestly. A stale/gapped/changed-LP or changed-policy record must
+not establish readiness. Bounds, gap/reset behavior and implementation/profile
+details need review after that evidence choice; do not invent defaults.
+
+Keep existing12-hour cooldown, explicit operator-width exception, independent
+harvest/receipt recovery and fixed rights until a separately verified change.
+The40% movement trigger and passive second position remain discussion only.
+The [sole task](../TODO.md#task-rebalance-confirmation-buffer) owns status;
+[operator boundary](OPERATOR_MANUAL.md#pending-15-minute-rebalance-confirmation) explains what can be called today.
+
 ## Execution venue selection
 
 The target is **best valid execution among reviewed candidates at the observed

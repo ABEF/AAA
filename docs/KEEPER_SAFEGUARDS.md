@@ -103,6 +103,10 @@ Network gas is separate. Operating limits are not automatically increased after 
 
 [Current timing policy](LP_EXECUTION_POLICY.md).
 
+The requested configurable15-minute confirmation buffer is **not implemented**.
+Current jitter plus a final recheck is not proof that eligibility stayed true
+between observations. [Design decision still pending](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+
 ## 6. Deposit, accounting and callback protections
 
 - **Entrant-only execution.** Activation and growth cannot force existing holders’ idle funds or compound reserves through a swap.
@@ -143,7 +147,7 @@ These protect the automated service; they are not substitutes for contract guard
 - Dry-run default and explicit reviewed live configuration.
 - Chain, signer, contract-code, module-binding and capability checks.
 - Canonical-block observations and fresh-head validation.
-- Explicit quality1 capability checks on Manager, Balancer and actual Strategy, including same-block policy-owner/quality-revision reporting and forwarded-cap agreement. Historical absent/zero configurations retain their old ABI reads. Reviews do not freeze quality policy until inclusion; signed caller loss limits remain binding.
+- Explicit quality1 capability checks on Manager, Balancer and actual Strategy, including same-block policy-owner/quality-revision validation and forwarded-cap agreement. API reviews expose the metadata; current keeper health/logs do not. Historical absent/zero configurations retain their old ABI reads. Reviews do not freeze quality policy until inclusion; signed caller loss limits remain binding.
 - Exact transaction simulation before signing.
 - Gas-limit, gas-price, per-transaction and daily spending ceilings.
 - Reviewed fee accounting, including applicable L1 costs.

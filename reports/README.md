@@ -1,5 +1,10 @@
 # Verification evidence
 
+[Paris28October day audit](day-audit-20261028/VERIFICATION.md): all five reachable
+day commits throughb61aecb reviewed, exact raw evidence/source hashes revalidated,
+profile/telemetry/gas guidance corrected and requested15-minute buffer recorded
+as unimplemented pending method choice. No new test campaign or production approval.
+
 [Fee-adjusted execution quality,2026-10-28](fee-impact-policy-20261028/VERIFICATION.md):
 separate Strategy-owned extra1% oracle-relative deterioration after actual core
 fees, retained gross/total/caller caps, callback policy binding and explicit

@@ -41,9 +41,9 @@ schema5/accounting3 observer does not qualify this capability or accounting4.
 Complete that exact release inventory and runtime acceptance before deployment;
 neither a template field nor a source receipt approves it. [Scope](EXECUTION_QUALITY.md).
 
-## Mint qualification boundary
+## Historical schema5 mint qualification boundary
 
-Current release CLI validation requires **schema5, accounting_version3,
+The existing CLI supports the historical native profile **schema5, accounting_version3,
 fee_intake_version1 and mint_integration_version1**.
 Missing/zero/boolean profiles and schema4 are blocked by default. Only explicit
 `--historical-consistency` inspects historical layouts, with current_release_gate
@@ -71,7 +71,7 @@ deployment/provider/wallet qualification remains open;
 no existing chain, website build, journal or public signer was upgraded.
 
 
-The current candidate uses **schema5**, local Position accounting3, typed routing2,
+The historical tooling profile uses **schema5**, local Position accounting3, typed routing2,
 explicit **`pricing_version: 2`** and governed custody. The offline validator checks declared policy against a
 complete pinned observation and required qualification records. A separate
 observer reads deployed contracts. Neither tool signs, deploys, seals, moves funds
@@ -84,9 +84,9 @@ journals as the current profile. Accounting2/LP-only V3 snapshots likewise remai
 historical and are not current localV4 snapshots. Start a separate current-version inventory with exact
 deployment-specific runtime hashes, including immutable constructor values.
 
-## What is inventoried
+## Historical schema5 inventory (not accounting4 approval)
 
-| Area | Current checks |
+| Area | Historical schema5 checks |
 | --- | --- |
 | Core | Access plus its 16 current sealed modules, exact bindings, unique addresses, active canonical state and no bootstrap authority. Access `GOVERNANCE_VERSION=2`, actual `governance()` and zero `pendingGovernance()`; keeper/guardian grants and reviewed actual governance wallet/signature policy. The sole operator may use one signer/threshold1; the existing inventory key `multisig` does not mandate multiple people. No current Timelock roles, schedule/execute methods or delay fields. Retired bridge/receiver/routes/transport slots must be zero. |
 | Helpers | Fifteen fixed helpers: activation assets/Entry, Oracle-created contribution pricing, Budget, custody validation, royalty ledger/renderer/claim router, two factories, two converters and three parent-bound v4 executors. Verify pricing `oracle`/`access`, inactive context and every actual getter; do not assume all helpers expose `access()`. |
@@ -96,15 +96,17 @@ deployment-specific runtime hashes, including immutable constructor values.
 | Principal and conversion | One selected contribution pool, actual ordered currencies, hook/fee/spacing/runtime bindings and independent prices. Direct, typed v3 and typed v4 routes retain separate identities. Conversion pools do not become principal pools merely by being listed. |
 | Qualification | Exact-chain asset/feed review, complete inventory history, governance, VRF, content publication, services, gas/recovery rehearsals and independent audit/remediation. Missing decisions remain blockers. |
 
-Current scope is the explicitly supported canonical native deployment and reviewed
+This historical observer scope is the explicitly supported canonical native deployment and reviewed
 same-chain lineage without external creator-reward inboxes. Current Fees exposes
 `FEE_INTAKE_VERSION=1`; removed receiver factory/count selectors and helpers cannot
 be added to its inventory. The separate historical fee0 inspection still checks
 its original zero-receiver requirement; it does not qualify current code. Future-chain
 canonical handoff, atomic ETH/WETH principal
-moves and legacy-schema import are not enabled by this inventory. External custody
-recipients still require explicit governance trust and their own actual recovery
-qualification; a pool-migration mechanism does not relocate NFT ownership.
+moves and legacy-schema import are not enabled by this inventory. Its historical
+external-recipient model must not be carried into current accounting4: fresh
+custody3 returns principal only to NFT holders, without an external custodian.
+Implement and review the new terminal/payout inventory separately; a pool move
+does not relocate NFT ownership.
 
 ## Two-source pricing records
 
@@ -113,8 +115,9 @@ Every priced token record supplies its complete `price_policy`: policy ID/ordina
 The source addresses and declared independence IDs must differ; each runtime must
 match its own approved pin, but identical adapter code is not itself forbidden.
 Different labels alone do not prove independent markets or reporters. Native ETH
-is asset zero, not a WETH-priced alias. USDG and USDC need
-actual depeg-aware USD observations. The user-selected agreement tolerance is
+is asset zero, not a WETH-priced alias. Any admitted royalty/conversion currency,
+including USDG or USDC, needs actual depeg-aware USD observations; it does not
+become a principal contribution input. The user-selected agreement tolerance is
 300 bps (3%). Production source addresses and freshness settings remain unset.
 A price inside that band must still satisfy the separate execution-loss floor.
 
@@ -125,7 +128,7 @@ disagreeing prices remain unavailable. Legacy single-feed profiles retain their
 original code/epoch semantics; they do not qualify this new runtime. See
 [implementation and trust boundaries](PRICE_SECURITY.md).
 
-## Prepare and validate the inventory
+## Inspect the historical example (current release remains blocked)
 
 Run these commands from the repository root with your installed Python command
 (`python3` or `python`):
@@ -138,7 +141,7 @@ The example must return blocked. Its known selected-pool references are intended
 identities, not passing runtime/feed/provider observations. Unknown PoPL addresses,
 wallets, independent ZZZ pricing, routes and service approvals remain unset.
 
-1. Copy the example to a release-specific inventory. Choose the exact source
+1. For historical inspection, copy its matching example without relabeling it accounting4. For the fresh release, start from the separately blocked holder-exit scaffold and implement its missing observer/gate first. Choose the exact source
    commit, network/genesis, public authority addresses and actual deployment.
    Keep private keys, RPC credentials, API tokens and signer material outside it.
 2. Review intended module/helper/dependency addresses, immutable bindings and

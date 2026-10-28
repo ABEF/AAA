@@ -34,7 +34,14 @@ after actual directional LP/protocol fees to balancing and Manager swaps/buyback
 It preserves stronger gross/caller/operation limits and separate converter policy.
 Exact same-block reader capabilities and revisions are explicit; historical
 profiles remain separate. [Feature scope](EXECUTION_QUALITY.md), [verification](../reports/fee-impact-policy-20261028/VERIFICATION.md).
-No passive position, persistent/TWAP trigger or40% rebalance policy is implemented.
+No passive position or40% rebalance policy is implemented. The separately requested
+15-minute configurable confirmation buffer is not implemented; its evidence method
+remains undecided. [Scope](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+
+[The day audit](../reports/day-audit-20261028/VERIFICATION.md) revalidates the current
+55distinct Solidity/53backend/38normal-gate evidence at exact pins without new
+test runs. It corrects documentation and operating qualification gaps; it does
+not establish live readiness, manipulation immunity or a new implementation.
 
 ## Smart contracts
 
@@ -44,7 +51,7 @@ No passive position, persistent/TWAP trigger or40% rebalance policy is implement
 | Fair assignment and metadata | Fixed1,000-entry draw,600/300/100 rarity quotas,58palettes/four pattern slots and four LP-value evolution states. VRF callback stores original words; ordered finalization, no reroll/admin traits. Actual provider and permanent artwork hosting remain unqualified. | [Metadata/reveal](NFT_METADATA.md), [artwork publication](ARTWORK_PUBLICATION.md) |
 | Activation and growth | ETH/fixedZZZ, conservative$100 activation/$5 growth, stronger pool minima; original-source pricing and actual marginal LP with captured budget/caller cap. Exact temporary venue approvals, no incumbent subsidy. | [Entry](ACTIVATION_ENTRY.md), [preparation](ACTIVATION_PREPARATION.md), [minimums](CONTRIBUTION_MINIMUMS.md) |
 | Independent pricing | Two reviewed USD sources/asset,3% disagreement band; bounded freshness/precision/round checks and frozen price fingerprints. Actual independent sources/updaters remain open. | [Price security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md) |
-| Shared LP custody | Many NFT share accounts per physical LP; one contribution pool enabled at a time, four permanent historical custody buckets. Marked current LP+attributed idle/compound is separate from contributed USD/rewards. | [Architecture](ARCHITECTURE.md), [Position3](POSITION_V3.md), [dynamic liquidity](DYNAMIC_LIQUIDITY.md) |
+| Shared LP custody | Many NFT share accounts per physical LP; one contribution pool enabled at a time, four permanent historical custody buckets. Marked current LP+attributed idle/compound is separate from contributed USD/rewards. | [Architecture](ARCHITECTURE.md), [Position4](POSITION_V4.md), [dynamic liquidity](DYNAMIC_LIQUIDITY.md) |
 | LP fee allocation | Physically received LP fees split80/10/5/5; individual LP shares/equal activated collective/compound/ZZZ buyback.20raw-unit batches and incumbent dust settlement; no configurable split or Power. | [Economics](ECONOMICS.md), [Fees](../src/ZZZFeeController.sol), [Rewards](../src/ZZZRewards.sol) |
 | Royalties and claims | ERC-2981 requests5%;100%actual eligible royalties use rarity1/2/3, separate from LP. Outage isolation protects old cohorts. Current owner claims; unclaimed balances/fractions follow NFT. Bounded ClaimRouter and separate source-to-ETH converters preserve attribution. | [Settlement](ROYALTY_SETTLEMENT.md), [ClaimRouter](CLAIM_ROUTER.md), [LP settlement](LP_ETH_SETTLEMENT.md) |
 | Maintenance | Shared-position rebalance/compound, LP routing1 bounded reviewed-venue comparison/actual-core sizing, zero/one swap and attributed idle reinvestment. Contributions trade/deploy only entrant funds. Reviewed optional keeper widths +/-25/50% in ZZZ price in ETH; cooldown/price/venue/captured aggregate guards. | [Ranges](RANGE_POLICY_UPDATES.md), [idle](IDLE_AND_DUST.md), [loss limits](EXECUTION_LOSS_POLICY.md) |
@@ -161,8 +168,9 @@ reader checks are not the still-pending Linux crash/systemd or real-market campa
 | [Deep cleanup](../reports/deep-cleanup-20261025/VERIFICATION.md) |32scoped Solidity/41Python/37normal object gates in its recorded scope; dependency/build bindings retained. Contract reference31contracts/608 functions/13 receive hooks. |
 | [Earlier source-scoped reports](../reports/README.md) | Local/fork/UI/keeper/rights receipts apply only to their stated revisions, fixtures, chains and environments. Older counts, bridges, inboxes or WETH profiles are not current claims. |
 
-Unchanged production 44 Solidity/31installed dependencies/four build inputs matched
-the last backend publication. No new full test count, live provider approval,
+At that historical backend checkpoint,44production Solidity/31installed dependencies/
+four build inputs matched its publication. Fresh fee-quality source instead has
+45production/31dependency inputs and its own [exact evidence](../reports/fee-impact-policy-20261028/VERIFICATION.md). No new full test count, live provider approval,
 published CI result, operating uptime or independent audit is inferred. Actual
 OpenSea/VRF/prices/routes/authorities/artwork/services/gas/operations and audit
 remediation remain release gates. Documentation/publication does not deploy.

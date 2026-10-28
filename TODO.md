@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 37 In progress | 22 Implemented locally | 1 Not planned**
+**8 To do | 38 In progress | 22 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -211,6 +211,20 @@ Custody, ownership and reward accounting.
   - [Manual operator procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time) documents existing keeper-granted direct Vault.rebalance, shared-bucket/raw-LP/short-expiry inputs and separate gas. It bypasses only local jitter/hourly checks; contract cooldown/range/price/lifecycle/value guards remain. Reconcile automated pending work and same-service-key external nonce/receipt/spend before restart; no automatic adoption or new force-rebalance permission.
   - Fresh API/keeper lp_routing_version1 authenticates exact Manager/helper runtimes, LP_ROUTING_VERSION1, immutable parent/core/state and bounded catalog/solver metadata at one canonical block. Historical0 equations and200bps policy stay explicit. New activation traces require exact entrant balance/capped put and physical-LP-only deployed baseline. Preserve request isolation, independent due harvesting and original journals; source configuration does not roll out a service.
   - [Fee-adjusted execution-quality1](docs/EXECUTION_QUALITY.md) is implemented locally: Strategy-owned default1% additional oracle-relative loss after actual directional core fees, governance0-10%, stronger gross/caller/operation guards retained. Explicit runtime/owner/revision readers preserve historical profiles. [Scoped verification](reports/fee-impact-policy-20261028/VERIFICATION.md) does not qualify actual markets, profitability, target gas, services or independent audit; passive/persistent/40% trigger ideas remain unimplemented.
+  - User requested a configurable15-minute confirmation buffer on28October2026; no timer is implemented. The evidence choice remains unresolved. Track [the dedicated task](TODO.md#task-rebalance-confirmation-buffer); jitter, endpoint checks and a TWAP average must not be presented as uninterrupted-persistence proof. The40%trigger and passive second position remain discussion only.
+
+  </details>
+
+<a id="task-rebalance-confirmation-buffer"></a>
+
+- [ ] **[Add configurable rebalance confirmation buffer](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer)** - In progress. Requested initial15minutes (900seconds), configurable by governance. Design review started; sampled on-chain observations versus authenticated historical evidence is unanswered. No buffer code, setter, readiness profile or service is implemented. Existing cooldown/jitter and operator-width behavior remain.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Resolve the observation/evidence method before claiming persistence. Hooklessv4 has no built-in complete price history; two endpoint checks or a TWAP average cannot prove uninterrupted range exit. Sampled confirmation must disclose its gaps and malicious-observer limitations.
+  - Review bounded governance configuration, gap/reset/invalidation rules, raw eligibility versus final readiness and preservation of compound priority, manual-width decisions, independent harvest and saved-receipt recovery. Do not invent defaults or silently reinterpret existing profiles/journals.
+  - Implement only the selected design with exact source/normal-size evidence, useful focused edge checks, versioned keeper/API integration and updated callable/operator reference. No40%trigger, passive position, deployment or installed-service change follows from this task.
 
   </details>
 
@@ -931,6 +945,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Historical thin-market finding A-07: the original one-pass native fixture retained about$99.38 but deployed only$98.85 and safely reverted at1%. The [bounded two-pass candidate](docs/IDLE_AND_DUST.md) addresses ratio drift and the user separately approved2% default; qualify actual markets and complete traces, preserving all guards. Neither a higher cap nor this local correction qualifies every route.
   - [Keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) binds health to exact loaded config, rejects malformed conversion controls, repairs obsolete range-test domain and selects current3/fee1/native rehearsal source. Final affected Python354pass/5Unix skips (359methods),9range methods incl1000fuzz; unchanged production Solidity/permissions/economics. Linux current-fixture process/systemd, actual feeds/routes/gas/services and independent audit remain open. Deploy matching health writer/checker only under separate rollout; never patch old hashes or reset journals.
   - [Fee-adjusted execution-quality1](docs/EXECUTION_QUALITY.md) is implemented locally: Strategy-owned default1% additional oracle-relative loss after actual directional core fees, governance0-10%, stronger gross/caller/operation guards retained. Explicit runtime/owner/revision readers preserve historical profiles. [Scoped verification](reports/fee-impact-policy-20261028/VERIFICATION.md) does not qualify actual markets, profitability, target gas, services or independent audit; passive/persistent/40% trigger ideas remain unimplemented.
+  - User requested a configurable15-minute confirmation buffer on28October2026; no timer is implemented. The evidence choice remains unresolved. Track [the dedicated task](TODO.md#task-rebalance-confirmation-buffer); jitter, endpoint checks and a TWAP average must not be presented as uninterrupted-persistence proof. The40%trigger and passive second position remain discussion only.
 
   </details>
 
@@ -974,12 +989,13 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Maintain the [Keeper safeguards inventory](docs/KEEPER_SAFEGUARDS.md) with current architecture, contract guards, adjustable limits, service-only controls and residual risks. A documented protection is not live deployment, economic qualification or an independent audit; preserve the source/evidence distinction.
   - Assess personally held ZZZ trading before/after an eligible rebalance, including keeper timing discretion and outside-actor ordering. Cooldown, deterministic routing, independent prices and per-operation limits reduce exposure but do not prove all such trades unprofitable; do not claim keeper profit or holder loss is inevitable either. No economic attack campaign was performed in the two-day audit.
   - [Fee-adjusted execution-quality1](docs/EXECUTION_QUALITY.md) is implemented locally: Strategy-owned default1% additional oracle-relative loss after actual directional core fees, governance0-10%, stronger gross/caller/operation guards retained. Explicit runtime/owner/revision readers preserve historical profiles. [Scoped verification](reports/fee-impact-policy-20261028/VERIFICATION.md) does not qualify actual markets, profitability, target gas, services or independent audit; passive/persistent/40% trigger ideas remain unimplemented.
+  - User requested a configurable15-minute confirmation buffer on28October2026; no timer is implemented. The evidence choice remains unresolved. Track [the dedicated task](TODO.md#task-rebalance-confirmation-buffer); jitter, endpoint checks and a TWAP average must not be presented as uninterrupted-persistence proof. The40%trigger and passive second position remain discussion only.
 
   </details>
 
 <a id="task-security-dependencies"></a>
 
-- [ ] **[External dependencies & receipt backing](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - In progress. Review selected hookless Uniswap v4, actual tokens, converter wrappers, two-source pricing, randomness and externally chosen custodians for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed recognition, token failure and approved-dependency changes. External bridges or issuer exchanges chosen by a custodian remain outside PoPL custody guarantees.
+- [ ] **[External dependencies & receipt backing](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - In progress. Review selected hookless Uniswap v4, actual tokens, converter wrappers, two-source pricing and randomness for upgrades, compromise, outages and unexpected behavior. Reconcile every liability to actual receipts; qualify quarantine, delayed/duplicate recognition and token/dependency faults. Current holder-only principal return has no external custodian or bridge.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1144,6 +1160,7 @@ Decisions and rehearsals before real funds.
   - Manual operations using the service signer outside its journal must fail closed on changed nonce/checkpoints until reviewed reconciliation. New physical LP/timer identity is not transaction-history adoption. Rehearse this actual operating case without resetting journals or silently raising budgets; see [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Documentation alone does not close the operating gate.
   - [Two-day audit](reports/two-day-audit-20261028/VERIFICATION.md): qualify rejecting receivers, successful zero-payment batches, restart-preserved retry clocks/priority, independent royalty/buyback/metadata progress and pending-first recovery. Ready-phase retry_interval_seconds defaults3600 (60-86400); no local paid cache, journal reset, resend, new authority or installed-service upgrade. Source fixture success is not actual gas/backlog/operating qualification.
   - [Fee-adjusted execution-quality1](docs/EXECUTION_QUALITY.md) is implemented locally: Strategy-owned default1% additional oracle-relative loss after actual directional core fees, governance0-10%, stronger gross/caller/operation guards retained. Explicit runtime/owner/revision readers preserve historical profiles. [Scoped verification](reports/fee-impact-policy-20261028/VERIFICATION.md) does not qualify actual markets, profitability, target gas, services or independent audit; passive/persistent/40% trigger ideas remain unimplemented.
+  - [Day audit](reports/day-audit-20261028/REVIEW.md): current keeper validates quality metadata in memory but does not export it in health/logs; API provenance does. Qualify source/block/config-anchored telemetry with matching writer/checker rollout, preserved pending state and no invented attestation. Repeated router reads are a potential optimization only; retain fresh pre-signing validation.
 
   </details>
 
@@ -1175,6 +1192,7 @@ Decisions and rehearsals before real funds.
   - The new3-address controller constructor has fixed96-byte ABI arguments; no proposer/executor arrays remain. Review governance wallet signers/threshold separately from the controller address. [Exact sizes](reports/architecture-pruning-20261025/bytecode-comparison.json) use unchanged normal compiler/EVM limits.
   - Qualify actual bootstrap, module/helper/authority bindings, deployment calldata, source/runtime pins, chain gas and setup/sealing procedures. No deployment follows from local gates; never waive EIP-170/EIP-3860.
   - Controlled same-context Access comparison reproduces9207→9252runtime and42081→42256creation (+45/+175); constructor fixed arguments96bytes give42352total/6800margin. Four isolated role-gas measurements pass, including CREATE+12312raw execution gas. RoyaltyFactory runtime margin69bytes and actual NFT URI constructor arguments require exact release qualification; see [gas evidence](reports/day-readiness-20261025/role-gas.md).
+  - The blocked holder-exit keeper example cap2.5Mgas is not a qualified current maintenance budget. Earlier balance-only cold fixture observations2,590,680(one venue)/5,963,090(four) already exceed it before full operation/25%padding. Qualify exact fresh operations, network fee accounting and daily budgets; do not raise limits automatically or treat prior fixture gas as target-chain approval.
 
   </details>
 
@@ -1213,4 +1231,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `370c17307c6f5d837fc72508855cee9287f9c73d31dc9cb1538f7601cf5ef60e`.
+Snapshot SHA-256: `72d74d66d894f49edd22a9e564435593fafe35d36be45f2992c7507abf98c7da`.

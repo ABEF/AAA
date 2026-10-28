@@ -298,6 +298,18 @@ LINK transfer, but adapters, updates, RPCs and VRF can cost money; review each
 actual product and upstream authority. [Price operating requirements](PRICE_SECURITY.md).
 
 
+### Pending 15-minute rebalance confirmation
+
+An initial15-minute governance-configurable buffer is requested, **not implemented**.
+There is no callable buffer setter/getter or installed confirmation service yet.
+The evidence choice (recorded observations versus authenticated history) remains
+open. Continue using the existing raw `needsRebalance` and guarded Vault call;
+do not advertise sustained-price confirmation. Increasing the12-hour cooldown
+or setting Python jitter does not require the trigger to remain true between checks.
+Do not reset or relabel journals to simulate this capability. Keep manual-width,
+harvest and pending-receipt behavior unchanged until reviewed source/profile work
+lands. [Owning design/task](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+
 ### Set additional execution loss
 
 For fresh `EXECUTION_QUALITY_VERSION()==1`, governance calls
@@ -332,6 +344,24 @@ near TickMath bounds that can stop execution. Inspect configuration and simulate
 failure instead of bypassing prices/floors. Separate LP/royalty converters retain
 their own all-in conversion limits. See [fee-adjusted quality](EXECUTION_QUALITY.md)
 for exact fee/rounding scope, 2% gross-floor interaction and recovery boundaries.
+
+### Qualify current routing gas and telemetry
+
+The blocked holder-exit keeper example's `max_gas_limit:2500000` is not a qualified
+current-maintenance budget. Earlier cold routing fixtures measured balance alone
+at2,590,680gas (one venue) and5,963,090gas (four), before full maintenance and the
+keeper's25% estimate padding. These are historical fixture observations, not
+current Robinhood limits or safe launch values. The keeper must refuse work above
+its configured ceiling; **never widen caps automatically**. Qualify exact current
+catalog/search/depth and complete operations, including network fee accounting,
+then deliberately set limits and daily budgets, simulate and dry-run. Reconcile
+pending work and preserve the journal before any config/release restart.
+
+API reviews expose observed quality owner/revision. Current keeper code validates
+that metadata internally but its health/logs do not export it. Inspect the actual
+Strategy getters/events and reviewed pins; do not infer policy attestation from
+an absent health field. Adding anchored telemetry requires matching writer/checker
+review and operating qualification. No service was changed by this audit.
 
 ## Typed conversion and loss-limit operations
 

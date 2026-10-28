@@ -27,8 +27,8 @@ provide independent release approval. The seven workstreams below map to
 | --- | --- |
 | Before sealing | Approve immutable economics, authorities, dependency/recovery design and canonical-chain-loss policy. Resolve any requirement needing code changes before fixing bindings. |
 | Before launch or real funds | Independent review and remediation of frozen source/configuration; all three testing layers; qualified tokens, routes, feeds, VRF and operating rehearsals. Creator-payment intake is removed; selected hookless LP fees come from actual venue collections. Token-issuer powers still require review. |
-| Before an external custody handoff | Review the source-chain recipient, exact plan/minima and explicit loss-of-custody risk. Rehearse successful departure, failure rollback, missing return and actual funded local completion/recovery. The custodian's later bridge/token migration is external; the protocol does not guarantee it. |
-| Only if future protocol-managed remote operation is proposed | A separately reviewed implementation would need destination obligations, authenticated finality/channel closure, backing and transport qualification. No integrated proof intake or remote ledger remains. This is outside this release, not a gate for source-chain custody-only handoff. |
+| Before collective holder return | Review irreversible governance initiation, actual ETH/ZZZ backing/minima, per-NFT shares and bounded current-owner payouts. Rehearse failed receivers, transfer/claim ordering and owner fallback while preserving earned rewards and future royalties. No external custody recipient or bridge is available. |
+| Only if future protocol-managed remote operation is proposed | A separately reviewed implementation would need destination obligations, authenticated finality/channel closure, backing and transport qualification. No integrated proof intake or remote ledger remains. This is outside the current holder-return release. |
 
 For each gate retain source/configuration hashes, exact commands and results,
 failure reproductions, reviewer and unresolved risks. Use local adversarial tests,
@@ -48,12 +48,12 @@ function. There is no timelock/scheduler machinery or advance notice window; gov
 - Build and test a complete role/call matrix, including bootstrap, callbacks,
   compromised keepers/guardians, governance operations and forbidden module rebinding.
 - Verify all post-seal changes preserve custody and historical liabilities. Audit
-  pool/custodian admission: an unsafe approved destination or malicious feed
+  same-native-pair pool admission: an unsafe approved destination or malicious feed
   can lose funds despite the absence of a wallet-sweep function.
 - Rehearse multisig/key rotation, lost signer quorum and emergency pause/parking.
   Verify that global pause stops ordinary work but still permits separately
-  approved paused principal/royalty custody departures; it is not a guardian
-  veto of governance or an automatic raw-exit fallback.
+  authorized paused collective holder return and separately guarded earned
+  claims; it is not a guardian veto of governance or an external-custodian fallback.
   Record what is impossible after key loss; do not imply an administrator override.
 - Approve the [change and recovery boundaries](CHANGE_AND_RECOVERY.md) before seal.
 
@@ -214,16 +214,18 @@ contracts; historical readers/evidence do not re-enable them.
 
 **Current controls:** parking retains attributed principal in Vault; governed
 resumption/migration has explicit guards. Local pool moves require the same
-ordered accounting currencies. The current manager supports hookless ERC20 v4
-pools and admitted static hookless native ETH/ZZZ keys on pinned Robinhood dependencies, not arbitrary new
-DEXs/hooks. A future compatible destination needs separate code/dependency review.
+ordered native ETH/fixed-ZZZ currencies. Current production admission permits
+static hookless native ETH/ZZZ keys on pinned Robinhood dependencies, not generic
+ERC20/WETH pairs or arbitrary new DEXs/hooks. Historical manager branches do not
+expand that admission. A future compatible destination needs dependency review.
 
 - Preserve and qualify the [same-chain handoff](CANONICAL_HANDOFF.md) for complete
   collection replacement: it carries NFT ownership, membership, shares, both
-  ledgers and classified backing. Ordinary pool moves/custody exit leave those
-  rights on their canonical chain. The source-chain custody address allows the
-  operator to bridge assets externally; it does not provide cross-chain NFT or
-  reward-ledger relocation. [Future whole-protocol cross-chain design](CANONICAL_MIGRATION_DESIGN.md)
+  ledgers and classified backing. It is supported only before collective LP exit;
+  the current importer does not carry the terminal principal-payout ledger.
+  Ordinary same-pair pool moves and collective holder return leave NFT/reward
+  rights on their canonical chain. There is no operator custody address for
+  bridging or issuer exchange. [Future whole-protocol cross-chain design](CANONICAL_MIGRATION_DESIGN.md)
   and post-halt recovery are explicitly deferred, not conditions for this release.
   Unsupported cross-chain canonical activation must continue to fail closed;
   do not imply sealed code can acquire that design from a configuration change.
@@ -234,11 +236,12 @@ DEXs/hooks. A future compatible destination needs separate code/dependency revie
   budget, including a governance-raised cap, may haircut funded reward
   liabilities. Separately assess lost governance
   quorum and unusable immutable contracts; this plan does not solve every outage.
-- For source-chain custody-only exit, audit recipient/snapshot binding,
-  unchanged NFT rights, unavailable external principal valuation and actual
-  complete local return. Local permanent pool reservations prevent alias
-  reassignment; they do not authenticate an external bridge, remote LP value or
-  remote rewards. Timeouts alone cannot authorize write-offs or fabricated
+- For collective holder exit, audit exact principal plus pending compound,
+  per-NFT allocation, current-owner binding and bounded push/fallback payments.
+  Preserve earned LP/royalty liabilities and buyback reserves separately; no
+  external custody transfer, conversion/sweep or return-to-pool ingress remains.
+  Local permanent pool reservations prevent alias reassignment; they do not
+  authenticate remote LP value or rewards. Timeouts cannot authorize write-offs or fabricated
   backing. Any future protocol-managed remote feature requires a separately
   implemented and reviewed transport/proof/accounting design; no integrated
   proof framework or remote ledger remains in this release.

@@ -28,13 +28,14 @@ bounded governance configuration. Stronger gross, captured operation and caller
 floors remain; separate converters retain their existing policy. [Scoped evidence](reports/fee-impact-policy-20261028/VERIFICATION.md)
 does not qualify actual markets or change installed services/sites.
 
-The latest [two-day change audit](reports/two-day-audit-20261028/REVIEW.md)
-fixes keeper payout-retry starvation and current operating guidance. Its
-[verification](reports/two-day-audit-20261028/VERIFICATION.md) records137affected
-backend passes and38normal build gates. Solidity changes are comments only;
-ABI, storage and instructions are preserved, with refreshed compiler metadata.
-The [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) inventory includes the remaining
-keeper-personal-trading and outside-actor risks. No service or website changed.
+The [28October day audit](reports/day-audit-20261028/REVIEW.md) reviews all five
+day commits throughb61aecb, corrects preflight/telemetry guidance and records the
+pending15-minute confirmation buffer. It revalidates source-bound evidence rather
+than rerunning unchanged suites; no new confirmed financial-accounting defect
+or production approval is claimed. Earlier [payout-retry fixes](reports/two-day-audit-20261028/VERIFICATION.md)
+retain their own137-method/comment-only compiler scope. [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md)
+still distinguish contract guards, service controls and remaining market risks.
+No service or website changed.
 
 The earlier [systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
 maps608 functions plus31 constructors/13 receivers at its original source revision
@@ -82,7 +83,7 @@ retains its source scope. Neither establishes production approval.
 | Documentation map | [Current guides and historical references](docs/README.md) |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
 | Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |
-| Production inventory | [Native preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit accounting V3/governance V2, helper bindings, approved pins, actual observations and release blockers |
+| Production inventory | [Preflight scope](docs/PRODUCTION_PREFLIGHT.md) - historical accounting3 tooling; fresh accounting4 inventory/gate remains blocked pending implementation and qualification |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
 | Security and release | [Latest systematic internal review](reports/system-adversarial-20261026/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 

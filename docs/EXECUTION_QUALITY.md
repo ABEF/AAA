@@ -67,16 +67,18 @@ configurations retain their old reads and never probe these new getters.
 
 Quality1 observations use one pinned block, checked runtime/module bindings and
 the real Strategy resolved through Access. They compare its policy with the
-Balancer's forwarded value and report `policy_owner`, `quality_policy_revision`,
-the cap and maximum. The helper's `executionRevision` remains its separate
+Balancer's forwarded value. The API reports `policy_owner`, `quality_policy_revision`,
+the cap and maximum; the keeper currently validates and retains this metadata
+in memory but does not export it in its health file or logs. The helper's `executionRevision` remains its separate
 catalog/solver revision. Strategy's monotonic quality revision is included in the
 Balancer policy fingerprint, detecting changed-and-restored policy during an
 operation. No journal or historical deployment is relabeled.
 
 An unsigned wallet review reports the observed policy; it does not freeze that
 policy until inclusion. The caller's signed maximum contribution loss remains
-binding. Keeper observations likewise report policy owner and revision, without
-claiming that an old off-chain observation replaces inclusion-time checks.
+binding. Keeper validation likewise checks policy owner/revision without replacing
+inclusion-time checks. Source-anchored external keeper telemetry remains an
+operating improvement requiring matching health writer/checker qualification.
 
 ## Fresh deployment and failure boundaries
 

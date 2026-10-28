@@ -32,7 +32,14 @@ The [implemented fee-quality slice](EXECUTION_QUALITY.md) separates known core
 trading fees from a1% default additional oracle-relative loss floor, retaining
 gross/caller/total limits. Qualify real depth/prices/gas and matching runtime/config
 before rollout; defensive local checks do not establish attacker-profit immunity.
-Passive inventory/persistence-trigger ideas remain discussion, not implementation.
+Passive inventory and40% triggers remain discussion only. The user separately
+requested a configurable15-minute confirmation buffer; implementation awaits the
+observation/evidence decision. [Owning task](../TODO.md#task-rebalance-confirmation-buffer).
+Finish that design without treating jitter or two samples as continuity proof.
+
+The [day audit](../reports/day-audit-20261028/REVIEW.md) records current gaps rather
+than reopening unchanged test campaigns: fresh accounting4 preflight, qualified
+gas budgets, actual quality telemetry and real dependencies remain open.
 
 ## LP execution next steps
 

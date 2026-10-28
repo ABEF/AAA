@@ -1,0 +1,52 @@
+{
+  "verified_utc": "2026-10-28T18:31:07.757957+00:00",
+  "head_reviewed": "b61aecb70935ba5948e82d2c32ceab97d5e913ce",
+  "current_normal_build": {
+    "record": "../fee-impact-policy-20261028/production-size-gates.json",
+    "source_sha256": {
+      "matched": 45,
+      "drift": []
+    },
+    "dependency_source_sha256": {
+      "matched": 31,
+      "drift": []
+    },
+    "build_input_sha256": {
+      "matched": 4,
+      "drift": []
+    },
+    "normal_gates": 38,
+    "recompiled_in_this_audit": false
+  },
+  "backend": {
+    "record": "../fee-impact-policy-20261028/backend-verification.json",
+    "distinct_passed": 53,
+    "new_quality_methods": 14,
+    "pinned_python_inputs": 162,
+    "before_after_current_match": true,
+    "rerun_in_this_audit": false
+  },
+  "solidity": {
+    "initial_distinct": 55,
+    "initial_passed": 54,
+    "initial_failed": 1,
+    "corrected_method_only_passed": 1,
+    "distinct_passed_across_scopes": 55,
+    "raw_inventory_matches": true,
+    "only_two_expected_error_selectors_changed": true,
+    "rerun_in_this_audit": false
+  },
+  "external_fee_artifacts": {
+    "matched": 29,
+    "root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-impact-policy-20261028",
+    "manifest_sha256": "a299f28bfdfb6a852446a95763f1c46f2eafd36227cc76f7de508dd211c3d11e"
+  },
+  "earlier_routing_and_two_day_evidence": "retain original source scopes; not added to current test counts",
+  "preserved_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "production_code_unchanged_by_audit": true
+}
