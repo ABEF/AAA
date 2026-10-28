@@ -247,17 +247,10 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     function mintTarget(uint256 id) external view onlyVault returns (int24,int24,uint160) {
         return IZZZStrategy(access.module(Ids.STRATEGY)).target(IZZZVault(vault).group(id).poolId);
     }
-    function balancePlan(uint256 id, bool existingRange)
-        external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut, address input) {
-        Position memory p = IZZZVault(vault).group(id);
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
-        IZZZStrategy strategy = IZZZStrategy(access.module(Ids.STRATEGY));
-        if (existingRange) (zeroForOne, amountIn, minimumOut) = strategy.compoundPlan(id, p.idle0, p.idle1);
-        else (zeroForOne, amountIn, minimumOut) = strategy.swapPlan(p.poolId, p.idle0, p.idle1);
-        // Ignore corrections no greater than one basis point of this bucket's
-        // available input. Precision dust does not justify another fee-bearing swap.
-        if (amountIn <= (zeroForOne ? p.idle0 : p.idle1) / 10000) amountIn = 0;
-        input = zeroForOne ? c.key.currency0 : c.key.currency1;
+    /// @notice Bind prices, target policy and admitted execution controls across
+    /// the Vault's complete approval/balance/reset sequence, not only the router.
+    function balanceContext(uint256 id) external view onlyVault returns(bytes32) {
+        return IZZZLiquidity(access.module(Ids.LIQUIDITY)).balanceContext(IZZZVault(vault).group(id).poolId);
     }
     function poolTokens(bytes32 poolId) public view returns (address token0, address token1) {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);

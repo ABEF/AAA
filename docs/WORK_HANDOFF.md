@@ -90,11 +90,32 @@ Read [policy](LP_EXECUTION_POLICY.md), [verification](../reports/maintenance-pol
 and [owning task](../TODO.md#task-lp-execution-routing). Keep manual +/-25/50% widths.
 No current deployment/service/journal/site/signing changes follow from publication.
 
-Next functional work remains the best approved balancing venue independently of
-LP target, full-size post-close sizing and normally-one-swap useful placement.
-Current Vault still swaps in its LP pool. $1m per-NFT cumulative cap is existing
+LP routing1 now implements a Manager-created immutable ZZZLPBalancer with at most
+four reviewed native ETH/ZZZ venues, bounded reverted actual-core sizing and
+zero/one swap independently of the LP destination. Contributions trade/deploy
+only entrant budgets; old idle/compound remains in incumbent NAV and available
+for guarded maintenance. Exact raw deltas and execution/source/target contexts
+span approvals and resets. Empty catalog disables swaps without fallback.
+Governed venue ceiling is10%, unchanged operating defaults/stronger captured
+limits. Match explicit API/keeper helper/version/runtime pins; Entry routing2
+keeps its old meaning. [New review](../reports/atomic-routing-20261028/REVIEW.md)
+and [verification](../reports/atomic-routing-20261028/VERIFICATION.md) own scope.
+Actual feed/venue/depth/gas/operating qualification remains open. $1m per-NFT cumulative cap is existing
 configuration, not a $1bn market-capacity guarantee. Timed10% replacement is a
 separate optional design. Preserve historical profiles and unrelated drafts.
+
+Final scoped verification:98distinct Solidity methods, with33actual-router/
+composition methods rerun after the solver fix and65unchanged reachable-source
+passes reused at exact metadata pins;173backend methods/31reference checks and
+38normal size gates pass. The strict thin-market0.01idle regression is preserved
+and fixed by safeguarded interpolation, not relaxed. An infeasible seed now
+searches smaller valid inputs. Vault runtime24064 (512margin), Manager24152
+(424margin); Manager creation47826+160static arguments. Actual maximal target
+gas/URI/configuration remains unqualified. No service/site/Anvil/journal change.
+Raw evidence is under the task external root `atomic-routing-20261028/`; its
+verification record preserves initial failures, exact unchanged-suite reuse and
+the early local snapshot overlapping four delegated edits. Historical build reuse
+is independently anchored to Git2b9e069, not that partial capture.
 
 ## Manual rebalance procedure
 
@@ -106,7 +127,8 @@ a same-service-key transaction outside its journal requires reviewed nonce/recei
 spend reconciliation. A new LP/timer refresh alone does not repair that journal.
 No source, ABI, sample config, service, site, journal, deployment or test result
 changed in this documentation synchronization. Reuse exact422deaf source evidence;
-best-route execution remains next functional work.
+LP routing1 was subsequently implemented; use its new source-scoped review above
+for current code, not the earlier documentation-only checkpoint.
 
 ## Current maintenance cadence
 

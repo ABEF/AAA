@@ -13,6 +13,13 @@ addresses and independently reviewed deployed runtimes in `code_hashes`.
 A compiler template is not a deployed runtime pin. Verify actual version getters
 before new work; pending receipt recovery always runs first.
 
+Fresh LP routing1 requires reviewed Manager/balancer/core/state runtime and
+immutable binding pins. A saved pending transaction is recovered before new
+LP-router metadata checks; an unavailable router never permits a new balance
+operation. Runtime, signer, accounting and nonce/receipt checkpoints still apply.
+Independently due harvesting does not depend on swap-router metadata. Do not
+delete a pending intent or reinitialize a journal to bypass an outage.
+
 Current Positions have eight local words and terminal Exited5 in addition to
 Dormant3/Parked4; only Active1 before collective exit runs ordinary LP upkeep.
 Accounting1/2 retain their

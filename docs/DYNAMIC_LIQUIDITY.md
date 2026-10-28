@@ -85,7 +85,7 @@ from swap impact, market losses, MEV, dishonest feeds or admitted venue failures
 
 The user chose to allow new activations/top-ups outside the current range, with
 an explicit warning and all ordinary custody, oracle, route and captured contribution-floor checks retained.
-A pending price- or range-triggered rebalance alone does not block a contribution. There is
+An outside-range or operator-requested rebalance alone does not block a contribution. There is
 no deposit queue, automatic user-triggered rebalance or arbitrary near-edge band.
 If costs cannot meet the captured floor (98% at the current 2% default), the atomic transaction still reverts.
 
@@ -103,7 +103,7 @@ pinned slot0 response, without another RPC read or response-schema change.
 
 | Warning state | Meaning shown to the holder |
 | --- | --- |
-| Cooldown | Earliest eligibility is `lastRebalance + minRebalanceInterval`, shown as a UTC timestamp. A price trigger or pending approved range update and execution checks must still pass. |
+| Cooldown | Earliest eligibility is `lastRebalance + minRebalanceInterval`, shown as a UTC timestamp. Policy2 physical range exit or a pending approved range update and execution checks must still pass. |
 | Eligible now | Cooldown and either trigger pass at the confirmed snapshot; the cause is reported. Execution awaits a keeper and successful safety checks. |
 | Waiting for price trigger | Cooldown has ended and no approved range mismatch exists; no scheduled execution time can be inferred. |
 | Keeper timing unavailable | `next_keeper_check_at` and `expected_execution_at` are null. Never fabricate a countdown from the 600-second example polling setting. |

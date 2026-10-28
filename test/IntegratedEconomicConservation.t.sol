@@ -42,6 +42,7 @@ contract EconomicForcedETH { constructor(address payable to) payable { selfdestr
 /// @dev TEST ONLY admission seam. Production pins Robinhood runtimes/addresses;
 /// this accepts installed local v4 instead. No venue math/LP custody is mocked.
 contract EconomicNativeRegistry {
+    uint64 public configurationRevision = 1;
     ZZZActivationAssets public immutable activationAssets;
     ZZZActivationEntry public immutable activationEntry;
     ZZZOracle public immutable oracle;
@@ -58,7 +59,7 @@ contract EconomicNativeRegistry {
     function get(bytes32 id) external view returns(PoolConfig memory) { require(id==identity);return config; }
     function accounting(bytes32 id) external view returns(PoolConfig memory) { require(id==identity);return config; }
     function isNativePool(bytes32 id) external view returns(bool) { require(id==identity);return true; }
-    function setRange(uint16 range) external { config.rangeBps=range; }
+    function setRange(uint16 range) external { config.rangeBps=range; ++configurationRevision; }
     function contributionValue(bytes32 id,uint256 a,uint256 b) external view returns(uint256) {
         require(id==identity);uint256 original=activationEntry.sourceValue(id,a,b);
         return original!=0?original:oracle.value(address(0),a)+oracle.value(config.key.currency1,b);
@@ -146,6 +147,8 @@ contract IntegratedEconomicConservationTest is Test {
         vault.migrationBudget().setCompoundInterval(pool,600); // Explicit fixture cadence, independent of rebalances.
         key=CoreKey(Currency.wrap(address(0)),Currency.wrap(address(token)),10020,200,IHooks(address(0)));
         core.initialize(key,uint160(1<<96));
+        bytes32[] memory catalog=new bytes32[](1);catalog[0]=pool;
+        manager.balancingRouter().configureExecutionPools(catalog,keccak256("TEST_ONLY_EXECUTION_CATALOG"));
         core.setProtocolFeeController(address(this));core.setProtocolFee(key,uint24(1000|(1000<<12)));
         token.mint(address(this),1_000_000 ether);token.mint(ALICE,100_000 ether);token.mint(BOB,100_000 ether);
         core.unlock(abi.encode(uint8(0),true,uint256(200_000 ether)));
@@ -444,10 +447,10 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(vault.migrationBudget().contributionLossBps(),200,"approved two-percent default");
         vault.migrationBudget().setLossLimits(100,300);
         assertEq(vault.migrationBudget().contributionLossBps(),100,"explicit stricter one-percent proof");
-        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector),uint64(2));
+        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector),uint64(1));
         uint256 startGas=gasleft();
         _contribute(ALICE,id,100 ether,false);
-        emit log_named_uint("actual.v4.shallow.native.two-pass.activation.harness-gas",startGas-gasleft());
+        emit log_named_uint("actual.v4.shallow.native.atomic-balance.activation.harness-gas",startGas-gasleft());
         uint256 bucket=vault.nftBucket(id);Position memory p=vault.group(bucket);
         (uint256 deployed,uint256 idle)=vault.migrationBudget().nav(bucket);
         assertGe(deployed,99 ether,"actual deployed value, not idle-inclusive NAV");
@@ -468,7 +471,7 @@ contract IntegratedEconomicConservationTest is Test {
         (uint160 spotBefore,,uint24 protocol,uint24 lpFee)=state.getSlot0(PoolId.wrap(pool));
         assertEq(protocol,uint24(1000|(1000<<12)));assertEq(lpFee,10020);
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
-        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector));
+        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector));
         vm.prank(ALICE);vm.expectRevert(bytes4(keccak256("Slippage()")));entry.executeReviewed{value:100 ether}(r, 200);
         assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);
         assertEq(address(core).balance,coreETH);assertEq(token.balanceOf(address(core)),coreToken);
@@ -484,15 +487,15 @@ contract IntegratedEconomicConservationTest is Test {
         assertFalse(ZZZContributionPricing(oracle.contributionPricing()).active());_assertBacking();
     }
 
-    function testActualV4SecondBalancingSwapFailureRollsBackTheFirstSwapAndAllEntitlements() public {
+    function testActualV4AtomicBalancingFailureRollsBackAllEntitlements() public {
         uint256 id=_mint(ALICE);uint256 userETH=ALICE.balance;uint256 userToken=token.balanceOf(ALICE);
         uint256 coreETH=address(core).balance;uint256 coreToken=token.balanceOf(address(core));
         (uint160 spotBefore,,,)=state.getSlot0(PoolId.wrap(pool));
-        // Native first balances 0 -> 1; its correction reverses 1 -> 0. Inject
-        // only the second dependency failure, preserving the real first swap.
-        bytes memory failure=abi.encodeWithSignature("CorrectionUnavailable()");
-        vm.mockCallRevert(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector,pool,false),failure);
-        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector),uint64(2));
+        // Single atomic balancing replaces the old reverse correction. A
+        // dependency failure leaves neither funds nor new entitlements behind.
+        bytes memory failure=abi.encodeWithSignature("BalancingUnavailable()");
+        vm.mockCallRevert(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector),failure);
+        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector),uint64(1));
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
         vm.prank(ALICE);vm.expectRevert(failure);entry.executeReviewed{value:100 ether}(r, 200);
         vm.clearMockedCalls();vm.getRecordedLogs();vm.recordLogs();

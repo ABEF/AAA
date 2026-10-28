@@ -44,10 +44,11 @@ Strategy maintenance policy2/Budget compound capability3 and matching keeper/API
 
 Current completion checks and paired paid-revert health reporting have [scoped evidence](../reports/manipulation-hardening-20261027/VERIFICATION.md). Qualify actual callback/dependency behavior and matching writer/checker rollout; the current economic-manipulation tasks remain open. No live provider, operating service or independent production approval follows from these defensive checks.
 
-The [operator-selected LP execution record](LP_EXECUTION_POLICY.md) distinguishes
-implemented Strategy2/Budget3 scheduling and matching source-scoped evidence from
-the still-unimplemented best-execution balancing router, new solver and timed
-partial replacement. Actual scheduler/service/config qualification remains open. A $1m per-NFT contribution
+The [operator-selected LP execution record](LP_EXECUTION_POLICY.md) describes
+implemented Strategy2/Budget3 timing and fresh LP routing1: bounded reviewed venues,
+actual-core sizing, entrant-only execution and zero/one swap. Actual route/depth/
+gas/order economics and scheduler/service/config qualification remain open;
+timed partial replacement remains outside scope. A $1m per-NFT contribution
 configuration does not establish $1bn shared-venue capacity. New Strategy/Budget ABI/helper runtimes and source profiles need exact release
 bindings. Installed services and historical verification remain unchanged.
 
@@ -61,7 +62,7 @@ bindings. Installed services and historical verification remain unchanged.
 | Pool/input policy | Only native ETH/fixedZZZ inputs and production LP pairs. One contribution pool at a time; reviewed same-pair fee tiers remain possible. Separate conversion/royalty currencies do not expand principal assets. |
 | Source verification | Use the exact source bindings and scopes in the evidence table above. Current internal static coverage passes; no full frozen-release regression, actual-service or independent approval is recorded. A later backend-only fix does not rerun unchanged Solidity by implication. |
 | Refactor compatibility | [Comparison](../reports/deep-cleanup-20261025/compiler-comparison.md) preserves function encodings and all recursive storage. Explicit additions are guardian/initial role logs; duplicated/noncallable error metadata is removed. No rights, rates, input currencies or authority changes. Reference evidence schema 2 is distinct from on-chain profiles. |
-| Code-size qualification | Fresh normal37object gates pass: Vault23,783 runtime (793 margin), NFT24,400 (176 margin), Migration18,358 (6,218 margin). NFT remains tight. Vault creation45,813+96static arguments; Access creation40,580+96static arguments. Exact release metadata URI/arguments and target gas still require qualification. |
+| Code-size qualification | Fresh normal38object gates pass: Vault24,064 runtime (512 margin), LiquidityManager24,152 (424 margin), LPBalancer21,285 (3291 margin), NFT24,400 (176 margin). Vault creation45,479+96static arguments; Manager47,826+160static arguments. The failed24,719byte Manager attempt and shared-validation refactor are preserved in the new routing evidence. Exact release URI/arguments and target gas still require qualification. |
 | Actual dependencies | The [current selected-pool fork](../reports/current-pool-fork-20261026/VERIFICATION.md) has11distinct successful real-venue methods at one pinned block using explicit mock services. Actual independent feeds, conversion routes, VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and maximal target-chain gas remain unqualified. |
 | Website/wallets | Popldemo remains the existing simulation; poplint has a separate current3 read/unsigned-review build and no invented deployment/data. Source checks include451affected JS passes; actual current contracts/API/providers/extension acceptance remain unqualified. Signing remains Anvil-only and historical local deployments/journals are unchanged. [Environment map](SITE_ENVIRONMENTS.md). |
 | Operations/audit | Target-chain/Linux failure and recovery rehearsals, independent audit/remediation, frozen-source review and final configuration/sign-off remain required. |

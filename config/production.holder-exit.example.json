@@ -12,6 +12,8 @@
   "qualification": "Explicit blocked inventory scaffold. Complete and review real runtime bindings, Strategy maintenance policy2/Budget compound capability3 and exact keeper helper pins/readiness, principal-exit API/keeper pins, native-only LP admission, batching/gas, target-chain rehearsals and independent audit. This is not accepted production inventory; the release gate stays closed.",
   "maintenance_policy_version": 2,
   "compound_capability_version": 3,
+  "lp_routing_version": 1,
+  "lp_execution_qualification": "Unconfigured: pin LiquidityManager and balancingRouter runtimes, mutual manager/core/state/access bindings, bounded reviewed execution catalog and solver limits at one canonical block. Empty catalog disables swaps. Existing historical configs remain version0 and are never relabeled.",
   "initial_lp_policy": {
     "rebalance_minimum_interval_seconds": 43200,
     "compound_interval_seconds": 3600,

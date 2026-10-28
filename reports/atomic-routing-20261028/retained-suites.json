@@ -1,0 +1,675 @@
+{
+  "scope": "Successful unchanged reachable-source suites from current-critical only; excludes both real-router suites and their failed dust assertion. Exact metadata pins prove no dependency on changed router/helper. No duplicate passes.",
+  "method_count": 65,
+  "methods": [
+    {
+      "suite": "test/ContributionBudgetIsolation.t.sol:ContributionBudgetIsolationTest",
+      "method": "testCompleteBalancingContextCoversApprovalAndResetCallbacks()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ContributionBudgetIsolation.t.sol:ContributionBudgetIsolationTest",
+      "method": "testIncumbentCompoundCannotMaskAnUnderdeployedEntrant()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ContributionBudgetIsolation.t.sol:ContributionBudgetIsolationTest",
+      "method": "testIncumbentIdleCannotMaskAnUnderdeployedEntrant()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ContributionBudgetIsolation.t.sol:ContributionBudgetIsolationTest",
+      "method": "testJoinLeavesIncumbentIdleAndCompoundForGuardedMaintenance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ContributionBudgetIsolation.t.sol:ContributionBudgetIsolationTest",
+      "method": "testOneContributionSwapCannotSpendIncumbentIdle()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ContributionBudgetIsolation.t.sol:ContributionBudgetIsolationTest",
+      "method": "testRawPrefundCannotBackAnIncorrectBalancerReturn()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testConfigurationRevisionDetectsRestoreAndRejectedChangeDoesNotAdvance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testFixedZZZPairAndLaterFeeTierRemainAdmissibleWithoutThirdSource()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testGovernedVenueCeilingCanReachTenPercentAfterSealWithoutChangingOtherLimits()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testMissingFixedZZZRejectsGenericPoolBeforeDependencyAdmission()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testNativeAdmissionRetainsItsSeparateFixedIdentityGuard()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testPairWithoutFixedZZZRejectsBeforeDependencyAdmission()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testVenueCeilingRejectsBeyondTenPercentAndKeepsPriorConfiguration()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testDormantHasNoPrincipalAndAllocationBoundsAreEnforced()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testDoubleClaimsDuplicateBatchAndReentrancyCannotPayTwice()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testExitCannotStartInsideAnInFlightContributionCallback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testExitWithoutHealthyPricesOrEnabledPoolAndRawMinimumRollback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testFinalHarvestAndPendingCompoundPreserveEarnedClaimsAndBuyback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testFuzzCumulativeAllocationConservesEveryRawUnit(uint96,uint96,uint96)",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testGasConsumingRecipientIsIsolatedAndLaterRecipientPaid()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testObsoleteExternalCustodySelectorsAreAbsent()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testOnlyGovernanceStartsAndCannotReopenOrStartTwice()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testPrefundsNeverJoinPrincipalAndRemainAfterCompletePayout()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testPrincipalIsProportionalNotEqualAndExactAfterAutomaticPayout()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testRejectingRecipientDoesNotBlockOthersAndCanChooseFallback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testUnpaidPrincipalAndPastRewardsFollowTransferAndFutureRoyaltiesContinue()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ProductionGas.t.sol:ProductionGasTest",
+      "method": "testGasCollection1()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ProductionGas.t.sol:ProductionGasTest",
+      "method": "testGasCollection100()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ProductionGas.t.sol:ProductionGasTest",
+      "method": "testGasCollection1000()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/ProductionGas.t.sol:ProductionGasTest",
+      "method": "testGasMaximum32FundedRewardAssets()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testActivationAcceptsExactly98LPAtCurrentTwoPercentBoundary()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testActivationCannotCollectHistoricalSharedRewards()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testActivationCannotIssueSecondNFTOrChargeAnotherMintFee()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testActivationHonorsStricterPoolMinimum()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testActivationLeavesExactAttributedIdle()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testActivationRejects100InputWhenActualLPIsBelow98()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testActivationRequiresAtLeast100USDInput()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testCompoundingAddsOnlyDesignatedShare()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testDonationNeverBecomesAnotherNFTPrincipal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testDormantCannotTopUpCollectCompoundRebalanceOrMigrate()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testDormantMintForwardsPriceWithoutLiquidityOrRewards()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testDormantTransferOnlyNewOwnerCanActivate()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testExactly100ActualLPActivates()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testFeesNotPrincipal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testFuzzMintRejectsAnyOverpayment(uint256)",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testFuzzMintRejectsAnyUnderpayment(uint256)",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testMostlyIdleActivationRejected()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testNFTUserCannotTransferUnderlyingLP()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testNoOwnerWithdrawalEntrypoint()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testOldDepositSelectorCannotBypassPaidMint()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testOnlyKeeperCanRebalance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testPauseBlocksActivationKeepsDormantNFT()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testPauseBlocksMint()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testRebalanceReplacesLPButPreservesEconomicNFT()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testReceiverReentrancyCannotMintSecondNFT()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testRejectingNFTReceiverRollsBackMintAndPayment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testRejectingTreasuryRollsBackNFTAndPayment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testSatelliteCannotIssueAnotherCollection()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testSelfProceedsRecipientRejected()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testTopUpKeepsBothNFTsAndCheckpointsFees()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testTreasuryReentrancyCannotMintSecondNFT()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testUnsealedSystemCannotMint()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testVenueFailureRollsBackActivationKeepsPaidDormantNFT()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testWrongChainCannotActivateCanonicalDormantNFT()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "method": "testZeroProceedsRecipientRejected()",
+      "status": "Success",
+      "reason": null,
+      "gas": null
+    }
+  ],
+  "suite_receipts": {
+    "test/ContributionBudgetIsolation.t.sol:ContributionBudgetIsolationTest": {
+      "test_artifact_sha256": "ac299ce10e14eb3d7622f779685a167c20e19a2576e2161bb2da683e7c21b01a",
+      "exact_dependency_keccak256": {
+        "src/ZZZActivationAssets.sol": "0x4e5c3be4dbad89e79ae943b664ecab1043d67daba23ac5c9c91e9267087b00f8",
+        "src/ZZZActivationAssetsFactory.sol": "0xa63475c18c4bbd2e58cf9234eff591b150c74f76511033f443e60296d45b1e71",
+        "src/ZZZCanonicalHandoff.sol": "0x766e3f86dc10c7a91e08e2aa71508aba2499fe4a4f40576be1afdb7943170845",
+        "src/ZZZClaimRouter.sol": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+        "src/ZZZCompounder.sol": "0x33b7d846590b62365096f4909c84cded588ba29eb2998b4104b1b6597f260832",
+        "src/ZZZContributionPricing.sol": "0xae20eb2e93079474ee063e8d88067f89012445b878d2bb34a861282f25da76fb",
+        "src/ZZZFeeController.sol": "0x1f991be372dba8af24084f13ce0cdeeac166471ea9517b09c40b556f3bc2a899",
+        "src/ZZZFeesCanonical.sol": "0x819adcd227c03f5ccf5d11fa3b8e5fdf4d8ab313c103c9fb04e937808af9e9da",
+        "src/ZZZLPRewardConverter.sol": "0xadbae972337d411cb3d0b6647ffc6e9cc420c298d7f94992b56c22598b2d2914",
+        "src/ZZZMembership.sol": "0xb755f7608dd836a6139932b5b8a0b1b4ef7c0a3bad2d8e930d33cee8195408f4",
+        "src/ZZZMigrationBudget.sol": "0x36643dabc0925795650e74a9640da397e49329422736a3e0453f90fa819184dc",
+        "src/ZZZNFT.sol": "0xa3e5d1eefc6f1f5786b603d9b948d9095058ba6448529ece60522ac074444f47",
+        "src/ZZZNFTCanonical.sol": "0xe1b7d2cd0e531ed38689dffe332ed6a37f746fa034b090a1a6239fa2e1bc0a2c",
+        "src/ZZZNFTMetadata.sol": "0x3677d9112c4f6e697c2ae5a3ef95c04c4e4154fbb13eb6245e9b4da3adbe89da",
+        "src/ZZZOracle.sol": "0x7422bfc78aad324e1bd90dfb1569ff146c4d6f6c177b794dfb8e7672179fc489",
+        "src/ZZZRewards.sol": "0xd6d512e4edd4f8ec16960c794047e026ce14551eba7f566821bfdb688fa353a5",
+        "src/ZZZRoyaltyFactory.sol": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171",
+        "src/ZZZRoyaltyRewards.sol": "0xb814b4997c6fc5374c834f0b4dad700c65285cc49605100eeb08d9500a189cd9",
+        "src/ZZZV4RouteExecutor.sol": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+        "src/ZZZVault.sol": "0x7a29427fcda08692e5e94c9fdb341d073e31c93aeaee050b350d25d5048f149b",
+        "src/ZZZVaultCanonical.sol": "0x7b160d4d63d1805646002f5f96d7cad33111e0b567a121b82a00387430b053a1",
+        "src/base/ZZZCanonicalLedger.sol": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+        "src/base/ZZZModule.sol": "0xe8c3fd18be8683635d23afd17708ef6a2e084931b18aeabe80f08707ff8695e3",
+        "src/base/ZZZRewardConverter.sol": "0xaf686a80760fc3581697a7c0be116f9146a3e45a95baf221ba0a49eac794a00a",
+        "src/interfaces/IZZZ.sol": "0x3a63473e87b2cc0680d9600d16508557441ade44a289cd5c06f764fcaaab98fd",
+        "src/interfaces/IZZZCanonical.sol": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+        "src/interfaces/IZZZNFTCanonical.sol": "0x2274dde0c6ca3e366226390460c67782be7f5bf94f4675706677837e1df6fb2b",
+        "src/interfaces/IZZZV3Route.sol": "0xe90321adbfe127627c096c7c417b315b2ca02a5025246e7667e6e30f0e130dbb",
+        "src/libraries/ExactAsset.sol": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+        "src/libraries/ExactToken.sol": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+        "src/libraries/ZZZArtwork.sol": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+        "src/libraries/ZZZPriceMath.sol": "0x072441fd3d695af3135b46f578e13a491754a24140df73c6aeb3ca48dd38fb21",
+        "src/libraries/ZZZTypes.sol": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+        "src/libraries/ZZZV3VenueValidation.sol": "0x310243c53b734b51823ad43b948f9ad6733aa8f727e38e625be90deeeba4fe13",
+        "test/ContributionBudgetIsolation.t.sol": "0xf2ce31021ce1d32f6f042a69b7f6169b775338ed22cd1c971373cc0fa92d2d0f",
+        "test/VaultAccounting.t.sol": "0xb146edab46781367ed4be674a9d44afc6d95440eefc39a75f5588e71614a9112",
+        "test/helpers/CanonicalFixture.sol": "0xec54963ed3cba64f36403aa95c48d93bc59e20e4e2360cf88df16a89b5b85a43",
+        "test/helpers/DualOracleFixture.sol": "0x4ece3dffbf27e26ec72fd0e9a2101ff24ac58a446b8305e5ea3e841dc415a293",
+        "test/mocks/MockVRF.sol": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0",
+        "test/mocks/Mocks.sol": "0xd00331c441b150a3e8f20cbc549fe2b33deba0f63b8a148a79131f265f8f4dd8"
+      },
+      "method_count": 6
+    },
+    "test/FixedZZZPool.t.sol:FixedZZZPoolTest": {
+      "test_artifact_sha256": "586fd09792a990877b02900602aae1fb9a04e7029b41a59d1fda35260538347c",
+      "exact_dependency_keccak256": {
+        "src/ZZZActivationAssets.sol": "0x4e5c3be4dbad89e79ae943b664ecab1043d67daba23ac5c9c91e9267087b00f8",
+        "src/ZZZActivationAssetsFactory.sol": "0xa63475c18c4bbd2e58cf9234eff591b150c74f76511033f443e60296d45b1e71",
+        "src/ZZZActivationEntry.sol": "0x8a46496af7b02b05c2d0afedacadc5a9962a9eff4cf00390310efe68580b61c6",
+        "src/ZZZContributionPricing.sol": "0xae20eb2e93079474ee063e8d88067f89012445b878d2bb34a861282f25da76fb",
+        "src/ZZZPoolRegistry.sol": "0x7fc33b3b651707437caa83f3ab74b4c54071af1310f5cf67795be8ad93725c83",
+        "src/ZZZRoyaltyFactory.sol": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171",
+        "src/ZZZRoyaltyRewards.sol": "0xb814b4997c6fc5374c834f0b4dad700c65285cc49605100eeb08d9500a189cd9",
+        "src/ZZZV4RouteExecutor.sol": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+        "src/base/ZZZCanonicalLedger.sol": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+        "src/base/ZZZModule.sol": "0xe8c3fd18be8683635d23afd17708ef6a2e084931b18aeabe80f08707ff8695e3",
+        "src/interfaces/IZZZ.sol": "0x3a63473e87b2cc0680d9600d16508557441ade44a289cd5c06f764fcaaab98fd",
+        "src/interfaces/IZZZCanonical.sol": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+        "src/interfaces/IZZZV3Route.sol": "0xe90321adbfe127627c096c7c417b315b2ca02a5025246e7667e6e30f0e130dbb",
+        "src/libraries/ExactAsset.sol": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+        "src/libraries/ExactToken.sol": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+        "src/libraries/ZZZTypes.sol": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+        "src/libraries/ZZZV3VenueValidation.sol": "0x310243c53b734b51823ad43b948f9ad6733aa8f727e38e625be90deeeba4fe13",
+        "test/FixedZZZPool.t.sol": "0xf432f91404491c0ee93ec5dc8f7b450355fe853a9604de8c77f0d6b5fd7ee02c",
+        "test/helpers/SyntheticPoolRegistry.sol": "0x7a3413b216c12c90e19330e8a2d519089dc3dff6563c2db051b3b022dc94d568",
+        "test/mocks/Mocks.sol": "0xd00331c441b150a3e8f20cbc549fe2b33deba0f63b8a148a79131f265f8f4dd8"
+      },
+      "method_count": 7
+    },
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest": {
+      "test_artifact_sha256": "3da239fc2243d9bb1c7cef4e11a4358c9e4c996b44e1c63cc235ab9ba3dcc3bf",
+      "exact_dependency_keccak256": {
+        "src/ZZZActivationAssets.sol": "0x4e5c3be4dbad89e79ae943b664ecab1043d67daba23ac5c9c91e9267087b00f8",
+        "src/ZZZActivationAssetsFactory.sol": "0xa63475c18c4bbd2e58cf9234eff591b150c74f76511033f443e60296d45b1e71",
+        "src/ZZZBuyback.sol": "0x6807cd9310a2ef3b8933de088cf5958203a9c2609ed919af8d08e87fec87c3ca",
+        "src/ZZZCanonicalHandoff.sol": "0x766e3f86dc10c7a91e08e2aa71508aba2499fe4a4f40576be1afdb7943170845",
+        "src/ZZZClaimRouter.sol": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+        "src/ZZZContributionPricing.sol": "0xae20eb2e93079474ee063e8d88067f89012445b878d2bb34a861282f25da76fb",
+        "src/ZZZCustodyValidation.sol": "0x68a44cbbe98eb2b54a71c4987377b6e434d57a143f43c6d5f9cd26afc8e72dda",
+        "src/ZZZFeeController.sol": "0x1f991be372dba8af24084f13ce0cdeeac166471ea9517b09c40b556f3bc2a899",
+        "src/ZZZFeesCanonical.sol": "0x819adcd227c03f5ccf5d11fa3b8e5fdf4d8ab313c103c9fb04e937808af9e9da",
+        "src/ZZZLPRewardConverter.sol": "0xadbae972337d411cb3d0b6647ffc6e9cc420c298d7f94992b56c22598b2d2914",
+        "src/ZZZMembership.sol": "0xb755f7608dd836a6139932b5b8a0b1b4ef7c0a3bad2d8e930d33cee8195408f4",
+        "src/ZZZMigration.sol": "0xb89d783c5da40e06eab3fd030c8642c0030c498e30538eba7029a35c38d8c3d0",
+        "src/ZZZMigrationBudget.sol": "0x36643dabc0925795650e74a9640da397e49329422736a3e0453f90fa819184dc",
+        "src/ZZZNFT.sol": "0xa3e5d1eefc6f1f5786b603d9b948d9095058ba6448529ece60522ac074444f47",
+        "src/ZZZNFTCanonical.sol": "0xe1b7d2cd0e531ed38689dffe332ed6a37f746fa034b090a1a6239fa2e1bc0a2c",
+        "src/ZZZNFTMetadata.sol": "0x3677d9112c4f6e697c2ae5a3ef95c04c4e4154fbb13eb6245e9b4da3adbe89da",
+        "src/ZZZOracle.sol": "0x7422bfc78aad324e1bd90dfb1569ff146c4d6f6c177b794dfb8e7672179fc489",
+        "src/ZZZRewards.sol": "0xd6d512e4edd4f8ec16960c794047e026ce14551eba7f566821bfdb688fa353a5",
+        "src/ZZZRoyaltyFactory.sol": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171",
+        "src/ZZZRoyaltyRewards.sol": "0xb814b4997c6fc5374c834f0b4dad700c65285cc49605100eeb08d9500a189cd9",
+        "src/ZZZV4RouteExecutor.sol": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+        "src/ZZZVault.sol": "0x7a29427fcda08692e5e94c9fdb341d073e31c93aeaee050b350d25d5048f149b",
+        "src/ZZZVaultCanonical.sol": "0x7b160d4d63d1805646002f5f96d7cad33111e0b567a121b82a00387430b053a1",
+        "src/base/ZZZCanonicalLedger.sol": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+        "src/base/ZZZModule.sol": "0xe8c3fd18be8683635d23afd17708ef6a2e084931b18aeabe80f08707ff8695e3",
+        "src/base/ZZZRewardConverter.sol": "0xaf686a80760fc3581697a7c0be116f9146a3e45a95baf221ba0a49eac794a00a",
+        "src/interfaces/IZZZ.sol": "0x3a63473e87b2cc0680d9600d16508557441ade44a289cd5c06f764fcaaab98fd",
+        "src/interfaces/IZZZCanonical.sol": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+        "src/interfaces/IZZZNFTCanonical.sol": "0x2274dde0c6ca3e366226390460c67782be7f5bf94f4675706677837e1df6fb2b",
+        "src/interfaces/IZZZV3Route.sol": "0xe90321adbfe127627c096c7c417b315b2ca02a5025246e7667e6e30f0e130dbb",
+        "src/libraries/ExactAsset.sol": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+        "src/libraries/ExactToken.sol": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+        "src/libraries/ZZZArtwork.sol": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+        "src/libraries/ZZZPriceMath.sol": "0x072441fd3d695af3135b46f578e13a491754a24140df73c6aeb3ca48dd38fb21",
+        "src/libraries/ZZZTypes.sol": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+        "src/libraries/ZZZV3VenueValidation.sol": "0x310243c53b734b51823ad43b948f9ad6733aa8f727e38e625be90deeeba4fe13",
+        "test/HolderCollectiveExit.t.sol": "0x07a0e4ee52d2f7269470fdc7b5d1d6693e51e564fa7389929bc77d58504f2caf",
+        "test/helpers/CanonicalFixture.sol": "0xec54963ed3cba64f36403aa95c48d93bc59e20e4e2360cf88df16a89b5b85a43",
+        "test/helpers/DualOracleFixture.sol": "0x4ece3dffbf27e26ec72fd0e9a2101ff24ac58a446b8305e5ea3e841dc415a293",
+        "test/mocks/MockVRF.sol": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0",
+        "test/mocks/Mocks.sol": "0xd00331c441b150a3e8f20cbc549fe2b33deba0f63b8a148a79131f265f8f4dd8"
+      },
+      "method_count": 13
+    },
+    "test/ProductionGas.t.sol:ProductionGasTest": {
+      "test_artifact_sha256": "3d4c672c2818613789a42c69289c99e21de594d966e56c3bf22df40c01903fb8",
+      "exact_dependency_keccak256": {
+        "src/ZZZActivationAssets.sol": "0x4e5c3be4dbad89e79ae943b664ecab1043d67daba23ac5c9c91e9267087b00f8",
+        "src/ZZZActivationAssetsFactory.sol": "0xa63475c18c4bbd2e58cf9234eff591b150c74f76511033f443e60296d45b1e71",
+        "src/ZZZCanonicalHandoff.sol": "0x766e3f86dc10c7a91e08e2aa71508aba2499fe4a4f40576be1afdb7943170845",
+        "src/ZZZClaimRouter.sol": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+        "src/ZZZCompounder.sol": "0x33b7d846590b62365096f4909c84cded588ba29eb2998b4104b1b6597f260832",
+        "src/ZZZContributionPricing.sol": "0xae20eb2e93079474ee063e8d88067f89012445b878d2bb34a861282f25da76fb",
+        "src/ZZZFeeController.sol": "0x1f991be372dba8af24084f13ce0cdeeac166471ea9517b09c40b556f3bc2a899",
+        "src/ZZZFeesCanonical.sol": "0x819adcd227c03f5ccf5d11fa3b8e5fdf4d8ab313c103c9fb04e937808af9e9da",
+        "src/ZZZLPRewardConverter.sol": "0xadbae972337d411cb3d0b6647ffc6e9cc420c298d7f94992b56c22598b2d2914",
+        "src/ZZZMembership.sol": "0xb755f7608dd836a6139932b5b8a0b1b4ef7c0a3bad2d8e930d33cee8195408f4",
+        "src/ZZZMigrationBudget.sol": "0x36643dabc0925795650e74a9640da397e49329422736a3e0453f90fa819184dc",
+        "src/ZZZNFT.sol": "0xa3e5d1eefc6f1f5786b603d9b948d9095058ba6448529ece60522ac074444f47",
+        "src/ZZZNFTCanonical.sol": "0xe1b7d2cd0e531ed38689dffe332ed6a37f746fa034b090a1a6239fa2e1bc0a2c",
+        "src/ZZZNFTMetadata.sol": "0x3677d9112c4f6e697c2ae5a3ef95c04c4e4154fbb13eb6245e9b4da3adbe89da",
+        "src/ZZZOracle.sol": "0x7422bfc78aad324e1bd90dfb1569ff146c4d6f6c177b794dfb8e7672179fc489",
+        "src/ZZZRewards.sol": "0xd6d512e4edd4f8ec16960c794047e026ce14551eba7f566821bfdb688fa353a5",
+        "src/ZZZRoyaltyFactory.sol": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171",
+        "src/ZZZRoyaltyRewards.sol": "0xb814b4997c6fc5374c834f0b4dad700c65285cc49605100eeb08d9500a189cd9",
+        "src/ZZZV4RouteExecutor.sol": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+        "src/ZZZVault.sol": "0x7a29427fcda08692e5e94c9fdb341d073e31c93aeaee050b350d25d5048f149b",
+        "src/ZZZVaultCanonical.sol": "0x7b160d4d63d1805646002f5f96d7cad33111e0b567a121b82a00387430b053a1",
+        "src/base/ZZZCanonicalLedger.sol": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+        "src/base/ZZZModule.sol": "0xe8c3fd18be8683635d23afd17708ef6a2e084931b18aeabe80f08707ff8695e3",
+        "src/base/ZZZRewardConverter.sol": "0xaf686a80760fc3581697a7c0be116f9146a3e45a95baf221ba0a49eac794a00a",
+        "src/interfaces/IZZZ.sol": "0x3a63473e87b2cc0680d9600d16508557441ade44a289cd5c06f764fcaaab98fd",
+        "src/interfaces/IZZZCanonical.sol": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+        "src/interfaces/IZZZNFTCanonical.sol": "0x2274dde0c6ca3e366226390460c67782be7f5bf94f4675706677837e1df6fb2b",
+        "src/interfaces/IZZZV3Route.sol": "0xe90321adbfe127627c096c7c417b315b2ca02a5025246e7667e6e30f0e130dbb",
+        "src/libraries/ExactAsset.sol": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+        "src/libraries/ExactToken.sol": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+        "src/libraries/ZZZArtwork.sol": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+        "src/libraries/ZZZPriceMath.sol": "0x072441fd3d695af3135b46f578e13a491754a24140df73c6aeb3ca48dd38fb21",
+        "src/libraries/ZZZTypes.sol": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+        "src/libraries/ZZZV3VenueValidation.sol": "0x310243c53b734b51823ad43b948f9ad6733aa8f727e38e625be90deeeba4fe13",
+        "test/ProductionGas.t.sol": "0xe9a27bac48a55ddb333aa38c158c7816e0e8ad2d6a4812f4f9a20d43f66be158",
+        "test/VaultAccounting.t.sol": "0xb146edab46781367ed4be674a9d44afc6d95440eefc39a75f5588e71614a9112",
+        "test/helpers/CanonicalFixture.sol": "0xec54963ed3cba64f36403aa95c48d93bc59e20e4e2360cf88df16a89b5b85a43",
+        "test/helpers/DualOracleFixture.sol": "0x4ece3dffbf27e26ec72fd0e9a2101ff24ac58a446b8305e5ea3e841dc415a293",
+        "test/mocks/MockVRF.sol": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0",
+        "test/mocks/Mocks.sol": "0xd00331c441b150a3e8f20cbc549fe2b33deba0f63b8a148a79131f265f8f4dd8"
+      },
+      "method_count": 4
+    },
+    "test/VaultAccounting.t.sol:VaultAccountingTest": {
+      "test_artifact_sha256": "2a4dfaa7257fe0b6bb22145901c1b69481dfd0ba8e288209213d0824394671b5",
+      "exact_dependency_keccak256": {
+        "src/ZZZActivationAssets.sol": "0x4e5c3be4dbad89e79ae943b664ecab1043d67daba23ac5c9c91e9267087b00f8",
+        "src/ZZZActivationAssetsFactory.sol": "0xa63475c18c4bbd2e58cf9234eff591b150c74f76511033f443e60296d45b1e71",
+        "src/ZZZCanonicalHandoff.sol": "0x766e3f86dc10c7a91e08e2aa71508aba2499fe4a4f40576be1afdb7943170845",
+        "src/ZZZClaimRouter.sol": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+        "src/ZZZCompounder.sol": "0x33b7d846590b62365096f4909c84cded588ba29eb2998b4104b1b6597f260832",
+        "src/ZZZContributionPricing.sol": "0xae20eb2e93079474ee063e8d88067f89012445b878d2bb34a861282f25da76fb",
+        "src/ZZZFeeController.sol": "0x1f991be372dba8af24084f13ce0cdeeac166471ea9517b09c40b556f3bc2a899",
+        "src/ZZZFeesCanonical.sol": "0x819adcd227c03f5ccf5d11fa3b8e5fdf4d8ab313c103c9fb04e937808af9e9da",
+        "src/ZZZLPRewardConverter.sol": "0xadbae972337d411cb3d0b6647ffc6e9cc420c298d7f94992b56c22598b2d2914",
+        "src/ZZZMembership.sol": "0xb755f7608dd836a6139932b5b8a0b1b4ef7c0a3bad2d8e930d33cee8195408f4",
+        "src/ZZZMigrationBudget.sol": "0x36643dabc0925795650e74a9640da397e49329422736a3e0453f90fa819184dc",
+        "src/ZZZNFT.sol": "0xa3e5d1eefc6f1f5786b603d9b948d9095058ba6448529ece60522ac074444f47",
+        "src/ZZZNFTCanonical.sol": "0xe1b7d2cd0e531ed38689dffe332ed6a37f746fa034b090a1a6239fa2e1bc0a2c",
+        "src/ZZZNFTMetadata.sol": "0x3677d9112c4f6e697c2ae5a3ef95c04c4e4154fbb13eb6245e9b4da3adbe89da",
+        "src/ZZZOracle.sol": "0x7422bfc78aad324e1bd90dfb1569ff146c4d6f6c177b794dfb8e7672179fc489",
+        "src/ZZZRewards.sol": "0xd6d512e4edd4f8ec16960c794047e026ce14551eba7f566821bfdb688fa353a5",
+        "src/ZZZRoyaltyFactory.sol": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171",
+        "src/ZZZRoyaltyRewards.sol": "0xb814b4997c6fc5374c834f0b4dad700c65285cc49605100eeb08d9500a189cd9",
+        "src/ZZZV4RouteExecutor.sol": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+        "src/ZZZVault.sol": "0x7a29427fcda08692e5e94c9fdb341d073e31c93aeaee050b350d25d5048f149b",
+        "src/ZZZVaultCanonical.sol": "0x7b160d4d63d1805646002f5f96d7cad33111e0b567a121b82a00387430b053a1",
+        "src/base/ZZZCanonicalLedger.sol": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+        "src/base/ZZZModule.sol": "0xe8c3fd18be8683635d23afd17708ef6a2e084931b18aeabe80f08707ff8695e3",
+        "src/base/ZZZRewardConverter.sol": "0xaf686a80760fc3581697a7c0be116f9146a3e45a95baf221ba0a49eac794a00a",
+        "src/interfaces/IZZZ.sol": "0x3a63473e87b2cc0680d9600d16508557441ade44a289cd5c06f764fcaaab98fd",
+        "src/interfaces/IZZZCanonical.sol": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+        "src/interfaces/IZZZNFTCanonical.sol": "0x2274dde0c6ca3e366226390460c67782be7f5bf94f4675706677837e1df6fb2b",
+        "src/interfaces/IZZZV3Route.sol": "0xe90321adbfe127627c096c7c417b315b2ca02a5025246e7667e6e30f0e130dbb",
+        "src/libraries/ExactAsset.sol": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+        "src/libraries/ExactToken.sol": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+        "src/libraries/ZZZArtwork.sol": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+        "src/libraries/ZZZPriceMath.sol": "0x072441fd3d695af3135b46f578e13a491754a24140df73c6aeb3ca48dd38fb21",
+        "src/libraries/ZZZTypes.sol": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+        "src/libraries/ZZZV3VenueValidation.sol": "0x310243c53b734b51823ad43b948f9ad6733aa8f727e38e625be90deeeba4fe13",
+        "test/VaultAccounting.t.sol": "0xb146edab46781367ed4be674a9d44afc6d95440eefc39a75f5588e71614a9112",
+        "test/helpers/CanonicalFixture.sol": "0xec54963ed3cba64f36403aa95c48d93bc59e20e4e2360cf88df16a89b5b85a43",
+        "test/helpers/DualOracleFixture.sol": "0x4ece3dffbf27e26ec72fd0e9a2101ff24ac58a446b8305e5ea3e841dc415a293",
+        "test/mocks/MockVRF.sol": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0",
+        "test/mocks/Mocks.sol": "0xd00331c441b150a3e8f20cbc549fe2b33deba0f63b8a148a79131f265f8f4dd8"
+      },
+      "method_count": 35
+    }
+  },
+  "raw_run": "current-critical",
+  "raw_sha256": "42bbc65d47aa129e89c64a9da0aa395099112d9a850eb2cfa5246c22aacbb9ad"
+}

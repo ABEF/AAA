@@ -214,6 +214,9 @@ contract ZZZContributionPricing {
             deployed+idle <= incumbentNAV || deployed < incumbentDeployed) revert Slippage();
         netUSD = deployed+idle-incumbentNAV;
         uint256 required = basis.upperInput - Math.mulDiv(basis.upperInput,uint16(limits >> 16),10000);
+        // Vault caps both balancing and deployment to the entrant's budget;
+        // this baseline is the repriced incumbent physical LP only. Existing
+        // idle/compound belongs in NAV, never in the marginal deployment test.
         if (netUSD < Math.mulDiv(basis.upperInput,10000-uint16(limits),10000) ||
             netUSD < required || deployed-incumbentDeployed < required) revert Slippage();
         issued = supply == 0 ? netUSD : Math.mulDiv(supply,netUSD,incumbentNAV+historicalValue(bucket));

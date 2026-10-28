@@ -25,6 +25,14 @@ records intended12-hour/manual-width policy and separate compound interval; the
 existing schema5 release observer does not accept it. Source checks or example
 values do not close accounting4 inventory, real-service or independent review.
 
+Fresh LP routing1 additionally requires the immutable Manager-created
+`balancingRouter`, reviewed runtime/parent/core/state/controller pins, monotonic
+Registry/catalog revisions and the bounded actual venue/solver configuration at
+one canonical block. Entry routing2 keeps its separate meaning. The blocked
+accounting4 scaffold records this requirement; the historical schema5/accounting3
+observer does not qualify this new helper or release. Empty catalog disables
+swaps, with no target fallback. [Operator procedure](OPERATOR_MANUAL.md#add-or-remove-an-execution-pool-after-sealing).
+
 ## Mint qualification boundary
 
 Current release CLI validation requires **schema5, accounting_version3,

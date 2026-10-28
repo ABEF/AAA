@@ -16,6 +16,7 @@ CONFIGURABLE_RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint25
 VALUE = 'value(address,uint256)'
 MINT = 'mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)'
 INCREASE = 'increase(bytes32,uint256,uint256,uint256,uint128,uint256)'
+BALANCE = 'balance(bytes32,uint256,uint256,uint256,uint256)'
 SOURCE = '0x' + keccak256(b'SourceContributed(address,uint256,bytes32,address,uint256,uint256,address,uint256,bool)').hex()
 SHARES = '0x' + keccak256(b'SharesAdded(uint256,uint256,uint256,uint256)').hex()
 VERIFIED = '0x' + keccak256(b'ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)').hex()
@@ -149,9 +150,40 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
     if not index(mint_calls[0])<index(buckets[-1])<index(navs[2]) or supply and not index(navs[0])<index(buckets[0])<index(navs[1]):
         raise ProjectionError('Incumbent compound values are outside their captured phases')
     fresh=values[0] if supply else 0;late=values[-1]
-    if (incumbent_deployed!=nav_values[1][0]+nav_values[0][1]+fresh or
-            incumbent_nav!=incumbent_deployed+late or [deployed,idle]!=nav_values[-1]):
+    capped=req.get('lp_routing_version',0)==1
+    expected_deployed=nav_values[1][0] if capped else nav_values[1][0]+nav_values[0][1]+fresh
+    expected_nav=nav_values[1][0]+nav_values[0][1]+fresh+late
+    if (incumbent_deployed!=expected_deployed or incumbent_nav!=expected_nav or [deployed,idle]!=nav_values[-1]):
         raise ProjectionError('Incremental LP accounting includes repricing or incumbent assets')
+    if capped:
+        balanced=child(vault,pins['vault'],pins['liquidity'],BALANCE,'CALL')
+        expected=static_data(BALANCE,req['pool'],req['old_lp_id'],req['_contribution_amount0'],req['_contribution_amount1'],req['deadline'])
+        if (balanced['input'].lower()!=expected or
+                _quantity(balanced.get('value','0x0'))!=(req['_contribution_amount0'] if req['token0']==ZERO else 0) or
+                not index(navs[0])<index(balanced)<index(navs[1])):
+            raise ProjectionError('LP balancing did not isolate the exact entrant budget')
+        balances=[int(value,16) for value in words(balanced.get('output'),2)]
+        req['_lp_balanced']=balances
+        contexts=[x for x in calls if x.get('from','').lower()==pins['vault'] and x.get('to','').lower()==budget and
+            x.get('input','')[:10].lower()==selector('balanceContext(uint256)')]
+        if len(contexts)!=2 or not index(navs[0])<index(contexts[0])<index(balanced)<index(contexts[1])<index(navs[1]):
+            raise ProjectionError('Atomic balancing policy guards are missing or reordered')
+        for frame in contexts:
+            successful(frame)
+            nested=child(frame,budget,pins['liquidity'],'balanceContext(bytes32)','STATICCALL')
+            if (frame.get('type')!='STATICCALL' or frame['input'].lower()!=calldata('balanceContext(uint256)',bucket) or
+                    nested['input'].lower()!=calldata('balanceContext(bytes32)',req['pool']) or
+                    nested.get('output')!=frame.get('output') or not int(words(frame.get('output'),1)[0],16)):
+                raise ProjectionError('Atomic balancing policy boundary differs from the reviewed call path')
+        if contexts[0].get('output')!=contexts[1].get('output'):
+            raise ProjectionError('Atomic balancing policy changed across callbacks')
+        mint_params=words('0x'+mint_calls[0]['input'][10:],7 if req['old_lp_id']==0 else 6)
+        offset=3 if req['old_lp_id']==0 else 2
+        if [int(value,16) for value in mint_params[offset:offset+2]]!=balances:
+            raise ProjectionError('LP deployment includes incumbent idle or compound assets')
+        if any(x.get('from','').lower()==pins['vault'] and x.get('to','').lower()==pins['liquidity'] and
+                x.get('input','')[:10].lower()==selector('swap(bytes32,bool,uint256,uint256,uint256)') for x in calls):
+            raise ProjectionError('LP contribution bypassed atomic balancing')
     initial={};final={};epoch=None
     for frame in finish.get('calls',[]):
         if frame.get('from','').lower()!=helper:continue
@@ -330,7 +362,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
             verify_historical(historical)
     issued, net = [int(x, 16) for x in words(check.get('output'), 2)]
     floor = upper_input - upper_input * loss // 10000
-    if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= 200 or
+    if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= (1000 if req.get('lp_routing_version',0)==1 else 200) or
             deployed < incumbent_deployed + floor or net != deployed + idle - incumbent_nav or
             net < floor or net < upper_input * (10000 - slippage) // 10000 or
             idle > (deployed + idle) * 500 // 10000 or deployed == 0 or
@@ -358,6 +390,8 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         if _quantity(mint.get('value', '0x0')) != expected_value:
             raise ProjectionError('LP child call does not carry the exact declared native budget')
     output = words(mint.get('output'), 3 if create else 2)
+    if req.get('lp_routing_version',0)==1 and any(int(used,16)>budget for used,budget in zip(output[1:] if create else output,req['_lp_balanced'])):
+        raise ProjectionError('LP deployment spent more than the entrant budget')
     lp_id = int(output[0], 16) if create else req['old_lp_id']
     target_call = calldata('getPositionLiquidity(uint256)', lp_id)
     readings = [x for x in mint.get('calls', []) if x.get('from', '').lower() == pins['liquidity'] and

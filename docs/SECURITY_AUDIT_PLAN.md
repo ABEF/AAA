@@ -130,11 +130,11 @@ journals and budgets supplement on-chain controls, not replace them.
   and [operating rehearsals](KEEPER_REHEARSALS.md), including off-host recovery.
 
 The [operator-selected execution record](LP_EXECUTION_POLICY.md) separates the
-implemented policy2/Budget3 timing slice from planned best approved execution
-routes and useful residual/solver work. Timing exceptions are settled: hard initial
+implemented policy2/Budget3 timing and LP routing1 reviewed execution routes/
+solver from actual market qualification. See the [new scoped review](../reports/atomic-routing-20261028/REVIEW.md). Timing exceptions are settled: hard initial
 12hours, operator width-change exception after cooldown, separate compound interval. Review route selection
 at full post-close size, on-chain versus service-only restrictions, jitter
-restart/reroll behavior, public contribution swaps, one/two-pass costs and proxy
+restart/reroll behavior, public entrant-only contribution swaps, bounded quote/single-swap costs and proxy
 upstream changes. The [new verification](../reports/maintenance-policy-20261027/VERIFICATION.md) covers
 changed source; actual economic qualification remains open. Timed 10% replacement is a separate optional state-machine design, not
 a small TWAP setting or a selected release feature.

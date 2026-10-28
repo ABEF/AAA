@@ -64,6 +64,12 @@ class ActivationConfig:
             raise ValueError('Maintenance-policy activation profiles require explicit accounting4')
         if self.maintenance_policy_version == 2 and self.range_policy_version != 1:
             raise ValueError('Outside-only maintenance requires the explicit reviewed range-policy profile')
+        self.lp_routing_version = config.get('lp_routing_version', 0)
+        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0, 1):
+            raise ValueError('Unsupported explicit LP-routing profile')
+        if 'lp_routing_version' in config: fields.add('lp_routing_version')
+        if self.lp_routing_version == 1 and (projection.accounting_version != 4 or self.maintenance_policy_version != 2):
+            raise ValueError('LP routing requires explicit accounting4 and outside-only maintenance2')
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
@@ -76,6 +82,7 @@ class ActivationConfig:
             raise ValueError('Local Position V3 requires typed routing, dual pricing and caller-bound review')
         _keys(config['contracts'], set(MODULES) | HELPERS |
               ({'v4_executor'} if self.routing_version == 2 else set()) |
+              ({'balancing_router'} if self.lp_routing_version == 1 else set()) |
               ({'contribution_pricing'} if self.pricing_version == 2 else set()), 'activation contracts')
         self.contracts = {}
         for role, item in config['contracts'].items():
@@ -188,7 +195,7 @@ class ActivationConfig:
         self.max_gas_price = int(fee['max_gas_price_wei'])
         self.identity = hashlib.sha256(json.dumps(config,sort_keys=True,separators=(',', ':')).encode()).hexdigest()
 
-    def verify(self, p, block, used_tokens, *, include_bounds=False, timestamp=None):
+    def verify(self, p, block, used_tokens, *, include_bounds=False, timestamp=None, execution_observation=None):
         """All reads use the parent's one confirmed canonical hash."""
         pins = {role: c.address for role, c in {**p.contracts, **self.contracts}.items()}
         def read(role, signature, *args, count=1):
@@ -228,6 +235,17 @@ class ActivationConfig:
         for role, method, expected in (('position_manager','poolManager()','pool_manager'),
                                        ('position_manager','permit2()','permit2'),('state_view','poolManager()','pool_manager')):
             if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Liquidity venue binding changed')
+        if self.lp_routing_version == 1:
+            from zzz_ops.lp_execution import observe
+            try:
+                execution = observe(
+                    lambda target, method, *args: p._call(target,method,*args,block=block),
+                    liquidity=pins['liquidity'], router=pins['balancing_router'],
+                    pool_manager=pins['pool_manager'], state_view=pins['state_view'],
+                    access=pins['access'], pools=pins['pools'])
+                if execution_observation is not None: execution_observation.update(execution)
+            except (ValueError, TypeError, KeyError) as exc:
+                raise ProjectionError('LP execution capability differs from the reviewed profile') from exc
         if (_address_word(read('oracle','sequencerFeed()')[0],native=True) != self.sequencer['address'] or
                 '0x'+read('oracle','activeSequencerPolicy()')[0] != self.sequencer['policy_id']):
             raise ProjectionError('Reviewed sequencer policy changed')

@@ -32,6 +32,12 @@ contract HolderExitVenue is ERC721 {
     constructor(MockToken t) ERC721("Exit fixture LP","EXITLP") { token=t; }
     receive() external payable {}
     function positionManager() external view returns(address) {return address(this);}
+    function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
+    function balance(bytes32,uint256,uint256 x,uint256 y,uint256) external payable returns(uint256,uint256) {
+        require(msg.value==x);
+        ExactAsset.push(address(0),msg.sender,x);
+        return(x,y); // Exit accounting fixture, not a market sizing substitute.
+    }
     function amounts(uint256 id) external view returns(uint256,uint256) {return(a0[id],a1[id]);}
     function ticks(uint256) external pure returns(int24,int24) {return(-600,600);}
     function spot(bytes32) external pure returns(uint160) {return uint160(1<<96);}

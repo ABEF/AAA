@@ -30,6 +30,9 @@ contract ZZZPoolRegistry is ZZZModule {
     /// @notice Zero means contributions are stopped. Historical/maintenance
     /// pools remain admitted, but at most one pool can enable new contributions.
     bytes32 public contributionPool;
+    /// @notice Invalidates atomic execution reviews even if a callback restores
+    /// the old values. Append-only storage; no change to historical deployments.
+    uint64 public configurationRevision;
     event PoolConfigured(bytes32 indexed poolId, address indexed token0, address indexed token1);
     event PoolDisabled(bytes32 indexed poolId, bool depositsEnabled, bool operationsEnabled);
     event ContributionPoolChanged(bytes32 indexed previousPool, bytes32 indexed currentPool);
@@ -67,6 +70,7 @@ contract ZZZPoolRegistry is ZZZModule {
             if (contributionPool == poolId) _setContributionPool(bytes32(0));
         }
         if (disableOperations) config.operationsEnabled = false;
+        ++configurationRevision;
         emit PoolDisabled(poolId, config.depositsEnabled, config.operationsEnabled);
     }
     /// @notice Fixed Strategy may apply only its reviewed two-width policy.
@@ -82,6 +86,7 @@ contract ZZZPoolRegistry is ZZZModule {
         if (!exists[poolId] || !c.operationsEnabled || (width != 2500 && width != 5000) ||
             c.triggerBps >= width || c.maxSpotDeviationBps >= width) revert InvalidConfiguration();
         c.rangeBps = width; // Strategy emits the successful old/new width and review hash.
+        ++configurationRevision;
     }
     function _configure(PoolConfig calldata config, address token0, address token1) internal returns (bytes32 poolId) {
         PoolKey memory k = config.key;
@@ -91,7 +96,7 @@ contract ZZZPoolRegistry is ZZZModule {
         if (k.tickSpacing <= 0 || k.tickSpacing > 32767 || k.fee > 100000 ||
             config.rangeBps < 100 || config.rangeBps > 5000 || config.triggerBps < 100 ||
             config.triggerBps >= config.rangeBps || config.maxSpotDeviationBps == 0 ||
-            config.maxSpotDeviationBps > 500 || config.maxSpotDeviationBps >= config.rangeBps || config.maxSlippageBps == 0 || config.maxSlippageBps > 200 || k.fee >= uint24(config.maxSlippageBps) * 100 ||
+            config.maxSpotDeviationBps > 500 || config.maxSpotDeviationBps >= config.rangeBps || config.maxSlippageBps == 0 || config.maxSlippageBps > 1000 || k.fee >= uint24(config.maxSlippageBps) * 100 ||
             config.minRebalanceInterval < 600 || config.minRebalanceInterval > 7 days ||
             config.minDepositUSD == 0 || config.maxPositionUSD < config.minDepositUSD) revert InvalidConfiguration();
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
@@ -105,6 +110,7 @@ contract ZZZPoolRegistry is ZZZModule {
         exists[poolId] = true;
         if (config.depositsEnabled) _setContributionPool(poolId);
         else if (contributionPool == poolId) _setContributionPool(bytes32(0));
+        ++configurationRevision;
         emit PoolConfigured(poolId, k.currency0, k.currency1);
     }
     function _setContributionPool(bytes32 poolId) private {

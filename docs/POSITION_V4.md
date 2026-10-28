@@ -23,6 +23,14 @@ V1/V2 helper deployments and journals retain their old behavior. Activation conf
 for accounting4 must explicitly select maintenance policy1 (historical) or2. See the
 [operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing).
 
+Fresh LP execution additionally declares `lp_routing_version:1`, authenticates
+Manager/helper LP_ROUTING_VERSION1, immutable parent/core/state/runtime pins and
+explicit reviewed catalog. This is separate from Entry routing2 and does not
+change Position4 or canonicalV5. Old LP routing0 readers keep the historical
+whole-idle contribution trace; LP1 requires entrant-only balance/put witnesses
+and the physical-LP-only marginal baseline. Registry revision is appended; no
+installed deployment/journal is relabeled. [Policy](LP_EXECUTION_POLICY.md).
+
 `Access.lpExitStarted` permanently stops principal/mint activity independently
 of pause/canonical state. Transfers, earned LP claims, future royalties and
 royalty claims continue. Closed buckets retain share/membership accounting;

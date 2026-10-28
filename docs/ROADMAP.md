@@ -34,9 +34,11 @@ The [implemented source slice](../reports/maintenance-policy-20261027/VERIFICATI
 includes Strategy2/Budget3, durable keeper jitter and matching API profile; qualify
 actual rollout/runtime/config/operations separately. Keep operator-selected widths,
 independent hourly harvest and fixed rights. Continue [execution routing](../TODO.md#task-lp-execution-routing):
-bounded approved swap venues and complete post-close sizing, then normally-one-
-swap placement with useful residual handling. Global optimality and optional timed
-10% replacement are not implemented or release claims. [Policy record](LP_EXECUTION_POLICY.md).
+LP routing1 bounded approved venues, actual-core post-close sizing and zero/one
+swap are now implemented with entrant-only budgets and retained idle. Qualify
+actual catalog/depth/gas, exact service pins and economic ordering next; see
+[new evidence](../reports/atomic-routing-20261028/VERIFICATION.md). Global optimality
+and timed10% replacement are not implemented or release claims. [Policy record](LP_EXECUTION_POLICY.md).
 
 ## 1. Close immutable integration boundaries
 

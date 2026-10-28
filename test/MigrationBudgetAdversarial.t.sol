@@ -11,6 +11,7 @@ import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {Ids, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
+import {IZZZStrategy} from "../src/interfaces/IZZZ.sol";
 
 /// @dev Deliberately adversarial TEST ONLY venue. Exact transfers and honest
 /// reported retained amounts isolate Vault's loss budget from venue minima.
@@ -48,6 +49,7 @@ contract BudgetAdversarialVenue is ERC721 {
         token0 = MockToken(a); token1 = MockToken(b);
     }
     function positionManager() external view returns (address) { return address(this); }
+    function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
     function amounts(uint256 id) external view returns (uint256, uint256) { return (amount0[id], amount1[id]); }
     function losses(uint256 close0, uint256 close1, uint256 mint0, uint256 mint1) external {
         closeLoss0 = close0; closeLoss1 = close1; mintLoss0 = mint0; mintLoss1 = mint1;
@@ -97,7 +99,18 @@ contract BudgetAdversarialVenue is ERC721 {
             if (result.length >= 4) reentryError = bytes4(result);
         }
     }
-    function swap(bytes32, bool zeroForOne, uint256 input, uint256, uint256) external returns (uint256) {
+    function balance(bytes32 pool,uint256,uint256 a,uint256 b,uint256 deadline)
+        external returns(uint256 balanced0,uint256 balanced1) {
+        IZZZStrategy strategy=IZZZStrategy(ZZZVault(payable(msg.sender)).access().module(Ids.STRATEGY));
+        (bool direction,uint256 input,uint256 minimum)=strategy.swapPlan(pool,a,b);
+        balanced0=a;balanced1=b;
+        if(input!=0){
+            require(direction&&input<=a);
+            uint256 output=swap(pool,direction,input,minimum,deadline);
+            balanced0-=input;balanced1+=output;
+        }
+    }
+    function swap(bytes32, bool zeroForOne, uint256 input, uint256, uint256) public returns (uint256) {
         require(zeroForOne);
         ++swapCount;
         require(token0.transferFrom(msg.sender, address(this), input));

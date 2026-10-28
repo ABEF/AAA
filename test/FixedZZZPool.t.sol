@@ -100,4 +100,33 @@ contract FixedZZZPoolTest is Test {
         vm.expectRevert(ZZZModule.InvalidConfiguration.selector);registry.configureNative(c);
         _unchanged(c,1);assertEq(assets.zzz(),address(zzz));
     }
+    function testGovernedVenueCeilingCanReachTenPercentAfterSealWithoutChangingOtherLimits() public {
+        _identity();PoolConfig memory c=_config(address(zzz),address(other));
+        bytes32 id=registry.configure(c);access.seal();
+        assertEq(registry.get(id).maxSlippageBps,100);
+        c.maxSlippageBps=1000;registry.configure(c);
+        PoolConfig memory actual=registry.get(id);
+        assertEq(actual.maxSlippageBps,1000);assertEq(actual.rangeBps,c.rangeBps);
+        assertEq(actual.maxSpotDeviationBps,c.maxSpotDeviationBps);
+        assertEq(actual.minRebalanceInterval,c.minRebalanceInterval);
+        assertEq(actual.minDepositUSD,c.minDepositUSD);assertEq(actual.maxPositionUSD,c.maxPositionUSD);
+        c.maxSlippageBps=100;registry.configure(c);assertEq(registry.get(id).maxSlippageBps,100);
+    }
+    function testVenueCeilingRejectsBeyondTenPercentAndKeepsPriorConfiguration() public {
+        _identity();PoolConfig memory c=_config(address(zzz),address(other));bytes32 id=registry.configure(c);
+        c.maxSlippageBps=1001;vm.expectRevert(ZZZModule.InvalidConfiguration.selector);registry.configure(c);
+        assertEq(registry.get(id).maxSlippageBps,100);
+        c.maxSlippageBps=0;vm.expectRevert(ZZZModule.InvalidConfiguration.selector);registry.configure(c);
+        assertEq(registry.get(id).maxSlippageBps,100);
+    }
+    function testConfigurationRevisionDetectsRestoreAndRejectedChangeDoesNotAdvance() public {
+        _identity();PoolConfig memory c=_config(address(zzz),address(other));
+        assertEq(registry.configurationRevision(),0);bytes32 id=registry.configure(c);
+        assertEq(registry.configurationRevision(),1);
+        registry.disablePool(id,false,true);assertEq(registry.configurationRevision(),2);
+        registry.configure(c);assertEq(registry.configurationRevision(),3);
+        assertTrue(registry.get(id).operationsEnabled);
+        c.maxSlippageBps=1001;vm.expectRevert(ZZZModule.InvalidConfiguration.selector);registry.configure(c);
+        assertEq(registry.configurationRevision(),3);
+    }
 }

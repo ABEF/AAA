@@ -56,8 +56,13 @@ from the LP target, useful residual reinvestment and $1m cumulative per-NFT cap.
 The timing decisions are settled and implemented in fresh Strategy2/Budget3 and
 matching versioned keeper/API source; no running settings/services changed.
 Twelve hours is a hard initial minimum; explicit width changes can apply inside
-after cooldown; compound has its own interval. Best-route balancing and a new
-sizing solver remain design work. [Scoped evidence](reports/maintenance-policy-20261027/VERIFICATION.md). Hourly harvest stays independent; per-currency thresholds, growing
+after cooldown; compound has its own interval. LP routing1 now compares up to four reviewed native ETH/ZZZ venues with bounded
+actual-core sizing and zero/one swap. Contributions swap/deploy only entrant
+budgets; incumbent idle/compound remains in old NAV for guarded maintenance.
+Explicit helper/runtime/parent/core/state pins and an admitted execution catalog
+are required; empty catalog has no target fallback. Governed venue slippage
+is1-1000bps with unchanged operating defaults/captured caller floors.
+[New source review](reports/atomic-routing-20261028/REVIEW.md). [Scoped evidence](reports/maintenance-policy-20261027/VERIFICATION.md). Hourly harvest stays independent; per-currency thresholds, growing
 existing LP and idle-only reinvestment already exist. No new volatility analysis,
 blanket dust sweep, cumulative breaker or staged migration was selected.
 

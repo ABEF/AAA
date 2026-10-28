@@ -1,0 +1,85 @@
+{
+  "checks": [
+    {
+      "name": "function-tests",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "-v",
+        "tests_python.test_function_reference"
+      ],
+      "exit_code": 0,
+      "log_sha256": "41362ec6e2d54a4f1c12247195c265b1f9ab0ce11a1da05949d914b2164fec0d"
+    },
+    {
+      "name": "function-check",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_sha256": "a890a4053494b905b3f53933b14ef6fa2224e970d3ec8d1d4cb7078fbdda23d9"
+    },
+    {
+      "name": "todo-check",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_sha256": "a1d4550364b163866ad25765b07f0deeb99921784d7c250d89df00e44ce5b367"
+    },
+    {
+      "name": "source-check",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/source_checks.py",
+        "--output",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\atomic-routing-20261028\\source-checks.json"
+      ],
+      "exit_code": 0,
+      "log_sha256": "5382ec3cfc627c3fabec6ab8348eca4d0b683136a751a87072ab6aa00dad027d"
+    },
+    {
+      "name": "document-check",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\atomic-routing-20261028\\check-docs.py"
+      ],
+      "exit_code": 0,
+      "log_sha256": "466d5c93ebffaa405751376a2b19c6eb4457345f9f41dcf76bef609666d6b4e4"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "all_pass": true,
+  "function_reference_methods": 31,
+  "source_sha256": {
+    "tests_python/test_function_reference.py": "9cea757d716f039a4bceb3b162709267def17ac2c9f800a582f6b328675a0d76",
+    "zzz_ops/function_reference.py": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+    "scripts/generate-function-reference.py": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+    "docs/function-reference.json": "ee65013cb7995dc3e87a7da9ecd135710232cba17d28aed79949a783893c51c8",
+    "docs/function-reference-notes.json": "ea8703e428dd575f255f15b8f88c39aaf50b8d75519e99c5086a3ba2788a81bb"
+  }
+}

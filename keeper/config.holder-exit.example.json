@@ -13,7 +13,11 @@
     "compounder": "0x6666666666666666666666666666666666666666",
     "buyback": "0x7777777777777777777777777777777777777777",
     "pools": "0x8888888888888888888888888888888888888888",
-    "principal_exit": "0x9999999999999999999999999999999999999999"
+    "principal_exit": "0x9999999999999999999999999999999999999999",
+    "liquidity": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "balancing_router": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "pool_manager": "0xcccccccccccccccccccccccccccccccccccccccc",
+    "state_view": "0xdddddddddddddddddddddddddddddddddddddddd"
   },
   "reviewed_for_live_use": false,
   "royalty_conversion": {
@@ -32,7 +36,11 @@
     "fees": "0x<reviewed deployed runtime keccak256>",
     "principal_exit": "0x<reviewed deployed runtime keccak256>",
     "strategy": "0x<reviewed deployed runtime keccak256>",
-    "pools": "0x<reviewed deployed runtime keccak256>"
+    "pools": "0x<reviewed deployed runtime keccak256>",
+    "liquidity": "0x<reviewed deployed runtime keccak256>",
+    "balancing_router": "0x<reviewed deployed runtime keccak256>",
+    "pool_manager": "0x<reviewed deployed runtime keccak256>",
+    "state_view": "0x<reviewed deployed runtime keccak256>"
   },
   "keystore": "/run/zzz/keystore.json",
   "password_file": "/run/zzz/password",
@@ -75,5 +83,6 @@
   "principal_distribution": {
     "enabled": false
   },
-  "maintenance_policy_version": 2
+  "maintenance_policy_version": 2,
+  "lp_routing_version": 1
 }

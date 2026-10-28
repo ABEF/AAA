@@ -45,6 +45,10 @@ contract CombinedCapacityVenue is ERC721 {
 
     constructor(MockPools registry) ERC721("Combined-capacity mock", "CCM") { pools = registry; }
     function positionManager() external view returns (address) { return address(this); }
+    function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
+    function balance(bytes32,uint256,uint256 a0,uint256 a1,uint256) external pure returns(uint256,uint256) {
+        return(a0,a1); // Deterministic custody fixture; no market execution is modeled.
+    }
     function amounts(uint256 id) external view returns (uint256, uint256) { return (amount0[id], amount1[id]); }
     function setFees(bytes32 pool, uint256 value) external { fee[pool] = value; }
     function mint(bytes32 pool, int24, int24, uint256 a0, uint256 a1, uint128, uint256)

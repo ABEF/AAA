@@ -280,7 +280,7 @@
           "purpose": "Admit or reconfigure a reviewed static hookless native ETH/fixed-ZZZ pool, including compatible future fee tiers. Every funded bucket remains returnable to holders as actual ETH + ZZZ.",
           "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
-            "config": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Price displacement trigger in BPS, at least 100 and strictly below rangeBps.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..200 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap."
+            "config": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Retained historical policy1 movement field, at least100 and below rangeBps; policy2 never uses it to authorize ordinary replacement.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..1000 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap."
           },
           "outputs": {
             "poolId": "Actual PoolKey-derived poolId; eligible future fee tiers remain possible."
@@ -324,6 +324,13 @@
           },
           "outputs": {
             "0": "True for native ETH/ZZZ; false for an admitted ERC20-only pair."
+          }
+        },
+        "configurationRevision()": {
+          "purpose": "Read the monotonic pool-policy revision. Every successful configure, dependency-free disable or Strategy range application advances it, including changed-and-restored values.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "uint64 revision; failed configuration rolls it back."
           }
         }
       },
@@ -1415,7 +1422,8 @@
             "zeroForOne": "True swaps currency0→currency1; false the reverse.",
             "amountIn": "Raw input token units/wei; zero means no planned conversion.",
             "minimumOut": "Raw output token units/wei after conservative price/fee/slippage guards; not gas or USD value."
-          }
+          },
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
         },
         "compoundPlan(uint256,uint256,uint256)": {
           "purpose": "Calculate balancing of compound amounts against the bucket’s existing physical LP ticks. Uses current qualified prices and actual directional fees; does not execute, collect or compound assets.",
@@ -1429,7 +1437,8 @@
             "0": "True swaps currency0→currency1; false the reverse.",
             "1": "Raw input token units/wei; zero means no planned conversion.",
             "2": "Raw output token units/wei after conservative price/fee/slippage guards; not gas or USD value."
-          }
+          },
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
         },
         "MAINTENANCE_POLICY_VERSION()": {
           "purpose": "Read explicit upkeep eligibility version2: physical outside-range or deliberate operator range update after the governed hard interval.",
@@ -2035,6 +2044,47 @@
           "outputs": {
             "0": "ABI-encoded measured swap output."
           }
+        },
+        "balanceContext(bytes32)": {
+          "purpose": "Read the immutable Manager/balancer, reviewed catalog/solver revision, target configuration/Registry revision, target range policy and independent source fingerprints for the atomic balance boundary.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Actual admitted target pool ID, keccak256(abi.encode(PoolKey))."
+          },
+          "outputs": {
+            "0": "Context hash; any changed policy requires a fresh atomic operation. Not a price or quote."
+          }
+        },
+        "LP_ROUTING_VERSION()": {
+          "purpose": "Read LP balancing capability1, separate from Entry source-routing2.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Version1."
+          }
+        },
+        "balancingRouter()": {
+          "purpose": "Read the immutable Manager-created ZZZLPBalancer; it chooses typed reviewed LP-balancing routes without holding principal.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed child helper address, requiring reviewed runtime/parent/core/state pins."
+          }
+        },
+        "balance(bytes32,uint256,uint256,uint256,uint256)": {
+          "purpose": "Atomically balance only the supplied budget using zero or one swap selected from reviewed venues; return exact remaining ETH/ZZZ amounts for subsequent LP deployment.",
+          "access": "Only fixed authorized Vault; sealed/current module, short deadline and enabled native target. No arbitrary recipient.",
+          "inputs": {
+            "targetPool": "Actual native ETH/fixed-ZZZ LP destination pool ID.",
+            "existingLpId": "Existing Vault-owned physical LP NFT ID, or zero to plan a new target range. Not a PoPL NFT ID.",
+            "amount0": "Exact attributed ETH budget in wei; must equal msg.value.",
+            "amount1": "Exact attributed fixed-ZZZ budget in raw token units; only this amount is pulled.",
+            "deadline": "Unix seconds, execution time through at most600seconds ahead."
+          },
+          "outputs": {
+            "balanced0": "Exact remaining ETH budget, including actual swap output if ZZZ was input.",
+            "balanced1": "Exact remaining ZZZ budget, including actual swap output if ETH was input."
+          },
+          "value": "Exactly amount0 native wei. Network gas is separate.",
+          "notes": "Contributions supply only entrant funds; maintenance supplies classified bucket idle. Exact refunds/prefund isolation, source/policy/context, physical LP and post-swap spot checks run after callbacks. No-swap is possible; final Vault marginal-LP/maintenance guards still apply."
         }
       },
       "constructor": {
@@ -4156,21 +4206,6 @@
             "6": "Actual Vault raw currency1 balance before deployment."
           }
         },
-        "balancePlan(uint256,bool)": {
-          "purpose": "Calculate a bounded idle-balancing swap for existing ticks or a new target range.",
-          "access": "Anyone; read-only.",
-          "notes": "Skips corrections no greater than one basis point of available input; performs no swap. Returns: Direction, raw input, minimum raw output and actual input currency.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "True plans against existing physical ticks; false uses the reviewed new target."
-          },
-          "outputs": {
-            "0": "True swaps currency0→1; false swaps currency1→0.",
-            "1": "Raw chosen input amount, zero when no justified correction.",
-            "2": "Enforced minimum raw output.",
-            "3": "Actual currency address to approve/fund, zero for native ETH."
-          }
-        },
         "checkpoint(uint256,uint8)": {
           "purpose": "Capture/extend/verify one atomic maintenance value budget using fixed starting prices.",
           "access": "Only fixed Vault.",
@@ -4479,6 +4514,16 @@
             "interval": "Seconds from600 through604800 (seven days)."
           },
           "notes": "Emits CompoundIntervalChanged. A shorter interval may make work immediately eligible; it never resets lastCompound/lastRebalance or changes the pool rebalance interval. Existing local service intervals can impose additional delay."
+        },
+        "balanceContext(uint256)": {
+          "purpose": "Forward the current LP execution context for a shared bucket so Vault can bind approvals, balancing and resets.",
+          "access": "Only fixed Vault; read-only.",
+          "inputs": {
+            "0": "Canonical shared bucket ID, not an NFT ID."
+          },
+          "outputs": {
+            "0": "Manager execution context hash; never an execution permission."
+          }
         }
       },
       "constructor": {
@@ -5594,6 +5639,183 @@
           "outputs": {
             "child": "New ActivationAssets address with registry=msg.sender and access=this factory's immutable controller."
           }
+        }
+      }
+    },
+    "ZZZLPBalancer": {
+      "purpose": "Immutable Manager-created bounded native ETH/fixed-ZZZ LP execution planner. Compares reviewed venues using reverted actual-core quotes, captured independent values and typed fixed-recipient settlement in its parent; it is not a custodian or generic router.",
+      "functions": {
+        "LP_ROUTING_VERSION()": {
+          "purpose": "Read explicit LP balancing capability1; Entry routing2 is independent.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Version1."
+          }
+        },
+        "MAX_EXECUTION_POOLS()": {
+          "purpose": "Read immutable bounded candidate count.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Four reviewed execution pools maximum."
+          }
+        },
+        "access()": {
+          "purpose": "Read the immutable AccessController.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed controller address."
+          }
+        },
+        "configureExecutionPools(bytes32[],bytes32)": {
+          "purpose": "Replace the complete bounded list of reviewed admitted execution pools. Empty clears swaps without price/core reads; this does not move LP or change its contribution destination.",
+          "access": "Selected governance wallet directly, or valid pre-seal bootstrap; canonical/preparation and terminal principal-exit guards remain. No timelock.",
+          "inputs": {
+            "pools": "Zero through four unique native ETH/fixed-ZZZ static hookless v4 IDs already admitted and operations-enabled.",
+            "reviewHash": "Nonzero hash of independently reviewed configuration/dependency/route evidence."
+          },
+          "notes": "Admission/list changes after sealing need no Solidity edit. Nonempty admission revalidates prices/fees/bindings. No automatic fallback, arbitrary token, router, calldata or recipient."
+        },
+        "configureSolver(uint8,uint32,bytes32)": {
+          "purpose": "Change bounded quote search/gas policy, advancing executionRevision. Does not loosen price, caller or loss guards.",
+          "access": "Selected governance wallet directly, or valid pre-seal bootstrap; canonical/preparation and terminal principal-exit guards remain. No timelock.",
+          "inputs": {
+            "iterations": "4-12 attempts per reviewed venue; initial8.",
+            "gasLimit": "100000-300000gas per quote attempt; initial200000.",
+            "reviewHash": "Nonzero review-evidence commitment."
+          },
+          "notes": "More search may cost more gas. Qualify exact settings/depth/provider gas; this is not an economic safety guarantee."
+        },
+        "executionPoolAt(uint256)": {
+          "purpose": "Read a reviewed venue by index.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "index": "Zero-based index below executionPoolCount; out-of-range reverts."
+          },
+          "outputs": {
+            "0": "Exact PoolKey-derived native ETH/ZZZ pool ID."
+          }
+        },
+        "executionPoolCount()": {
+          "purpose": "Read the explicit reviewed candidate count. Zero disables swaps with no target fallback.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "0-4 candidate pools."
+          }
+        },
+        "executionRevision()": {
+          "purpose": "Read the monotonic reviewed-catalog/solver-policy revision.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "uint64 revision, also captured in plans."
+          }
+        },
+        "liquidityManager()": {
+          "purpose": "Read the immutable parent allowed to request a balancing plan.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Creator LiquidityManager address."
+          }
+        },
+        "plan(bytes32,int24,int24,uint256,uint256)": {
+          "purpose": "Compare no-swap and bounded quoted candidates using one independent price vector and actual target ticks; return the best sampled useful deployed value.",
+          "access": "Only immutable authenticated parent LiquidityManager after sealing. Internal integration boundary, not an operator swap.",
+          "inputs": {
+            "target": "Admitted native ETH/fixed-ZZZ LP destination.",
+            "lower": "Actual existing or reviewed new lower tick.",
+            "upper": "Actual existing or reviewed new upper tick.",
+            "amount0": "Exact available ETH budget in wei, uint128 bounded.",
+            "amount1": "Exact available fixed-ZZZ budget in raw units, uint128 bounded."
+          },
+          "outputs": {
+            "best": "Plan: poolId (zero for no swap), direction, exact input/quoted output/minimum, predicted route/target sqrt prices, execution revision and policy fingerprint."
+          },
+          "notes": "State-changing ABI because quote calls deliberately revert core changes. No funds settle. Approximate bounded search, not global/exact optimum."
+        },
+        "policyFingerprint(bytes32,bytes32)": {
+          "purpose": "Hash target and optional venue configuration, global Registry revision, desired target ticks/orientation/reference and independent price-source fingerprints.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "target": "Admitted LP destination pool ID.",
+            "venue": "Admitted chosen execution pool ID, or zero for target-only context."
+          },
+          "outputs": {
+            "0": "Atomic policy/source commitment; not a quote or permission."
+          }
+        },
+        "poolManager()": {
+          "purpose": "Read the immutable v4 core used for reverted quotes.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "PoolManager address; authenticate reviewed runtime and parent binding."
+          }
+        },
+        "quoteCandidate((address,address,uint24,int24,address),bool,uint256)": {
+          "purpose": "Run an authenticated full-input v4 swap quote and decode its exact custom revert; every core price/tick/fee/transient effect is rolled back.",
+          "access": "Only helper self-call from bounded search; other callers revert.",
+          "inputs": {
+            "key": "Typed reviewed static hookless native ETH/fixed-ZZZ PoolKey.",
+            "direction": "True currency0→1, false currency1→0.",
+            "amount": "Positive exact input raw units, bounded to signed-int128 maximum."
+          },
+          "outputs": {
+            "output": "Actual quoted raw output after directional LP/protocol fees and impact.",
+            "afterPrice": "Quoted post-swap sqrtPriceX96."
+          },
+          "notes": "Quotes hold/transfer no principal and settle no deltas. Gas is spent even though core changes revert."
+        },
+        "quoteGasLimit()": {
+          "purpose": "Read current per-quote gas budget.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Default200000gas; governed100000-300000. Low gas may skip a usable venue."
+          }
+        },
+        "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160)),bytes32,bool)": {
+          "purpose": "Evaluate one admitted venue using bounded actual-core quotes, directional fees and resulting LP ratio.",
+          "access": "Only helper self-call inside plan; other callers revert.",
+          "inputs": {
+            "x": "Captured Context: target pool, target spot and sqrt bounds, exact amounts, independent lower/upper asset prices/scales/reference.",
+            "id": "One explicit admitted candidate pool ID.",
+            "direction": "True means ETH→ZZZ; false ZZZ→ETH."
+          },
+          "outputs": {
+            "best": "Best valid sampled Plan for this venue, or empty.",
+            "bestValue": "Useful deployed USD18 value at the captured independent vector."
+          },
+          "notes": "Internal integration surface; raw quoted liquidity is not compared across changing prices."
+        },
+        "searchIterations()": {
+          "purpose": "Read the current search work bound per venue.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Default8; governed4-12 maximum quote attempts per candidate."
+          }
+        },
+        "stateView()": {
+          "purpose": "Read the immutable v4 observation helper.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "StateView address bound to the same PoolManager."
+          }
+        },
+        "unlockCallback(bytes)": {
+          "purpose": "Authenticate pending quote payload/core, execute exact-input simulated swap and deliberately revert QuoteResult(output,sqrtAfter).",
+          "access": "Only immutable PoolManager with the exact active pending payload. Not callable by operator/user.",
+          "inputs": {
+            "data": "Exact internally armed typed key/direction/input encoding."
+          },
+          "outputs": {
+            "0": "No successful output; valid execution deliberately reverts the quote payload."
+          }
+        }
+      },
+      "constructor": {
+        "purpose": "Create fixed parent/core/state quote helper; only the Manager creates the release instance.",
+        "access": "Deployment only; msg.sender becomes immutable parent.",
+        "inputs": {
+          "controller": "Fixed AccessController contract.",
+          "core": "Reviewed same-v4 PoolManager used by the parent.",
+          "state": "StateView contract bound to that core."
         }
       }
     }

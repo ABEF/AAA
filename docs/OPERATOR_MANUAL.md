@@ -127,9 +127,52 @@ actual dependencies, target-chain gas/operations and independent audit remain op
 
 Use [idle and dust ownership](IDLE_AND_DUST.md) before any cleanup. Contributions
 default to 2% (98% marginal deployed LP), conversion 1%, maintenance 3%, gas separate.
-The Vault makes at most two balancing passes using actual post-swap state; tiny
-corrections are skipped. Retained idle still backs the same bucket. There is no
+Fresh LP routing1 selects one bounded route/size using actual-core quotes and
+executes zero or one balancing swap. Contributions can swap/deploy only their
+own amounts; old idle/compound stays attributed for guarded maintenance and in
+incumbent share NAV. Retained idle still backs the same bucket. There is no
 general clear/sweep or operator dust recipient.
+
+### Add or remove an execution pool after sealing
+
+This changes the swap venue, not the LP contribution destination. Use the fresh
+Manager `LP_ROUTING_VERSION()==1` and immutable `balancingRouter()` helper;
+Entry routing2 is a separate capability. Historical deployments are unchanged.
+
+1. Review the future pool's full native ETH/fixed-ZZZ static hookless key,
+   initialized state, pinned dependencies, actual fees/depth, independent prices
+   and full-operation costs. Governance admits it through
+   `PoolRegistry.configureNative(fullConfig)`, normally with
+   `depositsEnabled=false, operationsEnabled=true`. One contribution pool remains.
+2. Read the helper's current `executionPoolCount()`/`executionPoolAt(index)`.
+   Governance submits the complete replacement list to
+   `configureExecutionPools(ids,reviewHash)`: at most four unique admitted pools,
+   nonzero reviewed evidence hash. Include the old venue only if still approved.
+   Simulate actual post-close replacement and both contribution directions.
+3. Verify the event, `executionRevision`, exact list, runtime/parent/core/state
+   bindings and current execution-policy pins. Future balances compare valid
+   candidates automatically on-chain; the keeper does not pick an arbitrary route.
+   No LP move or Solidity edit is necessary for a compatible new pool.
+4. To stop a bad route, remove it from the list, or use the existing dependency-
+   free `disablePool(id,false,true)` stop. `configureExecutionPools([],reviewHash)`
+   removes all swaps without price/core reads. There is no implicit target fallback.
+   Balanced operations may continue; operations needing a swap must still pass
+   final LP/value guards and otherwise revert. Re-admission requires full validation.
+5. Reconcile pending work around changes. On-chain settings are read afresh; they
+   normally require no keeper restart. Local version/runtime/endpoint/config
+   changes need controlled restart with the same intact journal. A changed list
+   does not cancel a broadcast transaction or waive caller limits.
+
+A saved pending transaction is recovered before new LP-router metadata checks;
+an unavailable router never permits a new balance operation. Runtime, signer,
+accounting and nonce/receipt guards remain; due fee harvesting stays independent.
+
+Governance can tune `configureSolver(iterations,gasLimit,reviewHash)` within4-12
+iterations and100000-300000gas per attempted quote; defaults8/200000. More search
+can cost more gas; inadequate quote gas may skip a usable venue. Keep actual
+measured operating values and simulate the whole call. The helper stops early
+near a useful ratio and never performs a second real correction. Runtime pins
+and this method do not qualify proxy controls, liquidity or market execution.
 
 Idle-only reinvestment uses the existing `Compounder.compound(bucket,minLP,deadline)`
 with current prices, actual LP, captured maintenance budget and its separate compound interval.
@@ -458,7 +501,7 @@ This procedure submits nothing by itself; current source is undeployed.
 | `triggerBps` | At least 100 and less than range | Retained ABI/config field; historical policy1 movement trigger. Policy2 ordinary eligibility uses actual range exit or an operator range change, never this movement field. |
 | `minRebalanceInterval` | 600 seconds-7 days | Minimum time between rebalances; a safety cooldown, not a governance delay. |
 | `maxSpotDeviationBps` | 1-500 and less than range | Spot/reference discrepancy permitted by guarded execution. Do not widen it simply to accept a manipulated market. |
-| `maxSlippageBps` | 1-200; pool fee must be strictly below it in equivalent units | Selected LP fee 10020 pips therefore requires at least 101 bps; actual protocol fee, impact and complete quote must also pass execution checks. This independent venue guard and the current governed contribution-loss ceiling must both pass. |
+| `maxSlippageBps` | 1-1000 in fresh LP routing1; pool fee must be strictly below it in equivalent units | Operating values are not raised automatically. Selected LP fee10020pips requires at least101bps before other costs. Routing uses the tighter target/venue guard, plus actual protocol fee, impact, captured loss and caller floors. Historical profiles retain their original ceiling. |
 | `minDepositUSD`, `maxPositionUSD` | Positive minimum; maximum at least minimum | Minimum for each contribution and maximum cumulative gross contribution per NFT, in 18-decimal USD units; not a live market-value ceiling or total pool cap. Lowering them cannot remove the fixed $100 activation / $5 top-up floors. The effective minimum is the larger of the action floor and configured minimum. Check existing NFT contributions/top-ups. |
 | `depositsEnabled`, `operationsEnabled` | Full configure for enabling; `disablePool` can only clear flags | Different controls; see below. |
 

@@ -19,6 +19,12 @@ authenticates Strategy2 and Budget3 at the pinned hash, and reports actual
 outside state with obsolete movement-trigger fields null. Missing/malformed
 capabilities fail closed; keeper check/execution times remain unavailable without
 real telemetry. No historical deployment is upgraded by changing a field.
+Fresh LP routing1 adds explicit `lp_routing_version:1` and authenticated immutable
+Manager/balancer/core/state runtime/parent bindings at the same pinned block.
+It is separate from Entry routing2. The trace must witness entrant-only balance
+and capped mint/increase; only repriced incumbent physical LP is the marginal
+deployed baseline, while old idle/compound stays in incumbent NAV. Historical0
+keeps its old equations; never infer a profile from tuple length or retry old ABI.
 Only native ETH and fixed ZZZ are original inputs. Their two-source policies
 use the reviewed 3% disagreement tolerance.
 
@@ -162,7 +168,8 @@ Vault-to-manager boundaries, not only on the outer transaction.
 | --- | --- |
 | `schema` | Integer `1`. |
 | `routing_version`, `pricing_version`, `review_policy_version` | Explicit integers `2`, `2`, `1` for this candidate. |
-| `contracts` | Exactly `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `v4_executor`, `contribution_pricing`; each has `address` and `code_hash`, distinct from the read-service's eight bindings. |
+| `lp_routing_version` | Fresh `1` authenticates Manager/balancer capability and entrant-capped trace. Historical absent/0 retains its original policy/trace, never an automatic upgrade. |
+| `contracts` | `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `v4_executor`, `contribution_pricing`, plus `balancing_router` for LP routing1; each has `address` and `code_hash`, distinct from the read-service's eight bindings. |
 | `tokens` | 2..33 reviewed currency descriptors, at most 32 ERC20s plus ETH. Current fields: `address`, `code_hash`, `decimals`, `price_policy`; input, pair currencies and required nonzero historical backing must be present. `price_policy` contains `policy_id`, `ordinal`, `policy`. The policy includes `token`, `primary`, `secondary`, `maxDeviationBps`, `assetDecimals`, `reviewHash`; each source includes `source`, `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`. Token/feed precision is 0..18 and source age 1..86400 seconds. Native code hash is null and decimals 18. No legacy single-feed keys in pricing 2. |
 | `dependencies` | 1..64 `{address, code_hash}` entries covering PositionManager, PoolManager, StateView, Permit2 and every applicable conversion router/factory/pool, sequencer, implementation or other reviewed dependency. |
 | `sources` | 1..64 `{pool_id, source_asset, route_id, asset_policy_id, route_kind}` entries. One route per input/pool: kind 0 direct, 1 v3, 2 v4. For fee-intake 1, source identities must contain native ETH and exactly one reviewed ZZZ; no third input. Zero route is direct; nonzero native-source conversion requires v4. |
@@ -173,6 +180,11 @@ Vault-to-manager boundaries, not only on the outer transaction.
 | `fee_policy` | `{estimate_includes_all_fees: true, review_hash, max_gas_price_wei}`. The ceiling is a positive decimal string. The review must establish that `eth_estimateGas * eth_gasPrice` covers all network fee components for this network/provider. |
 
 Configuration hashes are returned in provenance. Runtime hashes alone cannot
+establish a usable swap. LP1 `provenance.lp_execution` reports the bounded
+catalog/revisions/work settings; `swaps_enabled` means its list is nonempty,
+not that a listed venue is currently executable. Full simulation and on-chain
+output/LP guards decide that. The catalog is not frozen by a wallet review.
+Runtime hashes alone cannot
 prove an upgradeable dependency's implementation/admin policy: review and specify
 its relevant getter/storage pins, including feed proxies. Changing a source
 policy, route, implementation, feed or fee model requires fresh review and config.
@@ -186,7 +198,8 @@ compatibility. Suggested gas cost is an estimate, not a maximum final receipt fe
 current/proposed ticks, current physical LP ID, active-range status and the
 strategy's confirmed rebalance eligibility. `earliest_eligible_at` is the cooldown
 end, not a promised execution. The warning includes this timestamp or "eligible
-now"/"waiting for price trigger"; `next_keeper_check_at` and
+now"/"waiting for actual range exit or operator range update" in policy2;
+historical policy1 retains its original movement label. `next_keeper_check_at` and
 `expected_execution_at` remain null without qualified operating telemetry.
 No fabricated 10-minute countdown is emitted. See [timing rules](DYNAMIC_LIQUIDITY.md#admission-and-rebalance-timing).
 

@@ -160,13 +160,15 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         return migrationBudget.valueBucket(bucketId, amount0, amount1);
     }
 
-    function _put(uint256 bucketId, bool create, uint128 minimumLiquidity, uint256 deadline) private {
+    function _put(uint256 bucketId, bool create, uint128 minimumLiquidity, uint256 deadline,
+        uint256 a0, uint256 a1) private {
         ZZZMigrationBudget budget = migrationBudget;
         Position storage p = positions[bucketId];
         (address token0, address token1) = _tokens(bucketId);
         IZZZLiquidity manager = IZZZLiquidity(_moduleLiquidity());
-        uint256 a0 = p.idle0;
-        uint256 a1 = p.idle1;
+        // A contribution can deploy only its own post-swap amounts. Incumbent
+        // idle and released compound remain attributed for guarded maintenance.
+        if (a0 > p.idle0 || a1 > p.idle1) revert InvalidAmount();
         uint256 before0 = _tokenBalance(token0);
         uint256 before1 = _tokenBalance(token1);
         ExactAsset.approve(token0, address(manager), a0);
@@ -188,7 +190,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         ExactAsset.approve(token0, address(manager), 0);
         ExactAsset.approve(token1, address(manager), 0);
         budget.assertPut(bucketId, a0, a1, spent0, spent1, before0, before1);
-        _idle(bucketId, a0 - spent0, a1 - spent1);
+        _idle(bucketId, p.idle0 - spent0, p.idle1 - spent1);
         budget.assertDeployed(bucketId);
     }
 
@@ -282,7 +284,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         if (supply != 0 && incumbentNAV == 0) revert InvalidState();
         _receiveAssets(token0, token1, amount0, amount1);
         _idle(bucketId, p.idle0 + amount0, p.idle1 + amount1);
-        _balanceUsing(bucketId, deadline, supply != 0);
+        (amount0, amount1) = _balanceUsing(bucketId, deadline, amount0, amount1);
         uint256 freshCompound;
         if (supply != 0) {
             // Fees earned by the entry swap belong to pre-entry membership.
@@ -297,7 +299,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         (oldLP,) = _nav(bucketId);
         incumbentNAV = oldLP + oldIdle + freshCompound;
         if (supply != 0 && incumbentNAV == 0) revert InvalidState();
-        _put(bucketId, supply == 0, minimumLiquidity, deadline);
+        _put(bucketId, supply == 0, minimumLiquidity, deadline, amount0, amount1);
         (uint256 late0, uint256 late1) = _pullCompound(bucketId);
         incumbentNAV += _valueBucket(bucketId, late0, late1);
         (uint256 newLP, uint256 newIdle) = _nav(bucketId);
@@ -307,7 +309,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         // growth. Network gas is separate; later callbacks cannot widen this budget.
         // Incumbent idle/compound assets cannot subsidize this contribution.
         (uint256 issued, uint256 netUSD) = migrationBudget.contributionResult(
-            bucketId, inputUSD, supply, incumbentNAV, oldLP + oldIdle + freshCompound, newLP, newIdle, limits
+            bucketId, inputUSD, supply, incumbentNAV, oldLP, newLP, newIdle, limits
         );
         sharesOf[nftId] += issued;
         bucketTotalShares[bucketId] = supply + issued;
@@ -394,35 +396,30 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _idle(bucketId, p.idle0 + closed0, p.idle1 + closed1);
     }
 
-    /// @dev Both balance passes and handoff consolidation keep the same exact
-    /// allowance/reset path. Read the live pool after approval, as at each caller.
-    function _swap(Position storage p, bool direction, address input, uint256 amount, uint256 minimum, uint256 deadline)
-        private
-        returns (uint256 output)
-    {
-        address manager = _moduleLiquidity();
-        ExactAsset.approve(input, manager, amount);
-        output = IZZZLiquidity(manager).swap{value: input == address(0) ? amount : 0}(
-            p.poolId, direction, amount, minimum, deadline
-        );
-        ExactAsset.approve(input, manager, 0);
-    }
-
-    function _balanceUsing(uint256 bucketId, uint256 deadline, bool existingRange) private {
+    /// @dev One atomic route/size decision consumes only this explicit budget.
+    /// Whole-bucket attribution remains intact during external calls.
+    function _balanceUsing(uint256 bucketId, uint256 deadline, uint256 amount0, uint256 amount1)
+        private returns (uint256 balanced0, uint256 balanced1) {
         Position storage p = positions[bucketId];
-        // A swap changes the LP ratio. Re-plan once from actual post-swap state;
-        // never loop toward zero dust or touch anything beyond attributed idle.
-        for (uint256 pass; pass < 2;) {
-            (bool zeroForOne, uint256 amountIn, uint256 minimumOut, address input) =
-                migrationBudget.balancePlan(bucketId, existingRange);
-            if (amountIn == 0) return;
-            uint256 amountOut = _swap(p, zeroForOne, input, amountIn, minimumOut, deadline);
-            if (zeroForOne) _idle(bucketId, p.idle0 - amountIn, p.idle1 + amountOut);
-            else _idle(bucketId, p.idle0 + amountOut, p.idle1 - amountIn);
-            unchecked {
-                ++pass;
-            }
-        }
+        if (amount0 > p.idle0 || amount1 > p.idle1) revert InvalidAmount();
+        (address token0, address token1) = _tokens(bucketId);
+        address manager = _moduleLiquidity();
+        uint256 before0 = _tokenBalance(token0);
+        uint256 before1 = _tokenBalance(token1);
+        bytes32 context = migrationBudget.balanceContext(bucketId);
+        ExactAsset.approve(token0, manager, amount0);
+        ExactAsset.approve(token1, manager, amount1);
+        (balanced0, balanced1) = IZZZLiquidity(manager).balance{value: token0 == address(0) ? amount0 : 0}(
+            p.poolId, p.lpTokenId, amount0, amount1, deadline
+        );
+        ExactAsset.approve(token0, manager, 0);
+        ExactAsset.approve(token1, manager, 0);
+        if (migrationBudget.balanceContext(bucketId) != context) revert InvalidState();
+        // A typed return must match actual net receipts. Existing raw prefunds
+        // or callback donations cannot fill a claimed balancing-output shortfall.
+        if (_tokenBalance(token0) + amount0 != before0 + balanced0 ||
+            _tokenBalance(token1) + amount1 != before1 + balanced1) revert InvalidState();
+        _idle(bucketId, p.idle0 - amount0 + balanced0, p.idle1 - amount1 + balanced1);
     }
 
     function _idleValue(uint256 bucketId) private view returns (uint256) {
@@ -444,12 +441,13 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function _redeploy(uint256 bucketId, uint128 minimumLiquidity, uint256 deadline) private {
         bool create = positions[bucketId].lpTokenId == 0;
         uint256 beforeValue = _idleValue(bucketId);
-        _balanceUsing(bucketId, deadline, !create);
-        // An existing LP earns fees from either bounded balancing swap. Settle
+        Position storage p = positions[bucketId];
+        _balanceUsing(bucketId, deadline, p.idle0, p.idle1);
+        // An existing LP can earn fees from its one balancing swap. Settle
         // them separately before INCREASE; they are never treated as principal.
         if (!create) _harvest(bucketId, deadline);
         migrationBudget.assertIdleLoss(bucketId, beforeValue);
-        _put(bucketId, create, minimumLiquidity, deadline);
+        _put(bucketId, create, minimumLiquidity, deadline, p.idle0, p.idle1);
     }
 
     function rebalance(uint256 id, uint128 minimumLiquidity, uint256 deadline)

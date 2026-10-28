@@ -1,20 +1,22 @@
 # LP execution and operator-selected maintenance
 
-Reviewed2026-10-27. Maintenance policy2 / Budget3 and the matching keeper/API
-implement the approved timing slice below; [verification](../reports/maintenance-policy-20261027/VERIFICATION.md)
-records exact scope. Best-route execution, a new sizing solver and timed slicing
-remain design work, not implemented features. No deployment/configuration or
-operating rehearsal is implied. [Todo](../TODO.md#task-lp-execution-routing) owns implementation status.
+Reviewed2026-10-28. Fresh LP routing1 adds bounded reviewed-venue comparison,
+depth-aware atomic sizing and entrant-only execution to maintenance policy2 /
+Budget3. [Routing review](../reports/atomic-routing-20261028/REVIEW.md) and
+[verification](../reports/atomic-routing-20261028/VERIFICATION.md) own the new
+source scope; [earlier timing verification](../reports/maintenance-policy-20261027/VERIFICATION.md)
+retains its original scope. Actual venue/gas/economic qualification and operating
+rollout remain open. [Todo](../TODO.md#task-lp-execution-routing) owns status.
 Old deployments, journals and sites retain their actual historical code/profiles.
 
 ## Current behavior and requested direction
 
 | Topic | Current source | Requested direction / boundary |
 | --- | --- | --- |
-| Swap venue | Vault balancing always uses its LP bucket's pool. Buyback accepts an admitted pool; Entry/reward converters have separate typed routes. None discovers a globally best execution. | Select the best executable full-operation result among a bounded set of reviewed ETH/fixed-ZZZ venues, independently of the LP destination. |
+| Swap venue | Immutable Manager-created LPBalancer compares up to four explicitly reviewed native ETH/fixed-ZZZ static hookless v4 pools and executes the same selected route/size. | Best valid sampled final LP value among this list, not global or exact mathematical optimality. Buyback/Entry/reward converters retain separate routing. |
 | Range choice | Governance selects the desired width; a separate optional keeper policy can automatically select 25%/50%. | Operator selects +/-25% or +/-50% in ZZZ price in ETH. No automatic volatility analysis or range switching is requested for this operating policy. Keep optional automation disabled. |
 | Rebalance trigger | Policy2 uses actual physical range exit or an explicit operator range change, after the governed hard pool cooldown. | Initial12-hour minimum even after early exit; matching service adds durable1-10minute jitter and hourly ordinary checks while eligible but inside. |
-| Contributions | The first activation creates the shared LP; later activations/top-ups increase it at its actual ticks. Balancing can swap attributed idle and released compound. | Keep an existing LP/range; improve marginal-input execution without making contributions an indirect full-bucket maintenance trigger. |
+| Contributions | First activation creates shared LP; later activations/top-ups increase its actual ticks. Only the new contribution can be swapped/deployed. | Incumbent idle/compound remains in old share NAV and available for guarded maintenance; it cannot subsidize the new marginal LP floor. |
 | Residual assets | Attributed idle can already be reinvested, including without new fees, and joins collective principal return. | Combine useful residuals later; no zero-dust target, arbitrary sweep or external recipient. |
 | Per-NFT limit | Governance configures cumulative gross contributions through `maxPositionUSD`. | Intended configuration: $1,000,000 per NFT, not a guaranteed current NAV or a shared-market capacity allowance. |
 
@@ -46,31 +48,50 @@ retain exact inputs/outputs/recipients, admitted route, actual balance deltas,
 fresh prices, captured loss limits, caller minima and final LP/idle accounting.
 Fresh inclusion-time guards remain necessary after an off-chain quote.
 
-An honest keeper can select the best candidate off-chain. A malicious authorized
-keeper can ignore that selection. Existing floors must therefore protect every
-allowed route. A claim that optimality itself is enforced on-chain would need a
-separately reviewed bounded comparison or authentic witness mechanism, with its
-gas, quote-manipulation and availability costs. Do not advertise that as existing.
+The comparison now runs on-chain inside `LiquidityManager.balance`, after any
+old LP was closed. A keeper supplies no route, direction, swap size or recipient.
+The immutable helper uses a fee-aware seed, safeguarded residual interpolation
+with midpoint fallback and bounded search with reverted
+actual-core quotes. It scores deployed USD at one independent price vector,
+retains the no-swap candidate and skips unusable venues. A quote's price/fee/tick
+changes are reverted; only the selected swap settles. Gas remains separate.
+This deterministic bounded search is approximate; it cannot guarantee a global
+optimum, organic pricing, profitability or protection against transaction ordering.
 
 Governance can already admit another native ETH/ZZZ pool through
 `PoolRegistry.configureNative(fullConfig)` after sealing, normally keeping its
 `depositsEnabled=false` to preserve the one contribution pool. **Admission alone
-does not redirect Vault balancing:** `_swap` still uses `p.poolId`. Implement the
-new balancing-route boundary before sealing. Thereafter, qualifying/admitting a
-compatible future pool should be configuration, not a Solidity edit or LP move.
-Existing Entry/converter `addV4Route` policies do not currently control this path.
+does not redirect Vault balancing:** governance must also call
+`LiquidityManager.balancingRouter().configureExecutionPools(ids,reviewHash)`.
+The list has at most four unique admitted pools. An empty list disables swaps;
+there is no implicit target-pool fallback. Already balanced budgets can still
+proceed; unfillable contributions fail the final LP guard atomically. Removing
+all venues needs no healthy prices or venue call. Entry/converter `addV4Route`
+policies do not control this list. Future compatible admission/list updates work
+after sealing without Solidity editing, redeployment or moving the LP destination.
+
+`LP_ROUTING_VERSION()==1`, immutable helper/core/state/parent bindings and exact
+runtime pins identify this new capability independently of Entry routing2.
+The Registry's monotonic `configurationRevision` and the helper's
+`executionRevision`, full policies, source fingerprints and desired target ticks
+bind the atomic decision. Pulls/refunds cannot silently change policy, ownership,
+existing LP liquidity or outputs. Both layers verify exact raw balance changes;
+manager prefunds are preserved. Historical contracts/readers/journals do not gain
+this behavior by relabeling a configuration.
 
 ## Deterministic execution and adjustable economics
 
-The current Strategy already deterministically computes direction, amount and
-minimum output from balances, target ticks, prices and directional fees. It does
-not optimize across execution pools or fully solve market-depth price impact.
+Strategy's legacy view plans remain approximate previews. Execution now uses
+the typed helper's actual-core depth-aware comparison; those view plans do not
+authorize a route or promise the exact final amount.
 Maintain deterministic on-chain limits while permitting explicit bounded
 governance updates to economic policy after sealing.
 
 Current defaults are 2% contribution, 1% conversion and 3% maintenance, each with
-a governed 10% hard ceiling. Pool slippage is a **separate** current 2% hard
-ceiling; pool/reference deviation and caller minima also remain independent.
+a governed 10% hard ceiling. The separately governed pool-slippage ceiling is
+now also 10% (1-1000bps); its operating value is not automatically raised.
+The tighter target/selected-venue slippage, pool/reference deviation, captured
+operation limits and caller minima remain independent.
 Increasing one loss cap does not waive another guard. Parameter loosening is an
 explicit acceptance of worse execution, never a retry fallback or guarantee that
 a trade becomes possible. Preserve user-signed stronger limits. Empty liquidity,
@@ -78,11 +99,17 @@ failed tokens and invalid prices can still make execution impossible. Atomic
 failure leaves the old LP intact; paused collective holder return is a separate
 raw ETH/ZZZ recovery path, not an unrestricted swap bypass.
 
-The new route design must enumerate each governed setter, default and separate
-hard ceiling, including route-level slippage, so a hidden immutable venue gate
-does not contradict the promised economic configurability. Its final ceilings
-remain a design decision; this record does not silently raise the current 2%
-venue ceiling or weaken any caller's signed protection.
+Governance can call `configureSolver(iterations,quoteGasLimit,reviewHash)`:
+default8 iterations and200000gas per attempted quote; allowed4-12 iterations and
+100000-300000gas. These are work bounds, not relaxed price/loss guarantees.
+The search stops early once deployable value is within0.1% of retained value;
+it performs zero or one actual swap, never a second fee-bearing correction.
+More venues/iterations can cost more gas; qualify exact settings/depth before
+enabling them. Out-of-gas/unfillable quotes cannot spend principal, but can make
+an otherwise useful venue unavailable. No automatic widening occurs on failure.
+An output/spot-infeasible quote reduces the input ceiling before ratio sizing,
+so a large invalid seed cannot permanently hide smaller usable swaps. The work
+bound/early stop is a precision/cost policy, not a guaranteed maximum dust amount.
 
 ## Implemented outside-only upkeep policy2
 
@@ -153,26 +180,25 @@ historical scheduling retains its old explicit fallback.
 
 After the first activation creates a bucket's LP, contributions keep that existing
 LP ID/ticks. ETH-only or ZZZ-only funding
-may need a swap to match the actual range ratio, which is not necessarily 50/50
-and is single-sided outside the range. Review whether entrant-only execution can
-leave unrelated incumbent idle/compound for scheduled work. Do not simply remove
-compound synchronization: old compound, fees and idle must remain in incumbent
-NAV before issuing new shares. Preserve pre-entry harvest/membership checkpoints,
-actual marginal deployed floors and failure rollback. Repeated small top-ups must
-not become an economical way to force undesirable incumbent turnover.
+may need a swap to match the actual range ratio, which is not necessarily50/50
+and is single-sided outside the range. New contributions now balance and deploy
+only their own exact budget, leaving incumbent idle/compound for maintenance.
+Old fees/compound remain synchronized and valued for incumbent membership/share
+pricing; they cannot mask an entrant's underdeployment. The final independent
+LP floor, minimum contribution, caller maximum and all rollback guards still run.
+An existing LP ID/range and rebalance clock do not change on a top-up. The wallet
+transaction includes conversion and actual LP increase; display/artwork must
+wait for its confirmed successful LP state, not an approval or prepared quote.
 
 ## One useful balancing swap before residual correction
 
-Prefer a bounded, full-size quote/ratio solver that normally makes one useful
-swap and then deposits. Compare final deployable liquidity and residual value,
-including fees/impact, rather than solving a fee-free 50/50 split. Current source
-permits at most two passes and skips corrections at or below one basis point of
-available input. That cutoff is not a USD/gas-aware economic test.
-
-Retain a second correction only if it materially improves the deployed result
-after its costs and all existing guards. Do not blindly remove it: historical
-thin-market placement motivated it. Record both directions and outputs, including
-an opposite-direction correction. Never iterate toward zero dust.
+The new helper replaces the old two-pass loop with one bounded route/size plan,
+then zero or one actual swap and LP deployment. Quotes account for actual
+directional fees, traversed liquidity and resulting target ratio, including
+self-pool price movement. Both directions retain exact input/output guards.
+If the bounded search cannot find a usable result, it cannot waive the final
+contribution/maintenance floor. Preserve atomic failure and test thin markets;
+do not add another swap just to chase rounding dust.
 
 Attributed ETH/ZZZ idle is already recoverable through guarded
 `Compounder.compound(bucket,minimumLiquidity,deadline)`, even without fresh fees;
@@ -236,7 +262,8 @@ restart because there is no hot reload. Reconcile pending intents around either
 kind of policy change; a mined transaction cannot be undone by editing config.
 Current rebalance calldata does not bind a historical configuration hash.
 
-This upkeep change modifies versioned Strategy/Budget ABI and keeper/API source;
+This execution change adds an immutable helper/new versioned capability and
+removes the obsolete Budget `balancePlan` ABI. It modifies keeper/API source;
 actual deployments, services, journals, sites, signer policy and funds are unchanged.
-Verification is scoped to the delivered upkeep slice, not economic profitability,
+Verification is scoped to the delivered execution slice, not economic profitability,
 a globally optimal route, a live provider or the deferred timed-replacement design.

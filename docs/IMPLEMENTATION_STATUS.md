@@ -38,7 +38,7 @@ Current [manipulation-related hardening](../reports/manipulation-hardening-20261
 | Shared LP custody | Many NFT share accounts per physical LP; one contribution pool enabled at a time, four permanent historical custody buckets. Marked current LP+attributed idle/compound is separate from contributed USD/rewards. | [Architecture](ARCHITECTURE.md), [Position3](POSITION_V3.md), [dynamic liquidity](DYNAMIC_LIQUIDITY.md) |
 | LP fee allocation | Physically received LP fees split80/10/5/5; individual LP shares/equal activated collective/compound/ZZZ buyback.20raw-unit batches and incumbent dust settlement; no configurable split or Power. | [Economics](ECONOMICS.md), [Fees](../src/ZZZFeeController.sol), [Rewards](../src/ZZZRewards.sol) |
 | Royalties and claims | ERC-2981 requests5%;100%actual eligible royalties use rarity1/2/3, separate from LP. Outage isolation protects old cohorts. Current owner claims; unclaimed balances/fractions follow NFT. Bounded ClaimRouter and separate source-to-ETH converters preserve attribution. | [Settlement](ROYALTY_SETTLEMENT.md), [ClaimRouter](CLAIM_ROUTER.md), [LP settlement](LP_ETH_SETTLEMENT.md) |
-| Maintenance | Shared-position rebalance/compound, bounded two-pass placement and attributed idle reinvestment. Reviewed optional keeper widths +/-25/50% in ZZZ price in ETH; cooldown/price/venue/captured aggregate guards. | [Ranges](RANGE_POLICY_UPDATES.md), [idle](IDLE_AND_DUST.md), [loss limits](EXECUTION_LOSS_POLICY.md) |
+| Maintenance | Shared-position rebalance/compound, LP routing1 bounded reviewed-venue comparison/actual-core sizing, zero/one swap and attributed idle reinvestment. Contributions trade/deploy only entrant funds. Reviewed optional keeper widths +/-25/50% in ZZZ price in ETH; cooldown/price/venue/captured aggregate guards. | [Ranges](RANGE_POLICY_UPDATES.md), [idle](IDLE_AND_DUST.md), [loss limits](EXECUTION_LOSS_POLICY.md) |
 | Governance and containment | One human operator controls the direct governance wallet and services; no separate operator role or multi-person committee. Two-step wallet replacement, guardian pause and limited keeper capabilities remain; no timelock queue/executor. Sealing fixes module/token bindings. Mint-only pause and dependency-free pool disable are implemented. | [Governance](GOVERNANCE.md), [post-seal controls](POST_SEAL_POLICY.md) |
 | Movement and collective return | Native ETH/fixedZZZ same-pair moves/parking before exit; governance may irreversibly close all LP and allocate actual ETH+ZZZ by shares. Isolated direct batches pay current owners; owner fallback handles rejected transfers. No external custody recipient or royalty drain. Pending compound joins principal; rewards/buyback remain separate. | [Holder exit](HOLDER_COLLECTIVE_EXIT.md), [scoped review](../reports/holder-collective-exit-20261027/REVIEW.md) |
 | Collection replacement | Same-chain canonical V5 carries ownership/ledgers/backing with funded abort only before collective exit. Terminal payout ledger is not imported; post-exit preparation/replacement stays blocked even after all principal is paid. | [Canonical handoff](CANONICAL_HANDOFF.md) |
@@ -48,12 +48,18 @@ gas separate and stronger caller/venue minima retained. Raw exit has explicit ra
 minima and no aggregate-loss guarantee. An unqualified route/feed cannot be made
 safe by a documentation claim or simulated example.
 
-The approved timing slice of [operator-selected LP execution](LP_EXECUTION_POLICY.md)
-is implemented; actual rollout and economic qualification remain open. Current
-Vault balancing still uses its LP pool: best-execution route selection and the
-new normally-one-swap solver remain unimplemented. Manual widths, per-currency
-thresholds, growing existing LP and idle reinvestment already exist. The $1m
-per-NFT cap is existing configuration, not a new function or capacity proof.
+[Operator-selected LP execution](LP_EXECUTION_POLICY.md) now includes immutable
+LP routing1: at most four explicitly reviewed ETH/ZZZ execution pools, bounded
+actual-core quotes, best sampled deployed value and zero/one swap independently
+of the LP destination. Contributions swap/deploy only their own budget; old
+idle/compound cannot mask the marginal LP floor. Empty catalog disables swaps
+without fallback. Governance can configure catalog/solver and venue slippage
+up to10%, preserving operating/caller/captured limits. See [atomic LP routing review](../reports/atomic-routing-20261028/REVIEW.md)
+and [verification](../reports/atomic-routing-20261028/VERIFICATION.md). Manual
+widths, hard initial12hours, durable service jitter/hourly eligible checks,
+independent hourly harvest and compound interval remain. Actual rollout, depth,
+gas, economic qualification and independent audit remain open. The $1m per-NFT
+cap is existing configuration, not a capacity proof.
 
 Manual `Vault.rebalance` already exists for keeper-authorized wallets; governance
 alone does not grant that capability. The [documented procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)

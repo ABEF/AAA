@@ -102,6 +102,8 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         pools.activationAssets().configureZZZ(ZZZ,ZZZ.codehash,keccak256("TEST_ONLY_FIXED_ZZZ_REVIEW"));
         assertEq(pools.configureNative(_config()),POOL);
         access.seal();
+        bytes32[] memory catalog=new bytes32[](1);catalog[0]=POOL;
+        manager.balancingRouter().configureExecutionPools(catalog,keccak256("TEST_ONLY_FORK_EXECUTION_CATALOG"));
         strategy.setRangeOrientation(POOL,1);
         vm.deal(address(this),100 ether); vm.deal(ALICE,100 ether); vm.deal(BOB,100 ether);
         deal(ZZZ,address(this),10_000_000 ether);

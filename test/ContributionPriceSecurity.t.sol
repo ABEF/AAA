@@ -15,8 +15,11 @@ contract ContributionCallbackToken is MockToken {
     address private watched;
     uint8 private mode;
     bool private entered;
+    uint256 private approvalResets;
     constructor() MockToken(0) {}
-    function configure(address callback,address account,uint8 behavior) external { target=callback;watched=account;mode=behavior; }
+    function configure(address callback,address account,uint8 behavior) external {
+        target=callback;watched=account;mode=behavior;approvalResets=0;
+    }
     function _update(address from,address to,uint256 amount) internal override {
         super._update(from,to,amount);
         if (!entered && target!=address(0) && mode==1 && to==watched && amount!=0) {
@@ -29,7 +32,9 @@ contract ContributionCallbackToken is MockToken {
     function approve(address spender,uint256 amount) public override returns(bool) {
         bool ok=super.approve(spender,amount);
         if (!entered && target!=address(0) && mode==2 && msg.sender==watched && amount==0) {
-            entered=true;IPriceCallback(target).changeSpot();entered=false;
+            // The first reset closes typed balancing. Exercise the later reset
+            // after LP INCREASE returns, beyond the captured pre-put spot.
+            if(++approvalResets==2){entered=true;IPriceCallback(target).changeSpot();entered=false;}
         }
         return ok;
     }

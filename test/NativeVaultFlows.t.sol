@@ -42,6 +42,7 @@ contract NativeFlowToken is MockToken {
 /// @dev Explicit fake admission. Real Vault, Entry, Strategy, manager and funded
 /// ledgers execute below; this does not qualify Robinhood runtime pins/markets.
 contract NativeFlowRegistry {
+    uint64 public configurationRevision = 1;
     ZZZActivationAssets public immutable activationAssets;
     ZZZActivationEntry public immutable activationEntry;
     ZZZOracle public immutable oracle;
@@ -56,7 +57,7 @@ contract NativeFlowRegistry {
     function get(bytes32) external view returns (PoolConfig memory) { return config; }
     function accounting(bytes32) external view returns (PoolConfig memory) { return config; }
     function isNativePool(bytes32) external pure returns (bool) { return true; }
-    function setRange(uint16 range) external { config.rangeBps = range; }
+    function setRange(uint16 range) external { config.rangeBps = range; ++configurationRevision; }
     function contributionValue(bytes32 pool,uint256 a0,uint256 a1) external view returns (uint256) {
         uint256 original = activationEntry.sourceValue(pool,a0,a1);
         return original != 0 ? original : activationAssets.value(address(0),a0)+activationAssets.value(config.key.currency1,a1);
@@ -112,6 +113,8 @@ contract NativeVaultFlowsTest is Test {
         PoolConfig memory config = pools.get(bytes32(0)); poolId = keccak256(abi.encode(config.key));
         vm.mockCall(address(state),abi.encodeWithSignature("getSlot0(bytes32)",poolId),
             abi.encode(uint160(1 << 96),int24(0),uint24(0),uint24(10020)));
+        bytes32[] memory catalog=new bytes32[](1);catalog[0]=poolId;
+        manager.balancingRouter().configureExecutionPools(catalog,keccak256("TEST_ONLY_NATIVE_FLOW_CATALOG"));
         vm.deal(ALICE,1000 ether); vm.deal(BOB,1000 ether); vm.deal(address(this),1000 ether); vm.deal(address(core),10000 ether);
         token.mint(address(core),10000 ether); token.mint(ALICE,1000 ether); token.mint(BOB,1000 ether);
     }

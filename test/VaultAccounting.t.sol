@@ -20,6 +20,7 @@ import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {Ids,PoolKey,PoolConfig,Position,PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 import {MockAccess,MockToken,MockPools,MockFeed} from "./mocks/Mocks.sol";
+import {IZZZStrategy} from "../src/interfaces/IZZZ.sol";
 contract VaultPolicyMock {
     bool public need=true;
     uint256 public swapAmount;
@@ -42,17 +43,42 @@ contract VaultLiquidityMock is ERC721 {
     uint256 public fee0;uint256 public fee1;
     uint256 public repricingLP;uint256 public repricingGain;
     uint256 public closeLossBps;
+    uint256 public balanceAmount0;uint256 public balanceAmount1;
+    uint256 public balanceReportExtra0;
+    bytes32 private balancingContext;
     // TEST ONLY: inject total close execution loss, not a Uniswap fee model.
     function setCloseLossBps(uint256 value) external {require(value<=10000);closeLossBps=value;}
     mapping(uint256=>uint256) public a0;mapping(uint256=>uint256) public a1;
     constructor(address x,address y)ERC721("Mock venue","MV"){t0=MockToken(x);t1=MockToken(y);}
     function positionManager() external view returns(address){return address(this);}
+    function balanceContext(bytes32) external view returns(bytes32){return balancingContext;}
     function setFees(uint256 x,uint256 y) external {fee0=x;fee1=y;}
     function setSpendBps(uint256 x) external {spendBps=x;}
     function setRepricing(uint256 id,uint256 gain) external {repricingLP=id;repricingGain=gain;}
+    function setBalanceReportExtra0(uint256 amount) external {balanceReportExtra0=amount;}
+    function setBalanceContext(bytes32 context) external {balancingContext=context;}
     // Explicitly artificial quantity repricing to catch share-issuance snapshots
     // taken before an entry swap; this is not a model of Uniswap profitability.
     function swap(bytes32,bool zeroForOne,uint256 amount,uint256,uint256) external returns(uint256) {
+        return _swap(zeroForOne,amount);
+    }
+    // Historical ERC20 accounting fixture only: emulate one typed balancing
+    // operation with the supplied budget. Real route/depth math is tested on v4.
+    function balance(bytes32 pool,uint256 lp,uint256 amount0,uint256 amount1,uint256)
+        external returns(uint256 balanced0,uint256 balanced1) {
+        balanceAmount0=amount0;balanceAmount1=amount1;
+        IZZZStrategy policy=IZZZStrategy(ZZZVault(payable(msg.sender)).access().module(Ids.STRATEGY));
+        bool direction;uint256 input;
+        if(lp==0)(direction,input,)=policy.swapPlan(pool,amount0,amount1);
+        else(direction,input,)=policy.compoundPlan(ZZZVault(payable(msg.sender)).poolBucket(pool),amount0,amount1);
+        balanced0=amount0+balanceReportExtra0;balanced1=amount1;
+        if(input==0)return(balanced0,balanced1);
+        require(input<=(direction?amount0:amount1),"entrant budget");
+        uint256 output=_swap(direction,input);
+        if(direction){balanced0-=input;balanced1+=output;}
+        else{balanced0+=output;balanced1-=input;}
+    }
+    function _swap(bool zeroForOne,uint256 amount) private returns(uint256) {
         if(zeroForOne){require(t0.transferFrom(msg.sender,address(this),amount));t1.mint(msg.sender,amount);}
         else{require(t1.transferFrom(msg.sender,address(this),amount));t0.mint(msg.sender,amount);}
         if(repricingLP!=0){a0[repricingLP]+=repricingGain;t0.mint(address(this),repricingGain);}

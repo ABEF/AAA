@@ -42,6 +42,12 @@ contract CanonicalNativeVenue is ERC721 {
     }
     receive() external payable {}
     function positionManager() external view returns (address) { return address(this); }
+    function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
+    function balance(bytes32,uint256,uint256 x,uint256 y,uint256) external payable returns(uint256,uint256) {
+        require(msg.value==x);
+        if(x!=0){(bool ok,)=msg.sender.call{value:x}("");require(ok);}
+        return(x,y); // Canonical backing fixture; it intentionally has no swap model.
+    }
     function spot(bytes32) external pure returns (uint160) { return uint160(1 << 96); }
     function setFees(uint256 x, uint256 y) external { fee0 = x; fee1 = y; }
     function mint(bytes32, int24, int24, uint256 x, uint256 y, uint128, uint256)

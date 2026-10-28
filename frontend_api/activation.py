@@ -131,6 +131,7 @@ class ActivationTransactions:
         req=parse(payload); p=self.p; cfg=self.config
         req['accounting_version'] = p.accounting_version
         req['routing_version'] = cfg.routing_version
+        req['lp_routing_version'] = cfg.lp_routing_version
         req['pricing_version'] = cfg.pricing_version
         req['review_policy_version'] = cfg.review_policy_version
         if cfg.routing_version == 1 and req['slippage'] > 100:
@@ -160,6 +161,8 @@ class ActivationTransactions:
         if ('0x'+keccak256(bytes.fromhex(''.join(actual[:5]))).hex()!=req['pool'] or actual[1:]!=account[1:] or
                 not _bool(account[5]) or not _bool(account[6])):
             raise ProjectionError('Pool identity/configuration is invalid or contributions are disabled')
+        if not 0 < int(account[10],16) <= (1000 if cfg.lp_routing_version == 1 else 200):
+            raise ProjectionError('Pool swap guard exceeds the explicit LP execution profile')
         native_profile = p.accounting_version in (2, 3, 4)
         req['token0'] = _address_word(account[0], native=native_profile)
         req['token1'] = _address_word(account[1])
@@ -178,7 +181,8 @@ class ActivationTransactions:
                 raise ActivationInputError('Native input is unsupported for this pool')
             if req['source']!=ZERO and actual[0]!=account[0] and int(actual[0],16)!=0:
                 raise ProjectionError('Unexpected accounting token substitution')
-        pins,prices,price_bounds=cfg.verify(p,block,(source,req['token0'],req['token1']),include_bounds=True,timestamp=header['timestamp'])
+        req['lp_execution']={}
+        pins,prices,price_bounds=cfg.verify(p,block,(source,req['token0'],req['token1']),include_bounds=True,timestamp=header['timestamp'],execution_observation=req['lp_execution'])
         req['reviewed_price_bounds']=price_bounds
         req['execution_loss_bps'] = 100
         if cfg.routing_version == 2:
@@ -287,6 +291,8 @@ class ActivationTransactions:
                               'deployment_configuration_sha256':p.identity,'activation_configuration_sha256':cfg.identity,
                               'accounting_version':p.accounting_version,'routing_version':cfg.routing_version,
                               'pricing_version':cfg.pricing_version,
+                              'lp_routing_version':cfg.lp_routing_version,
+                              **({'lp_execution':req['lp_execution']} if cfg.lp_routing_version == 1 else {}),
                               **({'maintenance_policy_version':cfg.maintenance_policy_version}
                                  if cfg.maintenance_policy_version else {}),
                               **({'review_policy_version':1} if cfg.review_policy_version == 1 else {})},

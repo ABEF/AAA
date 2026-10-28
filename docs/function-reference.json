@@ -11,20 +11,21 @@
       "src/ZZZCanonicalHandoff.sol": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
-      "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
+      "src/ZZZContributionPricing.sol": "6ef88cae05538c26f922a65f80d2ece5aca86c47db6f770aab1a2fb48d872d11",
       "src/ZZZCustodyValidation.sol": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "src/ZZZLPBalancer.sol": "e8cd29abccd417c0ccafb652a2c3b2d11e6b68aace76dc5c231babc94b20c885",
       "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
-      "src/ZZZLiquidityManager.sol": "925dd46418ac3145718564437cb2d3f3bb031fd807401d98b1035a20b4720f26",
+      "src/ZZZLiquidityManager.sol": "d9cf317c321063589c672a3c02779c016f2473816a42fc12db9b0d92f5c253a3",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
       "src/ZZZMigration.sol": "93c4f9fe3047d3386864240a4a2c8491953758f5a02524b17b0d0100018157c0",
-      "src/ZZZMigrationBudget.sol": "65a6b58ba521f882e4d9dfc7d325f28a2816f6cae55f19977dd8ea8f50374d0b",
+      "src/ZZZMigrationBudget.sol": "7ef31300bbea4a1311dee161b7bca3fc05f60f5b207db826d6b862bbe3e8fddb",
       "src/ZZZNFT.sol": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
       "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
       "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
       "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
-      "src/ZZZPoolRegistry.sol": "1dc2b885a6e71ba648f5643a6f19bb267cff123862c22cc569efa0688246a24d",
+      "src/ZZZPoolRegistry.sol": "7f106cc708f8a21ef2a2aea2614d9cf9d0506290c52f50ef383002035bc3cbf3",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
@@ -32,12 +33,12 @@
       "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
       "src/ZZZStrategy.sol": "8bf8221eedda2721f6d843f7e8dfc70a007a10ce1270b525c5f94ed2e0dc91ed",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZVault.sol": "9d1b9a7412cee44e9f8e4660e704573d25a2a9c5c952a3865445220fe120e770",
+      "src/ZZZVault.sol": "ad1f5e3439605d51295962743fae2e2997c5ba7824322039ffe5a20cc2ae4c99",
       "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZModule.sol": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
       "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
-      "src/interfaces/IZZZ.sol": "19a21ef3208ba4e65940f12f19cf468cc96217d0d6070f362094db2384d691a7",
+      "src/interfaces/IZZZ.sol": "f163b83f6a2ded36a0bfd3673ba56465c41db5ff900bb5036109458490747a17",
       "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
       "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
@@ -162,6 +163,7 @@
       "src/ZZZCustodyValidation.sol",
       "src/ZZZFeeController.sol",
       "src/ZZZFeesCanonical.sol",
+      "src/ZZZLPBalancer.sol",
       "src/ZZZLPRewardConverter.sol",
       "src/ZZZLiquidityManager.sol",
       "src/ZZZMembership.sol",
@@ -200,9 +202,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "febcf865f0500dfe14607ac10a1740820827c21f8031597d2cb43d5dd6dfa625",
-    "compiler_output_sha256": "a4af7c78dda491c304be3d1910b26779594cd7c6c3ebc63cbe471ecfe15b984f",
-    "size_evidence_sha256": "03af86437997d51776452c2d3e86d039ab1f097bf745e08438e4c931b7aca4d2",
+    "compiler_input_sha256": "6afb4cc75e24757e4b8e0cc78e660483b2708e9fc7cb9d232ffaee765c3264b5",
+    "compiler_output_sha256": "7b8765d0d1bb383b978e4a060511e3ef13d479a65710d5e77817257335ee6040",
+    "size_evidence_sha256": "3a5d47791760280ef2357f07aec2032866d0024a4ab8e908d2c1666dc6a8a9c7",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -4964,6 +4966,744 @@
       ],
       "abi_sha256": "579d9e02d60a615bf2a7118028a3c603997d84414a5fddd96440d8acfbb9b633"
     },
+    "ZZZLPBalancer": {
+      "source": "src/ZZZLPBalancer.sol",
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "controller",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "core",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "state",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [],
+          "name": "CanonicalLocked",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Expired",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidAmount",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidConfiguration",
+          "type": "error"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            }
+          ],
+          "name": "InvalidPrice",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidState",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "LPExitLocked",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "NotReady",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Paused",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Preparing",
+          "type": "error"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "output",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint160",
+              "name": "sqrtAfter",
+              "type": "uint160"
+            }
+          ],
+          "name": "QuoteResult",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Slippage",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Unauthorized",
+          "type": "error"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "targetPool",
+              "type": "bytes32"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "executionPool",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "zeroForOne",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amountIn",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "expectedOutput",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint64",
+              "name": "revision",
+              "type": "uint64"
+            }
+          ],
+          "name": "BalancePlanned",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint64",
+              "name": "revision",
+              "type": "uint64"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32[]",
+              "name": "pools",
+              "type": "bytes32[]"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "ExecutionPoolsConfigured",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint64",
+              "name": "revision",
+              "type": "uint64"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint8",
+              "name": "iterations",
+              "type": "uint8"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint32",
+              "name": "gasLimit",
+              "type": "uint32"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "SolverConfigured",
+          "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "LP_ROUTING_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "MAX_EXECUTION_POOLS",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "access",
+          "outputs": [
+            {
+              "internalType": "contract IZZZAccess",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32[]",
+              "name": "pools",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "configureExecutionPools",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint8",
+              "name": "iterations",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint32",
+              "name": "gasLimit",
+              "type": "uint32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "configureSolver",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "executionPoolAt",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "executionPoolCount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "executionRevision",
+          "outputs": [
+            {
+              "internalType": "uint64",
+              "name": "",
+              "type": "uint64"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "liquidityManager",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "target",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "int24",
+              "name": "lower",
+              "type": "int24"
+            },
+            {
+              "internalType": "int24",
+              "name": "upper",
+              "type": "int24"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount1",
+              "type": "uint256"
+            }
+          ],
+          "name": "plan",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "poolId",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amountIn",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amountOut",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "minimumOut",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "sqrtAfter",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "targetSqrtAfter",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint64",
+                  "name": "revision",
+                  "type": "uint64"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "fingerprint",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct ZZZLPBalancer.Plan",
+              "name": "best",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "target",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "venue",
+              "type": "bytes32"
+            }
+          ],
+          "name": "policyFingerprint",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "poolManager",
+          "outputs": [
+            {
+              "internalType": "contract IPoolManagerMinimal",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "currency0",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "currency1",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "fee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "tickSpacing",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "address",
+                  "name": "hooks",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PoolKey",
+              "name": "key",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bool",
+              "name": "direction",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "quoteCandidate",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "output",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint160",
+              "name": "afterPrice",
+              "type": "uint160"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "quoteGasLimit",
+          "outputs": [
+            {
+              "internalType": "uint32",
+              "name": "",
+              "type": "uint32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "target",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "spot",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "lower",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "upper",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount1",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "uint256",
+                      "name": "lower0",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "upper0",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "lower1",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "upper1",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "scale1",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint160",
+                      "name": "referenceX96",
+                      "type": "uint160"
+                    }
+                  ],
+                  "internalType": "struct ZZZLPBalancer.Prices",
+                  "name": "prices",
+                  "type": "tuple"
+                }
+              ],
+              "internalType": "struct ZZZLPBalancer.Context",
+              "name": "x",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "id",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "direction",
+              "type": "bool"
+            }
+          ],
+          "name": "routePlan",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "poolId",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amountIn",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amountOut",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "minimumOut",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "sqrtAfter",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "targetSqrtAfter",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint64",
+                  "name": "revision",
+                  "type": "uint64"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "fingerprint",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct ZZZLPBalancer.Plan",
+              "name": "best",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint256",
+              "name": "bestValue",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "searchIterations",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "stateView",
+          "outputs": [
+            {
+              "internalType": "contract IStateViewMinimal",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "name": "unlockCallback",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ],
+      "abi_sha256": "cc06dccadb6cdbb6f17c2b1c1db88a792fb0f06fc501ddf0b34269d12b9a3aa2"
+    },
     "ZZZLPRewardConverter": {
       "source": "src/ZZZLPRewardConverter.sol",
       "abi": [
@@ -6008,6 +6748,19 @@
         },
         {
           "inputs": [],
+          "name": "LP_ROUTING_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "access",
           "outputs": [
             {
@@ -6038,6 +6791,82 @@
               "internalType": "uint256",
               "name": "amount1",
               "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "targetPool",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "existingLpId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            }
+          ],
+          "name": "balance",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "balanced0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "balanced1",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "targetPool",
+              "type": "bytes32"
+            }
+          ],
+          "name": "balanceContext",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "balancingRouter",
+          "outputs": [
+            {
+              "internalType": "contract ZZZLPBalancer",
+              "name": "",
+              "type": "address"
             }
           ],
           "stateMutability": "view",
@@ -6355,7 +7184,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "b4a8a8307f05763ad4b6a05ce29d64bd212334f38cec090fe3d63f0746758e21"
+      "abi_sha256": "8fe3069185ed87b408668636556f9fbc6ab03ba98a90269e4383d0e54691aa5a"
     },
     "ZZZMembership": {
       "source": "src/ZZZMembership.sol",
@@ -7908,34 +8737,14 @@
               "internalType": "uint256",
               "name": "id",
               "type": "uint256"
-            },
-            {
-              "internalType": "bool",
-              "name": "existingRange",
-              "type": "bool"
             }
           ],
-          "name": "balancePlan",
+          "name": "balanceContext",
           "outputs": [
             {
-              "internalType": "bool",
-              "name": "zeroForOne",
-              "type": "bool"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountIn",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "minimumOut",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "input",
-              "type": "address"
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
             }
           ],
           "stateMutability": "view",
@@ -8574,7 +9383,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "bffe26ad8aea665557ea4de93f6d868df647a41309c2c33c30cf5ff1016f25a3"
+      "abi_sha256": "9846aa076c5fa19a1040e794e1c8cbdc8f1fbd59b4d4b7a72685a694c90f796d"
     },
     "ZZZNFT": {
       "source": "src/ZZZNFT.sol",
@@ -11706,6 +12515,19 @@
           "type": "function"
         },
         {
+          "inputs": [],
+          "name": "configurationRevision",
+          "outputs": [
+            {
+              "internalType": "uint64",
+              "name": "",
+              "type": "uint64"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [
             {
               "components": [
@@ -12005,7 +12827,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "3f61cae12f3c21e43198286d72518938d5107e654ff01a5757dc5309741ed4ab"
+      "abi_sha256": "9588bb464402f21295372ad8b47de034b2bb1034337553ef24e50e7231f39aac"
     },
     "ZZZPythPriceFeed": {
       "source": "src/ZZZPythPriceFeed.sol",
@@ -18123,7 +18945,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "6629858c744d9d109597473e523f41466692d68bc7f7034a36c4ab1d9a215f7d",
+  "notes_sha256": "9aae4fba6fe46509319490c75c772866305bb88b19fdb64e8af99e72585b85d9",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -24146,6 +24968,989 @@
       ]
     },
     {
+      "name": "ZZZLPBalancer",
+      "source": "src/ZZZLPBalancer.sol",
+      "purpose": "Immutable Manager-created bounded native ETH/fixed-ZZZ LP execution planner. Compares reviewed venues using reverted actual-core quotes, captured independent values and typed fixed-recipient settlement in its parent; it is not a custodian or generic router.",
+      "category": "Project contract",
+      "functions": [
+        {
+          "signature": "constructor(address,address,address)",
+          "kind": "constructor",
+          "name": "constructor",
+          "state_mutability": "nonpayable",
+          "purpose": "Create fixed parent/core/state quote helper; only the Manager creates the release instance.",
+          "access": "Deployment only; msg.sender becomes immutable parent.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "controller",
+              "label": "controller",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Fixed AccessController contract."
+            },
+            {
+              "position": 1,
+              "name": "core",
+              "label": "core",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Reviewed same-v4 PoolManager used by the parent."
+            },
+            {
+              "position": 2,
+              "name": "state",
+              "label": "state",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "StateView contract bound to that core."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "LP_ROUTING_VERSION()",
+          "kind": "function",
+          "name": "LP_ROUTING_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit LP balancing capability1; Entry routing2 is independent.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Version1."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "MAX_EXECUTION_POOLS()",
+          "kind": "function",
+          "name": "MAX_EXECUTION_POOLS",
+          "state_mutability": "view",
+          "purpose": "Read immutable bounded candidate count.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Four reviewed execution pools maximum."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "access()",
+          "kind": "function",
+          "name": "access",
+          "state_mutability": "view",
+          "purpose": "Read the immutable AccessController.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "contract IZZZAccess",
+              "explanation": "Fixed controller address."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "configureExecutionPools(bytes32[],bytes32)",
+          "kind": "function",
+          "name": "configureExecutionPools",
+          "state_mutability": "nonpayable",
+          "purpose": "Replace the complete bounded list of reviewed admitted execution pools. Empty clears swaps without price/core reads; this does not move LP or change its contribution destination.",
+          "access": "Selected governance wallet directly, or valid pre-seal bootstrap; canonical/preparation and terminal principal-exit guards remain. No timelock.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "pools",
+              "label": "pools",
+              "type": "bytes32[]",
+              "canonical_type": "bytes32[]",
+              "internal_type": "bytes32[]",
+              "explanation": "Zero through four unique native ETH/fixed-ZZZ static hookless v4 IDs already admitted and operations-enabled."
+            },
+            {
+              "position": 1,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero hash of independently reviewed configuration/dependency/route evidence."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Admission/list changes after sealing need no Solidity edit. Nonempty admission revalidates prices/fees/bindings. No automatic fallback, arbitrary token, router, calldata or recipient."
+        },
+        {
+          "signature": "configureSolver(uint8,uint32,bytes32)",
+          "kind": "function",
+          "name": "configureSolver",
+          "state_mutability": "nonpayable",
+          "purpose": "Change bounded quote search/gas policy, advancing executionRevision. Does not loosen price, caller or loss guards.",
+          "access": "Selected governance wallet directly, or valid pre-seal bootstrap; canonical/preparation and terminal principal-exit guards remain. No timelock.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "iterations",
+              "label": "iterations",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "4-12 attempts per reviewed venue; initial8."
+            },
+            {
+              "position": 1,
+              "name": "gasLimit",
+              "label": "gasLimit",
+              "type": "uint32",
+              "canonical_type": "uint32",
+              "internal_type": "uint32",
+              "explanation": "100000-300000gas per quote attempt; initial200000."
+            },
+            {
+              "position": 2,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero review-evidence commitment."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "More search may cost more gas. Qualify exact settings/depth/provider gas; this is not an economic safety guarantee."
+        },
+        {
+          "signature": "executionPoolAt(uint256)",
+          "kind": "function",
+          "name": "executionPoolAt",
+          "state_mutability": "view",
+          "purpose": "Read a reviewed venue by index.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "index",
+              "label": "index",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Zero-based index below executionPoolCount; out-of-range reverts."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact PoolKey-derived native ETH/ZZZ pool ID."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionPoolCount()",
+          "kind": "function",
+          "name": "executionPoolCount",
+          "state_mutability": "view",
+          "purpose": "Read the explicit reviewed candidate count. Zero disables swaps with no target fallback.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "0-4 candidate pools."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionRevision()",
+          "kind": "function",
+          "name": "executionRevision",
+          "state_mutability": "view",
+          "purpose": "Read the monotonic reviewed-catalog/solver-policy revision.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint64",
+              "canonical_type": "uint64",
+              "internal_type": "uint64",
+              "explanation": "uint64 revision, also captured in plans."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "liquidityManager()",
+          "kind": "function",
+          "name": "liquidityManager",
+          "state_mutability": "view",
+          "purpose": "Read the immutable parent allowed to request a balancing plan.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Creator LiquidityManager address."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "plan(bytes32,int24,int24,uint256,uint256)",
+          "kind": "function",
+          "name": "plan",
+          "state_mutability": "nonpayable",
+          "purpose": "Compare no-swap and bounded quoted candidates using one independent price vector and actual target ticks; return the best sampled useful deployed value.",
+          "access": "Only immutable authenticated parent LiquidityManager after sealing. Internal integration boundary, not an operator swap.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "target",
+              "label": "target",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted native ETH/fixed-ZZZ LP destination."
+            },
+            {
+              "position": 1,
+              "name": "lower",
+              "label": "lower",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Actual existing or reviewed new lower tick."
+            },
+            {
+              "position": 2,
+              "name": "upper",
+              "label": "upper",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Actual existing or reviewed new upper tick."
+            },
+            {
+              "position": 3,
+              "name": "amount0",
+              "label": "amount0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact available ETH budget in wei, uint128 bounded."
+            },
+            {
+              "position": 4,
+              "name": "amount1",
+              "label": "amount1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact available fixed-ZZZ budget in raw units, uint128 bounded."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "best",
+              "label": "best",
+              "type": "tuple",
+              "canonical_type": "(bytes32,bool,uint256,uint256,uint256,uint160,uint160,uint64,bytes32)",
+              "internal_type": "struct ZZZLPBalancer.Plan",
+              "explanation": "Plan: poolId (zero for no swap), direction, exact input/quoted output/minimum, predicted route/target sqrt prices, execution revision and policy fingerprint.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "poolId",
+                  "label": "poolId",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "amountOut",
+                  "label": "amountOut",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "sqrtAfter",
+                  "label": "sqrtAfter",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "targetSqrtAfter",
+                  "label": "targetSqrtAfter",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "revision",
+                  "label": "revision",
+                  "type": "uint64",
+                  "canonical_type": "uint64",
+                  "internal_type": "uint64",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "fingerprint",
+                  "label": "fingerprint",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": "State-changing ABI because quote calls deliberately revert core changes. No funds settle. Approximate bounded search, not global/exact optimum."
+        },
+        {
+          "signature": "policyFingerprint(bytes32,bytes32)",
+          "kind": "function",
+          "name": "policyFingerprint",
+          "state_mutability": "view",
+          "purpose": "Hash target and optional venue configuration, global Registry revision, desired target ticks/orientation/reference and independent price-source fingerprints.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "target",
+              "label": "target",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted LP destination pool ID."
+            },
+            {
+              "position": 1,
+              "name": "venue",
+              "label": "venue",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted chosen execution pool ID, or zero for target-only context."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Atomic policy/source commitment; not a quote or permission."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "poolManager()",
+          "kind": "function",
+          "name": "poolManager",
+          "state_mutability": "view",
+          "purpose": "Read the immutable v4 core used for reverted quotes.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "contract IPoolManagerMinimal",
+              "explanation": "PoolManager address; authenticate reviewed runtime and parent binding."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "quoteCandidate((address,address,uint24,int24,address),bool,uint256)",
+          "kind": "function",
+          "name": "quoteCandidate",
+          "state_mutability": "nonpayable",
+          "purpose": "Run an authenticated full-input v4 swap quote and decode its exact custom revert; every core price/tick/fee/transient effect is rolled back.",
+          "access": "Only helper self-call from bounded search; other callers revert.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "key",
+              "label": "key",
+              "type": "tuple",
+              "canonical_type": "(address,address,uint24,int24,address)",
+              "internal_type": "struct PoolKey",
+              "explanation": "Typed reviewed static hookless native ETH/fixed-ZZZ PoolKey.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "currency0",
+                  "label": "currency0",
+                  "type": "address",
+                  "canonical_type": "address",
+                  "internal_type": "address",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "currency1",
+                  "label": "currency1",
+                  "type": "address",
+                  "canonical_type": "address",
+                  "internal_type": "address",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "fee",
+                  "label": "fee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "tickSpacing",
+                  "label": "tickSpacing",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "hooks",
+                  "label": "hooks",
+                  "type": "address",
+                  "canonical_type": "address",
+                  "internal_type": "address",
+                  "explanation": null
+                }
+              ]
+            },
+            {
+              "position": 1,
+              "name": "direction",
+              "label": "direction",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True currency0→1, false currency1→0."
+            },
+            {
+              "position": 2,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive exact input raw units, bounded to signed-int128 maximum."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "output",
+              "label": "output",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual quoted raw output after directional LP/protocol fees and impact."
+            },
+            {
+              "position": 1,
+              "name": "afterPrice",
+              "label": "afterPrice",
+              "type": "uint160",
+              "canonical_type": "uint160",
+              "internal_type": "uint160",
+              "explanation": "Quoted post-swap sqrtPriceX96."
+            }
+          ],
+          "native_value": null,
+          "notes": "Quotes hold/transfer no principal and settle no deltas. Gas is spent even though core changes revert."
+        },
+        {
+          "signature": "quoteGasLimit()",
+          "kind": "function",
+          "name": "quoteGasLimit",
+          "state_mutability": "view",
+          "purpose": "Read current per-quote gas budget.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint32",
+              "canonical_type": "uint32",
+              "internal_type": "uint32",
+              "explanation": "Default200000gas; governed100000-300000. Low gas may skip a usable venue."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160)),bytes32,bool)",
+          "kind": "function",
+          "name": "routePlan",
+          "state_mutability": "nonpayable",
+          "purpose": "Evaluate one admitted venue using bounded actual-core quotes, directional fees and resulting LP ratio.",
+          "access": "Only helper self-call inside plan; other callers revert.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "x",
+              "label": "x",
+              "type": "tuple",
+              "canonical_type": "(bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160))",
+              "internal_type": "struct ZZZLPBalancer.Context",
+              "explanation": "Captured Context: target pool, target spot and sqrt bounds, exact amounts, independent lower/upper asset prices/scales/reference.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "target",
+                  "label": "target",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "spot",
+                  "label": "spot",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "lower",
+                  "label": "lower",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "upper",
+                  "label": "upper",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "amount0",
+                  "label": "amount0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "amount1",
+                  "label": "amount1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "prices",
+                  "label": "prices",
+                  "type": "tuple",
+                  "canonical_type": "(uint256,uint256,uint256,uint256,uint256,uint160)",
+                  "internal_type": "struct ZZZLPBalancer.Prices",
+                  "explanation": null,
+                  "components": [
+                    {
+                      "position": 0,
+                      "name": "lower0",
+                      "label": "lower0",
+                      "type": "uint256",
+                      "canonical_type": "uint256",
+                      "internal_type": "uint256",
+                      "explanation": null
+                    },
+                    {
+                      "position": 1,
+                      "name": "upper0",
+                      "label": "upper0",
+                      "type": "uint256",
+                      "canonical_type": "uint256",
+                      "internal_type": "uint256",
+                      "explanation": null
+                    },
+                    {
+                      "position": 2,
+                      "name": "lower1",
+                      "label": "lower1",
+                      "type": "uint256",
+                      "canonical_type": "uint256",
+                      "internal_type": "uint256",
+                      "explanation": null
+                    },
+                    {
+                      "position": 3,
+                      "name": "upper1",
+                      "label": "upper1",
+                      "type": "uint256",
+                      "canonical_type": "uint256",
+                      "internal_type": "uint256",
+                      "explanation": null
+                    },
+                    {
+                      "position": 4,
+                      "name": "scale1",
+                      "label": "scale1",
+                      "type": "uint256",
+                      "canonical_type": "uint256",
+                      "internal_type": "uint256",
+                      "explanation": null
+                    },
+                    {
+                      "position": 5,
+                      "name": "referenceX96",
+                      "label": "referenceX96",
+                      "type": "uint160",
+                      "canonical_type": "uint160",
+                      "internal_type": "uint160",
+                      "explanation": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "position": 1,
+              "name": "id",
+              "label": "id",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "One explicit admitted candidate pool ID."
+            },
+            {
+              "position": 2,
+              "name": "direction",
+              "label": "direction",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True means ETH→ZZZ; false ZZZ→ETH."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "best",
+              "label": "best",
+              "type": "tuple",
+              "canonical_type": "(bytes32,bool,uint256,uint256,uint256,uint160,uint160,uint64,bytes32)",
+              "internal_type": "struct ZZZLPBalancer.Plan",
+              "explanation": "Best valid sampled Plan for this venue, or empty.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "poolId",
+                  "label": "poolId",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "amountOut",
+                  "label": "amountOut",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "sqrtAfter",
+                  "label": "sqrtAfter",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "targetSqrtAfter",
+                  "label": "targetSqrtAfter",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "revision",
+                  "label": "revision",
+                  "type": "uint64",
+                  "canonical_type": "uint64",
+                  "internal_type": "uint64",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "fingerprint",
+                  "label": "fingerprint",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            },
+            {
+              "position": 1,
+              "name": "bestValue",
+              "label": "bestValue",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Useful deployed USD18 value at the captured independent vector."
+            }
+          ],
+          "native_value": null,
+          "notes": "Internal integration surface; raw quoted liquidity is not compared across changing prices."
+        },
+        {
+          "signature": "searchIterations()",
+          "kind": "function",
+          "name": "searchIterations",
+          "state_mutability": "view",
+          "purpose": "Read the current search work bound per venue.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Default8; governed4-12 maximum quote attempts per candidate."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "stateView()",
+          "kind": "function",
+          "name": "stateView",
+          "state_mutability": "view",
+          "purpose": "Read the immutable v4 observation helper.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "contract IStateViewMinimal",
+              "explanation": "StateView address bound to the same PoolManager."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "unlockCallback(bytes)",
+          "kind": "function",
+          "name": "unlockCallback",
+          "state_mutability": "nonpayable",
+          "purpose": "Authenticate pending quote payload/core, execute exact-input simulated swap and deliberately revert QuoteResult(output,sqrtAfter).",
+          "access": "Only immutable PoolManager with the exact active pending payload. Not callable by operator/user.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "data",
+              "label": "data",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "Exact internally armed typed key/direction/input encoding."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "No successful output; valid execution deliberately reverts the quote payload."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        }
+      ]
+    },
+    {
       "name": "ZZZLPRewardConverter",
       "source": "src/ZZZLPRewardConverter.sol",
       "purpose": "Fixed LP rewards-ledger-only executor converting earned ERC20 balances into native ETH. Shares the abstract ZZZRewardConverter implementation, but has its own address, immutable ledger, route policies and storage; no shared custody or new authority.",
@@ -25439,6 +27244,29 @@
           "notes": null
         },
         {
+          "signature": "LP_ROUTING_VERSION()",
+          "kind": "function",
+          "name": "LP_ROUTING_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read LP balancing capability1, separate from Entry source-routing2.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Version1."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "access()",
           "kind": "function",
           "name": "access",
@@ -25502,6 +27330,140 @@
           ],
           "native_value": null,
           "notes": "Excludes separately accrued fees; this is venue math, not independent USD pricing."
+        },
+        {
+          "signature": "balance(bytes32,uint256,uint256,uint256,uint256)",
+          "kind": "function",
+          "name": "balance",
+          "state_mutability": "payable",
+          "purpose": "Atomically balance only the supplied budget using zero or one swap selected from reviewed venues; return exact remaining ETH/ZZZ amounts for subsequent LP deployment.",
+          "access": "Only fixed authorized Vault; sealed/current module, short deadline and enabled native target. No arbitrary recipient.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "targetPool",
+              "label": "targetPool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Actual native ETH/fixed-ZZZ LP destination pool ID."
+            },
+            {
+              "position": 1,
+              "name": "existingLpId",
+              "label": "existingLpId",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Existing Vault-owned physical LP NFT ID, or zero to plan a new target range. Not a PoPL NFT ID."
+            },
+            {
+              "position": 2,
+              "name": "amount0",
+              "label": "amount0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact attributed ETH budget in wei; must equal msg.value."
+            },
+            {
+              "position": 3,
+              "name": "amount1",
+              "label": "amount1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact attributed fixed-ZZZ budget in raw token units; only this amount is pulled."
+            },
+            {
+              "position": 4,
+              "name": "deadline",
+              "label": "deadline",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Unix seconds, execution time through at most600seconds ahead."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "balanced0",
+              "label": "balanced0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact remaining ETH budget, including actual swap output if ZZZ was input."
+            },
+            {
+              "position": 1,
+              "name": "balanced1",
+              "label": "balanced1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact remaining ZZZ budget, including actual swap output if ETH was input."
+            }
+          ],
+          "native_value": "Exactly amount0 native wei. Network gas is separate.",
+          "notes": "Contributions supply only entrant funds; maintenance supplies classified bucket idle. Exact refunds/prefund isolation, source/policy/context, physical LP and post-swap spot checks run after callbacks. No-swap is possible; final Vault marginal-LP/maintenance guards still apply."
+        },
+        {
+          "signature": "balanceContext(bytes32)",
+          "kind": "function",
+          "name": "balanceContext",
+          "state_mutability": "view",
+          "purpose": "Read the immutable Manager/balancer, reviewed catalog/solver revision, target configuration/Registry revision, target range policy and independent source fingerprints for the atomic balance boundary.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "targetPool",
+              "label": "targetPool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Actual admitted target pool ID, keccak256(abi.encode(PoolKey))."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Context hash; any changed policy requires a fresh atomic operation. Not a price or quote."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "balancingRouter()",
+          "kind": "function",
+          "name": "balancingRouter",
+          "state_mutability": "view",
+          "purpose": "Read the immutable Manager-created ZZZLPBalancer; it chooses typed reviewed LP-balancing routes without holding principal.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "contract ZZZLPBalancer",
+              "explanation": "Fixed child helper address, requiring reviewed runtime/parent/core/state pins."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "close(bytes32,uint256,uint256)",
@@ -27870,12 +29832,12 @@
           "notes": "Not an estimate; inconsistent transfers/ownership revert the operation."
         },
         {
-          "signature": "balancePlan(uint256,bool)",
+          "signature": "balanceContext(uint256)",
           "kind": "function",
-          "name": "balancePlan",
+          "name": "balanceContext",
           "state_mutability": "view",
-          "purpose": "Calculate a bounded idle-balancing swap for existing ticks or a new target range.",
-          "access": "Anyone; read-only.",
+          "purpose": "Forward the current LP execution context for a shared bucket so Vault can bind approvals, balancing and resets.",
+          "access": "Only fixed Vault; read-only.",
           "status": "documented",
           "inputs": [
             {
@@ -27885,58 +29847,22 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
-            },
-            {
-              "position": 1,
-              "name": "existingRange",
-              "label": "existingRange",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": "True plans against existing physical ticks; false uses the reviewed new target."
+              "explanation": "Canonical shared bucket ID, not an NFT ID."
             }
           ],
           "outputs": [
             {
               "position": 0,
-              "name": "zeroForOne",
-              "label": "zeroForOne",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": "True swaps currency0→1; false swaps currency1→0."
-            },
-            {
-              "position": 1,
-              "name": "amountIn",
-              "label": "amountIn",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Raw chosen input amount, zero when no justified correction."
-            },
-            {
-              "position": 2,
-              "name": "minimumOut",
-              "label": "minimumOut",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Enforced minimum raw output."
-            },
-            {
-              "position": 3,
-              "name": "input",
-              "label": "input",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual currency address to approve/fund, zero for native ETH."
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Manager execution context hash; never an execution permission."
             }
           ],
           "native_value": null,
-          "notes": "Skips corrections no greater than one basis point of available input; performs no swap. Returns: Direction, raw input, minimum raw output and actual input currency."
+          "notes": null
         },
         {
           "signature": "checkpoint(uint256,uint8)",
@@ -33070,6 +34996,29 @@
           "notes": null
         },
         {
+          "signature": "configurationRevision()",
+          "kind": "function",
+          "name": "configurationRevision",
+          "state_mutability": "view",
+          "purpose": "Read the monotonic pool-policy revision. Every successful configure, dependency-free disable or Strategy range application advances it, including changed-and-restored values.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint64",
+              "canonical_type": "uint64",
+              "internal_type": "uint64",
+              "explanation": "uint64 revision; failed configuration rolls it back."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "configureNative(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))",
           "kind": "function",
           "name": "configureNative",
@@ -33085,7 +35034,7 @@
               "type": "tuple",
               "canonical_type": "((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256)",
               "internal_type": "struct PoolConfig",
-              "explanation": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Price displacement trigger in BPS, at least 100 and strictly below rangeBps.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..200 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap.",
+              "explanation": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Retained historical policy1 movement field, at least100 and below rangeBps; policy2 never uses it to authorize ordinary replacement.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..1000 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap.",
               "components": [
                 {
                   "position": 0,
@@ -38392,7 +40341,7 @@
             }
           ],
           "native_value": null,
-          "notes": null
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
         },
         {
           "signature": "keeperRangePolicy(bytes32)",
@@ -38780,7 +40729,7 @@
             }
           ],
           "native_value": null,
-          "notes": null
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
         },
         {
           "signature": "target(bytes32)",
@@ -41883,9 +43832,9 @@
   ],
   "gaps": [],
   "counts": {
-    "contracts": 31,
-    "functions": 611,
-    "constructors": 31,
+    "contracts": 32,
+    "functions": 634,
+    "constructors": 32,
     "receive_hooks": 13,
     "fallback_hooks": 0,
     "explanation_gaps": 0,

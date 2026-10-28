@@ -62,7 +62,7 @@ retains its source scope. Neither establishes production approval.
 | Questions for the token/pool creator | [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team) - independent ZZZ pricing, token controls and market continuity |
 | Current selected-pool fork | [Current native harness and evidence](reports/current-pool-fork-20261026/VERIFICATION.md) - exact real-pool snapshot, explicit substitutes and remaining qualification |
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
-| Requested next LP execution | [Manual range and best-execution policy](docs/LP_EXECUTION_POLICY.md) - delivered upkeep policy and remaining routing/solver design |
+| LP execution | [Manual range and reviewed-venue execution](docs/LP_EXECUTION_POLICY.md) - delivered upkeep2/compound3 and LP routing1; real depth/gas/operations qualification remains |
 | Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, [manual rebalance](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time), emergency stops and restart procedures |
 | Documentation map | [Current guides and historical references](docs/README.md) |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
@@ -89,6 +89,8 @@ The main activation path separates contribution routing, share accounting and ve
 flowchart LR
     Entry[Activation Entry] --> Vault[Vault: NFT share accounts]
     Vault --> Manager[Liquidity Manager]
+    Manager --> Planner[Immutable LP Balancer: reviewed venues]
+    Planner --> Quotes[Reverted actual-core quotes]
     Manager --> Pool[Uniswap v4: shared LP]
 ```
 
@@ -96,6 +98,7 @@ flowchart LR
 | --- | --- | --- |
 | **NFT identity and artwork** | Records the current owner and immutable revealed traits. Metadata reads the NFT's current attached LP value to select its evolution. | [NFT](src/ZZZNFT.sol), [metadata](src/ZZZNFTMetadata.sol), [trait/reveal design](docs/NFT_METADATA.md) |
 | **Activation and admission** | Reviewed Entry accepts native ETH/fixed ZZZ, binds owner and captured execution policy. Registry admits only native ETH/fixedZZZ LP and one contribution pool at a time; reward conversion venues remain separate. Terminal exit blocks contributions. | [Entry](src/ZZZActivationEntry.sol), [Registry](src/ZZZPoolRegistry.sol) |
+| **LP balancing** | Manager-created LP routing1 compares up to four reviewed ETH/ZZZ venues with bounded actual-core sizing, executes at most one swap and leaves LP custody in Vault. Contributions trade/deploy only their own budget. | [LP Balancer](src/ZZZLPBalancer.sol), [execution policy](docs/LP_EXECUTION_POLICY.md), [scoped evidence](reports/atomic-routing-20261028/VERIFICATION.md) |
 | **Custody and per-NFT shares** | Vault owns the physical LP and records each NFT's nonredeemable shares. Its 8-field local Position replaces unused remote/home copies. LiquidityManager executes typed venue operations; the budget helper checks contribution and maintenance loss limits. | [Vault](src/ZZZVault.sol), [local profile](docs/POSITION_V4.md), [LiquidityManager](src/ZZZLiquidityManager.sol), [budget helper](src/ZZZMigrationBudget.sol) |
 | **LP revenue accounting** | Actual local venue collections feed FeeController. It allocates receipts to holder/collective balances and separate compound/buyback reserves. Membership gives each activated NFT one collective share. | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol) |
 | **Royalties and claims** | RoyaltyRewards preserves per-NFT entitlements, isolates optional currency outages and credits batch-converted ETH to the same NFTs. Current owners claim through either ledger or ClaimRouter. | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [converter](src/ZZZRoyaltyConverter.sol), [ClaimRouter](src/ZZZClaimRouter.sol), [operator flow](docs/ROYALTY_SETTLEMENT.md) |

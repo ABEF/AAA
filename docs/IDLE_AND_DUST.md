@@ -8,11 +8,12 @@ settings and preserve captured operation and raw-output minima.
 
 ## Reduce idle before accepting it
 
-The Vault plans against the actual market and performs **at most two** balancing
-swaps. The second plan reads the actual post-first-swap state, including its new
-price and position ratio. Corrections no greater than 1 bp of that bucket's
-available input are skipped to avoid chasing precision dust. This is a bounded
-improvement, not an optimal router or a guarantee of zero idle in every market.
+Fresh LP routing1 compares up to four explicitly reviewed ETH/ZZZ execution
+venues using bounded reverted actual-core quotes. It selects the best sampled
+deployed value for the actual target ticks and performs **zero or one** real
+balancing swap. A fee-aware seed, depth/post-swap ratio and0.1% retained-value
+early stop replace the old two-pass loop. This does not promise a global optimum
+or zero idle. [Policy and configuration](LP_EXECUTION_POLICY.md).
 
 Each swap keeps exact approvals, raw input/output deltas, typed venue binding,
 fresh pricing and output minimums. Final source-price/policy/LP checks still run.
@@ -72,7 +73,12 @@ or replace pause/lifecycle, simulation, price, gas or execution guards.
 Rebalance eligibility still uses `lastRebalance` alone: a recent compound cannot
 postpone an eligible rebalance. Harvesting, funded claims and ordinary user
 activation/top-ups do not acquire this standalone-compound wait. Their normal
-guards remain, including harvesting/reinvesting reserves inside contributions.
+guards remain. Entry harvests/checkpoints old fees and releases old compound into
+incumbent idle/NAV, but only swaps and deploys the entrant's own exact budget.
+Old idle/compound remains available for subsequent guarded maintenance. It
+cannot satisfy the entrant's marginal LP floor. If accumulated incumbent idle
+exceeds the separate whole-bucket ceiling, compound it before accepting new
+entries; do not use a new depositor to bypass that safety limit.
 A failed compound rolls back `lastCompound` and all changes. This checkpoint is
 local operating state, not an imported NFT entitlement. Explicit historical
 accounting1/2/3 deployments retain their original capability1 behavior.
@@ -106,15 +112,15 @@ backing, runtime and pending-journal review; never reset a journal to force work
 
 ## Requested execution improvements
 
-[Current design review](LP_EXECUTION_POLICY.md) requests the best approved swap
-venue independently of the LP target, a depth-aware normally-one-swap plan and
-material-benefit-only residual correction. These are not implemented routing or
-solver features. Current contributions already keep the LP ID/ticks but can
-balance incumbent idle/compound; changing that requires preserving incumbent NAV,
-old fee membership and actual marginal deployed accounting. Attributed idle is
-already reinvestable through the guarded compound path above; no generic sweep
-is needed or authorized. Per-currency thresholds already exist; actual economic
-values remain to be qualified.
+[Current execution policy](LP_EXECUTION_POLICY.md) now implements reviewed venue
+selection independently of the LP target, bounded depth-aware sizing and entrant
+isolation. [Scoped review](../reports/atomic-routing-20261028/REVIEW.md) distinguishes
+these source changes from real economic/route qualification. Contributions keep
+the current LP ID/ticks and preserve old fee membership/share value. Attributed
+idle remains reinvestable through the guarded compound path above; no generic
+sweep is needed or authorized. Enabled keeper scheduling must include reviewed
+idle thresholds if contribution-released reserves are to be picked up while no
+fresh fees arrive. Actual thresholds/gas remain to be qualified.
 
 ## Qualification boundary
 

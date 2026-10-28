@@ -212,6 +212,16 @@ subject to the independent-reference deviation guard. These checks bound
 execution; they do not eliminate market risk, impermanent loss or every possible
 MEV cost within an explicitly allowed execution budget.
 
+Fresh LP routing1 additionally binds source fingerprints, full Registry policy
+and monotonic revision, reviewed execution revision and derived target ticks
+across Vault approvals/balancing/resets. Actual-core quotes revert simulated
+state; the selected exact-input swap must match quoted output/post-price.
+Only the entrant budget can be swapped and deployed. Old idle/compound remains
+in incumbent NAV, but only repriced old physical LP is subtracted from the final
+physical LP to measure new deployment. Exact raw deltas exclude prefund subsidy.
+See [routing review](../reports/atomic-routing-20261028/REVIEW.md). These are
+execution protections, not new Oracle providers or independence qualification.
+
 ## Availability, recovery and release qualification
 
 An unhealthy price dependency stops new activation/growth, price-dependent

@@ -129,6 +129,17 @@ class Keeper:
             raise ValueError('Unsupported keeper maintenance policy version')
         if self.maintenance_policy_version == 2 and self.adaptive_range_enabled:
             raise ValueError('Outside-only policy requires operator-selected ranges')
+        self.lp_routing_version = config.get('lp_routing_version',0)
+        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0,1):
+            raise ValueError('Unsupported keeper LP-routing profile')
+        if self.lp_routing_version == 1:
+            if self.accounting_version != 4 or self.maintenance_policy_version != 2:
+                raise ValueError('LP routing requires explicit accounting4 and maintenance2')
+            for role in ('liquidity','balancing_router','pool_manager','state_view'):
+                if role not in self.contracts: raise ValueError('Missing reviewed LP execution contract: '+role)
+                pin=config.get('code_hashes',{}).get(role,'')
+                if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16)==0:
+                    raise ValueError('Missing reviewed LP execution runtime: '+role)
         if self.adaptive_range_enabled and (type(adaptive.get('policy_version')) is not int or adaptive['policy_version'] != 1):
             raise ValueError('Adaptive range requires the explicit reviewed policy version 1')
         if 'positions' in config or config.get('accounting_model',ACCOUNTING_MODEL) != ACCOUNTING_MODEL:
@@ -219,6 +230,10 @@ class Keeper:
             self._validate_signer()
             self._validate_code_hashes()
             self._validate_accounting_version()
+            # Receipt recovery needs no new balancing decision. Preserve the
+            # saved intent through a helper-read outage; every later balance
+            # action still rechecks this capability before simulation/signing.
+            if not self.state.get('pending'): self._validate_lp_routing()
             self._validate_checkpoint()
 
     def _validate_state(self) -> None:
@@ -324,6 +339,7 @@ class Keeper:
         if self.config.get('reviewed_for_live_use') is not True: raise ValueError('Review configuration before initialization')
         self._validate_code_hashes()
         self._validate_accounting_version()
+        self._validate_lp_routing()
         self._head()
         for tag in ('latest','pending'):
             if rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,tag]),'initial nonce') != 0:
@@ -510,6 +526,36 @@ class Keeper:
                 raise RpcError('Outside-only module binding differs from the reviewed profile')
         if self.view('strategy','MAINTENANCE_POLICY_VERSION()') != 2:
             raise RpcError('Outside-only maintenance policy version differs')
+
+    def _validate_lp_routing(self) -> None:
+        """Fresh helper metadata and runtimes use one canonical, read-only block."""
+        if self.lp_routing_version != 1: return
+        from zzz_ops.lp_execution import observe
+        header=self.rpc.call('eth_getBlockByNumber',['latest',False])
+        if not isinstance(header,dict): raise RpcError('Missing LP execution header')
+        block={'blockHash':rpc_hash(header.get('hash'),'LP execution block hash'),'requireCanonical':True}
+        rpc_quantity(header.get('number'),'LP execution block number')
+        if abs(time.time()-rpc_quantity(header.get('timestamp'),'LP execution timestamp',minimum=1))>600:
+            raise RpcError('Stale LP execution snapshot')
+        def read(target,method,*args):
+            return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(method,*args)},block]))
+        try:
+            for role in ('access','pools','liquidity','balancing_router','pool_manager','state_view'):
+                expected=self.config.get('code_hashes',{}).get(role,'')
+                code=self.rpc.call('eth_getCode',[self.contracts[role],block])
+                if (not isinstance(expected,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',expected) or
+                        not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or
+                        '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=expected.lower()):
+                    raise ValueError('LP execution runtime differs')
+            for role,label in (('pools','ZZZPoolRegistry'),('liquidity','ZZZLiquidityManager')):
+                if (read(self.contracts['access'],'module(bytes32)','0x'+keccak256(label.encode()).hex())!=[f'{int(self.contracts[role],16):064x}'] or
+                        read(self.contracts[role],'access()')!=[f'{int(self.contracts["access"],16):064x}']):
+                    raise ValueError('LP execution module binding differs')
+            self.lp_execution_observation=observe(read,liquidity=self.contracts['liquidity'],
+                router=self.contracts['balancing_router'],pool_manager=self.contracts['pool_manager'],
+                state_view=self.contracts['state_view'],access=self.contracts['access'],pools=self.contracts['pools'])
+        except (ValueError,TypeError,KeyError) as exc:
+            raise RpcError('LP execution capability differs from the reviewed profile') from exc
 
     def _store_rebalance_schedule(self,bucket: int,record: dict[str,Any] | None) -> None:
         # Durability precedes both waiting and any eventual signer. A failed save
@@ -934,6 +980,9 @@ class Keeper:
             log('shutdown_before_submission',action=key); return False
         self._validate_accounting_version()
         if self._defer_for_lifecycle(name,signature): return False
+        lp_balance_action=(name,signature) in (('vault','rebalance(uint256,uint128,uint256)'),
+            ('compounder','compound(uint256,uint128,uint256)'))
+        if lp_balance_action:self._validate_lp_routing()
         if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
         if self.live: self._validate_checkpoint()
         _,timestamp = self._head()
@@ -977,6 +1026,7 @@ class Keeper:
             return False
         # Revalidate code after simulation and before signing; stop on mutable deployments.
         self._validate_code_hashes()
+        if lp_balance_action:self._validate_lp_routing()
         nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),'pending nonce')
         latest_nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'latest']),'latest nonce')
         if nonce != latest_nonce or nonce != self.state.get('next_nonce'):
@@ -1457,6 +1507,7 @@ class Keeper:
                     maintenance_failed = False
                     if not preparing:
                         try:
+                            self._validate_lp_routing()
                             if self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):
                                 if self.submit('strategy','applyKeeperRange(bytes32)',('0x'+fields[0],),f'range_policy:{bucket}'): return
                             if self._rebalance_due(bucket,fields,fresh):

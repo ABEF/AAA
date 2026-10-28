@@ -52,6 +52,13 @@ previously earned rewards. [Exit procedure](HOLDER_COLLECTIVE_EXIT.md).
 
 ## Independent safeguards and version boundaries
 
+Fresh LP routing1 removes the former hard2% venue ceiling: governance can set
+pool `maxSlippageBps` within1-1000, without changing its operating value
+automatically. A selected balancing route obeys the tighter target/venue guard,
+plus captured contribution/maintenance and caller minima. Catalog/solver policy
+does not waive these guards. Historical LP routing0 configuration readers keep
+their old200bps ceiling. [Exact operator procedure](OPERATOR_MANUAL.md#add-or-remove-an-execution-pool-after-sealing).
+
 Venue slippage/deviation checks, caller minima, exact balances, actual LP,
 available reserves and the existing 5% idle ceiling still apply. A 10% aggregate
 setting does not override a stricter venue check. Per-operation limits do not

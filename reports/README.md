@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Atomic LP routing and entrant isolation,2026-10-28](atomic-routing-20261028/VERIFICATION.md):
+immutable bounded reviewed venues, actual-core sizing/quote rollback, zero/one
+swap, entrant-only execution and exact context/balance guards. Explicit API/keeper
+capabilities preserve historical profiles. Actual market/depth/gas/ordering,
+service rollout and independent audit remain open; no deployment or service change.
+
 [Outside-only upkeep / independent compound,2026-10-27](maintenance-policy-20261027/VERIFICATION.md): Strategy2/Budget3, durable service jitter, matching API profile and explicit historical readers;100affected Solidity methods,396Python passes/2skips and37normal gates. No service/deployment or economic-profitability approval.
 
 [Manipulation-related hardening, 2026-10-27](manipulation-hardening-20261027/VERIFICATION.md): paid-revert health correction, post-callback keeper/pause completion checks and explicitly open economic/ordering qualification. No service or deployment change.

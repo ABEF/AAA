@@ -81,6 +81,11 @@ interface IZZZStrategy {
         external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut);
 }
 interface IZZZLiquidity {
+    function balanceContext(bytes32 poolId) external view returns (bytes32);
+    /// @notice Balance only the supplied attributed budget against the current
+    /// target position, selecting one admitted execution venue atomically.
+    function balance(bytes32 poolId, uint256 tokenId, uint256 amount0, uint256 amount1, uint256 deadline)
+        external payable returns (uint256 balanced0, uint256 balanced1);
     function mint(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1,
         uint128 minimumLiquidity, uint256 deadline) external payable returns (uint256 tokenId, uint256 spent0, uint256 spent1);
     function increase(bytes32 poolId, uint256 tokenId, uint256 amount0, uint256 amount1,
