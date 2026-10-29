@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "baseline": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "historical_report_files_checked": 2360,
+  "historical_report_changes": [],
+  "preserved_unrelated_dirty_paths": [
+    "reports/source-checks.json",
+    "scripts/run-fork-checks.py",
+    "tests_python/test_fork_runner.py",
+    "tests_python/test_frontend_history.py"
+  ],
+  "dirty_changes": [],
+  "current_compiler_source_dependency_build_pins": 82,
+  "compiler_pin_mismatches": [],
+  "artifact_pin_mismatches": [],
+  "guide_files_checked": 102,
+  "local_links_checked": 2269,
+  "local_link_failures": [],
+  "python_files_parsed": [
+    "frontend_api/history.py",
+    "keeper/monitor.py",
+    "scripts/check-slither-review.py",
+    "scripts/run-keeper-tests.py",
+    "scripts/run_python_tests.py",
+    "scripts/source_checks.py",
+    "zzz_ops/evidence.py",
+    "tests_python/test_history_block_chronology.py",
+    "tests_python/test_keeper_bucket_fault_reset.py",
+    "tests_python/test_keeper_telemetry_completion.py",
+    "tests_python/test_static_evidence_admission.py",
+    "tests_python/test_verification_output_ownership.py"
+  ],
+  "python_parse_failures": [],
+  "task_ids": 72,
+  "task_id_changes": [],
+  "task_status_changes": [],
+  "checks": {
+    "todo": {
+      "exit_code": 0,
+      "stdout": "Project Todo verified.",
+      "stderr": ""
+    },
+    "callable_reference": {
+      "exit_code": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 33, \"functions\": 696, \"constructors\": 33, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}",
+      "stderr": ""
+    }
+  },
+  "website_head": "997f8c3524ea75d613dbb752f67b33a69fe7992f",
+  "website_tracked_status": "",
+  "branch": "main",
+  "intended_stage_count": 106,
+  "no_tests_repeated_by_consistency": true,
+  "no_installed_service_site_anvil_journal_signer_or_heartbeat_changes": true,
+  "staged_whitespace_and_remote_publication": "Checked separately after exact allowlist stage; this record makes no remote publication claim.",
+  "successful": true
+}

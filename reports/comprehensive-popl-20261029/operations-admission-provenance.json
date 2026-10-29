@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "family": "Verification source provenance before imports",
+  "baseline": "The output-admission repair was already present; original-to-final preimages saved independently.",
+  "before": "admission-provenance-before.json",
+  "before_methods": 3,
+  "before_failed_methods": 3,
+  "final": "admission-provenance-final.json",
+  "final_methods": 8,
+  "final_passes": 8,
+  "final_failures": 0,
+  "final_errors": 0,
+  "final_skips": 0,
+  "final_source_drift": [],
+  "changes": [
+    "Both runner mains capture inputs() before select_tests(), inside already reserved evidence context. Import-time persistent changes no longer become an apparently unchanged starting snapshot.",
+    "Keeper inputs include scripts/*.py regardless of module loader alias/name, preserving existing package, fixture and selected identity checks."
+  ],
+  "meaningful_checks": [
+    "A private temporary source file changes while selecting/importing tests in each runner; both return unsuccessful and preserve before/after hash drift.",
+    "A copied isolated runner inventory includes a lazy script helper absent from sys.modules prefixes.",
+    "Five relevant existing list/selection/duplicate and source-drift controls preserve exact methods/order and no-execution-log inventory behavior."
+  ],
+  "no_real_project_suite_or_operating_action": true,
+  "current_source_sha256": {
+    "scripts/run-keeper-tests.py": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+    "scripts/run_python_tests.py": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+    "scripts/source_checks.py": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+    "zzz_ops/evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+    "tests_python/test_verification_output_ownership.py": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978"
+  },
+  "old_admission_reuse": {
+    "record": "admission-final-focused.json",
+    "methods": 35,
+    "passes": 33,
+    "platform_skips": 2,
+    "followup_does_not_rerun_whole_record": true,
+    "overlapping_followup_methods": [
+      "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_list_cli_writes_inventory_without_executing_selected_methods",
+      "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_only_defined_classes_selected_and_aliases_not_duplicated",
+      "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_imported_cases_and_aliases_do_not_execute_again",
+      "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_list_mode_never_runs_tests_and_does_not_create_pass_log",
+      "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_source_drift_cannot_report_success"
+    ],
+    "distinct_combined_outer_methods": 38,
+    "note": "The two source-stage runs are not one fresh35/38-method run. Helper/source-check producer behavior is unchanged, and prior16admission test bodies remain unchanged; new8checks bind the changed runner entry/input paths."
+  },
+  "remaining": "A broad before/after source-file inventory is not runtime attestation, a lock against concurrent mutation, proof that every possible loaded dependency was hashed or authentication against malicious source changes restored between samples.",
+  "old_admission_test_body_identity": {
+    "old_methods": 16,
+    "all_existing_test_bodies_unchanged": true,
+    "new_methods": [
+      "test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass",
+      "test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names",
+      "test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass"
+    ]
+  }
+}

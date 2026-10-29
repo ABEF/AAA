@@ -1,0 +1,14 @@
+test_failed_analyzer_log_capture_never_reaches_review (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_failed_analyzer_log_capture_never_reaches_review) ... FAIL
+
+======================================================================
+FAIL: test_failed_analyzer_log_capture_never_reaches_review (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_failed_analyzer_log_capture_never_reaches_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 191, in test_failed_analyzer_log_capture_never_reaches_review
+    self.assertNotEqual(result.returncode,0)
+AssertionError: 0 == 0
+
+----------------------------------------------------------------------
+Ran 1 test in 0.712s
+
+FAILED (failures=1)

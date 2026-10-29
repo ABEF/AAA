@@ -1,0 +1,31 @@
+{
+  "exit_code": 0,
+  "selected": [
+    "tests_python.test_static_evidence_admission",
+    "tests_python.test_slither_review.SlitherReviewTests.test_complete_review_accepts_only_unchanged_analysis",
+    "tests_python.test_slither_review.SlitherReviewTests.test_source_drift_and_new_source_require_review"
+  ],
+  "new_methods": 13,
+  "existing_controls": 2,
+  "distinct_methods": 15,
+  "source_before": {
+    "scripts/verify-slither.sh": "da2409d97fdef314bf78fdcf025572167874aadc01b66d5dcc9b59ff0fbd75d9",
+    "scripts/check-slither-review.py": "4eff9143df183127ef5fd0d788bc36118c2aa675201c9872aa86582425d6d2a4",
+    "tests_python/test_static_evidence_admission.py": "0f0d828638e12d4a5cadb13e0d589b27d9d00c549c082471443676d01a0654b5",
+    "tests_python/test_slither_review.py": "1149da43982a6dd9e425daa1c92af3deffd9f4e3a707eaa905794efb95901ca0",
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    ".github/workflows/verify.yml": "9a14fc5ee62f66a23e8e181efd8fc8d2cb9b42a91e8b97089348d4542ffc6804"
+  },
+  "source_after": {
+    "scripts/verify-slither.sh": "da2409d97fdef314bf78fdcf025572167874aadc01b66d5dcc9b59ff0fbd75d9",
+    "scripts/check-slither-review.py": "4eff9143df183127ef5fd0d788bc36118c2aa675201c9872aa86582425d6d2a4",
+    "tests_python/test_static_evidence_admission.py": "0f0d828638e12d4a5cadb13e0d589b27d9d00c549c082471443676d01a0654b5",
+    "tests_python/test_slither_review.py": "1149da43982a6dd9e425daa1c92af3deffd9f4e3a707eaa905794efb95901ca0",
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    ".github/workflows/verify.yml": "9a14fc5ee62f66a23e8e181efd8fc8d2cb9b42a91e8b97089348d4542ffc6804"
+  },
+  "source_drift": false,
+  "scope": "Actual CLI/Bash; subordinate analyzer/compiler/checker tools inert for shell tests; no real Slither/Forge/network/services",
+  "harness_correction": "Initial tee fault was not reached because Git Bash prepends system tools. Final fixture explicitly selects inert tools in Bash and asserts injection reached tee. Initial failed attempt retained; counts not added.",
+  "tail": "existing_requested_directory_is_refused_before_analyzer (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_existing_requested_directory_is_refused_before_analyzer) ... ok\ntest_failed_analyzer_log_capture_never_reaches_review (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_failed_analyzer_log_capture_never_reaches_review) ... ok\ntest_findings_exit_reaches_checker_and_review_failure_propagates (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_findings_exit_reaches_checker_and_review_failure_propagates) ... ok\ntest_wrong_analyzer_version_stops_without_analysis (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_wrong_analyzer_version_stops_without_analysis) ... ok\ntest_complete_review_accepts_only_unchanged_analysis (tests_python.test_slither_review.SlitherReviewTests.test_complete_review_accepts_only_unchanged_analysis) ... ok\ntest_source_drift_and_new_source_require_review (tests_python.test_slither_review.SlitherReviewTests.test_source_drift_and_new_source_require_review) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 5.848s\n\nOK\n"
+}

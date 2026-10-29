@@ -1,0 +1,35 @@
+{
+  "baseline": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "domain": "contracts",
+  "stage": "understanding complete; composed review in progress",
+  "architecture": [
+    "One fixed native ETH/ZZZ shared LP per bucket, one enabled contribution destination and at most4permanent bucket identities; aliases are independent lifetime history.",
+    "Nonredeemable NFT shares issued from actual net added NAV after incumbent fee checkpoints and actual entrant-only marginal deployment; live current owner inherits accrued rights.",
+    "Funded80/10/5/5 harvest allocation, separate actual royalty receipt indices at fixedrarity1/2/3, independent conversion/reserve maintenance and claims.",
+    "Policy2 hard minimum/outside or deliberate width change; confirmation2 same-side physical/reference samples; service scheduling differs from contract permissions.",
+    "Paused governance optional-guard emergency1 is separate from daily keeper; native custody3 terminal holder return differs from pre-exit6-domain same-chain canonicalV5handoff."
+  ],
+  "invariants": [
+    "Raw custody backs all classified principal/idle/reserves/liabilities/quarantine.",
+    "Entrants cannot receive old LP/royalty receipts or existing principal through repricing/callbacks.",
+    "Controls captured before external calls cannot be widened by callbacks.",
+    "Claims and conversions never create new income or consume another NFT rights.",
+    "Terminal principal retirement never reopens, existing claims/transfers/royalties persist.",
+    "Canonical funding/abort/retirement has one authority and exact backing; prefunds do not discharge absent source funds."
+  ],
+  "critique1": [
+    "Generic migration/upgrade coverage must be split into supported same-pair move, parking, terminal return and six-domain pre-exit replacement.",
+    "Do not resurrect bridges/remote ledgers/inboxes/stable inputs or prescribe a committee/timelock contrary to established requirements.",
+    "Source review and previous body coverage are navigation/evidence only, not fresh execution; new review prioritizes cross-module failure sequences."
+  ],
+  "critique2": [
+    "Prove new financial defects with minimal executable witnesses before altering behavior; distinguish accepted governance/emergency trust from an unprivileged exploit.",
+    "Preserve37byte Manager initcode and59byte Vault runtime margin, exact profiles and incompatible old services/journals.",
+    "Retain repeated post-callback checks unless equivalence is actually shown; keep frozen report outcomes and external qualification open."
+  ],
+  "unresolved": [
+    "Production dual-source inputs, feeds/upstream controls, route depth/fees, VRF and authorities remain unqualified.",
+    "OpenSea primary integration, max-state chain gas, strict-cadence operating and independent audit cannot be closed by this local review."
+  ],
+  "changes_authorized": "No Solidity edits until parent coordinates; no services, deployments or transactions. New owned test/tooling only for confirmed useful gaps."
+}

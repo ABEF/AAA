@@ -12,6 +12,9 @@ interface INativeVenueBindings {
     function stateView() external view returns (address);
     function permit2() external view returns (address);
 }
+interface ICollectiveExitPhase {
+    function exitPhase() external view returns (uint8);
+}
 
 /// @notice Append-only pool identities; bounded strategy parameters are governed.
 /// Native support is restricted to static, hookless ETH/ZZZ on pinned Robinhood v4.
@@ -40,12 +43,26 @@ contract ZZZPoolRegistry is ZZZModule {
         activationAssets = ZZZActivationAssets(ZZZActivationAssetsFactory(access.activationAssetsFactory()).create());
         activationEntry = new ZZZActivationEntry(controller, address(this), address(activationAssets));
     }
+    modifier nativeConfiguration(bool depositsEnabled) {
+        _checkNativeConfiguration(depositsEnabled);
+        _;
+        _checkNativeConfiguration(depositsEnabled);
+    }
+    function _checkNativeConfiguration(bool depositsEnabled) private view {
+        // Migration.Ready (3) means every bucket is closed and principal is
+        // allocated. Only remaining protocol reserves may use a restored/new
+        // venue; terminal Vault locks cannot be reopened by this configuration.
+        if (access.lpExitStarted() && (depositsEnabled ||
+            ICollectiveExitPhase(access.module(Ids.MIGRATION)).exitPhase() != 3)) revert LPExitLocked();
+    }
     /// @notice Admit a static hookless ETH/ZZZ pool, including future fee tiers.
     /// The selected launch identity does not prevent governed moves after sealing.
     /// Only native ETH/fixed ZZZ LP is admitted: every funded bucket must remain
     /// settleable to holders as ETH + ZZZ. ERC20 conversion venues are separate.
     /// Runtime/wiring are rechecked on every accounting/isNativePool read.
-    function configureNative(PoolConfig calldata config) external onlyGovernance principalOperating returns (bytes32 poolId) {
+    /// After completed collective exit only deposits-disabled venue admission
+    /// remains available, so the separate buyback reserve need not be stranded.
+    function configureNative(PoolConfig calldata config) external onlyGovernance nativeConfiguration(config.depositsEnabled) returns (bytes32 poolId) {
         PoolKey memory key = config.key;
         if (key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000 ||
             activationAssets.zzz() != ZZZ) {
@@ -148,7 +165,7 @@ contract ZZZPoolRegistry is ZZZModule {
         _nativeBindings();
         return true;
     }
-    function _nativeBindings() private view {
+    function _nativeBindings() internal view virtual {
         if (block.chainid != 4663 ||
             CORE.codehash != 0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626 ||
             POSM.codehash != 0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2 ||

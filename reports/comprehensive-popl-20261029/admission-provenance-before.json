@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "utc": "2026-10-29T21:32:59.825706+00:00",
+  "selected_methods": [
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass"
+  ],
+  "executed_methods": [
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass"
+  ],
+  "tests_run": 3,
+  "failures": 3,
+  "errors": 0,
+  "skipped": [],
+  "successful": false,
+  "source_sha256_before": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-popl-20261029\\run_admission_checks_v3.py": "a02ce79c56c0ce9bc46c12e9c70043ca98ec933004b183b750c467400eac7887",
+    "scripts\\run-keeper-tests.py": "12b8a6c4a4c94d4845ab6386074978324c7999d858d957470c1da0540f021d30",
+    "scripts\\run_python_tests.py": "101fd5b00e243455946757ffa60329e78ecd331b6b5feec176f7423c74da35ff",
+    "scripts\\source_checks.py": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+    "tests_python\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python\\test_verification_output_ownership.py": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978",
+    "zzz_ops\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops\\evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1"
+  },
+  "source_sha256_after": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-popl-20261029\\run_admission_checks_v3.py": "a02ce79c56c0ce9bc46c12e9c70043ca98ec933004b183b750c467400eac7887",
+    "scripts\\run-keeper-tests.py": "12b8a6c4a4c94d4845ab6386074978324c7999d858d957470c1da0540f021d30",
+    "scripts\\run_python_tests.py": "101fd5b00e243455946757ffa60329e78ecd331b6b5feec176f7423c74da35ff",
+    "scripts\\source_checks.py": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+    "tests_python\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python\\test_verification_output_ownership.py": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978",
+    "zzz_ops\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops\\evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1"
+  },
+  "source_drift": [],
+  "scope": "Only explicit canonical outer methods. Inner runner bodies are inert generated sentinels or --list inventories; no real project regression campaign, EVM, RPC, signer, service, Anvil or operating state.",
+  "evidence_status": "complete",
+  "completion_recorded": true
+}

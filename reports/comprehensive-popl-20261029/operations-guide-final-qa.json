@@ -1,0 +1,204 @@
+{
+  "task": "Read-only final operations guide/source consistency QA",
+  "captured_at_utc": "2026-10-29T21:46:30.633502+00:00",
+  "scope": {
+    "repo_edits": 0,
+    "tests_executed": 0,
+    "service_or_chain_actions": 0,
+    "review_type": "Source and documentation read only; no fresh execution or operating qualification",
+    "concurrent_root_edits": "Hashes capture this QA snapshot. Root acknowledged and will correct listed issues; not a claim that later bytes were re-reviewed."
+  },
+  "files": {
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "b29b3f30023b5803295fc0244b7d45d90441402cc4cc830790be566fb9dafaf8",
+      "lines": 1616
+    },
+    "docs/HOLDER_COLLECTIVE_EXIT.md": {
+      "sha256": "5c15c5afea8d30653276786f26792817f991c7ef264ca53a53214d9329a7c61f",
+      "lines": 136
+    },
+    "docs/DEVELOPMENT.md": {
+      "sha256": "2ae9a7223cb1a32db3bac385bb6acc9c2f1261d4849fb20b22597152a03f1544",
+      "lines": 180
+    },
+    "docs/KEEPER_COORDINATION.md": {
+      "sha256": "35e36b0514b82d9f5769110837da2e125a91fd8c66ae70f7b4a8d8ef3475a41d",
+      "lines": 156
+    },
+    "reports/comprehensive-popl-20261029/REVIEW.md": {
+      "sha256": "d0da0351f2db8d1be0bfaaa484ccd23d9019b969c6ea8078afb0ee9db99eecdf",
+      "lines": 163
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "c7b18b134902df1f37d1cfcd50a9ea3936fb24bcd5341cab7d64fdd97ce4ff9d",
+      "lines": 186
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "lines": 72
+    },
+    "src/base/ZZZModule.sol": {
+      "sha256": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "lines": 97
+    },
+    "keeper/rebalance_confirmation.py": {
+      "sha256": "b8a0382f1f13cc44bcc4930c9e499ba49c13ba111d60acc1dcb2ca30bfa27d33",
+      "lines": 135
+    },
+    "keeper/monitor.py": {
+      "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+      "lines": 2357
+    }
+  },
+  "findings": [
+    {
+      "id": "OPS-GUIDE-01",
+      "severity": "documentation_procedure_error",
+      "path": "docs/OPERATOR_MANUAL.md",
+      "anchors": [
+        {
+          "line": 832,
+          "text": "   then fully validates/enables the new config through `configure` or"
+        }
+      ],
+      "problem": "Contribution switching still offers removed generic configure as an alternative to configureNative.",
+      "required_correction": "Only configureNative is the current native PoolConfig admission function.",
+      "source_proof": [
+        {
+          "line": 65,
+          "text": "    function configureNative(PoolConfig calldata config) external onlyGovernance nativeConfiguration(config.depositsEnabled) returns (bytes32 poolId) {"
+        }
+      ],
+      "status": "reported_to_root_for_correction"
+    },
+    {
+      "id": "OPS-GUIDE-02",
+      "severity": "documentation_procedure_error",
+      "path": "docs/OPERATOR_MANUAL.md",
+      "anchors": [
+        {
+          "line": 854,
+          "text": "the new selection. Full `configure` with deposits=false also clears selection,"
+        }
+      ],
+      "problem": "Selection clearing procedure names the removed generic configure function.",
+      "required_correction": "Name configureNative with depositsEnabled=false, retaining full validation requirements.",
+      "status": "reported_to_root_for_correction"
+    },
+    {
+      "id": "OPS-GUIDE-03",
+      "severity": "documentation_contradiction",
+      "path": "docs/OPERATOR_MANUAL.md",
+      "anchors": [
+        {
+          "line": 482,
+          "text": "history. `stopped` means gap0; `incompatible_cadence` means a nonzero gap below300;"
+        }
+      ],
+      "problem": "Health incompatible_cadence threshold is documented as300, while source compares against CHECK_SECONDS240. The selected on-chain maximum gap remains300.",
+      "required_correction": "Describe a nonzero maximum below the240-second service sampling cadence; keep selected900/300 policy separate.",
+      "source_proof": [
+        {
+          "line": 10,
+          "text": "CHECK_SECONDS = 240"
+        },
+        {
+          "line": 1019,
+          "text": "        if not status['manual'] and 0<status['maximum_gap_seconds']<CONFIRMATION_CHECK_SECONDS:"
+        }
+      ],
+      "status": "reported_to_root_for_correction"
+    },
+    {
+      "id": "OPS-GUIDE-04",
+      "severity": "evidence_scope_incomplete",
+      "path": "reports/comprehensive-popl-20261029/REVIEW.md",
+      "anchors": [
+        {
+          "line": 55,
+          "text": "| T-P2-02 | Keeper/source-check runners overwrote outputs after work; full Python runner reserved only after execution, leaving an admission race. | Shared exclusive JSON/log admission precedes imports/tests/scans. Durable nonpass markers and owned handles preserve incomplete evidence. Source checks default to unique outputs; both new keeper suites enter dedicated selection.35 focused methods:33pass/two explicit Windows skips. |"
+        }
+      ],
+      "problem": "Summary omits subsequent source-input capture before test selection/import and lazy script-helper input coverage, plus their3 negative/8 final scoped methods.",
+      "required_correction": "Link operations-admission-provenance.json and preserve original35scope33pass/2skips plus8affectedpasses; overlap5 yields38 distinct outer methods across stages, not43 or a fresh38-method run.",
+      "status": "reported_to_root_for_correction"
+    },
+    {
+      "id": "OPS-GUIDE-05",
+      "severity": "wording_clarity",
+      "path": "docs/OPERATOR_MANUAL.md",
+      "anchors": [
+        {
+          "line": 772,
+          "text": "appropriate full `configureNative` call. After terminal exit it requires Ready and deposits disabled. Activation still requires"
+        }
+      ],
+      "problem": "Contribution-minimum paragraph uses an ambiguous pronoun when mentioning terminal admission and may imply normal growth can resume.",
+      "required_correction": "Optional clarity: explicitly refer to reserve-venue configuration after Ready with deposits disabled; activation/growth remain terminally stopped.",
+      "status": "reported_to_root_as_optional_clarity"
+    }
+  ],
+  "checks": [
+    {
+      "topic": "Post-exit phase and principal protection",
+      "result": "consistent",
+      "detail": "Ready(3) requires all LP closed and principal allocated; owner payouts may remain pending. Closing/Allocating and enabled deposits reject. Admission cannot restart principal/mint/growth/maintenance or reverse terminal exit.",
+      "paths": [
+        "docs/OPERATOR_MANUAL.md",
+        "docs/HOLDER_COLLECTIVE_EXIT.md",
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "topic": "Authority, unpause and job selection",
+      "result": "consistent",
+      "detail": "The same human governance operator admits the native venue; actual buyback independently requires keeper authorization, live/unpaused accounting, financial limits and actual fixed-ZZZ burn. Admission does not select the keeper buyback task pool_id or send a trade.",
+      "paths": [
+        "docs/OPERATOR_MANUAL.md",
+        "docs/HOLDER_COLLECTIVE_EXIT.md",
+        "src/ZZZBuyback.sol",
+        "src/base/ZZZModule.sol"
+      ]
+    },
+    {
+      "topic": "Controlled operational cutover",
+      "result": "consistent_with_external_gate",
+      "detail": "Manual requires stop/reconcile pending work, preservation of journal/nonce/spend history, reviewed source/config reload and matching fresh health. Source publication alone does not update a live old worker, Registry or Anvil.",
+      "paths": [
+        "docs/OPERATOR_MANUAL.md",
+        "docs/KEEPER_COORDINATION.md"
+      ]
+    },
+    {
+      "topic": "Artifact output admission and storage failures",
+      "result": "consistent",
+      "detail": "Development guide describes exclusive fresh outputs before imports/scans, durable nonpass markers, unique source-check default, refusal to overwrite explicit paths, partial storage/fsync failure caveat and no replay to recreate evidence. Inventory without execution and source hashes without runtime attestation remain explicit.",
+      "paths": [
+        "docs/DEVELOPMENT.md"
+      ]
+    },
+    {
+      "topic": "Identity-reset and telemetry caveats",
+      "result": "consistent",
+      "detail": "Coordination guide scopes bucket reset to related identity faults, distinguishes unrelated shares/pending-first/clear acknowledgements/terminal stop, and documents final-head/depth/canonical/freshness check with one extra logical latest-header read. Provider call fanout/retries and real cadence remain unqualified.",
+      "paths": [
+        "docs/KEEPER_COORDINATION.md"
+      ]
+    },
+    {
+      "topic": "Sampling liveness",
+      "result": "consistent_except_OPS_GUIDE_03",
+      "detail": "Selected900-second confirmation / strict300-second maximum gap and240-second source schedule are correctly distinct in primary procedure. Rough60-second timing margin can still be exhausted by pending recovery, RPC/serialization/transaction inclusion; no SLA or uninterrupted price history is claimed.",
+      "paths": [
+        "docs/OPERATOR_MANUAL.md",
+        "keeper/rebalance_confirmation.py"
+      ]
+    }
+  ],
+  "remaining_external_caveats": [
+    "Matching worker/checker/Registry rollout and actual240/300 cadence still need operating qualification; no service was restarted.",
+    "One added logical latest-header read can include provider adapter checks/retries; actual latency and gas inclusion are not established by local unit tests.",
+    "Terminal reserve venue admission needs full actual native dependency/feed/route review and the reviewed new Registry deployment; it does not qualify old deployments or reopen principal.",
+    "Shared output ownership and source hashes are not malicious-host or runtime attestation; storage failure may retain partial unreadable evidence."
+  ]
+}

@@ -1,5 +1,15 @@
 # Release approval record - NOT APPROVED
 
+[Complete-project audit and improvements](../reports/comprehensive-popl-20261029/REVIEW.md)
+implements terminal reserve-venue recovery, relevant keeper identity resets,
+final telemetry depth/chronology, stored-history chronology and exclusive,
+source-pinned evidence production. Verification is scoped:16 Solidity methods,
+82 distinct Python methods across recorded stages (80pass/two platform skips),
+and39 fresh normal production gates. This is not a full regression or release
+approval. ABI/storage remain unchanged; only Registry bytecode changes. Manager
+initcode37-byte and Vault runtime59-byte margins remain. Matching services,
+actual providers/marketplaces/gas and independent review stay open.
+
 [Keeper coordination](KEEPER_COORDINATION.md) implements service-only compound
 waiting, proved internal-harvest clock coalescing and a bounded read-only LP
 operation report. The current observer also corrects a previous private-getter

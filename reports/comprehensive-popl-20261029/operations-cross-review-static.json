@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "reviewer": "historical_operations",
+  "utc": "2026-10-29T20:52:44.019764+00:00",
+  "scope": "Independent source/diff/fixture review only; no tests, analyzer, RPC, services or production state actions",
+  "source_sha256": {
+    "scripts/verify-slither.sh": "da2409d97fdef314bf78fdcf025572167874aadc01b66d5dcc9b59ff0fbd75d9",
+    "scripts/check-slither-review.py": "4eff9143df183127ef5fd0d788bc36118c2aa675201c9872aa86582425d6d2a4",
+    "tests_python/test_static_evidence_admission.py": "391bede4fa8e66daac7c7ae3030ce7bb8333eb123e8a77801336f5a8ff8a690c",
+    ".github/workflows/verify.yml": "9a14fc5ee62f66a23e8e181efd8fc8d2cb9b42a91e8b97089348d4542ffc6804",
+    "frontend_api/history.py": "1b3f24d5fcfa61264befe598d6b74bbed0a58a769f25b708e3a6cd87b9d32679",
+    "tests_python/test_history_block_chronology.py": "fc8be19393f1a016f1158bf9abff5aa6eabb6134932799f1b9f815f6e18bc2e6"
+  },
+  "static_evidence_conclusions": [
+    {
+      "area": "Output ownership",
+      "conclusion": "New exclusive directory is reserved before version/analyzer/checker work. Existing requested directories fail without analysis. Default mktemp directories are unique; old production files are untouched."
+    },
+    {
+      "area": "Analyzer and capture result",
+      "conclusion": "Both analyzer and tee statuses are captured before subsequent shell commands. Only analyzer0/255 proceeds; capture failure aborts. Final checker pipeline retains pipefail, so either checker rejection or final tee failure prevents success."
+    },
+    {
+      "area": "Input handling",
+      "conclusion": "Shared strict UTF8 object reads reject duplicate/nonfinite/ambiguous data. Bad findings identities and unexpected source names cannot reach unchecked formatting/path echoes. Existing review inventory/fingerprint/scope gates remain."
+    },
+    {
+      "area": "Current applicability",
+      "conclusion": "Old review source mismatch is not waived. These orchestration tests do not run current Slither or close the19changed historical pins, compiler or independent audit gate."
+    },
+    {
+      "area": "CI",
+      "conclusion": "Upload path follows the newly reserved reports/slither.*/ directories and uses if:always. Upload existence alone is not a green checker/analyzer result."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "low",
+      "kind": "test_quality",
+      "path": "tests_python/test_static_evidence_admission.py",
+      "symbol": "test_ambiguous_analyzer_json_is_rejected_before_coverage_check",
+      "description": "Ordinary Python literal containing Unicode escape u0073 is decoded by Python before JSON parsing. That subcase currently repeats a literal duplicate key rather than exercising an escaped-equivalent JSON key. Shared strict-parser correctness is not challenged by this observation.",
+      "recommendation": "Use a raw string or doubled backslash if describing this subcase as escaped-equivalent-key evidence.",
+      "status": "Reported to root; root owns edit and evidence"
+    }
+  ],
+  "backend_chronology_cross_review": {
+    "conclusion": "No blocking safety/liveness regression found in inspected diff/context/tests. Target timestamp validates exact nonboolean SQLite-safe integer; first header validates integer/nonnegative and target upper bound; the existing adjacency query now checks every later timestamp and rejects regression while allowing equal L2 timestamps. All header validation precedes log iteration/consumer, including eventless and filtered blocks.",
+    "cost": "Extends the existing ancestry query; no new network call, extra query or DB write. Query remains within read snapshot/progress-handler/deadline and supplied bounds.",
+    "limitations": "This is source review, not independent execution, database authentication, full history proof or release qualification."
+  },
+  "execution_tests_run": 0,
+  "blocking_findings": 0
+}

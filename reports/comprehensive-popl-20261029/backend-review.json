@@ -1,0 +1,886 @@
+{
+  "schema": 1,
+  "baseline": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "current_head": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "source_profile": "accounting4/fee1/custody3/governance2/pricing2/routing2/review1/LPexecution1/confirmation2/canonicalV5",
+  "scope": "Backend/indexer/API plus readonly website data/UX boundaries; current call-path inspection, prior exact-source boundary review and11focused selected methods. This is not a new body-by-bodyreview of every sourcefunction or independent production approval.",
+  "prompt_inputs": [
+    {
+      "path": "C:/Users/Ali/.codex/attachments/ef947d76-a9f2-4397-abd5-a0ed22ad6568/Texte collé.txt",
+      "read_order": 1
+    },
+    {
+      "path": "C:/Users/Ali/.codex/attachments/8d57d700-c1f7-4348-a7b8-3213452197a2/Texte collé.txt",
+      "read_order": 2
+    }
+  ],
+  "sequential_prompt_critiques": [
+    {
+      "order": 1,
+      "challenge": "Generic tenant/queue/AI/bridge prescriptions can reopen retired architectures and declined features. Preserve publicread/unsignedflow, onefixedETHZZZ, actualprofile lineage and old recovery semantics."
+    },
+    {
+      "order": 2,
+      "challenge": "Source hashes/mocks/provider agreement are not runtime authenticity/qualified latency. Require crosscomponent failure sequences and safe source fixes; exclude unauthorized live experiments/publicsigning/policy widening and unchanged broad retests."
+    }
+  ],
+  "final_prompt_review": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-popl-20261029\\FINAL_PROMPT.md",
+    "result": "Matches selectedprofile, source/data/rights distinctions and authorized improvement boundaries; does not promise exhaustive bug absence."
+  },
+  "workflow_coverage": [
+    {
+      "id": "BE01",
+      "purpose": "Protocol and mint/readiness observation",
+      "invariants": [
+        "Status does not infer funding or future availability; terminal exit/controls and sold-out supply are distinct.",
+        "No selected public deployment means unavailable integration data, not demo replacement."
+      ],
+      "components_and_boundaries": [
+        "Projection canonical confirmed snapshot→runtime/module/lifecycle→protocol or bounded mint readiness.",
+        "User address reading is public information, not wallet authorization."
+      ],
+      "scenarios": [
+        "Locked/importing/retired/cancelled canonical deployment",
+        "Mint pause versus soldout versus unfinished reveal",
+        "Provider failover losing confirming descendants",
+        "Wrong module/runtime or old profile"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/service.py",
+          "sha256": "46f9a73068eade143ea57ea31eb180f5eb0922105a71d638fff2a044f0f7c2bf",
+          "line": 395,
+          "excerpt": "    def _snapshot(self):\n        if self.rpc.call('eth_chainId', []) != self.chain:\n            raise ProjectionError('Configured RPC chain differs from deployment')\n        head = _quantity(self.rpc.call('eth_blockNumber', []))\n        safe = head - self.confirmations + 1",
+          "scope": "Canonical block/depth/anchor/freshness"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/service.py",
+          "sha256": "46f9a73068eade143ea57ea31eb180f5eb0922105a71d638fff2a044f0f7c2bf",
+          "line": 280,
+          "excerpt": "    def _verify_deployment(self, block: dict[str, Any], *, allow_locked: bool = False) -> dict[str, Any]:\n        for item in self.contracts.values():\n            self._code(item.address, item.code_hash, block)\n        access = self.contracts['access'].address\n        if self.accounting_version in (2, 3, 4):",
+          "scope": "Exact accounting4/V5/direct governance and9pins"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/mint_readiness.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/mint_readiness.py",
+          "sha256": "dfbf59ad94ba17af55f116f5f0a36186f95cb2868e7522711503f8e1af4027f7",
+          "line": 5,
+          "excerpt": "def inspect(projection):\n    p = projection\n    header, head, block = p._snapshot()\n    lifecycle = p._verify_deployment(block, allow_locked=True)\n    if lifecycle['state_code'] in (2, 4):",
+          "scope": "Supply and original pending request observation"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE02",
+      "purpose": "Wallet ownership, cards and complete chunk totals",
+      "invariants": [
+        "Complete indexed owner inventory must match actual ERC721 counts/current owners.",
+        "An unavailable LP/currency is null; malformed core/custody contradictions reject.",
+        "Chunk results are not full totals without all same-block/inventory chunks."
+      ],
+      "components_and_boundaries": [
+        "Projection.wallet inventory→canonical ownership",
+        "Projection.nft→traits/share/custody/value/reward/optional history",
+        "portfolio/collection16-item chunks→browser aggregation"
+      ],
+      "scenarios": [
+        "Optional token runtime/decimals failure does not erase ownership",
+        "Dormant, parked, active and terminalExited status contradictions",
+        "Transfer concurrent with multi-chunk refresh",
+        "Incomplete/duplicated/changed inventory chunk"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/service.py",
+          "sha256": "46f9a73068eade143ea57ea31eb180f5eb0922105a71d638fff2a044f0f7c2bf",
+          "line": 629,
+          "excerpt": "    def wallet(self, wallet_address: Any) -> dict[str, Any]:\n        wallet = address(wallet_address)\n        if self.history is None:\n            raise HistoryError('Confirmed wallet inventory requires configured history')\n        header, head, block = self._snapshot()",
+          "scope": "Optional currency-independent ownership boundary"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/service.py",
+          "sha256": "46f9a73068eade143ea57ea31eb180f5eb0922105a71d638fff2a044f0f7c2bf",
+          "line": 472,
+          "excerpt": "    def nft(self, identifier: Any) -> dict[str, Any]:\n        nft_id = token_id(identifier)\n        header, head, block = self._snapshot()\n        safe = header['number']\n        lifecycle = self._verify_deployment(block)",
+          "scope": "NFT status/share/royalty/current value consistency"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/portfolio.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/portfolio.py",
+          "sha256": "4cdfe3f0d8faf3d62630ebb72aab2765bae5b6b1a9d6defa39fe68db03467c94",
+          "line": 16,
+          "excerpt": "def read(p, wallet_address, block_number, offset):\n    wallet=address(wallet_address)\n    if type(block_number) is not int or type(offset) is not int or not 0<=offset<1000 or offset%CHUNK_SIZE:\n        raise ValueError('Invalid wallet summary cursor')\n    if p.history is None:raise HistoryError('Complete indexed ownership is required')",
+          "scope": "Independent metric availability and exact inventory"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/collection.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/collection.py",
+          "sha256": "0c2793d6a6fcd356c2e65e70ab0e74adce07b12d4ecfefd1d11e750c67d1a473",
+          "line": 16,
+          "excerpt": "def read(p, block_number, offset):\n    if type(block_number) is not int or type(offset) is not int or not 0 <= offset < 1000 or offset % CHUNK_SIZE:\n        raise ValueError('Invalid collection cursor')\n    if p.history is None:\n        raise HistoryError('Complete indexed ownership is required')",
+          "scope": "Collection profile/status and chunk boundaries"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "deployment-api.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/deployment-api.js",
+          "sha256": "8c098b060243ccb983c535c7e8e384901ba90d35a141344398fb7d7ce6b56fb5",
+          "line": 166,
+          "excerpt": "  async walletTotals(inventory,{signal}={}){\n    const owner=inventory.wallet,ids=inventory.token_ids,anchor=inventory.provenance;\n    if(inventory.available!==true||!ADDRESS.test(owner)||!Array.isArray(ids)||ids.length>1000||inventory.count!==ids.length||new Set(ids).size!==ids.length)fail('Invalid complete wallet inventory');\n    if(ids.some((id,i)=>raw(id)===0n||(i&&raw(ids[i-1])>=raw(id))))fail('Wallet inventory must be ordered and unique');\n    const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(ids.join(','))))].map(n=>n.toString(16).padStart(2,'0')).join('');",
+          "scope": "Complete wallet aggregation"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "deployment-api.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/deployment-api.js",
+          "sha256": "8c098b060243ccb983c535c7e8e384901ba90d35a141344398fb7d7ce6b56fb5",
+          "line": 216,
+          "excerpt": "  async collectionPositions({signal,onProgress}={}){\n    const protocol=await this.protocol(signal),anchor=protocol.provenance;\n    let offset=0,inventory=null,digest=null,count=null,positions=[],ordinals=new Set(),lp=0n,available=true,activated=0;\n    do{\n      if(signal?.aborted)fail('Collection read cancelled');",
+          "scope": "Complete collection aggregation"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE03",
+      "purpose": "Processed earnings and current-price USD",
+      "invariants": [
+        "LP80/10holder income and rarity royalties remain separate; reserves excluded fromNFT income.",
+        "Claim/conversion/import/principal return is not fresh income.",
+        "Same-transaction fee pairing and current on-chain dust reconcile, never invent missing keys.",
+        "USD marks use current reviewed price bounds; no missing-price zero unless earned raw amount actuallyzero."
+      ],
+      "components_and_boundaries": [
+        "Complete raw events→Replay exact fractions/shares/cohorts→on-chain reconciliation→Prices current snapshot",
+        "Earned is distinct from claimable and paid"
+      ],
+      "scenarios": [
+        "Top-up after earlier fees",
+        "Claim after owner transfer",
+        "Token conversion retaining sameNFT rights",
+        "Missing fee allocation or credit/dust mismatch",
+        "Optional currency outage/missing price",
+        "24h cutoff and equal timestamps"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/earnings_replay.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/earnings_replay.py",
+          "sha256": "044b3f349fd8ef6c1dcfd198aa82515b08cfea82c02284d4156fd790b285a46e",
+          "line": 44,
+          "excerpt": "class Replay:\n    def __init__(self, timestamp, nft_id=None, *, selected=None):\n        require(selected is None or (nft_id is None and isinstance(selected, tuple) and\n                len(selected) <= 16 and len(set(selected)) == len(selected) and\n                all(type(i) is int and 0 < i < 2**256 for i in selected)), 'Invalid earnings selection')",
+          "scope": "Exact logical replay, chronological recognized economic events"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/earnings.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/earnings.py",
+          "sha256": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+          "line": 58,
+          "excerpt": "    def reconcile(self, p, model, block, lp_assets, royalty_assets, count):\n        \"\"\"On-chain denominators/indexes must match replay at every epoch cutoff.\"\"\"\n        require(len(model.minted) == count, 'Earnings mint count differs from chain')\n        member = self.profiles[p.contracts['access'].address]['membership'].address\n        require(int(p._call(member,'totalEligible()',block=block)[0],16) == len(model.members), 'Collective member history differs')",
+          "scope": "Actual fee/dust/ledger reconciliation"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/earnings.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/earnings.py",
+          "sha256": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+          "line": 143,
+          "excerpt": "    def check_paid(p,model,financial,block,lp,royalties):\n        \"\"\"Reconcile earned original currencies to current entitlement plus payouts.\"\"\"\n        claimed={a['asset']:a for a in financial['previously_claimed']['assets']}\n        conversions={a['asset']:a for a in financial['royalty_conversions']['assets']}\n        lp_conversion=financial['lp_conversions']",
+          "scope": "Earned source denominations versus claims/conversion/current balances"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/earnings_prices.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/earnings_prices.py",
+          "sha256": "bc33a4dcea22ed0ad94821f69190b0c009c0fbd133cfedbeae379e856d008bd2",
+          "line": 50,
+          "excerpt": "    def read(self, block, *, timestamp=None):\n        from frontend_api.service import _address_word, ProjectionError\n        p = self.p\n        result = {asset: {'available': False, 'usd_per_token_18': None, 'reason': 'price_not_configured'}\n                  for asset in self.descriptors}",
+          "scope": "Reviewed price policy/runtime/fingerprint"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/earnings_prices.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/earnings_prices.py",
+          "sha256": "bc33a4dcea22ed0ad94821f69190b0c009c0fbd133cfedbeae379e856d008bd2",
+          "line": 113,
+          "excerpt": "def value_report(report, descriptors, prices):\n    \"\"\"All earned source amounts marked at today's confirmed price, not historic USD.\"\"\"\n    for period in ('all_time', 'last_24h'):\n        totals, complete = {}, {}\n        for row in report[period]:",
+          "scope": "Current source-denomination marks"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE04",
+      "purpose": "Indexer ingestion/reorganization and restored history",
+      "invariants": [
+        "Only proved bounded ancestry may authorize destructive rollback.",
+        "Prepared logs/headers/cursor commit atomically under exact write-boundary recheck.",
+        "Read-only history must reject contradictory stored chronology, including blocks without replayed events.",
+        "A provider-consistent DB is not cryptographic completeness/finality."
+      ],
+      "components_and_boundaries": [
+        "Fixed configuredRPC→confirmed headers/logs→raw SQLiteWAL writer",
+        "Read-only URI/query-only BEGINsnapshot→raw replayer→canonical head checks"
+      ],
+      "scenarios": [
+        "Missing/malformed header is not reorg proof",
+        "Concurrent writer/reorg restoring same cursor",
+        "Contradictory transaction ordering",
+        "Lost final confirmation depth",
+        "Restored/older DB timestamp regressions in eventless/LOG0 blocks",
+        "Equal L2 timestamps remain legitimate"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "indexer/monitor.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/indexer/monitor.py",
+          "sha256": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4",
+          "line": 95,
+          "excerpt": "    def reconcile(self)->int:\n        rows=self.db.execute('SELECT number,hash,parent,timestamp FROM blocks WHERE chain=? ORDER BY number DESC LIMIT ?',\n            (self.chain,self.max_reorg+1)).fetchall()\n        if not rows:return 0\n        tip=self.next_block-1",
+          "scope": "Proved ancestor before atomic delete"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "indexer/monitor.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/indexer/monitor.py",
+          "sha256": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4",
+          "line": 137,
+          "excerpt": "    def step(self)->int:\n        self.reconcile()\n        head=_header_quantity(self.rpc.call('eth_blockNumber',[]))\n        safe=head-self.confirmations+1\n        start=self.next_block",
+          "scope": "Raw provenance/final depth/atomic boundary"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/history.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/history.py",
+          "sha256": "1b3f24d5fcfa61264befe598d6b74bbed0a58a769f25b708e3a6cd87b9d32679",
+          "line": 132,
+          "excerpt": "    def read(self, *, block_number: int, block_hash: str, block_timestamp: int,\n             minted_count: int, lp_assets: set[str], royalty_assets: set[str], consumer=None,\n             extra_emitters=()) -> HistorySnapshot:\n        if type(block_number) is not int or not self.start <= block_number < 1 << 63:\n            raise HistoryError('Confirmed history target precedes coverage or exceeds SQLite bounds')",
+          "scope": "Read-only transactional snapshot/typed timestamp"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/history.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/history.py",
+          "sha256": "1b3f24d5fcfa61264befe598d6b74bbed0a58a769f25b708e3a6cd87b9d32679",
+          "line": 193,
+          "excerpt": "              (c.parent!=p.hash OR typeof(c.timestamp)!='integer' OR c.timestamp<p.timestamp) LIMIT 1''',\n                            (self.chain, self.start, target)).fetchone()\n        if broken:\n            raise HistoryError('Indexer stored block ancestry or timestamps are inconsistent')\n        # Raw event/emitter filters are enforced below. Do not filter by the",
+          "scope": "Full stored-prefix chronology before any consumer"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/history_audit.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/history_audit.py",
+          "sha256": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+          "line": 169,
+          "excerpt": "    def compare(self, db, peer, start, end, anchor, head):\n        history = peer.history\n        cursor = db.execute('SELECT next_block,config FROM cursors WHERE chain=?', (peer.chain,)).fetchone()\n        require(cursor is not None and type(cursor[0]) is int and cursor[0] > end, 'incomplete_cursor')\n        require(isinstance(cursor[1], str) and len(cursor[1]) <= MAX_LOG_BYTES, 'invalid_cursor_identity')",
+          "scope": "Bounded independent-provider comparator"
+        }
+      ],
+      "status": "Confirmed reader defect BE-P2-01 fixed;4new+7affected methods pass, no deployed DB mutation"
+    },
+    {
+      "id": "BE05",
+      "purpose": "Same-chain predecessor continuity",
+      "invariants": [
+        "Matching explicit codecs/ordered bidirectional retirement/activation and actual backing commitments.",
+        "Lifetime unclaimed/paid rights stay attached toNFTID across owners and compatible predecessors.",
+        "No inferred future-chain/remote recovery or postexit canonical replacement."
+      ],
+      "components_and_boundaries": [
+        "Lineage explicit peer inventory→canonical current state→exact historical receipts→complete epoch histories→current finish"
+      ],
+      "scenarios": [
+        "Missing original epoch",
+        "Overlapping contract/asset identities",
+        "Duplicate/reordered retirement receipts",
+        "WrongNFTordinal",
+        "Historical source currency and new currency set",
+        "Canonical exit locks"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/lineage.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/lineage.py",
+          "sha256": "d4c6b3aa644d29b0e1bc3cefd1b05198acec5074441d3107b01e97b138b687a1",
+          "line": 29,
+          "excerpt": "    def __init__(self, items, current, config):\n        from frontend_api.service import Projection, _hash, _keys\n\n        if not isinstance(items, list) or not 1 <= len(items) <= MAX_PREDECESSORS or current.history is None:\n            raise ValueError('Predecessors require current history and one to eight reviewed deployments')",
+          "scope": "Bounded explicit historical profiles"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/lineage.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/lineage.py",
+          "sha256": "d4c6b3aa644d29b0e1bc3cefd1b05198acec5074441d3107b01e97b138b687a1",
+          "line": 70,
+          "excerpt": "    def _receipt(current, entry, destination, header):\n        from frontend_api.service import _address_word, _hash, _quantity\n\n        raw = current.rpc.call('eth_getTransactionReceipt', [entry.transaction])\n        if not isinstance(raw, dict):",
+          "scope": "Exact receipt/provenance/order/commitments"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/lineage.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/lineage.py",
+          "sha256": "d4c6b3aa644d29b0e1bc3cefd1b05198acec5074441d3107b01e97b138b687a1",
+          "line": 131,
+          "excerpt": "    def financial(self, current, header, block, lifecycle, local_history, nft_id, ordinal, *, verified_epochs=None):\n        from frontend_api.service import _hash\n\n        if local_history is None or lifecycle['predecessor_controller'] is None:\n            raise HistoryError('Predecessor inventory does not match the current deployment')",
+          "scope": "Complete matching same-chain epochs"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE06",
+      "purpose": "Unsigned direct mint and claim preparation",
+      "invariants": [
+        "Exact selected owner/action/asset/calldata; no arbitrary endpoint, signer or broadcast.",
+        "Current never-activated weight guard is intentionally narrower than full NFT traits/NAV projection.",
+        "Simulation amount may legitimately differ after earlier callback in same atomic batch; no unconditional preview equality.",
+        "Gas/value costs are separate and client expiry is not an on-chain deadline."
+      ],
+      "components_and_boundaries": [
+        "Typed request→same canonical snapshot/owner/selected asset→exact static call→gasreview→unsigned expiring draft"
+      ],
+      "scenarios": [
+        "Owner changes after quote",
+        "Dormant positive reward contradiction",
+        "One selected failing currency",
+        "Healthy native claim during unrelated token outage",
+        "Empty/duplicate/oversized32-op selection",
+        "Expired draft and result response lost"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/transactions.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/transactions.py",
+          "sha256": "9730ad793398dbeecf721b7549849d35cb5b9edd30e52d263d9538ec23f769a3",
+          "line": 67,
+          "excerpt": "def _parse(payload: Any) -> tuple[str, str, tuple[Claim, ...]]:\n    if not isinstance(payload, dict) or payload.get('action') not in ('mint', 'claim'):\n        raise TransactionInputError('Only typed mint and claim actions are supported')\n    action = payload['action']\n    _fields(payload, {'action', 'wallet'} | ({'claims'} if action == 'claim' else set()))",
+          "scope": "Typed bounded action selection"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/transactions.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/transactions.py",
+          "sha256": "9730ad793398dbeecf721b7549849d35cb5b9edd30e52d263d9538ec23f769a3",
+          "line": 150,
+          "excerpt": "    def prepare(self, payload: Any) -> dict[str, Any]:\n        action, owner, claims = _parse(payload)\n        p = self.projection\n        header, head, block = p._snapshot()\n        self._fresh(header)",
+          "scope": "Exact owner/weight/asset/simulation"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/transactions.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/transactions.py",
+          "sha256": "9730ad793398dbeecf721b7549849d35cb5b9edd30e52d263d9538ec23f769a3",
+          "line": 125,
+          "excerpt": "    def _gas(self, tx, block):\n        p = self.projection\n        estimate = _quantity(p.rpc.call('eth_estimateGas', [{**tx, 'gas': hex(SIMULATION_GAS_LIMIT)}, block]))\n        price = _quantity(p.rpc.call('eth_gasPrice', []))\n        if not 21000 <= estimate <= SIMULATION_GAS_LIMIT or not 0 < price <= self.config.max_price:",
+          "scope": "Reviewed gas and balance ceiling"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "deployment-api.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/deployment-api.js",
+          "sha256": "8c098b060243ccb983c535c7e8e384901ba90d35a141344398fb7d7ce6b56fb5",
+          "line": 312,
+          "excerpt": "    if(intent.action==='mint'&&m.environment!=='rehearsal')fail('Production minting is planned on OpenSea. This website mint page is a demonstration.');\n    const protocol=await this.protocol();let payload,draft,expected,source=null,amount=null,claims=null,nativeReview=null;\n    if(intent.action==='mint'){\n      const r=await this.readiness();if(!protocol.minting.available_by_controls||r.new_minting_stopped||r.minted>=1000)fail('Minting is currently unavailable');\n      payload={action:'mint',wallet:owner};expected={from:owner,to:m.contracts.vault.address,data:'0x21bf772d',value:hex(50000000000000000n),chainId:hex(BigInt(m.chain_id))};",
+          "scope": "Production website mint refuses custom direct mint"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE07",
+      "purpose": "Activation/growth review",
+      "invariants": [
+        "ETH or immutable ZZZ; min100/5 plus stronger guards.",
+        "Exact approval amount is not activation; contribution confirms only actual entrant-funded marginal LP.",
+        "Current dual prices, caller/captured contribution policy and actual pool/core/helper profiles bind review.",
+        "Contributions do not recenter LP or reset its rebalance clock."
+      ],
+      "components_and_boundaries": [
+        "ActivationTransactions→ActivationConfig→two-phase bounded trace→pricing/marginal LP witness→unsigned approval orEntryreview"
+      ],
+      "scenarios": [
+        "Unknown/disabled route",
+        "Wrong native ABI slot",
+        "Approval must reprepare",
+        "Policy/code/owner/price change",
+        "Trace old incumbent funds misattributed to entrant",
+        "Out-of-range LP warning without promised execution time"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/activation.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/activation.py",
+          "sha256": "81205df3bae78149fc251ee1ef350897dc936bffecbb7291a71bc93f7b76cefd",
+          "line": 130,
+          "excerpt": "    def prepare(self, payload):\n        req=parse(payload); p=self.p; cfg=self.config\n        req['accounting_version'] = p.accounting_version\n        req['routing_version'] = cfg.routing_version\n        req['lp_routing_version'] = cfg.lp_routing_version",
+          "scope": "Exact owner/source/typed review"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/activation_config.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/activation_config.py",
+          "sha256": "93cb3167bbb3c0facf6af572c688f02f3cf45808a9ec3260b39c3bfb5fea6d6b",
+          "line": 212,
+          "excerpt": "    def verify(self, p, block, used_tokens, *, include_bounds=False, timestamp=None, execution_observation=None):\n        \"\"\"All reads use the parent's one confirmed canonical hash.\"\"\"\n        pins = {role: c.address for role, c in {**p.contracts, **self.contracts}.items()}\n        def read(role, signature, *args, count=1):\n            return p._call(pins[role], signature, *args, block=block, words=count)",
+          "scope": "Bound fixed helper/runtime/routing/quality/confirmation profile"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/activation_trace.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/activation_trace.py",
+          "sha256": "d42e97be019ff8eeb53647e0521dd37be13a694b34c693b71e0cce5c0c4c4655",
+          "line": 238,
+          "excerpt": "def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=None):\n    \"\"\"Return contract-checked marginal deployment, share issuance and LP units.\"\"\"\n    root = successful(trace)\n    stack = [(root, 0)]; count = 0\n    while stack:",
+          "scope": "Actual full atomic execution trace accounting"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/activation_trace.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/activation_trace.py",
+          "sha256": "d42e97be019ff8eeb53647e0521dd37be13a694b34c693b71e0cce5c0c4c4655",
+          "line": 90,
+          "excerpt": "def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical):\n    \"\"\"Match the native dual-price phase machine; never reinterpret old traces.\"\"\"\n    helper=pins['contribution_pricing'];budget=pins['budget'];bucket=req['bucket']\n    input_usd,supply,incumbent_nav,incumbent_deployed,deployed,idle,limits=economics\n    if check.get('type')!='CALL':raise ProjectionError('Dual-price result must execute its authenticated phase transition')",
+          "scope": "Captured dual-price valuation witness"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/liquidity_context.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/liquidity_context.py",
+          "sha256": "efbbe3fd0fc54650ef60289adc4c5e72c3db656d42ce8686efea2b03a4989df9",
+          "line": 17,
+          "excerpt": "def contribution_context(p, pins, pool, bucket, position, config, header, block,\n                         *, range_policy_version=0, range_policy=None, maintenance_policy_version=0,\n                         rebalance_confirmation_version=0):\n    \"\"\"All RPC reads use the caller's pinned hash, including approval previews.\"\"\"\n    def read(role, method, *args, count=1):",
+          "scope": "Raw eligibility versus sampled readiness context"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE08",
+      "purpose": "Resource containment and startup/ingress",
+      "invariants": [
+        "Strict reviewed file/request objects cannot silently select duplicate fields.",
+        "No waiting queue or expensive work after admitting anotheruser; budget/deadline is request-local.",
+        "Parent supervisor reaps or quarantines failed child; no orphan work silently reused.",
+        "Host/framing/proxy identity controls protect resource admission, not wallet authority."
+      ],
+      "components_and_boundaries": [
+        "Loopback strictHTTP/proxy→perclient admission→WorkerPool lease→fresh subprocess→Projection budget→bounded response→cleanup"
+      ],
+      "scenarios": [
+        "Duplicate keys/nonfinite/overflow/nested input",
+        "Unknown origin or spoofed proxyheader",
+        "Slow child/startup/deadline",
+        "Cleanup termination failure",
+        "Snapshot expires during parsing/history",
+        "Response lost causes read/review retry, never broadcast"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/server.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/server.py",
+          "sha256": "7010064db189c9bddf4231e2fbc2cae0c3f73a14facddf06bbb7e128b92fe98b",
+          "line": 200,
+          "excerpt": "def main() -> None:\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--config', required=True)\n    parser.add_argument('--port', type=int, default=8787)\n    parser.add_argument('--workers', type=int, default=4, choices=range(1, 9), help='Isolated request workers (1-8)')",
+          "scope": "Strict startup configs before workers"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/activation_server.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/activation_server.py",
+          "sha256": "75675b7f0a323036c45dc031d9714e5d31d57622229bdcff8bb28103669d276b",
+          "line": 71,
+          "excerpt": "def main():\n    parser=argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--config',required=True)\n    parser.add_argument('--activation-config',required=True)\n    parser.add_argument('--port',type=int,default=8788)",
+          "scope": "Strict activation startup"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/admission.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/admission.py",
+          "sha256": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+          "line": 76,
+          "excerpt": "class ClientAdmission:\n    \"\"\"Per process: 2 active; reads 1/s burst12, preparations 6/min burst2.\"\"\"\n\n    def __init__(self, *, max_active=2, capacity=4096, clock=time.monotonic):\n        if type(max_active) is not int or not 1 <= max_active <= 4:",
+          "scope": "Independent capacity controls"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/http_runtime.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/http_runtime.py",
+          "sha256": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+          "line": 45,
+          "excerpt": "class BoundedHandler(BaseHTTPRequestHandler):\n    \"\"\"Absolute ingress deadline also defeats slow, continuously trickled bodies.\"\"\"\n\n    def setup(self):\n        super().setup()",
+          "scope": "Bounded framing/deadlines"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/worker.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/worker.py",
+          "sha256": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+          "line": 98,
+          "excerpt": "    def _request(self, action, payload=None):\n        from frontend_api.activation import ActivationInputError\n        from frontend_api.transactions import TransactionInputError\n        if not self._lock.acquire(blocking=False):\n            raise RpcError('Request worker unavailable')",
+          "scope": "Spawn supervision and cleanup quarantine"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/worker.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/worker.py",
+          "sha256": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+          "line": 240,
+          "excerpt": "class WorkerPool:\n    \"\"\"No waiting queue or shared Projection/RPC/request budget across callers.\n\n    Each lease owns one supervisor. Every request still creates a fresh child,\n    checks freshness after completion and reaps it before returning the lease.",
+          "scope": "No shared projection budget/cache across users"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE09",
+      "purpose": "Royalty currency and denomination isolation",
+      "invariants": [
+        "Healthy/native rights remain independent of unselected failing currency.",
+        "Core identity/work budget/eligibility faults remain fatal.",
+        "Received/allocated/conversion/payout are separate; current4 has no external royalty custody."
+      ],
+      "components_and_boundaries": [
+        "Current royalty reporting→asset health and eligibility→separate conversion history→native/source balances"
+      ],
+      "scenarios": [
+        "Deferred new cohort, recovery without earlier receipt theft",
+        "Malformedglobal weight or converterbinding",
+        "Source asset unavailable but nativebalanceknown",
+        "Historical3custody lag never enabled fresh4"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/royalty_reporting.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/royalty_reporting.py",
+          "sha256": "2d76c9985c4c8a8711b21c246f83b5519896c228be3db67862b1ac4961315af1",
+          "line": 11,
+          "excerpt": "class Reporting:\n    def __init__(self, config, projection):\n        from frontend_api.service import Contract, _hash, _keys\n        _keys(config, {'schema', 'converter'}, 'royalty_reporting')\n        if type(config['schema']) is not int or config['schema'] not in (1, 2):",
+          "scope": "Pinned optional currency/eligibility/converter projection"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/history.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/history.py",
+          "sha256": "1b3f24d5fcfa61264befe598d6b74bbed0a58a769f25b708e3a6cd87b9d32679",
+          "line": 91,
+          "excerpt": "def conversion_report(conversions, nft_id, descriptors, provenance):\n    if conversions is None:\n        return {'available': False, 'assets': None, 'total_eth_credited_raw': None,\n                'reason': 'Complete confirmed conversion history is unavailable; zero is not inferred.'}\n    assets = []",
+          "scope": "Denomination history separate from claims"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/service.py",
+          "sha256": "46f9a73068eade143ea57ea31eb180f5eb0922105a71d638fff2a044f0f7c2bf",
+          "line": 352,
+          "excerpt": "    def _admitted(self, block: dict[str, Any], *, asset_health=None) -> tuple[list[str], list[str]]:\n        admitted = []\n        for role, maximum in (('rewards', 33), ('royalties', 17)):\n            count = self._uint(role, 'assetCount()', block=block)\n            if count > maximum:",
+          "scope": "Complete exact ledger asset inventories"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE10",
+      "purpose": "Terminal owner principal return",
+      "invariants": [
+        "Principal not reward/income; old earned rewards/future royalties persist.",
+        "Payout/claim eligibility binds currentowner; allocated/unallocated/paid and remaining are distinct.",
+        "No external custodian or all-toZZZ exit; no public arbitrary principal transaction endpoint."
+      ],
+      "components_and_boundaries": [
+        "Lifecycleexitphase→exact principalOf/claimablePrincipal→NFT/collectionDTO independent of reward totals"
+      ],
+      "scenarios": [
+        "Closing one bucket while others active",
+        "Allocation not yet complete",
+        "Zero-share dormantNFT",
+        "Paidallocation followed by NFTtransfer",
+        "Rejecting receiver, deferred push and currentowner fallback"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/principal_return.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/principal_return.py",
+          "sha256": "0d94b8ee942d9af3a207d054e52ac3d55420beb98674d719f71502aa03c0a79d",
+          "line": 7,
+          "excerpt": "def read(p, identifier, status, shares, owner, lifecycle, block):\n    phase = lifecycle['lp_exit_phase_code']\n    if phase >= len(PHASES) or bool(phase) != lifecycle['lp_exit_started']:\n        raise ProjectionError('Collective exit phase differs from the irreversible lifecycle')\n    zzz = p._addr('principal_exit', 'currentZZZ()', block=block)",
+          "scope": "Phase/flags/currentowner/assets and exact claimedview"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/lifecycle.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/lifecycle.py",
+          "sha256": "d9dd07e67e11268190fbaaa103fe35cf2ac5791bd47948778a1dd7ae00cb23c7",
+          "line": 12,
+          "excerpt": "def read_lifecycle(p, block):\n    # Imported here to avoid an import cycle with Projection's boundary helpers.\n    from frontend_api.service import ProjectionError, ZERO, _bool\n\n    access = p.contracts['access'].address",
+          "scope": "Terminal economic gating"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/service.py",
+          "sha256": "46f9a73068eade143ea57ea31eb180f5eb0922105a71d638fff2a044f0f7c2bf",
+          "line": 580,
+          "excerpt": "            result['principal_return'] = read(self, nft_id, status, shares, owner, lifecycle, block)\n            result['position']['principal_redeemable'] = result['principal_return']['holder_claim_available_by_lifecycle']\n        history = self._history_snapshot(header, block, lp_assets, royalty_assets)\n        if history is not None:\n            if history.owners.get(nft_id) != owner:",
+          "scope": "Current4 separate principalDTO"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    },
+    {
+      "id": "BE11",
+      "purpose": "Website account/operation feedback and signing boundary",
+      "invariants": [
+        "Anvil31337 only signer; current3 website is not current4 acceptance.",
+        "Account/network revision invalidates old review; a submitted hash is durable recovery, not new action.",
+        "Approved/submitted contribution is not LP completion; targetNFT feedback waits for confirmed contribution/fresh effect.",
+        "Unknown evolution is unavailable, not default rendered art."
+      ],
+      "components_and_boundaries": [
+        "Permission/provider selection→typed review→local-only BrowserWallet→samehash read confirmation→confirmed effect reconciliation→perNFTview"
+      ],
+      "scenarios": [
+        "Walletpopup selects a different authorized account",
+        "Disconnect/reconnect/accountchange while requestinflight",
+        "Pending noncegap or lost submit response",
+        "Claim refresh should not update artwork",
+        "Concurrent separateNFT contribution",
+        "Current4manifest rejected by older reader"
+      ],
+      "source_evidence": [
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "browser-client.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/browser-client.js",
+          "sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+          "line": 81,
+          "excerpt": "  async connect(index,{chooseAccount=false,fromPicker=false}={}) {\n    if(this.busy||this.pending||this.signer?.pending)throw new Error('Recover the pending transaction before changing wallets.');\n    const p=this.providers[index];\n    if(!p||!this.manifest)throw new Error('Refresh the local deployment first.');\n    // A MetaMask button click asks for a fresh account choice, never saved permission reuse.",
+          "scope": "Explicit account/provider flow"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "browser-wallet.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/browser-wallet.js",
+          "sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+          "line": 203,
+          "excerpt": "  async assertConnection(account){\n    if(this.closed)throw Error('Wallet connection is closed');\n    const expected=address(account),version=this.changeVersion;\n    const [accounts,chain,genesis]=await Promise.all([\n      this.request('eth_accounts'),this.request('eth_chainId'),this.request('eth_getBlockByNumber',['0x0',false])",
+          "scope": "Current account/Anvil/genesis checks"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "browser-wallet.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/browser-wallet.js",
+          "sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+          "line": 386,
+          "excerpt": "  async recover({account=this.activeAccount,hash:providedHash}={}){\n    if(this.busy)throw Error('A wallet operation is already in progress');\n    if(!account){const accounts=await this.read('eth_accounts');account=accounts?.[0];}\n    account=address(account);this.activeAccount=account;this.busy=true;\n    try{return await this.locked(account,async()=>{",
+          "scope": "Same-hash noresend recovery"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "deployment-transactions.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/deployment-transactions.js",
+          "sha256": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+          "line": 110,
+          "excerpt": "  async reconcile(record,result){\n    if(result.status==='failed')return; // Reverted transaction has no LP effect.\n    const api=this.api,m=api.manifest,c=record.context,number=Number(quantity(result.receipt.blockNumber));\n    await api.identity();const p=await api.protocol();\n    if(p.provenance.block_number<number)fail('Confirmed balances are still catching up.');",
+          "scope": "Contributionreceipt/marginalLP effect before UI"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "local-view.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/local-view.js",
+          "sha256": "3944ccf2006154151d35f528ed1c56f46f83b4a133a664c70a88cab9ed2cfb15",
+          "line": 65,
+          "excerpt": "export function refreshLabels(id,scope,{stale,busy,session,account}) {\n  const clear={lp:null,rewards:null,history:null,artwork:false};\n  if(!stale)return clear;\n  if(!busy||!scope||scope.session!==session||scope.account!==account)\n    return {lp:busy?'Refreshing…':'Unavailable',rewards:busy?'Refreshing…':'Unavailable',history:busy?'Refreshing…':'Unavailable',artwork:false};",
+          "scope": "Resource-scoped pending labels"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "deployment-view.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/deployment-view.js",
+          "sha256": "ea782bcba9affd129115c510bbb1de7bbea70a099561e194372a14662e13497e",
+          "line": 179,
+          "excerpt": "  const artFor=n=>n.traits_ready&&n.position.evolution_value_available?findArtwork(`${COLORWAYS[n.traits.palette]?.id}-${PATTERNS[n.traits.pattern]?.id}-${n.traits.rarity.toLowerCase()}-${n.position.evolution}`):null;\n  function traits(n){const art=artFor(n);return n.traits_ready?`<strong>${e(n.traits.rarity)}</strong><span>${e(art?.colorStyle||'')}</span>${paletteTrait(COLORWAYS[n.traits.palette].colors)}${royaltyTrait(n)}`:'<span>Awaiting verified reveal</span>';}\n  function renderPortfolio(){\n    $('#portfolio-disconnected').hidden=Boolean(session.account);$('#portfolio-connected').hidden=!session.account;\n    text('#portfolio-address',session.account?short(session.account):'');text('#portfolio-label',busy?'READING CONFIRMED STATE':localSigning?'LOCAL ANVIL':'UNSIGNED REVIEW');",
+          "scope": "No fabricated artwork from unavailable value"
+        },
+        {
+          "repository": "ABEF/AAA-website",
+          "path": "deployment-native.js",
+          "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/aaa-website/deployment-native.js",
+          "sha256": "ee715a6d93e2a27c2999eff34142725b16b2382b0031bd57f49eb00e321969be",
+          "line": 111,
+          "excerpt": "export function validateCurrentManifest(m){\n  if(m.accounting_version!==3||m.governance_version!==2||m.fee_intake_version!==1||\n    m.canonical_schema!==CURRENT_CANONICAL_SCHEMA||!keys(m.contracts,CURRENT_ROLES))fail('Explicit current3 governance, fee and canonical policy is required');\n  // Reuse asset field validation only; the historical profile itself is unchanged.\n  validateNativeManifest({...m,accounting_version:2,contracts:Object.fromEntries(NATIVE_ROLES.map(k=>[k,m.contracts[k]]))});",
+          "scope": "Explicit current3 rejection of fresh4"
+        }
+      ],
+      "status": "Source boundary review; no new execution beyond explicitly listed regressions"
+    }
+  ],
+  "findings": [
+    {
+      "id": "BE-P2-01",
+      "title": "Stored history accepted contradictory chronology outside recognized event sequence",
+      "severity": "P2 functional data-integrity failure",
+      "confidence": "High: reproduced with real temporary SQLite and actual writer/reader",
+      "expected": "Reject invalid full-block chronology before serving complete ownership/claim/history data or invoking the income consumer; equal L2 timestamps remain valid.",
+      "actual_before": "A starting/eventless block later than its child, noninteger/negative timestamp in an eventless or LOG0-filtered block, and float snapshot114.0 could be accepted. Recognized economic-event replay had its own chronology checks, but that did not validate every stored block.",
+      "preconditions": "Restored, older, inconsistent or locally corrupted operator-maintained SQLite history. Current indexer already rejects newly observed timestamp regressions; this is not an unprivileged write endpoint.",
+      "root_cause": "Reader ancestry query checked only hashparent links; per-log timestamp validation ran after empty-topic skip, and exact snapshot timestamp type was not asserted.",
+      "correction": "Extend existing ancestry join to exact integer/nondecreasing timestamp validation, check first timestamp and exact signed63bit snapshot bound before connection/replay. No extraRPC or independent fullscan/query, schema, financial rule or historical event-field requirement.",
+      "impact": "Contradictory evidence could appear as a complete valid read. No theft, raw claim amount change, provider authenticity proof or definite24h exploit is established; processed economic events already had additional chronology checks.",
+      "before": {
+        "methods": 4,
+        "invalid_subcase_failures": 8,
+        "positive_equal_timestamp_control_passed": true,
+        "exit_code": 1,
+        "output": "backend-history-chronology-before.txt",
+        "sha256": "f65a48c8a9fa24fe934feb124770c4c497ab8063719b4f358b48790cbdbbded0"
+      },
+      "after": {
+        "distinct_methods": 11,
+        "new_methods": 4,
+        "affected_existing_methods": 7,
+        "failures": 0,
+        "skips": 0,
+        "seconds": 0.408,
+        "exit_code": 0,
+        "output": "backend-history-chronology-after.txt",
+        "sha256": "ede8876546a229216df83207084870e2d5956a5690a43d98f3033fcc52fc0b52"
+      },
+      "source_before_sha256": "16fe3aeeb163732f6e59781fca33f762ae10fa1d873ecd0c26b0aed823d1fb3d",
+      "source_final_sha256": "1b3f24d5fcfa61264befe598d6b74bbed0a58a769f25b708e3a6cd87b9d32679",
+      "test_sha256": "fc8be19393f1a016f1158bf9abff5aa6eabb6134932799f1b9f815f6e18bc2e6",
+      "unchanged_assertions_before_after": true,
+      "remaining": "No deployed database/worker changed. Diagnose and preserve inconsistent evidence; never repair a cursor/timestamp to satisfy the reader. Actual complete-provider authenticity and restored-host acceptance remain open.",
+      "documentation_requested": [
+        "docs/FRONTEND_HISTORY.md reader chronology/failure behavior",
+        "docs/INDEXER_RECOVERY.md restored-history consistency and no manualrepair",
+        "Todo financial-history/host-services/security-integration acceptance; no implementation task closed by hosted qualification"
+      ]
+    }
+  ],
+  "research": [
+    {
+      "url": "https://docs.python.org/3.11/library/sqlite3.html",
+      "version": "Python3.11 reference matching supported minimum",
+      "application": "Use explicit BEGIN/rollback for a stable read snapshot and finally.close; connection context does not close resources. Read-only URI cannot create missing DB.",
+      "limit": "Does not qualify actual Linux filesystem, backups or deployment."
+    },
+    {
+      "url": "https://www.sqlite.org/isolation.html",
+      "application": "Committed per-connection snapshots and WAL behavior motivate one read transaction; current code already follows it.",
+      "limit": "Correct snapshot isolation cannot authenticate false historical content."
+    },
+    {
+      "url": "https://www.sqlite.org/uri.html",
+      "application": "Path.as_uri plus mode=ro pins intended local filename while preserving WAL locking; immutable1 would be wrong for a live writer.",
+      "limit": "No source path change was needed."
+    },
+    {
+      "url": "https://eips.ethereum.org/EIPS/eip-1898",
+      "application": "Hash-pinned requireCanonical state calls support coherent owner/value/review snapshots through reorgs.",
+      "limit": "Canonical according to an RPC provider is not cryptographic authenticity/finality; no fallback to latest."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/OWASP/ASVS/v5.0.0/5.0/docs_en/OWASP_Application_Security_Verification_Standard_5.0.0_en.csv",
+      "version": "ASVS5.0.0stable",
+      "applicable": [
+        "V2.2.1 structure/rangevalidation",
+        "V2.2.3 contextual consistency",
+        "V2.3.3 atomic businesslogic",
+        "V2.4.1 expensive resource controls",
+        "V4.1.3 intermediary header trust",
+        "V4.1.4 supported methods",
+        "V4.2.1 HTTPframing",
+        "V13.1.3 external resource management"
+      ],
+      "application": "Contextual mapping guides public read/unsigned API boundaries, not blanket ASVS compliance.",
+      "exclusions": "OAuth, credential/password recovery, generic mandatory multi-user approval, GraphQL/WebSocket and arbitrary uploads do not describe this API; the single operator/no timelock decision is preserved."
+    }
+  ],
+  "residuals": [
+    {
+      "id": "BE-OPEN01",
+      "category": "Known bounded liveness/long-term design",
+      "finding": "Complete wallet/history replay remains capped at1,000,000configuredmaximum events across epochs; fullprefix scans/replay can expire well before theoretical perpetual operation.",
+      "proof": {
+        "repository": "ABEF/AAA",
+        "path": "frontend_api/history.py",
+        "absolute_path": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/frontend_api/history.py",
+        "sha256": "1b3f24d5fcfa61264befe598d6b74bbed0a58a769f25b708e3a6cd87b9d32679",
+        "line": 121,
+        "excerpt": "        if self.max_events > 1000000 or self.chain >= 1 << 63 or self.start >= 1 << 63:\n            raise ValueError('Confirmed history configuration exceeds supported bounds')\n        if not isinstance(config['contracts'], list) or not 3 <= len(config['contracts']) <= 128:\n            raise ValueError('A bounded exact tracked-contract inventory is required')\n        self.contracts = sorted(address(a) for a in config['contracts'])",
+        "scope": "Existing safety bound, not new behavior"
+      },
+      "followup": "Qualify longhistory latency and design a reviewed archival/checkpoint/read-model evolution retaining exact provenance/currentowner claims before limits are approached. Do not uncap/rewrite history or invent cached balances.",
+      "todo": [
+        "financial-history",
+        "host-services"
+      ]
+    },
+    {
+      "id": "BE-OPEN02",
+      "category": "Release qualification",
+      "finding": "Current3 unconfigured website cannot consume fresh4terminalprincipal/profile by relabeling a manifest; publicsigner deliberatelydisabled.",
+      "todo": [
+        "portfolio",
+        "transaction-ui",
+        "wallet"
+      ]
+    },
+    {
+      "id": "BE-OPEN03",
+      "category": "External authenticity and operation",
+      "finding": "Provider agreement, raw DB consistency and runtimehash pins do not establish source independence, complete logs, actual route economics or proxyupstream stability. Actual host/process/restore and browser acceptance remain unqualified.",
+      "todo": [
+        "host-services",
+        "financial-history",
+        "dual-price-qualification",
+        "security-integration"
+      ]
+    },
+    {
+      "id": "BE-OPEN04",
+      "category": "Data semantics",
+      "finding": "SameNFT rawearned-at-currentprice, claimable, actualpaid and principal payouts must remain separately labeled; no new fulltrait/LPdeps should block alreadyowed healthy claims.",
+      "todo": [
+        "live-history-ui",
+        "financial-history"
+      ]
+    }
+  ],
+  "preserved": [
+    "No Solidity/economic/permission/timing/signing policy change",
+    "No fourpreexistingdirtyfiles edits",
+    "No website source/build/server edits",
+    "No installed service/database/Anvil/NFT/LP/balance/journal/monitor action",
+    "No public chain RPC or financial transaction; only primary-document webresearch"
+  ],
+  "limitations": [
+    "No new wholePython/Solidity/browser/fork/service suite",
+    "No500/1000concurrentusercampaign; userdeferredcapacitytask retained",
+    "No datarepair nor missing-feed/partial-total/oldprofilefallback",
+    "No claimed correction to every theoretical failure or proof of allimplementationpaths",
+    "Repeated attempts/subcases/historicalcounts are not additional distinct methods"
+  ]
+}

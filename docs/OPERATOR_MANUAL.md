@@ -142,6 +142,35 @@ own amounts; old idle/compound stays attributed for guarded maintenance and in
 incumbent share NAV. Retained idle still backs the same bucket. There is no
 general clear/sweep or operator dust recipient.
 
+### Restore a buyback venue after collective exit
+
+Use this only once `Migration.exitPhase()==3` (`Ready`). Every LP bucket is
+closed and principal allocated then; holder payout batches may still be pending.
+During Closing/Allocating, pool admission/reopening remains blocked.
+
+1. From the governance wallet, read the exact admitted/new ETH/fixed-ZZZ PoolKey,
+   actual initialized fee/tick spacing, pinned native runtimes and fresh reviewed
+   feeds. Copy/review the entire `PoolConfig`; set `depositsEnabled=false` and
+   `operationsEnabled=true`, retaining supported parameter limits. Prefer stopping
+   obsolete contribution/operation flags explicitly with `disablePool` where needed.
+2. Simulate and call `PoolRegistry.configureNative(fullConfig)`. Inspect the
+   returned PoolKey-derived ID, `PoolConfigured`, `get(id)`, `configurationRevision`
+   and the unchanged irreversible exit flag. Full validation failure reverts all
+   writes. This call cannot reopen principal or move funds.
+3. Separately review the keeper buyback task's `pool_id` and ETH input/budget.
+   Pool admission does not auto-select a job route. Stop/reconcile pending work,
+   preserve journal/nonce/spend history, apply a controlled source/config reload
+   and verify matching fresh health before enabling the changed job.
+4. Actual `Buyback.execute` still requires the keeper grant and ordinary unpause,
+   fresh prices, execution floors, reserve/operating ceilings and verified fixed-ZZZ
+   supply burn. Governance may unpause these remaining ordinary operations; no
+   principal path restarts. Migration-held holder funds are separate and cannot
+   be spent by this venue configuration or buyback.
+
+This source behavior requires the reviewed new Registry deployment. Existing
+Anvil/old releases are not upgraded by changing configuration or this runbook.
+[Scope and evidence](../reports/comprehensive-popl-20261029/VERIFICATION.md).
+
 ### Add or remove an execution pool after sealing
 
 This changes the swap venue, not the LP contribution destination. Use the fresh
@@ -450,7 +479,7 @@ Fresh keeper health schema2 separates confirmed execution/quality metadata from
 block/hash/time, config/source/runtime pins, helper/Budget versions and bindings.
 Confirmation1 requires this record independently of quality1, even during
 cooldown with compounding off. It proves neither sampled readiness nor continuous
-history. `stopped` means gap0; `incompatible_cadence` means a nonzero gap below300;
+history. `stopped` means gap0; `incompatible_cadence` means a nonzero gap below240;
 `unavailable` retains any old observation explicitly as stale. These states
 degrade active-principal health without cancelling independent harvest. After
 explicit terminal `lp_exit_started:true`, health treats stop/cadence as
@@ -721,7 +750,7 @@ This procedure submits nothing by itself; current source is undeployed.
 | `maxSpotDeviationBps` | 1-500 and less than range | Spot/reference discrepancy permitted by guarded execution. Do not widen it simply to accept a manipulated market. |
 | `maxSlippageBps` | 1-1000 in fresh LP routing1; pool fee must be strictly below it in equivalent units | Operating values are not raised automatically. Selected LP fee10020pips requires at least101bps before other costs. Routing uses the tighter target/venue guard, plus actual protocol fee, impact, captured loss and caller floors. Historical profiles retain their original ceiling. |
 | `minDepositUSD`, `maxPositionUSD` | Positive minimum; maximum at least minimum | Minimum for each contribution and maximum cumulative gross contribution per NFT, in 18-decimal USD units; not a live market-value ceiling or total pool cap. Lowering them cannot remove the fixed $100 activation / $5 top-up floors. The effective minimum is the larger of the action floor and configured minimum. Check existing NFT contributions/top-ups. |
-| `depositsEnabled`, `operationsEnabled` | Full configure for enabling; `disablePool` can only clear flags | Different controls; see below. |
+| `depositsEnabled`, `operationsEnabled` | Full `configureNative` for enabling; `disablePool` can only clear flags | Different controls; see below. |
 
 Read Budget `maintenanceLossBps()` as `L` before ordinary rebalance or supported
 local move/resume. Its captured floor is `V - floor(V * L / 10000)`, equal to
@@ -740,7 +769,8 @@ rolling loss breaker or guarantee against impermanent loss exists.
 ### Contribution minimums
 
 For normal $5 increases, governance configures `minDepositUSD=5e18` through the
-appropriate full `configure`/`configureNative` call. Activation still requires
+appropriate full `configureNative` call. After terminal exit, reserve-venue configuration requires Ready and deposits
+disabled; activation/growth remain permanently stopped. Activation still requires
 $100; each action must meet the captured contribution-loss floor above (98% at
 the default 200 bps), gas separate. No per-user
 override or new role exists. A higher pool minimum intentionally blocks smaller
@@ -783,7 +813,7 @@ To stop an input immediately, use `ActivationAssets.setAsset(token,false,expecte
 
 ## Pool admission and retirement
 
-For a supported new LP venue, first qualify tokens, feeds, reward-asset admission (`Rewards.addAsset(token)`), the exact venue key/manager and strategy. Then governance calls `configure` or the narrowly supported `configureNative`. Not every Uniswap v4 hook/native pair is supported. Native admission permits only supported static, hookless ETH/ZZZ keys on the pinned Robinhood dependencies; immutable bindings are not arbitrary venue plug-ins.
+For a supported new LP venue, first qualify tokens, feeds, reward-asset admission (`Rewards.addAsset(token)`), the exact venue key/manager and strategy. Then governance calls `configureNative`; the removed generic pool `configure` entrypoint is unavailable. Not every Uniswap v4 hook/native pair is supported. Native admission permits only supported static, hookless ETH/ZZZ keys on the pinned Robinhood dependencies; immutable bindings are not arbitrary venue plug-ins.
 
 ### One contribution pool at a time
 
@@ -800,8 +830,7 @@ To switch contributions after sealing:
 1. Review the supported destination and full config. It may be admitted with
    `depositsEnabled=false` for preparation/maintenance; this does not select it.
 2. Governance disables the current pool with `disablePool(oldId,true,false)`,
-   then fully validates/enables the new config through `configure` or
-   `configureNative`. When moving an existing shared bucket, **move it before
+   then fully validates/enables the new config through `configureNative`. When moving an existing shared bucket, **move it before
    enabling destination deposits**: admit the target with deposits=false and
    operations=true, disable source deposits, execute the guarded same-pair
    `Migration.moveFunds(bucket,target,minLiquidity,deadline)`, then enable target
@@ -822,7 +851,7 @@ To switch contributions after sealing:
 
 For incidents, dependency-free `disablePool` clears the selection only when
 stopping that pool's deposits. Repeated stops of a historical pool cannot clear
-the new selection. Full `configure` with deposits=false also clears selection,
+the new selection. Full `configureNative` with deposits=false also clears selection,
 but still requires healthy dependencies. Roll back a selection using the same
 validated switch; mined contributions cannot be undone. A canonical replacement
 must explicitly configure its own selection; this is not imported economic state.
@@ -861,7 +890,7 @@ pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
 
 **Disable without healthy dependencies.** `PoolRegistry.disablePool(poolId,disableDeposits,disableOperations)` only clears the selected flags of an already admitted pool. Use `(poolId,true,true)` to clear both. A `false` argument leaves that flag unchanged; it never enables anything. At least one argument must be `true`; repeated stops are safe. The function does not call tokens, prices, wrapper, hook or venue, and does not change the PoolKey, range or limits. Read `get(poolId)` and the resulting flags in `PoolDisabled` after execution.
 
-**Reopen only after validation.** Read the complete current config, set the intended enabled flags and call `configure` or `configureNative`. Full fresh token/price/admission/venue checks still apply; a failed attempt leaves the stopped config unchanged. A previously approved operation can still be executable: cancel obsolete approvals and coordinate keeper/user transactions before reopening. A stop cannot undo a mined transaction.
+**Reopen only after validation.** Read the complete current config, set the intended enabled flags and call `configureNative`. After terminal exit only Ready-phase, deposits-disabled reserve venues may be restored. Full fresh token/price/admission/venue checks still apply; a failed attempt leaves the stopped config unchanged. A previously approved operation can still be executable: cancel obsolete approvals and coordinate keeper/user transactions before reopening. A stop cannot undo a mined transaction.
 
 Both stop and re-enable are exact immediate governance operations; there is no new guardian or keeper permission. Global pause does not block these configuration controls. Preparation, frozen/importing/retired lifecycle states do block them: cancel reversible preparation first if configuration is needed, or use permitted drains. The existing guardian global pause remains available for incidents. `operationsEnabled=false` is not a universal freeze: claims, transfers and some receipt/harvest/exit paths are separate. For a protocol-wide incident use the stop matrix.
 
@@ -923,7 +952,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | --- | --- | --- |
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
 | Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)`; contributions/rebalances also pull the bucket's compound reserve | Current Budget3 / policy2 compound waits after both the last compound and LP replacement, and yields to eligible rebalance/range selection. Uses attributed backing and guards; funds never pass through keeper. Holder claim balances are separate. |
-| Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and normal exit. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires custody exit and a fresh reviewed deployment. |
+| Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and collective holder return. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires collective holder return and a fresh reviewed deployment. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
 | Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Initial scope is native ETH plus the independently verified Robinhood WETH wrapper; stablecoin conversion depends on marketplace qualification. Admission does not restrict sales or convert payouts. Separate bounded ledger (17 total including native); no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay quarantined. |

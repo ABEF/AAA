@@ -1,0 +1,220 @@
+{
+  "schema": 1,
+  "reviewer": "historical_operations",
+  "baseline": "93ceee1 main",
+  "findings": [
+    {
+      "id": "OPS2-01",
+      "title": "Relevant LP identity faults preserved mature confirmation evidence and jitter",
+      "kind": "confirmed service-safety defect",
+      "severity": "medium",
+      "confidence": "high",
+      "source": "keeper/monitor.py:_bucket",
+      "before_source_sha256": "065c5247aa2ffd670a81e303c8509a5a87f526e64a380ca28cef8e709728017d",
+      "current_source_sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+      "preconditions": "Fresh confirmation1/2 worker already has a saved ordinary window/jitter; pool occupancy read fails/contradicts its bucket, or an Active/Parked physical LP identity is inconsistent.",
+      "expected": "Persist the affected bucket reset requirement using the existing durable reset/ack path, discard its obsolete jitter and require a confirmed clear before recovery renews the old window.",
+      "before_actual": "Identity checks fell outside both _bucket reset-catching scopes. The ordinary cycle skipped the bucket but retained mature schedule and no reset requirement.",
+      "impact": "A quickly recovered provider/identity fault could let the service reuse its earlier sampled window/jitter, contrary to its fault-continuity contract. On-chain price/eligibility/execution guards still apply; no independent financial exploit is asserted.",
+      "correction": "Zero pool ID and pool occupancy / Active missing LP / Parked retained LP faults enter the existing affected-bucket reset path. New work is not queued after explicit terminal exit. Unrelated share-inventory errors remain independent. Existing clear acknowledgements wait for a healthy reread without repeated paid clears.",
+      "verification": {
+        "before": "operations-bucket-reset-before.json/.log",
+        "before_methods": 8,
+        "before_failed_methods": 4,
+        "before_passed_methods": 4,
+        "before_errors": 0,
+        "final_methods": 11,
+        "tests": "tests_python/test_keeper_bucket_fault_reset.py",
+        "final_receipt": "operations-final-targeted.json",
+        "cases": [
+          "reached poolBucket error and contradictory result",
+          "Active/Parked physical identity and zero pool",
+          "only affected bucket reset",
+          "recovery cannot reuse old jitter before clear",
+          "share-count failure remains unrelated",
+          "terminal stop creates no new resets",
+          "retained clear ack does not repeat paid reset",
+          "mocked pre-write save failure preserves original bytes/state and propagates",
+          "fresh confirmation2 path",
+          "coherent positive position and pending-first recovery"
+        ],
+        "persistence_limit": "The new save-failure case injects before any write. Existing atomic writer/after-replacement semantics remain source-reviewed and separately evidenced; no power-loss or complete filesystem fault claim."
+      },
+      "operator_effect": "Actual raw-identity incident can now require the existing reset transaction before continuation; the keeper pays its normal bounded gas. Preserve the journal and use the matching worker/checker rollout. No holder action or manual state edit.",
+      "task": "keeper-guardrails",
+      "docs_to_update": [
+        "docs/KEEPER_RECOVERY.md#sampled-confirmation1-recovery",
+        "docs/OPERATIONS.md#recorded-rebalance-confirmation",
+        "docs/OPERATOR_MANUAL.md#configure-rebalance-confirmation"
+      ]
+    },
+    {
+      "id": "OPS2-02",
+      "title": "Confirmed quality health could outlive final depth or mix head chronology",
+      "kind": "confirmed diagnostic/evidence-integrity defect",
+      "severity": "medium",
+      "confidence": "high",
+      "source": "keeper/monitor.py:_observe_execution_health",
+      "before_evidence": "operations-health-depth-before.json",
+      "preconditions": "Quality1 observation starts at head100 with confirmations2 and anchor99; latest head retreats to99 during exact-hash metadata reads, or head time/identity becomes contradictory before publication.",
+      "expected": "Fresh confirmed telemetry must still have required final depth, consistent chronological head/anchor and fresh timestamps; preserve old observation as unavailable on failure, never advance last successful health.",
+      "before_actual": "Only the initial head was read. An unchanged canonical anchor99 reported observed_this_cycle/head100 even though final actual head99 left depth1. A run cycle could advance last_success_at.",
+      "impact": "Monitoring/operators could accept falsely current confirmed metadata. This is not a signing bypass: telemetry is diagnostic, and transaction/receipt checks remain separate.",
+      "correction": "Reread latest head before publication, enforce final depth/nonretreat/same-height identity and time consistency, recheck exact canonical anchor, validate final anchor/head age and export final head. Failures retain prior observation with unavailable state and existing cycle degradation.",
+      "verification": {
+        "before": "operations-telemetry-before.json/.log",
+        "before_methods": 7,
+        "before_failed_methods": 6,
+        "before_failed_assertions_including_subcases": 12,
+        "before_passed_methods": 1,
+        "before_errors": 0,
+        "tests": "tests_python/test_keeper_telemetry_completion.py",
+        "final_receipt": "operations-final-targeted.json",
+        "cases": [
+          "advancing head valid/current head exported",
+          "depth loss retains prior evidence",
+          "same-height head reorg rejected",
+          "malformed final head quantities/hash/timestamp",
+          "future/stale/retreated timestamps",
+          "anchor reorg still rejected",
+          "actual run_cycle cannot advance previous successful time"
+        ]
+      },
+      "operator_effect": "One additional latest-head read on a successful quality observation only. Same-cycle reorg, catch-up or failover may report unavailable until a consistent fresh retry. This is deliberately conservative diagnostics; no quote/loss/timing/signing/receipt policy change. Matching source health rollout still required.",
+      "task": "keeper-guardrails",
+      "docs_to_update": [
+        "docs/OPERATIONS.md#versioned-health-and-execution-diagnostics",
+        "docs/KEEPER_RECOVERY.md#logs-health-and-fallback",
+        "docs/OPERATOR_MANUAL.md#qualify-current-routing-gas-and-telemetry"
+      ]
+    },
+    {
+      "id": "OPS2-03",
+      "title": "Verification output ownership before work",
+      "details": "operations-admission-findings.json",
+      "current_source_sha256": {
+        "scripts/run-keeper-tests.py": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+        "scripts/run_python_tests.py": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+        "scripts/source_checks.py": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+        "zzz_ops/evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+        "tests_python/test_verification_output_ownership.py": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978"
+      },
+      "task": "keeper-guardrails",
+      "verification": "admission-final-focused.json:35distinctoutermethods,33pass/2Windows-skips;3negative-beforefailures; no real project regression campaign.",
+      "source_provenance_followup": "operations-admission-provenance.json:3newnegative failures;8currentfocusedpasses,5overlapprior35."
+    }
+  ],
+  "remaining": [
+    {
+      "id": "OPR-01",
+      "kind": "operating qualification",
+      "title": "Strict sample liveness under the real serial lane remains unqualified",
+      "detail": "Pending recovery, multiple bucket windows, actual inclusion/RPC latency and budgets may exhaust the roughly60second margin even after deadline priority. No hidden grace, concurrent signer, new cadence or buffer policy was introduced.",
+      "tasks": [
+        "keeper-guardrails",
+        "keeper-recovery",
+        "testnet-rehearsal"
+      ]
+    },
+    {
+      "id": "OPR-02",
+      "kind": "economic/trust qualification",
+      "title": "Keeper personal timing and outside ordering risks remain bounded, not eliminated",
+      "detail": "Fresh source/range/price floors do not prove that allowed repeated losses or personal trades are unprofitable. Qualify actual independent references, post-withdrawal depth, venues and gas. The selected high-fee pool still needs a cheaper qualified 1% reward conversion route.",
+      "tasks": [
+        "security-keeper-manipulation",
+        "security-external-manipulation",
+        "security-strategy"
+      ]
+    },
+    {
+      "id": "OPR-03",
+      "kind": "explicit configuration/availability tradeoff",
+      "title": "Idle-only trigger and outside-range waiting can leave capital idle",
+      "detail": "The sample intentionally disables idle-only compounding. Attributed idle is owned NAV, not a surplus; the5% whole-bucket ceiling may block entrants. Do not enable jobs, sweep or weaken guards without reviewed economics/configuration. Early confirmation enrollment and no-swap outside exceptions remain distinct unselected work.",
+      "tasks": [
+        "keeper-guardrails",
+        "asset-liveness-dust",
+        "liquidity-placement-idle"
+      ]
+    },
+    {
+      "id": "OPR-04",
+      "kind": "operating qualification",
+      "title": "Host/key loss and backup restoration require actual fencing and reconciliation",
+      "detail": "Advisory local lock protects one configured host/process lane, not another host with the same key. A stale backup cannot safely invent missing nonce/spend/review history. Real Linux watchdog/cgroup termination, old-host fencing, retained alerts/backups, key rotation and off-host restoration remain unverified. The paused heartbeat was not resumed.",
+      "tasks": [
+        "keeper-recovery",
+        "security-integration"
+      ]
+    },
+    {
+      "id": "OPR-05",
+      "kind": "accepted authority/availability limit",
+      "title": "Terminal payouts cannot force a rejecting or inaccessible owner to receive funds",
+      "detail": "Governance must initiate and close; bounded keeper allocation/delivery never grants exit authority. Some contract/escrow/dead owners can defer indefinitely and retain owner-only fallback. Paid flags are on-chain; no operator sweep, forged paid cache or arbitrary recipient is supplied.",
+      "tasks": [
+        "migration-framework",
+        "security-ownership-rewards"
+      ]
+    },
+    {
+      "id": "OPR-06",
+      "kind": "long-term practicability",
+      "title": "Retained aliases, logs, snapshots and historical job keys need lifetime operating budgets",
+      "detail": "Per-call bounds and four permanent buckets do not bound every lifetime canonical alias or off-host artifact. No unsafe pruning or history cap was added. Plan target gas/backlog/retention and exact relay/recovery workload instead of relabeling a bounded fixture a perpetual guarantee.",
+      "tasks": [
+        "security-chain-recovery",
+        "keeper-recovery",
+        "migration-framework"
+      ]
+    },
+    {
+      "id": "OPR-07",
+      "kind": "external qualification",
+      "title": "Actual services, authority configuration and revenue-bearing economics remain external release facts",
+      "detail": "No live feeds/routes/VRF, OpenSea primary-mint path, production addresses, configured fresh4 website or independent audit was created by this source review. Source health hashes identify local files, not attestation or honest provider behavior.",
+      "tasks": [
+        "authorities-prices",
+        "dual-price-qualification",
+        "audit-release",
+        "metadata-ops"
+      ]
+    }
+  ],
+  "final_verification": {
+    "receipt": "operations-final-targeted.json",
+    "receipt_sha256": "c17be9b8050d618db5deb6a5c2ebc46e8fb146da4cdb7ee54915c6e130a177cf",
+    "tests_run": 18,
+    "distinct_methods": 18,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "source_drift": [],
+    "current_owned_sources": {
+      "keeper/monitor.py": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+      "tests_python/test_keeper_bucket_fault_reset.py": "f7a48feaa88e9c7b01b852589d37f68bc1bf0fd07fb0ece1ef4edbf84539741b",
+      "tests_python/test_keeper_telemetry_completion.py": "de5d067fffbf73faad3f576f197cba6f80678e9f7c40bb84fdc28295dd1483c7"
+    },
+    "note": "Earlierbefore8/after11 andbefore7runs overlap final18; do not add counts. No unchanged global suite, Solidity, real network or operating rehearsal executed."
+  },
+  "source_only": true,
+  "production_approved": false,
+  "forbidden_actions_performed": false,
+  "additional_tooling_verification": {
+    "receipt": "admission-final-focused.json",
+    "distinct_methods": 35,
+    "passes": 33,
+    "skips": 2,
+    "errors": 0,
+    "failures": 0,
+    "note": "Separate from the18unchanged runtime methods. See archived producer-body reuse proof; no broad-suite claim.",
+    "followup": {
+      "receipt": "admission-provenance-final.json",
+      "passes": 8,
+      "overlap_with_prior": 5,
+      "distinct_combined_methods": 38,
+      "note": "Source-stage split, not one fresh38methodrun."
+    }
+  }
+}

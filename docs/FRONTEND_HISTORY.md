@@ -54,6 +54,18 @@ predecessor and cutoff coverage before serving results. See
 [scoped service review](../reports/daily-security-20261025/SERVICE_REVIEW.md).
 These source protections do not repair an existing database or restart its service.
 
+Before replay, the reader validates all stored block ancestry and timestamp
+chronology, including eventless and filtered/LOG0 blocks. Snapshot timestamps
+must be exact bounded integers; equal adjacent L2 timestamps remain valid.
+Contradictory restored/older data fails before income consumers run. This extends
+the existing ancestry query without another RPC/query or DB mutation. It does
+not authenticate a coherently dishonest provider or silently repair old rows.
+
+Lifetime ownership/earnings still depend on complete raw history and bounded
+event/lineage replay. Growing history can exceed configured limits or request
+budgets. A reviewed archival/checkpoint/read-model evolution and actual latency
+qualification remain open; do not drop history, guess totals or remove bounds.
+
 ## API behavior
 
 ```text

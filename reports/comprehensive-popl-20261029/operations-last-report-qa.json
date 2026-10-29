@@ -1,0 +1,128 @@
+{
+  "task": "Read-only last report/manual/sole-ledger QA",
+  "captured_at_utc": "2026-10-29T21:53:47.114049+00:00",
+  "scope": {
+    "tests_executed": 0,
+    "repo_edits": 0,
+    "network_service_chain_actions": 0,
+    "type": "Complete narrative read of listed human report files; source/receipt arithmetic and new sole-ledger acceptance comparison. Artifact exports/links still assembling deliberately excluded."
+  },
+  "files": {
+    "reports/comprehensive-popl-20261029/REVIEW.md": {
+      "sha256": "780d2ab15602e597e92caa0ef442e2d9b72e7c04596a6976c3fb163ee0efc3d3",
+      "bytes": 13270
+    },
+    "reports/comprehensive-popl-20261029/VERIFICATION.md": {
+      "sha256": "861d6ef5ddbf8306abd7f10c145d67552717619263f47d3fc4a28f306c94e7a3",
+      "bytes": 6145
+    },
+    "reports/comprehensive-popl-20261029/COVERAGE.md": {
+      "sha256": "5b42dff5a3405b0cecd92647969c67e44d6de822f765859b89d33b9d259bdd82",
+      "bytes": 7375
+    },
+    "reports/comprehensive-popl-20261029/KNOWLEDGE.md": {
+      "sha256": "eea60ba0fe877971bfd6c802bac64c7d0851d7b2118ed6f3257e79cdd3fdac8b",
+      "bytes": 4445
+    },
+    "reports/comprehensive-popl-20261029/UNDERSTANDING.md": {
+      "sha256": "e8a1e7e9e1189ba8c1bb10573ccb353b47793786725feb53fcb675626dc3b858",
+      "bytes": 5048
+    },
+    "reports/comprehensive-popl-20261029/PROMPT_REVIEW.md": {
+      "sha256": "f88876ef220d1576a552ba2141195cc528cf80eda9d34c4687c44565bb436496",
+      "bytes": 2949
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "22fa936e89179ca590dc967bd015c2022c3520ca9423e4ac3118d0fe0f84de00",
+      "bytes": 142114
+    },
+    "docs/project-todo.json": {
+      "sha256": "4517c51538c8dae20c0c0bb3640ed067f1ece62c89d3f22872e0e3a71e69065e",
+      "bytes": 274062
+    }
+  },
+  "checks": [
+    {
+      "topic": "Terminal phase and rights",
+      "result": "consistent",
+      "detail": "All six human report files distinguish Ready/all LP closed/principal allocated from payout completion; owner payouts may remain pending. Swap-only venue recovery cannot reopen principal, minting, activation or growth. Buyback reserve and holder backing remain separate."
+    },
+    {
+      "topic": "Updated procedures",
+      "result": "corrected",
+      "detail": "Manual now names configureNative in both contribution-selection passages, uses incompatible_cadence below240 while selected maxgap remains300, and explicitly says terminal reserve configuration cannot resume activation/growth."
+    },
+    {
+      "topic": "Execution counts",
+      "result": "consistent",
+      "detail": "18 keeper+11history+15static+(35admission+8provenance-5overlap)=82 distinct Python methods;80pass/2explicit Windows skips. This is source-stage union, not one fresh82 run; sixteen Solidity methods and39 normal object gates are separate. Sentinels/analyzer probes/AST rows are not project execution passes."
+    },
+    {
+      "topic": "Source provenance follow-up",
+      "result": "corrected",
+      "detail": "T-P2-02 now records source hashes before test imports, lazy script helpers and8targeted provenance checks with5overlaps. Earlier receipt-stage limitations remain explicit."
+    },
+    {
+      "topic": "Compiler and size arithmetic",
+      "result": "consistent",
+      "detail": "39comparison objects; only Registry creation/runtime changes and all semantic ABI/recursive storage matches. Manager48955+160=49115 leaves37 of49152; Vault24517 leaves59 of24576,48951+96=49047 leaves105 of49152. Exact NFT dynamic URI/constructor/dependency/gas qualification remains open."
+    },
+    {
+      "topic": "Knowledge and generated artifacts",
+      "result": "appropriately_limited",
+      "detail": "Knowledge separates primary guidance, locked dependency/source screen and named generated IR follow-up from compiler correctness, actual provider authenticity, native runtime admission and fresh Slither triage. Eight helper probes and static duplicate graph counts are not contract passes."
+    },
+    {
+      "topic": "Task ledger",
+      "result": "consistent",
+      "detail": "New acceptance text retains actual-services, target gas, history longevity, source/worker rollout, static/independent audit and testnet-profile gates. IDs/statuses unchanged; local/source evidence does not close production tasks."
+    },
+    {
+      "topic": "Rollout",
+      "result": "consistent",
+      "detail": "No current report claims deployment/service/site/Anvil/journal/signer/heartbeat changes. Production remains NOT APPROVED. Source publication is not installation or actual240/300 timing qualification."
+    }
+  ],
+  "resolved_during_qa": [
+    {
+      "id": "OPS-LASTQA-01",
+      "problem": "Initial assembled history/static unittest log IDs duplicated the method suffix. Counts were not inflated but IDs were not actual callable identities.",
+      "root_correction": "Root preserved attempt1 and normalized parenthesized full ID when it already ends in the method; raw receipts were not altered.",
+      "rechecked": "Current external aggregate has no repeated final method component;87stage occurrences deduplicate to82actual IDs and80pass/2skips.",
+      "current_aggregate": {
+        "sha256": "017636941c60d6223311964bd6c5869b02543c09f6c1d3c24d050204ee1e8793",
+        "bytes": 26715
+      }
+    }
+  ],
+  "remaining_material_contradictions": [],
+  "aggregate_observation": {
+    "stage_method_occurrences": 87,
+    "distinct_methods": 82,
+    "reported_passes": 80,
+    "platform_skips": 2,
+    "admission_overlap": 5,
+    "not_fresh_whole_run": true
+  },
+  "build_observation": {
+    "comparison_sha256": "837adb922537ae3d4773870b617763b9989f7029509bc05182bb3a7b753ee677",
+    "objects": 39,
+    "changed_bytecode_objects": [
+      "ZZZPoolRegistry"
+    ],
+    "semantic_abi_matches": true,
+    "recursive_storage_matches": true
+  },
+  "ledger_observation": {
+    "old_ids": 80,
+    "current_ids": 80,
+    "added_ids": [],
+    "removed_ids": [],
+    "changed_status_ids": []
+  },
+  "limits": [
+    "This read-only review reruns no tests/build/compiler/analyzer and is not production approval.",
+    "Only current captured bytes are reviewed; later source/doc/export changes need their own consistency checks.",
+    "Actual native feeds/routes/runtime admission, matching worker/checker rollout and strict240/300 timing still require operating qualification."
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "prior_snapshot": {
+    "path": "backend-cross-review-evidence.json",
+    "sha256": "b7398c79d6fa8d920f24ff2ba2c4f05d78eefead5f158ca521288ab6e42c38af",
+    "preserved": true
+  },
+  "scope": "Only final before-input-capture ordering and keeper lazy-script source closure follow-up; helper and previous16test bodies unchanged.",
+  "source_changes": [
+    {
+      "path": "scripts/run_python_tests.py",
+      "sha256": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+      "ordering": "Evidence admission -> before=inputs -> select/import -> selected bodies -> after=inputs -> success requires no source drift and exact execution IDs"
+    },
+    {
+      "path": "scripts/run-keeper-tests.py",
+      "sha256": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+      "ordering": "Evidence admission -> before=inputs -> select/import -> selected bodies -> after=inputs -> success requires no source drift and exact execution IDs"
+    }
+  ],
+  "helper_unchanged": true,
+  "old_method_bodies_ast_identical": true,
+  "old_methods": 16,
+  "current_methods": 19,
+  "new_methods": [
+    "VerificationOutputOwnershipTests.test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass",
+    "VerificationOutputOwnershipTests.test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names",
+    "VerificationOutputOwnershipTests.test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass"
+  ],
+  "assessment": [
+    "Both runners now capture source bytes after exclusive output admission and before selected-module import/selection. A source change during import cannot be relabeled as unchanged post-import baseline.",
+    "Keeper source closure includes scripts/*.py, so lazily used script helpers need not already exist under a prefixed sys.modules identity to be pinned.",
+    "Canonical selection, import/custom-loader guards, method order/count, no execution in --list, Evidence helper ownership/fsync/failed-status semantics remain unchanged.",
+    "Inert mutation witnesses correctly require nonpass while preserving selected/executed method identity. Their test body runs are not actual keeper/source-suite execution.",
+    "An interrupted import still yields incomplete nonpass evidence, not a promise that no import side effect ran or a complete persisted source/trace inventory. No authentication against same-account tampering is added."
+  ],
+  "saved_verification_checked": {
+    "prior_methods": 35,
+    "final_methods": 8,
+    "overlap": 5,
+    "distinct_union": 38,
+    "distinct_passes": 36,
+    "explicit_host_skips": 2,
+    "interpretation": "Source-scoped composition, not one fresh38method final-byte run. Final8passed; earlier30nonoverlap retain exact prior pins.",
+    "final_receipt": {
+      "path": "admission-provenance-final.json",
+      "sha256": "5d9b28f252354978241964628ffe38730c28c45ca533a61246015526625a7870"
+    },
+    "source_pins": [
+      {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-popl-20261029\\run_admission_checks_v3.py",
+        "expected": "a02ce79c56c0ce9bc46c12e9c70043ca98ec933004b183b750c467400eac7887",
+        "current": "a02ce79c56c0ce9bc46c12e9c70043ca98ec933004b183b750c467400eac7887",
+        "matches": true
+      },
+      {
+        "path": "scripts\\run-keeper-tests.py",
+        "expected": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+        "current": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+        "matches": true
+      },
+      {
+        "path": "scripts\\run_python_tests.py",
+        "expected": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+        "current": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+        "matches": true
+      },
+      {
+        "path": "scripts\\source_checks.py",
+        "expected": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+        "current": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+        "matches": true
+      },
+      {
+        "path": "tests_python\\__init__.py",
+        "expected": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "current": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "matches": true
+      },
+      {
+        "path": "tests_python\\test_keeper_runner_inventory.py",
+        "expected": "ce1ec264641071c214901edd0428bac120e09395d8f772201aca6dab21c39fe9",
+        "current": "ce1ec264641071c214901edd0428bac120e09395d8f772201aca6dab21c39fe9",
+        "matches": true
+      },
+      {
+        "path": "tests_python\\test_python_runner_inventory.py",
+        "expected": "7b8c0a7396a62cbac09d084fa85cba00f913b78c3961caba5840486d08051741",
+        "current": "7b8c0a7396a62cbac09d084fa85cba00f913b78c3961caba5840486d08051741",
+        "matches": true
+      },
+      {
+        "path": "tests_python\\test_verification_output_ownership.py",
+        "expected": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978",
+        "current": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978",
+        "matches": true
+      },
+      {
+        "path": "zzz_ops\\__init__.py",
+        "expected": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "current": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "matches": true
+      },
+      {
+        "path": "zzz_ops\\evidence.py",
+        "expected": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+        "current": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+        "matches": true
+      }
+    ]
+  },
+  "tests_executed_by_cross_review": 0,
+  "repo_edits": 0,
+  "confirmed_blocking_issues": [],
+  "changes_requested": []
+}

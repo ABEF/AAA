@@ -1,0 +1,166 @@
+test_advancing_head_exports_actual_final_depth_without_mutating_the_journal (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_advancing_head_exports_actual_final_depth_without_mutating_the_journal) ... FAIL
+test_anchor_reorg_during_observation_is_still_rejected (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_anchor_reorg_during_observation_is_still_rejected) ... ok
+test_depth_failure_cannot_advance_the_last_successful_cycle (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_depth_failure_cannot_advance_the_last_successful_cycle) ... FAIL
+test_depth_retreat_cannot_relabel_the_old_anchor_as_confirmed (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_depth_retreat_cannot_relabel_the_old_anchor_as_confirmed) ... FAIL
+test_final_clock_future_stale_or_retreat_is_unavailable (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_final_clock_future_stale_or_retreat_is_unavailable) ...
+  test_final_clock_future_stale_or_retreat_is_unavailable (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_final_clock_future_stale_or_retreat_is_unavailable) (timestamp=1793306918) ... FAIL
+  test_final_clock_future_stale_or_retreat_is_unavailable (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_final_clock_future_stale_or_retreat_is_unavailable) (timestamp=1793306286) ... FAIL
+  test_final_clock_future_stale_or_retreat_is_unavailable (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_final_clock_future_stale_or_retreat_is_unavailable) (timestamp=1793306886) ... FAIL
+test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) ...
+  test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final=None) ... FAIL
+  test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final={}) ... FAIL
+  test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final={'number': True, 'hash': '0x4444444444444444444444444444444444444444444444444444444444444444', 'timestamp': '0x6ae3b107'}) ... FAIL
+  test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final={'number': '0x64', 'hash': '0x00', 'timestamp': '0x6ae3b107'}) ... FAIL
+  test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final={'number': '0x64', 'hash': '0x4444444444444444444444444444444444444444444444444444444444444444'}) ... FAIL
+test_same_height_head_reorg_cannot_publish_mixed_observation (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_same_height_head_reorg_cannot_publish_mixed_observation) ... FAIL
+
+======================================================================
+FAIL: test_advancing_head_exports_actual_final_depth_without_mutating_the_journal (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_advancing_head_exports_actual_final_depth_without_mutating_the_journal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 43, in test_advancing_head_exports_actual_final_depth_without_mutating_the_journal
+    self.assertEqual(101, report['last_confirmed']['head_number'])
+AssertionError: 101 != 100
+
+======================================================================
+FAIL: test_depth_failure_cannot_advance_the_last_successful_cycle (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_depth_failure_cannot_advance_the_last_successful_cycle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 89, in test_depth_failure_cannot_advance_the_last_successful_cycle
+    self.assertFalse(self.k.run_cycle())
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_depth_retreat_cannot_relabel_the_old_anchor_as_confirmed (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_depth_retreat_cannot_relabel_the_old_anchor_as_confirmed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 49, in test_depth_retreat_cannot_relabel_the_old_anchor_as_confirmed
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_final_clock_future_stale_or_retreat_is_unavailable (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_final_clock_future_stale_or_retreat_is_unavailable) (timestamp=1793306918)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 67, in test_final_clock_future_stale_or_retreat_is_unavailable
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_final_clock_future_stale_or_retreat_is_unavailable (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_final_clock_future_stale_or_retreat_is_unavailable) (timestamp=1793306286)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 67, in test_final_clock_future_stale_or_retreat_is_unavailable
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_final_clock_future_stale_or_retreat_is_unavailable (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_final_clock_future_stale_or_retreat_is_unavailable) (timestamp=1793306886)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 67, in test_final_clock_future_stale_or_retreat_is_unavailable
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 61, in test_malformed_final_heads_fail_closed_with_prior_evidence_retained
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 61, in test_malformed_final_heads_fail_closed_with_prior_evidence_retained
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final={'number': True, 'hash': '0x4444444444444444444444444444444444444444444444444444444444444444', 'timestamp': '0x6ae3b107'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 61, in test_malformed_final_heads_fail_closed_with_prior_evidence_retained
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final={'number': '0x64', 'hash': '0x00', 'timestamp': '0x6ae3b107'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 61, in test_malformed_final_heads_fail_closed_with_prior_evidence_retained
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_malformed_final_heads_fail_closed_with_prior_evidence_retained (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_malformed_final_heads_fail_closed_with_prior_evidence_retained) (final={'number': '0x64', 'hash': '0x4444444444444444444444444444444444444444444444444444444444444444'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 61, in test_malformed_final_heads_fail_closed_with_prior_evidence_retained
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+======================================================================
+FAIL: test_same_height_head_reorg_cannot_publish_mixed_observation (tests_python.test_keeper_telemetry_completion.KeeperTelemetryCompletionTests.test_same_height_head_reorg_cannot_publish_mixed_observation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 54, in test_same_height_head_reorg_cannot_publish_mixed_observation
+    self.assert_unavailable()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_telemetry_completion.py", line 33, in assert_unavailable
+    self.assertEqual('unavailable', record['state'])
+AssertionError: 'unavailable' != 'observed_this_cycle'
+- unavailable
++ observed_this_cycle
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.847s
+
+FAILED (failures=12)

@@ -134,6 +134,8 @@ class History:
              extra_emitters=()) -> HistorySnapshot:
         if type(block_number) is not int or not self.start <= block_number < 1 << 63:
             raise HistoryError('Confirmed history target precedes coverage or exceeds SQLite bounds')
+        if type(block_timestamp) is not int or not 0 <= block_timestamp < 1 << 63:
+            raise HistoryError('Confirmed history timestamp exceeds supported bounds')
         if type(minted_count) is not int or not 0 <= minted_count <= 1000:
             raise HistoryError('Canonical NFT supply exceeds the bounded collection')
         if len(lp_assets - {ZERO}) > 32 or len(royalty_assets) > 17 or ZERO not in royalty_assets:
@@ -178,15 +180,20 @@ class History:
                             (self.chain, self.start, target)).fetchone()
         if bounds != (target - self.start + 1, self.start, target):
             raise HistoryError('Indexer block history has gaps')
-        first = db.execute('SELECT hash,parent FROM blocks WHERE chain=? AND number=?', (self.chain, self.start)).fetchone()
+        first = db.execute('SELECT hash,parent,timestamp FROM blocks WHERE chain=? AND number=?', (self.chain, self.start)).fetchone()
         last = db.execute('SELECT hash,timestamp FROM blocks WHERE chain=? AND number=?', (self.chain, target)).fetchone()
-        if first[1] != self.parent or last != (target_hash, target_timestamp):
+        if (first[1] != self.parent or last != (target_hash, target_timestamp) or
+                type(first[2]) is not int or not 0 <= first[2] <= target_timestamp):
             raise HistoryError('Indexer anchor/tip does not match the canonical projection')
+        # Validate all stored headers before replay, including eventless/filtered
+        # blocks. A producer check alone cannot validate restored or older data.
+        # Equal timestamps are valid on supported L2s; only regression is invalid.
         broken = db.execute('''SELECT 1 FROM blocks c JOIN blocks p ON p.chain=c.chain AND p.number=c.number-1
-            WHERE c.chain=? AND c.number>? AND c.number<=? AND c.parent!=p.hash LIMIT 1''',
+            WHERE c.chain=? AND c.number>? AND c.number<=? AND
+              (c.parent!=p.hash OR typeof(c.timestamp)!='integer' OR c.timestamp<p.timestamp) LIMIT 1''',
                             (self.chain, self.start, target)).fetchone()
         if broken:
-            raise HistoryError('Indexer stored block ancestry is discontinuous')
+            raise HistoryError('Indexer stored block ancestry or timestamps are inconsistent')
         # Raw event/emitter filters are enforced below. Do not filter by the
         # indexer's optional decoded event label: that could hide a real event.
         rows = db.execute('''SELECT l.block_number,l.block_hash,l.transaction_hash,l.log_index,l.address,l.raw,b.hash,b.timestamp

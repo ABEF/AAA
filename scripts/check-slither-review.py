@@ -11,6 +11,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from zzz_ops.state import read_json
 
 
 def source_hash(path):
@@ -151,8 +153,11 @@ def check(report, review, root=ROOT):
     if set(sources) != expected_paths:
         errors.append("Reviewed source/toolchain inventory changed")
     for name, digest in sources.items():
+        if name not in expected_paths:
+            errors.append("Reviewed inventory contains an unexpected source name")
+            continue
         path = root / name
-        if name not in expected_paths or not path.is_file() or source_hash(path) != digest:
+        if not path.is_file() or source_hash(path) != digest:
             errors.append(f"Reviewed content changed: {name}")
     entries = review.get("findings", [])
     reviewed = {item.get("fingerprint"): item for item in entries}
@@ -229,11 +234,18 @@ def main():
     parser.add_argument("--review", type=Path, default=ROOT / "reports/production/slither-review.json")
     args = parser.parse_args()
     try:
-        report = json.loads(args.report.read_text(encoding="utf-8"))
-        review = json.loads(args.review.read_text(encoding="utf-8"))
+        report = read_json(args.report,encoding="utf-8")
+        review = read_json(args.review,encoding="utf-8")
+        if not isinstance(report,dict) or not isinstance(review,dict):
+            raise ValueError("Analyzer and review inputs must be objects")
+        entries=review.get("findings",[])
+        if not isinstance(entries,list) or any(not isinstance(item,dict) or
+                not isinstance(item.get("fingerprint"),str) or
+                not re.fullmatch(r"[0-9a-f]{64}",item["fingerprint"]) for item in entries):
+            raise ValueError("Invalid reviewed finding identity")
         errors = check(report, review)
-    except (OSError, ValueError, KeyError, TypeError) as exc:
-        errors = [f"Invalid analyzer/review input: {exc}"]
+    except (OSError, ValueError, KeyError, TypeError, AttributeError, RecursionError):
+        errors = ["Invalid analyzer/review input; inspect the reviewed files and source bindings privately"]
     print(json.dumps({"review_coverage_pass": not errors, "independent_audit": False, "errors": errors}))
     return bool(errors)
 

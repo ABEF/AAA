@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "scope": "Independent helper-source, artifact/input identity and static graph review, not a fresh compiler audit or contract test.",
+  "source_pins": {
+    "inspect-yul-callgraph.py": "00054400bf22ec8d9f59a2a425808126316d2b8b4c44c544159c0246a324693f",
+    "check-yul-analyser.py": "8f3726a7f6db29c8aadfa6e9f79fafa42d12e3274cdb931d852dca67d1db8c90",
+    "ir-inspection-attempt-001\\compile-summary.json": "321c1fcb8f9f1d80f288a6c7d26becf15d5b3b9bce5b536ba2faca6190a10a85",
+    "ir-inspection-attempt-001\\callgraph-review-002.json": "70b2954d66f4252dca627175caa8e397866aa0b85630510b788a6293eb37440c",
+    "ir-inspection-attempt-001\\analyser-checks.json": "6eb19e2f7972eac21649ada46921be3d5e1f93d29d0fe8d99df71b1acedbe038",
+    "ir-inspection-attempt-001\\analyser-checks-scope-correction.json": "abefe51fe0b030b0c170380d174515e402820d15996d6bca7c1095a68c9366f2",
+    "ir-inspection-attempt-001\\ast-coverage-crosscheck.json": "6c89adba3df2b56307a128ced6de309a046981acea05e3f6b6ec96b5917dd424"
+  },
+  "review": [
+    {
+      "boundary": "Traversal coverage",
+      "assessment": "Every current YulFunctionCall is reached through statement/argument/condition/case/loop-body traversal. FunctionName identifiers and function parameters contain no executable calls under the pinned grammar. Unknown node kinds/root wrappers fail rather than silently become empty. Independent generic raw-AST counts match228objects/38972function occurrences/296494call expressions; this remains static duplicated occurrence coverage."
+    },
+    {
+      "boundary": "Lexical and object resolution",
+      "assessment": "Functions are preregistered per block; for-init visibility is limited to loopcondition/post/body; parent code scopes never share nested object graphs. Actual compiler objects have0nested/0for-init functions, so current function resolution is top-level per codeobject. Creation and runtime declarations are separate. The corrected walker does not silently flatten function names acrossobjects."
+    },
+    {
+      "boundary": "Dynamic/internal dispatch",
+      "assessment": "The pinned Yul grammar calls named functions; generated switches and their direct calls remain in the graph. Every nested argument is visited. Unknown callees, duplicates and unsupported AST shapes are explicit diagnostics; none occur in current output. EVM external calls/create begin separate memoryframes and are counted separately; this does not certify cross-contract reentrancy/economics."
+    },
+    {
+      "boundary": "Cycle algorithm",
+      "assessment": "Tarjan implementation is standard and includes unreachable helper definitions as well as entry. Independently applying Kahn topological removal to every persisted graph removes every vertex, corroborating no stored graph cycle without rerunning the analyzer or its8syntheticchecks. This does not independently reconstruct every ASTedge."
+    },
+    {
+      "boundary": "Compile/source identity",
+      "assessment": "Independently compared actual standard-json inputs: same78sourcecontents and all settings except outputSelection. Input/analyzer/summary/graph/crosscheck hashes bind. Existing successful compile summary records39byte-identical creation/runtime objects; raw201MBcompileroutput was not reparsed/recompared again in this review, and no compilation/EVM was performed."
+    }
+  ],
+  "substantive_correction": {
+    "status": "Corrected by companion scope-correction JSON; original receipt preserved",
+    "issue": "All8checks are hand-built structural AST probes, not compiler-acceptedYul programs. In particular, same-name function shadowing and functions insidefor-init are forbidden by0.8.26grammar. The initially ambiguous descriptions could overstate language-valid coverage.",
+    "primary_references": [
+      "https://docs.soliditylang.org/en/v0.8.26/yul.html#restrictions-on-the-grammar",
+      "https://docs.soliditylang.org/en/v0.8.26/yul.html#scoping-rules"
+    ],
+    "effect": "Evidence interpretation correction, not a current ASTcallgraph false negative. Scope correction explicitly separates synthetic malformed/undefined/forbidden shapes. Actual current objects contain neither nested nor for-init function definitions."
+  },
+  "independent_static_counts": {
+    "objects": 228,
+    "functions": 38972,
+    "call_expressions": 296494,
+    "internal_edges": 97885,
+    "nested_function_definitions": 0,
+    "for_pre_function_definitions": 0,
+    "vertices_topologically_removed": 39200
+  },
+  "stored_graph_cycle_witnesses": [],
+  "confirmed_false_negative_blockers": [],
+  "compile_runs": 0,
+  "evm_tests": 0,
+  "synthetic_checks_rerun": 0,
+  "repo_source_edits": 0,
+  "conclusion": "No substantive false-negative blocker confirmed for the current228compiler-generated graphs. Evidence supports no generated same-frame call-cycle witness at these exact IRphase/source/settings pins; it is not a security PASS or proof of compiler correctness.",
+  "limits": [
+    "The same compiler emits the ASTs being reviewed; no independent compiler implementation.",
+    "Graph node/call count equality excludes missed calls but alone cannot prove every edge resolves correctly; lexical logic was separately inspected.",
+    "OriginalIR/optimizedIR are not every later EVMbackend lowering stage or unrelated compiler defect.",
+    "Synthetic helper checks and independent graph analysis are not contract execution.",
+    "The prior failed zero-count wrapper attempt remains failed/preserved, not retroactively counted as successful evidence."
+  ]
+}

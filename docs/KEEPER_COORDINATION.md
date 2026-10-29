@@ -130,6 +130,22 @@ caller/venue limits apply; network gas is separate. No financial check was remov
 or widened by this keeper work. Missing actual prices or post-execution deltas
 leave a margin unavailable, rather than calculated from a guessed price.
 
+## Identity faults and confirmed telemetry
+
+Missing/mismatched pool occupancy or contradictory active/parked LP identity now
+requires a durable reset for that bucket's confirmation/jitter. Unrelated share
+inventory faults do not become evidence of price-condition failure. Pending
+recovery stays first; saved clear acknowledgements prevent repeated paid clears.
+Do not delete schedules/journals to recover. Terminal stop creates no new
+ordinary confirmation work for these identity faults.
+
+Execution telemetry additionally rechecks the final latest head, depth,
+chronology, canonical anchor and freshness before publishing `last_confirmed`.
+Failure retains old evidence as unavailable and cannot advance healthy time.
+The successful observation adds one logical latest-header read; adapter chain
+checks/retries and actual provider latency still need qualification. These
+diagnostic changes do not add transaction authority or guarantee strict cadence.
+
 ## Rollout and recovery
 
 Install matching reviewed source through the controlled service procedure, then

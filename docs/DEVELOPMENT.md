@@ -54,6 +54,16 @@ run separately scoped stronger audit/fuzz campaigns with explicit evidence.
 [recent affected keeper/preflight evidence](../reports/keeper-coordination-20261029/VERIFICATION.md)
 retain separate source and execution scopes; neither is a fresh full-suite run.
 
+Python/keeper/source-check producers reserve fresh JSON (and execution logs)
+exclusively before importing tests or scanning sources. An in-progress/failed
+marker is nonpass evidence, not proof that no side effect occurred. Partial
+diagnostics remain; a storage/fsync failure can leave partial unreadable evidence.
+Do not replay real actions to recreate a report. Source checks now default to a
+unique `reports/source-checks-<time>-<nonce>.json`; explicit existing outputs are
+refused. Full Python `--list` retains no execution log; inventory is not testing.
+Source hashes bracket selection/imports as well as execution; they are not
+runtime attestation against a compromised host or preloaded altered module.
+
 During development run the useful affected suites; preserve
 source/command/results/failure evidence. Reuse unchanged-source evidence only
 with exact production/dependency/build pins. Source-text checks are not compilation
@@ -70,6 +80,15 @@ source .venv-slither/bin/activate
 python -m pip install --require-hashes --only-binary=:all: -r requirements-slither.lock
 bash scripts/verify-slither.sh
 ```
+
+Each static run reserves a new `reports/slither.XXXXXXXX/` directory before
+invoking the analyzer. Optional `POPL_SLITHER_OUTPUT_DIR` must name a new
+directory; an existing path is refused. Version/report/diagnostic/review files
+remain there on failure, and the path prints on exit. Analyzer exit255 means
+findings, not approval; analyzer/log-capture/checker failures still fail. The
+checker strictly loads JSON objects and preserves source/finding coverage gates.
+CI uploads only these new static directories. Older canonical analysis/review
+files are not deleted or refreshed automatically.
 
 The [last full audit](../reports/full-audit-20261025/VERIFICATION.md) records
 actual399-findings/47bindings internal static review coverage PASS, successful
@@ -136,6 +155,12 @@ open. Provider batching hit a documented429; serialized archive success is not
 production SLA/provider approval. Do not copy old Pons/WETH fixtures as current
 evidence or add overlapping attempts to the11-method count. Three layers remain: local adversarial tests,
 selected Robinhood mainnet fork and Robinhood Testnet wallet/operator rehearsals.
+The concrete production Registry deliberately pins chain4663 and mainnet native
+runtimes. A byte-identical full venue flow cannot simply be redeployed on a
+different testnet. A testnet rehearsal needs an explicit reviewed test-only
+binding/profile with mocks/limits declared; it qualifies only that scope. Keep
+actual mainnet-venue qualification in the selected fork/approved rehearsal, never
+weaken production pins or label test dependencies real.
 See [release preflight](PRODUCTION_PREFLIGHT.md) and [sole Todo](../TODO.md).
 
 Fresh source profile: accounting4/custody3/governance2/fee1/canonicalV5 with

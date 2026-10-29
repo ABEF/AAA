@@ -1,0 +1,6 @@
+test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.033s
+
+OK

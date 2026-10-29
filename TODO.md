@@ -152,6 +152,7 @@ Custody, ownership and reward accounting.
   - Verify final fees/pending compound and exact native/token deltas; no prefund subsidy or reserve mixing.
   - Qualify per-recipient gas, callback/rejection/token fault isolation, current-owner fallback and complete backing/remaining balances on the target chain.
   - Old native-custody reports remain historical; qualify the new accounting4/custody3 code independently before approval.
+  - After principal allocation, reserve-only venue recovery remains available without reopening custody or changing unpaid owner allocations. Keep buyback reserve, allocated principal and old reward liabilities separate; qualify pending payouts and actual venue re-admission on the target chain.
 
   </details>
 
@@ -170,6 +171,7 @@ Custody, ownership and reward accounting.
   - [Governed execution-loss policy](docs/EXECUTION_LOSS_POLICY.md): Budget setLossLimits(contribution,maintenance) and each converter setConversionLossBps select 0..1000 bps. Defaults 200/100/300. Captured operation policies and original custody approval floors persist; raw emergency remains separate. Verify current settings and reconcile pending reviews; no cumulative cap is added.
   - [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) is implemented as schema-5 inventory and read-only same-block observations. Complete the actual pinned deployment, route/feed/service and independent review records; implementing a checker does not qualify its inputs or authorize release.
   - Buyback operating/max USD ceilings now use upper-bound input value rounded upward under pricingV2, preventing accepted feed disagreement from exceeding the reviewed ceiling. Existing conservative execution floor, fixed allocation, route and authority controls remain; divergent-price batches may need reducing.
+  - [Current post-exit reserve recovery](reports/comprehensive-popl-20261029/REVIEW.md): validated configureNative is implemented after Migration Ready only with deposits disabled. Ready means principal allocated, payouts may remain. Admission cannot reopen LP/access holder backing; actual buyback still needs normal keeper/unpause/price/route/quality checks. Qualify real native dependencies and operator cutover.
 
   </details>
 
@@ -467,6 +469,7 @@ The data and services behind the app.
   - [Stored-evidence repair](reports/whole-project-audit-20261029/VERIFICATION.md) rejects duplicate fields, nonfinite JSON, malformed raw envelopes and parser-resource failures as unavailable history. Real SQLite/writer/reader negative and positive controls preserve valid payouts, fractions, transfers, lineage and current-price reporting. Coherent database/provider forgery and actual completeness remain independently qualified.
   - [Whole-project execution](reports/whole-project-execution-20261029/REVIEW.md): Ordered transaction provenance now rejects contradictory supplied indices/hash interleaving at ingestion and stored replay; numeric gaps/missing optional legacy indices remain valid. Final depth and signed legacy fee evidence are rechecked. Exact balances/earned/claimable/claimed semantics remain; provider completeness/authenticity stays open.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Confirmed ingestion no longer stores chunks that lost depth, changed predecessor through an ABA writer race, or regressed block time. Equal L2 timestamps and unknown unindexed parent time remain valid. This fixes reporting consistency; actual history completeness/provider qualification remains open.
+  - [Reader chronology repair](reports/comprehensive-popl-20261029/REVIEW.md) rejects contradictory timestamps throughout the stored block prefix, including eventless/filtered blocks, while allowing equal L2 timestamps. Diagnose/preserve inconsistent restored data; never repair timestamps to pass. Qualify actual archive/provider/reorg histories and a reviewed authenticated archival/checkpoint/read-model evolution before bounded full replay reaches lifetime service limits; no truncation or guessed zero.
 
   </details>
 
@@ -558,6 +561,7 @@ The data and services behind the app.
   - [Wallet custody follow-up](reports/confirmation-followup-20261028/VERIFICATION.md) adds pinned nftStatus beside royalty weight in profiles3/4. Parked/outbound value, dormant unavailability and terminal contradictions fail closed; genuine LP outages preserve independent ETH totals. Profile3 adds one custody read per NFT; profile4 strengthens its existing status read.16-item chunks and existing RPC budgets remain.
   - [Whole-project review](reports/whole-project-audit-20261029/REVIEW.md): ownership inventory isolates optional-currency runtime/decimals faults while exact admitted addresses, core/lifecycle/history, owner/count, final depth and WorkLimit remain strict. No financial value or authentication is invented; production hosting remains separate.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Sold-out mint readiness now reports exact remaining supply/supply-stop while preserving pending reveal information, without extra RPC. Indexer confirms final depth, exact write boundary and nondecreasing timestamps; provider consistency is not authenticity/history completeness.
+  - Current full-prefix chronology admission is implemented with no extra RPC/query/schema change. Real complete-history availability and long-term bounded replay design stay separate qualification tasks; raw funded claims do not depend on the history API being online.
 
   </details>
 
@@ -823,6 +827,7 @@ Three required testing layers, with source-bound evidence.
   - Exercise actual entry, top-ups, fee funding/claims, royalties, transfers, rebalances, live keeper signing/recovery, indexer backfill/reorgs and alerts. Record mock or unavailable dependencies; Sepolia and local Anvil supplement but do not replace Robinhood-specific qualification.
   - Treat the local $1 variant as separate test evidence. A public testnet wallet flow still needs a reviewed deployment, services and frontend configuration; do not promote the reduced minimum into production. Any real production defect exposed by rehearsals requires a production fix, focused regression and refreshed source-bound evidence.
   - [Keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) binds health to exact loaded config, rejects malformed conversion controls, repairs obsolete range-test domain and selects current3/fee1/native rehearsal source. Final affected Python354pass/5Unix skips (359methods),9range methods incl1000fuzz; unchanged production Solidity/permissions/economics. Linux current-fixture process/systemd, actual feeds/routes/gas/services and independent audit remain open. Deploy matching health writer/checker only under separate rollout; never patch old hashes or reset journals.
+  - Production native Registry pins chain4663 and mainnet dependency runtimes. Qualify actual venue admission on the real mainnet fork; define a separately reviewed test-only/testnet binding/profile for applicable wallet/keeper/deployment rehearsals. Never weaken production pins or label a mocked runtime fixture byte-identical production qualification.
 
   </details>
 
@@ -898,6 +903,7 @@ Three required testing layers, with source-bound evidence.
   - [Whole-project execution](reports/whole-project-execution-20261029/REVIEW.md): Full-project brief replaced the date-limited prompt after understanding and two independent challenges. Current source/body/backend/website/tooling coverage and implemented repairs are source-pinned. Reuse exact build/gates and appropriate old tests; independent audit/remediation and actual release qualification remain mandatory.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Operational follow-up fixes actual off-chain implementation defects after full operation mapping;221 distinct affected passes / 66 new across retained source scopes. Production Solidity unchanged;39normal gates reused only at78exact source pins, not rerun. Failed fixtures and independent challenges preserved. Actual services and independent audit remain open.
   - [Keeper coordination evidence](reports/keeper-coordination-20261029/VERIFICATION.md): preserve prior report scopes, the newly exposed private-getter fixture error and current ABI-bound regression. Source-only automation/diagnostics checks do not close actual services, economics, target gas or independent approval.
+  - [Complete-project audit](reports/comprehensive-popl-20261029/VERIFICATION.md) adds16 scoped EVM passes,82 distinct Python methods across source stages (80pass/two Windows skips),39 fresh normal production gates and semantic ABI/storage comparison. Only Registry bytecode changes. Generated structured IR inspection narrows named compiler advisory applicability, not compiler correctness. Refresh actual source-bound static analysis/triage and independent frozen-release audit; tooling repair and historical399findings are not current approval.
 
   </details>
 
@@ -912,6 +918,7 @@ Three required testing layers, with source-bound evidence.
   - [Full audit verification](reports/full-audit-20261025/VERIFICATION.md):11distinct scoped Python passes (9new/2compatibility), one new cold-capacity optional-currency gas case at9,591,082<12M,265closed AST inputs, fresh actual399-flag Slither triage and37unchanged object lengths from successful solc output. Forge postcompile signature-cache CLI failure and analyzer bootstrap repair remain explicit; no unchanged broad suite rerun or full release approval.
   - [Additional audit verification](reports/confirmation-followup-20261028/VERIFICATION.md):399distinct affected Python methods,398pass/1explicit missing-cast skip,53new. Retained failed attempts have explicit corrected-case receipts; counts are not summed across overlap. Unchanged217Solidity/39normal gates reused only after exact source/test/dependency/build comparison.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Full Python runner selects canonical defined classes/methods once and keeps locally defined inherited tests. Inventory-only is0execution, empty/custom/duplicate selections fail and source drift invalidates results. Default/explicit evidence is fresh; full verifier inspects normal effective profile/tool/filters/fuzz/invariants and preserves prior reports. Scoped metadata and inert wrapper controls are not a full CI/build acceptance.
+  - [Exclusive evidence admission and provenance](reports/comprehensive-popl-20261029/VERIFICATION.md): JSON/log outputs are reserved before imports/tests/scans, nonpass partial evidence is retained and source hashes precede selection. Keeper selection includes both new regression modules, rejects custom loaders and verifies exact execution identities. Two Windows filesystem skips require Unix rehearsal. Inventories and synthetic sentinels are not additional real project passes.
 
   </details>
 
@@ -1128,6 +1135,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Use the [full callable scenario matrix](reports/system-adversarial-20261026/COVERAGE.md) and [backend/keeper cases](reports/system-adversarial-20261026/BACKEND.md) as independent audit inputs. Source coverage is not exhaustive execution. The corrected strict RPC/holder CLI boundaries must retain canonical identities, terminal budgets, preserved state and sanitized failures in real operating rehearsals.
   - [Whole-project coverage](reports/whole-project-audit-20261029/COVERAGE.md) retains the original source reconstruction/critical-path depth; current [body coverage](reports/whole-project-execution-20261029/COVERAGE.md) completes handwritten reads while external qualification remains open. Fresh Entry v3 principal-route branch is an unreachable simplification candidate under nativeETH/fixedZZZ; removal needs explicit fresh routing profile/all consumers. Do not remove valid separate royalty-v3 wrapper conversion or relabel historical journals.
   - [Whole-project execution](reports/whole-project-execution-20261029/REVIEW.md): Current internal pass reads644project function/modifier bodies and77selected dependency bodies, completing previously deferred body-depth review and output annotations. Evidence/artifact/JSON/history/keeper defects fixed; no newly established Solidity exploit or blanket absence proof. Live-service, compiler lowering and independent audit gates remain open.
+  - [Current composed audit](reports/comprehensive-popl-20261029/COVERAGE.md) traces contract/keeper/history/tooling and operator boundaries; source-body coverage, targeted execution and generated-lowering checks retain distinct scopes. The terminal venue fixture explicitly overrides only native runtime binding for positive cases; concrete production rejection is checked. No actual mainnet admission, website wallet or operating qualification follows from synthetic tests.
 
   </details>
 
@@ -1260,6 +1268,7 @@ Decisions and rehearsals before real funds.
   - [Whole-operation design](reports/normal-operation-design-20261029/REVIEW.md): distinguish on-chain compound eligibility, worker trigger and actual execution. Before12h compound can swap after its own interval; after raw outside/width need it blocks even if reference prevents rebalance. The user selected service-only compounding waits for outside-range/pending width; keep a separate outside-range no-swap exception unselected without letting compound change replacement clocks or bypass protection. Idle-only scheduling remains opt-in; receipt-backed standalone-harvest coalescing is implemented in the current source using actual canonical FeesCollected evidence; not submission/ambiguous/reverted work or guessed external contributions. No installed source/configuration was changed by publication.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Reject latest-head timestamp regression and successor-receipt height/time retreat without changing pending/spend truth, timing or journal schema. Same-block receipts remain valid. Actual rollout/provider/finality/gas/host qualification remains open.
   - [Keeper coordination](reports/keeper-coordination-20261029/VERIFICATION.md): Fresh accounting4/policy2 waits for authenticated physical in-range/no-pending-width evidence before compound, including pre-cooldown. Missing reader pins defer compound without guessed fallback or blocking due harvest. Canonical own successful compound/rebalance FeesCollected proof coalesces the hourly harvest clock in the original paid-state save; no event guessing, nonce reset, on-chain rebalance-clock rewrite, guard relaxation or installed rollout.
+  - [Current keeper repairs](reports/comprehensive-popl-20261029/REVIEW.md) durably reset only affected confirmation windows on physical/occupancy identity faults and recheck final telemetry depth/chronology before healthy evidence. Qualify the extra ready-path latest-head observation, writer/checker/source rollout and strict cadence on actual providers; preserve pending-first recovery and journals. Offline18-method evidence is not installed acceptance.
 
   </details>
 
@@ -1288,7 +1297,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-deployment-initcode"></a>
 
-- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - In progress. Fresh source passes39normal object gates: Manager23765runtime (811margin), creation48548+160static arguments (444initcode margin); Vault24064runtime (512margin), creation46245+96static arguments; Strategy24004runtime (572margin); NFT24400runtime (176margin). Exact URI/arguments, deployed bindings and target gas remain unqualified. Preserve failed compile attempts and older source-scoped sizes; never waive normal limits.
+- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - In progress. Fresh production compilation passes39normal object gates at78closed sources. Manager initcode margin37bytes and Vault runtime margin59bytes remain tight; only Registry bytecode changes (+270runtime/+270creation) for validated post-exit swap-only venue recovery. Exact arguments, bindings, dynamic URI and target gas remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1297,6 +1306,7 @@ Decisions and rehearsals before real funds.
   - Qualify actual bootstrap, module/helper/authority bindings, deployment calldata, source/runtime pins, chain gas and setup/sealing procedures. No deployment follows from local gates; never waive EIP-170/EIP-3860.
   - Controlled same-context Access comparison reproduces9207→9252runtime and42081→42256creation (+45/+175); constructor fixed arguments96bytes give42352total/6800margin. Four isolated role-gas measurements pass, including CREATE+12312raw execution gas. RoyaltyFactory runtime margin69bytes and actual NFT URI constructor arguments require exact release qualification; see [gas evidence](reports/day-readiness-20261025/role-gas.md).
   - The blocked holder-exit keeper example cap2.5Mgas is not a qualified current maintenance budget. Earlier balance-only cold fixture observations2,590,680(one venue)/5,963,090(four) already exceed it before full operation/25%padding. Qualify exact fresh operations, network fee accounting and daily budgets; do not raise limits automatically or treat prior fixture gas as target-chain approval.
+  - [Fresh normal compilation](reports/comprehensive-popl-20261029/VERIFICATION.md):39objects pass at78closed source pins; Manager runtime23111/creation48955+160arguments leaves37initcode bytes; Vault runtime24517 leaves59runtime bytes and creation48951+96arguments leaves105initcode bytes. Registry runtime10718/creation42362. Other38bytecode objects are identical to the exact prior production artifact. Exact dynamic NFT URI/arguments, release bindings and target gas still require qualification; no gate relaxation.
 
   </details>
 
@@ -1335,4 +1345,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `3a6353680475590a9cb0b44f52c2ab4330765f7ae6368ee5b405ae50e2659a51`.
+Snapshot SHA-256: `734ec764f5aa94981a5ddb51faaa2280a04389cdece3503de34be4602c94683f`.

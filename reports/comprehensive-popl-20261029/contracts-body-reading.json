@@ -1,0 +1,290 @@
+{
+  "baseline": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "records": [
+    {
+      "path": "src/base/ZZZModule.sol",
+      "sha256": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "scope": "full body read",
+      "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "scope": "full body read",
+      "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "sha256": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "scope": "full body read",
+      "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "scope": "full body read",
+      "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "scope": "full body read",
+      "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "sha256": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZRoyaltyConverter.sol",
+      "sha256": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "sha256": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "scope": "full body read, including reread of initially truncated Rewards import lines",
+      "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "sha256": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "scope": "full function-body and catalogue-shape read; generated byte constants retained/source-pinned, not individually reinterpreted as new images or tested draws",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "sha256": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "sha256": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "sha256": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "sha256": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "sha256": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "sha256": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "sha256": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "sha256": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "sha256": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "sha256": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "sha256": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "sha256": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "sha256": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "scope": "full body read and composed-flow trace",
+      "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+    }
+  ],
+  "source_files": 47,
+  "execution_tests_run": 0,
+  "limits": "Source/body review is not a fresh execution or production approval; dependency reads are bounded to actual dispatched implementations and are separately recorded."
+}

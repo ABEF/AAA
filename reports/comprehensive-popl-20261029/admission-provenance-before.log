@@ -1,0 +1,36 @@
+test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass) ... FAIL
+test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names) ... FAIL
+test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass) ... FAIL
+
+======================================================================
+FAIL: test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 177, in test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass
+    self.selection_mutation('run-keeper-tests.py')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 166, in selection_mutation
+    self.assertEqual(1, status)
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 196, in test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names
+    self.assertIn('scripts/helper_not_loaded_in_sys_modules.py', pinned)
+AssertionError: 'scripts/helper_not_loaded_in_sys_modules.py' not found in {'keeper/rehearsal/KeeperVenue.sol': '2432a1743b952469b90d81791a776313c48399319b88ee030e7ca44658e8b0f6', 'keeper/staging.py': 'd0f40a34c02bc2d328c3ac45891ab990781d4de04b92d9905424deb6225e0854', 'scripts/rehearse-keeper.py': 'd45447503e88a7161235e2840a60910c68ed3c65fb4512bf73e245d6d5b9ff01', 'scripts/run-keeper-tests.py': '12b8a6c4a4c94d4845ab6386074978324c7999d858d957470c1da0540f021d30'}
+
+======================================================================
+FAIL: test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 174, in test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass
+    self.selection_mutation('run_python_tests.py')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 166, in selection_mutation
+    self.assertEqual(1, status)
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.146s
+
+FAILED (failures=3)

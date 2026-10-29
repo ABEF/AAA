@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "families": [
+    {
+      "id": "F1",
+      "feature": "Setup, sealing and permissions",
+      "actual_components_and_invariants": "Access/base/factories; fixed bindings/direct governance/keeper/guardian",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "security-governance",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F2",
+      "feature": "Mint, original randomness and ordered draw",
+      "actual_components_and_invariants": "NFT/RoyaltyFactory/metadata;1000cap/exact quotas/fixed inventory/OpenSea gap",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "fair-draw",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F3",
+      "feature": "Activation and growth",
+      "actual_components_and_invariants": "Entry/Pricing/Vault; exact budgets/actual LP/owner/net shares",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "activation-quotes",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F4",
+      "feature": "Physical LP and execution routing",
+      "actual_components_and_invariants": "Manager/Balancer/Registry/v4/Permit2; deltas/native identity/one swap",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "lp-execution-routing",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F5",
+      "feature": "Harvest and funded allocation",
+      "actual_components_and_invariants": "Vault/Fees/Rewards/Membership;80/10/5/5/fractions/incumbent dust",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "reward-ledgers",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F6",
+      "feature": "Royalties, conversions and claims",
+      "actual_components_and_invariants": "RoyaltyRewards/converters/ClaimRouter; cohorts/current owner/no duplicate income",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "royalty-eth-settlement",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F7",
+      "feature": "Normal maintenance and timing",
+      "actual_components_and_invariants": "Strategy/Budget/Confirmation/Keeper;12h/900/300/240/jitter/compound/harvest",
+      "domain_evidence": "operations-understanding-and-coverage.json",
+      "owning_task": "rebalance-confirmation-buffer",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F8",
+      "feature": "Governed settings and stop/recovery",
+      "actual_components_and_invariants": "Registry/Oracle/assets/access and operator guide",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "post-seal-configuration",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F9",
+      "feature": "Manual emergency",
+      "actual_components_and_invariants": "Migration/Budget/Manager; accepted financial bypass/mandatory structural rules",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "manual-emergency-rebalance",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F10",
+      "feature": "Same-pair movement and parking",
+      "actual_components_and_invariants": "Migration/Vault/validation; real principal and reversible parking",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "native-custody-recovery",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F11",
+      "feature": "Pre-exit canonical replacement",
+      "actual_components_and_invariants": "six domains/roots/backing/abort/ownership/lineage",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "security-chain-recovery",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F12",
+      "feature": "Collective holder return and remaining reserves",
+      "actual_components_and_invariants": "terminal close/allocation/payout/current owner/Ready-only swap venue recovery",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "native-custody-recovery",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F13",
+      "feature": "Confirmed data and history",
+      "actual_components_and_invariants": "Indexer/History/earnings/Prices/Lineage; chronology/ownership/paid versus earned",
+      "domain_evidence": "backend-review.json",
+      "owning_task": "financial-history",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F14",
+      "feature": "API, workers and unsigned transactions",
+      "actual_components_and_invariants": "RPC/ABI/Projection/admission/WorkerPool/typed reviews",
+      "domain_evidence": "backend-review.json",
+      "owning_task": "read-api",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F15",
+      "feature": "Website and browser wallet",
+      "actual_components_and_invariants": "declared old/local versus current3/fresh4; unchanged signer/account/recovery/UI",
+      "domain_evidence": "backend-review.json",
+      "owning_task": "wallet",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F16",
+      "feature": "Artwork, metadata and publication",
+      "actual_components_and_invariants": "immutable catalogue/evolution/fallback/terminal/host/refresh/source-only website",
+      "domain_evidence": "contracts-review.json",
+      "owning_task": "metadata-ops",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F17",
+      "feature": "Keeper jobs and operating recovery",
+      "actual_components_and_invariants": "serial intent/nonce/spend/receipt/fairness/health/backup/key/host loss",
+      "domain_evidence": "operations-findings.json",
+      "owning_task": "keeper-recovery",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F18",
+      "feature": "Build, dependencies and verification outputs",
+      "actual_components_and_invariants": "normal compiler/ABI/storage/gates/static review/owned evidence/test selection",
+      "domain_evidence": "operations-admission-findings.json",
+      "owning_task": "audit-release",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    },
+    {
+      "id": "F19",
+      "feature": "Management and lifetime availability",
+      "actual_components_and_invariants": "gas/VRF/provider/storage funding; terminal/chain/key/token failure limits",
+      "domain_evidence": "operations-understanding-and-coverage.json",
+      "owning_task": "host-services",
+      "disposition": "Traced/reviewed with exact prior/new source scope; verification and external limits remain per-domain."
+    }
+  ],
+  "honesty": "Feature families are navigation, not tests or blanket passing verdicts. Public browser/actual services/market/economics/independent approval are not executed here."
+}

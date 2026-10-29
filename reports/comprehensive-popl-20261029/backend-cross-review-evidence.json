@@ -1,0 +1,256 @@
+{
+  "schema": 1,
+  "reviewed_head": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "reviewed_scope": "Current working diff of exclusive-evidence helper, three producer entrypoints and inert regression module; no whole-suite execution.",
+  "source_pins": [
+    {
+      "path": "zzz_ops/evidence.py",
+      "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1"
+    },
+    {
+      "path": "scripts/run_python_tests.py",
+      "sha256": "101fd5b00e243455946757ffa60329e78ecd331b6b5feec176f7423c74da35ff"
+    },
+    {
+      "path": "scripts/run-keeper-tests.py",
+      "sha256": "12b8a6c4a4c94d4845ab6386074978324c7999d858d957470c1da0540f021d30"
+    },
+    {
+      "path": "scripts/source_checks.py",
+      "sha256": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca"
+    },
+    {
+      "path": "tests_python/test_verification_output_ownership.py",
+      "sha256": "51fcb56511e21a68f8cdb10b36b52332d1aa9fc1f7d79f3e996cef10bcc893f1"
+    }
+  ],
+  "checked_boundaries": [
+    {
+      "id": "EX01",
+      "boundary": "Admission before imported tests/check work",
+      "result": "No blocking defect confirmed",
+      "assessment": "Each changed producer enters Evidence before selection/module imports or source scanning. Existing JSON/log/directory/dangling-symlink paths reject before work. Own helper import, argparse and output-name choice are not project test/check execution. Python inventory preserves no-log behavior while still refusing pre-existing paired log paths in its friendly preflight.",
+      "proof": [
+        {
+          "path": "scripts/run_python_tests.py",
+          "line": 72,
+          "sha256": "101fd5b00e243455946757ffa60329e78ecd331b6b5feec176f7423c74da35ff",
+          "excerpt": "    with Evidence(output,with_log=not args.list,kind='python_test_evidence') as evidence:\n        tests,classes=select_tests();before=inputs()\n        result=None if args.list else unittest.TextTestRunner(stream=evidence.log,verbosity=2,resultclass=Results).run(unittest.TestSuite(tests.values()))\n        after=inputs();changed=sorted(name for name in before.keys()|after.keys() if before.get(name)!=after.get(name))\n        breakdown={}"
+        },
+        {
+          "path": "scripts/run-keeper-tests.py",
+          "line": 73,
+          "sha256": "12b8a6c4a4c94d4845ab6386074978324c7999d858d957470c1da0540f021d30",
+          "excerpt": " with Evidence(args.output,with_log=True,kind='keeper_test_evidence') as evidence:\n  tests,classes=select_tests()\n  before=inputs();start=time.monotonic()\n  result=None if args.list else unittest.TextTestRunner(stream=evidence.log,verbosity=2,resultclass=Results).run(unittest.TestSuite(tests.values()))\n  after=inputs();changed={n for n in before|after if before.get(n)!=after.get(n)}"
+        },
+        {
+          "path": "scripts/source_checks.py",
+          "line": 23,
+          "sha256": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+          "excerpt": "    with Evidence(output,kind='source_consistency_only') as evidence:\n        errors=[];external=set();inventory=[]\n        for name in EXPECTED+HELPERS:\n            p=ROOT/'src'/f'{name}.sol'\n            if not p.exists():errors.append(f'Missing required contract {name}')"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 88,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def __enter__(self):\n        paths = [self.path] + ([self.log_path] if self.log_path is not None else [])\n        # Friendly preflight, followed by exclusive creation to close the race.\n        if any(path.exists() or path.is_symlink() for path in paths):\n            raise FileExistsError('Verification evidence output already exists')"
+        }
+      ]
+    },
+    {
+      "id": "EX02",
+      "boundary": "Exclusive dual-file reservation and collision",
+      "result": "No blocking defect confirmed",
+      "assessment": "Friendly path checks are followed by O_CREAT|O_EXCL, so a concurrent creator wins without truncation. JSON nonpass marker is synced before optional log reservation; a second-file collision leaves owned JSON failed and competitor log unchanged. Distinct resolved output/log paths are required. The pair deliberately has a durable incomplete state rather than pretending atomic two-file creation.",
+      "proof": [
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 27,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def _open(path):\n        fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_EXCL, 0o600)\n        try:\n            return os.fdopen(fd, 'w+', encoding='utf-8', newline='\\n')\n        except BaseException:"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 96,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "            self._write_json(self._marker('in_progress'))\n            if self.log_path is not None:\n                self.log = self._open(self.log_path)\n                self._sync_log()\n                self._sync_directory()"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 20,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "        if self.log_path is not None and self.path.resolve() == self.log_path.resolve():\n            raise ValueError('JSON and log evidence paths must be distinct')\n        self.kind = kind\n        self.json = self.log = None\n        self.finished = False"
+        }
+      ]
+    },
+    {
+      "id": "EX03",
+      "boundary": "Symlinks, replacements and owned handles",
+      "result": "No blocking defect within documented local-evidence threat model",
+      "assessment": "Final-path existing live/dangling symlinks are rejected; exclusive creation does not follow a competing final symlink. _owned uses lstat regular-file and device/inode comparison with the held descriptor. Final writes use the held file handle, never reopen/truncate a replaced foreign path. JSON is validated before own marker truncation, log ownership is checked before flush/read, and path replacement before finalization fails.",
+      "proof": [
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 36,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def _owned(path, handle):\n        current, original = path.lstat(), os.fstat(handle.fileno())\n        if (not stat.S_ISREG(current.st_mode) or\n                (current.st_dev, current.st_ino) != (original.st_dev, original.st_ino)):\n            raise ValueError('Reserved evidence path changed; preserve and inspect the outputs')"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 50,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def _write_json(self, payload):\n        # Validate before truncating even our own earlier nonpass marker.\n        text = json.dumps(payload, indent=2, ensure_ascii=False, allow_nan=False) + '\\n'\n        self._owned(self.path, self.json)\n        self.json.seek(0)"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 68,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def _sync_log(self):\n        if self.log is not None:\n            self._owned(self.log_path, self.log)\n            self.log.flush()\n            os.fsync(self.log.fileno())"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 107,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def read_log(self):\n        if self.log is None:\n            return ''\n        self._owned(self.log_path, self.log)\n        self.log.flush()"
+        }
+      ],
+      "limit": "This is not authentication or a filesystem transaction against a same-account adversary replacing every path/parent after a check. That explicit exclusion is already in the helper docstring. Source hashes/file ownership must not be marketed as attestation."
+    },
+    {
+      "id": "EX04",
+      "boundary": "Durability and failed/interrupted producers",
+      "result": "No blocking defect confirmed",
+      "assessment": "Markers/logs are flushed and fsynced; parent directory is fsynced on supported Unix. Interruption, import failure, invalid final JSON and missing final report retain nonpass metadata; failure/interruption keeps partial logs. A normal scope exit or SystemExit0 without finish raises instead of returning success. Complete unsuccessful checks remain complete evidence with successfulFalse. Exceptions prevent the producers returning0.",
+      "proof": [
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 42,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def _sync_directory(self):\n        if hasattr(os, 'O_DIRECTORY'):\n            fd = os.open(self.path.parent, os.O_RDONLY | os.O_DIRECTORY)\n            try:\n                os.fsync(fd)"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 74,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def _failed(self, exc):\n        # Best effort only when storage itself failed; never replace the cause,\n        # delete reserved evidence or write through another owner's pathname.\n        try:\n            self._sync_log()"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 118,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def finish(self, report):\n        if self.finished or not isinstance(report, dict):\n            raise ValueError('Evidence requires one final object report')\n        self._sync_log()\n        self._write_json({**report, 'evidence_status': 'complete', 'completion_recorded': True})"
+        },
+        {
+          "path": "zzz_ops/evidence.py",
+          "line": 133,
+          "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+          "excerpt": "    def __exit__(self, typ, exc, traceback):\n        incomplete = not self.finished and (exc is None or isinstance(exc, SystemExit) and exc.code in (None, 0))\n        try:\n            if exc is not None:\n                self._failed(exc)"
+        }
+      ],
+      "limit": "Storage failure is best effort; no code can guarantee durable repair after failed writes/fsync or power loss. Require the actual producer exit receipt and source pins, not an isolated boolean from an untrusted file. Windows evidence does not qualify Unix directory/permission/power-loss semantics."
+    },
+    {
+      "id": "EX05",
+      "boundary": "Canonical method identity/order and custom loaders",
+      "result": "No blocking regression confirmed",
+      "assessment": "Whole-Python defined-class selection remains unchanged. Keeper aligns with its rejection of unreviewed load_tests. Imported TestCase aliases remain excluded by __module__, duplicate classes/IDs reject, deterministic insertion preserves selected order and final success now requires exact executed ID order/count. Inventory reports execution_performedFalse/tests_run0 and must not be counted as executed passes.",
+      "proof": [
+        {
+          "path": "scripts/run_python_tests.py",
+          "line": 20,
+          "sha256": "101fd5b00e243455946757ffa60329e78ecd331b6b5feec176f7423c74da35ff",
+          "excerpt": "def select_tests(modules=None,importer=importlib.import_module):\n    if modules is None:\n        modules=tuple(path.stem for path in sorted((ROOT/'tests_python').glob('test*.py')))\n    if not modules or len(modules)!=len(set(modules)):\n        raise ValueError('Empty or repeated Python test module selection')"
+        },
+        {
+          "path": "scripts/run-keeper-tests.py",
+          "line": 43,
+          "sha256": "12b8a6c4a4c94d4845ab6386074978324c7999d858d957470c1da0540f021d30",
+          "excerpt": "  if getattr(mod,'load_tests',None) is not None:raise ValueError('Custom keeper test loading requires explicit reviewed selection')\n  count=0\n  for _,cls in inspect.getmembers(mod,inspect.isclass):\n   if not issubclass(cls,unittest.TestCase) or cls.__module__!=mod.__name__ or cls in seen:continue\n   seen.add(cls);classes.append(cls.__module__+'.'+cls.__name__)"
+        },
+        {
+          "path": "scripts/run-keeper-tests.py",
+          "line": 85,
+          "sha256": "12b8a6c4a4c94d4845ab6386074978324c7999d858d957470c1da0540f021d30",
+          "excerpt": "  'successful':not changed and (args.list or result.wasSuccessful() and result.testsRun==len(tests) and result.methods==list(tests)),\n  'elapsed_seconds':round(time.monotonic()-start,3),'production_approved':False}\n  diagnostics=evidence.read_log()\n  evidence.finish(report)\n print(diagnostics);print(json.dumps({k:report[k] for k in ('tests_run','successful','elapsed_seconds')}))"
+        },
+        {
+          "path": "scripts/run_python_tests.py",
+          "line": 81,
+          "sha256": "101fd5b00e243455946757ffa60329e78ecd331b6b5feec176f7423c74da35ff",
+          "excerpt": "            'execution_performed':not args.list,'selected_methods':list(tests),'classes':classes,\n            'executed_methods':result.methods if result else [],'tests_run':result.testsRun if result else 0,\n            'failures':len(result.failures) if result else 0,'errors':len(result.errors) if result else 0,\n            'skipped':len(result.skipped) if result else 0,'successful':bool(successful),'by_module':breakdown,\n            'failure_methods':[x.id() for x,_ in result.failures] if result else [],"
+        }
+      ]
+    },
+    {
+      "id": "EX06",
+      "boundary": "Source-check output and status semantics",
+      "result": "No blocking regression confirmed",
+      "assessment": "Default output is a new timestamp/random filename reserved exclusively before scanning. The unrelated dirty reports/source-checks.json is not a default overwrite target. An explicit existing path is refused. Existing source/delimiter/import checks are preserved; their successful flag means narrow source consistency, while solidity_compiledFalse/security_audit_passFalse prevent an audit/build claim.",
+      "proof": [
+        {
+          "path": "scripts/source_checks.py",
+          "line": 22,
+          "sha256": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+          "excerpt": "    output=args.output or ROOT/'reports'/f'source-checks-{stamp}-{secrets.token_hex(4)}.json'\n    with Evidence(output,kind='source_consistency_only') as evidence:\n        errors=[];external=set();inventory=[]\n        for name in EXPECTED+HELPERS:\n            p=ROOT/'src'/f'{name}.sol'"
+        },
+        {
+          "path": "scripts/source_checks.py",
+          "line": 43,
+          "sha256": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+          "excerpt": "        report={'kind':'source_consistency_only','solidity_compiled':False,'security_audit_pass':False,'successful':not errors,\n      'modules':len(EXPECTED),'standalone_helpers':HELPERS,'source_files':inventory,'external_imports':sorted(external),'errors':errors,\n      'limitations':['Balanced delimiters do not prove valid Solidity','No type checking, EVM execution or exploit analysis']}\n        evidence.finish(report)\n    print(json.dumps({'source_files':len(sources),'errors':errors,'scope':'consistency only','output':str(output)}))"
+        },
+        {
+          "path": "scripts/source_checks.py",
+          "line": 48,
+          "sha256": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+          "excerpt": "    return bool(errors)\nif __name__=='__main__':sys.exit(main())"
+        }
+      ]
+    },
+    {
+      "id": "EX07",
+      "boundary": "Regression quality and remaining resource scope",
+      "result": "No blocking defect confirmed by static fixture review",
+      "assessment": "The16new inert methods cover existing files before imports, reservation visible during discovery, collision race, symlink/replacement refusal, partial logs, interrupted/missing finish, malformed final JSON, synced UTF8 success, distinct default source outputs, canonical ordering and custom-loader rejection. Tests use temporary paths and inert imported modules, not actual project suites or network/signers.",
+      "proof": [
+        {
+          "path": "tests_python/test_verification_output_ownership.py",
+          "line": 33,
+          "sha256": "51fcb56511e21a68f8cdb10b36b52332d1aa9fc1f7d79f3e996cef10bcc893f1",
+          "excerpt": "class VerificationOutputOwnershipTests(unittest.TestCase):\n    def setUp(self):\n        directory = tempfile.TemporaryDirectory()\n        self.addCleanup(directory.cleanup)\n        self.directory = Path(directory.name)"
+        },
+        {
+          "path": "tests_python/test_verification_output_ownership.py",
+          "line": 149,
+          "sha256": "51fcb56511e21a68f8cdb10b36b52332d1aa9fc1f7d79f3e996cef10bcc893f1",
+          "excerpt": "class EvidenceAdmissionTests(unittest.TestCase):\n    def setUp(self):\n        from zzz_ops.evidence import Evidence\n        self.Evidence = Evidence\n        directory = tempfile.TemporaryDirectory()"
+        }
+      ],
+      "limit": "No test was run by this independent cross-review. These fixtures are not destructive host/power-failure experiments. read_log/stdout still materialize the complete diagnostic log, as the old StringIO design did; no bounded total log-memory claim is established."
+    }
+  ],
+  "static_test_methods_inspected": [
+    "test_keeper_existing_output_is_preserved_before_import_or_test_work",
+    "test_python_runner_reserves_nonpass_pair_before_test_module_discovery",
+    "test_source_checks_refuse_existing_output_before_scanning",
+    "test_keeper_fresh_admission_and_order_are_visible_to_inert_module_imports",
+    "test_import_failure_leaves_nonpass_marker_without_running_a_test",
+    "test_source_default_creates_distinct_outputs_and_preserves_legacy_file",
+    "test_keeper_selector_rejects_unreviewed_custom_loader",
+    "test_existing_json_or_log_or_directory_refuses_all_work",
+    "test_live_and_dangling_symlinks_are_refused_without_following_them",
+    "test_log_reservation_race_preserves_the_winner_and_marks_owned_json_failed",
+    "test_interrupted_producer_retains_partial_log_and_a_nonpass_marker",
+    "test_failed_check_is_complete_evidence_and_never_becomes_a_pass",
+    "test_nonfinite_final_payload_is_not_written_as_successful_evidence",
+    "test_final_writes_never_clobber_a_replacement_path",
+    "test_missing_final_report_or_zero_system_exit_cannot_return_success",
+    "test_reserved_marker_is_synced_before_work_and_utf8_success_is_owned"
+  ],
+  "tests_executed": 0,
+  "repo_edits": 0,
+  "confirmed_blocking_issues": [],
+  "changes_requested": [],
+  "network_signing_service_actions": 0,
+  "conclusion": "No blocking defect confirmed within the stated local-evidence model. Output admission/collision/failed-producer and canonical-selection guarantees are materially stronger without altering tests or financial code. Actual Unix storage/recovery behavior and artifact authenticity remain separate qualifications."
+}

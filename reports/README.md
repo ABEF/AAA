@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Complete-project audit and improvements](comprehensive-popl-20261029/REVIEW.md):
+terminal reserve-venue recovery, keeper identity/telemetry repairs, stored-history
+chronology and verification admission/provenance. [Coverage](comprehensive-popl-20261029/COVERAGE.md)
+and [verification](comprehensive-popl-20261029/VERIFICATION.md) distinguish source
+review, scoped execution, compiler comparison and external qualification.
+Earlier report bytes are preserved; no rollout or production approval.
+
 [Completed historical reconciliation](historical-reconciliation-completion-20261029/REVIEW.md)
 accounts for352 original report narratives/91current guides and the two preserved
 partial-checkpoint reports. Its235overlapping groups retain original scope while

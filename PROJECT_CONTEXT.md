@@ -19,7 +19,7 @@ principal. Preserve old runtimes/journals/profiles. See
 No service/site/Anvil/public transaction/deployment is authorized or performed.
 Current handwritten Solidity-body review is complete at the [source-scoped ledger](reports/whole-project-execution-20261029/COVERAGE.md); this is not exhaustive execution or independent release approval.
 
-Current [whole-project execution](reports/whole-project-execution-20261029/REVIEW.md) completes the internal
+Earlier [whole-project execution](reports/whole-project-execution-20261029/REVIEW.md) completes the internal
 source/body review and implements keeper deadline priority, strict durable/log
 provenance, final-depth/fee/pool observation and artifact-tooling repairs.
 All122previously missing callable outputs are explained. Static review is not
@@ -44,6 +44,27 @@ source-scoped, not a fresh full suite/CI/live qualification. Python inventories
 execute no tests; full verifier creates new evidence directories and rejects altered
 normal filters/settings. Its reservation registration getter claim was corrected
 by the current keeper-coordination follow-up; preserve the original report scope.
+
+## Current complete-project review
+
+[Current audit and repairs](reports/comprehensive-popl-20261029/REVIEW.md) follow
+actual contract/service/website understanding and two sequential prompt critiques.
+The approved contract change permits validated native ETH/fixed-ZZZ venues after
+Migration Ready only with deposits disabled, for residual buyback reserves.
+Principal allocation/payouts and irreversible exit remain separate. Relevant
+keeper physical-identity faults require durable confirmation reset; telemetry
+checks final depth/chronology. Stored history validates the entire block prefix.
+Evidence producers reserve private outputs before imports/scans, capture source
+before selection and retain incomplete/failing results.
+
+[Verification](reports/comprehensive-popl-20261029/VERIFICATION.md) records16
+focused Solidity passes,82 distinct Python methods across retained source stages
+(80pass/two Windows skips),39 fresh normal production gates and unchanged semantic
+ABI/storage layouts. Only Registry bytecode changes; Manager initcode37-byte and
+Vault runtime59-byte margins remain. Refreshed static triage, actual providers,
+current-profile services/website/OpenSea, target gas/operations and independent
+review remain open. This internal pass does not qualify installed services or
+change website/source/signing/Anvil/journals/paused monitoring.
 
 ## Product and implementation
 

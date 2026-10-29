@@ -1,0 +1,2009 @@
+{
+  "schema": 1,
+  "domain": "Keeper, operations, management, recovery and observability",
+  "baseline": "main93ceee1",
+  "read_at_utc": "2026-10-29T20:57:09.927999+00:00",
+  "methodology_inputs": [
+    {
+      "path": "C:/Users/Ali/.codex/attachments/ef947d76-a9f2-4397-abd5-a0ed22ad6568/Texte collé.txt",
+      "sha256": "f9d71e5b0ef3046433b42a2d462fcc5b81bb34e7c84128ef37cbbf70df802646",
+      "read_complete": true
+    },
+    {
+      "path": "C:/Users/Ali/.codex/attachments/8d57d700-c1f7-4348-a7b8-3213452197a2/Texte collé.txt",
+      "sha256": "5db0804bcff358f0890ebfb2673f719c023d70cd8352ce62df892483bde9e4c2",
+      "read_complete": true
+    }
+  ],
+  "prompt_review": {
+    "root_final_prompt_sha256": "7a6bd9b3ad7de97637d4a437f63bfc78560dd8802823c97d33f2afc538faf311",
+    "sequential_critique_1": "Replace generic always-safe/exhaustive/no-unknown language with exact profile, workflows, invariant boundaries, concrete failure sequences and honest source/execution/qualification distinctions. The system has no integrated bridge, creator inbox or timelock, and no new operator committee.",
+    "sequential_critique_2": "Treat the already implemented coordination/reset/harvest behavior as baseline. Challenge source evidence and stored versus actual chain status; do not rerun unchanged suites or erase state to produce green checks. Management coverage must include old-key fencing, incomplete exits, post-exit royalties and whole-collection pre-exit recovery, not only rebalance.",
+    "result": "Root twice-reviewed final prompt covers the reviewed operating model and boundaries. No extra policy questions block the demonstrated bug fixes."
+  },
+  "architecture": {
+    "authority": "The user is one operator/governance controller. The automatic keeper has a limited distinct capability/key, not governance power. Contracts remain authoritative for ownership/custody/fees; the journal is authoritative for this signer recovery/spending, not NFT paid flags.",
+    "serial_path": "One process lock and one saved pending nonce lane. Recover known/hashless intent and canonical checkpoint before lifecycle, confirmation deadline priority, optional queue and maintenance. Never auto-resend or adopt manual same-key work from LP/timer changes.",
+    "jobs": [
+      "known rebalance observation/reset/replacement",
+      "standalone collectFees",
+      "compound in the existing range",
+      "LP reward conversion",
+      "royalty conversion and deferred cohort sync",
+      "fixed-ZZZ buyback/burn",
+      "optional ERC4906 metadata notification",
+      "post-governance terminal allocation/direct principal payout"
+    ],
+    "clocks": [
+      "hard initial12h replacement interval; operator width exception still waits",
+      "900-second sampled window / strict300-second gap /240-second checks",
+      "durable60–600-second post-ready jitter",
+      "Budget3 max(lastCompound,lastRebalance)+independent compoundInterval; local optional thresholds/intervals",
+      "accounting4 standalone hourly harvest clock also coalesces only exact own canonical FeesCollected proof",
+      "existing per-action paid-revert cooldown; principal Ready batch retry interval; separate optional job turns",
+      "canonical inclusion-day gas spend and captured original fee review; wall time versus block time versus monotonic watchdog have distinct roles"
+    ],
+    "normal_model": [
+      "activation/growth checkpoints incumbents and deploys entrant funds only, never resets replacement clock",
+      "harvest is allocation, not conversion/compound/burn/claim",
+      "compound service waits for authenticated in-range/no-pending-width even before rebalance cooldown",
+      "replacement spends the whole attributed bucket under on-chain eligibility and financial guards",
+      "current owner inherits remaining unclaimed rights; terminal principal and NFT earnings stay separate"
+    ],
+    "recovery_model": [
+      "configured matching release/profile and intact journal required; stale backup needs actual chain reconciliation",
+      "hashless pending blocks all new work and needs independently verified candidate identity",
+      "fault/reset markers and clear acknowledgements are durable; no repeated paid clear for a known cleared episode",
+      "local flock is not old-host fencing; compromised/lost service key needs governance revocation/rotation",
+      "canonical locked source stops new submissions; terminal exit never reopens principal; royalties/old rewards continue under their own controls",
+      "watchdog only main progress; real loaded Linux systemd/cgroup/backup/alert verification remains separate"
+    ]
+  },
+  "invariants": [
+    "No action bypasses a saved pending intent or consumes an unreviewed nonce.",
+    "Signed/recovered transaction identity and original gas/L1 allowance bind canonical actual spend exactly once.",
+    "No read-only report/snapshot/preflight submits or repairs a journal.",
+    "Unrelated optional faults cannot waive price/execution guards or fabricate values.",
+    "A relevant LP identity fault cannot reuse saved sampled evidence/jitter after recovery.",
+    "A current health success cannot be manufactured from a canonical anchor whose final depth/freshness/chronology no longer qualifies.",
+    "No scheduling cursor or successful deferred batch marks a holder principal paid; on-chain paid flags remain authoritative.",
+    "No reserve, dust, principal or pending external receipt is swept to operating expenses."
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "keeper/monitor.py",
+      "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "log",
+          "line": 77,
+          "end_line": 78,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "error_context",
+          "line": 80,
+          "end_line": 85,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "positive",
+          "line": 87,
+          "end_line": 88,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "rpc_quantity",
+          "line": 90,
+          "end_line": 96,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "rpc_hash",
+          "line": 98,
+          "end_line": 101,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "signer_environment",
+          "line": 103,
+          "end_line": 109,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "main",
+          "line": 2309,
+          "end_line": 2351,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 112,
+          "end_line": 271,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_state",
+          "line": 273,
+          "end_line": 347,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_fee_review",
+          "line": 350,
+          "end_line": 367,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_runtime_files",
+          "line": 369,
+          "end_line": 379,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_checkpoint",
+          "line": 381,
+          "end_line": 396,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "initialize_state",
+          "line": 398,
+          "end_line": 411,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "run_cycle",
+          "line": 413,
+          "end_line": 518,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "poll_delay",
+          "line": 520,
+          "end_line": 528,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "save",
+          "line": 530,
+          "end_line": 530,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_observe_revert_cooldowns",
+          "line": 532,
+          "end_line": 544,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_maintenance_settings",
+          "line": 546,
+          "end_line": 575,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_maintenance_config",
+          "line": 577,
+          "end_line": 591,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_compound_budget",
+          "line": 593,
+          "end_line": 611,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_idle_compound_checkpoint",
+          "line": 613,
+          "end_line": 622,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_compound_ready",
+          "line": 624,
+          "end_line": 629,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_compound_policy_status",
+          "line": 631,
+          "end_line": 661,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_compound_policy_allowed",
+          "line": 663,
+          "end_line": 696,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_compound_confirmation_record",
+          "line": 698,
+          "end_line": 744,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_compound_submission_ready",
+          "line": 746,
+          "end_line": 750,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_upkeep_policy",
+          "line": 752,
+          "end_line": 766,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_lp_routing_snapshot",
+          "line": 768,
+          "end_line": 820,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_lp_routing",
+          "line": 822,
+          "end_line": 833,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_observe_execution_health",
+          "line": 835,
+          "end_line": 876,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_store_rebalance_schedule",
+          "line": 878,
+          "end_line": 896,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_rebalance_due",
+          "line": 898,
+          "end_line": 902,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_rebalance_due_checked",
+          "line": 904,
+          "end_line": 958,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_confirmed_rebalance_due",
+          "line": 960,
+          "end_line": 1044,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_confirmation_status",
+          "line": 1046,
+          "end_line": 1050,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_mark_confirmation_reset",
+          "line": 1052,
+          "end_line": 1079,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_mark_known_confirmation_resets",
+          "line": 1081,
+          "end_line": 1085,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_rebalance_submission_ready",
+          "line": 1087,
+          "end_line": 1097,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_adaptive_range_target",
+          "line": 1099,
+          "end_line": 1117,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_compound_due",
+          "line": 1119,
+          "end_line": 1151,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "view",
+          "line": 1153,
+          "end_line": 1154,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_asset",
+          "line": 1156,
+          "end_line": 1159,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_calldata",
+          "line": 1161,
+          "end_line": 1177,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_accounting_version",
+          "line": 1179,
+          "end_line": 1213,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "lp_exit_started",
+          "line": 1215,
+          "end_line": 1224,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "preparation_active",
+          "line": 1226,
+          "end_line": 1237,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "canonical_state",
+          "line": 1239,
+          "end_line": 1252,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_defer_for_lifecycle",
+          "line": 1254,
+          "end_line": 1263,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_signer",
+          "line": 1265,
+          "end_line": 1279,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_code_hashes",
+          "line": 1281,
+          "end_line": 1294,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_head",
+          "line": 1296,
+          "end_line": 1303,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_receipt_harvest_bucket",
+          "line": 1305,
+          "end_line": 1348,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "poll_pending",
+          "line": 1350,
+          "end_line": 1489,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "resolve_pending",
+          "line": 1491,
+          "end_line": 1499,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_pending_transaction",
+          "line": 1501,
+          "end_line": 1513,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "submit",
+          "line": 1515,
+          "end_line": 1657,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_configure_metadata",
+          "line": 1659,
+          "end_line": 1711,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_metadata_hash",
+          "line": 1714,
+          "end_line": 1717,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_metadata_record",
+          "line": 1719,
+          "end_line": 1729,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_metadata_payload",
+          "line": 1731,
+          "end_line": 1752,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_metadata_transaction",
+          "line": 1754,
+          "end_line": 1760,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_metadata_words",
+          "line": 1762,
+          "end_line": 1764,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_metadata_uint",
+          "line": 1766,
+          "end_line": 1769,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_metadata_anchor",
+          "line": 1771,
+          "end_line": 1774,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_metadata_bindings",
+          "line": 1776,
+          "end_line": 1787,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_metadata_code_hash",
+          "line": 1789,
+          "end_line": 1795,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_metadata_record_at",
+          "line": 1797,
+          "end_line": 1809,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_refresh_metadata",
+          "line": 1811,
+          "end_line": 1858,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_confirm_metadata",
+          "line": 1860,
+          "end_line": 1886,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_address_word",
+          "line": 1889,
+          "end_line": 1891,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_bucket_batch",
+          "line": 1893,
+          "end_line": 1909,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_asset_word",
+          "line": 1911,
+          "end_line": 1913,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_bucket",
+          "line": 1915,
+          "end_line": 1978,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_sync_external",
+          "line": 1980,
+          "end_line": 1995,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_convert_royalties",
+          "line": 1997,
+          "end_line": 1998,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_convert_rewards",
+          "line": 2000,
+          "end_line": 2006,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_buyback_tasks",
+          "line": 2008,
+          "end_line": 2022,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_buyback_once",
+          "line": 2024,
+          "end_line": 2047,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_interrupted_confirmation_bucket",
+          "line": 2049,
+          "end_line": 2069,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_confirmation_priority",
+          "line": 2071,
+          "end_line": 2145,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "cycle",
+          "line": 2147,
+          "end_line": 2307,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "halt",
+          "line": 2324,
+          "end_line": 2325,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "health",
+          "line": 431,
+          "end_line": 458,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read",
+          "line": 606,
+          "end_line": 607,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read",
+          "line": 788,
+          "end_line": 789,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read",
+          "line": 1108,
+          "end_line": 1111,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read",
+          "line": 647,
+          "end_line": 648,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read",
+          "line": 718,
+          "end_line": 721,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 88
+    },
+    {
+      "path": "keeper/ops.py",
+      "sha256": "10d4acc5851ac5e171d88e37fbdd5b369dee7bda13fd449f64ea7e7d9028ee88",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "_read_required_json",
+          "line": 23,
+          "end_line": 30,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_review_bucket",
+          "line": 33,
+          "end_line": 37,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "digest",
+          "line": 40,
+          "end_line": 41,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "timestamp",
+          "line": 44,
+          "end_line": 49,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "health_check",
+          "line": 52,
+          "end_line": 97,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "preflight",
+          "line": 100,
+          "end_line": 146,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "create_snapshot",
+          "line": 149,
+          "end_line": 173,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "verify_snapshot",
+          "line": 176,
+          "end_line": 190,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "main",
+          "line": 193,
+          "end_line": 219,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 9
+    },
+    {
+      "path": "keeper/health.py",
+      "sha256": "a936c95649d289c2c2b4a43d2f622f35ce54bb42f405b50e0308dd11a708501c",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "source_hashes",
+          "line": 20,
+          "end_line": 23,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "digest",
+          "line": 26,
+          "end_line": 28,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_uint",
+          "line": 31,
+          "end_line": 32,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_hash",
+          "line": 35,
+          "end_line": 37,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_confirmation_bindings",
+          "line": 40,
+          "end_line": 48,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "observe_confirmation_health",
+          "line": 51,
+          "end_line": 94,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "confirmation_reasons",
+          "line": 97,
+          "end_line": 172,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "execution_reasons",
+          "line": 175,
+          "end_line": 249,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "summary",
+          "line": 252,
+          "end_line": 272,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 9
+    },
+    {
+      "path": "keeper/watchdog.py",
+      "sha256": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "_number",
+          "line": 20,
+          "end_line": 26,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 30,
+          "end_line": 39,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "enabled",
+          "line": 42,
+          "end_line": 43,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "from_environment",
+          "line": 46,
+          "end_line": 76,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "pulse",
+          "line": 78,
+          "end_line": 99,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 109,
+          "end_line": 111,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "call",
+          "line": 113,
+          "end_line": 117,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "eth_call",
+          "line": 119,
+          "end_line": 125,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__getattr__",
+          "line": 127,
+          "end_line": 128,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 9
+    },
+    {
+      "path": "keeper/rebalance_confirmation.py",
+      "sha256": "b8a0382f1f13cc44bcc4930c9e499ba49c13ba111d60acc1dcb2ca30bfa27d33",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 17,
+          "end_line": 37,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "validate",
+          "line": 39,
+          "end_line": 40,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "status",
+          "line": 42,
+          "end_line": 126,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "observation_due",
+          "line": 129,
+          "end_line": 135,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read",
+          "line": 54,
+          "end_line": 57,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 5
+    },
+    {
+      "path": "keeper/compound_policy.py",
+      "sha256": "380da14d18ca963a31fd85c430f37153d2cc34db312cb8d785e5caabf48c227f",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "classify_range",
+          "line": 10,
+          "end_line": 20,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "observe",
+          "line": 23,
+          "end_line": 85,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "words",
+          "line": 38,
+          "end_line": 43,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "number",
+          "line": 44,
+          "end_line": 44,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 4
+    },
+    {
+      "path": "keeper/principal.py",
+      "sha256": "a1cc7ea153259ffeceb3ac131ce628a5e9f58194b3f4e0bcdba5e1f1961e0da4",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "encode_batch",
+          "line": 14,
+          "end_line": 21,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 25,
+          "end_line": 31,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "configure",
+          "line": 33,
+          "end_line": 72,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_save_cursor",
+          "line": 74,
+          "end_line": 82,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "prefer_first",
+          "line": 84,
+          "end_line": 95,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_read",
+          "line": 97,
+          "end_line": 101,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_bindings",
+          "line": 103,
+          "end_line": 112,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "run",
+          "line": 114,
+          "end_line": 170,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 8
+    },
+    {
+      "path": "keeper/royalties.py",
+      "sha256": "badd0c85a41ce3346eef6ff9de21df910c62969143ec40e916fdb835160bbd0e",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "number",
+          "line": 16,
+          "end_line": 19,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "native_quote",
+          "line": 21,
+          "end_line": 25,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "encode_batch",
+          "line": 27,
+          "end_line": 34,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 37,
+          "end_line": 91,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "scan_once",
+          "line": 93,
+          "end_line": 203,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read",
+          "line": 110,
+          "end_line": 114,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "enabled",
+          "line": 115,
+          "end_line": 120,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "validate_snapshot",
+          "line": 184,
+          "end_line": 189,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 8
+    },
+    {
+      "path": "keeper/operation_review.py",
+      "sha256": "3fc4d2d9c9018da14d88f78beb547a8cbae02e627a4e819f685b46362ffada3b",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "_header",
+          "line": 59,
+          "end_line": 63,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_attempt",
+          "line": 66,
+          "end_line": 70,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_row",
+          "line": 73,
+          "end_line": 77,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_set",
+          "line": 80,
+          "end_line": 82,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "review",
+          "line": 434,
+          "end_line": 485,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "save",
+          "line": 28,
+          "end_line": 28,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "submit",
+          "line": 29,
+          "end_line": 29,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_validate_signer",
+          "line": 30,
+          "end_line": 30,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "poll_pending",
+          "line": 31,
+          "end_line": 31,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "initialize_state",
+          "line": 32,
+          "end_line": 32,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 36,
+          "end_line": 38,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "call",
+          "line": 40,
+          "end_line": 53,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "eth_call",
+          "line": 55,
+          "end_line": 56,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 86,
+          "end_line": 92,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read",
+          "line": 94,
+          "end_line": 98,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "uint",
+          "line": 100,
+          "end_line": 101,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "flag",
+          "line": 103,
+          "end_line": 106,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "pin",
+          "line": 108,
+          "end_line": 117,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "bucket",
+          "line": 119,
+          "end_line": 136,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "market",
+          "line": 138,
+          "end_line": 141,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "harvest_custody",
+          "line": 143,
+          "end_line": 166,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "execution",
+          "line": 168,
+          "end_line": 173,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "budget",
+          "line": 175,
+          "end_line": 181,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "financial",
+          "line": 183,
+          "end_line": 204,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "schedule",
+          "line": 206,
+          "end_line": 216,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "simulate_action",
+          "line": 218,
+          "end_line": 287,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "operations",
+          "line": 289,
+          "end_line": 431,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "maintenance",
+          "line": 184,
+          "end_line": 189,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "gas",
+          "line": 244,
+          "end_line": 251,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "complete",
+          "line": 297,
+          "end_line": 305,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "controls",
+          "line": 467,
+          "end_line": 477,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "clock",
+          "line": 401,
+          "end_line": 408,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 32
+    },
+    {
+      "path": "keeper/probe.py",
+      "sha256": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "_remote_error",
+          "line": 23,
+          "end_line": 30,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_approval_trace",
+          "line": 32,
+          "end_line": 65,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "probe",
+          "line": 67,
+          "end_line": 205,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_read_config",
+          "line": 211,
+          "end_line": 223,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "main",
+          "line": 225,
+          "end_line": 244,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "error",
+          "line": 209,
+          "end_line": 209,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "pairs",
+          "line": 214,
+          "end_line": 219,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "constant",
+          "line": 220,
+          "end_line": 220,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "bounded_call",
+          "line": 93,
+          "end_line": 99,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "observe",
+          "line": 101,
+          "end_line": 114,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "head",
+          "line": 122,
+          "end_line": 126,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "same_block",
+          "line": 140,
+          "end_line": 145,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "hex_result",
+          "line": 148,
+          "end_line": 156,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "reject_unknown_hash",
+          "line": 160,
+          "end_line": 166,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "receipts",
+          "line": 179,
+          "end_line": 200,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "genesis",
+          "line": 116,
+          "end_line": 120,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "approval_trace",
+          "line": 169,
+          "end_line": 171,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "tagged",
+          "line": 175,
+          "end_line": 177,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 18
+    },
+    {
+      "path": "keeper/staging.py",
+      "sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "main",
+          "line": 22,
+          "end_line": 64,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "send",
+          "line": 33,
+          "end_line": 37,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 2
+    },
+    {
+      "path": "keeper/staging_observer.py",
+      "sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "main",
+          "line": 21,
+          "end_line": 46,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 1
+    },
+    {
+      "path": "zzz_ops/abi.py",
+      "sha256": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "keccak256",
+          "line": 14,
+          "end_line": 35,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "address",
+          "line": 37,
+          "end_line": 41,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "word",
+          "line": 43,
+          "end_line": 58,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "calldata",
+          "line": 60,
+          "end_line": 65,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "uint_result",
+          "line": 67,
+          "end_line": 70,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "decode_words",
+          "line": 72,
+          "end_line": 75,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "rol",
+          "line": 16,
+          "end_line": 17,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 7
+    },
+    {
+      "path": "zzz_ops/position.py",
+      "sha256": "e196dc43f11e0d22af00c690855b223c4b469983fd7ba6fdb948ef3399bd6e92",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "position_word_count",
+          "line": 10,
+          "end_line": 13,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "status_name",
+          "line": 16,
+          "end_line": 21,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "decode_position",
+          "line": 24,
+          "end_line": 41,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "is_local_position",
+          "line": 44,
+          "end_line": 51,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 4
+    },
+    {
+      "path": "zzz_ops/rpc.py",
+      "sha256": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "_unique_object",
+          "line": 19,
+          "end_line": 25,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_reject_constant",
+          "line": 28,
+          "end_line": 29,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_finite_float",
+          "line": 32,
+          "end_line": 36,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_chain_quantity",
+          "line": 39,
+          "end_line": 42,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "redirect_request",
+          "line": 45,
+          "end_line": 47,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 56,
+          "end_line": 72,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "active_url",
+          "line": 75,
+          "end_line": 75,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_read_http",
+          "line": 77,
+          "end_line": 89,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_post",
+          "line": 91,
+          "end_line": 125,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "call",
+          "line": 127,
+          "end_line": 146,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "eth_call",
+          "line": 148,
+          "end_line": 151,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 11
+    },
+    {
+      "path": "zzz_ops/ethereum_fees.py",
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "quantity",
+          "line": 10,
+          "end_line": 13,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "fee_cap",
+          "line": 16,
+          "end_line": 25,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "transaction_chain_id",
+          "line": 28,
+          "end_line": 42,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "execution_price",
+          "line": 45,
+          "end_line": 57,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 4
+    },
+    {
+      "path": "zzz_ops/work_budget.py",
+      "sha256": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "checkpoint",
+          "line": 53,
+          "end_line": 55,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "consume",
+          "line": 58,
+          "end_line": 61,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "expire_at",
+          "line": 64,
+          "end_line": 67,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "timeout",
+          "line": 70,
+          "end_line": 72,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "request_scope",
+          "line": 76,
+          "end_line": 86,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "bounded_request",
+          "line": 89,
+          "end_line": 94,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 12,
+          "end_line": 20,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "check",
+          "line": 22,
+          "end_line": 28,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "consume",
+          "line": 30,
+          "end_line": 35,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "expire_at",
+          "line": 37,
+          "end_line": 47,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "bounded",
+          "line": 91,
+          "end_line": 93,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__init__",
+          "line": 99,
+          "end_line": 100,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "call",
+          "line": 102,
+          "end_line": 106,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "__getattr__",
+          "line": 108,
+          "end_line": 109,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 14
+    },
+    {
+      "path": "zzz_ops/holder_preflight.py",
+      "sha256": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "integer",
+          "line": 17,
+          "end_line": 20,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "hash32",
+          "line": 23,
+          "end_line": 26,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "code_bytes",
+          "line": 29,
+          "end_line": 35,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "digest",
+          "line": 38,
+          "end_line": 39,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "scan_page",
+          "line": 42,
+          "end_line": 150,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "summarize",
+          "line": 153,
+          "end_line": 207,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "get",
+          "line": 72,
+          "end_line": 77,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "pinned",
+          "line": 79,
+          "end_line": 84,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "binding",
+          "line": 86,
+          "end_line": 98,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 9
+    },
+    {
+      "path": "zzz_ops/lp_execution.py",
+      "sha256": "c90bc83cbf28caa8d3d10a8dde1dda478ebb1deab8e17c583cbf7ef5395eef01",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "observe",
+          "line": 5,
+          "end_line": 67,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "number",
+          "line": 9,
+          "end_line": 13,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "binding",
+          "line": 14,
+          "end_line": 16,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 3
+    },
+    {
+      "path": "zzz_ops/rebalance_confirmation.py",
+      "sha256": "690f074c90780db63403714699003657d1dafa3ef51304a9306051998ce4f15b",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "observe",
+          "line": 6,
+          "end_line": 100,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "words",
+          "line": 9,
+          "end_line": 18,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "scalar",
+          "line": 19,
+          "end_line": 19,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "binding",
+          "line": 20,
+          "end_line": 22,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 4
+    },
+    {
+      "path": "zzz_ops/state.py",
+      "sha256": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+      "read_scope": "Complete source narrative/body reading in current operation review; unchanged cryptographic/math/dependency behavior is not newly executed",
+      "functions": [
+        {
+          "name": "integer",
+          "line": 11,
+          "end_line": 19,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_unique_object",
+          "line": 21,
+          "end_line": 27,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_reject_constant",
+          "line": 29,
+          "end_line": 30,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "_finite_float",
+          "line": 32,
+          "end_line": 36,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "read_json",
+          "line": 38,
+          "end_line": 42,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "atomic_json",
+          "line": 44,
+          "end_line": 62,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        },
+        {
+          "name": "process_lock",
+          "line": 65,
+          "end_line": 73,
+          "disposition": "static body review and workflow trace; not all branches executed"
+        }
+      ],
+      "functions_count": 7
+    },
+    {
+      "path": "scripts/run-keeper-tests.py",
+      "sha256": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+      "read_scope": "Complete current source and original-to-final diff; primary file-descriptor/exclusive-creation documentation",
+      "functions": [
+        {
+          "name": "select_tests",
+          "line": 36,
+          "end_line": 53,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "sha",
+          "line": 54,
+          "end_line": 54,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "inputs",
+          "line": 55,
+          "end_line": 65,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "main",
+          "line": 69,
+          "end_line": 91,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "__init__",
+          "line": 67,
+          "end_line": 67,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "startTest",
+          "line": 68,
+          "end_line": 68,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        }
+      ],
+      "functions_count": 6
+    },
+    {
+      "path": "scripts/run_python_tests.py",
+      "sha256": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+      "read_scope": "Complete current source and original-to-final diff; primary file-descriptor/exclusive-creation documentation",
+      "functions": [
+        {
+          "name": "select_tests",
+          "line": 20,
+          "end_line": 44,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "inputs",
+          "line": 47,
+          "end_line": 52,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "main",
+          "line": 60,
+          "end_line": 93,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "__init__",
+          "line": 56,
+          "end_line": 56,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        },
+        {
+          "name": "startTest",
+          "line": 57,
+          "end_line": 57,
+          "disposition": "Static body/diff review; changed source-before-import input path verified by admission-provenance-final.json"
+        }
+      ],
+      "functions_count": 5
+    },
+    {
+      "path": "scripts/source_checks.py",
+      "sha256": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+      "read_scope": "Complete current source and original-to-final diff; primary file-descriptor/exclusive-creation documentation",
+      "functions": [
+        {
+          "name": "sanitized",
+          "line": 14,
+          "end_line": 16,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "main",
+          "line": 17,
+          "end_line": 48,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        }
+      ],
+      "functions_count": 2
+    },
+    {
+      "path": "zzz_ops/evidence.py",
+      "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+      "read_scope": "Complete current source and original-to-final diff; primary file-descriptor/exclusive-creation documentation",
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 17,
+          "end_line": 24,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "_open",
+          "line": 27,
+          "end_line": 33,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "_owned",
+          "line": 36,
+          "end_line": 40,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "_sync_directory",
+          "line": 42,
+          "end_line": 48,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "_write_json",
+          "line": 50,
+          "end_line": 59,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "_marker",
+          "line": 61,
+          "end_line": 66,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "_sync_log",
+          "line": 68,
+          "end_line": 72,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "_failed",
+          "line": 74,
+          "end_line": 86,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "__enter__",
+          "line": 88,
+          "end_line": 105,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "read_log",
+          "line": 107,
+          "end_line": 116,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "finish",
+          "line": 118,
+          "end_line": 123,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "_close",
+          "line": 125,
+          "end_line": 131,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        },
+        {
+          "name": "__exit__",
+          "line": 133,
+          "end_line": 144,
+          "disposition": "static body/diff review; focused inert admission/selection checks, not real regression campaign"
+        }
+      ],
+      "functions_count": 13
+    }
+  ],
+  "fresh_verification": {
+    "receipt": "operations-final-targeted.json",
+    "distinct_methods": 18,
+    "passes": 18,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "source_drift": [],
+    "scope": "Inert RPCs, disposable local temp files and mocked submissions; no real Anvil, network, signer or service actions. Earlier before/after runs overlap and are not added."
+  },
+  "source_review_only": [
+    "primary runtime/systemd semantics",
+    "read-only snapshot/preflight/report construction and output sanitation",
+    "conversion cursor fairness, exact hash snapshots, routing policy/version bindings",
+    "principal batch allocation/current-owner delivery and retry clocks",
+    "metadata ordinal discovery/notification and reorg reconciliation",
+    "RPC transport allowlist, bounded fallback and work budgets",
+    "legacy-only staging setup/export sources"
+  ],
+  "not_freshly_executed": [
+    "real Linux process locking/cgroup/signers and fault injection",
+    "RPC/provider/feed independence/finality and target-chain fee budgets",
+    "host loss/key rotation/off-host backup restore/monitor alerts",
+    "real profitability/MEV/worst-case route gas or full1000-NFT delivery",
+    "all historical profile permutations, all branches or any independent audit"
+  ],
+  "file_or_module_count": 25,
+  "reviewed_function_extents": 282,
+  "limitations": [
+    "This records domain source/body reading and selected new demonstrations, not a fresh whole-project EVM/test campaign.",
+    "Historical build/body/operations evidence remains separately pinned; no count is relabelled current independent qualification.",
+    "Installed services, staged heartbeat, sites, Anvil deployments/balances, journals and signer remain unchanged."
+  ],
+  "additional_tooling_verification": {
+    "receipt": "admission-final-focused.json",
+    "methods": 35,
+    "passes": 33,
+    "platform_skips": 2,
+    "failures": 0,
+    "errors": 0,
+    "scope": "Inert sentinels, helper cases and existing selection controls only; original18runtime witness remains separately source/body bound.",
+    "source_provenance_followup": "operations-admission-provenance.json:8focusedpasses;5overlap with earlier35;notonefresh38campaign."
+  }
+}

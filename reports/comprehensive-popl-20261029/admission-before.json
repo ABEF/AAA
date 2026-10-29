@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "utc": "2026-10-29T21:08:08.855780+00:00",
+  "selected_methods": [
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_existing_output_is_preserved_before_import_or_test_work",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_runner_reserves_nonpass_pair_before_test_module_discovery",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_source_checks_refuse_existing_output_before_scanning"
+  ],
+  "executed_methods": [
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_existing_output_is_preserved_before_import_or_test_work",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_runner_reserves_nonpass_pair_before_test_module_discovery",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_source_checks_refuse_existing_output_before_scanning"
+  ],
+  "tests_run": 3,
+  "failures": 3,
+  "errors": 0,
+  "skipped": [],
+  "successful": false,
+  "source_sha256_before": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-popl-20261029\\run_admission_checks.py": "747c75aca84e4d18e33cce0be52d5bd4bf246cc25a322a809222f25312a5c208",
+    "scripts\\run_python_tests.py": "5d389c5df19771bbd6db25c9a6b57dbc600a66303d7da106bc94c4c401bc6bc7",
+    "tests_python\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python\\test_verification_output_ownership.py": "fe74b3f29cd4008c4246451322d5ec7ddc7fdba0e3f2c4fc70a7022e0123e8d3"
+  },
+  "source_sha256_after": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-popl-20261029\\run_admission_checks.py": "747c75aca84e4d18e33cce0be52d5bd4bf246cc25a322a809222f25312a5c208",
+    "scripts\\run_python_tests.py": "5d389c5df19771bbd6db25c9a6b57dbc600a66303d7da106bc94c4c401bc6bc7",
+    "tests_python\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python\\test_verification_output_ownership.py": "fe74b3f29cd4008c4246451322d5ec7ddc7fdba0e3f2c4fc70a7022e0123e8d3"
+  },
+  "source_drift": [],
+  "scope": "Explicit canonical Python methods only; inert RPC, disposable temp fixtures and mocked submit; no external RPC/signer/services/Anvil/operating journal."
+}

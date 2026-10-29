@@ -1,0 +1,613 @@
+{
+  "schema": 1,
+  "external_root": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/comprehensive-popl-20261029",
+  "published_copies": [
+    {
+      "external_raw_path": "source-checks-final.json",
+      "raw_sha256": "95318fdf1175530453d9927560f9a57561d613dbd1ff303eec1c45c745560dd8",
+      "raw_bytes": 5021,
+      "published_path": "source-checks-final.json",
+      "published_sha256": "95318fdf1175530453d9927560f9a57561d613dbd1ff303eec1c45c745560dd8",
+      "published_bytes": 5021,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-last-report-qa.json",
+      "raw_sha256": "68a42215b81c765962c4450ae79127332f2c4b9d94f3c8d23d7dd4c93e6c838a",
+      "raw_bytes": 6326,
+      "published_path": "operations-last-report-qa.json",
+      "published_sha256": "68a42215b81c765962c4450ae79127332f2c4b9d94f3c8d23d7dd4c93e6c838a",
+      "published_bytes": 6326,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "prompt-review-amended.json",
+      "raw_sha256": "8028c18ea60fb4aaccb23b8c306125e07112c349a17fae692c1ce0aab41a0c76",
+      "raw_bytes": 1376,
+      "published_path": "prompt-review-amended.json",
+      "published_sha256": "8028c18ea60fb4aaccb23b8c306125e07112c349a17fae692c1ce0aab41a0c76",
+      "published_bytes": 1376,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "contracts-inventory.json",
+      "raw_sha256": "f8a5adec8c3e32e95a66934379f0b6fbc336b72bf0255fd5ad80d59ecd8c0a99",
+      "raw_bytes": 9216,
+      "published_path": "contracts-inventory.json",
+      "published_sha256": "a7a8d601bcbbea7b777bf682026abd99f80897d5aebcb4a294d68c65fc4ea77f",
+      "published_bytes": 8885,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "contracts-body-reading.json",
+      "raw_sha256": "2c5fe63a7f8c1b49ff1a3e69aa4846e48bdd58fc1d002898f84dd0dc11dce2a4",
+      "raw_bytes": 21793,
+      "published_path": "contracts-body-reading.json",
+      "published_sha256": "88fb70c09c213b6adba08e214ef4cb950a9b1fdfd24b4df63b49f3cdc0bfc1aa",
+      "published_bytes": 21503,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "contracts-understanding.json",
+      "raw_sha256": "eefaf1db598d60ea03ee25caaf153deef98024b719d92749267fb24444389e0b",
+      "raw_bytes": 3067,
+      "published_path": "contracts-understanding.json",
+      "published_sha256": "d02b1203b4556554e5d1508a6bc04a814119996b58b09eb333f445b207da220a",
+      "published_bytes": 3032,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "contracts-research.json",
+      "raw_sha256": "b6f4ae198adc86a9b4626fdb4660b24c753120085f0b61e7f9c5fbac56956c3f",
+      "raw_bytes": 2560,
+      "published_path": "contracts-research.json",
+      "published_sha256": "c38bf0333f4cbbd7a7767c9dc6303ec81dbaf7ee45ff443c519691cff6db67f1",
+      "published_bytes": 2517,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "contracts-compiler-advisories.json",
+      "raw_sha256": "5d9804ab14a842ef5f9c258a4bb55a2ccf7d3867aa0ee67171ef071138f12772",
+      "raw_bytes": 51533,
+      "published_path": "contracts-compiler-advisories.json",
+      "published_sha256": "2b24ad030bba260c37daa50bafc9ab6f4d1637b67800304f442451b53ab8a7d7",
+      "published_bytes": 50461,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "contracts-compiler-generated-followup-FINAL.json",
+      "raw_sha256": "a476797d7259e0c5e057c337de700f7401f9d49278912d1657bdb302617981e7",
+      "raw_bytes": 6182,
+      "published_path": "contracts-compiler-generated-followup-FINAL.json",
+      "published_sha256": "2ba31cede2f18a2798600a5ecc20c37615476713aadb15202db126b8e4a53539",
+      "published_bytes": 6076,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "contracts-review.json",
+      "raw_sha256": "31b5e80570ffdc6be9a010ec47a6d8dc97cd2359a18ad3cd53918a0827512222",
+      "raw_bytes": 79408,
+      "published_path": "contracts-review.json",
+      "published_sha256": "d16984f0354393054b1820bbdc19a98700b8fb95c6e917fcec4473b35e04de0c",
+      "published_bytes": 77894,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "contracts-final-report-qa.json",
+      "raw_sha256": "bafe860a749509397d609a91c4095df1a508f715ee1850ff346b258402d65fc1",
+      "raw_bytes": 3999,
+      "published_path": "contracts-final-report-qa.json",
+      "published_sha256": "15e1177408f9992840a405ab66186bf6a662da1006a7bd731cedf90eb07919e8",
+      "published_bytes": 3944,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "current-solidity-body-coverage.json",
+      "raw_sha256": "feafef50df03d3a97382df19bb74a04a92d13d1294af625166d33db7e3f2f6fa",
+      "raw_bytes": 370531,
+      "published_path": "current-solidity-body-coverage.json",
+      "published_sha256": "feafef50df03d3a97382df19bb74a04a92d13d1294af625166d33db7e3f2f6fa",
+      "published_bytes": 370531,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "current-source-inventory.json",
+      "raw_sha256": "1e6ca295fc055c5f0c16f8d483320b378ce4eb5fd2069470d19202a92459e287",
+      "raw_bytes": 61140,
+      "published_path": "current-source-inventory.json",
+      "published_sha256": "1e6ca295fc055c5f0c16f8d483320b378ce4eb5fd2069470d19202a92459e287",
+      "published_bytes": 61140,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "feature-operation-coverage.json",
+      "raw_sha256": "a5de4b03513fd2c66834454f54cda3ea41f2da4c5b2457665843cc83b0d4279e",
+      "raw_bytes": 8230,
+      "published_path": "feature-operation-coverage.json",
+      "published_sha256": "a5de4b03513fd2c66834454f54cda3ea41f2da4c5b2457665843cc83b0d4279e",
+      "published_bytes": 8230,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-understanding-and-coverage.json",
+      "raw_sha256": "e903e06f34fa7952c113f0afa090bbcb4d60b2330b427c905d6204d2bf350306",
+      "raw_bytes": 74598,
+      "published_path": "operations-understanding-and-coverage.json",
+      "published_sha256": "f3fe64c382f113d59f66c8aad0a894fd9e4dad021f1b3d3e6b4735e43084d26b",
+      "published_bytes": 72589,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-findings.json",
+      "raw_sha256": "a28c5b6f02a349f171abb8b1f08ca6d60c86003a670f9ddeace77b0f6dba9dd3",
+      "raw_bytes": 13516,
+      "published_path": "operations-findings.json",
+      "published_sha256": "d473696f7e4a3617d8b3800392615008918aead34b4478ef3c82d71448f8055a",
+      "published_bytes": 13296,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-research.json",
+      "raw_sha256": "abbf2c323613963c3b41ac452dee9e218f67ea869f17470508e5ab2e19585c74",
+      "raw_bytes": 3294,
+      "published_path": "operations-research.json",
+      "published_sha256": "abfafe3ef1b5e4f98d7159c24d36100c1b907e658758d45bc7bad325619046ac",
+      "published_bytes": 3251,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-admission-findings.json",
+      "raw_sha256": "94c157aab328d1623b463ab9635f1a2b2e9a65d34024ff4ee0f62d70561c3a1c",
+      "raw_bytes": 7211,
+      "published_path": "operations-admission-findings.json",
+      "published_sha256": "0eb7ee1753f8cf41a640bd40989b1a678f21d6e9e03bbaa4215aee669d906478",
+      "published_bytes": 7089,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-admission-provenance.json",
+      "raw_sha256": "519812231edeae8646411e2e2c439d178c2fcb919286e52040feea803914bfe0",
+      "raw_bytes": 3785,
+      "published_path": "operations-admission-provenance.json",
+      "published_sha256": "638acc065050aee91dcf886b037b5a1784653bd662a35d4286755c70f1ce1c60",
+      "published_bytes": 3727,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-cross-review-static.json",
+      "raw_sha256": "78d769c71b623edc6c22745754522b97bfec0f70a1b0744a642f0013e72e0e2c",
+      "raw_bytes": 3934,
+      "published_path": "operations-cross-review-static.json",
+      "published_sha256": "b6094863ab4098a537f610ae2e8995c87f685ebbc7d2166d80fe835085c3e7d5",
+      "published_bytes": 3880,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-guide-final-qa.json",
+      "raw_sha256": "8250f77d916e6eba837f55cb05fdd595782cc5cef1a0e4e5031c191a3ea5a8cf",
+      "raw_bytes": 9882,
+      "published_path": "operations-guide-final-qa.json",
+      "published_sha256": "8250f77d916e6eba837f55cb05fdd595782cc5cef1a0e4e5031c191a3ea5a8cf",
+      "published_bytes": 9882,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "backend-review.json",
+      "raw_sha256": "2d9b61b9d98e3e54d569df2887531a9acc2b946b0ef0346117261c5286100246",
+      "raw_bytes": 62223,
+      "published_path": "backend-review.json",
+      "published_sha256": "08bb3377225052d769608fbb5c4e88136720551b9dc476a4d8a3a0bc212327cd",
+      "published_bytes": 61337,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "backend-cross-review-keeper.json",
+      "raw_sha256": "e25f196b2f03bc3314a172bbf9274f9a009b27b53907a41f8c22ebcac366fb27",
+      "raw_bytes": 19623,
+      "published_path": "backend-cross-review-keeper.json",
+      "published_sha256": "d7ecd3981d8456ab811d878090f2d6b315d098e6da3453ff5c12fd15c1f68284",
+      "published_bytes": 19374,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "backend-cross-review-evidence.json",
+      "raw_sha256": "b7398c79d6fa8d920f24ff2ba2c4f05d78eefead5f158ca521288ab6e42c38af",
+      "raw_bytes": 19855,
+      "published_path": "backend-cross-review-evidence.json",
+      "published_sha256": "a1e4f8819c36a98b1b3f60a0015b1edc38d321284f954255e0e1eb5c2e78e456",
+      "published_bytes": 19599,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "backend-cross-review-evidence-followup.json",
+      "raw_sha256": "d3353ab989e7304edef8c153c092689aeac10caffa65252636950a6a6e22e230",
+      "raw_bytes": 5992,
+      "published_path": "backend-cross-review-evidence-followup.json",
+      "published_sha256": "2e12b4efd4b71c4e4d12a34d5d46329310de4c54ea4ac122a7e3356f0bca52c6",
+      "published_bytes": 5876,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "verification-aggregate.json",
+      "raw_sha256": "017636941c60d6223311964bd6c5869b02543c09f6c1d3c24d050204ee1e8793",
+      "raw_bytes": 26715,
+      "published_path": "verification-aggregate.json",
+      "published_sha256": "017636941c60d6223311964bd6c5869b02543c09f6c1d3c24d050204ee1e8793",
+      "published_bytes": 26715,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-final-targeted.json",
+      "raw_sha256": "c17be9b8050d618db5deb6a5c2ebc46e8fb146da4cdb7ee54915c6e130a177cf",
+      "raw_bytes": 20845,
+      "published_path": "operations-final-targeted.json",
+      "published_sha256": "aec712006ebc74fe4f1139e10916a4e8e547368c23c138e309f469f1d9b043c6",
+      "published_bytes": 20652,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-final-targeted.log",
+      "raw_sha256": "49d14a4dda8ebcbcf22bfa4318310471472e8fd81ce7b267213b52f7d580e623",
+      "raw_bytes": 3931,
+      "published_path": "operations-final-targeted.log",
+      "published_sha256": "0c07a58e8a37e6d98920eb01f926a8199a057a8f65d15184e0a4f0c3466844cb",
+      "published_bytes": 3908,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "admission-final-focused.json",
+      "raw_sha256": "c0b55124e053400a3e219481902d72c4f989cad480d751b985337984672f7de7",
+      "raw_bytes": 13027,
+      "published_path": "admission-final-focused.json",
+      "published_sha256": "c0b55124e053400a3e219481902d72c4f989cad480d751b985337984672f7de7",
+      "published_bytes": 13027,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "admission-final-focused.log",
+      "raw_sha256": "32623636c025625b85a39b057cae5b07fb97bb3dc5be14abfe6b4d1e7cb74f9d",
+      "raw_bytes": 7176,
+      "published_path": "admission-final-focused.log",
+      "published_sha256": "32623636c025625b85a39b057cae5b07fb97bb3dc5be14abfe6b4d1e7cb74f9d",
+      "published_bytes": 7176,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "admission-provenance-final.json",
+      "raw_sha256": "5d9b28f252354978241964628ffe38730c28c45ca533a61246015526625a7870",
+      "raw_bytes": 5255,
+      "published_path": "admission-provenance-final.json",
+      "published_sha256": "5d9b28f252354978241964628ffe38730c28c45ca533a61246015526625a7870",
+      "published_bytes": 5255,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "admission-provenance-final.log",
+      "raw_sha256": "08bddefd4d00714c1bc513246daef4293961c4f7fd68477a98fba6ebddbfcc72",
+      "raw_bytes": 1764,
+      "published_path": "admission-provenance-final.log",
+      "published_sha256": "08bddefd4d00714c1bc513246daef4293961c4f7fd68477a98fba6ebddbfcc72",
+      "published_bytes": 1764,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-final-verified.json",
+      "raw_sha256": "2ad7c971879e47e167a4d384ca4ea33cc5216186ad518962eca89ac223a9f7b5",
+      "raw_bytes": 3334,
+      "published_path": "static-final-verified.json",
+      "published_sha256": "2ad7c971879e47e167a4d384ca4ea33cc5216186ad518962eca89ac223a9f7b5",
+      "published_bytes": 3334,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-final-verified.log",
+      "raw_sha256": "3d30eae790e07bc97a79b3fd760da089995c97e8457b68958f2cb1f8e26e5902",
+      "raw_bytes": 3034,
+      "published_path": "static-final-verified.log",
+      "published_sha256": "3d30eae790e07bc97a79b3fd760da089995c97e8457b68958f2cb1f8e26e5902",
+      "published_bytes": 3034,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-escaped-key-final.json",
+      "raw_sha256": "24ad9f978f89d451d71d76b7f2cc2b8273e7b16c67723023dd71cf2289c1464b",
+      "raw_bytes": 740,
+      "published_path": "static-escaped-key-final.json",
+      "published_sha256": "24ad9f978f89d451d71d76b7f2cc2b8273e7b16c67723023dd71cf2289c1464b",
+      "published_bytes": 740,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-escaped-key-final.log",
+      "raw_sha256": "98cb74424aaec455680ededc40919b8752e50a47e077bca25ed31d81b74d6e2e",
+      "raw_bytes": 306,
+      "published_path": "static-escaped-key-final.log",
+      "published_sha256": "98cb74424aaec455680ededc40919b8752e50a47e077bca25ed31d81b74d6e2e",
+      "published_bytes": 306,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-stage-reuse.json",
+      "raw_sha256": "481b8b4e7f5bf3842bdac0c4c7298fe16f6b338e9dc228f5c80e71d41018d857",
+      "raw_bytes": 589,
+      "published_path": "static-stage-reuse.json",
+      "published_sha256": "481b8b4e7f5bf3842bdac0c4c7298fe16f6b338e9dc228f5c80e71d41018d857",
+      "published_bytes": 589,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "backend-history-chronology-after.txt",
+      "raw_sha256": "ede8876546a229216df83207084870e2d5956a5690a43d98f3033fcc52fc0b52",
+      "raw_bytes": 2334,
+      "published_path": "backend-history-chronology-after.txt",
+      "published_sha256": "02abf2d9c213a6a64a8f0b6e930b162647b62e4239b13e9a9cbff478ae4a24ea",
+      "published_bytes": 2318,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "production-comparison.json",
+      "raw_sha256": "837adb922537ae3d4773870b617763b9989f7029509bc05182bb3a7b753ee677",
+      "raw_bytes": 10355,
+      "published_path": "production-comparison.json",
+      "published_sha256": "837adb922537ae3d4773870b617763b9989f7029509bc05182bb3a7b753ee677",
+      "published_bytes": 10355,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "reserve-venue-tests.json",
+      "raw_sha256": "765d0b2163110282d84c93224c89a5b2c6341c32d7a3742479c00180b89e7990",
+      "raw_bytes": 4404,
+      "published_path": "reserve-venue-tests.json",
+      "published_sha256": "765d0b2163110282d84c93224c89a5b2c6341c32d7a3742479c00180b89e7990",
+      "published_bytes": 4404,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-bucket-reset-before.json",
+      "raw_sha256": "446fb9d5c27e25ac4586dfd7b3ad21e888e54ff98d331de7ad3360d311571b04",
+      "raw_bytes": 16451,
+      "published_path": "operations-bucket-reset-before.json",
+      "published_sha256": "7cf4e5b42698af46565282a1fdcbff27fff1491632d279a3517b32aadef2595d",
+      "published_bytes": 16290,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-bucket-reset-before.log",
+      "raw_sha256": "c47dee1614fc41927acde0b43caf8c40afc9304e03759d1770fa16b620c4ccfa",
+      "raw_bytes": 5176,
+      "published_path": "operations-bucket-reset-before.log",
+      "published_sha256": "9e69da9b0e7e868e04c7e4eaca1c62ec6f19b214e35a899b511ab61037ea9a2b",
+      "published_bytes": 5125,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-telemetry-before.json",
+      "raw_sha256": "15fbbf314ed5f2adb94af70cb35ace7bb7511217ac319efb41fbd177689525c2",
+      "raw_bytes": 16888,
+      "published_path": "operations-telemetry-before.json",
+      "published_sha256": "2df9e900c412bf0f712fa2007df5c8972f2e6c32e5b26d0a7fc230edf6f2705d",
+      "published_bytes": 16723,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "operations-telemetry-before.log",
+      "raw_sha256": "1892f50995dc74c9f3ff797f1071d5ba407118b408276474b9cb53a8fa8c28a1",
+      "raw_bytes": 15096,
+      "published_path": "operations-telemetry-before.log",
+      "published_sha256": "6f618240b7c60a794770bed349322b92453992d234e526ed926b97893a7f9469",
+      "published_bytes": 14928,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "backend-history-chronology-before.txt",
+      "raw_sha256": "f65a48c8a9fa24fe934feb124770c4c497ab8063719b4f358b48790cbdbbded0",
+      "raw_bytes": 9260,
+      "published_path": "backend-history-chronology-before.txt",
+      "published_sha256": "0b22fe2619dbca27480dced3d1ab083be9ce50f37d1af56281f7a696e666f008",
+      "published_bytes": 9170,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "admission-before.json",
+      "raw_sha256": "1808c84231c7dd8b6effc21e6e15ab58343091fb26e3449d13101477652b93b0",
+      "raw_bytes": 2517,
+      "published_path": "admission-before.json",
+      "published_sha256": "027d6989b1a1f969a25d737329d1404fe5bd257fe6bac4557a19820e85a7c53f",
+      "published_bytes": 2484,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "admission-before.log",
+      "raw_sha256": "88ef2b17cc76ed2f527b0d483bcd25b7f117230b0052aa5ae6a936ee954c6f5b",
+      "raw_bytes": 4283,
+      "published_path": "admission-before.log",
+      "published_sha256": "6f2af5fe2276a2c32082f3c8fb182238d9ac54a155ce9202c2a1717a97bfaea0",
+      "published_bytes": 4236,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "admission-provenance-before.json",
+      "raw_sha256": "e0e179a76082b89e64ac71c71c037b917c8710d2c713a732c0c678ad61c48602",
+      "raw_bytes": 3448,
+      "published_path": "admission-provenance-before.json",
+      "published_sha256": "e0e179a76082b89e64ac71c71c037b917c8710d2c713a732c0c678ad61c48602",
+      "published_bytes": 3448,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "admission-provenance-before.log",
+      "raw_sha256": "105633e8efbc1dd063d5f72fae50a96a3301ca873765aa7a1efc1616af5f83a3",
+      "raw_bytes": 3836,
+      "published_path": "admission-provenance-before.log",
+      "published_sha256": "105633e8efbc1dd063d5f72fae50a96a3301ca873765aa7a1efc1616af5f83a3",
+      "published_bytes": 3836,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-negative-before.json",
+      "raw_sha256": "3318b91af4eaa731bf9ca2c3eed79e1e71ff2435211d6a2b4d4a6d6f73e24d7c",
+      "raw_bytes": 476,
+      "published_path": "static-negative-before.json",
+      "published_sha256": "3318b91af4eaa731bf9ca2c3eed79e1e71ff2435211d6a2b4d4a6d6f73e24d7c",
+      "published_bytes": 476,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-negative-before.log",
+      "raw_sha256": "5eadc69bf0b477ecfb9f139537a39a6508e57bad4c7923f7376fc2bddc19bdb5",
+      "raw_bytes": 27050,
+      "published_path": "static-negative-before.log",
+      "published_sha256": "ba1a84155757c03dbb30a2460e0f155d77cdd335d0282b2672046dc17d9e6105",
+      "published_bytes": 27047,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-diagnostics-negative-before.log",
+      "raw_sha256": "a1484337043f729b5ba5b4d3266084a41438ef6451d44d8aba72093c7606b3c1",
+      "raw_bytes": 2004,
+      "published_path": "static-diagnostics-negative-before.log",
+      "published_sha256": "a1484337043f729b5ba5b4d3266084a41438ef6451d44d8aba72093c7606b3c1",
+      "published_bytes": 2004,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "static-log-capture-corrected-negative.log",
+      "raw_sha256": "a822316a6026f043c92135ff5e8a82696b8b82315a365a3954044ff43848f3be",
+      "raw_bytes": 937,
+      "published_path": "static-log-capture-corrected-negative.log",
+      "published_sha256": "a822316a6026f043c92135ff5e8a82696b8b82315a365a3954044ff43848f3be",
+      "published_bytes": 937,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "build-attempt-001/candidate-size-gates.json",
+      "raw_sha256": "2534e5f903e8d7d66006716caea97dcbf978cd2ab874af656e26d871e0ca01ee",
+      "raw_bytes": 39250,
+      "published_path": "production-size-gates.json",
+      "published_sha256": "267557bf0e8ce9c1a86342773a1b7446ae9faa115e842db1a30585ea17db7b22",
+      "published_bytes": 38385,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "ir-inspection-attempt-001/analyser-independent-review.json",
+      "raw_sha256": "a7eb53130d739d9e95ddbb9ae2d3ec7ec1a145636e99513b52c74ac9836dcec1",
+      "raw_bytes": 5593,
+      "published_path": "compiler-analyser-independent-review.json",
+      "published_sha256": "1d81a572ab7b2ad7f7bcec854ad073cddbbeb6c1dfd5174875492a9a174ff02b",
+      "published_bytes": 5526,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "ir-inspection-attempt-001/analyser-checks-scope-correction.json",
+      "raw_sha256": "abefe51fe0b030b0c170380d174515e402820d15996d6bca7c1095a68c9366f2",
+      "raw_bytes": 1508,
+      "published_path": "compiler-analyser-fixture-scope.json",
+      "published_sha256": "c3b8474120ed34ebf62f5d446a84c5e687611b57872ce7ec78c9d38df10d622e",
+      "published_bytes": 1482,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    },
+    {
+      "external_raw_path": "ir-inspection-attempt-001/ast-coverage-crosscheck.json",
+      "raw_sha256": "6c89adba3df2b56307a128ced6de309a046981acea05e3f6b6ec96b5917dd424",
+      "raw_bytes": 959,
+      "published_path": "compiler-ast-coverage-crosscheck.json",
+      "published_sha256": "84469d05646eb7b4e5ef64e3fbb88f92cf475a32232e4900c8c554f1bf8518e4",
+      "published_bytes": 923,
+      "normalization": "UTF8 LF and diagnostic trailing spaces stripped; raw bytes preserved externally"
+    }
+  ],
+  "external_only": [
+    {
+      "external_path": "baseline-tracked.json",
+      "sha256": "45f740a696b5ea912ea9c63e034c417dc1d889ee33372bbe3acf3b67ce537c87",
+      "bytes": 541184
+    },
+    {
+      "external_path": "baseline-status.txt",
+      "sha256": "04a4cec8b47fc598a22619ed519b4960f93e5e542aed1ed7ddfb4d5c055295fe",
+      "bytes": 14688
+    },
+    {
+      "external_path": "INITIAL_FINAL_PROMPT.md",
+      "sha256": "7a6bd9b3ad7de97637d4a437f63bfc78560dd8802823c97d33f2afc538faf311",
+      "bytes": 35621
+    },
+    {
+      "external_path": "PROMPT_DRAFT_1.md",
+      "sha256": "805e728156756d7c4e959526e98965711d1ec0774c0d72dbcd91eee44eb90a17",
+      "bytes": 33488
+    },
+    {
+      "external_path": "CHALLENGE_1.md",
+      "sha256": "cf572405152c97e651536ddf7505babe7d4a561417397931200b107684aeef1e",
+      "bytes": 1356
+    },
+    {
+      "external_path": "PROMPT_DRAFT_2.md",
+      "sha256": "a96520b351c284fe3d9afdbcc799e9d9ebf8fde48b6dc0ecdb9e61e36d08cc54",
+      "bytes": 34740
+    },
+    {
+      "external_path": "CHALLENGE_2.md",
+      "sha256": "9f33aa374de09b5cb230d4290335ece86bd5087ddc4e0ef06f741160ae1cb7be",
+      "bytes": 1523
+    },
+    {
+      "external_path": "FINAL_PROMPT.md",
+      "sha256": "e9e567ccfcff737b1da7b76c86465159922bd31124254374b5535df1a9611ca3",
+      "bytes": 36289
+    },
+    {
+      "external_path": "build-attempt-001/candidate-build-input.json",
+      "sha256": "ea3ce82cab1404f9a3a2004dc227056323dc2784cac896b70c6d62d023815783",
+      "bytes": 662539
+    },
+    {
+      "external_path": "build-attempt-001/candidate-build.json",
+      "sha256": "6af462f982808dc95c7f06384808d42157334cb4816b7aada624e8ee3e10bac5",
+      "bytes": 17928654
+    },
+    {
+      "external_path": "ir-inspection-attempt-001/input.json",
+      "sha256": "8eb7810b7161ce9ac343f0155e0fdcb2a8224edda153f6dca0b7c2c0048b0c9c",
+      "bytes": 662566
+    },
+    {
+      "external_path": "ir-inspection-attempt-001/output.json",
+      "sha256": "6f44e077ebe54bbb5db96473e9821b3f035e1360c6b134a0ea87a4dc2ae73a6a",
+      "bytes": 201136650
+    },
+    {
+      "external_path": "ir-inspection-attempt-001/callgraph-review-002.json",
+      "sha256": "70b2954d66f4252dca627175caa8e397866aa0b85630510b788a6293eb37440c",
+      "bytes": 15402571
+    },
+    {
+      "external_path": "ir-inspection-attempt-001/callgraph-review.json",
+      "sha256": "3fa10e6c345361b9f694a28f84d594e763e2dcc9205b4b6d94c1c4bcd825249d",
+      "bytes": 219768
+    },
+    {
+      "external_path": "ir-inspection-attempt-001/inspect-yul-callgraph.attempt1.py",
+      "sha256": "60363546ad1c571b45c5371fffa0a4f92804c2141d3d479cb481cfb93a1aef1f",
+      "bytes": 10694
+    },
+    {
+      "external_path": "inspect-yul-callgraph.py",
+      "sha256": "00054400bf22ec8d9f59a2a425808126316d2b8b4c44c544159c0246a324693f",
+      "bytes": 11633
+    },
+    {
+      "external_path": "check-yul-analyser.py",
+      "sha256": "8f3726a7f6db29c8aadfa6e9f79fafa42d12e3274cdb931d852dca67d1db8c90",
+      "bytes": 4087
+    },
+    {
+      "external_path": "static-test-verified-stage.py",
+      "sha256": "0f0d828638e12d4a5cadb13e0d589b27d9d00c549c082471443676d01a0654b5",
+      "bytes": 10580
+    }
+  ],
+  "immutable_history": "No preexisting report bytes changed; reports/README.md is navigation only. Original unrelated dirty report stays untouched.",
+  "not_an_attestation": true
+}

@@ -1,0 +1,249 @@
+{
+  "schema": 1,
+  "reviewed_head": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "reviewed_working_diff": "keeper/monitor.py plus the two new regression modules at the following source pins",
+  "source_pins": [
+    {
+      "path": "keeper/monitor.py",
+      "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5"
+    },
+    {
+      "path": "tests_python/test_keeper_bucket_fault_reset.py",
+      "sha256": "f7a48feaa88e9c7b01b852589d37f68bc1bf0fd07fb0ece1ef4edbf84539741b"
+    },
+    {
+      "path": "tests_python/test_keeper_telemetry_completion.py",
+      "sha256": "de5d067fffbf73faad3f576f197cba6f80678e9f7c40bb84fdc28295dd1483c7"
+    },
+    {
+      "path": "zzz_ops/position.py",
+      "sha256": "e196dc43f11e0d22af00c690855b223c4b469983fd7ba6fdb948ef3399bd6e92"
+    },
+    {
+      "path": "zzz_ops/rpc.py",
+      "sha256": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7"
+    },
+    {
+      "path": "tests_python/test_keeper_confirmation_followup.py",
+      "sha256": "280fa7d8d6ff7ab90395b9e6921695ece270e1965e1e531650bf66a47ca538c6"
+    },
+    {
+      "path": "tests_python/test_keeper_execution_telemetry.py",
+      "sha256": "be1b737b92246a62a7a0f6aedddeec944a40f23c126cf4340143a74245707407"
+    }
+  ],
+  "checks": [
+    {
+      "id": "KX01",
+      "boundary": "Relevant bucket identity faults",
+      "result": "No blocking defect confirmed",
+      "reasoning": "PoolIDzero, occupancy outage/contradiction and active/parked LP-token contradictions now enter the existing durable reset machinery. decode_position only checks ABI/enum/precision, so these physical contradictions are not already handled by its earlier exception branch. Share-count/out-of-scope faults remain outside the added reset scope.",
+      "proof": [
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 1925,
+          "excerpt": "        if int(fields[0],16) == 0:\n            if self.principal_exit_started is not True:\n                self._mark_confirmation_reset(bucket)\n            raise RpcError('Malformed shared-pool state')\n        if self.accounting_version not in (3,4):"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 1938,
+          "excerpt": "            if self.view('vault','poolBucket(bytes32)',pool_id) != bucket:\n                raise RpcError('Pool occupancy does not match discovered bucket')\n            if status == 'active' and int(fields[1],16) == 0:\n                raise RpcError('Active shared pool has no LP position')\n            if status == 'parked' and int(fields[1],16) != 0:"
+        },
+        {
+          "path": "zzz_ops/position.py",
+          "sha256": "e196dc43f11e0d22af00c690855b223c4b469983fd7ba6fdb948ef3399bd6e92",
+          "line": 24,
+          "excerpt": "def decode_position(words, version):\n    if not isinstance(words, list) or len(words) != position_word_count(version) or any(\n            not isinstance(w, str) or not re.fullmatch(r'[0-9a-fA-F]{64}', w) for w in words):\n        raise ValueError('Unexpected Position ABI')\n    values = [int(w, 16) for w in words]"
+        }
+      ],
+      "tests_inspected": [
+        "test_occupancy_outage_or_contradiction_resets_only_affected_bucket",
+        "test_active_or_parked_physical_identity_fault_requires_reset",
+        "test_missing_pool_identity_requires_reset_before_further_inventory_reads",
+        "test_share_inventory_outage_remains_unrelated_to_the_sample"
+      ]
+    },
+    {
+      "id": "KX02",
+      "boundary": "Durability, jitter and canonical clear",
+      "result": "No blocking defect confirmed",
+      "reasoning": "Existing _mark_confirmation_reset removes only this bucket schedule/old execute_after, persists reset before eventual signing and restores memory if save fails. Existing clear acknowledgements become awaiting_healthy_read once instead of repeated paid clears. Recovery reaches resetObservation before new observation/jitter; own authenticated pending observation/receipt path manages acknowledgements. Existing terminal-stop guard avoids new reset work from the newly handled fault classes.",
+      "proof": [
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 1052,
+          "excerpt": "    def _mark_confirmation_reset(self,bucket: int,*,force: bool = False) -> None:\n        if self.rebalance_confirmation.version not in (1,2):return\n        already_needed=self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))\n        if already_needed and str(bucket) not in self.state.get(CONFIRMATION_STATE,{}):return\n        previous=self.state;updated=copy.deepcopy(previous)"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 1059,
+          "excerpt": "        stale_schedule=schedules.pop(str(bucket),None)\n        if clear is not None and not force:\n            if clear['awaiting_healthy_read'] and stale_schedule is None:return\n            clear['awaiting_healthy_read']=True\n            self.state=updated"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 1455,
+          "excerpt": "            if (reset is not None and pending['to']==self.contracts.get('rebalance_confirmation') and\n                    pending['data']==calldata('resetObservation(uint256)',int(reset[1]))):\n                updated.setdefault(CONFIRMATION_RESETS,{}).pop(reset[1],None)\n                clears=updated.setdefault(CONFIRMATION_CLEARS,{})\n                if reset[1] not in clears and len(clears)>=min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 1926,
+          "excerpt": "            if self.principal_exit_started is not True:\n                self._mark_confirmation_reset(bucket)\n            raise RpcError('Malformed shared-pool state')\n        if self.accounting_version not in (3,4):\n            if int(fields[8],16) == 0 or int(fields[13],16) == 0:"
+        }
+      ],
+      "tests_inspected": [
+        "test_recovery_cannot_reuse_old_jitter_before_canonical_clear",
+        "test_existing_clear_receipt_waits_for_recovery_without_repeated_paid_resets",
+        "test_failed_reset_persistence_preserves_the_original_state_and_propagates",
+        "test_fresh_confirmation2_uses_the_same_durable_identity_fault_reset",
+        "test_terminal_stop_does_not_create_new_confirmation_reset_work"
+      ],
+      "limits": "The terminal-stop test covers the newly added fault classes, not a new guarantee that every preexisting _bucket error branch never records resets after exit. Cold first-observation faults may conservatively require one clear; this follows the existing model."
+    },
+    {
+      "id": "KX03",
+      "boundary": "Pending and independent harvesting isolation",
+      "result": "No blocking defect confirmed",
+      "reasoning": "cycle still polls saved intents before discovery; the patch does not add new RPC/reset work to pending receipt recovery. Unauthenticated/contradictory bucket identity skips that bucket rather than harvest from an unknown LP. Once bucket identity is healthy, unrelated maintenance RPC failures continue into the separately guarded due harvest. New reset persistence failure propagates and stops operating with undurable truth.",
+      "proof": [
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 2150,
+          "excerpt": "            if self.poll_pending(): return\n        except (ValueError,RpcError):\n            # poll_pending also validates a used signer's receipt checkpoint\n            # when no intent exists. A failed canonical head/anchor read is a\n            # raw-state fault, before the later lifecycle/clock boundary."
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 2285,
+          "excerpt": "                            log('maintenance_deferred',bucket_id=str(bucket),**error_context(exc))\n                    # Fresh accounting4 defaults to hourly independent collection;\n                    # historical profiles keep their original omitted-field schedule.\n                    default_harvest = 3600 if self.accounting_version == 4 else 14400\n                    interval = positive(item.get('harvest_interval_seconds',default_harvest),'harvest_interval_seconds')"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 2288,
+          "excerpt": "                    default_harvest = 3600 if self.accounting_version == 4 else 14400\n                    interval = positive(item.get('harvest_interval_seconds',default_harvest),'harvest_interval_seconds')\n                    if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:\n                        if maintenance_failed:\n                            _,fresh = self._head(); deadline = fresh+180"
+        }
+      ],
+      "tests_inspected": [
+        "test_saved_intent_recovery_precedes_any_bucket_identity_read",
+        "test_coherent_position_does_not_invalidate_saved_sample"
+      ],
+      "limits": "New tests inspect the unchanged pending-first and coherent-bucket boundaries; no fresh real harvest, signer or Linux operation was executed by this cross-review."
+    },
+    {
+      "id": "KX04",
+      "boundary": "Completed telemetry depth and chronology",
+      "result": "No blocking defect confirmed",
+      "reasoning": "Initial latest head and confirmed snapshot have typed hash/number/timestamp. Final latest head must not retreat, lose confirming descendants or regress timestamp; same-height hash/timestamp disagreement rejects. Snapshot time cannot exceed initial head. The exact confirmed anchor is reread after final head, then both snapshot/final timestamps are checked after the last network read. head_number exports the actual final observation. This is provider-consistent evidence, not an independently proved ancestry/finality claim.",
+      "proof": [
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 835,
+          "excerpt": "    def _observe_execution_health(self) -> None:\n        \"\"\"Best-effort confirmed observation, separate from inclusion guards.\"\"\"\n        if self.execution_quality_version != 1:\n            self.lp_execution_health['state']='not_configured'\n            return"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 853,
+          "excerpt": "            if result['block_timestamp']>tip_stamp:\n                raise RpcError('Observation timestamp exceeds its head')\n            # Exact anchor identity alone does not retain confirmation depth:\n            # a failover/reorg can leave the anchor canonical under a lower tip.\n            final_head=self.rpc.call('eth_getBlockByNumber',['latest',False])"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 862,
+          "excerpt": "            if (final_tip<tip or final_tip-number+1<self.confirmations or final_stamp<tip_stamp or\n                    final_tip==tip and (final_hash!=tip_hash or final_stamp!=tip_stamp)):\n                raise RpcError('Observation head changed or lost confirmation depth')\n            canonical=self.rpc.call('eth_getBlockByNumber',[hex(number),False])\n            if canonical != header: raise RpcError('Confirmed observation anchor changed')"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 866,
+          "excerpt": "            if canonical != header: raise RpcError('Confirmed observation anchor changed')\n            observed_at=int(time.time())\n            if any(not -30<=observed_at-stamp<=600 for stamp in (result['block_timestamp'],final_stamp)):\n                raise RpcError('Confirmed observation became stale or future')\n            result.update(head_number=final_tip,observed_at_unix=observed_at,"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 870,
+          "excerpt": "            result.update(head_number=final_tip,observed_at_unix=observed_at,\n                source_files_sha256=self.source_files_sha256,\n                source_identity_scope='local_files_at_keeper_start_not_runtime_attestation')\n            self.lp_execution_health.update(state='observed_this_cycle',last_confirmed=result,last_error=None)\n        except (RpcError,ValueError,TypeError,KeyError) as exc:"
+        }
+      ],
+      "tests_inspected": [
+        "test_advancing_head_exports_actual_final_depth_without_mutating_the_journal",
+        "test_depth_retreat_cannot_relabel_the_old_anchor_as_confirmed",
+        "test_same_height_head_reorg_cannot_publish_mixed_observation",
+        "test_malformed_final_heads_fail_closed_with_prior_evidence_retained",
+        "test_final_clock_future_stale_or_retreat_is_unavailable",
+        "test_anchor_reorg_during_observation_is_still_rejected"
+      ]
+    },
+    {
+      "id": "KX05",
+      "boundary": "Failure presentation and source provenance",
+      "result": "No blocking defect confirmed",
+      "reasoning": "Failure clears discovery cache, retains prior last_confirmed and marks state unavailable. run_cycle does not advance last_success_at on quality/confirmation metadata failure; diagnostic readings cannot authorize a transaction. Source hashes describe local files at worker startup, not runtime attestation. Matching rollout/source pins remain necessary.",
+      "proof": [
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 832,
+          "excerpt": "            self.lp_execution_health.update(state='unavailable',last_error=error_context(exc))\n            raise\n\n    def _observe_execution_health(self) -> None:\n        \"\"\"Best-effort confirmed observation, separate from inclusion guards.\"\"\""
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 508,
+          "excerpt": "        metadata_degraded=not pending and self.canonical_lifecycle in (None,0) and (quality_fault or confirmation_fault)\n        if metadata_degraded:\n            status='degraded'\n            self.last_success_at=previous_success\n            self.cycle_failures=previous_failures+1"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 872,
+          "excerpt": "                source_identity_scope='local_files_at_keeper_start_not_runtime_attestation')\n            self.lp_execution_health.update(state='observed_this_cycle',last_confirmed=result,last_error=None)\n        except (RpcError,ValueError,TypeError,KeyError) as exc:\n            if self._lp_metadata_cache is not None:self._lp_metadata_cache.clear()\n            self.lp_execution_health.update(state='unavailable',last_error=error_context(exc))"
+        }
+      ],
+      "tests_inspected": [
+        "test_depth_failure_cannot_advance_the_last_successful_cycle"
+      ]
+    },
+    {
+      "id": "KX06",
+      "boundary": "Resource and liveness cost",
+      "result": "Accepted bounded cost; operating qualification remains",
+      "reasoning": "Bucket reset marking adds local durable state work on the newly detected faults, not an extra chain read in the fault handler. Successful telemetry adds one logical latest-header RPC. The shared adapter also checks chain identity per request and may perform its configured bounded retries. It runs after pending-first cycle work; known schedules keep their cadence despite metadata degradation, but real inclusion/RPC latency may still exceed the strict300s sample gap.",
+      "proof": [
+        {
+          "path": "zzz_ops/rpc.py",
+          "sha256": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+          "line": 131,
+          "excerpt": "        for attempt in range(max(self.retries, len(self.urls))):\n            checkpoint()\n            url = self.active_url\n            try:\n                actual = _chain_quantity(self._post(url,'eth_chainId',[]))"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 465,
+          "excerpt": "            if not started_pending and not self.state.get('pending'):\n                self._observe_execution_health()\n                self.confirmation_policy_health=observe_confirmation_health(self,self.confirmation_policy_health)\n            elif self.rebalance_confirmation.version in (1,2):\n                self.confirmation_policy_health['state']='pending_recovery'"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+          "line": 520,
+          "excerpt": "    def poll_delay(self, interval: int) -> int:\n        # Optional-job/metadata degradation remains unhealthy, but must not\n        # stretch a known confirmation's polling deadline. Actual cycle-level\n        # RPC/recovery failures retain the historical exponential backoff.\n        known = (self.state.get(CONFIRMATION_STATE) or self.state.get(CONFIRMATION_RESETS) or"
+        }
+      ],
+      "limits": "No SLA, actual retry worst-case timing, gas cost or successful rollout is proven. The single extra read and stricter health response should be included in the actual host/provider rehearsal; do not widen timing/caps automatically."
+    }
+  ],
+  "confirmed_blocking_issues": [],
+  "changes_requested": [],
+  "tests_executed": 0,
+  "repo_edits": 0,
+  "network_service_signing_actions": 0,
+  "scope": "Independent code/test-fixture cross-review of reset, recovery, telemetry and scheduling interactions. Existing keeper behavior was read only as needed to assess this diff; not a new complete body review or test rerun.",
+  "conclusion": "Scoped keeper changes are consistent with the existing permissions/accounting/timing model; no new blocking regression was confirmed. Actual provider/process/operating qualification and source-matched rollout remain open."
+}

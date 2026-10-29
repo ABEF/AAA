@@ -25,7 +25,7 @@
       "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
       "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
       "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
-      "src/ZZZPoolRegistry.sol": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "src/ZZZPoolRegistry.sol": "c7b18b134902df1f37d1cfcd50a9ea3936fb24bcd5341cab7d64fdd97ce4ff9d",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRebalanceConfirmation.sol": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
@@ -209,9 +209,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "db1bdeb885a5dcd62e77125faf4ac4dda58ede682487c6a5020eab2da11faf89",
-    "compiler_output_sha256": "0656f74ea416882f938843e10a4ea90fd81fdd4a6ffbc75be879f092e0802477",
-    "size_evidence_sha256": "2056cc59caa1150de70b5a5343630759cc6e78eb3d3bd71d8cd06b31d1f0c2e5",
+    "compiler_input_sha256": "ea3ce82cab1404f9a3a2004dc227056323dc2784cac896b70c6d62d023815783",
+    "compiler_output_sha256": "6af462f982808dc95c7f06384808d42157334cb4816b7aada624e8ee3e10bac5",
+    "size_evidence_sha256": "2534e5f903e8d7d66006716caea97dcbf978cd2ab874af656e26d871e0ca01ee",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -20432,7 +20432,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "154d4ce1581ce140b4eb80ae35666d0876ab8c8bf5a6ebc4ce770ba61aa66685",
+  "notes_sha256": "cd6d4c25a2b683f565b5f7c7d976e95e89830aa88332cbf76b599c5d1cee098c",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -37583,7 +37583,7 @@
               "type": "tuple",
               "canonical_type": "((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256)",
               "internal_type": "struct PoolConfig",
-              "explanation": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Retained historical policy1 movement field, at least100 and below rangeBps; policy2 never uses it to authorize ordinary replacement.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..1000 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap.",
+              "explanation": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time. Must be false for post-exit Ready-phase reserve venues.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Retained historical policy1 movement field, at least100 and below rangeBps; policy2 never uses it to authorize ordinary replacement.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..1000 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap.",
               "components": [
                 {
                   "position": 0,
@@ -37737,7 +37737,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Only native ETH/fixed ZZZ LP is admitted in this fresh profile. No generic ERC20 LP-admission function remains. Cannot reconfigure after terminal LP exit begins. Actual initialized venue/runtime/price/parameter validation is still required."
+          "notes": "Only native ETH/fixed ZZZ is admitted. During collective Closing/Allocating this remains locked. After Migration.exitPhase()==Ready(3), governance may validate/re-enable or admit a swap venue only with depositsEnabled=false. Ready means principal allocated; holder payouts may remain. All existing native/runtime/feed/reward-asset/parameter checks remain. Venue admission neither spends reserves nor reopens mint, activation, growth or principal; lpExitStarted remains irreversible."
         },
         {
           "signature": "contributionPool()",
@@ -37818,7 +37818,7 @@
           "kind": "function",
           "name": "disablePool",
           "state_mutability": "nonpayable",
-          "purpose": "Stop new deposits and/or ordinary operations on an admitted pool without querying external tokens, venue or prices. True means DISABLE, false leaves the existing state unchanged. At least one flag must be true. Disabling deposits clears this pool as contributionPool. Re-enable only through full configure/configureNative.",
+          "purpose": "Stop new deposits and/or ordinary operations on an admitted pool without querying external tokens, venue or prices. True means DISABLE, false leaves the existing state unchanged. At least one flag must be true. Disabling deposits clears this pool as contributionPool. Re-enable only through full configureNative validation; post-exit re-admission requires Ready and deposits disabled.",
           "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [

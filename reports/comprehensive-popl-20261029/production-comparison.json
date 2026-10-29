@@ -1,0 +1,332 @@
+{
+  "baseline_compiler_output_sha256": "0656f74ea416882f938843e10a4ea90fd81fdd4a6ffbc75be879f092e0802477",
+  "fresh_compiler_output_sha256": "6af462f982808dc95c7f06384808d42157334cb4816b7aada624e8ee3e10bac5",
+  "compiler_settings_unchanged": true,
+  "normal_build_inputs_unchanged": true,
+  "solc_executable_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "all_normal_size_gates": true,
+  "gate_count": 39,
+  "fresh_source_count": 78,
+  "source_drift_during_compile": false,
+  "objects": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "contract": "ZZZActivationAssetsFactory",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "contract": "ZZZContributionPricing",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "contract": "ZZZLPBalancer",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "contract": "ZZZLPRewardConverter",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": false,
+      "creation_identical": false
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "contract": "ZZZPythPriceFeed",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "ZZZRebalanceConfirmation",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZRoyaltyConverter.sol",
+      "contract": "ZZZRoyaltyConverter",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "contract": "ZZZV4RouteExecutor",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "contract": "ExactAsset",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "contract": "ExactToken",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "contract": "ZZZArtwork",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "contract": "ZZZPriceMath",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "contract": "Ids",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "contract": "ZZZV3VenueValidation",
+      "abi_semantically_unchanged": true,
+      "recursive_storage_unchanged": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    }
+  ],
+  "all_abi_unchanged": true,
+  "all_storage_unchanged": true,
+  "changed_bytecode_objects": [
+    "ZZZPoolRegistry"
+  ],
+  "scope": "Fresh production compilation/normal gates and recursive storage/ABI comparison; not EVM execution, exact deployment-argument qualification or independent audit.",
+  "successful": true
+}

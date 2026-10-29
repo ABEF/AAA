@@ -75,6 +75,23 @@ qualified. Its ordinary polling/confirmation interval and batch/gas limits affec
 completion time. Ready-phase retries default hourly (configurable60seconds-1day), measured from canonical batch receipts; durable scheduling alternates delivery with other jobs. A successful batch is not proof that every receiver accepted payment. See [configuration/retry/restart](KEEPER_RECOVERY.md#optional-automatic-principal-delivery) and [operations](OPERATIONS.md). Manual delivery can also use
 the governance wallet; normal holders neither submit transactions nor pay gas.
 
+## Restore a reserve swap venue after exit
+
+After `exitPhase=Ready(3)`, all LP is closed and principal allocated; owner
+payouts may remain pending. Governance can validate/re-enable an ETH/fixed-ZZZ
+venue with `PoolRegistry.configureNative(fullConfig)` and
+`depositsEnabled=false`. Closing/Allocating and deposits-enabled terminal
+configurations reject. Full runtime/PoolKey/feed/asset/parameter checks remain.
+
+This is reserve execution policy, not new principal custody: it cannot restart
+minting, activation, growth, LP maintenance or principal return to a pool.
+FeeController buyback funds remain separate from Migration-held principal.
+Admission neither swaps nor pays anyone. To burn reserves, select/review the
+keeper buyback job's pool, preserve pending work during controlled config reload,
+and unpause ordinary operations if appropriate. The existing keeper grant,
+budgets, prices, execution floors and actual fixed-ZZZ burn still apply. Unpause
+does not reverse `lpExitStarted`. [Exact operator steps](OPERATOR_MANUAL.md#restore-a-buyback-venue-after-collective-exit).
+
 ## Transfers, status and recovery
 
 `exitPhase`: Operating0, Closing1, Allocating2, Ready3. Accounting4 appends

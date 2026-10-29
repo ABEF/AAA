@@ -1,8 +1,10 @@
 # Whole-project PoPL audit and improvement prompt
 
-Historical date-limited brief: [exact prior Git text](https://github.com/ABEF/AAA/blob/2feee92f6bc13b09bae1d43f36bfb7cf6c8faac9/docs/THIRD_PASS_AUDIT_PROMPT.md).
-Current understanding, two prompt challenges and execution evidence are retained
-in [the audit record](../reports/whole-project-execution-20261029/REVIEW.md).
+This is the canonical whole-project brief at its stable filename. The
+[current campaign](../reports/comprehensive-popl-20261029/REVIEW.md) records
+understanding, two sequential prompt critiques, implementation and evidence.
+Earlier briefs/reports retain their exact Git/source scope. Do not restore old
+heads or reinterpret old deployments to match this prompt.
 
 ## Objective
 
@@ -14,20 +16,36 @@ Seek concrete improvements to correctness, security, availability, usability,
 latency, efficiency and maintainability. Do not stop after a plan or report if
 justified repairs can be implemented and verified within authorization.
 
-This is the current canonical audit brief, replacing the former date-limited
-third-pass prompt at this stable filename. Baseline: contract main
-`2feee92f6bc13b09bae1d43f36bfb7cf6c8faac9` **plus the captured, intentional
-uncommitted confirmation2/emergency1 candidate**, and website main
-`e5bb2163e0af0019bd917f65711c1f669b2d6224`, reviewed2026-10-29 Paris.
-These are the historical execution's baseline identities, not a version selection
-for a future run. Before reuse, record the actual current heads, dirty state,
-profiles and source hashes from both repositories; do not restore the old heads
-or treat their then-uncommitted candidate as still unpublished.
-Audit the entire current project, not only recent diffs. Baseline file hashes
-distinguish unpublished work, original unrelated dirty files and historical
-deployment compatibility. Save original dirty documents before replacement.
-Historical reports and prior prompts retain their original source scope; neither
-a current document link nor matching feature name upgrades their evidence.
+Execution baseline: contract `main` at
+`93ceee1b78ad1e8532932961b934177b558f13c3`, website `main` at
+`997f8c3524ea75d613dbb752f67b33a69fe7992f`, with explicitly preserved unrelated
+dirty files and local-only drafts. Before any future reuse, discover the actual
+heads, dirty state, dependency/toolchain identities, source hashes and deployed
+profiles. These are source baselines, not installed-service identities.
+
+The [completed historical reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
+already accounts for352original report narratives/91guides in235overlapping
+material groups. Use its exact dispositions and pins as input, not as235new
+bugs/tests or evidence all risks are resolved. Do not reread/retest unchanged
+reports just to reproduce that count. Revisit relevant evidence when a current
+trace, changed implementation or unsupported claim makes it necessary.
+
+Audit the entire current project, not only recent diffs. Save original dirty
+documentation before replacement. Preserve historical report bytes, original
+failures and old deployment/journal compatibility. Prior implementation facts
+must be rechecked at actual source pins; changed consumers can invalidate reuse
+even when one producer file did not change.
+
+## Execution amendment: approved terminal reserve recovery
+
+The user approved restoring a fully validated ETH/fixed-ZZZ swap venue after
+collective exit. Implement only at Migration Ready(3), with deposits disabled;
+Ready means all principal allocated, not necessarily all payouts delivered.
+Keep terminal principal locks, exact holder backing, native dependency checks,
+ordinary keeper/buyback authority and all financial controls. Admission neither
+moves funds nor enables new LP. Qualify the new source with focused positive and
+negative tests and normal production compilation; distinguish synthetic native
+runtime test seams from actual mainnet venue admission.
 
 ## 1. Understand first, then challenge this prompt twice
 
@@ -162,6 +180,26 @@ callback, dependency-fault and recovery behavior. Trace complete journeys across
 components; do not assume local correctness composes into system correctness.
 Review unused/dead/obsolete behavior against current requirements, preserving
 needed historical receipt decoders. Separate refactor from financial/policy change.
+
+### Review depth and knowledge boundaries
+
+For every feature reason globally about its purpose/owner/lifetime and locally
+about each input, branch, dependency, side effect and recovery boundary. Include
+the feature's interactions with unchanged components and operator actions.
+Use the attached35-point checklist as a coverage taxonomy; mark each applicable,
+adapted or not applicable with reasons. Do not add AI inference, consensus-node,
+generic account/password recovery, integrated bridges or mandatory committee
+workflows that this project does not implement. Public wallet addresses are not
+private authenticated tenants, and an unsigned review is not transaction authority.
+
+Apply current primary guidance to the pinned technology rather than upgrading
+the toolchain to match an article. Read installed Solidity0.8.26/Cancun/via-IR,
+OpenZeppelin5.4.0, v4-core1.0.2/periphery1.0.3/Permit2 and Python3.11+ behavior.
+Map relevant web boundaries contextually to OWASP ASVS5.0.0; use SSDF1.1 for
+source/artifact protection and release response, not as a claimed certification.
+Distinguish documented behavior, inspected code, executed results, inference,
+accepted trust and unavailable external facts. Never promise exhaustive absence
+of bugs, uninterrupted execution or production capacity from finite local work.
 
 ### A. Architecture, permissions and lifecycle
 
@@ -402,6 +440,12 @@ versioned verification. Existing intentional exclusions are not bugs by default.
 Apply official current compiler advisories to actual settings and generated/
 inherited code; AST predicate absence is not a lowering or vulnerability proof.
 
+Audit evidence admission as part of the execution trust boundary: fresh exclusive
+output before analyzer/journey effects, strict unambiguous report/review parsing,
+no overwritten old evidence, retained failed/interrupted results and exact source/
+tool/dependency identity. An analyzer finding exit differs from an execution
+failure; source-mismatched historical triage must not become a current pass.
+
 Audit all build/install/deployment/rehearsal/runner scripts and CI, normal
 EIP170/EIP3860/constructor limits, compiler/dependency/action/lockfile pins,
 generated ABI/reference/artifact provenance, secrets/FFI/broadcast boundaries,
@@ -416,26 +460,42 @@ checking every consumer and historical need. Prefer small typed shared helpers
 and clear invariants; do not split modules, rename public interfaces, widen
 gas/size gates or add generic configuration just to make code look cleaner.
 
+### K. Management, longevity and loss of dependencies
+
+Trace who pays/funds gas, randomness, RPC/indexing/storage, hosting, archival
+history and metadata availability over time; contract reserves cannot be assumed
+to fund operating costs. Review operator/key loss, key rotation, unavailable
+guardian/governance, immutable dead dependencies, lost original VRF results,
+long inactivity, supply below1000, dead/rejecting holders, escrow/beneficial owner
+ambiguity, stablecoin royalty depeg/freeze and permanent venue/token failure.
+State what remains possible, what requires governance, what needs compatible
+pre-exit replacement and what no current mechanism can recover. Preserve raw
+liability and paid truth; do not propose a sweep to make apparent dust disappear.
+
+Evaluate lifetime aliases, lineage/events, quarantine/fractions, retries, disk and
+logs—not only a single bounded call. Assess observability for backing/freshness,
+pending age, sample churn, backlog and missing operating funding. Give the sole
+operator exact diagnosis/stop/repair/resume procedures and irreversible limits.
+Avoid new roles, infrastructure or automatic policy changes without a concrete
+failure/benefit. Proposed business/governance changes remain visible decisions.
+
 ## 4. Execution, evidence and completion
 
 Maintain a feature/operation/function/domain coverage ledger with source pins,
 actual depth and one of: traced/reviewed, fresh targeted verification, exact
 unchanged evidence, pending/unreviewed with reason, externally blocked, or
 explicitly excluded with reason. Pending is not a completed audit disposition.
-Refresh the current742 ABI entries (696functions,33constructors,13receivers)
-from the existing exact-match compiler AST/reference, separating generated
-getters, inherited bodies and distinct hand-written extents. This is navigation,
-not742new tests or a verdict. For every manually reviewed body retain source
-identity, review cases and reasoning; inherited/secondary-CLI review must not
-remain hidden behind a module-level pass. Reconcile the historical494pending
-individual-body gap explicitly rather than relabelling it complete.
-Inventory private/internal helpers, modifiers, overrides and libraries separately
-from external ABI entries; include reachable inherited dispatch and generated
-getters' binding/storage semantics. Unreferenced installed package code is not
-automatically part of executable project behavior. Reconcile122output positions
-currently without dedicated notes and nested tuple semantics: inspect source/
-existing purpose notes, add explanations only when established, otherwise record
-the precise gap rather than guessing or treating a complete ABI as complete docs.
+Refresh actual ABI/function/helper/receiver inventories from the source-bound
+reference and exact compiler/dependency artifacts. The baseline reference has
+696functions,33constructors and13receivers; verify these rather than assuming
+they remain current. Separate generated getters, inherited dispatch and distinct
+handwritten functions/internal helpers/modifiers. Reuse the existing complete
+handwritten-body review only at matching source pins and preserved scope; it is
+not new execution. The earlier494body gap and122output-note gap were addressed
+by later source work: do not reopen them merely because an old prompt called them
+pending. Inspect current annotations/tuple meanings and report any actual new
+gap. Include reachable dependency bodies and generated storage semantics without
+claiming that every installed package is executable application scope.
 Every inventory entry must have a disposition; do not call an inventory itself
 an audit or claim every function newly executed. Prioritize new high-impact
 cross-component risks, then availability/reporting/efficiency and documentation.
@@ -476,3 +536,10 @@ areas and prioritized next decisions. Publish only the reviewed allowlist on
 main under the repository workflow and verify exact local/remote heads; no Git
 publication implies a site/service/contract rollout. Keep production NOT APPROVED
 until actual release gates and independent audit/remediation are evidenced.
+
+Completion requires a disposition for every feature/operation in the current
+inventory, not a universal pass. Record fresh versus exact reused versus inspected
+versus externally blocked evidence; justify every exclusion. Implement verified
+repairs, preserve unresolved consequential decisions and show the next safe
+operator/engineering action. Reconcile the whole system after changes and retain
+negative/partial evidence without double-counting repeated verification methods.

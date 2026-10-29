@@ -89,6 +89,12 @@ At most 32 admitted ERC20 LP assets plus the native ETH settlement asset bound c
 
 The selected pool's actual earned venue fees fund this allocation when harvested; Uniswap's protocol fee is not PoPL revenue. Creator-payment inboxes and remote-fee intake are removed; only the bound Vault can allocate actual local LP receipts. Unsolicited donations remain unclassified/quarantined, not new holder income.
 
+After collective exit reaches Ready (principal allocated), governance can still
+validate ETH/fixed-ZZZ swap venues with deposits disabled for remaining buyback
+reserves. Closing/Allocating remain locked; all native/feed/asset checks remain.
+This does not reopen principal or access Migration-held payouts. Actual burn
+keeps its ordinary keeper/unpause/execution controls. [Procedure](OPERATOR_MANUAL.md#restore-a-buyback-venue-after-collective-exit).
+
 ## NFT royalties and metadata
 
 The NFT owns immutable royalty/metadata helpers. ERC-2981 requests5%sale royalties payable directly to the separate receiver; 100% of eligible receipts is reserved for activated rarity weights1/2/3. NativeETH and up to 16reviewed ERC20assets use funded indexes, pre-join pending synchronization and current-owner claims. There is no LP revenue split or arbitrary administrator sweep in this ledger. No external royalty-custody exit or administrator drain exists; eligibility and receipts continue after LP exit. Pre-admission/constructor/zero-eligibility funds are quarantined.

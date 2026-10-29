@@ -1,0 +1,51 @@
+test_active_or_parked_physical_identity_fault_requires_reset (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_active_or_parked_physical_identity_fault_requires_reset) ... FAIL
+test_coherent_position_does_not_invalidate_saved_sample (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_coherent_position_does_not_invalidate_saved_sample) ... ok
+test_existing_clear_receipt_waits_for_recovery_without_repeated_paid_resets (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_existing_clear_receipt_waits_for_recovery_without_repeated_paid_resets) ... FAIL
+test_occupancy_outage_or_contradiction_resets_only_affected_bucket (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_occupancy_outage_or_contradiction_resets_only_affected_bucket) ... FAIL
+test_recovery_cannot_reuse_old_jitter_before_canonical_clear (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_recovery_cannot_reuse_old_jitter_before_canonical_clear) ... FAIL
+test_saved_intent_recovery_precedes_any_bucket_identity_read (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_saved_intent_recovery_precedes_any_bucket_identity_read) ... ok
+test_share_inventory_outage_remains_unrelated_to_the_sample (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_share_inventory_outage_remains_unrelated_to_the_sample) ... ok
+test_terminal_stop_does_not_create_new_confirmation_reset_work (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_terminal_stop_does_not_create_new_confirmation_reset_work) ... ok
+
+======================================================================
+FAIL: test_active_or_parked_physical_identity_fault_requires_reset (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_active_or_parked_physical_identity_fault_requires_reset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_bucket_fault_reset.py", line 58, in test_active_or_parked_physical_identity_fault_requires_reset
+    self.assert_reset()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_bucket_fault_reset.py", line 30, in assert_reset
+    self.assertIs(self.k.state.get(CONFIRMATION_RESETS, {}).get('7'), True)
+AssertionError: None is not True
+
+======================================================================
+FAIL: test_existing_clear_receipt_waits_for_recovery_without_repeated_paid_resets (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_existing_clear_receipt_waits_for_recovery_without_repeated_paid_resets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_bucket_fault_reset.py", line 92, in test_existing_clear_receipt_waits_for_recovery_without_repeated_paid_resets
+    self.assertEqual(1, save.call_count)
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_occupancy_outage_or_contradiction_resets_only_affected_bucket (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_occupancy_outage_or_contradiction_resets_only_affected_bucket)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_bucket_fault_reset.py", line 44, in test_occupancy_outage_or_contradiction_resets_only_affected_bucket
+    self.assert_reset()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_bucket_fault_reset.py", line 30, in assert_reset
+    self.assertIs(self.k.state.get(CONFIRMATION_RESETS, {}).get('7'), True)
+AssertionError: None is not True
+
+======================================================================
+FAIL: test_recovery_cannot_reuse_old_jitter_before_canonical_clear (tests_python.test_keeper_bucket_fault_reset.KeeperBucketFaultResetTests.test_recovery_cannot_reuse_old_jitter_before_canonical_clear)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_bucket_fault_reset.py", line 64, in test_recovery_cannot_reuse_old_jitter_before_canonical_clear
+    self.assert_reset()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_bucket_fault_reset.py", line 30, in assert_reset
+    self.assertIs(self.k.state.get(CONFIRMATION_RESETS, {}).get('7'), True)
+AssertionError: None is not True
+
+----------------------------------------------------------------------
+Ran 8 tests in 8.077s
+
+FAILED (failures=4)

@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "family": "Verification output ownership before work",
+  "finding_id": "OPS2-03",
+  "kind": "confirmed evidence/operational correctness defects",
+  "severity": "medium",
+  "confidence": "high",
+  "before": [
+    "Keeper runner overwrote existing JSON/log after running selected work.",
+    "Full Python runner only checked paths before selection and reserved after imports/test bodies, leaving a race and lost/interrupted evidence gap.",
+    "Source checks defaulted to and overwrote the preserved reports/source-checks.json."
+  ],
+  "preimages": {
+    "scripts/run-keeper-tests.py": {
+      "sha256": "b158646bc9509ee5aafa998f66912b6a70296cc3ffb7eb238f688e3cab1f5a4f",
+      "preimage": "admission-before-run-keeper-tests.py"
+    },
+    "scripts/run_python_tests.py": {
+      "sha256": "5d389c5df19771bbd6db25c9a6b57dbc600a66303d7da106bc94c4c401bc6bc7",
+      "preimage": "admission-before-run_python_tests.py"
+    },
+    "scripts/source_checks.py": {
+      "sha256": "420e66d4581b60a9356f847d4849450e9c447461591753934fe010476cce36da",
+      "preimage": "admission-before-source_checks.py"
+    },
+    "reports\\source-checks.json": {
+      "sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "must_remain_unchanged": true
+    }
+  },
+  "negative_evidence": {
+    "receipt": "admission-before.json",
+    "methods": 3,
+    "failures": 3,
+    "errors": 0,
+    "scope": "Private temporary outputs, inert generated test sentinel bodies and a tiny synthetic Solidity text; no real project suites/source campaign."
+  },
+  "correction": {
+    "shared_helper": "zzz_ops/evidence.py",
+    "admission": "Preflight plus O_CREAT|O_EXCL private file handles; JSON/nonpass marker fsynced before module selection/imports/scanning; companion log reserved before work when produced. Final writes verify owned inode/path and never follow a replacement target.",
+    "completion": "Partial diagnostics stream to owned log; flush/fsync log before final complete JSON. Failed/interrupted/unfinalized work is explicitly nonpass and never deleted/replayed. Early SystemExit(0) without completion becomes an error.",
+    "preserved": "Canonical methods/order and inventory no-execution semantics. Full --list still creates no execution log; keeper inventory retains its old log behavior. Failed checks can have completed evidence with successful:false.",
+    "selection": "Dedicated keeper MODULES adds test_keeper_bucket_fault_reset and test_keeper_telemetry_completion; custom loaders are rejected rather than silently ignored.",
+    "source_check_default": "Unique source-checks-UTC-random.json; explicit --output retained but cannot overwrite existing files. Static textual checks remain neither compiler nor security analysis."
+  },
+  "verification": {
+    "receipt": "admission-final-focused.json",
+    "receipt_sha256": "c0b55124e053400a3e219481902d72c4f989cad480d751b985337984672f7de7",
+    "distinct_outer_methods": 35,
+    "passes": 33,
+    "skips": [
+      [
+        "tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_final_writes_never_clobber_a_replacement_path",
+        "Host prohibits replacing an open evidence file"
+      ],
+      [
+        "tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_live_and_dangling_symlinks_are_refused_without_following_them",
+        "Symlink creation unavailable on this host"
+      ]
+    ],
+    "failures": 0,
+    "errors": 0,
+    "source_drift": [],
+    "scope": "16 new admission/sentinel checks plus9 keeper and10 Python selection controls. Inner generated sentinel counts and --list inventories are not real project test passes. No broad suite, EVM, RPC, service or Anvil action.",
+    "failed_receipt_attempt": {
+      "json": "admission-after-initial.json",
+      "json_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": "admission-after-initial.log",
+      "log_sha256": "56e2111f111943a4af2e105dff0c656796f7be50dce3f9a134bf4e521b1dd433",
+      "reason": "Old external receipt producer serialized raw skipped TestCase objects; it raised TypeError after writing its log/creating an empty JSON. Original failed bytes are preserved. New external producer stringifies skip identities and reserves evidence before imports.",
+      "not_additive": "Initial16methods (14passes/2skips) overlap final35 and are not added to it."
+    }
+  },
+  "current_source_sha256": {
+    "scripts/run-keeper-tests.py": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+    "scripts/run_python_tests.py": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+    "scripts/source_checks.py": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+    "zzz_ops/evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+    "tests_python/test_verification_output_ownership.py": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978"
+  },
+  "original_dirty_source_report_unchanged": true,
+  "scope_reuse_of_18_runtime_methods": {
+    "receipt": "operations-final-targeted.json",
+    "changed_imported_pin_paths": [
+      "scripts\\run_python_tests.py"
+    ],
+    "producer_used_bodies": {
+      "select_tests": {
+        "unchanged_ast": true,
+        "ast_sha256": "0fb35c26f15717a9e118946e54d8e47932133f8d9e45ebf51e16ff9523a887a9"
+      },
+      "Results": {
+        "unchanged_ast": true,
+        "ast_sha256": "3c61cd22fd462c73a34bdb39b50fbcdc390a3ff744f6030ef8291d0ceca0d09a"
+      }
+    },
+    "unchanged_application_and_test_pins": true,
+    "explanation": "The only drift is the test selector module main/admission path. The external18-method witness used unchanged select_tests/Results bodies and all application/tests/dependency pins still match. Preserve archived original selector preimage; this is not a new current-producer run or a broad suite."
+  },
+  "remaining": [
+    "Actual POSIX symlink and pathname-replacement cases are explicit Windows skips; Linux filesystem/recovery qualification remains open.",
+    "Hashes, exclusive reservation and fsync do not authenticate a hostile account replacing all files, prove a network filesystem or guarantee arbitrary storage/power-loss behavior.",
+    "Read in_progress/failed/interrupted as incomplete evidence. Do not automatically rerun or delete its reserved paths. Artifact contents and process exit/status must both be assessed."
+  ],
+  "task": "keeper-guardrails",
+  "operator_docs": [
+    "docs/DEVELOPMENT.md",
+    "docs/KEEPER_REHEARSALS.md",
+    "docs/OPERATIONS.md"
+  ],
+  "execution_or_policy_changes": "No Solidity/economic/timing/signing/deployment/service/site/Anvil/journal change.",
+  "source_provenance_followup": {
+    "details": "operations-admission-provenance.json",
+    "before": "admission-provenance-before.json",
+    "final": "admission-provenance-final.json",
+    "fresh_methods": 8,
+    "passes": 8,
+    "overlap_with_prior35": 5,
+    "distinct_combined_outer_methods": 38,
+    "note": "Do not add35+8:5methods overlap. No single fresh38-method campaign is claimed."
+  }
+}

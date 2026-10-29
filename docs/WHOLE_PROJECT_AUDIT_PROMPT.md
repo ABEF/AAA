@@ -8,4 +8,4 @@ The earlier whole-project brief remains available at its
 [exact historical Git revision](https://github.com/ABEF/AAA/blob/2feee92f6bc13b09bae1d43f36bfb7cf6c8faac9/docs/WHOLE_PROJECT_AUDIT_PROMPT.md).
 Historical reviews retain their original prompt bytes/source scope; this pointer
 does not upgrade their evidence. New understanding, both sequential challenges
-and execution results are in [the audit record](../reports/whole-project-execution-20261029/REVIEW.md).
+and execution results are in [the audit record](../reports/comprehensive-popl-20261029/REVIEW.md).

@@ -1,0 +1,1204 @@
+{
+  "schema": 1,
+  "baseline": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "files": [
+    {
+      "path": ".github/workflows/keeper-safety.yml",
+      "baseline_sha256": "269ac0c3956a9d3fa6a20b303769338fc913b69bc19d9a4c10b206b0fc184188",
+      "current_sha256": "269ac0c3956a9d3fa6a20b303769338fc913b69bc19d9a4c10b206b0fc184188",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": ".github/workflows/project-todo.yml",
+      "baseline_sha256": "73d6cf730018c981958d16d0fdd2ea9b1122632a7728f494f5639128d24ba961",
+      "current_sha256": "73d6cf730018c981958d16d0fdd2ea9b1122632a7728f494f5639128d24ba961",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "baseline_sha256": "40b45f86daa44973b8b4b6cc418cae26f7c28bd43c034791d6067d03d578250c",
+      "current_sha256": "9a14fc5ee62f66a23e8e181efd8fc8d2cb9b42a91e8b97089348d4542ffc6804",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "config/holder-preflight.example.json",
+      "baseline_sha256": "9fe821c2f3e1d07d2d117ca060f85704786a0002b51be33bb5786141fca6deb3",
+      "current_sha256": "9fe821c2f3e1d07d2d117ca060f85704786a0002b51be33bb5786141fca6deb3",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "config/nginx/popl-api-common.conf",
+      "baseline_sha256": "24fb7a7de3e717934a1092645b02189a88123755a1716b91176ce8ac1e9e7e9f",
+      "current_sha256": "24fb7a7de3e717934a1092645b02189a88123755a1716b91176ce8ac1e9e7e9f",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "config/nginx/popl-api-http.conf",
+      "baseline_sha256": "d68ff54ab9bf3ed43fa85df14e2a5ec54708c419f523ef486d36b0d10fd80097",
+      "current_sha256": "d68ff54ab9bf3ed43fa85df14e2a5ec54708c419f523ef486d36b0d10fd80097",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "config/nginx/popl-api-locations.conf",
+      "baseline_sha256": "0cac88acf93b684c16b2cf5b6717897e4c692ac7f896cf62a52e5aed48d1d6d7",
+      "current_sha256": "0cac88acf93b684c16b2cf5b6717897e4c692ac7f896cf62a52e5aed48d1d6d7",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "config/production.example.json",
+      "baseline_sha256": "c6a5d42fe35fc5dbbb891567eb07ae955cfb495d0bd8eed09e6c5f2d45b72a4e",
+      "current_sha256": "c6a5d42fe35fc5dbbb891567eb07ae955cfb495d0bd8eed09e6c5f2d45b72a4e",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "config/production.holder-exit.example.json",
+      "baseline_sha256": "7ec9a7547342eb57779e2eb223bb1fe2c31f0562cad5b8f781f2a55344b1100b",
+      "current_sha256": "7ec9a7547342eb57779e2eb223bb1fe2c31f0562cad5b8f781f2a55344b1100b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "config/production.legacy-v4.example.json",
+      "baseline_sha256": "32d8707e3ca37744faee8ce8ec766c191beb7d10493b7d705ff27d0fa8f5fbc7",
+      "current_sha256": "32d8707e3ca37744faee8ce8ec766c191beb7d10493b7d705ff27d0fa8f5fbc7",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/__init__.py",
+      "baseline_sha256": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+      "current_sha256": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/activation.py",
+      "baseline_sha256": "81205df3bae78149fc251ee1ef350897dc936bffecbb7291a71bc93f7b76cefd",
+      "current_sha256": "81205df3bae78149fc251ee1ef350897dc936bffecbb7291a71bc93f7b76cefd",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/activation_config.py",
+      "baseline_sha256": "93cb3167bbb3c0facf6af572c688f02f3cf45808a9ec3260b39c3bfb5fea6d6b",
+      "current_sha256": "93cb3167bbb3c0facf6af572c688f02f3cf45808a9ec3260b39c3bfb5fea6d6b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/activation_server.py",
+      "baseline_sha256": "75675b7f0a323036c45dc031d9714e5d31d57622229bdcff8bb28103669d276b",
+      "current_sha256": "75675b7f0a323036c45dc031d9714e5d31d57622229bdcff8bb28103669d276b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/activation_trace.py",
+      "baseline_sha256": "d42e97be019ff8eeb53647e0521dd37be13a694b34c693b71e0cce5c0c4c4655",
+      "current_sha256": "d42e97be019ff8eeb53647e0521dd37be13a694b34c693b71e0cce5c0c4c4655",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/activation_v4.py",
+      "baseline_sha256": "91827ad5eb3c6180a44dabba79609efe8ae2a17c080a5a93cf188603cff07ec0",
+      "current_sha256": "91827ad5eb3c6180a44dabba79609efe8ae2a17c080a5a93cf188603cff07ec0",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/admission.py",
+      "baseline_sha256": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+      "current_sha256": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/collection.py",
+      "baseline_sha256": "0c2793d6a6fcd356c2e65e70ab0e74adce07b12d4ecfefd1d11e750c67d1a473",
+      "current_sha256": "0c2793d6a6fcd356c2e65e70ab0e74adce07b12d4ecfefd1d11e750c67d1a473",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/earnings.py",
+      "baseline_sha256": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+      "current_sha256": "733d3b988ddfe0d7b93c029b8780194377aa9164f88a19875197f1ffb4479460",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/earnings_prices.py",
+      "baseline_sha256": "bc33a4dcea22ed0ad94821f69190b0c009c0fbd133cfedbeae379e856d008bd2",
+      "current_sha256": "bc33a4dcea22ed0ad94821f69190b0c009c0fbd133cfedbeae379e856d008bd2",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/earnings_replay.py",
+      "baseline_sha256": "044b3f349fd8ef6c1dcfd198aa82515b08cfea82c02284d4156fd790b285a46e",
+      "current_sha256": "044b3f349fd8ef6c1dcfd198aa82515b08cfea82c02284d4156fd790b285a46e",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/history.py",
+      "baseline_sha256": "16fe3aeeb163732f6e59781fca33f762ae10fa1d873ecd0c26b0aed823d1fb3d",
+      "current_sha256": "1b3f24d5fcfa61264befe598d6b74bbed0a58a769f25b708e3a6cd87b9d32679",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/history_audit.py",
+      "baseline_sha256": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+      "current_sha256": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/http_runtime.py",
+      "baseline_sha256": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+      "current_sha256": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/lifecycle.py",
+      "baseline_sha256": "d9dd07e67e11268190fbaaa103fe35cf2ac5791bd47948778a1dd7ae00cb23c7",
+      "current_sha256": "d9dd07e67e11268190fbaaa103fe35cf2ac5791bd47948778a1dd7ae00cb23c7",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/lineage.py",
+      "baseline_sha256": "d4c6b3aa644d29b0e1bc3cefd1b05198acec5074441d3107b01e97b138b687a1",
+      "current_sha256": "d4c6b3aa644d29b0e1bc3cefd1b05198acec5074441d3107b01e97b138b687a1",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/liquidity_context.py",
+      "baseline_sha256": "efbbe3fd0fc54650ef60289adc4c5e72c3db656d42ce8686efea2b03a4989df9",
+      "current_sha256": "efbbe3fd0fc54650ef60289adc4c5e72c3db656d42ce8686efea2b03a4989df9",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/mint_readiness.py",
+      "baseline_sha256": "dfbf59ad94ba17af55f116f5f0a36186f95cb2868e7522711503f8e1af4027f7",
+      "current_sha256": "dfbf59ad94ba17af55f116f5f0a36186f95cb2868e7522711503f8e1af4027f7",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/portfolio.py",
+      "baseline_sha256": "4cdfe3f0d8faf3d62630ebb72aab2765bae5b6b1a9d6defa39fe68db03467c94",
+      "current_sha256": "4cdfe3f0d8faf3d62630ebb72aab2765bae5b6b1a9d6defa39fe68db03467c94",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/principal_return.py",
+      "baseline_sha256": "0d94b8ee942d9af3a207d054e52ac3d55420beb98674d719f71502aa03c0a79d",
+      "current_sha256": "0d94b8ee942d9af3a207d054e52ac3d55420beb98674d719f71502aa03c0a79d",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/royalty_reporting.py",
+      "baseline_sha256": "2d76c9985c4c8a8711b21c246f83b5519896c228be3db67862b1ac4961315af1",
+      "current_sha256": "2d76c9985c4c8a8711b21c246f83b5519896c228be3db67862b1ac4961315af1",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/server.py",
+      "baseline_sha256": "7010064db189c9bddf4231e2fbc2cae0c3f73a14facddf06bbb7e128b92fe98b",
+      "current_sha256": "7010064db189c9bddf4231e2fbc2cae0c3f73a14facddf06bbb7e128b92fe98b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/service.py",
+      "baseline_sha256": "46f9a73068eade143ea57ea31eb180f5eb0922105a71d638fff2a044f0f7c2bf",
+      "current_sha256": "46f9a73068eade143ea57ea31eb180f5eb0922105a71d638fff2a044f0f7c2bf",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/transactions.py",
+      "baseline_sha256": "9730ad793398dbeecf721b7549849d35cb5b9edd30e52d263d9538ec23f769a3",
+      "current_sha256": "9730ad793398dbeecf721b7549849d35cb5b9edd30e52d263d9538ec23f769a3",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/wallet_earnings.py",
+      "baseline_sha256": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+      "current_sha256": "814b6cb01867ca4b5108ff156b1c0c81a266b18a9757d5f5f87b8fd7d175a131",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "frontend_api/worker.py",
+      "baseline_sha256": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+      "current_sha256": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "indexer/__init__.py",
+      "baseline_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "current_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "indexer/config.example.json",
+      "baseline_sha256": "b55b16d0be54dfc13ba3184346aa350776768e3d2f3bbb8725bdf413925f7de5",
+      "current_sha256": "b55b16d0be54dfc13ba3184346aa350776768e3d2f3bbb8725bdf413925f7de5",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "indexer/event_schema.json",
+      "baseline_sha256": "412f9c8a8da52b41308b7b38efcb1601ca42a545b74a2a104b0533f3253600de",
+      "current_sha256": "412f9c8a8da52b41308b7b38efcb1601ca42a545b74a2a104b0533f3253600de",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "indexer/events.py",
+      "baseline_sha256": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+      "current_sha256": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "indexer/historical_event_schema.json",
+      "baseline_sha256": "f89e83ce1677a0765689b2d455327519b3c0b02aeb77a9c6ab64a807362e9077",
+      "current_sha256": "f89e83ce1677a0765689b2d455327519b3c0b02aeb77a9c6ab64a807362e9077",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "indexer/monitor.py",
+      "baseline_sha256": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4",
+      "current_sha256": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/__init__.py",
+      "baseline_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "current_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/compound_policy.py",
+      "baseline_sha256": "380da14d18ca963a31fd85c430f37153d2cc34db312cb8d785e5caabf48c227f",
+      "current_sha256": "380da14d18ca963a31fd85c430f37153d2cc34db312cb8d785e5caabf48c227f",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/config.example.json",
+      "baseline_sha256": "02ad7b05d1a967bbf3c37af768b87bd34112dbe22dbfa30ba6e5a8079ee45295",
+      "current_sha256": "02ad7b05d1a967bbf3c37af768b87bd34112dbe22dbfa30ba6e5a8079ee45295",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/config.holder-exit.example.json",
+      "baseline_sha256": "a958eebbde2a9d7b444debbe7acd76cdb514e62f8c4f105fb233baac6e119d69",
+      "current_sha256": "a958eebbde2a9d7b444debbe7acd76cdb514e62f8c4f105fb233baac6e119d69",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/health.py",
+      "baseline_sha256": "a936c95649d289c2c2b4a43d2f622f35ce54bb42f405b50e0308dd11a708501c",
+      "current_sha256": "a936c95649d289c2c2b4a43d2f622f35ce54bb42f405b50e0308dd11a708501c",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/monitor.py",
+      "baseline_sha256": "065c5247aa2ffd670a81e303c8509a5a87f526e64a380ca28cef8e709728017d",
+      "current_sha256": "8695c7debed86290c5c6332ff6995491ce3cfb3a7f44d37ca2db1cef3e5aa9d5",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/operation_review.py",
+      "baseline_sha256": "3fc4d2d9c9018da14d88f78beb547a8cbae02e627a4e819f685b46362ffada3b",
+      "current_sha256": "3fc4d2d9c9018da14d88f78beb547a8cbae02e627a4e819f685b46362ffada3b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/ops.py",
+      "baseline_sha256": "10d4acc5851ac5e171d88e37fbdd5b369dee7bda13fd449f64ea7e7d9028ee88",
+      "current_sha256": "10d4acc5851ac5e171d88e37fbdd5b369dee7bda13fd449f64ea7e7d9028ee88",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/principal.py",
+      "baseline_sha256": "a1cc7ea153259ffeceb3ac131ce628a5e9f58194b3f4e0bcdba5e1f1961e0da4",
+      "current_sha256": "a1cc7ea153259ffeceb3ac131ce628a5e9f58194b3f4e0bcdba5e1f1961e0da4",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/probe.py",
+      "baseline_sha256": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+      "current_sha256": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/rebalance_confirmation.py",
+      "baseline_sha256": "b8a0382f1f13cc44bcc4930c9e499ba49c13ba111d60acc1dcb2ca30bfa27d33",
+      "current_sha256": "b8a0382f1f13cc44bcc4930c9e499ba49c13ba111d60acc1dcb2ca30bfa27d33",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/rehearsal/KeeperVenue.sol",
+      "baseline_sha256": "c260572305e0f6f7c278af457b0e823c4b82237eacb10bd863318890b2b5e7a3",
+      "current_sha256": "c260572305e0f6f7c278af457b0e823c4b82237eacb10bd863318890b2b5e7a3",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/royalties.py",
+      "baseline_sha256": "badd0c85a41ce3346eef6ff9de21df910c62969143ec40e916fdb835160bbd0e",
+      "current_sha256": "badd0c85a41ce3346eef6ff9de21df910c62969143ec40e916fdb835160bbd0e",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/staging-install.sh",
+      "baseline_sha256": "fde49b9780dcdbb352e8286f8b649689c8b48aa021226d02a5b84bfa94d9b2ad",
+      "current_sha256": "fde49b9780dcdbb352e8286f8b649689c8b48aa021226d02a5b84bfa94d9b2ad",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/staging-monitor-install.sh",
+      "baseline_sha256": "a7e624900b81eba1f327ae66cb89d61081c8f5f08e99217d69511bf57f74bca0",
+      "current_sha256": "a7e624900b81eba1f327ae66cb89d61081c8f5f08e99217d69511bf57f74bca0",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/staging.py",
+      "baseline_sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5",
+      "current_sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/staging_observer.py",
+      "baseline_sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+      "current_sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "keeper/watchdog.py",
+      "baseline_sha256": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+      "current_sha256": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "script/DeployCore.s.sol",
+      "baseline_sha256": "cfdfa8f441d17e3b6cbf6beaf764bb8a8248b297d72801885bb8a820a1dece22",
+      "current_sha256": "cfdfa8f441d17e3b6cbf6beaf764bb8a8248b297d72801885bb8a820a1dece22",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/check-slither-review.py",
+      "baseline_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "current_sha256": "4eff9143df183127ef5fd0d788bc36118c2aa675201c9872aa86582425d6d2a4",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/check-staging-monitor.py",
+      "baseline_sha256": "fab3707f73f2c792e3552056274ef150202109056cefc36de380c0893a75b6ab",
+      "current_sha256": "fab3707f73f2c792e3552056274ef150202109056cefc36de380c0893a75b6ab",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/generate-artwork-library.py",
+      "baseline_sha256": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+      "current_sha256": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/generate-dynamic-range-vectors.py",
+      "baseline_sha256": "2801758addde007ebeb76a536f21465b57aedf6d110df45e02715eac608fb3e0",
+      "current_sha256": "2801758addde007ebeb76a536f21465b57aedf6d110df45e02715eac608fb3e0",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/generate-function-reference.py",
+      "baseline_sha256": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+      "current_sha256": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/generate_event_schema.py",
+      "baseline_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "current_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/install-deps.sh",
+      "baseline_sha256": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+      "current_sha256": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/inventory-nft-holders.py",
+      "baseline_sha256": "0f24b770b8e3e970895def799bde8bca8c93b30c4eab544d5014838393866d74",
+      "current_sha256": "0f24b770b8e3e970895def799bde8bca8c93b30c4eab544d5014838393866d74",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/local-api-stack.py",
+      "baseline_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "current_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/local-stack.py",
+      "baseline_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "current_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/local_browser.py",
+      "baseline_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "current_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/local_clock.py",
+      "baseline_sha256": "ece4be4950025680a6135d5758f9af1d3628acf3d3dfa2f6ef069c25e35c1615",
+      "current_sha256": "ece4be4950025680a6135d5758f9af1d3628acf3d3dfa2f6ef069c25e35c1615",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/local_fixture_profile.py",
+      "baseline_sha256": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+      "current_sha256": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/local_inputs.py",
+      "baseline_sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "current_sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/local_wallet.py",
+      "baseline_sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "current_sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/observe-production-config.py",
+      "baseline_sha256": "b174b3155aea20cb2e4ecd53fe7353e3e617864bfc24167e382930b01eec9deb",
+      "current_sha256": "b174b3155aea20cb2e4ecd53fe7353e3e617864bfc24167e382930b01eec9deb",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/prepare-dollar-rehearsal.py",
+      "baseline_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "current_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/prepare-release-review.py",
+      "baseline_sha256": "41e499be98457fb5f651d2cc453bb52a044c3919d138276a297845fad1778a03",
+      "current_sha256": "41e499be98457fb5f651d2cc453bb52a044c3919d138276a297845fad1778a03",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/prepare_ipfs_bundle.py",
+      "baseline_sha256": "e22e0ab885bdd50c9e915858eef68f6e4dd14c5d9e693a663c0f4eb908bab1a9",
+      "current_sha256": "e22e0ab885bdd50c9e915858eef68f6e4dd14c5d9e693a663c0f4eb908bab1a9",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/rehearse-api-ingress.py",
+      "baseline_sha256": "2b51de722476fae905a5c0bb76b9133355de7fdd72c9b6ef7a294485c713e475",
+      "current_sha256": "2b51de722476fae905a5c0bb76b9133355de7fdd72c9b6ef7a294485c713e475",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/rehearse-keeper.py",
+      "baseline_sha256": "6e76859a45b40cdbc3f930a7c976110d964fb95be6b4ada210327912eb2f4f1b",
+      "current_sha256": "6e76859a45b40cdbc3f930a7c976110d964fb95be6b4ada210327912eb2f4f1b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/run-current-pool-fork.py",
+      "baseline_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "current_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/run-fork-checks.py",
+      "baseline_sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "current_sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/run-keeper-tests.py",
+      "baseline_sha256": "b158646bc9509ee5aafa998f66912b6a70296cc3ffb7eb238f688e3cab1f5a4f",
+      "current_sha256": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/run_python_tests.py",
+      "baseline_sha256": "5d389c5df19771bbd6db25c9a6b57dbc600a66303d7da106bc94c4c401bc6bc7",
+      "current_sha256": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/source_checks.py",
+      "baseline_sha256": "420e66d4581b60a9356f847d4849450e9c447461591753934fe010476cce36da",
+      "current_sha256": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/sync-project-todo.py",
+      "baseline_sha256": "9bb5366c5e0835f6792ddaaea19302bc5775a3ffa96a309ce55dd036eeaf1822",
+      "current_sha256": "9bb5366c5e0835f6792ddaaea19302bc5775a3ffa96a309ce55dd036eeaf1822",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/validate-production-config.py",
+      "baseline_sha256": "d4ff4ca58a0bc8089a3eb2b2c36b6582e54483aeece889ea005d62bbe15d9f85",
+      "current_sha256": "d4ff4ca58a0bc8089a3eb2b2c36b6582e54483aeece889ea005d62bbe15d9f85",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/verify-hookless-pool.py",
+      "baseline_sha256": "41812c87cb1bb7a9e1fba0bc281f83ef9aef4a0cb07fb9fc663510d5d219e326",
+      "current_sha256": "41812c87cb1bb7a9e1fba0bc281f83ef9aef4a0cb07fb9fc663510d5d219e326",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/verify-local-stack.py",
+      "baseline_sha256": "e80b6b2caedd1429c092f867df37392eb6c9c54634b641648ee863429ede8ff8",
+      "current_sha256": "e80b6b2caedd1429c092f867df37392eb6c9c54634b641648ee863429ede8ff8",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/verify-local-website.py",
+      "baseline_sha256": "41274c2f24744d02fa6e5d8daef42638557062c79f11b017ff1bb0534e6b9cd9",
+      "current_sha256": "41274c2f24744d02fa6e5d8daef42638557062c79f11b017ff1bb0534e6b9cd9",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/verify-normal-profile.py",
+      "baseline_sha256": "4f5c179b2b95061a60c9e4fc5aff8ca69de6344cd9fbe77b0f2e36aae9d64053",
+      "current_sha256": "4f5c179b2b95061a60c9e4fc5aff8ca69de6344cd9fbe77b0f2e36aae9d64053",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/verify-slither.sh",
+      "baseline_sha256": "b4fa7c69957b3437d34a01fa3747e26c64b18fe1f90980f5e5b134cd7ad54656",
+      "current_sha256": "da2409d97fdef314bf78fdcf025572167874aadc01b66d5dcc9b59ff0fbd75d9",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "scripts/verify.sh",
+      "baseline_sha256": "d696fd01d5512c575b394e8c62c67d1c93aa707a8da7cc2d71af743c748181d4",
+      "current_sha256": "d696fd01d5512c575b394e8c62c67d1c93aa707a8da7cc2d71af743c748181d4",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "baseline_sha256": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "current_sha256": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "baseline_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "current_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "baseline_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "current_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "baseline_sha256": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "current_sha256": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "baseline_sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "current_sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "baseline_sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "current_sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "baseline_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "current_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "baseline_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "current_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "baseline_sha256": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "current_sha256": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "baseline_sha256": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "current_sha256": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "baseline_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "current_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "baseline_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "current_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "baseline_sha256": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "current_sha256": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "baseline_sha256": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "current_sha256": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "baseline_sha256": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "current_sha256": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "baseline_sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "current_sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "baseline_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "baseline_sha256": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "current_sha256": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "baseline_sha256": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "current_sha256": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "baseline_sha256": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "current_sha256": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "baseline_sha256": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "current_sha256": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "baseline_sha256": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "current_sha256": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "baseline_sha256": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "current_sha256": "c7b18b134902df1f37d1cfcd50a9ea3936fb24bcd5341cab7d64fdd97ce4ff9d",
+      "changed": true,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "baseline_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "current_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "baseline_sha256": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "current_sha256": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "baseline_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "current_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZRoyaltyConverter.sol",
+      "baseline_sha256": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "current_sha256": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "baseline_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "current_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "baseline_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "current_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "baseline_sha256": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "current_sha256": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "baseline_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "current_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "baseline_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "baseline_sha256": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "current_sha256": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "baseline_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "current_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "baseline_sha256": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "current_sha256": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "baseline_sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "current_sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "baseline_sha256": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "current_sha256": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "baseline_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "current_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "baseline_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "current_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "baseline_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "current_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "baseline_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "current_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "baseline_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "current_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "baseline_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "current_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "baseline_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "current_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "baseline_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "current_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "baseline_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "current_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "baseline_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "current_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/__init__.py",
+      "baseline_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "current_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/abi.py",
+      "baseline_sha256": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+      "current_sha256": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/errors.py",
+      "baseline_sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+      "current_sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/ethereum_fees.py",
+      "baseline_sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+      "current_sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/function_reference.py",
+      "baseline_sha256": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+      "current_sha256": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/historical_production.py",
+      "baseline_sha256": "daa3edd9f539e4e60722169fa5c29154b982e049788c3d42f1296c2e8dc4cd3f",
+      "current_sha256": "daa3edd9f539e4e60722169fa5c29154b982e049788c3d42f1296c2e8dc4cd3f",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/holder_preflight.py",
+      "baseline_sha256": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+      "current_sha256": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/log_provenance.py",
+      "baseline_sha256": "9edf223d19c2cc04f4829822c282ea534e24afe489016ccb90103f2ce98bb230",
+      "current_sha256": "9edf223d19c2cc04f4829822c282ea534e24afe489016ccb90103f2ce98bb230",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/lp_execution.py",
+      "baseline_sha256": "c90bc83cbf28caa8d3d10a8dde1dda478ebb1deab8e17c583cbf7ef5395eef01",
+      "current_sha256": "c90bc83cbf28caa8d3d10a8dde1dda478ebb1deab8e17c583cbf7ef5395eef01",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/position.py",
+      "baseline_sha256": "e196dc43f11e0d22af00c690855b223c4b469983fd7ba6fdb948ef3399bd6e92",
+      "current_sha256": "e196dc43f11e0d22af00c690855b223c4b469983fd7ba6fdb948ef3399bd6e92",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/price_policy.py",
+      "baseline_sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+      "current_sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/production_observer.py",
+      "baseline_sha256": "11dfbd23a4e0816974fcf180a3d1185b3db9c874d811f1bb8dccaa4c7281dd06",
+      "current_sha256": "11dfbd23a4e0816974fcf180a3d1185b3db9c874d811f1bb8dccaa4c7281dd06",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/production_observer_v4.py",
+      "baseline_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf",
+      "current_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/production_v2.py",
+      "baseline_sha256": "c4f2908375475cb5a80e7fbd250dc24ea7be59cceb851353a3583bb5682dfc21",
+      "current_sha256": "c4f2908375475cb5a80e7fbd250dc24ea7be59cceb851353a3583bb5682dfc21",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/production_v4.py",
+      "baseline_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c",
+      "current_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/range_policy.py",
+      "baseline_sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+      "current_sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/rebalance_confirmation.py",
+      "baseline_sha256": "690f074c90780db63403714699003657d1dafa3ef51304a9306051998ce4f15b",
+      "current_sha256": "690f074c90780db63403714699003657d1dafa3ef51304a9306051998ce4f15b",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/review_bundle.py",
+      "baseline_sha256": "0e5b6b6f94c6e86f6d2ab1599526c6669c2bedca822c47f648105d477fa73a46",
+      "current_sha256": "0e5b6b6f94c6e86f6d2ab1599526c6669c2bedca822c47f648105d477fa73a46",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/rpc.py",
+      "baseline_sha256": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+      "current_sha256": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/state.py",
+      "baseline_sha256": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+      "current_sha256": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/tick_math.py",
+      "baseline_sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+      "current_sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/work_budget.py",
+      "baseline_sha256": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+      "current_sha256": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+      "changed": false,
+      "kind": "current implementation/configuration or explicitly historical local scaffold"
+    },
+    {
+      "path": "zzz_ops/evidence.py",
+      "baseline_sha256": null,
+      "current_sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+      "changed": true,
+      "kind": "new scoped implementation or verification"
+    },
+    {
+      "path": "test/PostExitReserveVenue.t.sol",
+      "baseline_sha256": null,
+      "current_sha256": "698dbbffe8895ba22fd34e5a139c3d89ce8d8fb998624d67bea41fadf12f0177",
+      "changed": true,
+      "kind": "new scoped implementation or verification"
+    },
+    {
+      "path": "tests_python/test_history_block_chronology.py",
+      "baseline_sha256": null,
+      "current_sha256": "fc8be19393f1a016f1158bf9abff5aa6eabb6134932799f1b9f815f6e18bc2e6",
+      "changed": true,
+      "kind": "new scoped implementation or verification"
+    },
+    {
+      "path": "tests_python/test_keeper_bucket_fault_reset.py",
+      "baseline_sha256": null,
+      "current_sha256": "f7a48feaa88e9c7b01b852589d37f68bc1bf0fd07fb0ece1ef4edbf84539741b",
+      "changed": true,
+      "kind": "new scoped implementation or verification"
+    },
+    {
+      "path": "tests_python/test_keeper_telemetry_completion.py",
+      "baseline_sha256": null,
+      "current_sha256": "de5d067fffbf73faad3f576f197cba6f80678e9f7c40bb84fdc28295dd1483c7",
+      "changed": true,
+      "kind": "new scoped implementation or verification"
+    },
+    {
+      "path": "tests_python/test_static_evidence_admission.py",
+      "baseline_sha256": null,
+      "current_sha256": "391bede4fa8e66daac7c7ae3030ce7bb8333eb123e8a77801336f5a8ff8a690c",
+      "changed": true,
+      "kind": "new scoped implementation or verification"
+    },
+    {
+      "path": "tests_python/test_verification_output_ownership.py",
+      "baseline_sha256": null,
+      "current_sha256": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978",
+      "changed": true,
+      "kind": "new scoped implementation or verification"
+    }
+  ],
+  "scope": "Inventory/provenance, not per-file execution or independent review. Existing live state and untracked older drafts excluded from source changes."
+}

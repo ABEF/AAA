@@ -4,7 +4,6 @@ import datetime
 import hashlib
 import importlib
 import inspect
-import io
 import json
 import platform
 import re
@@ -15,6 +14,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
+from zzz_ops.evidence import Evidence
 
 
 def select_tests(modules=None,importer=importlib.import_module):
@@ -66,17 +66,18 @@ def main(argv=None):
     stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S')
     output=args.output or ROOT/'reports'/f'python-tests-{stamp}-{secrets.token_hex(4)}.json'
     if output.suffix!='.json':raise ValueError('Python evidence requires a JSON output path')
-    if any(p.exists() or p.is_symlink() for p in (output,output.with_suffix('.log'))):
+    if any(path.exists() or path.is_symlink() for path in (output,output.with_suffix('.log'))):
         raise ValueError('Python evidence output already exists')
-    tests,classes=select_tests();before=inputs()
-    stream=io.StringIO()
-    result=None if args.list else unittest.TextTestRunner(stream=stream,verbosity=2,resultclass=Results).run(unittest.TestSuite(tests.values()))
-    after=inputs();changed=sorted(name for name in before.keys()|after.keys() if before.get(name)!=after.get(name))
-    breakdown={}
-    for item in tests.values():
-        module=item.__class__.__module__;breakdown[module]=breakdown.get(module,0)+1
-    successful=not changed and (args.list or result.wasSuccessful() and result.testsRun==len(tests) and result.methods==list(tests))
-    report={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'python':platform.python_version(),
+    # Inventory-only mode retains its no-execution-log contract.
+    with Evidence(output,with_log=not args.list,kind='python_test_evidence') as evidence:
+        before=inputs();tests,classes=select_tests()
+        result=None if args.list else unittest.TextTestRunner(stream=evidence.log,verbosity=2,resultclass=Results).run(unittest.TestSuite(tests.values()))
+        after=inputs();changed=sorted(name for name in before.keys()|after.keys() if before.get(name)!=after.get(name))
+        breakdown={}
+        for item in tests.values():
+            module=item.__class__.__module__;breakdown[module]=breakdown.get(module,0)+1
+        successful=not changed and (args.list or result.wasSuccessful() and result.testsRun==len(tests) and result.methods==list(tests))
+        report={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'python':platform.python_version(),
             'execution_performed':not args.list,'selected_methods':list(tests),'classes':classes,
             'executed_methods':result.methods if result else [],'tests_run':result.testsRun if result else 0,
             'failures':len(result.failures) if result else 0,'errors':len(result.errors) if result else 0,
@@ -86,12 +87,9 @@ def main(argv=None):
             'skipped_methods':[(x.id(),reason) for x,reason in result.skipped] if result else [],
             'source_sha256_before':before,'source_sha256_after':after,'source_changes_during_run':changed,
             'solidity_tests_executed':0,'notice':'Python model/unit checks do not execute or verify Solidity; an inventory is not a test pass.'}
-    output.parent.mkdir(parents=True,exist_ok=True)
-    mode='x'
-    if not args.list:
-        with output.with_suffix('.log').open(mode,encoding='utf-8',newline='\n') as handle:handle.write(stream.getvalue())
-    with output.open(mode,encoding='utf-8',newline='\n') as handle:handle.write(json.dumps(report,indent=2)+'\n')
-    print(stream.getvalue());print(json.dumps({**{key:report[key] for key in ('tests_run','execution_performed','successful')},'output':str(output)}))
+        diagnostics=evidence.read_log()
+        evidence.finish(report)
+    print(diagnostics);print(json.dumps({**{key:report[key] for key in ('tests_run','execution_performed','successful')},'output':str(output)}))
     return 0 if successful else 1
 
 

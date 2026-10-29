@@ -1,0 +1,266 @@
+test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) ...
+  test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"success":false,"success":true}') ... FAIL
+  test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"results":{"detectors":[],"detectors":[]}}') ... FAIL
+  test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"success":true,"success":true}') ... FAIL
+  test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"optional":NaN}') ... FAIL
+  test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"optional":Infinity}') ... FAIL
+  test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"optional":1e999}') ... FAIL
+test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) ...
+  test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) (raw='{"independent_audit":true,"independent_audit":false}') ... FAIL
+  test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) (raw='{"source_sha256_lf":{"src/Core.sol":"one","src/Core.sol":"two"}}') ... FAIL
+  test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) (raw='{"optional":-Infinity}') ... FAIL
+  test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) (raw='{"optional":1e999}') ... FAIL
+test_missing_input_diagnostic_does_not_echo_path (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_missing_input_diagnostic_does_not_echo_path) ... FAIL
+test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) ...
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='null', slot='report') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='null', slot='review') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='[]', slot='report') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='[]', slot='review') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='true', slot='report') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='true', slot='review') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='7', slot='report') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='7', slot='review') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='"text"', slot='report') ... FAIL
+  test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='"text"', slot='review') ... FAIL
+test_valid_utf8_finite_objects_reach_unchanged_coverage_validation (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_valid_utf8_finite_objects_reach_unchanged_coverage_validation) ... ok
+test_analyzer_failure_retains_evidence_and_never_runs_review (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_analyzer_failure_retains_evidence_and_never_runs_review) ... FAIL
+test_default_runs_have_distinct_evidence_and_preserve_old_reports (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_default_runs_have_distinct_evidence_and_preserve_old_reports) ... FAIL
+test_existing_requested_directory_is_refused_before_analyzer (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_existing_requested_directory_is_refused_before_analyzer) ... FAIL
+test_findings_exit_reaches_checker_and_review_failure_propagates (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_findings_exit_reaches_checker_and_review_failure_propagates) ... FAIL
+test_wrong_analyzer_version_stops_without_analysis (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_wrong_analyzer_version_stops_without_analysis) ... FAIL
+
+======================================================================
+FAIL: test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"success":false,"success":true}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 46, in test_ambiguous_analyzer_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"results":{"detectors":[],"detectors":[]}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 46, in test_ambiguous_analyzer_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"success":true,"success":true}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 46, in test_ambiguous_analyzer_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"optional":NaN}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 46, in test_ambiguous_analyzer_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"optional":Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 46, in test_ambiguous_analyzer_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) (raw='{"optional":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 46, in test_ambiguous_analyzer_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) (raw='{"independent_audit":true,"independent_audit":false}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 54, in test_ambiguous_review_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) (raw='{"source_sha256_lf":{"src/Core.sol":"one","src/Core.sol":"two"}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 54, in test_ambiguous_review_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) (raw='{"optional":-Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 54, in test_ambiguous_review_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ambiguous_review_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_review_json_is_rejected_before_coverage_check) (raw='{"optional":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 54, in test_ambiguous_review_json_is_rejected_before_coverage_check
+    self.assertTrue(status);self.assertFalse(result['review_coverage_pass']);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_missing_input_diagnostic_does_not_echo_path (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_missing_input_diagnostic_does_not_echo_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 67, in test_missing_input_diagnostic_does_not_echo_path
+    self.assertNotIn('SYNTHETIC-PRIVATE',json.dumps(result))
+AssertionError: 'SYNTHETIC-PRIVATE' unexpectedly found in '{"review_coverage_pass": false, "independent_audit": false, "errors": ["Invalid analyzer/review input: [Errno 2] No such file or directory: \'C:\\\\\\\\Users\\\\\\\\Ali\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\tmp45atc9a4\\\\\\\\SYNTHETIC-PRIVATE-REPORT.json\'"]}'
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='null', slot='report')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='null', slot='review')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='[]', slot='report')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='[]', slot='review')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='true', slot='report')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='true', slot='review')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='7', slot='report')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='7', slot='review')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='"text"', slot='report')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_nonobjects_and_malformed_inputs_are_rejected_before_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_nonobjects_and_malformed_inputs_are_rejected_before_check) (raw='"text"', slot='review')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 61, in test_nonobjects_and_malformed_inputs_are_rejected_before_check
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_analyzer_failure_retains_evidence_and_never_runs_review (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_analyzer_failure_retains_evidence_and_never_runs_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 141, in test_analyzer_failure_retains_evidence_and_never_runs_review
+    evidence=list((self.root/'reports').glob('slither.*'));self.assertEqual(len(evidence),1)
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_default_runs_have_distinct_evidence_and_preserve_old_reports (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_default_runs_have_distinct_evidence_and_preserve_old_reports)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 130, in test_default_runs_have_distinct_evidence_and_preserve_old_reports
+    self.assertEqual(len(evidence),2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_existing_requested_directory_is_refused_before_analyzer (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_existing_requested_directory_is_refused_before_analyzer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 122, in test_existing_requested_directory_is_refused_before_analyzer
+    self.assertNotEqual(result.returncode,0)
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_findings_exit_reaches_checker_and_review_failure_propagates (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_findings_exit_reaches_checker_and_review_failure_propagates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 149, in test_findings_exit_reaches_checker_and_review_failure_propagates
+    evidence=list((self.root/'reports').glob('slither.*'));self.assertEqual(len(evidence),1)
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_analyzer_version_stops_without_analysis (tests_python.test_static_evidence_admission.StaticRunnerAdmissionTests.test_wrong_analyzer_version_stops_without_analysis)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 156, in test_wrong_analyzer_version_stops_without_analysis
+    evidence=list((self.root/'reports').glob('slither.*'));self.assertEqual(len(evidence),1)
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 10 tests in 2.262s
+
+FAILED (failures=26)

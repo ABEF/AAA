@@ -1,0 +1,9 @@
+{
+  "verified_stage_sha256": "0f0d828638e12d4a5cadb13e0d589b27d9d00c549c082471443676d01a0654b5",
+  "current_sha256": "391bede4fa8e66daac7c7ae3030ce7bb8333eb123e8a77801336f5a8ff8a690c",
+  "unchanged_test_bodies": 12,
+  "changed_fixture_method": "StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check",
+  "replacement_receipt": "static-escaped-key-final.json",
+  "other_two_existing_controls_source_unchanged": true,
+  "scope": "12new unchanged plus2existing controls reused; corrected thirteenth fixture method alone rerun.15distinct total, not16."
+}

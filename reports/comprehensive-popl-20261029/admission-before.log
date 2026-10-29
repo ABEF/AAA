@@ -1,0 +1,47 @@
+test_keeper_existing_output_is_preserved_before_import_or_test_work (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_existing_output_is_preserved_before_import_or_test_work) ... FAIL
+test_python_runner_reserves_nonpass_pair_before_test_module_discovery (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_runner_reserves_nonpass_pair_before_test_module_discovery) ... FAIL
+test_source_checks_refuse_existing_output_before_scanning (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_source_checks_refuse_existing_output_before_scanning) ... FAIL
+
+======================================================================
+FAIL: test_keeper_existing_output_is_preserved_before_import_or_test_work (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_existing_output_is_preserved_before_import_or_test_work)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 53, in test_keeper_existing_output_is_preserved_before_import_or_test_work
+    self.assertEqual(b'ORIGINAL EVIDENCE\n', self.output.read_bytes())
+AssertionError: b'ORIGINAL EVIDENCE\n' != b'{\n  "observed_at_utc": "2026-10-29T21:08[61825 chars]n}\n'
+
+======================================================================
+FAIL: test_python_runner_reserves_nonpass_pair_before_test_module_discovery (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_runner_reserves_nonpass_pair_before_test_module_discovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 72, in test_python_runner_reserves_nonpass_pair_before_test_module_discovery
+    self.assertEqual(0, runner.main(['--output', str(self.output)]))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\scripts\run_python_tests.py", line 71, in main
+    tests,classes=select_tests();before=inputs()
+                  ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 62, in select
+    self.assertTrue(self.output.is_file())
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_source_checks_refuse_existing_output_before_scanning (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_source_checks_refuse_existing_output_before_scanning)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 89, in test_source_checks_refuse_existing_output_before_scanning
+    self.assertEqual(b'ORIGINAL SOURCE EVIDENCE\n', self.output.read_bytes())
+AssertionError: b'ORIGINAL SOURCE EVIDENCE\n' != b'{\n  "kind": "source_consistency_only",\n[2339 chars]n}\n'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.380s
+
+FAILED (failures=3)

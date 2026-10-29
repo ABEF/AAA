@@ -1,5 +1,12 @@
 # Documentation map
 
+[Complete-project audit and improvements](../reports/comprehensive-popl-20261029/REVIEW.md)
+implements terminal reserve-venue recovery, relevant keeper identity resets,
+final telemetry depth/chronology, stored-history chronology and exclusive,
+source-pinned evidence production. See the [coverage](../reports/comprehensive-popl-20261029/COVERAGE.md) and
+[verification](../reports/comprehensive-popl-20261029/VERIFICATION.md) for actual
+scope and remaining gates. Earlier reports retain their original bytes.
+
 [Completed historical reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
 maps352 original report narratives to current mechanisms, dispositions and owning
 tasks. It includes strict frontend/indexer startup-input fixes and corrected

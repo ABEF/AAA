@@ -1,5 +1,15 @@
 # Engineering roadmap
 
+The [current complete-project pass](../reports/comprehensive-popl-20261029/REVIEW.md)
+implements confirmed local defects. Next qualify actual price sources/execution
+venues/VRF and authority inventory, refresh frozen-source static analysis, then
+complete current-profile service/website/OpenSea and operating acceptance with
+independent audit. Preserve the mainnet-fork/testnet distinction: production
+native runtime admission is mainnet-pinned, so a testnet needs an explicit
+reviewed test-only binding/profile. Plan bounded historical-data growth before
+full raw replay reaches service limits; never truncate income or replace errors
+with zero. The sole Todo owns status, not this sequence.
+
 The [historical finding reconciliation](../TODO.md#task-historical-findings) is
 complete for its inventory. The [final disposition ledger](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
 separates implemented, superseded, adapted, accepted, deferred and unqualified

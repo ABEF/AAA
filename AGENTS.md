@@ -161,6 +161,25 @@ execute no tests; full verifier creates new evidence directories and rejects alt
 normal filters/settings. Its reservation registration getter claim was corrected
 by the current keeper-coordination follow-up; preserve the original report scope.
 
+## Latest audit and source boundary
+
+[Complete-project review](reports/comprehensive-popl-20261029/REVIEW.md) implements
+validated post-exit reserve venue recovery, bucket identity reset, final telemetry
+depth/chronology, full-prefix history chronology and verification evidence
+admission/provenance. After exit begins, `configureNative` is allowed only at
+Migration Ready(3) with deposits disabled. Ready means allocated principal;
+payouts may still be pending. It cannot reopen LP or access holder backing.
+
+[Evidence](reports/comprehensive-popl-20261029/VERIFICATION.md):16 scoped EVM
+passes,82 distinct Python methods across source stages (80pass/two explicit Windows
+skips),39 fresh normal production gates. Semantic ABI/storage unchanged; only
+Registry bytecode changes. Generated compiler graph evidence narrows named
+advisories, not compiler correctness. Static triage and actual external/operating
+qualification remain open. Use exclusive new evidence paths before imports;
+never rerun into existing outputs or count inventories/fixture sentinels as tests.
+Preserve the same four unrelated dirty files and all old report bytes. No service,
+site, Anvil, journal, shared signer, public signing or paused heartbeat changed.
+
 ## Verification and documentation workflow
 
 - [Completed historical reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md)

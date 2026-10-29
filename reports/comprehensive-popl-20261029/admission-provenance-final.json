@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "utc": "2026-10-29T21:33:36.210794+00:00",
+  "selected_methods": [
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_list_cli_writes_inventory_without_executing_selected_methods",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_only_defined_classes_selected_and_aliases_not_duplicated",
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_imported_cases_and_aliases_do_not_execute_again",
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_list_mode_never_runs_tests_and_does_not_create_pass_log",
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_source_drift_cannot_report_success"
+  ],
+  "executed_methods": [
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names",
+    "tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_list_cli_writes_inventory_without_executing_selected_methods",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_only_defined_classes_selected_and_aliases_not_duplicated",
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_imported_cases_and_aliases_do_not_execute_again",
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_list_mode_never_runs_tests_and_does_not_create_pass_log",
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_source_drift_cannot_report_success"
+  ],
+  "tests_run": 8,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [],
+  "successful": true,
+  "source_sha256_before": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-popl-20261029\\run_admission_checks_v3.py": "a02ce79c56c0ce9bc46c12e9c70043ca98ec933004b183b750c467400eac7887",
+    "scripts\\run-keeper-tests.py": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+    "scripts\\run_python_tests.py": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+    "scripts\\source_checks.py": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+    "tests_python\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python\\test_keeper_runner_inventory.py": "ce1ec264641071c214901edd0428bac120e09395d8f772201aca6dab21c39fe9",
+    "tests_python\\test_python_runner_inventory.py": "7b8c0a7396a62cbac09d084fa85cba00f913b78c3961caba5840486d08051741",
+    "tests_python\\test_verification_output_ownership.py": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978",
+    "zzz_ops\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops\\evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1"
+  },
+  "source_sha256_after": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-popl-20261029\\run_admission_checks_v3.py": "a02ce79c56c0ce9bc46c12e9c70043ca98ec933004b183b750c467400eac7887",
+    "scripts\\run-keeper-tests.py": "48a5ed6a0063e5d9c3709b57f26a2304b0aadd60ee1197f4dca2c9ffbe18d1e4",
+    "scripts\\run_python_tests.py": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912",
+    "scripts\\source_checks.py": "1f6c3db5693c9cc5fe91bb4daceb5e0ab02c3b27547da8aab0cc04ee575b81ca",
+    "tests_python\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python\\test_keeper_runner_inventory.py": "ce1ec264641071c214901edd0428bac120e09395d8f772201aca6dab21c39fe9",
+    "tests_python\\test_python_runner_inventory.py": "7b8c0a7396a62cbac09d084fa85cba00f913b78c3961caba5840486d08051741",
+    "tests_python\\test_verification_output_ownership.py": "dd222c53eddfe7fefd5ba809d86a55d48a21ed3531f25bc173c84a25ee1bd978",
+    "zzz_ops\\__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops\\evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1"
+  },
+  "source_drift": [],
+  "scope": "Only explicit canonical outer methods. Inner runner bodies are inert generated sentinels or --list inventories; no real project regression campaign, EVM, RPC, signer, service, Anvil or operating state.",
+  "evidence_status": "complete",
+  "completion_recorded": true
+}

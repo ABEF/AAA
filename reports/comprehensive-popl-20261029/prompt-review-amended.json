@@ -1,0 +1,37 @@
+{
+  "baseline": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "files": [
+    {
+      "path": "PROMPT_DRAFT_1.md",
+      "sha256": "805e728156756d7c4e959526e98965711d1ec0774c0d72dbcd91eee44eb90a17",
+      "bytes": 33488
+    },
+    {
+      "path": "CHALLENGE_1.md",
+      "sha256": "cf572405152c97e651536ddf7505babe7d4a561417397931200b107684aeef1e",
+      "bytes": 1356
+    },
+    {
+      "path": "PROMPT_DRAFT_2.md",
+      "sha256": "a96520b351c284fe3d9afdbcc799e9d9ebf8fde48b6dc0ecdb9e61e36d08cc54",
+      "bytes": 34740
+    },
+    {
+      "path": "CHALLENGE_2.md",
+      "sha256": "9f33aa374de09b5cb230d4290335ece86bd5087ddc4e0ef06f741160ae1cb7be",
+      "bytes": 1523
+    },
+    {
+      "path": "FINAL_PROMPT.md",
+      "sha256": "7a6bd9b3ad7de97637d4a437f63bfc78560dd8802823c97d33f2afc538faf311",
+      "bytes": 35621
+    }
+  ],
+  "scope": "Preparation/drafting/primary research only; no code or operating policy implemented by this prompt update.",
+  "execution_amendment": {
+    "reason": "Explicit user answer permits validated reserve-only venue recovery at Ready; original pre-execution final prompt preserved separately.",
+    "initial_final_sha256": "7a6bd9b3ad7de97637d4a437f63bfc78560dd8802823c97d33f2afc538faf311",
+    "final_canonical_sha256": "e9e567ccfcff737b1da7b76c86465159922bd31124254374b5535df1a9611ca3",
+    "does_not_relabel_initial_review": true
+  }
+}

@@ -1,0 +1,24 @@
+test_invalid_review_identity_never_reaches_check_or_echoes_value (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_invalid_review_identity_never_reaches_check_or_echoes_value) ... FAIL
+test_unexpected_review_source_name_is_not_echoed (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_unexpected_review_source_name_is_not_echoed) ... FAIL
+
+======================================================================
+FAIL: test_invalid_review_identity_never_reaches_check_or_echoes_value (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_invalid_review_identity_never_reaches_check_or_echoes_value)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 78, in test_invalid_review_identity_never_reaches_check_or_echoes_value
+    self.assertTrue(status);check.assert_not_called()
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_unexpected_review_source_name_is_not_echoed (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_unexpected_review_source_name_is_not_echoed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_static_evidence_admission.py", line 87, in test_unexpected_review_source_name_is_not_echoed
+    self.assertNotIn('SYNTHETIC-PRIVATE',json.dumps(errors))
+AssertionError: 'SYNTHETIC-PRIVATE' unexpectedly found in '["Reviewed source/toolchain inventory changed", "Reviewed content changed: SYNTHETIC-PRIVATE-MARKER"]'
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.036s
+
+FAILED (failures=2)

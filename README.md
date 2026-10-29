@@ -1,5 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The [current internal audit](reports/comprehensive-popl-20261029/REVIEW.md)
+records implemented contract, keeper, history and verification repairs;
+[coverage and evidence](reports/comprehensive-popl-20261029/VERIFICATION.md)
+separate fresh checks, exact reuse and remaining production gates. Source
+publication does not deploy or qualify any live service.
+
 PoPL connects transferable NFTs to vault-managed liquidity. Activation attaches
 an LP allocation and unlocks funded LP fees plus a separate share of NFT-sale
 royalties. Holders cannot redeem principal during normal operation. Governance can end LP

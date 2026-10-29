@@ -1,0 +1,106 @@
+{
+  "purpose": "Follow-up narrowing of exact0.8.26 SOL-2026-2/-4 applicability; no broad compiler/security PASS",
+  "artifacts": {
+    "input.json": {
+      "sha256": "8eb7810b7161ce9ac343f0155e0fdcb2a8224edda153f6dca0b7c2c0048b0c9c",
+      "bytes": 662566
+    },
+    "output.json": {
+      "sha256": "6f44e077ebe54bbb5db96473e9821b3f035e1360c6b134a0ea87a4dc2ae73a6a",
+      "bytes": 201136650
+    },
+    "compile-summary.json": {
+      "sha256": "321c1fcb8f9f1d80f288a6c7d26becf15d5b3b9bce5b536ba2faca6190a10a85",
+      "bytes": 19259
+    },
+    "callgraph-review-002.json": {
+      "sha256": "70b2954d66f4252dca627175caa8e397866aa0b85630510b788a6293eb37440c",
+      "bytes": 15402571
+    },
+    "analyser-checks.json": {
+      "sha256": "6eb19e2f7972eac21649ada46921be3d5e1f93d29d0fe8d99df71b1acedbe038",
+      "bytes": 965
+    },
+    "ast-coverage-crosscheck.json": {
+      "sha256": "6c89adba3df2b56307a128ced6de309a046981acea05e3f6b6ec96b5917dd424",
+      "bytes": 959
+    },
+    "inspect-yul-callgraph.py": {
+      "sha256": "00054400bf22ec8d9f59a2a425808126316d2b8b4c44c544159c0246a324693f",
+      "bytes": 11633
+    },
+    "check-yul-analyser.py": {
+      "sha256": "8f3726a7f6db29c8aadfa6e9f79fafa42d12e3274cdb931d852dca67d1db8c90",
+      "bytes": 4087
+    },
+    "analyser-independent-review.json": {
+      "sha256": "a7eb53130d739d9e95ddbb9ae2d3ec7ec1a145636e99513b52c74ac9836dcec1",
+      "bytes": 5593
+    },
+    "analyser-checks-scope-correction.json": {
+      "sha256": "abefe51fe0b030b0c170380d174515e402820d15996d6bca7c1095a68c9366f2",
+      "bytes": 1508
+    }
+  },
+  "compile": {
+    "exit_code": 0,
+    "elapsed_seconds": 95.62,
+    "source_count": 78,
+    "output_selection_only": true,
+    "source_unchanged_during": true,
+    "compiled_source_set_equal": true,
+    "compiler_unchanged": true,
+    "all39objects_identical": true,
+    "all39structured_yul_asts_present": true
+  },
+  "scope": {
+    "production_objects": 39,
+    "Yul_code_object_graphs": 228,
+    "graphs_per_stage": 114,
+    "function_occurrences": 38972,
+    "direct_edges": 97885,
+    "all_callsite_occurrences": 296494,
+    "mutual_cycles": 0,
+    "all_cycles": 0,
+    "unresolved_calls": 0,
+    "duplicate_scope_definitions": 0,
+    "generic_raw_AST_count_matches_graph": true
+  },
+  "analyser_checks": {
+    "count": 8,
+    "all_pass": true,
+    "classification": "8synthetic structural AST helper probes only, NOT compiler-accepted Yul programs, contract/EVM methods or independent compiler qualification."
+  },
+  "conclusion": "No mutually recursive generated Yul functions were observed in either original or optimized structured IR object ASTs for the exact byte-identical39object build. This removes the opaque generated-graph evidence gap for the necessary mutual-recursion condition of SOL-2026-2/-4 within the inspected artifacts.",
+  "not_claimed": "Not a proof that0.8.26 is bug-free, independently validated, immune to all future advisories, or safe for unrelated settings/sources/deployed dependencies. No compiler upgrade, source change, EVM execution or production approval.",
+  "failed_attempt": {
+    "path": "ir-inspection-attempt-001/callgraph-review.json",
+    "status": "Failed preliminary parser skipped YulCode.block and yielded zerofunctions; excluded from conclusions, bytes/script preserved. Corrected parser validates shapes and matches independent raw-node counts.",
+    "sha256": "3fa10e6c345361b9f694a28f84d594e763e2dcc9205b4b6d94c1c4bcd825249d",
+    "analyzer_snapshot": "ir-inspection-attempt-001/inspect-yul-callgraph.attempt1.py",
+    "analyzer_sha256": "60363546ad1c571b45c5371fffa0a4f92804c2141d3d479cb481cfb93a1aef1f"
+  },
+  "limits": [
+    "The ASTs come from the same pinned compiler being reviewed. This is structured generated-code evidence, not independent compiler validation.",
+    "Own Python scope walker/Tarjan implementation is not an independently audited analyzer; exact artifacts and every edge/function are retained for reproduction.",
+    "External EVM calls/create start separate memory frames and are counted separately, not added as internal spill-memory cycles. Cross-contract economic/reentrancy safety requires other evidence.",
+    "Both original IR and optimized IR object ASTs are inspected; this does not prove all later backend transformations or exclude unrelated compiler defects.",
+    "Counts duplicate inherited/nested-object helper occurrences across contracts and phases. They are static graph records, not unique test executions or security checks."
+  ],
+  "independent_review": {
+    "path": "ir-inspection-attempt-001/analyser-independent-review.json",
+    "sha256": "a7eb53130d739d9e95ddbb9ae2d3ec7ec1a145636e99513b52c74ac9836dcec1",
+    "conclusion": "No substantive false-negative blocker confirmed; independent Kahn elimination corroborates0cycles over all228persistedgraphs. No compile/EVM/fixture rerun."
+  },
+  "supersedes_summary_only": {
+    "path": "contracts-compiler-generated-followup.json",
+    "sha256": "7efc69524276c362cd4824441eb430d564f67e8c39d7d4e91745b9efe01c8137",
+    "preserved_unchanged": true
+  },
+  "fixture_scope_correction": {
+    "path": "ir-inspection-attempt-001/analyser-checks-scope-correction.json",
+    "sha256": "abefe51fe0b030b0c170380d174515e402820d15996d6bca7c1095a68c9366f2",
+    "classification": "ALL8are hand-built AST walker probes; none compiled or established as compiler-accepted Yul. Shadowing and for-init function definitions are forbidden by pinnedgrammar, undefinedtargets/omittedbuiltinargs/malformedroot are deliberate synthetic probes. Actual compilergraphs contain0nested/0for-init definitions."
+  },
+  "final_interpretation": "Necessary generated mutual-recursion pattern for SOL-2026-2/-4 was not observed in exact original/optimized structured IR of the byte-identical39object build. Supported by complete raw node counts, lexical graph traversal and independent cycle check. This is a scoped non-witness, not independent validation of the compiler or every later transformation; release acceptance and unrelated compiler/dependency risks remain."
+}

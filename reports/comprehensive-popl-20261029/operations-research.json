@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "scope": "Primary documentation supporting runtime/operating review; not provider or installed-host qualification",
+  "sources": [
+    {
+      "title": "Python3.11 subprocess.run",
+      "url": "https://docs.python.org/3.11/library/subprocess.html#subprocess.run",
+      "applies": "A run timeout kills/waits for the direct child; startup is not always interruptible. An encrypted cast command timeout does not establish broadcast absence or kill every descendant. Keep durable ambiguity, no resend and real systemd group qualification.",
+      "limits": "No new process experiment was run; installed Foundry/systemd still need exact rehearsal."
+    },
+    {
+      "title": "Python3.11 os.fsync",
+      "url": "https://docs.python.org/3.11/library/os.html#os.fsync",
+      "applies": "Buffered file flush plus fsync supports the existing durability boundary. Atomic naming and parent-directory durability remain distinct; local hashes do not authenticate hostile replacement.",
+      "limits": "No filesystem/power-loss guarantee was inferred from mocked write failures."
+    },
+    {
+      "title": "systemd.kill",
+      "url": "https://www.freedesktop.org/software/systemd/man/latest/systemd.kill.html",
+      "applies": "Control-group kill mode terminates remaining processes in the service group; process-only mode is inadequate for signer containment. Current source uses group kill plus SIGKILL and no core dumps.",
+      "limits": "Current official semantics were consulted. A configured unit is not proof that an actual>=240manager applied its settings or killed descendants."
+    },
+    {
+      "title": "systemd.service watchdog",
+      "url": "https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html#WatchdogSec=",
+      "applies": "Main-process progress notifications and an external service manager provide stall supervision; a timer thread could mask blocked work. Keep health/readiness/freshness and watchdog meanings separate.",
+      "limits": "No systemd install/restart/monitor action was performed."
+    },
+    {
+      "title": "Python3.11 exclusive open",
+      "url": "https://docs.python.org/3.11/library/functions.html#open",
+      "applies": "Exclusive creation distinguishes reservation from a late existence check. New verification files must be owned before selected module imports/test bodies or source scans.",
+      "limits": "Actual Windows restrictions caused two explicit filesystem-case skips; no Linux execution is inferred."
+    },
+    {
+      "title": "Linux open(2) file descriptors and O_EXCL",
+      "url": "https://man7.org/linux/man-pages/man2/open.2.html",
+      "applies": "O_CREAT|O_EXCL rejects existing targets; writes through an already-owned descriptor remain attached to its open file description rather than a replacement pathname. Final identity checks also reject replaced pathnames.",
+      "limits": "Not authentication against a hostile filesystem owner or a blanket power-loss/network-filesystem guarantee; real supported-host qualification remains open."
+    }
+  ],
+  "conclusion": "The established controlled rollout/reconciliation model remains appropriate; the new fixes close concrete continuity/evidence gaps without changing financial policy."
+}

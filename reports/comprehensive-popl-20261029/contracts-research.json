@@ -1,0 +1,43 @@
+{
+  "primary_sources": [
+    {
+      "url": "https://developers.uniswap.org/docs/protocols/v4/guides/unlock-callback-and-deltas",
+      "application": "Validate caller-delta settlement and enforce actual native/ERC20 deltas, not only static liquidity math. Public docs are orientation; pinned1.0.2core/1.0.3periphery implementations govern this candidate."
+    },
+    {
+      "url": "https://eips.ethereum.org/EIPS/eip-721",
+      "application": "Owner/approval semantics and receiver callbacks are distinct; preserving owner address does not establish successor escrow compatibility."
+    },
+    {
+      "url": "https://eips.ethereum.org/EIPS/eip-2981",
+      "application": "5% request cannot enforce payments; actual receipts may be in sale currency, so optional currencies are separate from ETH/ZZZ inputs."
+    },
+    {
+      "url": "https://developers.uniswap.org/docs/protocols/v4/concepts/flash-accounting",
+      "application": "Context for actual pinned PoolManager unlock/settle-delta implementation, not proof of selected deployed runtime controls."
+    },
+    {
+      "url": "https://developers.uniswap.org/docs/protocols/v4/guides/managing-liquidity/calculate-fees",
+      "application": "LP fee growth and real fee collection differ from principal amounts and raw pre-existing Vault balances."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Uniswap/swap-router-contracts/main/contracts/V3SwapRouter.sol",
+      "application": "Rejected suspected optional-converter incompatibility: V3SwapRouter has the7field exactInputSingle tuple and inherits canonical factory getter."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Uniswap/v3-periphery/main/contracts/base/PeripheryImmutableState.sol",
+      "application": "factory() and WETH9() getters inherited by SwapRouter02 path; do not confuse its additional factoryV2 immutable base."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ethereum/solidity/develop/docs/bugs.json",
+      "application": "Present-day exactcompiler advisory triage. Settings/source predicates narrow applicability; AST graph is not proof of generated lowering/stack-spill correctness."
+    }
+  ],
+  "versions": {
+    "openzeppelin": "5.4.0",
+    "v4-core": "1.0.2",
+    "v4-periphery": "1.0.3",
+    "solidity": "0.8.26/Cancun/viaIR/runs1/Yul-off"
+  },
+  "limits": "No current market/authority/provider qualification or public-chain action. Primary documentation was read as research, not as evidence deployed dependencies are authentic."
+}

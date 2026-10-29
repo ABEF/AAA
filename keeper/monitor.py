@@ -842,16 +842,32 @@ class Keeper:
             head=self.rpc.call('eth_getBlockByNumber',['latest',False])
             if not isinstance(head,dict): raise RpcError('Missing observation head')
             tip=rpc_quantity(head.get('number'),'observation head number')
-            rpc_hash(head.get('hash'),'observation head hash')
+            tip_hash=rpc_hash(head.get('hash'),'observation head hash')
+            tip_stamp=rpc_quantity(head.get('timestamp'),'observation head timestamp',minimum=1)
             if tip+1<self.confirmations: raise RpcError('Insufficient observation confirmations')
             number=tip-self.confirmations+1
             header=head if number==tip else self.rpc.call('eth_getBlockByNumber',[hex(number),False])
             if not isinstance(header,dict) or rpc_quantity(header.get('number'),'observation number')!=number:
                 raise RpcError('Observation block number differs')
             result=self._lp_routing_snapshot(header,use_cache=True)
+            if result['block_timestamp']>tip_stamp:
+                raise RpcError('Observation timestamp exceeds its head')
+            # Exact anchor identity alone does not retain confirmation depth:
+            # a failover/reorg can leave the anchor canonical under a lower tip.
+            final_head=self.rpc.call('eth_getBlockByNumber',['latest',False])
+            if not isinstance(final_head,dict): raise RpcError('Missing final observation head')
+            final_tip=rpc_quantity(final_head.get('number'),'final observation head number')
+            final_hash=rpc_hash(final_head.get('hash'),'final observation head hash')
+            final_stamp=rpc_quantity(final_head.get('timestamp'),'final observation head timestamp',minimum=1)
+            if (final_tip<tip or final_tip-number+1<self.confirmations or final_stamp<tip_stamp or
+                    final_tip==tip and (final_hash!=tip_hash or final_stamp!=tip_stamp)):
+                raise RpcError('Observation head changed or lost confirmation depth')
             canonical=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
             if canonical != header: raise RpcError('Confirmed observation anchor changed')
-            result.update(head_number=tip,observed_at_unix=int(time.time()),
+            observed_at=int(time.time())
+            if any(not -30<=observed_at-stamp<=600 for stamp in (result['block_timestamp'],final_stamp)):
+                raise RpcError('Confirmed observation became stale or future')
+            result.update(head_number=final_tip,observed_at_unix=observed_at,
                 source_files_sha256=self.source_files_sha256,
                 source_identity_scope='local_files_at_keeper_start_not_runtime_attestation')
             self.lp_execution_health.update(state='observed_this_cycle',last_confirmed=result,last_error=None)
@@ -1907,6 +1923,8 @@ class Keeper:
         status = position['status']
         if status in ('none','dormant'): return fields,[]
         if int(fields[0],16) == 0:
+            if self.principal_exit_started is not True:
+                self._mark_confirmation_reset(bucket)
             raise RpcError('Malformed shared-pool state')
         if self.accounting_version not in (3,4):
             if int(fields[8],16) == 0 or int(fields[13],16) == 0:
@@ -1916,12 +1934,20 @@ class Keeper:
         if self.view('vault','bucketTotalShares(uint256)',bucket) == 0:
             raise RpcError('Shared pool has no shares')
         pool_id = '0x'+fields[0]
-        if self.view('vault','poolBucket(bytes32)',pool_id) != bucket:
-            raise RpcError('Pool occupancy does not match discovered bucket')
-        if status == 'active' and int(fields[1],16) == 0:
-            raise RpcError('Active shared pool has no LP position')
-        if status == 'parked' and int(fields[1],16) != 0:
-            raise RpcError('Parked shared pool still has an LP position')
+        try:
+            if self.view('vault','poolBucket(bytes32)',pool_id) != bucket:
+                raise RpcError('Pool occupancy does not match discovered bucket')
+            if status == 'active' and int(fields[1],16) == 0:
+                raise RpcError('Active shared pool has no LP position')
+            if status == 'parked' and int(fields[1],16) != 0:
+                raise RpcError('Parked shared pool still has an LP position')
+        except (ValueError,RpcError):
+            # These are the sampled LP's identity, unlike unrelated share-count
+            # reads above. A recovered pool cannot reuse old evidence/jitter.
+            # Once terminal exit starts there is no ordinary window to renew.
+            if self.principal_exit_started is not True:
+                self._mark_confirmation_reset(bucket)
+            raise
         if status == 'exited' and (int(fields[1],16) or int(fields[2],16) or int(fields[3],16) or not self.lp_exit_started()):
             raise RpcError('Exited shared pool retains principal or lacks its lifecycle lock')
         if status == 'parked' and self.accounting_version not in (3,4) and (

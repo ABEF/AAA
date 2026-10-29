@@ -1,0 +1,36 @@
+{
+  "scope": "Independent generic node-count walk, separate from lexical graph traversal; static inventory, not execution",
+  "raw_ast_counts": {
+    "YulObject": 228,
+    "YulData": 114,
+    "YulCode": 228,
+    "YulBlock": 76341,
+    "YulFunctionDefinition": 38972,
+    "YulTypedName": 273812,
+    "YulAssignment": 52012,
+    "YulIdentifier": 705445,
+    "YulFunctionCall": 296494,
+    "YulVariableDeclaration": 192024,
+    "YulExpressionStatement": 58017,
+    "YulLiteral": 99284,
+    "YulLeave": 1436,
+    "YulIf": 26576,
+    "YulSwitch": 1092,
+    "YulCase": 4102,
+    "YulForLoop": 324,
+    "YulBreak": 252,
+    "YulContinue": 16
+  },
+  "expected": {
+    "objects": 228,
+    "functions": 38972,
+    "calls": 296494
+  },
+  "graph_visited": {
+    "objects": 228,
+    "functions": 38972,
+    "calls": 296494
+  },
+  "all_equal": true,
+  "graph_sha256": "70b2954d66f4252dca627175caa8e397866aa0b85630510b788a6293eb37440c"
+}

@@ -18,6 +18,14 @@ rechecks the chain ID. If a provider changes its address, review and configure
 the direct HTTPS endpoint explicitly; do not enable redirect following or an
 insecure fallback to restore service.
 
+History consumers independently reject invalid/regressing stored header
+timestamps, including blocks without recognized events. The current producer's
+checks do not certify a restored/older database. Equal L2 timestamps remain
+valid. A failed read changes no rows/cursor: retain the forensic DB/WAL copy,
+compare independently and rebuild separately only through the approved procedure.
+Never edit timestamps to make the consumer pass. This is consistency checking,
+not proof that a provider supplied every authentic block/log.
+
 ## Routine operation
 
 Startup now rejects ambiguous configuration JSON before installing signals,

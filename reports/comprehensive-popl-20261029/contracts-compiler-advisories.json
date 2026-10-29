@@ -1,0 +1,1072 @@
+{
+  "purpose": "Compiler-advisory applicability triage; not a compiler correctness proof or a fresh build/test",
+  "baseline": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "primary_advisory_source": "https://raw.githubusercontent.com/ethereum/solidity/develop/docs/bugs.json",
+  "advisory_retrieved": "2026-10-29",
+  "settings": {
+    "evmVersion": "cancun",
+    "viaIR": true,
+    "optimizer": {
+      "enabled": true,
+      "runs": 1,
+      "details": {
+        "yul": false
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "v4-core/=node_modules/@uniswap/v4-core/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "forge-std/=lib/forge-std/src/"
+    ],
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "storageLayout",
+          "evm.bytecode.object",
+          "evm.deployedBytecode.object",
+          "metadata"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    }
+  },
+  "artifacts": {
+    "candidate-build-input.json": "db1bdeb885a5dcd62e77125faf4ac4dda58ede682487c6a5020eab2da11faf89",
+    "candidate-build.json": "0656f74ea416882f938843e10a4ea90fd81fdd4a6ffbc75be879f092e0802477"
+  },
+  "pins": [
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+      "expected_lf": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "build011_lf": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "current_lf": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+      "expected_lf": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "build011_lf": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "current_lf": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+      "expected_lf": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "build011_lf": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "current_lf": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "expected_lf": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "build011_lf": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "current_lf": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "expected_lf": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "build011_lf": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "current_lf": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "expected_lf": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "build011_lf": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "current_lf": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "expected_lf": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "build011_lf": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "current_lf": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "expected_lf": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "build011_lf": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "current_lf": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "expected_lf": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "build011_lf": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "current_lf": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "expected_lf": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "build011_lf": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "current_lf": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "expected_lf": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "build011_lf": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "current_lf": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+      "expected_lf": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "build011_lf": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "current_lf": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Base64.sol",
+      "expected_lf": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "build011_lf": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "current_lf": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Context.sol",
+      "expected_lf": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "build011_lf": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "current_lf": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+      "expected_lf": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "build011_lf": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "current_lf": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "expected_lf": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "build011_lf": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "current_lf": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+      "expected_lf": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "build011_lf": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "current_lf": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "expected_lf": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "build011_lf": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "current_lf": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "expected_lf": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "build011_lf": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "current_lf": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "expected_lf": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "build011_lf": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "current_lf": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "expected_lf": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "build011_lf": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "current_lf": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "expected_lf": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "build011_lf": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "current_lf": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+      "expected_lf": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "build011_lf": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "current_lf": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol",
+      "expected_lf": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "build011_lf": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "current_lf": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol",
+      "expected_lf": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "build011_lf": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "current_lf": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol",
+      "expected_lf": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "build011_lf": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "current_lf": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol",
+      "expected_lf": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "build011_lf": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "current_lf": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+      "expected_lf": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "build011_lf": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "current_lf": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol",
+      "expected_lf": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "build011_lf": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "current_lf": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol",
+      "expected_lf": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "build011_lf": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "current_lf": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol",
+      "expected_lf": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "build011_lf": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "current_lf": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "expected_lf": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "build011_lf": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "current_lf": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "expected_lf": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "build011_lf": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "current_lf": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "expected_lf": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "build011_lf": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "current_lf": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "expected_lf": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "build011_lf": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "current_lf": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "expected_lf": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "build011_lf": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "current_lf": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "expected_lf": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "build011_lf": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "current_lf": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "expected_lf": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "build011_lf": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "current_lf": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "expected_lf": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "build011_lf": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "current_lf": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "expected_lf": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "build011_lf": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "current_lf": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "expected_lf": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "build011_lf": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "current_lf": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "expected_lf": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "build011_lf": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "current_lf": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "expected_lf": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "build011_lf": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "current_lf": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "expected_lf": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "build011_lf": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "current_lf": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "expected_lf": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "build011_lf": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "current_lf": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "expected_lf": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "build011_lf": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "current_lf": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "expected_lf": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "build011_lf": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "current_lf": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "expected_lf": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "build011_lf": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "current_lf": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "expected_lf": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "build011_lf": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "current_lf": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "expected_lf": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "build011_lf": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "current_lf": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "expected_lf": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "build011_lf": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "current_lf": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "expected_lf": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "build011_lf": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "current_lf": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "expected_lf": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "build011_lf": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "current_lf": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "expected_lf": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "build011_lf": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "current_lf": "c7b18b134902df1f37d1cfcd50a9ea3936fb24bcd5341cab7d64fdd97ce4ff9d",
+      "artifact_matches_expected": true,
+      "current_matches": false
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "expected_lf": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "build011_lf": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "current_lf": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "expected_lf": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "build011_lf": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "current_lf": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "expected_lf": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "build011_lf": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "current_lf": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZRoyaltyConverter.sol",
+      "expected_lf": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "build011_lf": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "current_lf": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "expected_lf": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "build011_lf": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "current_lf": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "expected_lf": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "build011_lf": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "current_lf": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "expected_lf": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "build011_lf": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "current_lf": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "expected_lf": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "build011_lf": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "current_lf": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "expected_lf": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "build011_lf": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "current_lf": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "expected_lf": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "build011_lf": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "current_lf": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "expected_lf": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "build011_lf": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "current_lf": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "expected_lf": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "build011_lf": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "current_lf": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "expected_lf": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "build011_lf": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "current_lf": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "expected_lf": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "build011_lf": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "current_lf": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "expected_lf": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "build011_lf": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "current_lf": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "expected_lf": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "build011_lf": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "current_lf": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "expected_lf": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "build011_lf": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "current_lf": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "expected_lf": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "build011_lf": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "current_lf": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "expected_lf": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "build011_lf": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "current_lf": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "expected_lf": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "build011_lf": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "current_lf": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "expected_lf": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "build011_lf": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "current_lf": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "expected_lf": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "build011_lf": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "current_lf": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "expected_lf": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "build011_lf": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "current_lf": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "expected_lf": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "build011_lf": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "current_lf": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "artifact_matches_expected": true,
+      "current_matches": true
+    }
+  ],
+  "source_count": 78,
+  "build_inputs": [
+    {
+      "path": "foundry.toml",
+      "expected_raw": "35d073e0cad1e77849c99409c7492d115eb286f5e38839db8b32993646f170c7",
+      "current_raw": "35d073e0cad1e77849c99409c7492d115eb286f5e38839db8b32993646f170c7",
+      "matches": true
+    },
+    {
+      "path": "package.json",
+      "expected_raw": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
+      "current_raw": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
+      "matches": true
+    },
+    {
+      "path": "package-lock.json",
+      "expected_raw": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+      "current_raw": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+      "matches": true
+    },
+    {
+      "path": "scripts/install-deps.sh",
+      "expected_raw": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+      "current_raw": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+      "matches": true
+    }
+  ],
+  "body_reading_source_pins": [
+    {
+      "path": "src/base/ZZZModule.sol",
+      "read_sha256": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "build011_raw_sha256": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "matches": true
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "read_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "build011_raw_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "read_sha256": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "build011_raw_sha256": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "read_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "build011_raw_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "read_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "build011_raw_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "read_sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "build011_raw_sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "read_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "build011_raw_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "read_sha256": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "build011_raw_sha256": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "read_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "build011_raw_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "read_sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "build011_raw_sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "read_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "build011_raw_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "read_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "build011_raw_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "read_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "build011_raw_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "read_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "build011_raw_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRoyaltyConverter.sol",
+      "read_sha256": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "build011_raw_sha256": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "read_sha256": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "build011_raw_sha256": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "matches": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "read_sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "build011_raw_sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "read_sha256": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "build011_raw_sha256": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "read_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "build011_raw_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "read_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "build011_raw_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "read_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "build011_raw_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "read_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "build011_raw_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "read_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "build011_raw_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "read_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "build011_raw_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "read_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "build011_raw_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "read_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "build011_raw_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "read_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "build011_raw_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "read_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "build011_raw_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "read_sha256": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "build011_raw_sha256": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "read_sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "build011_raw_sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "read_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "build011_raw_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "read_sha256": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "build011_raw_sha256": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "read_sha256": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "build011_raw_sha256": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "read_sha256": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "build011_raw_sha256": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "read_sha256": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "build011_raw_sha256": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "read_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "build011_raw_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "read_sha256": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "build011_raw_sha256": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "read_sha256": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "build011_raw_sha256": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "read_sha256": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "build011_raw_sha256": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "read_sha256": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "build011_raw_sha256": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "read_sha256": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "build011_raw_sha256": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "read_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "build011_raw_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "read_sha256": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "build011_raw_sha256": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "read_sha256": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "build011_raw_sha256": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "read_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "build011_raw_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "read_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "build011_raw_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "read_sha256": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "build011_raw_sha256": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "matches": true
+    }
+  ],
+  "all47_reading_source_pins_match_build011": true,
+  "all_build011_pins_match": true,
+  "current_changes": [
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "expected_lf": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "build011_lf": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "current_lf": "c7b18b134902df1f37d1cfcd50a9ea3936fb24bcd5341cab7d64fdd97ce4ff9d",
+      "artifact_matches_expected": true,
+      "current_matches": false
+    }
+  ],
+  "ast_declared_functions_and_modifiers": 1172,
+  "ast_internal_edges": 1287,
+  "ast_cycles": [],
+  "indirect_internal_calls": [],
+  "requires": [
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+      "src": "734:14:22",
+      "arguments": 1,
+      "custom_error": false
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+      "src": "1741:14:22",
+      "arguments": 1,
+      "custom_error": false
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol",
+      "src": "1611:28:25",
+      "arguments": 1,
+      "custom_error": false
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol",
+      "src": "5408:21:25",
+      "arguments": 1,
+      "custom_error": false
+    }
+  ],
+  "applicability": [
+    {
+      "uid": "SOL-2026-7",
+      "status": "excluded by selected optimizer setting",
+      "proof": "optimizer.details.yul=false; advisory requires yulOptimizer=true"
+    },
+    {
+      "uid": "SOL-2026-6",
+      "status": "source predicate not present in build011 closure",
+      "proof": "all AST require calls recorded; no custom-error second argument, including named parameters"
+    },
+    {
+      "uid": "SOL-2026-5",
+      "status": "excluded by selected codegen pipeline",
+      "proof": "viaIR=true; advisory is legacy evmasm only"
+    },
+    {
+      "uid": "SOL-2026-4",
+      "status": "no declared internal mutual-recursion witness; generated lowering unproven",
+      "proof": "bounded AST graph below does not substitute for generated-Yul callgraph/stack-spill review"
+    },
+    {
+      "uid": "SOL-2026-3",
+      "status": "excluded by compiler version",
+      "proof": "introduced0.8.29; selected0.8.26"
+    },
+    {
+      "uid": "SOL-2026-2",
+      "status": "no declared internal mutual-recursion witness; generated lowering unproven",
+      "proof": "bounded AST graph below does not substitute for generated-Yul callgraph/stack-spill review"
+    },
+    {
+      "uid": "SOL-2026-1",
+      "status": "excluded by compiler version",
+      "proof": "introduced0.8.28; selected0.8.26"
+    },
+    {
+      "uid": "SOL-2025-1",
+      "status": "no intentional end-of-storage layout observed; probabilistic residual",
+      "proof": "no custom near-2**256 layout in selected0.8.26 source; finite ordinary static arrays/bounded dynamic containers, no hash-preimage feasibility claim"
+    }
+  ],
+  "limitations": [
+    "AST was produced by the compiler under review; this check is not independent compiler verification.",
+    "Graph follows direct referenced internal declarations and modifiers, not generated ABI helpers, inline-Yul calls, dynamic function-pointer dispatch or all virtual override resolution.",
+    "build011 requested ABI/storage/bytecode/metadata/AST, not IR or generated-Yul spill/callgraph artifacts.",
+    "Registry changed after baseline for an explicitly approved terminal reserve-venue fix; fresh changed-source build/tests/gates are required separately.",
+    "No compiler upgrade is authorized/validated by this triage; pinned pragmas, runtime/creation margins and dependencies require a deliberate compatibility/size campaign."
+  ]
+}

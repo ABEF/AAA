@@ -1,0 +1,16 @@
+test_equal_l2_timestamps_and_valid_filtered_logs_remain_readable (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_equal_l2_timestamps_and_valid_filtered_logs_remain_readable) ... ok
+test_eventless_starting_block_cannot_have_a_later_time_than_its_child (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_eventless_starting_block_cannot_have_a_later_time_than_its_child) ... ok
+test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) ... ok
+test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers) ... ok
+test_duplicate_cursor_identity_is_not_silently_accepted (tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_duplicate_cursor_identity_is_not_silently_accepted) ... ok
+test_duplicate_raw_fields_fail_even_when_values_agree (tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_duplicate_raw_fields_fail_even_when_values_agree) ... ok
+test_healthy_claims_and_owner_use_actual_raw_rows (tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_healthy_claims_and_owner_use_actual_raw_rows) ... ok
+test_missing_explicit_not_removed_marker_is_unavailable (tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_missing_explicit_not_removed_marker_is_unavailable) ... ok
+test_nonfinite_extra_metadata_is_malformed (tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_nonfinite_extra_metadata_is_malformed) ... ok
+test_parser_recursion_becomes_unavailable_and_connection_is_reusable (tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_parser_recursion_becomes_unavailable_and_connection_is_reusable) ... ok
+test_unknown_log_still_requires_well_formed_data (tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_unknown_log_still_requires_well_formed_data) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.408s
+
+OK

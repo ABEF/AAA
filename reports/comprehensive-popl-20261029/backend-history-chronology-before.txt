@@ -1,0 +1,88 @@
+test_equal_l2_timestamps_and_valid_filtered_logs_remain_readable (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_equal_l2_timestamps_and_valid_filtered_logs_remain_readable) ... ok
+test_eventless_starting_block_cannot_have_a_later_time_than_its_child (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_eventless_starting_block_cannot_have_a_later_time_than_its_child) ... FAIL
+test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) ...
+  test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=10, timestamp=-1) ... FAIL
+  test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=10, timestamp=112.5) ... FAIL
+  test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=10, timestamp='malformed') ... FAIL
+  test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=12, timestamp=-1) ... FAIL
+  test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=12, timestamp=112.5) ... FAIL
+  test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=12, timestamp='malformed') ... FAIL
+test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers) ...
+  test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers) (timestamp=114.0) ... FAIL
+
+======================================================================
+FAIL: test_eventless_starting_block_cannot_have_a_later_time_than_its_child (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_eventless_starting_block_cannot_have_a_later_time_than_its_child)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_block_chronology.py", line 65, in test_eventless_starting_block_cannot_have_a_later_time_than_its_child
+    with self.assertRaises(HistoryError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=10, timestamp=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_block_chronology.py", line 75, in test_headers_without_replayed_events_still_require_canonical_timestamp_types
+    with self.assertRaises(HistoryError):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=10, timestamp=112.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_block_chronology.py", line 75, in test_headers_without_replayed_events_still_require_canonical_timestamp_types
+    with self.assertRaises(HistoryError):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=10, timestamp='malformed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_block_chronology.py", line 75, in test_headers_without_replayed_events_still_require_canonical_timestamp_types
+    with self.assertRaises(HistoryError):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=12, timestamp=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_block_chronology.py", line 75, in test_headers_without_replayed_events_still_require_canonical_timestamp_types
+    with self.assertRaises(HistoryError):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=12, timestamp=112.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_block_chronology.py", line 75, in test_headers_without_replayed_events_still_require_canonical_timestamp_types
+    with self.assertRaises(HistoryError):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_headers_without_replayed_events_still_require_canonical_timestamp_types (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_headers_without_replayed_events_still_require_canonical_timestamp_types) (block=12, timestamp='malformed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_block_chronology.py", line 75, in test_headers_without_replayed_events_still_require_canonical_timestamp_types
+    with self.assertRaises(HistoryError):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+======================================================================
+FAIL: test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers (tests_python.test_history_block_chronology.HistoryBlockChronologyTests.test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers) (timestamp=114.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_block_chronology.py", line 89, in test_snapshot_timestamp_is_an_exact_bounded_integer_and_failed_read_recovers
+    with self.assertRaises(HistoryError):self.read(timestamp=value)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: HistoryError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.208s
+
+FAILED (failures=8)

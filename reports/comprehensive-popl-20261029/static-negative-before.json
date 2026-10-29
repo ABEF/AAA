@@ -1,0 +1,9 @@
+{
+  "exit_code": 1,
+  "source_before": {
+    "scripts/verify-slither.sh": "b4fa7c69957b3437d34a01fa3747e26c64b18fe1f90980f5e5b134cd7ad54656",
+    "scripts/check-slither-review.py": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+    "tests_python/test_static_evidence_admission.py": "8f62c1cc6fe423d765a2bf108fd5c021e2a163de58760c90f00c2f21c0e9f039"
+  },
+  "scope": "Actual CLI + Bash with inert subordinate tools, no real analyzer/compiler/RPC/service"
+}

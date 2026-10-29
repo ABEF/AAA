@@ -1,5 +1,15 @@
 # Feature and evidence reference
 
+[Complete-project audit and improvements](../reports/comprehensive-popl-20261029/REVIEW.md)
+implements terminal reserve-venue recovery, relevant keeper identity resets,
+final telemetry depth/chronology, stored-history chronology and exclusive,
+source-pinned evidence production. Verification is scoped:16 Solidity methods,
+82 distinct Python methods across recorded stages (80pass/two platform skips),
+and39 fresh normal production gates. This is not a full regression or release
+approval. ABI/storage remain unchanged; only Registry bytecode changes. Manager
+initcode37-byte and Vault runtime59-byte margins remain. Matching services,
+actual providers/marketplaces/gas and independent review stay open.
+
 [Completed historical reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
 accounts for352 original report narratives/91current guides and235 overlapping
 finding groups. Strict frontend/indexer CLI JSON object admission now precedes

@@ -1,0 +1,26 @@
+{
+  "scope": "Clarification of preserved synthetic helper checks; no code/test rerun and no alteration of original receipts",
+  "original_analyser_checks_sha256": "6eb19e2f7972eac21649ada46921be3d5e1f93d29d0fe8d99df71b1acedbe038",
+  "classification": "All8cases are hand-constructed AST walker/algorithm probes. None was compiled or demonstrated to be compiler-accepted Yul. Some intentionally contain invalid shapes, undefined targets or omitted builtin arguments.",
+  "specific_corrections": [
+    {
+      "case": "Lexical nested name shadowing probe",
+      "correction": "Yul0.8.26 forbids shadowing; this probes a synthetic resolver shape only, not an accepted Yul program."
+    },
+    {
+      "case": "Function infor-init probe",
+      "correction": "Yul0.8.26 forbids function definitions anywhere inside for-init blocks; this is a synthetic scope-edge probe only."
+    }
+  ],
+  "actual_compiler_AST_facts": {
+    "nested_function_definitions": 0,
+    "for_pre_function_definitions": 0,
+    "undefined_or_unknown_calls": 0,
+    "duplicate_scope_errors": 0
+  },
+  "impact": "No current generated-graph coverage or no-mutual-cycle conclusion changes. Actual function definitions are top-level within their independent code objects, with all calls resolved and generic AST coverage matching.",
+  "primary_sources": [
+    "https://docs.soliditylang.org/en/v0.8.26/yul.html#restrictions-on-the-grammar",
+    "https://docs.soliditylang.org/en/v0.8.26/yul.html#scoping-rules"
+  ]
+}

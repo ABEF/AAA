@@ -1,0 +1,1514 @@
+{
+  "baseline": "93ceee1b78ad1e8532932961b934177b558f13c3",
+  "status": "All47 project source files read; composed source review complete within stated limits; one approved liveness fix with16affected regressions",
+  "current_solidity_changes": [
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "sha256": "c7b18b134902df1f37d1cfcd50a9ea3936fb24bcd5341cab7d64fdd97ce4ff9d",
+      "behavior": "Governance may configure fully validated ETH/ZZZ venue only after Migration.Ready with deposits disabled; operating behavior unchanged.",
+      "test_seam": "_nativeBindings visibility private->internal virtual; concrete production body unchanged, no new external selector or setting"
+    }
+  ],
+  "coverage": {
+    "source_files": 47,
+    "records": [
+      {
+        "path": "src/base/ZZZModule.sol",
+        "sha256": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+        "scope": "full body read",
+        "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+      },
+      {
+        "path": "src/base/ZZZCanonicalLedger.sol",
+        "sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+        "scope": "full body read",
+        "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+      },
+      {
+        "path": "src/ZZZAccessController.sol",
+        "sha256": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+        "scope": "full body read",
+        "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+      },
+      {
+        "path": "src/libraries/ExactAsset.sol",
+        "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+        "scope": "full body read",
+        "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+      },
+      {
+        "path": "src/libraries/ExactToken.sol",
+        "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+        "scope": "full body read",
+        "review": "authorization/setup/seal/canonical/terminal and callback/exact transfer composition reviewed; no confirmed new defect in this scope"
+      },
+      {
+        "path": "src/ZZZCanonicalHandoff.sol",
+        "sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZFeesCanonical.sol",
+        "sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZNFTCanonical.sol",
+        "sha256": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZRewards.sol",
+        "sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZMembership.sol",
+        "sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZFeeController.sol",
+        "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZRoyaltyRewards.sol",
+        "sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZClaimRouter.sol",
+        "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZRoyaltyFactory.sol",
+        "sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZRoyaltyConverter.sol",
+        "sha256": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/ZZZLPRewardConverter.sol",
+        "sha256": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+        "scope": "full body read, including reread of initially truncated Rewards import lines",
+        "review": "Traced canonical capture/settle/fund/abort/activation and pre/post-callback ledger/owner accounting; optional-currency cohort and exact backing rules remain explicit. No confirmed new source defect in this scope."
+      },
+      {
+        "path": "src/base/ZZZRewardConverter.sol",
+        "sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/interfaces/IZZZ.sol",
+        "sha256": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+        "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/interfaces/IZZZCanonical.sol",
+        "sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+        "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/interfaces/IZZZEmergency.sol",
+        "sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+        "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/interfaces/IZZZNFTCanonical.sol",
+        "sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+        "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/interfaces/IZZZV3Route.sol",
+        "sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+        "scope": "full interface/tuple/status/selector read; ABI navigation, not another implementation-body verdict",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/libraries/ZZZArtwork.sol",
+        "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+        "scope": "full function-body and catalogue-shape read; generated byte constants retained/source-pinned, not individually reinterpreted as new images or tested draws",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/libraries/ZZZPriceMath.sol",
+        "sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/libraries/ZZZTypes.sol",
+        "sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/libraries/ZZZV3VenueValidation.sol",
+        "sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZActivationAssets.sol",
+        "sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZActivationAssetsFactory.sol",
+        "sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZActivationEntry.sol",
+        "sha256": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZBuyback.sol",
+        "sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZCompounder.sol",
+        "sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZContributionPricing.sol",
+        "sha256": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZCustodyValidation.sol",
+        "sha256": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZLiquidityManager.sol",
+        "sha256": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZLPBalancer.sol",
+        "sha256": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZMigration.sol",
+        "sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZMigrationBudget.sol",
+        "sha256": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZNFT.sol",
+        "sha256": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZNFTMetadata.sol",
+        "sha256": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZOracle.sol",
+        "sha256": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZPoolRegistry.sol",
+        "sha256": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZPythPriceFeed.sol",
+        "sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZRebalanceConfirmation.sol",
+        "sha256": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZStrategy.sol",
+        "sha256": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZV4RouteExecutor.sol",
+        "sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZVault.sol",
+        "sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      },
+      {
+        "path": "src/ZZZVaultCanonical.sol",
+        "sha256": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+        "scope": "full body read and composed-flow trace",
+        "review": "Traced ownership, callback context, lifecycle, actual balances and financial-policy interactions within this component; no confirmed new unprivileged exploit established. See composed findings for the post-exit reserve-venue policy gap."
+      }
+    ],
+    "baseline_reading_matches_exact_build011": true,
+    "compiled_closure_count": 78,
+    "exact_baseline_closure_pins": true,
+    "source_changes_require_fresh_gates": [
+      "src/ZZZPoolRegistry.sol"
+    ],
+    "not_a_claim": "47files/845function tokens are inventory/static coverage, not845executed functions or an exhaustive audit"
+  },
+  "composed_flow_matrix": [
+    {
+      "flow": "Bootstrap, immutable children, seal, governance handover and role separation",
+      "source_proofs": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "symbol": "seal",
+          "line": 169,
+          "current_sha256": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb"
+        },
+        {
+          "path": "src/base/ZZZModule.sol",
+          "symbol": "onlyGovernance",
+          "line": 29,
+          "current_sha256": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7"
+        },
+        {
+          "path": "src/ZZZActivationAssets.sol",
+          "symbol": "configureZZZ",
+          "line": 56,
+          "current_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Bootstrap cannot silently alter sealed bindings; direct governance remains a trusted capability, not a timelock.",
+        "Preparation/canonical/terminal locks have different scopes; governance transfer and callback-time authorization must not restore retired principal.",
+        "Source/exit/buyback fixed-token identities are distinct bindings checked for agreement, not three replaceable ZZZ tokens."
+      ],
+      "result": "No new unprivileged authority bypass confirmed. Approved terminal reserve-venue liveness fix described separately.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Real authority addresses, key recovery, deployed configuration and exact constructor arguments remain unqualified."
+    },
+    {
+      "flow": "Mint, fixed artwork draw, activation status and receiver callbacks",
+      "source_proofs": [
+        {
+          "path": "src/ZZZNFT.sol",
+          "symbol": "mint",
+          "line": 139,
+          "current_sha256": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd"
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "mintDormant",
+          "line": 200,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        },
+        {
+          "path": "src/ZZZMembership.sol",
+          "symbol": "activate",
+          "line": 65,
+          "current_sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Unactivated NFTs do not join collective or royalty entitlement; rarity is known before activation and does not change LP weighting.",
+        "Receiver callbacks/transfer ordering cannot select a new random draw; unanswered VRF is not an ordinary LP pool-move dependency.",
+        "Fewer than1000 mints and partial activation use actual minted/activated counts, not full-supply denominator."
+      ],
+      "result": "No new accounting or mint-rights defect confirmed in source composition.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Live VRF availability/funding/provider controls, OpenSea primary integration and escrow compatibility require qualification."
+    },
+    {
+      "flow": "Entrant-only activation and growth, incumbents, contribution limits and atomic deployment",
+      "source_proofs": [
+        {
+          "path": "src/ZZZActivationEntry.sol",
+          "symbol": "executeReviewed",
+          "line": 204,
+          "current_sha256": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813"
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "_join",
+          "line": 257,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        },
+        {
+          "path": "src/ZZZLiquidityManager.sol",
+          "symbol": "balance",
+          "line": 279,
+          "current_sha256": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85"
+        },
+        {
+          "path": "src/ZZZLPBalancer.sol",
+          "symbol": "plan",
+          "line": 199,
+          "current_sha256": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Checkpoint actual LP fees, incumbent rewards and dust before changing shares or membership.",
+        "Only new entrant budgets are balanced/deployed; existing idle and pending compound remain in incumbent NAV.",
+        "Marginal actual position liquidity, caller maxima/minima, captured controls and net NAV/share arithmetic are verified after external execution.",
+        "Donations/prefunds, zero token legs, full out-of-range inventory, approval resets and malicious token deltas must not create shares from unrelated balances.",
+        "Contributions do not recenter physical ticks or reset rebalance time."
+      ],
+      "result": "No new entrant dilution or principal-loss bypass confirmed; real route economics remain a separate release gate.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Mock paths and exact source pins do not qualify live depth, latency, slippage, gas or USD sources."
+    },
+    {
+      "flow": "Harvest,80/10/5/5 allocation, sub20-unit dust and collective membership",
+      "source_proofs": [
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "_harvestVenue",
+          "line": 337,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "symbol": "allocate",
+          "line": 68,
+          "current_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8"
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "symbol": "_flushHomeDust",
+          "line": 98,
+          "current_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8"
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "symbol": "_creditPool",
+          "line": 123,
+          "current_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312"
+        },
+        {
+          "path": "src/ZZZMembership.sol",
+          "symbol": "settleDust",
+          "line": 37,
+          "current_sha256": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Fresh fee receipts cannot be substituted with raw Vault or FeeController prefunds.",
+        "Every20raw units assign16individual+2collective+1compound+1buyback, while remainder is conserved and incumbents receive the bounded cutoff dust before entry.",
+        "Collective index uses equal actual activeNFT membership; per-position index uses independent bucket shares.",
+        "Harvest does not execute claims/conversion/compound/buyback; different receipt ordering does not create funds."
+      ],
+      "result": "Source arithmetic and mutation ordering preserve classified custody; no fresh economic split change was made.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Extreme-state economics, real-asset precision/gas and independent audit remain open; this is not a new full claim-order execution campaign."
+    },
+    {
+      "flow": "Current owner claims and LP reward conversion into native ETH",
+      "source_proofs": [
+        {
+          "path": "src/ZZZRewards.sol",
+          "symbol": "_claim",
+          "line": 160,
+          "current_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312"
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "symbol": "convertBatch",
+          "line": 191,
+          "current_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312"
+        },
+        {
+          "path": "src/ZZZClaimRouter.sol",
+          "symbol": "claimBatch",
+          "line": 48,
+          "current_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Current owner inherits all unclaimed rights; transfer approval alone cannot select an arbitrary claim recipient.",
+        "Debt/liability changes occur before exact outgoing transfers and revert atomically on receiver/token failure.",
+        "A receiver callback may transfer another NFT legitimately; later batch previews cannot be treated as immutable claim amounts.",
+        "Conversion is backed balance movement, not additional income, and its routes are separate from contribution inputs."
+      ],
+      "result": "No double-claim or transfer-related stolen-rights witness confirmed.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Live conversion routes and minimum economically useful conversion sizes remain to qualify."
+    },
+    {
+      "flow": "Royalty receipts, optional broken currency, deferred enrollment and later claims",
+      "source_proofs": [
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "symbol": "activate",
+          "line": 187,
+          "current_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "symbol": "_sync",
+          "line": 251,
+          "current_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "symbol": "_paid",
+          "line": 232,
+          "current_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "symbol": "_claim",
+          "line": 308,
+          "current_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "symbol": "convertBatch",
+          "line": 127,
+          "current_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "ETH/ZZZ activation inputs do not imply marketplace settlement currencies are restricted to them.",
+        "Failed optional-currency observation defers only enrollment for that currency; old unseen receipts credit earlier eligible weights before newcomers enroll.",
+        "Cohort interval baseline and binary search do not award old royalties to later activated NFTs.",
+        "Rarity1/2/3 applies only to actual royalty receipts; permanent future royalty eligibility survives terminal LP exit."
+      ],
+      "result": "No new deferred-cohort leakage or unfunded royalty claim confirmed in inspected source.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "ERC2981 cannot force marketplace payment. Hostile tokens may remain unreadable; no arbitrary sweep/reassignment is authorized."
+    },
+    {
+      "flow": "Ordinary rebalance trigger, independent reference, sampled confirmation and execution",
+      "source_proofs": [
+        {
+          "path": "src/ZZZStrategy.sol",
+          "symbol": "needsRebalance",
+          "line": 229,
+          "current_sha256": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9"
+        },
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "symbol": "_condition",
+          "line": 85,
+          "current_sha256": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65"
+        },
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "symbol": "_ready",
+          "line": 169,
+          "current_sha256": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65"
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "_rebalance",
+          "line": 473,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        },
+        {
+          "path": "src/ZZZLiquidityManager.sol",
+          "symbol": "_swapExact",
+          "line": 261,
+          "current_sha256": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Physical/reference range exit must agree on side; a deliberate manual width exception remains distinct.",
+        "12hour minimum,900second sample span and300second maximum observation gap are separate from240second service cadence and60-600second jitter.",
+        "Unchanged ticks/identity, current controls, feed freshness/spot agreement and actual directional LP/protocol fees are checked independently.",
+        "Removing own LP precedes actual-core route sizing; atomic rollback protects the entire shared bucket.",
+        "Keeper grants/pause and captured monotonic revisions are rechecked after callbacks."
+      ],
+      "result": "No new ordinary trigger/financial-gate bypass confirmed. Strict schedule and external MEV profitability are not proven by this review.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "No uninterrupted-price guarantee; no observer cadence deployment or live rehearsal. Force path has explicitly accepted different trust."
+    },
+    {
+      "flow": "Compounding, accumulated idle, exact reserves and fixed-ZZZ buyback",
+      "source_proofs": [
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "compound",
+          "line": 367,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "symbol": "releaseCompound",
+          "line": 107,
+          "current_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8"
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "symbol": "releaseBuyback",
+          "line": 116,
+          "current_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8"
+        },
+        {
+          "path": "src/ZZZBuyback.sol",
+          "symbol": "execute",
+          "line": 38,
+          "current_sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Shared compound belongs proportionally to existing NFT shares and cannot pay holder claims or the buyback reserve twice.",
+        "Compound may require a swap but stays in existing range; keeper-only in-range policy is not equivalent to a contract prohibition.",
+        "Buyback caps use upper-source USD value rounded upward, actual token deltas and totalSupply decrease, not a burn-address label.",
+        "Post-exit buyback intentionally remains possible, but formerly could not recover a disabled/dead venue."
+      ],
+      "result": "DP01 confirmed and fixed with approved Ready/deposits=false configuration;16new affected regression methods pass.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Actual buyback execution/burn economics, live venue qualification and no-cumulative-loss policy remain existing risks/decisions."
+    },
+    {
+      "flow": "Parking, resuming and same-native-pair pool moves",
+      "source_proofs": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "symbol": "park",
+          "line": 322,
+          "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556"
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "symbol": "moveFunds",
+          "line": 314,
+          "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556"
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "park",
+          "line": 530,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "_movePool",
+          "line": 569,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Exact custody snapshot/epoch/nonce and raw output minima protect parking without requiring healthy source pricing.",
+        "Raw output may have one zero leg when out of range; this is not blanket permission to accept zero principal.",
+        "Resume/new deployment uses fresh approved venue, exact same ordered ETH/ZZZ and financial bounds.",
+        "No former bridge, issuer-migration executor or external custody recipient is reintroduced."
+      ],
+      "result": "No new ordinary move/parking ownership or reserve-crossing defect confirmed.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Failed immutable venue/token dependencies may still prevent unwinding; operator choices cannot repair hostile upstream state on-chain."
+    },
+    {
+      "flow": "Terminal collective holder return, payout rejection, transfers and reserve separation",
+      "source_proofs": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "symbol": "beginCollectiveExit",
+          "line": 166,
+          "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556"
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "symbol": "closeBucket",
+          "line": 203,
+          "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556"
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "symbol": "allocatePrincipal",
+          "line": 229,
+          "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556"
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "symbol": "_pay",
+          "line": 294,
+          "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556"
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "exitBucketToHolders",
+          "line": 498,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Terminal start permanently blocks new principal/mint work and closes actualETH/ZZZ without swaps.",
+        "Cumulative floor apportionment in fixed mint order conserves every raw principal unit across actualshares; NFT transfers change recipient, not share amounts.",
+        "Bounded isolated direct payouts cannot be redirected by callers; rejecting recipient falls back to current owner selected recipient.",
+        "Paid flag/outstanding totals precede callbacks; failed token/native push rolls back inner payout and leaves it backed.",
+        "Earned reward/royalty claims and5%buyback liabilities are separate from returned principal/pending5%compound."
+      ],
+      "result": "Existing custody3 semantics retained. Approved new venue admission begins only after Ready allocation; no payout reopening or arbitrary send was added.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Maximum1000NFT gas/host/receiver campaign remains qualification; synthetic Ready fixture is not a real completed exit."
+    },
+    {
+      "flow": "Six-domain same-chain canonical replacement, partial funding, abort and late receipts",
+      "source_proofs": [
+        {
+          "path": "src/ZZZCanonicalHandoff.sol",
+          "symbol": "freeze",
+          "line": 181,
+          "current_sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a"
+        },
+        {
+          "path": "src/ZZZCanonicalHandoff.sol",
+          "symbol": "fund",
+          "line": 336,
+          "current_sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a"
+        },
+        {
+          "path": "src/ZZZCanonicalHandoff.sol",
+          "symbol": "commit",
+          "line": 373,
+          "current_sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a"
+        },
+        {
+          "path": "src/ZZZCanonicalHandoff.sol",
+          "symbol": "finishAbort",
+          "line": 457,
+          "current_sha256": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "symbol": "forwardLate",
+          "line": 460,
+          "current_sha256": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Freeze/capture before settlement binds one successor, exact rolling records and classified backing; unsolicited prefunds cannot discharge source funding.",
+        "Partial import/funding does not activate two canonical owners; retirement/activation is atomic on samechain.",
+        "Abort returns each actually sent asset before source can reopen; frozen/retired ledgers reject ordinary economic mutation.",
+        "Cutoff dust and deferred royalty cohorts survive export/import; late known receipts use separate authenticated forwarding.",
+        "Principal exit and canonical replacement remain mutually exclusive; no post-halt or cross-chain proof path exists."
+      ],
+      "result": "No new double-authority or missing-backing witness confirmed in source review.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Compatible escrow holders, maximum record counts, relay batching/abort rehearsals and reviewed replacement code trust remain open."
+    },
+    {
+      "flow": "Emergency authority, financial bypass and immutable structural protections",
+      "source_proofs": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "symbol": "emergencyRebalance",
+          "line": 98,
+          "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556"
+        },
+        {
+          "path": "src/ZZZMigrationBudget.sol",
+          "symbol": "validateEmergency",
+          "line": 92,
+          "current_sha256": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394"
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "symbol": "emergencyRebalance",
+          "line": 467,
+          "current_sha256": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037"
+        }
+      ],
+      "adversarial_compositions_reviewed": [
+        "Paused manual governance can selectively bypass financial/timing checks only through explicit emergency manifest.",
+        "This accepted trust can lose nearly all principal and is not a fallback available to everyday keeper.",
+        "Bound modules, exact balances, LP ownership, shares/reward classification, callbacks and terminal/canonical locks remain mandatory."
+      ],
+      "result": "No emergency capability expansion was made by this work.",
+      "evidence_kind": "source/dependency inspection unless a specific executed test is stated",
+      "limits": "Trusted governance is not an unprivileged attacker model; independent audit must preserve this disclosed risk."
+    }
+  ],
+  "dependency_implementation_inspection": [
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "actual_read_scope": "transferFrom/safeTransferFrom110-147,_update210-245,_mint/_safeMint250-295",
+      "finding": "Approval clearing/ownership mutation precedes receiver callbacks; importer _mint does not promise receiver compatibility."
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "actual_read_scope": "full file",
+      "finding": "Optional-return transfer/approval, forceApprove zero-reset fallback and low-level code-presence checks; exact delta wrappers remain needed."
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "actual_read_scope": "full file",
+      "finding": "Per-contract persistent entered flag rejects nested guarded calls; it is not a system-wide lock."
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "actual_read_scope": "mulDiv/fullprecision/rounding section196-315",
+      "finding": "Denominator/overflow protection and explicit floor/ceil matter for value budgets and share apportionment."
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/PoolManager.sol",
+      "sha256": "3b6ab111dadf613e3cfd617e4b1c6ab75b5445cd15cbe52d7c6207fc02449717",
+      "actual_read_scope": "unlock100-147,sync/take/settle275-308,_settle/_accountDelta345-379",
+      "finding": "Unlock completion rejects nonzero caller deltas; real balances settle native/ERC20 debt, and donations are distinct from prefunds."
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/PositionManager.sol",
+      "sha256": "49214f7463f709c378e5bdd010697eea02c1cabb2339fbe09f2ee5395748c6e3",
+      "actual_read_scope": "onlyIfApproved156-158,increase/decrease/mint/burn285-435",
+      "finding": "Existing-position liquidity mutation is approval-gated; principal max/min separates feesAccrued and packed position identity."
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/libraries/PositionInfoLibrary.sol",
+      "sha256": "5c889e1d5f259291045413e28069101eba1e7b8b72df6586bf54e4de5e525099",
+      "actual_read_scope": "first85lines",
+      "finding": "Packed low8subscriber/lower8/upper32/highest200pool key agrees with project decoding."
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/libraries/Actions.sol",
+      "sha256": "404b842f30a05783b20eb37b20cc86e7a0df2730f6a7399229b46ae77f63e63a",
+      "actual_read_scope": "first63lines",
+      "finding": "Project's action bytes0x00/01/02/03/0d/11 match pinned periphery dispatch."
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/base/DeltaResolver.sol",
+      "sha256": "cb2df93554fb4541355c6e42e346a39cd59138d919456dd5f1d500e2a5d70864",
+      "actual_read_scope": "30-131",
+      "finding": "Sync beforepay, exact native settlement and positive/debt mapping preserve actual deltas."
+    }
+  ],
+  "compiler_advisory_applicability": {
+    "file": "contracts-compiler-advisories.json",
+    "sha256": "5d9804ab14a842ef5f9c258a4bb55a2ccf7d3867aa0ee67171ef071138f12772",
+    "conclusion": "Selected settings/source exclude specific advisories; generated lowering/callgraph spill correctness is not proven by AST. Exact compiler release acceptance remains required."
+  },
+  "findings": [
+    {
+      "id": "DP01",
+      "title": "Completed holder exit could irreversibly strand remaining ETH buyback reserve after venue disable/failure",
+      "class": "availability/design gap, not unprivileged fund theft",
+      "severity": "medium operational liveness",
+      "before": "Buyback.execute survives lpExitStarted, but every configureNative call was principalOperating and disabled/dead venues could not be restored/replaced.",
+      "user_decision": "Explicitly approved validated swap venues after completed exit; no principal/deposit reopening.",
+      "status": "implemented;16affected local regression methods pass; root fresh normal39production gates pass with semantic ABI/storage unchanged",
+      "source_proofs": [
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "symbol": "nativeConfiguration",
+          "line": 46,
+          "current_sha256": "c7b18b134902df1f37d1cfcd50a9ea3936fb24bcd5341cab7d64fdd97ce4ff9d"
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "symbol": "configureNative",
+          "line": 65,
+          "current_sha256": "c7b18b134902df1f37d1cfcd50a9ea3936fb24bcd5341cab7d64fdd97ce4ff9d"
+        },
+        {
+          "path": "src/ZZZBuyback.sol",
+          "symbol": "execute",
+          "line": 38,
+          "current_sha256": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2"
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "symbol": "allocatePrincipal",
+          "line": 229,
+          "current_sha256": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556"
+        }
+      ],
+      "acceptance": "Reject Closing/Allocating/deposits/non-governance/preparation; accept Ready new/re-enabled reviewedvenue; preserve pins/prices/assets/atomic rollback and terminal Vaultlocks.",
+      "todo_ids": [
+        "post-seal-configuration",
+        "custody-composition",
+        "migration-framework"
+      ],
+      "original_witness": {
+        "file": "PostExitReserveVenue.witness.t.sol",
+        "status": "prepatch executable proposal was not compiled/executed; frozen external before-witness only"
+      },
+      "test_file": "test/PostExitReserveVenue.t.sol",
+      "test_sha256": "698dbbffe8895ba22fd34e5a139c3d89ce8d8fb998624d67bea41fadf12f0177",
+      "test_limit": "Native runtime/wiring check overridden only in clearly named synthetic subclass. Actual concrete Registry negative test proves hard pin rejection remains. Not a live venue, full exit or actual buyback execution test."
+    },
+    {
+      "id": "DP02",
+      "title": "Pinned compiler requires present-day advisory applicability acceptance",
+      "class": "release evidence gap, not a demonstrated contract exploit",
+      "status": "documented source/settings triage; generated lowering residual open",
+      "proof": "contracts-compiler-advisories.json",
+      "todo_ids": [
+        "audit-release",
+        "deployment-initcode"
+      ],
+      "required_follow_up": "Record explicit exactcompiler advisory review or qualify an alternative compiler/profile; do not upgrade blindly given37/59byte size margins."
+    }
+  ],
+  "rejected_or_deferred_hypotheses": [
+    {
+      "hypothesis": "SwapRouter02 lacks the factory() getter required by optional v3 converters",
+      "disposition": "rejected",
+      "evidence": "Official V3SwapRouter inherits v3-periphery payments/PeripheryImmutableState factory; its7field tuple is compatible. Only factoryV2 lives in its own extra ImmutableState."
+    },
+    {
+      "hypothesis": "A new royalty activation can take previously unseen broken-token receipts",
+      "disposition": "no witness; source order protects earlier eligible cohort",
+      "evidence": "_sync credits old weights before _enrollWaiting; _paid uses enrollment interval baseline."
+    },
+    {
+      "hypothesis": "Claim batch preview must equal all later callback-time outcomes",
+      "disposition": "rejected as a blanket invariant",
+      "evidence": "Legitimate receiver callbacks may transfer another NFT; each actual call authenticates current owner and exact debt."
+    },
+    {
+      "hypothesis": "Raw parking/exit output must be nonzero on both legs",
+      "disposition": "rejected",
+      "evidence": "Out-of-range actual LP may contain onlyETH or onlyZZZ; independent exact raw minima and total received accounting must remain."
+    },
+    {
+      "hypothesis": "Prepopulating destination aliases can contaminate canonical import",
+      "disposition": "no current witness",
+      "evidence": "VaultCanonical row0 rejects nonzero sequence/bucket inventory/aliases before importing source state."
+    },
+    {
+      "hypothesis": "Unused approximate Strategy swapPlan/compoundPlan should be silently removed",
+      "disposition": "deferred optional fresh-profile cleanup",
+      "evidence": "Current real LP execution uses actual-core LPBalancer, but public view APIs remain documented/tested; consumer/profile compatibility must be reviewed before removal."
+    },
+    {
+      "hypothesis": "Temporary local price pump is sufficient to trigger ordinary rebalance",
+      "disposition": "blocked by current conjunction subject to feed trust",
+      "evidence": "Same-side physical+independent reference exit and sampled window; execution price/output guards also remain. No claim that this eliminatesMEV."
+    }
+  ],
+  "executed_verification": {
+    "fresh_methods": [
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testAllocatingCannotConfigureEvenDepositsDisabled()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testClosingCannotConfigureEvenDepositsDisabled()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testConcreteProductionRegistryStillRejectsUnpinnedDependenciesAfterReady()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testFinalGovernanceReadStillRejectsLostAuthority()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testFinalPhaseReadRollsBackConfigurationWhenNoLongerReady()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testFinalTerminalReadRejectsExitStartingDuringAdmission()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testOperatingAdmissionStillAllowsContributionPool()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testPreparationStillBlocksGovernance()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testReadyCanAdmitDifferentFeeTierForRemainingReserve()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testReadyCanRestoreDisabledReserveVenueWithoutReopeningContributions()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testReadyCannotEnableDeposits()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testReadyConfigurationStillRequiresGovernance()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testReadyPreservesDisabledSourcePolicy()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testReadyStillRequiresFreshPricesAndRewardAssetAdmission()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testReadyStillRequiresRewardAssetAdmission()",
+        "status": "Success"
+      },
+      {
+        "suite": "test/PostExitReserveVenue.t.sol:PostExitReserveVenueTest",
+        "method": "testUnknownMigrationCannotAuthorizeTerminalConfiguration()",
+        "status": "Success"
+      }
+    ],
+    "all16_pass": true,
+    "json": "reserve-venue-tests.json",
+    "json_sha256": "765d0b2163110282d84c93224c89a5b2c6341c32d7a3742479c00180b89e7990",
+    "toolchain": "PinnedForge1.4.4 / solc0.8.26; repository normal Cancun/viaIR/optimizer runs1/Yulfalse; external isolated out/cache",
+    "no_actions": "No public transactions, deployed contracts, service/Anvil restart, website rollout, journal edits or Git publication"
+  },
+  "remaining_release_risks": [
+    "Defensible independent ZZZ/ETH USD sources, upstream upgrade/data control, live route economics, actual VRF and addresses.",
+    "Selected pool and conversion/buyback depth/gas/fees, max-state1000NFT exit/canonical handoff batching and abort rehearsals.",
+    "Sampled300second gap strictliveness, RPC/confirmation outages and profitable external ordering are not eliminated by source guards.",
+    "Governance/emergency bypass is intentionally trusted; failed pinned upstream dependencies or lost control can still impair recovery.",
+    "Unrecognized royalty token, permanently rejecting receiver and lost/burned NFTs have economic/operational policy limits; no generic sweep or rights reassignment exists.",
+    "New source cannot reuse old static/build qualification automatically; independent audit/remediation and exact release approval remain open."
+  ],
+  "fresh_build_review": {
+    "file": "contracts-current-build-comparison.json",
+    "sha256": "0aed2f3bf971453ec4188ae571548fbad7a2cd79f40229d33ba1d178c1bdd076",
+    "result": {
+      "purpose": "Existing compiler artifact comparison, not new execution or deployment",
+      "before_artifact_sha256": "0656f74ea416882f938843e10a4ea90fd81fdd4a6ffbc75be879f092e0802477",
+      "after_artifact_sha256": "6af462f982808dc95c7f06384808d42157334cb4816b7aada624e8ee3e10bac5",
+      "fresh_gates_sha256": "2534e5f903e8d7d66006716caea97dcbf978cd2ab874af656e26d871e0ca01ee",
+      "fresh_gates_pass": true,
+      "gate_count": 39,
+      "records": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "contract": "ZZZAccessController",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 9693,
+          "runtime_after": 9693,
+          "creation_before": 40580,
+          "creation_after": 40580
+        },
+        {
+          "path": "src/ZZZActivationAssets.sol",
+          "contract": "ZZZActivationAssets",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 5849,
+          "runtime_after": 5849,
+          "creation_before": 6660,
+          "creation_after": 6660
+        },
+        {
+          "path": "src/ZZZActivationAssetsFactory.sol",
+          "contract": "ZZZActivationAssetsFactory",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 7480,
+          "runtime_after": 7480,
+          "creation_before": 7534,
+          "creation_after": 7534
+        },
+        {
+          "path": "src/ZZZActivationEntry.sol",
+          "contract": "ZZZActivationEntry",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 18208,
+          "runtime_after": 18208,
+          "creation_before": 30766,
+          "creation_after": 30766
+        },
+        {
+          "path": "src/ZZZBuyback.sol",
+          "contract": "ZZZBuyback",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 7549,
+          "runtime_after": 7549,
+          "creation_before": 8255,
+          "creation_after": 8255
+        },
+        {
+          "path": "src/ZZZCanonicalHandoff.sol",
+          "contract": "ZZZCanonicalHandoff",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 21157,
+          "runtime_after": 21157,
+          "creation_before": 21794,
+          "creation_after": 21794
+        },
+        {
+          "path": "src/ZZZClaimRouter.sol",
+          "contract": "ZZZClaimRouter",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 2885,
+          "runtime_after": 2885,
+          "creation_before": 3443,
+          "creation_after": 3443
+        },
+        {
+          "path": "src/ZZZCompounder.sol",
+          "contract": "ZZZCompounder",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 2206,
+          "runtime_after": 2206,
+          "creation_before": 2605,
+          "creation_after": 2605
+        },
+        {
+          "path": "src/ZZZContributionPricing.sol",
+          "contract": "ZZZContributionPricing",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 18032,
+          "runtime_after": 18032,
+          "creation_before": 18777,
+          "creation_after": 18777
+        },
+        {
+          "path": "src/ZZZCustodyValidation.sol",
+          "contract": "ZZZCustodyValidation",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 3788,
+          "runtime_after": 3788,
+          "creation_before": 4131,
+          "creation_after": 4131
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "contract": "ZZZFeeController",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 9702,
+          "runtime_after": 9702,
+          "creation_before": 10179,
+          "creation_after": 10179
+        },
+        {
+          "path": "src/ZZZFeesCanonical.sol",
+          "contract": "ZZZFeesCanonical",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 10223,
+          "runtime_after": 10223,
+          "creation_before": 11231,
+          "creation_after": 11231
+        },
+        {
+          "path": "src/ZZZLPBalancer.sol",
+          "contract": "ZZZLPBalancer",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 23434,
+          "runtime_after": 23434,
+          "creation_before": 24226,
+          "creation_after": 24226
+        },
+        {
+          "path": "src/ZZZLPRewardConverter.sol",
+          "contract": "ZZZLPRewardConverter",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 16830,
+          "runtime_after": 16830,
+          "creation_before": 29162,
+          "creation_after": 29162
+        },
+        {
+          "path": "src/ZZZLiquidityManager.sol",
+          "contract": "ZZZLiquidityManager",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 23111,
+          "runtime_after": 23111,
+          "creation_before": 48955,
+          "creation_after": 48955
+        },
+        {
+          "path": "src/ZZZMembership.sol",
+          "contract": "ZZZMembership",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 7389,
+          "runtime_after": 7389,
+          "creation_before": 7838,
+          "creation_after": 7838
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "contract": "ZZZMigration",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 24375,
+          "runtime_after": 24375,
+          "creation_before": 29266,
+          "creation_after": 29266
+        },
+        {
+          "path": "src/ZZZMigrationBudget.sol",
+          "contract": "ZZZMigrationBudget",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 22238,
+          "runtime_after": 22238,
+          "creation_before": 23313,
+          "creation_after": 23313
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "contract": "ZZZNFT",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 24400,
+          "runtime_after": 24400,
+          "creation_before": 44786,
+          "creation_after": 44786
+        },
+        {
+          "path": "src/ZZZNFTCanonical.sol",
+          "contract": "ZZZNFTCanonical",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 10600,
+          "runtime_after": 10600,
+          "creation_before": 11513,
+          "creation_after": 11513
+        },
+        {
+          "path": "src/ZZZNFTMetadata.sol",
+          "contract": "ZZZNFTMetadata",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 13028,
+          "runtime_after": 13028,
+          "creation_before": 13352,
+          "creation_after": 13352
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "contract": "ZZZOracle",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 10242,
+          "runtime_after": 10242,
+          "creation_before": 31581,
+          "creation_after": 31581
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "contract": "ZZZPoolRegistry",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": false,
+          "creation_object_identical": false,
+          "runtime_before": 10448,
+          "runtime_after": 10718,
+          "creation_before": 42092,
+          "creation_after": 42362
+        },
+        {
+          "path": "src/ZZZPythPriceFeed.sol",
+          "contract": "ZZZPythPriceFeed",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 2193,
+          "runtime_after": 2193,
+          "creation_before": 3259,
+          "creation_after": 3259
+        },
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "contract": "ZZZRebalanceConfirmation",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 15932,
+          "runtime_after": 15932,
+          "creation_before": 16735,
+          "creation_after": 16735
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "contract": "ZZZRewards",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 21311,
+          "runtime_after": 21311,
+          "creation_before": 22332,
+          "creation_after": 22332
+        },
+        {
+          "path": "src/ZZZRoyaltyConverter.sol",
+          "contract": "ZZZRoyaltyConverter",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 16830,
+          "runtime_after": 16830,
+          "creation_before": 29162,
+          "creation_after": 29162
+        },
+        {
+          "path": "src/ZZZRoyaltyFactory.sol",
+          "contract": "ZZZRoyaltyFactory",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 22390,
+          "runtime_after": 22390,
+          "creation_before": 22443,
+          "creation_after": 22443
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "contract": "ZZZRoyaltyRewards",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 20843,
+          "runtime_after": 20843,
+          "creation_before": 21780,
+          "creation_after": 21780
+        },
+        {
+          "path": "src/ZZZStrategy.sol",
+          "contract": "ZZZStrategy",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 24414,
+          "runtime_after": 24414,
+          "creation_before": 41992,
+          "creation_after": 41992
+        },
+        {
+          "path": "src/ZZZV4RouteExecutor.sol",
+          "contract": "ZZZV4RouteExecutor",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 11164,
+          "runtime_after": 11164,
+          "creation_before": 11322,
+          "creation_after": 11322
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "contract": "ZZZVault",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 24517,
+          "runtime_after": 24517,
+          "creation_before": 48951,
+          "creation_after": 48951
+        },
+        {
+          "path": "src/ZZZVaultCanonical.sol",
+          "contract": "ZZZVaultCanonical",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 18622,
+          "runtime_after": 18622,
+          "creation_before": 19983,
+          "creation_after": 19983
+        },
+        {
+          "path": "src/libraries/ExactAsset.sol",
+          "contract": "ExactAsset",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 62,
+          "runtime_after": 62,
+          "creation_before": 93,
+          "creation_after": 93
+        },
+        {
+          "path": "src/libraries/ExactToken.sol",
+          "contract": "ExactToken",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 62,
+          "runtime_after": 62,
+          "creation_before": 93,
+          "creation_after": 93
+        },
+        {
+          "path": "src/libraries/ZZZArtwork.sol",
+          "contract": "ZZZArtwork",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 62,
+          "runtime_after": 62,
+          "creation_before": 93,
+          "creation_after": 93
+        },
+        {
+          "path": "src/libraries/ZZZPriceMath.sol",
+          "contract": "ZZZPriceMath",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 62,
+          "runtime_after": 62,
+          "creation_before": 93,
+          "creation_after": 93
+        },
+        {
+          "path": "src/libraries/ZZZTypes.sol",
+          "contract": "Ids",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 62,
+          "runtime_after": 62,
+          "creation_before": 93,
+          "creation_after": 93
+        },
+        {
+          "path": "src/libraries/ZZZV3VenueValidation.sol",
+          "contract": "ZZZV3VenueValidation",
+          "abi_same_semantic_entries": true,
+          "storage_same_semantic_slots_types": true,
+          "runtime_object_identical": true,
+          "creation_object_identical": true,
+          "runtime_before": 62,
+          "runtime_after": 62,
+          "creation_before": 93,
+          "creation_after": 93
+        }
+      ],
+      "all_abi_equal": true,
+      "all_storage_equal": true,
+      "limit": "Storage AST ids/type numeric identifiers are compiler bookkeeping; semantic comparison expands declared labels/encodings/widths/slots/member types. It does not prove financial equivalence or qualify constructor dynamic arguments."
+    },
+    "limit": "Fresh compiler/size evidence is not public deployment, live economics or independent audit approval."
+  }
+}

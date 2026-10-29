@@ -1,0 +1,8 @@
+{
+  "exit_code": 0,
+  "method": "tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check",
+  "source_sha256": "391bede4fa8e66daac7c7ae3030ce7bb8333eb123e8a77801336f5a8ff8a690c",
+  "reason": "Correct escaped JSON key fixture; production parser unchanged, other14methods not rerun.",
+  "prior_result": "static-final-verified.json",
+  "output": "test_ambiguous_analyzer_json_is_rejected_before_coverage_check (tests_python.test_static_evidence_admission.StaticReviewCLIAdmissionTests.test_ambiguous_analyzer_json_is_rejected_before_coverage_check) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.033s\n\nOK\n"
+}
