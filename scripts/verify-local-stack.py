@@ -1,13 +1,38 @@
 """Exercise only the fresh loopback browser lab, never a public RPC/signing key."""
 import argparse
 import json
+import os
 from pathlib import Path
 import time
 import secrets
 import urllib.request
 import urllib.error
 
+def _write_evidence(handle,result):
+    encoded=json.dumps(result,indent=2,allow_nan=False)+'\n'
+    handle.seek(0);handle.write(encoded);handle.truncate()
+    handle.flush();os.fsync(handle.fileno())
+
+
 def run(port,output):
+    # Own a new evidence file before any lab request, not after side effects.
+    # A competing writer or a dangling symlink is refused by exclusive creation.
+    result={'scope':'isolated Anvil local fixture, not Uniswap/Robinhood qualification',
+            'status':'in_progress'}
+    with Path(output).open('x',encoding='utf-8') as handle:
+        _write_evidence(handle,result)
+        try:
+            result=_exercise(port)
+            result['status']='passed'
+            return result
+        except Exception as error:
+            result['status']='failed';result['error_type']=type(error).__name__
+            raise
+        finally:
+            _write_evidence(handle,result)
+
+
+def _exercise(port):
     base=f'http://127.0.0.1:{port}'
     def request(path,payload=None,token=None,origin=True):
         headers={'Content-Type':'application/json'}
@@ -85,9 +110,7 @@ def run(port,output):
         state=request('/state')
     check([r['hash'] for r in state['transactions']]==receipt_hashes,'all rejected integration inputs preserve receipt history')
     result={'scope':'isolated Anvil local fixture, not Uniswap/Robinhood qualification','checks':checks,'snapshot':state,'observed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())}
-    path=Path(output)
-    if path.exists():raise FileExistsError('Refusing to overwrite prior evidence')
-    path.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8');return result
+    return result
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--port',type=int,default=8890);parser.add_argument('--output',required=True)

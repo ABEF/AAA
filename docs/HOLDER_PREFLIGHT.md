@@ -6,11 +6,11 @@ owners exactly; it does not call receiver hooks or rewrite owners. This procedur
 inventories that risk before [whole-collection replacement](CANONICAL_HANDOFF.md).
 It does not apply to ordinary LP rebalancing or moving LP between pools.
 
-The current collection handoff is same-chain canonical V4 with a compatible
-accounting 3 successor. An external custody exit can send assets for a later
-token/chain migration, but does not automatically preserve canonical NFT owners
-or reward ledgers on that new chain. This inventory does not add bridge or
-post-halt recovery capability.
+The current collection handoff is same-chain canonical holder-exit V5 with a
+compatible accounting4 successor, only before LP exit starts. No external custody
+exit remains. Governance may instead end LP and return actual ETH+ZZZ directly
+to NFT owners; this neither relocates their NFTs nor permits later canonical
+replacement. This inventory adds no bridge or post-halt recovery capability.
 
 ## Produce a pinned inventory
 
@@ -106,5 +106,5 @@ Use independently trusted RPC/code review for high-value migrations.
 
 The implementation and [local verification](../reports/holder-preflight/VERIFICATION.md)
 do not qualify any actual escrow or marketplace. No deployed PoPL inventory was
-available for a live rehearsal in this change. External custody/redeployment is
-not qualified by this same-chain owner inventory.
+available for a live rehearsal in this change. Holder principal return, any later
+token exchange and a new deployment are not qualified by this owner inventory.

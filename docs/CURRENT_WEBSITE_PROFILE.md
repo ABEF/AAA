@@ -43,13 +43,13 @@ The backend's current accounting4 support or a matching eight-word position
 length does not establish browser compatibility. Do not deploy fresh contracts
 under schema3 or relabel the current3 artifact as fresh4.
 
-The whole-project source review also found two separate consumer gaps: downloadable
-example dormant metadata encodes royalty trait0 instead of fixed rarity1/2/3,
-and current3's view does not yet wire confirmed upgrade audio/effects like the
-local/demo path. An external generator patch is prepared, not applied;696dormant
-JSONs and regenerated descriptions/manifests need a separately reviewed website
-change. On-chain metadata/eligibility are distinct. No asset, signer, build or
-served site changed. See [frontend findings](../reports/whole-project-audit-20261029/REVIEW.md).
+The earlier downloadable dormant-metadata defect was corrected in website source
+`cae44a1d`: reference JSON and the generator preserve fixed rarity1/2/3 independently
+of activation eligibility. The2,784SVGs, manifest, historical72metadata, signer
+and public configuration were preserved. Source publication did not rebuild or
+deploy a site or qualify an IPFS bundle. Current3's confirmed upgrade audio/effects
+remain a separate consumer gap. See [source correction](../reports/whole-project-execution-20261029/REVIEW.md)
+and [original findings](../reports/whole-project-audit-20261029/REVIEW.md).
 
 ## Configuration and rollout
 

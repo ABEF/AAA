@@ -130,7 +130,7 @@ governance can still approve dangerous dependencies; this guard does not remove
 that accepted trust. Direct owner-to-Vault calls do not acquire a reviewed-Entry
 guarantee, and the preparer never silently falls back to them.
 
-Current pricing-V2 activation preparation and schema-5 release inventory require
+Current pricing-V2 activation preparation and schema6/accounting4 release inventory require
 explicit `review_policy_version: 1`, matching getters, runtime pins and exact new
 selector/trace. The response carries `reviewed_maximum_loss_bps` separately from
 the captured `execution_limit_bps`; provenance includes the policy version.

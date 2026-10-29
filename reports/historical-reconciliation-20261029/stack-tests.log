@@ -1,0 +1,10 @@
+test_failed_request_preserves_initial_and_failure_status (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_failed_request_preserves_initial_and_failure_status) ... ok
+test_previous_evidence_blocks_before_any_lab_request (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_previous_evidence_blocks_before_any_lab_request) ... ok
+test_reservation_storage_failure_prevents_exercise (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_reservation_storage_failure_prevents_exercise) ... ok
+test_reserved_marker_survives_interrupt_without_action_retry (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_reserved_marker_survives_interrupt_without_action_retry) ... ok
+test_success_publishes_complete_result_to_its_owned_file (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_success_publishes_complete_result_to_its_owned_file) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.083s
+
+OK

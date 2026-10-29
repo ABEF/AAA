@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "full_historical_reconciliation_complete": false,
+  "findings": [
+    {
+      "id": "HR-01",
+      "title": "Local rehearsal evidence admitted after financial side effects",
+      "severity": "medium for test-evidence integrity; not a production fund-drain claim",
+      "confidence": "confirmed",
+      "original_sources": [
+        "reports/whole-project-execution-20261029/TOOLING.md#remaining-limitations"
+      ],
+      "current_paths": [
+        "scripts/verify-local-website.py",
+        "scripts/verify-local-stack.py"
+      ],
+      "expected": "Reject an existing evidence destination before any request to the lab.",
+      "actual_before": "Website verifier overwrote old output in finally; stack verifier checked output only after the whole journey and had a check/write race.",
+      "correction": "Exclusive output reservation and fsynced in_progress marker before HTTP; preserve failure/incomplete state through the owned handle.",
+      "disposition": "fixed locally with scoped negative/positive controls",
+      "evidence": [
+        "website-tests.json",
+        "stack-tests.json",
+        "website-before-negative.log",
+        "stack-before-negative.log"
+      ],
+      "remaining": "Actual dangling-symlink creation skipped on this Windows host; no local-chain journey or Linux qualification executed.",
+      "task": "local-browser-stack"
+    },
+    {
+      "id": "HR-02",
+      "title": "Current operator/integration guides retained removed architecture and outdated profiles",
+      "severity": "medium operational misdirection",
+      "confidence": "confirmed against current source",
+      "original_sources": [
+        "reports/obsolete-code-20261025/REVIEW.md",
+        "reports/documentation-cleanup-20261026/README.md",
+        "reports/holder-collective-exit-20261027/REVIEW.md",
+        "reports/independent-rebalance-20261029/REVIEW.md"
+      ],
+      "current_paths": [
+        "docs/GOVERNANCE.md",
+        "docs/MIGRATION_SAFETY.md",
+        "docs/ACTIVATION_PREPARATION.md",
+        "docs/FRONTEND_LINEAGE.md",
+        "docs/OPERATOR_MANUAL.md"
+      ],
+      "expected": "Current procedures match accounting4/custody3/V5, confirmation2, entrant-only LP budgets and terminal holder return.",
+      "actual_before": "Several active guides still directed external custody/issuer exchange or fresh accounting3/confirmation1/schema5; some overstated contribution reinvestment and an unapplied website metadata patch.",
+      "correction": "Correct current procedures and profile distinctions, retired-design pointers, manual/emergency boundaries, fixed artwork/source-publication status and sample/main-loop timing.",
+      "disposition": "corrected locally in affected guides; historical reports untouched",
+      "evidence": [
+        "READ_SERVICES_LEDGER.json",
+        "preservation-and-checks.json"
+      ],
+      "remaining": "Website README retains dated/simulation language; website source and served release are unchanged. Full cross-directory per-finding ledger remains incomplete.",
+      "task": "historical-findings"
+    },
+    {
+      "id": "HR-03",
+      "title": "Release record quoted obsolete normal bytecode margins",
+      "severity": "medium release-evidence accuracy",
+      "confidence": "confirmed with exact source/build pins",
+      "original_sources": [
+        "reports/independent-rebalance-20261029/VERIFICATION.md",
+        "reports/keeper-coordination-20261029/VERIFICATION.md"
+      ],
+      "current_paths": [
+        "docs/RELEASE_CHECKLIST.md"
+      ],
+      "expected": "Quote the applicable build, or mark values historical.",
+      "actual_before": "Release row still claimed Manager444-byte initcode and Vault512-byte runtime headroom.",
+      "correction": "Use build011: Manager37-byte initcode and Vault59-byte runtime headroom, with explicit exact reuse and dynamic-argument limitations.",
+      "disposition": "corrected locally; no Solidity change or rebuild",
+      "evidence": [
+        "compiler-reuse.json"
+      ],
+      "remaining": "Exact constructor arguments, target gas and release qualification remain open.",
+      "task": "deployment-initcode"
+    }
+  ],
+  "read_services_ledger": "READ_SERVICES_LEDGER.json",
+  "note": "28 read-services groups are not added to HR groups as unique defect counts; they can overlap."
+}

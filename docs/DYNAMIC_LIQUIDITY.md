@@ -121,7 +121,7 @@ pinned slot0 response, without another RPC read or response-schema change.
 | Warning state | Meaning shown to the holder |
 | --- | --- |
 | Cooldown | Earliest eligibility is `lastRebalance + minRebalanceInterval`, shown as a UTC timestamp. Policy2 physical range exit or a pending approved range update and execution checks must still pass. |
-| Eligible candidate | Raw cooldown and range-exit/manual-width conditions pass at the confirmed snapshot. Ordinary execution additionally requires confirmation1 readiness, keeper timing and all execution checks; this is not a guaranteed submission time. |
+| Eligible candidate | Raw cooldown and range-exit/manual-width conditions pass at the confirmed snapshot. Ordinary execution additionally requires confirmation2 readiness, keeper timing and all execution checks; this is not a guaranteed submission time. |
 | Waiting for range exit | Cooldown has ended, the actual stored tick remains inside the physical range and no approved range mismatch exists; there is no scheduled rebalance. |
 | Keeper timing unavailable | `next_keeper_check_at` and `expected_execution_at` are null. Never fabricate a countdown from the 600-second example polling setting. |
 
@@ -138,7 +138,7 @@ LP fees when its position is active. Out-of-range liquidity earns no conventiona
 swap fees until price returns or guarded maintenance changes its range. Funded
 claims and activation/royalty eligibility survive. This does not promise continuous
 fee income or external creator payments. Policy2 initially imposes a hard
-12-hour minimum; early range exit does not bypass it. The fresh confirmation1
+12-hour minimum; early range exit does not bypass it. The fresh confirmation2
 keeper profile checks eligible inside/outside positions every four minutes.
 Historical policy2 profiles without that capability retain their hourly checks.
 Durable 1-10-minute jitter and current execution guards still apply independently.
@@ -188,8 +188,10 @@ implemented [range-policy path](RANGE_POLICY_UPDATES.md) compares deployed ticks
 with the configured target at the recorded LP center. A mismatch can satisfy
 the existing rebalance trigger even at a flat price, after the normal cooldown.
 The keeper uses ordinary rebalance with all price, minimum-output, captured
-governed maintenance-budget and idle guards retained. Successful replacement clears the mismatch. No new force-rebalance authority is added; governed parking remains a separate recovery
-process. Production strategy qualification remains in the central Todo.
+governed maintenance-budget and idle guards retained. Successful replacement clears the mismatch. This ordinary path has no force bypass. The separate globally paused,
+governance-only [emergency manifest](EMERGENCY_REBALANCE.md) may explicitly bypass
+selected economic/timing checks and can lose nearly all principal. Governed
+parking remains another recovery process. Production strategy qualification remains in the central Todo.
 
 The separate opt-in automatic-selection source capability is limited to
 governance-approved +/-25% and +/-50%

@@ -1,0 +1,13 @@
+test_competing_writer_at_reservation_is_not_overwritten (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_competing_writer_at_reservation_is_not_overwritten) ... ok
+test_dangling_symlink_is_refused_without_creating_target (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_dangling_symlink_is_refused_without_creating_target) ... skipped 'Host does not permit creating a symbolic link'
+test_existing_directory_is_refused_before_any_request (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_existing_directory_is_refused_before_any_request) ... ok
+test_existing_evidence_is_refused_before_any_request (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_existing_evidence_is_refused_before_any_request) ... ok
+test_initial_marker_precedes_request_and_failure_evidence_survives (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_initial_marker_precedes_request_and_failure_evidence_survives) ... ok
+test_initial_storage_failure_prevents_all_http_and_closes_file (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_initial_storage_failure_prevents_all_http_and_closes_file) ... ok
+test_interruption_never_becomes_a_passing_record_or_a_retry (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_interruption_never_becomes_a_passing_record_or_a_retry) ... ok
+test_missing_parent_is_refused_before_any_request (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_missing_parent_is_refused_before_any_request) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.030s
+
+OK (skipped=1)

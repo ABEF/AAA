@@ -60,7 +60,7 @@ Immediate governance controls supported feeds, assets, routes, destinations
 and bounded strategy settings. Guardians can pause; keepers have no redemption
 function. There is no timelock/scheduler machinery or advance notice window; governance acts directly.
 
-- Audit the absence of a notice window: compromised governance can act immediately; no guardian veto or delay is promised. Verify direct governance authentication, two-step wallet replacement and the absence of timelock scheduling/executor selectors. Custody approvals have fresh deadlines, not a waiting period.
+- Audit the absence of a notice window: compromised governance can act immediately; no guardian veto or delay is promised. Verify direct governance authentication, two-step wallet replacement and the absence of timelock scheduling/executor selectors. Current movement/parking requests use their own deadlines; the retired external-custody approval is not a current control.
 - Build and test a complete role/call matrix, including bootstrap, callbacks,
   compromised keepers/guardians, governance operations and forbidden module rebinding.
 - Verify all post-seal changes preserve custody and historical liabilities. Audit

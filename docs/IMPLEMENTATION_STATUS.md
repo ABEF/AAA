@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+[Historical reconciliation](../reports/historical-reconciliation-20261029/REVIEW.md)
+fixes local verifier evidence admission before lab actions and current-guide
+profile/custody drift. Scoped13methods have12passes/one host symlink skip;
+contract build011 is reused only after exact82file comparison. The complete
+historical finding ledger remains unfinished, with no Solidity or operating
+rollout implied. [Verification](../reports/historical-reconciliation-20261029/VERIFICATION.md).
+
 [Keeper coordination](KEEPER_COORDINATION.md) implements service-only compound
 waiting, proved internal-harvest clock coalescing and a bounded read-only LP
 operation report. The current observer also corrects a previous private-getter

@@ -37,12 +37,14 @@ keeps its old equations; never infer a profile from tuple length or retry old AB
 Only native ETH and fixed ZZZ are original inputs. Their two-source policies
 use the reviewed 3% disagreement tolerance.
 
-Fresh confirmation source additionally selects `rebalance_confirmation_version:1`
+Fresh confirmation source additionally selects `rebalance_confirmation_version:2`
 and pins the immutable Strategy-created helper's address/runtime. Strategy,
-Budget and helper must expose capability1; helper Strategy/Access bindings,
+Budget and helper must expose the matching confirmation capability2; helper Strategy/Access bindings,
 duration/gap/review hash/revision and per-bucket observations are read at the
-same canonical hash. Historical absent/0 retains its original path; a failed
-read never selects an older profile. The intended900-second window uses
+same canonical hash. Version2 also authenticates the governed reference-exit
+policy and requires physical/reference exit on the same side when enabled.
+Explicit version1 retains its historical physical-only confirmation semantics;
+absent/0 retains its original path. A failed read never selects an older profile. The intended900-second window uses
 four-minute checks after the hard12-hour cooldown and an exact300-second maximum
 recorded gap, without grace. Source defaults remain900/0: ordinary rebalancing
 is stopped until reviewed governance configuration. Config values and release
@@ -192,8 +194,8 @@ Vault-to-manager boundaries, not only on the outer transaction.
 | `lp_routing_version` | Fresh `1` authenticates Manager/balancer capability and entrant-capped trace. Historical absent/0 retains its original policy/trace, never an automatic upgrade. |
 | `execution_quality_version` | Fresh `1` additionally authenticates actual Strategy policy ownership, cap/MAX and quality revision. Historical absent/0 stays historical. |
 | `maintenance_policy_version` | Explicit `2` for current outside-or-operator-range candidates, with Strategy2/Budget3 and range policy1. Explicit `1` retains the historical movement rule. |
-| `rebalance_confirmation_version` | Fresh `1` requires accounting4, maintenance2 and execution-quality1, plus the pinned confirmation child. Historical absent/0 is separate. |
-| `contracts` | `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `v4_executor`, `contribution_pricing`, plus `balancing_router` for LP routing1 and `rebalance_confirmation` for confirmation1; each has `address` and `code_hash`. The read-service has its own nine current bindings. |
+| `rebalance_confirmation_version` | Fresh `2` requires accounting4, maintenance2 and execution-quality1, plus the pinned confirmation child and matching capability2. Explicit historical `1` remains physical-only; absent/0 is separate. No runtime/profile fallback. |
+| `contracts` | `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `v4_executor`, `contribution_pricing`, plus `balancing_router` for LP routing1 and `rebalance_confirmation` for confirmation1/2; each has `address` and `code_hash`. The read-service has its own nine current bindings. |
 | `tokens` | 2..33 reviewed currency descriptors, at most 32 ERC20s plus ETH. Current fields: `address`, `code_hash`, `decimals`, `price_policy`; input, pair currencies and required nonzero historical backing must be present. `price_policy` contains `policy_id`, `ordinal`, `policy`. The policy includes `token`, `primary`, `secondary`, `maxDeviationBps`, `assetDecimals`, `reviewHash`; each source includes `source`, `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`. Token/feed precision is 0..18 and source age 1..86400 seconds. Native code hash is null and decimals 18. No legacy single-feed keys in pricing 2. |
 | `dependencies` | 1..64 `{address, code_hash}` entries covering PositionManager, PoolManager, StateView, Permit2 and every applicable conversion router/factory/pool, sequencer, implementation or other reviewed dependency. |
 | `sources` | 1..64 `{pool_id, source_asset, route_id, asset_policy_id, route_kind}` entries. One route per input/pool: kind 0 direct, 1 v3, 2 v4. For fee-intake 1, source identities must contain native ETH and exactly one reviewed ZZZ; no third input. Zero route is direct; nonzero native-source conversion requires v4. |
@@ -227,14 +229,17 @@ historical policy1 retains its original movement label. `next_keeper_check_at` a
 `expected_execution_at` remain null without qualified operating telemetry.
 No fabricated 10-minute countdown is emitted. See [timing rules](DYNAMIC_LIQUIDITY.md#admission-and-rebalance-timing).
 
-With confirmation1, `rebalance.raw_eligible_at_snapshot` reports the raw candidate
+With confirmation1/2, `rebalance.raw_eligible_at_snapshot` reports the raw candidate
 and `rebalance.eligible_at_snapshot` reports confirmed readiness. The separate
 `rebalance_confirmation` object exposes policy, first/last samples, side/identity,
 remaining seconds and readiness at that block. The status distinguishes
 unconfigured, not started, stale, confirming and ready; a late observation or
 changed side/identity must restart. A deliberate governed range change bypasses
 the sampled window after the existing raw cooldown/price checks. A countdown is
-not a service schedule or proof of continuous price history.
+not a service schedule or proof of continuous price history. Fresh confirmation2
+also reports the reference policy and physical/reference sides; a coherent
+disagreement is `reference_disagreement`, not ready. Independent-source/provider
+qualification remains separate from internally consistent observations.
 
 `rebalance.range_update_pending` also reports a governed range mismatch. Policy2
 `eligibility_reason` is `range_update`, `out_of_range`,

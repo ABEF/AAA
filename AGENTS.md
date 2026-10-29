@@ -163,6 +163,16 @@ by the current keeper-coordination follow-up; preserve the original report scope
 
 ## Verification and documentation workflow
 
+- [Historical reconciliation](reports/historical-reconciliation-20261029/REVIEW.md)
+  is incomplete:352 reports/91guides inventoried,70report/25guide ledger completed.
+  The remaining per-finding dispositions must be finished; inventories and partial
+  reviewer notes do not prove all old findings solved. Two historical local
+  verifiers now exclusively reserve evidence before lab HTTP;13 scoped methods
+  have12passes/one Windows symlink skip. Preserve failed/in_progress evidence and
+  choose a new output path; do not replay financial actions to recreate a report.
+  Current-guide corrections preserve explicitly historical profiles/report bytes.
+  No Solidity, service/site/Anvil/signer/heartbeat change or approval occurred.
+
 - [Whole-project review](reports/whole-project-audit-20261029/REVIEW.md) fixes
   ownership inventory optional-currency isolation, stored JSON integrity and
   metadata restart fairness. Preserve durable metadata turn before optional RPC;

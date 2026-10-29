@@ -4,7 +4,7 @@ This is the pre-native/pricing-V2 fixture guide. Fresh current-artifact startup
 is blocked by `require_legacy_fixture_artifacts` before Anvil/deployment. Existing
 chains, balances and journals retain their original profile. Do not relabel or
 reset them. A historical fresh run needs a separately reviewed matching
-source/artifact set; this is not an accounting 3 production rehearsal recipe.
+source/artifact set; this is not an accounting3 or fresh accounting4 production rehearsal recipe.
 
 The [launcher](../scripts/local-stack.py) starts its own loopback Anvil chain,
 deploys and seals its matching historical core, seeds four NFTs, and connects the
@@ -102,6 +102,15 @@ python -m unittest tests_python.test_local_stack tests_python.test_local_stack_e
 The journey changes only disposable local state. It verifies real receipts,
 ownership, LP allocation, funded fees, no retroactive income, rebalancing,
 combined claims and cumulative history. See [scoped evidence](../reports/local-stack/VERIFICATION.md).
+
+Both `verify-local-stack.py` and `verify-local-website.py` now require a new
+evidence output path. They exclusively reserve it before making any request to
+the local lab, then write an `in_progress` marker. Existing files or symlinks
+are refused before lab actions; success/failure replaces only that run's reserved
+record. A crash or disk error can leave incomplete evidence: preserve it, inspect
+actual local receipts/state, and choose a new path. Do not rerun a state-changing
+journey merely to replace a missing success report. These tools remain historical
+fixture verifiers, not a fresh4 launcher or production acceptance.
 
 Stop with Ctrl+C in the launcher. A same-origin/session-authenticated
 `POST /action` with `{"action":"stop"}` also stops this session and its owned

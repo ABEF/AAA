@@ -16,7 +16,7 @@ not upgrade deployed storage, journals or ownership.
 
 | Change | Current boundary |
 | --- | --- |
-| Tune range, cooldown, triggers or execution limits | Direct governance through bounded setters. An optional reviewed keeper rule selects only the 25% / 50% presets; physical LP replacement remains guarded maintenance. |
+| Tune range, cooldown, confirmation or execution limits | Direct governance through bounded setters. Ordinary policy2 uses physical range exit or an operator width change, not the retired centre-movement trigger. Optional25%/50% keeper selection cannot coexist with enabled confirmation2 reference-exit protection; manual governed widths remain available. Physical replacement remains guarded maintenance. |
 | Select another contribution pool | Admit the supported pool, preserve historical bucket identities and deliberately switch the one enabled contribution pool. Admission alone does not move liquidity or qualify routes. |
 | Move LP to another local fee tier | `Migration.moveFunds` atomically redeploys the same actual ordered pair, preserving NFT shares and the captured maintenance floor. |
 | Change ETH to WETH accounting or another pair | Not supported by this deployment's principal-pool admission or `moveFunds`. Separate reward-conversion routes do not expand LP admission. |

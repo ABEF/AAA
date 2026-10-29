@@ -214,7 +214,8 @@ until reviewed and implemented; the profile is not a general successor decoder.
 
 Leave `prices: null` until actual sources and policies are reviewed. Raw history
 can remain available while nonzero USD totals are unavailable. For the current
-accounting-3 candidate, a configured price block must use **pricing version 2**:
+accounting4 candidate and explicit historical accounting3, a configured price
+block must use **pricing version2**:
 
 ```json
 {
@@ -280,7 +281,7 @@ upgrade monitoring remain release requirements.
 Historical accounting 1/2 may retain an explicitly compatible pricing-version-1
 single-feed mapping. Its `source`, `source_code_hash`, `max_age` and
 `feed_decimals` fields match that old Oracle ABI. It is not a valid current
-accounting-3 configuration and must not be copied into a fresh release.
+accounting3/4 configuration and must not be copied into a fresh release.
 
 ## Accounting and recovery boundaries
 

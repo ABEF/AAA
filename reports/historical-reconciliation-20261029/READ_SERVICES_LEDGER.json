@@ -1,0 +1,960 @@
+{
+  "schema": 1,
+  "reader": "historical_read_services",
+  "baseline": "ca4dde1df1e8d15f2927e9f463122e0ae9c61109",
+  "report_files": 70,
+  "documentation_files": 25,
+  "execution_tests_run": 0,
+  "code_changes": [],
+  "new_network_or_service_actions": [],
+  "findings": [
+    {
+      "id": "FB-01",
+      "title": "Complete unsigned activation preparation and actual marginal LP",
+      "historical_sources": [
+        {
+          "path": "reports/activation-preparation/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-contribution-flow/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-preparation/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implemented with explicit current profiles; original execution is historical",
+      "current_source_evidence": [
+        "frontend_api/activation.py:ActivationTransactions.prepare/_trace",
+        "frontend_api/activation_trace.py:measure/pricing_witness",
+        "frontend_api/activation_config.py:ActivationConfig.__init__/verify"
+      ],
+      "remaining": "Current ETH/fixed-ZZZ, dual-source, reviewed-Entry and LP-routing profiles replace old stable-input/Pons/99% assumptions. Actual provider traces, route depth, pricing and gas qualification remain open.",
+      "task": "activation-quotes",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-02",
+      "title": "USDG/WETH public conversion observations are not current input qualification",
+      "historical_sources": [
+        {
+          "path": "reports/activation-route-observation/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/one-dollar-rehearsal/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "superseded contribution scope; retained historical service evidence",
+      "current_source_evidence": [
+        "frontend_api/activation_config.py:ActivationConfig.__init__ fee_intake_version=1 source identity check",
+        "src/ZZZActivationAssets.sol fixed contribution token binding"
+      ],
+      "remaining": "Do not reuse dated feed values or $1 quotes as live $100 ETH/ZZZ execution. The $1 generator remains a separate constructor-guarded local build, not a production override.",
+      "task": "activation-assets",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-03",
+      "title": "Bounded per-client and independent worker admission",
+      "historical_sources": [
+        {
+          "path": "reports/api-admission/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/api-work-limits/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/concurrent-services/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implementation present; real hosting qualification unresolved",
+      "current_source_evidence": [
+        "frontend_api/admission.py:ClientAdmission/client_key",
+        "frontend_api/http_runtime.py:BoundedHTTPServer/BoundedHandler",
+        "frontend_api/worker.py:WorkerClient/WorkerPool"
+      ],
+      "remaining": "NAT sharing, per-process quota reset, distributed clients, Linux/TLS edge pressure and real provider limits remain accepted limitations requiring actual operating qualification. Existing socket/mock passes do not qualify those.",
+      "task": "host-services",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-04",
+      "title": "Expiry, child containment, cleanup quarantine and terminal work limits",
+      "historical_sources": [
+        {
+          "path": "reports/api-work-limits/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/concurrent-services/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-preparation/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implementation present in current source; historical execution scope preserved",
+      "current_source_evidence": [
+        "frontend_api/worker.py:WorkerClient._request/WorkerPool",
+        "frontend_api/http_runtime.py:BoundedHandler",
+        "zzz_ops/work_budget.py:bounded_request/expire_at"
+      ],
+      "remaining": "Supported OS cleanup, real trace/history workloads and off-host alerting still need rehearsal. No process, limit or journal changed by reconciliation.",
+      "task": "host-services",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-05",
+      "title": "Fresh extension/account selection without stale silent restoration",
+      "historical_sources": [
+        {
+          "path": "reports/browser-wallet/ACCOUNT_CHOOSER.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/AUTHORIZED_ACCOUNTS.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/CONNECTION_RECOVERY.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/FRESH_SELECTION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/LIFECYCLE_REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "source behavior present; actual supported extension acceptance remains unqualified",
+      "current_source_evidence": [
+        "AAA-website/browser-client.js explicit permission/account selection methods",
+        "AAA-website/wallet.js EIP-6963 provider selection",
+        "AAA-website/browser-wallet.js:BrowserWallet.verifyWallet"
+      ],
+      "remaining": "The site can observe authorized EIP-1193 accounts, not a wallet popup private selection. Current4 public signing is absent by explicit user decision; it must not be represented as delivered.",
+      "task": "wallet",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-06",
+      "title": "RPC quantities, numeric nonce and canonical type-2 fee reconciliation",
+      "historical_sources": [
+        {
+          "path": "reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/NUMERIC_NONCE.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/RPC_QUANTITIES.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "corrected source paths retained; obsolete intermediate quantity restriction superseded",
+      "current_source_evidence": [
+        "AAA-website/browser-wallet.js:rpcQuantity/transactionFees/transactionChain",
+        "zzz_ops/ethereum_fees.py",
+        "scripts/local-stack.py historical browser receipt observation"
+      ],
+      "remaining": "Current RPC response normalization accepts safe nonnegative integers and bounded hex; outgoing reviews/journals stay canonical. Fee completeness and Robinhood provider behavior remain release qualifications.",
+      "task": "wallet",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-07",
+      "title": "Bounded same-hash confirmation, independent reader and actionable nonce diagnosis",
+      "historical_sources": [
+        {
+          "path": "reports/browser-wallet/AUTO_CONFIRMATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/CHAIN_READER.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/MINT_WAIT_PERFORMANCE.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/PENDING_NONCE.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/pending-nonce/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implemented locally; no automatic resend or replacement adoption",
+      "current_source_evidence": [
+        "AAA-website/browser-wallet.js:createChainReader/BrowserWallet.confirm",
+        "AAA-website/browser-client.js confirmation/recovery coordination"
+      ],
+      "remaining": "Auto speed-up/cancel discovery remains absent. The old lagging-head diagnosis did not prove a specific extension cache caused every user incident. Real extension and provider acceptance remains distinct.",
+      "task": "wallet",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-08",
+      "title": "Exactly one submitted intent and durable recovery after lost response",
+      "historical_sources": [
+        {
+          "path": "reports/browser-wallet/LIFECYCLE_REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-local-wallet/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-stack/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-wallet-concurrency/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-website/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implemented local/profile-scoped; fresh public transaction integration unfinished",
+      "current_source_evidence": [
+        "AAA-website/browser-wallet.js:BrowserWallet.submit/load/save/recover",
+        "AAA-website/deployment-transactions.js local coordinator",
+        "scripts/local-stack.py:OperationLedger.run"
+      ],
+      "remaining": "Web Locks/local storage are origin-local, not distributed user authorization. Never erase a pending record, change genesis or resubmit to obtain a passing result.",
+      "task": "transaction-ui",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-09",
+      "title": "Specific abandoned nonce-35 mint cleanup",
+      "historical_sources": [
+        {
+          "path": "reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/PENDING_NONCE.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/pending-nonce/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "historical authorized incident; browser completion unknown",
+      "current_source_evidence": [
+        "reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md exact incident boundary",
+        "docs/BROWSER_WALLET.md historical local mint cleanup"
+      ],
+      "remaining": "No fresh browser activity was inspected. Do not infer the user completed MetaMask nonce cleanup/archive, remove the overlay, rerun capture scripts or generalize this one-off permission.",
+      "task": "wallet",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-10",
+      "title": "Mint-loading, per-NFT updates and approval/Entry presentation",
+      "historical_sources": [
+        {
+          "path": "reports/browser-wallet/MINT_LOADING.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/MINT_WAIT_PERFORMANCE.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/frontend-state/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-contribution-flow/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-preparation-busy/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-website/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/position-summary/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/website-polish/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implemented in scoped demo/local clients; current4 live integration remains open",
+      "current_source_evidence": [
+        "AAA-website/ui-state.js resource tracking",
+        "AAA-website/local-client.js contribution confirmation flow",
+        "AAA-website/local-view.js target NFT update presentation",
+        "AAA-website/deployment-transactions.js confirmed Entry reconciliation"
+      ],
+      "remaining": "Public/demo/local code and served current3 reader have separate profiles. Approval or submission does not prove LP growth. Fresh4 terminal principal and confirmed effects still need their explicit frontend integration.",
+      "task": "transaction-ui",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-11",
+      "title": "Local independent wallet nonce/revision concurrency",
+      "historical_sources": [
+        {
+          "path": "reports/local-contribution-flow/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-preparation-busy/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-wallet-concurrency/NONCE_VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/local-wallet-concurrency/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "local fixes present; scale campaign deliberately deferred",
+      "current_source_evidence": [
+        "scripts/local-stack.py typed wallet draft nonce checks",
+        "AAA-website/local-client.js bounded exact busy-response retry"
+      ],
+      "remaining": "Six user-reported manual scenarios are not independently collected receipts or a 100-user load test. Preserve user-deferred 10/25/100 campaign; basic bounded correctness is still required.",
+      "task": "capacity-campaign",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-12",
+      "title": "Wallet summary and collection aggregation cannot publish partial totals",
+      "historical_sources": [
+        {
+          "path": "reports/api-chain-rehearsal/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/api-chain-rehearsal/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/collection-reads/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/collection-reads/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-earnings/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-earnings/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "backend implementation present; current4 consumer qualification incomplete",
+      "current_source_evidence": [
+        "frontend_api/portfolio.py:read",
+        "frontend_api/collection.py:read",
+        "AAA-website/deployment-api.js wallet/collection chunk aggregation"
+      ],
+      "remaining": "16-item chunks require common owner/inventory/hash and full coverage. Exited NFTs retain royalty activation while verified LP becomes zero. Real worst-case history/market latency and fresh4 browser remain open.",
+      "task": "live-history-ui",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-13",
+      "title": "NFT earned history uses original income denominations at today prices",
+      "historical_sources": [
+        {
+          "path": "reports/earnings-history/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/royalty-reporting/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/royalty-reporting/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-earnings/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-earnings/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implemented, with separate source-scoped verification and real-data limitations",
+      "current_source_evidence": [
+        "frontend_api/earnings.py:Earnings",
+        "frontend_api/earnings_replay.py:Replay",
+        "frontend_api/earnings_prices.py:Prices.read/value_report",
+        "frontend_api/wallet_earnings.py:read"
+      ],
+      "remaining": "Claims/conversions/imports are not income; earned is not claimable. Missing prices remain unavailable. The earliest report statements saying all earned history was absent are superseded by this later implementation, not evidence of live qualified reporting.",
+      "task": "financial-history",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-14",
+      "title": "Strict funded fee pairing and dust reconciliation",
+      "historical_sources": [
+        {
+          "path": "reports/earnings-history/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/history-audit/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/position-summary/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/website-alignment/README.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/website-polish/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "current fee-intake1 integrity implemented; economic rounding and data authenticity limits remain",
+      "current_source_evidence": [
+        "frontend_api/earnings_replay.py:Replay.fee_credit/__call__",
+        "frontend_api/earnings.py cutoff reconciliation",
+        "src/ZZZFeeController.sol allocation"
+      ],
+      "remaining": "Static inspection does not rerun the current contract ledger. Sub20 raw-unit settlement and fraction timing are disclosed economic exceptions; complete operator/provider logs remain a trust boundary.",
+      "task": "financial-history",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-15",
+      "title": "Same-chain lifecycle and complete predecessor claim continuity",
+      "historical_sources": [
+        {
+          "path": "reports/frontend-lifecycle/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/frontend-lineage/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/history-audit/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implemented for matching explicit codecs; old cross-chain release requirements superseded",
+      "current_source_evidence": [
+        "frontend_api/lifecycle.py:read_lifecycle",
+        "frontend_api/lineage.py:Lineage.__init__/_receipt/financial",
+        "frontend_api/service.py:Projection._verify_deployment/_finish"
+      ],
+      "remaining": "Fresh V5 requires accounting4 predecessors and nine core pins; explicit V4 requires3/eight. Terminal holder exit blocks canonical replacement. Actual escrow/backing/cutover rehearsal still open; no bridge or post-halt proof is supplied.",
+      "task": "security-chain-recovery",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-16",
+      "title": "Royalty currency isolation and denomination history",
+      "historical_sources": [
+        {
+          "path": "reports/royalty-reporting/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/royalty-reporting/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-preparation/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implemented optional read profile; actual currency/route operation unqualified",
+      "current_source_evidence": [
+        "frontend_api/royalty_reporting.py",
+        "frontend_api/history.py conversion_report/History.read",
+        "frontend_api/transactions.py:Transactions.prepare"
+      ],
+      "remaining": "Healthy/native claims can remain available during unselected currency failures. Core eligibility/binding/work-limit faults stay fatal; historical external royalty custody is never enabled in fresh accounting4.",
+      "task": "royalty-reporting",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-17",
+      "title": "Unsigned direct mint/claim backend and OpenSea scope",
+      "historical_sources": [
+        {
+          "path": "reports/api-work-limits/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-adapter/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-local-wallet/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/frontend-transactions/README.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-earnings/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-preparation/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "backend drafts implemented; OpenSea primary mint not implemented/qualified",
+      "current_source_evidence": [
+        "frontend_api/transactions.py:Transactions.prepare/claim_calldata",
+        "frontend_api/mint_readiness.py:inspect",
+        "AAA-website/deployment-api.js production mint refusal"
+      ],
+      "remaining": "Current direct mint pays full0.05ETH, unlike intended OpenSea buyer-gross/net-recipient terms. Do not close marketplace mint from a successful local mint or unsigned draft.",
+      "task": "opensea-mint",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-18",
+      "title": "Current native preflight versioning and actual registration evidence",
+      "historical_sources": [
+        {
+          "path": "reports/native-preflight/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-preflight/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-preflight/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "schema5 evidence historical; later schema6 source replaces fresh release path",
+      "current_source_evidence": [
+        "zzz_ops/production_observer_v4.py and zzz_ops/production_v4.py",
+        "docs/PRODUCTION_PREFLIGHT.md",
+        "reports/keeper-coordination-20261029/VERIFICATION.md current private-getter correction"
+      ],
+      "remaining": "No actual public PoPL deployment exists to qualify. Old mock passes, observed hashes or declared reviews do not approve real authorities/pricing/routes. Recollect actual complete bucket inventory; no registeredBucket getter exists.",
+      "task": "native-production-preflight",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-19",
+      "title": "Native website profile and financial completeness",
+      "historical_sources": [
+        {
+          "path": "reports/current3-website-20261026/DEPLOYMENT.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/current3-website-20261026/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-adapter/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-adapter/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-local-wallet/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-local-wallet/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/website-staged/post-review/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/website-staged/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "native2/current3 source implemented; served artifact not compatible with fresh4",
+      "current_source_evidence": [
+        "AAA-website/deployment-native.js current3 capability/identity checks",
+        "AAA-website/deployment-api.js native claim/earnings validation",
+        "docs/CURRENT_WEBSITE_PROFILE.md fresh4 boundary"
+      ],
+      "remaining": "Keep popldemo simulation, separate unconfigured poplint current3 and Anvil-only signer. Fresh accounting4/custody3/V5 read/unsigned and terminal principal consumer remain unfinished. Publishing source never upgrades a manifest or server.",
+      "task": "transaction-ui",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-20",
+      "title": "Native financial omission and malformed per-NFT history fixes",
+      "historical_sources": [
+        {
+          "path": "reports/native-readiness-20261025/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/website-staged/post-review/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/website-staged/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "source guards present; old initial staged test claims superseded only within their stated scope",
+      "current_source_evidence": [
+        "AAA-website/deployment-api.js native ledger/earnings validators",
+        "frontend_api/portfolio.py:read",
+        "frontend_api/service.py:Projection.nft"
+      ],
+      "remaining": "Missing one native ledger cannot appear as a complete claim total. Malformed history does not invent zero or remove healthy independently known LP. Tests remain mock consumer evidence, not live acceptance.",
+      "task": "live-history-ui",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-21",
+      "title": "Historical Vault bytecode/private refactor evidence",
+      "historical_sources": [
+        {
+          "path": "reports/native-readiness-20261025/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/vault/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "historical compiler measurements, not current size proof",
+      "current_source_evidence": [
+        "src/ZZZVault.sol",
+        "reports/keeper-coordination-20261029/VERIFICATION.md reuse scope",
+        "docs/DEVELOPMENT.md normal size profile"
+      ],
+      "remaining": "The former313-byte headroom and cold-gas number must not be relabeled current after later holder exit/confirmation changes. Current narrow size margins require exact-source qualification.",
+      "task": "deployment-initcode",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-22",
+      "title": "Holder escrow compatibility preflight",
+      "historical_sources": [
+        {
+          "path": "reports/holder-preflight/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "read-only inventory implemented; actual escrow compatibility unresolved",
+      "current_source_evidence": [
+        "zzz_ops/holder_preflight.py:scan_page/summarize",
+        "scripts/inventory-nft-holders.py",
+        "docs/HOLDER_PREFLIGHT.md"
+      ],
+      "remaining": "No-code is not proof of accessible EOA; receiver support is not escrow withdrawal compatibility. Must rescan frozen ownership and review exact replacement before retirement. Do not restore external custody handoff.",
+      "task": "security-chain-recovery",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-23",
+      "title": "Fixed artwork inventory and evolved visual metadata",
+      "historical_sources": [
+        {
+          "path": "reports/artwork-palette/README.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/artwork-palettes/README.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/website-alignment/README.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/website-polish/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "old quota/look records retain source scope; selected visual slots later replaced",
+      "current_source_evidence": [
+        "src/ZZZArtwork.sol",
+        "src/ZZZNFT.sol fixed draw",
+        "src/ZZZNFTMetadata.sol",
+        "scripts/prepare_ipfs_bundle.py",
+        "AAA-website/artwork generator/catalogue"
+      ],
+      "remaining": "Eight colors/58palettes/fourpatterns and1000fixed inventory are distinct from2784states. Twin-circuit routes replace old rib slot; source intrinsic dormant royalty weight fixed atcae44a1d. Qualified VRF, CID/pinning and marketplace refresh remain open.",
+      "task": "metadata-ops",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-24",
+      "title": "Historical Power, per-NFT physical LP and bridge architectures",
+      "historical_sources": [
+        {
+          "path": "reports/history/ARCHITECTURE-per-nft.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/history/README.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/history/README.v0.2.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/history/retired-v3-tests/README.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/website-alignment/README.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "superseded by explicit current architecture; retained historical evidence",
+      "current_source_evidence": [
+        "src/ZZZVault.sol shared buckets/shares",
+        "src/ZZZMembership.sol equal active weights",
+        "src/ZZZMigration.sol holder exit",
+        "docs/POSITION_V4.md"
+      ],
+      "remaining": "Do not restore50/30/10/10,500USDactivation,Power,WETH-onlyLP,remoteledgers,bridges or externalcustody addresses. Their relevant accounting/availability lessons persist in separate current duties.",
+      "task": "audit-release",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-25",
+      "title": "Historical public static deployment receipts",
+      "historical_sources": [
+        {
+          "path": "reports/api-chain-rehearsal/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/pending-nonce/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/browser-wallet/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/collection-reads/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/current3-website-20261026/DEPLOYMENT.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-adapter/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/deployment-local-wallet/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/wallet-earnings/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "historical serving/publication evidence only",
+      "current_source_evidence": [
+        "docs/SITE_ENVIRONMENTS.md",
+        "AAA-website/README.md source/served boundary"
+      ],
+      "remaining": "No public site or current server was observed by this review. Old HTTPS/hash passes are neither current uptime nor deployed API/contract/fresh4 qualification. Preserve separate demo/integration roots and local repair overlay.",
+      "task": "host-services",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-26",
+      "title": "Independent history comparison and truthful completeness limits",
+      "historical_sources": [
+        {
+          "path": "reports/history-audit/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "implemented bounded comparator; full qualified history remains open",
+      "current_source_evidence": [
+        "frontend_api/history_audit.py:HistoryAudit.run/compare/Inventory.seal",
+        "indexer/monitor.py:Indexer.step/reconcile",
+        "frontend_api/history.py:History.read"
+      ],
+      "remaining": "128blocks/10000logs windows detect disagreements, not which provider is right or cryptographic completeness. Retain authentic logs and full epoch coverage; do not edit DBs or treat a cursor as proof.",
+      "task": "financial-history",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-27",
+      "title": "Current-guide profile/custody instructions remained stale after architectural changes",
+      "historical_sources": [
+        {
+          "path": "reports/collection-reads/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/frontend-lifecycle/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/frontend-lineage/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/holder-preflight/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-preflight/PUBLICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-preflight/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-preflight/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/native-readiness-20261025/REVIEW.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/royalty-reporting/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "confirmed documentation defects reported for root correction",
+      "current_source_evidence": [
+        "docs/ACTIVATION_PREPARATION.md fresh confirmation version",
+        "docs/API_INGRESS.md/ COLLECTION_READS.md accounting3-only wording",
+        "docs/FRONTEND_HISTORY.md/FRONTEND_LINEAGE.md historical profile/custody guidance",
+        "docs/HISTORY_AUDIT.md/HOLDER_PREFLIGHT.md old V4/external custodian wording",
+        "docs/CURRENT_WEBSITE_PROFILE.md metadata prepared-not-applied statement"
+      ],
+      "remaining": "Root owns concise current-guide fixes and exact source consistency checks; historical reports stay unchanged. No code/service economic change is needed to correct these statements.",
+      "task": "audit-release",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    },
+    {
+      "id": "FB-28",
+      "title": "Current claim activation check scope must not be overstated",
+      "historical_sources": [
+        {
+          "path": "reports/wallet-preparation/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        },
+        {
+          "path": "reports/royalty-reporting/VERIFICATION.md",
+          "section": "Implementation, review and remaining boundaries"
+        }
+      ],
+      "disposition": "deliberate narrower preparation integrity; no confirmed defect requiring new dependencies",
+      "current_source_evidence": [
+        "frontend_api/transactions.py:Transactions.prepare",
+        "frontend_api/service.py:Projection.nft",
+        "tests_python/test_claim_activation_integrity.py"
+      ],
+      "remaining": "Current claims read one0..3activationweight perNFT and reject inactive positiveclaims; they do not repeat all NFT LP/trait checks. Binding rarity would add reads; do not block healthy owed claims merely to mirror unrelated view work. Existing exact simulation/backing/owner checks remain decisive.",
+      "task": "unsigned-actions",
+      "verification_kind": "current source inspection, not a fresh execution test"
+    }
+  ],
+  "limitations": [
+    "Source review is not current execution evidence or independent audit.",
+    "No live browser extension, public site, RPC provider or production service qualified.",
+    "Historical raw logs and every machine receipt were not re-executed; markdown provenance retains original scope.",
+    "Website source read only; current4 consumer and public signer deliberately not enabled."
+  ]
+}

@@ -136,7 +136,7 @@ selected Robinhood mainnet fork and Robinhood Testnet wallet/operator rehearsals
 See [release preflight](PRODUCTION_PREFLIGHT.md) and [sole Todo](../TODO.md).
 
 Fresh source profile: accounting4/custody3/governance2/fee1/canonicalV5 with
-maintenance2/compound3/LP1/quality1/confirmation1. Inventory uses schema6;
+maintenance2/compound3/LP1/quality1/confirmation2 and separate manual emergency1. Inventory uses schema6;
 historical schema5/accounting3 is inspection-only. Preserve actual historical
 Anvil profiles and immutable runtimes. The following local scaffolds remain
 historical accounting3/governance2/fee1/localV4, ETH/fixedZZZ inputs,

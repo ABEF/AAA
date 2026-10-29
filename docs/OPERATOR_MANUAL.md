@@ -116,7 +116,7 @@ exit does not gain a conversion/buyback dependency.
 | Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema-6 preflight](PRODUCTION_PREFLIGHT.md), which separately observes17helpers; historicalschema5 is inspection-only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
-| Current website read/unsigned review | [Explicit native profile](NATIVE_WEBSITE_PROFILE.md). Current accounting3 must not be served with a historical accounting2 reader. Actual consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
+| Website read/unsigned review | [Served current3/fresh4 boundary](CURRENT_WEBSITE_PROFILE.md). The backend supports fresh accounting4; the served accounting3 browser reader does not. Neither accepts a historical accounting2 reader by relabeling. Actual consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
 | RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
 
 Source-scoped audit results belong to [reports](../reports/README.md), not to a
@@ -208,6 +208,10 @@ not a required service or newly added volatility analysis.
    `0<=narrowBps<widenBps<2500`,600seconds<=interval<=7days, and interval at
    least the pool cooldown. Trigger/deviation must fit the narrower width.
    No default production thresholds or continuous-volatility claim is supplied.
+   This optional automatic policy cannot be enabled while confirmation2's
+   `requireReferenceExit` protection is enabled. Preserve the selected manual
+   policy; relaxing reference protection would be a separate explicit governance
+   decision, not an automatic workaround for a rejected setter.
 4. Verify orientation, complete `keeperRangePolicy(pool)` and configuration/review
    hashes. The fingerprint binds all PoolConfig fields except desired width plus
    orientation. A changed non-width config makes selection unavailable until
@@ -265,8 +269,8 @@ ZZZ/USD source as redundant coverage for both assets.
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
    policy remains in history. Never promote observed hashes to approved pins
    automatically or remove a safety check to make a price appear available.
-5. Refresh the schema-5 release inventory with explicit `pricing_version: 2` and
-   all 15 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
+5. Refresh the schema-6 release inventory with explicit `pricing_version: 2` and
+   all 17 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
    `access()` bindings. Update reviewed API/preparation/earnings configurations,
    source proxy pins and service alerts at one confirmed block. Keep old deployed
    epochs and wallet journals on their original profiles.
@@ -470,7 +474,7 @@ network gas separate. Never assume an old default is the current on-chain value.
 
 | Change | Exact current control | Preserve / recover |
 | --- | --- | --- |
-| Contribution or maintenance limit | Budget `setLossLimits(uint16 contribution,uint16 maintenance)` | Read both current values; preserve the other when changing one. Captured per-operation policy and pending custody approval floors never relax automatically. |
+| Contribution or maintenance limit | Budget `setLossLimits(uint16 contribution,uint16 maintenance)` | Read both current values; preserve the other when changing one. Captured per-operation policy and caller-reviewed maxima never relax automatically. The retired custody-approval floor is not a current control. |
 | LP or royalty conversion limit | Respective converter `setConversionLossBps(uint16)` | Each converter is independent. Keep stronger caller minima, fresh independent quotes and exact source/native backing. |
 | Add v4 conversion pool | Parent `addV4Route(Policy)` | Static hookless exact-input, pinned manager/StateView/assets, immutable parent output; separate from principal pool admission. |
 | Stop/reopen conversion route | Parent `setRouteEnabled(id,bool)` | Stop has no dependency reads. Reopen requires exact dependency validation. Reconcile submitted transactions before replacing worker config. |
@@ -549,10 +553,10 @@ constructor/call evidence. These events add visibility, not authority.
 | +/-20% | `2000` | 0.80 to 1.20 |
 | Total width 20%, meaning +/-10% | `1000` | 0.90 to 1.10 |
 
-1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only intended settings. Use `configureNative(config)` for supported native ETH/fixedZZZ fee tiers; generic ERC20 LP admission is removed. Current accounting3 retains the real zero ETH currency; do not substitute WETH or change slot ordering.
+1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only intended settings. Use `configureNative(config)` for supported native ETH/fixedZZZ fee tiers; generic ERC20 LP admission is removed. Current accounting4 retains the real zero ETH currency; do not substitute WETH or change slot ordering.
 2. Check the dependent bounds below, oracle freshness, current price/spot difference, target ticks, actual swap costs and expected gas. Review narrower-range out-of-range exposure and turnover. Simulate the new configuration and maintenance on a fork at the same state before approval.
 3. Governance executes the configuration. This **does not immediately close/reopen LP**. Inspect `Strategy.rangeUpdatePending(bucketId)` and `needsRebalance(bucketId)`.
-4. The authorized keeper submits `Vault.rebalance(bucketId,minimumLiquidity,deadline)` when cooldown and guards permit. A width mismatch can trigger it even at a flat price. Polling every ten minutes is only an example; it is not a guaranteed rebalance deadline.
+4. The authorized keeper submits `Vault.rebalance(bucketId,minimumLiquidity,deadline)` when cooldown and guards permit. A width mismatch can trigger it even at a flat price. Fresh confirmation2 uses240-second eligible checks; historical ten-minute polling is not its operating schedule or a guaranteed rebalance deadline.
 5. Verify the new physical LP ID/ticks/center, retained value, attributed idle, unchanged NFT shares and continued claims. A successful replacement clears the width mismatch. A revert preserves the old position and leaves the desired change pending.
 
 Before execution, restoring the old configuration may clear the width mismatch; actual physical range exit can still permit policy2 rebalance after cooldown. The movement trigger belongs to historical policy1. After execution, going back requires another valid configuration and rebalance, with fresh costs/cooldown. Stop/reconcile in-flight keeper work around a policy change: its transaction is not bound to a historical configuration hash. See [range application](RANGE_POLICY_UPDATES.md).
@@ -1289,7 +1293,7 @@ hash, edit/reset a journal or assume this digest authenticates the host/provider
 There is no in-process config reload: finalize config before constructing Keeper.
 
 
-Use the reviewed Linux/Unix release and separate service users. The fresh policy2 sample observes every60seconds and harvests hourly; historical ten-minute/four-hour examples retain their own scope. Neither schedule guarantees execution. Change reviewed config for interval, thresholds, per-bucket overrides, minimum liquidity, gas/daily budgets, RPC providers and metadata scans; restart through the deployment's service manager after checking pending work. Do not guess a production unit name or reuse the isolated staging signer/config.
+Use the reviewed Linux/Unix release and separate service users. The fresh main loop polls every60seconds; confirmation2 evaluations target240seconds after cooldown, and standalone harvesting defaults hourly. A main-loop wake is not an on-chain observation transaction. Historical ten-minute/four-hour examples retain their own scope. None guarantees inclusion. Change reviewed config for interval, thresholds, per-bucket overrides, minimum liquidity, gas/daily budgets, RPC providers and metadata scans; restart through the deployment's service manager after checking pending work. Do not guess a production unit name or reuse the isolated staging signer/config.
 
 Read-only checks from the repository (replace paths with the actual reviewed configuration):
 
@@ -1401,7 +1405,7 @@ adds no on-chain function, permission, config key, write action or service rollo
 | Fee/dust mismatch or malformed core value | Stop serving the affected report; preserve raw logs, database, request/config hash, cutoff and error. Compare a separate replay copy with authentic independent-provider windows. Do not edit/delete history, guess zero, relabel a profile or trigger a financial transaction to hide an error. |
 | Malformed stored JSON or event envelope | Duplicate fields, nonfinite numbers, missing `removed:false`, malformed hex data and parser-resource failures make history unavailable. Preserve the original DB/WAL; restore/replay a consistent separate copy. Do not normalize corrupt evidence into apparently clean claims or earnings. |
 | Optional royalty-currency outage and wallet inventory | Ownership inventory retains exact admitted addresses, lifecycle/history, balance and owner checks even if optional token runtime/decimals fail. It reports no token balances; affected financial metrics remain unavailable. Required module, asset-list, history, budget or canonical faults still reject. Roll out/rollback only a compatible reviewed API release when authorized. |
-| Current accounting-3 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked/outbound NFTs retain eligible funded rewards. |
+| Accounting3/4 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked NFTs and accounting4 Exited NFTs retain eligible funded rewards; historical outbound semantics remain profile-specific. |
 | Wallet read budget | Accounting3/4 checks pinned `weightOf(id)` and `nftStatus(id)` per NFT. This follow-up adds one custody read to profile3; profile4 strengthens its existing status read. Historical1/2 read shapes remain. Keep16-item chunks, finite request limits and complete same-block chunk verification. Requalify actual latency/budgets before rollout; no unbounded retry or limit relaxation. |
 | Display totals | Ready to claim = funded LP plus royalty balances now. Earnings 24h/all time includes earlier claims and past owners; claims/conversions are not new income. Compound/buyback/gross receipts are not additional NFT claimable funds. |
 

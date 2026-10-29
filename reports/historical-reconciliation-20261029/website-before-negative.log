@@ -1,0 +1,121 @@
+test_existing_evidence_is_refused_before_any_request (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_existing_evidence_is_refused_before_any_request) ... ERROR
+test_competing_writer_at_reservation_is_not_overwritten (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_competing_writer_at_reservation_is_not_overwritten) ... ERROR
+test_initial_marker_precedes_request_and_failure_evidence_survives (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_initial_marker_precedes_request_and_failure_evidence_survives) ... ERROR
+test_interruption_never_becomes_a_passing_record_or_a_retry (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_interruption_never_becomes_a_passing_record_or_a_retry) ... ERROR
+
+======================================================================
+ERROR: test_existing_evidence_is_refused_before_any_request (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_existing_evidence_is_refused_before_any_request)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 34, in test_existing_evidence_is_refused_before_any_request
+    with self.assertRaises(FileExistsError):self.run_subject()
+                                            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 28, in run_subject
+    self.subject.main()
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 36, in main
+    token=request('/session')['token']
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 22, in request
+    with urllib.request.urlopen(req,timeout=120) as response:return json.load(response)
+                                                                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not MagicMock
+
+======================================================================
+ERROR: test_competing_writer_at_reservation_is_not_overwritten (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_competing_writer_at_reservation_is_not_overwritten)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 56, in test_competing_writer_at_reservation_is_not_overwritten
+    with self.assertRaises(FileExistsError):self.run_subject()
+                                            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 28, in run_subject
+    self.subject.main()
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 36, in main
+    token=request('/session')['token']
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 22, in request
+    with urllib.request.urlopen(req,timeout=120) as response:return json.load(response)
+                                                                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not MagicMock
+
+======================================================================
+ERROR: test_initial_marker_precedes_request_and_failure_evidence_survives (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_initial_marker_precedes_request_and_failure_evidence_survives)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 73, in test_initial_marker_precedes_request_and_failure_evidence_survives
+    with self.assertRaises(urllib.error.URLError):self.run_subject()
+                                                  ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 28, in run_subject
+    self.subject.main()
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 36, in main
+    token=request('/session')['token']
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 22, in request
+    with urllib.request.urlopen(req,timeout=120) as response:return json.load(response)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 69, in fail
+    self.assertEqual(json.loads(self.output.read_text())['status'],'in_progress')
+                                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Ali\\AppData\\Local\\Temp\\tmp0xzilrif\\receipt.json'
+
+======================================================================
+ERROR: test_interruption_never_becomes_a_passing_record_or_a_retry (tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_interruption_never_becomes_a_passing_record_or_a_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 36, in main
+    token=request('/session')['token']
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 22, in request
+    with urllib.request.urlopen(req,timeout=120) as response:return json.load(response)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 81, in test_interruption_never_becomes_a_passing_record_or_a_retry
+    with self.assertRaises(KeyboardInterrupt):self.run_subject()
+                                              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_website_evidence.py", line 28, in run_subject
+    self.subject.main()
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-website-before.py", line 80, in main
+    print(result['status'],len(result['assertions']),'assertions')
+          ~~~~~~^^^^^^^^^^
+KeyError: 'status'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.097s
+
+FAILED (errors=4)

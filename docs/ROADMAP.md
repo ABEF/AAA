@@ -1,5 +1,10 @@
 # Engineering roadmap
 
+Finish the [historical finding reconciliation](../TODO.md#task-historical-findings)
+before treating old enhancement/fix lists as resolved. The current checkpoint
+preserves original evidence, implements two verifier provenance fixes and corrects
+stale active guidance; it does not replace live qualification or independent audit.
+
 Current [whole-project execution](../reports/whole-project-execution-20261029/REVIEW.md) completes the internal
 source/body review and implements keeper deadline priority, strict durable/log
 provenance, final-depth/fee/pool observation and artifact-tooling repairs.

@@ -1,0 +1,63 @@
+test_previous_evidence_blocks_before_any_lab_request (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_previous_evidence_blocks_before_any_lab_request) ... ERROR
+test_failed_request_preserves_initial_and_failure_status (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_failed_request_preserves_initial_and_failure_status) ... ERROR
+
+======================================================================
+ERROR: test_previous_evidence_blocks_before_any_lab_request (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_previous_evidence_blocks_before_any_lab_request)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_stack_evidence.py", line 27, in test_previous_evidence_blocks_before_any_lab_request
+    with self.assertRaises(FileExistsError):self.subject.run(8890,self.output)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-stack-before.py", line 18, in run
+    token=request('/session')['token'];state=request('/state');alice,bob=state['accounts'];checks=[]
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-stack-before.py", line 17, in request
+    with urllib.request.urlopen(urllib.request.Request(base+path,data=data,headers=headers),timeout=180) as response:return json.load(response)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+urllib.error.URLError: <urlopen error isolated fixture>
+
+======================================================================
+ERROR: test_failed_request_preserves_initial_and_failure_status (tests_python.test_local_stack_evidence.LocalStackEvidenceTests.test_failed_request_preserves_initial_and_failure_status)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_stack_evidence.py", line 36, in test_failed_request_preserves_initial_and_failure_status
+    with self.assertRaises(urllib.error.URLError):self.subject.run(8890,self.output)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-stack-before.py", line 18, in run
+    token=request('/session')['token'];state=request('/state');alice,bob=state['accounts'];checks=[]
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\historical-reconciliation-20261029\verify-local-stack-before.py", line 17, in request
+    with urllib.request.urlopen(urllib.request.Request(base+path,data=data,headers=headers),timeout=180) as response:return json.load(response)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_local_stack_evidence.py", line 32, in fail
+    self.assertEqual(json.loads(self.output.read_text())['status'],'in_progress')
+                                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Ali\\AppData\\Local\\Temp\\tmpu4vg1v_7\\receipt.json'
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.067s
+
+FAILED (errors=2)

@@ -279,7 +279,10 @@ at a chosen time. Governance alone does not imply keeper authorization; its
 and jitter only. Fresh ordinary rebalancing still requires on-chain confirmation
 readiness; a raw `needsRebalance` result is insufficient. It retains cooldown,
 range, lifecycle and execution checks and can be mined later than submission.
-No force-rebalance bypass exists.
+This ordinary call has no force bypass. The separate globally paused,
+governance-only [emergency manifest](EMERGENCY_REBALANCE.md) permits explicit
+financial/timing bypass with potentially near-total loss; it is never daily
+keeper work or an automated fallback.
 The submitter funds network gas. Reconcile automated pending work first. A manual
 transaction from the service's own key outside its journal needs explicit nonce/
 receipt/spend reconciliation before restart; new LP/timer discovery does not

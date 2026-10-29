@@ -9,7 +9,8 @@ website's simulated actions.
 
 ## Current and historical scope
 
-Current reads explicitly use accounting 3/fee-intake 1 and same-chain canonical V4.
+Fresh reads explicitly use accounting4/fee-intake1 and same-chain canonical
+holder-exit V5. Explicit accounting3/V4 remains a supported historical profile.
 Native ETH is admitted by both ledgers; historical accounting 1 retains its
 ERC20-only LP boundary. No profile or old journal is relabeled automatically.
 
@@ -20,9 +21,11 @@ confirmed-price USD marks. Claims and conversions never create extra income;
 current native claimable already includes remaining conversion credits. A
 transfer preserves lifetime history for the NFT, including its earlier owners.
 
-Native custody exit/return history must authenticate the exact interval. Return
+Accounting4 principal return is a separate holder ledger, not a reward payout or
+new earnings. Historical external native custody exit/return history must
+authenticate the exact interval. Historical return
 restores backing rather than income; unavailable backing/reconciliation never
-becomes zero. See [native custody reporting and recovery](ROYALTY_REPORTING.md#native-custody-history-and-recovery).
+becomes zero. See [current eligibility and historical custody](ROYALTY_REPORTING.md#current-native-eligibility-and-historical-custody).
 Complete same-chain predecessors are verified separately under
 [the lineage procedure](FRONTEND_LINEAGE.md). No integrated bridge or cross-chain
 ownership/ledger replay is inferred from a custody transfer.
@@ -167,7 +170,7 @@ raw logs emitted by the exact pinned NFT or the two exact pinned reward ledgers:
 - Both ledgers `Claimed(uint256,address,address,uint256)`: exactly four topics
   and one uint256 data word. Each claim must name a minted NFT, a nonzero payout
   recipient and an asset admitted by that particular ledger. Native address zero
-  is permitted for royalties and, in accounting 2/3, admitted native LP rewards.
+  is permitted for royalties and, in accounting 2/3/4, admitted native LP rewards.
   Accounting 1 preserves its original ERC20-only LP boundary.
 
 Each raw log must match its stored block/transaction/log-index/emitter identity

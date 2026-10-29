@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Historical reconciliation](historical-reconciliation-20261029/REVIEW.md) maps
+old findings to current source, fixes evidence-output admission and stale active
+guidance, and preserves original reports. The352-report inventory is not a
+completed all-findings audit:70reports have a final read-services ledger; remaining
+contract/operations dispositions are explicitly unfinished. Scoped13methods have
+12passes/one Windows symlink skip; unchanged contract build evidence is reused.
+
 [Documentation synchronization](documentation-sync-20261029/VERIFICATION.md) records
 current guide/Todo/context consistency and unchanged code/artifact boundaries;
 it adds no execution-test or release-approval claim.

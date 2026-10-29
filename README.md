@@ -74,6 +74,7 @@ does not qualify real operation, deploy services/sites or enable public signing.
 | Questions for the token/pool creator | [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team) - independent ZZZ pricing, token controls and market continuity |
 | Current selected-pool fork | [Current native harness and evidence](reports/current-pool-fork-20261026/VERIFICATION.md) - exact real-pool snapshot, explicit substitutes and remaining qualification |
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
+| Historical findings against current code | [Reconciliation and remaining review](reports/historical-reconciliation-20261029/REVIEW.md) - verified tooling/guidance fixes, a completed read-services ledger and explicit unfinished contract/operations dispositions |
 | Keeper safeguards | [Implemented manipulation protections](docs/KEEPER_SAFEGUARDS.md) - architecture, on-chain guards, limits, service controls and remaining exposure |
 | LP execution | [Manual range and reviewed-venue execution](docs/LP_EXECUTION_POLICY.md) - delivered upkeep2/compound3 and LP routing1; real depth/gas/operations qualification remains |
 | Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, [manual rebalance](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time), emergency stops and restart procedures |

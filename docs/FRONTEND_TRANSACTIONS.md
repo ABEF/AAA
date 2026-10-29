@@ -52,7 +52,7 @@ for a reviewed local deployment configuration:
 python -m frontend_api.server --config /operator/path/frontend-read.json --transaction-config /operator/path/wallet-policy.json --port 8787
 ```
 
-The read configuration pins the canonical chain, deployment anchor, eight core
+The read configuration pins the canonical chain, deployment anchor, nine core
 contract runtimes/helper bindings and admitted reward assets. The separate policy
 file is required to enable preparation; there is no default production fee policy:
 
@@ -222,7 +222,7 @@ wallet transactions.
 
 ## Activation and additions stay separate
 
-The existing eight read-service pins do not authenticate Entry, Registry, source
+The read-service pins (nine for accounting4, eight for historical accounting3) do not authenticate Entry, Registry, source
 admission, Oracle and conversion routes. Activation requires those additional
 reviewed identities, a complete original-source quote and a simulated marginal
 LP deployment satisfying the captured contribution-loss budget. The current

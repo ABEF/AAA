@@ -1,0 +1,47 @@
+{
+  "scope": "mocked evidence filesystem admission only; no local service/chain/transaction contacted",
+  "before_after_counterexample": {
+    "before": {
+      "http_calls": 1,
+      "existing_evidence_preserved": false,
+      "exception": "URLError",
+      "source_sha256": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd"
+    },
+    "after": {
+      "http_calls": 0,
+      "existing_evidence_preserved": true,
+      "exception": "FileExistsError",
+      "source_sha256": "41274c2f24744d02fa6e5d8daef42638557062c79f11b017ff1bb0534e6b9cd9"
+    }
+  },
+  "selected_methods": [
+    "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_competing_writer_at_reservation_is_not_overwritten",
+    "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_dangling_symlink_is_refused_without_creating_target",
+    "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_existing_directory_is_refused_before_any_request",
+    "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_existing_evidence_is_refused_before_any_request",
+    "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_initial_marker_precedes_request_and_failure_evidence_survives",
+    "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_initial_storage_failure_prevents_all_http_and_closes_file",
+    "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_interruption_never_becomes_a_passing_record_or_a_retry",
+    "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_missing_parent_is_refused_before_any_request"
+  ],
+  "tests_run": 8,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [
+    [
+      "tests_python.test_local_website_evidence.LocalWebsiteEvidenceTests.test_dangling_symlink_is_refused_without_creating_target",
+      "Host does not permit creating a symbolic link"
+    ]
+  ],
+  "successful": true,
+  "source_sha256_before": {
+    "scripts\\verify-local-website.py": "41274c2f24744d02fa6e5d8daef42638557062c79f11b017ff1bb0534e6b9cd9",
+    "tests_python\\test_local_website_evidence.py": "1c7daa139cb7886af311798572769586e22e8181c3cc5b82561c903cedc815b3"
+  },
+  "source_sha256_after": {
+    "scripts\\verify-local-website.py": "41274c2f24744d02fa6e5d8daef42638557062c79f11b017ff1bb0534e6b9cd9",
+    "tests_python\\test_local_website_evidence.py": "1c7daa139cb7886af311798572769586e22e8181c3cc5b82561c903cedc815b3"
+  },
+  "source_changed": false,
+  "historical_initial_negative_run": "ops-negative-before.log records four errors, not four failing assertions; see independent exact counterexample here"
+}

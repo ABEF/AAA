@@ -1,0 +1,30 @@
+{
+  "baseline": "ca4dde1df1e8d15f2927e9f463122e0ae9c61109",
+  "historical_reports_checked": 351,
+  "historical_report_bytes_changed": [],
+  "preexisting_dirty_files_changed": [],
+  "compiler_source_build_pins_checked": 82,
+  "compiler_mismatches": [],
+  "documentation_local_links_checked": 2239,
+  "documentation_link_failures": [],
+  "checks": {
+    "todo": {
+      "exit_code": 0,
+      "stdout": "Project Todo verified.\n",
+      "stderr": ""
+    },
+    "callable_reference": {
+      "exit_code": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 33, \"functions\": 696, \"constructors\": 33, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\n",
+      "stderr": ""
+    },
+    "whitespace": {
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: unable to access 'C:\\Users\\Ali/.config/git/ignore': Permission denied\n"
+    }
+  },
+  "site_service_signer_or_journal_changes": false,
+  "full_historical_reconciliation_complete": false,
+  "successful": true
+}

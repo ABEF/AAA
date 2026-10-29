@@ -1,10 +1,18 @@
 """Exercise the website's typed confirmation API on a fresh disposable lab."""
 import argparse
 import json
+import os
 from pathlib import Path
 import secrets
 import urllib.request
 import urllib.error
+
+def _write_evidence(handle,result):
+    # Serialize first: malformed evidence must not erase the reserved marker.
+    encoded=json.dumps(result,indent=2,allow_nan=False)+'\n'
+    handle.seek(0);handle.write(encoded);handle.truncate()
+    handle.flush();os.fsync(handle.fileno())
+
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -12,8 +20,11 @@ def main():
     parser.add_argument('--output',required=True)
     args=parser.parse_args()
     if not 1024<=args.port<=65535:raise ValueError('Invalid local port')
+    # Reserve before even requesting a session. Existing files, directories and
+    # symlinks must never be overwritten after this financial rehearsal runs.
+    output=Path(args.output).open('x',encoding='utf-8')
     base=f'http://127.0.0.1:{args.port}'
-    result={'scope':'owned local Anvil website API; no public assets','assertions':[],'operations':[]}
+    result={'scope':'owned local Anvil website API; no public assets','status':'in_progress','assertions':[],'operations':[]}
     token=None
     def request(path,body=None):
         headers={'Content-Type':'application/json','Origin':base}
@@ -33,6 +44,8 @@ def main():
         check(request('/action',envelope).get('replayed') is True,'identical '+draft['action']+' operation recovered without execution')
         return outcome
     try:
+        # A killed process leaves explicitly incomplete evidence, never a pass.
+        _write_evidence(output,result)
         token=request('/session')['token']
         s=request('/state');a,b=s['accounts'];check(len(s['nfts'])==4,'fresh fixture has four NFTs')
         dormant=next(n for n in s['nfts'] if not n['position']['activated']);identifier=dormant['token_id']
@@ -76,7 +89,8 @@ def main():
         result['status']='failed';result['error']=str(error)
         raise
     finally:
-        Path(args.output).write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+        try:_write_evidence(output,result)
+        finally:output.close()
         print(result['status'],len(result['assertions']),'assertions')
 
 if __name__=='__main__':main()

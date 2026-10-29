@@ -1,0 +1,91 @@
+{
+  "scope": "new report text publication only; old reports and executed source files unchanged",
+  "initial_staged_whitespace_check": "failed on CRLF; not ignored or gate-relaxed",
+  "files": [
+    {
+      "file": "compiler-reuse.json",
+      "original_sha256": "6783c9a57b7dbba0e1ada36a26d473874ad12c4e9349424d7508515cd4ac2741",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "0e0b4396f82c24f2bac2c3c5e0a616bc42b79b6103b418da4ffa160752f3b506"
+    },
+    {
+      "file": "FINDINGS.json",
+      "original_sha256": "def089182af0840ee9a35bb0cc3745499827f9500a95e5271103833b8f6707d3",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "17436975ab9476d1a95e121918098778acfe699c1f497ea632e7b3b560265c4f"
+    },
+    {
+      "file": "preservation-and-checks.json",
+      "original_sha256": "af3a9799c1a03a071f87846d6507ae13759b9eafd495f0f686f52c056712afdd",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "03dfaa6220d38dc0d0e8eb8e20beca8595a5af1bb96b774521367abdc376532b"
+    },
+    {
+      "file": "read-services-source-pins.json",
+      "original_sha256": "ed054bee2fe6b382655c719a34a5c8f36fb1478a69c1f91bbb8d3c0cc034fda9",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "0ab96726a57bf59535daf395184f898e3f9f0cc1d9f86fde37d013732f29c0da"
+    },
+    {
+      "file": "READING_INVENTORY.json",
+      "original_sha256": "4e57062f6cbfd1ea956f0c902cb81ac71523e711d02bbae3734e54b5b8f6129e",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "550922cba12744671801c34a0018f2a9127c67bdd9676fc79898529da8c2f215"
+    },
+    {
+      "file": "READ_SERVICES_LEDGER.json",
+      "original_sha256": "b4f822e2e980ad5edd77835aadd50064bf04da44e629e736f3390b8ad71e7885",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "09fde1df3b4d31096bd6494cfd851e0ff509356a8ce629acf4835a836a46e43e"
+    },
+    {
+      "file": "REVIEW.md",
+      "original_sha256": "1ebb23dd85e42fe8ff0319689230dc80f4c8f71960d64beea596065ede8baa61",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "c2457a385f1e37280f7abf635bb3dc79b2cd64ea78ba83138a702bc27b68feae"
+    },
+    {
+      "file": "stack-before-negative.log",
+      "original_sha256": "a4fbdd539b77ba292837b98e80bbe5015e0d0441c107b65dd6fe48e0b2558c2a",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "8317e98caabd9a128598ff34734803d7d8bae4ad2399fd8454374de18d16739f"
+    },
+    {
+      "file": "stack-tests.json",
+      "original_sha256": "0d42585d163e678ff82d25ad0853ff55a84854e994e931617d933e007e081a9a",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "48222f3cd25811a2e0452adfafcc71949cf24ed4e260f99f3fbda74778757f12"
+    },
+    {
+      "file": "stack-tests.log",
+      "original_sha256": "ebf768014fc4a064f936b8698f126213131b61c37f58be0ee0a53517210c3f59",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "c5b20e257f6d107d10b4384ccf0b40aaa4866c224bb61d123fee7e06afbad8e5"
+    },
+    {
+      "file": "VERIFICATION.md",
+      "original_sha256": "c29b0603bcfc7145e008e11606d8553d93e61a0b6bd136732da06a4a5919a35a",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "a3a7f411b1977d56f5b3f031dffc633701130e0d886cd8eb66abd6b553cadd21"
+    },
+    {
+      "file": "website-before-negative.log",
+      "original_sha256": "aecac7e0f43d474eebefa51c82e17d8f950e29aaa41275a6039efd50b3430deb",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "1d0908dfa79234bb3d9ac68f70f8fe84d1045b0d74fe9e8ab346dcd6ee2ed445"
+    },
+    {
+      "file": "website-tests.json",
+      "original_sha256": "735105992037f7f1012194b70c1e4d4ec7d772bc66da0ec431bd7fa1634aefb1",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "2769500bdd2080c3b559f34e072ed789690106bfa82451e13906e13c95660106"
+    },
+    {
+      "file": "website-tests.log",
+      "original_sha256": "02d654422d036fb46551005e33a46ce3c2e40b41d9015af48e10f89bc3afd6f9",
+      "operation": "CRLF to LF only; original retained externally",
+      "normalized_at_transfer_sha256": "6a9132dc5eb658925cd7b4864a7db82d631e7625791f26e13d0470937ce94767"
+    }
+  ],
+  "note": "These hashes describe the line-ending transfer checkpoint, not a final artifact manifest. Verification narrative and preservation results were subsequently updated."
+}

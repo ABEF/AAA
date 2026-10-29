@@ -19,6 +19,10 @@ third-pass prompt at this stable filename. Baseline: contract main
 `2feee92f6bc13b09bae1d43f36bfb7cf6c8faac9` **plus the captured, intentional
 uncommitted confirmation2/emergency1 candidate**, and website main
 `e5bb2163e0af0019bd917f65711c1f669b2d6224`, reviewed2026-10-29 Paris.
+These are the historical execution's baseline identities, not a version selection
+for a future run. Before reuse, record the actual current heads, dirty state,
+profiles and source hashes from both repositories; do not restore the old heads
+or treat their then-uncommitted candidate as still unpublished.
 Audit the entire current project, not only recent diffs. Baseline file hashes
 distinguish unpublished work, original unrelated dirty files and historical
 deployment compatibility. Save original dirty documents before replacement.

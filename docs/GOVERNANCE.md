@@ -2,137 +2,124 @@
 
 ## Operator and authority boundary
 
-There is one human project operator: the user. That operator controls the
-governance wallet and runs the keeper/services. "Operator" describes the person;
-"governance" describes that person's configured on-chain authority. There is no
-separate operator role, committee or additional human approval in PoPL.
+There is one human project operator: the user. That operator controls governance
+and runs the services. There is no separate operator role, committee or additional
+human approval. Keep the automated keeper's limited service key separate from the
+governance key; this does not imply another person. Production authorities remain
+unset. The fresh candidate is accounting4/custody3/canonicalV5, **NOT APPROVED**.
 
-The selected governance wallet calls each target module directly. The Access
-controller authenticates that wallet through `canConfigure(caller)`; it does not
-schedule or forward the transaction.
-The governance wallet can approve assets/pools/routes/feeds, strategy and keeper policies,
-roles, and contribution/conversion/maintenance caps up to10%. It can pause and
-unpause, authorize same-pair pool moves, and separately approve paused external
-custody exits and compatible whole-collection handoff. This is a powerful trusted
-role; sealing fixes implementations, not these approved configuration/exit powers.
+The selected governance wallet calls target modules directly. Access authenticates
+it through `canConfigure(caller)`; Access does not schedule or forward calls.
+Governance configures supported sources, pools, routes, feeds, roles, ranges and
+ordinary loss caps within bounds. It can pause/unpause, move same-pair LP, park it,
+start irreversible collective holder return, or approve compatible pre-exit
+same-chain replacement. Sealing fixes implementations and the ZZZ identity; it
+does not remove configuration or reviewed-successor trust.
 
-One person may control multiple accounts. Keep the automated keeper's limited
-service key separate from the governance key; this requires no second operator.
-Guardian, bootstrap, mint recipient and custody-recipient permissions retain
-their existing boundaries even when controlled by the same person. A single-owner
-wallet/Safe is possible; no production address or wallet type is selected here.
+There is no operator-selected custody recipient. Collective exit returns actual
+ETH+ZZZ by NFT shares to current owners. Permissionless allocation/delivery callers
+cannot start exit or choose beneficiaries. Failed recipients stay backed for retry
+or an owner-only fallback. No external custody exit, all-ZZZ consolidation,
+issuer-exchange executor or bridge remains.
 
-The custody recipient is the destination of an approved transfer, **not another
-governance role**. It may be an EOA or contract. Receiving principal gives it
-actual control outside the Vault, not the ability to reconfigure PoPL. It may
-fund only the already approved return/completion path, as may other funders;
-that path preserves NFT shares and the original approved backing/minima. There
-is no guarantee the custodian will bridge, migrate or return assets.
+A separate globally paused, governance-only `Migration.emergencyRebalance`
+manifest can explicitly bypass selected economic/timing checks. Disabling
+financial guards can lose nearly all principal. Structural custody, settlement,
+shares/rewards and lifecycle constraints remain. This is manual emergency work,
+never an automatic keeper fallback. [Exact risk and controls](EMERGENCY_REBALANCE.md).
 
-Guardian can pause immediately, but cannot unpause, configure or move funds.
-Ordinary global pause leaves claims and NFT transfers available; the separate
-canonical freeze/retirement rules still apply. Keeper executes bounded maintenance
-and pays gas, not discretionary custody exit or destination selection. The mint
-recipient receives0.05ETH per successful current direct mint and has no powers
-from that payment. The required OpenSea path instead keeps0.05ETH gross buyer
-price and pays the recipient net of the actual platform fee; that integration
-is not implemented. Network gas is separate. Bootstrap disappears at seal. VRF subscription ownership and
-funding depend on the provider, which remains unqualified.
+Guardian can pause, but cannot unpause, configure or move principal. Ordinary
+pause preserves claims and transfers; canonical freezes and terminal locks have
+separate effects. Keeper executes authorized bounded maintenance and pays gas.
+Governance alone does not imply a keeper grant for ordinary `Vault.rebalance`.
+Bootstrap disappears at seal. The immutable mint recipient gains no management
+authority from receiving payments. Current direct mint forwards0.05ETH; the
+required OpenSea path must keep0.05ETH gross buyer price and pay that recipient
+net of the actual marketplace fee, gas separate. That integration is unfinished.
+VRF subscription ownership/funding depends on the unqualified provider.
 
-Read [address inventory](DEPLOYMENT_ADDRESSES.md),
-[custody procedure](GOVERNED_CUSTODY_HANDOFF.md) and [operator manual](OPERATOR_MANUAL.md).
-Production addresses remain unset; no role selection or live operation follows.
+Read the [address inventory](DEPLOYMENT_ADDRESSES.md),
+[holder-return procedure](HOLDER_COLLECTIVE_EXIT.md) and
+[operator manual](OPERATOR_MANUAL.md). Documentation performs no live operation.
 
-The user selected **no governance timelock at any point** on 2026-10-18.
-This supersedes the earlier two-day template and the proposed narrow route-manager
-exception. The candidate is undeployed. Historical reports describe their original
-delayed versions; they are not verification of this change.
+The user selected no governance timelock on2026-10-18. Old two-day templates,
+zero-delay scheduled controllers and proposed route-manager roles are historical.
 
 ## Authorization without a waiting period
 
-The current `ZZZAccessController.GOVERNANCE_VERSION()` is **2**. Its constructor
-takes `initialGovernance`, `initialKeeper` and `initialGuardian`, each a nonzero
-address. It has no Timelock inheritance, proposer/executor/canceller roles,
-operation queue or generic transaction executor. Submit reviewed target/value/
-calldata through the governance wallet's own signature and nonce process.
-If using a Safe, the Safe is the target call's sender; a Safe owner calling from
-their personal account does not inherit that authority. Target failure reverts
-that transaction. A wallet proposal alone proves neither submission nor execution.
+`ZZZAccessController.GOVERNANCE_VERSION()==2`. Its constructor takes nonzero
+`initialGovernance`, `initialKeeper` and `initialGuardian`. No Timelock inheritance,
+proposer/executor/canceller roles, operation queue or generic executor remains.
+Use the governance wallet's own exact target/value/calldata, signatures and nonce.
+A Safe owner calling from a personal wallet does not inherit the Safe's authority.
+A wallet proposal alone is neither submission nor successful execution.
 
-Before sealing, configuration belongs to bootstrap. After sealing, the current
-`governance()` wallet configures modules directly while canonical state is
-operating and preparation is inactive. Bootstrap is erased; fixed module bindings
-cannot be replaced. The controller also keeps the separate guardian/keeper and
-canonical lifecycle controls.
+Before sealing, bootstrap configures the system. After sealing, the current
+governance wallet configures supported modules while their lifecycle guards allow
+it. Bootstrap is erased and module bindings cannot be replaced. Guardian/keeper
+capabilities remain separately granted and revocable within their actual controls.
 
 ### Rotate the governance wallet
 
-1. Inspect `governance()`, `pendingGovernance()`, lifecycle and the proposed wallet's
-   actual address, chain, signer/threshold configuration and recovery controls.
-2. The current wallet calls `Access.proposeGovernance(candidate)`. There is no
-   delay. Passing zero cancels a pending proposal; the controller and current
-   governance address cannot be proposed.
-3. The proposed wallet itself calls `Access.acceptGovernance()`. Confirm the
-   `GovernanceAccepted` event, new `governance()` and zero `pendingGovernance()`.
-   Proposing an address does not remove the current wallet's authority.
+1. Inspect `governance()`, `pendingGovernance()`, lifecycle and the proposed
+   wallet's exact chain/address, signers, threshold and recovery controls.
+2. Current governance calls `Access.proposeGovernance(candidate)`. There is no
+   delay. Zero cancels; the controller/current governance cannot be proposed.
+3. The candidate itself calls `Access.acceptGovernance()`. Verify the event,
+   new governance and cleared pending proposal. Proposal alone preserves the old
+   wallet's authority. Preparation/frozen/terminal handoff states block rotation.
 
-Both steps require operating canonical state and no active preparation; freeze or
-retirement cannot be bypassed by rotation. This does **not** rotate keepers,
-guardians, bootstrap or the immutable mint recipient. Rotate those separately
-where supported. Lost governance keys have no controller-admin rescue path.
+This does not rotate keepers, guardians or the immutable mint recipient. Lost
+governance keys have no controller-admin rescue. One-person governance remains
+supported; no new wallet or mandatory multi-person approval is imposed.
 
-| Action | Permission and timing |
+| Action | Permission and boundary |
 | --- | --- |
-| Select an existing enabled activation route | The transaction/quote selects it; no new governance action is needed. |
-| Enable/disable ETH or the fixed ZZZ, rotate approved routes or select a supported pool | Direct governance call; no waiting period. No third contribution currency or ZZZ retargeting. Token, factory, code, price and venue checks still apply. |
-| Change feeds, wrapper policies, operators or strategy parameters | Exact governance operation; no waiting period. Existing parameter and binding restrictions remain. |
-| Global pause | Guardian or governance, immediately. Only governance can unpause. |
-| Stop a pool / pause only NFT minting | Governance `PoolRegistry.disablePool` clears flags without dependency reads; `NFT.setMintPaused` controls new mints. No waiting period or new role. Reopening a pool uses full validation; resuming minting does not override global/lifecycle controls. |
-| Approve custody exit | Governance authorizes the exact reviewed plan and destination; no governance waiting period. `Migration.approve` is the current interface, not a retired bridge proposal. |
-| Move LP / execute custody exit | Governance calls `Migration.moveFunds` for supported same-pair movement or `Migration.exit` for an approved paused custody plan. Keeper authority alone is insufficient. |
-| Preparation, parking, handoff or successor approval | Governance, with no time delay; required state transitions, exact backing and source retirement remain mandatory. |
-| Replace sealed implementations with arbitrary new code | No generic in-place upgrade exists. Only implemented, compatible handoff mechanisms can authorize a reviewed successor. |
-
-No separate fast-route manager role is added. New routers, price feeds and
-successors remain security-sensitive governance choices even though they can be
-approved immediately. Same-day configuration does not add unsupported swap
-algorithms, pair conversion or cross-chain canonical migration capabilities.
+| Select an enabled contribution route | The owner transaction selects it; exact policy/asset/caller guards remain. |
+| Enable fixed ETH/ZZZ sources, routes or supported pools | Direct governance; no third contribution token or ZZZ replacement. Re-enabling validates actual dependencies. |
+| Change feeds, converter wrapper policies, roles or strategy settings | Direct governance within each module's bounds and lifecycle. No delay proves a dependency safe. |
+| Global pause/unpause | Guardian or governance pauses; only governance unpauses. Terminal exit is irreversible. |
+| Stop a pool or minting only | `disablePool` clears selected capabilities without failing dependency reads; `setMintPaused` stops new mint requests. Full pool validation is needed to reopen. |
+| Move/park/resume LP | Governance uses guarded `moveFunds`, exact paused `park`, or fresh guarded `resume`; same native ETH/fixedZZZ pair only. |
+| Start/close collective exit | Paused governance calls `beginCollectiveExit(reviewHash)` then `closeBucket` for each captured bucket with reviewed raw minima. No chosen recipient. |
+| Allocate/deliver principal | After all buckets close, anyone advances bounded `allocatePrincipal`/`distributePrincipal`; actual current owners receive funds. Operator normally submits/pays gas. |
+| Manual emergency rebalance | Globally paused governance alone uses the reviewed retained-check manifest; optional financial bypass accepts near-total-loss risk. |
+| Preparation/parking/canonical handoff | Governance controls the exact lifecycle; complete records/backing and atomic same-chain retirement/activation or funded abort remain required. |
+| Replace sealed code | No generic in-place upgrade. Only implemented compatible pre-exit canonical handoff permits reviewed replacement code. |
 
 ## What is not a governance timelock
 
-Keeper rebalance cooldowns, transaction deadlines, oracle freshness and sequencer
-recovery checks and confirmation/finality policies serve execution
-or accounting safety. They remain. Approval cannot skip missing funding, pause/
-preparation/frozen-state checks, ownership checks, approved-route checks or the
-captured execution limits: defaults2% contribution/1% conversion/3% maintenance,
-with immediately governed maxima10%. An original approved custody floor is not
-retroactively relaxed by changing the live cap. Explicit raw exit uses approved
-raw minima instead of a fabricated USD guarantee.
+Ordinary rebalance cooldowns, sampled confirmation, transaction expiry, oracle
+freshness and sequencer/finality policy serve execution/accounting safety. Direct
+governance does not remove them. Ordinary defaults remain contribution2%,
+conversion1%, maintenance3%, each governed up to10%; stronger caller/venue floors
+and captured policy remain binding. The explicitly separate emergency manifest
+may bypass selected economic/timing groups, not structural custody/accounting or
+terminal/canonical locks. Parking and collective closes use raw minima, without
+inventing a USD-loss promise. [Loss controls](EXECUTION_LOSS_POLICY.md).
 
-The current launch scope uses same-chain pool moves and source-chain external
-custody. The recipient handles external token migration or bridging; integrated
-bridges and remote NFT/reward-ledger transport are not implemented. No remote-proof
-interface remains. An approved plan does not guarantee token, venue or custodian availability.
+Same-pair movement/parking keep principal inside the protocol. Collective exit
+returns old ETH/ZZZ to holders; any later token exchange/new-chain project is
+separate and does not automatically relocate existing NFT/reward rights. Failed
+tokens, venues, governance access or receivers can still prevent recovery.
 
 ## Accepted trust boundary and release evidence
 
-There is **no advance on-chain warning window** for governance changes. Compromised
-or malicious governance can immediately approve harmful feeds, routes, providers
-or compatible replacement code. Nonredeemable principal and sealed local code do
-not make those choices safe. Multisig signer security, transaction simulation,
-independent dependency/replacement review and monitoring remain necessary.
-The user accepts different reviewed successor code; no identical-code rule is added.
+There is no advance warning window. Compromised governance can approve harmful
+feeds, routes, parameters or compatible replacement code. Approved code hashes
+identify bytes, not honest behavior. The user accepted reviewed different
+successor code; no identical-code restriction is added. Emergency financial
+bypass expands this trust further. [Change boundaries](CHANGE_AND_RECOVERY.md).
 
-The current accounting3 release inventory binds `GOVERNANCE_VERSION=2`, the actual
-governance wallet, zero pending governance, operator grants, reviewed multisig
-signers/threshold and complete history. It has no Timelock role/delay fields.
-Historical manifests retain their original interpretation only through explicit
-historical inspection; they do not qualify the current release. Authority review
-must accept immediate operations and custody trust. No production authority
-address or release approval is supplied by this decision.
+Fresh accounting4/schema6 inventory binds governance2, actual governance and
+pending-governance state, capability grants and their complete history. Actual
+wallet type, signers/threshold and recovery require qualification; no mandatory
+committee is implied. Historical manifests retain their own semantics and cannot
+approve a fresh deployment.
 
-The [earlier zero-delay review](../reports/immediate-governance/VERIFICATION.md)
-describes its original scheduled-controller source, not this direct-governance
-implementation. See the
-[central security task](../TODO.md#task-security-governance) and the
+The [zero-delay review](../reports/immediate-governance/VERIFICATION.md) describes
+its original scheduled controller, not this direct controller or later emergency
+authority. Current sources, exact runtime/configuration observations, operating
+rehearsals and independent audit/remediation remain required. See the
+[sole governance task](../TODO.md#task-security-governance) and
 [release approval record](RELEASE_CHECKLIST.md).

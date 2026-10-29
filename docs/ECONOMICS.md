@@ -15,7 +15,10 @@ and [pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
 
 Governance configures contribution/conversion/maintenance loss limits within
 hard 10% ceilings; defaults are 2%/1%/3%, gas separate. Captured operations,
-stronger caller/venue minima and exact classified backing remain.
+stronger caller/venue minima and exact classified backing remain. The separate
+paused-governance [manual emergency](EMERGENCY_REBALANCE.md) can explicitly bypass
+financial checks, accepting potentially near-total principal loss; these ordinary
+ceilings are not an unconditional bound against governance.
 [Exact controls](EXECUTION_LOSS_POLICY.md), [typed routes](TYPED_V4_ROUTES.md).
 
 The [selected pool](POOL_SELECTION.md) is Robinhood v4 native ETH/ZZZ
@@ -77,7 +80,7 @@ function manually; all actual allocation arithmetic stays on-chain.
 | --- | --- | --- |
 | Harvest | 80% advances the bucket's per-share owner index; 10% advances the equal activated-membership index. The other 5%/5% become separately backed reserves. | No loop pays every NFT, and no burn is inferred merely from reserving funds. |
 | NFT claim | Checkpoint that NFT's individual and collective balances, pay its current owner, and reduce the corresponding liability by the actual payout. Fractions remain. | No second allocation, membership change, compounding or buyback. Other NFTs' earned balances and both reserves are unchanged. |
-| Reinvestment | Keeper `Compounder.compound`, or a guarded contribution/rebalance, puts the bucket's compound funds into backing/LP for its existing shares. | It does not consume holder claim balances or mint another collective membership. Retained attributed idle remains backing, not completed LP deployment. |
+| Reinvestment | Keeper `Compounder.compound` or guarded rebalance reinvests the bucket's compound funds for existing shares. A contribution may release old compound into incumbent idle/NAV, but swaps/deploys only the entrant's budget. | It does not consume holder claim balances or mint another collective membership. Retained attributed idle remains backing, not completed LP deployment. |
 | Buyback | A separate keeper `Buyback.execute` spends only the designated reserve, swaps ETH to ZZZ when required, then verifies the actual ZZZ burn and supply reduction. | It does not depend on a holder claiming. Failed execution reverts reserve release; an allocated 5% is not an executed burn. |
 
 The collective denominator is the eligible count **when receipts are allocated**,

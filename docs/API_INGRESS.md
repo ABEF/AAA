@@ -4,8 +4,9 @@ The read/unsigned-preparation services enforce bounded per-client work admission
 This is implemented locally; public API hosting, real provider quotas and Linux
 operating qualification remain under [host services](../TODO.md#task-host-services).
 No transaction signer, wallet session or RPC credential is exposed by this feature.
-The manifests must identify the current accounting-3 deployment explicitly;
-historical Anvil profiles are separate. Admission does not qualify contracts,
+The manifests must identify the exact deployment/profile explicitly. The fresh
+backend supports accounting4/custody3/V5; the served poplint reader remains
+accounting3, and historical Anvil profiles are separate. Admission does not qualify contracts,
 prices or routes, and preparation never broadcasts a transaction.
 
 ## Capacity and identity

@@ -9,11 +9,13 @@ This implements the [read API task](../TODO.md#task-read-api) for the supported
 same-chain handoff. It does not implement cross-chain consensus verification,
 marketplace cutover or a hosted production indexer.
 
-For the current accounting 3/canonical V4 candidate, every configured predecessor
-must explicitly use accounting 3 too. Older accounting 1/2 readers remain for
-compatible historical lineages; they are not an automatic import path into V4.
-Custody exit to an operator-controlled address does not itself move NFT identities
-or reward ledgers. See [custody exit](GOVERNED_CUSTODY_HANDOFF.md).
+For fresh accounting4/canonical holder-exit V5, every configured predecessor must
+explicitly use accounting4 too. Explicit accounting3/V4 similarly requires
+accounting3 predecessors. Older1/2 readers remain for compatible historical
+lineages; changing a version cannot import another schema. Collective holder
+exit does not relocate NFT identities or reward ledgers, and permanently blocks
+canonical replacement. No operator-controlled custody exit remains. See
+[holder return](HOLDER_COLLECTIVE_EXIT.md).
 
 ## Operator configuration
 
@@ -27,9 +29,9 @@ Every entry contains exactly these fields:
 
 | Field | Required meaning |
 | --- | --- |
-| `accounting_version` | Required for native/current lineage; current V4 requires 3 for every predecessor. Historical configurations retain their explicit supported codec. |
+| `accounting_version` | Fresh V5 requires4 for every predecessor; explicit historical V4 requires3. Other historical configurations retain their supported codec. |
 | `deployment_block`, `deployment_block_hash` | Reviewed sealed-deployment anchor, at or before its outgoing retirement; the destination anchor must also precede that handoff |
-| `contracts` | All eight independently reviewed address/runtime pins, using the [API configuration format](FRONTEND_API.md#deployment-configuration) |
+| `contracts` | All nine independently reviewed address/runtime pins for accounting4, including `principal_exit`; historical accounting3 retains eight. Use the [API configuration format](FRONTEND_API.md#deployment-configuration). |
 | `assets` | Exact historical LP/royalty asset union and descriptors at retirement, using the same API format |
 | `history` | Separate complete creation-to-retirement indexer history, using the [history configuration](FRONTEND_HISTORY.md#configuration-and-genuine-coverage) |
 | `retirement_transaction_hash` | Successful source-retirement transaction containing the matching successor activation |
@@ -96,6 +98,7 @@ Actual archive-RPC availability, latency at the configured history bounds,
 retention/backups and browser integration need operating qualification under
 [hosted services](../TODO.md#task-host-services) and [live history UI](../TODO.md#task-live-history-ui).
 There is no integrated bridge or cross-chain ledger-import procedure in this
-release. External chain/token migration uses reviewed custody exit and redeployment;
-it does not acquire same-chain lineage guarantees merely by copying configuration.
+release. Current governance may end LP and return assets directly to NFT owners;
+there is no external custody executor. A later token exchange or deployment is
+separate and acquires no same-chain lineage guarantees by copying configuration.
 See the [scoped verification](../reports/frontend-lineage/VERIFICATION.md).

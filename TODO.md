@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 23 Implemented locally | 1 Not planned**
+**8 To do | 40 In progress | 23 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -881,9 +881,9 @@ Three required testing layers, with source-bound evidence.
   - Compile every contract/test/script and check normal runtime/initcode limits, constructor-argument allowance (including the claim router) and current gas; all small bytecode margins require explicit review.
   - Independently review the final source-bound Slither triage and accepted risks, refreshing analysis if source changes. Completed internal triage does not close the external audit gate.
   - Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.
-  - Complete qualified current services, frozen-release independent audit and operating rehearsals. The hookless launch pool earns LP fees directly; creator-payment receivers/terms/measurement tools and integrated bridge/remote-proof execution are removed. Marketplace royalties retain their separate funded ledger; external custodian conduct remains an explicit trust boundary.
+  - Complete qualified current services, frozen-release independent audit and operating rehearsals. The hookless launch pool earns LP fees directly; creator-payment receivers/terms/measurement tools and integrated bridge/remote-proof execution are removed. Marketplace royalties retain their separate funded ledger; immediate governance and reviewed replacement-code approval remain explicit trust boundaries.
   - Complete the seven [security audit workstreams](docs/SECURITY_AUDIT_PLAN.md), including qualification of the implemented same-chain whole-collection handoff while the source works. Cross-chain canonical transport is deferred optional scope, not a current launch/sealing requirement. Post-halt recovery is deferred; LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
-  - Fill and independently authenticate the schema-5 production inventory with explicit mint_integration_version1: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
+  - Fill and independently authenticate the schema-6 production inventory with explicit mint_integration_version1: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
   - Preserve complete exact-release local/Ubuntu, actual Robinhood mainnet-fork and Robinhood Testnet evidence. Partial/cancelled fork runs and older source snapshots do not qualify the final release; test timeouts must retain partial evidence without counting as a pass.
   - Keep fork inventory assertions aligned with actual published fixtures and preserve normal assertion failures. Earlier [CI fixture correction](reports/architecture-evolution-ci/README.md) covers historical24native/Pons plus9hookless cases only. Current fixture retirement and source profiles must not be hidden by a mock, renamed pass or stale inventory count.
   - Review explicitly archived obsolete pre-pricing ActivationEntry/creator/bridge fixtures and their source receipts; retain actual current Entry/Pricing security assertions in active integrations. Qualify the final frozen repository workflow without treating a targeted pass or retired test as a green full regression.
@@ -934,6 +934,7 @@ Three required testing layers, with source-bound evidence.
   - Existing website artwork is read locally. No production website source, public server, private key, public transaction or paused-monitor change.
   - User reported all six proposed local two-wallet scenarios passed on 2026-10-20: activation, top-ups, cancel after approval/reopen, pending refresh recovery, concurrent claim/contribution and invalid inputs. [Manual acceptance](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) is user-reported evidence, not a new automated run or production qualification.
   - Independent browser path: five actual local holder transactions exercised mint, native ETH activation, exact USDC approval, USDC top-up and ETH claim without the backend holder signer. All four original fixture owner/LP/activation records were preserved. [Evidence](reports/browser-wallet/VERIFICATION.md) distinguishes the EIP-1193-shaped RPC adapter from browser-extension acceptance and includes 43 affected Python / 167 website cases. New fixture setup preserved historical run directories; no public transaction or load campaign.
+  - Historical local verifier evidence admission is now exclusive before lab requests; incomplete output is not a pass or permission to replay actions. See [reconciliation verification](reports/historical-reconciliation-20261029/VERIFICATION.md). Actual fixture/service and current4 qualification remain separate.
 
   </details>
 
@@ -1130,6 +1131,21 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
   </details>
 
+<a id="task-historical-findings"></a>
+
+- [ ] **[Reconcile historical findings against the current implementation](reports/historical-reconciliation-20261029/REVIEW.md)** - In progress. Inventory covers352 reports/91 guides. Completed read-services ledger covers70 reports/25 guides and28 finding groups. Local evidence-output and stale-current-guide fixes are verified; the remaining contract/operations per-finding reconciliation is incomplete after reviewer credit exhaustion.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Finish a traceable disposition for every material historical defect, enhancement, accepted risk and qualification gate; indexing or a report-level label is not complete semantic reconciliation.
+  - Preserve original report bytes, failures, skips, revisions and unrelated work. Keep obsolete bridges/creator inboxes/external custody exits historical; do not remove required old deployment codecs.
+  - Use the [current report](reports/historical-reconciliation-20261029/REVIEW.md), [reading inventory](reports/historical-reconciliation-20261029/READING_INVENTORY.json), [verified fixes](reports/historical-reconciliation-20261029/VERIFICATION.md) and saved external drafts to continue. Not all past findings are resolved.
+  - Two historical local verifiers now reserve new output before lab HTTP; scoped13 methods have12passes/one Windows symlink skip. No financial journey, live service or public transaction was executed.
+  - Feeds/routes/VRF, authorities, OpenSea, fresh4 browser/services, target gas/economics, operating rehearsals and independent audit remain in their existing owning tasks. Do not close these through documentation reconciliation.
+
+  </details>
+
 
 ## Launch & operations
 
@@ -1319,4 +1335,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `94ecc1f50913e35bf43cdbf0f4006fce69c6a5e711e5a24948d58e74ac38a7fc`.
+Snapshot SHA-256: `c5a08c88826ae743b064b77dc589f95e9ecd2251853801282b68111bafeea9d3`.

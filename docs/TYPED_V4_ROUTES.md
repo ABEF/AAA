@@ -70,8 +70,8 @@ revert the entire operation. Input/output are bounded by signed int128 settlemen
    `Entry.addV4Route(policy)` through governance with the exact immutable policy.
    The output must be one actual currency of the selected contribution pool.
    Direct pair input still uses route zero; token approvals remain exact amounts.
-3. Add a reviewed activation configuration with accounting 3 / fee-intake 1 in
-   its parent, explicit routing 2 / pricing 2 / review 1 and
+3. Add a reviewed activation configuration with accounting4 / custody3 /
+   canonicalV5 / fee-intake1 in its parent, explicit routing2 / pricing2 / review1 and
    `contracts.v4_executor: {address,code_hash}` plus the fixed pricing companion. Every source entry declares
    `route_kind` (0 direct, 1 v3 or 2 v4). Include reviewed token/feed and conversion
    manager/StateView dependency pins. No automatic v3/native fallback exists.
@@ -125,6 +125,8 @@ Actual assets/routes/feeds, RPC/trace compatibility, complete fees/gas and keepe
 operation need qualification, alongside current-profile website/release inventory,
 OpenSea mint support and independent audit. Atomic ETH/WETH principal moves and
 cross-chain NFT/ledger transport are unsupported scope, not implied capabilities
-or required bridge-provider configuration. External custody remains separate.
+or required bridge-provider configuration. External custody-address exits are
+removed; terminal collective holder return and compatible pre-exit same-chain
+replacement retain their separate procedures.
 No public signing, deployment or existing local fixture change is enabled here. [Scoped evidence](../reports/typed-v4-routes/VERIFICATION.md)
 and the [single Todo](../TODO.md) distinguish implementation from release approval.

@@ -2,8 +2,8 @@
 
 `ZZZActivationEntry` is the immutable PoolRegistry-created contribution entry,
 paired with `ZZZActivationAssets`. The current undeployed profile is accounting
-3 / fee-intake 1 / routing 2 / pricing 2 / reviewed policy 1, with direct
-governance 2 and local canonical V4. It accepts **native ETH or the one fixed
+4 / fee-intake 1 / routing 2 / pricing 2 / reviewed policy 1, with direct
+governance 2, custody 3 and local canonical holder-exit V5. It accepts **native ETH or the one fixed
 ZZZ only**. USDC, USDG and WETH are not user contribution inputs.
 
 Entry never owns the NFT or grants principal redemption. It authenticates one

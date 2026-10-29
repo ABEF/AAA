@@ -5,6 +5,25 @@ Reviewed 2026-10-29. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Whole-project audit context
 
+### Current unfinished historical-report reconciliation
+
+Continue [the current reconciliation](../reports/historical-reconciliation-20261029/REVIEW.md),
+[reading inventory](../reports/historical-reconciliation-20261029/READING_INVENTORY.json)
+and [sole task](../TODO.md#task-historical-findings).352reports/91guides are
+inventoried;70reports/25guides have a completed28-group read-services ledger.
+Delegated reviewers exhausted workspace credit before final contract/operations
+finding ledgers. Their external indexes/drafts and original current-doc copies
+are preserved at the path in the report. Do not label this full review complete.
+
+Verified local fixes reserve new output before HTTP in both historical local
+verifiers;13distinct methods have12passes/one Windows symlink skip. Current
+operator/integration guides remove retired custody directions and outdated
+profile claims. Exact82file build comparison reuses39normal gates, without a
+compile or EVM rerun; Manager37initcode/Vault59runtime margins remain. No
+Solidity, financial/timing policy, installed service/site/Anvil/journal/signer
+or paused heartbeat changed. Preserve the original four dirty files below.
+Check actual Git/remote heads and final verification before saying published.
+
 The stable [audit prompt](THIRD_PASS_AUDIT_PROMPT.md) now covers the full project;
 its previous duplicate is a pointer. Understanding preceded drafting and both
 independent critiques are retained in the [execution report](../reports/whole-project-execution-20261029/PROMPT_REVIEW.md).

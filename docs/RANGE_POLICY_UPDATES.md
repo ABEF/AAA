@@ -17,8 +17,9 @@ Fresh `MAINTENANCE_POLICY_VERSION()==2` requires the configured hard cooldown,
 then actual physical range exit or an explicit desired-width/orientation change.
 Initial intended cooldown is12hours. Manual +/-25/50% widths are selected; leave
 optional automatic selection disabled. The matching keeper adds durable60-600s
-jitter, hourly ordinary checks while eligible but inside, and fast receipt/health/
-harvest observation. Source behavior does not install configuration or services.
+jitter and fast receipt/health/harvest work. Fresh confirmation2 evaluates eligible
+inside/outside positions every240seconds; historical policy2 without confirmation
+retains hourly ordinary checks. Source behavior does not install configuration or services.
 Budget capability3 has a separate compound interval. [Operator procedure](OPERATOR_MANUAL.md#operator-selected-lp-policy),
 [policy and limitations](LP_EXECUTION_POLICY.md), [verification](../reports/maintenance-policy-20261027/VERIFICATION.md).
 
@@ -98,16 +99,23 @@ to explicit historical policy1.
 
 Use [the manual rebalance procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
 for exact caller, shared bucket, simulated raw LP minimum, short expiry and
-separate gas. Direct `Vault.rebalance` skips service jitter/hourly checks, never
-contract cooldown or range/operator-update eligibility. Governance must also be
+separate gas. Direct `Vault.rebalance` skips service jitter/check scheduling, never
+contract cooldown, range/operator-update eligibility or ordinary confirmation2. Governance must also be
 keeper-authorized to call it. Reconcile service pending work and any same-key
 out-of-band nonce before restarting; the physical LP/timer refresh alone cannot
 repair a stale signer journal.
 
 ## Optional keeper selection: 25% or 50%
 
-Governance first selects mode 1 and one of `rangeBps=2500`/`5000`, then reviews
-and calls:
+Fresh confirmation2 reference protection and automatic keeper width policies
+cannot coexist. Keep automation disabled for the selected manual operating
+policy. Enabling automation requires a deliberate reviewed relaxation through
+`setRequireReferenceExit(false,reviewHash)`, invalidating old samples; restoring
+protection requires zero active automatic policies. This is not an automatic
+response to a failed rebalance.
+
+If that separate policy is explicitly selected, governance first selects mode1
+and one of `rangeBps=2500`/`5000`, then reviews and calls:
 
 `Strategy.setKeeperRangePolicy(poolId,true,narrowTriggerBps,widenTriggerBps,minInterval,reviewHash)`
 

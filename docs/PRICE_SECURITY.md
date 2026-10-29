@@ -36,11 +36,12 @@ market averaging still require qualification.
 Deeper instantaneous spot alone is not manipulation proof, and the greatest
 reported liquidity need not mean the best manipulation resistance.
 
-The pending design choice is whether an independent reference must also remain
-outside on the same side for the confirmation window, or only corroborate price
-agreement. The former may deliberately leave the physical LP inactive while its
-distorted price disagrees with the wider market. Preserve actual ticks, dual-source
-USD valuation, identity/policy resets and all execution floors in either design.
+The selected and implemented confirmation2 rule requires independent-reference
+and physical exit on the same side through the sampled window. It can deliberately
+leave the physical LP inactive during disagreement; governance may explicitly
+change the reviewed reference requirement, invalidating samples. Actual deeper-
+market/provider/window selection remains unqualified. Preserve actual ticks,
+dual-source USD valuation, identity/policy resets and ordinary execution floors.
 No automatic reference rotation or use of our own LP as an independent source is
 implied. Concrete market/window selection requires source/operating qualification.
 
@@ -270,10 +271,12 @@ execution protections, not new Oracle providers or independence qualification.
 
 An unhealthy price dependency stops new activation/growth, price-dependent
 conversion, maintenance or USD reporting rather than presenting a guessed value.
-Already funded raw-unit claims do not require an Oracle price. The separately
-approved paused raw custody exit retains its own exact raw minima and explicitly
-does not promise a USD loss floor; it cannot automatically replace a failed
-normal exit. Pool, token or recipient failure may still prevent movement.
+Already funded raw-unit claims do not require an Oracle price. Governed paused parking and terminal collective holder close instead use their
+own reviewed raw minima without a USD-loss promise or external custody address.
+A separate [manual emergency manifest](EMERGENCY_REBALANCE.md) may explicitly
+bypass selected price/financial checks, accepting potentially near-total loss;
+it is never an automatic fallback. Venue/token/receiver failure can still prevent
+closure or delivery.
 
 The [backend policy codec](../zzz_ops/price_policy.py),
 [activation configuration](../frontend_api/activation_config.py),

@@ -47,6 +47,14 @@ by the current keeper-coordination follow-up; preserve the original report scope
 
 ## Product and implementation
 
+The [historical-report reconciliation](reports/historical-reconciliation-20261029/REVIEW.md)
+is an unfinished current task:352reports/91guides inventoried,70reports/25guides
+have a completed traceable ledger; remaining contract/operations dispositions
+need continuation after reviewer credit exhaustion. Two local verification tools
+now reserve new evidence before lab requests. Current custody/profile guidance
+and build011 margins are corrected; no Solidity, services, sites or state changed.
+See the [sole task](TODO.md#task-historical-findings) and exact verification scope.
+
 PoPL is an ERC-721 collection capped at1,000 NFTs:600 Commun/300 Rare/100 Legendary.
 Mint creates a dormant NFT with no LP or rewards. Activation in ETH/fixed ZZZ
 attaches nonredeemable shares of shared LP; later contributions grow that NFT.

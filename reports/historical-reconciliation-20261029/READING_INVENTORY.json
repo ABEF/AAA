@@ -1,0 +1,4640 @@
+{
+  "schema": 1,
+  "baseline": "ca4dde1df1e8d15f2927e9f463122e0ae9c61109",
+  "reports": 352,
+  "documentation": 91,
+  "complete_reconciliation_report_files": 70,
+  "complete_reconciliation_doc_files": 25,
+  "files": [
+    {
+      "path": "docs/ACTIVATION_ENTRY.md",
+      "sha256": "9552c5bf05bfcce5d08288ceae0ad671602b5927eba4388bcf142f85eed59c09",
+      "bytes": 7419,
+      "lines": 122,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/ACTIVATION_PREPARATION.md",
+      "sha256": "be2c2ffc4b0e1c7a29b6b03e0aac25c32b8402dc050b92cf756dd22685d61146",
+      "bytes": 21275,
+      "lines": 280,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/ACTIVATION_ROUTING.md",
+      "sha256": "e6680cd3dfac681b2946c484d5050f8c0fbca41064e219d743a1fb0d95330d5b",
+      "bytes": 5229,
+      "lines": 81,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/API_INGRESS.md",
+      "sha256": "a95f23047ec14cf26bb31a3cae1ccf039c8cf1df3b75685f40152c1f3cd9ad7f",
+      "bytes": 9642,
+      "lines": 147,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "5bf24b701c97540b6a930e82517d8bb2cb7206a5af51b7be161a672ab5203a7a",
+      "bytes": 21997,
+      "lines": 177,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/ARCHITECTURE_EVOLUTION.md",
+      "sha256": "3faf7bf6baeae5b8328e730be96e51eb493abe3d879b9c91f985e7e81c516b66",
+      "bytes": 11753,
+      "lines": 158,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/ARTWORK_PUBLICATION.md",
+      "sha256": "f12133cec2ad38821bdcd0664b63263c2e3ee48a81fb089761fad4bc1e657de0",
+      "bytes": 4259,
+      "lines": 68,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/AUDIT.md",
+      "sha256": "750d66b792415f1ec16a569294a5f7119a6397ea356ef686d7856fc6a4e1a38e",
+      "bytes": 688,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/BRIDGE_ONBOARDING.md",
+      "sha256": "d59f6628217c84071862c417b250d20121a4a3b80889234e332143136846fa7a",
+      "bytes": 787,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/BROWSER_WALLET.md",
+      "sha256": "c56d848a7ba43d7f09669daa24be46b9bbc556a1e51047e46ba7c622073d9598",
+      "bytes": 25219,
+      "lines": 368,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/CANONICAL_HANDOFF.md",
+      "sha256": "11ac18758dac238d04c77d0b7dc7104fef315d6484300ad4ee6bf13803440dce",
+      "bytes": 14470,
+      "lines": 214,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/CANONICAL_MIGRATION_DESIGN.md",
+      "sha256": "ca8206fd4d07f30923dee07d908d1b716d26c8078afe148b8e8f4c860ac2dab6",
+      "bytes": 791,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/CHANGE_AND_RECOVERY.md",
+      "sha256": "17f059e71f5581691b7667625fd38bb3948282298acd7114d1cc9a64822721ec",
+      "bytes": 7528,
+      "lines": 81,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "sha256": "1f3f86ff37a2586edb235314b553eabb1d527a0a6f33699483a95d58c050d467",
+      "bytes": 16269,
+      "lines": 217,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/CLAIM_ROUTER.md",
+      "sha256": "8d8fef89fba441b369354368a898c05fae0ee72fe52231c0b4bb9ae4882f488d",
+      "bytes": 5973,
+      "lines": 95,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/COLLECTION_READS.md",
+      "sha256": "ba657db9c222c1774186dc935e2ee817d97c280ec6569a4026fda10e10d7b20e",
+      "bytes": 4931,
+      "lines": 80,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/COMPONENT_STATUS.md",
+      "sha256": "fae02cbdd874b15bf2353c6e4b6a3f648de743d26af80cf357051b63e08a2976",
+      "bytes": 9741,
+      "lines": 80,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/CONCURRENT_SERVICES.md",
+      "sha256": "6516de8abd0a3d5d823a8446f1388b5ff0d7142ddc6adae4d9d97ae29862d528",
+      "bytes": 7856,
+      "lines": 109,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/CONTRACT_FUNCTIONS.md",
+      "sha256": "a9d1f40e525a325599050cd5d3fcf4df7a1f256758ff284f175e7902de1bb611",
+      "bytes": 383460,
+      "lines": 1553,
+      "tracked": true,
+      "review_scope": "generated_reference_consistency_check",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/CONTRIBUTION_MINIMUMS.md",
+      "sha256": "8373a1002124a3b8facd484dd88574144e3811b8f8c898a772bc29302c1ba001",
+      "bytes": 6083,
+      "lines": 93,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/CURRENT_WEBSITE_PROFILE.md",
+      "sha256": "6a1234c6f9e07fc909544200928ec20c66a25e1ec60fba693901377b870e1f66",
+      "bytes": 5457,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/CUSTODY_PARKING.md",
+      "sha256": "ec8338f805f856c28b57b13a499954f5c82fe6c1cb2ad47de984fd980fe7f74e",
+      "bytes": 5747,
+      "lines": 91,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/DEPLOYMENT_ADDRESSES.md",
+      "sha256": "2bcb50e839271fcae9f2b5b11153ab13e2ec4a0c240553471154f1fa3a036801",
+      "bytes": 22360,
+      "lines": 270,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/DEPLOYMENT_WEBSITE.md",
+      "sha256": "a68239cc78d44b8ef2aa8825ce95beef10326df993fa9d138c8b0abcc6c24d89",
+      "bytes": 17722,
+      "lines": 221,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "sha256": "412c105141dcaee81635f7cc3c01c24452d11c56f780c1b803e2247a52c71bab",
+      "bytes": 8808,
+      "lines": 152,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/DYNAMIC_LIQUIDITY.md",
+      "sha256": "27818fb9b7262d73ee79171b4bdc59d305c5ba24f09399e3c5638a7d7a3cf49c",
+      "bytes": 21507,
+      "lines": 300,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/EARNINGS_HISTORY.md",
+      "sha256": "62b060b1d532abba54f3a8b6b377aadaa3888281684780f866538fcec62bb460",
+      "bytes": 18462,
+      "lines": 313,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/ECONOMICS.md",
+      "sha256": "d32793dd889adbd35065108afca1d5bedf865a9a9d04895dd8cd357e822dbdb5",
+      "bytes": 17644,
+      "lines": 178,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/EMERGENCY_REBALANCE.md",
+      "sha256": "218834171f2e4be3d54c5b786975dd9cae3f3c937ccc263005e2871837e62cd3",
+      "bytes": 7926,
+      "lines": 105,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/EXECUTION_LOSS_POLICY.md",
+      "sha256": "3596505a798760ef455e6b2e93900ac4d8af0a43941e200301d622708207b8fb",
+      "bytes": 9702,
+      "lines": 144,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/EXECUTION_QUALITY.md",
+      "sha256": "f61abf499bf8ae2c0cebc069fc13413971bf369d3bce7ca70e4c933481bf91f5",
+      "bytes": 7147,
+      "lines": 121,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/EXTERNAL_REWARDS.md",
+      "sha256": "669ce07d88b9bd80e5174c390f602a54722fea0fa7215c834cdf57c99c15b471",
+      "bytes": 723,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/FRONTEND_API.md",
+      "sha256": "ab9da448837bdb1447d1d0ccc9a994c8c20ed286d37de07b866cbfb0226fd893",
+      "bytes": 23320,
+      "lines": 369,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/FRONTEND_HISTORY.md",
+      "sha256": "951779318205536eaf74aabd549fda0d7d870a09c029be83cecba27e3ac1d1a0",
+      "bytes": 11724,
+      "lines": 216,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/FRONTEND_LIFECYCLE.md",
+      "sha256": "1f2a8f7b1e22239672d1a234aea439f42ba368c8383b93d9c7820e2a85632c4a",
+      "bytes": 6271,
+      "lines": 99,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/FRONTEND_LINEAGE.md",
+      "sha256": "2c05ccbb200cca8611caface20b8a778da67cfde3a82d44a535643b9eb1447a1",
+      "bytes": 6693,
+      "lines": 101,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/FRONTEND_TRANSACTIONS.md",
+      "sha256": "5215133f6b79a89caf8ca005b40607fe4ba776a816ce2d35a931705fa9ad13d9",
+      "bytes": 14777,
+      "lines": 267,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/FROZEN_REVIEW_BUNDLE.md",
+      "sha256": "aff86822af7ecea31b785cd6469b795f91cf4ac04c00a9187a2e211a1af502a7",
+      "bytes": 5992,
+      "lines": 94,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/GOVERNANCE.md",
+      "sha256": "402e358151b4178c66756d68c17df1d0d295d9fddde1a54981e14f318724b219",
+      "bytes": 9426,
+      "lines": 138,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/GOVERNED_CUSTODY_HANDOFF.md",
+      "sha256": "135a55871d652b800d8a32a2b894222163204a7cde2832daa26586f09fe34f58",
+      "bytes": 992,
+      "lines": 17,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/HISTORY_AUDIT.md",
+      "sha256": "3f4bba2589dfb03378666f11f68f8965eb2ea488a902bf6daf9d5ab4abf2414f",
+      "bytes": 7322,
+      "lines": 121,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/HOLDER_COLLECTIVE_EXIT.md",
+      "sha256": "2c6098af8d06f968b87c80b7815320442357670b3e677bd7cdf317d7a4626e09",
+      "bytes": 7887,
+      "lines": 119,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/HOLDER_PREFLIGHT.md",
+      "sha256": "71a9749c2fbed198bb86d43fc38a4e06b5b7f015becc62d4791345086df69b37",
+      "bytes": 7795,
+      "lines": 110,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/IDLE_AND_DUST.md",
+      "sha256": "e6b386ecba3b87f8d0e93ed363360f47d758dfba25fd83c3d8a7b2c0a52bff09",
+      "bytes": 9665,
+      "lines": 139,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "sha256": "11c2830d003ed3e4e5c371d7a67dd2b870deb617726b1c25ca80a515e9b8977a",
+      "bytes": 27027,
+      "lines": 275,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/INDEXER_RECOVERY.md",
+      "sha256": "86810f40299433ba4fb27dfbfc1720f94c56bf714e2d7132eca23947b76a7471",
+      "bytes": 6557,
+      "lines": 93,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/INTEGRATION_CAMPAIGN.md",
+      "sha256": "585343e4f416faa27a5335dfb9ffdce2cea9f45a3a7360fbb44c4c2fd8159c38",
+      "bytes": 5673,
+      "lines": 93,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/KEEPER_COORDINATION.md",
+      "sha256": "3400f050fbc4cddb778c35c6ceeb8e293be0c1c7a7ab3f4cd686e64020093017",
+      "bytes": 8084,
+      "lines": 140,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/KEEPER_RECOVERY.md",
+      "sha256": "5526729e2cf8743e6d9a653db6ac1d158c02b5f405a01d357703550413a890b1",
+      "bytes": 35936,
+      "lines": 507,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/KEEPER_REHEARSALS.md",
+      "sha256": "47842e67cd2b43486fba5f2f46092bece81c16957ae52b40c4ee7c794c55b062",
+      "bytes": 9966,
+      "lines": 159,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/KEEPER_SAFEGUARDS.md",
+      "sha256": "cb4d6636e89a23a439d3616a96f248c5e15cb43c133c04354fbd42eec0d62148",
+      "bytes": 21773,
+      "lines": 256,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/LOCAL_API_REHEARSAL.md",
+      "sha256": "b859d7e65eb8e0da6c89d2c195466dcf128d5066c05a031674ddfdf50419c20e",
+      "bytes": 7046,
+      "lines": 113,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/LOCAL_TEST_STACK.md",
+      "sha256": "62125a3146b83aa239dbf137ad01b68e5c0e25ab47f1d34a2d54b198902e1153",
+      "bytes": 12900,
+      "lines": 193,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/LOCAL_WEBSITE.md",
+      "sha256": "687b49f0aaf8fdbf7ce1412a305b2e74f51bd3e43a758e15aa05eec7a0e50536",
+      "bytes": 16184,
+      "lines": 243,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/LP_ETH_SETTLEMENT.md",
+      "sha256": "ac11b65e77e34a85cfdaafe10b62ecfbcd913b8e9ae68b9d7d9b5efba58913db",
+      "bytes": 9824,
+      "lines": 135,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/LP_EXECUTION_POLICY.md",
+      "sha256": "cdb47c118b10f4f9fe2222904aebb93697299b737cb46f4a2cf20e7eea97d746",
+      "bytes": 27045,
+      "lines": 390,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/MIGRATION_SAFETY.md",
+      "sha256": "74ab22e2ad3a125195b46c08e620e65cd9923f848fc7bb01880da4a296d9208c",
+      "bytes": 3196,
+      "lines": 52,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/MINT_INTEGRATION_QUALIFICATION.md",
+      "sha256": "3e8cc11af337c809c45f23ce6f93c28269bb69bfd45418e7f438367e81217dd7",
+      "bytes": 7831,
+      "lines": 128,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/NATIVE_ETH_ARCHITECTURE.md",
+      "sha256": "bf2df50e3b5156855216a0b581b750571c869cf74bc350b7628e2d1b18c34c1a",
+      "bytes": 5587,
+      "lines": 76,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/NATIVE_WEBSITE_PROFILE.md",
+      "sha256": "d393a116376abe628f54e2449843e2cafd384ae93a0759c28ffd429a9d6b41a2",
+      "bytes": 7668,
+      "lines": 109,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/NFT_METADATA.md",
+      "sha256": "e88667a029a9565f0fbae4709ec2a4a4c7a94d8c93b44f2226d51b6e2c5391c1",
+      "bytes": 12220,
+      "lines": 110,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/ONE_DOLLAR_REHEARSAL.md",
+      "sha256": "a2da31259f9b97284011c908252a060d75fa962c8244d4a5850f4d5daa5278fe",
+      "bytes": 4467,
+      "lines": 74,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/OPERATIONS.md",
+      "sha256": "ea564b0a84391cf6914224b72dae88bf307ea486b151402a112c99988d8d177c",
+      "bytes": 29068,
+      "lines": 411,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/OPERATOR_MANUAL.md",
+      "sha256": "f24e3aff320a46b2e295d963b3ac3f23f275c07920bb3db52aaf270bf3ba4e66",
+      "bytes": 138255,
+      "lines": 1570,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/PAIR_MIGRATION.md",
+      "sha256": "a34eb7e0a40b4cbec1a97adfd7fecc02606bc505eb187246c7ebc63403ee23d8",
+      "bytes": 769,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/POOL_SELECTION.md",
+      "sha256": "2167c36ea8dce8b820d8c74b876e6f82e63b700a5aeb4d1a2c0c905fca2596fe",
+      "bytes": 8038,
+      "lines": 121,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/POSITION_V3.md",
+      "sha256": "a93c7669f1f73e60d9e4336cc53ca8b797191835df179bb75291c188e55d2666",
+      "bytes": 5665,
+      "lines": 96,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/POSITION_V4.md",
+      "sha256": "9a948020f6a1091a8164bf5bf23be483ec95ab1fc134c950912b9e97d1c2ff90",
+      "bytes": 5688,
+      "lines": 88,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/POST_SEAL_POLICY.md",
+      "sha256": "c67c954047d6a7a7f096bd00390429a3f0595608d88000bd725210ab0a80932c",
+      "bytes": 9602,
+      "lines": 113,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/PRICE_SECURITY.md",
+      "sha256": "3e77734495bfe716ee25f296fd38a48776ff9d68a3c8c3c73b5d2eeb1c8ca95e",
+      "bytes": 20121,
+      "lines": 326,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/PRODUCTION_PREFLIGHT.md",
+      "sha256": "6126ce73ff660ac1f6cce8924f4fd5b0acae95a3c90daa03eb6487ac82433760",
+      "bytes": 25353,
+      "lines": 374,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/PRODUCTION_SERVICES.md",
+      "sha256": "ead34fc074a28f2818e6a919102cd01bcc776277bc96077b42d56dd11b967e56",
+      "bytes": 4644,
+      "lines": 38,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/PYTH_PRICE_SOURCE.md",
+      "sha256": "6b62fb7cd614b2f5a3124870727fb8b1ec26581702f98db0a77ea7f999b70f29",
+      "bytes": 7767,
+      "lines": 111,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/RANGE_POLICY_UPDATES.md",
+      "sha256": "687fdfa1eb7546eeabbe4f5b104b43ff4e6b841bd44c5d305d5f5ce9b0042d04",
+      "bytes": 15467,
+      "lines": 250,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "7d58cdb5d684e9425167f44b823027bb503e940dd83df60ce1b6e165c28fc5fd",
+      "bytes": 9186,
+      "lines": 102,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "sha256": "5fcb1a1cf6f3618cadf362f5bc4ce2bc11c4e9940e1916a8776bde7653fd057f",
+      "bytes": 20988,
+      "lines": 235,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/REVENUE_SHARE.md",
+      "sha256": "e6b54914aa3041da5a3dae83faf8c63def35af9ef0124e72fe6680a98280ddcd",
+      "bytes": 754,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "0e8ea936d8f7e718d9b6e4d6a45bc6dd9bcd8bd494e6c44a3a60585125a95d3e",
+      "bytes": 13959,
+      "lines": 199,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/ROBINHOOD_POOL.md",
+      "sha256": "6d4f57a7f70186a48f1b1c7b2122907df79fa18c77992bea355df8a70ee8c92c",
+      "bytes": 711,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/ROYALTY_REPORTING.md",
+      "sha256": "47a1afb3757fb5d6cacf159b0bef3d77ce9c7cf29ce8ba8dc828896f904ce72c",
+      "bytes": 12607,
+      "lines": 192,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/ROYALTY_SETTLEMENT.md",
+      "sha256": "69635ba269a94d6e5836cd32c41b72edf7ec0c26ca8f844d5123e16cdd5db15f",
+      "bytes": 15690,
+      "lines": 258,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/RPC_PREPARATION_QUALIFICATION.md",
+      "sha256": "2fe601e9c62e6a7baac340f1eae8b6066644319f72873b37cf6c5ac6a6f04628",
+      "bytes": 5949,
+      "lines": 96,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "sha256": "286860c06ecdf602900beb7b702c2537b8006612b791730bf6dddbdd7fac8652",
+      "bytes": 12679,
+      "lines": 181,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/SECURITY_AUDIT_PLAN.md",
+      "sha256": "c3468c5254c585e1b55604268e5157d7745853249c84270fa86c83ef622b2800",
+      "bytes": 24172,
+      "lines": 344,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/SIMPLIFIED_RELEASE.md",
+      "sha256": "7ba9247dbfe81d81c590dd1d8b19ac2a3ae6529e413b727ab774a1d0f768d590",
+      "bytes": 5142,
+      "lines": 72,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/SITE_ENVIRONMENTS.md",
+      "sha256": "41fa76a271adcbe5c940dd48cd84186780a89ead15db510894254aa79f4ca85c",
+      "bytes": 6273,
+      "lines": 96,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [],
+      "limitation": null
+    },
+    {
+      "path": "docs/THIRD_PASS_AUDIT_PROMPT.md",
+      "sha256": "2b22bac935cc2243ab9e04dcd432cc70485128c7da4d0dac66d78fbd06002507",
+      "bytes": 31840,
+      "lines": 474,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/TODO_WORKFLOW.md",
+      "sha256": "893b2340770fbb3ef965db10bec2c293306236164673062820b7eb7408234eee",
+      "bytes": 5944,
+      "lines": 53,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/TYPED_V4_ROUTES.md",
+      "sha256": "e1170409b2227d92cc52f0ab60a036f5ffd967ff287e52597f2c181fddb214b5",
+      "bytes": 8120,
+      "lines": 130,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/WHOLE_PROJECT_AUDIT_PROMPT.md",
+      "sha256": "93a548fa9fec01b8b527210e995026718b79091db3979c9dcbf54670bf08bc05",
+      "bytes": 751,
+      "lines": 11,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "docs/WORK_HANDOFF.md",
+      "sha256": "7ed96a60731157bf090f3c314b535fea3ac55a65c7705e58c92ae61d207edac6",
+      "bytes": 21991,
+      "lines": 314,
+      "tracked": true,
+      "review_scope": "targeted_current_guide_review",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/activation-preparation/VERIFICATION.md",
+      "sha256": "70cf39303ce0ee93d146770f8397be6b9bd487c2b8a1335086aba9f7b7086a7d",
+      "bytes": 2984,
+      "lines": 36,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-01"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/activation-route-observation/VERIFICATION.md",
+      "sha256": "3503e151486045317af4a472f9b50390ab8f4d669065759459b007d5624e5542",
+      "bytes": 3303,
+      "lines": 56,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-02"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/api-admission/VERIFICATION.md",
+      "sha256": "539c09afa6500e960e9e3a557ab98097b083a383a04c0c922e115289f70ed14e",
+      "bytes": 5318,
+      "lines": 75,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-03"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/api-chain-rehearsal/PUBLICATION.md",
+      "sha256": "288a509e99724e60c21bfa0388265a4f898181f8f669ecff75a549c1fb00be4f",
+      "bytes": 1543,
+      "lines": 24,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-12",
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/api-chain-rehearsal/VERIFICATION.md",
+      "sha256": "91531f63b17c98439741435e83373f9784b823f637af26c80b4202c05a38ab4c",
+      "bytes": 4331,
+      "lines": 66,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-12"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/api-work-limits/VERIFICATION.md",
+      "sha256": "03fcd4b383cf03f63f03ad18f78a3f548c86e7981e8ed1adb49b9a494d2974f2",
+      "bytes": 5513,
+      "lines": 84,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-03",
+        "FB-04",
+        "FB-17"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/architecture-evolution/capacity/README.md",
+      "sha256": "6957aa4663d46681ef18d617152da19f85fb00c50b19927aaba74f53e68f9128",
+      "bytes": 2716,
+      "lines": 42,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-evolution/INTERNAL_DOC_REVIEW.md",
+      "sha256": "8af31423cc6c3494ca5b0084d2a357a597c0c42fae40fdcb32b39e88b8b3c0ed",
+      "bytes": 7049,
+      "lines": 116,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-evolution/REVIEW.md",
+      "sha256": "b27e1df0e267d78a4a1f942aa13a24c04be1b2f85d8bbdb76458d3b80e082929",
+      "bytes": 9220,
+      "lines": 91,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-evolution/REVISED_PROMPT.md",
+      "sha256": "ed87f10aeb69f44e9097fb62bfd5154788b8243eec2f0def2e76d78916c5a5db",
+      "bytes": 6464,
+      "lines": 99,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-evolution/static-analysis/README.md",
+      "sha256": "c9e8dae9be9e3ff5efa4f571aded5d582aa8c51abc4e13ee11ae8711b87cbb50",
+      "bytes": 3533,
+      "lines": 50,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-evolution/VERIFICATION.md",
+      "sha256": "b5a9ea339bfb5a2626dbde1bde6887daa472c3845c4db90a209077a81a03e35c",
+      "bytes": 5881,
+      "lines": 84,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-evolution-ci/README.md",
+      "sha256": "cc71524b3cdf0ef4d13c7f65365ea558982701b0727fb78003d0d11d768d4505",
+      "bytes": 1953,
+      "lines": 30,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-pruning-20261025/fixture-repairs/README.md",
+      "sha256": "abb85e88a99c9580756c809eb80e7a4a2d18092ee80d65fa3ce6f73903f2c5da",
+      "bytes": 2123,
+      "lines": 34,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-pruning-20261025/PUBLICATION.md",
+      "sha256": "84ffc5a73ea2e1765380adce093acbc5ebc31c52dd510bd3c2b395d7918e8638",
+      "bytes": 2360,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-pruning-20261025/REVIEW.md",
+      "sha256": "0028e850f2201d3a23278d1c55665eb76d58bfb76656cffa21ff7cdabb50ea25",
+      "bytes": 7930,
+      "lines": 94,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/architecture-pruning-20261025/VERIFICATION.md",
+      "sha256": "39301df5ade690b4ddf5b21a4a516ec5057780776ec7817c3bb39f3ba98c418b",
+      "bytes": 6428,
+      "lines": 106,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/artwork-palette/README.md",
+      "sha256": "ea5f441cf1d87eff1e025a07f41d8ab74d479a5e5ae576967d8008f0fef8ad41",
+      "bytes": 6527,
+      "lines": 50,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-23"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/artwork-palettes/README.md",
+      "sha256": "0b4a5977fae3bb51c008e7120002c5e7d5aa03a23ae13a6c0fc44b59fd24c2fd",
+      "bytes": 4387,
+      "lines": 28,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-23"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/atomic-routing-20261028/REVIEW.md",
+      "sha256": "7bbc1a936b64a20decba6043a03fe8fc6e82955303551fde7f0e0eebc619b952",
+      "bytes": 8621,
+      "lines": 102,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/atomic-routing-20261028/VERIFICATION.md",
+      "sha256": "ea44881de70772e97e092cb7347248139352f20e97b762c39a2d9c3e2743afc9",
+      "bytes": 3658,
+      "lines": 53,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/auditability-refactor-20261025/compiler-comparison.md",
+      "sha256": "8907e1ba3441e638a07752f7d10c97eafa83ae0240ef9f2a668ee1fc760ac213",
+      "bytes": 3153,
+      "lines": 52,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/auditability-refactor-20261025/PUBLICATION.md",
+      "sha256": "cc07a1e3662806706aa65ce06db76f7c71902583cb8a0b52d6da1b1ff749d709",
+      "bytes": 1832,
+      "lines": 29,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/auditability-refactor-20261025/REVIEW.md",
+      "sha256": "c931e11f53062459d74670ea705fdedd6b7ab5e802504023d7f91e677b2a8953",
+      "bytes": 6495,
+      "lines": 86,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/auditability-refactor-20261025/solidity/SELECTION.md",
+      "sha256": "6946347af98483c1e836e63c0093d47df9fe34b6d4a4b6dbfe14c96eff833b77",
+      "bytes": 3469,
+      "lines": 56,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/auditability-refactor-20261025/VERIFICATION.md",
+      "sha256": "c42890793a1938554085d51260436ad2db4754a091ae953ac690f462f927ba98",
+      "bytes": 7385,
+      "lines": 121,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/backend-remediation-20261026/HISTORY.md",
+      "sha256": "248c02fa5651f8c43137a1fa2ee889b3c73e2b2701da38465ec5a58d35a5e8fd",
+      "bytes": 9155,
+      "lines": 135,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/backend-remediation-20261026/OPERATIONS.md",
+      "sha256": "82ad23336e65e63d522e3c7b7ae8d9649a3e8c07cd6dcdbcf02599ba8427cbd9",
+      "bytes": 7082,
+      "lines": 114,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/backend-remediation-20261026/PROFILE.md",
+      "sha256": "7b953dac19c17372d34a7f0a57bcf80d0dd896c458710a77b3797fe8bdacae3b",
+      "bytes": 4928,
+      "lines": 76,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/backend-remediation-20261026/PUBLICATION.md",
+      "sha256": "b6826c066e566d7dffb27332dd76aa29cd785139abada48b3ad8c2b1b49a7884",
+      "bytes": 2647,
+      "lines": 40,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/backend-remediation-20261026/REVIEW.md",
+      "sha256": "0f3b0b3c651bbe158f48606ee8046745fd26004d74d9d5a6e96c7b0d8f9dce19",
+      "bytes": 8729,
+      "lines": 107,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/backend-remediation-20261026/VERIFICATION.md",
+      "sha256": "8113623a3babf14a6759ea7aebc0a5560ca6e54ee314fbb2bc8032cbe5b16262",
+      "bytes": 4825,
+      "lines": 83,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/browser-wallet/ACCOUNT_CHOOSER.md",
+      "sha256": "56a4afd2ca4fcbcca1d6dd5e5b175054ba8a4074a6839b03adadfce6e97255fc",
+      "bytes": 3206,
+      "lines": 56,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-05"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/AUTHORIZED_ACCOUNTS.md",
+      "sha256": "cb10a7c3385ccc9ed63bf550c7fa4240ec684a655322029004cab250ea944e8d",
+      "bytes": 2634,
+      "lines": 44,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-05"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/AUTO_CONFIRMATION.md",
+      "sha256": "9df5b46a8a0fe3c0a34638455f7dba3009374f09320d4814171ae06b9e3858ad",
+      "bytes": 2980,
+      "lines": 51,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-07"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/CHAIN_READER.md",
+      "sha256": "faa0c687e77d9047e064a205f5bf7e01d8e95c4a6cba3317b4e5ec2148d34c93",
+      "bytes": 6405,
+      "lines": 102,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-07"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/CONNECTION_RECOVERY.md",
+      "sha256": "9969df7a9ffd3f450e600c36cfadf5d2058f9f1317e5015e8ff24ec893672f28",
+      "bytes": 5180,
+      "lines": 92,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-05"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md",
+      "sha256": "ecdf73e2b6bf9e917b223ab63ad708b5a11d83cb01db1d5dbc10ebb817f71b96",
+      "bytes": 4586,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-06"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/FRESH_SELECTION.md",
+      "sha256": "a65cf3ea69ca855b805d47bf351c06239c770ce4d728b36b8ce52f4d4c129cc8",
+      "bytes": 2418,
+      "lines": 43,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-05"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/LIFECYCLE_REVIEW.md",
+      "sha256": "af832ea6deabe9a41ad6eba49e6b7bfdefa3b5bf9c553306b79d77c87bb30ef6",
+      "bytes": 8248,
+      "lines": 118,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-05",
+        "FB-08"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md",
+      "sha256": "664c8f5c681b18b6bd07c89126d1bb705d06d74294ed13c3b12c6de68f10596b",
+      "bytes": 6021,
+      "lines": 97,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-09"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/MINT_LOADING.md",
+      "sha256": "5e8858b1b5d7826447d34e1b3c37fdbe1e1b5eaad7e1e69ce19820acebf7d956",
+      "bytes": 1751,
+      "lines": 31,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-10"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/MINT_WAIT_PERFORMANCE.md",
+      "sha256": "694cdb5d1da529dad9170b74834edbef2571049ae805bcec795333f7c5072c30",
+      "bytes": 3364,
+      "lines": 56,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-07",
+        "FB-10"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/NUMERIC_NONCE.md",
+      "sha256": "78287b1ac49d50844b96d1152a556a8451c88269c506c05b7d0ec917ffbd0c78",
+      "bytes": 3257,
+      "lines": 58,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-06"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/pending-nonce/PUBLICATION.md",
+      "sha256": "91bfdd850740684ff0636a45ac87bbc386cdb40efa63f29bf25ae43f6199e0b8",
+      "bytes": 1379,
+      "lines": 22,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-07",
+        "FB-09",
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/PENDING_NONCE.md",
+      "sha256": "6e4ee75204437f66d393fea8d3821b23b16061db576d6b9e6044c2f15a32d963",
+      "bytes": 4530,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-07",
+        "FB-09"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/PUBLICATION.md",
+      "sha256": "fcbe11aa9dd5482d2114cb8b1ad424088e23fa99ba20a9c493405fcfbcb4faef",
+      "bytes": 2820,
+      "lines": 47,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/RPC_QUANTITIES.md",
+      "sha256": "739c49304263d5628f5310da4bf739f61cf4092da6adef5c8dadd56ec15e7df4",
+      "bytes": 3102,
+      "lines": 59,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-06"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/browser-wallet/VERIFICATION.md",
+      "sha256": "3797278f33c69a37b07ab2968e533bd3e7778e82643eaacfe8f61c182db01d59",
+      "bytes": 7100,
+      "lines": 104,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-08",
+        "FB-10",
+        "FB-17"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/canonical-handoff/diagnostic/regression/README.md",
+      "sha256": "226de07c3d5ff0358f7ffe31dc6a7da94dbcad39f185207a0672743a0bf34aa9",
+      "bytes": 355,
+      "lines": 6,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/canonical-handoff/keeper/resume-20261018/README.md",
+      "sha256": "2d9e9c5e4f9e5945c932e94ab9480b9c0dfb9c61d33f43f85de1e5c8508b31b4",
+      "bytes": 1090,
+      "lines": 17,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/canonical-handoff/regression/README.md",
+      "sha256": "6c56d618468ce6fd7b463b7783edab8d2c0cd97528d6d7869554f8b635de9bbf",
+      "bytes": 1338,
+      "lines": 22,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/canonical-handoff/REVIEW.md",
+      "sha256": "14d2a42d83ce73e93f3734483e85c5d0e5e68209624c0114dfaee3524c7c51c9",
+      "bytes": 4395,
+      "lines": 61,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/canonical-handoff/static/README.md",
+      "sha256": "bdc75fc4974eaf90d231a320f94f6e5772005afa7eaa9ab27ce8a22adb5ea794",
+      "bytes": 2497,
+      "lines": 38,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/canonical-handoff/VERIFICATION.md",
+      "sha256": "5dbd9423ab74a1d2908729f8fc4288b758bddc6cbdae4472769c9bf906203e36",
+      "bytes": 5652,
+      "lines": 67,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/canonical-preparation/keeper/README.md",
+      "sha256": "aa3072ab11e00f5ae69bd88620674e93423d4482f22d5f6121ebaded804f8a2d",
+      "bytes": 5936,
+      "lines": 95,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/CI_REPAIR.md",
+      "sha256": "110d1a34a0c2ed9f543203591f7a42ab774be8165453f7440b9098e00f8300a4",
+      "bytes": 2184,
+      "lines": 16,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/collection-reads/PUBLICATION.md",
+      "sha256": "58dca9332dee52aec38b43f3e89ddadaf4e89e84f0453bda7023613582b818a1",
+      "bytes": 1686,
+      "lines": 26,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-12",
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/collection-reads/VERIFICATION.md",
+      "sha256": "22d25b1f8dddcc4344823a6b469275c394f2cb0b311ab16c30a78d474aba936b",
+      "bytes": 4187,
+      "lines": 66,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-12",
+        "FB-27"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/backend/indexer/TOOL_RESULTS.md",
+      "sha256": "84c31c104e1b0e8dfe1c3dec87c33bf9ac43436b96f2127f4f9411675fa6ac58",
+      "bytes": 729,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/core/VERIFICATION.md",
+      "sha256": "073c24415e211fe92feb7728b15817be4df737762f0994f64e51bbf624cf444f",
+      "bytes": 4828,
+      "lines": 30,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/CORE_REVIEW.md",
+      "sha256": "3a260198fb35710b9620131825a6d7fc4971980bf9272cd105da5b2029c3cb89",
+      "bytes": 11317,
+      "lines": 56,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/COVERAGE.md",
+      "sha256": "2368509de542519179f1f55ca2f97039892d28b2ed64122e9c6deb48d12c2892",
+      "bytes": 9190,
+      "lines": 81,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/entry/VERIFICATION.md",
+      "sha256": "0b54c88d732f06a2ae1c12d3826f13921d4ada621b511c6a68f11d69a9cba5c6",
+      "bytes": 7379,
+      "lines": 127,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/PROMPT.md",
+      "sha256": "8a6db677eb547184f37c2060e385f1440641112b46da20add864ec8bbd26a131",
+      "bytes": 5454,
+      "lines": 79,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/PUBLICATION.md",
+      "sha256": "bcb1cf588108a96627246cc135192d2706e0a13091c310e872ec03ffa3524888",
+      "bytes": 2055,
+      "lines": 26,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/REVIEW.md",
+      "sha256": "a1b56e9a90c11022a57d1bc870c462d9eb1bd75ef877b894e9ac5c86ff49dc44",
+      "bytes": 8130,
+      "lines": 84,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/comprehensive-improvement-20261025/VERIFICATION.md",
+      "sha256": "51fc84c619346707fea727e09863299eeb7d15d2d3bc30b0ea740318ec910ff2",
+      "bytes": 6710,
+      "lines": 79,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/concurrent-services/VERIFICATION.md",
+      "sha256": "86451e92ff1c1e43b8f2bd658ccbeb1be495935cb044f1711e109eac22f02dc9",
+      "bytes": 7484,
+      "lines": 98,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-03",
+        "FB-04"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/confirmation-followup-20261028/REVIEW.md",
+      "sha256": "4b8db58662697a53743bc270cc5ffabb93b824a70b2d40100c248d000902d001",
+      "bytes": 7063,
+      "lines": 71,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/confirmation-followup-20261028/VERIFICATION.md",
+      "sha256": "7dcceebce1b6b84d306b4f5852fc9c08b3734e501aa3f4513171c18b5242483a",
+      "bytes": 4238,
+      "lines": 59,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/current-pool-fork-20261026/README.md",
+      "sha256": "439833c611990012996927cc1d0177b3b78bb135fdcfabfa462b97d2c7edbc78",
+      "bytes": 4686,
+      "lines": 82,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/current-pool-fork-20261026/VERIFICATION.md",
+      "sha256": "9a41973a9acb2de445fa1b42ede04b1ea99c60e8c2d8c7c012558bbfb8206b5c",
+      "bytes": 9582,
+      "lines": 148,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/current3-website-20261026/DEPLOYMENT.md",
+      "sha256": "2062ed4fd6c0f484a0ddf862de59cb0cf6aefec3322c5c45cd1128dd274d5557",
+      "bytes": 3276,
+      "lines": 20,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-19",
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/current3-website-20261026/VERIFICATION.md",
+      "sha256": "1754f290407b589e8efc72297d8e836554acfbf06cabb2e4110fda6230b43105",
+      "bytes": 2441,
+      "lines": 38,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-19"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/custody-handoff/PUBLICATION.md",
+      "sha256": "8f2040f04cd1b314b27587cd5700d1a6ad688e026c78e6b8b1b356743472fe3c",
+      "bytes": 1604,
+      "lines": 17,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/custody-handoff/REVIEW.md",
+      "sha256": "818de4099ce86953a89c6d9a6d13ae2eb65c210628d7e1b13777410f0d580dba",
+      "bytes": 3948,
+      "lines": 43,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/custody-handoff/VERIFICATION.md",
+      "sha256": "fa016ba5490ad7df8eec9990447abdc651018217dd897cf9adf82b28049ba329",
+      "bytes": 7786,
+      "lines": 123,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/daily-security-20261018/REVIEW.md",
+      "sha256": "e1648fb1fde4bc9917170bae1595f9c3115c1a405ac6a70ac512d6c0b9d91636",
+      "bytes": 12165,
+      "lines": 174,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/daily-security-20261024/PUBLICATION.md",
+      "sha256": "8f6d3a9b1125190d14cabd43635de6bb7fbd716f49e897f017546acdfecfbf52",
+      "bytes": 2070,
+      "lines": 30,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/daily-security-20261024/REVIEW.md",
+      "sha256": "a5390643425366408e8a1610a0ad01a42c830ad9f480648c7a65570acdb61eba",
+      "bytes": 9543,
+      "lines": 103,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/daily-security-20261025/NECESSITY.md",
+      "sha256": "d7530d0d70ad7ac6989fada91b70f5321f222978af5bb9f4fc1923b306dad249",
+      "bytes": 7789,
+      "lines": 79,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/daily-security-20261025/PUBLICATION.md",
+      "sha256": "4563ad9224f78e3c534a5bbec3416ca45499a7caf4b0438f01cc19277b3938a8",
+      "bytes": 2337,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/daily-security-20261025/REVIEW.md",
+      "sha256": "36f510957d68f4e23df15e04fc8005a9924fcf902074b9384f6700f8d1aa18ba",
+      "bytes": 7662,
+      "lines": 92,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/daily-security-20261025/SERVICE_REVIEW.md",
+      "sha256": "e1d785c538ee1cfb679884e20910663ca152534581529e07d20779dba66dd680",
+      "bytes": 4831,
+      "lines": 76,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/daily-security-20261025/VERIFICATION.md",
+      "sha256": "99811f6440be8c1ab0cdd1f708b3cf28b78b71e3bf24da6c21b1ed6caa2c10c8",
+      "bytes": 7473,
+      "lines": 99,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-audit-20261028/REVIEW.md",
+      "sha256": "1afbff0d568874de569af714885343a74ede9aa7e7958abd469b5fe7fe206d53",
+      "bytes": 6423,
+      "lines": 86,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-audit-20261028/VERIFICATION.md",
+      "sha256": "ec1c76264bcfe830cff13cb1b08faf9cb1e89328f8030d8987c11885095d6e02",
+      "bytes": 3632,
+      "lines": 41,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/ADAPTED_PROMPT.md",
+      "sha256": "bc02035ef6e094a13924fb385120fb2aa00ddf2a2c1f1164ffa0016290675c52",
+      "bytes": 5152,
+      "lines": 72,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/evidence-review.md",
+      "sha256": "b8cb65a9a36d1a0637f68d1662b5ed705902a9b9c66503730a816592bce05dac",
+      "bytes": 10157,
+      "lines": 169,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/native-assertion-matrix.md",
+      "sha256": "21ed20be2260e0669f06fcffdf658c126773287a9f7efb025b0de9f24b730f99",
+      "bytes": 7133,
+      "lines": 44,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/PRESERVATION.md",
+      "sha256": "d6a15c4193ebdd0489c803d1444934d55de02f9ca27d6021c1925395853c5ec6",
+      "bytes": 11023,
+      "lines": 53,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/PUBLICATION.md",
+      "sha256": "2d49c0ee50c8f79855aeb92f6b47de7473e1cafcb41aa04d437db81b07af6cbc",
+      "bytes": 2043,
+      "lines": 32,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/READINESS.md",
+      "sha256": "d5f6099f28d7550f0acfdab61029bc7c2739798d8c7fc403b9ad4719dfae913d",
+      "bytes": 10932,
+      "lines": 51,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/REVIEW.md",
+      "sha256": "2f51e9a8dee423bcae8dcc5d193ad81a927093b417146e913744afac7943532a",
+      "bytes": 11593,
+      "lines": 153,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/role-gas.md",
+      "sha256": "23f66c052bb6eaafe071f616a6f371fbc8ef9d36c9de7055a534940378118c5f",
+      "bytes": 2815,
+      "lines": 46,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/royalty-matrix.md",
+      "sha256": "1b73c3e5ce7fea3df1a0beea93927da2566c04a2a07064ce6e655e0c828a701f",
+      "bytes": 21434,
+      "lines": 248,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/SCOPE.md",
+      "sha256": "9d3d407676cf3209a0a5c07167842db07a434270dd0f74e952604ce1dbe9beef",
+      "bytes": 3828,
+      "lines": 34,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/solidity/NATIVE_CUSTODY_BOUNDARY.md",
+      "sha256": "9c0d8b4f37925ea2e2cce00c1aa29edca10229ee300431205cacc5edfd5998aa",
+      "bytes": 1886,
+      "lines": 31,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/solidity/NATIVE_REGRESSIONS.md",
+      "sha256": "cab0a87f4c7ac6b46982c2e1a2251e92caad635ca6b31e14ee1705a4ed1396b2",
+      "bytes": 2901,
+      "lines": 44,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/day-readiness-20261025/VERIFICATION.md",
+      "sha256": "3e5de534ccaa01499c4d08b7b6a2290ef84465a763696c2453564ca6663d8fa2",
+      "bytes": 7313,
+      "lines": 105,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/ADAPTED_PROMPT.md",
+      "sha256": "3131f7e2e42373a97f3074b07a12ed5a9b1665c37c04da17242e6e8f2772374a",
+      "bytes": 6679,
+      "lines": 74,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/compiler-comparison.md",
+      "sha256": "fde90e20e2d4de6703192572523d0fcfed521b8074480504bec15b854edbafcb",
+      "bytes": 3415,
+      "lines": 35,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/custody-review.md",
+      "sha256": "58bcf84cfdd9dfa48029f53deb83c4cb773df88aed3eb8013d9568492d72c18e",
+      "bytes": 9413,
+      "lines": 117,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/initial-compiler-comparison.md",
+      "sha256": "f96a6259e764ff8711dc5734d41d9700863ef25172628318bcce80b1fad738b6",
+      "bytes": 2775,
+      "lines": 32,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/PUBLICATION.md",
+      "sha256": "c00b2c1c4b9d6cbaac087a4e68b1af825146a551183145e577081ed8e0b849e0",
+      "bytes": 1875,
+      "lines": 29,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/REVIEW.md",
+      "sha256": "dd8fa193a3570c6469c53f2d5585c5246add844efe364a7192d823c3d284527b",
+      "bytes": 8120,
+      "lines": 97,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/rewards-review.md",
+      "sha256": "312ab67a4c927148935a26604300ca20f10b17859b71b5140893b388905c4a42",
+      "bytes": 12166,
+      "lines": 157,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/solidity/SELECTED_VERIFICATION.md",
+      "sha256": "68996fe946a6464884026510d16ce7c230ad5e9c7bbc2f1e1bf35745e3356e45",
+      "bytes": 2881,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/UPSTREAM.md",
+      "sha256": "2b170731155987e10d89cf46b3ae973c1ee71ba0286c6097cbc063a98cf6fce6",
+      "bytes": 4282,
+      "lines": 62,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/venue-review.md",
+      "sha256": "b1c95353b04b71d5e805c56e972aa7eb3fb2b8e112991547114f8b81a3891c4e",
+      "bytes": 6314,
+      "lines": 104,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deep-cleanup-20261025/VERIFICATION.md",
+      "sha256": "ebe0b3844d22a4eaccf1bfe837b8488b2ee367285e9cc18ca7312aece2da2420",
+      "bytes": 7878,
+      "lines": 130,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/deployment-adapter/PUBLICATION.md",
+      "sha256": "c2f52090f1a09e5b8ca3a11136a6d8bb059c01828c4647ffc5b1f27bb5476da8",
+      "bytes": 1955,
+      "lines": 33,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-19",
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/deployment-adapter/VERIFICATION.md",
+      "sha256": "95989c29d2cccc3199401697371a17c2c869f348110b7af4397025f75394c900",
+      "bytes": 4938,
+      "lines": 66,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-17",
+        "FB-19"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/deployment-local-wallet/PUBLICATION.md",
+      "sha256": "93a132400ff62495cb3fc78bee48349f59ca15f6b476da91954b5a906c08f934",
+      "bytes": 1264,
+      "lines": 20,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-19",
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/deployment-local-wallet/VERIFICATION.md",
+      "sha256": "9b9d966681e766132e7b492cd464385a58d2ed9fff4c3c5814d087913c1928bf",
+      "bytes": 3557,
+      "lines": 59,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-08",
+        "FB-17",
+        "FB-19"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/documentation-cleanup-20261026/PUBLICATION.md",
+      "sha256": "88852da00418db944ea222d1e55ebd0c95f287cb1867c001908e25d1651385b0",
+      "bytes": 2501,
+      "lines": 38,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/documentation-cleanup-20261026/README.md",
+      "sha256": "425e0815d380faba848a33015c8052cc52a0268213bebdcbc9ddd40819a9d98e",
+      "bytes": 4028,
+      "lines": 61,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/documentation-sync-20261026/README.md",
+      "sha256": "8ebb03b94bb15fa9852f898eb37d7c01c132143a0249415f098173255cc5496b",
+      "bytes": 3021,
+      "lines": 46,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/documentation-sync-20261029/VERIFICATION.md",
+      "sha256": "dc2ef47e6db0a7bc367146536e3d22c74bcd42e2bfdc523c3197f40359ba3ca4",
+      "bytes": 2188,
+      "lines": 36,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/dynamic-liquidity/PROMPT.md",
+      "sha256": "59b1e5803759e19ca04d927e87704b9b656e95fb78b52a71c3d6025d3be8855c",
+      "bytes": 7660,
+      "lines": 109,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/dynamic-liquidity/REVIEW.md",
+      "sha256": "5d49430876800f3367b75a3b9e6e1b000727fbcebe891bcabd7a1fe5f4dd7a2b",
+      "bytes": 7726,
+      "lines": 101,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/dynamic-liquidity/VERIFICATION.md",
+      "sha256": "3210d2878373bb536d3fc1d8984a77a11f679a0c746e78ba7d80c676b469a33f",
+      "bytes": 4373,
+      "lines": 47,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/earnings-history/VERIFICATION.md",
+      "sha256": "b3e75363eaa0e6a54459c9a997cc04c32922a09de57c17edc804e566a55a3a5c",
+      "bytes": 4789,
+      "lines": 69,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-13",
+        "FB-14"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/fee-impact-policy-20261028/REVIEW.md",
+      "sha256": "000e1b7f9f5a8f058358373873cc36f9abbafbd28382895b66879ec4b94be246",
+      "bytes": 4988,
+      "lines": 58,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/fee-impact-policy-20261028/VERIFICATION.md",
+      "sha256": "d54b9bf4c0e1ed45acd2ebd2570bbcce573efae0a593d4b1a6e1cfd76d59c0e6",
+      "bytes": 4300,
+      "lines": 54,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/frontend-lifecycle/VERIFICATION.md",
+      "sha256": "2242cbba0d87fe4d0e298222566bf82de2fa4831393d152358abc035348530b2",
+      "bytes": 3135,
+      "lines": 44,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-15",
+        "FB-27"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/frontend-lineage/VERIFICATION.md",
+      "sha256": "ed76fb70e8b01708f3de3b3e5b584101e4f1533af46720ae0af37884689cee6a",
+      "bytes": 3448,
+      "lines": 50,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-15",
+        "FB-27"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/frontend-state/VERIFICATION.md",
+      "sha256": "6597044351a76582528b81fdabf7d3a536ae85309b7c37e7198360fae34ea80a",
+      "bytes": 4367,
+      "lines": 67,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-10"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/frontend-transactions/README.md",
+      "sha256": "e9dbfe7956b3c466a43f0534d09ba191324e4dcbeda7ae45276b2959512a1c5b",
+      "bytes": 5049,
+      "lines": 75,
+      "tracked": false,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-17"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/full-audit-20261025/COVERAGE.md",
+      "sha256": "3d3930bb2b36597db759187fe205bd531b094859577147b2053a4920b7ae4fe3",
+      "bytes": 4971,
+      "lines": 31,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/PRINCIPAL.md",
+      "sha256": "4fbccc2cd50cc0b857da584b179d6f1959e94f753bd883ce38dcaad20b433d9e",
+      "bytes": 9642,
+      "lines": 108,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/PUBLICATION.md",
+      "sha256": "64a63f693a9b9d6b8106e9ac1ab7028abc701542246306e077b187b5c1b70d7d",
+      "bytes": 2227,
+      "lines": 34,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/READINESS.md",
+      "sha256": "75dff33d8ca4fc5488e3e90bef5a3569b47fb854c806a09f043e250896ced46e",
+      "bytes": 4125,
+      "lines": 27,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/REVIEW.md",
+      "sha256": "f2d8005b978878ccba3a2f90bb94b451438e4d43d5a1bfa63ad30f1cd0cefe5d",
+      "bytes": 13725,
+      "lines": 186,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/RIGHTS.md",
+      "sha256": "aaf5f3fb8d94935197f08fd1f7e740b43ad28040839651752da45b2fe2c7b1e1",
+      "bytes": 12548,
+      "lines": 126,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/SERVICES.md",
+      "sha256": "ce381b09b8d2c633c0e7ac5f9a29f2efa71f1dbc9ef500c303a929a1f600edf1",
+      "bytes": 12589,
+      "lines": 139,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/static-rights-review.md",
+      "sha256": "ddeb6bf53800067fd8e03e925ba97df010e4008eef8f0b6a1942e9941daf9a7a",
+      "bytes": 8445,
+      "lines": 136,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/UPSTREAM.md",
+      "sha256": "509330ac4794be738fea991e770e83d4556af7d6521cb1a6a040298abf55b6a8",
+      "bytes": 1665,
+      "lines": 23,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/full-audit-20261025/VERIFICATION.md",
+      "sha256": "bb4a267748b1acfa0713c2e79620959e37c7a3093ff23f8156e7966c04cd0590",
+      "bytes": 6795,
+      "lines": 97,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/future-bridge/README.md",
+      "sha256": "7e7b561c50e82d6c95a600f6deb0d947388df5377374e21655915c84bc348f3f",
+      "bytes": 7040,
+      "lines": 36,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/gap-hardening/fork/README.md",
+      "sha256": "29910c0ff863bb4de90df67e9e25cdabe5b63c0574535c18863efda3ab0ae347",
+      "bytes": 2297,
+      "lines": 40,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/gap-hardening/README.md",
+      "sha256": "1e5ae44343440a14ab6769e297325e174c33e2fa59ab7606084043dc89025e55",
+      "bytes": 6960,
+      "lines": 107,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/gap-hardening/static-analysis/README.md",
+      "sha256": "6c4ecc082632fee6bb90ca4bffb9889146b55b74c8a8819aba9f08d52bff523e",
+      "bytes": 2663,
+      "lines": 13,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/history/ARCHITECTURE-per-nft.md",
+      "sha256": "02de38abf61485a28d02b73684e3ee35252077539832dfaea67ce0eaeb8154a8",
+      "bytes": 12796,
+      "lines": 87,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-24"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/history/README.md",
+      "sha256": "8a160bf5873d34432aaa8aef5815a86451e2c666cdac15f1e711b95e2a47a8dc",
+      "bytes": 326,
+      "lines": 3,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-24"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/history/README.v0.2.md",
+      "sha256": "a25a8406264e7b0e691c54003f7afc73b80f6c303fa8daddfe2f56765793e634",
+      "bytes": 7545,
+      "lines": 111,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-24"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/history/retired-v3-tests/README.md",
+      "sha256": "00e938c7abe211ee7b31f0505cce1ef3a4b91b3a7710652d513d3a803bf200eb",
+      "bytes": 435,
+      "lines": 7,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-24"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/history-audit/VERIFICATION.md",
+      "sha256": "648b010cfd92d6daeb0959b90f241ba2b8c0f6961213349aff6a0d54607df170",
+      "bytes": 3917,
+      "lines": 61,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-14",
+        "FB-15",
+        "FB-26"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/holder-collective-exit-20261027/REVIEW.md",
+      "sha256": "79424e7a0a5cdfae8be059994757d577a2bc4ce7e8ef877ffc8035bd284b7a02",
+      "bytes": 5808,
+      "lines": 55,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/holder-collective-exit-20261027/VERIFICATION.md",
+      "sha256": "079e75b66ec4ee5be91583c6e1225ac60f10ecf1da818769827aa509a3dbc6de",
+      "bytes": 7818,
+      "lines": 126,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/holder-preflight/VERIFICATION.md",
+      "sha256": "b1dba7067903bee26983a59c540ce0630367b720a4aa6fbd1f91e8b05848e5fc",
+      "bytes": 2785,
+      "lines": 43,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-22",
+        "FB-27"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/hookless-pool/PUBLICATION.md",
+      "sha256": "fd9982b60b7299d94d4a245119322043383678f0817e73eff0747deb89aa26eb",
+      "bytes": 3589,
+      "lines": 57,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/hookless-pool/REVIEW.md",
+      "sha256": "e6a6830aedd26e6460255662e17d8eb1acbebb8160e9591828f29dc7374171f3",
+      "bytes": 5970,
+      "lines": 91,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/hookless-pool/VERIFICATION.md",
+      "sha256": "a3f70cd7016a65a079e3873efaff239e178e8eceb097e4625c75ce3f93fd2e7b",
+      "bytes": 9005,
+      "lines": 120,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/hourly-harvest-20261027/README.md",
+      "sha256": "25c8f7a138a4a88e6c6d01b2b1e1b55c7b7c01beecf19da47c80020d3f372a3f",
+      "bytes": 1658,
+      "lines": 27,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/immediate-governance/REVIEW.md",
+      "sha256": "f3c3bb5179fe863d357f596251a8a714ed5095946dfafdef5772a988232debf3",
+      "bytes": 3957,
+      "lines": 64,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/immediate-governance/VERIFICATION.md",
+      "sha256": "43f067e91310db3ebbbb881d9f1778dc89dc7ad0d76f937c64fc40b33bbc3c42",
+      "bytes": 3783,
+      "lines": 39,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/IMPLEMENTATION_UPDATE.md",
+      "sha256": "cb5abb172b99d65246fdc1663a814a02a0032b758705505a58842ba6e9ccf39f",
+      "bytes": 3010,
+      "lines": 14,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/independent-rebalance-20261029/REVIEW.md",
+      "sha256": "7400c9c19a97db13442a12fa335b79b2aa8196eef559942716655ddb86b40a02",
+      "bytes": 8656,
+      "lines": 95,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/independent-rebalance-20261029/VERIFICATION.md",
+      "sha256": "cf8e1ef5e014e0b9f795ad1ec24e9c3b9328aaf2a509492b5ddae8a18ec7879b",
+      "bytes": 7493,
+      "lines": 119,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-coordination-20261029/RESERVATION_REPAIR.md",
+      "sha256": "8a791463c05486ba6226e10fe9b9b77aea04a03b841a4b04ea0434be5d116a43",
+      "bytes": 2785,
+      "lines": 43,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-coordination-20261029/REVIEW.md",
+      "sha256": "d9bc494f22571a30a840811a5c8b1b6cd48141a1adcee572145cf395b856cd7c",
+      "bytes": 6626,
+      "lines": 80,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-coordination-20261029/VERIFICATION.md",
+      "sha256": "ec71a094892dc5f971f4e3713b4d9bc49e6a83ed15cac822efde27912d369f85",
+      "bytes": 2237,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-lp-audit-20261026/core/REVIEW.md",
+      "sha256": "c88eb670d45935dcb06e2df6a92be11f16b26ba43023eca9d13c286c3de8c9b0",
+      "bytes": 8712,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-lp-audit-20261026/operations/OPERATIONS.md",
+      "sha256": "e469bf9fcf087eedd5186bc0ee45294d2641353e672439ebc20bc30bc9770813",
+      "bytes": 6884,
+      "lines": 113,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-lp-audit-20261026/PUBLICATION.md",
+      "sha256": "fe186b54926bfa5b675dfd7df169f2931fc3a8fad8a06d6bf67f734ab46d4bf7",
+      "bytes": 2733,
+      "lines": 40,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-lp-audit-20261026/REVIEW.md",
+      "sha256": "3b3975ac21dfb7bd7bc42f5a3863df69e32268521cda0731c095461cfedaccf0",
+      "bytes": 7746,
+      "lines": 103,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-lp-audit-20261026/rewards/REVIEW.md",
+      "sha256": "3ce856454cedf68bf454f7137659a2444142feff36872e81ba956dcca7525f59",
+      "bytes": 9697,
+      "lines": 106,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-lp-audit-20261026/VERIFICATION.md",
+      "sha256": "c17b761c15cc13ef06326c4c96b406b06194c26828b35be3e418c5682c8d30f3",
+      "bytes": 4221,
+      "lines": 64,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-recovery/REVIEW.md",
+      "sha256": "7f4985a912e05a0b50c20639903d83c0a4d4053aec5a39f4230b7e0fc2ffb838",
+      "bytes": 8156,
+      "lines": 46,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/keeper-rehearsal/README.md",
+      "sha256": "a340c99a87edc741ae1655c04347866925c41649203ce8b26d755063dd57a9af",
+      "bytes": 5782,
+      "lines": 85,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/liquidity-operations-20261025/keeper-range/VERIFICATION.md",
+      "sha256": "5b8b25152f2b618fc4212a5b75bc873e424e51fe464d5ed3f23fa131f7c14465",
+      "bytes": 5865,
+      "lines": 94,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/liquidity-operations-20261025/PLAN.md",
+      "sha256": "04865f800ed0d445590af63baed7e8b23552e718a0baa09710b78f04730ffa38",
+      "bytes": 4079,
+      "lines": 67,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/liquidity-operations-20261025/PUBLICATION.md",
+      "sha256": "becab5e85bf487405fb92ffe4dafbcbc7fea069724ca79dbf646ad2ac8579fc3",
+      "bytes": 2445,
+      "lines": 35,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/liquidity-operations-20261025/REVIEW.md",
+      "sha256": "e926014dee45258e3076e7464a7d5deb9dd0abc2b637849e8aedac65cf055e96",
+      "bytes": 8199,
+      "lines": 99,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/liquidity-operations-20261025/solidity/README.md",
+      "sha256": "0db9b8383f60de05ee1c0d6ca19d853571983abdf62191e6ee64222b4c18a72f",
+      "bytes": 3690,
+      "lines": 47,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/liquidity-operations-20261025/VERIFICATION.md",
+      "sha256": "c3530a6b71b38987a95f88389a69429b335f7d9c65761fa381534a5530b7959b",
+      "bytes": 8369,
+      "lines": 122,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/local-contribution-flow/VERIFICATION.md",
+      "sha256": "91c7f63fa7c9a092e40900006bc12f73297e6f45a4c87cc6b8519ef5a86c379d",
+      "bytes": 3388,
+      "lines": 51,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-01",
+        "FB-10",
+        "FB-11"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/local-preparation-busy/VERIFICATION.md",
+      "sha256": "0c2c97fb8427abb76171a361b1d220830c43142a0e9368fda0cbbf1baacd02eb",
+      "bytes": 2445,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-10",
+        "FB-11"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/local-stack/VERIFICATION.md",
+      "sha256": "e5d3c2b2e365fdd5a57f49823bdeebeb024064238eb5b0377226da82d0f46439",
+      "bytes": 8441,
+      "lines": 129,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-08"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md",
+      "sha256": "b15050b9a471f23ae5d7621e19bfbd9676f18124423c6d7e594a828913bb4d0f",
+      "bytes": 2604,
+      "lines": 44,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-11"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/local-wallet-concurrency/NONCE_VERIFICATION.md",
+      "sha256": "5bb4e2ca9977bf8a935027f6f23dd50f12df2313ec0afe8dc514876037bd6566",
+      "bytes": 4266,
+      "lines": 65,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-11"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/local-wallet-concurrency/VERIFICATION.md",
+      "sha256": "463e588eadf838ac6b1a298c082995d16b8550042a5046412928bd832f5cc463",
+      "bytes": 4828,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-08",
+        "FB-11"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/local-website/VERIFICATION.md",
+      "sha256": "e3390c911983f714ae2ee561202f2e22e88b267e8e1e0e454ed70103ef81cbaf",
+      "bytes": 11220,
+      "lines": 174,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-08",
+        "FB-10"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/lp-eth-settlement/VERIFICATION.md",
+      "sha256": "2865680e9ac391355236bffcb75862ad6925cfbc0776be022cd221ae43a3f994",
+      "bytes": 6965,
+      "lines": 75,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/maintenance-cadence-20261027/REVIEW.md",
+      "sha256": "5760638287696c9c9a65b5a2dc99e2e71f30dfb6c46ed39b6f31d9bf1cad4751",
+      "bytes": 3564,
+      "lines": 58,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/maintenance-cadence-20261027/VERIFICATION.md",
+      "sha256": "67032c89e4f42823b29562c6627df2eda2e5bb64298131b4f115bbbe2426e99c",
+      "bytes": 5472,
+      "lines": 86,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/maintenance-policy-20261027/REVIEW.md",
+      "sha256": "52721be3e7c7f397bc0449aaa1361c4e1318d76ef296a56e9909c753dd259c82",
+      "bytes": 5065,
+      "lines": 68,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/maintenance-policy-20261027/VERIFICATION.md",
+      "sha256": "1eef67c877863860ef2614ebcfbdb993be45c5a30e37a5d27f0bd08c82cb8af1",
+      "bytes": 3358,
+      "lines": 49,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/manipulation-hardening-20261027/REVIEW.md",
+      "sha256": "0afc1e247ce086ad17bb2cc910f396981fc8048ae938647af9fad47e07aa462d",
+      "bytes": 5906,
+      "lines": 67,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/manipulation-hardening-20261027/VERIFICATION.md",
+      "sha256": "9678725818f1962df779676a25b0d8c5c2645faa87e6427d4eceadd3af57f735",
+      "bytes": 4814,
+      "lines": 74,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/market-adversarial-20261026/PUBLICATION.md",
+      "sha256": "5faa4d8475483e18d80b753c90adbdfd157e31f519a9be972ac4508639228638",
+      "bytes": 1535,
+      "lines": 24,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/market-adversarial-20261026/REVIEW.md",
+      "sha256": "7f5f2351f748a5c313c573d9d0a8862e325ca50e1dd4c0dfc1ed700f2f5e4db1",
+      "bytes": 6367,
+      "lines": 64,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/market-adversarial-20261026/VERIFICATION.md",
+      "sha256": "81064f38a895c0ff10348e2649e571ccbb2d724d658facd1e46d06f51ca011a2",
+      "bytes": 4280,
+      "lines": 71,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/migration-safety/config-review/finding.md",
+      "sha256": "617e6248da3c96577771a003e7f6c2031f2566f99493cf68213bd819fc146373",
+      "bytes": 1729,
+      "lines": 32,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/migration-safety/REVIEW.md",
+      "sha256": "8828e9fd424ed60f01f569caef3fd6199d9b6114035aa657d0dc18584216efe9",
+      "bytes": 4639,
+      "lines": 65,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/migration-safety/static-analysis/README.md",
+      "sha256": "5a7f8c6f42d9ac757509b498abcaf1823854d8048d7242c31a8c5145a4a0fb71",
+      "bytes": 5082,
+      "lines": 83,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/migration-safety/VERIFICATION.md",
+      "sha256": "471da3a1ce743c7bc32dc89537065c00e6e6197338a3b53fdb413d61c8dfab8f",
+      "bytes": 4735,
+      "lines": 80,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/native-eth-port/PUBLICATION.md",
+      "sha256": "a88b589cb6ab7d1cc1a41d29765f3a522b5107db82240cb24103cf80ac24d8c8",
+      "bytes": 2579,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/native-eth-port/REVIEW.md",
+      "sha256": "67f72a47da3f1d19b8def46fb8dbe1eead1cc2949fb98733cdf8654b8fa598f1",
+      "bytes": 3620,
+      "lines": 55,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/native-eth-port/VERIFICATION.md",
+      "sha256": "b0d002db74c6696abc1981be1c7b9807a21fa74020445a7bb941b24b18984a0d",
+      "bytes": 9420,
+      "lines": 107,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/native-preflight/PUBLICATION.md",
+      "sha256": "6f5d46c2b0b0a4d1c1dc592a0cd8ff31750dc5290ea22f1de4bb6eacddac024e",
+      "bytes": 2260,
+      "lines": 32,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-18",
+        "FB-27"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/native-preflight/REVIEW.md",
+      "sha256": "2ebf9cbc19cbf8bd65f756ca0c3094d6c272141fb4533dfae8cdbeb3f82f25fc",
+      "bytes": 4243,
+      "lines": 69,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-18",
+        "FB-27"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/native-preflight/VERIFICATION.md",
+      "sha256": "2c97a2422df1b3e02ae9b4aa632ae55f48901d857b1c452d85d776dece4908f8",
+      "bytes": 4751,
+      "lines": 65,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-18",
+        "FB-27"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/native-readiness-20261025/PUBLICATION.md",
+      "sha256": "2e4c462297a9bb3180ef5a3a0a032f36569b165d01060e9f1684073cbe52b7b3",
+      "bytes": 1756,
+      "lines": 30,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-19",
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/native-readiness-20261025/REVIEW.md",
+      "sha256": "97dd5fa35fc74772858a25c9fda3ff13edb92535c78e5db9151125fd7b900a2e",
+      "bytes": 5188,
+      "lines": 68,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-18",
+        "FB-19",
+        "FB-20",
+        "FB-21",
+        "FB-27"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/native-readiness-20261025/vault/VERIFICATION.md",
+      "sha256": "a31bd18c6db838298f5af71504d4553769192634420110ebdcb83a78f638a12b",
+      "bytes": 5631,
+      "lines": 100,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-21"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/native-readiness-20261025/VERIFICATION.md",
+      "sha256": "2a204cc5df6a680dba01db70a411317558640050d8fa99b97c7fd28120b51a9c",
+      "bytes": 5116,
+      "lines": 41,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-18",
+        "FB-19",
+        "FB-20",
+        "FB-21"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/native-readiness-20261025/website-staged/post-review/VERIFICATION.md",
+      "sha256": "ceaba45047ad7751476c2d379a2f87cf85e0cfdad4274593bfa3e70e38966355",
+      "bytes": 3382,
+      "lines": 20,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-19",
+        "FB-20"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/native-readiness-20261025/website-staged/VERIFICATION.md",
+      "sha256": "5d5bc549b2f213a78245b6564f90c3d941f8526ceb5f2a646dad12070bc38f1d",
+      "bytes": 6146,
+      "lines": 42,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-19",
+        "FB-20"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/nft-rights-audit/COVERAGE.md",
+      "sha256": "342d4db228c78879bcb3f523f23e3490736eff7f3e40c1e8b6412a71e3d78dc6",
+      "bytes": 6078,
+      "lines": 39,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/nft-rights-audit/IMPLEMENTATION.md",
+      "sha256": "baaff4b9a0feb322c694e4d01677d9a652ff9481b3d4b0b4e777b6efd58baf17",
+      "bytes": 6446,
+      "lines": 53,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/nft-rights-audit/README.md",
+      "sha256": "70055c02dee1b345e0fddf0ec8861c22fd80d3b1a3c5a74e6be4cf563199b5d1",
+      "bytes": 2127,
+      "lines": 31,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/nft-rights-audit/REVIEW.md",
+      "sha256": "ade3fabc8940f780d7f082b95d717e46f0795cc7654c6de917bea720e10a78a0",
+      "bytes": 14549,
+      "lines": 211,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/nft-rights-audit/REVISED_PROMPT.md",
+      "sha256": "3721428129e2c3abbea1e6dd262d8c12eaf1f985b5c6db21b6cf09fa3d6c7f3b",
+      "bytes": 8371,
+      "lines": 122,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/nft-rights-audit/VERIFICATION.md",
+      "sha256": "0efd0fbc40270c3a9eb08480478b399ce97dd784e648c498c71bdd9410d422b1",
+      "bytes": 10010,
+      "lines": 138,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/normal-operation-design-20261029/REVIEW.md",
+      "sha256": "86cd18f73ef6834000102e1afe70a0d22a5d5f0182f30d0da952ae97d8358710",
+      "bytes": 16360,
+      "lines": 220,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/obsolete-code-20261025/PUBLICATION.md",
+      "sha256": "48aa04b727463b1ad9a97be89bf20f617d351e15669df16e29266546e2e8f118",
+      "bytes": 1281,
+      "lines": 22,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/obsolete-code-20261025/retired-tools/README.md",
+      "sha256": "72f7378b391aab5e5af30926afa954f2822a6692137d01d8823dbd238a57836c",
+      "bytes": 1064,
+      "lines": 18,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/obsolete-code-20261025/REVIEW.md",
+      "sha256": "4192809ca1092a718a350415788c0b1d55bf80e995edf257d2e8bb9f530bea4c",
+      "bytes": 6291,
+      "lines": 63,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/obsolete-code-20261025/SERVICE_REVIEW.md",
+      "sha256": "f0983cf5f4810389ac9b2d36dd9477846ecf56feb05a4c26060995fe91addfc1",
+      "bytes": 3374,
+      "lines": 54,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/obsolete-code-20261025/VERIFICATION.md",
+      "sha256": "1599dc4092a767d990460aad3b8e4dcd66ca4cc0d0e0be094645d2290f018459",
+      "bytes": 3319,
+      "lines": 38,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/onchain-safety/PUBLICATION.md",
+      "sha256": "f4622a9354a39c3dc24b1c78eabb6bc131aa7e79da6206b8443101aba7db27d9",
+      "bytes": 1338,
+      "lines": 24,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/onchain-safety/REVIEW.md",
+      "sha256": "48a2519eb98f1349c054fd4834df644e2b932ac5ff36fe7052f013dfccb979ba",
+      "bytes": 6433,
+      "lines": 63,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/onchain-safety/VERIFICATION.md",
+      "sha256": "d4eb328d6cd9c7b2a4c5d235b4a6450dc0a60dfecfafca37a83dc6581fc88ab5",
+      "bytes": 6995,
+      "lines": 86,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/one-dollar-rehearsal/VERIFICATION.md",
+      "sha256": "c0f74b052aa75fbe3ec08fac14831057b8ff9c4ecdc7590dad17454b2d74d912",
+      "bytes": 3248,
+      "lines": 55,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-02"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/operational-reliability-20261029/BACKEND.md",
+      "sha256": "6a42a9ed13cb13a4c981562150155d7f146ceaf0d606aa01c4ca7bec13b4416d",
+      "bytes": 9762,
+      "lines": 40,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/operational-reliability-20261029/CONTRACTS.md",
+      "sha256": "161d57a4bfc8b77491a27903549887c2bc35c705481ac1760154009d830ca2bb",
+      "bytes": 10638,
+      "lines": 69,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/operational-reliability-20261029/KEEPER.md",
+      "sha256": "fd8304833e4623a2a1364aab134d8525bf3bebf1f9653022abd14b08a3ee789e",
+      "bytes": 9171,
+      "lines": 143,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/operational-reliability-20261029/REVIEW.md",
+      "sha256": "5475cb5ed231371e41f86c5e454d5736021d35d5bf081339c5b1b15a3c68bf2f",
+      "bytes": 6225,
+      "lines": 61,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/operational-reliability-20261029/VERIFICATION.md",
+      "sha256": "af9beae2a330e028ee841398d3f624c2adb8d8e805624c55dcc48492a2b20875",
+      "bytes": 3698,
+      "lines": 59,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/operations-hardening/README.md",
+      "sha256": "5865da5d222fccb9537137b37c93dccb254d155da3f8fa1bad14c73b872f4adb",
+      "bytes": 9511,
+      "lines": 147,
+      "tracked": false,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/operations-hardening/static-analysis/README.md",
+      "sha256": "03cd8272a4b1b463ff6db9c33859eaefcde39e8f9c3de5f5c9e801e797b8a041",
+      "bytes": 2042,
+      "lines": 13,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/operator-controls/REVIEW.md",
+      "sha256": "4fb584de982402e93f30904e7a6a964df0fa584b40c8e5216595eb8c60d96e61",
+      "bytes": 5062,
+      "lines": 82,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/operator-controls/VERIFICATION.md",
+      "sha256": "5ac2bcf7f1060430a8af186b06d247512b42b2192dbbfd918c31cbf5a838dd9a",
+      "bytes": 5317,
+      "lines": 71,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/pair-composition/PUBLICATION.md",
+      "sha256": "004fe13c0050009349bdb4fe5a304d49db7cbbca0e615dee0413c26789da6471",
+      "bytes": 1864,
+      "lines": 28,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/pair-composition/VERIFICATION.md",
+      "sha256": "2c450ec3cba755fd71e1ac9c41e86c691587270af20f5999f83177396469d1b0",
+      "bytes": 6981,
+      "lines": 98,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/pooled/cross-platform-slither-review.md",
+      "sha256": "03ac5d6b9888648158c8495828bef8a5f28cd61f9157296bda7b8ab61d738fb9",
+      "bytes": 1198,
+      "lines": 9,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/pooled/high-medium-secondary-review.md",
+      "sha256": "57c2a2dc4dad8f45e6467faca32f26b3d02a34a93dff1cf4db6f3a8eea8e381e",
+      "bytes": 2061,
+      "lines": 13,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/pooled/README.md",
+      "sha256": "660e14d967c23490b453fba9da6e4a4e47f7063969ae21a75150b32a9f792f9c",
+      "bytes": 9436,
+      "lines": 51,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/position-summary/VERIFICATION.md",
+      "sha256": "bd1fe34488a002ba0aaf4d2bb0ebefc92ef69dc9058d35be00ab8746c4170f3b",
+      "bytes": 4771,
+      "lines": 71,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-10",
+        "FB-14"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/post-seal-controls/PUBLICATION.md",
+      "sha256": "b0b34592f7bbd56d7351625799bdfe00091e73021c513ed2aee7c15e23b1f364",
+      "bytes": 2704,
+      "lines": 39,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/post-seal-controls/REVIEW.md",
+      "sha256": "2f3d85d102a60681093a07af7b0861eab20bd40a52c427dee413c87e81c8fc95",
+      "bytes": 2397,
+      "lines": 38,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/post-seal-controls/VERIFICATION.md",
+      "sha256": "244df304e749f01b3f95fb937d41793245a4f4bc327e20dac95b5c30bd6c8ddd",
+      "bytes": 6640,
+      "lines": 82,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/practical-improvements-20261028/REVIEW.md",
+      "sha256": "7efd09c216bbd22c44f96caceecdbcdde9704f1f158c015020bee7ebde7bd22f",
+      "bytes": 9194,
+      "lines": 76,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/practical-improvements-20261028/VERIFICATION.md",
+      "sha256": "450a77d5450324076be7e4c6c7503afba5eb4bd6c11b53a68cdf77f8d4ca5b4d",
+      "bytes": 7578,
+      "lines": 119,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/preproduction-audit-20261025/ECONOMICS.md",
+      "sha256": "94be6ee546cb94f0a6f56a73e65c67492b86ecffe361860d52b168ce0a2c7118",
+      "bytes": 10193,
+      "lines": 156,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/preproduction-audit-20261025/PLAN.md",
+      "sha256": "50da791a05709ba5b0696d5adca2b18e80732719d16fe10f4d997e1f164f2967",
+      "bytes": 4565,
+      "lines": 46,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/preproduction-audit-20261025/PUBLICATION.md",
+      "sha256": "07e2a11dbad31b9b5bebfb02a595cd69fe6174ef77ffdf5bd2e27fd05267d198",
+      "bytes": 2439,
+      "lines": 35,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/preproduction-audit-20261025/REVIEW.md",
+      "sha256": "ac1a7eadf452f7db20c58bac8c73b9d60fb4738e1404682e2177e12f83f441ff",
+      "bytes": 15275,
+      "lines": 157,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/preproduction-audit-20261025/services/REVIEW.md",
+      "sha256": "e5d841856e5857ae7036a1d20efb9e6d43670171340c70c9d654646fdb853f29",
+      "bytes": 7893,
+      "lines": 57,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/preproduction-audit-20261025/VERIFICATION.md",
+      "sha256": "bbdfde7abd4baeeb353505ea3f3a9522c6d823d991752c6b6fffb4ae7107f45a",
+      "bytes": 5136,
+      "lines": 85,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/price-reference-20261025/OBSERVATION.md",
+      "sha256": "f396983f48b49609986e8151b9e27f92bf995a91e6eed571ce71fd86460a0a60",
+      "bytes": 4363,
+      "lines": 72,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/price-reference-20261025/PUBLICATION.md",
+      "sha256": "bea243dbad39b9df877a6740ef2802f48b57f75f26a3bca87f80bf1cc047c100",
+      "bytes": 1538,
+      "lines": 25,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/price-security/PUBLICATION.md",
+      "sha256": "143cc0a49eee730f6e3a9304c079097fe4c04ac5d2951cbb6f73e2fddc958f51",
+      "bytes": 2133,
+      "lines": 35,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/price-security/REVIEW.md",
+      "sha256": "2b02250dcf20931f323bf8c94d0551da9f314d133d553568575c193d4adf8b4a",
+      "bytes": 6851,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/price-security/VERIFICATION.md",
+      "sha256": "8ee9492f9d36be266e13874d5c6a00651f951d5098e715b1b62165ae8127c82d",
+      "bytes": 6542,
+      "lines": 78,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/production/AUDIT_PACKAGE.md",
+      "sha256": "5f42b090bdd5a066813e1538d9c283360ab3b3e3ed09203496014b5384aaf846",
+      "bytes": 3803,
+      "lines": 25,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/PRODUCTION_READINESS.md",
+      "sha256": "2c9114e02ef0ebf1f524bbb287d37938f535345eb64e17f48e7042b96e5cd409",
+      "bytes": 13953,
+      "lines": 66,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/range-policy/REVIEW.md",
+      "sha256": "6a1559589b98ff87499ddb463157dcebad94d534e45821d304ddf3b86c2aa80b",
+      "bytes": 4208,
+      "lines": 41,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/range-policy/VERIFICATION.md",
+      "sha256": "b90990808bef1897d858a327147698e1bd1f801dd0c7f60e55ed76c7a1d6d509",
+      "bytes": 3982,
+      "lines": 41,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/README.md",
+      "sha256": "28d977c7cbc5b47b9cd7dfd13269db63acc9fb812a8bb0df0758e42d2c9f8c5d",
+      "bytes": 19764,
+      "lines": 274,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/real-service-readiness-20261025/public-rpc/README.md",
+      "sha256": "839ab646650e633b93005cc649bbe0a305ba6c7c692e6afa97a94ee040b54b05",
+      "bytes": 3248,
+      "lines": 56,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/real-service-readiness-20261025/RESEARCH.md",
+      "sha256": "b840baf3459db1250c615496d73f2bc70bc99dfd3b3d1e164802e84ef655828f",
+      "bytes": 4832,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/real-service-readiness-20261025/VERIFICATION.md",
+      "sha256": "03a59b9f281eeafbacecaf110aad50e83146caa6efddff878fe6affd938b909c",
+      "bytes": 3452,
+      "lines": 57,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-hardening/keeper-review.md",
+      "sha256": "a92e03b5a87f575f265e1249abedc7e445e567c9e1d9cfa93feaff25bc803e5e",
+      "bytes": 4567,
+      "lines": 31,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-hardening/README.md",
+      "sha256": "919ee675ec08a57e83a08b46ca03649d49286200547fdbab2f32c9ac03a7285a",
+      "bytes": 6238,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-hardening/selected-market-review.md",
+      "sha256": "543feda8191fee9bc4bce49795d7ff774b28319ba56b7855f46518d294fb113f",
+      "bytes": 13617,
+      "lines": 63,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-hardening/static-analysis/README.md",
+      "sha256": "fba434e59b07d169f455560080f39252a62f00e5600388d3b041d3b6b2e65b56",
+      "bytes": 3827,
+      "lines": 31,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-progress/creator-revenue-20261015.md",
+      "sha256": "0879ee0c930b4e8cc4dfa103dd71ce763ff2ea5a00e4993c7c7cfdc51d7aa538",
+      "bytes": 2192,
+      "lines": 37,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-progress/README.md",
+      "sha256": "335e4dc42d97319b5e65d187a5f5e31396185aacee3191b8dcd18a73016d665a",
+      "bytes": 4550,
+      "lines": 69,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-progress/static-analysis/README.md",
+      "sha256": "93b70f7b6fddf564c2f4b40e43c8819b85de6ac5b99cfccf1dfdca0b3510c160",
+      "bytes": 2268,
+      "lines": 11,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/feeds-routes/REVIEW.md",
+      "sha256": "3949012336225ac2e7d1f6c194ecc8e769ad802d23c2700478ea5ebc46f68f10",
+      "bytes": 6996,
+      "lines": 108,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/feeds-routes/VERIFICATION.md",
+      "sha256": "9ecac79cb66880e9081de0fd6c915862fb9365f9f683e07702e69f2cbd099747",
+      "bytes": 4298,
+      "lines": 80,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/function-reference/VERIFICATION.md",
+      "sha256": "a9d66c80be67b0250323ad0601d2d2d5905e3a22472daa06432504b6f5192333",
+      "bytes": 4703,
+      "lines": 23,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/operations-audit/REVIEW.md",
+      "sha256": "ae489bb97f47891d36f56a93a6e88fff05b2cda42cb0c82f35200f4677b9714d",
+      "bytes": 5033,
+      "lines": 81,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/PUBLICATION.md",
+      "sha256": "bf44671152eac80fc395c3ec92cf895134b48719036558c3a07b273b44244b3c",
+      "bytes": 2975,
+      "lines": 53,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/REVIEW.md",
+      "sha256": "a18c1db762379ad00d2af31384d794f6f50149627c49923116479a8211a7db84",
+      "bytes": 6116,
+      "lines": 75,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/VERIFICATION.md",
+      "sha256": "9bc208598810e8752d50ae69a3d0adc7fe953988b30057239c9562e7679425f0",
+      "bytes": 3948,
+      "lines": 36,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/vrf-opensea/RESEARCH.md",
+      "sha256": "e11681b3b21ad423580279e46c6b94b60a9f1547dde2f93fefb38790dd0197de",
+      "bytes": 6816,
+      "lines": 98,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/release-services-20261025/vrf-opensea/VERIFICATION.md",
+      "sha256": "1250799cd2224a37af3912b39894bc8e39f62f4eb5b2866b4588cdd1c065105f",
+      "bytes": 3673,
+      "lines": 56,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/reward-allocation-20261026/PUBLICATION.md",
+      "sha256": "79ee7cdad167889e0254706a3f84707abc8bbe392867c1a51bda40e1a8f361f9",
+      "bytes": 1171,
+      "lines": 19,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/reward-allocation-20261026/REVIEW.md",
+      "sha256": "2e02d190ba2c714dfddbb52c459fe47024a4e001efb68e49fc73fb7ada469a7e",
+      "bytes": 4308,
+      "lines": 68,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/reward-allocation-20261026/VERIFICATION.md",
+      "sha256": "ddd59e1144130b91da2c8356930125c2065d0bfda28d3c10a163c10a0e7db478",
+      "bytes": 3967,
+      "lines": 64,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/reward-funding/README.md",
+      "sha256": "372d717c24fa83ea8aec9f6ab00911737e7d0999588364f1e9527ea2b06344c7",
+      "bytes": 9441,
+      "lines": 48,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/reward-funding/secondary-review.md",
+      "sha256": "f15ef796b2e3b6b40f7ad72e08ec6fe0b3419326e78bf79a552fe742fe60fef6",
+      "bytes": 5569,
+      "lines": 53,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/reward-resilience-20261026/PUBLICATION.md",
+      "sha256": "07f4070153fedc72f2bf0a1862e5ea22887c23dc652899d2a703467a937c1bcf",
+      "bytes": 1247,
+      "lines": 19,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/reward-resilience-20261026/REVIEW.md",
+      "sha256": "dd30449f1070e648771915c30e456d394b3109855f445421d87aa6ca86318c36",
+      "bytes": 5518,
+      "lines": 90,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/reward-resilience-20261026/VERIFICATION.md",
+      "sha256": "a49be837b8b5c0f27747130d4c95ca45180066a4d00d7eb69ad14946a64ea347",
+      "bytes": 4420,
+      "lines": 73,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/royalty-conversion/REVIEW.md",
+      "sha256": "6c489c730af38d223217693086fd35d1f57d9c1905b191a38da0d431ea5f961d",
+      "bytes": 6544,
+      "lines": 99,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/royalty-conversion/VERIFICATION.md",
+      "sha256": "792c5d0d3e10cfaff45a5145e100abcde2bfb39a34b36514207d4ba4f945bb70",
+      "bytes": 3644,
+      "lines": 49,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/royalty-reporting/REVIEW.md",
+      "sha256": "c8bbeead4feb236f69f04739f2e14e8a6834be6926d36b15095e27811b465373",
+      "bytes": 3228,
+      "lines": 22,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-13",
+        "FB-16"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/royalty-reporting/VERIFICATION.md",
+      "sha256": "921a4e38715888564d61684d3964ff346d7ddf08886107d5c404401448088d63",
+      "bytes": 5068,
+      "lines": 75,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-13",
+        "FB-16",
+        "FB-27",
+        "FB-28"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/simplification-20261025/PUBLICATION.md",
+      "sha256": "e64ec4c91fb0a7e17c63090d4b653de437a7a4dc313cefe92ebdfabd3587bd02",
+      "bytes": 1821,
+      "lines": 31,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/simplification-20261025/retired-test-fixtures/README.md",
+      "sha256": "34c0f95aa064bb3210d433f0feb3a9c0d8add499f8302a6608f9a37e83df01f6",
+      "bytes": 1332,
+      "lines": 12,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/simplification-20261025/REVIEW.md",
+      "sha256": "7f9f92628e2c3507353c23c747c34c7a96779135790c5e221464fe2d64879aee",
+      "bytes": 4508,
+      "lines": 54,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/simplification-20261025/solidity/VERIFICATION.md",
+      "sha256": "4e4b05cb6c390b50becf47a29db412214a9903be0f00ed0ce3f7f43da3ee34c1",
+      "bytes": 5727,
+      "lines": 95,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/simplification-20261025/VERIFICATION.md",
+      "sha256": "5adda17ff69121afde1e9a4f95075f607fa587d90f0fd27c3c667e4af09474d4",
+      "bytes": 5354,
+      "lines": 72,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/BACKEND.md",
+      "sha256": "adf32c061facd87bed15cbefb955a9e06158d42b48bdb53eb56672fd635edce2",
+      "bytes": 7210,
+      "lines": 36,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/COVERAGE.md",
+      "sha256": "f1864a81d57460092d39ca4b1c12df6b37054e709dac0cfbf7765e4dbc8b221b",
+      "bytes": 5097,
+      "lines": 64,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/custody-review.md",
+      "sha256": "7b9362a3d30205ec4c86dafc805ec6c022c34b119c8cf3986402b10df3bdb64a",
+      "bytes": 5643,
+      "lines": 61,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/ops-input/stage1-input/VERIFICATION.md",
+      "sha256": "04c1ea31c833f9f7e9e8484259f55473365add5c4921ac122a66ca07fddccc08",
+      "bytes": 2217,
+      "lines": 35,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/ops-input/VERIFICATION.md",
+      "sha256": "f99328ec210260437d24c7a669fd7defa129a29036eb39a94a229e5ae4d65875",
+      "bytes": 3220,
+      "lines": 49,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/PRINCIPAL.md",
+      "sha256": "2b8513468630a329c2b34c85c6a6c66e8da1666d2b9378a837cf775bacd7973e",
+      "bytes": 7446,
+      "lines": 80,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/PROMPT.md",
+      "sha256": "84efb4574ba742fd173e43f275b4ae0409e1cd44643c8fef1c74d2ce64fef03f",
+      "bytes": 6973,
+      "lines": 102,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/PUBLICATION.md",
+      "sha256": "a1ad1eaa90830d0238713d3787f6cbc2e4669c568b3d2549c8c3c1d25cf0cff2",
+      "bytes": 1847,
+      "lines": 28,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/REVIEW.md",
+      "sha256": "d074326c328394b2458b21a76fa1925196e0b30fbdbad02b2532f00dd93fc566",
+      "bytes": 7594,
+      "lines": 88,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/RIGHTS.md",
+      "sha256": "3ccc52c6a721091fbfe4db0061ab1e41134b4d6d978c3011e3c26bcc9df83cea",
+      "bytes": 5209,
+      "lines": 82,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/VERIFICATION.md",
+      "sha256": "d4242f7b2fa8cda24b34f10a5a8d3dcb3d78e219d7dda47daa1a25b59cfa1949",
+      "bytes": 5396,
+      "lines": 87,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/system-adversarial-20261026/WATCHDOG.md",
+      "sha256": "02eae1262744e4611e42c27d253b508d2ce949f1f3e95701d6d9f5c3ee5258d9",
+      "bytes": 5674,
+      "lines": 86,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/third-pass-20261028/REVIEW.md",
+      "sha256": "9e4ed4f8410c1f7a1fd108c0b4f43e47316909b5de8793c6fddeb7bf88ec009f",
+      "bytes": 8687,
+      "lines": 83,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/third-pass-20261028/VERIFICATION.md",
+      "sha256": "45f50f62c8eae50d93f2f1f855bfccacdeb7d6841197c5135152abfd11c1df95",
+      "bytes": 4302,
+      "lines": 64,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md",
+      "sha256": "27251f47667db730c4cbb0c28ee812aee70b9d8be0f56c55e0898a749dcd08e4",
+      "bytes": 6227,
+      "lines": 75,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/topup-and-reward-review/REVIEW.md",
+      "sha256": "4aa90370bc787d34c952ca5054613ea41ea4baf215c2f71c9495225b4339187d",
+      "bytes": 8050,
+      "lines": 105,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/topup-and-reward-review/REWARD_CALCULATION.md",
+      "sha256": "4e353027191ab7813c69766ec57bac750e346084e53757ba9f2f5863229f4635",
+      "bytes": 4656,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/topup-and-reward-review/VERIFICATION.md",
+      "sha256": "6ee1b7f69374cfedd3a0c9cdd9c5fcf797e5c1b4f2e2ce86726eb9e0447b6631",
+      "bytes": 8527,
+      "lines": 129,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/twin-circuits/VERIFICATION.md",
+      "sha256": "4a29e2d2626021fabc89da4fa8cb91a63c0d27a8bc2f18f0f925120c2e04d4b3",
+      "bytes": 2797,
+      "lines": 41,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/two-day-audit-20261028/REVIEW.md",
+      "sha256": "b4b91cd4011692f7e48ab4cc5b3916a42d2b99992c90dc0865424f8bd56cd8ee",
+      "bytes": 9231,
+      "lines": 132,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/two-day-audit-20261028/VERIFICATION.md",
+      "sha256": "c366c5b4c7bbcbdba93a09152bb71c6e4ce41f295bb36d8d1834037337a66341",
+      "bytes": 4278,
+      "lines": 82,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/typed-v4-routes/PUBLICATION.md",
+      "sha256": "8dbdbae27011309fd2cb57cd7a1c2cf8101e781cc4ca31c7a3cba0a1830d6baf",
+      "bytes": 2513,
+      "lines": 42,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/typed-v4-routes/REVIEW.md",
+      "sha256": "24383be1d762f800237fd050fbbf2fabb5fe101ae31bb780026eeebf5f829c73",
+      "bytes": 5243,
+      "lines": 67,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/typed-v4-routes/VERIFICATION.md",
+      "sha256": "740c0520128938b47747de4da40ad23fd4ad35905486bb889ff364b783cec017",
+      "bytes": 6536,
+      "lines": 85,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/wallet-earnings/PUBLICATION.md",
+      "sha256": "a966fedd62f966a6ac33162a3b0da408bbed4ba2307617c4c3d4c15c2a33a2fe",
+      "bytes": 1752,
+      "lines": 27,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-12",
+        "FB-13",
+        "FB-25"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/wallet-earnings/VERIFICATION.md",
+      "sha256": "772bdf3386330493e47dbd36862f94b9c25c171049926eebda00f5822e8724ca",
+      "bytes": 4676,
+      "lines": 72,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-12",
+        "FB-13",
+        "FB-17"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/wallet-preparation/VERIFICATION.md",
+      "sha256": "4cc85bf334fb16050c890b12c7dc820fb69fd1591b96605b252caec7a8946ecc",
+      "bytes": 6421,
+      "lines": 88,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-01",
+        "FB-04",
+        "FB-16",
+        "FB-17",
+        "FB-28"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/website-alignment/README.md",
+      "sha256": "8d3be88c9d2ea54a4b0c052c3ba961cb20cbd54484f5ba49ae472467cb5813b9",
+      "bytes": 11927,
+      "lines": 57,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-14",
+        "FB-23",
+        "FB-24"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/website-polish/VERIFICATION.md",
+      "sha256": "e92c83438ed40e6d97ca5f39ef102e70964b99f14b6684e76b020609ef50dd3c",
+      "bytes": 5501,
+      "lines": 81,
+      "tracked": true,
+      "review_scope": "complete_text_and_reconciliation_record",
+      "records": [
+        "FB-10",
+        "FB-14",
+        "FB-23"
+      ],
+      "limitation": null
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/COMPILER_DEPENDENCIES.md",
+      "sha256": "940ab98a0d47508df9cfcfa11ddd0f8a4c8b31fe182dd6922c7aa786754df76e",
+      "bytes": 3235,
+      "lines": 44,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/CONTRACTS.md",
+      "sha256": "231695d301fbd7b55c6df092e890f384ba81fc3134517bfee0b6e7803f6ece8b",
+      "bytes": 14796,
+      "lines": 76,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/COVERAGE.md",
+      "sha256": "a4c8754644e4eac2ae3c66d26d2817c45e2fccb9df7ba18f35000ea9f17947c8",
+      "bytes": 5447,
+      "lines": 38,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/FRONTEND.md",
+      "sha256": "9a8eaf74ead07b58ee7d921a769b21b1d9dfb03e283106b43eb886bf8c639b8e",
+      "bytes": 17384,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/KNOWLEDGE.md",
+      "sha256": "3c97f5577d30dc1ba0213d3bd35bd220442433a0e3a508635efc3e40a3623542",
+      "bytes": 6384,
+      "lines": 44,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/OPERATIONS.md",
+      "sha256": "4ca991f2192a18cd83b7fd5f81fe2a75378518cd34cb15259dcbe4edf3165449",
+      "bytes": 5023,
+      "lines": 77,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/PROMPT_REVIEW.md",
+      "sha256": "99e9a001c3e062042b0017cbb206b00ac337c7859c2f528f106cc9c0ea11794a",
+      "bytes": 4331,
+      "lines": 64,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/REVIEW.md",
+      "sha256": "c44284fcf633f327798385995e41abdedb55c0ec55415a5e2f902b3718e8b2d4",
+      "bytes": 9024,
+      "lines": 104,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/UNDERSTANDING.md",
+      "sha256": "449fe940d6d7c1446d741d6983b19bb265574ceceef456cebdb1c03e9d083d62",
+      "bytes": 8061,
+      "lines": 80,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-audit-20261029/VERIFICATION.md",
+      "sha256": "61be8b82485f126b3781f0d18210214ead62ebb521af02619c0df3a3cb610a10",
+      "bytes": 6529,
+      "lines": 88,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/BACKEND.md",
+      "sha256": "bfbbfbfd2ae3ee4c267ad3072cf7134561a55f1beb35587417c8c521ec8216eb",
+      "bytes": 2141,
+      "lines": 11,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/CHALLENGE_1.md",
+      "sha256": "fc371769a8a7ed9f08a898cd58aad234925d06d899e6d878b58eedadefdad352",
+      "bytes": 3100,
+      "lines": 43,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/CHALLENGE_2.md",
+      "sha256": "23f6eb9e0442d884798982d487e62c9999d28a27ebe114e8983d9f1baf0c366f",
+      "bytes": 1859,
+      "lines": 28,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/COMPILER_DEPENDENCIES.md",
+      "sha256": "42a4e713c8f926d6fb33c45c8500958d8c097f1149cea16535a1062c3abeebc9",
+      "bytes": 2301,
+      "lines": 28,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/CONTRACTS.md",
+      "sha256": "cd1bea0e94eb1ef0b1519bc19e7a7afce150388b1888b239f75af59ebe4e77ff",
+      "bytes": 7286,
+      "lines": 107,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/COVERAGE.md",
+      "sha256": "743dcea5117084ee48045846462148a96b081c1da959b4992a8e2300a27af10a",
+      "bytes": 3778,
+      "lines": 21,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/KEEPER.md",
+      "sha256": "109ecc7bca68656a650f49478b7c321a2ddb43395051c6792c1be46695d4dd66",
+      "bytes": 6948,
+      "lines": 107,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/KNOWLEDGE.md",
+      "sha256": "856404856dd5530f164056f94dc7482cb04986bc01d63b7eb42c8e9455176dd9",
+      "bytes": 2067,
+      "lines": 31,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/PROMPT_REVIEW.md",
+      "sha256": "1a4b08e3752b40de178a5b5ed35c05b3e62cec52b926cd64e6860f8440b29844",
+      "bytes": 1417,
+      "lines": 21,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/PUBLICATION.md",
+      "sha256": "f416dc00273b1f2ee8e33708be5139bddfc9d2e7f289af63804e6063c5893f45",
+      "bytes": 2135,
+      "lines": 30,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/REVIEW.md",
+      "sha256": "4d453c8b554845872f8ec851f0d7dcfe8313c09950b23bce1d34236d6b88bbe3",
+      "bytes": 7652,
+      "lines": 67,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/TOOLING.md",
+      "sha256": "61690fa01a542d15e921ae8638fa9a137c75416046708c276d76817347df5c95",
+      "bytes": 5468,
+      "lines": 87,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/UNDERSTANDING.md",
+      "sha256": "c828a043208a58408e076db5233c24be88fab6eaea866a1aca33f4d81d14e78f",
+      "bytes": 9073,
+      "lines": 66,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    },
+    {
+      "path": "reports/whole-project-execution-20261029/VERIFICATION.md",
+      "sha256": "d1b4db3e19d1b948a478774d72902368e1c788d48eb72c6cc90cca8698e9121a",
+      "bytes": 5946,
+      "lines": 63,
+      "tracked": true,
+      "review_scope": "inventoried_final_finding_disposition_incomplete",
+      "records": [],
+      "limitation": "This inventory is not a complete per-finding semantic reconciliation. See REVIEW.md."
+    }
+  ]
+}
