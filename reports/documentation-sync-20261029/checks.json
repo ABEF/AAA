@@ -1,0 +1,16 @@
+{
+  "scope": "documentation consistency only",
+  "code_tests_rerun": 0,
+  "relative_links_checked": 1339,
+  "errors": [],
+  "keeper_evidence_source_pins_verified": 13,
+  "solidity_source_closure_unchanged": 78,
+  "contract_code_unchanged": true,
+  "website_tracked_code_assets_config_unchanged": true,
+  "protected_dist_files_unchanged": 5598,
+  "original_dirty_preserved": true,
+  "historical_report_files_unchanged": 2321,
+  "production_approved": false,
+  "website_or_service_rollout": false,
+  "successful": true
+}

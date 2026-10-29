@@ -18,7 +18,8 @@ source/body review and implements keeper deadline priority, strict durable/log
 provenance, final-depth/fee/pool observation and artifact-tooling repairs.
 All122previously missing callable outputs are explained. Static review is not
 exhaustive execution or independent release approval. Website reference metadata
-is corrected locally without changing images/signing/configs or deploying sites.
+was published separately at cae44a1d without changing images/signing/configs
+or deploying sites.
 Actual providers, economics, gas/host/marketplace qualification and audit remain open.
 
 Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.

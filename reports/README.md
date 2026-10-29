@@ -1,5 +1,9 @@
 # Verification evidence
 
+[Documentation synchronization](documentation-sync-20261029/VERIFICATION.md) records
+current guide/Todo/context consistency and unchanged code/artifact boundaries;
+it adds no execution-test or release-approval claim.
+
 [Keeper coordination and operation review](keeper-coordination-20261029/REVIEW.md): service-only compound waits,
 proved internal harvest clocks, read-only LP diagnostics and corrected actual-ABI
 reservation observation. No source publication implies operating rollout.

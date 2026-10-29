@@ -3,7 +3,7 @@
 Reviewed 2026-10-29. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
 [README](../README.md), [Todo](../TODO.md) and the owning runbook before continuing.
 
-## Latest whole-project execution
+## Whole-project audit context
 
 The stable [audit prompt](THIRD_PASS_AUDIT_PROMPT.md) now covers the full project;
 its previous duplicate is a pointer. Understanding preceded drafting and both
@@ -32,14 +32,17 @@ Raw source pins, failures, old drafts and focused receipts remain externally in
 `whole-project-execution-20261029`; current Git publication status is recorded
 in its verification/publication record, not inferred from this handoff.
 
-The [normal-operation design reassessment](../reports/normal-operation-design-20261029/REVIEW.md)
-is a design snapshot. Deadline priority was already implemented. Current
-[keeper coordination](KEEPER_COORDINATION.md) adds service-only in-range/no-pending-width
-compound waits, canonical receipt-backed internal-harvest coalescing and a bounded
-read-only rebalance/compound/harvest report. It changes no Solidity guards, on-chain clocks,
-shares or financial limits. Early confirmation enrollment, an outside-range no-swap exception,
-idle-only trigger enablement and other operation-report adapters remain separate.
-No installed service/site/Anvil or signer/journal is changed by source publication.
+The current code checkpoint is `4579eeb` on main. [Keeper coordination](KEEPER_COORDINATION.md)
+implements service-only in-range/no-pending-width compound waits, same-hash
+known-evidence reset coordination, canonical receipt-backed harvest coalescing
+and a read-only three-operation report. The [261-method evidence](../reports/keeper-coordination-20261029/VERIFICATION.md)
+separates 185 final keeper/report methods, 12 final reservation methods and 64
+before one diagnostic-only change; it is not a fresh whole-suite/CI or operating
+qualification. Registration derives from complete actual bucket inventory;
+there is no public registeredBucket getter. No Solidity, on-chain clock, financial
+limit, installed worker/site/Anvil, signer or journal was changed by publication.
+Early confirmation enrollment, an outside-range no-swap exception, idle-only
+trigger enablement and broader operation-report adapters remain separate work.
 
 The [operational reliability follow-up](../reports/operational-reliability-20261029/REVIEW.md) fixes
 indexer final depth/transaction-boundary/time consistency; keeper head/receipt

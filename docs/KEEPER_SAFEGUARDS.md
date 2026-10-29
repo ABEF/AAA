@@ -126,7 +126,10 @@ lifecycle/authority/head faults mark only known fresh windows. Every foreign
 nonempty record requires another clear while a clear acknowledgement remains,
 even after an earlier healthy empty read. Only the worker's new observation
 intent atomically removes that acknowledgement. Unrelated job failures do not
-discard healthy evidence.
+discard healthy evidence. Fresh compound physical reads consume the same
+observed-negative rule between official samples; missing local reader config
+alone is separate from interrupted raw evidence. The reader/report stay pure,
+while the live caller uses existing durable resets. [Coordination](KEEPER_COORDINATION.md).
 [Exact policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
 
 ## 6. Deposit, accounting and callback protections

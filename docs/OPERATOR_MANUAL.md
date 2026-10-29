@@ -302,10 +302,12 @@ actual product and upstream authority. [Price operating requirements](PRICE_SECU
 <a id="pending-15-minute-rebalance-confirmation"></a>
 
 The [whole-operation assessment](../reports/normal-operation-design-20261029/REVIEW.md) explains the different
-contribution, reserve, idle, harvest and maintenance paths. Its unified operation
-report is proposed, not an existing command. Do not infer current blockers from
-stale gas health or a generic simulation error, and do not change compound policy
-merely by replacing raw need with sampled readiness.
+contribution, reserve, idle, harvest and maintenance paths. The implemented
+[read-only keeper review](KEEPER_COORDINATION.md#read-only-operation-review) covers
+rebalance, compound and harvest; broader operation adapters remain unfinished.
+It reports known blockers and explicitly unavailable evidence, not a universal
+execution approval. Do not infer a specific cause from stale health or a generic
+simulation error, or replace raw need with sampled readiness.
 
 ### Configure rebalance confirmation
 
@@ -361,8 +363,13 @@ saved intent retains pending-first recovery and adds no global reset work.
 
 Relevant raw group/pool read failures invalidate that bucket's fresh window; a failed
 initial global lifecycle/authority/head read marks only known fresh windows for
-reset. Unrelated router, compound, harvest or health-read failures degrade their
-own work. A canonical clear acknowledgement suppresses repeated paid resets
+reset. Unrelated router, compound-reserve/quote, harvest or health-read failures
+degrade their own work. Actual interrupted compound physical/confirmation reads
+are related evidence faults and invalidate only tracked affected windows;
+missing local reader configuration alone does not. Fresh same-hash inside or
+opposite-side evidence cannot preserve a nonempty ordinary window. Nonempty
+foreign evidence after a clear uses the existing forced-reset rule; empty/manual
+cases do not cause repeated paid clears. See [coordination](KEEPER_COORDINATION.md). A canonical clear acknowledgement suppresses repeated paid resets
 while waiting for recovery, never authorizes cached readiness. Every nonempty
 foreign record requires another clear while the acknowledgement remains, even
 after an earlier healthy empty read. Only our own new observation intent removes
@@ -908,7 +915,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | Operation | Entry point / owner of action | Verify and recover |
 | --- | --- | --- |
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
-| Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)`; contributions/rebalances also pull the bucket's compound reserve | Standalone V2 compound waits after both the last compound and LP replacement, and yields to eligible rebalance/range selection. Uses attributed backing and guards; funds never pass through keeper. Holder claim balances are separate. |
+| Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)`; contributions/rebalances also pull the bucket's compound reserve | Current Budget3 / policy2 compound waits after both the last compound and LP replacement, and yields to eligible rebalance/range selection. Uses attributed backing and guards; funds never pass through keeper. Holder claim balances are separate. |
 | Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and normal exit. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires custody exit and a fresh reviewed deployment. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
@@ -1030,14 +1037,18 @@ object, keeping its other settings intact:
    reviewed config. The keeper loads config at startup; editing JSON alone does
    not reload it. Do not run another monitor against its journal alongside it.
 5. Require a fresh healthy cycle with the matching `configuration_sha256`, then
-   verify actual `FeesCollected`/`FeesAllocated` receipts when eligible. A fresh
-   health result or dry run is not proof that a harvest transaction occurred.
+   verify the canonical `FeesCollected` receipt when eligible and funded
+   allocation when fees are nonzero. A valid 0/0 collection need not emit
+   `FeesAllocated`. Health or dry run alone does not prove a harvest occurred.
 
-The threshold uses the chain timestamp of the keeper's last **confirmed,
-successful standalone** `harvest:<bucket>` action, not its restart time. A shorter
-interval or a missing previous timestamp can make harvesting due immediately at
-the next eligible cycle. Contributions, rebalances, compounding and outside
-manual harvests do not reset that standalone journal timestamp. Polling uses the
+The threshold uses the receipt block time of the last confirmed successful
+`harvest:<bucket>` action or a proved own compound/rebalance harvest coalesced
+into that clock. The latter requires matching canonical Vault event proof;
+zero-fee collection is valid. Missing optional proof leaves the clock unchanged
+while preserving paid recovery. Contributions, unjournaled manual activity,
+submission, reverts and ambiguous work are not silently adopted. A shorter
+interval or no prior worker success record can make harvesting due at the next
+eligible cycle. Restart does not reset the clock. Polling uses the
 separate `interval_seconds` setting. Historical examples use600seconds; fresh
 confirmation2 requires60-240, with60 in its example and240-second eligible
 observations. A harvest interval shorter than polling cannot make checks run

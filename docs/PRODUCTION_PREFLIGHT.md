@@ -61,7 +61,7 @@ fault remains separately blocked by the whole inventory. Pause/preparation/
 terminal status does not imply corrupt ownership. Price/route/admission/owner/
 gas/execution qualification remains separate. See the
 [operator procedure](OPERATOR_MANUAL.md#one-contribution-pool-at-a-time) and
-[repair evidence](../reports/operational-reliability-20261029/BACKEND.md).
+[current ABI repair evidence](../reports/keeper-coordination-20261029/RESERVATION_REPAIR.md).
 
 ## Current schema6 observation and offline validation
 

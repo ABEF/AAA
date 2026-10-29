@@ -4,8 +4,11 @@
 waiting, proved internal-harvest clock coalescing and a bounded read-only LP
 operation report. The current observer also corrects a previous private-getter
 mistake using complete actual bucket inventory. [Evidence](../reports/keeper-coordination-20261029/VERIFICATION.md)
-is source-scoped; matching worker/checker rollout, real dependencies/timing/gas
-and independent qualification remain open. No Solidity or service rollout.
+records 261 distinct affected methods: 185 final keeper/report, 12 final
+reservation and 64 before the explicitly proved diagnostic-only change. The
+scopes are not summed with earlier overlapping campaigns. Matching worker/checker
+rollout, real dependencies/timing/gas and independent qualification remain open.
+No Solidity or installed service change is implied.
 
 The [operational code follow-up](../reports/operational-reliability-20261029/REVIEW.md) repairs confirmed
 history commit/chronology, keeper receipt/management parsing, sold-out readiness,
@@ -18,7 +21,8 @@ source/body review and implements keeper deadline priority, strict durable/log
 provenance, final-depth/fee/pool observation and artifact-tooling repairs.
 All122previously missing callable outputs are explained. Static review is not
 exhaustive execution or independent release approval. Website reference metadata
-is corrected locally without changing images/signing/configs or deploying sites.
+was published separately at cae44a1d without changing images/signing/configs
+or deploying sites.
 Actual providers, economics, gas/host/marketplace qualification and audit remain open.
 
 Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
@@ -141,14 +145,16 @@ idle/compound cannot mask the marginal LP floor. Empty catalog disables swaps
 without fallback. Governance can configure catalog/solver and venue slippage
 up to10%, preserving operating/caller/captured limits. See [atomic LP routing review](../reports/atomic-routing-20261028/REVIEW.md)
 and [verification](../reports/atomic-routing-20261028/VERIFICATION.md). Manual
-widths, hard initial12hours, durable service jitter/hourly eligible checks,
-independent hourly harvest and compound interval remain. Actual rollout, depth,
+widths, hard initial 12 hours and durable service jitter remain. Fresh
+confirmation2 evaluates eligible conditions every 240 seconds; hourly inside
+checks belong to historical policy2. Independent hourly harvest and the separate
+compound interval remain. Actual rollout, depth,
 gas, economic qualification and independent audit remain open. The $1m per-NFT
 cap is existing configuration, not a capacity proof.
 
 Manual `Vault.rebalance` already exists for keeper-authorized wallets; governance
 alone does not grant that capability. The [documented procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
-skips local jitter/hourly evaluation only, retains on-chain eligibility and
+skips local jitter/evaluation scheduling only, retains on-chain eligibility and
 separately handles same-key journal reconciliation. This documentation update
 adds no contract behavior, ABI, test pass, service rollout or production approval.
 
@@ -187,7 +193,7 @@ approved240-second service checks with unchanged900/300on-chain confirmation;
 old300schedules/pending/reset/jitter remain preserved. Five current canonical
 composition methods and75affected Python methods pass in their exact scopes;
 unchanged217EVM/39normal gates are reused, not rerun. Per-function pending depth,
-locally corrected website metadata (not deployed), real operating/provider/compiler-lowering and
+separately published website metadata (not deployed), real operating/provider/compiler-lowering and
 independent-audit gates stay explicit. [Verification](../reports/whole-project-audit-20261029/VERIFICATION.md).
 Observing during cooldown is proposed in the sole Todo, not implemented.
 

@@ -370,7 +370,13 @@ saved intent retains pending-first recovery and adds no global reset work.
 
 Relevant raw group/pool failures mark that bucket for reset. Initial global
 lifecycle/authority/head failures mark only known fresh windows, not unrelated
-historical buckets.
+historical buckets. Fresh compound reads that prove inside/opposite-side
+evidence against a nonempty ordinary window use the same reset/ack path between
+official samples. Authenticated nonempty evidence contrary to a retained clear
+forces one reset; empty/manual cases do not create paid-clear loops. Actual
+interrupted compound physical/confirmation reads are related evidence faults.
+Missing local physical-reader configuration alone is not one and must not
+invalidate a healthy window. See [coordination](KEEPER_COORDINATION.md).
 
 Unrelated router metadata, compound reserve, quote-gas, health and harvest
 failures do not invalidate a healthy sampled window. Only an exception while

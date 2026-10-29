@@ -50,7 +50,9 @@ python3 scripts/verify-normal-profile.py
 counts are inventory metadata, not test passes. Existing JSON/log output paths
 are refused. The default full verifier is intentionally the normal profile;
 run separately scoped stronger audit/fuzz campaigns with explicit evidence.
-[Current verification scope](../reports/operational-reliability-20261029/VERIFICATION.md).
+[Verification-tooling scope](../reports/operational-reliability-20261029/VERIFICATION.md) and
+[recent affected keeper/preflight evidence](../reports/keeper-coordination-20261029/VERIFICATION.md)
+retain separate source and execution scopes; neither is a fresh full-suite run.
 
 During development run the useful affected suites; preserve
 source/command/results/failure evidence. Reuse unchanged-source evidence only

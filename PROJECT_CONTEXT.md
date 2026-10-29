@@ -138,19 +138,22 @@ reference market/provider/window qualification remains open. Five targeted
 current canonical methods and75scoped Python methods pass; unchanged217EVM/
 39normal gates are reused with exact pins. Individual-body pending depth and
 compiler-lowering, real provider/service/escrow and independent review stay open.
-Website reference metadata is locally corrected without image/signing/config/build/server changes; fresh4 UI remains incomplete.
+Website reference metadata was published separately at cae44a1d without image/signing/config/build/server changes; fresh4 UI remains incomplete.
 No Solidity, economics, signer, service/site/Anvil or approval changed. Earlier
 [third-pass evidence](reports/third-pass-20261028/VERIFICATION.md) keeps its frozen
 October26-28 source scope; no test counts are summed as a whole-release proof.
 
-The [normal-operation design reassessment](reports/normal-operation-design-20261029/REVIEW.md)
-is a design snapshot. Deadline priority was already implemented. Current
-[keeper coordination](docs/KEEPER_COORDINATION.md) adds service-only in-range/no-pending-width
-compound waits, canonical receipt-backed internal-harvest coalescing and a bounded
-read-only rebalance/compound/harvest report. It changes no Solidity guards, on-chain clocks,
-shares or financial limits. Early confirmation enrollment, an outside-range no-swap exception,
-idle-only trigger enablement and other operation-report adapters remain separate.
-No installed service/site/Anvil or signer/journal is changed by source publication.
+The current code checkpoint is `4579eeb` on main. [Keeper coordination](docs/KEEPER_COORDINATION.md)
+implements service-only in-range/no-pending-width compound waits, same-hash
+known-evidence reset coordination, canonical receipt-backed harvest coalescing
+and a read-only three-operation report. The [261-method evidence](reports/keeper-coordination-20261029/VERIFICATION.md)
+separates 185 final keeper/report methods, 12 final reservation methods and 64
+before one diagnostic-only change; it is not a fresh whole-suite/CI or operating
+qualification. Registration derives from complete actual bucket inventory;
+there is no public registeredBucket getter. No Solidity, on-chain clock, financial
+limit, installed worker/site/Anvil, signer or journal was changed by publication.
+Early confirmation enrollment, an outside-range no-swap exception, idle-only
+trigger enablement and broader operation-report adapters remain separate work.
 
 ## Requested next LP policy
 

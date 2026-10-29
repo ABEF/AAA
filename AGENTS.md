@@ -128,7 +128,8 @@ source/body review and implements keeper deadline priority, strict durable/log
 provenance, final-depth/fee/pool observation and artifact-tooling repairs.
 All122previously missing callable outputs are explained. Static review is not
 exhaustive execution or independent release approval. Website reference metadata
-is corrected locally without changing images/signing/configs or deploying sites.
+was published separately at cae44a1d without changing images/signing/configs
+or deploying sites.
 Actual providers, economics, gas/host/marketplace qualification and audit remain open.
 
 Known confirmation windows now precede optional nonce users after pending recovery;
@@ -136,14 +137,17 @@ optional-job degradation does not stretch their cadence, global failures still
 back off. Strict300seconds remains a release liveness limit, not an SLA. Duplicate
 JSON/nonfinite state is rejected; never repair a journal manually to pass.
 
-The [normal-operation design reassessment](reports/normal-operation-design-20261029/REVIEW.md)
-is a design snapshot. Deadline priority was already implemented. Current
-[keeper coordination](docs/KEEPER_COORDINATION.md) adds service-only in-range/no-pending-width
-compound waits, canonical receipt-backed internal-harvest coalescing and a bounded
-read-only rebalance/compound/harvest report. It changes no Solidity guards, on-chain clocks,
-shares or financial limits. Early confirmation enrollment, an outside-range no-swap exception,
-idle-only trigger enablement and other operation-report adapters remain separate.
-No installed service/site/Anvil or signer/journal is changed by source publication.
+The current code checkpoint is `4579eeb` on main. [Keeper coordination](docs/KEEPER_COORDINATION.md)
+implements service-only in-range/no-pending-width compound waits, same-hash
+known-evidence reset coordination, canonical receipt-backed harvest coalescing
+and a read-only three-operation report. The [261-method evidence](reports/keeper-coordination-20261029/VERIFICATION.md)
+separates 185 final keeper/report methods, 12 final reservation methods and 64
+before one diagnostic-only change; it is not a fresh whole-suite/CI or operating
+qualification. Registration derives from complete actual bucket inventory;
+there is no public registeredBucket getter. No Solidity, on-chain clock, financial
+limit, installed worker/site/Anvil, signer or journal was changed by publication.
+Early confirmation enrollment, an outside-range no-swap exception, idle-only
+trigger enablement and broader operation-report adapters remain separate work.
 
 The [operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md) fixes
 indexer final depth/transaction-boundary/time consistency; keeper head/receipt

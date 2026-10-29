@@ -286,7 +286,8 @@ The keeper **defaults to dry run**. Full keeper/state-lock operation requires **
 
 | Area | Evidence | Scope |
 | --- | --- | --- |
-| **Current architecture pruning** | [Review](reports/architecture-pruning-20261025/REVIEW.md), [profile and codec](docs/POSITION_V3.md) | Accounting V3, direct governance V2 and same-chain canonical V4; source-scoped checks only. |
+| **Current keeper coordination** | [Review](reports/keeper-coordination-20261029/REVIEW.md), [verification](reports/keeper-coordination-20261029/VERIFICATION.md) | Service compound waits, proved harvest clocks, bounded read-only reports and actual-ABI inventory repair; 261 scoped methods, unchanged Solidity, no operating approval. |
+| **Historical accounting3 pruning** | [Review](reports/architecture-pruning-20261025/REVIEW.md), [profile and codec](docs/POSITION_V3.md) | Accounting V3, direct governance V2 and same-chain canonical V4; source-scoped checks only. |
 | **LP accounting and maintenance** | [Dynamic liquidity](reports/dynamic-liquidity/VERIFICATION.md), [range-policy updates](reports/range-policy/VERIFICATION.md) | Contribution/valuation guards, aggregate rebalance budget, range-change eligibility and targeted venue/backend checks. |
 | **Backend integration** | [Activation preparation](reports/activation-preparation/VERIFICATION.md), [API lifecycle](reports/frontend-lifecycle/VERIFICATION.md), [claim-history lineage](reports/frontend-lineage/VERIFICATION.md) | Scoped transaction preparation and confirmed reads; not hosted-service or live website qualification. |
 | **Same-chain replacement** | [Canonical handoff](reports/canonical-handoff/VERIFICATION.md) | Handoff accounting and regression evidence for its recorded snapshot. Later changed paths use the separate reports above. |

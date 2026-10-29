@@ -98,7 +98,7 @@ promised execution time, and a
 missing local scheduling record is not a fabricated future jitter deadline.
 
 Rows use `not_needed`, `not_due`, `blocked`, `unavailable`, `unconfigured`,
-`observed_eligible`, `simulated` or `unsupported`. The last two positive states
+`observed_eligible`, `simulated` or `unsupported`. `observed_eligible` and `simulated`
 cover evaluated views or a discarded simulation, not complete worker readiness.
 Times are Unix seconds; loss settings are basis points. Reserve thresholds keep
 each currency's raw units, and network costs use wei. Never add ETH and ZZZ raw

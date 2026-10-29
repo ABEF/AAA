@@ -24,6 +24,15 @@ binary. The matching writer/checker must be rolled out together. See the
 
 ## Current deployment and configuration
 
+Current [keeper coordination](KEEPER_COORDINATION.md) adds service-only compound
+waiting for an authenticated in-range physical LP with no pending operator width
+change. Budget3 readiness and every contract guard remain; hourly harvesting is
+independent. Physical reader bindings/pins must be qualified for an older
+policy2/LP-routing0 worker too, rather than guessed. Related observed-negative/
+interrupted physical evidence uses the existing reset path; missing local
+reader configuration alone does not invalidate a healthy window. Source updates
+need matching worker/checker rollout and a controlled journal-preserving restart.
+
 Use explicit accounting4, fee intake1, direct governance2, custody3, pricing2,
 routing2 and `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5` with actual bindings. The
 [holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
@@ -191,7 +200,7 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 
 | Job | Reviewed operating policy | Confirmed evidence |
 | --- | --- | --- |
-| Harvest | `maintenance.harvest=true`, `harvest_interval_seconds`; permissionless manual `Vault.collectFees` is also available. Contribution/rebalance/compound paths harvest as well. | `FeesCollected`, matching funded `PoolRewardsCredited`/`FeesAllocated`, actual receipt and separate reserves. Uncollected pool fees are not claimable yet. |
+| Harvest | `maintenance.harvest=true`, `harvest_interval_seconds`; permissionless manual `Vault.collectFees` is also available. Contribution/rebalance/compound paths harvest as well. | Canonical `FeesCollected`; funded allocation/reserve evidence when fees are nonzero. A valid 0/0 collection needs no allocation event. Uncollected pool fees are not claimable yet. |
 | Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting4 also requires the exact Budget pin, capability3 and `compoundReady` under policy2; all standalone compounds yield to range maintenance. Rebalance/guarded compound can reinvest the bucket's reserve; contributions only synchronize/release it into incumbent idle/NAV and deploy entrant funds. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
 | Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
@@ -209,7 +218,12 @@ not taken from a holder's80% or the collective10% by claim logic.
 For the exact JSON field, per-bucket override precedence and controlled
 config/restart/health procedure, use [change the harvesting interval](OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval).
 Editing the sample file does not reconfigure an installed keeper. Its standalone
-timer tracks successful keeper harvest receipts, not every implicit/manual harvest.
+timer tracks successful standalone harvest receipts plus its own compound/
+rebalance receipts with exact canonical Vault collection proof. It does not infer
+harvesting from contributions, unjournaled/manual activity, submissions, NAV or
+reverts. Missing optional proof preserves paid recovery and leaves this clock
+unchanged. Valid zero-fee collection needs no allocation event. See
+[coordination and review](KEEPER_COORDINATION.md).
 
 One submitted transaction uses the serial nonce/receipt path per cycle. LP and
 royalty conversions retain their existing three-way turn with maintenance.
@@ -314,7 +328,12 @@ compounding thresholds to pick up useful residuals without new fees.
 
 Every due accounting4 compound job, even reserve-only, authenticates
 `idle_compounding_budget`, `code_hashes.idle_compounding_budget`, its Vault binding,
-capability3 and `compoundReady`. Explicit historical accounting4 policy1 uses
+capability3 and `compoundReady`. Current source also requires an authenticated
+in-range physical LP with no pending operator width change, including before
+the rebalance cooldown expires. An upgrade of a policy2/LP-routing0 worker needs
+the reviewed physical reader/module runtime pins too; no inferred fallback.
+Due harvest remains independent. See [coordination and report](KEEPER_COORDINATION.md).
+Explicit historical accounting4 policy1 uses
 helper2; historical accounting1/2/3/helper1 settings retain
 their explicit old meaning. Helper readiness is not a substitute for keeper
 authorization, pause/lifecycle, simulation, fee or execution guards. If a
