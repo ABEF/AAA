@@ -136,6 +136,15 @@ optional-job degradation does not stretch their cadence, global failures still
 back off. Strict300seconds remains a release liveness limit, not an SLA. Duplicate
 JSON/nonfinite state is rejected; never repair a journal manually to pass.
 
+The [normal-operation design reassessment](reports/normal-operation-design-20261029/REVIEW.md) supersedes the
+earlier narrow four-point recommendation. Deadline priority is already delivered;
+confirmation-before-cooldown, compound action policy, receipt-backed harvest
+coalescing and a unified non-signing report remain unselected/unimplemented.
+Current compound can swap during cooldown but yields to raw need afterward;
+idle capability is not an enabled worker trigger. Preserve incumbent/entrant
+separation, all financial domains and emergency retained-check semantics. No
+source/setting/service change or fresh test result follows from this design.
+
 ## Verification and documentation workflow
 
 - [Whole-project review](reports/whole-project-audit-20261029/REVIEW.md) fixes

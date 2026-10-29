@@ -1,5 +1,14 @@
 # LP execution and operator-selected maintenance
 
+The [whole-operation design review](../reports/normal-operation-design-20261029/REVIEW.md) distinguishes current
+implementation from remaining coordination choices. Deadline priority is already
+implemented. During cooldown compounding may swap after its own interval; once
+raw replacement is due it waits even if reference confirmation blocks replacement.
+Idle-only worker triggers, internal versus standalone harvest clocks, and exact
+economic denominators must be considered before changing that policy. Early
+confirmation enrollment, harvest coalescing, no-swap compound and a unified
+operation report remain proposals; no settings or code change is implied.
+
 Reviewed2026-10-29. Fresh LP routing1 adds bounded reviewed-venue comparison,
 depth-aware atomic sizing and entrant-only execution to maintenance policy2 /
 Budget3. [Routing review](../reports/atomic-routing-20261028/REVIEW.md) and

@@ -300,6 +300,12 @@ actual product and upstream authority. [Price operating requirements](PRICE_SECU
 
 <a id="pending-15-minute-rebalance-confirmation"></a>
 
+The [whole-operation assessment](../reports/normal-operation-design-20261029/REVIEW.md) explains the different
+contribution, reserve, idle, harvest and maintenance paths. Its unified operation
+report is proposed, not an existing command. Do not infer current blockers from
+stale gas health or a generic simulation error, and do not change compound policy
+merely by replacing raw need with sampled readiness.
+
 ### Configure rebalance confirmation
 
 For a fresh confirmation2 deployment, resolve `Strategy.rebalanceConfirmation()`

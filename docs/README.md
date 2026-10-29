@@ -11,6 +11,11 @@ two prompt challenges, exact handwritten/dependency body coverage, keeper/backen
 tooling/artwork repairs and completed callable outputs. Its scoped verification
 and unresolved live/independent gates supersede no historical report bytes.
 
+[Normal-operation reassessment](../reports/normal-operation-design-20261029/REVIEW.md) maps contribution/idle/fees,
+all service clocks, compound asymmetry, harvest coordination and proposed
+non-signing diagnostics. It records design choices; no new timer/planner or
+financial policy is implemented by this assessment.
+
 ## 1. Smart contracts
 
 | Topic | Current guide |
@@ -19,7 +24,7 @@ and unresolved live/independent gates supersede no historical report bytes.
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Atomic Entry](ACTIVATION_ENTRY.md), [routing](ACTIVATION_ROUTING.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
-| LP execution and upkeep | [Policy2/Budget3, LP routing1 and confirmation1](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled range-exit confirmation. Distinguish source implementation from live operating qualification. |
+| LP execution and upkeep | [Policy2/Budget3, LP routing1 and confirmation2](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled range-exit confirmation. Distinguish source implementation from live operating qualification. |
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
 | Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V5 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |

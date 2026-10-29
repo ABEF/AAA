@@ -32,6 +32,15 @@ Raw source pins, failures, old drafts and focused receipts remain externally in
 `whole-project-execution-20261029`; current Git publication status is recorded
 in its verification/publication record, not inferred from this handoff.
 
+The [normal-operation design reassessment](../reports/normal-operation-design-20261029/REVIEW.md) supersedes the
+earlier narrow four-point recommendation. Deadline priority is already delivered;
+confirmation-before-cooldown, compound action policy, receipt-backed harvest
+coalescing and a unified non-signing report remain unselected/unimplemented.
+Current compound can swap during cooldown but yields to raw need afterward;
+idle capability is not an enabled worker trigger. Preserve incumbent/entrant
+separation, all financial domains and emergency retained-check semantics. No
+source/setting/service change or fresh test result follows from this design.
+
 ## Current improvement work
 
 Current confirmation2 uses a fixed Strategy child and Budget gate, with raw

@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 38 In progress | 23 Implemented locally | 1 Not planned**
+**9 To do | 38 In progress | 23 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -234,6 +234,7 @@ Custody, ownership and reward accounting.
   - User decision implemented2026-10-29: ordinary replacement needs actual LP and configured independent reference outside the identical physical range on the same side; target-only/reference-only/opposite-side conditions do not qualify. Recheck at execution. A worker that observed mismatch must confirm a durable clear even if prices recover before inclusion. Governance setRequireReferenceExit(bool,reviewHash) invalidates samples; restoring true requires all automatic keeper-width policies disabled. Manual governance widths keep their cooldown exception. [Current source/evidence](reports/independent-rebalance-20261029/VERIFICATION.md).
   - Qualify real independent reference market/feed/TWAP or averaging window, depth, source independence, orientation, freshness and failure policy. The feature uses existing Oracle.referenceX96 from configured dual USD sources; it does not install a deeper-market adapter or certify those providers. Samples cannot prove uninterrupted price history. Preserve historical profiles/journals and independently qualify matching source/runtime/service rollout.
   - [Whole-project execution](reports/whole-project-execution-20261029/REVIEW.md): Known renewal/reset deadlines now precede optional nonce users after pending recovery/common gates. Unrelated optional degradation does not stretch known-window polling; clock retreats reset before optional work. Preserve900/300/240, raw compound priority and historical journals; actual multiwindow latency/capacity remains open.
+  - [Whole-operation design](reports/normal-operation-design-20261029/REVIEW.md): confirmation is currently coupled to raw needsRebalance, so pre-cooldown observations cannot accrue. Compare sampling in the final configured duration before cooldown, explicit wider enrollment and full-cooldown cost. Preserve hard12h/same-side physical-reference bounds/900-300; jitter starts only after both cooldown eligibility and sampled proof readiness; cold starts, policy/LP changes, missed gaps and confirmed receipts need fresh exact rules. This design is unselected, not implemented; do not re-propose already implemented deadline-first priority.
 
   </details>
 
@@ -345,6 +346,7 @@ Custody, ownership and reward accounting.
 
   - Budget.setLossLimits sets both contribution/maintenance values; each converter.setConversionLossBps is separate. Values are 0-1000 bps, with events, authorization/lifecycle guards and focused callback/floor/approval tests. Stronger venue/caller minima can still block execution.
   - Ordinary contribution/conversion/maintenance ceilings remain unchanged. A distinct paused-governance manual emergency manifest can explicitly bypass selected rebalance financial checks for one operation; exact custody/accounting/raw minima and canonical/terminal locks remain. Disabled financial guards can permit near-total principal loss; do not describe normal ceilings as unconditional governance protection. [Emergency procedure](docs/EMERGENCY_REBALANCE.md).
+  - [Whole-operation design](reports/normal-operation-design-20261029/REVIEW.md): pre-mint whole-idle-budget floor conditionally overlaps ordinary zero/one-swap target/venue floors at fixed marks. Prove exact rounding/valuation-timing/control applicability before consolidation; its independently binding emergency retained-check behavior and final aggregate maintenance denominator remain. No blanket removal, fee-budget widening or invented configured pool-slippage value.
 
   </details>
 
@@ -360,6 +362,7 @@ Custody, ownership and reward accounting.
   - Qualify full actual target-chain routes, independent sources, real depth/ticks, maximal cold gas and economic thresholds. Substituted maximum-state gas and actual two-pass small-fixture gas are separate evidence; do not combine them into a production worst-case claim.
   - [Coordinated maintenance](reports/maintenance-cadence-20261027/VERIFICATION.md): require now >= max(lastCompound,lastRebalance) + current pool interval for all standalone compound, including no-swap/first post-activation work. Reject when rebalance or preapproved range selection is eligible. Compound cannot postpone rebalance. No24-hour default/cumulative loss cap, user contribution restriction or harvest/claim timer is introduced. Fresh accounting4 keeper requires the exact pinned V2 budget and compoundReady; old profiles/journals stay unchanged.
   - [Current upkeep evidence](reports/maintenance-policy-20261027/VERIFICATION.md) owns Strategy2/Budget3 and separate interval behavior; earlier capability2 reports retain their original shared-interval scope. Manual widths and source-only scheduling do not qualify live route economics or services.
+  - [Whole-operation design](reports/normal-operation-design-20261029/REVIEW.md): top-ups deploy entrants only and may move old compound into incumbent idle; idle-only triggering can remain off with zero fresh fee reserve. Evaluate useful reinvestment and the5%whole-bucket ceiling together with out-of-range/cooldown compound policy, so a liveness change does not unnecessarily stop new contributions. No general sweep, new external recipient or zero-dust objective.
 
   </details>
 
@@ -413,6 +416,22 @@ Custody, ownership and reward accounting.
 ## Backend
 
 The data and services behind the app.
+
+<a id="task-operation-review"></a>
+
+- [ ] **[Unify operation readiness and financial diagnostics](reports/normal-operation-design-20261029/REVIEW.md)** - To do. Design assessed against the full lifecycle; no universal report is implemented yet. Reuse typed readers to explain a requested action at an exact snapshot without creating a new ledger, scheduler or signing capability.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Cover NFT/reveal/ownership, activation/growth, principal NAV, fee allocation/reserves, LP/royalty conversion/claims, harvest/compound/rebalance/buyback, same-pair move/parking, terminal return and canonical handoff. Existing on-chain functions without typed preparation adapters remain explicitly unsupported by the report; do not create arbitrary-call drafts.
+  - Bind exact chain/deployment/profile/runtime/config, action/input units/caller, canonical block and expiry. Separate principal, earned/claimable/paid rewards, compound/buyback, royalties/cohorts/dust and returned principal. Reuse existing projection/accounting math, not a second balance ledger.
+  - Distinguish not-needed/not-due from verified blocked/unavailable/not-configured/unsupported. Report physical/reference sides, hard cooldown, sampled readiness, service jitter/nonce recovery and execution feasibility independently; never promise the next execution from a timing lower bound.
+  - Expose each applicable financial threshold, fee-aware/all-in/caller/marginal/whole-bucket denominator and available margin with source provenance; contribution2% is not an assumed configured pool-slippage default. A safe generic400/503 or Slippage error may remain unclassified; do not invent its exact inequality or echo raw RPC exceptions.
+  - Keep approval-only drafts unmeasured until fresh contribution review, contract confirmation versus API catch-up distinct, current-owner and conversion lineage complete, and public signing disabled. No report silently relaxes policies, imports old codecs or changes operating journals.
+  - Verify useful typed results, source/profile drift, unavailable/independent sections and complete same-snapshot simulations before claiming readiness. Present source-only planning separately from live provider/route/gas/host and independent production qualification.
+
+  </details>
 
 <a id="task-activation-quotes"></a>
 
@@ -1212,6 +1231,7 @@ Decisions and rehearsals before real funds.
   - [Whole-project repairs](reports/whole-project-audit-20261029/REVIEW.md) persist metadata priority before optional RPC to survive crash/restart without starving LP work. User approved240-second confirmation checks with unchanged900/300 on-chain policy; old300 schedule rows/pending/nonce/spend/reset/jitter are preserved. Matching health writer/checker and actual supervisor/timing/gas qualification remain required. Dedicated keeper inventory includes the newer suites; an inventory count is not an execution pass.
   - Source confirmation2 records coherent reference_disagreement without guessing readiness. An existing window must be durably reset rather than renewed after an observed mismatch, even if price recovers before inclusion. Keep actual runtime/version/config/health matching and preserve pending/legacy journals; no operating rollout occurred.
   - [Whole-project execution](reports/whole-project-execution-20261029/REVIEW.md): Confirmation priority/backoff/global clock repairs preserve pending-first, all contract financial/authentication checks and one serial nonce lane.64focused methods pass; strict sampling, actual gas/RPC/load, runtime/checker rollout and operating qualification remain open.
+  - [Whole-operation design](reports/normal-operation-design-20261029/REVIEW.md): distinguish on-chain compound eligibility, worker trigger and actual execution. Before12h compound can swap after its own interval; after raw outside/width need it blocks even if reference prevents rebalance. Decide any no-swap or outside-range policy explicitly without letting compound change replacement clocks or bypass protection. Assess idle-only scheduling and receipt-backed standalone-harvest coalescing using actual canonical FeesCollected evidence; not submission/ambiguous/reverted work or guessed external contributions. No current scheduling setting is changed.
 
   </details>
 
@@ -1286,4 +1306,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `95c0b39bfc38480ff916aee6b0e309358a20e076b610682b928b927618e14b00`.
+Snapshot SHA-256: `aa54d344b32e441cdf3e488dbd629991ae7d3cb86ff36e85d2470ebb446a550e`.

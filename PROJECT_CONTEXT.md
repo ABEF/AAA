@@ -130,6 +130,15 @@ No Solidity, economics, signer, service/site/Anvil or approval changed. Earlier
 [third-pass evidence](reports/third-pass-20261028/VERIFICATION.md) keeps its frozen
 October26-28 source scope; no test counts are summed as a whole-release proof.
 
+The [normal-operation design reassessment](reports/normal-operation-design-20261029/REVIEW.md) supersedes the
+earlier narrow four-point recommendation. Deadline priority is already delivered;
+confirmation-before-cooldown, compound action policy, receipt-backed harvest
+coalescing and a unified non-signing report remain unselected/unimplemented.
+Current compound can swap during cooldown but yields to raw need afterward;
+idle capability is not an enabled worker trigger. Preserve incumbent/entrant
+separation, all financial domains and emergency retained-check semantics. No
+source/setting/service change or fresh test result follows from this design.
+
 ## Requested next LP policy
 
 The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manual

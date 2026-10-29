@@ -57,7 +57,7 @@ Public signing remains disabled and the local signer remains Anvil-only.
 
 The optional activation companion uses an independent schema1 configuration;
 fresh source declares maintenance2, LP routing1, execution-quality1 and
-`rebalance_confirmation_version:1`. It additionally pins the immutable
+`rebalance_confirmation_version:2`. Explicit historical version1 remains a separate profile. It additionally pins the immutable
 Strategy-created confirmation child and verifies Strategy/Budget/helper versions,
 parent/controller/runtime bindings and policy at one canonical hash. Its range
 context distinguishes raw `needsRebalance` candidates from confirmed
