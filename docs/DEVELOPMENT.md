@@ -47,15 +47,20 @@ Keep normal runtime/initcode/gas gates and exact constructor arguments.
 ## Focused keeper verification
 
 ```bash
+python3 scripts/run-keeper-tests.py --list --output path/to/new-selection.json
 python3 scripts/run-keeper-tests.py --output path/to/new-keeper-results.json
 ```
 
-The maintained CI selection deduplicates defined test classes and covers keeper,
-metadata, native/conversion and recovery helpers. Unix-only assertions remain
-explicit on other hosts; Windows success does not qualify Linux operation.
-[Latest evidence](../reports/keeper-lp-audit-20261026/VERIFICATION.md) records the
-initial failures/repairs,359selected354pass5skips and9affected Solidity passes;
-it is not a new full release regression or production qualification.
+`--list` validates and writes the selected modules/classes/methods without running
+test bodies; `execution_performed:false` and `tests_run:0` are not test passes.
+The dedicated CI list now includes the newer confirmation/checkpoint, cadence,
+principal-delivery, telemetry/watchdog/revert and conversion-header regressions.
+Imported fixture classes are not executed twice; duplicate/empty/wrong-identity
+selection fails. Full `verify.sh` separately discovers the wider Python suite.
+Use the [whole-project verification](../reports/whole-project-audit-20261029/VERIFICATION.md)
+for narrow selection checks; it does not claim all selected methods ran again.
+Unix-only assertions remain explicit on other hosts; Windows success does not
+qualify Linux operation.
 
 ## Fork and operating qualification
 
@@ -82,6 +87,13 @@ its bounded serialized relay. Optional `ROBINHOOD_FORK_RPC_URL` comes from outsi
 Git; do not paste credentials into commands or logs. It never broadcasts. A
 future whole run must contain all11expected methods with no skips; the legacy
 dirty runner and old fixture evidence were not repurposed.
+
+The committed fork CI job now invokes this current runner, with a checksum-pinned
+official Linux solc0.8.26 download verified before execution. It retains the same
+reviewed normal profile and read-only relay; the historical dirty runner is not
+used or overwritten by that job. This wiring was checked statically, not run on
+GitHub or against live RPC during the audit. Require actual exact-revision CI
+artifacts before saying it passed. [Compiler/dependency scope](../reports/whole-project-audit-20261029/COMPILER_DEPENDENCIES.md).
 
 Actual feeds/routes, real keeper/rebalance and target-gas qualification remain
 open. Provider batching hit a documented429; serialized archive success is not

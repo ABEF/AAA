@@ -95,7 +95,7 @@ Network gas is separate. Operating limits are not automatically increased after 
 - **Separate compound clock.** Default one hour after the later of the last compound or LP replacement.
 - **Rebalance priority.** Compounding yields to eligible rebalancing and cannot reset or postpone the rebalance clock.
 - **Persistent 1–10-minute jitter.** The service draws and saves one random delay; restarting, harvesting or topping up does not redraw it.
-- **Five-minute eligible checks with confirmation1.** After cooldown, the fresh worker samples every300seconds inside/outside; historical policy2 keeps hourly inside checks. Receipt handling and independent harvest remain separate.
+- **Four-minute eligible checks with confirmation1.** After cooldown, the fresh worker samples every240seconds inside/outside; historical policy2 keeps hourly inside checks. Receipt handling and independent harvest remain separate.
 - **Fresh eligibility rechecks.** Ordinary scheduled work is cancelled if liquidity returns inside before submission.
 - **Independent hourly harvesting.** Harvesting performs no swaps. `Vault.collectFees` is permissionless, but cannot initiate rebalancing or spend principal.
 - Claims trigger neither compounding nor buybacks.
@@ -109,8 +109,9 @@ staleness. Constructor gap0 blocks ordinary readiness until reviewed configurati
 Budget gates execution and rechecks stable controls across the whole operation.
 Matching worker records/clears observations with canonical receipts and keeps
 samples fresh during post-ready jitter. Hidden moves between observations and
-publicly visible pending upkeep remain limitations; strict300-second cadence/gap
-can repeatedly restart with receipt delays. No uninterrupted-price or MEV guarantee.
+publicly visible pending upkeep remain limitations. Source checks every240seconds
+leave roughly60seconds before the strict300-second maximum gap; larger delays
+can still restart. No uninterrupted-price or MEV guarantee.
 Relevant raw bucket/pool faults invalidate that bucket; initial global
 lifecycle/authority/head faults mark only known fresh windows. Every foreign
 nonempty record requires another clear while a clear acknowledgement remains,

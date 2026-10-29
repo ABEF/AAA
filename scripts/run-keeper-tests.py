@@ -14,7 +14,33 @@ MODULES=(
  'test_typed_v4_conversion_keeper','test_lp_conversion','test_keeper_health_identity',
  'test_keeper_conversion_integrity','test_keeper_rehearsal_profile','test_keeper_buyback_fairness',
  'test_keeper_harvest_isolation',
+ 'test_keeper_outside_schedule','test_keeper_compound_cadence','test_keeper_reservations',
+ 'test_keeper_principal_distribution','test_keeper_revert_health','test_keeper_watchdog',
+ 'test_keeper_execution_telemetry','test_keeper_rebalance_confirmation',
+ 'test_keeper_confirmation_incidents','test_keeper_confirmation_followup',
+ 'test_keeper_confirmation_health','test_keeper_confirmation_writer',
+ 'test_keeper_checkpoint_confirmation','test_keeper_conversion_headers','test_rpc_integrity',
+ 'test_keeper_runner_inventory',
+ 'test_keeper_metadata_restart',
+ 'test_keeper_confirmation_cadence',
 )
+def select_tests(modules=MODULES,importer=importlib.import_module):
+ """Build a strict inventory without executing any selected test body."""
+ if not modules or len(modules)!=len(set(modules)):raise ValueError('Empty or repeated keeper module selection')
+ tests={};classes=[];seen=set()
+ for short in modules:
+  mod=importer('tests_python.'+short)
+  if mod.__name__!='tests_python.'+short:raise ValueError('Selected keeper module identity differs')
+  count=0
+  for _,cls in inspect.getmembers(mod,inspect.isclass):
+   if not issubclass(cls,unittest.TestCase) or cls.__module__!=mod.__name__ or cls in seen:continue
+   seen.add(cls);classes.append(cls.__module__+'.'+cls.__name__)
+   for name in unittest.defaultTestLoader.getTestCaseNames(cls):
+    item=cls(name)
+    if item.id() in tests:raise ValueError('Repeated keeper test identity')
+    tests[item.id()]=item;count+=1
+  if not count:raise ValueError('Selected keeper module defines no test methods')
+ return tests,classes
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def inputs():
  paths={Path(__file__).resolve(),ROOT/'keeper/rehearsal/KeeperVenue.sol',ROOT/'scripts/rehearse-keeper.py',ROOT/'keeper/staging.py'}
@@ -31,24 +57,21 @@ class Results(unittest.TextTestResult):
  def __init__(self,*a,**k):super().__init__(*a,**k);self.methods=[]
  def startTest(self,test):super().startTest(test);self.methods.append(test.id())
 if __name__=='__main__':
- parser=argparse.ArgumentParser();parser.add_argument('--output',required=True);args=parser.parse_args()
- tests={};classes=[]
- for short in MODULES:
-  mod=importlib.import_module('tests_python.'+short)
-  for _,cls in inspect.getmembers(mod,inspect.isclass):
-   if not issubclass(cls,unittest.TestCase) or cls.__module__!=mod.__name__:continue
-   classes.append(cls.__module__+'.'+cls.__name__)
-   for name in unittest.defaultTestLoader.getTestCaseNames(cls):
-    item=cls(name);assert item.id() not in tests,item.id();tests[item.id()]=item
+ parser=argparse.ArgumentParser();parser.add_argument('--output',required=True)
+ parser.add_argument('--list',action='store_true',help='Write selected method inventory without executing tests')
+ args=parser.parse_args()
+ tests,classes=select_tests()
  before=inputs();start=time.monotonic();stream=io.StringIO()
- result=unittest.TextTestRunner(stream=stream,verbosity=2,resultclass=Results).run(unittest.TestSuite(tests.values()))
+ result=None if args.list else unittest.TextTestRunner(stream=stream,verbosity=2,resultclass=Results).run(unittest.TestSuite(tests.values()))
  after=inputs();changed={n for n in before|after if before.get(n)!=after.get(n)}
- report={'observed_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scope':'Affected keeper unit/loopback regression; not whole repo or actual Unix/target-chain operating qualification.',
-  'modules':list(MODULES),'classes':classes,'selected_methods':list(tests),'executed_methods':result.methods,'tests_run':result.testsRun,
-  'failures':[(x.id(),s) for x,s in result.failures],'errors':[(x.id(),s) for x,s in result.errors],
-  'skips':[(x.id(),s) for x,s in result.skipped],
+ report={'observed_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+  'scope':'Selection inventory only; no tests executed.' if args.list else 'Affected keeper unit/loopback regression; not whole repo or actual Unix/target-chain operating qualification.',
+  'execution_performed':not args.list,
+  'modules':list(MODULES),'classes':classes,'selected_methods':list(tests),'executed_methods':result.methods if result else [],'tests_run':result.testsRun if result else 0,
+  'failures':[(x.id(),s) for x,s in result.failures] if result else [],'errors':[(x.id(),s) for x,s in result.errors] if result else [],
+  'skips':[(x.id(),s) for x,s in result.skipped] if result else [],
   'source_sha256_before':before,'source_sha256_after':after,'source_changes_during_run':sorted(changed),
-  'successful':result.wasSuccessful() and not changed and result.testsRun==len(tests),
+  'successful':not changed and (args.list or result.wasSuccessful() and result.testsRun==len(tests)),
   'elapsed_seconds':round(time.monotonic()-start,3),'production_approved':False}
  path=Path(args.output);path.parent.mkdir(parents=True,exist_ok=True)
  path.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8',newline='\n')

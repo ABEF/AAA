@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "reviewed_paris_date": "2026-10-29",
+  "baseline": "781fcc9d224f77a4a54d278878ffc3b002b71e26",
+  "final_prompt_sha256": "5cd040ace83c4865dd1cc7aac9e85373b4142603b0ca7af07f4c46d3f7f44206",
+  "python": {
+    "distinct_methods": 75,
+    "passed": 75,
+    "skipped": 0,
+    "new": 37,
+    "affected_existing": 38,
+    "groups": {
+      "history_new": {
+        "receipt": "history/positive/verification.json",
+        "sha256": "ed442d796b75adbd48dabc55741c0ef3a3bdd8ffb0adfbca30b82c767f36dc7c",
+        "methods": [
+          "tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_duplicate_cursor_identity_is_not_silently_accepted",
+          "tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_duplicate_raw_fields_fail_even_when_values_agree",
+          "tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_healthy_claims_and_owner_use_actual_raw_rows",
+          "tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_missing_explicit_not_removed_marker_is_unavailable",
+          "tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_nonfinite_extra_metadata_is_malformed",
+          "tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_parser_recursion_becomes_unavailable_and_connection_is_reusable",
+          "tests_python.test_history_storage_integrity.StoredHistoryIntegrityTests.test_unknown_log_still_requires_well_formed_data"
+        ]
+      },
+      "history_existing": {
+        "receipt": "history/regression/verification.json",
+        "sha256": "2ea637a0f72ca0d475adc97650a1cf0c65a872913b273b5836c279d1c43e1790",
+        "methods": [
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_transfer_replay_and_lifetime_claims_across_past_owners",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_decoded_labels_and_json_caches_are_never_trusted",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_lp_and_royalties_same_asset_are_summed_without_cross_currency_sum",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_missing_cursor_or_incomplete_target_is_not_zero_history",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_wrong_cursor_address_start_or_anchor_identity_rejected",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_missing_block_wrong_tip_timestamp_and_broken_ancestry_rejected",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_fixed_topic_data_layout_asset_and_raw_provenance_checked",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_duplicate_block_log_index_and_event_bound_fail_closed",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_consistent_sqlite_transaction_ignores_concurrent_later_commit",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_wallet_complete_inventory_rechecked_against_balance_and_owner",
+          "tests_python.test_frontend_history.ConfirmedHistoryTests.test_slow_history_cannot_release_expired_nft_or_wallet_snapshot",
+          "tests_python.test_earnings.EarningsAPITests.test_collection_and_nft_reconcile_exact_confirmed_history",
+          "tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income",
+          "tests_python.test_earnings.EarningsAPITests.test_pending_royalties_do_not_enter_processed_earnings",
+          "tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts",
+          "tests_python.test_earnings.EarningsAPITests.test_runtime_drift_and_history_gaps_fail_closed",
+          "tests_python.test_earnings.EarningsLineageTests.test_real_receipt_and_two_databases_preserve_both_epochs_without_import_income",
+          "tests_python.test_wallet_earnings.WalletLineageTests.test_two_epochs_survive_replacement_without_import_income",
+          "tests_python.test_wallet_earnings.WalletEarningsTests.test_real_sqlite_replay_matches_single_nft_and_pins_inventory",
+          "tests_python.test_wallet_earnings.WalletEarningsTests.test_transfer_moves_lifetime_history_to_current_holder",
+          "tests_python.test_wallet_earnings.WalletEarningsTests.test_three_chunks_cover_all_holdings_without_replaying_per_nft"
+        ]
+      },
+      "operations_new": {
+        "receipt": "operations/final-new-methods/verification.json",
+        "sha256": "a6252f194670271bdd7053e89b9f128f225ec3780ff44fa850fa006c7ebb580b",
+        "methods": [
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_duplicate_method_identity_fails_even_without_python_assertions",
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_duplicate_module_fails_closed",
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_every_keeper_test_module_is_selected",
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_foreign_import_does_not_make_empty_selection_successful",
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_import_failure_is_not_silently_skipped",
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_list_cli_writes_inventory_without_executing_selected_methods",
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_only_defined_classes_selected_and_aliases_not_duplicated",
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_real_selection_has_unique_defined_method_ids_without_execution",
+          "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_wrong_import_identity_fails_closed",
+          "tests_python.test_current_fork_ci.CurrentForkCIWiringTests.test_current_profile_runner_and_reviewed_compiler_are_explicit",
+          "tests_python.test_current_fork_ci.CurrentForkCIWiringTests.test_current_receipt_and_output_are_retained_without_build_cache",
+          "tests_python.test_current_fork_ci.CurrentForkCIWiringTests.test_pinned_compiler_is_verified_before_any_execution",
+          "tests_python.test_current_fork_ci.CurrentForkCIWiringTests.test_workflow_is_read_only_and_does_not_broadcast",
+          "tests_python.test_keeper_metadata_restart.KeeperMetadataRestartTests.test_discarded_worker_cannot_restart_metadata_ahead_of_every_due_harvest",
+          "tests_python.test_keeper_metadata_restart.KeeperMetadataRestartTests.test_failed_priority_write_rolls_back_before_metadata_or_submission",
+          "tests_python.test_keeper_metadata_restart.KeeperMetadataRestartTests.test_pending_recovery_does_not_rotate_metadata_or_write_its_journal",
+          "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_fresh_checks_run_at_240_seconds_without_changing_900_300_policy",
+          "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_gap_admission_tracks_service_cadence_without_overriding_governance",
+          "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_legacy_300_schedule_is_read_without_rewrite_then_checks_at_240",
+          "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_pending_recovery_preserves_legacy_schedule_reset_markers_and_nonce",
+          "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_restore_accepts_only_new_240_or_explicit_legacy_300_schedule",
+          "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_startup_does_not_adopt_foreign_samples_or_old_jitter",
+          "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_writer_and_checker_require_explicit_current_240_cadence"
+        ]
+      },
+      "operations_existing": {
+        "receipt": "operations/final-affected-existing/verification.json",
+        "sha256": "b9373aaa5585e1e1b7c8d9e5442cf8ccf015da96c6265767de5797324fcefb62",
+        "methods": [
+          "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_outside_starts_observation_not_rebalance_or_jitter",
+          "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_inside_and_pending_conditions_are_checked_every_four_minutes",
+          "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_sampled_readiness_starts_jitter_and_refreshes_samples_during_wait",
+          "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_deliberate_width_change_bypasses_buffer_but_not_jitter",
+          "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_bad_gap_version_and_contradictory_ready_never_submit_an_observation",
+          "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_unconfigured_gap_blocks_ordinary_work_but_independent_harvest_continues",
+          "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_receipt_latency_does_not_skip_the_next_scheduled_observation",
+          "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_hard_cooldown_does_not_submit_observations",
+          "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_fresh_confirmation_requires_an_explicit_compatible_outer_poll",
+          "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_fresh_policy_binds_latest_anchor_runtime_and_helpers_without_candidate_or_oracle_reads",
+          "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_terminal_exit_suppresses_only_stop_or_cadence_reason_with_explicit_boolean",
+          "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_subcadence_gap_is_degraded_before_bucket_cooldown_elapses",
+          "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_check_cannot_approve_only_schema_and_success_status",
+          "tests_python.test_keeper_confirmation_writer.KeeperConfirmationWriterTests.test_saved_pending_recovery_never_adds_new_policy_dependency",
+          "tests_python.test_metadata_keeper.MetadataKeeperTests.test_metadata_priority_alternates_with_pool_maintenance",
+          "tests_python.test_keeper_buyback_fairness.KeeperBuybackFairnessTests.test_busy_metadata_cannot_displace_every_lp_maintenance_opportunity",
+          "tests_python.test_metadata_keeper.MetadataKeeperTests.test_metadata_notifications_remain_available_during_strategy_pause"
+        ]
+      },
+      "frontend_new": {
+        "receipt": "frontend/inventory-positive.txt",
+        "sha256": "b6eed27db307971cefd7254c1121f1b84dbdf5671037e8d9f37fddf5009c23be",
+        "methods": [
+          "tests_python.test_frontend_inventory_resilience.FrontendInventoryResilienceTests.test_changed_admitted_inventory_still_fails_closed",
+          "tests_python.test_frontend_inventory_resilience.FrontendInventoryResilienceTests.test_current_profiles_keep_canonical_inventory_during_optional_metadata_outage",
+          "tests_python.test_frontend_inventory_resilience.FrontendInventoryResilienceTests.test_inventory_owner_and_canonical_finish_remain_strict",
+          "tests_python.test_frontend_inventory_resilience.FrontendInventoryResilienceTests.test_optional_token_rpc_failure_is_isolated_but_work_limit_is_not",
+          "tests_python.test_frontend_inventory_resilience.FrontendInventoryResilienceTests.test_required_module_fault_still_fails_before_optional_metadata",
+          "tests_python.test_frontend_inventory_resilience.FrontendInventoryResilienceTests.test_token_runtime_or_decimals_change_does_not_invent_financial_values",
+          "tests_python.test_frontend_inventory_resilience.FrontendInventoryResilienceTests.test_zero_holdings_are_verified_during_optional_outage"
+        ]
+      }
+    },
+    "original_unpublished_method_in_existing_scope": "tests_python.test_frontend_history.ConfirmedHistoryTests.test_slow_history_cannot_release_expired_nft_or_wallet_snapshot"
+  },
+  "evm": {
+    "fresh_distinct_methods": 5,
+    "passed": 5,
+    "methods": [
+      {
+        "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+        "method": "testAbortAfterRoyaltySettlementReopensWithoutDoubleCrediting()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+        "method": "testAbortBeforeSettlementPreservesLPAndPendingRoyaltyReceipts()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+        "method": "testLegacyRoyaltyReceiptsQueuedWhileSuccessorFrozenRemainBackedAcrossNextHandoff()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest",
+        "method": "testNativePartialFundingAbortRequiresAndRestoresExactBacking()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      },
+      {
+        "suite": "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest",
+        "method": "testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine()",
+        "status": "Success",
+        "reason": null,
+        "gas": null
+      }
+    ],
+    "exact_selection_receipt_sha256": "1aaa565ff2781b413ef192749b6f77ae82260959fb6dc82e9a873a4481afaf0b",
+    "limits": "Current modules with mocked venue/prices/VRF/admission; no actual market or maximal gas qualification"
+  },
+  "reused": {
+    "evm_methods": 217,
+    "execution_source_pins": 142,
+    "execution_pins_sha256": "7ab22ba90b4e33335fdbacd57ed61c680d3b4e9241c4990313558d49feb44215",
+    "normal_size_gates": 39,
+    "production_sources": 46,
+    "dependency_sources": 31,
+    "build_inputs": 4,
+    "all_pins_match": true,
+    "gate_receipt_sha256": "31315c28420ce52758e70cd647ebd78cb1ecca92b84561bb1bcb8ef669162c30"
+  },
+  "keeper_inventory_only": {
+    "modules": 41,
+    "classes": 52,
+    "selected_methods": 623,
+    "executed_methods": 0
+  },
+  "other": {
+    "metadata_temp_copy_scenarios": 12,
+    "website_patch_applied": false,
+    "ast_sources": 77,
+    "ast_is_bytecode_execution": false
+  },
+  "coverage": {
+    "contracts": 33,
+    "solidity_sources": 46,
+    "callables": 711,
+    "individual_dispositions": {
+      "pending_unreviewed_individual_body": 494,
+      "traced_reviewed": 217
+    }
+  },
+  "original_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "website_tracked_unchanged": true,
+  "public_transactions": 0,
+  "service_changes": 0,
+  "anvil_changes": 0,
+  "production_approved": false
+}

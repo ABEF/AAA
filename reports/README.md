@@ -1,5 +1,13 @@
 # Verification evidence
 
+[Whole-project review,2026-10-29](whole-project-audit-20261029/REVIEW.md): source
+understanding, twice-challenged brief, full-system critical-path/coverage records,
+ownership/history/metadata-restart and CI fixes, plus approved240-second source
+cadence with unchanged900/300on-chain. [Verification](whole-project-audit-20261029/VERIFICATION.md)
+separates five current canonical passes,75scoped Python passes,12temp metadata
+scenarios, AST-only screening and exact unchanged217EVM/39size reuse. It preserves
+failed attempts, individual-body/external gaps and no rollout/production approval.
+
 [Third-pass three-day audit](third-pass-20261028/VERIFICATION.md): baselinecb0aadf,
 35main commits on October26-28 Paris, completed October29. Repo-specific prompt,
 changed/unchanged interaction review, used-signer checkpoint reset and strict

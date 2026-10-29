@@ -279,24 +279,34 @@ an older Strategy/Budget or journal to imply the new gate exists.
 Read-only keeper preflight validates actual policy/runtime/capability/bindings
 even while every LP is in cooldown. Its policy-only read needs no price or bucket
 condition; a matching runtime pin alone cannot approve an unsupported Budget.
-`interval_seconds` must be explicitly configured as an integer60–300; the old
+`interval_seconds` must be explicitly configured as an integer60–240; the old
 600second default is refused for confirmation1. Work and receipt delays still
 add latency, so an admitted interval does not promise an exact sample schedule.
 
-New `observed_rebalance_v1` schedules ordinary checks every300seconds after the
+New `observed_rebalance_v1` schedules ordinary checks every240seconds after the
 hard cooldown, including inside-range checks. The selected policy is a900second
 observed window with strict300second maximum sample gap. Initial source gap0
 stops ordinary readiness until governance configures900/300 with its review hash.
-No latency grace or earlier hidden observation is added. A gap above300seconds
+The explicitly reviewed240-second source schedule leaves roughly60seconds for
+delays without adding on-chain grace. A gap above300seconds
 makes old evidence unusable; the next successful observation restarts the window.
-Receipt delays can cause repeated restarts. A nonzero gap below the fixed300second worker
+Receipt delays can cause repeated restarts. A nonzero gap below the fixed240second worker
 cadence is reported unsupported rather than triggering perpetual paid restarts.
 
 Once sampled readiness passes, the worker saves its60–600second jitter and keeps
-refreshing samples on due five-minute checks. It rereads readiness before any
+refreshing samples on due four-minute checks. It rereads readiness before any
 rebalance submission. A deliberate operator width change retains its source
 exception to the window, including gap0, while respecting cooldown/jitter/value
 guards. This is recorded sampling, not uninterrupted price-history proof.
+
+For a reviewed source rollout, first reconcile pending work using its original
+release/configuration. A prior300-second outer poll must be deliberately reduced
+to60-240 before the updated worker starts. Preserve the journal: old300-second
+schedule rows remain validated historical rows, with the next effective check
+no later than `last_checked_at+240`; successful normal evaluation writes the new
+schedule. No receipt, nonce, spend checkpoint, clear acknowledgement or stored
+jitter is deleted or adopted merely by changing cadence. Roll out the matching
+health writer/checker together; a source change is not a running-service update.
 
 Startup with an existing chain candidate, a confirmation/raw-eligibility read or
 clock fault, an observed pause, or an interrupted/failed related observation/rebalance

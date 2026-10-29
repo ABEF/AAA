@@ -10,7 +10,16 @@ service/inventory/website qualification remain historical to their original pins
 See [profile4](POSITION_V4.md); new release qualification remains open.
 
 
-Latest [two-day audit](../reports/two-day-audit-20261028/VERIFICATION.md) fixes principal retry starvation and stale current guidance. The new service settings/priority must be qualified under the actual supervisor, preserved journal, gas budgets and rejecting receivers before rollout. Comment-only Solidity changes preserve ABI/storage/instructions while changing compiler metadata; use the new exact release pins. No production approval follows.
+The [whole-project review](../reports/whole-project-audit-20261029/VERIFICATION.md)
+adds five current canonical composition passes, scoped backend/keeper repairs and
+user-approved240-second service checks without changing on-chain900/300. Require
+actual health-writer/checker, preserved-journal, metadata restart and strict-gap
+operating acceptance before rollout. CI wiring/static checks are not a published
+workflow pass. [Compiler applicability](../reports/whole-project-audit-20261029/COMPILER_DEPENDENCIES.md),
+individual-body audit depth, website/provider/market/authority/OpenSea and
+independent audit remain open. No source publication grants release approval.
+
+Historical [two-day audit](../reports/two-day-audit-20261028/VERIFICATION.md) fixes principal retry starvation and stale guidance at its source pins. Its service settings/priority still require actual supervisor/journal/gas/receiver qualification. Comment-only Solidity corrections preserve ABI/storage/instructions while changing compiler metadata; retain exact release pins.
 
 Earlier [systematic adversarial review](../reports/system-adversarial-20261026/REVIEW.md)
 adds a source-review matrix for every inventoried callable and corrects read-RPC/holder-tool input

@@ -5,6 +5,7 @@ import hashlib
 from pathlib import Path
 import re
 import time
+from keeper.rebalance_confirmation import CHECK_SECONDS
 
 HEALTH_SCHEMA = 2
 OBSERVATION_SCHEMA = 1
@@ -84,7 +85,7 @@ def observe_confirmation_health(keeper, previous=None):
             'validated_bindings':_confirmation_bindings(keeper.config),
             'validated_capabilities':{'strategy':1,'rebalance_confirmation':1,'idle_compounding_budget':1}}
         gap = policy['maximum_gap_seconds']
-        report.update(state='stopped' if gap==0 else 'incompatible_cadence' if gap<300 else 'observed_this_cycle',
+        report.update(state='stopped' if gap==0 else 'incompatible_cadence' if gap<CHECK_SECONDS else 'observed_this_cycle',
             last_observed=observed)
     except (RpcError,ValueError,TypeError,KeyError) as exc:
         report.update(state='unavailable',last_error=error_context(exc))
@@ -98,13 +99,16 @@ def confirmation_reasons(data, config, *, now, max_age):
     interval = config.get('interval_seconds')
     if (type(config.get('accounting_version')) is not int or config['accounting_version'] != 4 or
             type(config.get('maintenance_policy_version')) is not int or config['maintenance_policy_version'] != 2 or
-            type(interval) is not int or not 60 <= interval <= 300):
+            type(interval) is not int or not 60 <= interval <= CHECK_SECONDS):
         return ['confirmation_health_profile_invalid']
     outer = data.get('rebalance_confirmation_health')
     report = outer.get('policy') if isinstance(outer,dict) else None
     if (not isinstance(report,dict) or type(report.get('schema')) is not int or report['schema'] != OBSERVATION_SCHEMA):
         return ['confirmation_observation_unknown']
     reasons = []
+    if (type(outer.get('version')) is not int or outer['version'] != 1 or
+            type(outer.get('check_interval_seconds')) is not int or outer['check_interval_seconds'] != CHECK_SECONDS):
+        reasons.append('confirmation_service_cadence_mismatch')
     state = report.get('state')
     if state not in ('observed_this_cycle','stopped','incompatible_cadence'):
         reasons.append('confirmation_observation_not_current')
@@ -151,11 +155,11 @@ def confirmation_reasons(data, config, *, now, max_age):
         reasons.append('confirmation_observation_policy_invalid')
     elif gap==0 and data.get('lp_exit_started') is not True:
         reasons.append('rebalance_confirmation_stopped')
-    elif 0<gap<300 and data.get('lp_exit_started') is not True:
+    elif 0<gap<CHECK_SECONDS and data.get('lp_exit_started') is not True:
         reasons.append('rebalance_confirmation_cadence_incompatible')
     if (state=='stopped') != (valid_policy and gap==0):
         reasons.append('confirmation_observation_state_invalid')
-    if (state=='incompatible_cadence') != (valid_policy and 0<gap<300):
+    if (state=='incompatible_cadence') != (valid_policy and 0<gap<CHECK_SECONDS):
         reasons.append('confirmation_observation_state_invalid')
     return reasons
 

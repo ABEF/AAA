@@ -10,7 +10,7 @@ service/inventory/website qualification remain historical to their original pins
 See [profile4](POSITION_V4.md); new release qualification remains open.
 
 
-Reviewed 2026-10-28. This page explains dependencies and sequence; [TODO.md](../TODO.md)
+Reviewed 2026-10-29. This page explains dependencies and sequence; [TODO.md](../TODO.md)
 is the only status list. [Feature reference](IMPLEMENTATION_STATUS.md) records what
 exists, while [release approval](RELEASE_CHECKLIST.md) remains NOT APPROVED.
 
@@ -33,7 +33,7 @@ trading fees from a1% default additional oracle-relative loss floor, retaining
 gross/caller/total limits. Qualify real depth/prices/gas and matching runtime/config
 before rollout; defensive local checks do not establish attacker-profit immunity.
 Passive inventory and40% triggers remain discussion only. Confirmation1 now
-implements a15-minute sampled window with five-minute eligible checks and strict
+implements a15-minute sampled window with four-minute eligible checks and strict
 300-second maximum confirmed gap. Qualify actual observation/reset/jitter timing;
 delays restart and no uninterrupted-price proof is claimed. [Owning task](../TODO.md#task-rebalance-confirmation-buffer).
 
@@ -67,6 +67,14 @@ conversion/indexer observations. Preserve pending-first recovery, strict sampled
 cadence and separately guarded harvest; no new strategy decision or gate relaxation.
 
 ## LP execution next steps
+
+The [whole-project repairs](../reports/whole-project-audit-20261029/REVIEW.md)
+need controlled API/keeper source rollout and actual confirmation latency,
+metadata-stall recovery and health compatibility qualification. Four-minute
+source checks are implemented; the separate proposed improvement to observe
+during cooldown needs a reviewed contract change and gas/reset assessment while
+preserving the hard12-hour execution minimum. Keep that proposal separate from
+release approval, current3/fresh4 browser integration and live provider work.
 
 The three timing decisions are settled: hard initial12-hour minimum even outside,
 operator width application inside after cooldown, and independent compound interval.

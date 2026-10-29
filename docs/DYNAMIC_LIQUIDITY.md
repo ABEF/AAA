@@ -139,7 +139,7 @@ swap fees until price returns or guarded maintenance changes its range. Funded
 claims and activation/royalty eligibility survive. This does not promise continuous
 fee income or external creator payments. Policy2 initially imposes a hard
 12-hour minimum; early range exit does not bypass it. The fresh confirmation1
-keeper profile checks eligible inside/outside positions every five minutes.
+keeper profile checks eligible inside/outside positions every four minutes.
 Historical policy2 profiles without that capability retain their hourly checks.
 Durable 1-10-minute jitter and current execution guards still apply independently.
 
@@ -149,8 +149,8 @@ on-chain observations on the same side of the same physical LP. A maximum gap
 must be explicitly configured by governance; source default0 blocks ordinary
 rebalance, not the safeguard. The selected operating configuration is900seconds
 with a strict300second maximum gap: any greater gap restarts confirmation. A
-five-minute check schedule plus transaction/confirmation latency can therefore
-cause repeated restarts; no grace is inferred or added automatically.
+four-minute source schedule leaves roughly60seconds for work/inclusion delay;
+longer delays can still restart. The on-chain300-second gap gains no grace.
 Gaps, observed range re-entry, opposite-side exit,
 LP/configuration changes and successfully recorded faults invalidate old evidence.
 Normal healthy feed rounds do not reset it. The existing deliberate width-change

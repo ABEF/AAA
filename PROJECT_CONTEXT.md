@@ -21,7 +21,7 @@ Value/evolution is current marked on-chain LP NAV, not historic dollars contribu
 | LP revenue | Actual fees split80%NFT LP shares/10%equal activated collective/5%compound/5%ZZZ buyback-burn. |
 | Royalties | ERC-2981 requests5%; actual eligible receipts shared100% at rarity weights1/2/3. Not universal marketplace enforcement. |
 | Custody | No holder redemption during normal operation. Governance may irreversibly close LP and return proportional actual ETH+ZZZ directly to current NFT owners; no external custodian. |
-| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; maintenance policy2 uses actual physical range exit or operator width update after the configured hard minimum (initial12hours). Operator selects ZZZ-price-in-ETH +/-25/50%; matching confirmation1 service uses300-second eligible checks and durable1-10minute jitter after sampled readiness. Compound capability3 has its own interval (default1hour); it yields to due rebalance and never resets that clock. Polling is not an execution promise. |
+| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; maintenance policy2 uses actual physical range exit or operator width update after the configured hard minimum (initial12hours). Operator selects ZZZ-price-in-ETH +/-25/50%; matching confirmation1 service uses240-second eligible checks and durable1-10minute jitter after sampled readiness. Compound capability3 has its own interval (default1hour); it yields to due rebalance and never resets that clock. Polling is not an execution promise. |
 
 Current source profile is accounting4/governance2/fee intake1/custody3/pricing2/
 Entry routing2/LP execution1/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
@@ -54,7 +54,7 @@ all-in policy. Strategy owns policy/revision; Manager/helper and explicit
 keeper/API profiles bind it. [Feature](docs/EXECUTION_QUALITY.md), [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md).
 No installed service/site/Anvil changed. Passive positions and40% movement
 triggers remain discussion only. Fresh confirmation1 implements a15-minute sampled
-on-chain window: after12hours check every300seconds, strict selected gap300seconds,
+on-chain window: after12hours check every240seconds, strict selected gap300seconds,
 restart on any greater gap. Constructor gap0 blocks ordinary readiness until
 governance configures reviewed900/300. Actual confirmation delays can repeatedly
 restart this strict policy; no hidden grace or continuous-history proof. Manual
@@ -86,18 +86,28 @@ totals reject custody/eligibility/NAV contradictions and retain independent ETH
 balances during a genuine LP outage. These are consistency fixes, not proof of
 provider authenticity, continuous persistence or production readiness.
 
-The [third-pass review](reports/third-pass-20261028/REVIEW.md) covers35main commits
-on October26-28 Paris at baselinecb0aadf, plus unchanged interacting dependencies.
-It fixes no-pending used-signer checkpoint faults bypassing window reset,
-noncanonical indexer head admission and conversion snapshot validation/isolation.
-The brief was frozen before the review crossed midnight into October29. Exact
-fresh/reused scopes and limits are in its verification record; no Solidity,
-economic-right, installed-service or production-approval change follows.
+The [whole-project review](reports/whole-project-audit-20261029/REVIEW.md) follows
+a twice-challenged source-based brief. It repairs optional-currency ownership
+inventory isolation, stored-history integrity, metadata restart starvation and
+keeper/current-fork CI selection. User approved240-second source observations,
+keeping900/300on-chain unchanged. Legacy300journal schedules/pending/reset/jitter
+survive; paired health rollout and actual timing remain unqualified. Observing
+during cooldown and deeper-market corroboration are proposed Todo improvements,
+not implemented. A managed-pool physical exit is distinct from reference price
+agreement; reference market/window and whether it must also be outside remain
+unresolved. Five targeted
+current canonical methods and75scoped Python methods pass; unchanged217EVM/
+39normal gates are reused with exact pins. Individual-body pending depth and
+compiler-lowering, real provider/service/escrow and independent review stay open.
+Website metadata patch is prepared but unapplied; fresh4 UI remains incomplete.
+No Solidity, economics, signer, service/site/Anvil or approval changed. Earlier
+[third-pass evidence](reports/third-pass-20261028/VERIFICATION.md) keeps its frozen
+October26-28 source scope; no test counts are summed as a whole-release proof.
 
 ## Requested next LP policy
 
 The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manual
-+/-25/50% ranges, initial twelve-hour outside-only upkeep with300-second eligible
++/-25/50% ranges, initial twelve-hour outside-only upkeep with240-second eligible
 checks under confirmation1 and durable1-10minute post-ready service jitter, reviewed best swap venues separate
 from the LP target, useful residual reinvestment and $1m cumulative per-NFT cap.
 The timing decisions are settled and implemented in fresh Strategy2/Budget3 and

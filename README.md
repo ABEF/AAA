@@ -22,66 +22,30 @@ no configured deployment means unavailable integration data, never examples.
 | Movement and recovery | Same-native-pair moves and parking before exit. Governance may permanently close all LP and return actual ETH+ZZZ by NFT shares through bounded direct payouts; NFTs keep transfers/future royalties/old rewards. No external custody address or bridge. [Holder exit](docs/HOLDER_COLLECTIVE_EXIT.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
-The fresh [fee-adjusted execution guard](docs/EXECUTION_QUALITY.md) caps additional
-oracle-relative deterioration beyond actual directional trading fees at1%, with
-bounded governance configuration. Stronger gross, captured operation and caller
-floors remain; separate converters retain their existing policy. [Scoped evidence](reports/fee-impact-policy-20261028/VERIFICATION.md)
-does not qualify actual markets or change installed services/sites.
+The [whole-project source review](reports/whole-project-audit-20261029/REVIEW.md)
+was built from contract/service/website understanding and a
+[twice-challenged prompt](reports/whole-project-audit-20261029/PROMPT_REVIEW.md).
+It fixes ownership-inventory outage isolation, malformed stored history and
+metadata restart starvation, and corrects keeper regression/fork CI selection.
+Five targeted current canonical composition methods pass; detailed individual
+callable coverage and real qualification remain separate, explicit limits.
 
-Fresh [confirmation1 and operational improvements](reports/practical-improvements-20261028/REVIEW.md)
-add a15-minute sampled on-chain window, five-minute checks after cooldown and
-strict300-second maximum observation gap. Greater gaps restart; confirmation
-latency can repeatedly restart this strict policy. Manual width changes retain
-their cooldown exception. Schema6 preflight, anchored keeper health and
-native-only Manager cleanup are implemented; exact bindings and actual operating
-qualification remain open. [Verification](reports/practical-improvements-20261028/VERIFICATION.md)
-distinguishes new checks, reused evidence and retained failed attempts.
-No uninterrupted-history proof or production approval is claimed. A separate
-[follow-up review](reports/confirmation-followup-20261028/REVIEW.md) fixes foreign
-window adoption after clears, raw-read reset gaps, physical LP/pool consistency,
-wallet custody totals and policy-health admission during cooldown. No Solidity
-or economic rights change; [verification](reports/confirmation-followup-20261028/VERIFICATION.md)
-records398 affected Python passes/one explicit skip and exact reused EVM/build
-pins. Earlier [payout-retry fixes](reports/two-day-audit-20261028/VERIFICATION.md)
-retain their own137-method/comment-only compiler scope. [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md)
-still distinguish contract guards, service controls and remaining market risks.
-No service or website changed. The [third-pass review](reports/third-pass-20261028/REVIEW.md)
-then traces all35main commits on October26-28 and earlier interacting code, fixing
-checkpoint-reset and malformed ingestion/conversion snapshot paths. Its
-[repo-specific audit brief](docs/THIRD_PASS_AUDIT_PROMPT.md) and verification retain
-the exact scope, unchanged contract evidence and open production gates.
+Current [confirmation policy](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer)
+uses a15-minute sampled window, user-approved four-minute source checks and an
+unchanged strict300-second maximum recorded gap after the hard cooldown.
+The roughly60-second scheduling margin is not grace or guaranteed inclusion.
+Observing during cooldown is a proposed Todo improvement, not implemented.
+The [additional-loss guard](docs/EXECUTION_QUALITY.md) still separates actual
+directional fees from additional deterioration; stronger operation/caller floors
+remain. [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) distinguishes on-chain rules,
+service controls and accepted market/governance risks.
 
-The earlier [systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
-maps608 functions plus31 constructors/13 receivers at its original source revision
-to multiple reviewed edge cases. It fixes malformed RPC identity/JSON/failover and holder-inventory
-input/diagnostic defects, and adds a systemd main-progress watchdog for stalled
-keeper I/O. [Verification](reports/system-adversarial-20261026/VERIFICATION.md):
-244 unique affected Python methods:241 passes/3 explicit skips; unchanged Solidity evidence is reused.
-The1,987 scenario instances are review coverage, not1987execution tests or a
-security guarantee. Production contracts/rights and running services are unchanged.
-
-The [adversarial market review](reports/market-adversarial-20261026/REVIEW.md)
-rejects contradictory pool prices/ticks/fees before unsigned reviews or release
-observations. [Verification](reports/market-adversarial-20261026/VERIFICATION.md):
-223 affected backend methods and15actual-v4 composed cases pass, including
-out-of-range contributions in both directions and funded pool donations.
-Production contracts/rights and installed services are unchanged; this does not
-qualify real providers, liquidity or sustainable trading revenue.
-
-The [adversarial reward review](reports/reward-resilience-20261026/REVIEW.md)
-isolates maintenance outages from guarded fee collection, rejects contradictory
-inactive claim drafts and consistently stops scheduling after a saved pending
-intent. [Verification](reports/reward-resilience-20261026/VERIFICATION.md) records
-437 affected Python passes/6 explicit skips and one new actual-v4 outage/harvest/
-claim case. Production Solidity/economic rights are unchanged; installed services
-are not updated by publication. Earlier [allocation/claim-order evidence](reports/reward-allocation-20261026/VERIFICATION.md)
-and [keeper/LP hardening](reports/keeper-lp-audit-20261026/REVIEW.md) retain scope.
-
-Current rules and code boundaries are summarized below. [Feature/evidence reference](docs/IMPLEMENTATION_STATUS.md)
-and [documentation map](docs/README.md) distinguish current instructions, legacy
-local profiles and historical verification. Latest [backend fee-integrity checks](reports/backend-remediation-20261026/VERIFICATION.md)
-pass167affected methods; the [full internal audit](reports/full-audit-20261025/REVIEW.md)
-retains its source scope. Neither establishes production approval.
+No contract, signer, service, site or existing Anvil deployment changed. The
+[verification record](reports/whole-project-audit-20261029/VERIFICATION.md),
+[feature reference](docs/IMPLEMENTATION_STATUS.md) and [documentation map](docs/README.md)
+separate fresh evidence, exact reuse, legacy profiles and open release work.
+Earlier [reports](reports/README.md) retain their original bytes/source scope;
+neither inventories nor internal checks constitute independent approval.
 
 ## Project navigation
 
@@ -283,8 +247,8 @@ retain their independent guards. See [scoped verification](reports/operator-cont
 
 The keeper **defaults to dry run**. Full keeper/state-lock operation requires **Linux/Unix and Python 3.11+**.
 
-- **Polling:** the example checks every ten minutes; this is not a guaranteed execution schedule.
-- **Rebalancing:** price movement or an approved range change must make the position eligible. Cooldown, fresh prices and execution guards still apply. See [range-policy behavior](docs/RANGE_POLICY_UPDATES.md).
+- **Polling:** fresh confirmation1 uses60-240second outer polling and240-second eligible checks; the historical default is ten minutes. These are not guaranteed execution times.
+- **Rebalancing:** actual physical range exit or an approved range change must make the position eligible after cooldown. Ordinary exits also require sampled confirmation, fresh prices and execution guards. See [operating policy](docs/LP_EXECUTION_POLICY.md).
 - **Metadata:** the optional watcher is disabled by default and uses the same bounded transaction path.
 
 | Operating task | Start here |

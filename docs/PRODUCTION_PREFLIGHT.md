@@ -60,8 +60,8 @@ duration, maximum gap, review hash and revision. The intended operating inventor
 records900seconds and an exact300-second maximum gap, with no grace. Its review
 hash, bindings and observations remain unset, so it stays blocked. The source
 constructor starts with gap0: stopped/unconfigured until governance configures
-a reviewed policy. A positive gap must be at most half the duration. Five-minute
-service checks at a five-minute maximum need real latency/restart qualification;
+a reviewed policy. A positive gap must be at most half the duration. Four-minute
+service checks under the five-minute maximum need real latency/restart qualification;
 a late recorded sample restarts confirmation. Per-bucket raw candidates, stored
 samples and confirmed readiness remain distinct. Samples are not proof of
 uninterrupted prices between observations.

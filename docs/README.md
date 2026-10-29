@@ -1,6 +1,6 @@
 # Documentation map
 
-Reviewed2026-10-28. [Root README](../README.md) introduces PoPL and its code.
+Reviewed2026-10-29. [Root README](../README.md) introduces PoPL and its code.
 [TODO.md](../TODO.md) is the only task/status list; [feature reference](IMPLEMENTATION_STATUS.md)
 states what exists and what was verified. **Undeployed; production NOT APPROVED.**
 Current guides describe accounting4/directgovernance2/fee1/custody3/holder-exitV5.
@@ -40,9 +40,13 @@ Historical reports and explicitly legacy local profiles retain their own semanti
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 local build](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 
-The [third-pass audit brief](THIRD_PASS_AUDIT_PROMPT.md) owns the frozen
-October26-28 review scope, invariants, adversarial workstreams and evidence rules.
-Its [results](../reports/third-pass-20261028/REVIEW.md) distinguish actual repairs
+The [whole-project audit brief](WHOLE_PROJECT_AUDIT_PROMPT.md),
+[two prompt challenges](../reports/whole-project-audit-20261029/PROMPT_REVIEW.md)
+and [results](../reports/whole-project-audit-20261029/REVIEW.md) record the broader
+review and later four-minute service-cadence decision. The earlier
+[third-pass brief](THIRD_PASS_AUDIT_PROMPT.md) and
+[results](../reports/third-pass-20261028/REVIEW.md) retain their frozen
+October26-28 scope. Both distinguish actual repairs
 from accepted limits and externally blocked qualification.
 
 ## Release, security and upkeep

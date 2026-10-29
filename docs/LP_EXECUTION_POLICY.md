@@ -19,7 +19,7 @@ Old deployments, journals and sites retain their actual historical code/profiles
 | --- | --- | --- |
 | Swap venue | Immutable Manager-created LPBalancer compares up to four explicitly reviewed native ETH/fixed-ZZZ static hookless v4 pools and executes the same selected route/size. | Best valid sampled final LP value among this list, not global or exact mathematical optimality. Buyback/Entry/reward converters retain separate routing. |
 | Range choice | Governance selects the desired width; a separate optional keeper policy can automatically select 25%/50%. | Operator selects +/-25% or +/-50% in ZZZ price in ETH. No automatic volatility analysis or range switching is requested for this operating policy. Keep optional automation disabled. |
-| Rebalance trigger | Policy2 uses actual physical range exit or an explicit operator range change, after the governed hard pool cooldown. Fresh confirmation1 additionally gates ordinary replacement. | Initial12-hour minimum even after early exit; fresh confirmation1 checks every300seconds, requires the reviewed sampled window, then adds durable1-10minute jitter. Historical policy2 without confirmation retains hourly ordinary checks. |
+| Rebalance trigger | Policy2 uses actual physical range exit or an explicit operator range change, after the governed hard pool cooldown. Fresh confirmation1 additionally gates ordinary replacement. | Initial12-hour minimum even after early exit; fresh confirmation1 checks every240seconds, requires the reviewed sampled window, then adds durable1-10minute jitter. Historical policy2 without confirmation retains hourly ordinary checks. |
 | Contributions | First activation creates shared LP; later activations/top-ups increase its actual ticks. Only the new contribution can be swapped/deployed. | Incumbent idle/compound remains in old share NAV and available for guarded maintenance; it cannot subsidize the new marginal LP floor. |
 | Residual assets | Attributed idle can already be reinvested, including without new fees, and joins collective principal return. | Combine useful residuals later; no zero-dust target, arbitrary sweep or external recipient. |
 | Per-NFT limit | Governance configures cumulative gross contributions through `maxPositionUSD`. | Intended configuration: $1,000,000 per NFT, not a guaranteed current NAV or a shared-market capacity allowance. |
@@ -35,11 +35,12 @@ are enforced on-chain.
 
 Implemented in fresh `REBALANCE_CONFIRMATION_VERSION()==1`, using a fixed
 Strategy-created helper and the Budget execution gate. Selected operating policy:
-**15 minutes (900 seconds), checks every five minutes after the hard 12-hour
+**15 minutes (900 seconds), checks every four minutes after the hard 12-hour
 cooldown, maximum confirmed-observation gap exactly300 seconds**. No grace is
-added: a greater gap restarts the window. With a300-second check cadence, receipt
-or RPC delays can repeatedly restart confirmation; qualify actual timing before
-operating and change policy explicitly if necessary. The helper starts with
+added: a greater gap restarts the window. The user approved240-second source
+checks on2026-10-29, leaving roughly60seconds for polling/work/inclusion delays.
+This is scheduling margin, not a larger on-chain gap or an execution guarantee;
+longer delays still restart. Qualify actual timing before operating. The helper starts with
 gap0 (ordinary confirmation stopped) until governance supplies a reviewed policy.
 
 `Strategy.needsRebalance(bucket)` remains raw physical outside/cooldown eligibility;
@@ -47,6 +48,17 @@ gap0 (ordinary confirmation stopped) until governance supplies a reviewed policy
 operator width change keeps its explicit exception after cooldown. Compound
 yields to raw eligible rebalance, including while confirmation is pending. Hourly
 harvesting and pending receipt recovery remain independent.
+
+The window rejects short-lived range exits before execution; it does not prove
+how long the price was outside before observations began. Current ordinary
+confirmation starts after the hard cooldown. Even a genuinely four-hour exit
+needs fresh recorded evidence then. With240-second evaluations, a clean new
+window is normally next evaluated around minute16, followed by jitter/inclusion;
+900seconds is a minimum evidence duration, not an execution-time promise.
+On2026-10-29 the user requested a Todo improvement to evaluate observation during
+cooldown while retaining the12-hour execution minimum and every reset/final
+guard. That requires a separately reviewed contract change and added gas/timing
+assessment; it is not implemented by the four-minute service schedule.
 
 The authorized keeper records `observe(bucket)` transactions. Same physical LP,
 exit side, price-policy identities and control revisions must match. Returning
@@ -193,7 +205,7 @@ The new versioned source implements this scheduler/state policy:
    legitimate downward-boundary slot0 tick semantics; do not infer it from a
    rounded display price or an assumed +/-percentage.
 4. In the fresh confirmation1 profile, evaluate eligible inside/outside positions
-   every300seconds. Inside observations invalidate any prior ordinary candidate;
+   every240seconds. Inside observations invalidate any prior ordinary candidate;
    outside candidates require receipt-backed samples and `rebalanceReady` under
    the strict reviewed gap/window. Historical policy2 without this capability
    keeps its original hourly checks; never relabel an old scheduler/journal.
@@ -201,7 +213,7 @@ The new versioned source implements this scheduler/state policy:
 5. After ordinary confirmation is ready, or an explicit operator range change
    passes its raw cooldown/price exception, choose one OS-CSPRNG delay of60-600
    seconds and persist it with deployment, bucket, LP and policy identity. Do not
-   redraw on each check/restart. Continue five-minute observations while jitter
+   redraw on each check/restart. Continue four-minute observations while jitter
    waits; a missed gap can revoke readiness and restart confirmation.
 6. At the due time, re-read actual range, prices, routes and economics; simulate
    fresh exact calldata. If back inside with no operator range change, cancel

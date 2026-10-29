@@ -87,6 +87,41 @@ mints use the original collection/Vault identity; current custody routing is
 remapped to the replacement. Ordinary holder redemption remains unavailable;
 a later collective LP shutdown requires its separate governance action.
 
+## Workflow size and relay budget
+
+Small batches bound one call, not the complete handoff. Count the actual minted
+NFTs `N`, permanently registered buckets `B` (including reservations), lifetime
+pool aliases `L`, admitted LP currencies `A` and royalty currencies `R` at freeze.
+Four bucket slots do not cap `L`; same-pair moves can add aliases over time.
+
+| Ordered domain | Exact rows |
+| --- | --- |
+| NFT | `1001 + N` (fixed draw inventory plus minted rows) |
+| Vault | `1 + B + L + N + A` |
+| Membership | `1 + N` |
+| LP rewards | `1 + A * (1 + B + N)` |
+| Royalties | `1 + R + N * (1 + R)` |
+| Fees | `1 + A + B * A` |
+
+Read coordinator `recordCount(slot)` and each bound module's `canonicalCount()`
+once captured and reconcile them to this
+schema; a future different codec requires its own calculation. Total rows are
+`1006 + 4N + N(A+R) + 3A + 2AB + B + R + L`. With separate direct calls and
+maximum eight rows per export/import, those two phases need at least
+`2 * sum(ceil(domainRows / 8))` calls, plus `3A+R` funding legs, freeze,
+six settlements, completeImport and commit. Zero-value legs still need their
+authenticated acknowledgment. Preparation, parking, deployment, confirmation
+waits, receipts and retries are additional work.
+
+For `N=1000, B=1, L=1, A=2, R=1`:8019rows,2012export/import calls,7funding legs
+and9control calls, or2028direct calls before those additional operations.
+These are function-call counts, not measured gas, guaranteed transaction counts
+or target-chain qualification; a reviewed batching relay would need separate
+simulation and gas bounds. Rehearse the actual dimensions and abort budget
+before freezing. Preserve cursors, roots and backing; do not omit history or
+increase batch limits just to reduce the estimate. No silent lifetime-alias cap
+or emergency import override exists.
+
 ## Backing, cutoffs and late receipts
 
 Freeze captures every admitted ledger and classified fee-reserve balance before

@@ -3,41 +3,54 @@
 Reviewed 2026-10-29. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
 [README](../README.md), [Todo](../TODO.md) and the owning runbook before continuing.
 
-## Latest third-pass audit
+## Latest whole-project review
 
-The user requested a repo-specific exhaustive prompt first, then execution of a
-third pass including today/yesterday/day-before at the request time. The
-[saved brief](THIRD_PASS_AUDIT_PROMPT.md) freezes October26-28 Paris at cb0aadf:
-35commits,71changed source/config paths. Completion after midnight is October29,
-not an extension of the source window. See [review](../reports/third-pass-20261028/REVIEW.md)
-and [verification](../reports/third-pass-20261028/VERIFICATION.md).
+The expanded [audit brief](WHOLE_PROJECT_AUDIT_PROMPT.md) was built after source
+understanding and challenged twice. [Review](../reports/whole-project-audit-20261029/REVIEW.md)
+and [verification](../reports/whole-project-audit-20261029/VERIFICATION.md) separate
+actual repairs, fresh checks, reused evidence and pending coverage. The previous
+[third-pass record](../reports/third-pass-20261028/VERIFICATION.md) retains its
+frozen October26-28 scope; it is not the whole-project result.
 
-New fixes: a used signer's receipt-checkpoint error before work resets known
-fresh confirmation windows when no intent is pending; original pending isolation
-remains. Indexer head parsing rejects malformed quantities. Shared optional LP/
-royalty conversion validates canonical header/timestamp/depth and defers its own
-failed snapshot instead of leaking type errors or accepting future cutoffs.
-No Solidity/economic rights or running services changed. The same four original
-dirty files and prior reports stay intact. Current earnings/indexer guides now
-state4/V5 and label3/V4 custody compatibility as historical; security review no
-longer instructs testing the removed two-pass LP balancer.
+New source repairs: optional currency faults no longer hide ownership inventory;
+stored history JSON/envelopes fail closed; metadata priority is durable before
+optional work so restart cannot repeatedly starve LP maintenance. Dedicated
+keeper selection and current-fork CI wiring are corrected. User then explicitly
+approved four-minute service checks, keeping the same15-minute window/strict
+five-minute on-chain maximum. Preserve old schedules/pending journals and roll
+out matching health writer/checker only with separate authorization.
 
-External baseline473committed files, three-day inventory/diff, negative controls
-and scoped verification are under `third-pass-20261028` beside earlier evidence.
-Use that record for exact methods/pins, not a sum of old test counts. Confirm
-actual local/GitHub heads before saying published. Real feed/route/VRF/authority,
-OpenSea, current website/service/gas/host and independent audit gates stay open.
+No Solidity, economics, authority, deployed state, signer or service/site/Anvil
+changes. Five targeted current canonical composition methods add useful evidence;
+they are not a full canonical/gas/service qualification. New compiler predicate
+screen is AST-only, not lowering proof. Website dormant-example metadata patch
+is prepared externally and unapplied; fresh4 integration remains open.
+
+Latest requested improvements are in the existing rebalance-confirmation task:
+evaluate observation during cooldown and independent deeper-market corroboration.
+Current source checks spot versus Oracle but not reference-outside persistence.
+Market/TWAP window and agreement-only versus same-side-reference trigger are
+unresolved. Do not substitute another pool's tick for the actual LP or silently
+replace the two-source USD safeguards.
+
+Baseline/source maps, both prompt challenges, failed attempts, test receipts and
+prepared website patch are under the external `whole-project-audit-20261029`
+directory. The four original dirty files remain excluded from publication and
+byte-identical. Main-only publication must verify exact local/remote heads; no
+Git push authorizes deployment. Live feeds/routes/VRF/authorities/OpenSea,
+gas/host/strict-timing/escrow and independent audit/remediation stay open.
 
 ## Current improvement work
 
 Fresh confirmation1 adds a fixed Strategy child and Budget gate, with raw
 outside/cooldown eligibility kept separate. User selected sampled on-chain
-evidence,900-second duration,300-second checks after cooldown and strict300-second
+evidence,900-second duration,240-second checks after cooldown and strict300-second
 maximum receipt gap; greater gaps restart, with no hidden grace. Constructor gap0
 blocks ordinary readiness until governance configures a nonzero review hash.
 Manual width exception, independent harvest, compound priority and receipt
-recovery stay. Observations cannot detect every move between samples. Exact
-cadence/gap may repeatedly restart with confirmation delays; qualify timing.
+recovery stay. Observations cannot detect every move between samples. The
+240-second schedule leaves roughly60seconds before the strict300-second maximum;
+longer delays still restart. Qualify actual timing.
 
 Keeper source adds journaled observation/reset recovery, health schema2 metadata
 and same-block/config discovery caching with fresh pre-signing checks. Current

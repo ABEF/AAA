@@ -632,7 +632,10 @@ class Projection:
             raise HistoryError('Confirmed wallet inventory requires configured history')
         header, head, block = self._snapshot()
         lifecycle = self._verify_deployment(block)
-        lp_assets, royalty_assets = self._admitted(block)
+        # Ownership does not depend on an optional currency's runtime/decimals
+        # being readable. Keep the admitted address inventory and core bindings
+        # strict; this endpoint returns no currency balances or valuations.
+        lp_assets, royalty_assets = self._admitted(block, asset_health={})
         history = self._history_snapshot(header, block, lp_assets, royalty_assets)
         identifiers = sorted(nft_id for nft_id, owner in history.owners.items() if owner == wallet)
         count = self._uint('nft', 'balanceOf(address)', wallet, block=block)

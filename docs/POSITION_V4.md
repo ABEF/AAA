@@ -49,7 +49,7 @@ raw cooldown/price guards and bypasses this observation window. Compound yields
 to the raw candidate, so it cannot postpone a ready rebalance; hourly harvest is
 independent.
 
-The intended policy is a900-second window, five-minute service checks after the
+The intended policy is a900-second window, four-minute service checks after the
 hard12-hour cooldown and an exact300-second maximum recorded gap, with no grace.
 The source constructor's gap0 blocks ordinary rebalancing until reviewed governance
 configuration. Gap/duration, review hash and monotonic policy revision are observed;

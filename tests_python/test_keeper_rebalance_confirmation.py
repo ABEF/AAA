@@ -106,11 +106,11 @@ class KeeperConfirmationTests(unittest.TestCase):
         with patch('keeper.monitor.secrets.randbelow') as random:
             self.cycle().assert_called_once_with('rebalance_confirmation','observe(uint256)',(7,),'rebalance_observation:7')
         random.assert_not_called();self.assertEqual(0,self.schedule()['execute_after'])
-        self.assertEqual(self.rpc.now+300,self.schedule()['next_check_at'])
+        self.assertEqual(self.rpc.now+240,self.schedule()['next_check_at'])
 
-    def test_inside_and_pending_conditions_are_checked_every_five_minutes(self):
+    def test_inside_and_pending_conditions_are_checked_every_four_minutes(self):
         self.side=0;self.cycle().assert_not_called();initial=len(self.rpc.calls)
-        self.rpc.now+=299;self.side=1;self.cycle().assert_not_called()
+        self.rpc.now+=239;self.side=1;self.cycle().assert_not_called()
         helper_before=sum(m=='eth_call' and p[0]['to']==self.helper for m,p in self.rpc.calls)
         self.rpc.now+=1;self.cycle().assert_called_once()
         self.assertGreater(sum(m=='eth_call' and p[0]['to']==self.helper for m,p in self.rpc.calls),helper_before)
@@ -241,8 +241,8 @@ class KeeperConfirmationTests(unittest.TestCase):
         self.cfg['code_hashes']['idle_compounding_budget']='0x'+'11'*32
         with patch('keeper.monitor.time.time',return_value=self.rpc.now),self.assertRaises(RpcError):self.k.rebalance_confirmation.validate()
 
-    def test_subfive_minute_gap_is_not_paid_forever_by_the_five_minute_worker(self):
-        self.gap=299;self.k.maintenance['harvest']=True
+    def test_subfour_minute_gap_is_not_paid_forever_by_the_four_minute_worker(self):
+        self.gap=239;self.k.maintenance['harvest']=True
         self.cycle().assert_called_once_with('vault','collectFees(uint256,uint256)',(7,self.rpc.now+180),'harvest:7')
         self.assertEqual(1,self.k.blocked_actions);self.assertEqual(0,self.schedule()['execute_after'])
 
@@ -251,7 +251,7 @@ class KeeperConfirmationTests(unittest.TestCase):
         self.record=[self.identity,self.rpc.now-900,self.rpc.now-298,1]
         with patch('keeper.monitor.secrets.randbelow',return_value=540):
             self.cycle().assert_called_once_with('rebalance_confirmation','observe(uint256)',(7,),'rebalance_observation:7')
-        self.assertEqual(self.rpc.now+300,self.schedule()['next_check_at'])
+        self.assertEqual(self.rpc.now+240,self.schedule()['next_check_at'])
 
     def test_confirmation_rejects_a_vault_outside_the_active_access_module(self):
         selector=calldata('module(bytes32)','0x'+keccak256(b'ZZZVault').hex())

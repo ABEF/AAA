@@ -15,7 +15,7 @@ from types import MappingProxyType
 from typing import Any
 
 from zzz_ops.abi import address, decode_words, keccak256
-from zzz_ops.rpc import RpcError
+from zzz_ops.rpc import RpcError, _unique_object, _reject_constant, _finite_float
 from zzz_ops.work_budget import checkpoint, WorkLimit
 from zzz_ops.state import integer
 
@@ -28,6 +28,13 @@ LP_CONVERTED = '0x' + keccak256(b'LPRewardsConverted(uint256,address,uint256,uin
 
 class HistoryError(RpcError):
     """Incomplete, mismatched or malformed confirmed history; fail closed."""
+
+
+def _stored_json(raw):
+    # SQLite is operator-maintained evidence, not permission to accept a second,
+    # more permissive JSON dialect than the ingress that originally wrote it.
+    return json.loads(raw, object_pairs_hook=_unique_object,
+                      parse_constant=_reject_constant, parse_float=_finite_float)
 
 
 def _hash(value: Any) -> str:
@@ -155,14 +162,14 @@ class History:
                 return result
             finally:
                 connection.close()
-        except (sqlite3.Error, OSError, ValueError, KeyError, TypeError) as exc:
+        except (sqlite3.Error, OSError, ValueError, KeyError, TypeError, RecursionError) as exc:
             raise HistoryError('Confirmed indexer history is unavailable or malformed') from exc
 
     def _read(self, db, target, target_hash, target_timestamp, minted_count, lp_assets, royalty_assets, consumer, emitters):
         row = db.execute('SELECT next_block,config FROM cursors WHERE chain=?', (self.chain,)).fetchone()
         if row is None or type(row[0]) is not int or row[0] <= target:
             raise HistoryError('Indexer has not completely processed the confirmed target block')
-        identity = json.loads(row[1])
+        identity = _stored_json(row[1])
         expected_identity = {'contracts': self.contracts, 'start': self.start, 'parent_hash': self.parent}
         if identity != expected_identity:
             raise HistoryError('Indexer chain/start/parent/contract identity differs from reviewed history configuration')
@@ -210,14 +217,17 @@ class History:
             if transaction_hash in transaction_blocks and transaction_blocks[transaction_hash] != number:
                 raise HistoryError('Stored transaction appears in multiple blocks')
             transaction_blocks[transaction_hash] = number
-            item = json.loads(raw)
-            if not isinstance(item, dict) or item.get('removed', False) is not False or address(item['address']) != emitter:
+            item = _stored_json(raw)
+            if not isinstance(item, dict) or item.get('removed') is not False or address(item['address']) != emitter:
                 raise HistoryError('Stored raw log emitter/removed identity differs')
             if _quantity(item['blockNumber']) != number or _hash(item['blockHash']) != block_hash or _hash(item['transactionHash']) != transaction_hash or _quantity(item['logIndex']) != log_index:
                 raise HistoryError('Stored raw log provenance differs from its confirmed row')
             topics = item.get('topics')
             if not isinstance(topics, list) or len(topics) > 4 or any(not isinstance(t, str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}', t) for t in topics):
                 raise HistoryError('Malformed fixed event topics')
+            data = item.get('data')
+            if not isinstance(data, str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})*', data):
+                raise HistoryError('Malformed raw event data')
             if not topics:
                 continue
             if type(timestamp) is not int or not 0 <= timestamp <= target_timestamp:

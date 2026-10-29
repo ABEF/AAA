@@ -39,7 +39,7 @@ in `contracts.rebalance_confirmation` and its runtime. The existing
 `idle_compounding_budget` address/runtime is also mandatory, even when standalone
 compounding is disabled: the actual Vault Budget must advertise confirmation1
 and bind the same Vault/Access. An old raw-eligibility-only Budget is rejected.
-This profile also requires explicit integer `interval_seconds` from60through300.
+This profile also requires explicit integer `interval_seconds` from60through240.
 It cannot inherit the historical600second default. The outer loop includes work
 and receipt latency; even a permitted interval is not an exact sample guarantee.
 Read-only keeper preflight validates the actual helper/Budget runtime, capability,
@@ -167,8 +167,11 @@ Read [keeper recovery](KEEPER_RECOVERY.md), [service rehearsals](KEEPER_REHEARSA
 [Maintenance policy2](LP_EXECUTION_POLICY.md) implements outside-or-operator-range
 eligibility after the configured hard interval, durable service jitter and
 independent Budget3 compound cadence. Intended initial values are12hours,
-60-600second jitter, hourly eligible inside-range checks and $1m cumulative
-per-NFT contributions. The fresh sample observes every60seconds. LP routing1 now
+60-600second jitter and $1m cumulative per-NFT contributions. Historical policy2
+without confirmation1 uses hourly eligible inside-range checks. Fresh confirmation1
+records eligible observations every240seconds; its example outer loop polls60seconds
+to keep independent receipt/harvest work responsive. Neither interval guarantees
+inclusion within the strict300-second receipt gap. LP routing1 now
 compares up to four reviewed ETH/ZZZ execution venues independently of the LP
 destination, using post-close depth, bounded actual-core sizing and zero/one
 swap. Contributions balance/deploy only their own amounts; incumbent idle and
@@ -243,20 +246,20 @@ by governance's policy; the keeper cannot invent a new range/algorithm.
 
 ### Recorded rebalance confirmation
 
-Fresh confirmation1 checks ordinary eligibility every300seconds after the hard
+Fresh confirmation1 checks ordinary eligibility every240seconds after the hard
 cooldown, including when LP remains inside range. The selected observed window
 is900seconds with a **strict300-second maximum observation gap**; governance must
 configure the helper with the reviewed hash. Source starts with gap0, which stops
-ordinary confirmation until configured. There is no latency grace or earlier
-poll hidden in the worker: a gap above300seconds makes prior evidence unusable,
+ordinary confirmation until configured. The reviewed240-second source checks
+leave roughly60seconds for delays without on-chain grace: a gap above300seconds makes prior evidence unusable,
 and the next successful observation restarts the window.
 Receipt/block latency can therefore repeatedly restart it and requires actual
-operating qualification. A nonzero gap below the worker's300-second cadence is
+operating qualification. A nonzero gap below the worker's240-second cadence is
 reported unsupported rather than spending gas on perpetual restarts.
 
 The worker submits one bounded `observe(bucket)` transaction on each due ordinary
 outside check; receipt delay does not suppress the next scheduled renewal.
-Observed readiness starts the existing durable60–600second jitter. Five-minute
+Observed readiness starts the existing durable60–600second jitter. Four-minute
 observations continue during that wait; final readiness is read again before
 submission. An approved manual width change bypasses the confirmation window,
 including when gap0, but retains cooldown, jitter and every execution guard.

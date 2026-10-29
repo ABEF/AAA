@@ -158,14 +158,14 @@ class KeeperConfirmationIncidentTests(unittest.TestCase):
             with self.subTest(value=value),self.assertRaises((ValueError,RpcError)):Keeper(self.cfg,rpc=self.rpc)
 
     def test_fresh_confirmation_requires_an_explicit_compatible_outer_poll(self):
-        for value in (None,True,False,'60',59,301,600):
+        for value in (None,True,False,'60',59,241,300,301,600):
             config=copy.deepcopy(self.cfg)
             if value is None:config.pop('interval_seconds')
             else:config['interval_seconds']=value
             with self.subTest(value=value),patch.object(self.rpc,'call') as rpc,self.assertRaisesRegex(ValueError,'interval_seconds'):
                 Keeper(config,rpc=self.rpc)
             rpc.assert_not_called()
-        for value in (60,300):
+        for value in (60,240):
             config=copy.deepcopy(self.cfg);config['interval_seconds']=value
             with self.subTest(value=value):self.assertEqual(1,Keeper(config,rpc=self.rpc).rebalance_confirmation.version)
 

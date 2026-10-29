@@ -7,7 +7,9 @@ import time
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 from zzz_ops.rpc import RpcError
 
-CHECK_SECONDS = 300
+CHECK_SECONDS = 240
+# Accepted only when reading an existing schedule; new checks use four minutes.
+LEGACY_CHECK_SECONDS = 300
 STATE_NAMESPACE = 'observed_rebalance_v1'
 
 
@@ -20,7 +22,7 @@ class RebalanceConfirmation:
         if self.version == 1:
             interval=keeper.config.get('interval_seconds')
             if type(interval) is not int or not 60<=interval<=CHECK_SECONDS:
-                raise ValueError('Confirmation requires explicit interval_seconds 60-300; no historical default')
+                raise ValueError('Confirmation requires explicit interval_seconds 60-240; no historical default')
             if keeper.accounting_version != 4 or keeper.maintenance_policy_version != 2:
                 raise ValueError('Rebalance confirmation requires accounting4 and maintenance2')
             if 'rebalance_confirmation' not in keeper.contracts:
@@ -113,7 +115,7 @@ class RebalanceConfirmation:
     def observation_due(record,now):
         if record['manual'] or record['maximum_gap_seconds']==0:return False
         if record['side']==0:return record['observation_identity']!='0x'+'0'*64
-        # The caller already gates ordinary observations to five-minute checks.
+        # The caller already gates ordinary observations to four-minute checks.
         # A receipt a few seconds after the previous check must not suppress
-        # this renewal and accidentally stretch the next gap to ten minutes.
+        # this renewal and accidentally skip the next scheduled check.
         return True

@@ -43,7 +43,7 @@ Budget and helper must expose capability1; helper Strategy/Access bindings,
 duration/gap/review hash/revision and per-bucket observations are read at the
 same canonical hash. Historical absent/0 retains its original path; a failed
 read never selects an older profile. The intended900-second window uses
-five-minute checks after the hard12-hour cooldown and an exact300-second maximum
+four-minute checks after the hard12-hour cooldown and an exact300-second maximum
 recorded gap, without grace. Source defaults remain900/0: ordinary rebalancing
 is stopped until reviewed governance configuration. Config values and release
 approval are separate; the current production inventory uses explicit schema6.

@@ -59,7 +59,7 @@ jobs:
     timeout-minutes: 30
     env:
       # Optional archive endpoint; the public fallback contains no credentials.
-      ROBINHOOD_ARCHIVE_RPC_URL: ${{ secrets.ROBINHOOD_RPC_URL || 'https://robinhood.rpc.pinax.network' }}
+      ROBINHOOD_FORK_RPC_URL: ${{ secrets.ROBINHOOD_RPC_URL || 'https://robinhood.rpc.pinax.network' }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
@@ -75,16 +75,31 @@ jobs:
           version: v1.4.4
           cache: false
       - run: bash scripts/install-deps.sh
-      - name: Pinned deployed dependency tests
+      - name: Install checksum-pinned current fork compiler
+        id: current-solc
+        shell: bash
+        run: |
+          set -euo pipefail
+          solc="$RUNNER_TEMP/solc-0.8.26"
+          # SHA256 from Solidity's official linux-amd64/list.json; verify before execution.
+          curl --fail --silent --show-error --proto '=https' --connect-timeout 10 --max-time 120 --output "$solc" 'https://binaries.soliditylang.org/linux-amd64/solc-linux-amd64-v0.8.26+commit.8a97fa7a'
+          printf '%s  %s\n' 'd5f23436f443edb85d8e76906d12f0a86ce0490e7663a9e608efeb7a93f149ef' "$solc" | sha256sum --check --strict
+          chmod 755 "$solc"
+          printf 'solc=%s\n' "$solc" >> "$GITHUB_OUTPUT"
+      - name: Current selected native-pool fork tests
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p reports/production
-          python3 scripts/run-fork-checks.py 2>&1 | tee reports/production/robinhood-fork-current.log
+          python3 scripts/run-current-pool-fork.py --rpc-env ROBINHOOD_FORK_RPC_URL --solc "${{ steps.current-solc.outputs.solc }}" --output reports/production/current-pool-fork 2>&1 | tee reports/production/current-pool-fork.log
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
         with:
           name: robinhood-fork-evidence
-          path: reports/production/robinhood-fork-current.log
+          path: |
+            reports/production/current-pool-fork.log
+            reports/production/current-pool-fork/receipt.json
+            reports/production/current-pool-fork/forge-results.json
+            reports/production/current-pool-fork/forge-stderr.log
 # Immutable action revisions and dependency checks support development verification.
 # Passing this workflow does not authorize a funded deployment or replace an audit.

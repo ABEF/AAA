@@ -10,7 +10,7 @@ service/inventory/website qualification remain historical to their original pins
 See [profile4](POSITION_V4.md); new release qualification remains open.
 
 
-Reviewed 2026-10-28. This describes capabilities and evidence, not a second Todo.
+Reviewed 2026-10-29. This describes capabilities and evidence, not a second Todo.
 Use [the single task list](../TODO.md) for status, [operator manual](OPERATOR_MANUAL.md)
 for procedures, [component map](COMPONENT_STATUS.md) for code boundaries and
 [release record](RELEASE_CHECKLIST.md) for approval. **Production NOT APPROVED.**
@@ -24,7 +24,7 @@ is a terminal local status. Historical1/2/3 deployments/readers/journals retain
 original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLECTIVE_EXIT.md).
 
 Fresh Strategy maintenance policy2 checks actual physical range exit or an operator range update after the hard governed interval (initial12hours). Historical keeper mode2 uses hourly inside checks; fresh confirmation1 checks
-eligible conditions every300seconds and persists1-10minute post-ready jitter without blocking harvest/receipt recovery. Budget capability3 uses its separately governed compound interval after max(lastCompound,lastRebalance), yielding to due rebalance; it never resets that clock. Explicit API profiles verify Strategy2/Budget3 and preserve historical readers. [Operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing), [new scoped verification](../reports/maintenance-policy-20261027/VERIFICATION.md). No live service/site changes.
+eligible conditions every240seconds and persists1-10minute post-ready jitter without blocking harvest/receipt recovery. Budget capability3 uses its separately governed compound interval after max(lastCompound,lastRebalance), yielding to due rebalance; it never resets that clock. Explicit API profiles verify Strategy2/Budget3 and preserve historical readers. [Operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing), [new scoped verification](../reports/maintenance-policy-20261027/VERIFICATION.md). No live service/site changes.
 
 Current [manipulation-related hardening](../reports/manipulation-hardening-20261027/VERIFICATION.md) adds keeper/pause completion checks for rebalance/compound/buyback and corrects paid-revert health visibility across restart/unrelated success. It introduces no new economic caps, roles or custody path. Actual profitability, real market/feed/ordering and service qualification remain open; defensive checks are not attack-profit evidence.
 
@@ -36,7 +36,7 @@ It preserves stronger gross/caller/operation limits and separate converter polic
 Exact same-block reader capabilities and revisions are explicit; historical
 profiles remain separate. [Feature scope](EXECUTION_QUALITY.md), [verification](../reports/fee-impact-policy-20261028/VERIFICATION.md).
 No passive position or40% rebalance policy is implemented. Fresh confirmation1
-adds a15-minute sampled on-chain window, five-minute checks after cooldown,
+adds a15-minute sampled on-chain window, four-minute checks after cooldown,
 strict300-second maximum receipt gap and journaled reset recovery. Greater gaps
 restart; actual latency can prevent progress. The constructor gap0 requires
 reviewed governance configuration. Stable controls are rechecked across full
@@ -148,6 +148,17 @@ Actual current3 contracts/API/feeds/routes/marketplace/service acceptance remain
 [deployment integration](DEPLOYMENT_WEBSITE.md) and [browser wallet](BROWSER_WALLET.md).
 
 ## Current evidence and limits
+
+[Whole-project review](../reports/whole-project-audit-20261029/REVIEW.md) adds
+ownership-only optional-currency outage isolation, strict stored-history decoding,
+durable metadata priority and corrected keeper/current-fork CI selection. User
+approved240-second service checks with unchanged900/300on-chain confirmation;
+old300schedules/pending/reset/jitter remain preserved. Five current canonical
+composition methods and75affected Python methods pass in their exact scopes;
+unchanged217EVM/39normal gates are reused, not rerun. Per-function pending depth,
+unapplied website metadata patch, real operating/provider/compiler-lowering and
+independent-audit gates stay explicit. [Verification](../reports/whole-project-audit-20261029/VERIFICATION.md).
+Observing during cooldown is proposed in the sole Todo, not implemented.
 
 [Holder-return verification](../reports/holder-collective-exit-20261027/VERIFICATION.md) records133distinct affected Solidity passes,37normal object gates,16new profile4 methods and11new automatic-delivery methods. Separate historical/common scopes and platform skip are explicit; no combined full-regression or live approval is implied. Optional keeper delivery is implemented/disabled, and actual source4 website/services remain open.
 

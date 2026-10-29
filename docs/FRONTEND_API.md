@@ -45,7 +45,7 @@ Strategy-created confirmation child and verifies Strategy/Budget/helper versions
 parent/controller/runtime bindings and policy at one canonical hash. Its range
 context distinguishes raw `needsRebalance` candidates from confirmed
 `rebalanceReady` eligibility, with unconfigured/not-started/stale/confirming/ready
-states. Intended operation is a15-minute recorded window and five-minute checks
+states. Intended operation is a15-minute recorded window and four-minute checks
 after the hard12-hour cooldown, with an exact300-second maximum gap and no grace.
 The source constructor gap0 stops ordinary rebalancing until reviewed
 configuration; a delayed sample restarts the window. This is sampled evidence,
@@ -130,7 +130,12 @@ and cumulative `previously_claimed` LP-plus-royalty amounts are now implemented.
 They require exact creation-to-target coverage and raw-log replay; current
 ownership additionally agrees with on-chain counts/owners. Without that
 configuration, NFT history is explicitly unavailable and wallet requests fail
-503. These position endpoints do not reconstruct earned history. Use the
+503. The inventory endpoint isolates per-currency runtime/decimal read failures:
+an optional royalty currency outage does not hide verified ownership. It returns
+no currency balances or valuations; admitted address inventories, core module
+bindings, complete history, current owners and canonical confirmation checks
+remain strict. Financial endpoints retain their own unavailable-currency rules.
+These position endpoints do not reconstruct earned history. Use the
 separate [earnings endpoints](EARNINGS_HISTORY.md) for processed all-time/24h
 LP/collective/royalty earnings and optional current-price USD values. Claimable and lifetime
 claimed amounts are not lifetime gross revenue. No assumed historical token

@@ -38,7 +38,8 @@ class KeeperConfirmationHealthTests(unittest.TestCase):
         return report
 
     def data(self, report):
-        return {'health_schema':HEALTH_SCHEMA,'rebalance_confirmation_health':{'policy':report}}
+        return {'health_schema':HEALTH_SCHEMA,'rebalance_confirmation_health':{
+            'version':1,'check_interval_seconds':240,'policy':report}}
 
     def reasons(self, data):
         return execution_reasons(data,self.cfg,now=self.rpc.now,max_age=1800)
@@ -155,7 +156,7 @@ class KeeperConfirmationHealthTests(unittest.TestCase):
         self.assertIn('rebalance_confirmation_stopped',result['reasons'])
 
     def test_terminal_exit_suppresses_only_stop_or_cadence_reason_with_explicit_boolean(self):
-        for gap,reason in ((0,'rebalance_confirmation_stopped'),(299,'rebalance_confirmation_cadence_incompatible')):
+        for gap,reason in ((0,'rebalance_confirmation_stopped'),(239,'rebalance_confirmation_cadence_incompatible')):
             self.f.gap=gap;data=self.data(self.observe())
             for flag in (False,None,1):
                 with self.subTest(gap=gap,flag=flag):
@@ -173,7 +174,7 @@ class KeeperConfirmationHealthTests(unittest.TestCase):
         self.assertFalse(report['ok']);self.assertIn('confirmation_observation_unknown',report['reasons'])
 
     def test_subcadence_gap_is_degraded_before_bucket_cooldown_elapses(self):
-        self.f.gap=299;report=self.observe()
+        self.f.gap=239;report=self.observe()
         self.assertEqual('incompatible_cadence',report['state'])
         self.assertIn('rebalance_confirmation_cadence_incompatible',self.reasons(self.data(report)))
         with patch('keeper.monitor.time.time',return_value=self.rpc.now):result=preflight(self.cfg,rpc=self.rpc)

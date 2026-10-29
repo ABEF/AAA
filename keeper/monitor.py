@@ -29,7 +29,7 @@ from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_b
 from keeper.watchdog import ProgressWatchdog, ProgressRPC
 from keeper.principal import PrincipalDistribution, BATCH as PRINCIPAL_BATCH, encode_batch as encode_principal_batch
 from keeper.health import HEALTH_SCHEMA, OBSERVATION_SCHEMA, source_hashes, observe_confirmation_health
-from keeper.rebalance_confirmation import RebalanceConfirmation, CHECK_SECONDS as CONFIRMATION_CHECK_SECONDS, STATE_NAMESPACE as CONFIRMATION_STATE
+from keeper.rebalance_confirmation import RebalanceConfirmation, CHECK_SECONDS as CONFIRMATION_CHECK_SECONDS, LEGACY_CHECK_SECONDS as LEGACY_CONFIRMATION_CHECK_SECONDS, STATE_NAMESPACE as CONFIRMATION_STATE
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
 NATIVE_ASSET = '0x'+'0'*40
@@ -303,7 +303,7 @@ class Keeper:
                 observed,check,execute = (record[name] for name in ('observed_at','next_check_at','execute_after'))
                 if namespace==CONFIRMATION_STATE:
                     last=record['last_checked_at']
-                    valid=last>=observed and check==last+CONFIRMATION_CHECK_SECONDS and (
+                    valid=last>=observed and check-last in (CONFIRMATION_CHECK_SECONDS,LEGACY_CONFIRMATION_CHECK_SECONDS) and (
                         execute==0 or 60<=execute-observed<=600)
                 else:valid=(execute==0 and check==observed+REBALANCE_CHECK_SECONDS or
                     check==0 and 60<=execute-observed<=600)
@@ -807,11 +807,14 @@ class Keeper:
         record=self.state.get(CONFIRMATION_STATE,{}).get(str(bucket))
         if record is not None and now<record['last_checked_at']:
             raise RpcError('Confirmation chain clock retreated')
-        # The five-minute cadence is an evaluation schedule, not an attestation
+        # The four-minute cadence is an evaluation schedule, not an attestation
         # or an inclusion-time guard. Submission always calls this with force.
         manual=self.view('strategy','rangeUpdatePending(uint256)',bucket)
         if manual not in (0,1):raise RpcError('Malformed desired-range flag')
-        if (not force and record is not None and not manual and now<record['next_check_at'] and
+        # Read old300-second journals without rewriting pending work or jitter.
+        # A normal healthy evaluation, not construction/recovery, writes240.
+        next_check=min(record['next_check_at'],record['last_checked_at']+CONFIRMATION_CHECK_SECONDS) if record is not None else 0
+        if (not force and record is not None and not manual and now<next_check and
                 (record['execute_after']==0 or now<record['execute_after'])):
             return False
         status=self._confirmation_status(bucket)
@@ -1887,7 +1890,16 @@ class Keeper:
             # Alternate priority so changing artwork cannot starve LP maintenance
             # and a busy LP cannot indefinitely starve metadata notifications.
             metadata_first = self.state['metadata_refresh']['next_first']
-            self.state['metadata_refresh']['next_first'] = not metadata_first
+            # Publish the turn before optional RPCs. A watchdog/process exit
+            # must not restart the same blocked metadata ahead of every LP job.
+            previous = self.state
+            updated = copy.deepcopy(previous)
+            updated['metadata_refresh']['next_first'] = not metadata_first
+            self.state = updated
+            try: self.save()
+            except BaseException:
+                self.state = previous
+                raise
             if metadata_first and self._refresh_metadata(): return
         try:_,now = self._head()
         except (ValueError,RpcError):

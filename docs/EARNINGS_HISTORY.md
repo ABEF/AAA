@@ -39,6 +39,13 @@ history audit. Never repair raw logs, assume zero or weaken the profile to force
 a report. Preserve the original database and diagnose using a separate replay
 copy with the same seven emitter bindings and confirmed cutoff.
 
+Stored cursor/raw-log JSON must also have unique fields, finite numbers, explicit
+`removed:false` and byte-aligned hexadecimal data, including unknown events.
+Malformed or parser-resource failures produce unavailable history; they are not
+clean zero earnings. Preserve the original DB/WAL and diagnose a consistent backup
+under [indexer recovery](INDEXER_RECOVERY.md). This validation does not authenticate
+a coherently forged database or provider and adds no RPC or financial transaction.
+
 ## Historical native royalty custody compatibility
 
 Current accounting4 has no external royalty-custody exit/return function. LP

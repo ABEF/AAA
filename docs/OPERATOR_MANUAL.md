@@ -323,13 +323,16 @@ feature by editing JSON. Preserve their exact readers and original journals.
    nonce and spend records. On-chain configuration alone needs no process restart.
    Keeper preflight and health validate this policy even during LP cooldown and
    with standalone compounding disabled; they read no bucket condition or price.
-4. After the hard12-hour cooldown the service checks every300seconds, rather than
+4. After the hard12-hour cooldown the service checks every240seconds, rather than
    hourly, and records `observe(bucket)` through its normal simulation/fee/gas/
-   journal/receipt path. The main `interval_seconds` must be at most300 to deliver
+   journal/receipt path. The main `interval_seconds` must be at most240 to deliver
    that cadence; pending work or unavailable services may delay it. Every gap
-   greater than300 restarts the window. Scheduling at exactly300 provides no
-   latency allowance and may restart repeatedly. This strict choice is deliberate;
-   do not silently add grace or promise execution at a fixed time.
+   greater than300 restarts the window. The240-second source schedule leaves
+   roughly60seconds for delays without weakening the contract's300-second limit.
+   Longer work/inclusion delays still restart. For an old300-second schedule or
+   outer poll, follow [preserved-journal rollout](KEEPER_RECOVERY.md#sampled-confirmation1-recovery)
+   and deploy the matching health writer/checker; no automatic live restart occurs.
+   Do not add grace or promise execution at a fixed time.
 5. Read `observations(bucket)` (identity,firstSeen,lastSeen,side), `condition(bucket)`
    and `ready(bucket)` at one canonical block. Raw `Strategy.needsRebalance` is
    not buffered readiness. Budget checks `Strategy.rebalanceReady` before execute.
@@ -709,7 +712,7 @@ An **activation route** converts a user's contribution into the LP pair. It is d
 1. Only ETH and the reviewed ZZZ identity are contribution inputs. Do not add USDC, USDG or WETH as user sources. Marketplace royalty currencies are a separate policy.
 2. Bind the initial ZZZ identity once before sealing using `ActivationAssets.configureZZZ(token,codeHash,reviewHash)` after reviewing its exact runtime, decimals, transfer behavior and two independent USD sources. The deployed identity cannot be replaced. An issuer migration uses custody exit and a fresh deployment; old ownership/reward records are not erased.
 3. To stop either input, append its disabled `setAsset` policy; this stop requires no healthy token/feed. Re-enabling requires full review/validation. The helper cannot enable a third contribution currency.
-4. A supported future target pair can need an internal conversion route even though user inputs remain ETH/ZZZ. Pin its exact venue, code, route and prices, simulate the full Entry operation and verify its captured contribution floor before admission. Pool/route reconfiguration does not reopen a disabled source.
+4. Current principal destinations remain native ETH/fixedZZZ only. A new execution venue does not admit another input or target pair. Pin its exact venue/code/prices, simulate the complete direct/native operation and verify captured contribution floors before admission. Optional royalty conversions have their separate routes and permissions. Pool/route reconfiguration does not reopen a disabled source.
 
 Current native accounting uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Only native ETH and the explicitly reviewed ZZZ identity may be user inputs. Actual ETH/ZZZ routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
 
@@ -855,7 +858,7 @@ Stop scheduled compounding/buybacks using reviewed keeper configuration or by st
 Before enabling automated revenue operations, review the actual
 [schedule and reserve checks](OPERATIONS.md#reward-timing-and-maintenance-schedule).
 The current accounting4 example polls every60seconds, evaluates eligible
-confirmation every300seconds and schedules standalone
+confirmation every240seconds and schedules standalone
 harvests every3600seconds (one hour), independently from rebalancing;
 standalone compounding is off and `buybacks` is empty. These are blocked sample
 settings, not an enabled production promise. Do not put swaps/compounding inside
@@ -952,8 +955,10 @@ successful standalone** `harvest:<bucket>` action, not its restart time. A short
 interval or a missing previous timestamp can make harvesting due immediately at
 the next eligible cycle. Contributions, rebalances, compounding and outside
 manual harvests do not reset that standalone journal timestamp. Polling uses the
-separate `interval_seconds` setting (example600seconds, minimum60); an interval
-shorter than the polling cadence cannot make checks run more often. Pending
+separate `interval_seconds` setting. Historical examples use600seconds; fresh
+confirmation1 requires60-240, with60 in its example and240-second eligible
+observations. A harvest interval shorter than polling cannot make checks run
+more often. Pending
 receipts, other eligible jobs, pause/lifecycle and execution/gas guards can delay
 execution; this is not an exact wall-clock promise.
 
@@ -1151,6 +1156,12 @@ Run the [read-only holder inventory and escrow cutover procedure](HOLDER_PREFLIG
 5. Verify every root, owner, trait, share, liability, reserve and exact backing. Governance `commit()` atomically retires the source and activates one successor. Finality remains required before service/marketplace cutover. Update canonical address/runtime and complete predecessor-history configuration, payout routing and marketplace collection records; old ERC721 approvals are not imported.
 6. Before commit, `abort()` cancels the importer; return every funded leg via `returnFunds`, then `finishAbort()` only after full restoration. This is not immediate unlock. After successful commit the source cannot be revived by unpausing or cancelling preparation. Late royalty receipts forward one successor at a time through the supported royalty forwarding function. There is no creator-inbox forwarding path.
 
+Budget the complete workflow before preparation, using the [domain row/call
+calculation](CANONICAL_HANDOFF.md#workflow-size-and-relay-budget). Four custody
+slots do not bound lifetime aliases. Recover exact next cursors/roots after an
+interruption; never skip rows or relax backing to fit a transaction budget.
+This sizing review needs no service restart or on-chain configuration change.
+
 A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V5 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
 
 ## Stop controls
@@ -1294,6 +1305,8 @@ adds no on-chain function, permission, config key, write action or service rollo
 | --- | --- |
 | Current LP-only fee history | Keep explicit fee intake 1. Verify actual `FeeController.FEE_INTAKE_VERSION()`, sealed module/runtime pins, all seven emitters and the same confirmed cutoff. Replay requires exact funded-credit/allocation pairs and actual `dust(bucket,asset)` for observed keys. Native address zero is permitted only in that getter's currency argument. |
 | Fee/dust mismatch or malformed core value | Stop serving the affected report; preserve raw logs, database, request/config hash, cutoff and error. Compare a separate replay copy with authentic independent-provider windows. Do not edit/delete history, guess zero, relabel a profile or trigger a financial transaction to hide an error. |
+| Malformed stored JSON or event envelope | Duplicate fields, nonfinite numbers, missing `removed:false`, malformed hex data and parser-resource failures make history unavailable. Preserve the original DB/WAL; restore/replay a consistent separate copy. Do not normalize corrupt evidence into apparently clean claims or earnings. |
+| Optional royalty-currency outage and wallet inventory | Ownership inventory retains exact admitted addresses, lifecycle/history, balance and owner checks even if optional token runtime/decimals fail. It reports no token balances; affected financial metrics remain unavailable. Required module, asset-list, history, budget or canonical faults still reject. Roll out/rollback only a compatible reviewed API release when authorized. |
 | Current accounting-3 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked/outbound NFTs retain eligible funded rewards. |
 | Wallet read budget | Accounting3/4 checks pinned `weightOf(id)` and `nftStatus(id)` per NFT. This follow-up adds one custody read to profile3; profile4 strengthens its existing status read. Historical1/2 read shapes remain. Keep16-item chunks, finite request limits and complete same-block chunk verification. Requalify actual latency/budgets before rollout; no unbounded retry or limit relaxation. |
 | Display totals | Ready to claim = funded LP plus royalty balances now. Earnings 24h/all time includes earlier claims and past owners; claims/conversions are not new income. Compound/buyback/gross receipts are not additional NFT claimable funds. |

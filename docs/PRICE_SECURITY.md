@@ -2,6 +2,36 @@
 
 ## Status and security boundary
 
+The [reference-market improvement](../TODO.md#task-rebalance-confirmation-buffer)
+is proposed separately from the implemented safeguards below.
+
+## Physical pool and independent reference
+
+Our physical pool's tick determines whether the actual LP is in range; another
+pool's tick cannot substitute for it. Current `Strategy.needsRebalance` requires
+cooldown/operation eligibility, reads the configured Oracle reference and checks
+the managed pool spot against `maxSpotDeviationBps` before testing actual ticks.
+`RebalanceConfirmation.condition` then samples the actual same-side physical exit
+and stable control identity. Thus current price agreement is independently
+guarded, but the reference itself need not be outside the LP bounds.
+
+On2026-10-29 the user requested corroboration from a reviewed higher-liquidity
+market because the managed pool can be manipulated. Selecting that market,
+averaging window, real depth, independence and failure/reset behavior remains
+unqualified; no deeper-pool/TWAP adapter or reference-range trigger was added.
+Deeper instantaneous spot alone is not manipulation proof, and the greatest
+reported liquidity need not mean the best manipulation resistance.
+
+The pending design choice is whether an independent reference must also remain
+outside on the same side for the confirmation window, or only corroborate price
+agreement. The former may deliberately leave the physical LP inactive while its
+distorted price disagrees with the wider market. Preserve actual ticks, dual-source
+USD valuation, identity/policy resets and all execution floors in either design.
+No automatic reference rotation or use of our own LP as an independent source is
+implied. Concrete market/window selection requires source/operating qualification.
+
+## Implemented valuation boundary
+
 The undeployed pricing-V2 candidate combines two-source USD checks with factual
 Uniswap position and asset-movement checks. This is implemented protection, not
 qualification of live price services. The user-selected disagreement tolerance is **3% (300 bps)**. No production
