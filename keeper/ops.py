@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import sys
 import tempfile
 import time
@@ -27,6 +28,13 @@ def _read_required_json(path):
     if value is missing: raise FileNotFoundError('Required keeper JSON input is missing')
     if not isinstance(value,dict): raise ValueError('Keeper JSON input must be an object')
     return value
+
+
+def _review_bucket(value):
+    if (not isinstance(value,str) or re.fullmatch(r'[1-9][0-9]{0,77}',value) is None or
+            int(value)>=1<<256):
+        raise argparse.ArgumentTypeError('bucket must be a canonical nonzero uint256 decimal')
+    return int(value)
 
 
 def digest(value):
@@ -189,6 +197,9 @@ def main():
     health = sub.add_parser('health');health.add_argument('--max-age',type=int,default=1800)
     health.add_argument('--allow-dry-run',action='store_true')
     sub.add_parser('preflight')
+    review = sub.add_parser('review',help='Read-only selected LP operation report; never executes work')
+    review.add_argument('--bucket',required=True,action='append',type=_review_bucket,help='One to four explicit decimal bucket IDs')
+    review.add_argument('--simulate',action='store_true',help='Discarded fixed typed calls and gas estimates at the observed hash')
     snapshot = sub.add_parser('snapshot');snapshot.add_argument('--output',required=True)
     verify = sub.add_parser('verify-snapshot');verify.add_argument('--input',required=True)
     verify.add_argument('--max-age',type=int,default=3600)
@@ -197,6 +208,9 @@ def main():
         config = _read_required_json(args.config)
         if args.command == 'health': report = health_check(config,max_age=args.max_age,allow_dry_run=args.allow_dry_run)
         elif args.command == 'preflight': report = preflight(config)
+        elif args.command == 'review':
+            from keeper.operation_review import review as operation_review
+            report = operation_review(config,args.bucket,simulate=args.simulate)
         elif args.command == 'snapshot': report = create_snapshot(config,args.output)
         else: report = verify_snapshot(config,args.input,max_age=args.max_age)
     except Exception as exc:

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_observer_uses_current_compiled_vault_abi_without_private_registration_getter"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 6.281,
+  "owned_source_sha256": {
+    "zzz_ops/production_observer_v4.py": "f19f57a22b5a8b20d3bb9dc55feb066b6a8c0ada8c44ed66ba766622bfaa7cad",
+    "tests_python/production_v4_fixtures.py": "f7ea7f107855fecef7dab9ece7f4edbaef4c2514da9da1d96504771856e554a9",
+    "tests_python/test_contribution_reservation.py": "ae33b929818e7bb773af157dde520de1594373d6fef0662d19f0a1fb69aec1bf"
+  }
+}

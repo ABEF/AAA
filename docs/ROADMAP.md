@@ -22,6 +22,11 @@ Reviewed 2026-10-29. This page explains dependencies and sequence; [TODO.md](../
 is the only status list. [Feature reference](IMPLEMENTATION_STATUS.md) records what
 exists, while [release approval](RELEASE_CHECKLIST.md) remains NOT APPROVED.
 
+Current [keeper coordination](KEEPER_COORDINATION.md) implements service-only
+in-range/no-pending-width waits, canonical internal-harvest coalescing and
+bounded read-only LP reports. Qualify the extra pinned RPC reads and matching
+worker/checker rollout; remaining action adapters retain their own Todo.
+
 Current maintenance candidate: [compound cadence V3 / upkeep policy2](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing) is coordinated on-chain with LP replacement and rebalance/range priority. Match keeper/helper versions and qualify actual economics/services; no24-hour default or new cumulative-loss breaker is assumed.
 
 Current source has completion/health safeguards ([scope](../reports/manipulation-hardening-20261027/VERIFICATION.md)). Continue economic review of [keeper-originated manipulation](../TODO.md#task-security-keeper-manipulation)

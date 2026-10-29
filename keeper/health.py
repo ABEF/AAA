@@ -10,6 +10,7 @@ from keeper.rebalance_confirmation import CHECK_SECONDS
 HEALTH_SCHEMA = 2
 OBSERVATION_SCHEMA = 1
 SOURCE_FILES = ('keeper/monitor.py', 'keeper/ops.py', 'keeper/health.py', 'keeper/rebalance_confirmation.py',
+    'keeper/compound_policy.py',
     'zzz_ops/lp_execution.py', 'zzz_ops/abi.py', 'zzz_ops/rpc.py', 'zzz_ops/state.py')
 RUNTIME_ROLES = ('access', 'pools', 'liquidity', 'balancing_router', 'pool_manager', 'state_view', 'strategy')
 CONFIRMATION_RUNTIME_ROLES = ('access', 'strategy', 'vault', 'rebalance_confirmation', 'idle_compounding_budget')

@@ -1,0 +1,127 @@
+{
+  "scope": "Read-only exact ABI membership for literal target/getter/action strings added by report; reused shared helper ABI covered by its owner",
+  "source_reference_sha256": "bc2b086966fff3f833c063df0232f589b6f35822d2722fca3dd164bb19dc4bc4",
+  "source_closure_matches": true,
+  "closure_mismatches": [],
+  "signatures": [
+    {
+      "contract": "ZZZAccessController",
+      "signature": "paused()",
+      "exists": true
+    },
+    {
+      "contract": "ZZZAccessController",
+      "signature": "preparationActive()",
+      "exists": true
+    },
+    {
+      "contract": "ZZZAccessController",
+      "signature": "canonicalState()",
+      "exists": true
+    },
+    {
+      "contract": "ZZZAccessController",
+      "signature": "keeperAuthorized(address)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZAccessController",
+      "signature": "isSealed()",
+      "exists": true
+    },
+    {
+      "contract": "ZZZVault",
+      "signature": "group(uint256)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZVault",
+      "signature": "bucketTotalShares(uint256)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZVault",
+      "signature": "poolBucket(bytes32)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZVault",
+      "signature": "rebalance(uint256,uint128,uint256)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZVault",
+      "signature": "collectFees(uint256,uint256)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZCompounder",
+      "signature": "compound(uint256,uint128,uint256)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZPoolRegistry",
+      "signature": "get(bytes32)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZPoolRegistry",
+      "signature": "accounting(bytes32)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZFeeController",
+      "signature": "compoundBalance(uint256,address)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZStrategy",
+      "signature": "needsRebalance(uint256)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZMigrationBudget",
+      "signature": "access()",
+      "exists": true
+    },
+    {
+      "contract": "ZZZMigrationBudget",
+      "signature": "lastCompound(uint256)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZMigrationBudget",
+      "signature": "compoundInterval(bytes32)",
+      "exists": true
+    },
+    {
+      "contract": "ZZZMigrationBudget",
+      "signature": "maintenanceLossBps()",
+      "exists": true
+    },
+    {
+      "contract": "ZZZLiquidityManager",
+      "signature": "access()",
+      "exists": true
+    },
+    {
+      "contract": "ZZZLiquidityManager",
+      "signature": "positionManager()",
+      "exists": true
+    },
+    {
+      "contract": "ZZZAccessController",
+      "signature": "module(bytes32)",
+      "exists": true
+    }
+  ],
+  "external_getters": {
+    "ownerOf(uint256)": "src/interfaces/IZZZ.sol IPositionManagerMinimal",
+    "getPoolAndPositionInfo(uint256)": "src/interfaces/IZZZ.sol and installed v4-periphery IPositionManager"
+  },
+  "external_source_sha256": {
+    "src/interfaces/IZZZ.sol": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IPositionManager.sol": "b7aa2a13c92f5f2e5612948359120d1b92263e575ce8d134b4576227f8629569",
+    "src/ZZZLiquidityManager.sol": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85"
+  }
+}

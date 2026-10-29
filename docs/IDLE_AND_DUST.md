@@ -97,7 +97,12 @@ positive raw thresholds for **both actual currencies** and an explicit interval;
 do not sum ETH-wei and ZZZ units or use a common raw threshold as economic value.
 Honor both confirmed local intervals and the on-chain compound decision. Defaults do not enable idle
 scheduling or automatic range selection in any running service.
-See [exact keeper setup and stop/restart](RANGE_POLICY_UPDATES.md).
+Fresh keeper source also requires the actual LP to be in range with no pending
+operator width update before compounding, including during rebalance cooldown.
+Idle may consequently wait and can reach the separate 5% contribution-blocking
+ceiling. Missing physical evidence does not authorize a swap or stop independent
+due harvesting. See [coordination/review](KEEPER_COORDINATION.md) and
+[exact keeper setup and stop/restart](RANGE_POLICY_UPDATES.md).
 
 If an approved adaptive selection is available but local adaptive scheduling is
 disabled, compounding waits. Enable the reviewed range job or deliberately

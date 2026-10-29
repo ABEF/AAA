@@ -17,6 +17,15 @@ Use the [operator manual](OPERATOR_MANUAL.md) for exact calls and stop/recovery,
 [sole Todo](../TODO.md#task-security-keeper-manipulation) for unfinished qualification.
 This file is explanatory documentation, not another task ledger.
 
+Current [keeper coordination](KEEPER_COORDINATION.md) adds a service-only wait
+for an actual in-range LP with no pending operator width change, including during
+rebalance cooldown. The contract's existing eligibility/financial checks remain.
+Canonical own successful internal harvests coalesce the local hourly clock only
+with verified Vault event proof. The new policy helper is included in local
+source fingerprints; matching worker/checker rollout is required. These file
+hashes do not attest which code a server or key actually runs. The bounded
+read-only operation report does not sign, mutate journals or approve execution.
+
 ## 1. Architecture and keeper authority
 
 - **Limited keeper permissions.** The keeper cannot change price feeds, loss limits, approved pools, routing policy or governance settings.

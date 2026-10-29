@@ -60,6 +60,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Change prices, sequencer checks or wrapper policy | [Dependencies and pricing](#dependencies-and-pricing) |
 | Collect LP fees, compound, burn or process royalties | [Revenue operations](#revenue-operations) |
 | Change the automatic fee-harvest interval | [Standalone harvesting schedule](#change-the-standalone-harvesting-interval) |
+| Inspect LP job waits, known blockers and simulation without changing state | [Read-only operation review](KEEPER_COORDINATION.md#read-only-operation-review) |
 | Resolve pending artwork reveals or replace all contracts; recover failed holder-file/CLI input | [Mint and metadata](#mint-and-metadata), [whole-collection replacement](#whole-collection-replacement) |
 | Change managers/keys, replace a server, update software or contain stalled RPC | [Authorities](#authorities), [services](#services-and-server-recovery) |
 | Use a browser wallet locally, recover pending transactions or inspect exact approvals | [Browser-wallet signing and recovery](BROWSER_WALLET.md) |
@@ -816,8 +817,11 @@ cannot gain this rule through a configuration call.
 
 The Vault has **four historical local bucket slots**, including permanent reservations/imports. Before a permanent reservation, read
 `Vault.poolBucket(poolId)`, `VaultCanonical.bucketIdentity(poolId)`,
-`VaultCanonical.aliasBucket(poolId)`, `Vault.registeredBucket(bucketId)` and
-`Vault.bucketCount()/MAX_BUCKETS()` from the same confirmed state. For a new
+`VaultCanonical.aliasBucket(poolId)` and `Vault.bucketCount()/MAX_BUCKETS()`
+from the same confirmed state. Enumerate `Vault.bucketAt(index)` for indexes
+0 through count minus one to determine registration. There is no public
+`registeredBucket` getter; registration is derived from the complete actual
+bucket list, not a guessed mapping call or a supplied JSON flag. For a new
 uninitialized first-activation target, use its exact canonical bucket ID if
 reserving; arbitrary nonzero placeholders can permanently prevent activation.
 Unreserved first activation can create its canonical slot only if capacity is
@@ -967,6 +971,15 @@ Historical policy1/helper2 and older helper1 readers remain versioned separately
 No automatic journal or runtime migration is provided. Readiness does not replace
 keeper authority, lifecycle, prices, gas, deadline or execution/backing checks.
 
+Fresh accounting4/policy2 keeper source additionally waits while the actual LP
+is outside its range or an operator width update is pending, including before
+the 12-hour rebalance cooldown expires. This is service policy, not a new
+contract restriction. Missing authenticated physical reader pins/data make
+compound unavailable; due harvest remains independent. This also applies when
+upgrading an LP-routing0 worker to the new source: qualify the reader bindings,
+never invent a fallback or rewrite its journal. See
+[coordination and read-only review](KEEPER_COORDINATION.md).
+
 Harvest first creates the designated5% reserve; standalone compound also harvests
 before pulling/reinvesting it. Hourly harvesting and holder claims remain independent;
 claims never run compounding/buybacks. Stop new compounds through local scheduling
@@ -974,6 +987,14 @@ or keeper revocation, reconcile pending hashes, and reopen only after fresh chec
 [Idle ownership](IDLE_AND_DUST.md), [policy/evidence](LP_EXECUTION_POLICY.md).
 
 ### Change the standalone harvesting interval
+
+The fresh worker coalesces this clock with its own successful compound/rebalance
+only when canonical receipt logs prove a matching Vault `FeesCollected` event.
+A zero-fee collection counts; submission, reverts, ambiguous work, NAV changes
+and unjournaled manual transactions do not. Missing optional proof preserves
+paid recovery but leaves the clock unchanged. The next hourly collection is
+measured from the verified receipt block time, not the wall-clock hour. Read
+[proof and recovery rules](KEEPER_COORDINATION.md#harvest-clocks-follow-proved-collection).
 
 As the sole operator, edit the **actual keeper service configuration**. The
 setting is `maintenance.harvest_interval_seconds`, in seconds. The current

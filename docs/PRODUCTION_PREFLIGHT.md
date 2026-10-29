@@ -47,8 +47,11 @@ Schema 6 now requires observer-derived `contribution_reservation` with `pool_id`
 `bucket_id`, `alias_bucket_id`, `canonical_bucket_id`, `target_registered`,
 `bucket_count` and `maximum_buckets`. The flat null scaffold is unobserved, not
 an unreserved pool. Rerun the current observer against actual reviewed bindings;
-it replaces missing/null input with same-block getter evidence, or records
-unavailable. Older inventories need recollection, not manual guessed values.
+it replaces missing/null input with same-block evidence, or records unavailable.
+`target_registered` is derived only from this run's successful complete
+`bucketAt`/`bucketCount` inventory at that hash. The Vault's registration mapping
+is private and has no callable getter. Failed/incomplete or prepopulated holder
+JSON is not this evidence. Older inventories need recollection, not manual guessed values.
 Historical schema 5 remains unchanged.
 
 Offline output `contribution_reservation_status` is not a manifest field or

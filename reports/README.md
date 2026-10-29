@@ -1,5 +1,9 @@
 # Verification evidence
 
+[Keeper coordination and operation review](keeper-coordination-20261029/REVIEW.md): service-only compound waits,
+proved internal harvest clocks, read-only LP diagnostics and corrected actual-ABI
+reservation observation. No source publication implies operating rollout.
+
 [Operational reliability follow-up](operational-reliability-20261029/REVIEW.md)
 implements confirmed code repairs after the normal-operation design review.
 Its scoped source pins/results do not replace historical reports or independent

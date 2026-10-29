@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+[Keeper coordination](KEEPER_COORDINATION.md) implements service-only compound
+waiting, proved internal-harvest clock coalescing and a bounded read-only LP
+operation report. The current observer also corrects a previous private-getter
+mistake using complete actual bucket inventory. [Evidence](../reports/keeper-coordination-20261029/VERIFICATION.md)
+is source-scoped; matching worker/checker rollout, real dependencies/timing/gas
+and independent qualification remain open. No Solidity or service rollout.
+
 The [operational code follow-up](../reports/operational-reliability-20261029/REVIEW.md) repairs confirmed
 history commit/chronology, keeper receipt/management parsing, sold-out readiness,
 permanent reservation observation and verification/evidence tooling. 221 distinct

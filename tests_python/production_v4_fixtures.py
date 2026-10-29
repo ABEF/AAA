@@ -150,8 +150,6 @@ class RPC(CompositionRPC):
             reservation=c['contribution_reservation']
             if target==m['vault']['address']:
                 if data==selector('poolBucket(bytes32)')+O._word(c['contribution_pool']):result=encoded(reservation['bucket_id'])
-                if data[:10]==selector('registeredBucket(uint256)'):
-                    result=encoded(int(any(b['id']==int(data[10:],16) for b in e['buckets'])))
             if target==m['vault_canonical']['address']:
                 if data==selector('bucketIdentity(bytes32)')+O._word(c['contribution_pool']):result=encoded(reservation['canonical_bucket_id'])
                 if data==selector('aliasBucket(bytes32)')+O._word(c['contribution_pool']):result=encoded(reservation['alias_bucket_id'])

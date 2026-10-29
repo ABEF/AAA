@@ -241,6 +241,18 @@ review limits. The [internal audit and scoped checks](../reports/preproduction-a
 do not upgrade any running service or journal. Stage this procedure on Linux and
 the actual chain fee model before production.
 
+## Internal harvest proof and source update
+
+Current accounting4 recovery can acknowledge an internal compound/rebalance
+harvest only from the saved action and a matching authenticated Vault event in
+its canonical successful receipt. The harvest clock is saved atomically with
+paid nonce/spend truth. Missing optional proof leaves that clock unchanged but
+must not undo or resend the paid transaction. Manual transactions are not
+adopted from a NAV change. The new compound-policy helper is included in local
+source identity; install worker/checker together and preserve the original
+journal. File hashes remain local evidence, not runtime attestation. See
+[coordination and review](KEEPER_COORDINATION.md).
+
 ## Contradictory checkpoint or malformed management inputs
 
 The worker rejects a latest head older in time than its confirmed checkpoint,

@@ -23,6 +23,7 @@ class Observer(O.Observer):
         super().__init__(rpc,chain)
         self.started=time.monotonic();self.read_count=0
         self.accounting_version=4;self.pricing_version=2;self.range_policy_version=1
+        self._holder_bucket_inventory=None
 
     def request(self,method,params):
         if method not in O.READ_METHODS | {'eth_getBalance'}:
@@ -95,6 +96,7 @@ class Observer(O.Observer):
             self.errors.append(dict(path='lp_execution',code='execution.mismatch'))
 
     def holder_exit(self):
+        self._holder_bucket_inventory=None
         m=self.chain['modules'];access=m['access']['address'];vault=m['vault']['address'];nft=m['nft']['address'];exit=m['migration']['address']
         def uint(target,method,*args):return int(self.read(target,method,*args)[0],16)
         def flag(target,method):return O._decode(self.read(target,method)[0],False)
@@ -115,8 +117,11 @@ class Observer(O.Observer):
             actual_settlements=[uint(exit,'settlementBucketAt(uint256)',i) for i in range(settlements)]
             if len(set(actual_settlements))!=len(actual_settlements):raise ValueError('Duplicate settlement buckets')
             observed['settlement_buckets']=actual_settlements
+            bucket_ids=set()
             for i in range(count):
                 bid=uint(vault,'bucketAt(uint256)',i)
+                if bid==0 or bid in bucket_ids:raise ValueError('Invalid registered bucket inventory')
+                bucket_ids.add(bid)
                 group=[int(w,16) for w in self.read(vault,'group(uint256)',bid,count=8)]
                 settlement=self.read(exit,'bucketSettlement(uint256)',bid,count=7)
                 row=dict(id=bid,position=group,total_shares=uint(vault,'bucketTotalShares(uint256)',bid),
@@ -143,19 +148,32 @@ class Observer(O.Observer):
                 if observed['phase']==3:row['claimable']=[int(w,16) for w in self.read(exit,'claimablePrincipal(uint256)',identifier,count=2)]
                 observed['nfts'].append(row)
             return observed
-        self.chain['holder_exit']['observed']=self.attempt('holder_exit','holder_exit.unavailable',capture)
+        observed=self.attempt('holder_exit','holder_exit.unavailable',capture)
+        self.chain['holder_exit']['observed']=observed
+        if observed is not None:
+            self._holder_bucket_inventory=(copy.deepcopy(self.block),tuple(row['id'] for row in observed['buckets']))
 
     def contribution_reservation(self):
         def capture():
             m=self.chain['modules'];vault=m['vault']['address'];canonical=m['vault_canonical']['address']
             pool=self.chain['contribution_pool']
             def uint(target,method,*args):return int(self.read(target,method,*args)[0],16)
+            inventory=self._holder_bucket_inventory
+            if inventory is None or self.block is None or inventory[0]!=self.block:
+                raise ValueError('Fresh same-block holder inventory is unavailable')
+            bucket_ids=inventory[1]
+            count=uint(vault,'bucketCount()');maximum=uint(vault,'MAX_BUCKETS()')
+            if maximum!=4 or count!=len(bucket_ids) or count>maximum:
+                raise ValueError('Registered bucket count differs from the complete holder inventory')
             bucket=uint(vault,'poolBucket(bytes32)',pool)
             canonical_bucket=uint(canonical,'bucketIdentity(bytes32)',pool)
+            # registeredBucket is private in accounting4. Registration is derived
+            # from this run's complete bucketAt inventory: _registerBucket writes
+            # its private flag and appends once atomically; no removal exists.
             return dict(pool_id=pool,bucket_id=bucket,canonical_bucket_id=canonical_bucket,
                 alias_bucket_id=uint(canonical,'aliasBucket(bytes32)',pool),
-                target_registered=O._decode(self.read(vault,'registeredBucket(uint256)',bucket or canonical_bucket)[0],False),
-                bucket_count=uint(vault,'bucketCount()'),maximum_buckets=uint(vault,'MAX_BUCKETS()'))
+                target_registered=(bucket or canonical_bucket) in bucket_ids,
+                bucket_count=count,maximum_buckets=maximum)
         self.chain['contribution_reservation']=self.attempt('contribution_reservation','reservation.unavailable',capture)
 
     def confirmation(self):

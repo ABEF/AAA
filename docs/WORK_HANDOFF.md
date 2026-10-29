@@ -32,14 +32,14 @@ Raw source pins, failures, old drafts and focused receipts remain externally in
 `whole-project-execution-20261029`; current Git publication status is recorded
 in its verification/publication record, not inferred from this handoff.
 
-The [normal-operation design reassessment](../reports/normal-operation-design-20261029/REVIEW.md) supersedes the
-earlier narrow four-point recommendation. Deadline priority is already delivered;
-confirmation-before-cooldown, compound action policy, receipt-backed harvest
-coalescing and a unified non-signing report remain unselected/unimplemented.
-Current compound can swap during cooldown but yields to raw need afterward;
-idle capability is not an enabled worker trigger. Preserve incumbent/entrant
-separation, all financial domains and emergency retained-check semantics. No
-source/setting/service change or fresh test result follows from this design.
+The [normal-operation design reassessment](../reports/normal-operation-design-20261029/REVIEW.md)
+is a design snapshot. Deadline priority was already implemented. Current
+[keeper coordination](KEEPER_COORDINATION.md) adds service-only in-range/no-pending-width
+compound waits, canonical receipt-backed internal-harvest coalescing and a bounded
+read-only rebalance/compound/harvest report. It changes no Solidity guards, on-chain clocks,
+shares or financial limits. Early confirmation enrollment, an outside-range no-swap exception,
+idle-only trigger enablement and other operation-report adapters remain separate.
+No installed service/site/Anvil or signer/journal is changed by source publication.
 
 The [operational reliability follow-up](../reports/operational-reliability-20261029/REVIEW.md) fixes
 indexer final depth/transaction-boundary/time consistency; keeper head/receipt
@@ -50,8 +50,8 @@ Require fresh reservation observations and matching source rollout; never rewrit
 journals or populate guessed fields. Verification: 221 distinct affected passes are
 source-scoped, not a fresh full suite/CI/live qualification. Python inventories
 execute no tests; full verifier creates new evidence directories and rejects altered
-normal filters/settings. Keep proposed early confirmation/compound/coalescing/
-unified-report work separate.
+normal filters/settings. Its reservation registration getter claim was corrected
+by the current keeper-coordination follow-up; preserve the original report scope.
 
 ## Current improvement work
 

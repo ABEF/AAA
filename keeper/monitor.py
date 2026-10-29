@@ -48,7 +48,13 @@ REBALANCE_CHECK_SECONDS = 3600
 MAX_OUTSIDE_SCHEDULES = 10000
 CONFIRMATION_RESETS = 'confirmation_reset_v1'
 CONFIRMATION_CLEARS = 'confirmation_clear_v1'
+FEES_COLLECTED_TOPIC = '0x'+keccak256(b'FeesCollected(uint256,uint256,uint256)').hex()
 CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
+
+
+class CompoundPolicyUnconfigured(RpcError):
+    """Required local reader bindings are absent before any physical read."""
+
 PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('strategy','applyKeeperRange(bytes32)'),
     ('vault','rebalance(uint256,uint128,uint256)'),
@@ -622,6 +628,127 @@ class Keeper:
         if ready not in (0,1): raise RpcError('Malformed compound eligibility')
         return ready == 1
 
+    def _compound_policy_status(self,bucket: int) -> dict[str,Any]:
+        """One fresh physical snapshot; no confirmation or scheduling mutation."""
+        from keeper.compound_policy import observe
+        roles=('access','vault','strategy','pools','liquidity','pool_manager','state_view')
+        if any(role not in self.contracts or
+                not isinstance(self.config.get('code_hashes',{}).get(role),str) or
+                re.fullmatch(r'0x[0-9a-fA-F]{64}',self.config['code_hashes'][role]) is None or
+                int(self.config['code_hashes'][role],16)==0 for role in roles):
+            raise CompoundPolicyUnconfigured('Compound physical readers require reviewed configuration')
+        try:
+            header=self.rpc.call('eth_getBlockByNumber',['latest',False])
+            if not isinstance(header,dict):raise ValueError('Missing compound policy header')
+            number=rpc_quantity(header.get('number'),'compound policy block number')
+            stamp=rpc_quantity(header.get('timestamp'),'compound policy timestamp',minimum=1)
+            block={'blockHash':rpc_hash(header.get('hash'),'compound policy block hash'),'requireCanonical':True}
+            if abs(time.time()-stamp)>600:raise ValueError('Stale compound policy header')
+            def read(target,signature,*args,count=1):
+                return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},block]))
+            proof=observe(read,lambda target:self.rpc.call('eth_getCode',[target,block]),
+                contracts=self.contracts,code_hashes=self.config.get('code_hashes',{}),bucket=bucket)
+            if proof['last_rebalance']>stamp:raise ValueError('Compound position checkpoint is in the future')
+            final=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if (not isinstance(final,dict) or
+                    rpc_quantity(final.get('number'),'final compound policy block number')!=number or
+                    rpc_hash(final.get('hash'),'final compound policy block hash')!=block['blockHash'] or
+                    rpc_quantity(final.get('timestamp'),'final compound policy timestamp',minimum=1)!=stamp):
+                raise RpcError('Compound physical observation block changed')
+            if abs(time.time()-stamp)>600:raise RpcError('Compound physical observation became stale')
+            return {**proof,'block_number':number,'block_hash':block['blockHash'],'block_timestamp':stamp}
+        except (ValueError,TypeError,KeyError) as exc:
+            raise RpcError('Compound physical policy observation is unavailable') from exc
+
+    def _compound_policy_allowed(self,bucket: int) -> bool:
+        key=str(bucket)
+        confirmation=self.rebalance_confirmation.version in (1,2)
+        if confirmation and self.state.get(CONFIRMATION_RESETS,{}).get(key):
+            self._rebalance_reset_due=bucket
+            log('compound_waiting',bucket_id=key,reason='waiting_confirmation_clear',
+                scope='keeper_policy_not_contract_eligibility')
+            return False
+        tracked=key in self.state.get(CONFIRMATION_STATE,{}) or key in self.state.get(CONFIRMATION_CLEARS,{})
+        try:status=self._compound_policy_status(bucket)
+        except CompoundPolicyUnconfigured:raise
+        except (ValueError,RpcError):
+            if confirmation and tracked:self._mark_confirmation_reset(bucket)
+            raise
+        if confirmation and tracked and not status['range_update_pending']:
+            try:record=self._compound_confirmation_record(bucket,status)
+            except (ValueError,RpcError):
+                self._mark_confirmation_reset(bucket)
+                raise
+            side=1 if status['tick']<status['tick_lower'] else 2 if status['tick']>=status['tick_upper'] else 0
+            acknowledged=key in self.state.get(CONFIRMATION_CLEARS,{})
+            if record['nonempty'] and (acknowledged or side==0 or side!=record['side']):
+                # A same-hash inside/opposite-side read is negative evidence. A
+                # retained clear plus a nonempty record is foreign evidence;
+                # only that authenticated contradiction forces another clear.
+                self._mark_confirmation_reset(bucket,force=acknowledged)
+                self._rebalance_reset_due=bucket
+                log('compound_waiting',bucket_id=key,reason='waiting_confirmation_clear',
+                    scope='keeper_policy_not_contract_eligibility')
+                return False
+        if not status['allowed']:
+            log('compound_waiting',bucket_id=str(bucket),reason=status['status'],
+                scope='keeper_policy_not_contract_eligibility')
+        return status['allowed']
+
+    def _compound_confirmation_record(self,bucket: int,proof: dict[str,Any]) -> dict[str,Any]:
+        """Authenticate an existing window at the physical proof hash; no writes."""
+        try:
+            number,stamp=proof['block_number'],proof['block_timestamp']
+            digest=rpc_hash(proof['block_hash'],'compound confirmation proof hash')
+            schedule=self.state.get(CONFIRMATION_STATE,{}).get(str(bucket))
+            clear=self.state.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
+            if (schedule is not None and stamp<schedule['last_checked_at'] or
+                    clear is not None and (stamp<clear['timestamp'] or number<clear['number'])):
+                raise RpcError('Compound confirmation proof precedes tracked evidence')
+            if abs(time.time()-stamp)>600:raise RpcError('Stale compound confirmation proof')
+            block={'blockHash':digest,'requireCanonical':True}
+            helper=self.contracts['rebalance_confirmation'];strategy=self.contracts['strategy'];access=self.contracts['access']
+            for role,target in (('rebalance_confirmation',helper),('strategy',strategy),('access',access)):
+                code=self.rpc.call('eth_getCode',[target,block])
+                expected=self.config.get('code_hashes',{}).get(role,'')
+                if (not isinstance(expected,str) or re.fullmatch(r'0x[0-9a-fA-F]{64}',expected) is None or
+                        not isinstance(code,str) or re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) is None or
+                        '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=expected.lower()):
+                    raise RpcError('Compound confirmation runtime differs')
+            def read(target,signature,*args,count=1):
+                values=decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},block]))
+                if len(values)!=count:raise RpcError('Malformed compound confirmation response')
+                return [int(word,16) for word in values]
+            for target,signature,expected in (
+                    (helper,'strategy()',int(strategy,16)),(helper,'access()',int(access,16)),
+                    (helper,'REBALANCE_CONFIRMATION_VERSION()',self.rebalance_confirmation.version),
+                    (strategy,'access()',int(access,16)),(strategy,'rebalanceConfirmation()',int(helper,16)),
+                    (strategy,'REBALANCE_CONFIRMATION_VERSION()',self.rebalance_confirmation.version)):
+                if read(target,signature)!=[expected]:raise RpcError('Compound confirmation binding differs')
+            for label,target in (('ZZZStrategy',strategy),('ZZZVault',self.contracts['vault'])):
+                if read(access,'module(bytes32)','0x'+keccak256(label.encode()).hex())!=[int(target,16)]:
+                    raise RpcError('Compound confirmation module differs')
+            identity,first,last,side=read(helper,'observations(uint256)',bucket,count=4)
+            if (not 0<=first<=last<=stamp or last>=1<<64 or side not in (0,1,2) or
+                    identity==0 and (first!=0 or last!=0 or side!=0) or
+                    identity!=0 and (first==0 or side==0)):
+                raise RpcError('Malformed compound confirmation record')
+            final=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if (not isinstance(final,dict) or rpc_quantity(final.get('number'),'compound confirmation number')!=number or
+                    rpc_hash(final.get('hash'),'compound confirmation hash')!=digest or
+                    rpc_quantity(final.get('timestamp'),'compound confirmation timestamp',minimum=1)!=stamp or
+                    abs(time.time()-stamp)>600):
+                raise RpcError('Compound confirmation proof changed or became stale')
+            return {'nonempty':identity!=0,'side':side}
+        except (ValueError,TypeError,KeyError) as exc:
+            raise RpcError('Compound confirmation evidence is unavailable') from exc
+
+    def _compound_submission_ready(self,args: tuple[int|str,...]) -> bool:
+        if self.accounting_version!=4 or self.maintenance_policy_version!=2:return True
+        if len(args)!=3 or type(args[0]) is not int or not 0<args[0]<1<<256:
+            raise ValueError('Malformed compound submission')
+        return self._compound_policy_allowed(args[0])
+
     def _validate_upkeep_policy(self) -> None:
         if self.maintenance_policy_version != 2: return
         for name in ('strategy','pools'):
@@ -997,7 +1124,11 @@ class Keeper:
         if due and self.accounting_version == 4:
             # Authoritative shared cooldown includes other keepers and the last
             # rebalance. Never infer it solely from this sender's journal.
-            return self._compound_ready(bucket)
+            if not self._compound_ready(bucket):return False
+            # Avoid physical reads when no compound is possible. During hard
+            # cooldown Budget may allow a range exit, so the service still
+            # requires this additional fresh physical proof before proceeding.
+            return self.maintenance_policy_version!=2 or self._compound_policy_allowed(bucket)
         if due and item.get('compound_idle',False):
             chain_last,chain_interval = self._idle_compound_checkpoint(bucket,fields)
             if now < max(last,chain_last)+max(interval,chain_interval): return False
@@ -1155,6 +1286,51 @@ class Keeper:
         if abs(time.time()-timestamp) > 600: raise RpcError('RPC head timestamp is stale or implausible')
         return number,timestamp
 
+    def _receipt_harvest_bucket(self,pending: dict[str,Any],receipt: dict[str,Any]) -> int | None:
+        """Optional accounting4 clock proof; never a substitute for paid recovery."""
+        if self.accounting_version != 4:return None
+        match=re.fullmatch(r'(compound|rebalance):([1-9][0-9]{0,77})',pending['key'])
+        if match is None or pending['value']!=0:return None
+        action,bucket=match[1],int(match[2])
+        target=self.contracts['compounder' if action=='compound' else 'vault']
+        if bucket>=1<<256 or pending['to']!=target:return None
+        try:
+            data=pending['data'].lower()
+            words=decode_words('0x'+data[10:])
+            if len(words)!=3 or data!=calldata(action+'(uint256,uint128,uint256)',
+                    bucket,int(words[1],16),int(words[2],16)):return None
+        except (ValueError,TypeError):return None
+        try:
+            logs=receipt.get('logs')
+            if not isinstance(logs,list):raise ValueError('Missing receipt logs')
+            found=False;indices=set()
+            for event in logs:
+                if not isinstance(event,dict):raise ValueError('Malformed receipt log')
+                emitter=event.get('address')
+                if not isinstance(emitter,str) or emitter.lower()!=self.contracts['vault']:continue
+                topics=event.get('topics')
+                if not isinstance(topics,list) or not topics or not isinstance(topics[0],str) or topics[0].lower()!=FEES_COLLECTED_TOPIC:continue
+                if len(topics)!=2:raise ValueError('Malformed harvest topics')
+                if uint_result(topics[1])!=bucket:continue
+                if len(decode_words(event.get('data')))!=2:raise ValueError('Malformed harvest amounts')
+                # removed is derived/optional in receipt logs; an explicit value
+                # must be false. Inclusion still needs the exact parent receipt.
+                if (event.get('removed',False) is not False or
+                        rpc_hash(event.get('transactionHash'),'harvest transaction hash')!=rpc_hash(receipt['transactionHash'],'receipt hash') or
+                        rpc_hash(event.get('blockHash'),'harvest block hash')!=rpc_hash(receipt['blockHash'],'receipt block hash') or
+                        rpc_quantity(event.get('blockNumber'),'harvest block number')!=rpc_quantity(receipt['blockNumber'],'receipt block number') or
+                        rpc_quantity(event.get('transactionIndex'),'harvest transaction index')!=rpc_quantity(receipt['transactionIndex'],'receipt transaction index')):
+                    raise ValueError('Harvest inclusion differs')
+                index=rpc_quantity(event.get('logIndex'),'harvest log index')
+                if index in indices:raise ValueError('Repeated harvest log')
+                indices.add(index);found=True
+            if found:return bucket
+        except (ValueError,TypeError,RpcError):
+            log('harvest_coalescing_unverified',action=pending['key'],reason='missing_or_malformed_receipt_proof')
+            return None
+        log('harvest_coalescing_unverified',action=pending['key'],reason='no_matching_harvest_event')
+        return None
+
     def poll_pending(self) -> bool:
         self._validate_checkpoint()
         pending = self.state.get('pending')
@@ -1235,6 +1411,7 @@ class Keeper:
         cost = gas_used*gas_price + l1_fee + (pending['value'] if success else 0)
         if cost > review['maximum_cost_wei']:
             raise RpcError('Actual transaction cost exceeds the captured fee budget')
+        harvest_bucket=self._receipt_harvest_bucket(pending,receipt) if success else None
         metadata_records = None
         if success and pending.get('metadata_observation') is not None:
             metadata_records = self._confirm_metadata(pending,block,block_hash,head)
@@ -1256,6 +1433,7 @@ class Keeper:
         updated['spent'][day] = positive(updated['spent'].get(day,0),'recorded daily spend',zero=True) + cost
         if success:
             updated['last'][pending['key']] = timestamp
+            if harvest_bucket is not None:updated['last'][f'harvest:{harvest_bucket}']=timestamp
             updated.setdefault('retry_after',{}).pop(pending['key'],None)
             reset=re.fullmatch(r'rebalance_reset:([1-9][0-9]{0,77})',pending['key'])
             if (reset is not None and pending['to']==self.contracts.get('rebalance_confirmation') and
@@ -1340,6 +1518,7 @@ class Keeper:
             if signature=='observe(uint256)':self._confirmation_status(args[0])
             else:self.rebalance_confirmation.validate()
         if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
+        if name == 'compounder' and signature == 'compound(uint256,uint128,uint256)' and not self._compound_submission_ready(args): return False
         if self.live: self._validate_checkpoint()
         review_head,timestamp = self._head()
         retry_after = positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
@@ -1419,6 +1598,7 @@ class Keeper:
         # reads. The on-chain guard still covers later inclusion-time races.
         if self._defer_for_lifecycle(name,signature): return False
         if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
+        if name == 'compounder' and signature == 'compound(uint256,uint128,uint256)' and not self._compound_submission_ready(args): return False
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
         pending['fee_review'] = {'schema':1,'gas_limit':gas_limit,'max_fee_per_gas':gas_price,
             'l1_fee_allowance_wei':positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True),
@@ -2056,6 +2236,7 @@ class Keeper:
                                 if self._rebalance_due(bucket,fields,fresh):
                                     if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
                                 elif self._rebalance_reset_due is not None:
+                                    confirmation_checked.add(bucket)
                                     if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
                                 elif self._rebalance_observation_due is not None:
                                     if self.submit('rebalance_confirmation','observe(uint256)',(bucket,),f'rebalance_observation:{bucket}'):return
@@ -2063,6 +2244,10 @@ class Keeper:
                                 reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
                                 if self._compound_due(bucket,tokens,reserves,item,now,fields):
                                     if self.submit('compounder','compound(uint256,uint128,uint256)',(bucket,minimum,deadline),f'compound:{bucket}'): return
+                                if (self._rebalance_reset_due==bucket and bucket not in confirmation_checked and
+                                        self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))):
+                                    confirmation_checked.add(bucket)
+                                    if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
                         except RpcError as exc:
                             # Fee collection has no price dependency or principal
                             # movement. Only an authenticated active bucket may

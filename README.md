@@ -60,10 +60,11 @@ not production approval or a completed whole-project audit.
 The [whole-project source pass](reports/whole-project-execution-20261029/REVIEW.md) and
 [operational code follow-up](reports/operational-reliability-20261029/REVIEW.md) cover keeper
 recovery, confirmed history, inventory/readiness consistency and verification
-tooling. [Current verification](reports/operational-reliability-20261029/VERIFICATION.md)
-separates 221 affected passing methods from unchanged Solidity/build reuse.
-Static coverage and source publication do not qualify actual operation or deploy
-services/sites. No public signing or deployment is enabled.
+tooling. Current [keeper coordination](docs/KEEPER_COORDINATION.md) adds service-only
+compound waits, proved harvest-clock coalescing and read-only LP operation reports,
+and corrects the reservation observer's unsupported getter. [Current evidence](reports/keeper-coordination-20261029/VERIFICATION.md)
+separates affected checks from unchanged Solidity/build reuse. Source publication
+does not qualify real operation, deploy services/sites or enable public signing.
 
 ## Project navigation
 

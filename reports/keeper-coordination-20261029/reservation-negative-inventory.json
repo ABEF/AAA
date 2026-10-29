@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_registration_cannot_reuse_declared_or_differently_anchored_holder_inventory",
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_registration_requires_complete_positive_unique_bucket_enumeration"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 12.265,
+  "owned_source_sha256": {
+    "zzz_ops/production_observer_v4.py": "f19f57a22b5a8b20d3bb9dc55feb066b6a8c0ada8c44ed66ba766622bfaa7cad",
+    "tests_python/production_v4_fixtures.py": "f7ea7f107855fecef7dab9ece7f4edbaef4c2514da9da1d96504771856e554a9",
+    "tests_python/test_contribution_reservation.py": "5d709fe30496d81f198f3ab08f1d239a658c110788729caead6f615b9826e246"
+  }
+}

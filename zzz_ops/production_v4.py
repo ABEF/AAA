@@ -243,7 +243,7 @@ def _contribution_reservation(g,chain,path):
     maximum=g.num(r.get('maximum_buckets'),rp+'.maximum_buckets',4,4)
     g.check(all(type(r.get(k)) is int for k in ('bucket_id','alias_bucket_id','canonical_bucket_id','bucket_count','maximum_buckets')),
         rp,'reservation.integer','Read exact unsigned reservation quantities; do not infer missing fields.')
-    g.check(type(r.get('target_registered')) is bool,rp+'.target_registered','reservation.boolean','Read actual registeredBucket for the effective target.')
+    g.check(type(r.get('target_registered')) is bool,rp+'.target_registered','reservation.boolean','Derive exact target registration from the fresh complete same-block bucket inventory; no public registration getter exists.')
     g.check(pool==chain.get('contribution_pool'),rp+'.pool_id','reservation.pool','Observe the actual selected contribution pool.')
     life=V._obj(chain.get('canonical_handoff'));holder=V._obj(V._obj(chain.get('holder_exit')).get('observed'))
     rows=holder.get('buckets')

@@ -1,5 +1,9 @@
 # Documentation map
 
+[Keeper coordination and operation review](KEEPER_COORDINATION.md): service-only compound waits,
+proved internal harvest clocks, read-only LP diagnostics and corrected actual-ABI
+reservation observation. No source publication implies operating rollout.
+
 Reviewed2026-10-29. [Root README](../README.md) introduces PoPL and its code.
 [TODO.md](../TODO.md) is the only task/status list; [feature reference](IMPLEMENTATION_STATUS.md)
 states what exists and what was verified. **Undeployed; production NOT APPROVED.**

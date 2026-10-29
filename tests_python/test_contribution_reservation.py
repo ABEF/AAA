@@ -1,10 +1,14 @@
 """Read-only current-profile reservation/capacity and imported-alias controls."""
 import copy
+import hashlib
+import json
+from pathlib import Path
 import unittest
 from unittest.mock import patch
 
 from zzz_ops import production_v4 as P
 from zzz_ops import production_observer_v4 as O
+from zzz_ops.function_reference import signature as abi_signature
 from tests_python import production_v4_fixtures as F
 
 
@@ -44,9 +48,7 @@ class ContributionReservationTests(unittest.TestCase):
             (chain['canonical_handoff']['origin_vault'], 'address'),
             (chain['contribution_pool'], 'bytes32')]), 16)
         values = {'poolBucket(bytes32)': bucket, 'aliasBucket(bytes32)': bucket if alias is None else alias,
-                  'bucketIdentity(bytes32)': canonical,
-                  'registeredBucket(uint256)': int(any(b['id'] == (bucket or canonical)
-                      for b in chain['holder_exit']['observed']['buckets']))}
+                  'bucketIdentity(bytes32)': canonical}
         called = []
         def call(method, params=None):
             if method == 'eth_call':
@@ -68,13 +70,93 @@ class ContributionReservationTests(unittest.TestCase):
         self.assertFalse(report['inventory_consistent'])
         self.assertIn('reservation.initial_identity', {i['code'] for i in report['issues']})
 
-    def test_observer_reads_reservation_identities_and_registration_at_one_hash(self):
+    def test_observer_reads_reservation_identities_and_derives_registration_at_one_hash(self):
         observed, calls = self.observe_mapping(0)
         self.assertEqual({s for s, _ in calls}, {
-            'poolBucket(bytes32)', 'aliasBucket(bytes32)', 'bucketIdentity(bytes32)', 'registeredBucket(uint256)'})
+            'poolBucket(bytes32)', 'aliasBucket(bytes32)', 'bucketIdentity(bytes32)'})
         self.assertTrue(all(block == {'blockHash': F.RUNTIME, 'requireCanonical': True} for _, block in calls))
         self.assertEqual(observed['chains'][0]['contribution_reservation']['bucket_id'], 0)
         self.assertTrue(self.report(observed)['inventory_consistent'])
+
+    def test_observer_uses_current_compiled_vault_abi_without_private_registration_getter(self):
+        root = Path(__file__).resolve().parents[1]
+        reference = json.loads((root/'docs/function-reference.json').read_text(encoding='utf-8-sig'))
+        snapshot = reference['source_snapshot']
+        # The checked-in reference carries the real compiler ABI and exact source
+        # closure. Do not let the RPC fixture invent a public Solidity getter.
+        for field in ('source_sha256', 'dependency_source_sha256'):
+            for source, digest in snapshot[field].items():
+                self.assertEqual(hashlib.sha256((root/source).read_bytes()).hexdigest(), digest, source)
+        abi = reference['abi_snapshot']['ZZZVault']['abi']
+        signatures = {abi_signature(entry) for entry in abi if entry['type'] == 'function'}
+        self.assertNotIn('registeredBucket(uint256)', signatures)
+        self.assertFalse(any(entry['type'] == 'fallback' for entry in abi))
+        for name in ('poolBucket(bytes32)', 'bucketCount()', 'bucketAt(uint256)', 'MAX_BUCKETS()'):
+            self.assertIn(name, signatures)
+        allowed = {F.selector(name) for name in signatures}
+        rpc = F.RPC(self.cfg)
+        original = rpc.call
+        unsupported = []
+        def call(method, params=None):
+            if method == 'eth_call' and params[0]['to'] == self.chain['modules']['vault']['address']:
+                selector = params[0]['data'][:10]
+                if selector not in allowed:
+                    unsupported.append(selector)
+                    raise ValueError('Selector absent from the current compiled Vault ABI')
+            return original(method, params)
+        rpc.call = call
+        with self.assertRaisesRegex(ValueError, 'compiled Vault ABI'):
+            rpc.call('eth_call', [{'to':self.chain['modules']['vault']['address'],
+                'data':F.selector('registeredBucket(uint256)')+F.O._word(1)},
+                {'blockHash':F.RUNTIME,'requireCanonical':True}])
+        unsupported.clear()
+        observed = O.observe(self.cfg, rpc)
+        self.assertEqual(unsupported, [])
+        self.assertTrue(observed['chains'][0]['observation']['complete'])
+        self.assertTrue(self.report(observed)['inventory_consistent'])
+
+    def test_registration_cannot_reuse_declared_or_differently_anchored_holder_inventory(self):
+        chain = copy.deepcopy(self.chain)
+        observer = O.Observer(F.RPC(self.cfg), chain)
+        observer.anchor()
+        # A populated configuration observation is not a fresh RPC inventory.
+        observer.contribution_reservation()
+        self.assertIsNone(chain['contribution_reservation'])
+        self.assertIn({'path':'contribution_reservation','code':'reservation.unavailable'}, observer.errors)
+
+        chain = copy.deepcopy(self.chain)
+        observer = O.Observer(F.RPC(self.cfg), chain)
+        observer.anchor(); observer.holder_exit(); observer.contribution_reservation()
+        self.assertIsNotNone(chain['contribution_reservation'])
+        self.assertFalse(chain['contribution_reservation']['target_registered'])
+        self.assertEqual(observer.errors, [])
+        observer.block = {'blockHash':'0x'+'12'*32,'requireCanonical':True}
+        observer.contribution_reservation()
+        self.assertIsNone(chain['contribution_reservation'])
+
+    def test_registration_requires_complete_positive_unique_bucket_enumeration(self):
+        original = copy.deepcopy(self.cfg)
+        for ids in ([0], [7,7]):
+            with self.subTest(ids=ids):
+                self.cfg = copy.deepcopy(original); self.chain = self.cfg['chains'][0]
+                for identifier in ids:
+                    self.empty_bucket(identifier)
+                observed = O.observe(self.cfg, F.RPC(self.cfg))
+                self.assertFalse(observed['chains'][0]['observation']['complete'])
+                self.assertIsNone(observed['chains'][0]['holder_exit']['observed'])
+                self.assertIsNone(observed['chains'][0]['contribution_reservation'])
+        self.cfg = copy.deepcopy(original); self.chain = self.cfg['chains'][0]
+        self.empty_bucket(7)
+        rpc = F.RPC(self.cfg); original_call = rpc.call
+        def call(method, params=None):
+            if (method == 'eth_call' and params[0]['to'] == self.chain['modules']['vault']['address']
+                    and params[0]['data'][:10] == F.selector('bucketAt(uint256)')):
+                raise ValueError('Bucket enumeration unavailable')
+            return original_call(method, params)
+        rpc.call = call
+        observed = O.observe(self.cfg, rpc)
+        self.assertIsNone(observed['chains'][0]['holder_exit']['observed'])
+        self.assertIsNone(observed['chains'][0]['contribution_reservation'])
 
     def test_first_activation_uses_exact_canonical_slot_or_real_remaining_capacity(self):
         status, codes = self.gate()
