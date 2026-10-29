@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "head_before_publication": "b266ef74e69bdf58264d53cbb2d4dcee28cc1b84",
+  "finding": {
+    "title": "Ambiguous frontend CLI JSON bypassed reviewed-input integrity",
+    "severity": "P2 functional/operator input integrity; no remote theft demonstrated",
+    "current_counterexample": "CLI json.loads accepted duplicate amount/chain/policy keys by selecting the last occurrence, while HTTP/RPC/durable state already rejected ambiguity. The activation request file was read after Projection construction.",
+    "implementation": "All three frontend CLIs strictly parse every required JSON file and require objects before constructing Projection/WorkerPool/listeners. Shared read_json adds keyword-only encoding=None; frontend explicitly retains UTF-8. Nested duplicates, nonfinite/overflow numbers and nonobjects reject through existing fixed CLI diagnostics.",
+    "not_changed": "HTTP handlers, typed schemas, finite numeric input validation, economics, contract ABI, public signing, network endpoints, installed services and existing state/journals are unchanged."
+  },
+  "source_before": {
+    "frontend_api/server.py": {
+      "sha256": "84a71cc3c07ea44ffd54a8249ff7d98b2febd200373a30c1886f712abefc26c5",
+      "bytes": 12133
+    },
+    "frontend_api/activation_server.py": {
+      "sha256": "2c90810c594c0aa371a778332417d005bc9be15051041f610354bbc29f1e4179",
+      "bytes": 4894
+    },
+    "frontend_api/activation.py": {
+      "sha256": "17326174463e62e16d73585e5befaee520c2c332570feeadd963989094cc33d1",
+      "bytes": 23936
+    },
+    "zzz_ops/state.py": {
+      "sha256": "ebcd993b442c7f77dba3fa9b51e85a6af415096c42093ea6de864902409fd87c",
+      "bytes": 2957
+    }
+  },
+  "source_final": {
+    "frontend_api/server.py": {
+      "sha256": "7010064db189c9bddf4231e2fbc2cae0c3f73a14facddf06bbb7e128b92fe98b",
+      "bytes": 12300
+    },
+    "frontend_api/activation_server.py": {
+      "sha256": "75675b7f0a323036c45dc031d9714e5d31d57622229bdcff8bb28103669d276b",
+      "bytes": 5070
+    },
+    "frontend_api/activation.py": {
+      "sha256": "81205df3bae78149fc251ee1ef350897dc936bffecbb7291a71bc93f7b76cefd",
+      "bytes": 24144
+    },
+    "zzz_ops/state.py": {
+      "sha256": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+      "bytes": 3006
+    },
+    "tests_python/test_frontend_cli_config_integrity.py": {
+      "sha256": "8b08955db8a5a0bff0a81525d1d3024c4852d9cb04c387c98014c33239442403",
+      "bytes": 5233
+    }
+  },
+  "before": {
+    "command": "python -X utf8 -m unittest tests_python.test_frontend_cli_config_integrity -v",
+    "exit_code": 1,
+    "methods": 4,
+    "invalid_subcase_failures": 77,
+    "positive_control_passed": true,
+    "output": {
+      "path": "frontend-cli-before.txt",
+      "sha256": "4bbc6c9f06b66b77171912707b457f794df5e0460f37a6c65c4b1de8e143a633",
+      "bytes": 77122
+    },
+    "test_fixture_note": "Before/after assertions and fixture logic are identical. Only unused MagicMock import was removed from the new test between runs; this is disclosed rather than calling the full test file byte-identical."
+  },
+  "after": {
+    "command": "python -X utf8 -m unittest tests_python.test_frontend_cli_config_integrity -v",
+    "exit_code": 0,
+    "methods": [
+      "test_read_cli_rejects_ambiguous_objects_before_worker_creation",
+      "test_activation_server_rejects_all_inputs_before_worker_creation",
+      "test_activation_cli_rejects_request_before_projection_creation",
+      "test_valid_utf8_objects_retain_finite_values_and_reach_existing_validators"
+    ],
+    "method_count": 4,
+    "invalid_subcases_rejected": 77,
+    "positive_control": "Valid UTF-8 object/finite1.25 preserve exact dictionaries through mocked downstream validators; no actual RPC/network/listener is created.",
+    "output": {
+      "path": "frontend-cli-after.txt",
+      "sha256": "9713021d43394deda6efee3b2da93e91ebb50d6afb2e07a695395bee24c0fda9",
+      "bytes": 991
+    }
+  },
+  "shared_compatibility": {
+    "command": "python -X utf8 -m unittest tests_python.test_state.StateTests.test_atomic_roundtrip tests_python.test_state.StateTests.test_missing_default tests_python.test_state.StateTests.test_malformed_state_fails_closed -v",
+    "exit_code": 0,
+    "method_count": 3,
+    "test_source": {
+      "path": "tests_python/test_state.py",
+      "sha256": "5554abd8aaab22cfa46a2fe8be0a957e4f35748377e7998a996e4ec8444a2e7a",
+      "bytes": 3578
+    },
+    "output": {
+      "path": "frontend-cli-state-compatibility.txt",
+      "sha256": "8229e8552f7b4ea2e8255f81ac533683eae34a7f906849a6d69b9ea349ec81ab",
+      "bytes": 392
+    }
+  },
+  "counts": "Seven distinct final passing methods in this slice: four new CLI regressions plus three existing affected state compatibility controls. Invalid subcases and before/after attempts are not extra distinct methods.",
+  "limitations": [
+    "No broad unchanged suite or test requiring real services was run.",
+    "Downstream schemas, RPC and listener creation are mocked only at their constructor boundary in the CLI fixtures.",
+    "Indexer CLI has separate ops-owned verification; do not double count shared tests.",
+    "No public network, signing, state migration, deployment, service restart or website rollout.",
+    "Shared source pins require reviewed matching deployment of future service artifacts; local source changes are not operating qualification."
+  ]
+}

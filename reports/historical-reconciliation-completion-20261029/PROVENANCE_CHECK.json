@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "historical_groups": 235,
+  "completion_findings": 5,
+  "historical_source_records_checked": 556,
+  "current_proof_records_checked": 741,
+  "owning_task_links_checked": 401,
+  "file_reading_records": 445,
+  "all_original_reports_accounted": true,
+  "domain_qa_files": [
+    "contracts-final-qa.json",
+    "operations-final-qa.json",
+    "read-services-final-qa.json"
+  ],
+  "applied_qa_corrections": [
+    "Actual FB historical headings/excerpt offsets; actual BrowserWallet and pricing symbols.",
+    "HC13/40/42 precise locators; HC20 authorization/minimum separation.",
+    "OP34 corrected state; mutable current guide pins refreshed with old inspection pins preserved; non-Markdown heading fields cleared."
+  ],
+  "failures": [],
+  "successful": true,
+  "execution_tests_run": 0,
+  "scope": "Hash/path/section/locator/relationship QA only; not renewed execution or independent audit."
+}

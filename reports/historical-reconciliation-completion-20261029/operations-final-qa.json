@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "reviewer": "historical_operations final independent QA",
+  "utc": "2026-10-29T20:14:31.063402+00:00",
+  "scope": "Static ledger/provenance/current source/test receipt comparison only; no execution tests or repo edits",
+  "checks": {
+    "own_report_count": 69,
+    "own_doc_count": 9,
+    "own_material_findings": 40,
+    "own_ids_unique": true,
+    "own_original_report_sha_mismatches": [],
+    "own_current_guide_drift_after_reading": [],
+    "indexer_final_receipt_current_pins": {
+      "indexer/monitor.py": {
+        "matches": true,
+        "expected": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4",
+        "actual": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4"
+      },
+      "zzz_ops/state.py": {
+        "matches": true,
+        "expected": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+        "actual": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4"
+      },
+      "tests_python/test_indexer_config_integrity.py": {
+        "matches": true,
+        "expected": "9e677fed46bdcef3b2041d7717770295b05b9edfab6f9a2cbc2238a243485123",
+        "actual": "9e677fed46bdcef3b2041d7717770295b05b9edfab6f9a2cbc2238a243485123"
+      }
+    },
+    "indexer_final_before_after_pins_equal": true,
+    "indexer_final_exact_selection": true,
+    "indexer_final_tests_run": 8,
+    "indexer_final_failures": 0,
+    "indexer_final_errors": 0,
+    "indexer_final_skips": [],
+    "root_original_file_sha_mismatches": [],
+    "root_findings_count": 20,
+    "root_ids_unique": true,
+    "root_source_sha_mismatches": [
+      {
+        "finding": "RO-06",
+        "path": "docs/OPERATOR_MANUAL.md"
+      }
+    ],
+    "root_source_locator_mismatches": [],
+    "root_source_comment_headings": [
+      {
+        "finding": "RO-01",
+        "path": "keeper/monitor.py",
+        "heading": "# remain invalid in the shared ABI codec and all other keeper calls."
+      },
+      {
+        "finding": "RO-05",
+        "path": "keeper/monitor.py",
+        "heading": "# remain invalid in the shared ABI codec and all other keeper calls."
+      },
+      {
+        "finding": "RO-05",
+        "path": "keeper/monitor.py",
+        "heading": "# remain invalid in the shared ABI codec and all other keeper calls."
+      },
+      {
+        "finding": "RO-05",
+        "path": "keeper/monitor.py",
+        "heading": "# remain invalid in the shared ABI codec and all other keeper calls."
+      },
+      {
+        "finding": "RO-10",
+        "path": "keeper/monitor.py",
+        "heading": "# remain invalid in the shared ABI codec and all other keeper calls."
+      },
+      {
+        "finding": "RO-10",
+        "path": "keeper/monitor.py",
+        "heading": "# remain invalid in the shared ABI codec and all other keeper calls."
+      },
+      {
+        "finding": "RO-10",
+        "path": "keeper/monitor.py",
+        "heading": "# remain invalid in the shared ABI codec and all other keeper calls."
+      },
+      {
+        "finding": "RO-12",
+        "path": "keeper/monitor.py",
+        "heading": "# remain invalid in the shared ABI codec and all other keeper calls."
+      }
+    ],
+    "slither_exact_pin_comparison_matches_root_observation": true,
+    "slither_mismatch_count": 19,
+    "current_health_threshold_docs_match240": true
+  },
+  "corrections": [
+    {
+      "priority": "required documentation-ledger update",
+      "target": "operations_evidence-findings.json:OP-34",
+      "reason": "Both current guides already say240; the record still says root correction pending. Update current disposition to corrected in completion, keeping historical report/guide read hashes."
+    },
+    {
+      "priority": "required final provenance refresh",
+      "target": "root-ops-ledger.json current_source_evidence",
+      "reason": "Some mutable guide/source pins or locators changed after ledger construction; refresh final current-source locators/pins without rewriting historical-source evidence."
+    },
+    {
+      "priority": "optional locator clarity",
+      "target": "root-ops-ledger.json current_source_evidence.heading",
+      "reason": "Python # comments are currently labelled Markdown headings. Set headings null for non-Markdown; line/excerpt/hash remain valid."
+    }
+  ],
+  "current_indexer_evidence_matches": true,
+  "substantive_unsupported_resolved_claims_found": [],
+  "conclusion": "No newly confirmed unsupported security-resolution or source regression. Existing semantic/source dispositions are bounded and keep real qualification open. Address ledger freshness notes before final publication.",
+  "execution_tests_run": 0,
+  "source_changes": []
+}

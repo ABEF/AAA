@@ -1,9 +1,11 @@
 # Engineering roadmap
 
-Finish the [historical finding reconciliation](../TODO.md#task-historical-findings)
-before treating old enhancement/fix lists as resolved. The current checkpoint
-preserves original evidence, implements two verifier provenance fixes and corrects
-stale active guidance; it does not replace live qualification or independent audit.
+The [historical finding reconciliation](../TODO.md#task-historical-findings) is
+complete for its inventory. The [final disposition ledger](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
+separates implemented, superseded, adapted, accepted, deferred and unqualified
+work. Use its existing owning tasks for actual engineering and release progress;
+reconciliation does not close live qualification or independent audit. Refresh
+the current static-analysis source scope before final security approval.
 
 Current [whole-project execution](../reports/whole-project-execution-20261029/REVIEW.md) completes the internal
 source/body review and implements keeper deadline priority, strict durable/log
@@ -11,7 +13,7 @@ provenance, final-depth/fee/pool observation and artifact-tooling repairs.
 All 122 previously missing callable outputs are explained. Static review is not
 exhaustive execution or independent release approval. Website reference metadata
 was published separately at cae44a1d without changing images/signing/configs or
-deploying sites. Current contract code is published through 4579eeb; site and
+deploying sites. Keeper-coordination code was published at4579eeb; site and
 worker rollout remain separate from source publication.
 Actual providers, economics, gas/host/marketplace qualification and audit remain open.
 

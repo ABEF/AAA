@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import re
 
 from frontend_api.activation import ActivationTransactions, ActivationInputError
@@ -11,6 +10,7 @@ from frontend_api.server import ReadServer, handler as read_handler
 from frontend_api.http_runtime import ServiceBusy
 from frontend_api.admission import AdmissionRejected, ClientAdmission, add_arguments
 from frontend_api.service import Projection, UnknownNFT
+from zzz_ops.state import read_json
 
 
 def unique_object(pairs):
@@ -79,9 +79,12 @@ def main():
     args=parser.parse_args()
     if not 1024<=args.port<=65535:parser.error('port must be between 1024 and 65535')
     try:
+        config=read_json(args.config,encoding='utf-8')
+        activation_config=read_json(args.activation_config,encoding='utf-8')
+        if not isinstance(config,dict) or not isinstance(activation_config,dict):
+            raise ValueError('Reviewed configuration must be a JSON object')
         from frontend_api.worker import WorkerPool
-        p=WorkerPool(json.loads(Path(args.config).read_text(encoding='utf-8')),
-                       json.loads(Path(args.activation_config).read_text(encoding='utf-8')),workers=args.workers)
+        p=WorkerPool(config,activation_config,workers=args.workers)
         preparer=p
     except Exception:parser.exit(1,'Invalid reviewed deployment/activation configuration.\n')
     with ReadServer(('127.0.0.1',args.port),handler(p,preparer),max_connections=args.max_connections,

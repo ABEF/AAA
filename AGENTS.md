@@ -137,7 +137,7 @@ optional-job degradation does not stretch their cadence, global failures still
 back off. Strict300seconds remains a release liveness limit, not an SLA. Duplicate
 JSON/nonfinite state is rejected; never repair a journal manually to pass.
 
-The current code checkpoint is `4579eeb` on main. [Keeper coordination](docs/KEEPER_COORDINATION.md)
+The keeper-coordination checkpoint is `4579eeb` on main. [Keeper coordination](docs/KEEPER_COORDINATION.md)
 implements service-only in-range/no-pending-width compound waits, same-hash
 known-evidence reset coordination, canonical receipt-backed harvest coalescing
 and a read-only three-operation report. The [261-method evidence](reports/keeper-coordination-20261029/VERIFICATION.md)
@@ -163,15 +163,18 @@ by the current keeper-coordination follow-up; preserve the original report scope
 
 ## Verification and documentation workflow
 
-- [Historical reconciliation](reports/historical-reconciliation-20261029/REVIEW.md)
-  is incomplete:352 reports/91guides inventoried,70report/25guide ledger completed.
-  The remaining per-finding dispositions must be finished; inventories and partial
-  reviewer notes do not prove all old findings solved. Two historical local
-  verifiers now exclusively reserve evidence before lab HTTP;13 scoped methods
-  have12passes/one Windows symlink skip. Preserve failed/in_progress evidence and
-  choose a new output path; do not replay financial actions to recreate a report.
-  Current-guide corrections preserve explicitly historical profiles/report bytes.
-  No Solidity, service/site/Anvil/signer/heartbeat change or approval occurred.
+- [Completed historical reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md)
+  accounts for352 original report narratives/91current guides and preserves the
+  two published partial-checkpoint reports.235overlapping material groups carry
+  original sections, current mechanisms, dispositions and owning Todo links;
+  this is not235bugs/tests or proof all historical risks are solved. New strict
+  frontend/indexer CLI object admission precedes resources;15affected methods
+  pass. Earlier13verifier methods are reused without rerun. Current source build
+  reuse remains82pins/39normal gates, Manager37initcode/Vault59runtime margin.
+  Historical Slither19of47pins differ: refresh analysis/triage before approval.
+  No Solidity/economic/timing/service/site/Anvil/journal/signer/heartbeat change.
+  Keep original reports and negative/partial evidence unchanged; only current
+  guides and the navigation index are reconciled. See the final evidence ledger.
 
 - [Whole-project review](reports/whole-project-audit-20261029/REVIEW.md) fixes
   ownership inventory optional-currency isolation, stored JSON integrity and

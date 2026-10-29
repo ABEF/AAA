@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "reviewer": "historical_contracts final QA",
+  "at_utc": "2026-10-29T20:14:59.085258+00:00",
+  "baseline": "ca4dde1df1e8d15f2927e9f463122e0ae9c61109",
+  "current_head": "b266ef74e69bdf58264d53cbb2d4dcee28cc1b84",
+  "result": "pass with nonblocking locator/wording refinements",
+  "blockers": [],
+  "inputs": [
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\historical-reconciliation-20261029\\contracts-reading.json",
+      "sha256": "b296029eef66c0665eb48db6d8733758fc0a0bdeedc54e3a040d28327bf9411e"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\historical-reconciliation-20261029\\contracts-findings.json",
+      "sha256": "e65a4542a68b1b5e71e1023039e15fe3fe10a61914fd9080e9aafb77100b1d77"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\historical-reconciliation-20261029\\contracts-current-build-reuse.json",
+      "sha256": "6783c9a57b7dbba0e1ada36a26d473874ad12c4e9349424d7508515cd4ac2741"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\historical-reconciliation-20261029\\baseline-markdown-inventory.json",
+      "sha256": "aee75d9540f0189c81a0603c676a0bdf69c8822660ee0187fb4f77382e9c2a5c"
+    }
+  ],
+  "coverage": {
+    "finding_groups": 53,
+    "assigned_reports": 133,
+    "assigned_guides": 38,
+    "assigned_inventory_exact": true,
+    "historical_reports_byte_identical": 133,
+    "reading_snapshot_hashes_checked": 171,
+    "original_section_references": 159,
+    "valid_original_heading_anchors": 159,
+    "valid_scope_excerpt_anchors": 42,
+    "current_proof_locators": 156,
+    "unique_proof_files": 30,
+    "function_declaration_locators": 145,
+    "other_declaration_or_text_locators": 11
+  },
+  "stale_reading_snapshot_pins": [],
+  "stale_current_proof_pins": [],
+  "invalid_paths_or_symbols": [],
+  "invalid_line_anchors": [],
+  "unsupported_resolved_claims": [],
+  "disposition_review": "All53groups distinguish current source mechanisms, removed/superseded architecture, accepted trust, deferred proposals and external qualification. No fresh execution or production approval is claimed. HC50 remains deferred; HC51 remains an open static-applicability gate.",
+  "nonblocking_refinements": [
+    {
+      "id": "HC-13",
+      "severity": "nonblocking locator precision",
+      "issue": "ZZZLPRewardConverter proof currently points to the import at line4. The mechanism is supported, but inheritance is a clearer anchor.",
+      "replacement": {
+        "path": "src/ZZZLPRewardConverter.sol",
+        "line": 8,
+        "anchor": "contract ZZZLPRewardConverter is ZZZRewardConverter",
+        "sha256": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6"
+      }
+    },
+    {
+      "id": "HC-40",
+      "severity": "nonblocking locator precision",
+      "issue": "The generic verify substring at line9 is a real occurrence but not the full orchestration anchor.",
+      "replacement": {
+        "path": "scripts/verify.sh",
+        "line": 27,
+        "anchor": "forge build --sizes",
+        "sha256": "d696fd01d5512c575b394e8c62c67d1c93aa707a8da7cc2d71af743c748181d4"
+      }
+    },
+    {
+      "id": "HC-42",
+      "severity": "nonblocking locator precision",
+      "issue": "The generic class substring selects nested Handler. Use the actual bounded server class for a more exact cross-partition anchor.",
+      "replacement": {
+        "path": "frontend_api/server.py",
+        "line": 196,
+        "anchor": "class ReadServer(BoundedHTTPServer)",
+        "sha256": "7010064db189c9bddf4231e2fbc2cae0c3f73a14facddf06bbb7e128b92fe98b"
+      }
+    },
+    {
+      "id": "HC-20",
+      "severity": "nonblocking wording precision",
+      "issue": "validateContribution checks status, minimums and caps; current-owner authentication is in validateOwner and executeReviewed. The overall finding is supported, but its validateContribution proof sentence can be more exact.",
+      "replacement": {
+        "path": "src/ZZZVaultCanonical.sol",
+        "line": 71,
+        "anchor": "function validateOwner(",
+        "sha256": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae"
+      },
+      "suggested_wording": "validateContribution checks actual position/deposit status, $100 activation/$5 growth minima, stronger pool minimum and cumulative per-NFT cap; owner authorization is separately validated."
+    }
+  ],
+  "receipt_interpretation": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\historical-reconciliation-20261029\\contracts-doc-changes.json",
+    "first_partial_pass_then_idempotent_rerun_paths": [
+      "docs/GOVERNANCE.md",
+      "docs/MIGRATION_SAFETY.md",
+      "docs/LP_ETH_SETTLEMENT.md"
+    ],
+    "rule": "For these3files the receipt before hash is a later idempotent rerun, not the original preimage. Use baseline-markdown-inventory.json and contracts-reading.json original_sha256 (and archived original documents). All12owned guides differ from their true baseline."
+  },
+  "scope_limitations": [
+    "QA verifies frozen inventory/hash/heading/source-anchor integrity and checks all53disposition/mechanism statements; it does not recreate historical tool reading chronology or independently replay raw test artifacts.",
+    "No unit/EVM/fork/static campaign, public network operation, repository edit, journal rewrite or service change was performed.",
+    "An implemented-mechanism disposition is source inspection with preserved historical execution scope, never an assertion of exhaustive correctness."
+  ],
+  "changed_files": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\historical-reconciliation-completion-20261029\\contracts-final-qa.json"
+  ]
+}

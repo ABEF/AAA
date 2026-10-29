@@ -5,24 +5,30 @@ Reviewed 2026-10-29. Read [instructions](../AGENTS.md), [current context](../PRO
 
 ## Whole-project audit context
 
-### Current unfinished historical-report reconciliation
+### Completed historical-report reconciliation
 
-Continue [the current reconciliation](../reports/historical-reconciliation-20261029/REVIEW.md),
-[reading inventory](../reports/historical-reconciliation-20261029/READING_INVENTORY.json)
-and [sole task](../TODO.md#task-historical-findings).352reports/91guides are
-inventoried;70reports/25guides have a completed28-group read-services ledger.
-Delegated reviewers exhausted workspace credit before final contract/operations
-finding ledgers. Their external indexes/drafts and original current-doc copies
-are preserved at the path in the report. Do not label this full review complete.
+Read the [completion report](../reports/historical-reconciliation-completion-20261029/REVIEW.md),
+[235-group finding ledger](../reports/historical-reconciliation-completion-20261029/FINDINGS.json)
+and [verification](../reports/historical-reconciliation-completion-20261029/VERIFICATION.md).
+All352 original report narratives and91 relevant current guides are accounted;
+the two published partial-checkpoint reports retain their original incomplete
+scope. Reconciliation is complete, not all historical risks or release tasks.
 
-Verified local fixes reserve new output before HTTP in both historical local
-verifiers;13distinct methods have12passes/one Windows symlink skip. Current
-operator/integration guides remove retired custody directions and outdated
-profile claims. Exact82file build comparison reuses39normal gates, without a
-compile or EVM rerun; Manager37initcode/Vault59runtime margins remain. No
-Solidity, financial/timing policy, installed service/site/Anvil/journal/signer
-or paused heartbeat changed. Preserve the original four dirty files below.
-Check actual Git/remote heads and final verification before saying published.
+Current fixes strictly reject ambiguous CLI configuration/request objects before
+frontend workers/RPC/listeners or indexer signals/locks/DB/RPC.15 distinct affected
+Python methods pass. The earlier13-method evidence-output tool scope was not
+rerun. Current guides distinguish240-second cadence from300-second maximum and
+require refreshed static analysis:19of47 historical Slither pins changed.
+Unchanged82file build comparison reuses39normal gates; Manager37initcode and
+Vault59runtime margins remain. No Solidity, financial/timing policy, installed
+service/site/Anvil/journal/signer or paused heartbeat changed.
+
+Original dirty documentation/raw outputs remain in the external directories:
+`C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/historical-reconciliation-20261029`
+and sibling `historical-reconciliation-completion-20261029`. Historical files are
+not rewritten. Preserve the four unrelated dirty files below. Use the sole Todo
+for remaining engineering/provider/operating/audit work and verify exact local/
+remote Git heads before describing publication. Source publication is no rollout.
 
 The stable [audit prompt](THIRD_PASS_AUDIT_PROMPT.md) now covers the full project;
 its previous duplicate is a pointer. Understanding preceded drafting and both

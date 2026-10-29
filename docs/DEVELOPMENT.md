@@ -74,7 +74,10 @@ bash scripts/verify-slither.sh
 The [last full audit](../reports/full-audit-20261025/VERIFICATION.md) records
 actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
-not a current green workflow or independent approval. Check exact-revision CI.
+not a current green workflow or independent approval. The [current applicability
+comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
+finds19of47source pins changed; refresh analysis/triage for the actual release.
+Check exact-revision CI.
 Keep normal runtime/initcode/gas gates and exact constructor arguments.
 
 ## Focused keeper verification

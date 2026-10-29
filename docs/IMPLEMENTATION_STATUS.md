@@ -1,11 +1,13 @@
 # Feature and evidence reference
 
-[Historical reconciliation](../reports/historical-reconciliation-20261029/REVIEW.md)
-fixes local verifier evidence admission before lab actions and current-guide
-profile/custody drift. Scoped13methods have12passes/one host symlink skip;
-contract build011 is reused only after exact82file comparison. The complete
-historical finding ledger remains unfinished, with no Solidity or operating
-rollout implied. [Verification](../reports/historical-reconciliation-20261029/VERIFICATION.md).
+[Completed historical reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
+accounts for352 original report narratives/91current guides and235 overlapping
+finding groups. Strict frontend/indexer CLI JSON object admission now precedes
+workers/RPC/listeners/signals/locks/DB;15 affected methods pass. Earlier13 local
+verifier methods are not rerun. Exact82 build pins reuse39normal gates. The
+October25static review has19of47changed pins and needs refresh. No Solidity,
+financial/timing policy or installed service/site change.
+[Verification](../reports/historical-reconciliation-completion-20261029/VERIFICATION.md).
 
 [Keeper coordination](KEEPER_COORDINATION.md) implements service-only compound
 waiting, proved internal-harvest clock coalescing and a bounded read-only LP

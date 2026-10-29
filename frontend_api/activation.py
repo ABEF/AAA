@@ -311,17 +311,22 @@ class ActivationTransactions:
 
 def main():
     import argparse,json
-    from pathlib import Path
     from frontend_api.service import Projection
+    from zzz_ops.state import read_json
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',required=True,help='Reviewed schema-2 read API configuration')
     parser.add_argument('--activation-config',required=True,help='Reviewed activation bindings/routes and fee policy')
     parser.add_argument('--request',required=True,help='JSON typed request file; public wallet address only')
     args=parser.parse_args()
     try:
-        p=Projection(json.loads(Path(args.config).read_text(encoding='utf-8')))
-        service=ActivationTransactions(p,json.loads(Path(args.activation_config).read_text(encoding='utf-8')))
-        result=service.prepare(json.loads(Path(args.request).read_text(encoding='utf-8')))
+        config=read_json(args.config,encoding='utf-8')
+        activation_config=read_json(args.activation_config,encoding='utf-8')
+        request=read_json(args.request,encoding='utf-8')
+        if any(not isinstance(value,dict) for value in (config,activation_config,request)):
+            raise ValueError('Reviewed input must be a JSON object')
+        p=Projection(config)
+        service=ActivationTransactions(p,activation_config)
+        result=service.prepare(request)
     except Exception:
         parser.exit(1,'Activation preparation unavailable; verify input, reviewed configuration and RPC capability.\n')
     print(json.dumps(result,indent=2))

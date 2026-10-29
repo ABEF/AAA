@@ -47,13 +47,17 @@ by the current keeper-coordination follow-up; preserve the original report scope
 
 ## Product and implementation
 
-The [historical-report reconciliation](reports/historical-reconciliation-20261029/REVIEW.md)
-is an unfinished current task:352reports/91guides inventoried,70reports/25guides
-have a completed traceable ledger; remaining contract/operations dispositions
-need continuation after reviewer credit exhaustion. Two local verification tools
-now reserve new evidence before lab requests. Current custody/profile guidance
-and build011 margins are corrected; no Solidity, services, sites or state changed.
-See the [sole task](TODO.md#task-historical-findings) and exact verification scope.
+The [completed historical-report reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md)
+accounts for352 original report narratives,91 current guides and the two preserved
+partial-checkpoint reports.235 overlapping groups distinguish implemented,
+retired, adapted, accepted, deferred and unqualified work. This closes only the
+[reconciliation task](TODO.md#task-historical-findings), not all past risks.
+Strict frontend/indexer CLI admission now rejects ambiguous objects before
+resource creation;15 affected Python methods pass. Earlier13 verifier methods
+were not rerun. Current guide cadence is240seconds, selected on-chain maximum300;
+19of47 historical Slither pins differ and require refresh.82 unchanged build pins
+reuse39normal gates; Manager37initcode/Vault59runtime margins remain. No Solidity,
+financial/timing policy, operating service/site/Anvil/journal/signer changed.
 
 PoPL is an ERC-721 collection capped at1,000 NFTs:600 Commun/300 Rare/100 Legendary.
 Mint creates a dormant NFT with no LP or rewards. Activation in ETH/fixed ZZZ

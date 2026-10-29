@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 40 In progress | 23 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 24 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -889,7 +889,7 @@ Three required testing layers, with source-bound evidence.
   - Review explicitly archived obsolete pre-pricing ActivationEntry/creator/bridge fixtures and their source receipts; retain actual current Entry/Pricing security assertions in active integrations. Qualify the final frozen repository workflow without treating a targeted pass or retired test as a green full regression.
   - Implemented [frozen review package and strict verification](docs/FROZEN_REVIEW_BUNDLE.md): committed blobs, source/tree/dependency identities, required inputs and excluded-path inventory; no extraction, arbitrary execution, overwritten output or forged approval.19 distinct focused Python methods across recorded scopes. Regenerate for the final exact release commit and independently verify its hash; dependencies, operating rehearsals and external audit are not bundled or passed.
   - Run fresh complete frozen-release regression and source-bound static analysis/triage; the deep-cleanup campaign is targeted local evidence, not a green full workflow, live provider qualification, operating rehearsal or independent audit. The new reference snapshot2 requires exact imported dependency and build-file bindings.
-  - The [day audit](reports/day-readiness-20261025/READINESS.md) found then-stale Slither triage. The [full audit](reports/full-audit-20261025/static-review-verification.json) replaces it with an actual current399-finding review bound to47source/build names: internal review-coverage PASS. This does not qualify accepted gas/token/custody risks, a fresh full release suite, published CI or independent audit/remediation/sign-off.
+  - The October25 [full static review](reports/full-audit-20261025/static-review-verification.json) covered399findings/47source bindings at its historical revision. The [current applicability comparison](reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json) has19changed pins/zero missing files. Refresh actual analysis/triage for the frozen release; historical internal coverage PASS is not current analyzer, CI, operating or independent approval.
   - Current [full review](reports/full-audit-20261025/REVIEW.md) leaves real feed/route/VRF/authority/OpenSea/current-website/service/target-gas and exact constructor qualification open. Fresh11Python/oneEVM scopes and reviewed static output are not global production approval. Preserve original failures, trusted custody disclosures and known admitted-only late-currency recovery scope.
   - [Keeper/LP audit](reports/keeper-lp-audit-20261026/REVIEW.md) binds health to exact loaded config, rejects malformed conversion controls, repairs obsolete range-test domain and selects current3/fee1/native rehearsal source. Final affected Python354pass/5Unix skips (359methods),9range methods incl1000fuzz; unchanged production Solidity/permissions/economics. Linux current-fixture process/systemd, actual feeds/routes/gas/services and independent audit remain open. Deploy matching health writer/checker only under separate rollout; never patch old hashes or reset journals.
   - [Systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md) maps all 608 functions,31 constructors and13 receivers to multiple source-review cases;1,987 scenario instances are not execution tests. The final 244-method scope has 241 passes/3 explicit skips,42 new included once, with source-stage failures retained. Unchanged Solidity/static evidence is reused at exact pins; independent frozen-release audit/remediation and external qualification remain open.
@@ -1133,16 +1133,16 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
 <a id="task-historical-findings"></a>
 
-- [ ] **[Reconcile historical findings against the current implementation](reports/historical-reconciliation-20261029/REVIEW.md)** - In progress. Inventory covers352 reports/91 guides. Completed read-services ledger covers70 reports/25 guides and28 finding groups. Local evidence-output and stale-current-guide fixes are verified; the remaining contract/operations per-finding reconciliation is incomplete after reviewer credit exhaustion.
+- [x] **[Reconcile historical findings against the current implementation](reports/historical-reconciliation-completion-20261029/REVIEW.md)** - Implemented. Completed inventory-scoped reconciliation of352 original report narratives/91current guides into235 overlapping material groups. Implemented strict frontend/indexer CLI admission, preserved original reports and corrected current provenance/cadence/static-analysis guidance.15 new affected Python methods pass; external qualification and independent audit remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Finish a traceable disposition for every material historical defect, enhancement, accepted risk and qualification gate; indexing or a report-level label is not complete semantic reconciliation.
-  - Preserve original report bytes, failures, skips, revisions and unrelated work. Keep obsolete bridges/creator inboxes/external custody exits historical; do not remove required old deployment codecs.
-  - Use the [current report](reports/historical-reconciliation-20261029/REVIEW.md), [reading inventory](reports/historical-reconciliation-20261029/READING_INVENTORY.json), [verified fixes](reports/historical-reconciliation-20261029/VERIFICATION.md) and saved external drafts to continue. Not all past findings are resolved.
-  - Two historical local verifiers now reserve new output before lab HTTP; scoped13 methods have12passes/one Windows symlink skip. No financial journey, live service or public transaction was executed.
-  - Feeds/routes/VRF, authorities, OpenSea, fresh4 browser/services, target gas/economics, operating rehearsals and independent audit remain in their existing owning tasks. Do not close these through documentation reconciliation.
+  - Every original report narrative is accounted in the [reading inventory](reports/historical-reconciliation-completion-20261029/READING_INVENTORY.json); material groups carry original sections, current mechanisms, dispositions and stable owning tasks in the [finding ledger](reports/historical-reconciliation-completion-20261029/FINDINGS.json).235groups are not235bugs or tests.
+  - Original report bytes/failures/skips/revisions and both published partial-checkpoint reports remain unchanged, apart from the navigation index. Two local-only draft reports are inventoried but not published as originals. Retired bridges/creator inboxes/external custody stay historical; old deployment codecs remain.
+  - The [verification](reports/historical-reconciliation-completion-20261029/VERIFICATION.md) separates15new affected Python passes, prior13local-tool methods without rerun,82exact unchanged build pins/39reused gates and19of47historical static pins that need refreshed analysis. No financial journey, provider or operating service was run.
+  - Strict frontend/indexer configuration/request object admission precedes resource creation. Current procedures explain fixed errors, matching reviewed source rollout,240-second cadence versus selected300-second maximum and actual claim-preparation scope; no financial or timing policy changed.
+  - Reconciliation complete does not mean every risk solved. Feeds/routes/VRF, authorities, OpenSea, fresh4 browser/services, target gas/economics, real operating rehearsals and independent audit remain in their owning tasks. Deferred early observations/idle scheduling/no-swap exception/Entry-v3 cleanup remain explicit proposals rather than silently implemented features.
 
   </details>
 
@@ -1335,4 +1335,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `c5a08c88826ae743b064b77dc589f95e9ecd2251853801282b68111bafeea9d3`.
+Snapshot SHA-256: `3a6353680475590a9cb0b44f52c2ab4330765f7ae6368ee5b405ae50e2659a51`.

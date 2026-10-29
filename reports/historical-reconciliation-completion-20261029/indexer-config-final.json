@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "utc": "2026-10-29T20:00:55.647403+00:00",
+  "scope": "Actual indexer CLI admission with mocked signals/process_lock/Indexer; no DB/RPC/service/chain touched",
+  "selected_methods": [
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_malformed_json_has_fixed_safe_diagnostic",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_missing_configuration_preserves_missing_file_classification",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nested_duplicate_configuration_is_not_silently_last_value_wins",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonobject_configuration_is_rejected_before_signals_or_locks",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_parser_resource_error_is_normalized_without_starting_work",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_valid_object_preserves_values_and_existing_defaults"
+  ],
+  "executed_methods": [
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_malformed_json_has_fixed_safe_diagnostic",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_missing_configuration_preserves_missing_file_classification",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nested_duplicate_configuration_is_not_silently_last_value_wins",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonobject_configuration_is_rejected_before_signals_or_locks",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_parser_resource_error_is_normalized_without_starting_work",
+    "tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_valid_object_preserves_values_and_existing_defaults"
+  ],
+  "tests_run": 8,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [],
+  "successful": true,
+  "source_sha256_before": {
+    "indexer/monitor.py": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4",
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    "tests_python/test_indexer_config_integrity.py": "9e677fed46bdcef3b2041d7717770295b05b9edfab6f9a2cbc2238a243485123"
+  },
+  "source_sha256_after": {
+    "indexer/monitor.py": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4",
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    "tests_python/test_indexer_config_integrity.py": "9e677fed46bdcef3b2041d7717770295b05b9edfab6f9a2cbc2238a243485123"
+  },
+  "source_changes_during_run": false,
+  "negative_before": {
+    "log": "indexer-config-negative-before.log",
+    "selected_methods": 4,
+    "failing_methods": 3,
+    "failed_assertions": 8,
+    "errors": 0,
+    "valid_control_passes": 1
+  },
+  "note": "Earlier overlapping initial-after8 is retained and not additional coverage. Parser resource limit is injected, not a real host nesting-depth benchmark."
+}

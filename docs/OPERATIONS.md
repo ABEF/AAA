@@ -116,7 +116,8 @@ canonical policy-only anchor for confirmation1/2, even with quality0, LP cooldow
 or compounding off. It records helper/Budget capabilities and bindings, runtime
 pins and config/source identity; it reads no bucket condition or price and proves
 neither readiness nor continuous history. `stopped` means gap0 and
-`incompatible_cadence` a nonzero gap below300; active-principal health/preflight
+`incompatible_cadence` a nonzero gap below240seconds in the current source;
+the selected on-chain maximum remains300seconds. Active-principal health/preflight
 refuse both. `unavailable` labels retained prior evidence stale. Independent
 hourly harvest continues under its own guards. After explicit terminal
 `lp_exit_started:true`, health treats stop/cadence as informational, while actual

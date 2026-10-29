@@ -6,13 +6,13 @@ from http.server import BaseHTTPRequestHandler
 from frontend_api.http_runtime import BoundedHandler, BoundedHTTPServer, ServiceBusy
 from frontend_api.admission import AdmissionRejected, ClientAdmission, add_arguments
 import json
-from pathlib import Path
 import re
 from typing import Any
 
 from frontend_api.service import Projection, UnknownNFT, token_id
 from zzz_ops.abi import address
 from zzz_ops.rpc import RpcError
+from zzz_ops.state import read_json
 
 MAX_PREPARATION_BODY = 16 * 1024
 MAX_PREPARATION_DEPTH = 16
@@ -210,9 +210,11 @@ def main() -> None:
     if not 1024 <= args.port <= 65535:
         parser.error('port must be between 1024 and 65535')
     try:
-        config = json.loads(Path(args.config).read_text(encoding='utf-8'))
+        config = read_json(args.config, encoding='utf-8')
+        transaction_config = read_json(args.transaction_config, encoding='utf-8') if args.transaction_config else None
+        if not isinstance(config, dict) or args.transaction_config and not isinstance(transaction_config, dict):
+            raise ValueError('Reviewed configuration must be a JSON object')
         from frontend_api.worker import WorkerPool
-        transaction_config = json.loads(Path(args.transaction_config).read_text(encoding='utf-8')) if args.transaction_config else None
         projection = WorkerPool(config, transaction_config=transaction_config, workers=args.workers)
     except Exception:
         parser.exit(1, 'Invalid reviewed deployment/transaction configuration.\n')

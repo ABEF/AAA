@@ -1,8 +1,10 @@
 # Documentation map
 
-[Historical report reconciliation](../reports/historical-reconciliation-20261029/REVIEW.md)
-records current fixes and an explicit incomplete per-finding ledger. It does not
-reclassify historical failures, old deployments or unqualified services as passes.
+[Completed historical reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
+maps352 original report narratives to current mechanisms, dispositions and owning
+tasks. It includes strict frontend/indexer startup-input fixes and corrected
+evidence/cadence guidance. Original reports retain their scope; live qualification
+and independent release approval remain open.
 
 [Keeper coordination and operation review](KEEPER_COORDINATION.md): service-only compound waits,
 proved internal harvest clocks, read-only LP diagnostics and corrected actual-ABI

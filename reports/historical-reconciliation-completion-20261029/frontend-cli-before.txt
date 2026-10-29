@@ -1,0 +1,702 @@
+test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) ...
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"chain_id":31337,"chain_id":4663}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"policy":{"amount":"100","amount":"10000"}}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"value":Infinity}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"value":-Infinity}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"value":1e999}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='[]') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='null') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='true') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='7') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='"text"') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"chain_id":31337,"chain_id":4663}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"policy":{"amount":"100","amount":"10000"}}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"value":Infinity}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"value":-Infinity}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"value":1e999}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='[]') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='null') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='true') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='7') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='"text"') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"chain_id":31337,"chain_id":4663}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"policy":{"amount":"100","amount":"10000"}}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"value":Infinity}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"value":-Infinity}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"value":1e999}') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='[]') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='null') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='true') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='7') ... FAIL
+  test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='"text"') ... FAIL
+test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) ...
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"chain_id":31337,"chain_id":4663}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"policy":{"amount":"100","amount":"10000"}}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"value":Infinity}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"value":-Infinity}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"value":1e999}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='[]') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='null') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='true') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='7') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='"text"') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"chain_id":31337,"chain_id":4663}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"policy":{"amount":"100","amount":"10000"}}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"value":Infinity}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"value":-Infinity}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"value":1e999}') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='[]') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='null') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='true') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='7') ... FAIL
+  test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='"text"') ... FAIL
+test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) ...
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"chain_id":31337,"chain_id":4663}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"policy":{"amount":"100","amount":"10000"}}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"value":Infinity}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"value":-Infinity}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"value":1e999}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='[]') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='null') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='true') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='7') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='"text"') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"chain_id":31337,"chain_id":4663}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"policy":{"amount":"100","amount":"10000"}}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"value":Infinity}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"value":-Infinity}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"value":1e999}') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='[]') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='null') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='true') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='7') ... FAIL
+  test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='"text"') ... FAIL
+test_valid_utf8_objects_retain_finite_values_and_reach_existing_validators (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_valid_utf8_objects_retain_finite_values_and_reach_existing_validators) ... ok
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"chain_id":31337,"chain_id":4663}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"policy":{"amount":"100","amount":"10000"}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"value":Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"value":-Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='{"value":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='7')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=0, raw='"text"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"chain_id":31337,"chain_id":4663}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"policy":{"amount":"100","amount":"10000"}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"value":Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"value":-Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='{"value":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='7')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=1, raw='"text"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"chain_id":31337,"chain_id":4663}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"policy":{"amount":"100","amount":"10000"}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"value":Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"value":-Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='{"value":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='7')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) (kind='activation-cli', position=2, raw='"text"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"chain_id":31337,"chain_id":4663}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"policy":{"amount":"100","amount":"10000"}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"value":Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"value":-Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='{"value":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='7')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=0, raw='"text"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"chain_id":31337,"chain_id":4663}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"policy":{"amount":"100","amount":"10000"}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"value":Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"value":-Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='{"value":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='7')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) (kind='activation-server', position=1, raw='"text"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"chain_id":31337,"chain_id":4663}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"policy":{"amount":"100","amount":"10000"}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"value":Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"value":-Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='{"value":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='7')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=0, raw='"text"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"chain_id":31337,"chain_id":4663}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"policy":{"amount":"100","amount":"10000"}}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"secret_endpoint":"https://user:secret@example.invalid","value":NaN}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"value":Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"value":-Infinity}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='{"value":1e999}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='7')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+======================================================================
+FAIL: test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) (kind='read', position=1, raw='"text"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_cli_config_integrity.py", line 61, in assert_rejected_before_work
+    self.assertEqual(result['status'], 1)
+AssertionError: None != 1
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.776s
+
+FAILED (failures=77)

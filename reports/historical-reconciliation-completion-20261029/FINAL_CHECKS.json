@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "current_guide_files_checked": 98,
+  "local_links_checked": 2260,
+  "link_failures": [],
+  "checks": {
+    "todo": {
+      "exit_code": 0,
+      "observed_stdout": "Project Todo generated. Project Todo verified.",
+      "command": "python -X utf8 scripts/sync-project-todo.py, then --check"
+    },
+    "callable_reference": {
+      "exit_code": 0,
+      "observed_result": {
+        "checked": true,
+        "contracts": 33,
+        "functions": 696,
+        "constructors": 33,
+        "receive_hooks": 13,
+        "explanation_gaps": 0,
+        "unannotated_inputs": 0,
+        "unannotated_outputs": 0
+      },
+      "command": "python -X utf8 scripts/generate-function-reference.py --check"
+    },
+    "working_whitespace": {
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "todo_status_counts": {
+    "done": 24,
+    "progress": 39,
+    "excluded": 1,
+    "todo": 8
+  },
+  "no_execution_tests_repeated": true,
+  "successful_before_git_stage": true,
+  "staged_whitespace_and_publication": "Exact staged file checks and remote main head are performed after this immutable evidence is assembled."
+}

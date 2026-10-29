@@ -1,0 +1,8 @@
+test_atomic_roundtrip (tests_python.test_state.StateTests.test_atomic_roundtrip) ... ok
+test_missing_default (tests_python.test_state.StateTests.test_missing_default) ... ok
+test_malformed_state_fails_closed (tests_python.test_state.StateTests.test_malformed_state_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.034s
+
+OK

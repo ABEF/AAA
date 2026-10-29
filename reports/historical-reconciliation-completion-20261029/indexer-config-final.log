@@ -1,0 +1,13 @@
+test_duplicate_configuration_identity_is_rejected_before_resources (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources) ... ok
+test_malformed_json_has_fixed_safe_diagnostic (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_malformed_json_has_fixed_safe_diagnostic) ... ok
+test_missing_configuration_preserves_missing_file_classification (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_missing_configuration_preserves_missing_file_classification) ... ok
+test_nested_duplicate_configuration_is_not_silently_last_value_wins (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nested_duplicate_configuration_is_not_silently_last_value_wins) ... ok
+test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) ... ok
+test_nonobject_configuration_is_rejected_before_signals_or_locks (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonobject_configuration_is_rejected_before_signals_or_locks) ... ok
+test_parser_resource_error_is_normalized_without_starting_work (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_parser_resource_error_is_normalized_without_starting_work) ... ok
+test_valid_object_preserves_values_and_existing_defaults (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_valid_object_preserves_values_and_existing_defaults) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.129s
+
+OK

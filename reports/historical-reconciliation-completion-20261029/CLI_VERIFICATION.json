@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "distinct_methods": 15,
+  "passed": 15,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "frontend_new": 4,
+  "shared_existing_compatibility": 3,
+  "indexer_new": 8,
+  "source_pins": {
+    "frontend_api/server.py": "7010064db189c9bddf4231e2fbc2cae0c3f73a14facddf06bbb7e128b92fe98b",
+    "frontend_api/activation_server.py": "75675b7f0a323036c45dc031d9714e5d31d57622229bdcff8bb28103669d276b",
+    "frontend_api/activation.py": "81205df3bae78149fc251ee1ef350897dc936bffecbb7291a71bc93f7b76cefd",
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    "tests_python/test_frontend_cli_config_integrity.py": "8b08955db8a5a0bff0a81525d1d3024c4852d9cb04c387c98014c33239442403",
+    "indexer/monitor.py": "3f9695007fa67e0e6920de0a6f8ff0626cc72712a550c3bdcd8c09cf2a4a83e4",
+    "tests_python/test_indexer_config_integrity.py": "9e677fed46bdcef3b2041d7717770295b05b9edfab6f9a2cbc2238a243485123",
+    "tests_python/test_state.py": "5554abd8aaab22cfa46a2fe8be0a957e4f35748377e7998a996e4ec8444a2e7a"
+  },
+  "source_pins_match_final": true,
+  "not_executed": "No real worker/listener/RPC/database/chain/financial journey; constructors mocked at the resource boundary. No full suite rerun.",
+  "negative_scope": "77 frontend invalid subcases;8 failing indexer assertions across3methods before fixes. These are not additional passing methods."
+}

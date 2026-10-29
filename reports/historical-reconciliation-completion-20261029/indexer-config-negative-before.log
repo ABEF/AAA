@@ -1,0 +1,111 @@
+test_duplicate_configuration_identity_is_rejected_before_resources (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources) ...
+  test_duplicate_configuration_identity_is_rejected_before_resources (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources) (pair='"start_block":99') ... FAIL
+  test_duplicate_configuration_identity_is_rejected_before_resources (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources) (pair='"start_\\u0062lock":99') ... FAIL
+  test_duplicate_configuration_identity_is_rejected_before_resources (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources) (pair='"chain_id":46630') ... FAIL
+test_nested_duplicate_configuration_is_not_silently_last_value_wins (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nested_duplicate_configuration_is_not_silently_last_value_wins) ... FAIL
+test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) ...
+  test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) (value='NaN') ... FAIL
+  test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) (value='Infinity') ... FAIL
+  test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) (value='-Infinity') ... FAIL
+  test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) (value='1e9999') ... FAIL
+test_valid_object_preserves_values_and_existing_defaults (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_valid_object_preserves_values_and_existing_defaults) ... ok
+
+======================================================================
+FAIL: test_duplicate_configuration_identity_is_rejected_before_resources (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources) (pair='"start_block":99')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 47, in test_duplicate_configuration_identity_is_rejected_before_resources
+    with self.subTest(pair=pair):self.rejected(encoded[:-1]+','+pair+'}')
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 40, in rejected
+    with self.assertRaises(exception):self.invoke()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_duplicate_configuration_identity_is_rejected_before_resources (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources) (pair='"start_\\u0062lock":99')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 47, in test_duplicate_configuration_identity_is_rejected_before_resources
+    with self.subTest(pair=pair):self.rejected(encoded[:-1]+','+pair+'}')
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 40, in rejected
+    with self.assertRaises(exception):self.invoke()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_duplicate_configuration_identity_is_rejected_before_resources (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_duplicate_configuration_identity_is_rejected_before_resources) (pair='"chain_id":46630')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 47, in test_duplicate_configuration_identity_is_rejected_before_resources
+    with self.subTest(pair=pair):self.rejected(encoded[:-1]+','+pair+'}')
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 40, in rejected
+    with self.assertRaises(exception):self.invoke()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nested_duplicate_configuration_is_not_silently_last_value_wins (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nested_duplicate_configuration_is_not_silently_last_value_wins)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 50, in test_nested_duplicate_configuration_is_not_silently_last_value_wins
+    self.rejected(json.dumps(self.valid)[:-1]+',"metadata":{"mode":"one","mode":"two"}}')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 40, in rejected
+    with self.assertRaises(exception):self.invoke()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) (value='NaN')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 54, in test_nonfinite_numbers_are_rejected_even_in_optional_fields
+    with self.subTest(value=value):self.rejected(json.dumps(self.valid)[:-1]+',"optional":'+value+'}')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 40, in rejected
+    with self.assertRaises(exception):self.invoke()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) (value='Infinity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 54, in test_nonfinite_numbers_are_rejected_even_in_optional_fields
+    with self.subTest(value=value):self.rejected(json.dumps(self.valid)[:-1]+',"optional":'+value+'}')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 40, in rejected
+    with self.assertRaises(exception):self.invoke()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) (value='-Infinity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 54, in test_nonfinite_numbers_are_rejected_even_in_optional_fields
+    with self.subTest(value=value):self.rejected(json.dumps(self.valid)[:-1]+',"optional":'+value+'}')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 40, in rejected
+    with self.assertRaises(exception):self.invoke()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nonfinite_numbers_are_rejected_even_in_optional_fields (tests_python.test_indexer_config_integrity.IndexerConfigIntegrityTests.test_nonfinite_numbers_are_rejected_even_in_optional_fields) (value='1e9999')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 54, in test_nonfinite_numbers_are_rejected_even_in_optional_fields
+    with self.subTest(value=value):self.rejected(json.dumps(self.valid)[:-1]+',"optional":'+value+'}')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_config_integrity.py", line 40, in rejected
+    with self.assertRaises(exception):self.invoke()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.269s
+
+FAILED (failures=8)

@@ -11,7 +11,7 @@ from typing import Any
 from indexer.events import decode
 from zzz_ops.abi import address
 from zzz_ops.rpc import Rpc,RpcError
-from zzz_ops.state import integer, process_lock
+from zzz_ops.state import integer, process_lock, read_json
 from zzz_ops.log_provenance import OrderedTransactions
 
 class IndexerSafetyError(RpcError):
@@ -244,7 +244,13 @@ class Indexer:
 def main()->None:
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',required=True);parser.add_argument('--once',action='store_true')
-    args=parser.parse_args();config=json.loads(Path(args.config).read_text())
+    args=parser.parse_args()
+    missing=object()
+    try:config=read_json(args.config,missing)
+    except (ValueError,RecursionError):
+        raise ValueError('Invalid indexer configuration JSON') from None
+    if config is missing:raise FileNotFoundError('Indexer configuration is missing')
+    if not isinstance(config,dict):raise ValueError('Indexer configuration must be a JSON object')
     stop=False
     def halt(*_:Any)->None:
         nonlocal stop;stop=True

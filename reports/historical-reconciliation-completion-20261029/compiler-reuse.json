@@ -1,0 +1,79 @@
+{
+  "mismatches": [],
+  "reference": "reports/independent-rebalance-20261029/verification-summary.json#/compiler_scope",
+  "selected_gates": [
+    {
+      "name": "ZZZLiquidityManager",
+      "runtime": 23111,
+      "creation": 48955,
+      "minimum_args": 160,
+      "runtime_margin": 1465,
+      "path": "src/ZZZLiquidityManager.sol",
+      "static_argument_bytes": 160,
+      "constructor_types": [
+        "address",
+        "address",
+        "address",
+        "address",
+        "address"
+      ],
+      "maximum_total_argument_bytes": 197,
+      "dynamic_constructor_exact_argument_qualification_required": false,
+      "runtime_ok": true,
+      "creation_ok": true
+    },
+    {
+      "name": "ZZZNFT",
+      "runtime": 24400,
+      "creation": 44786,
+      "minimum_args": 96,
+      "runtime_margin": 176,
+      "path": "src/ZZZNFT.sol",
+      "static_argument_bytes": null,
+      "constructor_types": [
+        "address",
+        "string"
+      ],
+      "maximum_total_argument_bytes": 4366,
+      "dynamic_constructor_exact_argument_qualification_required": true,
+      "runtime_ok": true,
+      "creation_ok": true
+    },
+    {
+      "name": "ZZZStrategy",
+      "runtime": 24414,
+      "creation": 41992,
+      "minimum_args": 32,
+      "runtime_margin": 162,
+      "path": "src/ZZZStrategy.sol",
+      "static_argument_bytes": 32,
+      "constructor_types": [
+        "address"
+      ],
+      "maximum_total_argument_bytes": 7160,
+      "dynamic_constructor_exact_argument_qualification_required": false,
+      "runtime_ok": true,
+      "creation_ok": true
+    },
+    {
+      "name": "ZZZVault",
+      "runtime": 24517,
+      "creation": 48951,
+      "minimum_args": 96,
+      "runtime_margin": 59,
+      "path": "src/ZZZVault.sol",
+      "static_argument_bytes": 96,
+      "constructor_types": [
+        "address",
+        "uint256",
+        "address"
+      ],
+      "maximum_total_argument_bytes": 201,
+      "dynamic_constructor_exact_argument_qualification_required": false,
+      "runtime_ok": true,
+      "creation_ok": true
+    }
+  ],
+  "gates": 39,
+  "checked_files": 82
+}

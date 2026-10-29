@@ -120,8 +120,11 @@ exit does not gain a conversion/buyback dependency.
 | RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
 
 Source-scoped audit results belong to [reports](../reports/README.md), not to a
-second release history in this manual. Current internal static coverage passes;
-actual dependencies, target-chain gas/operations and independent audit remain open.
+second release history in this manual. The October25 Slither review is historical:
+19 of its47 source/build pins differ from current source. A later handwritten
+body review does not refresh that analyzer gate. Require fresh source-bound
+analysis/triage along with actual dependencies, target-chain gas/operations and
+independent audit before release. [Current applicability](../reports/historical-reconciliation-completion-20261029/VERIFICATION.md).
 
 
 ## Liquidity placement and keeper policy
@@ -1283,6 +1286,16 @@ A successful same-chain handoff does not qualify cross-chain finality, transport
 There is no independent pause for every individual feature/asset payout. Do not invent one in an incident. Source: [module guards](../src/base/ZZZModule.sol), [controller](../src/ZZZAccessController.sol), [recovery matrix](CHANGE_AND_RECOVERY.md).
 
 ## Services and server recovery
+
+The read/activation service CLIs and indexer now reject duplicate JSON fields,
+nonfinite numbers and nonobject configuration before starting resources. The
+activation CLI also loads its request before RPC/projection construction. Keep
+private original files for review and correct ambiguity explicitly; no file,
+database, pending intent or chain state is automatically repaired. Frontend files
+retain UTF-8; existing journal/indexer default encoding is unchanged. Roll out
+matching source through this runbook with pending work preserved; changed local
+source hashes are not a reason to edit a journal or claim a running deployment
+has updated. [Scoped verification](../reports/historical-reconciliation-completion-20261029/VERIFICATION.md).
 
 The heartbeat now includes `configuration_sha256`, a hash of the exact loaded
 configuration. `keeper.ops health` requires the same hash, not merely chain and

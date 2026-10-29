@@ -54,6 +54,14 @@ Authority: infrastructure operator, no contract governance call. Use reviewed
 deployment/history/pricing and optional transaction manifests; never add a key.
 Substitute the actual reviewed same-origin website host and filesystem paths:
 
+Startup reads every supplied configuration file as a strict UTF-8 JSON object
+before constructing workers or listeners. Nested/escaped duplicate keys,
+nonfinite/overflowing floating-point values and nonobject roots are rejected through the existing
+fixed error messages. No file is rewritten and a rejected startup performs no
+RPC work. Repair the reviewed private file; do not normalize ambiguous input or
+change a deployment/profile merely to make startup succeed. This does not change
+the separate bounded HTTP-body parser or its limits.
+
 ```sh
 python3 -m frontend_api.server --config /etc/popl/read.json --transaction-config /etc/popl/transactions.json --port 8787 --workers 4 --max-connections 8 --per-client-active 2 --proxy-origin https://popl.example.test
 python3 -m frontend_api.activation_server --config /etc/popl/read.json --activation-config /etc/popl/activation.json --port 8788 --workers 4 --max-connections 8 --per-client-active 2 --proxy-origin https://popl.example.test

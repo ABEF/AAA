@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "source_checkpoint": "b266ef74e69bdf58264d53cbb2d4dcee28cc1b84",
+  "sources": [
+    {
+      "name": "baseline-markdown-inventory.json",
+      "sha256": "aee75d9540f0189c81a0603c676a0bdf69c8822660ee0187fb4f77382e9c2a5c",
+      "bytes": 212392
+    },
+    {
+      "name": "contracts-reading.json",
+      "sha256": "b296029eef66c0665eb48db6d8733758fc0a0bdeedc54e3a040d28327bf9411e",
+      "bytes": 281571
+    },
+    {
+      "name": "contracts-findings.json",
+      "sha256": "e65a4542a68b1b5e71e1023039e15fe3fe10a61914fd9080e9aafb77100b1d77",
+      "bytes": 224002
+    },
+    {
+      "name": "frontend_backend-findings.json",
+      "sha256": "b4f822e2e980ad5edd77835aadd50064bf04da44e629e736f3390b8ad71e7885",
+      "bytes": 45263
+    },
+    {
+      "name": "frontend_backend-reading.json",
+      "sha256": "5fddddab01bb8fc0179b76f5e3b9fbca3d19b3be8e3ddbdc9b8e4d2cd77d42dc",
+      "bytes": 55257
+    },
+    {
+      "name": "completion-agent-ops.json",
+      "sha256": "a352620d11af8a9b9a11fcd3ffda894b6721d6a9829998dc0d65a5221696d8d8",
+      "bytes": 48073
+    },
+    {
+      "name": "operations_evidence-findings.json",
+      "sha256": "a2429db2cb70f9bb75e26fb68a9e0924649dcc257765cab0b162becd9153e87b",
+      "bytes": 70042
+    },
+    {
+      "name": "ops-read-services-supplement.json",
+      "sha256": "00297a8cfd96c4402cb627aa7f0c4b08d0003639653ed3a707a5bdd49700b55c",
+      "bytes": 239822
+    },
+    {
+      "name": "read-services-qa.json",
+      "sha256": "633f6b31ce11d351593a36e08101692145f04e306911a028abc4655aa9d2d980",
+      "bytes": 121850
+    },
+    {
+      "name": "baseline-markdown.json",
+      "sha256": "1bb786fe7b7e5b1a5c82b5c65bbfdb3be714a7276e85b455a31856ff34731abe",
+      "bytes": 74196
+    },
+    {
+      "name": "root-ops-ledger.json",
+      "sha256": "0df23e695ee1457d9b627e2cb50c6a9141a1a4a5e9600ed32c244e8d0bb00071",
+      "bytes": 83025
+    },
+    {
+      "name": "contracts-final-qa.json",
+      "sha256": "058727e42da8682c2c68d5a50addf49fe9adbeea1395e367490f7b1741880f40",
+      "bytes": 6055
+    },
+    {
+      "name": "operations-final-qa.json",
+      "sha256": "0fbbc76c52b366404b62967801dda5e20799580304a026bf2b91a661ba313208",
+      "bytes": 4770
+    },
+    {
+      "name": "read-services-final-qa.json",
+      "sha256": "b1f0b8bb32d37f14a432b6e74b2b711c86b5b7adbce9077bf98544e0d4892657",
+      "bytes": 247620
+    },
+    {
+      "name": "read-services-current-proofs.json",
+      "sha256": "1fde6eadf886e7cc7d9760edc789cc9d0444328fc0bc065ac3a24e70fd80cc03",
+      "bytes": 187219
+    },
+    {
+      "name": "operations-exact-anchors.json",
+      "sha256": "ee235ad26733df9ef6cf3efee2ea1278561b5d1646e24e3452e6d3e2c36992fa",
+      "bytes": 228202
+    }
+  ],
+  "scope": "External source-reading/final QA assembly receipts, not additional tests. Originals retained in the handoff evidence directories."
+}

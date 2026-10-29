@@ -35,10 +35,10 @@ def _finite_float(value):
         raise ValueError('Nonfinite JSON state number')
     return number
 
-def read_json(path: str | Path, default: Any = None) -> Any:
+def read_json(path: str | Path, default: Any = None, *, encoding: str | None = None) -> Any:
     """Missing files use the explicit default; present malformed truth never does."""
     path = Path(path)
-    return json.loads(path.read_text(), object_pairs_hook=_unique_object,
+    return json.loads(path.read_text(encoding=encoding), object_pairs_hook=_unique_object,
                       parse_constant=_reject_constant, parse_float=_finite_float) if path.exists() else default
 
 def atomic_json(path: str | Path, data: Any) -> None:

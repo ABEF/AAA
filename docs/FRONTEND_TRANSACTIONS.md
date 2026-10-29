@@ -134,8 +134,9 @@ terminal work limits are never swallowed. Actual simulation remains decisive.
 For accounting3/4 claims, the preparer reads the global activation weight once per
 distinct selected NFT at that same block. Only 0..3 is valid; weight0 plus a positive
 LP/royalty claim balance is contradictory core data and rejects the draft. Missing
-or malformed activation data also fails closed. This matches NFT read integrity;
-the weight is not used to calculate the payout. Activated parked/outbound NFTs
+or malformed activation data also fails closed. This preserves the never-activated
+reward invariant; it does not repeat the full NFT/traits/LP projection or add those
+dependencies to claims. The weight is not used to calculate the payout. Activated parked/outbound NFTs
 and optional-currency deferrals retain their earned rights. Historical profiles
 do not acquire this getter requirement. No optional currency read is added merely
 to check activation. [Scoped review](../reports/reward-resilience-20261026/REVIEW.md).

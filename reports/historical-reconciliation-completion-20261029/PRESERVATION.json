@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "baseline_head": "b266ef74e69bdf58264d53cbb2d4dcee28cc1b84",
+  "original_report_files_excluding_navigation": 351,
+  "additional_published_checkpoint_reports": 2,
+  "historical_reports_changed": [],
+  "navigation_index_updated": true,
+  "preexisting_dirty_files": [
+    "reports/source-checks.json",
+    "scripts/run-fork-checks.py",
+    "tests_python/test_fork_runner.py",
+    "tests_python/test_frontend_history.py"
+  ],
+  "preexisting_dirty_files_changed": [],
+  "current_source_dependency_build_pins": 82,
+  "compiler_mismatches": [],
+  "normal_gates_reused": 39,
+  "no_new_compile_or_evm": true,
+  "website_head": "997f8c3524ea75d613dbb752f67b33a69fe7992f",
+  "website_head_unchanged": true,
+  "website_tracked_clean": true,
+  "no_service_site_anvil_journal_signer_heartbeat_action": true,
+  "two_local_only_reports_not_published": [
+    "reports/frontend-transactions/README.md",
+    "reports/operations-hardening/README.md"
+  ],
+  "successful": true
+}

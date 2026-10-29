@@ -430,7 +430,8 @@ of quality1, including during cooldown with compounding disabled. It reads no
 condition or prices and proves neither sampled readiness nor continuous history.
 
 Policy state `stopped` means gap0; `incompatible_cadence` means a nonzero gap
-below300seconds. Both degrade active-principal health and refuse preflight
+below240seconds in the current source. This is the source cadence-compatibility
+threshold, not a change to the selected300-second on-chain maximum. Both degrade active-principal health and refuse preflight
 without blocking independently guarded hourly harvest. `unavailable` retains any
 prior observation explicitly as stale. After explicit terminal
 `lp_exit_started:true`, health treats stop/cadence as informational; freshness,

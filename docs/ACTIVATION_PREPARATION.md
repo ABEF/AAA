@@ -148,6 +148,14 @@ Both commands require the existing schema-2 [read-service configuration](FRONTEN
 and a **separate reviewed activation configuration**. Paths are relative to the
 checkout or may be absolute; no production manifest is supplied by this example.
 
+The CLI loads the deployment, activation and request files as strict UTF-8 JSON
+objects before constructing the projection/preparer or doing RPC work. Duplicate
+fields (including escaped/nested keys), nonfinite numbers and nonobject roots
+reject with the existing fixed failure message. A bad request cannot first start
+pricing or preparation. Correct the private input explicitly; the tool does not
+rewrite files, change approvals or retry a transaction. HTTP request validation
+and all typed financial checks remain separate and unchanged.
+
 ```text
 python -m frontend_api.activation --config deployment.json --activation-config activation.json --request request.json
 python -m frontend_api.activation_server --config deployment.json --activation-config activation.json --port 8788

@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "copies": [
+    {
+      "original_name": "frontend-cli-verification.json",
+      "original_sha256": "a5df34adb166600b3d3a3f334eecf05efbdcd0b2c57ff8e06d96c0a5cef9728c",
+      "published_path": "reports/historical-reconciliation-completion-20261029/frontend-cli-verification.json",
+      "published_sha256": "c004fe8ac1e67723bbc8ba24a683a4719c4b6da4ae8581f171c7a62d6e624448",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "frontend-cli-before.txt",
+      "original_sha256": "4bbc6c9f06b66b77171912707b457f794df5e0460f37a6c65c4b1de8e143a633",
+      "published_path": "reports/historical-reconciliation-completion-20261029/frontend-cli-before.txt",
+      "published_sha256": "d4f399337b467efed5fbb504a635e9581db2aeaf0e5df6b332c9a64d95ecce3e",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "frontend-cli-after.txt",
+      "original_sha256": "9713021d43394deda6efee3b2da93e91ebb50d6afb2e07a695395bee24c0fda9",
+      "published_path": "reports/historical-reconciliation-completion-20261029/frontend-cli-after.txt",
+      "published_sha256": "6611ee1085b6c493d0c630601db907a1a7f9e435112a048bfee3100c046c25f0",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "frontend-cli-state-compatibility.txt",
+      "original_sha256": "8229e8552f7b4ea2e8255f81ac533683eae34a7f906849a6d69b9ea349ec81ab",
+      "published_path": "reports/historical-reconciliation-completion-20261029/frontend-cli-state-compatibility.txt",
+      "published_sha256": "d05432abb89671258a79506a7c225dcfb938ed7a1f48c9228db7db3356b7778d",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "indexer-config-final.json",
+      "original_sha256": "3bd55f807a0a57bf99964cd14ed92d9b066db458da14f282cc34809e7e7b5828",
+      "published_path": "reports/historical-reconciliation-completion-20261029/indexer-config-final.json",
+      "published_sha256": "eb28049c8ce6600506daccca7c065c6294b7fed01f155df953424b1337225426",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "indexer-config-final.log",
+      "original_sha256": "c378c727f21c93e42e2b02c524624653166bcfae0bb0958af261807c00e75c7c",
+      "published_path": "reports/historical-reconciliation-completion-20261029/indexer-config-final.log",
+      "published_sha256": "527626cfc56510c464584cd4fc11e85202c5f73cdf858e32309545358269bec0",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "indexer-config-negative-before.log",
+      "original_sha256": "c38e89a28f1f182675a66a59bfdfdf451571fb8256bcdb8c639cb63bce7fbd96",
+      "published_path": "reports/historical-reconciliation-completion-20261029/indexer-config-negative-before.log",
+      "published_sha256": "d62f291eb0b74841ce52853c314c6e7c0b1ab28a2b29697293036de3ce4f4b5e",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "slither-current-applicability.json",
+      "original_sha256": "3b636dada29deef5b8d1135534817574eabc5538a1ec74de59ecc4bbfa4a3d36",
+      "published_path": "reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json",
+      "published_sha256": "3b636dada29deef5b8d1135534817574eabc5538a1ec74de59ecc4bbfa4a3d36",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "compiler-reuse.json",
+      "original_sha256": "0e0b4396f82c24f2bac2c3c5e0a616bc42b79b6103b418da4ffa160752f3b506",
+      "published_path": "reports/historical-reconciliation-completion-20261029/compiler-reuse.json",
+      "published_sha256": "0e0b4396f82c24f2bac2c3c5e0a616bc42b79b6103b418da4ffa160752f3b506",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "contracts-final-qa.json",
+      "original_sha256": "058727e42da8682c2c68d5a50addf49fe9adbeea1395e367490f7b1741880f40",
+      "published_path": "reports/historical-reconciliation-completion-20261029/contracts-final-qa.json",
+      "published_sha256": "aec15aeaf592046a20ca37a675d46b160cac4dc61f9530dfd4cf58e89a7473d0",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "operations-final-qa.json",
+      "original_sha256": "0fbbc76c52b366404b62967801dda5e20799580304a026bf2b91a661ba313208",
+      "published_path": "reports/historical-reconciliation-completion-20261029/operations-final-qa.json",
+      "published_sha256": "e8b974fb6f1794398a0125c4c43b80dd57177a3075796c9aa7f31f405845032a",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    },
+    {
+      "original_name": "read-services-final-qa.json",
+      "original_sha256": "b1f0b8bb32d37f14a432b6e74b2b711c86b5b7adbce9077bf98544e0d4892657",
+      "published_path": "reports/historical-reconciliation-completion-20261029/read-services-final-qa.json",
+      "published_sha256": "53f4fc05dc1264d409ab6b39eeecb61e25daeb48643ec3446bc304a90c3ba0f8",
+      "normalization": "UTF-8 without BOM; CRLF to LF and diagnostic trailing blanks removed; raw original retained externally"
+    }
+  ],
+  "counts": "New15 distinct passing methods, separate from earlier13 methods; no unchanged Solidity/local journey rerun."
+}

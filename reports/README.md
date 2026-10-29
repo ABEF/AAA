@@ -1,11 +1,13 @@
 # Verification evidence
 
-[Historical reconciliation](historical-reconciliation-20261029/REVIEW.md) maps
-old findings to current source, fixes evidence-output admission and stale active
-guidance, and preserves original reports. The352-report inventory is not a
-completed all-findings audit:70reports have a final read-services ledger; remaining
-contract/operations dispositions are explicitly unfinished. Scoped13methods have
-12passes/one Windows symlink skip; unchanged contract build evidence is reused.
+[Completed historical reconciliation](historical-reconciliation-completion-20261029/REVIEW.md)
+accounts for352 original report narratives/91current guides and the two preserved
+partial-checkpoint reports. Its235overlapping groups retain original scope while
+mapping mechanisms, retired requirements and remaining tasks.15new affected
+Python methods pass for strict CLI admission; no unchanged Solidity suite or
+operating services were run. [Verification](historical-reconciliation-completion-20261029/VERIFICATION.md).
+The [earlier partial checkpoint](historical-reconciliation-20261029/REVIEW.md)
+retains its original incomplete status and13-method evidence unchanged.
 
 [Documentation synchronization](documentation-sync-20261029/VERIFICATION.md) records
 current guide/Todo/context consistency and unchanged code/artifact boundaries;
@@ -26,7 +28,7 @@ widths from adopting the manual exception. Separate paused-governance emergency1
 has explicitly optional economic checks and an accepted near-total-loss risk.
 [Verification](independent-rebalance-20261029/VERIFICATION.md) separates source,
 fixture repairs, failures, fresh checks and normal size gates. No deployment or
-installed-state change; the wider whole-project individual-body audit is unfinished.
+installed-state change. At that report's scope the wider body audit remained unfinished; the later [execution coverage](whole-project-execution-20261029/COVERAGE.md) completes source-body reading without claiming exhaustive execution.
 
 [Whole-project review,2026-10-29](whole-project-audit-20261029/REVIEW.md): source
 understanding, twice-challenged brief, full-system critical-path/coverage records,

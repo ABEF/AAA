@@ -20,6 +20,15 @@ insecure fallback to restore service.
 
 ## Routine operation
 
+Startup now rejects ambiguous configuration JSON before installing signals,
+acquiring the process lock or constructing the indexer/database/RPC client.
+Nested/escaped duplicate fields, nonfinite/overflowing floating-point values and nonobject roots
+are invalid; the missing-file case remains explicit. Valid values, defaults and
+the existing locale-based reader behavior are preserved. Correct the reviewed
+file rather than editing a cursor or repairing its JSON silently. No database or
+running service is changed by this source fix; a source/config rollout still
+requires the separately authorized stop/backup/restart procedure below.
+
 Use one writer under the existing process lock. Keep the reviewed chain ID,
 contract inventory, confirmation count, start parent and maximum reorganization
 depth fixed. A normal unchanged indexed tip needs one header lookup. A proved

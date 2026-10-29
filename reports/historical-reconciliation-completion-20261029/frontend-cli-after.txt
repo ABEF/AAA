@@ -1,0 +1,9 @@
+test_activation_cli_rejects_request_before_projection_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_cli_rejects_request_before_projection_creation) ... ok
+test_activation_server_rejects_all_inputs_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_activation_server_rejects_all_inputs_before_worker_creation) ... ok
+test_read_cli_rejects_ambiguous_objects_before_worker_creation (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_read_cli_rejects_ambiguous_objects_before_worker_creation) ... ok
+test_valid_utf8_objects_retain_finite_values_and_reach_existing_validators (tests_python.test_frontend_cli_config_integrity.FrontendCLIConfigIntegrityTest.test_valid_utf8_objects_retain_finite_values_and_reach_existing_validators) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.511s
+
+OK
