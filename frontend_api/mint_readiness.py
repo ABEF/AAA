@@ -39,11 +39,14 @@ def inspect(projection):
                   'request_id': str(request_id), 'request_epoch': str(epoch),
                   'state': 'awaiting_finalization' if fulfilled else 'awaiting_randomness'}
     p._finish(header)
+    remaining_supply = 1000 - minted
     return {'schema': 2, 'chain_id': p.chain, 'lifecycle': lifecycle,
             'nft': nft, 'coordinator': coordinator, 'minted': minted,
+            'remaining_mint_supply': remaining_supply,
             'revealed': next_ordinal-1, 'unfinished_draws': pending, 'oldest_unfinished': oldest,
             'mint_paused': mint_paused,
-            'new_minting_stopped': mint_paused or not lifecycle['new_economic_work_available_by_lifecycle'],
+            'new_minting_stopped': remaining_supply == 0 or mint_paused or not lifecycle['new_economic_work_available_by_lifecycle'],
+            'new_minting_stopped_by_supply': remaining_supply == 0,
             'new_minting_stopped_by_lifecycle': not lifecycle['new_economic_work_available_by_lifecycle'],
             'collection_replacement_reveal_condition_met': pending == 0,
             'other_handoff_requirements_verified': False,

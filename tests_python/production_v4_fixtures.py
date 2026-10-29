@@ -61,6 +61,7 @@ def fixture():
         chain['services'][role]['profile']=profile;chain['services'][role]['evidence']['profile']=profile
     chain['services']['opensea']['integration']=dict(requested_product='opensea_seadrop_v1',implementation_profile=V.MINT_IMPLEMENTATION_PROFILE)
     refresh_bindings(cfg)
+    reservation(cfg)
     return cfg
 
 
@@ -72,6 +73,16 @@ def refresh_bindings(cfg):
             if group=='helpers':chain[group][role]['bindings']=copy.deepcopy(values)
     chain['observed_modules']={role:record['address'] for role,record in chain['modules'].items() if role!='access'}
     chain['observed_modules'].update({role:P.ZERO for role in V.RETIRED_MODULES})
+
+
+def reservation(cfg,bucket=0):
+    chain=cfg['chains'][0];origin=chain['canonical_handoff'];pool=chain['contribution_pool']
+    canonical=int(V.identity([(origin['origin_chain_id'],'uint256'),(origin['origin_vault'],'address'),(pool,'bytes32')]),16)
+    rows=chain['holder_exit']['observed']['buckets']
+    chain['contribution_reservation']=dict(pool_id=pool,bucket_id=bucket,alias_bucket_id=bucket,
+        canonical_bucket_id=canonical,target_registered=any(b['id']==(bucket or canonical) for b in rows),
+        bucket_count=len(rows),maximum_buckets=4)
+    return cfg
 
 
 def physical_position(pool,ticks):
@@ -102,7 +113,7 @@ def exited(cfg,phase=3,count=2):
     chain['rebalance_confirmation']['observed']['buckets']=[dict(id=7,condition_side=0,condition_identity=P.ZERO_HASH,manual=False,
         stored_identity=P.ZERO_HASH,first_seen=0,last_seen=0,stored_side=0,ready=False,raw_needed=False,range_pending=None,
         physical_side=None,reference_side=None)]
-    return cfg
+    return reservation(cfg,7)
 
 
 def active(cfg):
@@ -117,7 +128,7 @@ def active(cfg):
     chain['rebalance_confirmation']['observed']['buckets']=[dict(id=7,condition_side=2,condition_identity=old.HASH,
         manual=False,stored_identity=old.HASH,first_seen=NOW-900,last_seen=NOW-1,stored_side=2,ready=True,raw_needed=True,range_pending=False,
         physical_side=2,reference_side=2)]
-    return cfg
+    return reservation(cfg,7)
 
 
 class RPC(CompositionRPC):
@@ -136,6 +147,14 @@ class RPC(CompositionRPC):
             if (target,data) in self.overrides:return super().call(method,params)
             if self.bad is not None and self.bad(target,data):return super().call(method,params)
             result=None
+            reservation=c['contribution_reservation']
+            if target==m['vault']['address']:
+                if data==selector('poolBucket(bytes32)')+O._word(c['contribution_pool']):result=encoded(reservation['bucket_id'])
+                if data[:10]==selector('registeredBucket(uint256)'):
+                    result=encoded(int(any(b['id']==int(data[10:],16) for b in e['buckets'])))
+            if target==m['vault_canonical']['address']:
+                if data==selector('bucketIdentity(bytes32)')+O._word(c['contribution_pool']):result=encoded(reservation['canonical_bucket_id'])
+                if data==selector('aliasBucket(bytes32)')+O._word(c['contribution_pool']):result=encoded(reservation['alias_bucket_id'])
             if target==m['access']['address']:
                 if data==selector('lpExitStarted()'):result=encoded(int(e['lp_exit_started']))
                 if data==selector('paused()'):result=encoded(int(e['paused']))

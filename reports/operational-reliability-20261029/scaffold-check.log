@@ -1,0 +1,7 @@
+test_checked_in_fresh_scaffold_remains_unconfigured_and_blocked (tests_python.test_production_v4.CurrentProductionTests.test_checked_in_fresh_scaffold_remains_unconfigured_and_blocked) ... ok
+test_current_observer_composes_into_offline_gate_without_adopting_approval (tests_python.test_production_v4.CurrentProductionTests.test_current_observer_composes_into_offline_gate_without_adopting_approval) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.960s
+
+OK

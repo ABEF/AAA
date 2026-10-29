@@ -1025,7 +1025,8 @@
           "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b": 3600
         },
         "observed_compound_intervals": null
-      }
+      },
+      "contribution_reservation": null
     }
   ],
   "pricing_version": 2,

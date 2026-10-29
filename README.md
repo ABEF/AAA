@@ -57,11 +57,13 @@ expands governance trust: disabled financial floors can permit near-total loss.
 [Review/evidence](reports/independent-rebalance-20261029/VERIFICATION.md) is local,
 not production approval or a completed whole-project audit.
 
-The [whole-project execution](reports/whole-project-execution-20261029/REVIEW.md) now completes the
-handwritten-body source pass, repairs keeper scheduling/backend/evidence/artwork
-tooling, explains122missing outputs and corrects local reference metadata.
-[Coverage](reports/whole-project-execution-20261029/COVERAGE.md) distinguishes static review, focused checks
-and actual operating qualification. No public signing/deployment/site rollout.
+The [whole-project source pass](reports/whole-project-execution-20261029/REVIEW.md) and
+[operational code follow-up](reports/operational-reliability-20261029/REVIEW.md) cover keeper
+recovery, confirmed history, inventory/readiness consistency and verification
+tooling. [Current verification](reports/operational-reliability-20261029/VERIFICATION.md)
+separates 221 affected passing methods from unchanged Solidity/build reuse.
+Static coverage and source publication do not qualify actual operation or deploy
+services/sites. No public signing or deployment is enabled.
 
 ## Project navigation
 

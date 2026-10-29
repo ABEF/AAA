@@ -20,8 +20,8 @@ output annotations are now explained. Production Solidity/economics unchanged
 from the previously saved confirmation2/emergency1 candidate. Two new composed
 EVM methods cover meaningful emergency-mask success and callback rollback.
 
-Website baseline e5bb2163 receives only local preview/generator/reference JSON
-corrections: fixed rarity1/2/3 even dormant, eligibility still begins at activation.
+The previous website source campaign (published separately at cae44a1d) made
+preview/generator/reference JSON corrections: fixed rarity1/2/3 even dormant, eligibility still begins at activation.
 All2784SVGs/manifest/signer/null configs and72historical metadata stay unchanged.
 No build/site/service/Anvil/public transaction/deployment or heartbeat change.
 Current4 wallet integration and all external qualification remain open.
@@ -40,6 +40,18 @@ Current compound can swap during cooldown but yields to raw need afterward;
 idle capability is not an enabled worker trigger. Preserve incumbent/entrant
 separation, all financial domains and emergency retained-check semantics. No
 source/setting/service change or fresh test result follows from this design.
+
+The [operational reliability follow-up](../reports/operational-reliability-20261029/REVIEW.md) fixes
+indexer final depth/transaction-boundary/time consistency; keeper head/receipt
+chronology and strict object JSON; sold-out mint reporting; current schema6
+reservation evidence; and canonical test selection/normal-profile/evidence safety.
+No Solidity/economic/timing policy or installed service/site/Anvil/signer changed.
+Require fresh reservation observations and matching source rollout; never rewrite
+journals or populate guessed fields. Verification: 221 distinct affected passes are
+source-scoped, not a fresh full suite/CI/live qualification. Python inventories
+execute no tests; full verifier creates new evidence directories and rejects altered
+normal filters/settings. Keep proposed early confirmation/compound/coalescing/
+unified-report work separate.
 
 ## Current improvement work
 

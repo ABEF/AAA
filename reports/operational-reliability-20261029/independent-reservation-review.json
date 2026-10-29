@@ -1,0 +1,10 @@
+{
+  "reviewer": "/root/normal_financial_guards",
+  "mode": "read-only manual/static review, no test execution",
+  "initial_findings": [
+    "Nested partial reservation status could contradict selected physical custody failure already reported by full gate",
+    "Missing/nonboolean lifecycle context could infer ordinary operation or classify missing as a canonical transition"
+  ],
+  "final_review": "Reviewer reread revised lines and new controls; selected-row scope, exact flags, moved alias, canonical capacity and partial-import/preparation branches sound; no further source-compatibility issue found",
+  "reviewed_sha256": "a7c06ee9d22f706008f53731d135bdce0308fa81697387c9526a5d4c1aef0e1b"
+}

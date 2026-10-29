@@ -241,6 +241,24 @@ review limits. The [internal audit and scoped checks](../reports/preproduction-a
 do not upgrade any running service or journal. Stage this procedure on Linux and
 the actual chain fee model before production.
 
+## Contradictory checkpoint or malformed management inputs
+
+The worker rejects a latest head older in time than its confirmed checkpoint,
+and a successor receipt older in height/time than the prior nonce anchor.
+At the same height, its hash and timestamp must exactly match the saved anchor;
+valid same-block receipts remain accepted. On rejection preserve the pending
+intent, signed transaction hash, nonce/spend review and original files. Compare
+reviewed providers and canonical headers/receipts, wait for catch-up or follow
+manual reconciliation; do not reset a journal/anchor to force health green.
+Normal source publication does not deploy a running worker/checker.
+
+Health/config/snapshot inputs now use the same strict JSON reader as journals
+and require top-level objects. Duplicate keys, nonfinite values and arrays/scalars
+are rejected with safe diagnostics. Missing inputs remain missing; no fallback
+healthy snapshot is invented and no file is rewritten. Snapshot checksum
+consistency does not authenticate an attacker who can replace protected files.
+[Review/evidence](../reports/operational-reliability-20261029/KEEPER.md).
+
 ## Move to a new host
 
 1. Stop the old signer and prevent simultaneous operation. File locking only protects one host. If key confidentiality is uncertain, revoke the old keeper and authorize a fresh signer through the reviewed immediate governance process.

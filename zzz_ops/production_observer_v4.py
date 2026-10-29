@@ -145,6 +145,19 @@ class Observer(O.Observer):
             return observed
         self.chain['holder_exit']['observed']=self.attempt('holder_exit','holder_exit.unavailable',capture)
 
+    def contribution_reservation(self):
+        def capture():
+            m=self.chain['modules'];vault=m['vault']['address'];canonical=m['vault_canonical']['address']
+            pool=self.chain['contribution_pool']
+            def uint(target,method,*args):return int(self.read(target,method,*args)[0],16)
+            bucket=uint(vault,'poolBucket(bytes32)',pool)
+            canonical_bucket=uint(canonical,'bucketIdentity(bytes32)',pool)
+            return dict(pool_id=pool,bucket_id=bucket,canonical_bucket_id=canonical_bucket,
+                alias_bucket_id=uint(canonical,'aliasBucket(bytes32)',pool),
+                target_registered=O._decode(self.read(vault,'registeredBucket(uint256)',bucket or canonical_bucket)[0],False),
+                bucket_count=uint(vault,'bucketCount()'),maximum_buckets=uint(vault,'MAX_BUCKETS()'))
+        self.chain['contribution_reservation']=self.attempt('contribution_reservation','reservation.unavailable',capture)
+
     def confirmation(self):
         target=self.chain['helpers']['rebalance_confirmation']['address'];strategy=self.chain['modules']['strategy']['address']
         def capture():
@@ -191,7 +204,7 @@ def observe(config,rpc):
     observer=Observer(rpc,chain);chain_id,genesis=observer.anchor()
     observer.records(P.expected_bindings(chain));observer.dependencies();observer.tokens();observer.sequencer()
     observer.governance();observer.pools();observer.sources();observer.ledgers();observer.nft()
-    observer.wrappers();observer.routes();observer.maintenance();observer.execution();observer.holder_exit();observer.confirmation();observer.finish()
+    observer.wrappers();observer.routes();observer.maintenance();observer.execution();observer.holder_exit();observer.contribution_reservation();observer.confirmation();observer.finish()
     chain['observation']=dict(chain_id=chain_id,genesis_hash=genesis,block_number=observer.start['number'],
         block_hash=observer.start['hash'],observed_head=observer.head['number'],complete=not observer.errors,errors=observer.errors)
     return output

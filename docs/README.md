@@ -16,6 +16,11 @@ all service clocks, compound asymmetry, harvest coordination and proposed
 non-signing diagnostics. It records design choices; no new timer/planner or
 financial policy is implemented by this assessment.
 
+[Operational reliability code follow-up](../reports/operational-reliability-20261029/REVIEW.md) fixes
+confirmed history/checkpoints/management/readiness/preflight/tooling defects;
+[verification](../reports/operational-reliability-20261029/VERIFICATION.md) separates focused passes,
+local metadata checks and unchanged Solidity/build reuse.
+
 ## 1. Smart contracts
 
 | Topic | Current guide |

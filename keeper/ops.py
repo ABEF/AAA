@@ -16,6 +16,17 @@ import time
 
 from keeper.monitor import Keeper, error_context, positive, rpc_quantity
 from keeper.health import execution_reasons, observe_confirmation_health, summary as health_summary
+from zzz_ops.state import read_json
+
+
+def _read_required_json(path):
+    # Preserve missing-file behavior while sharing the journal's strict parser.
+    # Ambiguous diagnostics/backups must not pass by selecting a final duplicate.
+    missing = object()
+    value = read_json(path,missing)
+    if value is missing: raise FileNotFoundError('Required keeper JSON input is missing')
+    if not isinstance(value,dict): raise ValueError('Keeper JSON input must be an object')
+    return value
 
 
 def digest(value):
@@ -33,7 +44,7 @@ def timestamp(value):
 def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
     positive(max_age,'max_age')
     path = Path(config.get('health_path',str(Path(config.get('state_path','var/keeper.json')).with_suffix('.health.json'))))
-    data = json.loads(path.read_text(encoding='utf-8'))
+    data = _read_required_json(path)
     now = time.time() if now is None else now
     age = now-timestamp(data.get('time'))
     reasons = []
@@ -156,7 +167,7 @@ def create_snapshot(config, output):
 
 def verify_snapshot(config, path, *, max_age=3600, now=None):
     positive(max_age,'max_age')
-    data = json.loads(Path(path).read_text(encoding='utf-8'))
+    data = _read_required_json(path)
     payload = data['payload']
     if payload.get('schema') != 1 or digest(payload) != data.get('sha256'): raise ValueError('Snapshot integrity mismatch')
     state = payload['state']
@@ -183,7 +194,7 @@ def main():
     verify.add_argument('--max-age',type=int,default=3600)
     args = parser.parse_args()
     try:
-        config = json.loads(Path(args.config).read_text(encoding='utf-8'))
+        config = _read_required_json(args.config)
         if args.command == 'health': report = health_check(config,max_age=args.max_age,allow_dry_run=args.allow_dry_run)
         elif args.command == 'preflight': report = preflight(config)
         elif args.command == 'snapshot': report = create_snapshot(config,args.output)

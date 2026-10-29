@@ -378,13 +378,14 @@ class Keeper:
             if self.live and self.state.get('next_nonce') != 0:
                 raise RpcError('Missing confirmed checkpoint for a used signer')
             return
-        head,_ = self._head()
+        head,head_timestamp = self._head()
         block = positive(anchor['number'],'receipt checkpoint block',zero=True)
         header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
         if (head-block+1 < self.confirmations or not isinstance(header,dict) or
                 rpc_quantity(header.get('number'),'checkpoint header number') != block or
                 rpc_hash(header.get('hash'),'checkpoint header hash') != anchor['hash'] or
-                rpc_quantity(header.get('timestamp'),'checkpoint header timestamp') != anchor['timestamp']):
+                rpc_quantity(header.get('timestamp'),'checkpoint header timestamp') != anchor['timestamp'] or
+                head_timestamp < anchor['timestamp']):
             log('confirmed_checkpoint_invalidated',block_number=block)
             raise RpcError('Confirmed receipt checkpoint changed; manual reorg reconciliation required')
 
@@ -1205,6 +1206,16 @@ class Keeper:
             log('receipt_reorged',transaction=tx_hash); return True
         timestamp = rpc_quantity(header.get('timestamp'),'receipt header timestamp',minimum=1)
         if timestamp > head_timestamp: raise RpcError('Receipt block timestamp exceeds the head')
+        anchor = self.state.get('receipt_anchor')
+        if anchor is not None and (block < anchor['number'] or timestamp < anchor['timestamp']):
+            # This intent's nonce immediately follows the saved receipt. It may
+            # share that block, but cannot predate its canonical height/time.
+            raise RpcError('Successor receipt precedes the confirmed checkpoint')
+        if anchor is not None and block == anchor['number'] and (
+                block_hash != anchor['hash'] or timestamp != anchor['timestamp']):
+            # Entry validation may precede an RPC failover/reorg. A successor in
+            # the saved block must still have that exact canonical identity.
+            raise RpcError('Successor receipt contradicts the confirmed checkpoint')
         try: day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
         except (ValueError,OverflowError,OSError) as exc: raise RpcError('Invalid receipt inclusion date') from exc
         transaction = self.rpc.call('eth_getTransactionByHash',[tx_hash])

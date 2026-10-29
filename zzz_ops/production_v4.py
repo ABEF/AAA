@@ -22,7 +22,7 @@ VERSIONS = dict(schema_version=6, accounting_version=4, governance_version=2,
     compound_capability_version=3, lp_routing_version=1, execution_quality_version=1,
     mint_integration_version=1,rebalance_confirmation_version=2,emergency_rebalance_version=1)
 TOP_FIELDS = set(V.TOP_FIELDS) | set(VERSIONS) | {'canonical_schema'}
-CHAIN_FIELDS = (set(V.CHAIN_FIELDS)-{'custody'}) | {'holder_exit','lp_execution','maintenance','rebalance_confirmation'}
+CHAIN_FIELDS = (set(V.CHAIN_FIELDS)-{'custody'}) | {'holder_exit','lp_execution','maintenance','rebalance_confirmation','contribution_reservation'}
 EVIDENCE = tuple(name for name in V.EVIDENCE if name != 'custody_handoff') + ('holder_return',)
 SERVICE_PROFILES = dict(rpc='eip1898_hash_pinned_debug_trace',pricing='independent_dual_usd_v2',
     randomness='verified_coordinator_two_words',keeper='accounting4_upkeep2_compound3_lp1_quality1_confirmation2',
@@ -225,6 +225,79 @@ def _pools(g,chain,path,tokens,deps):
     g.check(V._equal(maintenance.get('observed_compound_intervals'),intervals),path+'.maintenance','compound.observation',
         'Read Budget3 compoundInterval for each pool at the same block.','bindings')
     return pools
+
+
+def _contribution_reservation(g,chain,path):
+    """First-activation capacity and current alias custody, never a swap approval."""
+    def status(available,reason):
+        return dict(available_by_reservation=available,reason=reason,
+            scope='Reservation, capacity and current custody only; prices, routes, owner inputs and execution are not qualified by this status.')
+    rp=path+'.contribution_reservation';before=len(g.issues)
+    r=g.obj(chain.get('contribution_reservation'),rp)
+    g.keys(r,{'pool_id','bucket_id','alias_bucket_id','canonical_bucket_id','target_registered','bucket_count','maximum_buckets'},rp)
+    pool=g.hex(r.get('pool_id'),rp+'.pool_id')
+    bucket=g.num(r.get('bucket_id'),rp+'.bucket_id')
+    alias=g.num(r.get('alias_bucket_id'),rp+'.alias_bucket_id')
+    canonical=g.num(r.get('canonical_bucket_id'),rp+'.canonical_bucket_id',1)
+    count=g.num(r.get('bucket_count'),rp+'.bucket_count',0,4)
+    maximum=g.num(r.get('maximum_buckets'),rp+'.maximum_buckets',4,4)
+    g.check(all(type(r.get(k)) is int for k in ('bucket_id','alias_bucket_id','canonical_bucket_id','bucket_count','maximum_buckets')),
+        rp,'reservation.integer','Read exact unsigned reservation quantities; do not infer missing fields.')
+    g.check(type(r.get('target_registered')) is bool,rp+'.target_registered','reservation.boolean','Read actual registeredBucket for the effective target.')
+    g.check(pool==chain.get('contribution_pool'),rp+'.pool_id','reservation.pool','Observe the actual selected contribution pool.')
+    life=V._obj(chain.get('canonical_handoff'));holder=V._obj(V._obj(chain.get('holder_exit')).get('observed'))
+    rows=holder.get('buckets')
+    g.check(isinstance(rows,list) and count==len(rows),rp+'.bucket_count','reservation.inventory','Match actual bucketCount to the complete registered-bucket inventory.')
+    if len(g.issues)!=before:return status(False,'unavailable')
+    expected=int(V.identity([(life['origin_chain_id'],'uint256'),(life['origin_vault'],'address'),(pool,'bytes32')]),16)
+    g.check(canonical==expected,rp+'.canonical_bucket_id','reservation.canonical_identity','Bind bucketIdentity to the verified original chain, Vault and pool.')
+    g.check(bucket==alias,rp,'reservation.alias','Vault poolBucket and canonical aliasBucket must agree.')
+    target=bucket or canonical
+    row=next((b for b in rows if isinstance(b,dict) and b.get('id')==target),None)
+    registered=r['target_registered']
+    g.check(registered==(row is not None) and (bucket==0 or registered),rp,'reservation.registration',
+        'Match actual target registration to the complete inventory; a reserved alias must be registered.')
+    if len(g.issues)!=before:
+        return status(False,'inventory_unavailable' if registered and row is None else 'invalid_reservation')
+    # Partial imports, preparation, pause and terminal settlement are observable
+    # lifecycle stops. They do not prove an empty/moved alias is corrupt.
+    if (type(life.get('state')) is not int or not 0<=life['state']<=4 or
+            any(type(life.get(key)) is not bool for key in ('preparation_active','settling')) or
+            any(type(holder.get(key)) is not bool for key in ('paused','lp_exit_started'))):
+        return status(False,'unavailable')
+    if holder.get('lp_exit_started') is True:return status(False,'terminal_exit')
+    if life.get('state')!=0 or life.get('preparation_active') is not False or life.get('settling') is not False:
+        return status(False,'canonical_transition')
+    if holder.get('paused') is True:return status(False,'paused')
+    target_paths=[path+'.holder_exit.buckets['+str(index)+']' for index,b in enumerate(rows)
+        if isinstance(b,dict) and b.get('id')==target]
+    if any(issue['path']==prefix or issue['path'].startswith(prefix+'.')
+            for issue in g.issues[:before] for prefix in target_paths):
+        # Reuse the full custody/physical validation already performed above.
+        # Another bucket's fault must not be attributed to this selected alias.
+        return status(False,'custody_unavailable')
+    position=[0]*8 if row is None else row.get('position')
+    if not g.check(isinstance(position,list) and len(position)==8 and all(type(v) is int and 0<=v<2**256 for v in position),
+            rp,'reservation.position','Use the exact current eight-word custody row for the effective target.'):
+        return status(False,'unavailable')
+    state=position[7]
+    if state==0:
+        g.check(not any(position),rp,'reservation.empty_position','An uninitialized target must contain no prior principal or custody metadata.')
+        if not g.check(bucket in (0,canonical),rp,'reservation.initial_identity',
+                'First activation requires an unreserved pool or its canonical bucket; an arbitrary permanent reservation cannot initialize it.'):
+            return status(False,'initial_identity_mismatch')
+        if not g.check(registered or count<maximum,rp,'reservation.capacity',
+                'An unreserved first activation needs an existing canonical slot or actual free bounded capacity.'):
+            return status(False,'capacity_exhausted')
+        return status(len(g.issues)==before,'initial_canonical' if bucket else 'unreserved_capacity')
+    if not g.check(bucket!=0 and position[0]==int(pool,16),rp,'reservation.current_pool',
+            'An initialized selected alias must retain its actual current pool; moved buckets may keep their original bucket identity.'):
+        return status(False,'current_pool_mismatch')
+    if state==4:return status(False,'parked')
+    if state==5:return status(False,'exited')
+    if not g.check(state==1,rp,'reservation.custody','Only active current-pool custody accepts new contributions.'):
+        return status(False,'unsupported_custody')
+    return status(True,'active_current_pool')
 
 
 def _execution(g,chain,path,pools):
@@ -507,7 +580,7 @@ def validate(config, *, expected_commit=None, now=None):
     limit=g.num(gas.get('reviewed_block_gas_limit'),'evidence.gas_benchmarks.reviewed_block_gas_limit',1)
     g.check(gas.get('chain_id')==home and used is not None and limit is not None and used<limit and gas.get('complete_operating_rehearsal') is True,
         'evidence.gas_benchmarks','gas.qualification','Qualify actual current release gas, depth, batches and operation settings.','security')
-    chains=g.items(cfg.get('chains'),'chains',1,1)
+    chains=g.items(cfg.get('chains'),'chains',1,1);reservation_status=None
     for index,item in enumerate(chains):
         chain=g.obj(item,f'chains[{index}]');path=f'chains[{index}]'
         g.check(set(chain)-{'_notes'}==CHAIN_FIELDS,path,'schema.keys','Use exact current chain fields; external custody is removed.')
@@ -524,6 +597,7 @@ def validate(config, *, expected_commit=None, now=None):
         _safe(g,path+'.routes',lambda:V._routes(g,chain,path,tokens,deps,pools,limits,1))
         _safe(g,path+'.execution',lambda:_execution(g,chain,path,pools))
         _safe(g,path+'.holder_exit',lambda:_holder_exit(g,chain,path))
+        reservation_status=_safe(g,path+'.contribution_reservation',lambda:_contribution_reservation(g,chain,path))
         _safe(g,path+'.rebalance_confirmation',lambda:_confirmation(g,chain,path))
         _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens))
         _safe(g,path+'.mint',lambda:V._mint_integration(g,chain,path))
@@ -535,6 +609,7 @@ def validate(config, *, expected_commit=None, now=None):
     return dict(schema_version=6,status='blocked',ready=False,deployment_authorized=False,current_release_gate=True,
         inventory_profile_supported=True,production_qualification_supported=False,release_commit=g.commit,
         inventory_consistent=not any(i['code']!='mint.opensea_unsupported' for i in g.issues),issues=g.issues,blockers=groups,
+        contribution_reservation_status=reservation_status,
         opensea_primary_mint_supported=False,primary_mint_implementation=V.MINT_IMPLEMENTATION_PROFILE,
         protocol_bridge_enabled=False,external_custody_exit_supported=False,collective_holder_return_supported=True,
         limitations=['Read observations and offline consistency cannot authenticate providers, evidence or independent review.',

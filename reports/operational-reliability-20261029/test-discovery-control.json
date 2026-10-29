@@ -1,0 +1,16 @@
+{
+  "test_bodies_executed": 0,
+  "legacy_selected": [
+    "tests_python.test_full_fixture.Own.test_local",
+    "tests_python.test_full_fixture.Child.test_foreign",
+    "tests_python.test_other.Foreign.test_foreign",
+    "tests_python.test_full_fixture.Own.test_local"
+  ],
+  "legacy_count": 4,
+  "strict_selected": [
+    "tests_python.test_full_fixture.Own.test_local",
+    "tests_python.test_full_fixture.Child.test_foreign"
+  ],
+  "strict_count": 2,
+  "imported_and_alias_repeat_are_not_extra_coverage": true
+}

@@ -145,6 +145,18 @@ idle capability is not an enabled worker trigger. Preserve incumbent/entrant
 separation, all financial domains and emergency retained-check semantics. No
 source/setting/service change or fresh test result follows from this design.
 
+The [operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md) fixes
+indexer final depth/transaction-boundary/time consistency; keeper head/receipt
+chronology and strict object JSON; sold-out mint reporting; current schema6
+reservation evidence; and canonical test selection/normal-profile/evidence safety.
+No Solidity/economic/timing policy or installed service/site/Anvil/signer changed.
+Require fresh reservation observations and matching source rollout; never rewrite
+journals or populate guessed fields. Verification: 221 distinct affected passes are
+source-scoped, not a fresh full suite/CI/live qualification. Python inventories
+execute no tests; full verifier creates new evidence directories and rejects altered
+normal filters/settings. Keep proposed early confirmation/compound/coalescing/
+unified-report work separate.
+
 ## Verification and documentation workflow
 
 - [Whole-project review](reports/whole-project-audit-20261029/REVIEW.md) fixes

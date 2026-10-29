@@ -1,5 +1,11 @@
 # Release approval record - NOT APPROVED
 
+[Operational follow-up](../reports/operational-reliability-20261029/VERIFICATION.md) supplies source-scoped
+repair evidence, not release approval. Require newly observed schema 6 reservation
+fields, exact current API/worker/checker rollout and fresh normal-profile evidence
+from an exclusive verification directory. Old root logs, inventory counts and
+metadata-only Forge checks do not establish a complete current CI pass.
+
 Current [whole-project execution](../reports/whole-project-execution-20261029/REVIEW.md) completes the internal
 source/body review and implements keeper deadline priority, strict durable/log
 provenance, final-depth/fee/pool observation and artifact-tooling repairs.

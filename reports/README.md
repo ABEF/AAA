@@ -1,5 +1,10 @@
 # Verification evidence
 
+[Operational reliability follow-up](operational-reliability-20261029/REVIEW.md)
+implements confirmed code repairs after the normal-operation design review.
+Its scoped source pins/results do not replace historical reports or independent
+production qualification.
+
 [Independent rebalance/manual emergency review,2026-10-29](independent-rebalance-20261029/REVIEW.md):
 confirmation2 requires physical/reference same-side exit and prevents automatic
 widths from adopting the manual exception. Separate paused-governance emergency1

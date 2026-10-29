@@ -1,0 +1,1130 @@
+{
+  "scope": "deduplicated affected campaigns, not one fresh whole-suite or operating acceptance",
+  "distinct_methods": 221,
+  "passed": 221,
+  "skipped": 0,
+  "methods": {
+    "tests_python.test_indexer.IndexerTests.test_ancestor_must_remain_stable_until_rollback": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_burn_removes_current_owner": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_changed_contracts_rejected": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_changed_genesis_is_not_treated_as_an_empty_history": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_confirmed_only": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_decimal_string_configuration_remains_supported": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_duplicate_log_atomic_failure": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_empty_blocks_preserved": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_exact_configured_reorg_depth_still_recovers": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_full_bounded_reorg_requires_the_original_start_anchor": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_inconsistent_remote_ancestry_preserves_history": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_integer_configuration_rejects_floats_and_booleans": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_multiple_collections_do_not_mix": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_poll_interval_must_be_positive": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_reconciliation_read_cost_is_bounded_and_idle_path_unchanged": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_reduce_rpc_range": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_removed_log_rejected": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_reorg_bound_fails_closed": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_reorg_rolls_back_owner": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_repeat_no_duplicates": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_resume_database": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_same_hash_inconsistent_metadata_does_not_authorize_rollback": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_unrequested_contract_rejected": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_wrong_log_block_no_commit": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer.IndexerTests.test_wrong_parent_no_commit": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_head_safety.IndexerHeadSafetyTests.test_canonical_zero_and_confirmed_head_keep_existing_ingestion_semantics": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_head_safety.IndexerHeadSafetyTests.test_malformed_head_never_silently_succeeds_or_ingests_new_history": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_log_identity_cannot_be_reused_with_another_transaction": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_one_transaction_cannot_appear_in_two_blocks_of_one_batch": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_oversized_unknown_raw_log_cannot_poison_history": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_transaction_cannot_move_across_previously_stored_blocks": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_wellformed_unknown_anonymous_and_multilog_events_remain_available": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_equal_timestamps_within_chunk_and_at_retained_boundary_are_valid": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_growing_final_head_preserves_original_chunk_and_excludes_pending_logs": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_lower_final_head_still_accepts_a_sufficiently_deep_small_chunk": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_malformed_final_head_cannot_commit_prepared_logs": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_new_chunk_timestamp_cannot_regress_below_retained_predecessor": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_regressing_timestamp_inside_chunk_preserves_all_history": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_retained_tip_without_required_descendants_cannot_advance_cursor": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_same_cursor_after_other_writer_reorg_cannot_attach_to_old_parent": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_unchanged_predecessor_accepts_normal_resume": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_indexer_commit_guards.IndexerCommitGuardsTests.test_unindexed_parent_time_is_not_invented_or_fetched": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "indexer-timestamp-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_bad_inventory_and_provenance_fail_closed": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_empty_and_fully_revealed_inventory_only_satisfy_reveal_condition": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_fulfilled_request_still_requires_ordered_finalization": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_hash_reorg_or_unsupported_pinning_never_returns_readiness": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_independent_mint_pause_does_not_report_all_economic_work_stopped": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_malformed_mint_control_is_not_assumed_open": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_pending_request_is_not_reveal_or_provider_approval": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_preparation_stops_new_work_but_keeps_pending_status_visible": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_readiness.MintReadinessTests.test_readiness_http_route_returns_observation_or_sanitized_failure": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_supply_readiness.MintSupplyReadinessTests.test_http_serves_sold_out_paused_observation_and_rejects_inconsistent_supply": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_supply_readiness.MintSupplyReadinessTests.test_sold_out_collection_stops_new_mints_while_unfinished_draw_remains_visible": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_supply_readiness.MintSupplyReadinessTests.test_sold_out_fully_revealed_inventory_remains_readable": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_mint_supply_readiness.MintSupplyReadinessTests.test_supply_boundary_is_exact_and_independent_of_pause_and_lifecycle": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_frontend_transactions.FrontendTransactionTests.test_mint_cap_price_and_max_supply_checked_before_simulation": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "mint-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_alias_registration_identity_and_current_pool_cannot_contradict_inventory": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_first_activation_uses_exact_canonical_slot_or_real_remaining_capacity": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_initialized_local_move_and_authenticated_import_preserve_original_bucket": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_lifecycle_stops_do_not_label_valid_aliases_as_initial_identity_corruption": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_missing_observation_or_failed_getter_never_defaults_to_unreserved": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_missing_or_nonboolean_lifecycle_context_cannot_infer_operating": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_observer_reads_reservation_identities_and_registration_at_one_hash": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_selected_custody_faults_cannot_advertise_partial_reservation_availability": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_contribution_reservation.ContributionReservationTests.test_wrong_initial_reservation_is_observed_and_blocks_current_gate": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_actual_backing_can_exceed_liability_but_not_fall_below_it": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_cap_zero_and_ten_percent_do_not_change_total_loss_policy": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_checked_in_fresh_scaffold_remains_unconfigured_and_blocked": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_closing_phase_preserves_parked_principal_without_inventing_payouts": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_complete_synthetic_inventory_is_consistent_but_never_primary_mint_ready": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_child_is_separately_pinned_and_observed": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_pending_stale_side_and_policy_changes_never_become_ready": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_requires_an_explicit_gap_not_an_invented_default": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_unavailable_boolean_or_version_is_never_a_fallback": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_conserved_but_wrong_per_nft_allocations_are_rejected": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_current_observer_composes_into_offline_gate_without_adopting_approval": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_each_current_profile_is_explicit_and_bool_is_not_a_version": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_empty_catalog_reports_swaps_disabled_without_target_fallback": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_fabricated_qualified_opensea_service_cannot_add_missing_contract_interface": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_failed_quality_read_is_unavailable_and_sanitized": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_false_boolean_does_not_stand_in_for_zero_open_findings_or_lifecycle": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_governed_venue_ceiling_is_current_not_historical_two_percent": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_independent_market_disagreement_is_coherent_but_never_ready": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_live_lp_custody_is_verified_separately_from_nft_shares": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_malformed_inputs_return_blockers_not_zero_or_ready": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_manual_range_exception_retains_raw_eligibility": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_missing_holder_share_or_bucket_is_not_truncated": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_nested_exit_fields_cannot_add_a_retired_recipient_or_override_policy": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_no_retired_royalty_custody_or_timelock_getter_is_read": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_observer_checks_strategy_ready_and_manual_exception_at_same_hash": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_observer_work_bound_never_accepts_arbitrary_methods": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_old_schema_stays_explicit_historical_and_default_does_not_relabel": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_operating_raw_candidate_cannot_disappear_without_an_identity": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_paid_principal_is_not_repaid_and_remaining_is_exact": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_partial_allocation_prefix_is_conserved": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_paused_candidate_cannot_be_ready_but_can_retain_stored_history": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_paused_observer_does_not_require_the_manual_exception_dependency": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_phase_flag_cursor_and_share_boundary_contradictions_are_rejected": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_phase_three_payout_backing_and_current_owners_compose": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_position_precision_and_future_checkpoint_are_not_arbitrary_uint256": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_quality_revision_catalog_and_solver_observations_are_exact": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_raw_readiness_requires_active_cooled_operations_enabled_principal": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_reference_market_sides_cannot_replace_actual_physical_ticks": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_reference_relaxation_requires_nonzero_review": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_reorg_discards_observation_instead_of_publishing_mixed_state": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_snapshot_age_future_and_incomplete_observations_fail_closed": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_thousand_nft_allocation_checks_are_bounded_and_conserve_rounding": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_unknown_fields_and_removed_custody_cannot_enter_current_profile": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_wrong_runtime_parent_owner_and_forwarded_quality_are_not_approved": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_boundaries_preserve_lower_inclusive_upper_exclusive_and_downward_tick": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_exited_positions_cannot_retain_idle_principal": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_false_raw_candidate_cannot_hide_cooled_outside_lp": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_foreign_pool_key_cannot_qualify_with_valid_owner_liquidity_and_ticks": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_inside_lp_cannot_report_an_ordinary_outside_candidate": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_manual_exception_requires_a_real_recorded_centre_range_change": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_no_physical_ticks_are_invented_for_parked_or_dormant_principal": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_noncanonical_or_unaligned_physical_ticks_are_rejected": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_observer_reads_physical_ticks_and_pending_at_the_same_pinned_hash": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_old_schema6_observations_require_reobservation_without_defaults": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_opposite_condition_and_stored_side_cannot_relabel_physical_exit": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_packed_pool_prefix_and_subscriber_match_installed_layout": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_packed_position_ticks_must_equal_manager_ticks": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_paused_helper_keeps_raw_history_without_range_pending_dependency": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_physical_pool_key_requires_exact_canonical_static_abi": {
+      "result": "passed",
+      "scope": "backend",
+      "receipt": "reservation-challenge-final.json"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_custom_loader_is_not_silently_ignored": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_default_run_preserves_previous_reports_in_a_new_unique_file": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_duplicate_method_identity_fails_closed": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_empty_or_duplicate_module_selection_fails": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_explicit_output_cannot_overwrite_old_evidence_before_selection": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_imported_cases_and_aliases_do_not_execute_again": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_imported_only_module_is_not_successful_zero_tests": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_list_mode_never_runs_tests_and_does_not_create_pass_log": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_source_drift_cannot_report_success": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_python_runner_inventory.PythonRunnerInventoryTests.test_wrong_module_identity_or_import_failure_is_not_a_pass": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_cli_error_does_not_echo_provider_or_process_secrets": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_compiler_size_optimizer_ffi_overrides_are_rejected": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_config_secrets_are_not_in_the_review": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_known_safe_diagnostic_identifies_the_blocked_setting": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_profile_override_rejects_before_any_process": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_release_version_is_not_a_substring_match": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_reviewed_configuration_reads_only_version_and_config": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_test_filters_skip_and_lowered_fuzz_invariants_are_rejected": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_write_paths_and_remappings_cannot_redirect_normal_verification": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationProfileTests.test_wrong_forge_identity_is_not_a_toolchain_approval": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationWrapperTests.test_build_pipeline_failure_does_not_become_success": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationWrapperTests.test_changed_profile_cannot_continue_to_build": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationWrapperTests.test_existing_evidence_directory_is_not_reused": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationWrapperTests.test_profile_failure_stops_before_tests_build_or_evidence_directory": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_verification_profile.VerificationWrapperTests.test_success_uses_new_evidence_and_preserves_old_files": {
+      "result": "passed",
+      "scope": "tooling"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperCheckpointOrderTests.test_bad_checkpoint_clock_cannot_refresh_health_success": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperCheckpointOrderTests.test_higher_head_with_timestamp_before_checkpoint_is_rejected": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperCheckpointOrderTests.test_inspection_without_old_checkpoint_does_not_invent_one_before_recovery": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperCheckpointOrderTests.test_same_block_successor_remains_valid_with_equal_hash_and_timestamp": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperCheckpointOrderTests.test_same_height_successor_cannot_replace_the_confirmed_checkpoint_hash": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperCheckpointOrderTests.test_same_height_successor_cannot_replace_the_confirmed_checkpoint_timestamp": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperCheckpointOrderTests.test_successor_nonce_receipt_cannot_precede_the_confirmed_anchor_height": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperCheckpointOrderTests.test_successor_nonce_receipt_cannot_retreat_the_confirmed_anchor_timestamp": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_cli_ambiguous_config_fails_before_running_the_requested_check": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_conflicting_snapshot_pending_cannot_pass_last_key_wins_integrity": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_duplicate_health_counter_cannot_suppress_a_blocked_action": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_escaped_duplicate_health_field_is_also_rejected": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_missing_health_and_snapshot_still_raise_missing_file": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_nonobject_cli_configuration_is_rejected_before_check_dispatch": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_nonobject_health_input_has_a_fixed_shape_error_and_keeps_bytes": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_nonobject_snapshot_input_has_a_fixed_shape_error_and_keeps_bytes": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_unused_nonfinite_health_numbers_do_not_receive_a_healthy_result": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_operational_integrity.KeeperOpsJSONIntegrityTests.test_valid_health_and_snapshot_keep_the_existing_read_only_result": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_base_fee_above_signed_cap_is_rejected": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_budget_policy_change_does_not_reinterpret_pending": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_changed_gas_or_fee_review_keeps_pending": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_dynamic_fee_cap_binds_canonical_base_fee": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_dynamic_reported_price_is_not_actual_cost": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_final_canonical_base_fee_change_is_rejected": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_invalid_priority_or_unknown_type_is_rejected": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_legacy_pending_review_is_not_invented": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_legacy_price_must_match_signed_gas_price": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_original_fee_policy_survives_current_config_change": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_pending_cost_ceiling_cannot_be_malformed": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_reorg_during_last_read_preserves_fee_budget": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_revert_charges_gas_once_without_native_value": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_separate_l1_fee_cannot_exceed_captured_allowance": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_signed_chain_does_not_inherit_rpc_chain": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_submit_saves_fee_review_before_external_signer": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_typed_missing_chain_id_is_not_inferred": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_dry_run_requires_explicit_health_mode": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_first_pending_cycle_has_actionable_health_reasons": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_future_heartbeat_and_missing_counters_do_not_pass": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_healthy_requires_fresh_live_identity_and_success": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_missing_or_corrupt_health_never_looks_healthy": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_preflight_cannot_approve_wrong_native_accounting_abi": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_preflight_is_read_only_and_never_calls_signer": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_preflight_low_balance_or_revoked_role_cannot_pass": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_preflight_refuses_missing_state_nonce_drift_or_pending": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_preflight_unqualified_fee_or_review_cannot_pass": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_snapshot_corruption_age_configuration_and_identity": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_snapshot_is_exclusive_and_never_overwrites_state": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_ops.OpsTests.test_snapshot_preserves_pending_budget_and_omits_secrets": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_healthy_used_signer_checkpoint_preserves_window": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_historical_confirmation_zero_does_not_reset_or_probe_new_dependencies": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_no_pending_checkpoint_head_outage_resets_known_window": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_no_pending_checkpoint_header_outage_resets_known_window": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_no_pending_malformed_or_changed_checkpoint_resets_without_new_work": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_related_saved_pending_fault_is_deferred_not_a_global_reset": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_unrelated_saved_pending_fault_keeps_original_recovery_isolation": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_recovery.RecoveryTests.test_confirmed_checkpoint_reorg_blocks_all_work": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_recovery.RecoveryTests.test_pending_receipt_does_not_erase_a_reorged_prior_checkpoint": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_recovery.RecoveryTests.test_restore_keeps_pending_counters_and_cursor": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_recovery.RecoveryTests.test_nonce_drift_pending_unknown_or_low_balance_never_signs": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_metadata_keeper.MetadataKeeperTests.test_success_updates_baseline_only_after_matching_confirmed_receipt": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_metadata_keeper.MetadataKeeperTests.test_corrupt_receipt_snapshot_retains_pending_without_false_checkpoint": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_metadata_keeper.MetadataKeeperTests.test_failed_metadata_checkpoint_retains_baseline_pending_and_costs": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_metadata_keeper.MetadataKeeperTests.test_reorg_after_metadata_candidate_preserves_all_state": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_metadata_keeper.MetadataKeeperTests.test_confirmation_depth_lost_after_metadata_candidate_preserves_all_state": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_metadata_keeper.MetadataKeeperTests.test_disabling_feature_still_reconciles_existing_pending_snapshot": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_every_keeper_test_module_is_selected": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    },
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_real_selection_has_unique_defined_method_ids_without_execution": {
+      "result": "passed",
+      "scope": "keeper",
+      "receipt": "same-height-focused-final.json"
+    }
+  },
+  "backend_distinct": 129,
+  "keeper_distinct": 67,
+  "tooling_distinct": 25,
+  "new_methods": 66,
+  "runtime_solidity_unchanged": true,
+  "solidity_tests_rerun": 0,
+  "reused_closed_build_sources": 78,
+  "build_input_sha256": "db1bdeb885a5dcd62e77125faf4ac4dda58ede682487c6a5020eab2da11faf89",
+  "build_output_sha256": "0656f74ea416882f938843e10a4ea90fd81fdd4a6ffbc75be879f092e0802477",
+  "size_gates_sha256": "2056cc59caa1150de70b5a5343630759cc6e78eb3d3bd71d8cd06b31d1f0c2e5",
+  "reused_normal_size_gates": 39,
+  "current_source_sha256": {
+    "indexer/monitor.py": "05678b119440a56259bb9026ec5355ce311115d7e61e62f023f0e0f3515ec4e1",
+    "frontend_api/mint_readiness.py": "dfbf59ad94ba17af55f116f5f0a36186f95cb2868e7522711503f8e1af4027f7",
+    "zzz_ops/production_v4.py": "a7c06ee9d22f706008f53731d135bdce0308fa81697387c9526a5d4c1aef0e1b",
+    "zzz_ops/production_observer_v4.py": "f19f57a22b5a8b20d3bb9dc55feb066b6a8c0ada8c44ed66ba766622bfaa7cad",
+    "tests_python/production_v4_fixtures.py": "f7ea7f107855fecef7dab9ece7f4edbaef4c2514da9da1d96504771856e554a9",
+    "tests_python/test_indexer_commit_guards.py": "7251d52ee8232647e76723f24bb61c61409a4850ef144fea080e17cf92e2ae20",
+    "tests_python/test_mint_supply_readiness.py": "edac04a14166ef1e8d3b8d3a9e7d7317736f268c58c17dbe1bb07d1d7927c5d8",
+    "tests_python/test_contribution_reservation.py": "3e64c9d6b5b7b788f05157e31522655de0576af782d700f1b05a4ec03e9ced6d",
+    "tests_python/test_production_physical_confirmation.py": "ee82f48334777ac8515b9d8cd91676baf325d768a907899cb3b1c6f4b292882e",
+    "keeper/monitor.py": "9240a3ad59cfa7b36546b1fefba70e79a1c4a2680684ada803176db8000e4f0d",
+    "keeper/ops.py": "6ed06246d9dbe4d4b3bf8db4030e3ad72e5fd16ec0cdb659bd824f1a2cca0734",
+    "tests_python/test_keeper_operational_integrity.py": "ef0715e8ab2bd78952c6619a52933239a9619ed6d8a27efd43a30e690e9d03cc",
+    "scripts/run-keeper-tests.py": "d6b8ab929702421ef27da166cea26e84557ef94ef60263ca7c05e7354c9724e8",
+    "scripts/run_python_tests.py": "5d389c5df19771bbd6db25c9a6b57dbc600a66303d7da106bc94c4c401bc6bc7",
+    "scripts/verify-normal-profile.py": "4f5c179b2b95061a60c9e4fc5aff8ca69de6344cd9fbe77b0f2e36aae9d64053",
+    "scripts/verify.sh": "d696fd01d5512c575b394e8c62c67d1c93aa707a8da7cc2d71af743c748181d4",
+    "tests_python/test_python_runner_inventory.py": "7b8c0a7396a62cbac09d084fa85cba00f913b78c3961caba5840486d08051741",
+    "tests_python/test_verification_profile.py": "c96223a0fdfc026ac851c21ca80f6b12b2d995c3ac0023b5bf5ed17bc8f92f59",
+    "scripts/run-current-pool-fork.py": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923"
+  },
+  "original_four_preserved": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "existing_tracked_report_files_preserved": 2289,
+  "full_suite_or_live_fork_executed": false,
+  "service_or_website_or_anvil_changed": false,
+  "production_approved": false
+}

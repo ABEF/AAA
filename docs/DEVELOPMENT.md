@@ -20,8 +20,39 @@ python3 scripts/generate-function-reference.py --check
 python3 scripts/sync-project-todo.py --check
 ```
 
-The full verifier runs Python/source checks, normal build/size gates and offline
-Solidity tests. During development run the useful affected suites; preserve
+The full verifier first inspects the actual local Forge/default compiler profile,
+normal size/optimizer settings, remappings, filesystem permissions and unfiltered
+test/fuzz/invariant selection. It then runs Python/source checks, normal build/
+size gates and offline Solidity tests. Source/tool settings are rechecked at
+phase boundaries; this does not authenticate a compromised tool or host.
+
+Each invocation creates an exclusive `reports/verification.XXXXXXXX` directory
+and prints its path on completion. Optional `POPL_VERIFICATION_OUTPUT_DIR` must name a new
+directory with an existing parent. Old reports are preserved; retry into a fresh
+directory rather than overwriting a failed campaign. Raw Forge configuration may
+contain credentials: the checker exports only reviewed fields and safe diagnostic
+messages. Do not publish a raw `forge config --json` dump.
+
+The full Python runner now uses canonical `tests_python.*` identities and locally
+defined cases once; imported aliases do not rerun, while locally defined subclasses
+retain inherited tests. Empty/duplicate/wrong-identity/custom-loader selections
+fail closed. A custom loader requires an explicit reviewed selector, not silent
+exclusion. Both source drift and executed-ID mismatches invalidate a result.
+No-argument Python execution also creates unique evidence files. To inspect only:
+
+```bash
+python3 scripts/run_python_tests.py --list --output NEW_INVENTORY.json
+python3 scripts/run_python_tests.py --output NEW_RESULTS.json
+python3 scripts/verify-normal-profile.py
+```
+
+`--list` imports selected modules but executes no test bodies; its success and
+counts are inventory metadata, not test passes. Existing JSON/log output paths
+are refused. The default full verifier is intentionally the normal profile;
+run separately scoped stronger audit/fuzz campaigns with explicit evidence.
+[Current verification scope](../reports/operational-reliability-20261029/VERIFICATION.md).
+
+During development run the useful affected suites; preserve
 source/command/results/failure evidence. Reuse unchanged-source evidence only
 with exact production/dependency/build pins. Source-text checks are not compilation
 or security analysis; models are not Solidity execution. Never add overlapping

@@ -23,7 +23,7 @@ class PhysicalConfirmationTests(unittest.TestCase):
     def codes(self,cfg=None):return {item['code'] for item in self.report(cfg)['issues']}
     def not_due(self):
         self.row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=False,ready=False,
-            raw_needed=False,range_pending=False)
+            raw_needed=False,range_pending=False,physical_side=None,reference_side=None)
 
     def test_opposite_condition_and_stored_side_cannot_relabel_physical_exit(self):
         self.row.update(condition_side=1,stored_side=1)
@@ -34,7 +34,8 @@ class PhysicalConfirmationTests(unittest.TestCase):
         self.assertIn('confirmation.raw_physical',self.codes())
 
     def test_manual_exception_requires_a_real_recorded_centre_range_change(self):
-        self.row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=True,range_pending=True)
+        self.row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=True,range_pending=True,
+            physical_side=None,reference_side=None)
         self.assertIn('confirmation.range_pending',self.codes())
         self.assertIn('confirmation.physical_side',self.codes())
         self.bucket['lp_ticks'][1]-=200
@@ -55,7 +56,8 @@ class PhysicalConfirmationTests(unittest.TestCase):
                 chain['pools'][0]['slot0'].update(tick=tick,sqrt_price_x96=str(sqrt_price_at_tick(sqrt_tick)))
                 row=chain['rebalance_confirmation']['observed']['buckets'][0]
                 row.update(condition_side=side,stored_side=side or 2,raw_needed=bool(side),ready=bool(side),
-                    condition_identity=F.RUNTIME if side else P.ZERO_HASH)
+                    condition_identity=F.RUNTIME if side else P.ZERO_HASH,
+                    physical_side=side or None,reference_side=side or None)
                 self.assertTrue(self.report(cfg)['inventory_consistent'],self.report(cfg)['issues'])
 
     def test_noncanonical_or_unaligned_physical_ticks_are_rejected(self):

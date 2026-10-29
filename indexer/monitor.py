@@ -149,14 +149,18 @@ class Indexer:
                 end=start+(end-start)//2
         if not isinstance(logs,list):raise RpcError('Malformed eth_getLogs result')
         headers={}
-        previous=self.db.execute('SELECT hash FROM blocks WHERE chain=? AND number=?',(self.chain,start-1)).fetchone()
+        previous=self.db.execute('SELECT hash,parent,timestamp FROM blocks WHERE chain=? AND number=?',(self.chain,start-1)).fetchone()
         parent=previous[0] if previous else self.config.get('start_parent_hash')
+        parent_timestamp=previous[2] if previous else None
         for number in range(start,end+1):
             h=self.header(number)
             if parent is not None and h['parentHash'].lower()!=parent.lower():raise RpcError('Non-contiguous block ancestry')
-            headers[number]=h;parent=h['hash']
-        last=self.header(end)
-        if last!=headers[end]:raise RpcError('Chain changed during log fetch')
+            timestamp=int(h['timestamp'],16)
+            if parent_timestamp is not None and timestamp<parent_timestamp:
+                raise IndexerSafetyError('invalid_timestamp','Block timestamps regress; retained history is unchanged')
+            # Equal timestamps are valid for supported L2s. A configured hash
+            # alone supplies no timestamp for an unindexed starting parent.
+            headers[number]=h;parent=h['hash'];parent_timestamp=timestamp
         prepared=[];seen_logs=set();transaction_blocks={};ordered_logs=[]
         for item in logs:
             if not isinstance(item,dict) or item.get('removed') is not False:
@@ -199,10 +203,20 @@ class Indexer:
             for row in sorted(ordered_logs,key=lambda row:row[:2]):chronology.add(*row)
         except ValueError:
             raise IndexerSafetyError('invalid_transaction_order','Contradictory transaction provenance; retained history is unchanged') from None
+        # Failover may retain this tip while losing its confirming descendants.
+        # Recheck after decoding too; prepared data has not changed the database.
+        final_head=_header_quantity(self.rpc.call('eth_blockNumber',[]))
+        if final_head<end+self.confirmations-1:
+            raise IndexerSafetyError('confirmation_depth','Indexed chunk lost its required confirmation depth; no new blocks were stored')
+        if self.header(end)!=headers[end]:raise RpcError('Chain changed during log fetch')
         with self.db:
             self.db.execute('BEGIN IMMEDIATE')
-            if self.next_block!=start:
-                raise IndexerSafetyError('database_changed','Indexer cursor changed during ingestion; retry with one writer')
+            current_previous=self.db.execute('SELECT hash,parent,timestamp FROM blocks WHERE chain=? AND number=?',
+                (self.chain,start-1)).fetchone()
+            if self.next_block!=start or current_previous!=previous:
+                # A concurrent reorg/reingestion can restore the same cursor
+                # while changing the parent to which this batch would attach.
+                raise IndexerSafetyError('database_changed','Indexer boundary changed during ingestion; retry with one writer')
             # One indexed, LIMIT-1 lookup per distinct incoming transaction.
             # No history list is materialized, and every check precedes INSERT.
             for transaction_hash,number in transaction_blocks.items():

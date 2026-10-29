@@ -96,3 +96,7 @@ reports/practical-improvements-20261028/** -text whitespace=cr-at-eol
 reports/independent-rebalance-20261029/** -text whitespace=cr-at-eol
 reports/whole-project-execution-20261029/** -text whitespace=cr-at-eol
 reports/whole-project-execution-20261029/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve the exact scoped operational-reliability receipts and diagnostic spacing.
+reports/operational-reliability-20261029/** -text whitespace=cr-at-eol
+reports/operational-reliability-20261029/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

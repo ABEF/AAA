@@ -342,10 +342,14 @@ procedure](OPERATOR_MANUAL.md#mint-and-metadata) and [evidence](../reports/api-w
 
 The confirmed `/v1/protocol` response includes `minting.paused` and
 `minting.available_by_controls`. `/v1/mint-readiness` includes `mint_paused` and
-`new_minting_stopped`, which combines mint-only pause with the existing global /
-canonical / preparation lifecycle restriction. `new_minting_stopped_by_lifecycle`
+`new_minting_stopped`, which combines exhausted 1,000-NFT supply, mint-only pause
+and the existing global/canonical/preparation lifecycle restriction. Derived
+`remaining_mint_supply` and `new_minting_stopped_by_supply` identify the cap
+separately, with no extra RPC. Pending randomness/finalization stays observable
+after sellout; sold out is not a VRF outage. Schema 2 and historical/current
+profile identities remain unchanged. `new_minting_stopped_by_lifecycle`
 keeps its original narrower meaning. These fields do not prove provider funding,
-fulfillment, remaining supply or successful execution. LP contribution availability
+fulfillment, future mint availability or successful execution. LP contribution availability
 is not turned off merely because minting is paused.
 
 All reads use the same confirmed hash and final canonicality check; missing or

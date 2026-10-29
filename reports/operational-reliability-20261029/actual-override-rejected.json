@@ -1,0 +1,7 @@
+{
+  "read_only": true,
+  "override": "FOUNDRY_FUZZ_RUNS=1",
+  "exit_code": 1,
+  "sanitized_error": "BLOCKED: Normal fuzz settings differ",
+  "build_or_tests_executed": false
+}

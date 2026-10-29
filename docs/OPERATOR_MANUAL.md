@@ -814,7 +814,25 @@ must explicitly configure its own selection; this is not imported economic state
 No new role or governance delay is introduced, and an already sealed old registry
 cannot gain this rule through a configuration call.
 
-The Vault has **four historical local bucket slots**, including permanent reservations/imports. `Vault.reservePool(poolId,bucketId)` is governance-controlled and consumes permanent identity/capacity; repeated matching reservation is idempotent. An unfunded reservation cannot simply be deleted to recover capacity. Check occupancy/history before admitting or reserving a new bucket. Existing bucket moves/returns reuse their identity, subject to pool occupancy; NFTs cannot be arbitrarily split/merged by an admin operation.
+The Vault has **four historical local bucket slots**, including permanent reservations/imports. Before a permanent reservation, read
+`Vault.poolBucket(poolId)`, `VaultCanonical.bucketIdentity(poolId)`,
+`VaultCanonical.aliasBucket(poolId)`, `Vault.registeredBucket(bucketId)` and
+`Vault.bucketCount()/MAX_BUCKETS()` from the same confirmed state. For a new
+uninitialized first-activation target, use its exact canonical bucket ID if
+reserving; arbitrary nonzero placeholders can permanently prevent activation.
+Unreserved first activation can create its canonical slot only if capacity is
+available. An already initialized bucket moved from another pool keeps its
+original ID; do not force it to the destination pool's newly derived ID.
+
+Do not execute destination reservations before canonical header import: the
+importer requires empty local sequence/buckets/aliases and later imports the
+authenticated source aliases. A planned inherited mapping is not permission to
+pre-populate the replacement. The current schema 6 observer checks these facts;
+its narrow reservation status is not full transaction approval. A bad permanent
+reservation has no delete/relabel fix: assess remaining capacity/another reviewed
+pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
+
+`Vault.reservePool(poolId,bucketId)` is governance-controlled and consumes permanent identity/capacity; repeated matching reservation is idempotent. An unfunded reservation cannot simply be deleted to recover capacity. Check occupancy/history before admitting or reserving a new bucket. Existing bucket moves/returns reuse their identity, subject to pool occupancy; NFTs cannot be arbitrarily split/merged by an admin operation.
 
 | Desired effect | Action | What remains |
 | --- | --- | --- |

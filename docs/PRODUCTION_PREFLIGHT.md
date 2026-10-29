@@ -41,6 +41,25 @@ schema5/accounting3 observer does not qualify this capability or accounting4.
 Complete that exact release inventory and runtime acceptance before deployment;
 neither a template field nor a source receipt approves it. [Scope](EXECUTION_QUALITY.md).
 
+## Selected contribution reservation
+
+Schema 6 now requires observer-derived `contribution_reservation` with `pool_id`,
+`bucket_id`, `alias_bucket_id`, `canonical_bucket_id`, `target_registered`,
+`bucket_count` and `maximum_buckets`. The flat null scaffold is unobserved, not
+an unreserved pool. Rerun the current observer against actual reviewed bindings;
+it replaces missing/null input with same-block getter evidence, or records
+unavailable. Older inventories need recollection, not manual guessed values.
+Historical schema 5 remains unchanged.
+
+Offline output `contribution_reservation_status` is not a manifest field or
+transaction authorization. It checks aliases, capacity and relevant current
+custody; selected bad/missing evidence is unavailable, while an unrelated bucket
+fault remains separately blocked by the whole inventory. Pause/preparation/
+terminal status does not imply corrupt ownership. Price/route/admission/owner/
+gas/execution qualification remains separate. See the
+[operator procedure](OPERATOR_MANUAL.md#one-contribution-pool-at-a-time) and
+[repair evidence](../reports/operational-reliability-20261029/BACKEND.md).
+
 ## Current schema6 observation and offline validation
 
 [Offline validator](../zzz_ops/production_v4.py) and
@@ -82,7 +101,7 @@ bucket's `lp_ticks`, raw five-word `lp_pool_key` and raw `lp_position_info`
 word (all null without a physical LP), and each confirmation row's
 `range_pending` (null while lifecycle suppresses that read). Earlier schema6
 observations must be collected again; absent fields do not receive defaults.
-This source tooling remains undeployed and unqualified. Historical schema5 is
+This source tooling remains undeployed and unqualified. Historical schema 5 is
 unchanged and remains inspection-only.
 
 Holder accounting enumerates at most4registered buckets and1,000mint ordinals.
@@ -136,7 +155,7 @@ sources, constructor arguments, runtimes and operating qualification are still
 unset, so examples do not qualify a deployment. Earlier confirmation1 schema6
 records retain their historical source scope and must not be relabelled.
 
-## Historical schema5 mint qualification boundary
+## Historical schema 5 mint qualification boundary
 
 The existing CLI supports the historical native profile **schema5, accounting_version3,
 fee_intake_version1 and mint_integration_version1**.
@@ -179,9 +198,9 @@ journals as the current profile. Accounting2/LP-only V3 snapshots likewise remai
 historical and are not current localV4 snapshots. Start a separate current-version inventory with exact
 deployment-specific runtime hashes, including immutable constructor values.
 
-## Historical schema5 inventory (not accounting4 approval)
+## Historical schema 5 inventory (not accounting4 approval)
 
-| Area | Historical schema5 checks |
+| Area | Historical schema 5 checks |
 | --- | --- |
 | Core | Access plus its 16 current sealed modules, exact bindings, unique addresses, active canonical state and no bootstrap authority. Access `GOVERNANCE_VERSION=2`, actual `governance()` and zero `pendingGovernance()`; keeper/guardian grants and reviewed actual governance wallet/signature policy. The sole operator may use one signer/threshold1; the existing inventory key `multisig` does not mandate multiple people. No current Timelock roles, schedule/execute methods or delay fields. Retired bridge/receiver/routes/transport slots must be zero. |
 | Helpers | Fifteen fixed helpers: activation assets/Entry, Oracle-created contribution pricing, Budget, custody validation, royalty ledger/renderer/claim router, two factories, two converters and three parent-bound v4 executors. Verify pricing `oracle`/`access`, inactive context and every actual getter; do not assume all helpers expose `access()`. |

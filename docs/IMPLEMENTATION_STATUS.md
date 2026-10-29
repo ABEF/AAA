@@ -1,5 +1,11 @@
 # Feature and evidence reference
 
+The [operational code follow-up](../reports/operational-reliability-20261029/REVIEW.md) repairs confirmed
+history commit/chronology, keeper receipt/management parsing, sold-out readiness,
+permanent reservation observation and verification/evidence tooling. 221 distinct
+affected methods pass across pinned scopes; no whole Solidity/CI rerun or live
+rollout is implied. Existing economic/timing policies remain unchanged.
+
 Current [whole-project execution](../reports/whole-project-execution-20261029/REVIEW.md) completes the internal
 source/body review and implements keeper deadline priority, strict durable/log
 provenance, final-depth/fee/pool observation and artifact-tooling repairs.

@@ -1,0 +1,24 @@
+{
+  "scope": "flat-null scaffold and observer composition recheck after example JSON edit; both overlap the existing 129-method backend scope",
+  "methods": [
+    "tests_python.test_production_v4.CurrentProductionTests.test_checked_in_fresh_scaffold_remains_unconfigured_and_blocked",
+    "tests_python.test_production_v4.CurrentProductionTests.test_current_observer_composes_into_offline_gate_without_adopting_approval"
+  ],
+  "tests_run": 2,
+  "successful": true,
+  "source_sha256_before": {
+    "config/production.holder-exit.example.json": "7ec9a7547342eb57779e2eb223bb1fe2c31f0562cad5b8f781f2a55344b1100b",
+    "zzz_ops/production_v4.py": "a7c06ee9d22f706008f53731d135bdce0308fa81697387c9526a5d4c1aef0e1b",
+    "zzz_ops/production_observer_v4.py": "f19f57a22b5a8b20d3bb9dc55feb066b6a8c0ada8c44ed66ba766622bfaa7cad",
+    "tests_python/test_production_v4.py": "9b3d9dbcdaf709bc093782630b3c2551ae3cf3c90dd589f2578faec54d4cf5ee",
+    "tests_python/production_v4_fixtures.py": "f7ea7f107855fecef7dab9ece7f4edbaef4c2514da9da1d96504771856e554a9"
+  },
+  "source_sha256_after": {
+    "config/production.holder-exit.example.json": "7ec9a7547342eb57779e2eb223bb1fe2c31f0562cad5b8f781f2a55344b1100b",
+    "zzz_ops/production_v4.py": "a7c06ee9d22f706008f53731d135bdce0308fa81697387c9526a5d4c1aef0e1b",
+    "zzz_ops/production_observer_v4.py": "f19f57a22b5a8b20d3bb9dc55feb066b6a8c0ada8c44ed66ba766622bfaa7cad",
+    "tests_python/test_production_v4.py": "9b3d9dbcdaf709bc093782630b3c2551ae3cf3c90dd589f2578faec54d4cf5ee",
+    "tests_python/production_v4_fixtures.py": "f7ea7f107855fecef7dab9ece7f4edbaef4c2514da9da1d96504771856e554a9"
+  },
+  "additional_unique_passes": 0
+}

@@ -24,13 +24,26 @@ source/body review and implements keeper deadline priority, strict durable/log
 provenance, final-depth/fee/pool observation and artifact-tooling repairs.
 All122previously missing callable outputs are explained. Static review is not
 exhaustive execution or independent release approval. Website reference metadata
-is corrected locally without changing images/signing/configs or deploying sites.
+was published separately at cae44a1d without changing images/signing/configs or
+deploying sites; this follow-up does not change website source.
 Actual providers, economics, gas/host/marketplace qualification and audit remain open.
 
 Known confirmation windows now precede optional nonce users after pending recovery;
 optional-job degradation does not stretch their cadence, global failures still
 back off. Strict300seconds remains a release liveness limit, not an SLA. Duplicate
 JSON/nonfinite state is rejected; never repair a journal manually to pass.
+
+The [operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md) fixes
+indexer final depth/transaction-boundary/time consistency; keeper head/receipt
+chronology and strict object JSON; sold-out mint reporting; current schema6
+reservation evidence; and canonical test selection/normal-profile/evidence safety.
+No Solidity/economic/timing policy or installed service/site/Anvil/signer changed.
+Require fresh reservation observations and matching source rollout; never rewrite
+journals or populate guessed fields. Verification: 221 distinct affected passes are
+source-scoped, not a fresh full suite/CI/live qualification. Python inventories
+execute no tests; full verifier creates new evidence directories and rejects altered
+normal filters/settings. Keep proposed early confirmation/compound/coalescing/
+unified-report work separate.
 
 ## Product and implementation
 

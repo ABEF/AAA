@@ -1,0 +1,211 @@
+{
+  "indexer/monitor.py": {
+    "functions": [
+      "Indexer.__init__",
+      "Indexer.header",
+      "Indexer.reconcile",
+      "Indexer.step",
+      "Indexer.next_block",
+      "Indexer.nft_owners",
+      "main"
+    ],
+    "cases": [
+      "confirmed tip retained while descendants regress",
+      "malformed final quantity",
+      "growing head retains original range",
+      "cursor ABA via legitimate second writer reorg/reingestion",
+      "exact predecessor metadata guarded within write transaction",
+      "atomic rejection leaves committed database truth intact",
+      "New child timestamp cannot regress within chunk or below persisted predecessor",
+      "Equal L2 timestamps at boundary and inside chunk remain valid",
+      "Unknown unindexed starting parent timestamp stays unknown without another RPC"
+    ]
+  },
+  "frontend_api/http_runtime.py": {
+    "functions": [
+      "HeaderReader.readline",
+      "BoundedHandler.setup",
+      "BoundedHandler._expire",
+      "BoundedHandler.begin_work",
+      "BoundedHandler.handle_one_request",
+      "BoundedHandler.finish",
+      "BoundedHTTPServer.process_request",
+      "BoundedHTTPServer.process_request_thread"
+    ],
+    "cases": [
+      "absolute ingress and connection timers",
+      "slot/release cleanup",
+      "saturated nonreading socket bounded send",
+      "no new fault reproduced"
+    ]
+  },
+  "frontend_api/worker.py": {
+    "functions": [
+      "_run",
+      "WorkerClient.__init__",
+      "WorkerClient._request",
+      "WorkerPool.__init__",
+      "WorkerPool._dispatch"
+    ],
+    "cases": [
+      "kill/reap on hard timeout",
+      "cleanup quarantine before admission release",
+      "bounded result serialization/output validation",
+      "request-local budget and stale-result release",
+      "no signing or shared mutable Projection"
+    ]
+  },
+  "frontend_api/service.py": {
+    "functions": [
+      "Projection._snapshot",
+      "Projection._fresh",
+      "Projection._finish",
+      "Projection._history_snapshot",
+      "Projection.protocol",
+      "Projection.nft",
+      "Projection.wallet"
+    ],
+    "cases": [
+      "whole-response canonical and final-depth guards",
+      "history creation anchors",
+      "current lifecycle versus partial metric health",
+      "no stale cache fallback"
+    ]
+  },
+  "frontend_api/history.py": {
+    "functions": [
+      "History.read",
+      "History._read",
+      "_stored_json"
+    ],
+    "cases": [
+      "read-only WAL snapshot",
+      "bounded SQL/Python work",
+      "raw log provenance before replay",
+      "whole-read rejection retains unavailable semantics"
+    ]
+  },
+  "frontend_api/mint_readiness.py": {
+    "functions": [
+      "inspect"
+    ],
+    "cases": [
+      "exact supply0/999/1000",
+      "sold-out pending/fulfilled draw versus fully revealed",
+      "global/mint-only pause combinations",
+      "malformed supply remains unavailable",
+      "schema2 remains"
+    ]
+  },
+  "frontend_api/transactions.py": {
+    "functions": [
+      "Transactions._gas",
+      "Transactions._fresh",
+      "Transactions.prepare",
+      "_parse"
+    ],
+    "cases": [
+      "sold-out prepare guard agrees with readiness",
+      "claims do not imply harvest",
+      "unsigned gas uses reviewed current price and wallet-refresh requirement",
+      "expiry/canonical final check"
+    ]
+  },
+  "frontend_api/activation.py": {
+    "functions": [
+      "ActivationTransactions._gas",
+      "ActivationTransactions._fresh",
+      "ActivationTransactions.prepare",
+      "ActivationTransactions._route",
+      "parse"
+    ],
+    "cases": [
+      "entrant-only typed operation",
+      "separate approval branch",
+      "current snapshot deadline",
+      "independent route/quote/price/balance bounds remain"
+    ]
+  },
+  "frontend_api/collection.py": {
+    "functions": [
+      "read"
+    ],
+    "cases": [
+      "whole inventory versus chunk total",
+      "optional LP failure remains unavailable",
+      "dormant/exited zero verified",
+      "current owner and royalty eligibility cross-check"
+    ]
+  },
+  "frontend_api/portfolio.py": {
+    "functions": [
+      "read"
+    ],
+    "cases": [
+      "LP price failure separate from ETH claim total",
+      "complete pinned ownership",
+      "null partial valuation rather than zero"
+    ]
+  },
+  "frontend_api/earnings_prices.py": {
+    "functions": [
+      "Prices.__init__",
+      "Prices.read",
+      "value_report"
+    ],
+    "cases": [
+      "per-asset optional price faults",
+      "unavailable nonzero mark null",
+      "zero proven amount can be zero without optional price",
+      "no new defect reproduced"
+    ]
+  },
+  "frontend_api/royalty_reporting.py": {
+    "functions": [
+      "Reporting.balance",
+      "Reporting._converter",
+      "Reporting.read"
+    ],
+    "cases": [
+      "optional currency isolated",
+      "required controller/eligibility core remains strict",
+      "converter binding/control scope does not invent route timing"
+    ]
+  },
+  "zzz_ops/production_observer_v4.py": {
+    "functions": [
+      "Observer.holder_exit",
+      "Observer.contribution_reservation",
+      "Observer.confirmation",
+      "observe"
+    ],
+    "cases": [
+      "actual mapping getter pinning",
+      "missing getter unavailable",
+      "whole registered inventory and capacity",
+      "active/parked/imported provenance"
+    ]
+  },
+  "zzz_ops/production_v4.py": {
+    "functions": [
+      "_contribution_reservation",
+      "_pools",
+      "_holder_exit",
+      "_confirmation",
+      "_release_records",
+      "validate"
+    ],
+    "cases": [
+      "fresh arbitrary reservation rejected",
+      "actual canonical slot reuse at four occupied slots",
+      "unreserved no-capacity rejected",
+      "initialized local move and authenticated imported alias preserved",
+      "failed imported activation evidence blocked",
+      "parked/pause/terminal/preparation kept distinct",
+      "old observations require recollection",
+      "Independent financial agent challenge: selected row prior physical/custody errors suppress partial availability; unrelated row stays isolated",
+      "Exact missing/nonboolean lifecycle context is unavailable; no inferred False",
+      "Missing registered selected inventory differs from invalid actual alias"
+    ]
+  }
+}

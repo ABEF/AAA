@@ -1,0 +1,65 @@
+{
+  "build_or_tests_executed": false,
+  "compiler_binary_authenticated": false,
+  "configuration": {
+    "allow_paths": [],
+    "always_use_create_2_factory": false,
+    "cache_path": "cache",
+    "code_size_limit": null,
+    "disable_block_gas_limit": false,
+    "dynamic_test_linking": false,
+    "evm_version": "cancun",
+    "ffi": false,
+    "fs_permissions": [
+      {
+        "access": "write",
+        "path": "./deployments"
+      }
+    ],
+    "gas_limit": 1073741824,
+    "libraries": [],
+    "libs": [
+      "lib",
+      "node_modules"
+    ],
+    "optimizer": true,
+    "optimizer_details": {
+      "yul": false
+    },
+    "optimizer_runs": 1,
+    "out": "out",
+    "profile": "default",
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "v4-core/=node_modules/@uniswap/v4-core/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "forge-std/=lib/forge-std/src/",
+      "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+      "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+      "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+      "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/"
+    ],
+    "script": "script",
+    "secrets_excluded": true,
+    "skip": [],
+    "solc": "0.8.26",
+    "src": "src",
+    "test": "test",
+    "via_ir": true
+  },
+  "forge_commit": "05794498bf47257b144e2e2789a1d5bf8566be0e",
+  "forge_file_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+  "fuzz_runs": 1000,
+  "invariant": {
+    "depth": 128,
+    "fail_on_revert": true,
+    "runs": 32
+  },
+  "kind": "local_effective_normal_profile",
+  "production_approved": false,
+  "source_compiler_selection": "0.8.26",
+  "review_script_sha256": "4f5c179b2b95061a60c9e4fc5aff8ca69de6344cd9fbe77b0f2e36aae9d64053"
+}
