@@ -121,7 +121,7 @@ principal. Preserve old runtimes/journals/profiles. See
 [manual procedure](docs/EMERGENCY_REBALANCE.md) and
 [verification](reports/independent-rebalance-20261029/VERIFICATION.md).
 No service/site/Anvil/public transaction/deployment is authorized or performed.
-Current handwritten Solidity-body review is complete at the [source-scoped ledger](reports/whole-project-execution-20261029/COVERAGE.md); this is not exhaustive execution or independent release approval.
+Current handwritten Solidity-body review is recorded in the [source-scoped ledger](reports/comprehensive-popl-20261029/COVERAGE.md); this is not exhaustive execution or independent release approval.
 
 Current [whole-project execution](reports/whole-project-execution-20261029/REVIEW.md) completes the internal
 source/body review and implements keeper deadline priority, strict durable/log

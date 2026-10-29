@@ -17,7 +17,7 @@ principal. Preserve old runtimes/journals/profiles. See
 [manual procedure](docs/EMERGENCY_REBALANCE.md) and
 [verification](reports/independent-rebalance-20261029/VERIFICATION.md).
 No service/site/Anvil/public transaction/deployment is authorized or performed.
-Current handwritten Solidity-body review is complete at the [source-scoped ledger](reports/whole-project-execution-20261029/COVERAGE.md); this is not exhaustive execution or independent release approval.
+Current handwritten Solidity-body review is recorded in the [source-scoped ledger](reports/comprehensive-popl-20261029/COVERAGE.md); this is not exhaustive execution or independent release approval.
 
 Earlier [whole-project execution](reports/whole-project-execution-20261029/REVIEW.md) completes the internal
 source/body review and implements keeper deadline priority, strict durable/log
@@ -176,7 +176,7 @@ No Solidity, economics, signer, service/site/Anvil or approval changed. Earlier
 [third-pass evidence](reports/third-pass-20261028/VERIFICATION.md) keeps its frozen
 October26-28 source scope; no test counts are summed as a whole-release proof.
 
-The current code checkpoint is `4579eeb` on main. [Keeper coordination](docs/KEEPER_COORDINATION.md)
+The earlier keeper-coordination checkpoint is `4579eeb` on main. [Keeper coordination](docs/KEEPER_COORDINATION.md)
 implements service-only in-range/no-pending-width compound waits, same-hash
 known-evidence reset coordination, canonical receipt-backed harvest coalescing
 and a read-only three-operation report. The [261-method evidence](reports/keeper-coordination-20261029/VERIFICATION.md)
