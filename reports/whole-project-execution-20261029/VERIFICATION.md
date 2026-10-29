@@ -41,7 +41,9 @@ attempts are recorded externally; zero-test/import failures are not passes.
 The report logs distinguish assertions/subcases from distinct method identities.
 Final staged whitespace checking removed one extra EOF blank line in the earlier
 unpublished reference-confirmation test; its executable content is unchanged.
-That formatting correction does not refresh its earlier test receipt.
+That formatting correction does not refresh its earlier test receipt. The new
+website metadata test was also normalized from CRLF to LF for publication; its
+JavaScript tokens are unchanged and the tested-byte snapshot is retained.
 
 Original raw evidence, exact drafts/compiler/test inputs, before source, output
 and failure logs remain under the external `whole-project-execution-20261029`

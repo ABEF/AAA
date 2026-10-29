@@ -15,7 +15,7 @@
     },
     "tests/metadata-traits.test.mjs": {
       "before": null,
-      "after": "ed9cbfc628a7ce4537e006a7c779ae8ff62c76b51cf5879e58ce86eef7d6b1f6"
+      "after": "85fd2065dbf7779f55400dad90468aa295deaebf80c5f1348677c70fdec5e6e7"
     },
     "assets/nfts/metadata/amber-arcs-commun-activated.json": {
       "before": "9f1e97ef6864de9112efe1d51d3d2b392823910ff5480a06cf971b9542e57dea",
@@ -11164,5 +11164,11 @@
   },
   "svg_regenerated": false,
   "built": false,
-  "deployed": false
+  "deployed": false,
+  "post_test_formatting": {
+    "file": "tests/metadata-traits.test.mjs",
+    "tested_sha256": "ed9cbfc628a7ce4537e006a7c779ae8ff62c76b51cf5879e58ce86eef7d6b1f6",
+    "published_sha256": "85fd2065dbf7779f55400dad90468aa295deaebf80c5f1348677c70fdec5e6e7",
+    "change": "CRLF to LF only; JavaScript tokens unchanged; no test rerun claimed"
+  }
 }

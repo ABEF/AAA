@@ -1182,5 +1182,34 @@
     "source_manifest_sha256": "fcd95d4d87f7d18eb6d548b9b19432056f982e6e66f3def9dd0ead076af692de"
   },
   "production_approved": false,
-  "source_publication_is_not_deployment": true
+  "source_publication_is_not_deployment": true,
+  "website_post_test_formatting": {
+    "file": "tests/metadata-traits.test.mjs",
+    "tested_sha256": "ed9cbfc628a7ce4537e006a7c779ae8ff62c76b51cf5879e58ce86eef7d6b1f6",
+    "published_sha256": "85fd2065dbf7779f55400dad90468aa295deaebf80c5f1348677c70fdec5e6e7",
+    "change": "CRLF to LF only; JavaScript tokens unchanged; no test rerun claimed"
+  },
+  "publication": {
+    "contract_content": {
+      "repository": "ABEF/AAA",
+      "branch": "main",
+      "previous": "2feee92f6bc13b09bae1d43f36bfb7cf6c8faac9",
+      "commit": "3398be63654c00f4079c7a23519797c3efa7f621",
+      "remote_main": "3398be63654c00f4079c7a23519797c3efa7f621",
+      "files": 133,
+      "deployment": false,
+      "service_change": false
+    },
+    "website_source": {
+      "repository": "ABEF/AAA-website",
+      "branch": "main",
+      "previous": "e5bb2163e0af0019bd917f65711c1f669b2d6224",
+      "commit": "cae44a1d69a6dcec42403de922ff45fadfc47705",
+      "remote_main": "cae44a1d69a6dcec42403de922ff45fadfc47705",
+      "files": 2790,
+      "deployment": false,
+      "service_change": false
+    },
+    "deployment": false
+  }
 }
