@@ -17,7 +17,7 @@ contract ZZZStrategy is ZZZModule {
     uint256 public constant RANGE_POLICY_VERSION = 1;
     /// @notice Physical outside-range upkeep, with a governed range-change exception.
     uint256 public constant MAINTENANCE_POLICY_VERSION = 2;
-    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 1;
+    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 2;
     ZZZRebalanceConfirmation public immutable rebalanceConfirmation;
     uint256 public constant EXECUTION_QUALITY_VERSION = 1;
     uint256 public constant MAX_ADDITIONAL_LOSS_BPS = 1000;
@@ -35,6 +35,7 @@ contract ZZZStrategy is ZZZModule {
         bytes32 reviewHash;
     }
     mapping(bytes32 => KeeperRangePolicy) public keeperRangePolicy;
+    uint256 public activeKeeperRangePolicies;
     event RangeOrientationChanged(bytes32 indexed poolId,uint8 previous,uint8 current);
     event KeeperRangePolicyChanged(bytes32 indexed poolId,bool enabled,bytes32 configurationHash,bytes32 reviewHash);
     event KeeperRangeSelected(bytes32 indexed poolId,uint16 previous,uint16 current,bytes32 reviewHash);
@@ -63,9 +64,17 @@ contract ZZZStrategy is ZZZModule {
     /// Known fees are removed from raw input; rounding/impact/reference spread
     /// still consumes the additional limit. Never exempts fees from gross caps.
     function minimumOutput(bytes32 poolId,bool direction,uint256 amount) external view returns(uint256) {
+        return _minimumOutput(poolId,direction,amount,true);
+    }
+    /// @notice Same financial floor without operations-enabled admission, for a
+    /// separately authorized paused emergency which deliberately bypasses it.
+    function minimumOutputForExit(bytes32 poolId,bool direction,uint256 amount) external view returns(uint256) {
+        return _minimumOutput(poolId,direction,amount,false);
+    }
+    function _minimumOutput(bytes32 poolId,bool direction,uint256 amount,bool requireOperations) private view returns(uint256) {
         if (amount == 0 || amount > type(uint128).max) revert InvalidAmount();
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
-        if (!c.operationsEnabled) revert InvalidState();
+        if (requireOperations && !c.operationsEnabled) revert InvalidState();
         PairPrices memory prices = _pairPrices(c);
         return _minimum(prices,direction,amount,c.maxSlippageBps,_swapFee(poolId,c,direction));
     }
@@ -121,6 +130,7 @@ contract ZZZStrategy is ZZZModule {
         KeeperRangePolicy storage policy = keeperRangePolicy[poolId];
         if (policy.enabled) {
             policy.enabled = false;
+            --activeKeeperRangePolicies;
             emit KeeperRangePolicyChanged(poolId,false,policy.configurationHash,policy.reviewHash);
         }
         rebalanceConfirmation.invalidatePolicy();
@@ -133,10 +143,14 @@ contract ZZZStrategy is ZZZModule {
         if (poolId == bytes32(0)) revert InvalidConfiguration();
         KeeperRangePolicy storage policy = keeperRangePolicy[poolId];
         if (!enabled) {
+            if(policy.enabled) --activeKeeperRangePolicies;
             policy.enabled = false;
             emit KeeperRangePolicyChanged(poolId,false,policy.configurationHash,policy.reviewHash);
             return;
         }
+        // A keeper-selected width would otherwise use the deliberate-width
+        // exception. It cannot silently bypass same-side reference protection.
+        if(rebalanceConfirmation.requireReferenceExit()) revert InvalidConfiguration();
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
         if (rangeOrientation[poolId] != 1 || (c.rangeBps != 2500 && c.rangeBps != 5000) ||
             c.triggerBps >= 2500 || c.maxSpotDeviationBps >= 2500 || narrowTriggerBps >= widenTriggerBps ||
@@ -144,6 +158,7 @@ contract ZZZStrategy is ZZZModule {
             minInterval > 7 days || reviewHash == bytes32(0)) revert InvalidConfiguration();
         _range(c,IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0,c.key.currency1));
         bytes32 fingerprint = _rangeConfiguration(c);
+        if(!policy.enabled) ++activeKeeperRangePolicies;
         keeperRangePolicy[poolId] = KeeperRangePolicy(true,narrowTriggerBps,widenTriggerBps,minInterval,
             uint64(block.timestamp),fingerprint,reviewHash);
         emit KeeperRangePolicyChanged(poolId,true,fingerprint,reviewHash);

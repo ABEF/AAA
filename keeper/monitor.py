@@ -218,6 +218,7 @@ class Keeper:
         self.retry_cooldown = positive(config.get('revert_cooldown_seconds',3600),'revert_cooldown_seconds')
         if not 60 <= self.retry_cooldown <= 86400: raise ValueError('Revert cooldown must be 60-86400 seconds')
         self.cycle_failures = 0
+        self._cycle_error = False
         self.skipped_buckets = 0
         self.blocked_actions = 0
         self.confirmed_reverts = 0
@@ -409,6 +410,7 @@ class Keeper:
         self.skipped_buckets = 0
         self.blocked_actions = 0
         self.confirmed_reverts = 0
+        self._cycle_error = False
         self.active_revert_cooldowns = None
         self.next_revert_retry_after = None
         self._lp_metadata_cache = {}
@@ -428,7 +430,7 @@ class Keeper:
                 'gas_review':self.gas_review_health,
                 'rebalance_confirmation_health':{
                     'version':self.rebalance_confirmation.version,
-                    'check_interval_seconds':CONFIRMATION_CHECK_SECONDS if self.rebalance_confirmation.version==1 else None,
+                    'check_interval_seconds':CONFIRMATION_CHECK_SECONDS if self.rebalance_confirmation.version in (1,2) else None,
                     'pending_reset_buckets':sorted(self.state.get(CONFIRMATION_RESETS,{}),key=int),
                     'awaiting_healthy_read_buckets':sorted((bucket for bucket,record in
                         self.state.get(CONFIRMATION_CLEARS,{}).items() if record['awaiting_healthy_read']),key=int),
@@ -456,9 +458,10 @@ class Keeper:
             if not started_pending and not self.state.get('pending'):
                 self._observe_execution_health()
                 self.confirmation_policy_health=observe_confirmation_health(self,self.confirmation_policy_health)
-            elif self.rebalance_confirmation.version==1:
+            elif self.rebalance_confirmation.version in (1,2):
                 self.confirmation_policy_health['state']='pending_recovery'
         except Exception as exc:
+            self._cycle_error = True
             self.cycle_failures += 1
             details = error_context(exc)
             retryable = isinstance(exc,(RpcError,subprocess.TimeoutExpired))
@@ -489,10 +492,10 @@ class Keeper:
                 ('degraded' if self.confirmed_reverts else ('healthy' if self.live else 'dry_run')))
         # Older checkers do not understand schema2 metadata requirements. Their
         # old success strings must not approve the new quality profile silently.
-        if (self.execution_quality_version == 1 or self.rebalance_confirmation.version==1) and status in ('healthy','dry_run'):
+        if (self.execution_quality_version == 1 or self.rebalance_confirmation.version in (1,2)) and status in ('healthy','dry_run'):
             status += '_v2'
         quality_fault=self.execution_quality_version==1 and self.lp_execution_health['state']!='observed_this_cycle'
-        confirmation_fault=(self.rebalance_confirmation.version==1 and
+        confirmation_fault=(self.rebalance_confirmation.version in (1,2) and
             self.confirmation_policy_health['state']!='observed_this_cycle' and not (
                 self.principal_exit_started and self.confirmation_policy_health['state'] in ('stopped','incompatible_cadence')))
         metadata_degraded=not pending and self.canonical_lifecycle in (None,0) and (quality_fault or confirmation_fault)
@@ -506,6 +509,16 @@ class Keeper:
             confirmed_reverts=self.confirmed_reverts,
             active_revert_cooldowns=self.active_revert_cooldowns,next_revert_retry_after=self.next_revert_retry_after)
         return not (self.skipped_buckets or self.blocked_actions or metadata_degraded)
+
+    def poll_delay(self, interval: int) -> int:
+        # Optional-job/metadata degradation remains unhealthy, but must not
+        # stretch a known confirmation's polling deadline. Actual cycle-level
+        # RPC/recovery failures retain the historical exponential backoff.
+        known = (self.state.get(CONFIRMATION_STATE) or self.state.get(CONFIRMATION_RESETS) or
+            any(record['awaiting_healthy_read'] for record in self.state.get(CONFIRMATION_CLEARS,{}).values()))
+        if self.rebalance_confirmation.version in (1,2) and known and not self._cycle_error:
+            return interval
+        return min(interval * 2**min(self.cycle_failures,3),max(interval,3600))
 
     def save(self) -> None: atomic_json(self.path,self.state)
 
@@ -723,7 +736,7 @@ class Keeper:
         # restores memory too; restart never draws a fresh delay to bypass it.
         previous = self.state
         updated = copy.deepcopy(previous)
-        namespace=CONFIRMATION_STATE if self.rebalance_confirmation.version==1 else OUTSIDE_REBALANCE_STATE
+        namespace=CONFIRMATION_STATE if self.rebalance_confirmation.version in (1,2) else OUTSIDE_REBALANCE_STATE
         schedules = updated.setdefault(namespace,{})
         if record is None:
             if str(bucket) not in schedules: return
@@ -741,7 +754,7 @@ class Keeper:
     def _rebalance_due(self,bucket: int,fields: list[str],now: int,*,force: bool = False) -> bool:
         try:return self._rebalance_due_checked(bucket,fields,now,force=force)
         except (ValueError,RpcError):
-            if self.rebalance_confirmation.version==1:self._mark_confirmation_reset(bucket)
+            if self.rebalance_confirmation.version in (1,2):self._mark_confirmation_reset(bucket)
             raise
 
     def _rebalance_due_checked(self,bucket: int,fields: list[str],now: int,*,force: bool = False) -> bool:
@@ -768,7 +781,7 @@ class Keeper:
             self.config['code_hashes']['strategy'],self.contracts['pools'],self.config['code_hashes']['pools'],
             bucket,position['pool_id'],position['lp_token_id'],position['last_rebalance'],config,orientation]
         identity = '0x'+keccak256(json.dumps(basis,separators=(',',':')).encode()).hex()
-        if self.rebalance_confirmation.version==1:
+        if self.rebalance_confirmation.version in (1,2):
             record=self.state.get(CONFIRMATION_STATE,{}).get(str(bucket))
             if record is not None and now<record['last_checked_at']:
                 raise RpcError('Confirmation chain clock retreated')
@@ -843,6 +856,15 @@ class Keeper:
                 self._mark_confirmation_reset(bucket)
                 self._rebalance_reset_due=bucket
                 return False
+        if (not status['manual'] and status['observation_identity']!='0x'+'0'*64 and
+                (status['side']==0 or status['identity']!=status['observation_identity'] or
+                 status['side']!=status['observation_side'])):
+            # A negative sampled condition was actually observed by this worker.
+            # Persist a CLEAR, not a renewal: prices may recover before inclusion,
+            # when observe() could otherwise extend the old, invalidated window.
+            self._mark_confirmation_reset(bucket)
+            self._rebalance_reset_due=bucket
+            return False
         policy=[basis,status['policy_revision'],status['duration_seconds'],
             status['maximum_gap_seconds'],status['review_hash'],status['manual'],
             status['identity'] if not status['manual'] else None,
@@ -884,7 +906,7 @@ class Keeper:
             raise
 
     def _mark_confirmation_reset(self,bucket: int,*,force: bool = False) -> None:
-        if self.rebalance_confirmation.version!=1:return
+        if self.rebalance_confirmation.version not in (1,2):return
         already_needed=self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))
         if already_needed and str(bucket) not in self.state.get(CONFIRMATION_STATE,{}):return
         previous=self.state;updated=copy.deepcopy(previous)
@@ -914,7 +936,7 @@ class Keeper:
 
     def _mark_known_confirmation_resets(self) -> None:
         """Invalidate only known fresh windows after an initial raw-state fault."""
-        if self.rebalance_confirmation.version!=1 or self.state.get('pending'):return
+        if self.rebalance_confirmation.version not in (1,2) or self.state.get('pending'):return
         buckets=set(self.state.get(CONFIRMATION_STATE,{})) | set(self.state.get(CONFIRMATION_CLEARS,{}))
         for bucket in sorted(buckets,key=int):self._mark_confirmation_reset(int(bucket))
 
@@ -925,9 +947,9 @@ class Keeper:
         try:
             fields,_ = self._bucket(args[0])
             _,fresh = self._head()
-            return self._rebalance_due(args[0],fields,fresh,force=self.rebalance_confirmation.version==1)
+            return self._rebalance_due(args[0],fields,fresh,force=self.rebalance_confirmation.version in (1,2))
         except (ValueError,RpcError):
-            if self.rebalance_confirmation.version==1:self._mark_confirmation_reset(args[0])
+            if self.rebalance_confirmation.version in (1,2):self._mark_confirmation_reset(args[0])
             raise
 
     def _adaptive_range_target(self,pool: str,now: int) -> int:
@@ -1302,7 +1324,7 @@ class Keeper:
         if lp_balance_action:self._validate_lp_routing()
         confirmation_action=name=='rebalance_confirmation' and signature in ('observe(uint256)','resetObservation(uint256)')
         if confirmation_action:
-            if self.rebalance_confirmation.version!=1 or len(args)!=1:
+            if self.rebalance_confirmation.version not in (1,2) or len(args)!=1:
                 raise ValueError('Observation requires the explicit reviewed confirmation profile')
             if signature=='observe(uint256)':self._confirmation_status(args[0])
             else:self.rebalance_confirmation.validate()
@@ -1372,6 +1394,7 @@ class Keeper:
         nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),'pending nonce')
         latest_nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'latest']),'latest nonce')
         if nonce != latest_nonce or nonce != self.state.get('next_nonce'):
+            self._cycle_error = True
             log('nonce_reconciliation_required',action=key,expected_nonce=self.state.get('next_nonce'),
                 latest_nonce=latest_nonce,pending_nonce=nonce)
             raise RpcError('Unreconciled keeper nonce; stop other signers and restore/reconcile state')
@@ -1807,7 +1830,7 @@ class Keeper:
         return False
 
     def _interrupted_confirmation_bucket(self,pending: Any) -> int | None:
-        if self.rebalance_confirmation.version!=1 or not isinstance(pending,dict):return None
+        if self.rebalance_confirmation.version not in (1,2) or not isinstance(pending,dict):return None
         key=pending.get('key')
         if not isinstance(key,str):return None
         match=re.fullmatch(r'(rebalance|rebalance_observation|rebalance_reset):([1-9][0-9]{0,77})',key)
@@ -1828,6 +1851,82 @@ class Keeper:
             if pending.get('to')==self.contracts['rebalance_confirmation'] and data==calldata(method,bucket):return bucket
         return None
 
+    def _confirmation_priority(self, *, paused: bool, preparing: bool, lp_exit: bool,
+                               checked: set[int]) -> bool:
+        """Service existing sample/reset deadlines before optional nonce users.
+
+        This runs only AFTER saved-intent recovery and shared lifecycle/authority
+        gates. No new journal namespace, signing path or on-chain exception is
+        introduced. Cold discovery and time between checks retain normal queue
+        fairness. A serial sender can still miss strict gaps under slow finality
+        or several simultaneous windows; this is priority, never an SLA.
+        """
+        if self.rebalance_confirmation.version not in (1,2) or preparing or lp_exit:
+            return False
+        schedules = self.state.get(CONFIRMATION_STATE,{})
+        resets = self.state.get(CONFIRMATION_RESETS,{})
+        clears = {key for key,record in self.state.get(CONFIRMATION_CLEARS,{}).items()
+            if record['awaiting_healthy_read']}
+        if not schedules and not resets and not clears:
+            return False
+        try: _,now = self._head()
+        except (ValueError,RpcError):
+            self._mark_known_confirmation_resets()
+            raise
+        if any(now < record['last_checked_at'] for record in schedules.values()):
+            # A retreated head must not disguise an old deadline as future and
+            # yield its nonce slot to optional work before raw reset handling.
+            self._mark_known_confirmation_resets()
+            raise RpcError('Confirmation priority chain clock retreated')
+        deadlines = {key:0 for key in set(resets) | clears}
+        for key,record in schedules.items():
+            deadline = min(record['next_check_at'],record['last_checked_at']+CONFIRMATION_CHECK_SECONDS)
+            if record['execute_after']:
+                deadline = min(deadline,record['execute_after'])
+            if paused or now >= deadline:
+                deadlines[key] = min(deadlines.get(key,deadline),deadline)
+        for key in sorted(deadlines,key=lambda key:(deadlines[key],int(key))):
+            bucket = int(key)
+            checked.add(bucket)
+            try:
+                _,fresh = self._head()
+                if fresh < now: raise RpcError('Confirmation priority chain clock retreated')
+            except (ValueError,RpcError):
+                self._mark_known_confirmation_resets()
+                raise
+            try:
+                item = {**self.maintenance,**self.overrides.get(key,{})}
+                self._validate_maintenance_settings(item)
+                fields,_ = self._bucket(bucket)
+                if decode_position(fields,self.accounting_version)['status'] != 'active':
+                    self._store_rebalance_schedule(bucket,None)
+                    continue
+                if paused:
+                    if bucket not in self._confirmation_pause_seen:
+                        self._mark_confirmation_reset(bucket)
+                        self._confirmation_pause_seen.add(bucket)
+                    if self.state.get(CONFIRMATION_RESETS,{}).get(key):
+                        if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):
+                            return True
+                    continue
+                self._validate_lp_routing(use_cache=True)
+                minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
+                if self._rebalance_due(bucket,fields,fresh):
+                    if self.submit('vault','rebalance(uint256,uint128,uint256)',
+                            (bucket,minimum,fresh+180),f'rebalance:{bucket}'):
+                        return True
+                elif self._rebalance_reset_due is not None:
+                    if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):
+                        return True
+                elif self._rebalance_observation_due is not None:
+                    if self.submit('rebalance_confirmation','observe(uint256)',(bucket,),f'rebalance_observation:{bucket}'):
+                        return True
+            except (ValueError,RpcError) as exc:
+                if self.state.get('pending'): raise
+                self.blocked_actions += 1
+                log('confirmation_priority_deferred',bucket_id=key,**error_context(exc))
+        return False
+
     def cycle(self) -> None:
         pending=self.state.get('pending')
         try:
@@ -1843,7 +1942,7 @@ class Keeper:
                 bucket=self._interrupted_confirmation_bucket(pending)
                 if bucket is not None:self._confirmation_recovery_interrupted.add(bucket)
             raise
-        if self.rebalance_confirmation.version==1 and self._confirmation_recovery_interrupted:
+        if self.rebalance_confirmation.version in (1,2) and self._confirmation_recovery_interrupted:
             for bucket in self._confirmation_recovery_interrupted:
                 self._mark_confirmation_reset(bucket)
             self._confirmation_recovery_interrupted.clear()
@@ -1863,6 +1962,9 @@ class Keeper:
         except (ValueError,RpcError):
             self._mark_known_confirmation_resets()
             raise
+        confirmation_checked: set[int] = set()
+        if self._confirmation_priority(paused=paused,preparing=preparing,lp_exit=lp_exit,checked=confirmation_checked):
+            return
         principal_first = False
         if lp_exit and self.principal_distribution.enabled:
             principal_first = self.principal_distribution.prefer_first()
@@ -1922,7 +2024,8 @@ class Keeper:
                 # pauses and while the physical LP is away. No principal moves.
                 if self.fee_intake_version == 0 and item.get('sync_external_rewards',True) and self._sync_external(bucket): return
                 if paused:
-                    if self.rebalance_confirmation.version==1 and status=='active' and not lp_exit:
+                    if (self.rebalance_confirmation.version in (1,2) and status=='active' and not lp_exit and
+                            bucket not in confirmation_checked):
                         if bucket not in self._confirmation_pause_seen:
                             self._mark_confirmation_reset(bucket)
                             self._confirmation_pause_seen.add(bucket)
@@ -1938,12 +2041,13 @@ class Keeper:
                             self._validate_lp_routing(use_cache=True)
                             if self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):
                                 if self.submit('strategy','applyKeeperRange(bytes32)',('0x'+fields[0],),f'range_policy:{bucket}'): return
-                            if self._rebalance_due(bucket,fields,fresh):
-                                if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
-                            elif self._rebalance_reset_due is not None:
-                                if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
-                            elif self._rebalance_observation_due is not None:
-                                if self.submit('rebalance_confirmation','observe(uint256)',(bucket,),f'rebalance_observation:{bucket}'):return
+                            if bucket not in confirmation_checked:
+                                if self._rebalance_due(bucket,fields,fresh):
+                                    if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
+                                elif self._rebalance_reset_due is not None:
+                                    if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
+                                elif self._rebalance_observation_due is not None:
+                                    if self.submit('rebalance_confirmation','observe(uint256)',(bucket,),f'rebalance_observation:{bucket}'):return
                             if item.get('compound',True):
                                 reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
                                 if self._compound_due(bucket,tokens,reserves,item,now,fields):
@@ -1989,7 +2093,9 @@ def main() -> None:
     if args.initialize_state and (args.live or args.resolve_pending): parser.error('Initialization cannot sign or resolve a transaction')
     watchdog = ProgressWatchdog.from_environment()
     watchdog.pulse(force=True)
-    config = json.loads(Path(args.config).read_text())
+    config = read_json(args.config)
+    if not isinstance(config,dict):
+        raise ValueError('Keeper configuration must be a JSON object')
     interval = positive(config.get('interval_seconds',600),'interval_seconds')
     if interval < 60: raise ValueError('Polling interval must be at least 60 seconds')
     stop = False
@@ -2016,7 +2122,7 @@ def main() -> None:
             watchdog.pulse(force=True)
             if args.once and not success: raise SystemExit(1)
             if args.once: break
-            delay = min(interval * 2**min(keeper.cycle_failures,3),max(interval,3600))
+            delay = keeper.poll_delay(interval)
             for _ in range(delay):
                 if stop: break
                 watchdog.pulse()

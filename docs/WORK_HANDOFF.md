@@ -3,46 +3,38 @@
 Reviewed 2026-10-29. Read [instructions](../AGENTS.md), [current context](../PROJECT_CONTEXT.md),
 [README](../README.md), [Todo](../TODO.md) and the owning runbook before continuing.
 
-## Latest whole-project review
+## Latest whole-project execution
 
-The expanded [audit brief](WHOLE_PROJECT_AUDIT_PROMPT.md) was built after source
-understanding and challenged twice. [Review](../reports/whole-project-audit-20261029/REVIEW.md)
-and [verification](../reports/whole-project-audit-20261029/VERIFICATION.md) separate
-actual repairs, fresh checks, reused evidence and pending coverage. The previous
-[third-pass record](../reports/third-pass-20261028/VERIFICATION.md) retains its
-frozen October26-28 scope; it is not the whole-project result.
+The stable [audit prompt](THIRD_PASS_AUDIT_PROMPT.md) now covers the full project;
+its previous duplicate is a pointer. Understanding preceded drafting and both
+independent critiques are retained in the [execution report](../reports/whole-project-execution-20261029/PROMPT_REVIEW.md).
+Read [review](../reports/whole-project-execution-20261029/REVIEW.md),
+[verification](../reports/whole-project-execution-20261029/VERIFICATION.md) and
+[coverage](../reports/whole-project-execution-20261029/COVERAGE.md) before reusing evidence.
 
-New source repairs: optional currency faults no longer hide ownership inventory;
-stored history JSON/envelopes fail closed; metadata priority is durable before
-optional work so restart cannot repeatedly starve LP maintenance. Dedicated
-keeper selection and current-fork CI wiring are corrected. User then explicitly
-approved four-minute service checks, keeping the same15-minute window/strict
-five-minute on-chain maximum. Preserve old schedules/pending journals and roll
-out matching health writer/checker only with separate authorization.
+This campaign repairs keeper renewal priority/backoff/clock handling; ambiguous
+durable/config/history JSON and log provenance; final observer depth and legacy
+receipt-price contradictions; selected-pool slot0 consistency; review-bundle
+guidance; static artwork resources and optimized catalogue admission.122missing
+output annotations are now explained. Production Solidity/economics unchanged
+from the previously saved confirmation2/emergency1 candidate. Two new composed
+EVM methods cover meaningful emergency-mask success and callback rollback.
 
-No Solidity, economics, authority, deployed state, signer or service/site/Anvil
-changes. Five targeted current canonical composition methods add useful evidence;
-they are not a full canonical/gas/service qualification. New compiler predicate
-screen is AST-only, not lowering proof. Website dormant-example metadata patch
-is prepared externally and unapplied; fresh4 integration remains open.
+Website baseline e5bb2163 receives only local preview/generator/reference JSON
+corrections: fixed rarity1/2/3 even dormant, eligibility still begins at activation.
+All2784SVGs/manifest/signer/null configs and72historical metadata stay unchanged.
+No build/site/service/Anvil/public transaction/deployment or heartbeat change.
+Current4 wallet integration and all external qualification remain open.
 
-Latest requested improvements are in the existing rebalance-confirmation task:
-evaluate observation during cooldown and independent deeper-market corroboration.
-Current source checks spot versus Oracle but not reference-outside persistence.
-Market/TWAP window and agreement-only versus same-side-reference trigger are
-unresolved. Do not substitute another pool's tick for the actual LP or silently
-replace the two-source USD safeguards.
-
-Baseline/source maps, both prompt challenges, failed attempts, test receipts and
-prepared website patch are under the external `whole-project-audit-20261029`
-directory. The four original dirty files remain excluded from publication and
-byte-identical. Main-only publication must verify exact local/remote heads; no
-Git push authorizes deployment. Live feeds/routes/VRF/authorities/OpenSea,
-gas/host/strict-timing/escrow and independent audit/remediation stay open.
+Original dirty docs were saved before replacement. Preserve the four original
+unrelated dirty files listed below, original report bytes and old services/journals.
+Raw source pins, failures, old drafts and focused receipts remain externally in
+`whole-project-execution-20261029`; current Git publication status is recorded
+in its verification/publication record, not inferred from this handoff.
 
 ## Current improvement work
 
-Fresh confirmation1 adds a fixed Strategy child and Budget gate, with raw
+Current confirmation2 uses a fixed Strategy child and Budget gate, with raw
 outside/cooldown eligibility kept separate. User selected sampled on-chain
 evidence,900-second duration,240-second checks after cooldown and strict300-second
 maximum receipt gap; greater gaps restart, with no hidden grace. Constructor gap0

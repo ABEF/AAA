@@ -189,6 +189,7 @@ contract BoundaryPositions is ERC721 {
 /// dependencies. It never substitutes WETH for the native zero currency.
 contract NativeLiquidityPools {
     PoolConfig private config;
+    uint64 public configurationRevision = 1;
     bool public nativeEnabled = true;
     constructor(PoolConfig memory value) { config = value; }
     function get(bytes32 id) external view returns (PoolConfig memory) {
@@ -200,9 +201,9 @@ contract NativeLiquidityPools {
     function isNativePool(bytes32 id) external view returns (bool) {
         require(id == keccak256(abi.encode(config.key))); return nativeEnabled && config.key.currency0 == address(0);
     }
-    function setNativeEnabled(bool value) external { nativeEnabled = value; }
-    function setKey(PoolKey memory value) external { config.key = value; }
-    function disableOperations() external { config.operationsEnabled = false; config.depositsEnabled = false; }
+    function setNativeEnabled(bool value) external { nativeEnabled = value; ++configurationRevision; }
+    function setKey(PoolKey memory value) external { config.key = value; ++configurationRevision; }
+    function disableOperations() external { config.operationsEnabled = false; config.depositsEnabled = false; ++configurationRevision; }
 }
 
 error NativePartialFillObserved(int128 input, int128 output);

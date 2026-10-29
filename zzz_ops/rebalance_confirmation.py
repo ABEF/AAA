@@ -4,7 +4,7 @@ from zzz_ops.abi import address
 
 
 def observe(read, *, strategy, budget, confirmation, access, bucket=None,
-            timestamp=None, raw_eligible=None, range_pending=None):
+            timestamp=None, raw_eligible=None, range_pending=None, version=1):
     """Caller must pin every read to the same canonical block and verify code."""
     def words(target, method, *args, count=1):
         values=read(target,method,*args,count=count)
@@ -20,8 +20,9 @@ def observe(read, *, strategy, budget, confirmation, access, bucket=None,
     def binding(target,method,expected):
         if scalar(target,method)!=int(address(expected),16):
             raise ValueError('Rebalance-confirmation binding differs')
+    if type(version) is not int or version not in (1,2):raise ValueError('Unsupported confirmation profile')
     for target in (strategy,budget,confirmation):
-        if scalar(target,'REBALANCE_CONFIRMATION_VERSION()')!=1:
+        if scalar(target,'REBALANCE_CONFIRMATION_VERSION()')!=version:
             raise ValueError('Unsupported rebalance-confirmation capability')
     binding(strategy,'rebalanceConfirmation()',confirmation)
     binding(confirmation,'strategy()',strategy)
@@ -33,11 +34,19 @@ def observe(read, *, strategy, budget, confirmation, access, bucket=None,
     if (scalar(confirmation,'MAX_DURATION()')!=604800 or not 60<=seconds<=604800 or
             not 0<=gap<=seconds//2 or not 0<=revision<2**64 or gap and review==0):
         raise ValueError('Invalid rebalance-confirmation policy')
-    result={'version':1,'helper':address(confirmation),'duration_seconds':seconds,
+    result={'version':version,'helper':address(confirmation),'duration_seconds':seconds,
             'max_observation_gap_seconds':gap,'configured':gap!=0,
             'policy_revision':revision,'review_hash':'0x'+f'{review:064x}',
             'evidence_kind':'bounded_recorded_onchain_observations',
             'continuous_price_proof':False,'schedule_source':'unavailable'}
+    reference_required=False
+    if version == 2:
+        required=scalar(confirmation,'requireReferenceExit()')
+        reference_review=scalar(confirmation,'referenceReviewHash()')
+        if required not in (0,1) or not required and reference_review==0:
+            raise ValueError('Invalid independent-reference confirmation policy')
+        reference_required=bool(required)
+        result.update(reference_exit_required=reference_required,reference_review_hash='0x'+f'{reference_review:064x}')
     if bucket is None:return result
     if type(bucket) is not int or not 0<bucket<2**256 or type(timestamp) is not int or timestamp<0:
         raise ValueError('Invalid rebalance-confirmation snapshot')
@@ -48,6 +57,15 @@ def observe(read, *, strategy, budget, confirmation, access, bucket=None,
     elif type(raw_eligible) is not bool:
         raise ValueError('Invalid raw rebalance eligibility')
     side,identity,manual=words(confirmation,'condition(uint256)',bucket,count=3)
+    reference_blocked=False
+    if version == 2 and raw_eligible and not manual:
+        physical,reference=words(confirmation,'marketSides(uint256)',bucket,count=2)
+        if physical not in (1,2) or reference not in (0,1,2):
+            raise ValueError('Invalid physical/reference exit sides')
+        reference_blocked=reference_required and physical!=reference
+        if side!=(0 if reference_blocked else physical):
+            raise ValueError('Confirmation disagrees with independent-market evidence')
+        result.update(physical_exit_side=physical,reference_exit_side=reference)
     prior,first,last,prior_side=words(confirmation,'observations(uint256)',bucket,count=4)
     ready=scalar(confirmation,'ready(uint256)',bucket)
     strategy_ready=scalar(strategy,'rebalanceReady(uint256)',bucket)
@@ -55,7 +73,8 @@ def observe(read, *, strategy, budget, confirmation, access, bucket=None,
             strategy_ready!=ready or prior_side not in (0,1,2)):
         raise ValueError('Invalid rebalance-confirmation state')
     if (not raw_eligible and (side or identity or manual) or
-            raw_eligible and not manual and (side==0 or identity==0) or
+            raw_eligible and not manual and not reference_blocked and (side==0 or identity==0) or
+            reference_blocked and (side!=0 or identity!=0) or
             manual and (not raw_eligible or side or identity) or
             range_pending is not None and (type(range_pending) is not bool or bool(manual)!=(raw_eligible and range_pending))):
         raise ValueError('Confirmation and raw rebalance conditions disagree')
@@ -68,7 +87,7 @@ def observe(read, *, strategy, budget, confirmation, access, bucket=None,
     if bool(ready)!=expected:
         raise ValueError('Confirmation readiness contradicts its recorded observations')
     status=('manual_range_exception' if manual else 'raw_not_due' if not raw_eligible else
-            'unconfigured' if gap==0 else 'waiting_first_observation' if not matches else
+            'reference_disagreement' if reference_blocked else 'unconfigured' if gap==0 else 'waiting_first_observation' if not matches else
             'observation_stale' if not fresh else 'ready' if ready else 'confirming')
     result.update({'status':status,'ready_at_snapshot':bool(ready),'raw_eligible_at_snapshot':raw_eligible,
         'manual_range_exception':bool(manual),'exit_side':side,

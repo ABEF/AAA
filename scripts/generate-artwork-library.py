@@ -17,16 +17,22 @@ RARITIES = ('commun', 'rare', 'legendary')
 def generate() -> str:
     raw = CATALOG.read_bytes()
     catalog = json.loads(raw)
-    assert len(catalog['paletteOrder']) == 58
-    assert catalog['patternOrder'] == ['arcs', 'panels', 'orbits', 'ribs']
+    if len(catalog['paletteOrder']) != 58:
+        raise ValueError('Artwork catalogue must contain exactly 58 palettes')
+    if catalog['patternOrder'] != ['arcs', 'panels', 'orbits', 'ribs']:
+        raise ValueError('Artwork catalogue pattern identity differs from the reviewed order')
     masks = bytes(entry['mask'] for entry in catalog['paletteOrder']).hex()
     inventories = []
     for rarity, count in zip(RARITIES, (600, 300, 100)):
         data = bytes.fromhex(catalog['hex'][rarity])
-        assert len(data) == 2 * count
-        assert hashlib.sha256(data).hexdigest() == catalog['sha256'][rarity]
-        assert [int.from_bytes(data[i:i+2], 'big') for i in range(0,len(data),2)] == catalog['codes'][rarity]
-        assert all(0 <= code < 58 * 4 for code in catalog['codes'][rarity])
+        if len(data) != 2 * count:
+            raise ValueError('Artwork rarity inventory differs from its fixed supply')
+        if hashlib.sha256(data).hexdigest() != catalog['sha256'][rarity]:
+            raise ValueError('Artwork rarity inventory digest differs from the catalogue')
+        if [int.from_bytes(data[i:i+2], 'big') for i in range(0,len(data),2)] != catalog['codes'][rarity]:
+            raise ValueError('Artwork decoded inventory differs from the catalogue codes')
+        if not all(0 <= code < 58 * 4 for code in catalog['codes'][rarity]):
+            raise ValueError('Artwork code exceeds the reviewed palette and pattern inventory')
         inventories.append(f'    bytes private constant {rarity.upper()} = hex"{data.hex()}";')
     return '''// SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;

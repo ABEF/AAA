@@ -82,7 +82,7 @@ class KeeperConfirmationTests(unittest.TestCase):
     def schedule(self):return self.k.state.get(CONFIRMATION_STATE,{}).get('7')
 
     def test_explicit_profile_and_helper_pins_fail_closed_without_legacy_fallback(self):
-        for value in (True,'1',2):
+        for value in (True,'1',3):
             cfg=copy.deepcopy(self.cfg);cfg['rebalance_confirmation_version']=value
             with self.subTest(value=value),self.assertRaises(ValueError):Keeper(cfg,rpc=self.rpc)
         cfg=copy.deepcopy(self.cfg);cfg['code_hashes'].pop('rebalance_confirmation')

@@ -1,5 +1,15 @@
 # Price security and factual LP verification
 
+Current fresh LP protection uses confirmation2 and separate emergency capability1.
+Ordinary readiness requires physical/reference same-side range exit (unless a
+reviewed policy relaxation or deliberate governance width exception applies).
+Reference prices remain the configured dual USD sources, not a newly qualified
+market feed. A separate paused governance emergency may explicitly bypass
+financial guards; it preserves exact accounting/custody but can cause near-total
+economic loss. It is not a user transaction, keeper fallback or API signing
+feature. [Policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
+[emergency procedure](EMERGENCY_REBALANCE.md).
+
 ## Status and security boundary
 
 The [reference-market improvement](../TODO.md#task-rebalance-confirmation-buffer)
@@ -11,14 +21,18 @@ Our physical pool's tick determines whether the actual LP is in range; another
 pool's tick cannot substitute for it. Current `Strategy.needsRebalance` requires
 cooldown/operation eligibility, reads the configured Oracle reference and checks
 the managed pool spot against `maxSpotDeviationBps` before testing actual ticks.
-`RebalanceConfirmation.condition` then samples the actual same-side physical exit
-and stable control identity. Thus current price agreement is independently
-guarded, but the reference itself need not be outside the LP bounds.
+Fresh confirmation2 `condition` additionally requires both actual physical and
+independent-reference exit on the same side of the identical LP bounds. Target-
+only, reference-only and opposite-side exits cannot qualify ordinary upkeep.
+Governance may explicitly relax the reference rule with a review hash and sample
+invalidation; automatic keeper widths cannot coexist with enabled protection.
 
 On2026-10-29 the user requested corroboration from a reviewed higher-liquidity
 market because the managed pool can be manipulated. Selecting that market,
 averaging window, real depth, independence and failure/reset behavior remains
-unqualified; no deeper-pool/TWAP adapter or reference-range trigger was added.
+unqualified; no deeper-pool/TWAP adapter was added. The new reference-range trigger
+uses the existing configured dual USD sources, whose actual independence and
+market averaging still require qualification.
 Deeper instantaneous spot alone is not manipulation proof, and the greatest
 reported liquidity need not mean the best manipulation resistance.
 

@@ -17,9 +17,9 @@ class RebalanceConfirmation:
     def __init__(self,keeper):
         self.k=keeper
         self.version=keeper.config.get('rebalance_confirmation_version',0)
-        if type(self.version) is not int or self.version not in (0,1):
+        if type(self.version) is not int or self.version not in (0,1,2):
             raise ValueError('Unsupported explicit rebalance confirmation profile')
-        if self.version == 1:
+        if self.version in (1,2):
             interval=keeper.config.get('interval_seconds')
             if type(interval) is not int or not 60<=interval<=CHECK_SECONDS:
                 raise ValueError('Confirmation requires explicit interval_seconds 60-240; no historical default')
@@ -42,7 +42,7 @@ class RebalanceConfirmation:
     def status(self,bucket,*,with_candidate=True):
         """Read policy, condition and candidate at one fresh canonical block."""
         from keeper.monitor import rpc_hash, rpc_quantity
-        if self.version != 1:raise ValueError('Confirmation profile is not enabled')
+        if self.version not in (1,2):raise ValueError('Confirmation profile is not enabled')
         k=self.k
         header=k.rpc.call('eth_getBlockByNumber',['latest',False])
         if not isinstance(header,dict):raise RpcError('Missing confirmation header')
@@ -66,12 +66,12 @@ class RebalanceConfirmation:
                     raise RpcError('Confirmation runtime differs from the reviewed profile')
             for target,signature,value in ((strategy,'access()',int(access,16)),
                     (strategy,'rebalanceConfirmation()',int(helper,16)),
-                    (strategy,'REBALANCE_CONFIRMATION_VERSION()',1),
+                    (strategy,'REBALANCE_CONFIRMATION_VERSION()',self.version),
                     (helper,'strategy()',int(strategy,16)),(helper,'access()',int(access,16)),
-                    (helper,'REBALANCE_CONFIRMATION_VERSION()',1),
+                    (helper,'REBALANCE_CONFIRMATION_VERSION()',self.version),
                     (k.contracts['vault'],'migrationBudget()',int(self.budget,16)),
                     (self.budget,'vault()',int(k.contracts['vault'],16)),
-                    (self.budget,'access()',int(access,16)),(self.budget,'REBALANCE_CONFIRMATION_VERSION()',1)):
+                    (self.budget,'access()',int(access,16)),(self.budget,'REBALANCE_CONFIRMATION_VERSION()',self.version)):
                 if read(target,signature)!=[value]:raise RpcError('Confirmation helper binding or capability differs')
             if read(access,'module(bytes32)','0x'+keccak256(b'ZZZStrategy').hex())!=[int(strategy,16)]:
                 raise RpcError('Confirmation Strategy module differs')
@@ -82,11 +82,25 @@ class RebalanceConfirmation:
             if (not 60<=duration<=604800 or not 0<=gap<=duration//2 or not 0<=revision<1<<64 or
                     (gap>0 and review==0)):
                 raise RpcError('Confirmation policy exceeds reviewed bounds')
-            policy={'version':1,'block_number':number,'block_hash':block['blockHash'],
+            policy={'version':self.version,'block_number':number,'block_hash':block['blockHash'],
                 'block_timestamp':stamp,'duration_seconds':duration,'maximum_gap_seconds':gap,
                 'policy_revision':revision,'review_hash':'0x'+f'{review:064x}'}
+            if self.version==2:
+                required=read(helper,'requireReferenceExit()')[0];reference_review=read(helper,'referenceReviewHash()')[0]
+                if required not in (0,1) or not required and reference_review==0:
+                    raise RpcError('Invalid independent-reference confirmation policy')
+                policy.update(reference_exit_required=bool(required),reference_review_hash='0x'+f'{reference_review:064x}')
             if not with_candidate:return policy
             side,identity,manual=read(helper,'condition(uint256)',bucket,count=3)
+            if self.version==2 and not manual:
+                raw=read(strategy,'needsRebalance(uint256)',bucket)[0]
+                if raw not in (0,1):raise RpcError('Invalid raw rebalance eligibility')
+                if raw:
+                    physical,reference=read(helper,'marketSides(uint256)',bucket,count=2)
+                    if physical not in (1,2) or reference not in (0,1,2) or side!=(
+                            0 if policy['reference_exit_required'] and physical!=reference else physical):
+                        raise RpcError('Confirmation differs from independent-market evidence')
+                    policy.update(physical_exit_side=physical,reference_exit_side=reference)
             old_identity,first,last,old_side=read(helper,'observations(uint256)',bucket,count=4)
             if side not in (0,1,2) or manual not in (0,1) or old_side not in (0,1,2):
                 raise RpcError('Malformed confirmation condition')

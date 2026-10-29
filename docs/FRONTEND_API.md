@@ -1,10 +1,27 @@
 # Confirmed frontend read API
 
+Confirmed financial history rejects contradictory transaction-index/hash grouping
+at ingestion and replay. Valid filtered-log gaps and optional historical indices
+remain supported; consistency does not prove provider/database completeness.
+Observation also rechecks final confirmation depth and signed legacy gas-price
+agreement. Contradictory evidence is an error/unavailable amount, never guessed0.
+See [current review](../reports/whole-project-execution-20261029/BACKEND.md).
+
 The `frontend_api` Python service reads confirmed contract state and optional
 complete indexed history. It has no private keys, signer, broadcast method or
 administrator write endpoint. Optional typed preparation returns simulated,
 unsigned drafts only; public signing remains disabled. Production hosting,
 current-profile website integration and actual dependencies are not qualified.
+
+Current fresh LP protection uses confirmation2 and separate emergency capability1.
+Ordinary readiness requires physical/reference same-side range exit (unless a
+reviewed policy relaxation or deliberate governance width exception applies).
+Reference prices remain the configured dual USD sources, not a newly qualified
+market feed. A separate paused governance emergency may explicitly bypass
+financial guards; it preserves exact accounting/custody but can cause near-total
+economic loss. It is not a user transaction, keeper fallback or API signing
+feature. [Policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
+[emergency procedure](EMERGENCY_REBALANCE.md).
 
 ## Current deployment profile
 

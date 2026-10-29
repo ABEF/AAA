@@ -77,10 +77,10 @@ class ActivationConfig:
         if self.execution_quality_version == 1 and self.lp_routing_version != 1:
             raise ValueError('Execution quality requires explicit LP-routing profile1')
         self.rebalance_confirmation_version = config.get('rebalance_confirmation_version',0)
-        if type(self.rebalance_confirmation_version) is not int or self.rebalance_confirmation_version not in (0,1):
+        if type(self.rebalance_confirmation_version) is not int or self.rebalance_confirmation_version not in (0,1,2):
             raise ValueError('Unsupported explicit rebalance-confirmation profile')
         if 'rebalance_confirmation_version' in config: fields.add('rebalance_confirmation_version')
-        if self.rebalance_confirmation_version == 1 and (projection.accounting_version!=4 or
+        if self.rebalance_confirmation_version in (1,2) and (projection.accounting_version!=4 or
                 self.maintenance_policy_version!=2 or self.execution_quality_version!=1):
             raise ValueError('Confirmation requires accounting4, maintenance2 and execution quality1')
         _keys(config, fields, 'activation configuration')
@@ -96,7 +96,7 @@ class ActivationConfig:
         _keys(config['contracts'], set(MODULES) | HELPERS |
               ({'v4_executor'} if self.routing_version == 2 else set()) |
               ({'balancing_router'} if self.lp_routing_version == 1 else set()) |
-              ({'rebalance_confirmation'} if self.rebalance_confirmation_version == 1 else set()) |
+              ({'rebalance_confirmation'} if self.rebalance_confirmation_version in (1,2) else set()) |
               ({'contribution_pricing'} if self.pricing_version == 2 else set()), 'activation contracts')
         self.contracts = {}
         for role, item in config['contracts'].items():
@@ -261,13 +261,13 @@ class ActivationConfig:
                 if execution_observation is not None: execution_observation.update(execution)
             except (ValueError, TypeError, KeyError) as exc:
                 raise ProjectionError('LP execution capability differs from the reviewed profile') from exc
-        if self.rebalance_confirmation_version == 1:
+        if self.rebalance_confirmation_version in (1,2):
             from zzz_ops.rebalance_confirmation import observe as observe_confirmation
             try:
                 policy = observe_confirmation(
                     lambda target, method, *args, count: p._call(target,method,*args,block=block,words=count),
                     strategy=pins['strategy'],budget=pins['budget'],
-                    confirmation=pins['rebalance_confirmation'],access=pins['access'])
+                    confirmation=pins['rebalance_confirmation'],access=pins['access'],version=self.rebalance_confirmation_version)
                 if execution_observation is not None:
                     execution_observation['rebalance_confirmation_policy']=policy
             except (ValueError,TypeError,KeyError) as exc:

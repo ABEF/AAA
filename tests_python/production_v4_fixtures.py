@@ -38,9 +38,11 @@ def fixture():
             deployment=chain['modules']['access']['address'],kind='lp_execution_quality_qualification'))
     chain['lp_execution']['observed']=P.execution_expected(chain)
     chain['rebalance_confirmation']=dict(duration=900,max_observation_gap=300,policy_revision=1,review_hash=old.HASH,
+        reference_exit_required=True,reference_review_hash=P.ZERO_HASH,
         review_evidence=old.proof(chain_id=4663,block_number=100,block_hash=old.HASH,deployment=chain['modules']['access']['address'],
             kind='observed_rebalance_confirmation_qualification'))
-    chain['rebalance_confirmation']['observed']=dict(duration=900,max_observation_gap=300,policy_revision=1,review_hash=old.HASH,buckets=[])
+    chain['rebalance_confirmation']['observed']=dict(duration=900,max_observation_gap=300,policy_revision=1,review_hash=old.HASH,
+        reference_exit_required=True,reference_review_hash=P.ZERO_HASH,buckets=[])
     chain['holder_exit']=dict(review_evidence=old.proof(chain_id=4663,block_number=100,block_hash=old.HASH,
         deployment=chain['modules']['access']['address'],kind='collective_holder_return_qualification'),observed=dict(
             phase=0,lp_exit_started=False,paused=False,minted_count=0,exit_minted_count=0,allocation_cursor=0,
@@ -98,7 +100,8 @@ def exited(cfg,phase=3,count=2):
             eth=eth,zzz=zzz,allocated=allocated,paid=False,claimable=[eth,zzz] if phase==3 else None))
     chain['nft_inventory']['observed_bindings'].update(mintedCount=count,nextToFinalize=1,remainingToReveal=1000,rarityRemaining=[600,300,100])
     chain['rebalance_confirmation']['observed']['buckets']=[dict(id=7,condition_side=0,condition_identity=P.ZERO_HASH,manual=False,
-        stored_identity=P.ZERO_HASH,first_seen=0,last_seen=0,stored_side=0,ready=False,raw_needed=False,range_pending=None)]
+        stored_identity=P.ZERO_HASH,first_seen=0,last_seen=0,stored_side=0,ready=False,raw_needed=False,range_pending=None,
+        physical_side=None,reference_side=None)]
     return cfg
 
 
@@ -112,7 +115,8 @@ def active(cfg):
         allocated=False,paid=False,claimable=None)]
     chain['nft_inventory']['observed_bindings']['mintedCount']=1
     chain['rebalance_confirmation']['observed']['buckets']=[dict(id=7,condition_side=2,condition_identity=old.HASH,
-        manual=False,stored_identity=old.HASH,first_seen=NOW-900,last_seen=NOW-1,stored_side=2,ready=True,raw_needed=True,range_pending=False)]
+        manual=False,stored_identity=old.HASH,first_seen=NOW-900,last_seen=NOW-1,stored_side=2,ready=True,raw_needed=True,range_pending=False,
+        physical_side=2,reference_side=2)]
     return cfg
 
 
@@ -185,6 +189,7 @@ class RPC(CompositionRPC):
                     if target==m['strategy']['address'] and data==selector('rebalanceReady(uint256)')+O._word(bid):result=encoded(int(row['ready']))
                     if target==m['strategy']['address'] and data==selector('rangeUpdatePending(uint256)')+O._word(bid):result=encoded(int(row['range_pending']))
                     if target==h['rebalance_confirmation']['address']:
+                        if data==selector('marketSides(uint256)')+O._word(bid):result=encoded(row['physical_side'],row['reference_side'])
                         if data==selector('condition(uint256)')+O._word(bid):result=encoded(row['condition_side'],row['condition_identity'],int(row['manual']))
                         if data==selector('observations(uint256)')+O._word(bid):result=encoded(row['stored_identity'],row['first_seen'],row['last_seen'],row['stored_side'])
                         if data==selector('ready(uint256)')+O._word(bid):result=encoded(int(row['ready']))

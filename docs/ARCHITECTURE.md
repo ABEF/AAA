@@ -24,12 +24,24 @@ Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.0
 
 ## Shared implementation boundaries
 
-Fresh confirmation1 adds one Strategy-created, noncustodial helper. It records
+Fresh confirmation2 uses one Strategy-created, noncustodial helper. It records
 bounded on-chain outside samples and exposes raw-condition versus confirmed
 readiness. Budget gates ordinary rebalance and rechecks stable controls across
 the full close/swap/deploy operation. Matching keeper journals samples/resets;
 API reports one pinned snapshot without inventing execution time.
 [Exact900/300 policy and limits](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
+
+Ordinary samples now require physical/reference same-side exit; reviewed policy
+relaxation invalidates samples and cannot coexist with automatic keeper widths.
+A separate paused governance-only [manual emergency](EMERGENCY_REBALANCE.md)
+stores an exact request in Migration, arms the Vault-owned Budget and Manager
+for one atomic close/swap/mint, then clears all temporary state. Economic checks
+are individually optional there, so governance can cause near-total trading
+loss. Fixed assets/venues, exact settlement, shares/rewards, custody and lifecycle
+remain mandatory. No keeper fallback, arbitrary call or external recipient exists.
+Stateless v4 deployment/valuation math is shared through the existing immutable
+Balancer/Pricing helpers to retain normal code/initcode limits; target gas and
+the new composition still need independent qualification.
 
 [LiquidityManager](../src/ZZZLiquidityManager.sol) uses one private settlement
 helper for collect/close; each caller retains its fixed action and checks.

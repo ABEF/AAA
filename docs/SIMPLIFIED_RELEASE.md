@@ -12,7 +12,7 @@ Production is **NOT APPROVED**; existing deployments and journals are unchanged.
 | Vault / Liquidity / Strategy | Shared native ETH/ZZZ LP, per-NFT shares, actual placement/harvest and constrained range maintenance. |
 | Fees / Rewards / Membership | Actual80/10/5/5 fee allocation, share-weighted individual and equal activated collective rights; separate compound/buyback reserves. |
 | NFT / royalty ledger / converters | Fixed trait draw, transferable ownership and separate rarity-weighted actual royalties, including admitted currencies and guarded conversion. Future royalties continue after LP exit. |
-| Migration / parking helper | Same-pair pool moves and reversible parking before exit, or irreversible collective close/apportion/direct holder payout. No arbitrary recipient. |
+| Migration / parking helper | Same-pair moves/parking, separate paused-governance manual emergency redeployment with explicitly optional financial checks, or terminal collective holder return. No arbitrary recipient; bypassed financial guards can permit near-total loss. |
 | Canonical handoff | Same-chain ownership/accounting/backing replacement with funded abort, only before collective LP exit. |
 | External principal and royalty custody exits | Removed, including all-ZZZ consolidation, chosen custody recipients, return/completion ingress and royalty drains. |
 | Generic ERC20 LP pools | Removed from production admission so every funded bucket can return ETH+ZZZ. Separate ERC20 conversion venues/royalty currencies remain. |

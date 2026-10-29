@@ -194,9 +194,26 @@ class CurrentProductionTests(unittest.TestCase):
         bucket=self.chain['holder_exit']['observed']['buckets'][0];bucket['lp_ticks'][1]-=200
         bucket.update(F.physical_position(self.chain['pools'][0],bucket['lp_ticks']))
         row.update(condition_side=0,condition_identity=P.ZERO_HASH,manual=True,stored_identity=P.ZERO_HASH,
-            first_seen=0,last_seen=0,stored_side=0,ready=True,range_pending=True)
+            first_seen=0,last_seen=0,stored_side=0,ready=True,range_pending=True,physical_side=None,reference_side=None)
         self.assertTrue(self.result()['inventory_consistent'],self.result()['issues'])
         row['raw_needed']=False;self.assertIn('confirmation.raw_required',self.codes())
+
+    def test_independent_market_disagreement_is_coherent_but_never_ready(self):
+        F.active(self.cfg);row=self.chain['rebalance_confirmation']['observed']['buckets'][0]
+        row.update(condition_side=0,condition_identity=P.ZERO_HASH,ready=False,reference_side=0)
+        self.assertTrue(self.result()['inventory_consistent'],self.result()['issues'])
+        observed,_=self.observe();self.assertTrue(self.result(observed)['inventory_consistent'])
+        row['ready']=True;self.assertIn('confirmation.ready_view',self.codes())
+
+    def test_reference_market_sides_cannot_replace_actual_physical_ticks(self):
+        F.active(self.cfg);row=self.chain['rebalance_confirmation']['observed']['buckets'][0]
+        row.update(physical_side=1,reference_side=1,condition_side=1)
+        self.assertIn('confirmation.market_sides',self.codes())
+
+    def test_reference_relaxation_requires_nonzero_review(self):
+        c=self.chain['rebalance_confirmation'];c['reference_exit_required']=False
+        c['observed']['reference_exit_required']=False;F.refresh_bindings(self.cfg)
+        self.assertIn('confirmation.reference_review',self.codes())
 
     def test_confirmation_unavailable_boolean_or_version_is_never_a_fallback(self):
         rpc=F.RPC(self.cfg)

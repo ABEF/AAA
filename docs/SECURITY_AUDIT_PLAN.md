@@ -21,7 +21,23 @@ Historical internal reports retain their original source scope and do not
 provide independent release approval. The seven workstreams below map to
 [the security Todo](../TODO.md#security--audit).
 
+[Current whole-project audit execution](../reports/whole-project-execution-20261029/REVIEW.md) includes
+two prompt challenges, exact handwritten/dependency body coverage, keeper/backend/
+tooling/artwork repairs and completed callable outputs. Its scoped verification
+and unresolved live/independent gates supersede no historical report bytes.
+
 ## Priorities and evidence
+
+Fresh confirmation2/emergency1 expands this threat model: test physical/reference
+same-side sampled persistence and governed relaxation; prevent automatic width
+policies bypassing the reference guard; preserve mandatory reset after an observed
+disagreement even if price recovers before inclusion. Manual paused governance
+may select per-call financial bypass and can therefore lose almost all principal.
+This is accepted governance trust, not keeper authority or immutable economic
+protection. Review temporary context cleanup/rollback, retained-policy pinning,
+call-boundary isolation, raw minima, exact budget/reserve separation, parked
+recovery and terminal/canonical rejection. Qualify cold/maximal gas and actual
+market/feed/ordering; local fixture passes are not an independent audit.
 
 | Gate | Required decision or evidence |
 | --- | --- |

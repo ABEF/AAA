@@ -18,6 +18,7 @@ from zzz_ops.abi import address, decode_words, keccak256
 from zzz_ops.rpc import RpcError, _unique_object, _reject_constant, _finite_float
 from zzz_ops.work_budget import checkpoint, WorkLimit
 from zzz_ops.state import integer
+from zzz_ops.log_provenance import OrderedTransactions
 
 ZERO = '0x' + '0' * 40
 TRANSFER = '0x' + keccak256(b'Transfer(address,address,uint256)').hex()
@@ -199,6 +200,7 @@ class History:
         lp_conversions = {}
         seen_logs = set()
         transaction_blocks = {}
+        chronology = OrderedTransactions()
         examined = 0
         claim_events = 0
         conversion_events = 0
@@ -222,6 +224,11 @@ class History:
                 raise HistoryError('Stored raw log emitter/removed identity differs')
             if _quantity(item['blockNumber']) != number or _hash(item['blockHash']) != block_hash or _hash(item['transactionHash']) != transaction_hash or _quantity(item['logIndex']) != log_index:
                 raise HistoryError('Stored raw log provenance differs from its confirmed row')
+            transaction_index = _quantity(item['transactionIndex']) if 'transactionIndex' in item else None
+            try:
+                chronology.add(number, log_index, transaction_hash, transaction_index)
+            except ValueError:
+                raise HistoryError('Stored transaction provenance contradicts canonical log order') from None
             topics = item.get('topics')
             if not isinstance(topics, list) or len(topics) > 4 or any(not isinstance(t, str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}', t) for t in topics):
                 raise HistoryError('Malformed fixed event topics')

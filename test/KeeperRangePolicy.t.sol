@@ -7,6 +7,7 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 // TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
 import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {MockAccess, MockToken, MockFeed} from "./mocks/Mocks.sol";
@@ -61,6 +62,9 @@ contract KeeperRangePolicyTest is Test {
         pool = registry.configure(config); vault.bindPool(pool);
         position.poolId=pool; position.status=PositionStatus.Active;
         controller.setKeeper(KEEPER,true); controller.seal();
+        // TEST ONLY explicit alternative policy: automated widths require the
+        // independent-exit guard to be deliberately relaxed by governance.
+        strategy.rebalanceConfirmation().setRequireReferenceExit(false,REVIEW);
         _replace();
     }
     function _price(int256 rawToken1PerToken0) private {
@@ -77,6 +81,23 @@ contract KeeperRangePolicyTest is Test {
     function _approve() private {
         strategy.setRangeOrientation(pool,1); _replace();
         strategy.setKeeperRangePolicy(pool,true,100,1000,600,REVIEW);
+    }
+    function testReferenceProtectionAndAutomaticWidthExceptionCannotCoexist() public {
+        // Resolve the helper before expectRevert: its getter itself succeeds.
+        address helper=address(strategy.rebalanceConfirmation());
+        strategy.rebalanceConfirmation().setRequireReferenceExit(true,REVIEW);
+        strategy.setRangeOrientation(pool,1); _replace();
+        vm.expectRevert();strategy.setKeeperRangePolicy(pool,true,100,1000,600,REVIEW);
+        strategy.rebalanceConfirmation().setRequireReferenceExit(false,REVIEW);
+        strategy.setKeeperRangePolicy(pool,true,100,1000,600,REVIEW);
+        assertEq(strategy.activeKeeperRangePolicies(),1);
+        strategy.setKeeperRangePolicy(pool,true,100,1000,600,REVIEW);
+        assertEq(strategy.activeKeeperRangePolicies(),1); // Reconfiguration is not a second policy.
+        vm.expectRevert();ZZZRebalanceConfirmation(helper).setRequireReferenceExit(true,REVIEW);
+        strategy.setKeeperRangePolicy(pool,false,0,0,0,bytes32(0));
+        assertEq(strategy.activeKeeperRangePolicies(),0);
+        strategy.rebalanceConfirmation().setRequireReferenceExit(true,REVIEW);
+        assertTrue(strategy.rebalanceConfirmation().requireReferenceExit());
     }
     function testExplicitOrientationPreservesLegacyUntilApprovedAndInvertsOutwardTicks() public {
         (int24 rawLower,int24 rawUpper,) = strategy.target(pool);
@@ -196,6 +217,7 @@ contract KeeperRangePolicyTest is Test {
         vm.expectRevert(); strategy.setKeeperRangePolicy(pool,true,100,1000,600,bytes32(0));
         strategy.setKeeperRangePolicy(pool,true,100,1000,600,REVIEW);
         strategy.setRangeOrientation(pool,0);
+        assertEq(strategy.activeKeeperRangePolicies(),0);
         vm.warp(block.timestamp+600); assertEq(strategy.keeperRangeTarget(pool),0);
     }
 }

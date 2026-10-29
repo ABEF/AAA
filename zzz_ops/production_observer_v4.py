@@ -13,7 +13,7 @@ from zzz_ops.lp_execution import observe as observe_execution
 UINT_GETTERS = frozenset(('MAX_BATCH','PAYOUT_GAS','configurationRevision','LP_ROUTING_VERSION',
     'EXECUTION_QUALITY_VERSION','MAX_ADDITIONAL_LOSS_BPS','additionalLossBps','executionQualityRevision',
     'IDLE_COMPOUNDING_VERSION','MAX_EXECUTION_POOLS','executionRevision','searchIterations','quoteGasLimit',
-    'REBALANCE_CONFIRMATION_VERSION','MAINTENANCE_POLICY_VERSION','duration','maxObservationGap','policyRevision'))
+    'REBALANCE_CONFIRMATION_VERSION','EMERGENCY_REBALANCE_VERSION','MAINTENANCE_POLICY_VERSION','duration','maxObservationGap','policyRevision'))
 MAX_READS = 12000
 MAX_SECONDS = 60
 
@@ -36,9 +36,10 @@ class Observer(O.Observer):
         return result
 
     def typed(self,target,getter,expected):
+        if getter in ('requireReferenceExit','emergencyActive'):return O._decode(self.read(target,getter+'()')[0],False)
         if getter in UINT_GETTERS:return O._decode(self.read(target,getter+'()')[0],0)
         if getter in ('balancingRouter','liquidityManager','rebalanceConfirmation','strategy'):return O._decode(self.read(target,getter+'()')[0],O.ZERO)
-        if getter=='reviewHash':return '0x'+self.read(target,'reviewHash()')[0]
+        if getter in ('reviewHash','referenceReviewHash'):return '0x'+self.read(target,getter+'()')[0]
         return super().typed(target,getter,expected)
 
     def governance(self):
@@ -149,7 +150,9 @@ class Observer(O.Observer):
         def capture():
             result=dict(duration=int(self.read(target,'duration()')[0],16),
                 max_observation_gap=int(self.read(target,'maxObservationGap()')[0],16),
-                policy_revision=int(self.read(target,'policyRevision()')[0],16),review_hash='0x'+self.read(target,'reviewHash()')[0],buckets=[])
+                policy_revision=int(self.read(target,'policyRevision()')[0],16),review_hash='0x'+self.read(target,'reviewHash()')[0],
+                reference_exit_required=O._decode(self.read(target,'requireReferenceExit()')[0],False),
+                reference_review_hash='0x'+self.read(target,'referenceReviewHash()')[0],buckets=[])
             for bucket in self.chain['holder_exit']['observed']['buckets']:
                 bid=bucket['id'];condition=self.read(target,'condition(uint256)',bid,count=3)
                 stored=self.read(target,'observations(uint256)',bid,count=4)
@@ -158,14 +161,17 @@ class Observer(O.Observer):
                 if ready!=O._decode(self.read(strategy,'rebalanceReady(uint256)',bid)[0],False):
                     raise ValueError('Strategy and helper confirmation readiness differ')
                 pending=None
+                physical=None;reference=None
                 if P.confirmation_controls_allow(self.chain):
                     pending=O._decode(self.read(strategy,'rangeUpdatePending(uint256)',bid)[0],False)
                     if O._decode(condition[2],False)!=(raw and pending):
                         raise ValueError('Manual confirmation exception differs from the current range policy')
+                    if raw and not pending:
+                        physical,reference=[int(word,16) for word in self.read(target,'marketSides(uint256)',bid,count=2)]
                 result['buckets'].append(dict(id=bid,condition_side=int(condition[0],16),condition_identity='0x'+condition[1],
                     manual=O._decode(condition[2],False),stored_identity='0x'+stored[0],first_seen=int(stored[1],16),
                     last_seen=int(stored[2],16),stored_side=int(stored[3],16),
-                    ready=ready,raw_needed=raw,range_pending=pending))
+                    ready=ready,raw_needed=raw,range_pending=pending,physical_side=physical,reference_side=reference))
             return result
         self.chain['rebalance_confirmation']['observed']=self.attempt('rebalance_confirmation','confirmation.unavailable',capture)
 

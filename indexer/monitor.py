@@ -12,6 +12,7 @@ from indexer.events import decode
 from zzz_ops.abi import address
 from zzz_ops.rpc import Rpc,RpcError
 from zzz_ops.state import integer, process_lock
+from zzz_ops.log_provenance import OrderedTransactions
 
 class IndexerSafetyError(RpcError):
     """A public, fixed diagnostic; provider payloads and URLs are never included."""
@@ -156,7 +157,7 @@ class Indexer:
             headers[number]=h;parent=h['hash']
         last=self.header(end)
         if last!=headers[end]:raise RpcError('Chain changed during log fetch')
-        prepared=[];seen_logs=set();transaction_blocks={}
+        prepared=[];seen_logs=set();transaction_blocks={};ordered_logs=[]
         for item in logs:
             if not isinstance(item,dict) or item.get('removed') is not False:
                 raise IndexerSafetyError('invalid_log','Malformed or removed log; retained history is unchanged')
@@ -177,7 +178,7 @@ class Indexer:
                     not isinstance(data,str) or len(data)>MAX_RAW_LOG or
                     not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})*',data)):
                 raise IndexerSafetyError('invalid_log','Malformed log topics or data; retained history is unchanged')
-            if 'transactionIndex' in item:_log_quantity(item['transactionIndex'])
+            transaction_index=_log_quantity(item['transactionIndex']) if 'transactionIndex' in item else None
             try:
                 raw=json.dumps(item,sort_keys=True,allow_nan=False)
                 if len(raw)>MAX_RAW_LOG:raise ValueError()
@@ -188,8 +189,16 @@ class Indexer:
                     transaction_hash in transaction_blocks and transaction_blocks[transaction_hash]!=number):
                 raise IndexerSafetyError('duplicate_log','Conflicting log provenance; retained history is unchanged')
             seen_logs.add((number,log_index));transaction_blocks[transaction_hash]=number
+            ordered_logs.append((number,log_index,transaction_hash,transaction_index))
             prepared.append((self.chain,number,block_hash,transaction_hash,log_index,contract,event,
                 json.dumps(decoded,sort_keys=True) if decoded is not None else None,raw))
+        # Providers may return valid filtered logs out of order. Validate their
+        # canonical sequence before any durable write, including unknown events.
+        chronology=OrderedTransactions()
+        try:
+            for row in sorted(ordered_logs,key=lambda row:row[:2]):chronology.add(*row)
+        except ValueError:
+            raise IndexerSafetyError('invalid_transaction_order','Contradictory transaction provenance; retained history is unchanged') from None
         with self.db:
             self.db.execute('BEGIN IMMEDIATE')
             if self.next_block!=start:

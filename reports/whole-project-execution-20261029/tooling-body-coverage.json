@@ -1,0 +1,1656 @@
+{
+  "observed_at_utc": "2026-10-29T03:08:15.964301+00:00",
+  "scope": "Fresh static tooling body/wrapper/workflow review plus narrow artwork-generator fixtures; no service/build/fork/network/signing execution.",
+  "files": [
+    {
+      "path": "scripts/install-deps.sh",
+      "sha256": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+      "review": "Full shell read: lock required; npm ci --ignore-scripts; exact clean forge-std commit after tag clone; no deployment. Installer changes dependency tree/reports only when intentionally invoked, not run here."
+    },
+    {
+      "path": "scripts/verify.sh",
+      "sha256": "a028903187e801ce23cc8218a09b6591de55ea5c7f44479475e2e9bef5d85aca",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "a028903187e801ce23cc8218a09b6591de55ea5c7f44479475e2e9bef5d85aca",
+      "review": "Full shell read: Todo/callable check, Python/source checks, Forge build/sizes and tests; no deployment. Does not itself sanitize arbitrary inherited Foundry overrides, so source-pinned release evidence must independently capture effective profile. CI specifies pinned Foundry but no fresh CI run claimed."
+    },
+    {
+      "path": "scripts/verify-slither.sh",
+      "sha256": "b4fa7c69957b3437d34a01fa3747e26c64b18fe1f90980f5e5b134cd7ad54656",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "b4fa7c69957b3437d34a01fa3747e26c64b18fe1f90980f5e5b134cd7ad54656",
+      "review": "Full shell read: exact analyzer version, fresh current report removal, pipe status0/255 only, mandatory reviewed-source/finding checker. Generated current reports are overwritten intentionally; historical reports not touched here."
+    },
+    {
+      "path": "scripts/check-slither-review.py",
+      "sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "review": "Every body read: LF source pins, strict finding fingerprints, narrowly parsed ordered call/write bundles with multiplicity, unresolved/stale/missing rationale rejection, non-independent scope. Text coverage does not prove absence of exploits."
+    },
+    {
+      "path": "scripts/run-current-pool-fork.py",
+      "sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "path": "scripts/prepare-release-review.py",
+      "sha256": "41e499be98457fb5f651d2cc453bb52a044c3919d138276a297845fad1778a03",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "41e499be98457fb5f651d2cc453bb52a044c3919d138276a297845fad1778a03",
+      "review": "Full wrapper read: delegates to zzz_ops.review_bundle.main; no implicit tests/publication. Bundle backend source partly traced here and separately owned by backend review; no independent claim all backend bodies reviewed by this tooling pass."
+    },
+    {
+      "path": "scripts/prepare-dollar-rehearsal.py",
+      "sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "review": "Every body read: exact replacement anchors, current literal loss policy, disjoint/new output, copied bounded relative fixture imports, chain31337 constructors, no deployment scripts/FFI, hashes of inputs/generated/compiler. Preparing output is not compiler execution/authentication or release approval."
+    },
+    {
+      "path": "scripts/local_fixture_profile.py",
+      "sha256": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+      "review": "Every body read: bounded Oracle artifact, duplicate/nonfinite JSON rejection, ABI/source identity and explicit current V2 rejection BEFORE state/process creation. Existing historical fixture remains separate."
+    },
+    {
+      "path": "scripts/local-stack.py",
+      "sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "path": "scripts/local-api-stack.py",
+      "sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "path": "scripts/local_wallet.py",
+      "sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "review": "Every body read: typed expiring local drafts, exact approval/Entry separation, nonce/ownership/lifecycle checks, explicit disposable accounts, hard fixture caps, resimulation before owned-local submission; never a public key or endpoint path."
+    },
+    {
+      "path": "scripts/local_browser.py",
+      "sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "path": "scripts/local_inputs.py",
+      "sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "review": "Every body read: explicit historical named test assets/routers/WETH backing and mocked-price setup; require legacy artifacts before configuration; current two-input policy is not reintroduced or changed by these historical fixtures."
+    },
+    {
+      "path": "scripts/local_clock.py",
+      "sha256": "ece4be4950025680a6135d5758f9af1d3628acf3d3dfa2f6ef069c25e35c1615",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "ece4be4950025680a6135d5758f9af1d3628acf3d3dfa2f6ef069c25e35c1615",
+      "review": "Every body read: validated sampled timestamp plus nonnegative monotonic advance for local read freshness; no oracle or public-chain time policy."
+    },
+    {
+      "path": "scripts/verify-local-stack.py",
+      "sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "path": "scripts/verify-local-website.py",
+      "sha256": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd",
+      "review": "Every body read: explicit loopback port and session/origin, real local prepare/execute test journey; always writes requested output in finally and can overwrite prior evidence. Historical limitation recorded, no existing environment exercised and no fix authorized."
+    },
+    {
+      "path": "scripts/sync-project-todo.py",
+      "sha256": "9bb5366c5e0835f6792ddaaea19302bc5775a3ffa96a309ce55dd036eeaf1822",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "9bb5366c5e0835f6792ddaaea19302bc5775a3ffa96a309ce55dd036eeaf1822",
+      "review": "Every body read: local source ledger/schema/date/ID/status/acceptance and in-repository link checks, deterministic rendering/hash, --check read-only versus explicit TODO write. No publication."
+    },
+    {
+      "path": "scripts/generate-function-reference.py",
+      "sha256": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+      "review": "Full wrapper body read: compiler inputs all-or-none, --check cannot rewrite notes, validated ABI explanations before writes; delegates detailed generation to zzz_ops.function_reference (backend stream). No ABI/source generation executed here."
+    },
+    {
+      "path": "scripts/generate_event_schema.py",
+      "sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "review": "Every body read: deterministic inherited event traversal, topic/layout collision rejection and validated historical descriptors; main writes generated schema only. Regex parsing is bounded to current event forms, not a Solidity compiler proof."
+    },
+    {
+      "path": "scripts/generate-dynamic-range-vectors.py",
+      "sha256": "2801758addde007ebeb76a536f21465b57aedf6d110df45e02715eac608fb3e0",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "2801758addde007ebeb76a536f21465b57aedf6d110df45e02715eac608fb3e0",
+      "review": "Full module read: independent Decimal/rational fixture generation with outward tick rounding; imports execute generation and overwrite fixed test/report outputs. Not imported/run; these are fixtures not contract execution or release evidence."
+    },
+    {
+      "path": "scripts/generate-artwork-library.py",
+      "sha256": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+      "prior_baseline_exact_match": false,
+      "prior_baseline_sha256": "1e4b7f2ba602f4a1cc004ba1936d50f190cb7f7404a1854b8a120ce876a625e8",
+      "review": "Every body read and repaired authorized runtime admission: explicit exceptions replace removable assert for palette/pattern identity, fixed600/300/100 supplies, hashes/decoded codes/ranges. Five new method controls run normal/-O without writing assets; valid returned source identical."
+    },
+    {
+      "path": "scripts/run_python_tests.py",
+      "sha256": "0b94b84f35e6ea04673a97658f9c4d4ddb75c8438aa80c31554304bb34264a04",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "0b94b84f35e6ea04673a97658f9c4d4ddb75c8438aa80c31554304bb34264a04",
+      "review": "Every body read: full unittest discovery and reports explicitly labelled Python not EVM. Imported fixture duplication remains possible in broad discovery, so this pass uses explicit method identity receipts rather than inflated global counts."
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "40b45f86daa44973b8b4b6cc418cae26f7c28bd43c034791d6067d03d578250c",
+      "prior_baseline_exact_match": false,
+      "prior_baseline_sha256": "7dfa3ad653fd4d033250f06b3292f61c1c7c0f464ffb245ee11f6cd045c99358",
+      "review": "Full definition read: immutable action revisions, contents:read, pinned Node/Python/Foundry, dependency installer and separate local/static/fork jobs; checksum-pinned official fork compiler, read-only relay, no deploy/broadcast step. No workflow executed or remote CI status inferred."
+    },
+    {
+      "path": ".github/workflows/keeper-safety.yml",
+      "sha256": "269ac0c3956a9d3fa6a20b303769338fc913b69bc19d9a4c10b206b0fc184188",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "269ac0c3956a9d3fa6a20b303769338fc913b69bc19d9a4c10b206b0fc184188",
+      "review": "Full definition read in keeper pass: pinned actions/Foundry, defined-class dedup runner, separate real process rehearsal and dry-run systemd validation; no installed service rollout. Script changes do not imply CI green."
+    },
+    {
+      "path": ".github/workflows/project-todo.yml",
+      "sha256": "73d6cf730018c981958d16d0fdd2ea9b1122632a7728f494f5639128d24ba961",
+      "prior_baseline_exact_match": true,
+      "prior_baseline_sha256": "73d6cf730018c981958d16d0fdd2ea9b1122632a7728f494f5639128d24ba961",
+      "review": "Full definition read: immutable checkout, contents:read, narrow --check workflow; no write/publish/deployment authority."
+    }
+  ],
+  "body_rows": [
+    {
+      "file": "scripts/install-deps.sh",
+      "body": "<whole shell/workflow definition>",
+      "line": 1,
+      "end_line": 26,
+      "sha256": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+      "review": "Full shell read: lock required; npm ci --ignore-scripts; exact clean forge-std commit after tag clone; no deployment. Installer changes dependency tree/reports only when intentionally invoked, not run here."
+    },
+    {
+      "file": "scripts/verify.sh",
+      "body": "<whole shell/workflow definition>",
+      "line": 1,
+      "end_line": 15,
+      "sha256": "a028903187e801ce23cc8218a09b6591de55ea5c7f44479475e2e9bef5d85aca",
+      "review": "Full shell read: Todo/callable check, Python/source checks, Forge build/sizes and tests; no deployment. Does not itself sanitize arbitrary inherited Foundry overrides, so source-pinned release evidence must independently capture effective profile. CI specifies pinned Foundry but no fresh CI run claimed."
+    },
+    {
+      "file": "scripts/verify-slither.sh",
+      "body": "<whole shell/workflow definition>",
+      "line": 1,
+      "end_line": 19,
+      "sha256": "b4fa7c69957b3437d34a01fa3747e26c64b18fe1f90980f5e5b134cd7ad54656",
+      "review": "Full shell read: exact analyzer version, fresh current report removal, pipe status0/255 only, mandatory reviewed-source/finding checker. Generated current reports are overwritten intentionally; historical reports not touched here."
+    },
+    {
+      "file": "scripts/check-slither-review.py",
+      "body": "source_hash",
+      "line": 16,
+      "end_line": 17,
+      "body_sha256": "613d6488ecea5ae469eea4dd6e54f77f64e70fb01ce703749d431e8512381da0",
+      "file_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "review": "Every body read: LF source pins, strict finding fingerprints, narrowly parsed ordered call/write bundles with multiplicity, unresolved/stale/missing rationale rejection, non-independent scope. Text coverage does not prove absence of exploits."
+    },
+    {
+      "file": "scripts/check-slither-review.py",
+      "body": "normalized_description",
+      "line": 20,
+      "end_line": 69,
+      "body_sha256": "2fdadfa66fdfaacb7895bad9cc36b0d64af33ce990c5f93a99ec1913eeaadd92",
+      "file_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "review": "Every body read: LF source pins, strict finding fingerprints, narrowly parsed ordered call/write bundles with multiplicity, unresolved/stale/missing rationale rejection, non-independent scope. Text coverage does not prove absence of exploits."
+    },
+    {
+      "file": "scripts/check-slither-review.py",
+      "body": "fingerprint",
+      "line": 72,
+      "end_line": 74,
+      "body_sha256": "ade4515c9df56c8d492756fed393ec11f755ab38909c86656a1f9eca25ded3f3",
+      "file_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "review": "Every body read: LF source pins, strict finding fingerprints, narrowly parsed ordered call/write bundles with multiplicity, unresolved/stale/missing rationale rejection, non-independent scope. Text coverage does not prove absence of exploits."
+    },
+    {
+      "file": "scripts/check-slither-review.py",
+      "body": "write_bundle_atoms",
+      "line": 81,
+      "end_line": 138,
+      "body_sha256": "dbd0caede1e2867c466dc522fa8c964f221b3573179e2eebd41040b5bc6227e2",
+      "file_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "review": "Every body read: LF source pins, strict finding fingerprints, narrowly parsed ordered call/write bundles with multiplicity, unresolved/stale/missing rationale rejection, non-independent scope. Text coverage does not prove absence of exploits."
+    },
+    {
+      "file": "scripts/check-slither-review.py",
+      "body": "check",
+      "line": 141,
+      "end_line": 223,
+      "body_sha256": "b358d6ababef67ba633d094fd4cc16f3d25ce99ab39cc9226162492a77e1dc1d",
+      "file_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "review": "Every body read: LF source pins, strict finding fingerprints, narrowly parsed ordered call/write bundles with multiplicity, unresolved/stale/missing rationale rejection, non-independent scope. Text coverage does not prove absence of exploits."
+    },
+    {
+      "file": "scripts/check-slither-review.py",
+      "body": "main",
+      "line": 226,
+      "end_line": 238,
+      "body_sha256": "209c888e94d798fa2cff803b4dfc4c71f05bad70c3b8515adbb27e67bbaaf716",
+      "file_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "review": "Every body read: LF source pins, strict finding fingerprints, narrowly parsed ordered call/write bundles with multiplicity, unresolved/stale/missing rationale rejection, non-independent scope. Text coverage does not prove absence of exploits."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "strict_json_loads",
+      "line": 24,
+      "end_line": 26,
+      "body_sha256": "4d91b7786b5199bcef302e11c62218f942061d78cfa910de47ea2c6b7b3f75b4",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "controlled_environment",
+      "line": 28,
+      "end_line": 34,
+      "body_sha256": "a5c32e8ba799991b111bbdc11334c45ce75f98d281445d56fd2039b6ef575421",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "reviewed_effective_config",
+      "line": 36,
+      "end_line": 80,
+      "body_sha256": "118b16983405c339de3ad0241fb58b355f5b9188e7f61c8bd30064308ade8adc",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "_WindowsJobProcess.__init__",
+      "line": 83,
+      "end_line": 138,
+      "body_sha256": "a1229e6d42c9f774e849c4eae252fed5649c95f1965b845f938a1693ebdf7d5c",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "_WindowsJobProcess.wait",
+      "line": 140,
+      "end_line": 143,
+      "body_sha256": "989e675a54aaf588fe2244145f4e478343c7f733181a9b541862d07e8121d154",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "_WindowsJobProcess.close",
+      "line": 145,
+      "end_line": 155,
+      "body_sha256": "5b4c77ee192b26600f28685c03a08e3675a7e94194d2d9337e810a46ad78433e",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "run_process_tree",
+      "line": 157,
+      "end_line": 195,
+      "body_sha256": "2b20ab1e31b75b8757f9d0939f6738577d3e5dc0c60bd8926ccd451ae331b22f",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "error",
+      "line": 197,
+      "end_line": 198,
+      "body_sha256": "56eb24aac944c4cfb1b276bfdec7c70dc9f440df5c3d5a86922fd5d1354bf056",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "Relay.__init__",
+      "line": 201,
+      "end_line": 218,
+      "body_sha256": "26fa4ee71911bef15dff6da96d96a4d529e6f7b912b20e18f02c1fcb08b8ad43",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "Relay.cancel",
+      "line": 220,
+      "end_line": 222,
+      "body_sha256": "f07482f0699851b79192d8cbfce2e32c2d5c0e6a4a0ee44179e7a9ecf3301330",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "Relay._wait",
+      "line": 224,
+      "end_line": 229,
+      "body_sha256": "d38ed04a842bcc072245f795355335f632c6cef06a6be9a05ad9a8f218f2d44e",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "Relay._post",
+      "line": 231,
+      "end_line": 236,
+      "body_sha256": "75fd81f29c4de26f9beaf86a36422f5a259f6e5f8265fa0b43b00c1127b78d9a",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "Relay.handle",
+      "line": 238,
+      "end_line": 287,
+      "body_sha256": "3b3c05c09aa4767435d93273524fa578455e684ea56a47233c1919f2b81ca540",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "RelayServer.__init__",
+      "line": 290,
+      "end_line": 312,
+      "body_sha256": "350d5485de44724751a1adbf75b7e15f6d3af3b612750955b543fbbe61e03fdf",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "RelayServer.__init__.Handler.log_message",
+      "line": 293,
+      "end_line": 293,
+      "body_sha256": "515f282c4e82d4939c9f038c63c95f51921bd269c698896475b6834153a8d5c9",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "RelayServer.__init__.Handler.do_POST",
+      "line": 294,
+      "end_line": 305,
+      "body_sha256": "d58964446962b514a0cd6b936f9146cc45578f2f089e4e878d567ac3797cb0d1",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "RelayServer.start",
+      "line": 313,
+      "end_line": 313,
+      "body_sha256": "432d4d5153a320f7804668f2cdcb686267264fed66880b3752285710265a4639",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "RelayServer.close",
+      "line": 314,
+      "end_line": 318,
+      "body_sha256": "38efdbcb71949bbf01cdc9fa7658b0f06094cac91bee3954b7154227b5a0d556",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "expected_tests",
+      "line": 320,
+      "end_line": 325,
+      "body_sha256": "caa50dd0e5604043ac36fe7a6ba782f274b8cb5bb5738718aa5b9cb056319958",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "verify_results",
+      "line": 327,
+      "end_line": 341,
+      "body_sha256": "38a578f8508e6d5eb8a2eb5018243ba2a0758c644d96e6abca07d212765aa505",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "source_pins",
+      "line": 343,
+      "end_line": 354,
+      "body_sha256": "b0a15eb98d990c34a739f906bc6edc8b1560f1e95c21fba7b81336e7845cf490",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "main",
+      "line": 356,
+      "end_line": 426,
+      "body_sha256": "1c9b9b19e66216ceddbba9f4e976d98f9abb6dd1dfb11e7b6cb133b7928c431f",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/run-current-pool-fork.py",
+      "body": "main.progress",
+      "line": 384,
+      "end_line": 386,
+      "body_sha256": "210bab5407c0bc56fe7f7dfd8fcc505bb9e640e2363222180825621895483a74",
+      "file_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+      "review": "Every body read: exact Forge commit/solc identity and effective normal profile before networking; sanitized inherited environment; bounded read-only relay with strict JSON and error sanitization; owned process-group/Windows job cleanup; exclusive output and complete expected-test inventory; before/after source pins. No network/fork/process execution here."
+    },
+    {
+      "file": "scripts/prepare-release-review.py",
+      "body": "<module-level wrapper/generator>",
+      "line": 1,
+      "end_line": 9,
+      "sha256": "41e499be98457fb5f651d2cc453bb52a044c3919d138276a297845fad1778a03",
+      "review": "Full wrapper read: delegates to zzz_ops.review_bundle.main; no implicit tests/publication. Bundle backend source partly traced here and separately owned by backend review; no independent claim all backend bodies reviewed by this tooling pass."
+    },
+    {
+      "file": "scripts/prepare-dollar-rehearsal.py",
+      "body": "sha",
+      "line": 33,
+      "end_line": 34,
+      "body_sha256": "1df43b2240b453fcc7d0876dc994f2d1c60cd9017c32dd2c03a610c74c0076a1",
+      "file_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "review": "Every body read: exact replacement anchors, current literal loss policy, disjoint/new output, copied bounded relative fixture imports, chain31337 constructors, no deployment scripts/FFI, hashes of inputs/generated/compiler. Preparing output is not compiler execution/authentication or release approval."
+    },
+    {
+      "file": "scripts/prepare-dollar-rehearsal.py",
+      "body": "transform",
+      "line": 37,
+      "end_line": 45,
+      "body_sha256": "a687ccecea5941156d5a86a36832065c6d56e2e2b6bfbe3d2afacc36e641a25b",
+      "file_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "review": "Every body read: exact replacement anchors, current literal loss policy, disjoint/new output, copied bounded relative fixture imports, chain31337 constructors, no deployment scripts/FFI, hashes of inputs/generated/compiler. Preparing output is not compiler execution/authentication or release approval."
+    },
+    {
+      "file": "scripts/prepare-dollar-rehearsal.py",
+      "body": "loss_policy",
+      "line": 48,
+      "end_line": 75,
+      "body_sha256": "98ea118e15094a3e64ffa3b55d603f3479568fab42df2fb913cdf2f4c8e52b98",
+      "file_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "review": "Every body read: exact replacement anchors, current literal loss policy, disjoint/new output, copied bounded relative fixture imports, chain31337 constructors, no deployment scripts/FFI, hashes of inputs/generated/compiler. Preparing output is not compiler execution/authentication or release approval."
+    },
+    {
+      "file": "scripts/prepare-dollar-rehearsal.py",
+      "body": "validate_destination",
+      "line": 78,
+      "end_line": 84,
+      "body_sha256": "05fa3e70b2c239d529e7257acfa35c68c5f0a7be2d68f748cbd2745d9575d852",
+      "file_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "review": "Every body read: exact replacement anchors, current literal loss policy, disjoint/new output, copied bounded relative fixture imports, chain31337 constructors, no deployment scripts/FFI, hashes of inputs/generated/compiler. Preparing output is not compiler execution/authentication or release approval."
+    },
+    {
+      "file": "scripts/prepare-dollar-rehearsal.py",
+      "body": "prepare",
+      "line": 87,
+      "end_line": 149,
+      "body_sha256": "308c9b0ba2fb13211e01fa1f2aabbd02eddb02a78a865ad928b55bff382c87bd",
+      "file_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "review": "Every body read: exact replacement anchors, current literal loss policy, disjoint/new output, copied bounded relative fixture imports, chain31337 constructors, no deployment scripts/FFI, hashes of inputs/generated/compiler. Preparing output is not compiler execution/authentication or release approval."
+    },
+    {
+      "file": "scripts/prepare-dollar-rehearsal.py",
+      "body": "main",
+      "line": 152,
+      "end_line": 162,
+      "body_sha256": "09d4c6b1fb10d812f43d0ce9d6d534346b40f0a75af6f4ac3c07353dda678223",
+      "file_sha256": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+      "review": "Every body read: exact replacement anchors, current literal loss policy, disjoint/new output, copied bounded relative fixture imports, chain31337 constructors, no deployment scripts/FFI, hashes of inputs/generated/compiler. Preparing output is not compiler execution/authentication or release approval."
+    },
+    {
+      "file": "scripts/local_fixture_profile.py",
+      "body": "_json",
+      "line": 19,
+      "end_line": 27,
+      "body_sha256": "6224c6608e4463cb21f793d782508544b38b26663e15748ef07e424abc09343b",
+      "file_sha256": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+      "review": "Every body read: bounded Oracle artifact, duplicate/nonfinite JSON rejection, ABI/source identity and explicit current V2 rejection BEFORE state/process creation. Existing historical fixture remains separate."
+    },
+    {
+      "file": "scripts/local_fixture_profile.py",
+      "body": "_json.pairs",
+      "line": 20,
+      "end_line": 25,
+      "body_sha256": "338ca061bfffa9da96a9616d2fb631be05a274e3bd17c86525ef3dbb7665ef0f",
+      "file_sha256": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+      "review": "Every body read: bounded Oracle artifact, duplicate/nonfinite JSON rejection, ABI/source identity and explicit current V2 rejection BEFORE state/process creation. Existing historical fixture remains separate."
+    },
+    {
+      "file": "scripts/local_fixture_profile.py",
+      "body": "_json.constant",
+      "line": 26,
+      "end_line": 26,
+      "body_sha256": "415a51dbce2ffa947f7b23917b3832acd868cec0acc989d7ad24605ba39da1a4",
+      "file_sha256": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+      "review": "Every body read: bounded Oracle artifact, duplicate/nonfinite JSON rejection, ABI/source identity and explicit current V2 rejection BEFORE state/process creation. Existing historical fixture remains separate."
+    },
+    {
+      "file": "scripts/local_fixture_profile.py",
+      "body": "require_legacy_fixture_artifacts",
+      "line": 30,
+      "end_line": 61,
+      "body_sha256": "30dddc1b9fdbad5184d2247ebb098907d7ef14126010cd48687e7eb23fbeda9f",
+      "file_sha256": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+      "review": "Every body read: bounded Oracle artifact, duplicate/nonfinite JSON rejection, ABI/source identity and explicit current V2 rejection BEFORE state/process creation. Existing historical fixture remains separate."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "digest",
+      "line": 55,
+      "end_line": 55,
+      "body_sha256": "c2def98dfdd3a691e89960a1e79a106a7fd8233913ef4e7b2f568c0663ada9bd",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "save",
+      "line": 56,
+      "end_line": 62,
+      "body_sha256": "996183f1dc3119a149b013215960aaf712214a04e496b7cffa26c3a4558e598c",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "free_port",
+      "line": 63,
+      "end_line": 65,
+      "body_sha256": "3e8dd071afced0d680771bf4ada3a4a103ce1b5d532dcdb9acc6c9964f20dd8f",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "parse_payload",
+      "line": 67,
+      "end_line": 75,
+      "body_sha256": "9de66d1c3bff253fd312fc8004de4a8be537bd921f3c92b43930d930a9846983",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "parse_payload.pairs",
+      "line": 68,
+      "end_line": 73,
+      "body_sha256": "bdfdbb10b95a6e2d4ddd0272e4b480ffcde8741bc924c22670d97a9541a49b8b",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "parse_payload.invalid_constant",
+      "line": 74,
+      "end_line": 74,
+      "body_sha256": "e3b83123ac799edb676306d8dcdee040bd8975a3939dd431f884f12fb7883edc",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "validate_action",
+      "line": 77,
+      "end_line": 99,
+      "body_sha256": "31339ded20bdccafe24cfdb8b47a6031004e9b420681418e60939485b5dcd35e",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "OperationLedger.__init__",
+      "line": 105,
+      "end_line": 106,
+      "body_sha256": "75f504c4f8054a7c0e5cbe7a7d1478b454a34e1aa97c9840452769aeec7d9303",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "OperationLedger.run",
+      "line": 107,
+      "end_line": 141,
+      "body_sha256": "1bba9534ca39d51db06561cd4b0117f7e66ce8be976c3e8a2201f7a87736ab99",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "runtime_hash",
+      "line": 144,
+      "end_line": 145,
+      "body_sha256": "9d0e347e6f69df681b08fb66202e14629867e75a736ef2496772fde2e201d85a",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "LocalProjection._fresh",
+      "line": 148,
+      "end_line": 152,
+      "body_sha256": "d43a7961396a75c3388ebb6c7fa73797742a2844bfd415ed0c7d6b4dd7d04d31",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "LocalProjection._code",
+      "line": 154,
+      "end_line": 160,
+      "body_sha256": "4c5ee93ba046e53b4411876758b07285ed27b5522d5158170a2c7fc17f56e42e",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "LocalReadRPC.close_aggregate",
+      "line": 169,
+      "end_line": 172,
+      "body_sha256": "9c9578b34719dc8439e4f5ad452bece7699ec36b24a6b126979b3985db56f482",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "LocalReadRPC._read_http",
+      "line": 173,
+      "end_line": 199,
+      "body_sha256": "efb9ba56e7ee3ffc7dacc83932be4ad015286fca2d5ed509c15271b47b010f84",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "LocalReadRPC.call",
+      "line": 200,
+      "end_line": 208,
+      "body_sha256": "915fffd7dbe2cc182caec7facc6b207fd040d15d4d89029d4dc1712133b8d91b",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.__init__",
+      "line": 211,
+      "end_line": 220,
+      "body_sha256": "d82592e66c5897d2b36e565d2000e58a4a3b15d750ffd713713ec42b930a35db",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.rpc",
+      "line": 221,
+      "end_line": 225,
+      "body_sha256": "49cd7a88b3443251e08d698e2dac81cae6b76e7a7d7fd2f1e9cca078c83cb931",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.guard",
+      "line": 226,
+      "end_line": 229,
+      "body_sha256": "5114842502d82692a16a85efedc19401ef4a28c6897779c0ba5123eff4cf5677",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.encode",
+      "line": 231,
+      "end_line": 234,
+      "body_sha256": "a1ae82e3cbfd199cc173ce2b8a117b02c814aea854521ff286e371e55efeed89",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.read",
+      "line": 235,
+      "end_line": 237,
+      "body_sha256": "f48985164e06bf5eb0d07f7f393530250fe0b54a957b6b0339608aa1ffe3c433",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.uint",
+      "line": 238,
+      "end_line": 238,
+      "body_sha256": "dde0f6cc93190b4d40a89513d4d268f9ced867a08efbbfcd99bb1bcbe2856223",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.addr",
+      "line": 239,
+      "end_line": 239,
+      "body_sha256": "1ebe1a4f14f16a7ef2987a531781b043c3b706df9d3afc8b6524403aa7a8062b",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.block",
+      "line": 240,
+      "end_line": 240,
+      "body_sha256": "3c44a3b7c456f82b2651d9ba07c60776ceb8c4fa0ff173c52456b713f13ca743",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.clock",
+      "line": 241,
+      "end_line": 241,
+      "body_sha256": "e22bb17f941f70abe738f32c3d31fb9903dfd3648620f0c130c47e871d71a2d0",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.pin",
+      "line": 242,
+      "end_line": 243,
+      "body_sha256": "48360837b91065f138da5e120fe81964bf3376830e8cb3b3a21e292a2f9b026b",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.simulate",
+      "line": 244,
+      "end_line": 258,
+      "body_sha256": "2639e28f007bd2f5aaaffc164927409d63f8d6cda55dfcce8fb5de281c6812ec",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.send",
+      "line": 259,
+      "end_line": 288,
+      "body_sha256": "b6f272e1b219ea6007d5bca5992a260a27823c5d5ed6bece6a6fed1ce71ebe53",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.call",
+      "line": 289,
+      "end_line": 290,
+      "body_sha256": "f999d5c58c057fa1fd2b1ff476c3d5a168bdc0e41c1947fbadd19642c003dfcb",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.deploy",
+      "line": 291,
+      "end_line": 311,
+      "body_sha256": "6050e3f992ab6e7ad4a475ed6bb0c212f7315c20d2f868f2df56566d346a6db5",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.bind",
+      "line": 312,
+      "end_line": 314,
+      "body_sha256": "6c63a65a050ef97ccd3f8181e3fecbcb706ce65283e6ca2cfd39bf70d0460e52",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.start",
+      "line": 315,
+      "end_line": 376,
+      "body_sha256": "243de43f83abb23eaf0715514a9d9f1c545b11da2533b829a311b2513c29116c",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.configure_pool",
+      "line": 377,
+      "end_line": 388,
+      "body_sha256": "a5a21885ee7d56b56e1bdc8e8125bed053a56df50c5cfca44240e49d24750118",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.setup_api",
+      "line": 389,
+      "end_line": 412,
+      "body_sha256": "213a46036112f403669b8f7ec02967bd52ba6277735711a2841ae1632d1c7131",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.sync",
+      "line": 413,
+      "end_line": 415,
+      "body_sha256": "1f998eec1f8f5b10d49e0326ae047b82c4c4bddfba6364f2ce37ec8511290794",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.mint",
+      "line": 416,
+      "end_line": 423,
+      "body_sha256": "c6fa5ad7eb3ad4e0a437fc9955f73658ae9d6a5bfd9b22c0fa780d6bb31f174f",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.contribution_tx",
+      "line": 424,
+      "end_line": 427,
+      "body_sha256": "2e04b272e465a429ddd74f41e367316885f396a223cc7bb1907788e2b71190b9",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.contribute",
+      "line": 428,
+      "end_line": 438,
+      "body_sha256": "79c31175a0b84fecda62a39aa139b07dd36fe5ca4a381e74f6f7ed7417e56625",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.fund",
+      "line": 439,
+      "end_line": 447,
+      "body_sha256": "0d587010d721a33aa6905cc60cdbfa1afa68e40d1eecd6a5b0718cbcf57f7244",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.ids",
+      "line": 448,
+      "end_line": 448,
+      "body_sha256": "b8a4119d863b313dd665be19efb148b41054b4c5a886728cf5e98c501e987d46",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.optional_earnings",
+      "line": 449,
+      "end_line": 458,
+      "body_sha256": "c3a1f71e855aec1fb7f221b3eb2743492178d756e0a3cf2293e087d6b584bfb1",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.state",
+      "line": 459,
+      "end_line": 470,
+      "body_sha256": "7c7809b94e0b3bab0652540ec6af89fbdf69a4030c6353abc4439253a3e0f772",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.action",
+      "line": 471,
+      "end_line": 512,
+      "body_sha256": "848bf7a5817ce20e4ed517cf75bcb34e73f5b0013ba22988c738990c34b5a5db",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.validate_wallet_action",
+      "line": 514,
+      "end_line": 515,
+      "body_sha256": "4d5a9421996022ad109569dfb75df823ec9c5401df5232fab7ddfad5cebd114f",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "Lab.close",
+      "line": 516,
+      "end_line": 522,
+      "body_sha256": "05530d85c628fa7c9b09ee3927771fd8c578ed3815c9b21dccd54ced1177678e",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "LocalHTTPServer.__init__",
+      "line": 526,
+      "end_line": 528,
+      "body_sha256": "a9d5b0c140a9d1e66350f84d62913cb932129c53be73b189360635f5bdf63040",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "LocalHTTPServer.process_request",
+      "line": 529,
+      "end_line": 533,
+      "body_sha256": "0fedf00a8992c6a6ba47024d69089e478e181b5a84587efe9d68c2ea8adc583b",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "LocalHTTPServer.process_request_thread",
+      "line": 534,
+      "end_line": 536,
+      "body_sha256": "37f06eb2c0bfb772699deb435732cdd2b23c8f5d3824b2236bb4cdfea0f056fa",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "make_server",
+      "line": 538,
+      "end_line": 633,
+      "body_sha256": "3e65c0a693d2057b85a08745f7bad36af02de80e4a1031fc0a3f791d02c26784",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "make_server.browser",
+      "line": 544,
+      "end_line": 548,
+      "body_sha256": "d07fe4503458b5e99c51cc54428d88b61346f7bf5b78879ff6002391a9a46df7",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "make_server.Handler.log_message",
+      "line": 550,
+      "end_line": 550,
+      "body_sha256": "f0c460a56f7043ec5ee8a54ce520163995e0e1b807d6388e99b711a03b5f99fa",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "make_server.Handler.setup",
+      "line": 551,
+      "end_line": 552,
+      "body_sha256": "75af72e64b3524911ad171e23fc9c67b720d40fd6ea97519e123322f973724a6",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "make_server.Handler.valid",
+      "line": 553,
+      "end_line": 558,
+      "body_sha256": "5a12f7c5452d3496b541c4b6ce54cee6cf22af4f4264edae439792092bf4e6ba",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "make_server.Handler.output",
+      "line": 559,
+      "end_line": 565,
+      "body_sha256": "13125cf2e64a18722e1f050f1d5328ee893495248e02b386850ed78d9f203d68",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "make_server.Handler.do_GET",
+      "line": 566,
+      "end_line": 599,
+      "body_sha256": "ca64fe06d60f8231e894ec060e2d9ec2be7ae938180a4a742cbccfacc720761d",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "make_server.Handler.do_POST",
+      "line": 600,
+      "end_line": 632,
+      "body_sha256": "0f0f9a84a1ada65713731e6163eab33dbee1fdd1724f5cc79310d3353504f41e",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "serve",
+      "line": 635,
+      "end_line": 640,
+      "body_sha256": "0fdefd8e3f47e3397cccf4f8a7ed80d8f7412364b2745a3594f2385fc40bc2bb",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-stack.py",
+      "body": "main",
+      "line": 642,
+      "end_line": 662,
+      "body_sha256": "1b279fea3395893d65c8c1cb71ad2bd7f167f60d15e2a8e7d222e734742290dd",
+      "file_sha256": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+      "review": "Every body read: new exclusive home and owned loopback Anvil only, source metadata pins before local deployment, fresh process/genesis guard before local writes, typed action/session/origin/nonce/operation boundaries, durable ambiguous submission records, explicit test-feed/VRF/venue substitutions, bounded HTTP/aggregate read cache and owned-child-only shutdown. Fresh current V2 startup is blocked; no function executed."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "configurations",
+      "line": 38,
+      "end_line": 86,
+      "body_sha256": "5bdfe4c26d1ec66748b0901d2ade40c758e5d35c96ff175402b9f312ddae50bc",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "web_handler",
+      "line": 89,
+      "end_line": 138,
+      "body_sha256": "4a024b9dc85ec0d4c693050504c846dbe528322ef25619c69320945bd86f1a44",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "web_handler.Handler.log_message",
+      "line": 93,
+      "end_line": 93,
+      "body_sha256": "4a25b68c3b57a1e76bc7e22729206abad9497abeffff9950821abee2234dc3d9",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "web_handler.Handler.output",
+      "line": 94,
+      "end_line": 102,
+      "body_sha256": "c2a6f95e46996dfdc9e67aa2598376714440eb124eb9ba0b9ae462617e9a111e",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "web_handler.Handler._json",
+      "line": 103,
+      "end_line": 103,
+      "body_sha256": "26e94e9d953c822f7e774a44ea01534957ef4571891857a603ee285c57860c90",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "web_handler.Handler.valid",
+      "line": 104,
+      "end_line": 106,
+      "body_sha256": "26c8495c474546cdff8a992e3f47e9efcf3b2303b5840ede1c9153ba309ab9cf",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "web_handler.Handler.forward",
+      "line": 107,
+      "end_line": 119,
+      "body_sha256": "eff6c1e73fc4a2a5a4417f39c5e9dfaa5eaf511690a2a80f194dc72da629f9be",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "web_handler.Handler.do_GET",
+      "line": 120,
+      "end_line": 128,
+      "body_sha256": "583a85fc7c4f57e1b1db83c572f2899a6242ac9c9a1e02a6be1aba0411694326",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "web_handler.Handler.do_POST",
+      "line": 129,
+      "end_line": 137,
+      "body_sha256": "4c9ba4e6e944313d9eb3e2c267986bd21071fa13e8f953bf728309e49fcfb99c",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "maintain",
+      "line": 141,
+      "end_line": 159,
+      "body_sha256": "eccb5df63d9b3b0a83a5afea2282bbee9faac08dd792a422255cea180f4e015d",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local-api-stack.py",
+      "body": "main",
+      "line": 162,
+      "end_line": 200,
+      "body_sha256": "936fe7f31b0c3d3cf026469ad6e67a9308f18048cd4040f541ef29f5f733c26b",
+      "file_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+      "review": "Every body read: fixture-derived runtime/config pins, fixed loopback endpoints and read/prepare APIs, bounded public build file allowlist, source-guarded lab startup, bounded local maintenance only, child cleanup. Port8902 exists only as a default; not probed, rebound or restarted here."
+    },
+    {
+      "file": "scripts/local_wallet.py",
+      "body": "LocalWallet.__init__",
+      "line": 10,
+      "end_line": 13,
+      "body_sha256": "88f18c1095c213ec4f28886330cbcd5154891565f8fb2548a837067b5b323f32",
+      "file_sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "review": "Every body read: typed expiring local drafts, exact approval/Entry separation, nonce/ownership/lifecycle checks, explicit disposable accounts, hard fixture caps, resimulation before owned-local submission; never a public key or endpoint path."
+    },
+    {
+      "file": "scripts/local_wallet.py",
+      "body": "LocalWallet.nonce",
+      "line": 15,
+      "end_line": 19,
+      "body_sha256": "3be79179c53e6bc37449585fe3cb4a6562d733321f2d6121c7ae70ba770f83b6",
+      "file_sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "review": "Every body read: typed expiring local drafts, exact approval/Entry separation, nonce/ownership/lifecycle checks, explicit disposable accounts, hard fixture caps, resimulation before owned-local submission; never a public key or endpoint path."
+    },
+    {
+      "file": "scripts/local_wallet.py",
+      "body": "LocalWallet.validate_draft",
+      "line": 21,
+      "end_line": 31,
+      "body_sha256": "e07533b4a770d60ce1a6a2cf705597abaa3df6b0fa2887e7ea9428b4b7566198",
+      "file_sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "review": "Every body read: typed expiring local drafts, exact approval/Entry separation, nonce/ownership/lifecycle checks, explicit disposable accounts, hard fixture caps, resimulation before owned-local submission; never a public key or endpoint path."
+    },
+    {
+      "file": "scripts/local_wallet.py",
+      "body": "LocalWallet.prepare",
+      "line": 33,
+      "end_line": 119,
+      "body_sha256": "6dfada5e3162e5185ef6f86c9863821842c457bd471d8fd5c7f3165f4e698d63",
+      "file_sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "review": "Every body read: typed expiring local drafts, exact approval/Entry separation, nonce/ownership/lifecycle checks, explicit disposable accounts, hard fixture caps, resimulation before owned-local submission; never a public key or endpoint path."
+    },
+    {
+      "file": "scripts/local_wallet.py",
+      "body": "LocalWallet.execute",
+      "line": 121,
+      "end_line": 154,
+      "body_sha256": "431189c4f66d14c4bfe14971fcc44c897883c5a625d5a636d04a1f745045c73f",
+      "file_sha256": "e4f05ddab273c8668f50b6de7c920a414562cb0adf2a8496a91c041ba12dab12",
+      "review": "Every body read: typed expiring local drafts, exact approval/Entry separation, nonce/ownership/lifecycle checks, explicit disposable accounts, hard fixture caps, resimulation before owned-local submission; never a public key or endpoint path."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "_quantity",
+      "line": 34,
+      "end_line": 37,
+      "body_sha256": "c9c4f113afd1367d73f3d950a8ffe17525c0178a69779617b288cf4bec14fd55",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "_hash",
+      "line": 40,
+      "end_line": 43,
+      "body_sha256": "ad284e706c07d155845fbf73124c2d9e82b72300107c26778cc5b6196485dfaf",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "_transaction",
+      "line": 46,
+      "end_line": 59,
+      "body_sha256": "9ffc6167a5e45696717dc55b8107989409009511cc083adaeec208d55711fa9e",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser.__init__",
+      "line": 63,
+      "end_line": 83,
+      "body_sha256": "960e6c6a269b119c7947ede7ddda3627c064cfdc00270366c30ccf04fdb1f6b9",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser.persist",
+      "line": 85,
+      "end_line": 89,
+      "body_sha256": "d842188fcbad057d622f031bbc00f55c540060bd9067b9b8e4e0e190a0200269",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser.manifest",
+      "line": 91,
+      "end_line": 127,
+      "body_sha256": "be1dd56698d676a9a12e3033a762c8a1ad6162ea987c70ff1611283d25c9aa28",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser.prepare",
+      "line": 129,
+      "end_line": 151,
+      "body_sha256": "5b947e118dd97f967c27bbb0598441ebdc0b7b9565980241f1c1cbf750277224",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser._match",
+      "line": 153,
+      "end_line": 172,
+      "body_sha256": "3f467ad6f3326285e8ec7c34a4d5884ec15bd01a06d53f1b919011a60a6cd9ed",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser._receipt",
+      "line": 174,
+      "end_line": 212,
+      "body_sha256": "c7300dd692f389eaa2ecf9b003db83a5ec5997887d08711b8dac179e5f51f1dd",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser._record",
+      "line": 214,
+      "end_line": 243,
+      "body_sha256": "44f2c12d970d691775f4f9b7df1fc5ecd2248780ad9e58af4f5214978fea9396",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser._reveal",
+      "line": 245,
+      "end_line": 275,
+      "body_sha256": "d01e5ce705a58207e42c01d4dfe8a094878617b4117feb478f11f22c220ab9fc",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_browser.py",
+      "body": "LocalBrowser.confirm",
+      "line": 277,
+      "end_line": 325,
+      "body_sha256": "eaecf9d43c9e74b2ae83fb92bf2eabf19349b4e55c4eb9d46a5c500166266ac7",
+      "file_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+      "review": "Every body read: browser holder transactions not submitted; bounded reviews bound to genesis/account/payload; exact external tx/receipt/canonical/fee matching and persistent outcomes before optional mock reveal. Still historical/local only; malformed journal uses ordinary json.loads and pending-only hash is returned without durable binding until receipt appears, so it is not a production recovery guarantee."
+    },
+    {
+      "file": "scripts/local_inputs.py",
+      "body": "deploy_inputs",
+      "line": 9,
+      "end_line": 19,
+      "body_sha256": "6835d5efba2c5d00b9bcdd743f4e6066d8b59ae4c259e2a973aafaa3223da03b",
+      "file_sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "review": "Every body read: explicit historical named test assets/routers/WETH backing and mocked-price setup; require legacy artifacts before configuration; current two-input policy is not reintroduced or changed by these historical fixtures."
+    },
+    {
+      "file": "scripts/local_inputs.py",
+      "body": "configure_inputs",
+      "line": 21,
+      "end_line": 63,
+      "body_sha256": "912ca708ae9a7b6b0391fc429a9be0347cfc18626e7b094e98cad91d8fb11270",
+      "file_sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "review": "Every body read: explicit historical named test assets/routers/WETH backing and mocked-price setup; require legacy artifacts before configuration; current two-input policy is not reintroduced or changed by these historical fixtures."
+    },
+    {
+      "file": "scripts/local_inputs.py",
+      "body": "settle_lp",
+      "line": 65,
+      "end_line": 73,
+      "body_sha256": "07df391147050de3605b665095aee3085091b4a6990b2004eedf1ba8af569aa4",
+      "file_sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "review": "Every body read: explicit historical named test assets/routers/WETH backing and mocked-price setup; require legacy artifacts before configuration; current two-input policy is not reintroduced or changed by these historical fixtures."
+    },
+    {
+      "file": "scripts/local_inputs.py",
+      "body": "input_for",
+      "line": 75,
+      "end_line": 83,
+      "body_sha256": "098374894207926ef85e75ed168f6cef748798d78b5565dac422b20b6dc802da",
+      "file_sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "review": "Every body read: explicit historical named test assets/routers/WETH backing and mocked-price setup; require legacy artifacts before configuration; current two-input policy is not reintroduced or changed by these historical fixtures."
+    },
+    {
+      "file": "scripts/local_inputs.py",
+      "body": "input_tx",
+      "line": 85,
+      "end_line": 93,
+      "body_sha256": "15177d1d443e751aaf46582c09e1243d1767ded93ce0914370d572d2d2aa5544",
+      "file_sha256": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+      "review": "Every body read: explicit historical named test assets/routers/WETH backing and mocked-price setup; require legacy artifacts before configuration; current two-input policy is not reintroduced or changed by these historical fixtures."
+    },
+    {
+      "file": "scripts/local_clock.py",
+      "body": "LocalChainClock.__init__",
+      "line": 6,
+      "end_line": 9,
+      "body_sha256": "4ff9aea4edcdf6545fbd2fb6a2f822f14f4a2e92cf1751ea74de9cc9c750c2ec",
+      "file_sha256": "ece4be4950025680a6135d5758f9af1d3628acf3d3dfa2f6ef069c25e35c1615",
+      "review": "Every body read: validated sampled timestamp plus nonnegative monotonic advance for local read freshness; no oracle or public-chain time policy."
+    },
+    {
+      "file": "scripts/local_clock.py",
+      "body": "LocalChainClock.refresh",
+      "line": 11,
+      "end_line": 15,
+      "body_sha256": "ca875c313bca65c28c632996ffc77c298e7994b4552f03862fbe3bcb02876e26",
+      "file_sha256": "ece4be4950025680a6135d5758f9af1d3628acf3d3dfa2f6ef069c25e35c1615",
+      "review": "Every body read: validated sampled timestamp plus nonnegative monotonic advance for local read freshness; no oracle or public-chain time policy."
+    },
+    {
+      "file": "scripts/local_clock.py",
+      "body": "LocalChainClock.__call__",
+      "line": 17,
+      "end_line": 21,
+      "body_sha256": "f9e0ce7adbb5bf436968a185de6df88083a0a2b772a21a5f7390847b95fe7dc0",
+      "file_sha256": "ece4be4950025680a6135d5758f9af1d3628acf3d3dfa2f6ef069c25e35c1615",
+      "review": "Every body read: validated sampled timestamp plus nonnegative monotonic advance for local read freshness; no oracle or public-chain time policy."
+    },
+    {
+      "file": "scripts/verify-local-stack.py",
+      "body": "run",
+      "line": 10,
+      "end_line": 90,
+      "body_sha256": "63f6d39eb3e1a401af45e2fe81d1d22316b072625044824cb094b75cf820a0f8",
+      "file_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "file": "scripts/verify-local-stack.py",
+      "body": "run.request",
+      "line": 12,
+      "end_line": 17,
+      "body_sha256": "ecc3b0874d06c0d3431e24f5bb28e1cf39095f110ea012c050c5c10846cfea4e",
+      "file_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "file": "scripts/verify-local-stack.py",
+      "body": "run.check",
+      "line": 19,
+      "end_line": 21,
+      "body_sha256": "895503c28053632b340cad34746858303438b632155057e883fe9b83c4af82d7",
+      "file_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "file": "scripts/verify-local-stack.py",
+      "body": "run.operation",
+      "line": 22,
+      "end_line": 23,
+      "body_sha256": "30dc6aa6c3c713959f672cd6399a2adbf156445608d54560daedb50f4aa59846",
+      "file_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "file": "scripts/verify-local-stack.py",
+      "body": "run.post",
+      "line": 24,
+      "end_line": 27,
+      "body_sha256": "edc52981f1bf95da717396a18fb875dbadb43d8a032a50940af705179f19f480",
+      "file_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "file": "scripts/verify-local-stack.py",
+      "body": "run.byid",
+      "line": 28,
+      "end_line": 28,
+      "body_sha256": "ae5396ca2faa189694f4f758e51363b4996ebd37515815cdf62f8b47b7e06a13",
+      "file_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "file": "scripts/verify-local-stack.py",
+      "body": "run.total",
+      "line": 29,
+      "end_line": 29,
+      "body_sha256": "859e94667b30c9e4e510ff7f5da5829343929c4fa43bf42a2a0ffd2327f7a715",
+      "file_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "file": "scripts/verify-local-stack.py",
+      "body": "run.rejected",
+      "line": 30,
+      "end_line": 33,
+      "body_sha256": "ec05981a0d715a6bafdf0d3a495612b9ca91b7e37dcb3b3a112becf891ad98b8",
+      "file_sha256": "37fec60c4ee38b28eb8f5b861ae2778e3f9d33ab0b308395947099e3efe909bc",
+      "review": "Every body read: localhost-only requests, session+origin, typed operations, fixture economic assertions and exclusive output; sends test transactions when intentionally run, so not run against any preserved lab."
+    },
+    {
+      "file": "scripts/verify-local-website.py",
+      "body": "main",
+      "line": 9,
+      "end_line": 80,
+      "body_sha256": "0a679a6f741e006f8326a528fed4b97662fefa994737e90852222e3069029dee",
+      "file_sha256": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd",
+      "review": "Every body read: explicit loopback port and session/origin, real local prepare/execute test journey; always writes requested output in finally and can overwrite prior evidence. Historical limitation recorded, no existing environment exercised and no fix authorized."
+    },
+    {
+      "file": "scripts/verify-local-website.py",
+      "body": "main.request",
+      "line": 18,
+      "end_line": 22,
+      "body_sha256": "2692851a102dde89930946d68e6dfe121a2b50214fbfab2a80e76a44a2c5ab51",
+      "file_sha256": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd",
+      "review": "Every body read: explicit loopback port and session/origin, real local prepare/execute test journey; always writes requested output in finally and can overwrite prior evidence. Historical limitation recorded, no existing environment exercised and no fix authorized."
+    },
+    {
+      "file": "scripts/verify-local-website.py",
+      "body": "main.check",
+      "line": 23,
+      "end_line": 25,
+      "body_sha256": "1423c1a1f3e25e4004947fa3a19aa3de84f6d6eae00ede121dedb895773c4fe8",
+      "file_sha256": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd",
+      "review": "Every body read: explicit loopback port and session/origin, real local prepare/execute test journey; always writes requested output in finally and can overwrite prior evidence. Historical limitation recorded, no existing environment exercised and no fix authorized."
+    },
+    {
+      "file": "scripts/verify-local-website.py",
+      "body": "main.prepare",
+      "line": 26,
+      "end_line": 26,
+      "body_sha256": "46ff0955fe42e91e7ba35821b8e625c50457446ca71a8b6fd53d9dd75536a765",
+      "file_sha256": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd",
+      "review": "Every body read: explicit loopback port and session/origin, real local prepare/execute test journey; always writes requested output in finally and can overwrite prior evidence. Historical limitation recorded, no existing environment exercised and no fix authorized."
+    },
+    {
+      "file": "scripts/verify-local-website.py",
+      "body": "main.execute",
+      "line": 27,
+      "end_line": 34,
+      "body_sha256": "799abe906dd6fa54adbe9818a1db1b986931d10f9f1dc9a54002c1ae34f02c7a",
+      "file_sha256": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd",
+      "review": "Every body read: explicit loopback port and session/origin, real local prepare/execute test journey; always writes requested output in finally and can overwrite prior evidence. Historical limitation recorded, no existing environment exercised and no fix authorized."
+    },
+    {
+      "file": "scripts/sync-project-todo.py",
+      "body": "render",
+      "line": 10,
+      "end_line": 49,
+      "body_sha256": "4bdceab545496936b50e0e29db53e17f18e7b177924251184435b04d217c2c6e",
+      "file_sha256": "9bb5366c5e0835f6792ddaaea19302bc5775a3ffa96a309ce55dd036eeaf1822",
+      "review": "Every body read: local source ledger/schema/date/ID/status/acceptance and in-repository link checks, deterministic rendering/hash, --check read-only versus explicit TODO write. No publication."
+    },
+    {
+      "file": "scripts/sync-project-todo.py",
+      "body": "main",
+      "line": 51,
+      "end_line": 57,
+      "body_sha256": "d0f6aed99f127ac840d3a422a1986d2b8743e7e7627f44e31b2b9cd0e0b80f9e",
+      "file_sha256": "9bb5366c5e0835f6792ddaaea19302bc5775a3ffa96a309ce55dd036eeaf1822",
+      "review": "Every body read: local source ledger/schema/date/ID/status/acceptance and in-repository link checks, deterministic rendering/hash, --check read-only versus explicit TODO write. No publication."
+    },
+    {
+      "file": "scripts/generate-function-reference.py",
+      "body": "main",
+      "line": 13,
+      "end_line": 49,
+      "body_sha256": "1abc0f0a13a48b47f48c272f84a4109efe1a9da5d01c4c7d6482848bfc466b08",
+      "file_sha256": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+      "review": "Full wrapper body read: compiler inputs all-or-none, --check cannot rewrite notes, validated ABI explanations before writes; delegates detailed generation to zzz_ops.function_reference (backend stream). No ABI/source generation executed here."
+    },
+    {
+      "file": "scripts/generate_event_schema.py",
+      "body": "build_schema",
+      "line": 18,
+      "end_line": 43,
+      "body_sha256": "3740c7c364efa682e8277cf9adbf3c7dd6f8881f32b7f163df908a1d01aa28b3",
+      "file_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "review": "Every body read: deterministic inherited event traversal, topic/layout collision rejection and validated historical descriptors; main writes generated schema only. Regex parsing is bounded to current event forms, not a Solidity compiler proof."
+    },
+    {
+      "file": "scripts/generate_event_schema.py",
+      "body": "source_schema",
+      "line": 46,
+      "end_line": 57,
+      "body_sha256": "3c6e16140c1312fb9223c5dc43abc06722a75b5140f3fe17d93173c50439dcf2",
+      "file_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "review": "Every body read: deterministic inherited event traversal, topic/layout collision rejection and validated historical descriptors; main writes generated schema only. Regex parsing is bounded to current event forms, not a Solidity compiler proof."
+    },
+    {
+      "file": "scripts/generate_event_schema.py",
+      "body": "merge_historical",
+      "line": 60,
+      "end_line": 79,
+      "body_sha256": "f932dcde5a467a6d727165bf82676ad7b0df747b76116d9698730c30bc2e7595",
+      "file_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "review": "Every body read: deterministic inherited event traversal, topic/layout collision rejection and validated historical descriptors; main writes generated schema only. Regex parsing is bounded to current event forms, not a Solidity compiler proof."
+    },
+    {
+      "file": "scripts/generate_event_schema.py",
+      "body": "main",
+      "line": 82,
+      "end_line": 86,
+      "body_sha256": "9457c9198a38ff4bd4dd88f1bb6a0f0e55531cf58398daa505e9cd82e0726571",
+      "file_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e",
+      "review": "Every body read: deterministic inherited event traversal, topic/layout collision rejection and validated historical descriptors; main writes generated schema only. Regex parsing is bounded to current event forms, not a Solidity compiler proof."
+    },
+    {
+      "file": "scripts/generate-dynamic-range-vectors.py",
+      "body": "<module-level wrapper/generator>",
+      "line": 1,
+      "end_line": 43,
+      "sha256": "2801758addde007ebeb76a536f21465b57aedf6d110df45e02715eac608fb3e0",
+      "review": "Full module read: independent Decimal/rational fixture generation with outward tick rounding; imports execute generation and overwrite fixed test/report outputs. Not imported/run; these are fixtures not contract execution or release evidence."
+    },
+    {
+      "file": "scripts/generate-artwork-library.py",
+      "body": "generate",
+      "line": 17,
+      "end_line": 65,
+      "body_sha256": "92cc2cd43280b919470dfa43b2181250f9de255373d7efc3fd8d26dc65195a4c",
+      "file_sha256": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+      "review": "Every body read and repaired authorized runtime admission: explicit exceptions replace removable assert for palette/pattern identity, fixed600/300/100 supplies, hashes/decoded codes/ranges. Five new method controls run normal/-O without writing assets; valid returned source identical."
+    },
+    {
+      "file": "scripts/generate-artwork-library.py",
+      "body": "main",
+      "line": 67,
+      "end_line": 80,
+      "body_sha256": "194e47b702d182856cce1c5e2237513d2b2f701cfa241318498fc3611bec6242",
+      "file_sha256": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+      "review": "Every body read and repaired authorized runtime admission: explicit exceptions replace removable assert for palette/pattern identity, fixed600/300/100 supplies, hashes/decoded codes/ranges. Five new method controls run normal/-O without writing assets; valid returned source identical."
+    },
+    {
+      "file": "scripts/run_python_tests.py",
+      "body": "count",
+      "line": 5,
+      "end_line": 12,
+      "body_sha256": "e87e1c04bc832ede238d906af7f41825c4874e99fb91ff12f8bb6fdbc827de81",
+      "file_sha256": "0b94b84f35e6ea04673a97658f9c4d4ddb75c8438aa80c31554304bb34264a04",
+      "review": "Every body read: full unittest discovery and reports explicitly labelled Python not EVM. Imported fixture duplication remains possible in broad discovery, so this pass uses explicit method identity receipts rather than inflated global counts."
+    },
+    {
+      "file": ".github/workflows/verify.yml",
+      "body": "<whole shell/workflow definition>",
+      "line": 1,
+      "end_line": 105,
+      "sha256": "40b45f86daa44973b8b4b6cc418cae26f7c28bd43c034791d6067d03d578250c",
+      "review": "Full definition read: immutable action revisions, contents:read, pinned Node/Python/Foundry, dependency installer and separate local/static/fork jobs; checksum-pinned official fork compiler, read-only relay, no deploy/broadcast step. No workflow executed or remote CI status inferred."
+    },
+    {
+      "file": ".github/workflows/keeper-safety.yml",
+      "body": "<whole shell/workflow definition>",
+      "line": 1,
+      "end_line": 54,
+      "sha256": "269ac0c3956a9d3fa6a20b303769338fc913b69bc19d9a4c10b206b0fc184188",
+      "review": "Full definition read in keeper pass: pinned actions/Foundry, defined-class dedup runner, separate real process rehearsal and dry-run systemd validation; no installed service rollout. Script changes do not imply CI green."
+    },
+    {
+      "file": ".github/workflows/project-todo.yml",
+      "body": "<whole shell/workflow definition>",
+      "line": 1,
+      "end_line": 18,
+      "sha256": "73d6cf730018c981958d16d0fdd2ea9b1122632a7728f494f5639128d24ba961",
+      "review": "Full definition read: immutable checkout, contents:read, narrow --check workflow; no write/publish/deployment authority."
+    }
+  ],
+  "file_count": 25,
+  "body_row_count": 163,
+  "prior_source_baseline": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-project-audit-20261029\\baseline.json",
+  "prior_source_match_is_not_reused_execution": true,
+  "excluded_or_other_streams": {
+    "scripts/run-fork-checks.py": "Original dirty historical runner deliberately not edited or executed; no current evidence inherited from it.",
+    "scripts/prepare_ipfs_bundle.py": "IPFS/metadata wrapper review owned by root.",
+    "scripts/observe-production-config.py and validate-production-config.py": "Backend/production observer stream; no current provider/deployment observation here.",
+    "scripts/inventory-nft-holders.py, rehearse-api-ingress.py, verify-hookless-pool.py": "Backend/holder/provider review stream; not reclassified as fresh execution by this wrapper pass.",
+    "scripts/rehearse-keeper.py and staging monitor wrappers": "Keeper operational boundary coverage/evidence retained separately; no actual process campaign run now.",
+    "zzz_ops.review_bundle and function_reference": "Wrappers traced; detailed backend implementations owned by backend agent.",
+    "website/IPFS/signing asset code": "Root-owned; no protected signer or website source edit."
+  },
+  "production_approved": false
+}

@@ -62,6 +62,18 @@ It uses explicit raw total-principal minima and exact backing/deltas, not a
 loss setting cannot reopen LP after `lpExitStarted`, redirect principal or alter
 previously earned rewards. [Exit procedure](HOLDER_COLLECTIVE_EXIT.md).
 
+## Explicit emergency exception
+
+The bounds above describe ordinary operations. Fresh emergency capability1 adds
+a separate governance-only, globally paused `Migration.emergencyRebalance` with
+per-call retained-check mask. Bit4 retains aggregate/venue/additional-loss and idle
+checks; disabling it deliberately removes those financial floors. Bit2 controls
+independent price agreement separately; valuation still needs prices if bit4 is
+retained. Raw caller swap/deployment minima, exact custody/accounting, approved
+fixed-asset venues, lifecycle and terminal exit locks cannot be disabled. There
+is no automated widening or emergency fallback. This can permit near-total loss;
+see [the complete review procedure](EMERGENCY_REBALANCE.md).
+
 ## Independent safeguards and version boundaries
 
 Fresh LP routing1 removes the former hard2% venue ceiling: governance can set

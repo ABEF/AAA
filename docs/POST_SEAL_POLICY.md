@@ -11,6 +11,12 @@ additional oracle-relative loss limit after known core fees, initial1% and bound
 0-10%. Gross venue, captured operation and caller floors remain independent;
 separate reward converters retain their own all-in policy. [Exact controls](EXECUTION_QUALITY.md).
 
+Fresh confirmation2/emergency1 adds two post-seal controls: reviewed
+`setRequireReferenceExit` (sample-invalidating policy change) and a separate
+paused-governance manual rebalance with explicitly optional financial guards.
+This is a governance trust expansion, never a keeper fallback or a way to reopen
+terminal LP exit. [Complete procedure and risk](EMERGENCY_REBALANCE.md).
+
 ## Configuration boundary
 
 | Category | What remains configurable | Limit |

@@ -7,6 +7,16 @@ limits. [Review](../reports/fee-impact-policy-20261028/REVIEW.md) and
 [verification](../reports/fee-impact-policy-20261028/VERIFICATION.md) record the
 source scope and remaining qualification. Production is **NOT APPROVED**.
 
+Current fresh LP protection uses confirmation2 and separate emergency capability1.
+Ordinary readiness requires physical/reference same-side range exit (unless a
+reviewed policy relaxation or deliberate governance width exception applies).
+Reference prices remain the configured dual USD sources, not a newly qualified
+market feed. A separate paused governance emergency may explicitly bypass
+financial guards; it preserves exact accounting/custody but can cause near-total
+economic loss. It is not a user transaction, keeper fallback or API signing
+feature. [Policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
+[emergency procedure](EMERGENCY_REBALANCE.md).
+
 ## Policy and scope
 
 `ZZZStrategy` owns `additionalLossBps`, initially 100 bps (1%). Governance calls

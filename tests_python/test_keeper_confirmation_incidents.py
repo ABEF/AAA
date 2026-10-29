@@ -83,7 +83,12 @@ class KeeperConfirmationIncidentTests(unittest.TestCase):
 
     def test_genuine_raw_clock_retreat_requires_reset_and_discards_old_jitter(self):
         self._jitter();self.rpc.now-=1
-        self._cycle().assert_not_called()
+        # Priority now detects the shared clock fault before optional queues,
+        # so the complete cycle must fail rather than defer only this bucket.
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now), \
+                patch.object(self.k,'submit') as submit,self.assertRaises(RpcError):
+            self.k.cycle()
+        submit.assert_not_called()
         self.assertTrue(self.k.state[CONFIRMATION_RESETS]['7'])
         self.assertNotIn('7',self.k.state.get(CONFIRMATION_STATE,{}))
 

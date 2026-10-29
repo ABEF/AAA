@@ -4,6 +4,34 @@ Reviewed 2026-10-29. [AGENTS.md](AGENTS.md) owns work instructions;
 [README](README.md) explains the product and code; [Todo](TODO.md) alone owns task
 status. This is the current snapshot, not an append-only session transcript.
 
+Fresh confirmation2 defaults to same-side physical/independent-reference range
+exit through the existing900/300 sampled window; service checks240seconds.
+`setRequireReferenceExit` is governed/review-hashed and invalidates samples.
+Automatic keeper width policies cannot coexist with enabled protection; manual
+governance width exceptions remain. Fresh emergency capability1 is a separate
+globally paused governance-only `Migration.emergencyRebalance` manifest with
+optional financial/timing/operation checks. It is never daily keeper work or an
+automatic fallback. Structural custody, exact settlement, shares/rewards and
+canonical/terminal locks remain; optional financial bypass can lose nearly all
+principal. Preserve old runtimes/journals/profiles. See
+[manual procedure](docs/EMERGENCY_REBALANCE.md) and
+[verification](reports/independent-rebalance-20261029/VERIFICATION.md).
+No service/site/Anvil/public transaction/deployment is authorized or performed.
+Current handwritten Solidity-body review is complete at the [source-scoped ledger](reports/whole-project-execution-20261029/COVERAGE.md); this is not exhaustive execution or independent release approval.
+
+Current [whole-project execution](reports/whole-project-execution-20261029/REVIEW.md) completes the internal
+source/body review and implements keeper deadline priority, strict durable/log
+provenance, final-depth/fee/pool observation and artifact-tooling repairs.
+All122previously missing callable outputs are explained. Static review is not
+exhaustive execution or independent release approval. Website reference metadata
+is corrected locally without changing images/signing/configs or deploying sites.
+Actual providers, economics, gas/host/marketplace qualification and audit remain open.
+
+Known confirmation windows now precede optional nonce users after pending recovery;
+optional-job degradation does not stretch their cadence, global failures still
+back off. Strict300seconds remains a release liveness limit, not an SLA. Duplicate
+JSON/nonfinite state is rejected; never repair a journal manually to pass.
+
 ## Product and implementation
 
 PoPL is an ERC-721 collection capped at1,000 NFTs:600 Commun/300 Rare/100 Legendary.
@@ -21,7 +49,7 @@ Value/evolution is current marked on-chain LP NAV, not historic dollars contribu
 | LP revenue | Actual fees split80%NFT LP shares/10%equal activated collective/5%compound/5%ZZZ buyback-burn. |
 | Royalties | ERC-2981 requests5%; actual eligible receipts shared100% at rarity weights1/2/3. Not universal marketplace enforcement. |
 | Custody | No holder redemption during normal operation. Governance may irreversibly close LP and return proportional actual ETH+ZZZ directly to current NFT owners; no external custodian. |
-| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; maintenance policy2 uses actual physical range exit or operator width update after the configured hard minimum (initial12hours). Operator selects ZZZ-price-in-ETH +/-25/50%; matching confirmation1 service uses240-second eligible checks and durable1-10minute jitter after sampled readiness. Compound capability3 has its own interval (default1hour); it yields to due rebalance and never resets that clock. Polling is not an execution promise. |
+| Maintenance | Shared ETH/ZZZ LP; one contribution pool. Accounting4 independent harvest defaults hourly; maintenance policy2 uses actual physical range exit or operator width update after the configured hard minimum (initial12hours). Operator selects ZZZ-price-in-ETH +/-25/50%; matching confirmation2 service uses240-second eligible checks and durable1-10minute jitter after sampled readiness. Compound capability3 has its own interval (default1hour); it yields to due rebalance and never resets that clock. Polling is not an execution promise. |
 
 Current source profile is accounting4/governance2/fee intake1/custody3/pricing2/
 Entry routing2/LP execution1/Entry review1, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`.
@@ -53,7 +81,7 @@ caller and operation floors stay; separate reward converters keep their own
 all-in policy. Strategy owns policy/revision; Manager/helper and explicit
 keeper/API profiles bind it. [Feature](docs/EXECUTION_QUALITY.md), [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md).
 No installed service/site/Anvil changed. Passive positions and40% movement
-triggers remain discussion only. Fresh confirmation1 implements a15-minute sampled
+triggers remain discussion only. Fresh confirmation2 implements a15-minute sampled
 on-chain window: after12hours check every240seconds, strict selected gap300seconds,
 restart on any greater gap. Constructor gap0 blocks ordinary readiness until
 governance configures reviewed900/300. Actual confirmation delays can repeatedly
@@ -91,15 +119,13 @@ a twice-challenged source-based brief. It repairs optional-currency ownership
 inventory isolation, stored-history integrity, metadata restart starvation and
 keeper/current-fork CI selection. User approved240-second source observations,
 keeping900/300on-chain unchanged. Legacy300journal schedules/pending/reset/jitter
-survive; paired health rollout and actual timing remain unqualified. Observing
-during cooldown and deeper-market corroboration are proposed Todo improvements,
-not implemented. A managed-pool physical exit is distinct from reference price
-agreement; reference market/window and whether it must also be outside remain
-unresolved. Five targeted
+survive; paired health rollout and actual timing remain unqualified. Observation during cooldown remains proposed. Fresh confirmation2 now requires
+physical and configured independent-reference exit on the same side; actual
+reference market/provider/window qualification remains open. Five targeted
 current canonical methods and75scoped Python methods pass; unchanged217EVM/
 39normal gates are reused with exact pins. Individual-body pending depth and
 compiler-lowering, real provider/service/escrow and independent review stay open.
-Website metadata patch is prepared but unapplied; fresh4 UI remains incomplete.
+Website reference metadata is locally corrected without image/signing/config/build/server changes; fresh4 UI remains incomplete.
 No Solidity, economics, signer, service/site/Anvil or approval changed. Earlier
 [third-pass evidence](reports/third-pass-20261028/VERIFICATION.md) keeps its frozen
 October26-28 source scope; no test counts are summed as a whole-release proof.
@@ -108,7 +134,7 @@ October26-28 source scope; no test counts are summed as a whole-release proof.
 
 The [execution decision record](docs/LP_EXECUTION_POLICY.md) owns requested manual
 +/-25/50% ranges, initial twelve-hour outside-only upkeep with240-second eligible
-checks under confirmation1 and durable1-10minute post-ready service jitter, reviewed best swap venues separate
+checks under confirmation2 and durable1-10minute post-ready service jitter, reviewed best swap venues separate
 from the LP target, useful residual reinvestment and $1m cumulative per-NFT cap.
 The timing decisions are settled and implemented in fresh Strategy2/Budget3 and
 matching versioned keeper/API source; no running settings/services changed.

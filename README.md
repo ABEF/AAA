@@ -22,7 +22,7 @@ no configured deployment means unavailable integration data, never examples.
 | Movement and recovery | Same-native-pair moves and parking before exit. Governance may permanently close all LP and return actual ETH+ZZZ by NFT shares through bounded direct payouts; NFTs keep transfers/future royalties/old rewards. No external custody address or bridge. [Holder exit](docs/HOLDER_COLLECTIVE_EXIT.md). |
 | Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [current evidence](docs/IMPLEMENTATION_STATUS.md#current-evidence-and-limits). |
 
-The [whole-project source review](reports/whole-project-audit-20261029/REVIEW.md)
+The [earlier whole-project source review](reports/whole-project-audit-20261029/REVIEW.md)
 was built from contract/service/website understanding and a
 [twice-challenged prompt](reports/whole-project-audit-20261029/PROMPT_REVIEW.md).
 It fixes ownership-inventory outage isolation, malformed stored history and
@@ -40,12 +40,28 @@ directional fees from additional deterioration; stronger operation/caller floors
 remain. [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) distinguishes on-chain rules,
 service controls and accepted market/governance risks.
 
-No contract, signer, service, site or existing Anvil deployment changed. The
+That earlier review changed no Solidity. Current local confirmation2/emergency1
+source changes below do not alter installed services, signer policy, sites or
+existing Anvil deployments. The
 [verification record](reports/whole-project-audit-20261029/VERIFICATION.md),
 [feature reference](docs/IMPLEMENTATION_STATUS.md) and [documentation map](docs/README.md)
 separate fresh evidence, exact reuse, legacy profiles and open release work.
 Earlier [reports](reports/README.md) retain their original bytes/source scope;
 neither inventories nor internal checks constitute independent approval.
+
+Fresh [confirmation2](docs/LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2)
+requires our LP and the independent reference to exit on the same side. A separate
+[manual emergency rebalance](docs/EMERGENCY_REBALANCE.md) is paused and governance-only,
+with explicitly optional economic guards. It preserves custody/accounting but
+expands governance trust: disabled financial floors can permit near-total loss.
+[Review/evidence](reports/independent-rebalance-20261029/VERIFICATION.md) is local,
+not production approval or a completed whole-project audit.
+
+The [whole-project execution](reports/whole-project-execution-20261029/REVIEW.md) now completes the
+handwritten-body source pass, repairs keeper scheduling/backend/evidence/artwork
+tooling, explains122missing outputs and corrects local reference metadata.
+[Coverage](reports/whole-project-execution-20261029/COVERAGE.md) distinguishes static review, focused checks
+and actual operating qualification. No public signing/deployment/site rollout.
 
 ## Project navigation
 
@@ -247,7 +263,7 @@ retain their independent guards. See [scoped verification](reports/operator-cont
 
 The keeper **defaults to dry run**. Full keeper/state-lock operation requires **Linux/Unix and Python 3.11+**.
 
-- **Polling:** fresh confirmation1 uses60-240second outer polling and240-second eligible checks; the historical default is ten minutes. These are not guaranteed execution times.
+- **Polling:** fresh confirmation2 uses60-240second outer polling and240-second eligible checks; the historical default is ten minutes. These are not guaranteed execution times.
 - **Rebalancing:** actual physical range exit or an approved range change must make the position eligible after cooldown. Ordinary exits also require sampled confirmation, fresh prices and execution guards. See [operating policy](docs/LP_EXECUTION_POLICY.md).
 - **Metadata:** the optional watcher is disabled by default and uses the same bounded transaction path.
 

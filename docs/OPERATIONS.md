@@ -34,14 +34,18 @@ cannot be relabelled profile4; placeholder inventory remains blocked. LP routing
 exact Manager/balancer/core/state runtime/parent pins and a reviewed execution
 catalog; source settings do not qualify a live service.
 
-`rebalance_confirmation_version:1` additionally pins the Strategy-created helper
+`rebalance_confirmation_version:2` additionally pins the Strategy-created helper
 in `contracts.rebalance_confirmation` and its runtime. The existing
 `idle_compounding_budget` address/runtime is also mandatory, even when standalone
-compounding is disabled: the actual Vault Budget must advertise confirmation1
+compounding is disabled: the actual Vault Budget must advertise its configured confirmation1/2
 and bind the same Vault/Access. An old raw-eligibility-only Budget is rejected.
 This profile also requires explicit integer `interval_seconds` from60through240.
 It cannot inherit the historical600second default. The outer loop includes work
 and receipt latency; even a permitted interval is not an exact sample guarantee.
+Known confirmation renewals/resets now precede optional conversion/buyback/metadata
+work after pending recovery and shared gates. Optional degradation does not stretch
+their cadence; true global failures still back off. Four custody windows share one
+serial pending lane, so real inclusion/load timing must still be qualified.
 Read-only keeper preflight validates the actual helper/Budget runtime, capability,
 bindings and policy before cooldown expires and with compounding disabled.
 
@@ -88,7 +92,7 @@ evidence but labels it unavailable rather than fresh. Source identity is explici
 `local_files_at_keeper_start_not_runtime_attestation`. A health file is neither
 cryptographic proof of running code nor an independent RPC/market attestation.
 
-Quality1/confirmation1 successful statuses are `healthy_v2` or `dry_run_v2`, so
+Quality1/confirmation1/2 successful statuses are `healthy_v2` or `dry_run_v2`, so
 an older checker fails closed. Historical profiles retain their old success
 statuses and journal meanings. New checks require schema2 for the new profiles;
 missing/mismatched/stale source, configuration, block or policy evidence cannot
@@ -99,7 +103,7 @@ confirmation-policy reads; the policy state is `pending_recovery`. Recovery of
 the original intent remains first.
 
 `rebalance_confirmation_health.policy` independently requires a fresh latest
-canonical policy-only anchor for confirmation1, even with quality0, LP cooldown
+canonical policy-only anchor for confirmation1/2, even with quality0, LP cooldown
 or compounding off. It records helper/Budget capabilities and bindings, runtime
 pins and config/source identity; it reads no bucket condition or price and proves
 neither readiness nor continuous history. `stopped` means gap0 and
@@ -168,7 +172,7 @@ Read [keeper recovery](KEEPER_RECOVERY.md), [service rehearsals](KEEPER_REHEARSA
 eligibility after the configured hard interval, durable service jitter and
 independent Budget3 compound cadence. Intended initial values are12hours,
 60-600second jitter and $1m cumulative per-NFT contributions. Historical policy2
-without confirmation1 uses hourly eligible inside-range checks. Fresh confirmation1
+without confirmation1 uses hourly eligible inside-range checks. Fresh confirmation2
 records eligible observations every240seconds; its example outer loop polls60seconds
 to keep independent receipt/harvest work responsive. Neither interval guarantees
 inclusion within the strict300-second receipt gap. LP routing1 now
@@ -246,7 +250,7 @@ by governance's policy; the keeper cannot invent a new range/algorithm.
 
 ### Recorded rebalance confirmation
 
-Fresh confirmation1 checks ordinary eligibility every240seconds after the hard
+Fresh confirmation2 checks ordinary eligibility every240seconds after the hard
 cooldown, including when LP remains inside range. The selected observed window
 is900seconds with a **strict300-second maximum observation gap**; governance must
 configure the helper with the reviewed hash. Source starts with gap0, which stops

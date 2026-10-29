@@ -3,7 +3,7 @@ pragma solidity 0.8.26;
 
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {IZZZAccess, IZZZOracle, IZZZVault, IZZZPools, IZZZFees, IZZZLiquidity, IZZZStrategy} from "./interfaces/IZZZ.sol";
-import {Ids, Position, PoolConfig} from "./libraries/ZZZTypes.sol";
+import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 
 interface IPricingVault { function migrationBudget() external view returns (address); }
 interface IPricingEntry {
@@ -13,6 +13,8 @@ interface IPricingAssets { function assetCount() external view returns(uint256);
 interface IPricingBudget {
     function compositionEpoch(uint256) external view returns(uint64);
     function contributionLossBps() external view returns(uint16);
+    function lastCompound(uint256) external view returns(uint64);
+    function compoundInterval(bytes32) external view returns(uint32);
 }
 
 /// @notice Fixed Oracle-created accounting companion. No funds, approvals, user
@@ -38,6 +40,10 @@ contract ZZZContributionPricing {
         address token1;
         uint32 limits;
     }
+    struct MaintenanceMark {
+        uint256 value; uint256 price0; uint256 price1; uint256 scale0; uint256 scale1;
+        uint256 idle0; uint256 idle1;
+    }
     Basis private basis;
     mapping(address => Mark) private marks;
     address[] private assets;
@@ -61,6 +67,41 @@ contract ZZZContributionPricing {
         if (!access.isSealed() || access.paused() || access.preparationActive() || access.canonicalState() != 0) revert InvalidState();
     }
     function active() external view returns(bool) { return basis.phase != 0; }
+    function compoundReady(uint256 bucket) external view onlyBudget returns(bool) {
+        Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
+        if(p.status != PositionStatus.Active || p.lpTokenId == 0) return false;
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        if(!c.operationsEnabled) return false;
+        IPricingBudget budget = IPricingBudget(msg.sender);
+        uint256 previous = budget.lastCompound(bucket);
+        if(p.lastRebalance > previous) previous = p.lastRebalance;
+        if(block.timestamp < previous+budget.compoundInterval(p.poolId)) return false;
+        IZZZStrategy strategy = IZZZStrategy(access.module(Ids.STRATEGY));
+        return !strategy.needsRebalance(bucket) && strategy.keeperRangeTarget(p.poolId) == 0;
+    }
+    /// @notice Stateless exact valuation for the fixed Budget's captured vector.
+    /// This shares accounting math; it creates no new authority or price fallback.
+    function markMaintenance(uint256 bucket) external view onlyBudget returns(MaintenanceMark memory mark) {
+        Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        mark.price0 = oracle.price(c.key.currency0); mark.price1 = oracle.price(c.key.currency1);
+        mark.scale0 = 10 ** oracle.tokenDecimals(c.key.currency0); mark.scale1 = 10 ** oracle.tokenDecimals(c.key.currency1);
+        mark.idle0 = p.idle0; mark.idle1 = p.idle1;
+        (uint256 deployed,uint256 idle) = _maintenanceValues(p,mark.price0,mark.price1,mark.scale0,mark.scale1);
+        mark.value = deployed+idle;
+    }
+    function maintenanceValues(uint256 bucket,uint256 price0,uint256 price1,uint256 scale0,uint256 scale1)
+        external view onlyBudget returns(uint256 deployed,uint256 idle) {
+        return _maintenanceValues(IZZZVault(access.module(Ids.VAULT)).group(bucket),price0,price1,scale0,scale1);
+    }
+    function _maintenanceValues(Position memory p,uint256 price0,uint256 price1,uint256 scale0,uint256 scale1)
+        private view returns(uint256 deployed,uint256 idle) {
+        if(p.lpTokenId != 0) {
+            (uint256 a0,uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
+            deployed = Math.mulDiv(a0,price0,scale0)+Math.mulDiv(a1,price1,scale1);
+        }
+        idle = Math.mulDiv(p.idle0,price0,scale0)+Math.mulDiv(p.idle1,price1,scale1);
+    }
     function _mark(address token) private {
         if (marks[token].lower != 0) return;
         if (assets.length == 34) revert InvalidState();

@@ -26,6 +26,20 @@ send principal/royalties to a custodian. Production is **NOT APPROVED**.
 | Tune buyback amount | `Buyback.setOperatingTradeUSD` ranges from zero through immutable `maxTradeUSD`; zero stops buys. Target ZZZ is immutable, and reserves cannot be sent to governance. |
 | Rotate service host/RPC | Preserve original deployment identity, versioned configuration, pending intents, nonce and receipt journals. A config edit does not upgrade deployed code. [Recovery](KEEPER_RECOVERY.md). |
 
+### Manual paused recovery
+
+Fresh confirmation2 adds reviewed same-side independent-reference corroboration;
+governance may change it through `setRequireReferenceExit`, invalidating samples.
+Automatic keeper width policies cannot coexist with enabled protection.
+
+Fresh emergency capability1 separately permits paused governance to call
+`Migration.emergencyRebalance(request)`, including from Parked custody, with
+explicit optional economic safeguards. No keeper/holder/automatic fallback may
+use it. This retains Vault custody and NFT shares/rewards but trusts governance
+with potentially near-total trading loss when financial checks are off.
+No arbitrary recipient/call or terminal reopening is added.
+[Exact controls and recovery](EMERGENCY_REBALANCE.md).
+
 ## Pause, park, resume or permanently exit
 
 **Parking is reversible; collective holder exit is irreversible.** Before exit,

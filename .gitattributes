@@ -92,3 +92,7 @@ reports/two-day-audit-20261028/old-cycle-priority.log whitespace=cr-at-eol,-blan
 reports/fee-impact-policy-20261028/** -text whitespace=cr-at-eol
 # Preserve the new source-bound compiler receipts byte-for-byte.
 reports/practical-improvements-20261028/** -text whitespace=cr-at-eol
+# Preserve exact current candidate/audit receipts and native negative diagnostics.
+reports/independent-rebalance-20261029/** -text whitespace=cr-at-eol
+reports/whole-project-execution-20261029/** -text whitespace=cr-at-eol
+reports/whole-project-execution-20261029/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

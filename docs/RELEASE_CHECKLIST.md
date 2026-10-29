@@ -1,5 +1,13 @@
 # Release approval record - NOT APPROVED
 
+Current [whole-project execution](../reports/whole-project-execution-20261029/REVIEW.md) completes the internal
+source/body review and implements keeper deadline priority, strict durable/log
+provenance, final-depth/fee/pool observation and artifact-tooling repairs.
+All122previously missing callable outputs are explained. Static review is not
+exhaustive execution or independent release approval. Website reference metadata
+is corrected locally without changing images/signing/configs or deploying sites.
+Actual providers, economics, gas/host/marketplace qualification and audit remain open.
+
 Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
 [Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
 and royalty custody exits. Governance permanently ends LP and pays actual
@@ -16,7 +24,7 @@ user-approved240-second service checks without changing on-chain900/300. Require
 actual health-writer/checker, preserved-journal, metadata restart and strict-gap
 operating acceptance before rollout. CI wiring/static checks are not a published
 workflow pass. [Compiler applicability](../reports/whole-project-audit-20261029/COMPILER_DEPENDENCIES.md),
-individual-body audit depth, website/provider/market/authority/OpenSea and
+actual website/provider/market/authority/OpenSea and
 independent audit remain open. No source publication grants release approval.
 
 Historical [two-day audit](../reports/two-day-audit-20261028/VERIFICATION.md) fixes principal retry starvation and stale guidance at its source pins. Its service settings/priority still require actual supervisor/journal/gas/receiver qualification. Comment-only Solidity corrections preserve ABI/storage/instructions while changing compiler metadata; retain exact release pins.
@@ -61,6 +69,16 @@ The [third-pass record](../reports/third-pass-20261028/VERIFICATION.md) traces35
 commits on October26-28 plus older interacting code. Fresh checkpoint and strict
 snapshot regressions are separate from exact reused Solidity/build evidence;
 neither closes real provider/service/operating or independent-audit approval.
+
+Current source additionally implements [confirmation2 and manual emergency1](EMERGENCY_REBALANCE.md).
+Ordinary samples require physical/reference same-side exit; automatic width
+policies cannot bypass that guard. Governance can review policy relaxation or
+manually perform a paused emergency with optional financial checks. Exact
+accounting/custody/lifecycle remain; nearly all principal may be lost if financial
+guards are disabled. [Source-scoped review/evidence](../reports/independent-rebalance-20261029/VERIFICATION.md)
+does not qualify feeds, economic profitability, actual gas/services or an
+independent audit. No installed service/site/Anvil/deployment changed. The wider
+current handwritten-body review is recorded in the [whole-project execution](../reports/whole-project-execution-20261029/COVERAGE.md); historical reports retain their pins.
 
 ## Evidence and approval boundary
 

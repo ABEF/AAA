@@ -1,0 +1,757 @@
+{
+  "kind": "consolidated_scoped_backend_review",
+  "findings": [
+    {
+      "id": "BE-PROVENANCE",
+      "category": "provider/stored-evidence integrity",
+      "files": [
+        "frontend_api/history.py",
+        "indexer/monitor.py",
+        "zzz_ops/log_provenance.py"
+      ],
+      "before": "Contradictory supplied transaction indices and interleaved hashes could advance ingress or serve history.",
+      "after": "Validate sorted filtered transaction chronology before writes/return, preserving omitted legacy indices, sparse valid gaps and callbacks.",
+      "evidence": [
+        "pre-fix.json",
+        "negative-controls-final.json"
+      ],
+      "tests": "tests_python.test_history_transaction_provenance"
+    },
+    {
+      "id": "BE-INVENTORY-DEPTH",
+      "category": "confirmed-observation correctness",
+      "files": [
+        "zzz_ops/production_observer.py"
+      ],
+      "before": "Retained anchor could outlive lost confirmation descendants while complete=True retained initial head.",
+      "after": "One final latest-header read rechecks required depth/chronology, followed by anchor/genesis/chain checks; final head is published.",
+      "evidence": [
+        "observer-pre-fix.json",
+        "negative-controls-final.json"
+      ],
+      "tests": "tests_python.test_observer_final_depth"
+    },
+    {
+      "id": "BE-FIXED-FEE",
+      "category": "receipt observation integrity",
+      "files": [
+        "zzz_ops/ethereum_fees.py"
+      ],
+      "before": "Local read-only browser observer could accept legacy/type1 receipt price below signed gasPrice; keeper already separately enforced equality.",
+      "after": "Shared helper requires exact fixed price; missing data fails and type2 derivation is unchanged; signer/action sources untouched.",
+      "evidence": [
+        "fee-pre-fix.json",
+        "negative-controls-final.json"
+      ],
+      "tests": "tests_python.test_execution_price_integrity"
+    },
+    {
+      "id": "BE-BUNDLE-PROFILE",
+      "category": "versioned review guidance",
+      "files": [
+        "zzz_ops/review_bundle.py"
+      ],
+      "before": "Default archive handoff described historical external custody and wrong current example.",
+      "after": "Default schema2 guidance names current profile and trust limits; schema1 original bytes/verification and intentional memory exclusions stay intact.",
+      "evidence": [
+        "schema1-compatibility.json",
+        "schema1-before.zip"
+      ],
+      "tests": "tests_python.test_review_bundle_profiles"
+    },
+    {
+      "id": "BE-STATE-JSON",
+      "category": "durable recovery integrity",
+      "files": [
+        "zzz_ops/state.py"
+      ],
+      "before": "Duplicate pending/spend/config keys and nonfinite/overflow floats parsed silently; nonfinite writer replaced old bytes.",
+      "after": "Strict sanitized JSON rejection without malformed-file defaults; allow_nan=False preserves prior bytes/temp cleanup; finite and missing-file semantics remain.",
+      "evidence": [
+        "state-json/pre-fix.json",
+        "state-json/python-tests.json"
+      ],
+      "tests": "tests_python.test_state_json_integrity"
+    },
+    {
+      "id": "BE-POOL-OBSERVATION",
+      "category": "selected-pool evidence integrity",
+      "files": [
+        "scripts/verify-hookless-pool.py"
+      ],
+      "before": "Duplicate JSON envelope fields and contradictory sqrt/tick state produced successful observations.",
+      "after": "Shared strict JSON and exact TickMath checks preserve valid boundary tick semantics and exact IDs.",
+      "evidence": [
+        "pool-observer/pre-fix.json",
+        "pool-observer/python-tests.json"
+      ],
+      "tests": "tests_python.test_pool_observer_integrity"
+    }
+  ],
+  "runs": {
+    "backend59": {
+      "receipt": "python-tests.json",
+      "receipt_sha256": "73eec8f6d1e7add7935c26dd97990c52b51a9210ff1e887029fa9e34046fb3aa",
+      "tests_run": 59,
+      "distinct_methods": 59,
+      "passed": 59,
+      "skipped": 0,
+      "recorded_scope_hashes_currently_match": true
+    },
+    "state23": {
+      "receipt": "state-json/python-tests.json",
+      "receipt_sha256": "f880ff597bb3650d268e9ac77d337fcbac999d20e870f2f1790e1bf676c4c4fd",
+      "tests_run": 23,
+      "distinct_methods": 23,
+      "passed": 19,
+      "skipped": 4,
+      "recorded_scope_hashes_currently_match": true
+    },
+    "pool14": {
+      "receipt": "pool-observer/python-tests.json",
+      "receipt_sha256": "54976b63c32e4975f9701112ae23841d8f39e62c8ba160c012bb5fe2e0282cd4",
+      "tests_run": 14,
+      "distinct_methods": 14,
+      "passed": 14,
+      "skipped": 0,
+      "recorded_scope_hashes_currently_match": true
+    }
+  },
+  "unique_methods": 96,
+  "passed": 92,
+  "skipped": 4,
+  "new_methods": 41,
+  "method_results": {
+    "tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_earnings.EarningsLineageTests.test_real_receipt_and_two_databases_preserve_both_epochs_without_import_income": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_execution_price_integrity.ExecutionPriceIntegrityTests.test_browser_receipt_observation_rejects_underreported_fixed_price_without_actions": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_execution_price_integrity.ExecutionPriceIntegrityTests.test_dynamic_price_still_uses_signed_caps_and_canonical_base": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_execution_price_integrity.ExecutionPriceIntegrityTests.test_keeper_recovery_preserves_pending_and_spend_on_underreported_access_list_price": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_execution_price_integrity.ExecutionPriceIntegrityTests.test_legacy_and_access_list_require_exact_signed_price": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_execution_price_integrity.ExecutionPriceIntegrityTests.test_missing_or_malformed_fixed_price_evidence_remains_unavailable": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_frontend_history.ConfirmedHistoryTests.test_consistent_sqlite_transaction_ignores_concurrent_later_commit": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_frontend_history.ConfirmedHistoryTests.test_reorg_after_history_read_cannot_release_a_successful_nft_snapshot": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_frontend_history.ConfirmedHistoryTests.test_transfer_replay_and_lifetime_claims_across_past_owners": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionIngressTests.test_distinct_transactions_cannot_reuse_a_supplied_index": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionIngressTests.test_known_indices_cannot_decline_across_transactions": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionIngressTests.test_omitted_indices_still_occupy_a_distinct_transaction": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionIngressTests.test_one_transaction_cannot_change_its_supplied_index": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionIngressTests.test_optional_index_is_validated_even_on_anonymous_logs": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionIngressTests.test_transaction_hash_cannot_reenter_after_another_transaction": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionIngressTests.test_unordered_sparse_filtered_and_legacy_logs_remain_valid": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionStoredHistoryTests.test_callback_transfers_and_sparse_supplied_indices_preserve_claims": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionStoredHistoryTests.test_raw_anonymous_rows_cannot_hide_hash_reentry_or_missing_index_conflicts": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionStoredHistoryTests.test_raw_optional_index_is_strict_and_legacy_omission_remains_valid": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionStoredHistoryTests.test_raw_rows_cannot_change_one_transactions_index": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_history_transaction_provenance.TransactionStoredHistoryTests.test_raw_rows_cannot_reuse_or_reverse_transaction_indices": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_changed_dependency_runtime_is_rejected": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_cli_sanitizes_failure_and_preserves_existing_evidence": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_expected_hash_and_block_are_validated_before_network": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_failed_output_replacement_preserves_old_record_and_cleans_temporary": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_hash_pinned_reads_and_real_fee_composition": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_initialization_origin_and_reorg_are_rejected": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_malformed_abi_or_fee_state_is_rejected": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_rpc_limits_and_read_only_method_guard": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_hookless_observer.HooklessObserverTests.test_rpc_reorders_exact_ids_and_rejects_ambiguous_envelopes": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_dynamic_reported_price_is_not_actual_cost": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_legacy_price_must_match_signed_gas_price": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_keeper_recovery.RecoveryTests.test_corrupt_counters_cannot_reset_budget": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_keeper_recovery.RecoveryTests.test_health_storage_failure_stops_before_work": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_keeper_recovery.RecoveryTests.test_pending_intent_save_failure_never_invokes_signer": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_keeper_recovery.RecoveryTests.test_restore_keeps_pending_counters_and_cursor": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_local_browser.BrowserTests.test_dynamic_fee_uses_signed_cap_and_canonical_base": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_local_browser.BrowserTests.test_legacy_chain_id_omission_uses_replay_protected_signature": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_observer_final_depth.ObserverFinalDepthTests.test_descendant_retreat_with_sufficient_depth_keeps_anchor_and_final_truth": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_observer_final_depth.ObserverFinalDepthTests.test_final_head_is_recorded_after_growth": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_observer_final_depth.ObserverFinalDepthTests.test_fresh_schema6_inherits_final_depth_check_without_adopting_pins": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_observer_final_depth.ObserverFinalDepthTests.test_historical_profile_lost_depth_discards_whole_result_and_preserves_input": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_observer_final_depth.ObserverFinalDepthTests.test_missing_malformed_or_contradictory_final_header_is_unavailable": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_pool_observer_integrity.PoolObserverIntegrityTests.test_duplicate_envelope_or_nested_result_fields_are_rejected": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_pool_observer_integrity.PoolObserverIntegrityTests.test_exact_downward_boundary_ticks_remain_valid_without_repair": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_pool_observer_integrity.PoolObserverIntegrityTests.test_finite_values_and_exact_reordered_reply_ids_are_preserved": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_pool_observer_integrity.PoolObserverIntegrityTests.test_inconsistent_or_noncanonical_slot0_ticks_cannot_create_an_observation": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_pool_observer_integrity.PoolObserverIntegrityTests.test_nonfinite_constants_and_overflowing_floats_fail_closed": {
+      "result": "passed",
+      "scopes": [
+        "pool14"
+      ]
+    },
+    "tests_python.test_production_observer.ProductionObserverTests.test_complete_pinned_native_v4_observation_preserves_reviews_and_input": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_production_v4.CurrentProductionTests.test_current_observer_composes_into_offline_gate_without_adopting_approval": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_allowlist_excludes_runtime_secrets_history_and_memories": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_approval_or_handoff_forgery_is_rejected": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_callable_reference_consumer_requires_frozen_explanations_and_snapshot": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_changed_source_without_matching_manifest_fails": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_credential_bearing_dependency_url_is_not_exported": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_declared_catalog_and_abi_consumers_require_exact_fixture_inputs": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_deterministic_frozen_inputs_and_dependency_limitations": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_duplicate_manifest_keys_and_zip_members_are_rejected": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_excluded_paths_are_recorded_without_copying_their_bytes": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_exclusive_atomic_publication_preserves_existing_archive": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_extra_or_missing_member_fails": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_gitlink_metadata_cannot_be_omitted": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_gitlink_pin_is_carried_but_never_claimed_bundled": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_member_count_and_expanded_size_limits_apply_before_read": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_missing_or_changed_dependency_pin_is_rejected": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_rejects_portable_path_ambiguities": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_requires_exact_commit_before_git_is_read": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_symlink_compression_and_trailing_payload_are_rejected": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle.ReviewBundleTests.test_verify_requires_trusted_expected_hash": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle_profiles.ReviewBundleProfileTests.test_current_schema_still_excludes_local_context_memory_and_runtime_data": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle_profiles.ReviewBundleProfileTests.test_default_schema2_uses_current_profile_and_preserves_qualification_limits": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle_profiles.ReviewBundleProfileTests.test_handoff_cannot_be_relabelled_by_changing_only_the_schema": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle_profiles.ReviewBundleProfileTests.test_schema1_handoff_and_archive_bytes_retain_their_original_identity": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_review_bundle_profiles.ReviewBundleProfileTests.test_unknown_and_boolean_schema_values_fail_closed": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_state.StateTests.test_atomic_roundtrip": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state.StateTests.test_atomic_state_repairs_existing_unix_permissions": {
+      "result": "skipped",
+      "scopes": [
+        "state23"
+      ],
+      "reason": "Unix private-file permissions required"
+    },
+    "tests_python.test_state.StateTests.test_concurrent_lock_rejected": {
+      "result": "skipped",
+      "scopes": [
+        "state23"
+      ],
+      "reason": "Unix fcntl process locking required"
+    },
+    "tests_python.test_state.StateTests.test_lock_released": {
+      "result": "skipped",
+      "scopes": [
+        "state23"
+      ],
+      "reason": "Unix fcntl process locking required"
+    },
+    "tests_python.test_state.StateTests.test_malformed_state_fails_closed": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state.StateTests.test_missing_default": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state.StateTests.test_predictable_temp_hardlink_cannot_overwrite_another_file": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file": {
+      "result": "skipped",
+      "scopes": [
+        "state23"
+      ],
+      "reason": "Unix symlink/permission semantics required"
+    },
+    "tests_python.test_state.StateTests.test_serialization_failure_retains_previous_state_and_removes_exclusive_temp": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state.StateTests.test_stale_predictable_temporary_file_is_never_clobbered": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.KeeperStateJSONStartupTests.test_malformed_present_journal_stops_before_runtime_signer_or_rpc": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.StateJSONIntegrityTests.test_duplicate_field_diagnostic_never_echoes_key_or_value_contents": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.StateJSONIntegrityTests.test_duplicate_pending_spend_and_nested_configuration_keys_fail_closed": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.StateJSONIntegrityTests.test_finite_atomic_write_keeps_roundtrip_and_replaces_intentionally": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.StateJSONIntegrityTests.test_finite_valid_json_retains_values_and_does_not_rewrite_bytes": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.StateJSONIntegrityTests.test_nonfinite_atomic_write_preserves_old_truth_and_cleans_private_temporary": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.StateJSONIntegrityTests.test_nonfinite_constants_are_rejected_at_every_container_depth": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.StateJSONIntegrityTests.test_only_missing_file_returns_the_explicit_default": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_state_json_integrity.StateJSONIntegrityTests.test_overflowing_float_literals_cannot_become_infinity": {
+      "result": "passed",
+      "scopes": [
+        "state23"
+      ]
+    },
+    "tests_python.test_wallet_earnings.WalletEarningsTests.test_real_sqlite_replay_matches_single_nft_and_pins_inventory": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    },
+    "tests_python.test_wallet_earnings.WalletLineageTests.test_two_epochs_survive_replacement_without_import_income": {
+      "result": "passed",
+      "scopes": [
+        "backend59"
+      ]
+    }
+  },
+  "explicit_skips": [
+    {
+      "scope": "state23",
+      "method": "tests_python.test_state.StateTests.test_atomic_state_repairs_existing_unix_permissions",
+      "reason": "Unix private-file permissions required"
+    },
+    {
+      "scope": "state23",
+      "method": "tests_python.test_state.StateTests.test_concurrent_lock_rejected",
+      "reason": "Unix fcntl process locking required"
+    },
+    {
+      "scope": "state23",
+      "method": "tests_python.test_state.StateTests.test_lock_released",
+      "reason": "Unix fcntl process locking required"
+    },
+    {
+      "scope": "state23",
+      "method": "tests_python.test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file",
+      "reason": "Unix symlink/permission semantics required"
+    }
+  ],
+  "current_implementation_sha256": {
+    "frontend_api/history.py": "16fe3aeeb163732f6e59781fca33f762ae10fa1d873ecd0c26b0aed823d1fb3d",
+    "indexer/monitor.py": "73c5aac6ce6c2a6f17e3fbde93e42d168ad30efa3c0162899e07915869233f1b",
+    "zzz_ops/log_provenance.py": "9edf223d19c2cc04f4829822c282ea534e24afe489016ccb90103f2ce98bb230",
+    "zzz_ops/review_bundle.py": "0e5b6b6f94c6e86f6d2ab1599526c6669c2bedca822c47f648105d477fa73a46",
+    "zzz_ops/ethereum_fees.py": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+    "zzz_ops/production_observer.py": "11dfbd23a4e0816974fcf180a3d1185b3db9c874d811f1bb8dccaa4c7281dd06",
+    "zzz_ops/state.py": "ebcd993b442c7f77dba3fa9b51e85a6af415096c42093ea6de864902409fd87c",
+    "scripts/verify-hookless-pool.py": "41812c87cb1bb7a9e1fba0bc281f83ef9aef4a0cb07fb9fc663510d5d219e326"
+  },
+  "current_new_test_sha256": {
+    "tests_python/test_history_transaction_provenance.py": "777d2bbca6501791f4a1b8fd9db97e0096752cfdf74acb4ffa3fbd8eebdba98f",
+    "tests_python/test_review_bundle_profiles.py": "a385380449936ffe87bb7a570fdbf8c985e07e988fcde6cb6bd40ed237b1f340",
+    "tests_python/test_execution_price_integrity.py": "9bafc9df06db201c414625b95e0cebd7c2e8839cb2e14b46061a211737dc6293",
+    "tests_python/test_observer_final_depth.py": "f5a5f937b023dc2f6eb6be0e97d1bb99e052c2c20f913022a0f93a0420f12861",
+    "tests_python/test_state_json_integrity.py": "89fa99f4dd5512271cee44312d54d75e17d68967b0a2d0d6bed414a2deead89b",
+    "tests_python/test_pool_observer_integrity.py": "3905d5736aaab085ac531c988bd2f95d854a76fc804bbfe812b1695f3128fbba"
+  },
+  "body_review_records": [
+    "inherited-body-review.json",
+    "state-json/body-review.json",
+    "wrapper-body-review.json"
+  ],
+  "evidence_counting": "Each method identity appears once in the union. Iterative/negative-control runs are not added; original59/state23/pool14 receipts keep their separate source and dependency applicability. Matching listed files is not a complete dependency-closure attestation.",
+  "limits": [
+    "No independent security/production approval or real provider/market/VRF/authority/gas/host qualification.",
+    "Windows fixtures do not qualify Unix permissions/fcntl/systemd.",
+    "No Solidity, installed keeper/service, protected signer/action source, operating journal, Anvil, website or public transaction changes in this backend scope."
+  ]
+}

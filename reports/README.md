@@ -1,5 +1,13 @@
 # Verification evidence
 
+[Independent rebalance/manual emergency review,2026-10-29](independent-rebalance-20261029/REVIEW.md):
+confirmation2 requires physical/reference same-side exit and prevents automatic
+widths from adopting the manual exception. Separate paused-governance emergency1
+has explicitly optional economic checks and an accepted near-total-loss risk.
+[Verification](independent-rebalance-20261029/VERIFICATION.md) separates source,
+fixture repairs, failures, fresh checks and normal size gates. No deployment or
+installed-state change; the wider whole-project individual-body audit is unfinished.
+
 [Whole-project review,2026-10-29](whole-project-audit-20261029/REVIEW.md): source
 understanding, twice-challenged brief, full-system critical-path/coverage records,
 ownership/history/metadata-restart and CI fixes, plus approved240-second source
@@ -110,6 +118,11 @@ still applies only to its recorded source, deployment and verification scope.
 Some older reports contain relative links to now-retired source paths; inspect
 the report at its recorded Git revision for that historical code. These are not
 current implementation links.
+
+[Current whole-project audit execution](whole-project-execution-20261029/REVIEW.md) includes
+two prompt challenges, exact handwritten/dependency body coverage, keeper/backend/
+tooling/artwork repairs and completed callable outputs. Its scoped verification
+and unresolved live/independent gates supersede no historical report bytes.
 
 ## Backend fee-breakdown remediation - 2026-10-26
 

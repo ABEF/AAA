@@ -44,8 +44,8 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         raise ProjectionError('Unsupported explicit range-policy profile')
     if type(maintenance_policy_version) is not int or maintenance_policy_version not in (0,1,2):
         raise ProjectionError('Unsupported explicit maintenance-policy profile')
-    if (type(rebalance_confirmation_version) is not int or rebalance_confirmation_version not in (0,1) or
-            rebalance_confirmation_version == 1 and (maintenance_policy_version != 2 or p.accounting_version != 4)):
+    if (type(rebalance_confirmation_version) is not int or rebalance_confirmation_version not in (0,1,2) or
+            rebalance_confirmation_version in (1,2) and (maintenance_policy_version != 2 or p.accounting_version != 4)):
         raise ProjectionError('Unsupported explicit rebalance-confirmation profile')
     spacing = int(config[3], 16)
     def active_range(lower, upper):
@@ -95,7 +95,7 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         range_pending, reason = False, None
     raw_eligible=eligible
     confirmation=None
-    if rebalance_confirmation_version == 1:
+    if rebalance_confirmation_version in (1,2):
         from zzz_ops.rebalance_confirmation import observe as observe_confirmation
         try:
             confirmation=observe_confirmation(
@@ -103,15 +103,16 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
                 strategy=pins['strategy'],budget=pins['budget'],
                 confirmation=pins['rebalance_confirmation'],access=pins['access'],
                 bucket=bucket if existing else None,timestamp=header['timestamp'],
-                raw_eligible=raw_eligible,range_pending=range_pending)
+                raw_eligible=raw_eligible,range_pending=range_pending,version=rebalance_confirmation_version)
         except (ValueError,TypeError,KeyError) as exc:
             raise ProjectionError('Confirmed rebalance observations are inconsistent or unavailable') from exc
         if existing:
-            if raw_eligible and not range_pending and confirmation['exit_side']!=(1 if tick<lower else 2):
+            if raw_eligible and not range_pending and confirmation.get('physical_exit_side',confirmation['exit_side'])!=(1 if tick<lower else 2):
                 raise ProjectionError('Confirmation direction differs from the confirmed physical range')
             eligible=confirmation['ready_at_snapshot']
             if raw_eligible and not eligible:
                 status={'unconfigured':'confirmation_unconfigured',
+                        'reference_disagreement':'reference_disagreement',
                         'waiting_first_observation':'confirmation_not_started',
                         'observation_stale':'confirmation_stale',
                         'confirming':'confirmation_pending'}[confirmation['status']]
@@ -131,6 +132,8 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         timing = 'Cooldown complete and the LP is outside range, but the on-chain confirmation gap policy is unconfigured or stopped.'
     elif status == 'confirmation_not_started':
         timing = 'Cooldown complete; recorded out-of-range confirmation has not started for this LP and policy.'
+    elif status == 'reference_disagreement':
+        timing = 'Our LP is outside range, but the independent reference does not confirm the same side. Ordinary automatic rebalancing is blocked.'
     elif status == 'confirmation_stale':
         timing = 'Recorded out-of-range observations are stale; confirmation must restart before rebalancing.'
     elif status == 'confirmation_pending':
@@ -154,7 +157,7 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
             'sqrt_price_x96': str(spot), 'in_range': in_range,
             'configured_target_half_width_bps': int(config[7], 16),
             **({'maintenance_policy_version':maintenance_policy_version} if maintenance_policy_version else {}),
-            **({'rebalance_confirmation_version':1,'rebalance_confirmation':confirmation}
+            **({'rebalance_confirmation_version':rebalance_confirmation_version,'rebalance_confirmation':confirmation}
                if rebalance_confirmation_version else {}),
             'range_policy_version':range_policy_version, 'range_orientation':orientation,
             'range_price_unit':'token0_per_token1' if orientation == 1 else 'token1_per_token0',

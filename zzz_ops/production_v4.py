@@ -20,13 +20,13 @@ VERSIONS = dict(schema_version=6, accounting_version=4, governance_version=2,
     fee_intake_version=1, custody_version=3, routing_version=2, pricing_version=2,
     review_policy_version=1, range_policy_version=1, maintenance_policy_version=2,
     compound_capability_version=3, lp_routing_version=1, execution_quality_version=1,
-    mint_integration_version=1,rebalance_confirmation_version=1)
+    mint_integration_version=1,rebalance_confirmation_version=2,emergency_rebalance_version=1)
 TOP_FIELDS = set(V.TOP_FIELDS) | set(VERSIONS) | {'canonical_schema'}
 CHAIN_FIELDS = (set(V.CHAIN_FIELDS)-{'custody'}) | {'holder_exit','lp_execution','maintenance','rebalance_confirmation'}
 EVIDENCE = tuple(name for name in V.EVIDENCE if name != 'custody_handoff') + ('holder_return',)
 SERVICE_PROFILES = dict(rpc='eip1898_hash_pinned_debug_trace',pricing='independent_dual_usd_v2',
-    randomness='verified_coordinator_two_words',keeper='accounting4_upkeep2_compound3_lp1_quality1_confirmation1',
-    api='accounting4_custody3_holder_exit_v5_confirmation1',metadata='content_addressed_v2',opensea='primary_mint_current_nft')
+    randomness='verified_coordinator_two_words',keeper='accounting4_upkeep2_compound3_lp1_quality1_confirmation2',
+    api='accounting4_custody3_holder_exit_v5_confirmation2',metadata='content_addressed_v2',opensea='primary_mint_current_nft')
 
 
 def expected_bindings(chain):
@@ -43,12 +43,14 @@ def expected_bindings(chain):
     result['modules']['canonical']['SCHEMA'] = SCHEMA_HASH
     result['helpers']['royalty_rewards'].pop('custodyCount')
     result['modules']['pools']['configurationRevision'] = quality.get('registry_configuration_revision')
-    result['modules']['liquidity'].update(LP_ROUTING_VERSION=1,EXECUTION_QUALITY_VERSION=1,balancingRouter=h('balancing_router'))
+    result['modules']['liquidity'].update(LP_ROUTING_VERSION=1,EXECUTION_QUALITY_VERSION=1,EMERGENCY_REBALANCE_VERSION=1,balancingRouter=h('balancing_router'))
+    result['modules']['migration']['EMERGENCY_REBALANCE_VERSION']=1
     result['modules']['strategy'].update(MAINTENANCE_POLICY_VERSION=2,EXECUTION_QUALITY_VERSION=1,
         MAX_ADDITIONAL_LOSS_BPS=1000,additionalLossBps=quality.get('additional_loss_bps'),
-        executionQualityRevision=quality.get('quality_policy_revision'),REBALANCE_CONFIRMATION_VERSION=1,
+        executionQualityRevision=quality.get('quality_policy_revision'),REBALANCE_CONFIRMATION_VERSION=2,
         rebalanceConfirmation=h('rebalance_confirmation'))
-    result['helpers']['migration_budget'].update(IDLE_COMPOUNDING_VERSION=3,REBALANCE_CONFIRMATION_VERSION=1)
+    result['helpers']['migration_budget'].update(IDLE_COMPOUNDING_VERSION=3,REBALANCE_CONFIRMATION_VERSION=2,
+        EMERGENCY_REBALANCE_VERSION=1,emergencyActive=False)
     result['helpers']['balancing_router'] = dict(access=m('access'),liquidityManager=m('liquidity'),
         poolManager=d('pool_manager'),stateView=d('state_view'),LP_ROUTING_VERSION=1,
         EXECUTION_QUALITY_VERSION=1,MAX_EXECUTION_POOLS=4,MAX_ADDITIONAL_LOSS_BPS=1000,
@@ -56,8 +58,9 @@ def expected_bindings(chain):
         searchIterations=quality.get('search_iterations'),quoteGasLimit=quality.get('quote_gas_limit'))
     confirmation=V._obj(chain.get('rebalance_confirmation'))
     result['helpers']['rebalance_confirmation']=dict(access=m('access'),strategy=m('strategy'),
-        REBALANCE_CONFIRMATION_VERSION=1,duration=confirmation.get('duration'),maxObservationGap=confirmation.get('max_observation_gap'),
-        policyRevision=confirmation.get('policy_revision'),reviewHash=confirmation.get('review_hash'))
+        REBALANCE_CONFIRMATION_VERSION=2,duration=confirmation.get('duration'),maxObservationGap=confirmation.get('max_observation_gap'),
+        policyRevision=confirmation.get('policy_revision'),reviewHash=confirmation.get('review_hash'),
+        requireReferenceExit=confirmation.get('reference_exit_required'),referenceReviewHash=confirmation.get('reference_review_hash'))
     return result
 
 
@@ -379,18 +382,23 @@ def confirmation_controls_allow(chain):
 
 def _confirmation(g,chain,path):
     c=g.obj(chain.get('rebalance_confirmation'),path+'.rebalance_confirmation');p=path+'.rebalance_confirmation'
-    g.keys(c,{'duration','max_observation_gap','policy_revision','review_hash','observed','review_evidence'},p)
+    policy_keys={'duration','max_observation_gap','policy_revision','review_hash','reference_exit_required','reference_review_hash'}
+    g.keys(c,policy_keys|{'observed','review_evidence'},p)
     duration=g.num(c.get('duration'),p+'.duration',60,604800)
     gap=g.num(c.get('max_observation_gap'),p+'.max_observation_gap',0,302400)
     revision=g.num(c.get('policy_revision'),p+'.policy_revision',0,2**64-1)
     review=g.hex(c.get('review_hash'),p+'.review_hash')
+    g.check(type(c.get('reference_exit_required')) is bool,p,'confirmation.reference_policy','Select an explicit independent same-side policy.')
+    reference_review=g.hex(c.get('reference_review_hash'),p+'.reference_review_hash',zero=c.get('reference_exit_required') is True)
+    g.check(c.get('reference_exit_required') is True or reference_review not in (None,ZERO_HASH),p,
+        'confirmation.reference_review','A relaxed independent trigger requires a recorded governance review.')
     g.check(type(c.get('duration')) is int and type(c.get('max_observation_gap')) is int and type(c.get('policy_revision')) is int,
         p,'confirmation.type','Review exact integer duration, gap and revision.')
     g.check(duration is not None and gap is not None and 0<gap<=duration//2,p,'confirmation.unconfigured',
         'Choose and qualify the maximum observation gap explicitly; zero stops ordinary confirmation and is not release-ready.','services')
     obs=g.obj(c.get('observed'),p+'.observed')
-    g.keys(obs,{'duration','max_observation_gap','policy_revision','review_hash','buckets'},p+'.observed')
-    g.check(all(V._equal(obs.get(key),c.get(key)) for key in ('duration','max_observation_gap','policy_revision','review_hash')),
+    g.keys(obs,policy_keys|{'buckets'},p+'.observed')
+    g.check(all(V._equal(obs.get(key),c.get(key)) for key in policy_keys),
         p+'.observed','confirmation.policy','Compare actual helper policy/review/revision at the canonical block.','bindings')
     buckets=g.items(obs.get('buckets'),p+'.observed.buckets',4)
     wanted=V._obj(chain.get('holder_exit')).get('observed',{}).get('buckets',[])
@@ -400,7 +408,7 @@ def _confirmation(g,chain,path):
     by_bucket={b.get('id'):b for b in wanted}
     for row in buckets:
         rp=p+'.observed.buckets.'+str(row.get('id'))
-        g.keys(row,{'id','condition_side','condition_identity','manual','stored_identity','first_seen','last_seen','stored_side','ready','raw_needed','range_pending'},rp)
+        g.keys(row,{'id','condition_side','condition_identity','manual','stored_identity','first_seen','last_seen','stored_side','ready','raw_needed','range_pending','physical_side','reference_side'},rp)
         side=g.num(row.get('condition_side'),rp+'.condition_side',0,2)
         stored_side=g.num(row.get('stored_side'),rp+'.stored_side',0,2)
         identity=g.hex(row.get('condition_identity'),rp+'.condition_identity',zero=True)
@@ -411,9 +419,12 @@ def _confirmation(g,chain,path):
         initialized=stored_side in (1,2) and stored not in (None,ZERO_HASH) and first is not None and last is not None and 0<first<=last<=stamp
         g.check(empty or initialized,rp,'confirmation.observation','Validate empty or bounded monotonic observation state.')
         if allowed:
+            market_wait=(row.get('raw_needed') is True and row.get('manual') is False and
+                c.get('reference_exit_required') is True and row.get('physical_side')!=row.get('reference_side'))
             g.check((row.get('raw_needed') is False and side==0 and identity==ZERO_HASH and row.get('manual') is False) or
                 (row.get('raw_needed') is True and ((row.get('manual') is True and side==0 and identity==ZERO_HASH) or
-                (row.get('manual') is False and side in (1,2) and identity not in (None,ZERO_HASH)))),
+                (row.get('manual') is False and ((market_wait and side==0 and identity==ZERO_HASH) or
+                (not market_wait and side in (1,2) and identity not in (None,ZERO_HASH)))))),
                 rp,'confirmation.condition','Operating raw eligibility requires an ordinary identified side or the deliberate manual exception.')
         else:
             g.check(side==0 and identity==ZERO_HASH and row.get('manual') is False and row.get('ready') is False,
@@ -441,7 +452,15 @@ def _confirmation(g,chain,path):
             'Cross-check the observed range-update view against exact recorded-centre ticks; lifecycle-suppressed reads remain unavailable.')
         if allowed:
             manual_expected=raw_expected and pending
-            g.check(row.get('manual') is manual_expected and side==(0 if not raw_expected or manual_expected else physical_side),
+            if raw_expected and not manual_expected:
+                g.check(type(row.get('physical_side')) is int and row['physical_side']==physical_side and
+                    type(row.get('reference_side')) is int and row['reference_side'] in (0,1,2),rp,
+                    'confirmation.market_sides','Compare actual physical ticks and the bound independent reference side.')
+            else:
+                g.check(row.get('physical_side') is None and row.get('reference_side') is None,rp,
+                    'confirmation.market_scope','No active ordinary market sample is claimed outside its scope.')
+            blocked=c.get('reference_exit_required') is True and physical_side!=row.get('reference_side')
+            g.check(row.get('manual') is manual_expected and side==(0 if not raw_expected or manual_expected or blocked else physical_side),
                 rp,'confirmation.physical_side','The ordinary side and manual exception must match actual LP ticks and range policy.')
         if row.get('raw_needed') is True:
             g.check(len(position)==8 and position[7]==1 and position[1]>0 and position[5]>0 and

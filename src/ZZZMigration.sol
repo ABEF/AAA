@@ -6,7 +6,11 @@ import {ZZZCustodyValidation} from "./ZZZCustodyValidation.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZVault, IZZZPools, IZZZRewards, IZZZNFT} from "./interfaces/IZZZ.sol";
+import {IZZZVault, IZZZPools, IZZZRewards, IZZZNFT, IZZZOracle, IZZZStrategy} from "./interfaces/IZZZ.sol";
+import {EmergencyRebalance, IZZZEmergencyVault} from "./interfaces/IZZZEmergency.sol";
+import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
+import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+interface IEmergencyRegistryRevision { function configurationRevision() external view returns(uint64); }
 
 interface IHolderExitVault is IZZZVault {
     function beginLPExit() external;
@@ -25,6 +29,7 @@ interface IExitTokenIdentity { function zzz() external view returns(address); }
 /// Reward ledgers and future royalty rights remain independent of principal.
 contract ZZZMigration is ZZZModule, ReentrancyGuard {
     uint8 public constant CUSTODY_VERSION = 3;
+    uint256 public constant EMERGENCY_REBALANCE_VERSION = 1;
     uint256 public constant MAX_BATCH = 32;
     uint256 public constant PAYOUT_GAS = 180000;
     enum ExitPhase { Operating, Closing, Allocating, Ready }
@@ -63,6 +68,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     mapping(uint256 => uint64) public custodyEpoch;
     mapping(uint256 => uint64) public parkingNonce;
     ZZZCustodyValidation public immutable validation;
+    EmergencyRebalance private emergency;
     event ZZZConfigured(address indexed token,bytes32 codeHash,bytes32 reviewHash);
     event CollectiveExitStarted(bytes32 indexed reviewHash,uint256 mintedCount,uint256 bucketCount);
     event BucketClosed(uint256 indexed bucketId,uint256 totalShares,uint256 ethAmount,uint256 zzzAmount);
@@ -72,6 +78,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     event PrincipalDeferred(uint256 indexed nftId);
     event ParkingExecuted(bytes32 indexed requestHash,uint256 indexed bucketId,uint64 nonce,uint256 principal0,uint256 principal1);
     event ParkingInvalidated(uint256 indexed bucketId,uint64 nextNonce);
+    event EmergencyRebalanced(uint256 indexed bucket,uint8 retainedChecks,bytes32 indexed requestHash,bytes32 indexed reviewHash);
 
     constructor(address controller) ZZZModule(controller) {
         validation = new ZZZCustodyValidation(controller);
@@ -84,6 +91,52 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     function _nft() private view returns(IHolderExitNFT) {
         return IHolderExitNFT(access.module(Ids.NFT));
+    }
+    /// @notice Manual governance-only emergency, while paused. Never a keeper
+    /// fallback. Disabled economic checks accept the explicitly reviewed risk;
+    /// native ETH/fixed ZZZ, exact accounting and all lifecycle locks remain.
+    function emergencyRebalance(EmergencyRebalance calldata request)
+        external onlyGovernance operating principalOperating nonReentrant {
+        _deadline(request.deadline);
+        if(!access.isSealed() || !access.paused() || request.checks > 31 || request.bucket == 0 ||
+            request.custodyHash != emergencyCustodyHash(request.bucket) ||
+            request.amountIn > uint128(type(int128).max) || request.minimumOut > uint128(type(int128).max) ||
+            request.minimumLiquidity == 0 || request.lower < TickMath.MIN_TICK || request.upper > TickMath.MAX_TICK ||
+            request.lower >= request.upper || request.reviewHash == bytes32(0) ||
+            (request.amountIn == 0 ? request.swapPool != bytes32(0) || request.minimumOut != 0 :
+                request.swapPool == bytes32(0) || request.minimumOut == 0)) revert InvalidConfiguration();
+        ZZZMigrationBudget budget = ZZZMigrationBudget(IZZZEmergencyVault(address(_vault())).migrationBudget());
+        emergency = request;
+        budget.beginEmergency(request.bucket,request.checks);
+        bytes32 context = budget.emergencyFingerprint();
+        IZZZEmergencyVault(address(_vault())).emergencyRebalance(request.bucket,request.minimumLiquidity,request.deadline);
+        if(budget.emergencyFingerprint() != context) revert InvalidState();
+        budget.endEmergency();
+        delete emergency;
+        emit EmergencyRebalanced(request.bucket,request.checks,
+            keccak256(abi.encode(block.chainid,address(this),address(_vault()),request)),request.reviewHash);
+    }
+    function emergencyFingerprint() external view returns(bytes32 result) {
+        ZZZMigrationBudget budget = ZZZMigrationBudget(IZZZEmergencyVault(address(_vault())).migrationBudget());
+        if(msg.sender != address(budget)) revert Unauthorized();
+        EmergencyRebalance memory request = emergency;
+        budget.validateEmergency(request.bucket);
+        result = keccak256(abi.encode(request,access.governance(),
+            IEmergencyRegistryRevision(access.module(Ids.POOLS)).configurationRevision()));
+        if((request.checks & 6) != 0) {
+            PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(_vault().group(request.bucket).poolId);
+            IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
+            (,,bytes32 a) = oracle.priceBounds(c.key.currency0); (,,bytes32 b) = oracle.priceBounds(c.key.currency1);
+            result = keccak256(abi.encode(result,a,b,IZZZStrategy(access.module(Ids.STRATEGY)).executionQualityRevision()));
+        }
+    }
+    function emergencyRequest() external view returns(EmergencyRebalance memory) { return emergency; }
+    function emergencyTarget() external view returns(int24,int24) { return(emergency.lower,emergency.upper); }
+    /// @notice Review-time physical/accounting identity. Price changes alone do
+    /// not replace the LP, but a top-up, park, move or share change invalidates it.
+    function emergencyCustodyHash(uint256 bucket) public view returns(bytes32) {
+        IHolderExitVault vault = _vault();
+        return keccak256(abi.encode(block.chainid,address(vault),bucket,vault.group(bucket),vault.bucketTotalShares(bucket)));
     }
     /// @notice Compatibility read for ordinary same-chain canonical snapshots.
     /// No external-custody plans exist in this implementation.

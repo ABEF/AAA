@@ -1,0 +1,27 @@
+{
+  "scope": "Tooling source/body review and offline generator fixture evidence only.",
+  "files_reviewed": 25,
+  "static_body_rows_not_tests": 163,
+  "exact_prior_baseline_source_matches_not_execution": 23,
+  "final_unique_methods": [
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_digest_and_decoded_code_agreement_stay_mandatory",
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_each_rarity_supply_stays_exact_even_with_self_consistent_hash_and_codes",
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_out_of_range_code_with_matching_hash_and_inventory_is_rejected",
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_palette_count_and_pattern_identity_cannot_be_optimized_away",
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_valid_catalogue_is_identical_in_normal_and_optimized_generation",
+    "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_generated_solidity_is_exactly_the_committed_catalogue",
+    "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_all_1000_inventory_entries_round_trip_the_solidity_encoding"
+  ],
+  "final_unique_count": 7,
+  "new_method_count": 5,
+  "existing_method_count": 2,
+  "all_passed": true,
+  "original_failure_subcases": 8,
+  "current_owned_sha256": {
+    "scripts/generate-artwork-library.py": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+    "tests_python/test_artwork_generator_validation.py": "0802554f2eb556feb21c51be8afc426ac7eb989b89d8045c6debbc3ec0ba5f15"
+  },
+  "asset_or_library_write_performed": false,
+  "service_or_network_or_signing_performed": false,
+  "production_approved": false
+}

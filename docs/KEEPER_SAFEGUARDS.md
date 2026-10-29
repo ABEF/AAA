@@ -95,7 +95,7 @@ Network gas is separate. Operating limits are not automatically increased after 
 - **Separate compound clock.** Default one hour after the later of the last compound or LP replacement.
 - **Rebalance priority.** Compounding yields to eligible rebalancing and cannot reset or postpone the rebalance clock.
 - **Persistent 1–10-minute jitter.** The service draws and saves one random delay; restarting, harvesting or topping up does not redraw it.
-- **Four-minute eligible checks with confirmation1.** After cooldown, the fresh worker samples every240seconds inside/outside; historical policy2 keeps hourly inside checks. Receipt handling and independent harvest remain separate.
+- **Four-minute eligible checks with confirmation2.** After cooldown, the fresh worker samples every240seconds inside/outside; historical policy2 keeps hourly inside checks. Receipt handling and independent harvest remain separate.
 - **Fresh eligibility rechecks.** Ordinary scheduled work is cancelled if liquidity returns inside before submission.
 - **Independent hourly harvesting.** Harvesting performs no swaps. `Vault.collectFees` is permissionless, but cannot initiate rebalancing or spend principal.
 - Claims trigger neither compounding nor buybacks.
@@ -103,7 +103,7 @@ Network gas is separate. Operating limits are not automatically increased after 
 
 [Current timing policy](LP_EXECUTION_POLICY.md).
 
-Fresh confirmation1 enforces15-minute sampled confirmation with selected strict
+Fresh confirmation2 enforces15-minute sampled confirmation with selected strict
 maximum gap300seconds, restarting on observed failure, side/LP/policy change or
 staleness. Constructor gap0 blocks ordinary readiness until reviewed configuration.
 Budget gates execution and rechecks stable controls across the whole operation.
@@ -161,12 +161,18 @@ These protect the automated service; they are not substitutes for contract guard
 - Chain, signer, contract-code, module-binding and capability checks.
 - Canonical-block observations and fresh-head validation.
 - Explicit quality1 capability checks on Manager, Balancer and actual Strategy, including same-block policy-owner/quality-revision validation and forwarded-cap agreement. API reviews and confirmed keeper health expose the metadata. Historical absent/zero configurations retain their old ABI reads. Reviews do not freeze quality policy until inclusion; signed caller loss limits remain binding.
-- Independent confirmation1 policy preflight/health checks actual helper/Budget runtimes, versions and bindings even in cooldown with compounding disabled. Its latest canonical policy-only anchor reads no prices or bucket condition and proves neither readiness nor continuous history. Local source hashes identify files, not an attested running binary.
+- Explicit confirmation1/2 policy preflight/health checks actual helper/Budget runtimes, versions and bindings even in cooldown with compounding disabled. Its latest canonical policy-only anchor reads no prices or bucket condition and proves neither readiness nor continuous history. Local source hashes identify files, not an attested running binary.
 - Explicit `stopped`/`incompatible_cadence`/`unavailable` health states; retained older evidence stays stale. Active-principal policy faults preserve the prior last-success time and increment failures while independent harvest remains available. Terminal LP exit makes intentional stop/cadence informational, with real bindings and freshness still enforced.
 - Exact transaction simulation before signing.
 - Gas-limit, gas-price, per-transaction and daily spending ceilings.
 - Reviewed fee accounting, including applicable L1 costs.
 - One pending transaction lane with nonce reconciliation.
+- Existing confirmation renewals/resets take deadline priority after saved-intent
+  recovery and shared authorization, ahead of optional nonce users. Unrelated
+  optional degradation keeps telemetry without stretching known-window polling;
+  true global RPC/nonce faults retain backoff. Strict receipt gaps can still restart.
+- Durable/config JSON rejects duplicate fields and nonfinite/overflowing floats;
+  failed writes preserve old state. No automatic journal rewrite to recover.
 - Durable intent saved before the signer can broadcast.
 - No automatic resend after a timeout or ambiguous submission.
 - Pending recovery before new work, including during router outages; cycles starting with or retaining a saved intent add no new quality/confirmation-policy dependency.
@@ -189,6 +195,20 @@ These protect the automated service; they are not substitutes for contract guard
 - The swap catalog can be cleared without querying failed venues.
 - Governed parking or collective holder return provides recovery without forcing an unacceptable swap.
 - Emergency recovery retains authorization, actual backing, raw minima and protected destinations.
+
+Fresh confirmation2 requires physical and independent reference exit on the
+same side. Governed relaxation invalidates samples. Automatic keeper-width
+policies and enabled reference-exit protection are mutually exclusive; deliberate
+governance width changes retain their exception. An observed mismatch forces a
+durable clear before renewal. This is sampled evidence, not an independent-market
+history proof or proof that configured feeds are genuinely independent.
+
+[Manual emergency rebalance](EMERGENCY_REBALANCE.md) is a separate paused,
+governance-only capability. It has no keeper scheduler/API fallback. Selected
+price/loss/timing/operation checks may be disabled for one reviewed transaction;
+custody, fixed assets/venues, exact settlement, shares/rewards, deadline and
+canonical/terminal locks remain. Financial bypass expressly trusts governance
+and can permit near-total economic loss. Publication is not deployment.
 
 ## What remains exposed
 

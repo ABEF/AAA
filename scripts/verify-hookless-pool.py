@@ -16,6 +16,8 @@ import urllib.request
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from zzz_ops.abi import keccak256
+from zzz_ops.rpc import _unique_object, _reject_constant, _finite_float
+from zzz_ops.tick_math import validate_slot0
 
 POOL = "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
 ZZZ = "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
@@ -53,7 +55,8 @@ def rpc(url, calls):
         raw = response.read(MAX_RESPONSE + 1)
     if len(raw) > MAX_RESPONSE:
         raise ValueError("RPC response exceeds observation limit")
-    replies = json.loads(raw)
+    replies = json.loads(raw, object_pairs_hook=_unique_object,
+                        parse_constant=_reject_constant, parse_float=_finite_float)
     if not isinstance(replies, list) or len(replies) != len(payload):
         raise ValueError("Incomplete RPC batch")
     by_id = {}
@@ -133,8 +136,10 @@ def observe(url, block, expected_hash=None):
         if values[field] != [int(ADDRESSES[target], 16)]:
             raise ValueError("Wrong dependency wiring")
     slot = values["slot0"]
-    if len(slot) != 4 or not 0 < slot[0] < 2**160 or slot[2] >= 2**24 or slot[3] != 10020:
+    if len(slot) != 4:
         raise ValueError("Unexpected pool price/static LP fee")
+    tick = slot[1] - 2**256 if slot[1] >= 2**255 else slot[1]
+    validate_slot0(slot[0], tick, slot[2], slot[3], expected_fee=10020)
     for field in ("activeLiquidity", "protocolFeeController", "managerOwner"):
         limit = 2**128 if field == "activeLiquidity" else 2**160
         if len(values[field]) != 1 or values[field][0] >= limit:

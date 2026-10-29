@@ -1,5 +1,13 @@
 # Engineering roadmap
 
+Current [whole-project execution](../reports/whole-project-execution-20261029/REVIEW.md) completes the internal
+source/body review and implements keeper deadline priority, strict durable/log
+provenance, final-depth/fee/pool observation and artifact-tooling repairs.
+All122previously missing callable outputs are explained. Static review is not
+exhaustive execution or independent release approval. Website reference metadata
+is corrected locally without changing images/signing/configs or deploying sites.
+Actual providers, economics, gas/host/marketplace qualification and audit remain open.
+
 Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
 [Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
 and royalty custody exits. Governance permanently ends LP and pays actual
@@ -32,8 +40,8 @@ The [implemented fee-quality slice](EXECUTION_QUALITY.md) separates known core
 trading fees from a1% default additional oracle-relative loss floor, retaining
 gross/caller/total limits. Qualify real depth/prices/gas and matching runtime/config
 before rollout; defensive local checks do not establish attacker-profit immunity.
-Passive inventory and40% triggers remain discussion only. Confirmation1 now
-implements a15-minute sampled window with four-minute eligible checks and strict
+Passive inventory and40% triggers remain discussion only. Current confirmation2
+implements independent same-side exit and a15-minute sampled window with four-minute eligible checks and strict
 300-second maximum confirmed gap. Qualify actual observation/reset/jitter timing;
 delays restart and no uninterrupted-price proof is claimed. [Owning task](../TODO.md#task-rebalance-confirmation-buffer).
 
@@ -65,6 +73,16 @@ The [third-pass repairs](../reports/third-pass-20261028/REVIEW.md) also require
 operating qualification of used-signer checkpoint outages and malformed/future
 conversion/indexer observations. Preserve pending-first recovery, strict sampled
 cadence and separately guarded harvest; no new strategy decision or gate relaxation.
+
+Current source additionally implements [confirmation2 and manual emergency1](EMERGENCY_REBALANCE.md).
+Ordinary samples require physical/reference same-side exit; automatic width
+policies cannot bypass that guard. Governance can review policy relaxation or
+manually perform a paused emergency with optional financial checks. Exact
+accounting/custody/lifecycle remain; nearly all principal may be lost if financial
+guards are disabled. [Source-scoped review/evidence](../reports/independent-rebalance-20261029/VERIFICATION.md)
+does not qualify feeds, economic profitability, actual gas/services or an
+independent audit. No installed service/site/Anvil/deployment changed. The wider
+current handwritten-body review is recorded in the [whole-project execution](../reports/whole-project-execution-20261029/COVERAGE.md); historical reports retain their pins.
 
 ## LP execution next steps
 

@@ -1,0 +1,57 @@
+test_css_escapes_cannot_hide_external_presentation_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_css_escapes_cannot_hide_external_presentation_resources) ... 
+  test_css_escapes_cannot_hide_external_presentation_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_css_escapes_cannot_hide_external_presentation_resources) (data=b'<svg><path fill="u\\72l(https://example.invalid/a.svg)"/></svg>') ... FAIL
+  test_css_escapes_cannot_hide_external_presentation_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_css_escapes_cannot_hide_external_presentation_resources) (data=b'<svg><path style="fill:u\\72l(https://example.invalid/a.svg)"/></svg>') ... FAIL
+test_other_animation_and_css_style_channels_are_not_static (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_other_animation_and_css_style_channels_are_not_static) ... 
+  test_other_animation_and_css_style_channels_are_not_static (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_other_animation_and_css_style_channels_are_not_static) (data=b'<svg><animateMotion path="M0 0 L1 1"/></svg>') ... FAIL
+  test_other_animation_and_css_style_channels_are_not_static (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_other_animation_and_css_style_channels_are_not_static) (data=b'<svg><animateColor attributeName="fill"/></svg>') ... FAIL
+  test_other_animation_and_css_style_channels_are_not_static (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_other_animation_and_css_style_channels_are_not_static) (data=b'<svg><path style="animation:move 1s infinite"/></svg>') ... FAIL
+
+======================================================================
+FAIL: test_css_escapes_cannot_hide_external_presentation_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_css_escapes_cannot_hide_external_presentation_resources) (data=b'<svg><path fill="u\\72l(https://example.invalid/a.svg)"/></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 13, in test_css_escapes_cannot_hide_external_presentation_resources
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_css_escapes_cannot_hide_external_presentation_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_css_escapes_cannot_hide_external_presentation_resources) (data=b'<svg><path style="fill:u\\72l(https://example.invalid/a.svg)"/></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 13, in test_css_escapes_cannot_hide_external_presentation_resources
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_other_animation_and_css_style_channels_are_not_static (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_other_animation_and_css_style_channels_are_not_static) (data=b'<svg><animateMotion path="M0 0 L1 1"/></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 20, in test_other_animation_and_css_style_channels_are_not_static
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_other_animation_and_css_style_channels_are_not_static (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_other_animation_and_css_style_channels_are_not_static) (data=b'<svg><animateColor attributeName="fill"/></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 20, in test_other_animation_and_css_style_channels_are_not_static
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_other_animation_and_css_style_channels_are_not_static (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_other_animation_and_css_style_channels_are_not_static) (data=b'<svg><path style="animation:move 1s infinite"/></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 20, in test_other_animation_and_css_style_channels_are_not_static
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+FAILED (failures=5)

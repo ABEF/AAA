@@ -49,4 +49,9 @@ def execution_price(transaction, canonical_block, receipt):
         if base > cap:
             raise ValueError('Canonical base fee exceeds signed maximum fee')
         return min(cap, base + quantity(transaction.get('maxPriorityFeePerGas')))
-    return quantity(receipt.get('effectiveGasPrice'))
+    reported = quantity(receipt.get('effectiveGasPrice'))
+    # Legacy/access-list transactions pay their signed gasPrice exactly. A
+    # lower provider-reported price is as contradictory as a higher one.
+    if reported != cap:
+        raise ValueError('Receipt execution price differs from signed gas price')
+    return cap

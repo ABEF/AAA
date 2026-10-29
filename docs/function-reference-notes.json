@@ -6,55 +6,97 @@
       "functions": {
         "bootstrap()": {
           "purpose": "Read the temporary deployment/bootstrap authority; zero after seal.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Temporary deployment authority; address zero after seal permanently ends bootstrap configuration."
+          }
         },
         "canonicalHandoff()": {
           "purpose": "Read the fixed whole-collection handoff coordinator.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "The coordinator currently stored under the fixed CANONICAL module ID; no arbitrary execution target."
+          }
         },
         "canonicalSettling()": {
           "purpose": "Read whether the coordinator has enabled its bounded settlement phase.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "True only while the coordinator has enabled captured source-cutoff settlement in frozen state1."
+          }
         },
         "canonicalState()": {
           "purpose": "Read canonical lifecycle: 0 operating, 1 frozen, 2 importing, 3 retired, 4 cancelled.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Lifecycle code:0 operating,1 frozen source,2 inert importer,3 retired source,4 cancelled importer."
+          }
         },
         "isSealed()": {
           "purpose": "Read whether bootstrap binding is permanently closed.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Whether required module setup has been sealed and bootstrap cleared; not production qualification."
+          }
         },
         "paused()": {
           "purpose": "Read the ordinary global pause flag; separate from canonical/preparation locks.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Global ordinary-operation pause flag; claims/transfers and explicit allowed recovery retain separate guards."
+          }
         },
         "preparationActive()": {
           "purpose": "Read whether the collection-replacement preparation window is active.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Whether the cancellable pre-handoff preparation guard is active; not proof of source freeze or fund delivery."
+          }
         },
         "preparationHash()": {
           "purpose": "Read the exact active/latest preparation-notice commitment.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Hash of the exact preparation notice, source controller/modules, chain and nonce; retained historical value after cancellation."
+          }
         },
         "preparationNonce()": {
           "purpose": "Read the monotonically increasing preparation-notice identity.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Monotonically incremented count/identity component of started preparation notices."
+          }
         },
         "preparationNotice()": {
           "purpose": "Read destination chain/controller and public deployment/review commitments.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "destinationChain": "Announced destination chain ID; supported preparation requires this same canonical chain.",
+            "successorController": "Announced successor AccessController; authenticated local importer readiness is checked separately.",
+            "deploymentCommitment": "Reviewed destination deployment commitment; not independent proof the replacement code is safe.",
+            "reviewHash": "Nonzero governance review commitment for this preparation notice; not a security certificate."
+          }
         },
         "preparationReadyDestination()": {
           "purpose": "Read whether startPreparation validated a sealed same-chain importer at announcement.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Whether notice admission validated an already sealed inert local importer bound to this source; not completion of import/funding."
+          }
         },
         "preparationStartedAt()": {
           "purpose": "Read the notice announcement Unix timestamp.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Unix timestamp in seconds of the latest started notice; there is no enforced preparation waiting period."
+          }
         },
         "royaltyFactory()": {
           "purpose": "Read the immutable factory for NFT-bound royalty ledgers.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable controller-created factory used to construct NFT-bound separate royalty ledgers."
+          }
         },
         "canConfigure(address)": {
           "purpose": "Check whether an address may currently call governed configuration.",
@@ -81,6 +123,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Public account address whose stored role flag is inspected."
+          },
+          "outputs": {
+            "0": "Recorded keeper grant only; keeperAuthorized additionally checks sealing and canonical state."
           }
         },
         "guardians(address)": {
@@ -88,6 +133,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Public account address whose stored role flag is inspected."
+          },
+          "outputs": {
+            "0": "Recorded pause-only grant; it does not authorize unpause, governance configuration or holder claims."
           }
         },
         "keeperAuthorized(address)": {
@@ -179,15 +227,24 @@
         },
         "GOVERNANCE_VERSION()": {
           "purpose": "Read direct-governance profile2; older scheduling controllers have a different ABI and must not be reinterpreted.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "2 identifies direct governance; this is not an upgrade of historical controllers."
+          }
         },
         "governance()": {
           "purpose": "Read the current governance wallet, which configures allowed policy and may initiate collective principal return to holders; cannot replace sealed module identities.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Current human-controlled governance wallet; its own authorization rules are external to this contract."
+          }
         },
         "pendingGovernance()": {
           "purpose": "Read the proposed next governance wallet, or zero if no proposal. It has no governance authority until accepting.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Proposed next wallet awaiting its own acceptance; zero means no pending proposal/cancellation."
+          }
         },
         "proposeGovernance(address)": {
           "purpose": "Propose a governance-wallet replacement without a delay; zero cancels a proposal. Existing authority remains until the exact candidate accepts. Keeper/guardian/mint-recipient roles do not change.",
@@ -235,25 +292,40 @@
         },
         "SELECTED_NATIVE_POOL()": {
           "purpose": "Read the selected launch pool identity; it is not the only future governable fee tier.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed initial ETH/ZZZ launch PoolKey hash; additional admitted same-native-pair fee tiers remain governed."
+          }
         },
         "activationAssets()": {
           "purpose": "Read the immutable source-asset admission helper.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable factory-created source-admission helper for this Registry."
+          }
         },
         "activationEntry()": {
           "purpose": "Read the immutable reviewed contribution Entry.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable Registry-created owner-funded reviewed contribution entrypoint."
+          }
         },
         "contributionPool()": {
           "purpose": "Read the sole pool admitting new contributions; zero means stopped.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Sole pool ID enabled for new contributions, or zero when stopped; historical accounting pools remain separately registered."
+          }
         },
         "exists(bytes32)": {
           "purpose": "Check whether a pool identity was admitted.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Exact pool ID."
+          },
+          "outputs": {
+            "0": "Whether this PoolKey identity was admitted; live runtime/wiring/prices/operations may still fail."
           }
         },
         "get(bytes32)": {
@@ -354,17 +426,26 @@
         },
         "NATIVE_ASSET_CODE_HASH()": {
           "purpose": "Read the explicit native-ETH identity hash; it is not deployed code.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Explicit native-ETH identity marker keccak256(ZZZ_NATIVE_ETH_V1); native ETH has no deployed bytecode."
+          }
         },
         "registry()": {
           "purpose": "Read the fixed parent Registry.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable Registry parent authorized to initially admit its accounting pair; no custody recipient."
+          }
         },
         "activePolicy(address)": {
           "purpose": "Read the current source-admission policy ID for an asset.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual asset address; zero means native ETH."
+          },
+          "outputs": {
+            "0": "Current append-only source-policy ID; zero means unset, not a healthy enabled source."
           }
         },
         "policies(bytes32)": {
@@ -372,6 +453,14 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Immutable source-asset admission policy ID, obtained from activePolicy(asset) or policyAt(ordinal)."
+          },
+          "outputs": {
+            "token": "Actual token identity; zero denotes native ETH for an existing native policy.",
+            "enabled": "Whether this recorded source policy enables contributions; existence/identity/prices still require validation.",
+            "expectedCodeHash": "Expected token runtime hash, or the explicit native identity marker; not proxy implementation attestation.",
+            "reviewHash": "Recorded governance/admission review commitment; not proof of independent review.",
+            "decimals": "Admitted raw token precision,0..18; zero is also an unset mapping default and must not imply a valid policy.",
+            "poolAdmission": "True if this record originated through initial authenticated pool-asset admission, rather than an explicit source-policy review."
           }
         },
         "policyAt(uint256)": {
@@ -379,11 +468,17 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "ordinal": "Zero-based immutable source-policy history index; must be less than policyCount()."
+          },
+          "outputs": {
+            "0": "Policy ID at the zero-based history index; out-of-bounds access reverts."
           }
         },
         "policyCount()": {
           "purpose": "Read the total immutable source-policy history length.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Number of append-only recorded source policies, including superseded/disabled records."
+          }
         },
         "setAsset(address,bool,bytes32,bytes32)": {
           "purpose": "Append and activate same-identity source enablement/runtime policy. Cannot introduce a third input currency or change the fixed ZZZ address. Disabling deliberately avoids failed token and price reads.",
@@ -477,25 +572,40 @@
         },
         "REVIEW_POLICY_VERSION()": {
           "purpose": "Read signed caller-maximum policy version 1.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 identifies the signed maximum-contribution-loss policy path; no unbounded legacy execute fallback."
+          }
         },
         "registry()": {
           "purpose": "Read the immutable parent Registry.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable Registry parent; Vault and pair bindings are revalidated through Access."
+          }
         },
         "activationAssets()": {
           "purpose": "Read the immutable source-asset admission helper.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable source-admission helper bound to this Entry and Registry."
+          }
         },
         "v4Executor()": {
           "purpose": "Read the fixed parent-bound typed-v4 conversion helper.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable parent-bound typed v4 single-hop executor; it cannot choose an arbitrary recipient."
+          }
         },
         "routeKind(bytes32)": {
           "purpose": "Read a route discriminator: 0 unknown/direct sentinel, 1 typed v3, 2 typed v4.",
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
+          },
+          "outputs": {
+            "0": "0 unknown,1 typed v3,2 typed hookless v4; historical policies are not reinterpreted."
           }
         },
         "routeExists(bytes32)": {
@@ -503,6 +613,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
+          },
+          "outputs": {
+            "0": "Whether an immutable v3 or v4 route record exists; existence does not imply it is enabled/executable."
           }
         },
         "routeEnabled(bytes32)": {
@@ -510,6 +623,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
+          },
+          "outputs": {
+            "0": "Recorded enabled state for the route kind; dependencies, prices and current source/pair still need execution-time validation."
           }
         },
         "route(bytes32)": {
@@ -517,6 +633,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
+          },
+          "outputs": {
+            "0": "Recorded typed v3 RoutePolicy, in ABI order:source/output ERC20 identities; router/factory/pool; fee in millionths; runtime hashes for router/factory/pool/source/output; nonzero reviewHash. Unknown v3 route IDs revert. Recording does not itself make a current native principal conversion feasible."
           }
         },
         "v4Route(bytes32)": {
@@ -524,6 +643,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
+          },
+          "outputs": {
+            "0": "Recorded v4 Policy:source/output identities; full ordered PoolKey(currency0,currency1,fee millionths,tickSpacing,hooks); PoolManager/StateView; source/output/manager/view runtime hashes; reviewHash. Native uses address zero and its explicit identity marker. Unknown IDs revert."
           }
         },
         "addRoute((address,address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32))": {
@@ -624,40 +746,64 @@
         },
         "MAX_METADATA_REFRESH_BATCH()": {
           "purpose": "Read the maximum inclusive metadata-notification batch: 50 mint ordinals.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "50 maximum mint ordinals in one inclusive refresh range; ordinals are resolved to actual hashed token IDs."
+          }
         },
         "MAX_SUPPLY()": {
           "purpose": "Read the immutable 1,000-NFT supply ceiling.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1000 maximum NFTs; exact600/300/100 rarity totals apply when the whole collection is minted and finalized."
+          }
         },
         "artworkBaseURI()": {
           "purpose": "Read the one-time configured IPFS/Arweave artwork root.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Configured immutable-content image root; may be empty in an unconfigured draft. Scheme acceptance alone does not qualify CID/content availability."
+          }
         },
         "balanceOf(address)": {
           "purpose": "Read how many NFTs an address currently owns; zero owner is invalid.",
           "access": "Anyone; read-only.",
           "inputs": {
             "owner": "Nonzero address whose currently held NFT count is returned."
+          },
+          "outputs": {
+            "0": "Current count of this collection NFTs owned by the nonzero address; not shares, LP value or reward entitlement."
           }
         },
         "callbackGasLimit()": {
           "purpose": "Read the gas allowance for future randomness requests; pending requests keep their original gas.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Configured uint32 gas budget for future VRF requests; existing requests retain their submitted settings."
+          }
         },
         "canonicalModule()": {
           "purpose": "Read the fixed NFT canonical importer companion.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Seal-bound NFT canonical codec module resolved through Access; not an arbitrary migration executor."
+          }
         },
         "claimRouter()": {
           "purpose": "Read the NFT-bound LP/royalty claim router.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable owner-authenticated batch helper; ledgers pay current owners directly and the router holds no funds."
+          }
         },
         "colorOf(uint256)": {
           "purpose": "Read the first canonical color index of a revealed palette; compatibility getter, not a separate draw. Unrevealed mapping defaults are not assigned traits; check traitsReady and existence.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
+          },
+          "outputs": {
+            "0": "Primary palette color index0..7 for revealed traits; consult traitsReady before interpreting mapping defaults."
           }
         },
         "getApproved(uint256)": {
@@ -665,6 +811,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "tokenId": "Existing canonical NFT ID whose single-token approved transfer address is queried."
+          },
+          "outputs": {
+            "0": "Single-token ERC721 transfer approval, or zero; does not authorize reward/principal claims as owner."
           }
         },
         "isApprovedForAll(address,address)": {
@@ -673,48 +822,78 @@
           "inputs": {
             "owner": "NFT owner who granted or revoked a collection-wide operator approval.",
             "operator": "Transfer operator address whose permission under that owner is queried."
+          },
+          "outputs": {
+            "0": "ERC721 operator transfer approval; does not confer owner-only contribution or claim authority."
           }
         },
         "keyHash()": {
           "purpose": "Read the fixed original randomness lane/key identity.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable configured VRF lane/key identifier; provider proof/network/subscription qualification is external."
+          }
         },
         "metadataRenderer()": {
           "purpose": "Read the immutable pure-render/current-valuation helper.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable read-only rendering/NAV helper; it cannot change custody or eligibility."
+          }
         },
         "mintOrdinalOf(uint256)": {
           "purpose": "Read the mint ordinal of an NFT ID; ordinals are not the hashed token IDs.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
+          },
+          "outputs": {
+            "0": "One-based original mint ordinal of the token; zero denotes unknown/unminted."
           }
         },
         "mintPaused()": {
           "purpose": "Read the independent new-mint pause flag.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Mint-only stop flag; existing transfers, reward rights and LP maintenance have independent controls."
+          }
         },
         "mintedCount()": {
           "purpose": "Read the number of NFTs ever issued/imported; no burn/reset path exists.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Number minted so far, at most1000; does not imply all requests have finalized or all NFTs activated."
+          }
         },
         "name()": {
           "purpose": "Read the ERC721 collection name.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "ERC721 collection name string; not an asset identity or deployment authenticity check."
+          }
         },
         "nativePayment()": {
           "purpose": "Read whether the fixed randomness subscription bills native currency.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Whether future VRF requests use native provider billing; unrelated to principal contribution currency."
+          }
         },
         "nextToFinalize()": {
           "purpose": "Read the next mint ordinal permitted to finalize its original random draw.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "One-based ordinal that must reveal next; starts1 and becomes mintedCount+1 once all minted requests finalize."
+          }
         },
         "ownerOf(uint256)": {
           "purpose": "Read the canonical current owner of an existing NFT.",
           "access": "Anyone; read-only.",
           "inputs": {
             "tokenId": "Existing canonical NFT ID; an unminted identity reverts."
+          },
+          "outputs": {
+            "0": "Actual current ERC721 owner; nonexistent tokens revert. That owner inherits unclaimed rights."
           }
         },
         "paletteOf(uint256)": {
@@ -722,6 +901,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
+          },
+          "outputs": {
+            "0": "Immutable palette index0..57 after reveal; consult traitsReady before interpreting zero."
           }
         },
         "patternOf(uint256)": {
@@ -729,25 +911,40 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
+          },
+          "outputs": {
+            "0": "Immutable circuit-pattern index0..3 after reveal; consult traitsReady before interpreting zero."
           }
         },
         "randomnessConfigured()": {
           "purpose": "Read whether the one-time original provider configuration was completed.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Whether one-time pre-seal coordinator/lane/subscription settings were populated; not actual VRF availability qualification."
+          }
         },
         "randomnessCoordinator()": {
           "purpose": "Read the immutable-after-configuration original provider callback address.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed configured coordinator authorized to deliver request-bound words; zero before configuration."
+          }
         },
         "randomnessEpoch()": {
           "purpose": "Read the current imported request-identity epoch.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Current request namespace, initially zero and incremented on canonical import to separate future request IDs."
+          }
         },
         "rarityOf(uint256)": {
           "purpose": "Read the fixed rarity index: 0 Commun, 1 Rare, 2 Legendary. Check traitsReady first. Unrevealed mapping defaults are not assigned traits; check traitsReady and existence.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
+          },
+          "outputs": {
+            "0": "Revealed rarity index0 Commun/1 Rare/2 Legendary; royalty weight is index+1 only after activation."
           }
         },
         "rarityRemaining(uint256)": {
@@ -755,21 +952,33 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Rarity index 0 Commun / 1 Rare / 2 Legendary."
+          },
+          "outputs": {
+            "0": "Remaining no-replacement quota at rarity array index0/1/2; includes inventory not yet minted/revealed."
           }
         },
         "remainingToReveal()": {
           "purpose": "Read the remaining finite inventory size, including unminted entries.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Total remaining draw inventory across the1000-item collection, including unminted slots."
+          }
         },
         "requestConfirmations()": {
           "purpose": "Read confirmations for future requests; pending requests retain original settings.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Configured confirmation count for future VRF requests;3..200, not chain finality proof."
+          }
         },
         "requestEpochOf(uint256)": {
           "purpose": "Read the original request epoch bound to an NFT identity.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
+          },
+          "outputs": {
+            "0": "Request namespace assigned to this NFT; zero is valid for the initial epoch and also an unset mapping default."
           }
         },
         "requestOf(uint256)": {
@@ -777,25 +986,40 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
+          },
+          "outputs": {
+            "0": "Provider request ID for the NFT; zero is unrequested/unminted, not a fulfilled draw."
           }
         },
         "royaltyRewards()": {
           "purpose": "Read the immutable royalty recipient/ledger; this is the ERC2981 payment receiver.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable separate funded royalty ledger/receiver; distinct from LP fees, principal and mint proceeds."
+          }
         },
         "subscriptionId()": {
           "purpose": "Read the fixed original randomness funding subscription ID.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed configured VRF subscription identifier; not a balance or provider-support guarantee."
+          }
         },
         "symbol()": {
           "purpose": "Read the ERC721 ticker.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "ERC721 collection symbol string; never token or deployment authentication."
+          }
         },
         "tokenAtOrdinal(uint256)": {
           "purpose": "Resolve a one-based mint ordinal into its actual NFT ID.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "One-based actual minted ordinal, 1..mintedCount."
+          },
+          "outputs": {
+            "0": "Actual token ID at a one-based original mint ordinal; zero for absent ordinal, IDs are not sequential ordinals."
           }
         },
         "traitsReady(uint256)": {
@@ -803,6 +1027,9 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
+          },
+          "outputs": {
+            "0": "Whether authenticated ordered trait finalization completed; false also covers absent token mapping defaults."
           }
         },
         "configureRandomness(address,bytes32,uint256,uint16,uint32,bool)": {
@@ -1037,7 +1264,8 @@
           "purpose": "Read the replacement controller/NFT after permanent canonical retirement.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "controller": "Both zero before retired state; after retirement returns the coordinator’s destination controller and its bound NFT."
+            "controller": "Both zero before retired state; after retirement returns the coordinator’s destination controller and its bound NFT.",
+            "replacementNFT": "NFT module address of that immediate successor controller; zero before retirement. It is not an approval or automatic escrow-release guarantee."
           }
         },
         "canonicalRetire()": {
@@ -1116,44 +1344,71 @@
         },
         "FINGERPRINT_DOMAIN()": {
           "purpose": "Read the domain separator for dual-price snapshot fingerprints.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Domain separator for chain/oracle/policy/round fingerprints; not proof the feeds are independent."
+          }
         },
         "MAX_DEVIATION_BPS()": {
           "purpose": "Read the immutable 500-bps maximum source-disagreement setting.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "500bps(5%) hard maximum configurable two-source disagreement; selected tolerance is separately reviewed."
+          }
         },
         "PRICING_VERSION()": {
           "purpose": "Read price-policy version 2.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "2 identifies dual USD bounds and frozen contribution pricing semantics."
+          }
         },
         "SEQUENCER_GRACE()": {
           "purpose": "Read the mandatory one-hour recovery grace in seconds.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "3600 seconds required since a configured sequencer returned to up; not a recurring heartbeat age."
+          }
         },
         "SOURCE_CALL_GAS()": {
           "purpose": "Read the per-external-source bounded read gas ceiling, not a flat charged fee.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "500000 maximum gas forwarded per bounded decimals/round read; not an observed real provider cost."
+          }
         },
         "activePolicy(address)": {
           "purpose": "Read the current immutable dual-feed policy ID for an asset.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual asset address; zero means native ETH."
+          },
+          "outputs": {
+            "0": "Current append-only dual USD policy ID; zero means no admitted price policy."
           }
         },
         "activeSequencerPolicy()": {
           "purpose": "Read the active immutable sequencer-admission policy ID.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Current uptime-policy ID; zero if none has been installed, not a healthy observation."
+          }
         },
         "contributionPricing()": {
           "purpose": "Read the immutable contribution price-freezing/execution-policy helper.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable Oracle-created noncustodial accounting companion for frozen contribution vectors and maintenance valuation."
+          }
         },
         "policy(bytes32)": {
           "purpose": "Read a complete recorded dual-source policy, including both sources and independence/review pins.",
           "access": "Anyone; read-only.",
           "inputs": {
             "id": "Recorded immutable full dual-source price-policy ID."
+          },
+          "outputs": {
+            "0": "Recorded DualPolicy:asset; primary/secondary SourcePolicy(source,expectedCodeHash,independenceId,maxAge seconds,feedDecimals); maxDeviationBps; assetDecimals; reviewHash. Unknown IDs return zero fields, which do not establish admissibility or independence."
           }
         },
         "policyAt(uint256)": {
@@ -1161,21 +1416,36 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "ordinal": "Zero-based immutable dual-source admission-history index, less than policyCount()."
+          },
+          "outputs": {
+            "0": "Dual-policy ID at a zero-based history index; out-of-bounds index reverts."
           }
         },
         "policyCount()": {
           "purpose": "Read immutable dual-source history length.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Number of recorded dual USD policies, including superseded ones."
+          }
         },
         "sequencerFeed()": {
           "purpose": "Read the current sequencer uptime dependency; zero is the deployment’s explicit no-feed mode.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Configured uptime source address, zero when absent initially; an installed safeguard has no remove-to-zero setter."
+          }
         },
         "sequencerPolicies(bytes32)": {
           "purpose": "Read immutable sequencer source/runtime/review/bootstrap provenance.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Immutable sequencer-policy ID from activeSequencerPolicy() or sequencerPolicyAt(ordinal)."
+          },
+          "outputs": {
+            "source": "Recorded uptime source address; zero fields may be an unknown policy.",
+            "expectedCodeHash": "Recorded expected outer runtime hash; not proof against every proxy/upstream change.",
+            "reviewHash": "Recorded review commitment; not a qualification certificate.",
+            "bootstrapAdmission": "True when recorded through constructor bootstrap admission rather than an explicit governed replacement."
           }
         },
         "sequencerPolicyAt(uint256)": {
@@ -1183,17 +1453,26 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "ordinal": "Zero-based sequencer-policy history index, less than sequencerPolicyCount()."
+          },
+          "outputs": {
+            "0": "Uptime-policy ID at a zero-based append-only history index; bounds are checked by array access."
           }
         },
         "sequencerPolicyCount()": {
           "purpose": "Read sequencer-policy history length.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Number of recorded uptime policies, including superseded ones."
+          }
         },
         "tokenDecimals(address)": {
           "purpose": "Read admitted asset decimals (18 for native ETH); no active policy reverts.",
           "access": "Anyone; read-only.",
           "inputs": {
             "token": "Actual admitted asset address; zero means native ETH with 18 decimals."
+          },
+          "outputs": {
+            "0": "Stored admitted raw asset precision0..18; native ETH is18. This getter rejects missing policy; priceBounds separately checks live ERC20 precision has not changed."
           }
         },
         "setDualFeed(address,(address,bytes32,bytes32,uint32,uint8),(address,bytes32,bytes32,uint32,uint8),uint16,bytes32)": {
@@ -1300,13 +1579,19 @@
         },
         "RANGE_POLICY_VERSION()": {
           "purpose": "Read explicit range-orientation/keeper-preset version 1.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 identifies explicit raw/inverse range-orientation and optional governed keeper-width policy semantics."
+          }
         },
         "rangeOrientation(bytes32)": {
           "purpose": "Read explicit pool range orientation: 0 raw token1/token0, 1 inverse token0/token1. For native ETH currency0/ZZZ currency1, mode 1 means the usual ZZZ price in ETH. Existing physical ticks are not relabeled by this getter.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "PoolKey-derived pool ID."
+          },
+          "outputs": {
+            "0": "0 preserves raw token1/token0 range meaning;1 expresses inverse token0/token1(ETH per ZZZ for the native pair). Existing physical ticks are not reinterpreted."
           }
         },
         "keeperRangePolicy(bytes32)": {
@@ -1316,7 +1601,13 @@
             "0": "poolId is the exact PoolKey hash."
           },
           "outputs": {
-            "enabled": "enabled,narrowTriggerBps,widenTriggerBps,minInterval seconds,lastChange timestamp,configurationHash,reviewHash."
+            "enabled": "enabled,narrowTriggerBps,widenTriggerBps,minInterval seconds,lastChange timestamp,configurationHash,reviewHash.",
+            "narrowTriggerBps": "Narrowing trigger in basis points of reference-price displacement from recorded centre; not LP exit eligibility.",
+            "widenTriggerBps": "Widening trigger in basis points of reference-price displacement from recorded centre; not the removed movement rebalance trigger.",
+            "minInterval": "Minimum seconds between automatic width selections, separately constrained to at least the pool hard rebalance interval.",
+            "lastChange": "Unix timestamp seconds of last width-policy setup/selection; not last compound time.",
+            "configurationHash": "Hash of admitted pool configuration with rangeBps excluded plus orientation; detects incompatible policy configuration changes.",
+            "reviewHash": "Nonzero governance review commitment for this optional width policy."
           }
         },
         "setRangeOrientation(bytes32,uint8)": {
@@ -1338,7 +1629,8 @@
             "widenTriggerBps": "Minimum displacement permitting 2500→5000 widening; strictly below 2500 BPS.",
             "minInterval": "Seconds between policy changes:>=600 and>=pool minRebalanceInterval,<=604800.",
             "reviewHash": "Nonzero reviewed rule/configuration commitment; enabling snapshots config and current timestamp."
-          }
+          },
+          "notes": " Enabling rejects while confirmation.requireReferenceExit is true. Enabled-count tracking prevents restoring that protection with an automatic policy still active."
         },
         "keeperRangeTarget(bytes32)": {
           "purpose": "Read whether the reviewed displacement rule currently permits a 2500/5000 width change. Returns 0 for disabled/stale/mismatched policy, cooldown, preparation/pause/noncanonical state, no active bucket or already pending physical range update. Dependency faults may revert.",
@@ -1367,7 +1659,9 @@
             "poolId": "poolId."
           },
           "outputs": {
-            "lower": "lower/upper int24 ticks and referenceX96 oracle sqrt reference; does not change physical LP."
+            "lower": "lower/upper int24 ticks and referenceX96 oracle sqrt reference; does not change physical LP.",
+            "upper": "Upper raw physical tick rounded outward to admitted spacing, strictly greater than lower.",
+            "referenceX96": "Independent configured Oracle square-root ratio in Q64.96 raw token1/token0 units; not the target pool spot or a guaranteed future execution price."
           }
         },
         "validatePrice(bytes32)": {
@@ -1499,10 +1793,10 @@
           "notes": "Read calculation is not a transaction/venue quote or a promise of execution. Manager additionally checks range/spot context, actual output and stronger caller minima. Separate reward converters retain their own policies."
         },
         "REBALANCE_CONFIRMATION_VERSION()": {
-          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "purpose": "Read explicit sampled independent-reference confirmation capability2.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
+            "0": "2 in this fresh source; legacy confirmation1 runtimes/readers remain separate."
           }
         },
         "rebalanceConfirmation()": {
@@ -1521,7 +1815,7 @@
           "outputs": {
             "0": "True for a valid manual range exception or matching fresh recorded observations spanning the configured duration; false for stopped/unstarted/stale evidence."
           },
-          "notes": "Does not write samples, execute maintenance or guarantee transaction success. Read/dependency faults revert. The ordinary window is sampled evidence, not uninterrupted price proof."
+          "notes": "Does not write samples, execute maintenance or guarantee transaction success. Read/dependency faults revert. The ordinary window is sampled evidence, not uninterrupted price proof. Fresh confirmation2 ordinarily requires physical/reference exit on the same side of actual LP bounds. Reviewed relaxation invalidates samples; automatic widths cannot coexist with enabled protection. Manual governance widths retain their cooldown exception."
         },
         "rebalanceObservation(uint256)": {
           "purpose": "Read the current confirmed physical-side candidate and stable policy/LP identity; this is not the stored sample history.",
@@ -1535,6 +1829,26 @@
             "manual": "True only for a deliberate range mismatch after raw cooldown/price checks; it bypasses the sampled window, not the raw guards."
           },
           "notes": "For stored first/last observations read the child observations(bucket). Faults revert; no observation transaction is sent."
+        },
+        "activeKeeperRangePolicies()": {
+          "purpose": "Read the exact count of enabled optional automatic keeper-width policies.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Count across admitted policies. Reconfiguration is not another policy; disabling/orientation invalidation decrements. Must be zero to enable reference-exit protection."
+          }
+        },
+        "minimumOutputForExit(bytes32,bool,uint256)": {
+          "purpose": "Calculate the same fresh dual-source gross/fee-adjusted output floors without requiring pool operationsEnabled.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Admitted static hookless native ETH/fixed-ZZZ PoolId in canonical raw order.",
+            "1": "True for ETH-to-ZZZ; false for ZZZ-to-ETH.",
+            "2": "Raw positive input token amount."
+          },
+          "outputs": {
+            "0": "Minimum raw output under fresh prices, current venue/actual directional fees and additional-loss policy; can revert on invalid dependencies."
+          },
+          "notes": "Read only; no swap permission. Used for a manual emergency retaining financial checks while separately bypassing the pool operation flag. Ordinary minimumOutput behavior remains unchanged."
         }
       },
       "constructor": {
@@ -1550,43 +1864,73 @@
       "functions": {
         "MAX_CONFIDENCE_BPS()": {
           "purpose": "Read the immutable hard ceiling of 300 bps on the configured Pyth confidence-width bound.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "300bps(3%) hard maximum configured confidence-width fraction of positive Pyth price."
+          }
         },
         "SOURCE_CALL_GAS()": {
           "purpose": "Read the 300,000-gas maximum for a bounded upstream Pyth read; not a flat service fee.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "300000 gas ceiling for the exact128-byte getPriceUnsafe response; no update transaction is submitted."
+          }
         },
         "core()": {
           "purpose": "Read the immutable reviewed Pyth Core address.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable reviewed Pyth Core source address; upstream proxy controls remain an external qualification."
+          }
         },
         "decimals()": {
           "purpose": "Read the AggregatorV3 answer precision derived from the fixed negative Pyth exponent.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "AggregatorV3-shaped precision equal to minus expectedExponent,0..18; observation values retain that scale."
+          }
         },
         "expectedCoreCodeHash()": {
           "purpose": "Read the exact immutable upstream runtime pin; proxy implementation safety remains a separate review.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable expected outer source runtime hash checked on each observation."
+          }
         },
         "expectedExponent()": {
           "purpose": "Read the immutable expected exponent in [-18,0]; it must match each observation.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable accepted Pyth decimal exponent in[-18,0]; changed exponent rejects rather than rescaling silently."
+          }
         },
         "feedId()": {
           "purpose": "Read the immutable Pyth USD product/feed identity.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable nonzero Pyth feed identifier, not a token symbol or proof of market independence."
+          }
         },
         "maxAge()": {
           "purpose": "Read the immutable maximum original publish age, in seconds.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable allowed observation age in seconds, positive and at most86400; publishTime supplies age."
+          }
         },
         "maxConfidenceBps()": {
           "purpose": "Read the immutable allowed confidence/positive-price ratio in bps.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable allowed confidence/positive-price ratio in basis points,0..300; zero requires zero confidence width."
+          }
         },
         "reviewHash()": {
           "purpose": "Read the immutable external review commitment; its presence is not service approval.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Immutable nonzero source/feed/config review commitment; not proof the source is healthy or independent."
+          }
         },
         "latestRoundData()": {
           "purpose": "Read a bounded original Pyth observation in AggregatorV3 format. Read-only: does not pay for or publish Pyth updates. Reverts for changed runtime, malformed data, nonpositive/oversized price, wrong exponent, future/stale timestamp or excess confidence. It does not prove data-source independence or pin an upgradeable core implementation.",
@@ -1959,6 +2303,16 @@
             "1": "Actual fixed-ZZZ principal transferred to fixed Migration, in token raw units."
           },
           "notes": "No swap or USD-oracle dependency. Preserves per-NFT shares, membership, earned LP rewards, royalties, buyback reserves and unsolicited prefunds. Raw output minima are not a USD execution-loss promise."
+        },
+        "emergencyRebalance(uint256,uint128,uint256)": {
+          "purpose": "Forward the fixed Migration manual emergency into actual shared LP harvest/close/budgeted swap/mint.",
+          "access": "Fixed Migration module only, operating/before terminal exit/nonreentrant; Budget validates sealed paused-governance context.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID.",
+            "1": "Positive actual Uniswap liquidity floor from full-operation simulation; not token amounts or USD.",
+            "2": "Unix seconds: now <= deadline <= now+600 at execution; fresh expiry, not a future calendar schedule."
+          },
+          "notes": "Internal module boundary, not the operator entry. Use Migration.emergencyRebalance(request). Parked custody may recover; NFT shares/contributions/earned rewards stay. Manager temporary context is cleared atomically and lastRebalance anchors new LP."
         }
       },
       "constructor": {
@@ -2181,6 +2535,21 @@
           "outputs": {
             "0": "1 for this fresh implementation."
           }
+        },
+        "EMERGENCY_REBALANCE_VERSION()": {
+          "purpose": "Read explicit manual paused-governance recovery capability.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh source; never relabel historical runtimes."
+          }
+        },
+        "beginEmergency()": {
+          "purpose": "Adopt the actual Vault-owned Budget context for the Vault atomic manual wrapper.",
+          "access": "Actual sealed Vault module only; no prior Manager context and a valid paused Budget emergency. Nonreentrant."
+        },
+        "endEmergency()": {
+          "purpose": "Validate and clear Manager temporary context after the same atomic Vault operation.",
+          "access": "Actual Vault module only; valid scoped paused Budget context. Nonreentrant."
         }
       },
       "constructor": {
@@ -2340,7 +2709,10 @@
         },
         "FEE_INTAKE_VERSION()": {
           "purpose": "Read the explicit LP-only fee intake version, currently 1.",
-          "access": "Anyone; read-only."
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 identifies Vault-authenticated actual local LP fee intake; creator/bridge payment-intake profiles are absent."
+          }
         },
         "canonicalBarrier()": {
           "purpose": "Reject a handoff capture from inside an allocation/reserve callback; no balance or entitlement is changed.",
@@ -3924,7 +4296,7 @@
       }
     },
     "ZZZMigration": {
-      "purpose": "Governed same-pair movement/local parking while operating, or irreversible collective ETH+ZZZ principal settlement to current NFT holders. No external custody address, consolidation exit or sweep.",
+      "purpose": "Governed same-pair movement/local parking while operating, or irreversible collective ETH+ZZZ principal settlement to current NFT holders. No external custody address, consolidation exit or sweep. Separate manual paused-governance emergency rebalance retains explicit checks; disabled financial guards can permit near-total economic loss without changing recipients or NFT shares.",
       "functions": {
         "access()": {
           "purpose": "Read the fixed controller that supplies module, governance, keeper and lifecycle authorization.",
@@ -4222,6 +4594,53 @@
             "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
           },
           "notes": "Does not undo mined parking, change principal, cancel collective exit or reopen retired LP."
+        },
+        "EMERGENCY_REBALANCE_VERSION()": {
+          "purpose": "Read explicit manual paused-governance recovery capability.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh source; never relabel historical runtimes."
+          }
+        },
+        "emergencyRebalance((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))": {
+          "purpose": "Manually close/optionally swap/redeploy one shared LP while globally paused, under an exact custody-bound manifest.",
+          "access": "Current governance only; sealed/paused, operating, no canonical preparation/import/retirement or terminal LP exit. Nonreentrant; not a keeper fallback.",
+          "inputs": {
+            "0": "EmergencyRebalance in exact ABI order: bucket(shared custody ID); custodyHash(current chain/Vault/full Position/total-share review hash); checks(retained bits1=raw trigger/cooldown,2=price agreement,4=financial loss/idle/quality,8=operations flag,16=sampled confirmation;0..31); lower/upper(raw spaced physical ticks, lower<upper); swapPool(admitted native ETH/ZZZ venue or zero for no swap); zeroForOne(true sells ETH); amountIn(exact raw swap input, zero=no swap); minimumOut(positive raw output if swapping, zero without swap); minimumLiquidity(positive raw LP floor); deadline(now..now+600); reviewHash(nonzero exact review commitment). No swap requires swapPool and minimumOut zero; amounts fit positive signed-int128 deltas. Disabled financial checks can lose almost all principal."
+          },
+          "notes": "Nonpayable; submitting governance wallet/Safe pays gas. Structural fixed assets/admitted venues/Vault custody/exact deltas/shares/reward reserves remain; per-call optional financial bypass is an explicit governance trust expansion. Full failure rolls back state; gas is spent. Event records retained mask and exact request/review commitment. Context is cleared on success; system remains paused."
+        },
+        "emergencyCustodyHash(uint256)": {
+          "purpose": "Read the exact physical/accounting identity to review for one emergency operation.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+          },
+          "outputs": {
+            "0": "keccak256(chainid,Vault,bucket,full Position,total shares). Contributions/park/move/idle/share changes invalidate it; price changes alone do not."
+          }
+        },
+        "emergencyFingerprint()": {
+          "purpose": "Read the stored emergency manifest, current governance and monotonic Registry controls, adding source/quality pins when retained.",
+          "access": "Only the actual Vault-owned Budget during a validated emergency context.",
+          "outputs": {
+            "0": "Context hash; invalid context rejects. Retained sampled policy/raw record is additionally pinned by Budget."
+          }
+        },
+        "emergencyRequest()": {
+          "purpose": "Inspect the temporary emergency request; zero fields outside its atomic call.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "EmergencyRebalance in exact ABI order: bucket(shared custody ID); custodyHash(current chain/Vault/full Position/total-share review hash); checks(retained bits1=raw trigger/cooldown,2=price agreement,4=financial loss/idle/quality,8=operations flag,16=sampled confirmation;0..31); lower/upper(raw spaced physical ticks, lower<upper); swapPool(admitted native ETH/ZZZ venue or zero for no swap); zeroForOne(true sells ETH); amountIn(exact raw swap input, zero=no swap); minimumOut(positive raw output if swapping, zero without swap); minimumLiquidity(positive raw LP floor); deadline(now..now+600); reviewHash(nonzero exact review commitment). No swap requires swapPool and minimumOut zero; amounts fit positive signed-int128 deltas. Disabled financial checks can lose almost all principal."
+          }
+        },
+        "emergencyTarget()": {
+          "purpose": "Inspect explicit raw physical target ticks from the temporary request.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Lower raw tick; zero outside a request.",
+            "1": "Upper raw tick; zero outside a request."
+          }
         }
       },
       "constructor": {
@@ -4622,10 +5041,65 @@
           }
         },
         "REBALANCE_CONFIRMATION_VERSION()": {
-          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "purpose": "Read explicit sampled independent-reference confirmation capability2.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
+            "0": "2 in this fresh source; legacy confirmation1 runtimes/readers remain separate."
+          }
+        },
+        "EMERGENCY_REBALANCE_VERSION()": {
+          "purpose": "Read explicit manual paused-governance recovery capability.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this fresh source; never relabel historical runtimes."
+          }
+        },
+        "beginEmergency(uint256,uint8)": {
+          "purpose": "Arm a temporary bucket/governance-scoped emergency context.",
+          "access": "Fixed Migration module only; sealed/paused/operating, no existing context/snapshot and no preparation/terminal exit.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID.",
+            "1": "Per-call retained-check bit mask0..31 validated by the fixed Migration entry; no persistent policy change."
+          }
+        },
+        "endEmergency()": {
+          "purpose": "Validate completion and clear all temporary emergency bucket/mask/governance state.",
+          "access": "Fixed Migration module only, validated active context and no unfinished value snapshot."
+        },
+        "emergencyActive()": {
+          "purpose": "Read whether the one atomic emergency context is armed.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Boolean; must be false outside the atomic call and in a release inventory."
+          }
+        },
+        "emergencyBucket()": {
+          "purpose": "Read the currently scoped emergency custody bucket.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Bucket ID; zero outside an emergency."
+          }
+        },
+        "emergencyChecks()": {
+          "purpose": "Read the retained-check mask of the current atomic emergency.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Bits1/2/4/8/16; zero outside context is not permission to bypass anything."
+          }
+        },
+        "validateEmergency(uint256)": {
+          "purpose": "Reject an inactive/foreign bucket or changed governance/pause/seal/canonical/terminal lifecycle.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+          },
+          "notes": "Read-only validation; no context is created and no execution authority is granted."
+        },
+        "emergencyFingerprint()": {
+          "purpose": "Read current validated manifest/control hash, including sampled policy/raw evidence if retained even with value checks off.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Stable hash for complete emergency callbacks/LP replacement; invalid context rejects."
           }
         }
       },
@@ -5584,6 +6058,41 @@
         "endEntry()": {
           "purpose": "After Entry's final checks, verify the same frozen spot/prices and delete the completed pricing context.",
           "access": "Only the bound activation Entry after a successfully finished Entry-based contribution; no holder/governance bypass."
+        },
+        "compoundReady(uint256)": {
+          "purpose": "Evaluate the unchanged standalone compound policy for the actual fixed Budget.",
+          "access": "Actual Vault-owned Budget only; stateless read.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+          },
+          "outputs": {
+            "0": "True only for active admitted LP after max(lastCompound,lastRebalance)+pool interval, yielding to raw rebalance/range selection."
+          }
+        },
+        "markMaintenance(uint256)": {
+          "purpose": "Read starting attributed principal/idle value and exact fresh price vector for the fixed Budget snapshot.",
+          "access": "Actual Vault-owned Budget only; stateless read.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+          },
+          "outputs": {
+            "0": "MaintenanceMark(value in USD1e18,price0,price1 in USD1e18,scale0,scale1 token decimals scales,idle0,idle1 raw attributed amounts). Excludes unclassified donations/reward reserves."
+          }
+        },
+        "maintenanceValues(uint256,uint256,uint256,uint256,uint256)": {
+          "purpose": "Evaluate actual deployed LP and attributed idle at the Budget-captured starting price vector.",
+          "access": "Actual Vault-owned Budget only; stateless read.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID.",
+            "1": "Captured native ETH USD1e18 price.",
+            "2": "Captured ZZZ USD1e18 price.",
+            "3": "Captured native ETH raw-token decimal scale.",
+            "4": "Captured ZZZ raw-token decimal scale."
+          },
+          "outputs": {
+            "0": "Deployed principal value in USD1e18 using exact actual LP amounts.",
+            "1": "Attributed idle value in USD1e18; not a fresh repriced loss denominator."
+          }
         }
       },
       "constructor": {
@@ -5932,6 +6441,32 @@
             "bestValue": "Useful deployed USD18 value at the captured independent vector."
           },
           "notes": "Internal integration surface; raw quoted liquidity is not compared across changing prices."
+        },
+        "deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "purpose": "Share exact v4 LiquidityAmounts and upward native-debt rounding with the immutable parent Manager.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Actual sqrt(token1/token0) Q96, not USD.",
+            "1": "Lower physical raw tick.",
+            "2": "Upper physical raw tick.",
+            "3": "Native ETH budget in wei.",
+            "4": "ZZZ budget in raw units."
+          },
+          "outputs": {
+            "0": "Maximum raw Uniswap liquidity supported by budgets at the supplied mark.",
+            "1": "Exact rounded-up native debt for that liquidity; no transfer or authority."
+          }
+        },
+        "principalAmounts(uint256)": {
+          "purpose": "Read actual current principal token amounts through the fixed parent Manager/PosM/StateView.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Physical Uniswap LP NFT ID, not PoPL NFT or bucket ID."
+          },
+          "outputs": {
+            "0": "Native ETH principal in wei, rounded down under the actual v4 mark.",
+            "1": "ZZZ principal in raw units, rounded down; excludes uncollected fees."
+          }
         }
       },
       "constructor": {
@@ -5948,10 +6483,10 @@
       "purpose": "Immutable Strategy-created, noncustodial receipt-backed sampled rebalance confirmation. Stores bounded-gap outside-range observations and stable policy identity; no funds, approval, swap, payout or arbitrary execution authority. Samples are not proof of uninterrupted market prices.",
       "functions": {
         "REBALANCE_CONFIRMATION_VERSION()": {
-          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "purpose": "Read explicit sampled independent-reference confirmation capability2.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
+            "0": "2 in this fresh source; legacy confirmation1 runtimes/readers remain separate."
           }
         },
         "MAX_DURATION()": {
@@ -6029,7 +6564,7 @@
             "identity": "Keccak256 condition identity binding LP/ticks, desired configuration/orientation and stable policy controls; zero for absent/manual candidate.",
             "manual": "True for pending deliberate range change only after raw cooldown/price eligibility; no buffer required for that exception."
           },
-          "notes": "Sealed unpaused normal principal operation and the bound Strategy are required for a candidate. Faulty/inconsistent underlying reads can revert. Normal healthy feed rounds and balances do not reset identity; policy/revision/physical LP changes do."
+          "notes": "Sealed unpaused normal principal operation and the bound Strategy are required for a candidate. Faulty/inconsistent underlying reads can revert. Normal healthy feed rounds and balances do not reset identity; policy/revision/physical LP changes do. Fresh confirmation2 ordinarily requires physical/reference exit on the same side of actual LP bounds. Reviewed relaxation invalidates samples; automatic widths cannot coexist with enabled protection. Manual governance widths retain their cooldown exception."
         },
         "controlFingerprint(bytes32)": {
           "purpose": "Hash stable controls captured across a complete close/swap/deploy operation, independently of physical LP replacement.",
@@ -6065,7 +6600,7 @@
           "outputs": {
             "0": "True for a raw-guarded manual range exception, or positive configured gap with matching side/identity, elapsed duration and fresh last sample; otherwise false."
           },
-          "notes": "Dependency/read faults revert. Raw cooldown/price/lifecycle checks remain; no guarantee of future inclusion or continuous price history."
+          "notes": "Dependency/read faults revert. Raw cooldown/price/lifecycle checks remain; no guarantee of future inclusion or continuous price history. Fresh confirmation2 ordinarily requires physical/reference exit on the same side of actual LP bounds. Reviewed relaxation invalidates samples; automatic widths cannot coexist with enabled protection. Manual governance widths retain their cooldown exception."
         },
         "observe(uint256)": {
           "purpose": "Record one current out-of-range sample; restart on changed identity/side or excessive gap, and clear evidence on no candidate, stop or observed read fault.",
@@ -6085,6 +6620,61 @@
             "bucket": "Canonical shared bucket ID, not an individual collection NFT ID or physical Uniswap LP NFT ID."
           },
           "notes": "Clear-only operation emits ObservationReset(reason5). Confirm its receipt before recording new evidence after an off-chain fault. Does not change policy, cooldown, LP, fees or rewards."
+        },
+        "requireReferenceExit()": {
+          "purpose": "Read whether ordinary samples additionally require independent-reference exit on the same side of actual physical LP bounds.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Default true. False requires explicit governed review, invalidates old samples and relaxes manipulation protection."
+          }
+        },
+        "referenceReviewHash()": {
+          "purpose": "Read the governance commitment for the independent-reference policy.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Zero at default true construction; changing/relaxing policy requires a nonzero commitment, not proof of review quality."
+          }
+        },
+        "setRequireReferenceExit(bool,bytes32)": {
+          "purpose": "Set reviewed independent-reference corroboration policy and monotonically invalidate old samples.",
+          "access": "Governance or valid pre-seal bootstrap via canConfigure; operating canonical lifecycle and before terminal principal exit.",
+          "inputs": {
+            "0": "True requires physical/reference same-side exit; it also requires Strategy.activeKeeperRangePolicies()==0. False explicitly relaxes that rule.",
+            "1": "Nonzero reviewed policy/evidence commitment."
+          },
+          "notes": "Cannot coexist with automatic keeper width policies while true; deliberate governance width changes retain the existing cooldown exception. No financial execution guard is disabled by this setter."
+        },
+        "marketSides(uint256)": {
+          "purpose": "Explain physical and configured independent-reference sides against identical actual LP tick bounds at the current read.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+          },
+          "outputs": {
+            "0": "Physical side0=inside,1=below,2=above; upper boundary exclusive, raw pool-key orientation.",
+            "1": "Independent Oracle reference side0/1/2 in the same raw bounds. Failed/missing price rejects; not readiness or a newly qualified deeper-market feed."
+          }
+        },
+        "emergencyReady(uint256)": {
+          "purpose": "Evaluate existing still-fresh sampled readiness during a validated paused manual emergency, without recording observations.",
+          "access": "Actual Vault-owned Budget only, globally paused and valid same-bucket context.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+          },
+          "outputs": {
+            "0": "True for qualifying samples or established deliberate-width exception after raw guards. Pause does not stop expiry; no new observations are created."
+          }
+        },
+        "observationFingerprint(uint256,bytes32)": {
+          "purpose": "Hash stable Registry/source/quality/confirmation controls together with the raw recorded observation tuple.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID.",
+            "1": "Admitted static hookless native ETH/fixed-ZZZ PoolId in canonical raw order."
+          },
+          "outputs": {
+            "0": "Exact hash of controls,identity,firstSeen,lastSeen,side; deliberately not readiness against a newly replaced LP identity."
+          }
         }
       },
       "constructor": {

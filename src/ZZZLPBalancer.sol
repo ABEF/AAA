@@ -8,7 +8,7 @@ import {LiquidityAmounts} from "@uniswap/v4-periphery/src/libraries/LiquidityAmo
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ZZZPriceMath} from "./libraries/ZZZPriceMath.sol";
 import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZPools, IZZZOracle, IZZZStrategy, IStateViewMinimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
+import {IZZZPools, IZZZOracle, IZZZStrategy, IZZZLiquidity, IPositionManagerMinimal, IStateViewMinimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
 
 interface ILPRegistryRevision { function configurationRevision() external view returns (uint64); }
 
@@ -49,6 +49,28 @@ contract ZZZLPBalancer is ZZZModule {
     }
     function executionPoolCount() external view returns (uint256) { return venues.length; }
     function executionPoolAt(uint256 index) external view returns (bytes32) { return venues[index]; }
+    /// @notice Shared exact v4 math avoids embedding a second copy in Manager.
+    /// Pure calculation, no custody or authorization; Manager verifies raw spends.
+    function deploymentAmounts(uint160 current,int24 lower,int24 upper,uint256 amount0,uint256 amount1)
+        external pure returns(uint128 liquidity,uint256 nativeDebt) {
+        uint160 a = TickMath.getSqrtPriceAtTick(lower); uint160 b = TickMath.getSqrtPriceAtTick(upper);
+        liquidity = LiquidityAmounts.getLiquidityForAmounts(current,a,b,amount0,amount1);
+        if(current < b) nativeDebt = SqrtPriceMath.getAmount0Delta(current <= a ? a : current,b,liquidity,true);
+    }
+    function principalAmounts(uint256 id) external view returns(uint256 amount0,uint256 amount1) {
+        IPositionManagerMinimal posm = IPositionManagerMinimal(IZZZLiquidity(liquidityManager).positionManager());
+        (PoolKey memory key,uint256 info) = posm.getPoolAndPositionInfo(id);
+        uint160 a = TickMath.getSqrtPriceAtTick(int24(uint24(info >> 8)));
+        uint160 b = TickMath.getSqrtPriceAtTick(int24(uint24(info >> 32)));
+        (uint160 current,,,) = stateView.getSlot0(keccak256(abi.encode(key)));
+        uint128 liquidity = posm.getPositionLiquidity(id);
+        if(current <= a) amount0 = SqrtPriceMath.getAmount0Delta(a,b,liquidity,false);
+        else if(current >= b) amount1 = SqrtPriceMath.getAmount1Delta(a,b,liquidity,false);
+        else {
+            amount0 = SqrtPriceMath.getAmount0Delta(current,b,liquidity,false);
+            amount1 = SqrtPriceMath.getAmount1Delta(a,current,liquidity,false);
+        }
+    }
     /// @notice Policy belongs to the fixed Strategy; never a keeper input.
     function additionalLossBps() public view returns(uint16) {
         return IZZZStrategy(access.module(Ids.STRATEGY)).additionalLossBps();

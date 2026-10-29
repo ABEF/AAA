@@ -1,6 +1,6 @@
 # LP execution and operator-selected maintenance
 
-Reviewed2026-10-28. Fresh LP routing1 adds bounded reviewed-venue comparison,
+Reviewed2026-10-29. Fresh LP routing1 adds bounded reviewed-venue comparison,
 depth-aware atomic sizing and entrant-only execution to maintenance policy2 /
 Budget3. [Routing review](../reports/atomic-routing-20261028/REVIEW.md) and
 [verification](../reports/atomic-routing-20261028/VERIFICATION.md) own the new
@@ -19,7 +19,7 @@ Old deployments, journals and sites retain their actual historical code/profiles
 | --- | --- | --- |
 | Swap venue | Immutable Manager-created LPBalancer compares up to four explicitly reviewed native ETH/fixed-ZZZ static hookless v4 pools and executes the same selected route/size. | Best valid sampled final LP value among this list, not global or exact mathematical optimality. Buyback/Entry/reward converters retain separate routing. |
 | Range choice | Governance selects the desired width; a separate optional keeper policy can automatically select 25%/50%. | Operator selects +/-25% or +/-50% in ZZZ price in ETH. No automatic volatility analysis or range switching is requested for this operating policy. Keep optional automation disabled. |
-| Rebalance trigger | Policy2 uses actual physical range exit or an explicit operator range change, after the governed hard pool cooldown. Fresh confirmation1 additionally gates ordinary replacement. | Initial12-hour minimum even after early exit; fresh confirmation1 checks every240seconds, requires the reviewed sampled window, then adds durable1-10minute jitter. Historical policy2 without confirmation retains hourly ordinary checks. |
+| Rebalance trigger | Policy2 uses actual physical range exit or an explicit operator range change, after the governed hard pool cooldown. Fresh confirmation2 additionally gates ordinary replacement. | Initial12-hour minimum even after early exit; fresh confirmation2 checks every240seconds, requires the reviewed sampled window, then adds durable1-10minute jitter. Historical policy2 without confirmation retains hourly ordinary checks. |
 | Contributions | First activation creates shared LP; later activations/top-ups increase its actual ticks. Only the new contribution can be swapped/deployed. | Incumbent idle/compound remains in old share NAV and available for guarded maintenance; it cannot subsidize the new marginal LP floor. |
 | Residual assets | Attributed idle can already be reinvested, including without new fees, and joins collective principal return. | Combine useful residuals later; no zero-dust target, arbitrary sweep or external recipient. |
 | Per-NFT limit | Governance configures cumulative gross contributions through `maxPositionUSD`. | Intended configuration: $1,000,000 per NFT, not a guaranteed current NAV or a shared-market capacity allowance. |
@@ -33,7 +33,7 @@ are enforced on-chain.
 
 ## Requested rebalance confirmation buffer
 
-Implemented in fresh `REBALANCE_CONFIRMATION_VERSION()==1`, using a fixed
+Implemented in fresh `REBALANCE_CONFIRMATION_VERSION()==2`, using a fixed
 Strategy-created helper and the Budget execution gate. Selected operating policy:
 **15 minutes (900 seconds), checks every four minutes after the hard 12-hour
 cooldown, maximum confirmed-observation gap exactly300 seconds**. No grace is
@@ -87,6 +87,33 @@ deployments and journals are never relabelled. The40% trigger/passive-position
 ideas remain discussion only. [Operator steps](OPERATOR_MANUAL.md#configure-rebalance-confirmation)
 and [scoped evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
 
+
+### Independent reference in confirmation2
+
+Fresh ordinary samples require the actual physical LP pool **and**
+`Oracle.referenceX96` to be outside the same physical tick bounds on the same
+side. Target-only, reference-only and opposite-side exits cannot authorize ordinary
+replacement. Eligibility and prices are checked again at execution. The reference
+uses the configured independently reviewed dual USD sources; this change does
+not install a deeper-market feed, qualify a TWAP or prove uninterrupted prices.
+
+Governance may call the helper's `setRequireReferenceExit(required,reviewHash)`
+with a nonzero review commitment. The default is true; every change advances
+the monotonic revision and invalidates old samples. While true, automatic keeper
+width policies cannot be enabled; re-enabling it requires
+`Strategy.activeKeeperRangePolicies()==0`. Otherwise an automatic width update
+could adopt the manual-width exception. Deliberate governance widths retain their
+existing exception after cooldown. A worker that sees disagreement persists a
+clear-only reset before renewing an old window, even if prices recover before
+inclusion. Four-minute checks,900-second duration, strict300-second gap and
+post-ready jitter are unchanged; observation during cooldown remains proposed.
+
+The separate [manual emergency procedure](EMERGENCY_REBALANCE.md) is governance-only
+and requires global pause. It can explicitly bypass selected economic/timing
+checks, but it is never an ordinary keeper fallback. This expands governance
+trust: with financial checks off, almost all principal could be lost to a bad
+trade. The current [review and verification](../reports/independent-rebalance-20261029/VERIFICATION.md)
+supersede earlier confirmation1 evidence only at their exact source scope.
 
 ## Execution venue selection
 
@@ -204,7 +231,7 @@ The new versioned source implements this scheduler/state policy:
    physical LP's real ticks. Active range is `lower <= tick < upper`. Preserve
    legitimate downward-boundary slot0 tick semantics; do not infer it from a
    rounded display price or an assumed +/-percentage.
-4. In the fresh confirmation1 profile, evaluate eligible inside/outside positions
+4. In the fresh confirmation2 profile, evaluate eligible inside/outside positions
    every240seconds. Inside observations invalidate any prior ordinary candidate;
    outside candidates require receipt-backed samples and `rebalanceReady` under
    the strict reviewed gap/window. Historical policy2 without this capability

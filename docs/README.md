@@ -6,6 +6,11 @@ states what exists and what was verified. **Undeployed; production NOT APPROVED.
 Current guides describe accounting4/directgovernance2/fee1/custody3/holder-exitV5.
 Historical reports and explicitly legacy local profiles retain their own semantics.
 
+[Current whole-project audit execution](../reports/whole-project-execution-20261029/REVIEW.md) includes
+two prompt challenges, exact handwritten/dependency body coverage, keeper/backend/
+tooling/artwork repairs and completed callable outputs. Its scoped verification
+and unresolved live/independent gates supersede no historical report bytes.
+
 ## 1. Smart contracts
 
 | Topic | Current guide |
@@ -19,6 +24,12 @@ Historical reports and explicitly legacy local profiles retain their own semanti
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
 | Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V5 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
 | Callable inputs/outputs/permissions | [Generated source-bound function reference](CONTRACT_FUNCTIONS.md) |
+
+Manual paused LP recovery: [emergency procedure](EMERGENCY_REBALANCE.md),
+[independent confirmation policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
+[new scoped verification](../reports/independent-rebalance-20261029/VERIFICATION.md).
+Governance may bypass financial protections explicitly; this is an accepted
+authority risk and does not grant a keeper fallback or deployment approval.
 
 ## 2. Backend and operations
 

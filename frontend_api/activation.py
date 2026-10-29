@@ -295,7 +295,7 @@ class ActivationTransactions:
                               'pricing_version':cfg.pricing_version,
                               'lp_routing_version':cfg.lp_routing_version,
                               'execution_quality_version':cfg.execution_quality_version,
-                              **({'rebalance_confirmation_version':1} if cfg.rebalance_confirmation_version else {}),
+                              **({'rebalance_confirmation_version':cfg.rebalance_confirmation_version} if cfg.rebalance_confirmation_version else {}),
                               **({'lp_execution':req['lp_execution']} if cfg.lp_routing_version == 1 else {}),
                               **({'maintenance_policy_version':cfg.maintenance_policy_version}
                                  if cfg.maintenance_policy_version else {}),

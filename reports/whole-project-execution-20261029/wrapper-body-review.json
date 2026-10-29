@@ -1,0 +1,222 @@
+{
+  "kind": "read_only_manual_wrapper_body_review",
+  "files": {
+    "scripts/observe-production-config.py": {
+      "sha256": "b174b3155aea20cb2e4ecd53fe7353e3e617864bfc24167e382930b01eec9deb",
+      "manually_reviewed_functions": [
+        {
+          "name": "_Parser.error",
+          "line": 19
+        },
+        {
+          "name": "main",
+          "line": 25
+        }
+      ],
+      "case_notes": [
+        "Read-only CLI selects explicit schema6 observer or historical schema5; canonical anchor cross-check, secret-safe parser/environment handling, distinct input/output paths and sanitized failure preserve previous output. No service, signer or approval action."
+      ]
+    },
+    "scripts/validate-production-config.py": {
+      "sha256": "d4ff4ca58a0bc8089a3eb2b2c36b6582e54483aeece889ea005d62bbe15d9f85",
+      "manually_reviewed_functions": [
+        {
+          "name": "validate",
+          "line": 22
+        },
+        {
+          "name": "read_config",
+          "line": 37
+        },
+        {
+          "name": "read_config.unique",
+          "line": 41
+        },
+        {
+          "name": "write_report",
+          "line": 50
+        },
+        {
+          "name": "main",
+          "line": 61
+        }
+      ],
+      "case_notes": [
+        "Bounded duplicate-key/nonfinite-constant input; offline schema6 default or explicit historical inspection. Same-path output cannot replace input; atomic report writer preserves prior output on failure. Current OpenSea gate stays blocked. No RPC/signing."
+      ]
+    },
+    "scripts/prepare-release-review.py": {
+      "sha256": "41e499be98457fb5f651d2cc453bb52a044c3919d138276a297845fad1778a03",
+      "manually_reviewed_functions": [],
+      "case_notes": [
+        "Thin CLI delegates exact-commit export/verification to source-reviewed versioned review_bundle. No tests, deployment or operating changes are implied."
+      ]
+    },
+    "scripts/inventory-nft-holders.py": {
+      "sha256": "0f24b770b8e3e970895def799bde8bca8c93b30c4eab544d5014838393866d74",
+      "manually_reviewed_functions": [
+        {
+          "name": "_Parser.error",
+          "line": 16
+        },
+        {
+          "name": "read_json",
+          "line": 22
+        },
+        {
+          "name": "read_json.unique",
+          "line": 28
+        },
+        {
+          "name": "read_json.reject_constant",
+          "line": 35
+        },
+        {
+          "name": "read_json.finite_float",
+          "line": 37
+        },
+        {
+          "name": "main",
+          "line": 49
+        }
+      ],
+      "case_notes": [
+        "Bounded strict local JSON with duplicate/constants/overflow checks; canonical pinned <=50-holder scan or <=1000-page offline merge; exclusive new output prevents overwrites. Fixed diagnostics omit provider/input contents. No wallet/signer."
+      ]
+    },
+    "scripts/generate-function-reference.py": {
+      "sha256": "70a7537bf6b93f3d25fc08222985fdeb63c461df411caf97fa89098de4b9591a",
+      "manually_reviewed_functions": [
+        {
+          "name": "main",
+          "line": 13
+        }
+      ],
+      "case_notes": [
+        "Compiler input/output/size evidence must be supplied together. Notes validate against exact ABI before publication; --check cannot merge/rewrite notes. Delegates source-bound generation; no compilation/chain activity."
+      ]
+    },
+    "scripts/check-slither-review.py": {
+      "sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+      "manually_reviewed_functions": [
+        {
+          "name": "source_hash",
+          "line": 16
+        },
+        {
+          "name": "normalized_description",
+          "line": 20
+        },
+        {
+          "name": "fingerprint",
+          "line": 72
+        },
+        {
+          "name": "write_bundle_atoms",
+          "line": 81
+        },
+        {
+          "name": "check",
+          "line": 141
+        },
+        {
+          "name": "main",
+          "line": 226
+        }
+      ],
+      "case_notes": [
+        "Source/toolchain LF pins plus exact analyzer finding fingerprints; narrow Slither set-order normalization preserves multiplicity and descendant content. Unsupported finding shapes require exact matching; accepted risk requires rationale; independent_audit remains false. No analyzer execution or audit approval."
+      ]
+    },
+    "scripts/verify-hookless-pool.py": {
+      "sha256": "41812c87cb1bb7a9e1fba0bc281f83ef9aef4a0cb07fb9fc663510d5d219e326",
+      "manually_reviewed_functions": [
+        {
+          "name": "rpc",
+          "line": 46
+        },
+        {
+          "name": "selector",
+          "line": 72
+        },
+        {
+          "name": "words",
+          "line": 76
+        },
+        {
+          "name": "observe",
+          "line": 83
+        },
+        {
+          "name": "write_observation",
+          "line": 165
+        },
+        {
+          "name": "main",
+          "line": 182
+        }
+      ],
+      "case_notes": [
+        "Concrete repaired integrity gap: batch JSON formerly accepted duplicate envelope/result keys; slot0 tick could contradict sqrtPrice. Shared strict JSON and exact TickMath validation now apply, preserving legitimate exact downward-boundary ticks. Existing bounded batches, exact IDs, runtime/venue pins, hash state reads, atomic evidence output and no release approval remain."
+      ]
+    },
+    "scripts/rehearse-api-ingress.py": {
+      "sha256": "2b51de722476fae905a5c0bb76b9133355de7fdd72c9b6ef7a294485c713e475",
+      "manually_reviewed_functions": [
+        {
+          "name": "main",
+          "line": 25
+        },
+        {
+          "name": "main.Projection.protocol",
+          "line": 42
+        },
+        {
+          "name": "main.Projection.nft",
+          "line": 45
+        },
+        {
+          "name": "main.Projection.prepare",
+          "line": 52
+        },
+        {
+          "name": "main.Projection.wallet_summary",
+          "line": 55
+        },
+        {
+          "name": "main.Projection.wallet_earnings",
+          "line": 58
+        },
+        {
+          "name": "main.Projection.collection",
+          "line": 61
+        },
+        {
+          "name": "main.observed",
+          "line": 65
+        },
+        {
+          "name": "main.observed.Observed.begin_work",
+          "line": 67
+        },
+        {
+          "name": "main.require",
+          "line": 116
+        },
+        {
+          "name": "main.request",
+          "line": 119
+        }
+      ],
+      "case_notes": [
+        "Read-only code review of explicit isolated-nginx rehearsal wrapper. Its fake projections do no RPC/signing; caller supplies new external output and explicit binary; loopback ephemeral services, source/binary hashes, fixed-origin/admission/credential-stripping/error tests and cleanup scope remain separated from actual installed services. This review did not execute that rehearsal."
+      ]
+    }
+  },
+  "executed": "Only the separately recorded mocked pool-observer controls were executed; other wrapper review was static source reading.",
+  "remaining_limits": [
+    "No real RPC/feed/pool/route/VRF/host/nginx/provider qualification.",
+    "No safety claim for unreviewed wrappers or external imported dependencies.",
+    "No source edits outside explicitly authorized verify-hookless-pool.py."
+  ]
+}

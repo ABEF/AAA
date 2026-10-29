@@ -1,5 +1,15 @@
 # Accounting4: collective holder principal return
 
+Current fresh LP protection uses confirmation2 and separate emergency capability1.
+Ordinary readiness requires physical/reference same-side range exit (unless a
+reviewed policy relaxation or deliberate governance width exception applies).
+Reference prices remain the configured dual USD sources, not a newly qualified
+market feed. A separate paused governance emergency may explicitly bypass
+financial guards; it preserves exact accounting/custody but can cause near-total
+economic loss. It is not a user transaction, keeper fallback or API signing
+feature. [Policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
+[emergency procedure](EMERGENCY_REBALANCE.md).
+
 Fresh undeployed profile; no historical deployment or journal migration.
 The eight Position words remain: poolId, lpTokenId, idle0, idle1, depositUSD,
 centerX96, lastRebalance and status.
@@ -39,9 +49,9 @@ stays1; current runtime pins distinguish this fresh source. Strategy gains polic
 state before its old mappings: this is a new undeployed layout, never a storage
 upgrade/relabel of preserved immutable deployments. [Scope](EXECUTION_QUALITY.md).
 
-Fresh sampled confirmation additionally declares `rebalance_confirmation_version:1`.
+Fresh sampled confirmation additionally declares `rebalance_confirmation_version:2`.
 Strategy, Budget and the immutable Strategy-created `rebalanceConfirmation`
-helper expose capability1. Readers authenticate its exact runtime, Strategy and
+helper expose capability2. Readers authenticate its exact runtime, Strategy and
 Access bindings at the same canonical block. `needsRebalance` remains the raw
 outside-or-operator-range candidate; `rebalanceReady` and helper `ready` add the
 recorded confirmation requirement. A deliberate operator range change keeps its

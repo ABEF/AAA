@@ -1,0 +1,14 @@
+{
+  "applied": 2788,
+  "preserved": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "artworks.js": "6c6b0d5f5d5cf454c338ddb6930ba9a1d7475042d61a889102922f012ce5c42d",
+    "palette-system.js": "9f0d0ca89cf7c968fc967b372270406504d5d67da8c0fd202466b8ebc8b7add7",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "1f26a461470493b45dc8e31f7e31f8a8676e8a9ebb35cb50296bdfe845cc65d4",
+    "assets/nfts/manifest.json": "fcd95d4d87f7d18eb6d548b9b19432056f982e6e66f3def9dd0ead076af692de"
+  },
+  "images_regenerated": false,
+  "build": false,
+  "deployment": false
+}

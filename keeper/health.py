@@ -57,7 +57,7 @@ def observe_confirmation_health(keeper, previous=None):
     from zzz_ops.rpc import RpcError
     report = {'schema':OBSERVATION_SCHEMA, 'state':'not_configured',
         'last_observed':previous.get('last_observed') if isinstance(previous,dict) else None, 'last_error':None}
-    if keeper.rebalance_confirmation.version != 1:
+    if keeper.rebalance_confirmation.version not in (1,2):
         return report
     try:
         identity = digest(keeper.config)
@@ -83,7 +83,8 @@ def observe_confirmation_health(keeper, previous=None):
             'runtime_code_hashes':{role:keeper.config['code_hashes'][role].lower()
                 for role in CONFIRMATION_RUNTIME_ROLES},
             'validated_bindings':_confirmation_bindings(keeper.config),
-            'validated_capabilities':{'strategy':1,'rebalance_confirmation':1,'idle_compounding_budget':1}}
+            'validated_capabilities':{role:keeper.rebalance_confirmation.version for role in
+                ('strategy','rebalance_confirmation','idle_compounding_budget')}}
         gap = policy['maximum_gap_seconds']
         report.update(state='stopped' if gap==0 else 'incompatible_cadence' if gap<CHECK_SECONDS else 'observed_this_cycle',
             last_observed=observed)
@@ -94,7 +95,7 @@ def observe_confirmation_health(keeper, previous=None):
 
 def confirmation_reasons(data, config, *, now, max_age):
     """Require fresh confirmation evidence independently of execution quality."""
-    if config.get('rebalance_confirmation_version',0) != 1:
+    if config.get('rebalance_confirmation_version',0) not in (1,2):
         return []
     interval = config.get('interval_seconds')
     if (type(config.get('accounting_version')) is not int or config['accounting_version'] != 4 or
@@ -106,7 +107,8 @@ def confirmation_reasons(data, config, *, now, max_age):
     if (not isinstance(report,dict) or type(report.get('schema')) is not int or report['schema'] != OBSERVATION_SCHEMA):
         return ['confirmation_observation_unknown']
     reasons = []
-    if (type(outer.get('version')) is not int or outer['version'] != 1 or
+    expected_version=config['rebalance_confirmation_version']
+    if (type(outer.get('version')) is not int or outer['version'] != expected_version or
             type(outer.get('check_interval_seconds')) is not int or outer['check_interval_seconds'] != CHECK_SECONDS):
         reasons.append('confirmation_service_cadence_mismatch')
     state = report.get('state')
@@ -143,14 +145,19 @@ def confirmation_reasons(data, config, *, now, max_age):
     capabilities = observation.get('validated_capabilities')
     if (bindings is None or observation.get('validated_bindings') != bindings or
             not isinstance(capabilities,dict) or set(capabilities) != {'strategy','rebalance_confirmation','idle_compounding_budget'} or
-            any(type(value) is not int or value != 1 for value in capabilities.values())):
+            any(type(value) is not int or value != expected_version for value in capabilities.values())):
         reasons.append('confirmation_observation_bindings_invalid')
     duration, gap = observation.get('duration_seconds'), observation.get('maximum_gap_seconds')
     review = observation.get('review_hash')
-    valid_policy = (type(observation.get('version')) is int and observation['version']==1 and
+    valid_policy = (type(observation.get('version')) is int and observation['version']==expected_version and
         _uint(duration,604800) and duration>=60 and _uint(gap) and gap<=duration//2 and
         _uint(observation.get('policy_revision'),2**64-1) and isinstance(review,str) and
         re.fullmatch(r'0x[0-9a-f]{64}',review) is not None and (gap==0 or _hash(review)))
+    if expected_version==2:
+        reference_review=observation.get('reference_review_hash')
+        valid_policy = (valid_policy and type(observation.get('reference_exit_required')) is bool and
+            isinstance(reference_review,str) and re.fullmatch(r'0x[0-9a-f]{64}',reference_review) is not None and
+            (observation['reference_exit_required'] or _hash(reference_review)))
     if not valid_policy:
         reasons.append('confirmation_observation_policy_invalid')
     elif gap==0 and data.get('lp_exit_started') is not True:
@@ -173,9 +180,9 @@ def execution_reasons(data, config, *, now, max_age):
     if type(quality_version) is not int or quality_version not in (0,1):
         return ['execution_health_profile_invalid']
     confirmation_version=config.get('rebalance_confirmation_version',0)
-    if type(confirmation_version) is not int or confirmation_version not in (0,1):
+    if type(confirmation_version) is not int or confirmation_version not in (0,1,2):
         return ['execution_health_profile_invalid']
-    if confirmation_version==1 and version!=HEALTH_SCHEMA:
+    if confirmation_version in (1,2) and version!=HEALTH_SCHEMA:
         return ['execution_health_schema_required']
     confirmation = confirmation_reasons(data,config,now=now,max_age=max_age)
     if quality_version != 1:

@@ -1,0 +1,578 @@
+{
+  "kind": "manual_body_review_not_execution_tests",
+  "files": {
+    "zzz_ops/production_observer.py": {
+      "sha256": "11dfbd23a4e0816974fcf180a3d1185b3db9c874d811f1bb8dccaa4c7281dd06",
+      "manually_reviewed_functions": [
+        {
+          "name": "_address",
+          "line": 72
+        },
+        {
+          "name": "_hash",
+          "line": 81
+        },
+        {
+          "name": "_quantity",
+          "line": 87
+        },
+        {
+          "name": "_uint",
+          "line": 96
+        },
+        {
+          "name": "_chain_id",
+          "line": 108
+        },
+        {
+          "name": "_word",
+          "line": 114
+        },
+        {
+          "name": "_decode",
+          "line": 120
+        },
+        {
+          "name": "_string",
+          "line": 136
+        },
+        {
+          "name": "_same",
+          "line": 148
+        },
+        {
+          "name": "_normalized",
+          "line": 158
+        },
+        {
+          "name": "Observer.__init__",
+          "line": 164
+        },
+        {
+          "name": "Observer.request",
+          "line": 171
+        },
+        {
+          "name": "Observer.header",
+          "line": 176
+        },
+        {
+          "name": "Observer.anchor",
+          "line": 186
+        },
+        {
+          "name": "Observer.finish",
+          "line": 206
+        },
+        {
+          "name": "Observer.attempt",
+          "line": 218
+        },
+        {
+          "name": "Observer.read",
+          "line": 226
+        },
+        {
+          "name": "Observer.typed",
+          "line": 242
+        },
+        {
+          "name": "Observer.code",
+          "line": 262
+        },
+        {
+          "name": "Observer.records",
+          "line": 272
+        },
+        {
+          "name": "Observer.dependencies",
+          "line": 297
+        },
+        {
+          "name": "Observer.tokens",
+          "line": 316
+        },
+        {
+          "name": "Observer.dual_price",
+          "line": 356
+        },
+        {
+          "name": "Observer.dual_price.observe_price",
+          "line": 372
+        },
+        {
+          "name": "Observer.dual_price.observe_price.checked_code",
+          "line": 375
+        },
+        {
+          "name": "Observer.descriptor",
+          "line": 399
+        },
+        {
+          "name": "Observer.wrappers",
+          "line": 405
+        },
+        {
+          "name": "Observer.slot",
+          "line": 435
+        },
+        {
+          "name": "Observer.liquidity",
+          "line": 440
+        },
+        {
+          "name": "Observer.pools",
+          "line": 447
+        },
+        {
+          "name": "Observer.sequencer",
+          "line": 468
+        },
+        {
+          "name": "Observer.governance",
+          "line": 502
+        },
+        {
+          "name": "Observer.governance.has_role",
+          "line": 524
+        },
+        {
+          "name": "Observer.governance.granted",
+          "line": 528
+        },
+        {
+          "name": "Observer.sources",
+          "line": 549
+        },
+        {
+          "name": "Observer.ledgers",
+          "line": 566
+        },
+        {
+          "name": "Observer.nft",
+          "line": 589
+        },
+        {
+          "name": "Observer.route_venue",
+          "line": 610
+        },
+        {
+          "name": "Observer.routes",
+          "line": 631
+        },
+        {
+          "name": "observe",
+          "line": 692
+        },
+        {
+          "name": "read_manifest",
+          "line": 756
+        },
+        {
+          "name": "read_manifest.unique",
+          "line": 761
+        },
+        {
+          "name": "read_manifest.nonfinite",
+          "line": 768
+        },
+        {
+          "name": "write_observation",
+          "line": 773
+        }
+      ],
+      "case_notes": [
+        "All methods manually read. Getter/method inventories are code-owned; call gas/results/runtimes are bounded. One canonical hash binds state/code reads.",
+        "Approved runtime/review pins are never overwritten from observations. Failed token/feed/role/route reads replace copied healthy observation fields with null and append fixed sanitized diagnostics.",
+        "Native identity and optional wrapper/proxy paths stay distinct. Disabled append-only routes remain observable without validating broken venues; enabled routes verify child/domain/core/factory identities.",
+        "New final-depth defect: retained anchor with lost descendants was accepted. Final latest header now rechecks required depth and chronology; anchor/genesis/chain are then checked and final head is recorded.",
+        "Remaining external limits: provider authenticity, creation-to-anchor complete inventories, upstream source independence, real latency/capacity, host/filesystem behavior and actual services are not established."
+      ]
+    },
+    "zzz_ops/production_v2.py": {
+      "sha256": "c4f2908375475cb5a80e7fbd250dc24ea7be59cceb851353a3583bb5682dfc21",
+      "manually_reviewed_functions": [
+        {
+          "name": "identity",
+          "line": 105
+        },
+        {
+          "name": "_obj",
+          "line": 111
+        },
+        {
+          "name": "_numeric",
+          "line": 115
+        },
+        {
+          "name": "configuration_hash",
+          "line": 120
+        },
+        {
+          "name": "pool_configuration",
+          "line": 128
+        },
+        {
+          "name": "governance_configuration",
+          "line": 138
+        },
+        {
+          "name": "fee_intake_profile",
+          "line": 148
+        },
+        {
+          "name": "expected_bindings",
+          "line": 155
+        },
+        {
+          "name": "expected_bindings.m",
+          "line": 166
+        },
+        {
+          "name": "expected_bindings.h",
+          "line": 167
+        },
+        {
+          "name": "expected_bindings.d",
+          "line": 168
+        },
+        {
+          "name": "_consistent_slot0",
+          "line": 248
+        },
+        {
+          "name": "Gate.__init__",
+          "line": 258
+        },
+        {
+          "name": "Gate.check",
+          "line": 262
+        },
+        {
+          "name": "Gate.obj",
+          "line": 268
+        },
+        {
+          "name": "Gate.items",
+          "line": 272
+        },
+        {
+          "name": "Gate.num",
+          "line": 276
+        },
+        {
+          "name": "Gate.hex",
+          "line": 282
+        },
+        {
+          "name": "Gate.text",
+          "line": 289
+        },
+        {
+          "name": "Gate.proof",
+          "line": 294
+        },
+        {
+          "name": "Gate.keys",
+          "line": 310
+        },
+        {
+          "name": "_equal",
+          "line": 315
+        },
+        {
+          "name": "_bindings",
+          "line": 329
+        },
+        {
+          "name": "_runtime",
+          "line": 340
+        },
+        {
+          "name": "_bound_proof",
+          "line": 349
+        },
+        {
+          "name": "_policies",
+          "line": 365
+        },
+        {
+          "name": "_chain",
+          "line": 397
+        },
+        {
+          "name": "_dependencies",
+          "line": 496
+        },
+        {
+          "name": "_dual_price",
+          "line": 526
+        },
+        {
+          "name": "_tokens",
+          "line": 587
+        },
+        {
+          "name": "_pools",
+          "line": 640
+        },
+        {
+          "name": "_routes",
+          "line": 719
+        },
+        {
+          "name": "_obj_list",
+          "line": 920
+        },
+        {
+          "name": "_wrapper",
+          "line": 924
+        },
+        {
+          "name": "_authority",
+          "line": 958
+        },
+        {
+          "name": "_canonical",
+          "line": 999
+        },
+        {
+          "name": "_ledger_assets",
+          "line": 1035
+        },
+        {
+          "name": "_nft",
+          "line": 1072
+        },
+        {
+          "name": "_services",
+          "line": 1134
+        },
+        {
+          "name": "_mint_integration",
+          "line": 1168
+        },
+        {
+          "name": "validate",
+          "line": 1220
+        }
+      ],
+      "case_notes": [
+        "All function bodies manually read, including inherited current schema6 primitives and historical-only schema5 entry/lifecycle/custody branches.",
+        "Gate rejects bool/float integers, malformed hashes, stale commit/proof/deployment/block scope, bindings and proxy authorities; caller-supplied evidence remains unauthenticated consistency data.",
+        "Trace routes across separate Entry/LP/royalty parents, typed v4 domains/native sentinel, v3 wrapped exits, actual static fee state, reviewed exact runtimes, captured limits and full-operation scope. Source admission does not expand royalty assets into contribution inputs.",
+        "Dual-source policy reconstruction checks independent IDs, fresh rounds, decimals, agreement, bounds/fingerprint/sequencer. Distinct adapter identities still do not qualify true provider independence.",
+        "Historical external-custody/timelock/old codec behavior is deliberately separate. Current CLI requires schema6; historical consistency ready cannot authorize current deployment. Unsupported OpenSea primary mint remains an explicit blocker.",
+        "No new source repair beyond shared observer final-depth guard was justified in this manual slice. Malformed legacy shapes may raise to the outer fail-closed CLI boundary; no approval is inferred."
+      ]
+    },
+    "zzz_ops/function_reference.py": {
+      "sha256": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+      "manually_reviewed_functions": [
+        {
+          "name": "_pairs",
+          "line": 22
+        },
+        {
+          "name": "load_json",
+          "line": 31
+        },
+        {
+          "name": "_read_json_bytes",
+          "line": 35
+        },
+        {
+          "name": "_load_raw_json",
+          "line": 43
+        },
+        {
+          "name": "canonical_json",
+          "line": 50
+        },
+        {
+          "name": "sha",
+          "line": 54
+        },
+        {
+          "name": "canonical_type",
+          "line": 58
+        },
+        {
+          "name": "signature",
+          "line": 82
+        },
+        {
+          "name": "_hex_object",
+          "line": 95
+        },
+        {
+          "name": "_source",
+          "line": 104
+        },
+        {
+          "name": "_dependency_source",
+          "line": 116
+        },
+        {
+          "name": "_check_sources",
+          "line": 129
+        },
+        {
+          "name": "_argument_shape",
+          "line": 168
+        },
+        {
+          "name": "_argument_sequence",
+          "line": 188
+        },
+        {
+          "name": "_constructor_bounds",
+          "line": 196
+        },
+        {
+          "name": "_normal_evidence",
+          "line": 209
+        },
+        {
+          "name": "import_compiler",
+          "line": 232
+        },
+        {
+          "name": "merge_notes",
+          "line": 324
+        },
+        {
+          "name": "_explanation",
+          "line": 338
+        },
+        {
+          "name": "_parameters",
+          "line": 346
+        },
+        {
+          "name": "build_reference",
+          "line": 371
+        },
+        {
+          "name": "_text",
+          "line": 456
+        },
+        {
+          "name": "_params",
+          "line": 460
+        },
+        {
+          "name": "_params.visit",
+          "line": 462
+        },
+        {
+          "name": "render_markdown",
+          "line": 480
+        },
+        {
+          "name": "write_atomic",
+          "line": 528
+        },
+        {
+          "name": "generate",
+          "line": 541
+        }
+      ],
+      "case_notes": [
+        "All bodies manually read. Source/dependency/build inventories must match exact compiler closure, contents and hashes; constructor ABI bounds and normal runtime/initcode gates are recomputed.",
+        "ABI canonical scalar/tuple/array signatures, duplicate callables, constructor/receive/fallback and note identities are verified. Missing purpose/access/payable/input semantics stay explicit gaps; documentation cannot invent callable outputs or execution approval.",
+        "Generated JSON/Markdown are deterministic and individually atomically replaced after complete validation/render. A failure between replacements is detected by --check; it is not contract/ledger state.",
+        "AST/ABI inventory and these body reads do not prove compiler lowering, independent security, real dependency authenticity or all financial operation behavior."
+      ]
+    },
+    "zzz_ops/review_bundle.py": {
+      "sha256": "0e5b6b6f94c6e86f6d2ab1599526c6669c2bedca822c47f648105d477fa73a46",
+      "manually_reviewed_functions": [
+        {
+          "name": "require",
+          "line": 38
+        },
+        {
+          "name": "digest",
+          "line": 43
+        },
+        {
+          "name": "canonical",
+          "line": 47
+        },
+        {
+          "name": "path_name",
+          "line": 51
+        },
+        {
+          "name": "admitted",
+          "line": 64
+        },
+        {
+          "name": "git",
+          "line": 91
+        },
+        {
+          "name": "frozen_files",
+          "line": 102
+        },
+        {
+          "name": "dependency_record",
+          "line": 150
+        },
+        {
+          "name": "_handoff_v1",
+          "line": 188
+        },
+        {
+          "name": "handoff",
+          "line": 245
+        },
+        {
+          "name": "pack",
+          "line": 320
+        },
+        {
+          "name": "zip_bytes",
+          "line": 334
+        },
+        {
+          "name": "strict_json",
+          "line": 348
+        },
+        {
+          "name": "strict_json.unique",
+          "line": 349
+        },
+        {
+          "name": "strict_json.reject_constant",
+          "line": 355
+        },
+        {
+          "name": "verify",
+          "line": 360
+        },
+        {
+          "name": "publish",
+          "line": 434
+        },
+        {
+          "name": "main",
+          "line": 456
+        }
+      ],
+      "case_notes": [
+        "All bodies manually read. Only exact committed Git trees are exported; no dirty candidate, runtime memory, keys, private config or old reports are silently included. Intentional AGENTS/PROJECT_CONTEXT exclusions remain.",
+        "Portable paths reject traversal, alternate separators, reserved devices, ambiguity and case collisions; regular-file modes, byte/count limits, Git blob identities and declared dependency locks are checked.",
+        "Verification requires separately trusted archive SHA256, exact source/handoff/dependency identities, canonical uncompressed ZIP bytes and bounded members. Exclusive hard-link publication cannot overwrite prior archives.",
+        "New default schema2 corrects current profile/holder-return/confirmation2/emergency1 guidance; schema1 handoff and fixture archive retain exact original byte identities and verify under the new reader.",
+        "Bundle inputs and local hashes are reproducibility evidence, not source completeness, installed dependency qualification, independent audit or deployment permission."
+      ]
+    }
+  },
+  "remaining_external_limits": [
+    "No real provider/feed/route/VRF/authority/host/gas/service qualification.",
+    "No service, website, Anvil, signer or public transaction changes.",
+    "No global security approval; other owners retain their independent coverage scopes."
+  ]
+}

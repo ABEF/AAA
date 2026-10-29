@@ -3,8 +3,10 @@
 The 2026-10-15 preparation tool packages the approved existing artwork without
 regenerating its texture. It verifies all 2,784 renderer filenames against the
 contract's packed palette/pattern catalogue, source image SHA-256 hashes,
-self-contained SVG resources and reference JSON image paths. It then streams
-the resulting archive back and verifies every member. Existing output directories
+self-contained SVG resources and reference JSON image paths. It rejects processing instructions/DTDs, XML base, active/style/escaped resource
+channels and duplicate/nonfinite JSON before packaging, then streams the resulting
+archive back and verifies every member. This validates the approved static format;
+it is not a general-purpose browser sanitizer. [Audit evidence](../reports/whole-project-execution-20261029/REVIEW.md). Existing output directories
 are never overwritten.
 
 From the contract repository root, supply the actual website artwork directory
@@ -31,6 +33,13 @@ release. Prepare/verify the full bundle from the matching website commit, obtain
 a new content root when publishing, and bind that root before sealing. Existing
 historical bundles remain evidence for their original bytes, not this revision.
 See [current artwork verification](../reports/twin-circuits/VERIFICATION.md).
+
+Reference metadata now keeps intrinsic rarity weight1/2/3 distinct from activation
+eligibility. The local website correction changes no SVGs, catalogue inventory or
+manifest effective example-ledger fields.72historical references remain historical.
+Do not select old reference JSON merely because the image hashes match; prepare
+the bundle from the reviewed source revision. This source correction is not an
+upload, CID, pin, immutable-base-URI decision or marketplace refresh verification.
 
 ## Publication procedure
 

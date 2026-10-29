@@ -1,6 +1,7 @@
 from __future__ import annotations
 import contextlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -17,9 +18,28 @@ def integer(value: Any, field: str, *, minimum: int = 0) -> int:
         raise ValueError(f'{field} must be at least {minimum}')
     return number
 
+def _unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError('Duplicate JSON state field')
+        result[key] = value
+    return result
+
+def _reject_constant(_value):
+    raise ValueError('Nonfinite JSON state number')
+
+def _finite_float(value):
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError('Nonfinite JSON state number')
+    return number
+
 def read_json(path: str | Path, default: Any = None) -> Any:
+    """Missing files use the explicit default; present malformed truth never does."""
     path = Path(path)
-    return json.loads(path.read_text()) if path.exists() else default
+    return json.loads(path.read_text(), object_pairs_hook=_unique_object,
+                      parse_constant=_reject_constant, parse_float=_finite_float) if path.exists() else default
 
 def atomic_json(path: str | Path, data: Any) -> None:
     path = Path(path)
@@ -30,7 +50,7 @@ def atomic_json(path: str | Path, data: Any) -> None:
     temporary = Path(name)
     try:
         with os.fdopen(fd,'w') as handle:
-            json.dump(data,handle,indent=2,sort_keys=True)
+            json.dump(data,handle,indent=2,sort_keys=True,allow_nan=False)
             handle.write('\n'); handle.flush(); os.fsync(handle.fileno())
         os.replace(temporary,path)
         # Ensure the directory entry is durable before a transaction is submitted.

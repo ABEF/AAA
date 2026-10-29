@@ -7,7 +7,7 @@
   "_notes": [
     "UNQUALIFIED schema6/accounting4/custody3/holder-exit V5 scaffold. No contract deployment, authority, price/provider, route, VRF, OpenSea or service approval is supplied. Nothing authorizes signing, deployment, sealing or rollout.",
     "Module/helper addresses, runtime hashes and observations must be independently reviewed for actual immutable deployments. Known source-selected native venue/token references below are intended identities only; the observer never adopts a pin or supplies evidence.",
-    "Strategy2/Budget3/LP1/quality1 plus explicit observed-confirmation1 are required. Intended confirmation duration900 seconds; max observation gap and all actual revisions remain unset. An unset or zero gap blocks ordinary confirmed rebalance. The5minute service observation cadence is separate from the on-chain policy.",
+    "Strategy2/Budget3/LP1/quality1 plus explicit observed-confirmation2 are required. Intended confirmation duration900 seconds; max observation gap and all actual revisions remain unset. An unset or zero gap blocks ordinary confirmed rebalance. The240second source observation cadence is separate from the on-chain policy.",
     "Native ETH and the fixed ZZZ are the only contribution inputs. Marketplace currencies and their conversions remain separate. No external custody recipient, issuer exchange executor or bridge is part of this release.",
     "The validator can check this exact inventory but current Vault direct mint cannot implement OpenSea primary mint. That code-owned blocker remains even if every supplied evidence flag says passed."
   ],
@@ -98,7 +98,20 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "canonicalHandoff": null,
+            "isSealed": true,
+            "bootstrap": "0x0000000000000000000000000000000000000000",
+            "canonicalState": 0,
+            "canonicalSettling": false,
+            "preparationActive": false,
+            "royaltyFactory": null,
+            "activationAssetsFactory": null,
+            "GOVERNANCE_VERSION": 2,
+            "governance": null,
+            "pendingGovernance": "0x0000000000000000000000000000000000000000"
+          }
         },
         "vault": {
           "address": null,
@@ -106,7 +119,14 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "ACCOUNTING_VERSION": 4,
+            "migrationBudget": null,
+            "canonicalChainId": 4663,
+            "mintProceedsRecipient": null
+          }
         },
         "nft": {
           "address": null,
@@ -114,7 +134,23 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "royaltyRewards": null,
+            "claimRouter": null,
+            "metadataRenderer": null,
+            "MAX_SUPPLY": 1000,
+            "randomnessConfigured": true,
+            "mintPaused": false,
+            "artworkBaseURI": null,
+            "randomnessCoordinator": null,
+            "keyHash": null,
+            "subscriptionId": null,
+            "requestConfirmations": null,
+            "callbackGasLimit": null,
+            "nativePayment": null
+          }
         },
         "liquidity": {
           "address": null,
@@ -122,7 +158,18 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "positionManager": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+            "stateView": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+            "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "permit2": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+            "LP_ROUTING_VERSION": 1,
+            "EXECUTION_QUALITY_VERSION": 1,
+            "EMERGENCY_REBALANCE_VERSION": 1,
+            "balancingRouter": null
+          }
         },
         "rewards": {
           "address": null,
@@ -130,7 +177,11 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "converter": null
+          }
         },
         "membership": {
           "address": null,
@@ -138,7 +189,10 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null
+          }
         },
         "fees": {
           "address": null,
@@ -146,7 +200,11 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "FEE_INTAKE_VERSION": 1
+          }
         },
         "strategy": {
           "address": null,
@@ -154,7 +212,18 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "RANGE_POLICY_VERSION": 1,
+            "MAINTENANCE_POLICY_VERSION": 2,
+            "EXECUTION_QUALITY_VERSION": 1,
+            "MAX_ADDITIONAL_LOSS_BPS": 1000,
+            "additionalLossBps": 100,
+            "executionQualityRevision": null,
+            "REBALANCE_CONFIRMATION_VERSION": 2,
+            "rebalanceConfirmation": null
+          }
         },
         "compounder": {
           "address": null,
@@ -162,7 +231,10 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null
+          }
         },
         "buyback": {
           "address": null,
@@ -170,7 +242,13 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "zzz": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+            "maxTradeUSD": null,
+            "operatingTradeUSD": null
+          }
         },
         "migration": {
           "address": null,
@@ -178,7 +256,18 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "validation": null,
+            "currentZZZ": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+            "zzzCodeHash": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+            "outstandingCount": 0,
+            "CUSTODY_VERSION": 3,
+            "MAX_BATCH": 32,
+            "PAYOUT_GAS": 180000,
+            "EMERGENCY_REBALANCE_VERSION": 1
+          }
         },
         "oracle": {
           "address": null,
@@ -186,7 +275,13 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "sequencerFeed": null,
+            "PRICING_VERSION": 2,
+            "contributionPricing": null
+          }
         },
         "pools": {
           "address": null,
@@ -194,7 +289,14 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "activationAssets": null,
+            "activationEntry": null,
+            "contributionPool": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+            "configurationRevision": null
+          }
         },
         "canonical": {
           "address": null,
@@ -202,7 +304,13 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "SCHEMA": "0x6a881f125ed76de145247bfd82273ffb134bbdd506458a57527df4ecbacf5a25",
+            "phase": null,
+            "incomingSource": null
+          }
         },
         "nft_canonical": {
           "address": null,
@@ -210,7 +318,11 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "nft": null
+          }
         },
         "vault_canonical": {
           "address": null,
@@ -218,7 +330,13 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "vault": null,
+            "originChain": 4663,
+            "originVault": null
+          }
         },
         "fees_canonical": {
           "address": null,
@@ -226,7 +344,11 @@
           "observed_runtime_hash": null,
           "immutable": true,
           "review_evidence": null,
-          "observed_bindings": null
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "fees": null
+          }
         }
       },
       "helpers": {
@@ -273,7 +395,9 @@
             "contributionLossBps": 200,
             "maintenanceLossBps": 300,
             "IDLE_COMPOUNDING_VERSION": 3,
-            "REBALANCE_CONFIRMATION_VERSION": 1
+            "REBALANCE_CONFIRMATION_VERSION": 2,
+            "EMERGENCY_REBALANCE_VERSION": 1,
+            "emergencyActive": false
           }
         },
         "custody_validation": {
@@ -462,11 +586,13 @@
           "bindings": {
             "access": null,
             "strategy": null,
-            "REBALANCE_CONFIRMATION_VERSION": 1,
+            "REBALANCE_CONFIRMATION_VERSION": 2,
             "duration": 900,
-            "maxObservationGap": null,
+            "maxObservationGap": 300,
             "policyRevision": null,
-            "reviewHash": null
+            "reviewHash": null,
+            "requireReferenceExit": true,
+            "referenceReviewHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
           }
         }
       },
@@ -830,7 +956,7 @@
         },
         "keeper": {
           "status": "unqualified",
-          "profile": "accounting4_upkeep2_compound3_lp1_quality1_confirmation1",
+          "profile": "accounting4_upkeep2_compound3_lp1_quality1_confirmation2",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -838,7 +964,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting4_custody3_holder_exit_v5_confirmation1",
+          "profile": "accounting4_custody3_holder_exit_v5_confirmation2",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -886,7 +1012,9 @@
         "policy_revision": null,
         "review_hash": null,
         "observed": null,
-        "review_evidence": null
+        "review_evidence": null,
+        "reference_exit_required": true,
+        "reference_review_hash": "0x0000000000000000000000000000000000000000000000000000000000000000"
       },
       "holder_exit": {
         "observed": null,
@@ -911,6 +1039,7 @@
   "compound_capability_version": 3,
   "lp_routing_version": 1,
   "execution_quality_version": 1,
-  "rebalance_confirmation_version": 1,
-  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5"
+  "rebalance_confirmation_version": 2,
+  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5",
+  "emergency_rebalance_version": 1
 }

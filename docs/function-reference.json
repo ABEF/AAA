@@ -11,30 +11,30 @@
       "src/ZZZCanonicalHandoff.sol": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
-      "src/ZZZContributionPricing.sol": "6ef88cae05538c26f922a65f80d2ece5aca86c47db6f770aab1a2fb48d872d11",
+      "src/ZZZContributionPricing.sol": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
       "src/ZZZCustodyValidation.sol": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
-      "src/ZZZLPBalancer.sol": "6a5c5639a00fadbfddb6c3119c89ca53070ed59460549d91484f4fb6069d4b31",
+      "src/ZZZLPBalancer.sol": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
       "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
-      "src/ZZZLiquidityManager.sol": "c96633957b39e17340582bb8c4834b440112eee4d713aafb9c7f39b0018efb83",
+      "src/ZZZLiquidityManager.sol": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
-      "src/ZZZMigration.sol": "93c4f9fe3047d3386864240a4a2c8491953758f5a02524b17b0d0100018157c0",
-      "src/ZZZMigrationBudget.sol": "f45c8ef469cedb0209f2f4c3b3fdd156cc799809b958ebd79e4bdb739b975a30",
+      "src/ZZZMigration.sol": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "src/ZZZMigrationBudget.sol": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
       "src/ZZZNFT.sol": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
       "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
       "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
       "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
       "src/ZZZPoolRegistry.sol": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
-      "src/ZZZRebalanceConfirmation.sol": "663179fe6e6ba388e1150c8f2f3405ce6395fc7aeaa83ebcc40b38f524df3437",
+      "src/ZZZRebalanceConfirmation.sol": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
       "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
       "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
-      "src/ZZZStrategy.sol": "8b34a535b4172620bb7f73060f55fbe7ef4f724fbfaa5ea4649d5aa4a52ff778",
+      "src/ZZZStrategy.sol": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZVault.sol": "ad1f5e3439605d51295962743fae2e2997c5ba7824322039ffe5a20cc2ae4c99",
+      "src/ZZZVault.sol": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
       "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZModule.sol": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
@@ -48,7 +48,8 @@
       "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
       "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
       "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
-      "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2"
+      "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4"
     },
     "dependency_source_sha256": {
       "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
@@ -116,6 +117,9 @@
             "evm.bytecode.object",
             "evm.deployedBytecode.object",
             "metadata"
+          ],
+          "": [
+            "ast"
           ]
         }
       }
@@ -190,6 +194,7 @@
       "src/base/ZZZRewardConverter.sol",
       "src/interfaces/IZZZ.sol",
       "src/interfaces/IZZZCanonical.sol",
+      "src/interfaces/IZZZEmergency.sol",
       "src/interfaces/IZZZNFTCanonical.sol",
       "src/interfaces/IZZZV3Route.sol",
       "src/libraries/ExactAsset.sol",
@@ -204,9 +209,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "fe9e648d97632e13bc0e20208072700fdf9dc0aba748aa7054523f4b67d90c27",
-    "compiler_output_sha256": "a03ea7f3b3710556eb2ad6e0b91a27eee7ab73aa8e446a46e0fb707bd17906a2",
-    "size_evidence_sha256": "31315c28420ce52758e70cd647ebd78cb1ecca92b84561bb1bcb8ef669162c30",
+    "compiler_input_sha256": "db1bdeb885a5dcd62e77125faf4ac4dda58ede682487c6a5020eab2da11faf89",
+    "compiler_output_sha256": "0656f74ea416882f938843e10a4ea90fd81fdd4a6ffbc75be879f092e0802477",
+    "size_evidence_sha256": "2056cc59caa1150de70b5a5343630759cc6e78eb3d3bd71d8cd06b31d1f0c2e5",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -3964,6 +3969,25 @@
               "type": "uint256"
             }
           ],
+          "name": "compoundReady",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
           "name": "contributionNav",
           "outputs": [
             {
@@ -4071,6 +4095,106 @@
               "internalType": "uint256",
               "name": "bucket",
               "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "scale0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "scale1",
+              "type": "uint256"
+            }
+          ],
+          "name": "maintenanceValues",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "deployed",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "idle",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "markMaintenance",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "scale0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "scale1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "idle0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "idle1",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ZZZContributionPricing.MaintenanceMark",
+              "name": "mark",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
             }
           ],
           "name": "nav",
@@ -4132,7 +4256,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "c1a414984eea45f52e1f98af321ad998651ef227afff12d7851420f4ca4122b9"
+      "abi_sha256": "6252a3db4f741cb72a0b21b17cfd6668d3ce847c1af55b569beb86e4e2e9ac58"
     },
     "ZZZCustodyValidation": {
       "source": "src/ZZZCustodyValidation.sol",
@@ -5295,6 +5419,50 @@
         {
           "inputs": [
             {
+              "internalType": "uint160",
+              "name": "current",
+              "type": "uint160"
+            },
+            {
+              "internalType": "int24",
+              "name": "lower",
+              "type": "int24"
+            },
+            {
+              "internalType": "int24",
+              "name": "upper",
+              "type": "int24"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount1",
+              "type": "uint256"
+            }
+          ],
+          "name": "deploymentAmounts",
+          "outputs": [
+            {
+              "internalType": "uint128",
+              "name": "liquidity",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "nativeDebt",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "pure",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "uint256",
               "name": "index",
               "type": "uint256"
@@ -5468,6 +5636,30 @@
               "internalType": "contract IPoolManagerMinimal",
               "name": "",
               "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "principalAmounts",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "amount0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount1",
+              "type": "uint256"
             }
           ],
           "stateMutability": "view",
@@ -5748,7 +5940,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "0986f5ff749e182c9c60d0cad422b57266455826ab2179f1fd75489019aa3bfe"
+      "abi_sha256": "feebd9a794575c98a85ef84bdc5b0caf15373318b6ddf681c9c9942122390859"
     },
     "ZZZLPRewardConverter": {
       "source": "src/ZZZLPRewardConverter.sol",
@@ -6794,6 +6986,19 @@
         },
         {
           "inputs": [],
+          "name": "EMERGENCY_REBALANCE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "EXECUTION_QUALITY_VERSION",
           "outputs": [
             {
@@ -6932,6 +7137,13 @@
           "type": "function"
         },
         {
+          "inputs": [],
+          "name": "beginEmergency",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
           "inputs": [
             {
               "internalType": "bytes32",
@@ -6973,6 +7185,13 @@
             }
           ],
           "name": "collect",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "endEmergency",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -7243,7 +7462,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "519804806e46b466461a37674b14060dbae453c67bc1397c7d10ac24d4304500"
+      "abi_sha256": "6ecebfcb5d82153f845cd80504df8e86a67eafde1cbb766192082eb58f97d17c"
     },
     "ZZZMembership": {
       "source": "src/ZZZMembership.sol",
@@ -7653,6 +7872,37 @@
           "inputs": [
             {
               "indexed": true,
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint8",
+              "name": "retainedChecks",
+              "type": "uint8"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "requestHash",
+              "type": "bytes32"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "EmergencyRebalanced",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
               "internalType": "bytes32",
               "name": "requestHash",
               "type": "bytes32"
@@ -7837,6 +8087,19 @@
               "internalType": "uint8",
               "name": "",
               "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "EMERGENCY_REBALANCE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
             }
           ],
           "stateMutability": "view",
@@ -8130,6 +8393,206 @@
             }
           ],
           "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "emergencyCustodyHash",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "emergencyFingerprint",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "result",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "bucket",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "custodyHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint8",
+                  "name": "checks",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "lower",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "upper",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "swapPool",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "amountIn",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumOut",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumLiquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "deadline",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "reviewHash",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct EmergencyRebalance",
+              "name": "request",
+              "type": "tuple"
+            }
+          ],
+          "name": "emergencyRebalance",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "emergencyRequest",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "bucket",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "custodyHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint8",
+                  "name": "checks",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "lower",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "upper",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "swapPool",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "amountIn",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumOut",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumLiquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "deadline",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "reviewHash",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct EmergencyRebalance",
+              "name": "",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "emergencyTarget",
+          "outputs": [
+            {
+              "internalType": "int24",
+              "name": "",
+              "type": "int24"
+            },
+            {
+              "internalType": "int24",
+              "name": "",
+              "type": "int24"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -8501,7 +8964,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "21742035938d180d991ddb6fe07a9a91c47edf93c3f2b169f2a03b5d88fbf8d1"
+      "abi_sha256": "57a7069b69569392f18628f65532850006aacc0e1f62075d698fee612dc9f1ab"
     },
     "ZZZMigrationBudget": {
       "source": "src/ZZZMigrationBudget.sol",
@@ -8666,6 +9129,19 @@
         },
         {
           "inputs": [],
+          "name": "EMERGENCY_REBALANCE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "IDLE_COMPOUNDING_VERSION",
           "outputs": [
             {
@@ -8820,6 +9296,24 @@
             }
           ],
           "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint8",
+              "name": "checks",
+              "type": "uint8"
+            }
+          ],
+          "name": "beginEmergency",
+          "outputs": [],
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -8990,6 +9484,65 @@
               "type": "uint256"
             }
           ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "emergencyActive",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "emergencyBucket",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "emergencyChecks",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "emergencyFingerprint",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "result",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "endEmergency",
+          "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -9277,6 +9830,19 @@
         {
           "inputs": [
             {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "validateEmergency",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "address",
               "name": "sender",
               "type": "address"
@@ -9455,7 +10021,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "24b6515b9f860391ab8cb7487b5fcfa3c540545f01b330c8d5e24d14ea7bc465"
+      "abi_sha256": "759031be41cc3c3f8d684a120b2c8f7b0157619d1bef07a26a363396fe3db030"
     },
     "ZZZNFT": {
       "source": "src/ZZZNFT.sol",
@@ -13296,6 +13862,31 @@
           "type": "event"
         },
         {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "required",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint64",
+              "name": "revision",
+              "type": "uint64"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "ReferenceExitConfigured",
+          "type": "event"
+        },
+        {
           "inputs": [],
           "name": "MAX_DURATION",
           "outputs": [
@@ -13419,10 +14010,53 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "emergencyReady",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "invalidatePolicy",
           "outputs": [],
           "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "marketSides",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "name": "physical",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "referenceSide",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -13433,6 +14067,30 @@
               "internalType": "uint32",
               "name": "",
               "type": "uint32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            }
+          ],
+          "name": "observationFingerprint",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
             }
           ],
           "stateMutability": "view",
@@ -13524,6 +14182,32 @@
           "type": "function"
         },
         {
+          "inputs": [],
+          "name": "referenceReviewHash",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "requireReferenceExit",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [
             {
               "internalType": "uint256",
@@ -13550,6 +14234,24 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "bool",
+              "name": "required",
+              "type": "bool"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewed",
+              "type": "bytes32"
+            }
+          ],
+          "name": "setRequireReferenceExit",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "strategy",
           "outputs": [
@@ -13563,7 +14265,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "524af3d7a1081d62480714f0fb8f0062d55883a2e52324766fc6c999b37bdf3f"
+      "abi_sha256": "f9db9080fcacdd5a9ea2817b6cc0d54ba221c2cbbc8e019c57bf363638ef38e0"
     },
     "ZZZRewards": {
       "source": "src/ZZZRewards.sol",
@@ -16948,6 +17650,19 @@
         },
         {
           "inputs": [],
+          "name": "activeKeeperRangePolicies",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "additionalLossBps",
           "outputs": [
             {
@@ -17117,6 +17832,35 @@
             }
           ],
           "name": "minimumOutput",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "direction",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "minimumOutputForExit",
           "outputs": [
             {
               "internalType": "uint256",
@@ -17426,7 +18170,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "02940df8610db1012133f640f9e997a1ce5213a58d9db5509c19972530aca039"
+      "abi_sha256": "ecf9bafe0ab0836f3ae61851b5adca15830790ebba5bc7cd4640a7680fd2fdf0"
     },
     "ZZZV4RouteExecutor": {
       "source": "src/ZZZV4RouteExecutor.sol",
@@ -18685,6 +19429,29 @@
               "type": "uint256"
             },
             {
+              "internalType": "uint128",
+              "name": "minimumLiquidity",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            }
+          ],
+          "name": "emergencyRebalance",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
               "internalType": "uint256",
               "name": "minimumETH",
               "type": "uint256"
@@ -19130,7 +19897,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "2623895d13468789cc0df5166be0ec4c9c67a9e6754210a47fceade54ab71865"
+      "abi_sha256": "b736d5e7fc5c6703025d70a03f6dddec2f439ae490ee5adf0f09efe38c9905f2"
     },
     "ZZZVaultCanonical": {
       "source": "src/ZZZVaultCanonical.sol",
@@ -19665,7 +20432,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "bb9a7ed1e5efe5d88dad5041f6a41f559d35e32b9a5a925dacb9c87a2a8a51d5",
+  "notes_sha256": "154d4ce1581ce140b4eb80ae35666d0876ab8c8bf5a6ebc4ce770ba61aa66685",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -19731,7 +20498,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "2 identifies direct governance; this is not an upgrade of historical controllers."
             }
           ],
           "native_value": null,
@@ -19822,7 +20589,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Temporary deployment authority; address zero after seal permanently ends bootstrap configuration."
             }
           ],
           "native_value": null,
@@ -19901,7 +20668,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "The coordinator currently stored under the fixed CANONICAL module ID; no arbitrary execution target."
             }
           ],
           "native_value": null,
@@ -19924,7 +20691,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "True only while the coordinator has enabled captured source-cutoff settlement in frozen state1."
             }
           ],
           "native_value": null,
@@ -19947,7 +20714,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "Lifecycle code:0 operating,1 frozen source,2 inert importer,3 retired source,4 cancelled importer."
             }
           ],
           "native_value": null,
@@ -20011,7 +20778,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Current human-controlled governance wallet; its own authorization rules are external to this contract."
             }
           ],
           "native_value": null,
@@ -20044,7 +20811,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Recorded pause-only grant; it does not authorize unpause, governance configuration or holder claims."
             }
           ],
           "native_value": null,
@@ -20067,7 +20834,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether required module setup has been sealed and bootstrap cleared; not production qualification."
             }
           ],
           "native_value": null,
@@ -20133,7 +20900,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Recorded keeper grant only; keeperAuthorized additionally checks sealing and canonical state."
             }
           ],
           "native_value": null,
@@ -20254,7 +21021,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Global ordinary-operation pause flag; claims/transfers and explicit allowed recovery retain separate guards."
             }
           ],
           "native_value": null,
@@ -20277,7 +21044,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Proposed next wallet awaiting its own acceptance; zero means no pending proposal/cancellation."
             }
           ],
           "native_value": null,
@@ -20300,7 +21067,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether the cancellable pre-handoff preparation guard is active; not proof of source freeze or fund delivery."
             }
           ],
           "native_value": null,
@@ -20323,7 +21090,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Hash of the exact preparation notice, source controller/modules, chain and nonce; retained historical value after cancellation."
             }
           ],
           "native_value": null,
@@ -20346,7 +21113,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Monotonically incremented count/identity component of started preparation notices."
             }
           ],
           "native_value": null,
@@ -20369,7 +21136,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Announced destination chain ID; supported preparation requires this same canonical chain."
             },
             {
               "position": 1,
@@ -20378,7 +21145,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Announced successor AccessController; authenticated local importer readiness is checked separately."
             },
             {
               "position": 2,
@@ -20387,7 +21154,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Reviewed destination deployment commitment; not independent proof the replacement code is safe."
             },
             {
               "position": 3,
@@ -20396,7 +21163,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Nonzero governance review commitment for this preparation notice; not a security certificate."
             }
           ],
           "native_value": null,
@@ -20419,7 +21186,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether notice admission validated an already sealed inert local importer bound to this source; not completion of import/funding."
             }
           ],
           "native_value": null,
@@ -20442,7 +21209,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Unix timestamp in seconds of the latest started notice; there is no enforced preparation waiting period."
             }
           ],
           "native_value": null,
@@ -20488,7 +21255,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Immutable controller-created factory used to construct NFT-bound separate royalty ledgers."
             }
           ],
           "native_value": null,
@@ -20725,7 +21492,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Explicit native-ETH identity marker keccak256(ZZZ_NATIVE_ETH_V1); native ETH has no deployed bytecode."
             }
           ],
           "native_value": null,
@@ -20804,7 +21571,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Current append-only source-policy ID; zero means unset, not a healthy enabled source."
             }
           ],
           "native_value": null,
@@ -20954,7 +21721,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Actual token identity; zero denotes native ETH for an existing native policy."
             },
             {
               "position": 1,
@@ -20963,7 +21730,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether this recorded source policy enables contributions; existence/identity/prices still require validation."
             },
             {
               "position": 2,
@@ -20972,7 +21739,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Expected token runtime hash, or the explicit native identity marker; not proxy implementation attestation."
             },
             {
               "position": 3,
@@ -20981,7 +21748,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Recorded governance/admission review commitment; not proof of independent review."
             },
             {
               "position": 4,
@@ -20990,7 +21757,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "Admitted raw token precision,0..18; zero is also an unset mapping default and must not imply a valid policy."
             },
             {
               "position": 5,
@@ -20999,7 +21766,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "True if this record originated through initial authenticated pool-asset admission, rather than an explicit source-policy review."
             }
           ],
           "native_value": null,
@@ -21032,7 +21799,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Policy ID at the zero-based history index; out-of-bounds access reverts."
             }
           ],
           "native_value": null,
@@ -21055,7 +21822,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Number of append-only recorded source policies, including superseded/disabled records."
             }
           ],
           "native_value": null,
@@ -21078,7 +21845,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Immutable Registry parent authorized to initially admit its accounting pair; no custody recipient."
             }
           ],
           "native_value": null,
@@ -21375,7 +22142,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "1 identifies the signed maximum-contribution-loss policy path; no unbounded legacy execute fallback."
             }
           ],
           "native_value": null,
@@ -21421,7 +22188,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZActivationAssets",
-              "explanation": null
+              "explanation": "Immutable source-admission helper bound to this Entry and Registry."
             }
           ],
           "native_value": null,
@@ -21934,7 +22701,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Immutable Registry parent; Vault and pair bindings are revalidated through Access."
             }
           ],
           "native_value": null,
@@ -21967,7 +22734,7 @@
               "type": "tuple",
               "canonical_type": "(address,address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32)",
               "internal_type": "struct ZZZActivationEntry.RoutePolicy",
-              "explanation": null,
+              "explanation": "Recorded typed v3 RoutePolicy, in ABI order:source/output ERC20 identities; router/factory/pool; fee in millionths; runtime hashes for router/factory/pool/source/output; nonzero reviewHash. Unknown v3 route IDs revert. Recording does not itself make a current native principal conversion feasible.",
               "components": [
                 {
                   "position": 0,
@@ -22110,7 +22877,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Recorded enabled state for the route kind; dependencies, prices and current source/pair still need execution-time validation."
             }
           ],
           "native_value": null,
@@ -22143,7 +22910,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether an immutable v3 or v4 route record exists; existence does not imply it is enabled/executable."
             }
           ],
           "native_value": null,
@@ -22176,7 +22943,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "0 unknown,1 typed v3,2 typed hookless v4; historical policies are not reinterpreted."
             }
           ],
           "native_value": null,
@@ -22282,7 +23049,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZV4RouteExecutor",
-              "explanation": null
+              "explanation": "Immutable parent-bound typed v4 single-hop executor; it cannot choose an arbitrary recipient."
             }
           ],
           "native_value": null,
@@ -22315,7 +23082,7 @@
               "type": "tuple",
               "canonical_type": "(address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32)",
               "internal_type": "struct ZZZV4RouteExecutor.Policy",
-              "explanation": null,
+              "explanation": "Recorded v4 Policy:source/output identities; full ordered PoolKey(currency0,currency1,fee millionths,tickSpacing,hooks); PoolManager/StateView; source/output/manager/view runtime hashes; reviewHash. Native uses address zero and its explicit identity marker. Unknown IDs revert.",
               "components": [
                 {
                   "position": 0,
@@ -24284,6 +25051,39 @@
           "notes": null
         },
         {
+          "signature": "compoundReady(uint256)",
+          "kind": "function",
+          "name": "compoundReady",
+          "state_mutability": "view",
+          "purpose": "Evaluate the unchanged standalone compound policy for the actual fixed Budget.",
+          "access": "Actual Vault-owned Budget only; stateless read.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True only for active admitted LP after max(lastCompound,lastRebalance)+pool interval, yielding to raw rebalance/range selection."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "contributionNav(uint256)",
           "kind": "function",
           "name": "contributionNav",
@@ -24471,6 +25271,182 @@
               "canonical_type": "uint256",
               "internal_type": "uint256",
               "explanation": "Conservative historical compound USD value scaled by 1e18; excludes current pair and does not fund an entrant execution floor."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "maintenanceValues(uint256,uint256,uint256,uint256,uint256)",
+          "kind": "function",
+          "name": "maintenanceValues",
+          "state_mutability": "view",
+          "purpose": "Evaluate actual deployed LP and attributed idle at the Budget-captured starting price vector.",
+          "access": "Actual Vault-owned Budget only; stateless read.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            },
+            {
+              "position": 1,
+              "name": "price0",
+              "label": "price0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured native ETH USD1e18 price."
+            },
+            {
+              "position": 2,
+              "name": "price1",
+              "label": "price1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured ZZZ USD1e18 price."
+            },
+            {
+              "position": 3,
+              "name": "scale0",
+              "label": "scale0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured native ETH raw-token decimal scale."
+            },
+            {
+              "position": 4,
+              "name": "scale1",
+              "label": "scale1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured ZZZ raw-token decimal scale."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "deployed",
+              "label": "deployed",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Deployed principal value in USD1e18 using exact actual LP amounts."
+            },
+            {
+              "position": 1,
+              "name": "idle",
+              "label": "idle",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Attributed idle value in USD1e18; not a fresh repriced loss denominator."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "markMaintenance(uint256)",
+          "kind": "function",
+          "name": "markMaintenance",
+          "state_mutability": "view",
+          "purpose": "Read starting attributed principal/idle value and exact fresh price vector for the fixed Budget snapshot.",
+          "access": "Actual Vault-owned Budget only; stateless read.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "mark",
+              "label": "mark",
+              "type": "tuple",
+              "canonical_type": "(uint256,uint256,uint256,uint256,uint256,uint256,uint256)",
+              "internal_type": "struct ZZZContributionPricing.MaintenanceMark",
+              "explanation": "MaintenanceMark(value in USD1e18,price0,price1 in USD1e18,scale0,scale1 token decimals scales,idle0,idle1 raw attributed amounts). Excludes unclassified donations/reward reserves.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "value",
+                  "label": "value",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "price0",
+                  "label": "price0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "price1",
+                  "label": "price1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "scale0",
+                  "label": "scale0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "scale1",
+                  "label": "scale1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "idle0",
+                  "label": "idle0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "idle1",
+                  "label": "idle1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                }
+              ]
             }
           ],
           "native_value": null,
@@ -24740,7 +25716,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "1 identifies Vault-authenticated actual local LP fee intake; creator/bridge payment-intake profiles are absent."
             }
           ],
           "native_value": null,
@@ -25946,6 +26922,84 @@
           "notes": "More search may cost more gas. Qualify exact settings/depth/provider gas; this is not an economic safety guarantee."
         },
         {
+          "signature": "deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "kind": "function",
+          "name": "deploymentAmounts",
+          "state_mutability": "pure",
+          "purpose": "Share exact v4 LiquidityAmounts and upward native-debt rounding with the immutable parent Manager.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "current",
+              "label": "current",
+              "type": "uint160",
+              "canonical_type": "uint160",
+              "internal_type": "uint160",
+              "explanation": "Actual sqrt(token1/token0) Q96, not USD."
+            },
+            {
+              "position": 1,
+              "name": "lower",
+              "label": "lower",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Lower physical raw tick."
+            },
+            {
+              "position": 2,
+              "name": "upper",
+              "label": "upper",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Upper physical raw tick."
+            },
+            {
+              "position": 3,
+              "name": "amount0",
+              "label": "amount0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Native ETH budget in wei."
+            },
+            {
+              "position": 4,
+              "name": "amount1",
+              "label": "amount1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "ZZZ budget in raw units."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "liquidity",
+              "label": "liquidity",
+              "type": "uint128",
+              "canonical_type": "uint128",
+              "internal_type": "uint128",
+              "explanation": "Maximum raw Uniswap liquidity supported by budgets at the supplied mark."
+            },
+            {
+              "position": 1,
+              "name": "nativeDebt",
+              "label": "nativeDebt",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact rounded-up native debt for that liquidity; no transfer or authority."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "executionPoolAt(uint256)",
           "kind": "function",
           "name": "executionPoolAt",
@@ -26259,6 +27313,48 @@
               "canonical_type": "address",
               "internal_type": "contract IPoolManagerMinimal",
               "explanation": "PoolManager address; authenticate reviewed runtime and parent binding."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "principalAmounts(uint256)",
+          "kind": "function",
+          "name": "principalAmounts",
+          "state_mutability": "view",
+          "purpose": "Read actual current principal token amounts through the fixed parent Manager/PosM/StateView.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "id",
+              "label": "id",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Physical Uniswap LP NFT ID, not PoPL NFT or bucket ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "amount0",
+              "label": "amount0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Native ETH principal in wei, rounded down under the actual v4 mark."
+            },
+            {
+              "position": 1,
+              "name": "amount1",
+              "label": "amount1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "ZZZ principal in raw units, rounded down; excludes uncollected fees."
             }
           ],
           "native_value": null,
@@ -28042,6 +29138,29 @@
           "notes": null
         },
         {
+          "signature": "EMERGENCY_REBALANCE_VERSION()",
+          "kind": "function",
+          "name": "EMERGENCY_REBALANCE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit manual paused-governance recovery capability.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh source; never relabel historical runtimes."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "EXECUTION_QUALITY_VERSION()",
           "kind": "function",
           "name": "EXECUTION_QUALITY_VERSION",
@@ -28287,6 +29406,19 @@
           "notes": null
         },
         {
+          "signature": "beginEmergency()",
+          "kind": "function",
+          "name": "beginEmergency",
+          "state_mutability": "nonpayable",
+          "purpose": "Adopt the actual Vault-owned Budget context for the Vault atomic manual wrapper.",
+          "access": "Actual sealed Vault module only; no prior Manager context and a valid paused Budget emergency. Nonreentrant.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "close(bytes32,uint256,uint256)",
           "kind": "function",
           "name": "close",
@@ -28367,6 +29499,19 @@
           "outputs": [],
           "native_value": null,
           "notes": "Does not itself allocate holder rewards or permit principal redemption."
+        },
+        {
+          "signature": "endEmergency()",
+          "kind": "function",
+          "name": "endEmergency",
+          "state_mutability": "nonpayable",
+          "purpose": "Validate and clear Manager temporary context after the same atomic Vault operation.",
+          "access": "Actual Vault module only; valid scoped paused Budget context. Nonreentrant.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "increase(bytes32,uint256,uint256,uint256,uint128,uint256)",
@@ -29156,7 +30301,7 @@
     {
       "name": "ZZZMigration",
       "source": "src/ZZZMigration.sol",
-      "purpose": "Governed same-pair movement/local parking while operating, or irreversible collective ETH+ZZZ principal settlement to current NFT holders. No external custody address, consolidation exit or sweep.",
+      "purpose": "Governed same-pair movement/local parking while operating, or irreversible collective ETH+ZZZ principal settlement to current NFT holders. No external custody address, consolidation exit or sweep. Separate manual paused-governance emergency rebalance retains explicit checks; disabled financial guards can permit near-total economic loss without changing recipients or NFT shares.",
       "category": "Project contract",
       "functions": [
         {
@@ -29200,6 +30345,29 @@
               "canonical_type": "uint8",
               "internal_type": "uint8",
               "explanation": "3; custody2 external-recipient request/status APIs are not present."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "EMERGENCY_REBALANCE_VERSION()",
+          "kind": "function",
+          "name": "EMERGENCY_REBALANCE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit manual paused-governance recovery capability.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh source; never relabel historical runtimes."
             }
           ],
           "native_value": null,
@@ -29716,6 +30884,360 @@
           ],
           "native_value": null,
           "notes": "The caller cannot choose recipients. Each ETH+ZZZ payment is atomic with a180000gas inner budget. Receiver failure emits PrincipalDeferred and preserves that entitlement; low outer gas stops before another attempt. No automatic retry or expiry."
+        },
+        {
+          "signature": "emergencyCustodyHash(uint256)",
+          "kind": "function",
+          "name": "emergencyCustodyHash",
+          "state_mutability": "view",
+          "purpose": "Read the exact physical/accounting identity to review for one emergency operation.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "keccak256(chainid,Vault,bucket,full Position,total shares). Contributions/park/move/idle/share changes invalidate it; price changes alone do not."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "emergencyFingerprint()",
+          "kind": "function",
+          "name": "emergencyFingerprint",
+          "state_mutability": "view",
+          "purpose": "Read the stored emergency manifest, current governance and monotonic Registry controls, adding source/quality pins when retained.",
+          "access": "Only the actual Vault-owned Budget during a validated emergency context.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "result",
+              "label": "result",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Context hash; invalid context rejects. Retained sampled policy/raw record is additionally pinned by Budget."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "emergencyRebalance((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))",
+          "kind": "function",
+          "name": "emergencyRebalance",
+          "state_mutability": "nonpayable",
+          "purpose": "Manually close/optionally swap/redeploy one shared LP while globally paused, under an exact custody-bound manifest.",
+          "access": "Current governance only; sealed/paused, operating, no canonical preparation/import/retirement or terminal LP exit. Nonreentrant; not a keeper fallback.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "request",
+              "label": "request",
+              "type": "tuple",
+              "canonical_type": "(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)",
+              "internal_type": "struct EmergencyRebalance",
+              "explanation": "EmergencyRebalance in exact ABI order: bucket(shared custody ID); custodyHash(current chain/Vault/full Position/total-share review hash); checks(retained bits1=raw trigger/cooldown,2=price agreement,4=financial loss/idle/quality,8=operations flag,16=sampled confirmation;0..31); lower/upper(raw spaced physical ticks, lower<upper); swapPool(admitted native ETH/ZZZ venue or zero for no swap); zeroForOne(true sells ETH); amountIn(exact raw swap input, zero=no swap); minimumOut(positive raw output if swapping, zero without swap); minimumLiquidity(positive raw LP floor); deadline(now..now+600); reviewHash(nonzero exact review commitment). No swap requires swapPool and minimumOut zero; amounts fit positive signed-int128 deltas. Disabled financial checks can lose almost all principal.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "bucket",
+                  "label": "bucket",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "custodyHash",
+                  "label": "custodyHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "checks",
+                  "label": "checks",
+                  "type": "uint8",
+                  "canonical_type": "uint8",
+                  "internal_type": "uint8",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lower",
+                  "label": "lower",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "upper",
+                  "label": "upper",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "swapPool",
+                  "label": "swapPool",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "minimumLiquidity",
+                  "label": "minimumLiquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 10,
+                  "name": "deadline",
+                  "label": "deadline",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 11,
+                  "name": "reviewHash",
+                  "label": "reviewHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Nonpayable; submitting governance wallet/Safe pays gas. Structural fixed assets/admitted venues/Vault custody/exact deltas/shares/reward reserves remain; per-call optional financial bypass is an explicit governance trust expansion. Full failure rolls back state; gas is spent. Event records retained mask and exact request/review commitment. Context is cleared on success; system remains paused."
+        },
+        {
+          "signature": "emergencyRequest()",
+          "kind": "function",
+          "name": "emergencyRequest",
+          "state_mutability": "view",
+          "purpose": "Inspect the temporary emergency request; zero fields outside its atomic call.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "tuple",
+              "canonical_type": "(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)",
+              "internal_type": "struct EmergencyRebalance",
+              "explanation": "EmergencyRebalance in exact ABI order: bucket(shared custody ID); custodyHash(current chain/Vault/full Position/total-share review hash); checks(retained bits1=raw trigger/cooldown,2=price agreement,4=financial loss/idle/quality,8=operations flag,16=sampled confirmation;0..31); lower/upper(raw spaced physical ticks, lower<upper); swapPool(admitted native ETH/ZZZ venue or zero for no swap); zeroForOne(true sells ETH); amountIn(exact raw swap input, zero=no swap); minimumOut(positive raw output if swapping, zero without swap); minimumLiquidity(positive raw LP floor); deadline(now..now+600); reviewHash(nonzero exact review commitment). No swap requires swapPool and minimumOut zero; amounts fit positive signed-int128 deltas. Disabled financial checks can lose almost all principal.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "bucket",
+                  "label": "bucket",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "custodyHash",
+                  "label": "custodyHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "checks",
+                  "label": "checks",
+                  "type": "uint8",
+                  "canonical_type": "uint8",
+                  "internal_type": "uint8",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lower",
+                  "label": "lower",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "upper",
+                  "label": "upper",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "swapPool",
+                  "label": "swapPool",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "minimumLiquidity",
+                  "label": "minimumLiquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 10,
+                  "name": "deadline",
+                  "label": "deadline",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 11,
+                  "name": "reviewHash",
+                  "label": "reviewHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "emergencyTarget()",
+          "kind": "function",
+          "name": "emergencyTarget",
+          "state_mutability": "view",
+          "purpose": "Inspect explicit raw physical target ticks from the temporary request.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Lower raw tick; zero outside a request."
+            },
+            {
+              "position": 1,
+              "name": "",
+              "label": "output1",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Upper raw tick; zero outside a request."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "exitMintedCount()",
@@ -30429,6 +31951,29 @@
           "notes": null
         },
         {
+          "signature": "EMERGENCY_REBALANCE_VERSION()",
+          "kind": "function",
+          "name": "EMERGENCY_REBALANCE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit manual paused-governance recovery capability.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh source; never relabel historical runtimes."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "IDLE_COMPOUNDING_VERSION()",
           "kind": "function",
           "name": "IDLE_COMPOUNDING_VERSION",
@@ -30479,7 +32024,7 @@
           "kind": "function",
           "name": "REBALANCE_CONFIRMATION_VERSION",
           "state_mutability": "view",
-          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "purpose": "Read explicit sampled independent-reference confirmation capability2.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -30491,7 +32036,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
+              "explanation": "2 in this fresh source; legacy confirmation1 runtimes/readers remain separate."
             }
           ],
           "native_value": null,
@@ -30705,6 +32250,38 @@
               "explanation": "Manager execution context hash; never an execution permission."
             }
           ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "beginEmergency(uint256,uint8)",
+          "kind": "function",
+          "name": "beginEmergency",
+          "state_mutability": "nonpayable",
+          "purpose": "Arm a temporary bucket/governance-scoped emergency context.",
+          "access": "Fixed Migration module only; sealed/paused/operating, no existing context/snapshot and no preparation/terminal exit.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            },
+            {
+              "position": 1,
+              "name": "checks",
+              "label": "checks",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Per-call retained-check bit mask0..31 validated by the fixed Migration entry; no persistent policy change."
+            }
+          ],
+          "outputs": [],
           "native_value": null,
           "notes": null
         },
@@ -31008,6 +32585,111 @@
           ],
           "native_value": null,
           "notes": "Excludes incumbent principal/idle/historical compound subsidies; closes the matching pricing context. Returns: Issued nonredeemable shares and verified netUSD in USD18."
+        },
+        {
+          "signature": "emergencyActive()",
+          "kind": "function",
+          "name": "emergencyActive",
+          "state_mutability": "view",
+          "purpose": "Read whether the one atomic emergency context is armed.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "Boolean; must be false outside the atomic call and in a release inventory."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "emergencyBucket()",
+          "kind": "function",
+          "name": "emergencyBucket",
+          "state_mutability": "view",
+          "purpose": "Read the currently scoped emergency custody bucket.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Bucket ID; zero outside an emergency."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "emergencyChecks()",
+          "kind": "function",
+          "name": "emergencyChecks",
+          "state_mutability": "view",
+          "purpose": "Read the retained-check mask of the current atomic emergency.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Bits1/2/4/8/16; zero outside context is not permission to bypass anything."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "emergencyFingerprint()",
+          "kind": "function",
+          "name": "emergencyFingerprint",
+          "state_mutability": "view",
+          "purpose": "Read current validated manifest/control hash, including sampled policy/raw evidence if retained even with value checks off.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "result",
+              "label": "result",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Stable hash for complete emergency callbacks/LP replacement; invalid context rejects."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "endEmergency()",
+          "kind": "function",
+          "name": "endEmergency",
+          "state_mutability": "nonpayable",
+          "purpose": "Validate completion and clear all temporary emergency bucket/mask/governance state.",
+          "access": "Fixed Migration module only, validated active context and no unfinished value snapshot.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "historicalCompoundValue(uint256)",
@@ -31505,6 +33187,29 @@
           "notes": "Delegates fixed ownership/custody checks, then starts the immutable pricing companion context. Returns: Ordered actual pair addresses plus packed uint32 limits: low16 venue, high16 captured contribution bps."
         },
         {
+          "signature": "validateEmergency(uint256)",
+          "kind": "function",
+          "name": "validateEmergency",
+          "state_mutability": "view",
+          "purpose": "Reject an inactive/foreign bucket or changed governance/pause/seal/canonical/terminal lifecycle.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Read-only validation; no context is created and no execution authority is granted."
+        },
+        {
           "signature": "validateLPReceiver(address)",
           "kind": "function",
           "name": "validateLPReceiver",
@@ -31879,7 +33584,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "50 maximum mint ordinals in one inclusive refresh range; ordinals are resolved to actual hashed token IDs."
             }
           ],
           "native_value": null,
@@ -31902,7 +33607,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "1000 maximum NFTs; exact600/300/100 rarity totals apply when the whole collection is minted and finalized."
             }
           ],
           "native_value": null,
@@ -32003,7 +33708,7 @@
               "type": "string",
               "canonical_type": "string",
               "internal_type": "string",
-              "explanation": null
+              "explanation": "Configured immutable-content image root; may be empty in an unconfigured draft. Scheme acceptance alone does not qualify CID/content availability."
             }
           ],
           "native_value": null,
@@ -32036,7 +33741,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Current count of this collection NFTs owned by the nonzero address; not shares, LP value or reward entitlement."
             }
           ],
           "native_value": null,
@@ -32059,7 +33764,7 @@
               "type": "uint32",
               "canonical_type": "uint32",
               "internal_type": "uint32",
-              "explanation": null
+              "explanation": "Configured uint32 gas budget for future VRF requests; existing requests retain their submitted settings."
             }
           ],
           "native_value": null,
@@ -32124,7 +33829,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Seal-bound NFT canonical codec module resolved through Access; not an arbitrary migration executor."
             }
           ],
           "native_value": null,
@@ -32238,7 +33943,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "NFT module address of that immediate successor controller; zero before retirement. It is not an approval or automatic escrow-release guarantee."
             }
           ],
           "native_value": null,
@@ -32485,7 +34190,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZClaimRouter",
-              "explanation": null
+              "explanation": "Immutable owner-authenticated batch helper; ledgers pay current owners directly and the router holds no funds."
             }
           ],
           "native_value": null,
@@ -32518,7 +34223,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "Primary palette color index0..7 for revealed traits; consult traitsReady before interpreting mapping defaults."
             }
           ],
           "native_value": null,
@@ -32726,7 +34431,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Single-token ERC721 transfer approval, or zero; does not authorize reward/principal claims as owner."
             }
           ],
           "native_value": null,
@@ -32768,7 +34473,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "ERC721 operator transfer approval; does not confer owner-only contribution or claim authority."
             }
           ],
           "native_value": null,
@@ -32791,7 +34496,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Immutable configured VRF lane/key identifier; provider proof/network/subscription qualification is external."
             }
           ],
           "native_value": null,
@@ -32814,7 +34519,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZNFTMetadata",
-              "explanation": null
+              "explanation": "Immutable read-only rendering/NAV helper; it cannot change custody or eligibility."
             }
           ],
           "native_value": null,
@@ -32879,7 +34584,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "One-based original mint ordinal of the token; zero denotes unknown/unminted."
             }
           ],
           "native_value": null,
@@ -32902,7 +34607,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Mint-only stop flag; existing transfers, reward rights and LP maintenance have independent controls."
             }
           ],
           "native_value": null,
@@ -32925,7 +34630,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Number minted so far, at most1000; does not imply all requests have finalized or all NFTs activated."
             }
           ],
           "native_value": null,
@@ -32948,7 +34653,7 @@
               "type": "string",
               "canonical_type": "string",
               "internal_type": "string",
-              "explanation": null
+              "explanation": "ERC721 collection name string; not an asset identity or deployment authenticity check."
             }
           ],
           "native_value": null,
@@ -32971,7 +34676,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether future VRF requests use native provider billing; unrelated to principal contribution currency."
             }
           ],
           "native_value": null,
@@ -32994,7 +34699,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "One-based ordinal that must reveal next; starts1 and becomes mintedCount+1 once all minted requests finalize."
             }
           ],
           "native_value": null,
@@ -33050,7 +34755,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Actual current ERC721 owner; nonexistent tokens revert. That owner inherits unclaimed rights."
             }
           ],
           "native_value": null,
@@ -33083,7 +34788,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "Immutable palette index0..57 after reveal; consult traitsReady before interpreting zero."
             }
           ],
           "native_value": null,
@@ -33116,7 +34821,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "Immutable circuit-pattern index0..3 after reveal; consult traitsReady before interpreting zero."
             }
           ],
           "native_value": null,
@@ -33139,7 +34844,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether one-time pre-seal coordinator/lane/subscription settings were populated; not actual VRF availability qualification."
             }
           ],
           "native_value": null,
@@ -33162,7 +34867,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Fixed configured coordinator authorized to deliver request-bound words; zero before configuration."
             }
           ],
           "native_value": null,
@@ -33185,7 +34890,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Current request namespace, initially zero and incremented on canonical import to separate future request IDs."
             }
           ],
           "native_value": null,
@@ -33218,7 +34923,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "Revealed rarity index0 Commun/1 Rare/2 Legendary; royalty weight is index+1 only after activation."
             }
           ],
           "native_value": null,
@@ -33251,7 +34956,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": null
+              "explanation": "Remaining no-replacement quota at rarity array index0/1/2; includes inventory not yet minted/revealed."
             }
           ],
           "native_value": null,
@@ -33361,7 +35066,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Total remaining draw inventory across the1000-item collection, including unminted slots."
             }
           ],
           "native_value": null,
@@ -33384,7 +35089,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": null
+              "explanation": "Configured confirmation count for future VRF requests;3..200, not chain finality proof."
             }
           ],
           "native_value": null,
@@ -33417,7 +35122,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Request namespace assigned to this NFT; zero is valid for the initial epoch and also an unset mapping default."
             }
           ],
           "native_value": null,
@@ -33450,7 +35155,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Provider request ID for the NFT; zero is unrequested/unminted, not a fulfilled draw."
             }
           ],
           "native_value": null,
@@ -33524,7 +35229,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZRoyaltyRewards",
-              "explanation": null
+              "explanation": "Immutable separate funded royalty ledger/receiver; distinct from LP fees, principal and mint proceeds."
             }
           ],
           "native_value": null,
@@ -33748,7 +35453,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Fixed configured VRF subscription identifier; not a balance or provider-support guarantee."
             }
           ],
           "native_value": null,
@@ -33804,7 +35509,7 @@
               "type": "string",
               "canonical_type": "string",
               "internal_type": "string",
-              "explanation": null
+              "explanation": "ERC721 collection symbol string; never token or deployment authentication."
             }
           ],
           "native_value": null,
@@ -33837,7 +35542,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Actual token ID at a one-based original mint ordinal; zero for absent ordinal, IDs are not sequential ordinals."
             }
           ],
           "native_value": null,
@@ -33903,7 +35608,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether authenticated ordered trait finalization completed; false also covers absent token mapping defaults."
             }
           ],
           "native_value": null,
@@ -34468,7 +36173,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Domain separator for chain/oracle/policy/round fingerprints; not proof the feeds are independent."
             }
           ],
           "native_value": null,
@@ -34491,7 +36196,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": null
+              "explanation": "500bps(5%) hard maximum configurable two-source disagreement; selected tolerance is separately reviewed."
             }
           ],
           "native_value": null,
@@ -34514,7 +36219,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "2 identifies dual USD bounds and frozen contribution pricing semantics."
             }
           ],
           "native_value": null,
@@ -34537,7 +36242,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "3600 seconds required since a configured sequencer returned to up; not a recurring heartbeat age."
             }
           ],
           "native_value": null,
@@ -34560,7 +36265,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "500000 maximum gas forwarded per bounded decimals/round read; not an observed real provider cost."
             }
           ],
           "native_value": null,
@@ -34616,7 +36321,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Current append-only dual USD policy ID; zero means no admitted price policy."
             }
           ],
           "native_value": null,
@@ -34639,7 +36344,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Current uptime-policy ID; zero if none has been installed, not a healthy observation."
             }
           ],
           "native_value": null,
@@ -34662,7 +36367,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZContributionPricing",
-              "explanation": null
+              "explanation": "Immutable Oracle-created noncustodial accounting companion for frozen contribution vectors and maintenance valuation."
             }
           ],
           "native_value": null,
@@ -34695,7 +36400,7 @@
               "type": "tuple",
               "canonical_type": "(address,(address,bytes32,bytes32,uint32,uint8),(address,bytes32,bytes32,uint32,uint8),uint16,uint8,bytes32)",
               "internal_type": "struct ZZZOracle.DualPolicy",
-              "explanation": null,
+              "explanation": "Recorded DualPolicy:asset; primary/secondary SourcePolicy(source,expectedCodeHash,independenceId,maxAge seconds,feedDecimals); maxDeviationBps; assetDecimals; reviewHash. Unknown IDs return zero fields, which do not establish admissibility or independence.",
               "components": [
                 {
                   "position": 0,
@@ -34878,7 +36583,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Dual-policy ID at a zero-based history index; out-of-bounds index reverts."
             }
           ],
           "native_value": null,
@@ -34901,7 +36606,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Number of recorded dual USD policies, including superseded ones."
             }
           ],
           "native_value": null,
@@ -35101,7 +36806,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Configured uptime source address, zero when absent initially; an installed safeguard has no remove-to-zero setter."
             }
           ],
           "native_value": null,
@@ -35134,7 +36839,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Recorded uptime source address; zero fields may be an unknown policy."
             },
             {
               "position": 1,
@@ -35143,7 +36848,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Recorded expected outer runtime hash; not proof against every proxy/upstream change."
             },
             {
               "position": 2,
@@ -35152,7 +36857,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Recorded review commitment; not a qualification certificate."
             },
             {
               "position": 3,
@@ -35161,7 +36866,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "True when recorded through constructor bootstrap admission rather than an explicit governed replacement."
             }
           ],
           "native_value": null,
@@ -35194,7 +36899,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Uptime-policy ID at a zero-based append-only history index; bounds are checked by array access."
             }
           ],
           "native_value": null,
@@ -35217,7 +36922,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "Number of recorded uptime policies, including superseded ones."
             }
           ],
           "native_value": null,
@@ -35464,7 +37169,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "Stored admitted raw asset precision0..18; native ETH is18. This getter rejects missing policy; priceBounds separately checks live ERC20 precision has not changed."
             }
           ],
           "native_value": null,
@@ -35560,7 +37265,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Fixed initial ETH/ZZZ launch PoolKey hash; additional admitted same-native-pair fee tiers remain governed."
             }
           ],
           "native_value": null,
@@ -35778,7 +37483,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZActivationAssets",
-              "explanation": null
+              "explanation": "Immutable factory-created source-admission helper for this Registry."
             }
           ],
           "native_value": null,
@@ -35801,7 +37506,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZActivationEntry",
-              "explanation": null
+              "explanation": "Immutable Registry-created owner-funded reviewed contribution entrypoint."
             }
           ],
           "native_value": null,
@@ -36051,7 +37756,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Sole pool ID enabled for new contributions, or zero when stopped; historical accounting pools remain separately registered."
             }
           ],
           "native_value": null,
@@ -36176,7 +37881,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": null
+              "explanation": "Whether this PoolKey identity was admitted; live runtime/wiring/prices/operations may still fail."
             }
           ],
           "native_value": null,
@@ -36489,7 +38194,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": null
+              "explanation": "300bps(3%) hard maximum configured confidence-width fraction of positive Pyth price."
             }
           ],
           "native_value": null,
@@ -36512,7 +38217,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "300000 gas ceiling for the exact128-byte getPriceUnsafe response; no update transaction is submitted."
             }
           ],
           "native_value": null,
@@ -36535,7 +38240,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": null
+              "explanation": "Immutable reviewed Pyth Core source address; upstream proxy controls remain an external qualification."
             }
           ],
           "native_value": null,
@@ -36558,7 +38263,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "AggregatorV3-shaped precision equal to minus expectedExponent,0..18; observation values retain that scale."
             }
           ],
           "native_value": null,
@@ -36581,7 +38286,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Immutable expected outer source runtime hash checked on each observation."
             }
           ],
           "native_value": null,
@@ -36604,7 +38309,7 @@
               "type": "int32",
               "canonical_type": "int32",
               "internal_type": "int32",
-              "explanation": null
+              "explanation": "Immutable accepted Pyth decimal exponent in[-18,0]; changed exponent rejects rather than rescaling silently."
             }
           ],
           "native_value": null,
@@ -36627,7 +38332,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Immutable nonzero Pyth feed identifier, not a token symbol or proof of market independence."
             }
           ],
           "native_value": null,
@@ -36709,7 +38414,7 @@
               "type": "uint32",
               "canonical_type": "uint32",
               "internal_type": "uint32",
-              "explanation": null
+              "explanation": "Immutable allowed observation age in seconds, positive and at most86400; publishTime supplies age."
             }
           ],
           "native_value": null,
@@ -36732,7 +38437,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": null
+              "explanation": "Immutable allowed confidence/positive-price ratio in basis points,0..300; zero requires zero confidence width."
             }
           ],
           "native_value": null,
@@ -36755,7 +38460,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Immutable nonzero source/feed/config review commitment; not proof the source is healthy or independent."
             }
           ],
           "native_value": null,
@@ -36820,7 +38525,7 @@
           "kind": "function",
           "name": "REBALANCE_CONFIRMATION_VERSION",
           "state_mutability": "view",
-          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "purpose": "Read explicit sampled independent-reference confirmation capability2.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -36832,7 +38537,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
+              "explanation": "2 in this fresh source; legacy confirmation1 runtimes/readers remain separate."
             }
           ],
           "native_value": null,
@@ -36910,7 +38615,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Sealed unpaused normal principal operation and the bound Strategy are required for a candidate. Faulty/inconsistent underlying reads can revert. Normal healthy feed rounds and balances do not reset identity; policy/revision/physical LP changes do."
+          "notes": "Sealed unpaused normal principal operation and the bound Strategy are required for a candidate. Faulty/inconsistent underlying reads can revert. Normal healthy feed rounds and balances do not reset identity; policy/revision/physical LP changes do. Fresh confirmation2 ordinarily requires physical/reference exit on the same side of actual LP bounds. Reviewed relaxation invalidates samples; automatic widths cannot coexist with enabled protection. Manual governance widths retain their cooldown exception."
         },
         {
           "signature": "configure(uint32,uint32,bytes32)",
@@ -37010,6 +38715,39 @@
           "notes": null
         },
         {
+          "signature": "emergencyReady(uint256)",
+          "kind": "function",
+          "name": "emergencyReady",
+          "state_mutability": "view",
+          "purpose": "Evaluate existing still-fresh sampled readiness during a validated paused manual emergency, without recording observations.",
+          "access": "Actual Vault-owned Budget only, globally paused and valid same-bucket context.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True for qualifying samples or established deliberate-width exception after raw guards. Pause does not stop expiry; no new observations are created."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "invalidatePolicy()",
           "kind": "function",
           "name": "invalidatePolicy",
@@ -37021,6 +38759,48 @@
           "outputs": [],
           "native_value": null,
           "notes": "Emits ConfirmationInvalidated. Old stored samples remain visible but their identity cannot match the new revision; governance/keepers cannot call this entry directly. This grants no post-exit configure, observation, reset or LP operation."
+        },
+        {
+          "signature": "marketSides(uint256)",
+          "kind": "function",
+          "name": "marketSides",
+          "state_mutability": "view",
+          "purpose": "Explain physical and configured independent-reference sides against identical actual LP tick bounds at the current read.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "physical",
+              "label": "physical",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Physical side0=inside,1=below,2=above; upper boundary exclusive, raw pool-key orientation."
+            },
+            {
+              "position": 1,
+              "name": "referenceSide",
+              "label": "referenceSide",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Independent Oracle reference side0/1/2 in the same raw bounds. Failed/missing price rejects; not readiness or a newly qualified deeper-market feed."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "maxObservationGap()",
@@ -37040,6 +38820,48 @@
               "canonical_type": "uint32",
               "internal_type": "uint32",
               "explanation": "Seconds;0 is stopped/unconfigured. A positive value is at most duration/2. Intended900/300 policy has no grace; a gap greater than300 restarts."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "observationFingerprint(uint256,bytes32)",
+          "kind": "function",
+          "name": "observationFingerprint",
+          "state_mutability": "view",
+          "purpose": "Hash stable Registry/source/quality/confirmation controls together with the raw recorded observation tuple.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            },
+            {
+              "position": 1,
+              "name": "poolId",
+              "label": "poolId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted static hookless native ETH/fixed-ZZZ PoolId in canonical raw order."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact hash of controls,identity,firstSeen,lastSeen,side; deliberately not readiness against a newly replaced LP identity."
             }
           ],
           "native_value": null,
@@ -37192,7 +39014,53 @@
             }
           ],
           "native_value": null,
-          "notes": "Dependency/read faults revert. Raw cooldown/price/lifecycle checks remain; no guarantee of future inclusion or continuous price history."
+          "notes": "Dependency/read faults revert. Raw cooldown/price/lifecycle checks remain; no guarantee of future inclusion or continuous price history. Fresh confirmation2 ordinarily requires physical/reference exit on the same side of actual LP bounds. Reviewed relaxation invalidates samples; automatic widths cannot coexist with enabled protection. Manual governance widths retain their cooldown exception."
+        },
+        {
+          "signature": "referenceReviewHash()",
+          "kind": "function",
+          "name": "referenceReviewHash",
+          "state_mutability": "view",
+          "purpose": "Read the governance commitment for the independent-reference policy.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Zero at default true construction; changing/relaxing policy requires a nonzero commitment, not proof of review quality."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "requireReferenceExit()",
+          "kind": "function",
+          "name": "requireReferenceExit",
+          "state_mutability": "view",
+          "purpose": "Read whether ordinary samples additionally require independent-reference exit on the same side of actual physical LP bounds.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "Default true. False requires explicit governed review, invalidates old samples and relaxes manipulation protection."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "resetObservation(uint256)",
@@ -37239,6 +39107,38 @@
           ],
           "native_value": null,
           "notes": null
+        },
+        {
+          "signature": "setRequireReferenceExit(bool,bytes32)",
+          "kind": "function",
+          "name": "setRequireReferenceExit",
+          "state_mutability": "nonpayable",
+          "purpose": "Set reviewed independent-reference corroboration policy and monotonically invalidate old samples.",
+          "access": "Governance or valid pre-seal bootstrap via canConfigure; operating canonical lifecycle and before terminal principal exit.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "required",
+              "label": "required",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True requires physical/reference same-side exit; it also requires Strategy.activeKeeperRangePolicies()==0. False explicitly relaxes that rule."
+            },
+            {
+              "position": 1,
+              "name": "reviewed",
+              "label": "reviewed",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero reviewed policy/evidence commitment."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Cannot coexist with automatic keeper width policies while true; deliberate governance width changes retain the existing cooldown exception. No financial execution guard is disabled by this setter."
         },
         {
           "signature": "strategy()",
@@ -41604,7 +43504,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": null
+              "explanation": "1 identifies explicit raw/inverse range-orientation and optional governed keeper-width policy semantics."
             }
           ],
           "native_value": null,
@@ -41615,7 +43515,7 @@
           "kind": "function",
           "name": "REBALANCE_CONFIRMATION_VERSION",
           "state_mutability": "view",
-          "purpose": "Read explicit sampled rebalance-confirmation capability1; raw maintenance policy2 and compound capability3 keep separate meanings.",
+          "purpose": "Read explicit sampled independent-reference confirmation capability2.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -41627,7 +43527,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1 for this fresh implementation; historical deployments are not upgraded by a config field."
+              "explanation": "2 in this fresh source; legacy confirmation1 runtimes/readers remain separate."
             }
           ],
           "native_value": null,
@@ -41651,6 +43551,29 @@
               "canonical_type": "address",
               "internal_type": "contract IZZZAccess",
               "explanation": "Controller address; not a treasury or royalty payout address."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "activeKeeperRangePolicies()",
+          "kind": "function",
+          "name": "activeKeeperRangePolicies",
+          "state_mutability": "view",
+          "purpose": "Read the exact count of enabled optional automatic keeper-width policies.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Count across admitted policies. Reconfiguration is not another policy; disabling/orientation invalidation decrements. Must be zero to enable reference-exit protection."
             }
           ],
           "native_value": null,
@@ -41840,7 +43763,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": null
+              "explanation": "Narrowing trigger in basis points of reference-price displacement from recorded centre; not LP exit eligibility."
             },
             {
               "position": 2,
@@ -41849,7 +43772,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": null
+              "explanation": "Widening trigger in basis points of reference-price displacement from recorded centre; not the removed movement rebalance trigger."
             },
             {
               "position": 3,
@@ -41858,7 +43781,7 @@
               "type": "uint32",
               "canonical_type": "uint32",
               "internal_type": "uint32",
-              "explanation": null
+              "explanation": "Minimum seconds between automatic width selections, separately constrained to at least the pool hard rebalance interval."
             },
             {
               "position": 4,
@@ -41867,7 +43790,7 @@
               "type": "uint64",
               "canonical_type": "uint64",
               "internal_type": "uint64",
-              "explanation": null
+              "explanation": "Unix timestamp seconds of last width-policy setup/selection; not last compound time."
             },
             {
               "position": 5,
@@ -41876,7 +43799,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Hash of admitted pool configuration with rangeBps excluded plus orientation; detects incompatible policy configuration changes."
             },
             {
               "position": 6,
@@ -41885,7 +43808,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": null
+              "explanation": "Nonzero governance review commitment for this optional width policy."
             }
           ],
           "native_value": null,
@@ -41976,6 +43899,57 @@
           "notes": "Read calculation is not a transaction/venue quote or a promise of execution. Manager additionally checks range/spot context, actual output and stronger caller minima. Separate reward converters retain their own policies."
         },
         {
+          "signature": "minimumOutputForExit(bytes32,bool,uint256)",
+          "kind": "function",
+          "name": "minimumOutputForExit",
+          "state_mutability": "view",
+          "purpose": "Calculate the same fresh dual-source gross/fee-adjusted output floors without requiring pool operationsEnabled.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "poolId",
+              "label": "poolId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted static hookless native ETH/fixed-ZZZ PoolId in canonical raw order."
+            },
+            {
+              "position": 1,
+              "name": "direction",
+              "label": "direction",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True for ETH-to-ZZZ; false for ZZZ-to-ETH."
+            },
+            {
+              "position": 2,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Raw positive input token amount."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Minimum raw output under fresh prices, current venue/actual directional fees and additional-loss policy; can revert on invalid dependencies."
+            }
+          ],
+          "native_value": null,
+          "notes": "Read only; no swap permission. Used for a manual emergency retaining financial checks while separately bypassing the pool operation flag. Ordinary minimumOutput behavior remains unchanged."
+        },
+        {
           "signature": "needsRebalance(uint256)",
           "kind": "function",
           "name": "needsRebalance",
@@ -42035,7 +44009,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": null
+              "explanation": "0 preserves raw token1/token0 range meaning;1 expresses inverse token0/token1(ETH per ZZZ for the native pair). Existing physical ticks are not reinterpreted."
             }
           ],
           "native_value": null,
@@ -42179,7 +44153,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Does not write samples, execute maintenance or guarantee transaction success. Read/dependency faults revert. The ordinary window is sampled evidence, not uninterrupted price proof."
+          "notes": "Does not write samples, execute maintenance or guarantee transaction success. Read/dependency faults revert. The ordinary window is sampled evidence, not uninterrupted price proof. Fresh confirmation2 ordinarily requires physical/reference exit on the same side of actual LP bounds. Reviewed relaxation invalidates samples; automatic widths cannot coexist with enabled protection. Manual governance widths retain their cooldown exception."
         },
         {
           "signature": "setAdditionalLossBps(uint16,bytes32)",
@@ -42279,7 +44253,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": null
+          "notes": "Enabling rejects while confirmation.requireReferenceExit is true. Enabled-count tracking prevents restoring that protection with an automatic policy still active."
         },
         {
           "signature": "setRangeOrientation(bytes32,uint8)",
@@ -42418,7 +44392,7 @@
               "type": "int24",
               "canonical_type": "int24",
               "internal_type": "int24",
-              "explanation": null
+              "explanation": "Upper raw physical tick rounded outward to admitted spacing, strictly greater than lower."
             },
             {
               "position": 2,
@@ -42427,7 +44401,7 @@
               "type": "uint160",
               "canonical_type": "uint160",
               "internal_type": "uint160",
-              "explanation": null
+              "explanation": "Independent configured Oracle square-root ratio in Q64.96 raw token1/token0 units; not the target pool spot or a guaranteed future execution price."
             }
           ],
           "native_value": null,
@@ -43857,6 +45831,47 @@
           ],
           "native_value": null,
           "notes": "Returns: USD18; not the current marked LP value and not withdrawable principal."
+        },
+        {
+          "signature": "emergencyRebalance(uint256,uint128,uint256)",
+          "kind": "function",
+          "name": "emergencyRebalance",
+          "state_mutability": "nonpayable",
+          "purpose": "Forward the fixed Migration manual emergency into actual shared LP harvest/close/budgeted swap/mint.",
+          "access": "Fixed Migration module only, operating/before terminal exit/nonreentrant; Budget validates sealed paused-governance context.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "id",
+              "label": "id",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
+            },
+            {
+              "position": 1,
+              "name": "minimumLiquidity",
+              "label": "minimumLiquidity",
+              "type": "uint128",
+              "canonical_type": "uint128",
+              "internal_type": "uint128",
+              "explanation": "Positive actual Uniswap liquidity floor from full-operation simulation; not token amounts or USD."
+            },
+            {
+              "position": 2,
+              "name": "deadline",
+              "label": "deadline",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Unix seconds: now <= deadline <= now+600 at execution; fresh expiry, not a future calendar schedule."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Internal module boundary, not the operator entry. Use Migration.emergencyRebalance(request). Parked custody may recover; NFT shares/contributions/earned rewards stay. Manager temporary context is cleared atomically and lastRebalance anchors new LP."
         },
         {
           "signature": "exitBucketToHolders(uint256,uint256,uint256,uint256)",
@@ -45484,12 +47499,12 @@
   "gaps": [],
   "counts": {
     "contracts": 33,
-    "functions": 665,
+    "functions": 696,
     "constructors": 33,
     "receive_hooks": 13,
     "fallback_hooks": 0,
     "explanation_gaps": 0,
     "unannotated_inputs": 0,
-    "unannotated_outputs": 122
+    "unannotated_outputs": 0
   }
 }

@@ -11,6 +11,7 @@ import hashlib
 import io
 import itertools
 import json
+import math
 from pathlib import Path
 import re
 import tarfile
@@ -27,7 +28,28 @@ def digest(data: bytes) -> str:
 
 
 def encoded(value: object) -> bytes:
-    return (json.dumps(value, sort_keys=True, indent=2) + "\n").encode()
+    return (json.dumps(value, sort_keys=True, indent=2, allow_nan=False) + "\n").encode()
+
+
+def _json(data: bytes) -> object:
+    def unique(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError("Duplicate artwork JSON field")
+            result[key] = value
+        return result
+
+    def reject(value):
+        raise ValueError("Non-finite artwork JSON number")
+
+    def finite(value):
+        number = float(value)
+        if not math.isfinite(number):
+            reject(value)
+        return number
+
+    return json.loads(data, object_pairs_hook=unique, parse_constant=reject, parse_float=finite)
 
 
 def expected_ids(catalog: dict) -> list[str]:
@@ -42,17 +64,34 @@ def source_file(source: Path, relative: str) -> bytes:
     return path.read_bytes()
 
 
+class _StaticSVGTree(ET.TreeBuilder):
+    """Reject resource-changing XML constructs before ElementTree drops them."""
+    def pi(self, target: str, text: str | None) -> None:
+        raise ValueError("SVG processing instructions are not static artwork")
+
+    def doctype(self, name: str, public_id: str | None, system_id: str | None) -> None:
+        # Parser-level rejection also covers UTF-16 DTDs that an ASCII byte
+        # screen cannot see. A normal XML declaration is not a PI or a DTD.
+        raise ValueError("SVG document types and entities are not allowed")
+
+
 def validate_svg(data: bytes) -> None:
     if b"<!DOCTYPE" in data.upper() or b"<!ENTITY" in data.upper():
         raise ValueError("SVG must not contain XML declarations with entities")
-    root = ET.fromstring(data)
+    root = ET.fromstring(data, parser=ET.XMLParser(target=_StaticSVGTree()))
     if root.tag.split("}")[-1] != "svg":
         raise ValueError("Artwork is not SVG")
     for element in root.iter():
-        if element.tag.split("}")[-1].lower() in {"script", "foreignobject", "style", "animate", "animatetransform", "set", "a"}:
+        if element.tag.split("}")[-1].lower() in {"script", "foreignobject", "style", "animate", "animatetransform", "animatemotion", "animatecolor", "set", "discard", "a"}:
             raise ValueError("Active SVG content")
         for name, value in element.attrib.items():
+            if name == "{http://www.w3.org/XML/1998/namespace}base":
+                raise ValueError("SVG base URIs may redirect local resources")
             name = name.split("}")[-1].lower()
+            # The approved renderer has no inline styles or CSS escapes. Reject
+            # these channels instead of treating a URL regex as a CSS parser.
+            if name == "style" or "\\" in value:
+                raise ValueError("SVG styles and escaped resource syntax are not approved")
             urls = re.findall(r"url\((.*?)\)", value, re.IGNORECASE)
             if name.startswith("on") or any(not re.fullmatch(r"#[A-Za-z0-9_-]+", url) for url in urls):
                 raise ValueError("Active/external SVG attribute")
@@ -68,9 +107,9 @@ def prepare(source: Path, output: Path, catalog_path: Path = CATALOG) -> dict:
     if output.exists():
         raise ValueError("Output must be a new directory; existing bundles are never overwritten")
     catalog_raw = catalog_path.read_bytes()
-    ids = expected_ids(json.loads(catalog_raw))
+    ids = expected_ids(_json(catalog_raw))
     manifest_raw = source_file(source, "manifest.json")
-    manifest = json.loads(manifest_raw)
+    manifest = _json(manifest_raw)
     variants = {item["id"]: item for item in manifest["variants"]}
     if len(variants) != len(manifest["variants"]) or set(variants) != set(ids):
         raise ValueError("Artwork manifest does not match the complete contract catalogue")
@@ -84,7 +123,7 @@ def prepare(source: Path, output: Path, catalog_path: Path = CATALOG) -> dict:
             raise ValueError(f"Artwork hash mismatch: {art_id}")
         metadata_name = f"metadata/{art_id}.json"
         metadata = source_file(source, metadata_name)
-        if json.loads(metadata)["image"] != f"../{svg_name}":
+        if _json(metadata)["image"] != f"../{svg_name}":
             raise ValueError(f"Incorrect reference metadata image: {art_id}")
         files[svg_name] = {"sha256": digest(svg), "bytes": len(svg)}
         files[metadata_name] = {"sha256": digest(metadata), "bytes": len(metadata)}

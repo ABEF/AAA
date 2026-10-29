@@ -302,8 +302,8 @@ actual product and upstream authority. [Price operating requirements](PRICE_SECU
 
 ### Configure rebalance confirmation
 
-For a fresh confirmation1 deployment, resolve `Strategy.rebalanceConfirmation()`
-from the sealed Access Strategy. Verify helper/Strategy/Budget capability1,
+For a fresh confirmation2 deployment, resolve `Strategy.rebalanceConfirmation()`
+from the sealed Access Strategy. Verify helper/Strategy/Budget capability2,
 runtime and Access/parent bindings. Old immutable deployments do not gain this
 feature by editing JSON. Preserve their exact readers and original journals.
 
@@ -317,7 +317,7 @@ feature by editing JSON. Preserve their exact readers and original journals.
    duration/gap/review hash and increased `policyRevision`. Any reconfiguration,
    including change-and-restore, invalidates old samples. Ordinary pause permits
    configuration; preparation/canonical locks and principal exit block it.
-3. The matching keeper/API config declares `rebalance_confirmation_version:1`,
+3. The matching keeper/API config declares `rebalance_confirmation_version:2`,
    exact helper/runtime and actual Budget/Strategy/Vault bindings. Follow the
    controlled release/config restart procedure with preserved pending receipts,
    nonce and spend records. On-chain configuration alone needs no process restart.
@@ -567,9 +567,9 @@ mismatch. A width change can therefore be applied while the old LP is in range.
 replacement in policy2. It is not a tolerated centring error. Physical LP changes
 only after successful execution; top-ups do not recenter it or reset its clock.
 
-Fresh keeper config selects maintenance2, compound3 and confirmation1 with exact
+Fresh keeper config selects maintenance2, compound3 and confirmation2 with exact
 Strategy/Budget/helper runtimes and bindings. After cooldown, ordinary confirmation
-evaluations are300seconds apart, inside or outside; historical policy2 without
+evaluations target240-second checks, inside or outside; historical policy2 without
 confirmation retains hourly inside checks. The matching60second main loop handles
 due checks, receipts and independent hourly harvest. Once sampled readiness is
 true, it saves one60-600second jitter while continuing observations. A deliberate
@@ -580,6 +580,15 @@ Top-ups/harvest do not redraw an existing schedule. Software jitter cannot
 constrain a key bypassing Python or promise exact inclusion. Failed/ambiguous
 calls keep normal pending/nonce/backoff recovery. Downtime does not replay missed
 rebalances. Follow [confirmation configuration](#configure-rebalance-confirmation).
+
+The current worker prioritizes known confirmation renewal/reset deadlines after
+saved-intent recovery and shared authorization, before optional conversion,
+buyback or metadata submissions. Unrelated optional degradation does not stretch
+their polling; real global RPC/nonce faults still back off. One serial transaction
+lane and the strict300-second receipt gap can still restart the window: monitor
+actual confirmed sample times, not just process polling. Source publication does
+not update a running worker. Use the stop/reconcile/dry-run/restart procedure
+with journals preserved and matching health writer/checker for a reviewed rollout.
 
 Range/cooldown/cap changes are read fresh on-chain: normally no restart or reseal.
 Width configuration is not an immediate LP replacement. Read `rangeUpdatePending`
@@ -595,6 +604,35 @@ no new policy field retain explicit historical mode1 behavior; never relabel an
 old runtime/journal as policy2. Accounting1/2/3 retain their own readers. No running
 service changes follow from editing an example. [Recovery](KEEPER_RECOVERY.md#logs-health-and-fallback).
 
+### Independent-reference and manual emergency controls
+
+Fresh confirmation2 normally requires both our LP pool and the configured
+independent reference to be outside the same actual bounds on the same side.
+Read `marketSides(bucket)` at the same pinned block as `condition/ready`;0 means
+inside,1 below,2 above in raw pool-key order. Disagreement blocks ordinary
+replacement; a failed read is unavailable, never a zero or an override.
+
+Governance calls helper `setRequireReferenceExit(bool required,bytes32 reviewed)`
+to change that policy. Simulate first, retain a nonzero review commitment, verify
+`ReferenceExitConfigured`/new revision and expect old samples to restart. Default
+true requires every automatic keeper-width policy disabled; inspect
+`Strategy.activeKeeperRangePolicies()` and disable each through
+`setKeeperRangePolicy(pool,false,0,0,0,0)` before restoring true. Manual governance
+range selection remains possible. On-chain setters do not require a host restart;
+new source/capability/runtime configurations require the reviewed deployment and
+preserved-journal rollout, not relabelling an old deployment.
+
+For an actual emergency, use [manual paused recovery](EMERGENCY_REBALANCE.md):
+governance calls `Migration.emergencyRebalance(request)` with capability1,
+exact current custody hash, raw ticks/optional swap/minima/deadline and a review
+hash. The five-bit mask explicitly retains or bypasses timing, prices, financial
+floors, operation flags and sampled confirmation. This is **not** an automated
+fallback. It never sends principal to governance or reopens terminal exit, but
+bypassing financial checks can destroy nearly all principal. The wallet/Safe
+submitting it pays gas. Reconcile pending transactions, simulate the whole close/
+swap/mint and verify cleared emergency state, unchanged shares and preserved
+earned rights before any separately authorized service restart or unpause.
+
 ### Manual rebalance at a chosen time
 
 A keeper-authorized wallet can call the existing nonpayable function:
@@ -603,7 +641,7 @@ A keeper-authorized wallet can call the existing nonpayable function:
 
 This is the same guarded LP replacement as automated upkeep. It bypasses only
 Python's evaluation schedule and random waiting; it cannot bypass sampled
-confirmation1, hard on-chain cooldown, actual-range/operator-update eligibility, pause/lifecycle, prices or
+confirmation2, hard on-chain cooldown, actual-range/operator-update eligibility, pause/lifecycle, prices or
 execution/minimum/backing checks. Submission time is your choice; inclusion at
 an exact second is not guaranteed. No contract self-schedules a future call.
 
@@ -617,7 +655,7 @@ an exact second is not guaranteed. No contract self-schedules a future call.
 
 1. Verify exact chain/deployment/ABI/runtimes, selected pool, active LP/ticks,
    current interval, raw `Strategy.needsRebalance(bucketId)` and final
-   `Strategy.rebalanceReady(bucketId)`. For ordinary confirmation1, authorized
+   `Strategy.rebalanceReady(bucketId)`. For ordinary confirmation2, authorized
    receipt-backed `observe(bucketId)` calls must establish the reviewed window
    first; a raw true alone is insufficient. See the confirmation procedure.
    A failed price/read
@@ -956,7 +994,7 @@ interval or a missing previous timestamp can make harvesting due immediately at
 the next eligible cycle. Contributions, rebalances, compounding and outside
 manual harvests do not reset that standalone journal timestamp. Polling uses the
 separate `interval_seconds` setting. Historical examples use600seconds; fresh
-confirmation1 requires60-240, with60 in its example and240-second eligible
+confirmation2 requires60-240, with60 in its example and240-second eligible
 observations. A harvest interval shorter than polling cannot make checks run
 more often. Pending
 receipts, other eligible jobs, pause/lifecycle and execution/gas guards can delay

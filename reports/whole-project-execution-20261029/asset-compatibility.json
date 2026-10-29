@@ -1,0 +1,8 @@
+{
+  "kind": "read-only existing asset compatibility, not rendered visual QA or upload",
+  "checked": 2784,
+  "failures": [],
+  "seconds": 11.516,
+  "validator_sha256": "e22e0ab885bdd50c9e915858eef68f6e4dd14c5d9e693a663c0f4eb908bab1a9",
+  "source_manifest_sha256": "fcd95d4d87f7d18eb6d548b9b19432056f982e6e66f3def9dd0ead076af692de"
+}

@@ -5,6 +5,7 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
 import {ZZZVaultCanonical} from "./ZZZVaultCanonical.sol";
+import {IZZZEmergencyLiquidity} from "./interfaces/IZZZEmergency.sol";
 import {Ids, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
@@ -458,17 +459,31 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         principalOperating
         nonReentrant
     {
+        _rebalance(id,minimumLiquidity,deadline,false);
+        if (!access.keeperAuthorized(msg.sender) || access.paused()) revert Unauthorized();
+    }
+    /// @notice Only the sealed Migration module can forward paused-governance
+    /// emergency. No keeper, holder, arbitrary executor or recipient is admitted.
+    function emergencyRebalance(uint256 id,uint128 minimumLiquidity,uint256 deadline)
+        external onlyModule(Ids.MIGRATION) operating principalOperating nonReentrant {
+        IZZZEmergencyLiquidity(_moduleLiquidity()).beginEmergency();
+        _rebalance(id,minimumLiquidity,deadline,true);
+        IZZZEmergencyLiquidity(_moduleLiquidity()).endEmergency();
+    }
+    function _rebalance(uint256 id,uint128 minimumLiquidity,uint256 deadline,bool emergency) private {
         _deadline(deadline);
-        _active(id);
+        bool parked = emergency && positions[id].status == PositionStatus.Parked;
+        if(!parked) _active(id);
         migrationBudget.validateRebalance(id, minimumLiquidity);
         Position storage p = positions[id];
         uint256 oldId = p.lpTokenId;
         _migrationCheckpoint(id, 0);
-        _unwind(id, deadline);
+        if(parked) { _pullCompound(id); _migrationCheckpoint(id,1); }
+        else _unwind(id, deadline);
         _redeploy(id, minimumLiquidity, deadline);
         _migrationCheckpoint(id, 2);
+        if(parked) p.status = PositionStatus.Active;
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
-        if (!access.keeperAuthorized(msg.sender) || access.paused()) revert Unauthorized();
     }
 
     /// @notice Migration commits terminal LP retirement through this lock so it

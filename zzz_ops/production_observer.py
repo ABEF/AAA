@@ -204,10 +204,16 @@ class Observer:
         return chain_id, genesis['hash']
 
     def finish(self):
+        head = self.header('latest')
+        confirmations = _uint(self.chain['minimum_confirmations'], 1024)
+        if (confirmations == 0 or head['number'] < self.start['number'] + confirmations or
+                head['timestamp'] < self.start['timestamp']):
+            raise ValueError('Canonical observation lost its required confirmation depth or chronology')
         if self.header(hex(self.start['number'])) != self.start or self.header('0x0')['hash'] != self.chain['genesis_hash'].lower():
             raise ValueError('Canonical anchor changed')
         if _chain_id(self.request('eth_chainId', [])) != self.chain['chain_id']:
             raise ValueError('Chain identity changed')
+        self.head = head
 
     def attempt(self, path, code, action):
         try:

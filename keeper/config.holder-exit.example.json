@@ -89,5 +89,5 @@
   "maintenance_policy_version": 2,
   "lp_routing_version": 1,
   "execution_quality_version": 1,
-  "rebalance_confirmation_version": 1
+  "rebalance_confirmation_version": 2
 }

@@ -1,0 +1,32 @@
+{
+  "observed_at_utc": "2026-10-29T03:06:42.659277+00:00",
+  "scope": "Offline generator return values only; no artwork/library regeneration or service.",
+  "selected_generator_path": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\scripts\\generate-artwork-library.py",
+  "selected_generator_sha256": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+  "executed_methods": [
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_digest_and_decoded_code_agreement_stay_mandatory",
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_each_rarity_supply_stays_exact_even_with_self_consistent_hash_and_codes",
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_out_of_range_code_with_matching_hash_and_inventory_is_rejected",
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_palette_count_and_pattern_identity_cannot_be_optimized_away",
+    "tests_python.test_artwork_generator_validation.ArtworkGeneratorValidationTests.test_valid_catalogue_is_identical_in_normal_and_optimized_generation"
+  ],
+  "tests_run": 5,
+  "failures_including_subtests": [],
+  "errors": [],
+  "skips": [],
+  "source_sha256_before": {
+    "scripts/generate-artwork-library.py": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+    "tests_python/test_artwork_generator_validation.py": "0802554f2eb556feb21c51be8afc426ac7eb989b89d8045c6debbc3ec0ba5f15",
+    "design/nft-metadata/palette-system-v1/packed-catalog.json": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606"
+  },
+  "source_sha256_after": {
+    "scripts/generate-artwork-library.py": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+    "tests_python/test_artwork_generator_validation.py": "0802554f2eb556feb21c51be8afc426ac7eb989b89d8045c6debbc3ec0ba5f15",
+    "design/nft-metadata/palette-system-v1/packed-catalog.json": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606"
+  },
+  "source_inputs_unchanged": true,
+  "successful": true,
+  "production_approved": false
+}

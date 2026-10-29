@@ -67,6 +67,9 @@ contract HolderExitPolicy {
     function rebalanceReady(uint256) external pure returns(bool) {return true;}
     function rebalanceConfirmation() external view returns(address) {return address(this);}
     function controlFingerprint(bytes32) external pure returns(bytes32) {return keccak256("holder-exit fixture controls");}
+    function observationFingerprint(uint256,bytes32) external pure returns(bytes32){
+        return keccak256(abi.encode(keccak256("holder-exit fixture controls"),bytes32(0),uint64(0),uint64(0),uint8(0)));
+    }
     function observations(uint256) external pure returns(bytes32,uint64,uint64,uint8) {return(bytes32(0),0,0,0);}
     function needsRebalance(uint256) external pure returns(bool) {return true;}
     function target(bytes32) external pure returns(int24,int24,uint160) {return(-600,600,uint160(1<<96));}

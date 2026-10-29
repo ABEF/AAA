@@ -1,5 +1,13 @@
 # Feature and evidence reference
 
+Current [whole-project execution](../reports/whole-project-execution-20261029/REVIEW.md) completes the internal
+source/body review and implements keeper deadline priority, strict durable/log
+provenance, final-depth/fee/pool observation and artifact-tooling repairs.
+All122previously missing callable outputs are explained. Static review is not
+exhaustive execution or independent release approval. Website reference metadata
+is corrected locally without changing images/signing/configs or deploying sites.
+Actual providers, economics, gas/host/marketplace qualification and audit remain open.
+
 Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
 [Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
 and royalty custody exits. Governance permanently ends LP and pays actual
@@ -23,7 +31,7 @@ Entry routing2/LP execution1/reviewed Entry1 and canonical
 is a terminal local status. Historical1/2/3 deployments/readers/journals retain
 original identities. [Profile](POSITION_V4.md), [holder procedure](HOLDER_COLLECTIVE_EXIT.md).
 
-Fresh Strategy maintenance policy2 checks actual physical range exit or an operator range update after the hard governed interval (initial12hours). Historical keeper mode2 uses hourly inside checks; fresh confirmation1 checks
+Fresh Strategy maintenance policy2 checks actual physical range exit or an operator range update after the hard governed interval (initial12hours). Historical keeper mode2 uses hourly inside checks; fresh confirmation2 checks
 eligible conditions every240seconds and persists1-10minute post-ready jitter without blocking harvest/receipt recovery. Budget capability3 uses its separately governed compound interval after max(lastCompound,lastRebalance), yielding to due rebalance; it never resets that clock. Explicit API profiles verify Strategy2/Budget3 and preserve historical readers. [Operator procedure](OPERATOR_MANUAL.md#coordinate-compounding-with-rebalancing), [new scoped verification](../reports/maintenance-policy-20261027/VERIFICATION.md). No live service/site changes.
 
 Current [manipulation-related hardening](../reports/manipulation-hardening-20261027/VERIFICATION.md) adds keeper/pause completion checks for rebalance/compound/buyback and corrects paid-revert health visibility across restart/unrelated success. It introduces no new economic caps, roles or custody path. Actual profitability, real market/feed/ordering and service qualification remain open; defensive checks are not attack-profit evidence.
@@ -35,7 +43,7 @@ after actual directional LP/protocol fees to balancing and Manager swaps/buyback
 It preserves stronger gross/caller/operation limits and separate converter policy.
 Exact same-block reader capabilities and revisions are explicit; historical
 profiles remain separate. [Feature scope](EXECUTION_QUALITY.md), [verification](../reports/fee-impact-policy-20261028/VERIFICATION.md).
-No passive position or40% rebalance policy is implemented. Fresh confirmation1
+No passive position or40% rebalance policy is implemented. Fresh confirmation2
 adds a15-minute sampled on-chain window, four-minute checks after cooldown,
 strict300-second maximum receipt gap and journaled reset recovery. Greater gaps
 restart; actual latency can prevent progress. The constructor gap0 requires
@@ -80,6 +88,16 @@ keeper checkpoint and indexer/conversion snapshot repairs after tracing35main
 commits from October26-28. Solidity/economics remain unchanged; operator recovery,
 strict provider-input validation and source-scoped evidence are updated together.
 Prior reports remain scoped history, not additive full-release test counts.
+
+Current source additionally implements [confirmation2 and manual emergency1](EMERGENCY_REBALANCE.md).
+Ordinary samples require physical/reference same-side exit; automatic width
+policies cannot bypass that guard. Governance can review policy relaxation or
+manually perform a paused emergency with optional financial checks. Exact
+accounting/custody/lifecycle remain; nearly all principal may be lost if financial
+guards are disabled. [Source-scoped review/evidence](../reports/independent-rebalance-20261029/VERIFICATION.md)
+does not qualify feeds, economic profitability, actual gas/services or an
+independent audit. No installed service/site/Anvil/deployment changed. The wider
+current handwritten-body review is recorded in the [whole-project execution](../reports/whole-project-execution-20261029/COVERAGE.md); historical reports retain their pins.
 
 ## Smart contracts
 
@@ -156,7 +174,7 @@ approved240-second service checks with unchanged900/300on-chain confirmation;
 old300schedules/pending/reset/jitter remain preserved. Five current canonical
 composition methods and75affected Python methods pass in their exact scopes;
 unchanged217EVM/39normal gates are reused, not rerun. Per-function pending depth,
-unapplied website metadata patch, real operating/provider/compiler-lowering and
+locally corrected website metadata (not deployed), real operating/provider/compiler-lowering and
 independent-audit gates stay explicit. [Verification](../reports/whole-project-audit-20261029/VERIFICATION.md).
 Observing during cooldown is proposed in the sole Todo, not implemented.
 

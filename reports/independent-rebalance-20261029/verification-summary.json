@@ -1,0 +1,2794 @@
+{
+  "baseline": "2feee92f6bc13b09bae1d43f36bfb7cf6c8faac9",
+  "branch": "main",
+  "source_profile": "confirmation2/emergency1; accounting4/custody3/V5 retained",
+  "production_approved": false,
+  "whole_project_audit_complete": false,
+  "deployments_or_installed_services_changed": false,
+  "compiler_scope": {
+    "exit_code": 0,
+    "elapsed_seconds": 74.06,
+    "errors": [],
+    "gates": [
+      {
+        "name": "ZZZAccessController",
+        "runtime": 9693,
+        "creation": 40580,
+        "minimum_args": 96,
+        "runtime_margin": 14883,
+        "path": "src/ZZZAccessController.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 8572,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZActivationAssets",
+        "runtime": 5849,
+        "creation": 6660,
+        "minimum_args": 64,
+        "runtime_margin": 18727,
+        "path": "src/ZZZActivationAssets.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 42492,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZActivationAssetsFactory",
+        "runtime": 7480,
+        "creation": 7534,
+        "minimum_args": 0,
+        "runtime_margin": 17096,
+        "path": "src/ZZZActivationAssetsFactory.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 41618,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZActivationEntry",
+        "runtime": 18208,
+        "creation": 30766,
+        "minimum_args": 96,
+        "runtime_margin": 6368,
+        "path": "src/ZZZActivationEntry.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 18386,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZBuyback",
+        "runtime": 7549,
+        "creation": 8255,
+        "minimum_args": 96,
+        "runtime_margin": 17027,
+        "path": "src/ZZZBuyback.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "uint256"
+        ],
+        "maximum_total_argument_bytes": 40897,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZCanonicalHandoff",
+        "runtime": 21157,
+        "creation": 21794,
+        "minimum_args": 32,
+        "runtime_margin": 3419,
+        "path": "src/ZZZCanonicalHandoff.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 27358,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZClaimRouter",
+        "runtime": 2885,
+        "creation": 3443,
+        "minimum_args": 96,
+        "runtime_margin": 21691,
+        "path": "src/ZZZClaimRouter.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 45709,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZCompounder",
+        "runtime": 2206,
+        "creation": 2605,
+        "minimum_args": 32,
+        "runtime_margin": 22370,
+        "path": "src/ZZZCompounder.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 46547,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZContributionPricing",
+        "runtime": 18032,
+        "creation": 18777,
+        "minimum_args": 64,
+        "runtime_margin": 6544,
+        "path": "src/ZZZContributionPricing.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 30375,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZCustodyValidation",
+        "runtime": 3788,
+        "creation": 4131,
+        "minimum_args": 32,
+        "runtime_margin": 20788,
+        "path": "src/ZZZCustodyValidation.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 45021,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZFeeController",
+        "runtime": 9702,
+        "creation": 10179,
+        "minimum_args": 32,
+        "runtime_margin": 14874,
+        "path": "src/ZZZFeeController.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 38973,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZFeesCanonical",
+        "runtime": 10223,
+        "creation": 11231,
+        "minimum_args": 64,
+        "runtime_margin": 14353,
+        "path": "src/ZZZFeesCanonical.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 37921,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZLPBalancer",
+        "runtime": 23434,
+        "creation": 24226,
+        "minimum_args": 96,
+        "runtime_margin": 1142,
+        "path": "src/ZZZLPBalancer.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 24926,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZLPRewardConverter",
+        "runtime": 16830,
+        "creation": 29162,
+        "minimum_args": 96,
+        "runtime_margin": 7746,
+        "path": "src/ZZZLPRewardConverter.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 19990,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZLiquidityManager",
+        "runtime": 23111,
+        "creation": 48955,
+        "minimum_args": 160,
+        "runtime_margin": 1465,
+        "path": "src/ZZZLiquidityManager.sol",
+        "static_argument_bytes": 160,
+        "constructor_types": [
+          "address",
+          "address",
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 197,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZMembership",
+        "runtime": 7389,
+        "creation": 7838,
+        "minimum_args": 32,
+        "runtime_margin": 17187,
+        "path": "src/ZZZMembership.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 41314,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZMigration",
+        "runtime": 24375,
+        "creation": 29266,
+        "minimum_args": 32,
+        "runtime_margin": 201,
+        "path": "src/ZZZMigration.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 19886,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZMigrationBudget",
+        "runtime": 22238,
+        "creation": 23313,
+        "minimum_args": 32,
+        "runtime_margin": 2338,
+        "path": "src/ZZZMigrationBudget.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 25839,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZNFT",
+        "runtime": 24400,
+        "creation": 44786,
+        "minimum_args": 96,
+        "runtime_margin": 176,
+        "path": "src/ZZZNFT.sol",
+        "static_argument_bytes": null,
+        "constructor_types": [
+          "address",
+          "string"
+        ],
+        "maximum_total_argument_bytes": 4366,
+        "dynamic_constructor_exact_argument_qualification_required": true,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZNFTCanonical",
+        "runtime": 10600,
+        "creation": 11513,
+        "minimum_args": 64,
+        "runtime_margin": 13976,
+        "path": "src/ZZZNFTCanonical.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 37639,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZNFTMetadata",
+        "runtime": 13028,
+        "creation": 13352,
+        "minimum_args": 32,
+        "runtime_margin": 11548,
+        "path": "src/ZZZNFTMetadata.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 35800,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZOracle",
+        "runtime": 10242,
+        "creation": 31581,
+        "minimum_args": 64,
+        "runtime_margin": 14334,
+        "path": "src/ZZZOracle.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 17571,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZPoolRegistry",
+        "runtime": 10448,
+        "creation": 42092,
+        "minimum_args": 32,
+        "runtime_margin": 14128,
+        "path": "src/ZZZPoolRegistry.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 7060,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZPythPriceFeed",
+        "runtime": 2193,
+        "creation": 3259,
+        "minimum_args": 224,
+        "runtime_margin": 22383,
+        "path": "src/ZZZPythPriceFeed.sol",
+        "static_argument_bytes": 224,
+        "constructor_types": [
+          "address",
+          "bytes32",
+          "bytes32",
+          "int32",
+          "uint32",
+          "uint16",
+          "bytes32"
+        ],
+        "maximum_total_argument_bytes": 45893,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRebalanceConfirmation",
+        "runtime": 15932,
+        "creation": 16735,
+        "minimum_args": 32,
+        "runtime_margin": 8644,
+        "path": "src/ZZZRebalanceConfirmation.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 32417,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRewards",
+        "runtime": 21311,
+        "creation": 22332,
+        "minimum_args": 32,
+        "runtime_margin": 3265,
+        "path": "src/ZZZRewards.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 26820,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRoyaltyConverter",
+        "runtime": 16830,
+        "creation": 29162,
+        "minimum_args": 96,
+        "runtime_margin": 7746,
+        "path": "src/ZZZRoyaltyConverter.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 19990,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRoyaltyFactory",
+        "runtime": 22390,
+        "creation": 22443,
+        "minimum_args": 0,
+        "runtime_margin": 2186,
+        "path": "src/ZZZRoyaltyFactory.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 26709,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRoyaltyRewards",
+        "runtime": 20843,
+        "creation": 21780,
+        "minimum_args": 32,
+        "runtime_margin": 3733,
+        "path": "src/ZZZRoyaltyRewards.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 27372,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZStrategy",
+        "runtime": 24414,
+        "creation": 41992,
+        "minimum_args": 32,
+        "runtime_margin": 162,
+        "path": "src/ZZZStrategy.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 7160,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZV4RouteExecutor",
+        "runtime": 11164,
+        "creation": 11322,
+        "minimum_args": 0,
+        "runtime_margin": 13412,
+        "path": "src/ZZZV4RouteExecutor.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 37830,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZVault",
+        "runtime": 24517,
+        "creation": 48951,
+        "minimum_args": 96,
+        "runtime_margin": 59,
+        "path": "src/ZZZVault.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "uint256",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 201,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZVaultCanonical",
+        "runtime": 18622,
+        "creation": 19983,
+        "minimum_args": 96,
+        "runtime_margin": 5954,
+        "path": "src/ZZZVaultCanonical.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "uint256"
+        ],
+        "maximum_total_argument_bytes": 29169,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ExactAsset",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ExactAsset.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ExactToken",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ExactToken.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZArtwork",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ZZZArtwork.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZPriceMath",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ZZZPriceMath.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "Ids",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ZZZTypes.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZV3VenueValidation",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ZZZV3VenueValidation.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      }
+    ],
+    "input_sha256": "db1bdeb885a5dcd62e77125faf4ac4dda58ede682487c6a5020eab2da11faf89",
+    "no_deployment": true,
+    "no_rpc": true,
+    "solc_exit_code": 0,
+    "source_count": 78,
+    "compiled_source_count": 78,
+    "closed_input_inventory": true,
+    "unexpected_implicit_sources": [],
+    "missing_compiled_sources": [],
+    "unchanged_before_build": true,
+    "unchanged_during_build": true,
+    "solc_executable_unchanged": true,
+    "solc_executable_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+    "settings": {
+      "evmVersion": "cancun",
+      "viaIR": true,
+      "optimizer": {
+        "enabled": true,
+        "runs": 1,
+        "details": {
+          "yul": false
+        }
+      },
+      "remappings": [
+        "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+        "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+        "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+        "v4-core/=node_modules/@uniswap/v4-core/",
+        "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+        "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "outputSelection": {
+        "*": {
+          "*": [
+            "abi",
+            "storageLayout",
+            "evm.bytecode.object",
+            "evm.deployedBytecode.object",
+            "metadata"
+          ],
+          "": [
+            "ast"
+          ]
+        }
+      }
+    },
+    "build_input_sha256": {
+      "foundry.toml": "35d073e0cad1e77849c99409c7492d115eb286f5e38839db8b32993646f170c7",
+      "package.json": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
+      "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+      "scripts/install-deps.sh": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7"
+    },
+    "compiler_input_sha256": "db1bdeb885a5dcd62e77125faf4ac4dda58ede682487c6a5020eab2da11faf89",
+    "compiler_output_sha256": "0656f74ea416882f938843e10a4ea90fd81fdd4a6ffbc75be879f092e0802477",
+    "source_sha256": {
+      "src/ZZZAccessController.sol": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "src/ZZZActivationEntry.sol": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "src/ZZZBuyback.sol": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "src/ZZZCanonicalHandoff.sol": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "src/ZZZContributionPricing.sol": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "src/ZZZCustodyValidation.sol": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "src/ZZZLPBalancer.sol": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "src/ZZZLiquidityManager.sol": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "src/ZZZMigration.sol": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "src/ZZZMigrationBudget.sol": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "src/ZZZNFT.sol": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "src/ZZZPoolRegistry.sol": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "src/ZZZRebalanceConfirmation.sol": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "src/ZZZStrategy.sol": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "src/ZZZVault.sol": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "src/base/ZZZModule.sol": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "src/interfaces/IZZZ.sol": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4"
+    },
+    "compiler_content_sha256": {
+      "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "node_modules/@openzeppelin/contracts/utils/Base64.sol": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "node_modules/@openzeppelin/contracts/utils/Context.sol": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "node_modules/@openzeppelin/contracts/utils/Panic.sol": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "node_modules/@openzeppelin/contracts/utils/Strings.sol": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "node_modules/@openzeppelin/contracts/utils/math/Math.sol": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "src/ZZZAccessController.sol": "1ed71473d923ad47fdef0eb1072e3252047afbef498f5fd419f277f42ad32edb",
+      "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "src/ZZZActivationEntry.sol": "50033edc8ba7128aa67f5bbd7a1fe1d455aba879f05ed6388a725e7bad638813",
+      "src/ZZZBuyback.sol": "4ff1a46bb38132b422364f256524baea4e49b9b5d1fe28c9c1f00004b53edcd2",
+      "src/ZZZCanonicalHandoff.sol": "36f1381f4920a11688e0936bb856f4038203d3496a421987f81809a470edd78a",
+      "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "src/ZZZContributionPricing.sol": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+      "src/ZZZCustodyValidation.sol": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+      "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "src/ZZZLPBalancer.sol": "ce375a25febdeb0e2ec37585daaf6e6a20fcffbf0c1250359749e8bfbb851028",
+      "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "src/ZZZLiquidityManager.sol": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+      "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "src/ZZZMigration.sol": "e5ee861815d74b6ac301c3d75921d956243c52716aa1c48fb1230c6402d71556",
+      "src/ZZZMigrationBudget.sol": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+      "src/ZZZNFT.sol": "ea05d60d3b2d63113d2c64e78324df30f3d3dd1f5a29e2a06f810378995b4cdd",
+      "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+      "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "src/ZZZPoolRegistry.sol": "fc97da97c00411c82f7c2db1d2f3343d69ee99cfc81277115022187fd5d469b6",
+      "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "src/ZZZRebalanceConfirmation.sol": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+      "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "src/ZZZRoyaltyRewards.sol": "35606bcd1e26005436f00a84aadb613b7c41637a4e92b035d9192ce3ea12f808",
+      "src/ZZZStrategy.sol": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+      "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "src/ZZZVault.sol": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+      "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+      "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "src/base/ZZZModule.sol": "5eef71224d8148e40d740a51b0b09fd74317070a080bc5a01a5b179b6a3a59f7",
+      "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "src/interfaces/IZZZ.sol": "53b1bae9b17e94ea85cda6b19c1b83ce950254eecd686be69fd2865863ec0fdb",
+      "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4"
+    },
+    "dependency_source_sha256": {
+      "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "node_modules/@openzeppelin/contracts/utils/Base64.sol": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "node_modules/@openzeppelin/contracts/utils/Context.sol": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "node_modules/@openzeppelin/contracts/utils/Panic.sol": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "node_modules/@openzeppelin/contracts/utils/Strings.sol": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "node_modules/@openzeppelin/contracts/utils/math/Math.sol": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5"
+    },
+    "all_pass": true
+  },
+  "evm_scopes": [
+    {
+      "attempt": 7,
+      "summary_sha256": "67509b30896ed6858af2f036c6853e7c0bf7dd3df58eb527059c6a8819e24cac",
+      "input_sha256": "f6bc37b0cab991cc421039f24e14234a8108022997ac609732752a99e12401cc",
+      "raw_stdout_sha256": "db711b5d82fb8f27f0900d849b75cffca0f0e1cc89ff5faef8f6eb6ce59af238",
+      "exit_code": 1,
+      "methods": [
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testCompoundPoliciesArePerAdmittedPool()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testDefaultCompoundHourIsIndependentOfTwelveHourRebalance()",
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testIntervalChangesNeverResetPhysicalOrCompoundClocks()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testOrdinaryPauseAllowsReviewedIntervalConfiguration()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testPreparationCanonicalAndActiveSnapshotRejectPolicyChanges()",
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testUnknownPoolBoundsAndUnprivilegedSetterFailClosed()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testChangedConfigurationDisablesEligibilityUntilGovernanceReviewsAgain()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testExplicitOrientationPreservesLegacyUntilApprovedAndInvertsOutwardTicks()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testFuzzInverseEndpointsBracketExactTickNeighbors(int24,bool,bool)",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testInversePhysicalRangeReplacesMovementTriggerInBothDirections()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testNarrowWidenHysteresisAndPhysicalApplicationRequireSeparateCheckpoints()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testPolicyIsDisabledByDefaultAndCannotChooseUnapprovedWidths()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testReferenceProtectionAndAutomaticWidthExceptionCannotCoexist()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testRegistryCallbackPreservesEveryControllerLifecycleAndStopGuard()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testStopsLocksAndBadPriceCannotEnableRangeSelection()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+          "method": "testThresholdBoundsOrientationAndCooldownAreGoverned()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_ActualSizeRoutingSelectsCheaperVenueAndPreservesQuotes()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_BalancedBudgetDoesNotChaseDust()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_ColdDeepSingleVenueFastPathWithinExistingGasGate()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_ColdFourVenueSearchWithinExistingGasGate()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_DisabledCandidateDoesNotFreezeHealthyRouting()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_EmptyCatalogNeverImplicitlySwapsInDestination()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_ManagerRejectsERC20PairBeforeAssetPull()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_ManagerRejectsNonNativeMintEvenIfRegistryClaimsNative()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_PartialInputEmptyVenueDoesNotBlockHealthyAlternative()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_PlannerFindsSmallerFeasibleSwapWhenSeedViolatesSpotLimit()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_QuoteUsesExternalDepthAfterActualOwnedLPClose()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_RefundCallbackCannotChangeAndRestoreRegistryPolicy()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_RefundCallbackCannotChangeCapturedPriceVector()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_RefundCallbackCannotChangeRoutingPolicy()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_RefundCallbackCannotChangeTargetOrientation()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_RoutesCanBeAdmittedAfterSealWithoutMovingLP()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_SolverBoundsAndQuoteAuthentication()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_ThinCheaperVenueCannotBeatDeepSafeVenue()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+          "method": "test_UnknownDuplicateAndOverlongCatalogRejected()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyActuallySwapsAndDeploysWithoutOracleWhenExplicitlyBypassed()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyCanExplicitlyOverrideDisabledOperations()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyCannotReopenTerminalExitOrCanonicalPreparation()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyMayRetainCooldownOrFreshSampleRequirement()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyRawSwapFloorFailureRestoresOriginalLPAndContext()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyRecoversParkedCustodyWithFinancialChecksRetained()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyReentersWithoutPricesPreservingSharesAndFundedRewards()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyRejectsDirectForwardersExpiredReviewAndWrongTickSpacing()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyRejectsStaleCustodyAfterGrowthAndMalformedMasks()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyRequiresPausedGovernanceNotKeeperOrHolder()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyRetainedPriceOrValueChecksFailAtomicallyWithoutPrices()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testManualEmergencyRetainedSampleFingerprintIncludesPolicyWhenValueGuardIsOff()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testNativeBuybackSpendsOnlyItsClassifiedReserve()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testNativeFailedActivationAndIncreaseKeepFundsAndTraits()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testNativeFeesFollowOwnerThroughGrowthAndRepeatedRebalances()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testNativeForcedETHDuringCloseCannotSubsidizePrincipal()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testNativeForcedETHDuringHarvestCannotBecomeFeeIncome()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testNativeHolderExitUsesActualManagerAndPreservesRewardsWithoutPrices()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testNativePrefundsCannotSatisfyMissingValueOrBecomeNFTPrincipal()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+          "method": "testRetiredBridgeSelectorsRemainUncallable()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testCompoundCannotMaskLossAndFailedHarvestRollsBackRewards()",
+          "status": "Failure",
+          "reason": "call reverted as expected, but without data"
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testDonationsAndClaimableFeesCannotPayRebalanceLoss()",
+          "status": "Failure",
+          "reason": "call reverted as expected, but without data"
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testFuzzThreePercentCloseBoundary(uint16)",
+          "status": "Failure",
+          "reason": "call reverted as expected, but without data"
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testPriceChangesDuringHarvestCannotHideExecutionLoss()",
+          "status": "Failure",
+          "reason": "call reverted as expected, but without data"
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testRebalanceSnapshotCannotBeReenteredDuringClose()",
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testRepeatedSnapshotsClearAndExistingIdleCapStillApplies()",
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted()",
+          "status": "Failure",
+          "reason": "call reverted as expected, but without data"
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testBudgetSnapshotRejectsChangedAndRestoredConfirmationPolicy()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testBudgetSnapshotRejectsChangedAndRestoredQualityControls()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testBudgetSnapshotRejectsChangedAndRestoredRegistryControls()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testBudgetSnapshotRejectsResetEvidenceAfterReadiness()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testChangedAndRestoredRegistryPolicyRestarts()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testCollectiveExitPermanentlyBlocksObservationAndConfigurationMutation()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testConfigurationBoundsAndExplicitStop()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testContributionBalancesDoNotResetTheSamePhysicalWindow()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testCooldownMustElapseBeforeObservationWindowBegins()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testExactFifteenMinuteBoundaryWithFiveMinuteObservations()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testFreshDefaultIsExplicitlyUnconfiguredAndCannotRebalance()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testGovernedRelaxationAndRestoreCannotReusePriorWindow()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testHealthyReferenceUpdatesDoNotResetStablePolicyWindow()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testInsideObservationClearsAndLaterExitStartsFresh()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testKeeperCanClearDuringOrdinaryPauseWithoutExtending()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testManualWidthExceptionPreservesRawCooldownAndPriceGuards()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testMaximumGapIsInclusiveAndOneSecondMoreRestarts()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testNewOraclePolicyRestartsWithoutNormalRoundFingerprinting()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testObservedPriceFailureClearsInSuccessfulTransaction()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testOppositeExitSideRestarts()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testOppositeSideExitsCannotConfirmEvenWithinSpotTolerance()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testOrientationChangeAndRestoreInvalidatesPriorEvidence()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testPendingConfirmationDoesNotAllowCompoundToBypassRawPriority()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testPostExitGovernanceOrientationCanChangeWithoutReopeningPrincipal()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testPreparationAndCanonicalLocksFailClosed()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testReferenceMustStillAgreeAtExecutionRead()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testReferenceOnlyExitCannotStartConfirmation()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testReferencePolicyRejectsUnreviewedAndUnauthorizedUpdates()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testReplacementLPIdentityRestarts()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testSameBlockRepeatsDoNotAdvanceTime()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testSingleOldSampleAndLateEndpointCannotQualify()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testTargetOnlyExitCannotStartOrKeepConfirmation()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "testUnauthorizedObserverCannotExtendOrClearEvidence()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+          "method": "test_FailedObservationTransactionDoesNotPretendItCleared()",
+          "status": "Success",
+          "reason": null
+        }
+      ],
+      "source_test_changes_since_run": [
+        "test/HolderCollectiveExit.t.sol",
+        "test/MigrationBudgetAdversarial.t.sol",
+        "test/MigrationExecutionBudget.t.sol",
+        "test/VaultAccounting.t.sol"
+      ]
+    },
+    {
+      "attempt": 8,
+      "summary_sha256": "2de37103b2f42fb9856a2df0d8d855173bb4894fea518c491944c5738d070e6a",
+      "input_sha256": "bd57569513b601a098d2f2ad171f7facc559dd2b782c28dbed9daa44192e0f72",
+      "raw_stdout_sha256": "b998a7e63342bbe142a153dc8489ac91ab2a1e30451c0befc4f34eb0e9049102",
+      "exit_code": 0,
+      "methods": [
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testCompoundPoliciesArePerAdmittedPool()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testDefaultCompoundHourIsIndependentOfTwelveHourRebalance()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testIntervalChangesNeverResetPhysicalOrCompoundClocks()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testOrdinaryPauseAllowsReviewedIntervalConfiguration()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testPreparationCanonicalAndActiveSnapshotRejectPolicyChanges()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+          "method": "testUnknownPoolBoundsAndUnprivilegedSetterFailClosed()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testDormantHasNoPrincipalAndAllocationBoundsAreEnforced()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testDoubleClaimsDuplicateBatchAndReentrancyCannotPayTwice()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testExitCannotStartInsideAnInFlightContributionCallback()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testExitWithoutHealthyPricesOrEnabledPoolAndRawMinimumRollback()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testFinalHarvestAndPendingCompoundPreserveEarnedClaimsAndBuyback()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testFuzzCumulativeAllocationConservesEveryRawUnit(uint96,uint96,uint96)",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testGasConsumingRecipientIsIsolatedAndLaterRecipientPaid()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testObsoleteExternalCustodySelectorsAreAbsent()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testOnlyGovernanceStartsAndCannotReopenOrStartTwice()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testPrefundsNeverJoinPrincipalAndRemainAfterCompletePayout()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testPrincipalIsProportionalNotEqualAndExactAfterAutomaticPayout()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testRejectingRecipientDoesNotBlockOthersAndCanChooseFallback()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+          "method": "testUnpaidPrincipalAndPastRewardsFollowTransferAndFutureRoyaltiesContinue()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testBudgetCannotBeArmedOrFinalizedByAnotherCaller()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testBudgetCountsAttributedIdleAndAllowsExactFivePercentIdle()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testBudgetMigrationBlocksCloseCallbackReentry()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testBudgetResumeStartsFromParkedPrincipalAndRollsBackBadMint()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testBudgetRetainsFinalLPCustodyCheck()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testBudgetRoundsRequiredRetentionUpAtOneWeiBoundary()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testBudgetWeightsLossByCachedAssetPricesRatherThanRawTokenTotals()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testCloseCallbackDoublingOraclePricesCannotEraseFourPercentLoss()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testFreshHarvestCompoundEntersDenominatorInsteadOfMaskingCloseLoss()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testFundedRewardBuybackAndPriorDonationsCannotSubsidizePrincipalLoss()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testHarvestCallbackPrincipalLossAndPriceChangeCannotPrecedeStartingSnapshot()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+          "method": "testMintCallbackPriceChangeCannotHideExcessAttributedIdle()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+          "method": "testReceiptIncludesOldAndNewDesignatedCompoundWithoutCountingRewardsBuybackOrDonations()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+          "method": "testRepeatedMovesStartFreshSnapshotsIncludingAttributedIdle()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+          "method": "testStaleBaselineFeedRejectsBeforeHarvestAndPreservesCustody()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testCompoundCannotMaskLossAndFailedHarvestRollsBackRewards()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testDonationsAndClaimableFeesCannotPayRebalanceLoss()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testFuzzThreePercentCloseBoundary(uint16)",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testPriceChangesDuringHarvestCannotHideExecutionLoss()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testRebalanceSnapshotCannotBeReenteredDuringClose()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testRepeatedSnapshotsClearAndExistingIdleCapStillApplies()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+          "method": "testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted()",
+          "status": "Success",
+          "reason": null
+        }
+      ],
+      "source_test_changes_since_run": [
+        "test/MigrationExecutionBudget.t.sol"
+      ]
+    },
+    {
+      "attempt": 9,
+      "summary_sha256": "77f5e7f3d4099950b64fe7a0a06e77a4c5164893e3f02de469d14f5c770087ab",
+      "input_sha256": "ac65fd33fb3ead2cc4fc0a0cc059457d33af102582a7b45a1272ddd18febabf9",
+      "raw_stdout_sha256": "eb766310cc1aac12228424c8e5cc4a181bd48d36128d3ed73e69b5e019020f32",
+      "exit_code": 1,
+      "methods": [
+        {
+          "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+          "method": "testActualV4ConfirmationResetDuringHarvestRollsBackEntireRebalance()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+          "method": "testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+          "method": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+          "method": "testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss()",
+          "status": "Failure",
+          "reason": "call to non-contract address 0x0000000000000000000000000000000000000000"
+        },
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+          "method": "testMixedDecimalsRejectOneStableBaseUnitPastFloorDespiteHigherLiveFeed()",
+          "status": "Failure",
+          "reason": "call to non-contract address 0x0000000000000000000000000000000000000000"
+        }
+      ],
+      "source_test_changes_since_run": [
+        "test/MigrationExecutionBudget.t.sol"
+      ]
+    },
+    {
+      "attempt": 10,
+      "summary_sha256": "21c8b3493eb72fb98c2e2c515bad09d3f8893ba0acdff693fe01d1d864870d1c",
+      "input_sha256": "c42ad06431b83acc6032077d9a59f33951c68f4f17d33e10e511c5511cda16ad",
+      "raw_stdout_sha256": "1ae0cd3a8a0845511248a05c93f7c5298e903d9ffa9e1b4887ebc7c67b5d2c33",
+      "exit_code": 1,
+      "methods": [
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+          "method": "testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss()",
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+          "method": "testMixedDecimalsRejectOneStableBaseUnitPastFloorDespiteHigherLiveFeed()",
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        }
+      ],
+      "source_test_changes_since_run": [
+        "test/MigrationExecutionBudget.t.sol"
+      ]
+    },
+    {
+      "attempt": 11,
+      "summary_sha256": "ec162c670b49bfd701ad76314dff5d424b6e9c96234c28bb6a1c70941668be1b",
+      "input_sha256": "f34d0cb8d556d6114ee1e7b1f100be11cd68c7b9db42abb7f350c4f4e3fec708",
+      "raw_stdout_sha256": "99fc3f07218b66fc0244dc8ac2d5df08f0801fce4ecfac549e528db5b1ca1124",
+      "exit_code": 0,
+      "methods": [
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+          "method": "testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+          "method": "testMixedDecimalsRejectOneStableBaseUnitPastFloorDespiteHigherLiveFeed()",
+          "status": "Success",
+          "reason": null
+        }
+      ],
+      "source_test_changes_since_run": []
+    }
+  ],
+  "distinct_latest_successful_methods": 131,
+  "latest_methods": [
+    {
+      "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+      "method": "testCompoundPoliciesArePerAdmittedPool()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+      "method": "testDefaultCompoundHourIsIndependentOfTwelveHourRebalance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+      "method": "testIntervalChangesNeverResetPhysicalOrCompoundClocks()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+      "method": "testOrdinaryPauseAllowsReviewedIntervalConfiguration()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+      "method": "testPreparationCanonicalAndActiveSnapshotRejectPolicyChanges()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CompoundInterval.t.sol:CompoundIntervalTest",
+      "method": "testUnknownPoolBoundsAndUnprivilegedSetterFailClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testDormantHasNoPrincipalAndAllocationBoundsAreEnforced()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testDoubleClaimsDuplicateBatchAndReentrancyCannotPayTwice()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testExitCannotStartInsideAnInFlightContributionCallback()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testExitWithoutHealthyPricesOrEnabledPoolAndRawMinimumRollback()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testFinalHarvestAndPendingCompoundPreserveEarnedClaimsAndBuyback()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testFuzzCumulativeAllocationConservesEveryRawUnit(uint96,uint96,uint96)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testGasConsumingRecipientIsIsolatedAndLaterRecipientPaid()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testObsoleteExternalCustodySelectorsAreAbsent()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testOnlyGovernanceStartsAndCannotReopenOrStartTwice()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testPrefundsNeverJoinPrincipalAndRemainAfterCompletePayout()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testPrincipalIsProportionalNotEqualAndExactAfterAutomaticPayout()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testRejectingRecipientDoesNotBlockOthersAndCanChooseFallback()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "method": "testUnpaidPrincipalAndPastRewardsFollowTransferAndFutureRoyaltiesContinue()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4ConfirmationResetDuringHarvestRollsBackEntireRebalance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "method": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testChangedConfigurationDisablesEligibilityUntilGovernanceReviewsAgain()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testExplicitOrientationPreservesLegacyUntilApprovedAndInvertsOutwardTicks()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testFuzzInverseEndpointsBracketExactTickNeighbors(int24,bool,bool)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testInversePhysicalRangeReplacesMovementTriggerInBothDirections()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testNarrowWidenHysteresisAndPhysicalApplicationRequireSeparateCheckpoints()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testPolicyIsDisabledByDefaultAndCannotChooseUnapprovedWidths()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testReferenceProtectionAndAutomaticWidthExceptionCannotCoexist()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testRegistryCallbackPreservesEveryControllerLifecycleAndStopGuard()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testStopsLocksAndBadPriceCannotEnableRangeSelection()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "method": "testThresholdBoundsOrientationAndCooldownAreGoverned()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_ActualSizeRoutingSelectsCheaperVenueAndPreservesQuotes()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_BalancedBudgetDoesNotChaseDust()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_ColdDeepSingleVenueFastPathWithinExistingGasGate()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_ColdFourVenueSearchWithinExistingGasGate()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_DisabledCandidateDoesNotFreezeHealthyRouting()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_EmptyCatalogNeverImplicitlySwapsInDestination()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_ManagerRejectsERC20PairBeforeAssetPull()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_ManagerRejectsNonNativeMintEvenIfRegistryClaimsNative()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_PartialInputEmptyVenueDoesNotBlockHealthyAlternative()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_PlannerFindsSmallerFeasibleSwapWhenSeedViolatesSpotLimit()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_QuoteUsesExternalDepthAfterActualOwnedLPClose()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_RefundCallbackCannotChangeAndRestoreRegistryPolicy()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_RefundCallbackCannotChangeCapturedPriceVector()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_RefundCallbackCannotChangeRoutingPolicy()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_RefundCallbackCannotChangeTargetOrientation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_RoutesCanBeAdmittedAfterSealWithoutMovingLP()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_SolverBoundsAndQuoteAuthentication()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_ThinCheaperVenueCannotBeatDeepSafeVenue()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest",
+      "method": "test_UnknownDuplicateAndOverlongCatalogRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testBudgetCannotBeArmedOrFinalizedByAnotherCaller()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testBudgetCountsAttributedIdleAndAllowsExactFivePercentIdle()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testBudgetMigrationBlocksCloseCallbackReentry()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testBudgetResumeStartsFromParkedPrincipalAndRollsBackBadMint()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testBudgetRetainsFinalLPCustodyCheck()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testBudgetRoundsRequiredRetentionUpAtOneWeiBoundary()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testBudgetWeightsLossByCachedAssetPricesRatherThanRawTokenTotals()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testCloseCallbackDoublingOraclePricesCannotEraseFourPercentLoss()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testFreshHarvestCompoundEntersDenominatorInsteadOfMaskingCloseLoss()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testFundedRewardBuybackAndPriorDonationsCannotSubsidizePrincipalLoss()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testHarvestCallbackPrincipalLossAndPriceChangeCannotPrecedeStartingSnapshot()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "method": "testMintCallbackPriceChangeCannotHideExcessAttributedIdle()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+      "method": "testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest",
+      "method": "testMixedDecimalsRejectOneStableBaseUnitPastFloorDespiteHigherLiveFeed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+      "method": "testReceiptIncludesOldAndNewDesignatedCompoundWithoutCountingRewardsBuybackOrDonations()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+      "method": "testRepeatedMovesStartFreshSnapshotsIncludingAttributedIdle()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+      "method": "testStaleBaselineFeedRejectsBeforeHarvestAndPreservesCustody()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyActuallySwapsAndDeploysWithoutOracleWhenExplicitlyBypassed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyCanExplicitlyOverrideDisabledOperations()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyCannotReopenTerminalExitOrCanonicalPreparation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyMayRetainCooldownOrFreshSampleRequirement()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyRawSwapFloorFailureRestoresOriginalLPAndContext()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyRecoversParkedCustodyWithFinancialChecksRetained()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyReentersWithoutPricesPreservingSharesAndFundedRewards()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyRejectsDirectForwardersExpiredReviewAndWrongTickSpacing()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyRejectsStaleCustodyAfterGrowthAndMalformedMasks()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyRequiresPausedGovernanceNotKeeperOrHolder()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyRetainedPriceOrValueChecksFailAtomicallyWithoutPrices()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyRetainedSampleFingerprintIncludesPolicyWhenValueGuardIsOff()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativeBuybackSpendsOnlyItsClassifiedReserve()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativeFailedActivationAndIncreaseKeepFundsAndTraits()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativeFeesFollowOwnerThroughGrowthAndRepeatedRebalances()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativeForcedETHDuringCloseCannotSubsidizePrincipal()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativeForcedETHDuringHarvestCannotBecomeFeeIncome()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativeHolderExitUsesActualManagerAndPreservesRewardsWithoutPrices()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testNativePrefundsCannotSatisfyMissingValueOrBecomeNFTPrincipal()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testRetiredBridgeSelectorsRemainUncallable()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "method": "testCompoundCannotMaskLossAndFailedHarvestRollsBackRewards()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "method": "testDonationsAndClaimableFeesCannotPayRebalanceLoss()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "method": "testFuzzThreePercentCloseBoundary(uint16)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "method": "testPriceChangesDuringHarvestCannotHideExecutionLoss()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "method": "testRebalanceSnapshotCannotBeReenteredDuringClose()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "method": "testRepeatedSnapshotsClearAndExistingIdleCapStillApplies()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "method": "testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testBudgetSnapshotRejectsChangedAndRestoredConfirmationPolicy()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testBudgetSnapshotRejectsChangedAndRestoredQualityControls()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testBudgetSnapshotRejectsChangedAndRestoredRegistryControls()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testBudgetSnapshotRejectsResetEvidenceAfterReadiness()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testChangedAndRestoredRegistryPolicyRestarts()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testCollectiveExitPermanentlyBlocksObservationAndConfigurationMutation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testConfigurationBoundsAndExplicitStop()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testContributionBalancesDoNotResetTheSamePhysicalWindow()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testCooldownMustElapseBeforeObservationWindowBegins()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testExactFifteenMinuteBoundaryWithFiveMinuteObservations()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testFreshDefaultIsExplicitlyUnconfiguredAndCannotRebalance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testGovernedRelaxationAndRestoreCannotReusePriorWindow()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testHealthyReferenceUpdatesDoNotResetStablePolicyWindow()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testInsideObservationClearsAndLaterExitStartsFresh()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testKeeperCanClearDuringOrdinaryPauseWithoutExtending()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testManualWidthExceptionPreservesRawCooldownAndPriceGuards()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testMaximumGapIsInclusiveAndOneSecondMoreRestarts()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testNewOraclePolicyRestartsWithoutNormalRoundFingerprinting()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testObservedPriceFailureClearsInSuccessfulTransaction()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testOppositeExitSideRestarts()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testOppositeSideExitsCannotConfirmEvenWithinSpotTolerance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testOrientationChangeAndRestoreInvalidatesPriorEvidence()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testPendingConfirmationDoesNotAllowCompoundToBypassRawPriority()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testPostExitGovernanceOrientationCanChangeWithoutReopeningPrincipal()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testPreparationAndCanonicalLocksFailClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testReferenceMustStillAgreeAtExecutionRead()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testReferenceOnlyExitCannotStartConfirmation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testReferencePolicyRejectsUnreviewedAndUnauthorizedUpdates()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testReplacementLPIdentityRestarts()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testSameBlockRepeatsDoNotAdvanceTime()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testSingleOldSampleAndLateEndpointCannotQualify()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testTargetOnlyExitCannotStartOrKeepConfirmation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "testUnauthorizedObserverCannotExtendOrClearEvidence()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RebalanceConfirmation.t.sol:RebalanceConfirmationTest",
+      "method": "test_FailedObservationTransactionDoesNotPretendItCleared()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "python_methods": [
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_healthy_used_signer_checkpoint_preserves_window",
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_historical_confirmation_zero_does_not_reset_or_probe_new_dependencies",
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_no_pending_checkpoint_head_outage_resets_known_window",
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_no_pending_checkpoint_header_outage_resets_known_window",
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_no_pending_malformed_or_changed_checkpoint_resets_without_new_work",
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_related_saved_pending_fault_is_deferred_not_a_global_reset",
+    "tests_python.test_keeper_checkpoint_confirmation.KeeperCheckpointConfirmationTests.test_unrelated_saved_pending_fault_keeps_original_recovery_isolation",
+    "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_fresh_checks_run_at_240_seconds_without_changing_900_300_policy",
+    "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_gap_admission_tracks_service_cadence_without_overriding_governance",
+    "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_legacy_300_schedule_is_read_without_rewrite_then_checks_at_240",
+    "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_pending_recovery_preserves_legacy_schedule_reset_markers_and_nonce",
+    "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_restore_accepts_only_new_240_or_explicit_legacy_300_schedule",
+    "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_startup_does_not_adopt_foreign_samples_or_old_jitter",
+    "tests_python.test_keeper_confirmation_cadence.KeeperConfirmationCadenceTests.test_writer_and_checker_require_explicit_current_240_cadence",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_foreign_record_after_healthy_empty_clear_still_requires_reset",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_initial_access_faults_reset_only_known_confirmation_windows",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_initial_scheduling_clock_fault_resets_known_windows",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_malformed_raw_accounting_policy_requires_reset",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_malformed_raw_group_requires_reset",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_pending_recovery_fault_does_not_apply_global_raw_resets",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_raw_group_outage_discards_mature_jitter_before_recovery",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_raw_pool_policy_outage_requires_reset",
+    "tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_unrelated_share_inventory_fault_preserves_confirmation",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_canonical_anchor_change_refuses_policy_record",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_failed_read_retains_old_policy_explicitly_stale_without_secret_text",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_fresh_policy_binds_latest_anchor_runtime_and_helpers_without_candidate_or_oracle_reads",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_gap_zero_is_truthful_stop_in_health_and_preflight",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_check_cannot_approve_only_schema_and_success_status",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_rejects_stale_future_and_malformed_policy_fields",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_requires_budget_pin_binding_and_nonboolean_capability",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_loaded_config_mutation_is_not_relabelled_as_fresh_policy",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_policy_future_timestamp_cannot_pass_preflight_observation",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_preflight_checks_budget_capability_under_cooldown_with_compounding_off",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_preflight_pending_does_not_read_new_confirmation_dependencies",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_schema_alone_cannot_approve_confirmation_with_quality_zero",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_subcadence_gap_is_degraded_before_bucket_cooldown_elapses",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_summary_cannot_echo_arbitrary_confirmation_state",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_terminal_exit_suppresses_only_stop_or_cadence_reason_with_explicit_boolean",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_wrong_budget_binding_and_runtime_refuse_fresh_health",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_ambiguous_new_observe_atomically_invalidates_the_old_clear_ack",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_clear_ack_shape_and_bucket_inventory_are_strict_on_restore",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_observation_receipt_blocks_a_still_fresh_mature_window",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_observe_intent_save_preserves_clear_ack_and_never_signs",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_rebalance_receipt_atomically_invalidates_its_old_jitter",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_foreign_candidate_on_first_recovered_read_requires_another_clear",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_fresh_confirmation_requires_an_explicit_compatible_outer_poll",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_full_reset_inventory_preserves_failed_transaction_for_reconciliation",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_genuine_raw_clock_retreat_requires_reset_and_discards_old_jitter",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_postmaintenance_health_read_failure_does_not_clear_a_healthy_jitter",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_recovered_empty_record_allows_new_samples_without_duplicate_clear",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_restart_preserves_clear_ack_and_does_not_resend_a_known_empty_clear",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_restarted_or_changed_confirmed_window_gets_new_jitter_not_old_expired_timer",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_same_persistent_fault_after_clear_does_not_pay_for_another_reset",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_compound_reserve_fault_does_not_reset_confirmed_window",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_failed_harvest_receipt_preserves_confirmation_and_gas_accounting",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_pending_receipt_fault_preserves_journal_without_reset",
+    "tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_router_metadata_fault_does_not_invalidate_price_observations",
+    "tests_python.test_keeper_confirmation_writer.KeeperConfirmationWriterTests.test_cooldown_without_compounding_still_exports_actual_budget_binding",
+    "tests_python.test_keeper_confirmation_writer.KeeperConfirmationWriterTests.test_failed_policy_cannot_refresh_last_healthy_time_or_claim_success",
+    "tests_python.test_keeper_confirmation_writer.KeeperConfirmationWriterTests.test_intentional_stop_is_reported_but_cycle_work_is_not_cancelled",
+    "tests_python.test_keeper_confirmation_writer.KeeperConfirmationWriterTests.test_post_exit_stop_does_not_mark_remaining_royalty_operations_unhealthy",
+    "tests_python.test_keeper_confirmation_writer.KeeperConfirmationWriterTests.test_saved_pending_recovery_never_adds_new_policy_dependency",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_bad_gap_version_and_contradictory_ready_never_submit_an_observation",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_budget_runtime_parent_and_confirmation_gate_are_required",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_confirmation_rejects_a_vault_outside_the_active_access_module",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_deliberate_width_change_bypasses_buffer_but_not_jitter",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_explicit_profile_and_helper_pins_fail_closed_without_legacy_fallback",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_hard_cooldown_does_not_submit_observations",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_inside_and_pending_conditions_are_checked_every_four_minutes",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_observed_pause_queues_reset_once_without_repeated_successful_noops",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_observed_rpc_fault_persists_reset_marker_without_claiming_chain_reset",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_outside_starts_observation_not_rebalance_or_jitter",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_pending_receipt_recovery_precedes_all_new_profile_reads",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_pending_rpc_fault_never_rewrites_pending_and_defers_reset_until_recovery",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_policy_condition_and_readiness_are_pinned_and_consistent",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_receipt_latency_does_not_skip_the_next_scheduled_observation",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_reset_journal_save_failure_preserves_prior_state_and_stops_work",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_reset_receipt_clears_only_its_marker_after_exact_canonical_success",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_reset_validation_does_not_need_prices_or_candidate_readiness",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_restart_with_existing_candidate_requires_a_receipt_backed_reset",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_sampled_readiness_starts_jitter_and_refreshes_samples_during_wait",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_subfour_minute_gap_is_not_paid_forever_by_the_four_minute_worker",
+    "tests_python.test_keeper_rebalance_confirmation.KeeperConfirmationTests.test_unconfigured_gap_blocks_ordinary_work_but_independent_harvest_continues",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_duplicate_method_identity_fails_even_without_python_assertions",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_duplicate_module_fails_closed",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_every_keeper_test_module_is_selected",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_foreign_import_does_not_make_empty_selection_successful",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_import_failure_is_not_silently_skipped",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_list_cli_writes_inventory_without_executing_selected_methods",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_only_defined_classes_selected_and_aliases_not_duplicated",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_real_selection_has_unique_defined_method_ids_without_execution",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_wrong_import_identity_fails_closed",
+    "tests_python.test_production_v4.CurrentProductionTests.test_actual_backing_can_exceed_liability_but_not_fall_below_it",
+    "tests_python.test_production_v4.CurrentProductionTests.test_cap_zero_and_ten_percent_do_not_change_total_loss_policy",
+    "tests_python.test_production_v4.CurrentProductionTests.test_checked_in_fresh_scaffold_remains_unconfigured_and_blocked",
+    "tests_python.test_production_v4.CurrentProductionTests.test_closing_phase_preserves_parked_principal_without_inventing_payouts",
+    "tests_python.test_production_v4.CurrentProductionTests.test_complete_synthetic_inventory_is_consistent_but_never_primary_mint_ready",
+    "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_child_is_separately_pinned_and_observed",
+    "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_pending_stale_side_and_policy_changes_never_become_ready",
+    "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_requires_an_explicit_gap_not_an_invented_default",
+    "tests_python.test_production_v4.CurrentProductionTests.test_confirmation_unavailable_boolean_or_version_is_never_a_fallback",
+    "tests_python.test_production_v4.CurrentProductionTests.test_conserved_but_wrong_per_nft_allocations_are_rejected",
+    "tests_python.test_production_v4.CurrentProductionTests.test_current_observer_composes_into_offline_gate_without_adopting_approval",
+    "tests_python.test_production_v4.CurrentProductionTests.test_each_current_profile_is_explicit_and_bool_is_not_a_version",
+    "tests_python.test_production_v4.CurrentProductionTests.test_empty_catalog_reports_swaps_disabled_without_target_fallback",
+    "tests_python.test_production_v4.CurrentProductionTests.test_fabricated_qualified_opensea_service_cannot_add_missing_contract_interface",
+    "tests_python.test_production_v4.CurrentProductionTests.test_failed_quality_read_is_unavailable_and_sanitized",
+    "tests_python.test_production_v4.CurrentProductionTests.test_false_boolean_does_not_stand_in_for_zero_open_findings_or_lifecycle",
+    "tests_python.test_production_v4.CurrentProductionTests.test_governed_venue_ceiling_is_current_not_historical_two_percent",
+    "tests_python.test_production_v4.CurrentProductionTests.test_independent_market_disagreement_is_coherent_but_never_ready",
+    "tests_python.test_production_v4.CurrentProductionTests.test_live_lp_custody_is_verified_separately_from_nft_shares",
+    "tests_python.test_production_v4.CurrentProductionTests.test_malformed_inputs_return_blockers_not_zero_or_ready",
+    "tests_python.test_production_v4.CurrentProductionTests.test_manual_range_exception_retains_raw_eligibility",
+    "tests_python.test_production_v4.CurrentProductionTests.test_missing_holder_share_or_bucket_is_not_truncated",
+    "tests_python.test_production_v4.CurrentProductionTests.test_nested_exit_fields_cannot_add_a_retired_recipient_or_override_policy",
+    "tests_python.test_production_v4.CurrentProductionTests.test_no_retired_royalty_custody_or_timelock_getter_is_read",
+    "tests_python.test_production_v4.CurrentProductionTests.test_observer_checks_strategy_ready_and_manual_exception_at_same_hash",
+    "tests_python.test_production_v4.CurrentProductionTests.test_observer_work_bound_never_accepts_arbitrary_methods",
+    "tests_python.test_production_v4.CurrentProductionTests.test_old_schema_stays_explicit_historical_and_default_does_not_relabel",
+    "tests_python.test_production_v4.CurrentProductionTests.test_operating_raw_candidate_cannot_disappear_without_an_identity",
+    "tests_python.test_production_v4.CurrentProductionTests.test_paid_principal_is_not_repaid_and_remaining_is_exact",
+    "tests_python.test_production_v4.CurrentProductionTests.test_partial_allocation_prefix_is_conserved",
+    "tests_python.test_production_v4.CurrentProductionTests.test_paused_candidate_cannot_be_ready_but_can_retain_stored_history",
+    "tests_python.test_production_v4.CurrentProductionTests.test_paused_observer_does_not_require_the_manual_exception_dependency",
+    "tests_python.test_production_v4.CurrentProductionTests.test_phase_flag_cursor_and_share_boundary_contradictions_are_rejected",
+    "tests_python.test_production_v4.CurrentProductionTests.test_phase_three_payout_backing_and_current_owners_compose",
+    "tests_python.test_production_v4.CurrentProductionTests.test_position_precision_and_future_checkpoint_are_not_arbitrary_uint256",
+    "tests_python.test_production_v4.CurrentProductionTests.test_quality_revision_catalog_and_solver_observations_are_exact",
+    "tests_python.test_production_v4.CurrentProductionTests.test_raw_readiness_requires_active_cooled_operations_enabled_principal",
+    "tests_python.test_production_v4.CurrentProductionTests.test_reference_market_sides_cannot_replace_actual_physical_ticks",
+    "tests_python.test_production_v4.CurrentProductionTests.test_reference_relaxation_requires_nonzero_review",
+    "tests_python.test_production_v4.CurrentProductionTests.test_reorg_discards_observation_instead_of_publishing_mixed_state",
+    "tests_python.test_production_v4.CurrentProductionTests.test_snapshot_age_future_and_incomplete_observations_fail_closed",
+    "tests_python.test_production_v4.CurrentProductionTests.test_thousand_nft_allocation_checks_are_bounded_and_conserve_rounding",
+    "tests_python.test_production_v4.CurrentProductionTests.test_unknown_fields_and_removed_custody_cannot_enter_current_profile",
+    "tests_python.test_production_v4.CurrentProductionTests.test_wrong_runtime_parent_owner_and_forwarded_quality_are_not_approved",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_bad_or_incomplete_configuration_profile_is_rejected",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_common_reader_requires_canonical_abi_words_from_every_caller",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_confirmation_reads_use_one_canonical_block",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_contradictory_helper_strategy_and_direction_reads_fail_closed",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_fabricated_early_or_stale_readiness_is_rejected",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_inside_range_does_not_reuse_an_old_outside_timer",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_live_window_reports_remaining_time_without_promising_execution",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_manual_range_exception_remains_explicit",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_missing_read_never_falls_back_to_raw_eligibility",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_old_explicit_profile_never_probes_confirmation_getters",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_paused_activation_stops_before_any_confirmation_read",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_policy_binding_versions_and_half_window_bound_are_checked",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_raw_due_and_fifteen_minute_sampled_ready_are_separate",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_stale_or_replaced_record_does_not_announce_eligibility",
+    "tests_python.test_rebalance_confirmation_api.ConfirmationAPITests.test_unconfigured_policy_is_not_invented_as_a_confirmed_buffer",
+    "tests_python.test_reference_confirmation_v2.KeeperReferenceConfirmationV2Tests.test_keeper_rejects_wrong_helper_condition_for_market_sides",
+    "tests_python.test_reference_confirmation_v2.KeeperReferenceConfirmationV2Tests.test_market_disagreement_clears_existing_window_instead_of_extending_it",
+    "tests_python.test_reference_confirmation_v2.KeeperReferenceConfirmationV2Tests.test_matching_policy2_health_has_explicit_capabilities_and_reference_policy",
+    "tests_python.test_reference_confirmation_v2.KeeperReferenceConfirmationV2Tests.test_observed_disagreement_requires_durable_clear_even_if_market_recovers_before_inclusion",
+    "tests_python.test_reference_confirmation_v2.KeeperReferenceConfirmationV2Tests.test_policy2_market_disagreement_needs_no_observation_when_already_empty",
+    "tests_python.test_reference_confirmation_v2.KeeperReferenceConfirmationV2Tests.test_relaxed_policy_requires_nonzero_review_and_remains_explicit",
+    "tests_python.test_reference_confirmation_v2.ReferenceConfirmationV2Tests.test_contradictory_helper_market_condition_rejects",
+    "tests_python.test_reference_confirmation_v2.ReferenceConfirmationV2Tests.test_noncanonical_policy_boolean_rejects",
+    "tests_python.test_reference_confirmation_v2.ReferenceConfirmationV2Tests.test_reviewed_relaxation_is_visible_and_cannot_be_guessed",
+    "tests_python.test_reference_confirmation_v2.ReferenceConfirmationV2Tests.test_same_side_confirmation_is_reported_with_explicit_version",
+    "tests_python.test_reference_confirmation_v2.ReferenceConfirmationV2Tests.test_target_only_and_opposite_side_are_blocked_not_unavailable"
+  ],
+  "python_tests_run": 162,
+  "python_summary_sha256": "68bb9ac641b741ef2907ed3cc1ddbc944d480ae039f6cbb5fd52bf7d2f0fa513",
+  "function_reference_tests": 31,
+  "function_reference_log_sha256": "46dba772dfb8890c1289954d915af05106688fc3ba6d85800e9edcc3b38b5bf3",
+  "original_dirty_preserved": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "external_evidence_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-project-completion-20261029",
+  "limits": [
+    "Local EVM/controlled feeds and authority fixtures; not live market qualification.",
+    "Successful scopes are deduplicated by full method ID; separate runs and failed attempts are not summed.",
+    "Tests introduced exact mock bindings/getters where required; production checks were not weakened.",
+    "Independent audit, actual source/route/economic/target-gas/service/key qualification remain open."
+  ]
+}

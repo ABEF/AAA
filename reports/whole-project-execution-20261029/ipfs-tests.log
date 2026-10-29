@@ -1,0 +1,19 @@
+test_css_escapes_cannot_hide_external_presentation_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_css_escapes_cannot_hide_external_presentation_resources) ... ok
+test_duplicate_json_cannot_hide_conflicting_image_or_catalogue (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_duplicate_json_cannot_hide_conflicting_image_or_catalogue) ... ok
+test_encoded_doctype_cannot_bypass_ascii_resource_screen (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_encoded_doctype_cannot_bypass_ascii_resource_screen) ... ok
+test_nonfinite_json_is_not_a_publishable_reference (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_nonfinite_json_is_not_a_publishable_reference) ... ok
+test_other_animation_and_css_style_channels_are_not_static (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_other_animation_and_css_style_channels_are_not_static) ... ok
+test_rehashed_external_stylesheet_rejects_before_bundle_creation (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_rehashed_external_stylesheet_rejects_before_bundle_creation) ... ok
+test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) ... ok
+test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) ... ok
+test_xml_declaration_comments_and_approved_local_resources_remain_valid (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_declaration_comments_and_approved_local_resources_remain_valid) ... ok
+test_complete_archive_is_reproducible_and_not_published (tests_python.test_ipfs_bundle.IPFSBundleTests.test_complete_archive_is_reproducible_and_not_published) ... ok
+test_duplicate_or_missing_manifest_entries_are_rejected (tests_python.test_ipfs_bundle.IPFSBundleTests.test_duplicate_or_missing_manifest_entries_are_rejected) ... ok
+test_output_cannot_overwrite_source_or_prior_bundle (tests_python.test_ipfs_bundle.IPFSBundleTests.test_output_cannot_overwrite_source_or_prior_bundle) ... ok
+test_tampered_svg_is_rejected_before_output (tests_python.test_ipfs_bundle.IPFSBundleTests.test_tampered_svg_is_rejected_before_output) ... ok
+test_wrong_metadata_image_and_external_svg_resources_are_rejected (tests_python.test_ipfs_bundle.IPFSBundleTests.test_wrong_metadata_image_and_external_svg_resources_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.906s
+
+OK

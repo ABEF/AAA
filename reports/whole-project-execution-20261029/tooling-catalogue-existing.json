@@ -1,0 +1,27 @@
+{
+  "scope": "Two existing offline cross-language catalogue checks; no generation write or service.",
+  "executed_methods": [
+    "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_generated_solidity_is_exactly_the_committed_catalogue",
+    "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_all_1000_inventory_entries_round_trip_the_solidity_encoding"
+  ],
+  "tests_run": 2,
+  "successful": true,
+  "source_sha256_before": {
+    "scripts/generate-artwork-library.py": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+    "tests_python/test_artwork_catalog.py": "617f11614516548a042b483c463b0c18c30689ad52664d64e123dfa76a70ee83",
+    "design/nft-metadata/palette-system-v1/packed-catalog.json": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb",
+    "design/nft-metadata/palette-system-v1/inventory.json": "9dbb671330bcc70c2f246fc4cd81e1ce0374bc441c491b59dfd063cc897c8f41",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606"
+  },
+  "source_sha256_after": {
+    "scripts/generate-artwork-library.py": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+    "tests_python/test_artwork_catalog.py": "617f11614516548a042b483c463b0c18c30689ad52664d64e123dfa76a70ee83",
+    "design/nft-metadata/palette-system-v1/packed-catalog.json": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb",
+    "design/nft-metadata/palette-system-v1/inventory.json": "9dbb671330bcc70c2f246fc4cd81e1ce0374bc441c491b59dfd063cc897c8f41",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606"
+  },
+  "source_inputs_unchanged": true,
+  "errors": [],
+  "failures": [],
+  "skips": []
+}

@@ -1,9 +1,25 @@
 # Keeper outage and server recovery
 
+Durable/config JSON now rejects duplicate keys and nonfinite/overflowing numbers.
+On rejection preserve the original file and inspect its retained evidence/backups;
+do not delete pending work, edit spending truth or weaken the parser. Review
+schema2 bundles contain current holder-return instructions; original schema1
+archives remain historical and verifiable. This source change is not a service
+rollout or permission to modify existing journals.
+
 Operating runbook for an **undeployed candidate; production NOT APPROVED**.
 Use the [rehearsal guide](KEEPER_REHEARSALS.md) for commands and evidence, the
 [keeper internal review](../reports/keeper-recovery/REVIEW.md) for its original
 scope, and the [central Todo](../TODO.md#task-keeper-recovery) for remaining work.
+
+Fresh confirmation2 requires explicit matching helper/Strategy/Budget capability
+and runtime pins; historical confirmation1 journals remain historical. An observed
+physical/reference disagreement requires a confirmed clear before renewing an
+existing window, even if price recovers before inclusion. Never relabel/reset a
+journal to fit new code. [Manual paused-governance emergency](EMERGENCY_REBALANCE.md)
+is separate from keeper recovery and has no automatic fallback or resend. Same-
+key out-of-band manual transactions require nonce/receipt/spend reconciliation
+before restart; a host restart alone cannot adopt them.
 
 Fresh fee-quality source uses explicit `execution_quality_version:1` with actual
 Strategy/Manager/helper capability/runtime/binding checks and observed policy

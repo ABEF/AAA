@@ -5,18 +5,18 @@ import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
-import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
-import {LiquidityAmounts} from "@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {ZZZLPBalancer} from "./ZZZLPBalancer.sol";
+import {EmergencyRebalance, IZZZEmergencyBudget, IZZZEmergencyVault, IZZZEmergencyController} from "./interfaces/IZZZEmergency.sol";
 import {IZZZPools, IZZZStrategy, IPositionManagerMinimal, IStateViewMinimal,
     IPermit2Minimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
 
 interface INativePoolAssets {
     function isNativePool(bytes32 poolId) external view returns (bool);
 }
+interface IEmergencyOutput { function minimumOutputForExit(bytes32,bool,uint256) external view returns(uint256); }
 
 /// @notice Typed v4 operations only. No arbitrary call/action/recipient entrypoint.
 /// Vault owns every LP NFT. Per-NFT approvals authorize this immutable module.
@@ -24,12 +24,14 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
     uint256 public constant LP_ROUTING_VERSION = 1;
     uint256 public constant EXECUTION_QUALITY_VERSION = 1;
+    uint256 public constant EMERGENCY_REBALANCE_VERSION = 1;
     ZZZLPBalancer public immutable balancingRouter;
     IPositionManagerMinimal private immutable posm;
     IStateViewMinimal public immutable stateView;
     IPoolManagerMinimal public immutable poolManager;
     IPermit2Minimal public immutable permit2;
     bytes32 private pendingSwapHash;
+    address private emergencyBudget;
     // A native credit is accepted only during an expected core call.
     // Forced ETH is preserved and never counted as contribution or revenue.
     address private nativeSender;
@@ -63,8 +65,39 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         return _balanceContext(targetPool);
     }
     function _balanceContext(bytes32 targetPool) private view returns (bytes32) {
+        address emergency = _emergencyBudget();
+        if(emergency != address(0)) return IZZZEmergencyBudget(emergency).emergencyFingerprint();
         return keccak256(abi.encode(address(balancingRouter),balancingRouter.executionRevision(),
             balancingRouter.policyFingerprint(targetPool,bytes32(0))));
+    }
+    function _emergencyBudget() private view returns(address budget) {
+        return msg.sender == access.module(Ids.VAULT) ? emergencyBudget : address(0);
+    }
+    /// @dev Scoped to the Vault's atomic manual-emergency wrapper. Ordinary
+    /// operations perform no extra Budget RPC/capability probe.
+    function beginEmergency() external onlyModule(Ids.VAULT) nonReentrant {
+        if(emergencyBudget != address(0)) revert InvalidState();
+        address budget = IZZZEmergencyVault(msg.sender).migrationBudget();
+        IZZZEmergencyBudget(budget).validateEmergency(IZZZEmergencyBudget(budget).emergencyBucket());
+        emergencyBudget = budget;
+    }
+    function endEmergency() external onlyModule(Ids.VAULT) nonReentrant {
+        address budget = emergencyBudget;
+        // Set only by this same immutable Vault's beginEmergency, in one atomic
+        // nonreentrant Vault operation. Its Budget binding cannot be replaced.
+        if(budget == address(0)) revert InvalidState();
+        IZZZEmergencyBudget(budget).validateEmergency(IZZZEmergencyBudget(budget).emergencyBucket());
+        emergencyBudget = address(0);
+    }
+    function _retains(uint8 bit) private view returns(bool) {
+        address budget = _emergencyBudget();
+        return budget == address(0) || (IZZZEmergencyBudget(budget).emergencyChecks() & bit) != 0;
+    }
+    function _policySpot(bytes32 poolId) private view returns(uint160) {
+        address budget = _emergencyBudget();
+        if(budget != address(0)) return (IZZZEmergencyBudget(budget).emergencyChecks() & 2) != 0 ?
+            IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(poolId) : spot(poolId);
+        return IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
     }
     function spot(bytes32 poolId) public view returns (uint160 priceX96) {
         (priceX96,,,) = stateView.getSlot0(poolId);
@@ -73,7 +106,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
         // Fresh production admission is native ETH/fixed ZZZ only. Historical
         // ERC20-pair deployments retain their own immutable implementation.
-        if ((requireOperations && !c.operationsEnabled) || keccak256(abi.encode(c.key)) != poolId ||
+        if ((requireOperations && _retains(8) && !c.operationsEnabled) || keccak256(abi.encode(c.key)) != poolId ||
             c.key.currency0 != address(0) || c.key.currency1 == address(0) || c.key.fee > 100000 ||
             c.key.hooks != address(0) || !INativePoolAssets(access.module(Ids.POOLS)).isNativePool(poolId)) revert InvalidState();
     }
@@ -92,12 +125,6 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         nativeReceived = 0;
         if (address(this).balance != beforeNative + amount) revert InvalidState();
         _sendNative(recipient, amount);
-    }
-    function _nativeDebt(uint160 current, int24 lower, int24 upper, uint128 liquidity) private pure returns (uint256) {
-        uint160 a = TickMath.getSqrtPriceAtTick(lower);
-        uint160 b = TickMath.getSqrtPriceAtTick(upper);
-        if (current >= b) return 0;
-        return SqrtPriceMath.getAmount0Delta(current <= a ? a : current, b, liquidity, true);
     }
     function _checkPosition(bytes32 poolId, uint256 id) private view returns (int24 lower, int24 upper) {
         if (posm.ownerOf(id) != access.module(Ids.VAULT)) revert InvalidState();
@@ -121,11 +148,10 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         _deadline(deadline);
         if (amount0 > type(uint128).max || amount1 > type(uint128).max) revert InvalidAmount();
         PoolConfig memory c = _config(poolId, true);
-        uint160 current = IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
+        uint160 current = _policySpot(poolId);
         if (lower % c.key.tickSpacing != 0 || upper % c.key.tickSpacing != 0 || lower >= upper) revert InvalidConfiguration();
         uint128 previousLiquidity = id == 0 ? 0 : posm.getPositionLiquidity(id);
-        uint128 liquidity = LiquidityAmounts.getLiquidityForAmounts(current, TickMath.getSqrtPriceAtTick(lower),
-            TickMath.getSqrtPriceAtTick(upper), amount0, amount1);
+        (uint128 liquidity,uint256 nativeValue) = balancingRouter.deploymentAmounts(current,lower,upper,amount0,amount1);
         if (liquidity == 0 || liquidity < minimumLiquidity) revert Slippage();
         address t1 = c.key.currency1;
         if (msg.value != amount0) revert InvalidAmount();
@@ -136,7 +162,6 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         if (beforeNative != before0 + msg.value) revert InvalidState();
         // No SWEEP: pay exactly rounded-up principal debt. Prior PosM donations
         // cannot fund this operation and any unconsumed value makes it revert.
-        uint256 nativeValue = _nativeDebt(current, lower, upper, liquidity);
         if (nativeValue > amount0) revert Slippage();
         uint256 beforePosmNative = address(posm).balance;
         _approve(t1, amount1, deadline);
@@ -165,7 +190,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         // approvals, pulls, settlement and refunds can nevertheless call external
         // code. Check the final mark and physical LP only after ALL those calls,
         // so incumbent repricing or a late LP mutation cannot masquerade as new LP.
-        if (IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) != current) revert Slippage();
+        if (_policySpot(poolId) != current) revert Slippage();
         (int24 actualLower, int24 actualUpper) = _checkPosition(poolId, tokenId);
         if (actualLower != lower || actualUpper != upper ||
             uint256(posm.getPositionLiquidity(tokenId)) != uint256(previousLiquidity) + liquidity) revert InvalidState();
@@ -217,19 +242,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         return (int24(uint24(info >> 8)), int24(uint24(info >> 32)));
     }
     function amounts(uint256 id) public view returns (uint256 amount0, uint256 amount1) {
-        (PoolKey memory key, uint256 info) = posm.getPoolAndPositionInfo(id);
-        int24 lower = int24(uint24(info >> 8));
-        int24 upper = int24(uint24(info >> 32));
-        uint160 priceX96 = spot(keccak256(abi.encode(key)));
-        uint160 a = TickMath.getSqrtPriceAtTick(lower);
-        uint160 b = TickMath.getSqrtPriceAtTick(upper);
-        uint128 liquidity = posm.getPositionLiquidity(id);
-        if (priceX96 <= a) amount0 = SqrtPriceMath.getAmount0Delta(a, b, liquidity, false);
-        else if (priceX96 >= b) amount1 = SqrtPriceMath.getAmount1Delta(a, b, liquidity, false);
-        else {
-            amount0 = SqrtPriceMath.getAmount0Delta(priceX96, b, liquidity, false);
-            amount1 = SqrtPriceMath.getAmount1Delta(a, priceX96, liquidity, false);
-        }
+        return balancingRouter.principalAmounts(id);
     }
     function swap(bytes32 poolId, bool zeroForOne, uint256 amountIn, uint256 minimumOut, uint256 deadline)
         external payable nonReentrant returns (uint256 amountOut) {
@@ -247,17 +260,19 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     }
     function _swapExact(bytes32 poolId, PoolConfig memory c, bool zeroForOne, uint256 amountIn, uint256 minimumOut,
         address recipient) private returns (uint256 amountOut) {
-        IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
+        _policySpot(poolId);
         address output = zeroForOne ? c.key.currency1 : c.key.currency0;
         if (minimumOut == 0) revert Slippage();
-        minimumOut = Math.max(minimumOut,IZZZStrategy(access.module(Ids.STRATEGY)).minimumOutput(poolId,zeroForOne,amountIn));
+        if(_retains(4)) minimumOut = Math.max(minimumOut,
+            _emergencyBudget() == address(0) ? IZZZStrategy(access.module(Ids.STRATEGY)).minimumOutput(poolId,zeroForOne,amountIn) :
+            IEmergencyOutput(access.module(Ids.STRATEGY)).minimumOutputForExit(poolId,zeroForOne,amountIn));
         uint256 beforeOutput = _balance(output,recipient);
         bytes memory payload = abi.encode(c.key, zeroForOne, amountIn, minimumOut, recipient);
         pendingSwapHash = keccak256(payload);
         amountOut = abi.decode(poolManager.unlock(payload), (uint256));
         if (pendingSwapHash != bytes32(0) || amountOut < minimumOut ||
             _balance(output,recipient) != beforeOutput+amountOut) revert InvalidState();
-        IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
+        _policySpot(poolId);
     }
     /// @notice Balance only the supplied budget, executing one selected swap.
     /// The LP destination/ticks stay fixed; catalog routes never receive custody.
@@ -266,28 +281,37 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         _deadline(deadline);
         if (amount0 > type(uint128).max || amount1 > type(uint128).max || msg.value != amount0) revert InvalidAmount();
         PoolConfig memory target = _config(targetPool,true);
-        if (target.key.currency0 != address(0)) revert InvalidConfiguration();
+        // _config already requires native currency0, including in emergencies.
         bytes32 context = _balanceContext(targetPool);
         uint256 nativePrefund = address(this).balance-msg.value;
         uint256 tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this));
+        bool emergency = _emergencyBudget() != address(0);
+        EmergencyRebalance memory request;
+        if(emergency) request = IZZZEmergencyController(access.module(Ids.MIGRATION)).emergencyRequest();
         int24 lower; int24 upper; uint128 priorLiquidity;
         if (existingLpId != 0) {
             (lower,upper) = _checkPosition(targetPool,existingLpId);
             priorLiquidity = posm.getPositionLiquidity(existingLpId);
+        } else if(emergency) {
+            lower = request.lower; upper = request.upper;
         } else (lower,upper,) = IZZZStrategy(access.module(Ids.STRATEGY)).target(targetPool);
         // Pull before quoting: even a token callback cannot intervene between
         // the simulated route and the actual swap. Refund only this budget.
         ExactToken.pull(target.key.currency1,msg.sender,amount1);
         if (_balanceContext(targetPool) != context) revert InvalidState();
-        ZZZLPBalancer.Plan memory p = balancingRouter.plan(targetPool,lower,upper,amount0,amount1);
+        ZZZLPBalancer.Plan memory p;
+        if(emergency) {
+            p.poolId = request.swapPool; p.zeroForOne = request.zeroForOne;
+            p.amountIn = request.amountIn; p.minimumOut = request.minimumOut;
+        } else p = balancingRouter.plan(targetPool,lower,upper,amount0,amount1);
         balanced0 = amount0; balanced1 = amount1;
         uint256 refund0 = amount0; uint256 refund1 = amount1;
         if (p.amountIn != 0) {
             PoolConfig memory venue = _config(p.poolId,true);
-            if (venue.key.currency0 != address(0) || venue.key.currency1 != target.key.currency1 ||
+            if (venue.key.currency1 != target.key.currency1 ||
                 p.amountIn > (p.zeroForOne ? amount0 : amount1)) revert InvalidState();
             uint256 output = _swapExact(p.poolId,venue,p.zeroForOne,p.amountIn,p.minimumOut,msg.sender);
-            if (output != p.amountOut || spot(p.poolId) != p.sqrtAfter) revert Slippage();
+            if (!emergency && (output != p.amountOut || spot(p.poolId) != p.sqrtAfter)) revert Slippage();
             if (p.zeroForOne) { balanced0 -= p.amountIn; balanced1 += output; refund0 -= p.amountIn; }
             else { balanced1 -= p.amountIn; balanced0 += output; refund1 -= p.amountIn; }
         }
@@ -298,9 +322,11 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
             if (lower != finalLower || upper != finalUpper || posm.getPositionLiquidity(existingLpId) != priorLiquidity) revert InvalidState();
         }
         if (address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund ||
-            balancingRouter.executionRevision() != p.revision ||
+            _balanceContext(targetPool) != context) revert InvalidState();
+        if(!emergency && (balancingRouter.executionRevision() != p.revision ||
             balancingRouter.policyFingerprint(targetPool,p.poolId) != p.fingerprint ||
-            IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(targetPool) != p.targetSqrtAfter) revert InvalidState();
+            _policySpot(targetPool) != p.targetSqrtAfter)) revert InvalidState();
+        if(emergency) _policySpot(targetPool);
     }
     function unlockCallback(bytes calldata data) external returns (bytes memory) {
         if (msg.sender != address(poolManager) || pendingSwapHash == bytes32(0) ||

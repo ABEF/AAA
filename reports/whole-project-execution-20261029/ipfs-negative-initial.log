@@ -1,0 +1,129 @@
+test_encoded_doctype_cannot_bypass_ascii_resource_screen (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_encoded_doctype_cannot_bypass_ascii_resource_screen) ... 
+  test_encoded_doctype_cannot_bypass_ascii_resource_screen (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_encoded_doctype_cannot_bypass_ascii_resource_screen) (encoding='utf-16') ... FAIL
+  test_encoded_doctype_cannot_bypass_ascii_resource_screen (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_encoded_doctype_cannot_bypass_ascii_resource_screen) (encoding='utf-16-be') ... FAIL
+  test_encoded_doctype_cannot_bypass_ascii_resource_screen (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_encoded_doctype_cannot_bypass_ascii_resource_screen) (encoding='utf-16-le') ... FAIL
+test_rehashed_external_stylesheet_rejects_before_bundle_creation (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_rehashed_external_stylesheet_rejects_before_bundle_creation) ... FAIL
+test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) ... 
+  test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) (data=b'<?xml-stylesheet type="text/css" href="https://example.invalid/a.css"?><svg/>') ... FAIL
+  test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) (data=b'<svg><?xml-stylesheet href="https://example.invalid/a.css"?></svg>') ... FAIL
+  test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) (data=b'<svg/><?xml-stylesheet href="https://example.invalid/a.css"?>') ... FAIL
+  test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) (data=b'<svg><?custom target="external"?></svg>') ... FAIL
+test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) ... 
+  test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) (body='<svg xml:base="https://example.invalid/other.svg"><use href="#part"/></svg>') ... FAIL
+  test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) (body='<svg><g xml:base="https://example.invalid/other.svg"><use href="#part"/></g></svg>') ... FAIL
+  test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) (body='<svg xml:base="../other.svg"><use href="#part"/></svg>') ... FAIL
+  test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) (body='<svg><g xml:base="../other.svg"><use href="#part"/></g></svg>') ... FAIL
+test_xml_declaration_comments_and_approved_local_resources_remain_valid (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_declaration_comments_and_approved_local_resources_remain_valid) ... ok
+
+======================================================================
+FAIL: test_encoded_doctype_cannot_bypass_ascii_resource_screen (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_encoded_doctype_cannot_bypass_ascii_resource_screen) (encoding='utf-16')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 31, in test_encoded_doctype_cannot_bypass_ascii_resource_screen
+    with self.subTest(encoding=encoding), self.assertRaises(ValueError):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_encoded_doctype_cannot_bypass_ascii_resource_screen (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_encoded_doctype_cannot_bypass_ascii_resource_screen) (encoding='utf-16-be')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 31, in test_encoded_doctype_cannot_bypass_ascii_resource_screen
+    with self.subTest(encoding=encoding), self.assertRaises(ValueError):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_encoded_doctype_cannot_bypass_ascii_resource_screen (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_encoded_doctype_cannot_bypass_ascii_resource_screen) (encoding='utf-16-le')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 31, in test_encoded_doctype_cannot_bypass_ascii_resource_screen
+    with self.subTest(encoding=encoding), self.assertRaises(ValueError):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rehashed_external_stylesheet_rejects_before_bundle_creation (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_rehashed_external_stylesheet_rejects_before_bundle_creation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 48, in test_rehashed_external_stylesheet_rejects_before_bundle_creation
+    with self.assertRaises(ValueError):prepare(fixture.source,output,fixture.catalog)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) (data=b'<?xml-stylesheet type="text/css" href="https://example.invalid/a.css"?><svg/>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 18, in test_stylesheet_and_other_processing_instructions_are_rejected_everywhere
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) (data=b'<svg><?xml-stylesheet href="https://example.invalid/a.css"?></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 18, in test_stylesheet_and_other_processing_instructions_are_rejected_everywhere
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) (data=b'<svg/><?xml-stylesheet href="https://example.invalid/a.css"?>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 18, in test_stylesheet_and_other_processing_instructions_are_rejected_everywhere
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stylesheet_and_other_processing_instructions_are_rejected_everywhere (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_stylesheet_and_other_processing_instructions_are_rejected_everywhere) (data=b'<svg><?custom target="external"?></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 18, in test_stylesheet_and_other_processing_instructions_are_rejected_everywhere
+    with self.subTest(data=data), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) (body='<svg xml:base="https://example.invalid/other.svg"><use href="#part"/></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 25, in test_xml_base_cannot_redirect_fragment_resources
+    with self.subTest(body=body), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) (body='<svg><g xml:base="https://example.invalid/other.svg"><use href="#part"/></g></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 25, in test_xml_base_cannot_redirect_fragment_resources
+    with self.subTest(body=body), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) (body='<svg xml:base="../other.svg"><use href="#part"/></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 25, in test_xml_base_cannot_redirect_fragment_resources
+    with self.subTest(body=body), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_xml_base_cannot_redirect_fragment_resources (tests_python.test_ipfs_resource_policy.IPFSResourcePolicyTests.test_xml_base_cannot_redirect_fragment_resources) (body='<svg><g xml:base="../other.svg"><use href="#part"/></g></svg>')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_ipfs_resource_policy.py", line 25, in test_xml_base_cannot_redirect_fragment_resources
+    with self.subTest(body=body), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.376s
+
+FAILED (failures=12)

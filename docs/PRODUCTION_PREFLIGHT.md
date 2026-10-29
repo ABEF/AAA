@@ -47,7 +47,7 @@ neither a template field nor a source receipt approves it. [Scope](EXECUTION_QUA
 [read-only observer](../zzz_ops/production_observer_v4.py) use accounting4,
 direct governance2, custody3 and holder-exit canonicalV5 explicitly. The profile
 also requires Strategy2/Budget3, Entry routing2/pricing2/review1, LP routing1,
-execution-quality1 and rebalance-confirmation1. Unknown, missing, boolean or
+execution-quality1 and rebalance-confirmation2. Unknown, missing, boolean or
 historical versions fail closed; no getter-failure fallback upgrades old data.
 
 The inventory contains17modules including Access and17helpers. It includes the
@@ -121,6 +121,20 @@ Real feeds/routes/VRF/authorities, complete history, service/gas rehearsals and
 independent audit evidence remain mandatory. The checked-in scaffold must return
 blocked. No command signs, deploys, seals, edits a journal or changes a service.
 See [scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+
+### Confirmation2 and emergency1 inventory
+
+Current schema6 requires confirmation capability2 on Strategy/helper/Budget,
+emergency capability1 on Migration/Manager/Budget, inactive Budget emergency
+context and reviewed runtime pins. The observed reference policy includes
+`reference_exit_required` and `reference_review_hash`; a relaxed false policy
+requires a nonzero review. Default source policy is true. Per-bucket
+`physical_side`/`reference_side` explain a coherent reference disagreement and
+must match actual physical ticks; raw need can be true while ordinary condition
+is zero and readiness false. The observer remains read-only. Real independent
+sources, constructor arguments, runtimes and operating qualification are still
+unset, so examples do not qualify a deployment. Earlier confirmation1 schema6
+records retain their historical source scope and must not be relabelled.
 
 ## Historical schema5 mint qualification boundary
 

@@ -23,6 +23,9 @@ MODULES=(
  'test_keeper_runner_inventory',
  'test_keeper_metadata_restart',
  'test_keeper_confirmation_cadence',
+ 'test_reference_confirmation_v2',
+ 'test_keeper_confirmation_priority',
+ 'test_state_json_integrity',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

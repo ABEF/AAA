@@ -139,7 +139,7 @@ class ConfirmationAPITests(unittest.TestCase):
         self.assertFalse(any(method=='eth_call' and params[0]['data']==selector for method,params in rpc.calls))
 
     def test_bad_or_incomplete_configuration_profile_is_rejected(self):
-        for version in (True,None,2,'1'):
+        for version in (True,None,3,'1'):
             with self.subTest(version=version):
                 rpc,p,_service=setup_confirmation();rpc.config['rebalance_confirmation_version']=version
                 with self.assertRaises(ValueError):ActivationTransactions(p,rpc.config)

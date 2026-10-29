@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 225.19,
+  "methods": [
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencyMaskCompositionWithoutPricesHasExplicitPositiveControls()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "method": "testManualEmergencySamplePolicyCallbackRollsBackWhenValueGuardIsOff()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "distinct_methods": 2,
+  "source_drift": [],
+  "stderr_tail": ""
+}

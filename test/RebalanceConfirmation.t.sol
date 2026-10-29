@@ -6,6 +6,7 @@ import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZContributionPricing} from "../src/ZZZContributionPricing.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {IStateViewMinimal} from "../src/interfaces/IZZZ.sol";
@@ -14,6 +15,8 @@ import {MockAccess} from "./mocks/Mocks.sol";
 /// @dev TEST ONLY source/admission/venue fixtures. Real Strategy and Budget
 /// enforce the confirmation; no real feeds, market economics or keeper rollout.
 contract ConfirmationOracleFixture {
+    ZZZContributionPricing public immutable contributionPricing;
+    constructor(address controller) { contributionPricing = new ZZZContributionPricing(controller,address(this)); }
     mapping(address => bytes32) public activePolicy;
     bytes32 public activeSequencerPolicy = keccak256("test sequencer policy");
     uint160 public referencePrice = uint160(1 << 96);
@@ -61,7 +64,7 @@ contract RebalanceConfirmationTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access = new MockAccess(); oracle = new ConfirmationOracleFixture();
+        access = new MockAccess(); oracle = new ConfirmationOracleFixture(address(access));
         pools = new ConfirmationPoolsFixture(); venue = new ConfirmationVenueFixture();
         strategy = new ZZZStrategy(address(access)); confirmation = strategy.rebalanceConfirmation();
         budget = new ZZZMigrationBudget(address(access));
@@ -80,6 +83,7 @@ contract RebalanceConfirmationTest is Test {
         _below();
     }
     function group(uint256) external view returns(Position memory) { return position; }
+    function migrationBudget() external view returns(address) { return address(budget); }
     function _below() private { _tick(venue.lower()-1); }
     function _above() private { _tick(venue.upper()); }
     function _inside() private { _tick(0); }
@@ -94,7 +98,8 @@ contract RebalanceConfirmationTest is Test {
     function testFreshDefaultIsExplicitlyUnconfiguredAndCannotRebalance() public {
         assertEq(confirmation.duration(),900); assertEq(confirmation.maxObservationGap(),0);
         assertEq(confirmation.strategy(),address(strategy)); assertEq(address(confirmation.access()),address(access));
-        assertEq(strategy.REBALANCE_CONFIRMATION_VERSION(),1); assertEq(budget.REBALANCE_CONFIRMATION_VERSION(),1);
+        assertEq(strategy.REBALANCE_CONFIRMATION_VERSION(),2); assertEq(budget.REBALANCE_CONFIRMATION_VERSION(),2);
+        assertEq(confirmation.REBALANCE_CONFIRMATION_VERSION(),2); assertTrue(confirmation.requireReferenceExit());
         assertTrue(strategy.needsRebalance(BUCKET)); assertFalse(strategy.rebalanceReady(BUCKET));
         assertFalse(confirmation.observe(BUCKET)); assertEq(_first(),0);
         vm.expectRevert(ZZZMigrationBudget.InvalidState.selector); budget.validateRebalance(BUCKET,1);
@@ -106,6 +111,59 @@ contract RebalanceConfirmationTest is Test {
         vm.warp(first+900); assertTrue(strategy.rebalanceReady(BUCKET));
         assertTrue(confirmation.observe(BUCKET)); budget.validateRebalance(BUCKET,1);
         assertEq(_first(),first); assertEq(_last(),first+900);
+    }
+    function testTargetOnlyExitCannotStartOrKeepConfirmation() public {
+        _configure(); confirmation.observe(BUCKET); uint64 first = _first();
+        vm.warp(block.timestamp+240);
+        oracle.setReference(TickMath.getSqrtPriceAtTick(venue.lower()+1));
+        (uint8 side,bytes32 identity,bool manual) = confirmation.condition(BUCKET);
+        assertEq(side,0); assertEq(identity,bytes32(0)); assertFalse(manual);
+        assertTrue(strategy.needsRebalance(BUCKET)); assertFalse(strategy.rebalanceReady(BUCKET));
+        assertFalse(confirmation.observe(BUCKET)); assertEq(_first(),0);
+        _below(); vm.warp(block.timestamp+1); confirmation.observe(BUCKET);
+        assertGt(_first(),first);
+    }
+    function testReferenceOnlyExitCannotStartConfirmation() public {
+        _configure(); venue.setTick(venue.lower()+1);
+        oracle.setReference(TickMath.getSqrtPriceAtTick(venue.lower()-1));
+        assertFalse(strategy.needsRebalance(BUCKET));
+        assertFalse(confirmation.observe(BUCKET)); assertEq(_first(),0);
+    }
+    function testOppositeSideExitsCannotConfirmEvenWithinSpotTolerance() public {
+        _configure(); PoolConfig memory c = pools.get(pool);
+        c.rangeBps=100; c.triggerBps=50; pools.set(c);
+        oracle.setReference(uint160(1<<96));
+        (int24 lower,int24 upper,) = strategy.target(pool); venue.setRange(lower,upper);
+        venue.setTick(lower-1); oracle.setReference(TickMath.getSqrtPriceAtTick(upper+1));
+        assertTrue(strategy.needsRebalance(BUCKET));
+        assertFalse(confirmation.observe(BUCKET)); assertEq(_first(),0);
+    }
+    function testReferenceMustStillAgreeAtExecutionRead() public {
+        _configure(); confirmation.observe(BUCKET);
+        _observeAfter(300); _observeAfter(300); assertTrue(_observeAfter(300));
+        oracle.setReference(TickMath.getSqrtPriceAtTick(venue.lower()+1));
+        assertFalse(strategy.rebalanceReady(BUCKET));
+        vm.expectRevert(ZZZMigrationBudget.InvalidState.selector); budget.validateRebalance(BUCKET,1);
+    }
+    function testGovernedRelaxationAndRestoreCannotReusePriorWindow() public {
+        _configure(); confirmation.observe(BUCKET);
+        _observeAfter(300); _observeAfter(300); assertTrue(_observeAfter(300));
+        uint64 revision=confirmation.policyRevision();
+        confirmation.setRequireReferenceExit(false,keccak256("reviewed recovery policy"));
+        assertEq(confirmation.policyRevision(),revision+1); assertFalse(strategy.rebalanceReady(BUCKET));
+        oracle.setReference(TickMath.getSqrtPriceAtTick(venue.lower()+1));
+        assertFalse(confirmation.observe(BUCKET)); assertEq(_first(),block.timestamp);
+        _observeAfter(300); _observeAfter(300); assertTrue(_observeAfter(300));
+        confirmation.setRequireReferenceExit(true,keccak256("restored independent trigger"));
+        assertFalse(strategy.rebalanceReady(BUCKET));
+        assertFalse(confirmation.observe(BUCKET)); assertEq(_first(),0);
+    }
+    function testReferencePolicyRejectsUnreviewedAndUnauthorizedUpdates() public {
+        vm.expectRevert(ZZZModule.InvalidConfiguration.selector);
+        confirmation.setRequireReferenceExit(false,bytes32(0));
+        access.setKeeper(address(0xBEEF),true); vm.prank(address(0xBEEF));
+        vm.expectRevert(ZZZModule.Unauthorized.selector);
+        confirmation.setRequireReferenceExit(false,keccak256("keeper cannot loosen policy"));
     }
     function testMaximumGapIsInclusiveAndOneSecondMoreRestarts() public {
         _configure(); confirmation.observe(BUCKET); uint256 original=block.timestamp;
