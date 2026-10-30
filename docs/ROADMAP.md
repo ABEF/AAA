@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+Before implementing the requested [passive portfolio](PASSIVE_INVENTORY_PLAN.md),
+settle inventory/recovery and timing choices. Two positions require complete
+accounting/custody/reader integration and measured size refactoring. Research
+finds substantial inactive-capital risk; no passive/swap fallback is approved by
+this plan. Existing current-source qualification remains separately scoped.
+
 The [current complete-project pass](../reports/comprehensive-popl-20261029/REVIEW.md)
 implements confirmed local defects. Next qualify actual price sources/execution
 venues/VRF and authority inventory, refresh frozen-source static analysis, then

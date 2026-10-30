@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "observed_on_client_date": "2026-10-30",
+  "recorded_at_utc": "2026-10-30T20:48:20.011881+00:00",
+  "scope": "Research-only primary documentation/source plus DefiLlama; no repository code, tests, services, signing or strategy implementation changed.",
+  "tvl_warning": "Protocol-wide combined TVL/ranks from browsed DefiLlama snapshots, not amounts using a specific passive strategy. Browser cache snapshots differ. TVL is scale evidence, not safety, profitability or exact current live-chain TVL.",
+  "protocols": [
+    {
+      "name": "Charm Finance / Alpha Vaults",
+      "tvl": {
+        "source": "https://defillama.com/protocol/charm-finance",
+        "latest_search_snapshot": {
+          "usd_millions": 1.83,
+          "as_of": "2026-10-29",
+          "liquidity_manager_rank": 11,
+          "web_ref": "turn408search0"
+        },
+        "other_direct_snapshots": [
+          {
+            "usd_millions": 2.05,
+            "as_of": "2026-10-21",
+            "web_ref": "turn440view2"
+          },
+          {
+            "usd_millions": 2.15,
+            "as_of": "not shown; crawled last month",
+            "web_ref": "turn450view0"
+          }
+        ],
+        "safe_scale_statement": "Approximately $2m combined protocol TVL in the retrieved snapshots; no exact synchronous live TVL verified."
+      },
+      "versions": [
+        {
+          "name": "Classic v1 / archived two-position model",
+          "docs": "https://learn.charm.fi/charm-finance/alpha-vaults/strategy",
+          "status": "Explicit Charm_Old; current legacy-withdrawal page says v1 holdings are HODL, not active LP. Do not use current aggregate TVL to imply this exact legacy strategy remains deployed/active.",
+          "source": "https://raw.githubusercontent.com/charmfinance/alpha-vaults-contracts/main/contracts/PassiveStrategy.sol",
+          "behavior": "PassiveStrategy.rebalance97-115 calls Vault.rebalance with swapAmount0. It sets base around rounded current tick and provides bid/ask candidates; period, minimum tick movement, spot/TWAP agreement, keeper and extreme-tick constraints gate execution.",
+          "vault_source": "https://raw.githubusercontent.com/charmfinance/alpha-vaults-contracts/main/contracts/AlphaVault.sol",
+          "vault_behavior": "AlphaVault.rebalance253-308 closes both existing legs, optionally swaps only when swapAmount is nonzero, deploys maximum base, then one leftover bid or ask leg. Thus this passive caller is swap-free; the generic old vault capability is not inherently swap-free."
+        },
+        {
+          "name": "Alpha Pro / v2 source and current three-position docs",
+          "docs": "https://learn.charm.fi/charm/manage-liquidity/how-it-works",
+          "source": "https://raw.githubusercontent.com/charmfinance/alpha-vaults-v2-contracts/main/contracts/AlphaProVault.sol",
+          "source_locators": [
+            "rebalance344-423",
+            "checkCanRebalance425-445",
+            "VaultParams34-49",
+            "getTotalAmounts530-538"
+          ],
+          "sequence": [
+            "Close and collect full, base and limit positions.",
+            "Calculate current rounded tick and new base/bid/ask boundaries.",
+            "Allocate optional fullRangeWeight, then maximum two-asset base.",
+            "Allocate remaining inventory into exactly one bid or ask.",
+            "Update lastTimestamp/lastTick only after the completed call."
+          ],
+          "no_immediate_swap": "No pool.swap call in this rebalance body. Callback support/imports do not imply a rebalance swap.",
+          "controls": "On-chain period/minTickMove/spot-TWAP/extreme-tick checks. Nonzero delegate restricts caller to manager/delegate; zero delegate allows any caller passing the checks. Parameters are manager-controlled.",
+          "zero_full_range": "Initial fullRangeWeight can be0, so the three-slot model can have only base+limit funded.",
+          "all_one_asset_inference": "With only one asset and no usable opposing dust, an in-range base mints0; the corresponding one-sided bid/ask can receive inventory. Active two-sided liquidity is not recreated automatically.",
+          "rearm": "Every rebalance consolidates old legs before creating the new bounded set, rather than accumulating another limit forever."
+        }
+      ],
+      "whitepaper": {
+        "url": "https://learn.charm.fi/charm/products-overview/alpha-vaults/whitepaper",
+        "finding": "Passive inventory conversion waits for market trades through the limit range. Continued price movement away can keep allocation increasingly one-sided; mean reversion is a strategy assumption, not guaranteed rebalancing completion. Marketing claims of avoiding MEV should not become an LP-wide immunity claim."
+      },
+      "parameter_docs": {
+        "url": "https://learn.charm.fi/charm/manage-liquidity/user-guides/vault-parameters",
+        "finding": "Base/limit widths, minimum period, minTickMove, full-range weight and TWAP controls are separate. Text saying greater TWAP deviation improves security is internally dubious: a larger allowed spot-average disagreement is normally a looser gate. Follow actual comparisons, not that sentence."
+      },
+      "rebalancing_docs": {
+        "url": "https://learn.charm.fi/charm/manage-liquidity/user-guides/rebalancing",
+        "finding": "Positions are withdrawn and all holdings redeposited on rebalance. New deposits can sit idle until that action in this model; that behavior should not be copied into PoPL, which requires confirmed immediate entrant LP deployment."
+      }
+    },
+    {
+      "name": "Gamma",
+      "tvl": {
+        "source": "https://defillama.com/protocol/gamma",
+        "usd_millions": 2.82,
+        "as_of": "2026-10-30",
+        "liquidity_manager_rank": 10,
+        "web_ref": "turn450view1",
+        "scope": "Whole Gamma, not classic base/limit only."
+      },
+      "current_strategy_docs": {
+        "url": "https://docs.gamma.xyz/gamma/lp-vaults/strategies",
+        "finding": "Classic dual base/limit strategies remain documented, while v4 multiposition strategies support up to20positions. Different families must not be conflated."
+      },
+      "dual_strategy_docs": {
+        "url": "https://docs.gamma.xyz/gamma/lp-vaults/strategies/dual-position-strategies-base-limit",
+        "finding": "Dynamic ranges use price-percentage triggers and recenter at rebalance; allocation may depart50/50. Narrow-range fees may not compensate prolonged volatility/divergence losses. Pegged strategies can go out of range and earn no fees."
+      },
+      "inspected_implementation": {
+        "url": "https://raw.githubusercontent.com/GammaStrategies/hypervisor/master/contracts/Hypervisor.sol",
+        "version": "Source identifies Hypervisor v1.3 / Solidity0.7.6; not authenticated to every live Gamma vault.",
+        "locators": [
+          "rebalance249-308",
+          "compound316-337",
+          "_mintLiquidity358-376",
+          "getTotalAmounts453-458",
+          "onlyOwner580-582"
+        ],
+        "sequence": "Owner supplies base/limit ticks and amount minima. Core collects fees, burns both old legs fully, deploys maximum base then residual limit. No swap appears in this file; zero-liquidity mint is skipped. Both legs plus idle comprise NAV.",
+        "bounded_cycle": "This rebalance replaces the two tracked legs; it does not accumulate arbitrary extra one-sided legs. Separate owner add/pull methods mean this statement is scoped to the classic rebalance path.",
+        "all_one_asset_inference": "For a genuine in-range base and one-asset-only inventory, base can have zero liquidity and the configured one-sided limit can receive the asset. Core accepts caller-selected ranges; it does not itself prove the limit is passive/one-sided.",
+        "authority_and_quality": "onlyOwner and provided minimum burn/mint amounts are present. This core does not itself contain a universal TWAP/cooldown check for rebalance; actual strategy/owner infrastructure must be reviewed separately."
+      },
+      "security_docs": {
+        "url": "https://docs.gamma.xyz/gamma/lp-vaults/faq/security",
+        "finding": "FAQ specifically discusses proxy TWAP protection for deposits and single-sided-deposit risks. It is not proof every rebalance is TWAP-gated or immune to MEV. Published self-description is not a live deployment audit."
+      },
+      "unknowns": "Current proprietary off-chain exact rearming policy, per-vault production guards and all-version source/deployment mapping were not independently established."
+    },
+    {
+      "name": "Arrakis",
+      "tvl": {
+        "source": "https://defillama.com/protocol/arrakis-finance",
+        "usd_millions": 58.41,
+        "as_of": "2026-10-29",
+        "liquidity_manager_rank": 2,
+        "web_ref": "turn450view2",
+        "scope": "Combined Arrakis, not a single no-swap module/strategy."
+      },
+      "legacy_v2_docs": {
+        "url": "https://legacy-docs.arrakis.fi/arrakis-v2-core/arrakisv2",
+        "finding": "General manager framework for selected removals, optional whitelist-router swaps and selected additions. Multiple ranges/fee tiers; manager is explicitly semi-trusted unless another contract enforces strategy. No universal main+limit or always-no-swap policy."
+      },
+      "legacy_v2_source": {
+        "url": "https://raw.githubusercontent.com/ArrakisFinance/v2-core/main/contracts/ArrakisV2.sol",
+        "locators": [
+          "rebalance226-383",
+          "partial/full burn254-274",
+          "optional swap291-341",
+          "range mint345-382"
+        ],
+        "behavior": "Each requested burn can remove some or all of a range; swap happens only when amountIn>0 through admitted routers and checked token deltas; requested mints may preserve or add ranges. Manager may perform a no-swap update, but closing/consolidating all legs and fixed two-position bounds are not inherent requirements.",
+        "one_asset_limit": "The framework can deploy a one-sided range selected by its strategy; no fixed recovery from all-one-asset inventory follows from the general core."
+      },
+      "current_strategy_docs": {
+        "url": "https://resources.arrakis.fi/text/arrakisPro/strategies/overview.html",
+        "web_ref": "turn413search10",
+        "finding": "Bootstrap combines full-range and several bootstrapping ranges until near50/50, then stops. Flagship reacts to price/inventory/volatility; tailored strategies may swap through third-party aggregators. Search index accessible; direct fetch502, so exact deployed execution/rearm remains unverified."
+      },
+      "current_manager_controls": {
+        "url": "https://docs.arrakis.fi/text/arrakisPro/modify.html",
+        "finding": "Owner configures executor, oracle, maxDeviation, minimum cooldown and maxSlippagePIPS. These constrain authorized management; do not transplant Arrakis timelocks/arbitrary executors into PoPL as requirements."
+      },
+      "current_module_docs": {
+        "url": "https://resources.arrakis.fi/text/modules/uniV3Module.html",
+        "finding": "V3 module aggregates multiple positions and optional RFQ. HOT module separately exposes range adjustment and atomic external swap; that is not a two-position passive strategy.",
+        "other_url": "https://docs.arrakis.fi/text/modules/hotAmm/manager.html"
+      },
+      "unknowns": "No verified production-wide automatic no-swap consolidation/rearm algorithm. Current module/protocol TVL is not evidence of such a strategy."
+    }
+  ],
+  "cross_protocol_inferences_for_popl": [
+    "Strongest bounded precedent: atomic consolidation of both old legs, then max useful two-asset base and one residual single-sided leg; no market swap required for the rebalance itself.",
+    "This is a different architecture from retaining an untouched old main LP and repeatedly adding excess-only positions. Excess is defined relative to the selected new base after balances are available, not an independently withdrawable portion of AMM inventory.",
+    "Exactly two physical slots can prevent position proliferation, but NAV, harvest/rewards, conversions, contributions, compound, move/park/exit and canonical handoff must all sum both legs and classified idle.",
+    "A passive LP limit is reversible while liquidity remains. Trades can convert it back on retracement; a source-marketing limit order is not an irreversible settled order unless completed liquidity is removed.",
+    "All-one-asset inventory creates a real liveness/economic tradeoff: without swap or external opposite asset, no in-range two-asset base can be funded. Waiting for reverse trade avoids immediate taker costs but can leave little/no active fee earning indefinitely.",
+    "No immediate market swap removes one direct sandwich/taker-impact surface; it does not stop toxic flow, manipulation of chosen ranges/valuation, arbitrage against stale prices, deposit dilution or trusted-operator abuse.",
+    "A fresh two-leg profile plus accounting/recovery review is required; changing only Python timing cannot safely supply missing on-chain custody/accounting capabilities.",
+    "Do not copy redeemable ERC20-vault principal withdrawal or deposit-idle-until-rebalance behavior; PoPL rights and actual marginal entrant LP are different requirements."
+  ],
+  "research_limits": [
+    "Mutable main/master source URLs are observations, not exact deployment authentication or audit approval.",
+    "No code compilation/tests/on-chain transactions/provider qualification performed.",
+    "DefiLlama API reads unavailable in web tool; snapshots/ranks differ by cache/as-of date.",
+    "Primary links only relied upon; unrelated gamma-named websites and third-party marketing search results excluded.",
+    "No assumption of profitability, no direct-swap strategy immunity guarantee, no wholesale recommendation to copy protocol architecture."
+  ]
+}

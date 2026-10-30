@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-30T20:50:51.887983+00:00",
+  "scope": "Proposal assessment only; no source/tests/services/transactions. No fallback or parameter approval inferred.",
+  "related": "strategy-cases.json",
+  "alternatives": [
+    {
+      "id": "A",
+      "name": "Partially retain old main, rebuild part and place residual",
+      "assessment": "Can preserve more currently active exposure and reduce turnover. But retainingoldmain+newcentredmain+residual needs3positions. With fwithdrawn, activeNAV fraction at the same mark is1-f*(1-beta), ignoringfees/ticks, wherebetaisfull-no-swapnewmainfraction. Cannot market this as boundedmain+oneaux.",
+      "two_leg_variant": "Keepoldmain, withdrawfractionf, place heavyassetonlyinaux and retainminorityidle. This uses2legs butdoesnotrecenter main, leavescashidle, and needsnewclock/trigger/refill semantics. It cannot simply put withdrawnminority back into unchangedmain without matchingheavyasset, because unchangedrangecurrentratio remainsfixed.",
+      "approval_needed": [
+        "Keepmainunchanged versusrecenterit",
+        "Maximumwithdrawfraction",
+        "Howminorityidleiscapped/reinvested",
+        "WhetheranadjustmentupdatesaclockwithoutnewmainID"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Keep a broad baseline plus active main and residual",
+      "assessment": "A separate broadbaselinewould be athirdleg. With2legs, baseline must replace either focusedmainorresidual. Broader than manual±25/50 alsochangeswidthpolicy. No stealth universal-baseline addition.",
+      "approval_needed": [
+        "Twolegsorthree",
+        "Basewidth/allocation",
+        "Whichlegtriggerdrivesmaintenance",
+        "Gas/accounting/exitcapacity"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Require a governed minimum active-main value fraction",
+      "assessment": "Useful transparent admissibilitycontrol, but itcan make85%triggerandpassiveno-swapincompatible. In illustrativecasesnewmainfractionsare~15–24.5%;afloorabove25%rejectsallfour. Waitingforbalancedinventorymaylettriggerresetorpricetrendfurther, nevermeetingbothconditions. This isnotafreefix.",
+      "proposal": "Previewactivevalue/physicalactivedepth, classifyinventory_limited separately, avoidpaidretryloops. Ifuserchoosesafloor, defineitsgovernedboundsandexplicitblocked-stateprocedure. Do notpickarbitrarydefault.",
+      "approval_needed": [
+        "Initialactivefractionfloor",
+        "Whetherfailurewaitsormayuseanexplicitguardedswap",
+        "Whichclock/reseteffectsapply"
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Explicit bounded swap only to reach active-main floor",
+      "assessment": "Couldrecoveractivecapitalusinglessswapthanforcingallinventoryintocentredmain. It reintroducesswapfees/impact/sandwichriskandmustkeepexistingreviewedvenues,independentprices,caller/capturedlimitsandactualretentionguards. Thisisaseparateuserdecision, notautomaticfallbackfromfailedno-swap.",
+      "analytic_example": "Atupper85%ofold±50%,ETH~94.15%ofNAVandnewmainneeds61.48%ETH. Ignoringfees, achieving50%activeNAVneedsadditionalZZZvalue~13.41%NAV;fullyactivemainneeds~32.67%NAVconvertedETHtoZZZ. Thisisnot50%ofeverydeposit.",
+      "approval_needed": [
+        "Allowanymaintenancebalancingswap",
+        "Activefloor",
+        "Maximumaggregatecostandswapbudget",
+        "Whoauthorizesexception"
+      ]
+    },
+    {
+      "id": "E",
+      "name": "Close completed residual and stockpile converted asset as idle",
+      "assessment": "Preventsreverseconversiononcrossbackbutmaymovemostcapitaltoidle. At~85%residualsize, thiscanfar exceedexisting5%wholebucketidleceilingandblocknewcontributions. Existingcompoundmayneedaswaptoreinvestthisinventory, defeatingano-swapclaim.",
+      "minimal_option": "LeavecompletedresidualasclassifiedLPuntilnextapprovedconsolidation, explicitlyshowitisinactiveandconversioncanunfill. Alternatively add aseparatelyreviewedcompleted-legconsolidationcondition;thatconditionisnot85%maintrigger.",
+      "approval_needed": [
+        "Whetherfillissupposedtobeirreversible",
+        "Cancompleted-legconsolidationrunwhenmaintriggerisfalse",
+        "Idlecapchangesorbudgethandling",
+        "Whethercompoundmayrebalanceinventory"
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Shape an asymmetric new main to fit skewed inventory",
+      "assessment": "Atechnicallypossibleinventory-fittingrange couldusemoreassetswithoutswap. Itnolongerimplementsmanualarithmetic±25/50%aroundcentreandmightplacemainverynearaboundary. Thischangesstrategyandrisk,notjustexecutionefficiency.",
+      "approval_needed": [
+        "Whetherasymmetricboundsareallowed",
+        "Range/centredefinition",
+        "Maximumskewandactivefraction",
+        "Triggerdistanceforasymmetricphysicalbounds"
+      ]
+    }
+  ],
+  "partial_allocation_illustrations": [
+    {
+      "half_width": 0.5,
+      "direction": "up",
+      "withdraw_fraction": 0.25,
+      "three_leg_hypothetical_active_nav_fraction": 0.787955825261599,
+      "three_leg_warning": "Keepsoldmain+newmain+residual=3legs; violatesbounded2legdesign.",
+      "two_leg_oldmain_plus_heavy_aux_minority_idle_nav_fraction": 0.01462022011768252,
+      "two_leg_oldmain_plus_heavy_aux_main_nav_fraction": 0.75,
+      "two_leg_warning": "Oldmainnotrecentered; withdrawnminoritystaysidle; fee/idle/cooldown/nexttriggersemanticsneednewexplicitpolicy."
+    },
+    {
+      "half_width": 0.5,
+      "direction": "up",
+      "withdraw_fraction": 0.5,
+      "three_leg_hypothetical_active_nav_fraction": 0.575911650523198,
+      "three_leg_warning": "Keepsoldmain+newmain+residual=3legs; violatesbounded2legdesign.",
+      "two_leg_oldmain_plus_heavy_aux_minority_idle_nav_fraction": 0.02924044023536504,
+      "two_leg_oldmain_plus_heavy_aux_main_nav_fraction": 0.5,
+      "two_leg_warning": "Oldmainnotrecentered; withdrawnminoritystaysidle; fee/idle/cooldown/nexttriggersemanticsneednewexplicitpolicy."
+    },
+    {
+      "half_width": 0.5,
+      "direction": "down",
+      "withdraw_fraction": 0.25,
+      "three_leg_hypothetical_active_nav_fraction": 0.8112137837568641,
+      "three_leg_warning": "Keepsoldmain+newmain+residual=3legs; violatesbounded2legdesign.",
+      "two_leg_oldmain_plus_heavy_aux_minority_idle_nav_fraction": 0.03763482093381028,
+      "two_leg_oldmain_plus_heavy_aux_main_nav_fraction": 0.75,
+      "two_leg_warning": "Oldmainnotrecentered; withdrawnminoritystaysidle; fee/idle/cooldown/nexttriggersemanticsneednewexplicitpolicy."
+    },
+    {
+      "half_width": 0.5,
+      "direction": "down",
+      "withdraw_fraction": 0.5,
+      "three_leg_hypothetical_active_nav_fraction": 0.6224275675137283,
+      "three_leg_warning": "Keepsoldmain+newmain+residual=3legs; violatesbounded2legdesign.",
+      "two_leg_oldmain_plus_heavy_aux_minority_idle_nav_fraction": 0.07526964186762056,
+      "two_leg_oldmain_plus_heavy_aux_main_nav_fraction": 0.5,
+      "two_leg_warning": "Oldmainnotrecentered; withdrawnminoritystaysidle; fee/idle/cooldown/nexttriggersemanticsneednewexplicitpolicy."
+    },
+    {
+      "half_width": 0.25,
+      "direction": "up",
+      "withdraw_fraction": 0.25,
+      "three_leg_hypothetical_active_nav_fraction": 0.7874999805540649,
+      "three_leg_warning": "Keepsoldmain+newmain+residual=3legs; violatesbounded2legdesign.",
+      "two_leg_oldmain_plus_heavy_aux_minority_idle_nav_fraction": 0.0165269094899074,
+      "two_leg_oldmain_plus_heavy_aux_main_nav_fraction": 0.75,
+      "two_leg_warning": "Oldmainnotrecentered; withdrawnminoritystaysidle; fee/idle/cooldown/nexttriggersemanticsneednewexplicitpolicy."
+    },
+    {
+      "half_width": 0.25,
+      "direction": "up",
+      "withdraw_fraction": 0.5,
+      "three_leg_hypothetical_active_nav_fraction": 0.5749999611081298,
+      "three_leg_warning": "Keepsoldmain+newmain+residual=3legs; violatesbounded2legdesign.",
+      "two_leg_oldmain_plus_heavy_aux_minority_idle_nav_fraction": 0.0330538189798148,
+      "two_leg_oldmain_plus_heavy_aux_main_nav_fraction": 0.5,
+      "two_leg_warning": "Oldmainnotrecentered; withdrawnminoritystaysidle; fee/idle/cooldown/nexttriggersemanticsneednewexplicitpolicy."
+    },
+    {
+      "half_width": 0.25,
+      "direction": "down",
+      "withdraw_fraction": 0.25,
+      "three_leg_hypothetical_active_nav_fraction": 0.7967616989463266,
+      "three_leg_warning": "Keepsoldmain+newmain+residual=3legs; violatesbounded2legdesign.",
+      "two_leg_oldmain_plus_heavy_aux_minority_idle_nav_fraction": 0.0261529851640346,
+      "two_leg_oldmain_plus_heavy_aux_main_nav_fraction": 0.75,
+      "two_leg_warning": "Oldmainnotrecentered; withdrawnminoritystaysidle; fee/idle/cooldown/nexttriggersemanticsneednewexplicitpolicy."
+    },
+    {
+      "half_width": 0.25,
+      "direction": "down",
+      "withdraw_fraction": 0.5,
+      "three_leg_hypothetical_active_nav_fraction": 0.5935233978926534,
+      "three_leg_warning": "Keepsoldmain+newmain+residual=3legs; violatesbounded2legdesign.",
+      "two_leg_oldmain_plus_heavy_aux_minority_idle_nav_fraction": 0.0523059703280692,
+      "two_leg_oldmain_plus_heavy_aux_main_nav_fraction": 0.5,
+      "two_leg_warning": "Oldmainnotrecentered; withdrawnminoritystaysidle; fee/idle/cooldown/nexttriggersemanticsneednewexplicitpolicy."
+    }
+  ],
+  "cross_cutting_invariants": [
+    "5%idleceilingisnotanactivefractionfloor. A fullydeployedone-sidedoutofrangeauxcanpassidlecheckswhileearningnofees.",
+    "Existingall-inmaintenancecapcomparesmarkedLP+idlebefore/after;itdoesnotguaranteeagoodfutureinventoryallocation,fees,ILorattackerunprofitability.",
+    "No-swapmustbespecifictopassivemaintenance;usercontributions,rewardconversionsandbuybacksretaintheirindependentexistingroutesandfinanciallimits.",
+    "Do notusetotalrawLtoassertUSDcapitalretentionorentrantsmarginalLP. ActualactiveLdoesaddwithinasinglepoolatthecurrentstate,butconversiontoNAVrequiresactualtokenamountsandprices.",
+    "Trigger/referencevalidationusesactualphysicalrangeandcorrectETH/ZZZinverseorientation;markbothlegsandattributedidle,excludingfundedholder/royalty/buybackliabilities.",
+    "A secondlegwhichfailscreationmustnotleavealargerthanapprovedidlepositionaftermainrebuilt;atomicrollbackorspecificbounded-dustomissionruleisnecessary.",
+    "A durablypersistedjitterdrawisnotredrawnonrestart/check;resetoninvalidcondition;samejournalcannotbesilentlyrelabellednewpolicy."
+  ],
+  "position_proposal": "For minimal2leglifecycle, close/consolidatebothatthenextapprovedadjustment, computeactualnewmainratio, placeonlyresidualonthesideconsistentwithitsasset, leavelivepositionsbetweenadjustments, andexposeinventory-limited/activefractionexplicitly. Numericfloors,swapfallbackandcooldownstillneedoperatorchoice.",
+  "not_approved_as_policy": true
+}

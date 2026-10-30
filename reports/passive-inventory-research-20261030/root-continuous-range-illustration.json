@@ -1,0 +1,50 @@
+{
+  "kind": "Illustrative continuous Uniswap liquidity math, not contract/test/market execution",
+  "date": "2026-10-30",
+  "formula": "ZZZ=L*(1/sqrt(P)-1/sqrt(U)); ETH=L*(sqrt(P)-sqrt(D)); NAV=ZZZ*P+ETH; newmain L=min(availableZZZ/requiredZZZ,availableETH/requiredETH)",
+  "assumptions": [
+    "ZZZ price in ETH; oldcentre1",
+    "Arithmetic +/-25% or50% bounds",
+    "Spot equals trusted reference at trigger",
+    "L1; no fees, gas, tick spacing, rounding, idle, compound, price impact or transfers",
+    "Newmain samepercentagewidth recentered at trigger; residual starts outside price"
+  ],
+  "rows": [
+    {
+      "range_half_width": "0.5",
+      "price_multiple": "0.575",
+      "trigger_side": "down",
+      "old_ETH_value_fraction": "0.1505392837352413833697647026172713510835399747607769467128243667792699",
+      "new_center_ETH_value_fraction": "0.6148095841174029312437740529995000300238809728086718095678858817953327",
+      "new_main_active_NAV_fraction": "0.2448551350274570098234694329750676198168103490928871431375459748969616",
+      "initially_inactive_residual_fraction": "0.7551448649725429901765305670249323801831896509071128568624540251030384"
+    },
+    {
+      "range_half_width": "0.5",
+      "price_multiple": "1.425",
+      "trigger_side": "up",
+      "old_ETH_value_fraction": "0.9415191195292696306704950356994675683627363411304325703260281475054782",
+      "new_center_ETH_value_fraction": "0.6148095841174029312437740529995000300238809728086718095678858817953330",
+      "new_main_active_NAV_fraction": "0.1518233010463969329482432207085600783709336087200301186307698656067201",
+      "initially_inactive_residual_fraction": "0.8481766989536030670517567792914399216290663912799698813692301343932799"
+    },
+    {
+      "range_half_width": "0.25",
+      "price_multiple": "0.7875",
+      "trigger_side": "down",
+      "old_ETH_value_fraction": "0.1046119406561379868552117360973916879291011773198072849015090804208688",
+      "new_center_ETH_value_fraction": "0.5592821850645999732791433596046393364677507177892807540777512073976576",
+      "new_main_active_NAV_fraction": "0.1870467957853060684304320891273452475807719082321701789716028243922976",
+      "initially_inactive_residual_fraction": "0.8129532042146939315695679108726547524192280917678298210283971756077024"
+    },
+    {
+      "range_half_width": "0.25",
+      "price_multiple": "1.2125",
+      "trigger_side": "up",
+      "old_ETH_value_fraction": "0.9338923620403701241253401751992002913489141089686217901292086618907485",
+      "new_center_ETH_value_fraction": "0.5592821850645999732791433596046393364677507177892807540777512073976569",
+      "new_main_active_NAV_fraction": "0.1499999222162595511182223804406687376356116115853830389626370802889554",
+      "initially_inactive_residual_fraction": "0.8500000777837404488817776195593312623643883884146169610373629197110446"
+    }
+  ]
+}

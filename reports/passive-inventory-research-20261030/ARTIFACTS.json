@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "evidence_root": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/range85-two-position-20261030",
+  "files": [
+    {
+      "file": "research-a.json",
+      "external_raw_sha256": "66c7faee4f8ef47afa529ec77614682f24655cda3aa5c8c606e230640a0dcdd5",
+      "published_sha256": "66c7faee4f8ef47afa529ec77614682f24655cda3aa5c8c606e230640a0dcdd5"
+    },
+    {
+      "file": "research-b.json",
+      "external_raw_sha256": "108d8bc0d11bac341166536317851ec56095a81cb89e0999033fa750e2bee7a5",
+      "published_sha256": "108d8bc0d11bac341166536317851ec56095a81cb89e0999033fa750e2bee7a5"
+    },
+    {
+      "file": "strategy-cases.json",
+      "external_raw_sha256": "fb143ba149b9a26aec54751ac24ceab9cef625473ae3a98ede8417a4dcb2b5fd",
+      "published_sha256": "fb143ba149b9a26aec54751ac24ceab9cef625473ae3a98ede8417a4dcb2b5fd"
+    },
+    {
+      "file": "strategy-alternatives.json",
+      "external_raw_sha256": "678e0afa5a7fcc1fe002651cb173ab362aa3eda27c38dc5469ca5689493818c5",
+      "published_sha256": "678e0afa5a7fcc1fe002651cb173ab362aa3eda27c38dc5469ca5689493818c5"
+    },
+    {
+      "file": "root-continuous-range-illustration.json",
+      "external_raw_sha256": "4d58770afa8020440e64a7978153c739c0c32de5104ded661144ad3bf204e67d",
+      "published_sha256": "4d58770afa8020440e64a7978153c739c0c32de5104ded661144ad3bf204e67d"
+    },
+    {
+      "file": "plan-independent-qa-final.json",
+      "external_raw_sha256": "4890ed04a9cb4ea88f08c10793af2199e775cc1d30dd187e9972606126d605f3",
+      "published_sha256": "4890ed04a9cb4ea88f08c10793af2199e775cc1d30dd187e9972606126d605f3"
+    }
+  ],
+  "source_change": false,
+  "tests_executed": 0,
+  "calculation_not_test": true
+}

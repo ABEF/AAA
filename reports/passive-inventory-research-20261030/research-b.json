@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "research_date_client": "2026-10-30",
+  "scope": "Primary-document strategy research and static archived source inspection only. No project/source/host edits, compilation, tests, transactions, or live-provider qualification. Dedicated external research files only.",
+  "question": "How do CL managers bound residual positions, handle one-sided inventory/reversal, and limit costs/manipulation?",
+  "protocols": [
+    {
+      "protocol": "Beefy CLM",
+      "sources": [
+        {
+          "url": "https://docs.beefy.finance/beefy-products/clm",
+          "type": "official product guide",
+          "version_limit": "Guide says last update August2024; do not assume its six-hour cadence or harvest behavior is every current deployment."
+        },
+        {
+          "url": "https://beefy.finance/articles/eth-clms/",
+          "type": "official July20,2026 Ethereum deployment article"
+        },
+        {
+          "url": "https://defillama.com/protocol/beefy",
+          "type": "DefiLlama scale",
+          "observed_tvl": "98.84m",
+          "category": "Yield Aggregator",
+          "qualification": "Whole Beefy, NOT CLM-only TVL; no comparable ALM rank claimed."
+        }
+      ],
+      "architecture": "Main plus one alternative position; rebalance redeploys paired inventory first and assigns the residual asset to the alt. The protocol describes avoiding token-sale rebalances, not eliminating inventory risk.",
+      "risks": "The alt may dominate the portfolio during a persistent trend. Mark-to-market divergence versus holding remains; not swapping does not undo economic losses. The2026 Ethereum article describes private RPCs, improved on-chain harvest/reset controls and performance analysis; these are mitigations, not manipulation immunity.",
+      "archived_source": "Source-authored strategy snapshot distributed for the May2024 Sherlock audit, commit42ef5f0eac1bc954e888cf5bfb85cbf24c08ec76. Not current-deployment attestation. Static details below; do not copy old permissive bounds/minima or combine harvest behavior with PoPL hourly harvesting."
+    },
+    {
+      "protocol": "Steer Smart Pools",
+      "sources": [
+        {
+          "url": "https://docs.steer.finance/flagship-apps/smart-pools/developing-with-smart-pools/strategy-side/",
+          "type": "official manager/strategy interface"
+        },
+        {
+          "url": "https://docs.steer.finance/flagship-apps/smart-pools/Strategies/rebalance-triggers/",
+          "type": "official triggers"
+        },
+        {
+          "url": "https://docs.steer.finance/flagship-apps/smart-pools/Strategies/classic-rebalance/",
+          "type": "official named strategy"
+        },
+        {
+          "url": "https://docs.steer.finance/flagship-apps/smart-pools/developing-with-smart-pools/best-practices/",
+          "type": "official limits/backtesting guidance"
+        },
+        {
+          "url": "https://defillama.com/protocol/steer-protocol",
+          "type": "DefiLlama scale",
+          "observed_tvl": "16.34m",
+          "page_rank": 4,
+          "page_as_of": "2026-10-29",
+          "qualification": "Cached snapshots differ across DefiLlama pages; treat as approximate context, not a shared atomic snapshot."
+        }
+      ],
+      "architecture": "The engine accepts target tick/weight arrays for multiple positions. A strategy may use limit positions with skipSwap=true; Classic Rebalance explicitly also supports buying/selling. Thus neither a universal two-position cap nor universally swapless behavior follows from the protocol name.",
+      "relevance": "Its documented percentage-of-range trigger is close to the proposed85% trigger. Its one-way exit option and separate trigger choices show that range semantics are strategy policy, not mandatory full exit. Execution price limits constrain swaps; adverse selection and market-path risk remain.",
+      "unknown": "Did not independently inspect current deployed Steer tend implementation or prove a universal old-position replacement policy. No claim that Steer permits uncontrolled accumulated residual legs."
+    },
+    {
+      "protocol": "ICHI YieldIQ",
+      "sources": [
+        {
+          "url": "https://docs.ichi.org/home/yieldiq-strategy.md",
+          "type": "official strategy guide"
+        },
+        {
+          "url": "https://docs.ichi.org/home/how-ichi-works.md",
+          "type": "official product overview"
+        },
+        {
+          "url": "https://defillama.com/protocol/ichi",
+          "type": "DefiLlama scale",
+          "observed_tvl": "6.27m",
+          "page_rank": 8,
+          "page_as_of": "2026-10-28"
+        }
+      ],
+      "architecture": "Inventory-oriented, with a preferred deposit asset. Healthy inventory can remain unchanged; over/under-inventory may require selling/buying, and high volatility can broaden ranges. Documentation says repositioning often avoids swaps, not that every adjustment is swapless.",
+      "relevance": "Use explicit inventory policy and avoid reacting to every small price move; a passive range alone does not force portfolio balance. Published high-level documents do not establish one exact universal position-count cap or algorithm for every present vault.",
+      "limits": "No exact current ICHI source deployment/range cap independently pinned here; do not infer all current vaults use two legs or literal controllerless operations from broad marketing."
+    },
+    {
+      "protocol": "Revert Auto-Range",
+      "sources": [
+        {
+          "url": "https://docs.revert.finance/revert/auto-range.md",
+          "type": "official named feature"
+        },
+        {
+          "url": "https://docs.revert.finance/revert/auto-compounder",
+          "type": "official separate compounding feature"
+        },
+        {
+          "url": "https://defillama.com/protocol/revert",
+          "type": "DefiLlama parent scale",
+          "observed_tvl": "6.83m",
+          "page_as_of": "2026-10-24",
+          "qualification": "Combined parent includes lending/compoundor/staker, NOT Auto-Range-only TVL; other cached views~7.07m."
+        }
+      ],
+      "architecture": "Withdraws a managed NFT position and recreates a range of the same width around current price. Bots source swaps via0x subject to a configured price-impact limit, and contract checks compare to the pool TWAP. Residual tokens return to the position owner.",
+      "relevance": "Replaces one managed leg instead of accumulating residual legs. Using swaps provides an immediate ratio at execution cost and MEV exposure; limits/TWAP restrict rather than eliminate risk. Its residual payout policy is incompatible with PoPL permanent principal and must not be copied."
+    }
+  ],
+  "beefy_archived_source": {
+    "repository": "sherlock-audit/2024-05-beefy-cowcentrated-liquidity-manager",
+    "commit": "42ef5f0eac1bc954e888cf5bfb85cbf24c08ec76",
+    "commit_date": "2024-05-23T15:00:07Z",
+    "source_files": [
+      {
+        "local_file": "BeefyPassiveUniswap-202405.sol",
+        "repository_path": "cowcentrated-contracts/contracts/strategies/uniswap/StrategyPassiveManagerUniswap.sol",
+        "commit": "42ef5f0eac1bc954e888cf5bfb85cbf24c08ec76",
+        "git_blob_sha1": "dc104fa250d8adb4f87d24ab14fe3c83f16723f1",
+        "matches_tree": true,
+        "sha256": "acf4f4176deb04b1ae94f76c62eed9adcb87051f4205558b27f9f67796f53736",
+        "bytes": 34484
+      },
+      {
+        "local_file": "BeefyPassiveVelodrome-202405.sol",
+        "repository_path": "cowcentrated-contracts/contracts/strategies/velodrome/StrategyPassiveManagerVelodrome.sol",
+        "commit": "42ef5f0eac1bc954e888cf5bfb85cbf24c08ec76",
+        "git_blob_sha1": "1340f252ae03e1ceeb59015b84a91576739dd042",
+        "matches_tree": true,
+        "sha256": "f3181b9e63c1cd66fa70e761b654b6c9f6e261a41794ac5b77981c251d229227",
+        "bytes": 33288
+      },
+      {
+        "local_file": "BeefyTickUtils-202405.sol",
+        "repository_path": "cowcentrated-contracts/contracts/utils/TickUtils.sol",
+        "commit": "42ef5f0eac1bc954e888cf5bfb85cbf24c08ec76",
+        "git_blob_sha1": "689a689b38c261c2d758c34b92a1314099ec132a",
+        "matches_tree": true,
+        "sha256": "99d3053e3db1707940693fdac17c99d9148cd162fee031ca4b0d1bf2d1d72e9e",
+        "bytes": 3732
+      }
+    ],
+    "exact_primary_url": "https://github.com/sherlock-audit/2024-05-beefy-cowcentrated-liquidity-manager/blob/42ef5f0eac1bc954e888cf5bfb85cbf24c08ec76/cowcentrated-contracts/contracts/strategies/uniswap/StrategyPassiveManagerUniswap.sol",
+    "function_findings": [
+      {
+        "path": "BeefyPassiveUniswap-202405.sol",
+        "lines": "229–268",
+        "function": "_addLiquidity",
+        "finding": "Attempts main using paired budget; _checkAmounts299 requires positive amounts of both assets. Then recomputes remaining balances and mints at the single alt range. Does not perform a principal balancing swap."
+      },
+      {
+        "path": "BeefyPassiveUniswap-202405.sol",
+        "lines": "271–291",
+        "function": "_removeLiquidity",
+        "finding": "Gets both existing keys, burns their complete liquidity and collects before bounds change. Old liquidity is not left behind when setting the next pair."
+      },
+      {
+        "path": "BeefyPassiveUniswap-202405.sol",
+        "lines": "350–355",
+        "function": "rebalance",
+        "finding": "Claims fees, removes both legs, selects new ticks and redeploys. Guarded by onlyCalmPeriods and onlyRebalancers. Control privilege alone cannot prevent external price manipulation."
+      },
+      {
+        "path": "BeefyPassiveUniswap-202405.sol",
+        "lines": "603–659",
+        "function": "_setTicks/_setAltTick",
+        "finding": "LetF=floor(currentTick/spacing)*spacing, W=positionWidth*spacing. Main[F−W,F+W]. Excess token0 alt[F+spacing,F+W]; excess token1 alt[F−W,F−spacing]. The alt stays inside main bounds with one-spacing separation from current tick; it is not anchored to the previous centre."
+      },
+      {
+        "path": "BeefyPassiveUniswap-202405.sol",
+        "lines": "324–347",
+        "function": "_harvest",
+        "finding": "Collects/removes both and re-adds at retained ticks; does not call_setTicks. This behavior must not be imported into PoPL independent no-swap hourly fee harvesting."
+      },
+      {
+        "path": "BeefyPassiveUniswap-202405.sol",
+        "lines": "127–135",
+        "function": "isCalm",
+        "finding": "Bounds spot tick relative to a configured same-pool TWAP; quality depends on real history depth/settings. Not an independent-price guarantee."
+      },
+      {
+        "path": "BeefyPassiveUniswap-202405.sol",
+        "lines": "622–659/758–766",
+        "function": "_setAltTick/setPositionWidth",
+        "finding": "Archived width setter has no explicit minimum-width check. Positive alt width mathematically requiresW>spacing. Equality of balance values takes neither alt-selection branch and can retain previous alt bounds. These are reasons to adopt the architecture rather than blindly copy this old implementation."
+      }
+    ],
+    "derived_scenarios": [
+      {
+        "case": "Both legs end as the same asset",
+        "deduction": "After withdrawing only one asset remains; main fails the two-positive-amount check, while the alt can hold that asset one-sided. No automatic forced swap or guarantee of an immediately fee-earning balanced main is present in this path."
+      },
+      {
+        "case": "Price reverses after partial conversion",
+        "deduction": "Re-entry can trade the passive leg back unless liquidity is removed. At a subsequent adjustment both legs are combined first, then inventory/ranges recomputed; there is no append-only third/fourth alt."
+      },
+      {
+        "case": "One asset continues trending",
+        "deduction": "Passive placement cannot manufacture the scarce asset. Waiting/retargeting a one-sided position preserves directional inventory exposure and may leave capital outside current trading, whereas forced conversion pays known trading fees/impact/MEV risk."
+      }
+    ],
+    "not_a_current_security_approval": true
+  },
+  "popl_design_inferences_not_implemented": [
+    "Use a bounded1main+1secondary representation, consolidate before replacement, and include both in shares/NAV/fees/exit/canonical operations.",
+    "Do not equate a one-sided range with instant balancing or guaranteed fees. If both legs contain only one asset, select explicit wait/retarget/guarded-swap policy rather than pretend another active balanced LP can be minted.",
+    "Passive no-swap placement avoids one exposed active balancing swap, but passive trades still face adverse selection and reversible conversion; fees may not compensate inventory loss.",
+    "Do not copy Beefy deposit/harvest behavior into PoPL: entrants remain isolated and hourly harvesting remains distinct.",
+    "A meaningful strategy comparison must track net NAV versus holding, in-range share/time, inventory concentration, all execution costs and swap/position churn across trend, reversal, oscillation and no-counterliquidity paths."
+  ],
+  "research_gaps": [
+    "Current live source/runtime/version pins for every third-party product are not verified; archived Beefy source is explicitly historical.",
+    "No protocol doc supplies a universal IL/MEV-free solution; high TVL is scale context, not proof of a suitable or safe strategy.",
+    "Actual funding, secondary lifecycle, cooldown and same-asset behavior remain user/design decisions; this research does not silently settle them."
+  ]
+}

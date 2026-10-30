@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reviewed": "2026-10-29",
+  "reviewed": "2026-10-30",
   "areas": [
     {
       "id": "contracts",
@@ -385,6 +385,20 @@
             "Request includes current custody hash, explicit raw target ticks, optional exact swap venue/direction/input/positive output minimum, positive raw LP minimum, bounded deadline and nonzero review hash. Retained bits separately cover raw trigger/cooldown, independent prices, financial limits/idle, operations flag and sampled confirmation. No automatic retry with weaker checks. Financial bypass can lose almost all principal; human review hashes are not proof of safe execution.",
             "Temporary context is parent/caller/bucket/governance scoped and cleared atomically; failed close/swap/deployment reverts all state except paid network gas. Retained sampled policy/raw records remain pinned even if the value guard is disabled. Parked custody may recover; terminal exit cannot reopen. Source-scoped tests/build gates and limits are in [verification](reports/independent-rebalance-20261029/VERIFICATION.md).",
             "Local implementation is not production approval. Qualify actual full-operation simulations, post-withdraw depth, floor selection, cold/maximal target gas, key/recovery procedures and independent audit before enabling a deployment. No service/site/Anvil/public transaction/deployment was performed."
+          ]
+        },
+        {
+          "id": "passive-inventory",
+          "status": "progress",
+          "title": "Design and implement bounded main-plus-residual LP adjustment",
+          "href": "docs/PASSIVE_INVENTORY_PLAN.md",
+          "text": "Requested85%of actual centre-to-edge price distance,10minute sampled persistence and durable1-5minute jitter. Primary-source research and economic calculations complete; two-position contracts/keeper/readers are not implemented. Inventory recovery, residual lifecycle and the12hour minimum need explicit decisions before changing behavior.",
+          "acceptance": [
+            "Enforce at most two live shared-bucket positions and consolidate existing legs before any new pair. Same ETH/fixedZZZ pool, actual aggregate principal and one residual only; preserve shares, income/claim liabilities,80/10/5/5, all-leg exit/parking/movement/canonical closure and existing services.",
+            "Use85%in ZZZ-price-in-ETH price space with actual ticks/centre and independent-reference corroboration at matching thresholds. Window/side/identity changes reset persisted readiness/delay; maintain fresh receipt and strict source/gap evidence. Do not repurpose historical triggerBps or reinterpret old profiles/journals.",
+            "Resolve active-capital and recovery tradeoff: simplified no-swap85%examples can leave75-85%NAV initially inactive. A minimum-active floor can block adjustments; any recovery swap needs explicit approval and real execution-quality/cap protection, not an automatic bypass. Decide secondary width/completion and whether12hours remains.",
+            "[Research and scope](reports/passive-inventory-research-20261030/README.md) separates primary source versions, protocol-wide TVL, arithmetic illustration and actual contract verification. No code/strategy/backtest/market/operating qualification is claimed by research.",
+            "Before release, deliver explicit fresh bounded-portfolio capability/accounting/read/canonical profiles, measured modular refactor within normal size limits, affected real-core/adversarial accounting tests and current operator/API/keeper evidence. Preserve independent hourly harvest, entrant isolation and historical Anvil/site/signing boundaries."
           ]
         }
       ]

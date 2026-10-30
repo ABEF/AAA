@@ -593,6 +593,11 @@ constructor/call evidence. These events add visibility, not authority.
 
 Before execution, restoring the old configuration may clear the width mismatch; actual physical range exit can still permit policy2 rebalance after cooldown. The movement trigger belongs to historical policy1. After execution, going back requires another valid configuration and rebalance, with fresh costs/cooldown. Stop/reconcile in-flight keeper work around a policy change: its transaction is not bound to a historical configuration hash. See [range application](RANGE_POLICY_UPDATES.md).
 
+The requested [85% passive inventory design](PASSIVE_INVENTORY_PLAN.md) is not
+implemented. Current functions below retain physical-range exit and the existing
+confirmation/cooldown. There is no current second-position operation; never set
+legacy triggerBps to8500 or call emergency as a routine substitute.
+
 ### Operator-selected LP policy
 
 Fresh `Strategy.MAINTENANCE_POLICY_VERSION()==2` and Budget compound capability3

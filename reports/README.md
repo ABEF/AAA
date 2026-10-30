@@ -1,5 +1,9 @@
 # Verification evidence
 
+[Passive inventory research](passive-inventory-research-20261030/README.md) compares
+bounded main/residual strategies and economic edge cases. Research/calculation
+only: no contract tests, implementation or rollout.
+
 [Complete-project audit and improvements](comprehensive-popl-20261029/REVIEW.md):
 terminal reserve-venue recovery, keeper identity/telemetry repairs, stored-history
 chronology and verification admission/provenance. [Coverage](comprehensive-popl-20261029/COVERAGE.md)

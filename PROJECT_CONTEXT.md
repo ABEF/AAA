@@ -45,6 +45,13 @@ execute no tests; full verifier creates new evidence directories and rejects alt
 normal filters/settings. Its reservation registration getter claim was corrected
 by the current keeper-coordination follow-up; preserve the original report scope.
 
+
+Requested85% passive adjustment is under [researched design](docs/PASSIVE_INVENTORY_PLAN.md),
+not implemented. Ten-minute confirmation and1-5minute jitter are requested;
+funding/recovery/secondary lifecycle and the12hour minimum remain unresolved.
+No-swap85% recentering can leave most NAV inactive; do not silently add a swap
+fallback or reinterpret accounting4. The sole Todo owns this proposed work.
+
 ## Current complete-project review
 
 [Current audit and repairs](reports/comprehensive-popl-20261029/REVIEW.md) follow

@@ -1,0 +1,353 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-30T20:48:51.735793+00:00",
+  "source_head": "3af2b22b5df7d11cbcb49378aa5efa3b10866602",
+  "scope": "Research and design analysis only; no code/service/site/Anvil/signing/journal changes or execution tests. Numeric examples are analytic illustrations, not tested performance or qualified market quotes.",
+  "geometry": {
+    "notation": "P is ETH per ZZZ; higher P means stronger ZZZ. Core currency0 ETH/currency1 ZZZ quotes the inverse, with raw sqrtPrice sqrt(ZZZ/ETH). Use actual tick-aligned boundaries and explicit orientation.",
+    "threshold": "Lower=C-0.85*(C-L); upper=C+0.85*(U-C), using actual main price bounds. It is not85%absolute price movement.",
+    "one_sided_principal": "For P below range lower, principal is ZZZ; above range upper, principal is ETH; strictly inside it is mixed. Actual equality/fee membership follows core tick semantics.",
+    "residual_direction": "After main is actually funded, place residual ETH in a range below current P to buy ZZZ on decline; residual ZZZ in a range above P to sell ZZZ on rise. Place no other asset principal into that leg.",
+    "old_center_caveat": "An old-centre endpoint is valid only when it lies on the required side for the ACTUAL residual asset. Residual type can reverse over cycles; choose a reviewed bounded width/fallback rather than use an invalid interval or wrong asset.",
+    "main_ratio_caveat": "Arithmetic symmetric +/-price ranges are not log/tick symmetric, therefore centred main is not50/50 value. Actual Uniswap math determines ratio. Do not import Charm tick-symmetric50/50 examples literally."
+  },
+  "state_cases": [
+    {
+      "id": "S00",
+      "state": "No main/no incumbent shares",
+      "mechanics": "First activation still creates the initial shared main from entrant funds. There is no passive adjustment or secondary history to consolidate.",
+      "action_proposal": "Use the existing exact contribution route/marginal-LP guards. Never treat initial mint as a triggered rebalance."
+    },
+    {
+      "id": "S01",
+      "state": "Main active, no secondary, price inside85%threshold",
+      "mechanics": "Main continues trading and collecting fees. A changed balance ratio alone is not a new trigger.",
+      "action_proposal": "No adjustment; independent hourly harvest continues."
+    },
+    {
+      "id": "S02",
+      "state": "Main active, both authenticated prices cross85%threshold on same side",
+      "mechanics": "Main can remain in range. A local pool-only distortion should not start an executable candidate.",
+      "action_proposal": "Start one identity-bound10minute sampled candidate. Preserve spot/reference and all financial/custody controls."
+    },
+    {
+      "id": "S03",
+      "state": "Candidate returns inside threshold, crosses to opposite side, or identity/policy/read fails",
+      "mechanics": "Earlier evidence no longer proves the current condition. Hidden movements between samples are not detectable.",
+      "action_proposal": "Reset persistence and jitter; new same-side episode begins anew. Preserve pending-receipt recovery, no resends."
+    },
+    {
+      "id": "S04",
+      "state": "Ten minutes sampled persistence complete, cooldown requirement unresolved",
+      "mechanics": "600seconds is a minimum, not guaranteed inclusion. Current240second sampling reaches a fresh qualifying endpoint at about720seconds in an ideal schedule.",
+      "action_proposal": "Do not silently change four-minute cadence or12hourminimum. Decide whether cooldown remains and whether samples accumulate during it."
+    },
+    {
+      "id": "S05",
+      "state": "Ready candidate plus random delay",
+      "mechanics": "A fresh60–300second service draw reduces static timing, not visibility of submitted calldata or market manipulation. Random values can repeat.",
+      "action_proposal": "Draw once per candidate with OS CSPRNG, persist across checks/restarts and revalidate while waiting. Optionally exclude the immediately preceding value; never promise globally unique delays."
+    },
+    {
+      "id": "S06",
+      "state": "Atomic rebuild with both assets available",
+      "mechanics": "Harvest both existing legs, release only designated compound, close both; deploy the largest current main at approved range ratio; put only actual residual asset into one secondary.",
+      "action_proposal": "No balancing swap for this adjustment. Maintain aggregate USD retention at captured prices and exact token ownership/reserve separation. At most2physical legs."
+    },
+    {
+      "id": "S07",
+      "state": "Both legs entirely ETH",
+      "mechanics": "Price is above the upper bounds of both positions in ZZZ-price-in-ETH view. Without fees/idle/other inventory providing ZZZ, a mixed centred main cannot be funded without a swap.",
+      "action_proposal": "Recognize inventory-limited state. Keep existing backing/positions and wait, rather than falsely claiming active recentering or silently forcing a swap. Governed exceptional alternatives require an explicit decision."
+    },
+    {
+      "id": "S08",
+      "state": "Both legs entirely ZZZ",
+      "mechanics": "Price is below both lower bounds; no ETH minority exists except separate attributed assets. Recentring mixed main is similarly inventory-limited.",
+      "action_proposal": "Same inventory-limited handling; ETH gas funding is not principal and cannot subsidize the LP."
+    },
+    {
+      "id": "S09",
+      "state": "One leg entirely ETH, other entirely ZZZ",
+      "mechanics": "Requires a disjoint-range gap where the lower range is above its upper edge and upper range is below its lower edge. For a centred main plus secondary abutting current price and overlapping main, this is unreachable at fixed ranges away from rounding gaps.",
+      "action_proposal": "If future geometry permits it, sum actual ETH/ZZZ and redeploy mixed main without a swap. Do not infer the asset from historical trigger direction."
+    },
+    {
+      "id": "S10",
+      "state": "Main mixed, secondary one-sided",
+      "mechanics": "Expected immediately after rebuild. Secondary receives no active trading while price stays outside its bounds.",
+      "action_proposal": "Harvest main independently. Monitor main trigger; secondary existence/fill status must not spawn a third leg."
+    },
+    {
+      "id": "S11",
+      "state": "Both legs mixed after reversal",
+      "mechanics": "Both ranges are now active; each naturally contains ETH and ZZZ. The original one-sided designation describes initial funding, not a permanent state.",
+      "action_proposal": "Leave both live until next approved adjustment. Harvest both into the same bucket. Never swap one leg back merely to restore its one-sided label."
+    },
+    {
+      "id": "S12",
+      "state": "Main one-sided, secondary mixed",
+      "mechanics": "Possible when residual range extends beyond main bounds, for example old-centre anchor plus a narrower new main. Secondary may still earn fees while main is inactive.",
+      "action_proposal": "Report each leg separately; trigger eligibility is tied to approved main geometry, not a guessed combined range. Do not state total bucket earns zero solely because main is out."
+    },
+    {
+      "id": "S13",
+      "state": "Secondary fully crossed, then price reverses and recrosses",
+      "mechanics": "Its conversion can unwind again while liquidity remains. This is a reversible range order, not a final filled order.",
+      "action_proposal": "Default minimal design leaves it until next adjustment; automatic completion removal is a separate proposed policy with gas/callback/accounting requirements. Explain the reversible behavior."
+    },
+    {
+      "id": "S14",
+      "state": "Residual asset conflicts with prior trigger direction",
+      "mechanics": "Old secondary trades and fee/compound inventory can make either asset remain after the new main is funded. Prior up/down trigger is not sufficient.",
+      "action_proposal": "Determine direction from actual post-main raw residual under approved tick geometry. ETH residual belongs below current ZZZ price; ZZZ residual belongs above."
+    },
+    {
+      "id": "S15",
+      "state": "Secondary cannot be minted due to invalid ticks/minimum/zero liquidity/token fault",
+      "mechanics": "A successful main plus stranded large residual may violate deployed/idle and retention policies.",
+      "action_proposal": "Atomic full adjustment rollback unless residual is explicitly below an approved bounded dust threshold and all existing retained-value/idle guards pass. No blanket ignore failure."
+    },
+    {
+      "id": "S16",
+      "state": "Contribution/claim/transfer/harvest while candidate waits",
+      "mechanics": "Claims/transfers/harvest should not change principal range or reset timer. A contribution can reprice both incumbents through its own swap and changes NAV/supply.",
+      "action_proposal": "Allow ordinary atomic actions under their own guards; harvest both legs before new membership/shares; spend only entrant budget. Requote candidate sizing at execution. Genuine trigger/identity/policy failure resets; mere same-ID top-up must not automatically recenter."
+    },
+    {
+      "id": "S17",
+      "state": "Repeated oscillation near threshold",
+      "mechanics": "Starting/cancelling candidates costs reads/observations; executed rebuilds incur gas and alter future inventory exposure even without swapping.",
+      "action_proposal": "Use reset/same-side persistence, one durable jitter and an explicit unresolved cooldown policy. Do not add a narrower reset hysteresis silently."
+    },
+    {
+      "id": "S18",
+      "state": "Persistent directional trend",
+      "mechanics": "A one-sided mean-reversion residual may stay inactive indefinitely; future main rebuilds can be increasingly minority-limited. No-swap does not create the missing token.",
+      "action_proposal": "Expose active fraction/inventory-limited condition and let operator deliberately review policy. Do not guarantee recovery,50/50 or fee continuity."
+    },
+    {
+      "id": "S19",
+      "state": "Terminal exit, parking, move, canonical handoff, emergency",
+      "mechanics": "All actual legs and attributed idle/compound remain one bucket principal entitlement. A forgotten secondary is lost backing.",
+      "action_proposal": "Close/harvest both for raw exit/park, validate zero surviving legs before canonical capture, bind both to custody/emergency identities, never mix holder or royalty/buyback liabilities."
+    }
+  ],
+  "financial_illustrations": {
+    "assumptions": [
+      "Normalized oldcentre1;initialsinglemain liquidity normalized1; arithmeticpricehalfwidth25/50%;price exactly85%towardedge; identicalwidth afterrecenter; no fees/dust/tick rounding/slippage/gas; completeprincipalwithdrawn and maximum main funded at current spot.",
+      "Normalized baseZZZ/quoteETH formulas used for explanation only. Actual token0ETH/token1ZZZ implementation requires existing inverse orientation, decimals and core liquidity math."
+    ],
+    "formulas": {
+      "zzz_inside": "L*(1/sqrt(P)-1/sqrt(U))",
+      "eth_inside": "L*(sqrt(P)-sqrt(Lower))",
+      "nav_eth": "P*ZZZ+ETH",
+      "main_liquidity": "min(availableZZZ/ZZZperLiquidity,availableETH/ETHperLiquidity)"
+    },
+    "rows": [
+      {
+        "old_center_normalized": 1,
+        "half_width": 0.5,
+        "direction": "up",
+        "trigger_price": 1.425,
+        "old_main_eth_value_fraction": 0.9415191195292699,
+        "recentered_main_eth_value_ratio": 0.614809584117403,
+        "recentered_active_main_nav_fraction": 0.1518233010463961,
+        "new_active_liquidity_over_old_liquidity": 0.13798416207782377,
+        "residual_nav_fraction": 0.8481766989536039,
+        "residual_asset": "ETH"
+      },
+      {
+        "old_center_normalized": 1,
+        "half_width": 0.5,
+        "direction": "down",
+        "trigger_price": 0.575,
+        "old_main_eth_value_fraction": 0.15053928373524111,
+        "recentered_main_eth_value_ratio": 0.6148095841174026,
+        "recentered_active_main_nav_fraction": 0.24485513502745668,
+        "new_active_liquidity_over_old_liquidity": 0.2304429991008931,
+        "residual_nav_fraction": 0.7551448649725433,
+        "residual_asset": "ZZZ"
+      },
+      {
+        "old_center_normalized": 1,
+        "half_width": 0.25,
+        "direction": "up",
+        "trigger_price": 1.2125,
+        "old_main_eth_value_fraction": 0.9338923620403704,
+        "recentered_main_eth_value_ratio": 0.5592821850646005,
+        "recentered_active_main_nav_fraction": 0.14999992221625943,
+        "new_active_liquidity_over_old_liquidity": 0.1431639449924789,
+        "residual_nav_fraction": 0.8500000777837405,
+        "residual_asset": "ETH"
+      },
+      {
+        "old_center_normalized": 1,
+        "half_width": 0.25,
+        "direction": "down",
+        "trigger_price": 0.7875,
+        "old_main_eth_value_fraction": 0.1046119406561384,
+        "recentered_main_eth_value_ratio": 0.5592821850645998,
+        "recentered_active_main_nav_fraction": 0.18704679578530686,
+        "new_active_liquidity_over_old_liquidity": 0.17988430442955625,
+        "residual_nav_fraction": 0.8129532042146932,
+        "residual_asset": "ZZZ"
+      }
+    ],
+    "conclusion": "The85%threshold is already highly inventory-skewed. Passive recentring may reduce active capital to15–25%in these illustrations; it trades immediate swap avoidance for inventory/fee exposure."
+  },
+  "risks": [
+    {
+      "risk": "Active liquidity collapse despite retained NAV",
+      "assessment": "At the upper85%trigger, recentring same-width main without swaps can place around15%of NAV into active main and85%into initially inactive residual. Current still-active original main was deploying all principal. This is a major deliberate fee/capital-efficiency tradeoff, not tiny dust handling.",
+      "evidence": "Analytic illustrative examples below; no tick rounding, fees or market quote."
+    },
+    {
+      "risk": "IL/adverse selection remains",
+      "assessment": "Avoiding an immediate keeper swap removes that swap fee and its direct price impact/sandwich surface. It does not reverse past divergence loss or guarantee better returns. Main+range-order inventory still sells into strength/buys into weakness and can underperform holding through trends/repeated recentering."
+    },
+    {
+      "risk": "No-swap does not eliminate manipulation/MEV",
+      "assessment": "An attacker may distort placement price, influence the trigger or trade against newly placed liquidity. Independent corroboration, same-side persistence, final inclusion-time checks, exact bounds, captured accounting and nonarbitrary placement remain necessary. Charm marketing language about avoiding MEV is not a universal proof."
+    },
+    {
+      "risk": "Independent references",
+      "assessment": "Current dualUSD-source ratio is not automatically a higher-liquidity-pool TWAP. A long local pump must not by itself qualify85%readiness. Preserve the existing independent-reference intent with threshold semantics instead of silently dropping it."
+    },
+    {
+      "risk": "Gas versus no-swap savings",
+      "assessment": "Closing2/minting2 plus fee harvest and context checks costs more than one-leg maintenance. If main allocation is small, added active-fee revenue may not justify recurring gas. Exact target-chain size/gas/economics remain unqualified."
+    },
+    {
+      "risk": "Remaining clocks and liveness",
+      "assessment": "Hard12hminimum, independent compound interval, confirmation samples and jitter are different. A10mincondition does not automatically replace12h. Missing/late observations restart under selected rules; unavailable data is not zero or ready."
+    }
+  ],
+  "minimal_lifecycle_proposals": [
+    {
+      "setting": "Maximum physical legs",
+      "proposal": "One main plus zero/one secondary per bucket; consolidate both at next adjustment. Never accumulate old secondary legs.",
+      "approval_status": "Proposal awaiting exact lifecycle decision"
+    },
+    {
+      "setting": "Main width",
+      "proposal": "Preserve manual +/-25/50% in ZZZ-price-in-ETH, current approved oracle/spot agreement and real outward tick rounding.",
+      "approval_status": "Existing width requirement; new placement behavior not implemented"
+    },
+    {
+      "setting": "Residual width",
+      "proposal": "Use a configurable bounded width on the correct asset side; old centre can be a candidate anchor only if valid. No numeric default selected without operator review.",
+      "approval_status": "Unresolved"
+    },
+    {
+      "setting": "No minority asset",
+      "proposal": "Explicit inventory_limited wait; do not consume holder fees/new entrants or force swap automatically.",
+      "approval_status": "Proposal"
+    },
+    {
+      "setting": "Active-main fraction",
+      "proposal": "Show independently valued active fraction and physical active liquidity before approval. Consider an operator-reviewed minimum to avoid silent85%inactive allocation; choose no arbitrary default now.",
+      "approval_status": "Proposal/decision needed"
+    },
+    {
+      "setting": "Small residual",
+      "proposal": "Omit secondary only for a reviewed economic dust threshold while preserving all exact retained-value and existing idle rules. Material failed mint reverts whole adjustment.",
+      "approval_status": "Proposal; threshold unresolved"
+    },
+    {
+      "setting": "Auxiliary fill finality",
+      "proposal": "Leave until next adjustment for minimal lifecycle, document reversibility. Auto-remove-on-fill only if explicitly required as separate bounded action.",
+      "approval_status": "Proposal"
+    },
+    {
+      "setting": "Cooldown",
+      "proposal": "Preserve12h unless user explicitly replaces it; consider collecting condition evidence during cooldown to avoid blind waiting.",
+      "approval_status": "Question pending"
+    },
+    {
+      "setting": "Trigger/timers",
+      "proposal": "85%centre-to-edge;600seconds sampled persistence;fresh60–300secondsjitter; reset both on observed return/side/identity/policy/fault.",
+      "approval_status": "User requested core semantics; precise cadence/confirmation mechanism not implemented"
+    },
+    {
+      "setting": "Protected invariants",
+      "proposal": "Keep80/10/5/5, principal shares, old owner unclaimed rights, hourly harvest, entrant isolation, raw collective return, strict profiles and Anvil-only signing unchanged.",
+      "approval_status": "Existing requirements"
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://developers.uniswap.org/docs/get-started/concepts/liquidity-providers/concentrated-liquidity",
+      "support": "v3/v4 concentrated liquidity shares core mechanics; inventory becomes one-sided beyond ranges."
+    },
+    {
+      "url": "https://developers.uniswap.org/docs/get-started/concepts/liquidity-providers/range-orders",
+      "support": "Single-asset range orders; conversion reverses on recross before withdrawal; no stop-loss/stop-buy approximation by wrong-side asset."
+    },
+    {
+      "url": "https://learn.charm.fi/charm/products-overview/alpha-vaults/whitepaper",
+      "support": "Primary protocol documents base+residual passive mean-reversion. Its performance/MEV claims are protocol assertions, not PoPL guarantees."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/charmfinance/alpha-vaults-contracts/main/contracts/PassiveStrategy.sol",
+      "support": "Explicit period, minimum tick move, TWAP deviation, tick boundary checks; strategy passeszero swap amount. This is historicalv3/Solidity0.7.6source, not drop-inv4code."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/charmfinance/alpha-vaults-contracts/main/contracts/AlphaVault.sol",
+      "support": "Rebalance closes prior base/limit, deposits main with actual range math then one residual order; aggregate holdings include both. It has optionalswap/withdraw/sweep functionality that PoPL must not inherit."
+    },
+    {
+      "url": "https://developers.uniswap.org/docs/get-started/concepts/fees",
+      "support": "LP fees accrue only on active liquidity, separate from principal; LP fees not automatic compound in v3/v4."
+    }
+  ],
+  "current_source_anchors": {
+    "NAV": [
+      "src/ZZZContributionPricing.sol:97",
+      "src/ZZZContributionPricing.sol:201"
+    ],
+    "fees": [
+      "src/ZZZVault.sol:337",
+      "src/ZZZFeeController.sol:66"
+    ],
+    "entry": [
+      "src/ZZZVault.sol:257"
+    ],
+    "replacement": [
+      "src/ZZZVault.sol:473"
+    ],
+    "raw_exit": [
+      "src/ZZZVault.sol:498"
+    ],
+    "park": [
+      "src/ZZZVault.sol:530"
+    ],
+    "handoff": [
+      "src/ZZZVaultCanonical.sol:117",
+      "src/ZZZVaultCanonical.sol:178"
+    ],
+    "metadata": [
+      "src/ZZZNFTMetadata.sol:39"
+    ],
+    "position": [
+      "src/libraries/ZZZTypes.sol:49"
+    ],
+    "custody_fingerprint": [
+      "src/ZZZCustodyValidation.sol:24",
+      "src/ZZZMigration.sol:139"
+    ]
+  },
+  "local_source_sha256": {
+    "src/ZZZVault.sol": "d7f692fa4488d27b6925883152192f716373593bb788e731447f4657c80d4037",
+    "src/ZZZContributionPricing.sol": "25d02a302ceee7e94fb70e0f2c79bacf6069879b60137f65f582920f993ca7e1",
+    "src/ZZZNFTMetadata.sol": "abe4b0edb7dbe8613aad7101f42e41717542904696c8103aeb4dc2f8730b8ac9",
+    "src/ZZZMigrationBudget.sol": "8f7b4720a3c34ad63121469c672952f5bbd553dc11465d4b8225399997b33394",
+    "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+    "src/ZZZCustodyValidation.sol": "09024ada60944831ca53d9c35748865d1df38b7a33026fd13effccc414eaecff",
+    "src/ZZZStrategy.sol": "22edc2a78c251d1d51e677c8df095969f490a22af2d28a08d341ffb492c8dbc9",
+    "src/ZZZRebalanceConfirmation.sol": "a5c7bb9416776c2440766003f2858342495d47a2fafa9c36b6377be0c1941f65",
+    "src/ZZZLiquidityManager.sol": "d64ad1f0f81f7565bd3061b08e1ab3f31e54c68ffd5c9ddaf407edf16a366d85",
+    "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc"
+  },
+  "no_implementation_approval_inferred_from_proposals": true
+}

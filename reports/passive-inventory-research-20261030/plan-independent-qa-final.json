@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-10-30T20:57:43.782036+00:00",
+  "scope": "Independent source/document review only; no repository edits, code execution tests, service/site/Anvil/signing/journal changes. External research TVL/protocol snapshots not independently re-fetched in this QA.",
+  "files": {
+    "docs/PASSIVE_INVENTORY_PLAN.md": {
+      "sha256": "021dee6ba3a05f0baf758022c7a2f90a9c28577a32f658a5577e40654567452a",
+      "lines": 188
+    },
+    "docs/project-todo.json": {
+      "sha256": "692edd1b5a01d50641e6079e594d9048f659778b643ea38fa0b723e185d334a5"
+    }
+  },
+  "task_row": {
+    "id": "passive-inventory",
+    "status": "progress",
+    "sha256": "2e224b72a9ec3020d94eb2ae2757c73559cb9019e1faa749cd55e9820844a948"
+  },
+  "checks": [
+    {
+      "topic": "Design status",
+      "result": "consistent",
+      "detail": "Title/introduction and ending explicitly say not implemented; no callable function, operating rollout, tests, provider qualification or backtest claimed."
+    },
+    {
+      "topic": "Approved versus proposed economics",
+      "result": "consistent",
+      "detail": "Swap fallback is explicitly unresolved/recommended only, not approved. Funding, residual lifecycle and12hdecision remain questions; current12hnotremoved."
+    },
+    {
+      "topic": "Correct price meaning",
+      "result": "consistent",
+      "detail": "85%of centre-to-actual-edge in ZZZ-price-in-ETH;±50→±42.5,±25→±21.25. Tick/sqrt/inverse distinctions explained."
+    },
+    {
+      "topic": "One-sided direction",
+      "result": "consistent",
+      "detail": "Residual ETH below current ZZZ-in-ETH price; residual ZZZ above. Actual remaining asset decides direction, not prior trigger direction."
+    },
+    {
+      "topic": "Bounded lifecycle",
+      "result": "consistent",
+      "detail": "Maximum2positions per shared bucket, not perNFT; consolidate oldlegs before newmain/residual; failed guard atomicrollback. No recursive or thirdleg."
+    },
+    {
+      "topic": "Mixed and filled states",
+      "result": "consistent",
+      "detail": "Bothmixed normal; no forced swapto restorelabel; fullconversion canunfill. Completion/idlepolicy remains unresolved."
+    },
+    {
+      "topic": "Asset exhaustion",
+      "result": "consistent",
+      "detail": "Sameassetbothlegs may leave nomain; inventory-limited stateexplicit; no inventedcounterpart/subsidy or hiddenrecoverytrade."
+    },
+    {
+      "topic": "Oppositeassetgeometry",
+      "result": "consistent",
+      "detail": "Bothoppositeone-sidedrequires disjoint ranges/gap, not overlapping proposedgeometry. Actualamounts recombinedatvalidnextadjustment."
+    },
+    {
+      "topic": "Activecapital",
+      "result": "consistent",
+      "detail": "Four upper/lower±25/50 mathcases agreewithindependentanalyticderivations; only15–25%NAVactive main possible, not small dust."
+    },
+    {
+      "topic": "Idlecap",
+      "result": "consistent",
+      "detail": "Closing material completedresidual can breach existing5%idleceiling and blockcontributions; sweep/reservemixing/silentcaprelaxation rejected."
+    },
+    {
+      "topic": "Accountingcoverage",
+      "result": "consistent",
+      "detail": "AggregateNAV/marginalLP/sharepricing,custody,metadata,harvest,compound,move/park/emergency/terminal/handoff and profileboundaries calledout."
+    },
+    {
+      "topic": "Operations and manipulation",
+      "result": "consistent",
+      "detail": "Independent reference atsamethreshold, samplednotcontinuouspersistence, durablejitter, exactcallbacks, financiallimits preserved. NoMEV/ILimmunity guarantee."
+    },
+    {
+      "topic": "Sizeheadroom",
+      "result": "consistent",
+      "detail": "Vault59runtime/Manager37initcodemargins consistentwithpriorfreshbuild; modularrefactor andnormalgates required, no delegatecallshortcut."
+    },
+    {
+      "topic": "Todo row",
+      "result": "consistent",
+      "detail": "Progress marks researcheddesign only; explicitly not implemented; linksplan/research and keeps unresolved choices. Doesnotclose productionqualification."
+    }
+  ],
+  "findings": [],
+  "mathematical_qualifier_present_at_record_time": true,
+  "numeric_examples_independently_match": true,
+  "no_implementation_or_fallback_approval_inferred": true,
+  "no_claim_of_exhaustive_security": true,
+  "prior_qa_snapshot": {
+    "path": "plan-independent-qa.json",
+    "sha256": "21c51adc1d5b7a1306fd92f6cf2689f0d279b37a580fc97249f4480a28b52d59"
+  },
+  "original_issue_and_resolution": {
+    "id": "PLAN-QA-01",
+    "severity": "documentation_precision",
+    "original_observed_issue": "Principal formulas were unqualified although valid only inside D<P<U; outside they could yield a negative token amount.85%illustrativecases remained correct.",
+    "reported_to_root": true,
+    "resolution": "Root explicitly qualified in-range scope and supplied clamped sqrt price for outside ranges. The current document now describes nonnegative one-sided amounts.",
+    "resolved_at_current_plan_sha256": "021dee6ba3a05f0baf758022c7a2f90a9c28577a32f658a5577e40654567452a",
+    "verified_current_excerpt": "For one continuous Uniswap range with ZZZ price P in ETH, liquidity L and bounds\nD/U, while D<P<U the principal is:\n\n- ZZZ=L*(1/sqrt(P)-1/sqrt(U));\n- ETH=L*(sqrt(P)-sqrt(D));\n- NAV=ZZZ*P+ETH.\n\nOutside the range, clamp sqrt(P) to the sqrt(D)/sqrt(U) endpoints in the token\namount formulas. The resulting principal is one-sided, never a negative amount.\n\n",
+    "reviewer_repository_edits": 0,
+    "execution_tests": 0
+  },
+  "remaining_material_contradictions_in_inspected_scope": false
+}

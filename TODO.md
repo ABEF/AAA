@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-10-29 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-30 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 24 Implemented locally | 1 Not planned**
+**8 To do | 40 In progress | 24 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -237,6 +237,21 @@ Custody, ownership and reward accounting.
   - Qualify real independent reference market/feed/TWAP or averaging window, depth, source independence, orientation, freshness and failure policy. The feature uses existing Oracle.referenceX96 from configured dual USD sources; it does not install a deeper-market adapter or certify those providers. Samples cannot prove uninterrupted price history. Preserve historical profiles/journals and independently qualify matching source/runtime/service rollout.
   - [Whole-project execution](reports/whole-project-execution-20261029/REVIEW.md): Known renewal/reset deadlines now precede optional nonce users after pending recovery/common gates. Unrelated optional degradation does not stretch known-window polling; clock retreats reset before optional work. Preserve900/300/240, raw compound priority and historical journals; actual multiwindow latency/capacity remains open.
   - [Whole-operation design](reports/normal-operation-design-20261029/REVIEW.md): confirmation is currently coupled to raw needsRebalance, so pre-cooldown observations cannot accrue. Compare sampling in the final configured duration before cooldown, explicit wider enrollment and full-cooldown cost. Preserve hard12h/same-side physical-reference bounds/900-300; jitter starts only after both cooldown eligibility and sampled proof readiness; cold starts, policy/LP changes, missed gaps and confirmed receipts need fresh exact rules. This design is unselected, not implemented; do not re-propose already implemented deadline-first priority.
+
+  </details>
+
+<a id="task-passive-inventory"></a>
+
+- [ ] **[Design and implement bounded main-plus-residual LP adjustment](docs/PASSIVE_INVENTORY_PLAN.md)** - In progress. Requested85%of actual centre-to-edge price distance,10minute sampled persistence and durable1-5minute jitter. Primary-source research and economic calculations complete; two-position contracts/keeper/readers are not implemented. Inventory recovery, residual lifecycle and the12hour minimum need explicit decisions before changing behavior.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Enforce at most two live shared-bucket positions and consolidate existing legs before any new pair. Same ETH/fixedZZZ pool, actual aggregate principal and one residual only; preserve shares, income/claim liabilities,80/10/5/5, all-leg exit/parking/movement/canonical closure and existing services.
+  - Use85%in ZZZ-price-in-ETH price space with actual ticks/centre and independent-reference corroboration at matching thresholds. Window/side/identity changes reset persisted readiness/delay; maintain fresh receipt and strict source/gap evidence. Do not repurpose historical triggerBps or reinterpret old profiles/journals.
+  - Resolve active-capital and recovery tradeoff: simplified no-swap85%examples can leave75-85%NAV initially inactive. A minimum-active floor can block adjustments; any recovery swap needs explicit approval and real execution-quality/cap protection, not an automatic bypass. Decide secondary width/completion and whether12hours remains.
+  - [Research and scope](reports/passive-inventory-research-20261030/README.md) separates primary source versions, protocol-wide TVL, arithmetic illustration and actual contract verification. No code/strategy/backtest/market/operating qualification is claimed by research.
+  - Before release, deliver explicit fresh bounded-portfolio capability/accounting/read/canonical profiles, measured modular refactor within normal size limits, affected real-core/adversarial accounting tests and current operator/API/keeper evidence. Preserve independent hourly harvest, entrant isolation and historical Anvil/site/signing boundaries.
 
   </details>
 
@@ -1345,4 +1360,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `734ec764f5aa94981a5ddb51faaa2280a04389cdece3503de34be4602c94683f`.
+Snapshot SHA-256: `400b1f8f12a3c75b206f628750b0d1478b6ff70dfdda8b9e37d92f0727ff9898`.

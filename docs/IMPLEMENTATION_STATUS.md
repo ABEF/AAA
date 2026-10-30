@@ -1,5 +1,10 @@
 # Feature and evidence reference
 
+The [85% main-plus-residual proposal](PASSIVE_INVENTORY_PLAN.md) has researched
+mechanics and economic illustrations, not implemented contracts/keeper behavior.
+Current source remains single-position accounting4; no timing or financial
+policy changed. The [owning task](../TODO.md#task-passive-inventory) carries decisions.
+
 [Complete-project audit and improvements](../reports/comprehensive-popl-20261029/REVIEW.md)
 implements terminal reserve-venue recovery, relevant keeper identity resets,
 final telemetry depth/chronology, stored-history chronology and exclusive,

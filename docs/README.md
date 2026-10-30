@@ -38,6 +38,10 @@ confirmed history/checkpoints/management/readiness/preflight/tooling defects;
 [verification](../reports/operational-reliability-20261029/VERIFICATION.md) separates focused passes,
 local metadata checks and unchanged Solidity/build reuse.
 
+[Passive inventory proposal](PASSIVE_INVENTORY_PLAN.md): bounded main/residual
+lifecycle, primary protocol research,85%trigger arithmetic and unresolved
+inventory decisions. Research only; current functions/services are unchanged.
+
 ## 1. Smart contracts
 
 | Topic | Current guide |

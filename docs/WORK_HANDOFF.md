@@ -29,6 +29,17 @@ margins remain. The callable reference has696functions/33constructors/13receiver
 with no unexplained inputs/outputs. The source inventory/body map is review,
 not one executed test per row.
 
+## Pending passive portfolio design
+
+Read the [researched plan](PASSIVE_INVENTORY_PLAN.md) and
+[research scope](../reports/passive-inventory-research-20261030/README.md).
+User requested85%centre-to-boundary trigger,10minute confirmation and1-5minute
+jitter. Full funding/lifecycle/recovery/12hour decisions remain unresolved;
+implementation has not started. Bothsame-asset inventory cannot fund an active
+centred main without reverse market movement/counterpart funding/swap. Four
+illustrative no-swap trigger cases leave75-85%NAV initially inactive. Do not
+mistake conserved NAV for active-capital efficiency or infer approval for swaps.
+
 ## Continue next
 
 1. Use the sole Todo's qualified price/route/VRF/authority tasks; do not invent
