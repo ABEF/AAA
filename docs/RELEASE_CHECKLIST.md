@@ -13,6 +13,11 @@ static records below retain their original source and do not audit the new polic
 Freeze and re-review the actual release, dynamic controls, wallet/service/market
 providers and independent findings before approval. No deployment is authorized.
 
+The [October31 follow-up](../reports/today-audit-20261031/VERIFICATION.md) refreshes
+source6 static context review, verifies staged publication closure and repairs
+affected accounting/lineage checks. It leaves the production Solidity/build
+unchanged and does not establish a fresh full suite, published CI or live rollout.
+
 
 The [earlier source audit](../reports/day-audit-20261031/REVIEW.md) reviews the
 bounded main/residual portfolio and management controls. [Verification](../reports/day-audit-20261031/VERIFICATION.md)

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# Local untracked adapters must not hide a broken published checkout. This
+# parses exact HEAD blobs without importing/executing application code.
+python3 scripts/check-python-publication.py
 command -v forge >/dev/null || { echo "BLOCKED: Foundry forge is not installed" >&2; exit 1; }
 test -d node_modules/@openzeppelin/contracts || { echo "Install dependencies first" >&2; exit 1; }
 test -d lib/forge-std || { echo "Install forge-std first" >&2; exit 1; }

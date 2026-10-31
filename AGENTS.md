@@ -139,6 +139,15 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
+- [Current change audit](reports/today-audit-20261031/REVIEW.md) repairs published
+  portfolio-reader omissions and same-chain lineage admission of matching external
+  dependencies, corrects recovery labels and restores current accounting fixtures.
+  Before Python publication check exact staged Git blobs with
+  `python scripts/check-python-publication.py --index`, then the committed revision.
+  Local imports are insufficient. Keep protocol identities distinct, exact runtime
+  pins/history proof and old deployment/journal profiles. No production Solidity
+  or economic policy changed; use the audit's fresh/reused evidence boundaries.
+
 - Current source-scoped [adaptable-policy evidence](reports/adaptable-policy-20261031/VERIFICATION.md)
   binds52 production sources/31 dependencies and43 normal gates at final0a.
   Vault635/Budget237/Migration20 runtime headroom is exact-source evidence, not

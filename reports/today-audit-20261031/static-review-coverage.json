@@ -1,0 +1,22 @@
+{
+  "kind": "actual CLI review-coverage execution after producing new source6 review; not an EVM test or independent audit",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "scripts/check-slither-review.py",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\today-audit-20261031\\static-attempt-b34b7ea38e\\slither.json",
+    "--review",
+    "reports/today-audit-20261031/static-review.json"
+  ],
+  "exit_code": 0,
+  "actual_output": {
+    "review_coverage_pass": true,
+    "independent_audit": false,
+    "errors": []
+  },
+  "review_sha256": "d2f5e35f072b6badf33b0a6e3bdf121134edae349c80b9667ca9d54c43c4970f",
+  "raw_analyzer_sha256": "e03e3954b7c2bd762828ad59a83de1935ef1d00f04fc06c275763f44661e0436",
+  "checker_sha256": "4eff9143df183127ef5fd0d788bc36118c2aa675201c9872aa86582425d6d2a4"
+}

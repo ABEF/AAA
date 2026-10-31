@@ -1,0 +1,91 @@
+{
+  "review_date": "2026-10-31 Europe/Paris",
+  "scope": "LP portfolio/accounting/maintenance/terminal exit source-body review and affected accounting test fixture repair. No global audit guarantee.",
+  "executed_cases": [
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testAggregateNAVIncludesResidualButPhysicalAmountsRemainSeparate()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testCanonicalActivationRejectsLiveResidual()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testCanonicalV5RejectsLiveResidualEvenWithoutListedBuckets()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testCapturedMaintenancePolicyCannotBeRevivedByRestoringIdleLimit()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testCapturedPolicyChangeAbortsMaintenance()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testConfiguredMainFloorCountsBothLegsAndIdleAtStartingPrices()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testIdleAmountBoundRemainsAtomicBudgetRequirement()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testMainFloorAcceptsExactSixtyWithoutForcingResidual()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testMainFloorRejectsBelowSixtyAndCountsAttributedIdle()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testMainFloorRoundsRequiredValueUp()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testMaintenanceCapabilityExcludesCompoundingAndEmergency()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testNativePrincipalCreditAcceptsOnlyFixedManagerAndOperator()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testParkingReviewBindsBothPhysicalIdentities()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testReplacementEnforcesUtilizationAfterUnchangedRetainedNAV()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testSamePairPoolMoveKeepsOriginalObservationControl()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testStandaloneBudgetAuthorizesControllerVaultNotItsDeployer()",
+      "status": "Success"
+    },
+    {
+      "case": "test/PortfolioAccounting.t.sol:PortfolioAccountingTest::testStandaloneCompoundDoesNotEnforceReplacementOnlyMainFloor()",
+      "status": "Success"
+    }
+  ],
+  "distinct_cases": 17,
+  "successful_cases": 17,
+  "new_cases": 2,
+  "production_sources_compared_to_normal": 52,
+  "normal_source_content_differences": [],
+  "normal_gate_report_sha256": "ae0e9caa4d33ded3e9675841d9c87126e27793384d8d52a4ee5c14c2e4ed2ed1",
+  "source_changes": [],
+  "test_changes": [
+    "test/PortfolioAccounting.t.sol"
+  ],
+  "operator_impact": "No contract/API/economic/timing/permission/operating procedure changed. The fixture now admits mandatory source6 policy and floor getters.",
+  "limitations": [
+    "This is not a new full EVM suite, target-chain/provider qualification or independent audit.",
+    "Price disagreement, shallow remaining liquidity, strict utilization and unusable residual geometry can intentionally reject operations.",
+    "Paused manual financial bypass remains governance trust and can lose almost all principal.",
+    "A fixed-token/dependency compromise, rejecting receiver, gas outage or chain halt can still impair recovery."
+  ]
+}

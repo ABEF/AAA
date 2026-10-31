@@ -99,7 +99,7 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
    ERC20 balance/synchronization call defers only that currency's new eligibility;
    recovery assigns previously unseen receipts to the earlier cohort before
    enrolling waiting NFTs. Native ETH has no token balance-read failure or
-   external-custody deferral in accounting4/5. Gas bounds and full backing checks
+   external-custody deferral in accounting4/5/6. Gas bounds and full backing checks
    remain. Not every technical activation failure is isolated.
 6. LP/royalty conversions debit the selected NFTs' source entitlements and credit
    actual ETH to those same NFTs. Conversion, claim, transfer and principal return

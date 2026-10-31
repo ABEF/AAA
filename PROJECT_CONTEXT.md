@@ -80,6 +80,13 @@ runtime and backend checks are recorded in the new report; older50-source/42-gat
 public CI, market/provider/host qualification or independent approval is implied.
 The new callable reference/operator procedures must match source6, not old profiles.
 
+[Current audit follow-up](reports/today-audit-20261031/REVIEW.md) repairs omitted
+published portfolio readers and valid same-role/same-runtime shared Uniswap
+dependency admission for predecessor history. Exact Git-blob publication checks
+prevent local untracked files hiding missing imports. Source6 accounting fixtures
+and current recovery labels are corrected; production Solidity remains unchanged.
+Fresh static contexts and affected execution retain their explicit evidence scope.
+
 ## What remains
 
 Production NOT APPROVED. Actual dual feeds/routes/VRF/authorities/OpenSea,

@@ -15,6 +15,9 @@ from zzz_ops.abi import address, decode_words, keccak256
 MAX_PREDECESSORS = 8
 MAX_TOTAL_EVENTS = 1_000_000
 MAX_RECEIPT_LOGS = 4096
+# These independently pinned Uniswap dependencies can legitimately be reused by
+# a same-chain replacement. Deployment-owned protocol modules/helpers cannot.
+SHARED_DEPENDENCY_ROLES = frozenset(('pool_manager', 'state_view', 'position_manager', 'permit2'))
 RETIRED = '0x' + keccak256(b'Retired(bytes32,address,bytes32)').hex()
 ACTIVATED = '0x' + keccak256(b'Activated(bytes32,address,bytes32)').hex()
 
@@ -34,6 +37,7 @@ class Lineage:
         self.entries = []
         self.descriptors = dict(current.assets)
         contracts = {c.address for c in current.contracts.values()}
+        identities = {c.address: (role, c.code_hash) for role, c in current.contracts.items()}
         total_events = current.history.max_events
         for item in items:
             fields = {'deployment_block', 'deployment_block_hash', 'contracts', 'assets',
@@ -50,8 +54,12 @@ class Lineage:
             previous_config.update({k: v for k, v in item.items() if k != 'retirement_transaction_hash'})
             previous = Projection(previous_config, current.rpc, clock=current.clock)
             addresses = {c.address for c in previous.contracts.values()}
-            if addresses & contracts:
-                raise ValueError('Repeated or overlapping deployment identities in predecessor inventory')
+            for role, contract in previous.contracts.items():
+                existing = identities.get(contract.address)
+                if existing is not None and (role not in SHARED_DEPENDENCY_ROLES or
+                        existing != (role, contract.code_hash)):
+                    raise ValueError('Repeated or conflicting deployment identities in predecessor inventory')
+                identities[contract.address] = (role, contract.code_hash)
             contracts.update(addresses)
             total_events += previous.history.max_events
             for asset, descriptor in previous.assets.items():

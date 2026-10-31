@@ -1,0 +1,248 @@
+{
+  "kind": "Fresh source6 offline Slither plus source-scoped contextual review; not an independent audit or clean detector result",
+  "normal_build": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\adaptable-policy-20261031\\normal-final-0a0cac9f06",
+  "compiler_input_sha256": "e25ab51ff0ce71b591b7cc8a25f1f89d5fc759041eb16fcee8ceac5ae6743649",
+  "compiler_output_sha256": "db4d9dba99d0ad274c9d073d8097fcd086b09ac12f75ff0c4995dfd72076de43",
+  "analyzer_success": true,
+  "analyzer_exit_code": 4294967295,
+  "compiler_invoked": false,
+  "source_unchanged": true,
+  "count": 471,
+  "by_impact": {
+    "High": 74,
+    "Medium": 90,
+    "Low": 211,
+    "Informational": 75,
+    "Optimization": 21
+  },
+  "previous_scope_count": 463,
+  "complete_context_and_enclosing_body_reuse": 383,
+  "changed_contexts_reviewed": 88,
+  "changed_material_contexts_reviewed": 23,
+  "reuse_limit": "Only exact enclosing bytes and complete normalized detector context are reused. This is scoped context reuse, not proof all transitive callees are unchanged or an exhaustive current-project audit. Prior reports retain their original scopes.",
+  "tool_limit": "48 installed versions match lock;2823 hashed RECORD entries checked. Five shared docs paths collide between locked packages and match another locked RECORD; zero runtime mismatches. Original wheel archives not attested.",
+  "groups": [
+    {
+      "group": "reviewed-entry-final-exact-balances",
+      "indices": [
+        20,
+        25,
+        336,
+        352,
+        375,
+        398
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "Entry2 is live/operating/principalOperating/nonReentrant, binds the policy before mutable token calls, captures only original source budgets/prices, repeats ownership checks, opens typed Vault context only immediately before that guarded call and clears it before approval reset. The reported before/after balance comparisons deliberately preserve prefunds and reject callback contamination; final Pricing and entry fingerprints cannot be relaxed by callbacks. Mutable callee review remains a separate dependency boundary, not guaranteed safe by a balance equality."
+    },
+    {
+      "group": "manager-fixed-parent-budget-and-refunds",
+      "indices": [
+        22,
+        27,
+        36,
+        38
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "Manager.balance admits only the fixed Vault and is nonReentrant. It captures balance context/native+token prefunds, pulls entrant/designated funds before actual-core quote, executes at most one bounded selected swap and refunds only the remainder. Exact actual output/slot price, source budget, existing LP identity/L, runtime controls and complete prefunds are rechecked after refund callbacks. These captured balances are intended invariants; unexpected callback changes revert atomically. LP reviewer independently traced the same source6 body."
+    },
+    {
+      "group": "registry-fixed-helper-admission",
+      "indices": [
+        83,
+        130,
+        153,
+        156,
+        162,
+        341,
+        357,
+        446
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "configureNative is direct-governance before/after authorization and native/terminal guarded. _configure invokes only the frozen ActivationAssets child. Its validation uses token/oracle view calls (STATICCALL), then bounded local policy writes; no mutable user-selected callback occurs at admission. Price/admission calls are for revert-on-invalid validation, not use of the returned scalar or policy ID. The new width ceiling remains below10000bps with trigger/deviation coupling. Actual source/venue/governance trust is not proved by the detector."
+    },
+    {
+      "group": "branch-defaults-manager",
+      "indices": [
+        97,
+        101,
+        107
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "The request struct is read only after the emergency branch loads it. Plan p is assigned by every emergency/hybrid/full branch before use. priorLiquidity is intentionally zero with no existing LP and captured only when existingLpId is nonzero; final comparison uses that same branch."
+    },
+    {
+      "group": "branch-defaults-portfolio-budget",
+      "indices": [
+        102,
+        115
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "No associated residual means exactly zero residual marked value; a nonzero secondary is separately read by its own ticks/L. _beforeMove zero-initializes Snapshot memory then assigns bucket/source/loss/control/maintenance policy/price vector/idle/value before storage; replacement/portfolio fields are set in their guarded branch, and emergency code does not accidentally gain hybrid replacement permission."
+    },
+    {
+      "group": "bounded-route-plan-defaults-and-selected-returns",
+      "indices": [
+        111,
+        116,
+        119,
+        123,
+        124,
+        129,
+        148,
+        192,
+        230,
+        301,
+        358
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "Each route iteration resets quoted=false/output=0/afterPrice=0; values are used only after a successful authenticated revert quote. lo=0 is the intentional search origin; interpolated=0 falls back to midpoint unless inside the valid bracket. Bounded reviewed venues/iterations/quote gas, actual-core delta quote, actual fees+reference checks and final Manager exact-output checks remain. target() selects ticks while captured context validates the reference; slot0 selects sqrt+directional fees while other code validates actual ticks/key. Search may fail or not find a globally optimal route; it never silently widens guards."
+    },
+    {
+      "group": "protocol-policy-lexical-shadowing",
+      "indices": [
+        164,
+        165,
+        166
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "setGasPolicy argument names intentionally match lean public getter names. Solidity lexical scope uses those validated uint32 parameters to construct gasLimits; there is no ambiguous implicit getter invocation. Renaming only to remove detector noise is not a justified security change."
+    },
+    {
+      "group": "canonical-header-event-scope",
+      "indices": [
+        167
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "canonicalWriteHeader is fixed-writer only, sealed/inert importer only and checks no future provider rotation. The authenticated Handoff emits RecordImported for this canonical record; it is not a public silent settings setter. Imported header/records still undergo source-root equality, quota/domain and final activation validation."
+    },
+    {
+      "group": "mint-recipient-already-validated",
+      "indices": [
+        179,
+        401
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "Captured recipient comes from the immutable Canonical companion and fixed ProtocolPolicy. Constructor rejects zero; proposal validates candidate and acceptance cannot be zero. Sealing validates final recipient; mint binds sale+VRF, exact value and recipient/receiver callback rollback. Repeating a local zero check in the size-constrained Vault would duplicate the fixed source invariant, not close a demonstrated attacker path."
+    },
+    {
+      "group": "bounded-isolated-owner-payout",
+      "indices": [
+        181
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "At most32 IDs; per-batch policy gas captured once. budget+60k remaining-gas test protects the inner call and tail, each current-owner payment is isolated and unpaid liabilities remain backed. At the100k-1m governed bounds the tail exceeds EIP150 withholding, but full target-network/batch gas still needs qualification; low caller gas may leave IDs unpaid without redirecting or consuming their entitlement."
+    },
+    {
+      "group": "bounded-pricing-marks",
+      "indices": [
+        199,
+        211,
+        249,
+        253,
+        260,
+        266,
+        286,
+        312
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "Current marked assets are bounded at34 and historical reward assets at33. _historicalMarks reads only nonzero existing compound assets; _unchanged rechecks both bounds, precision and exact round/source fingerprint for every captured mark. These repeated reads intentionally protect mutable execution stages and cannot be dropped merely to satisfy calls-loop flags. Dynamic source gas and the actual worst-case set still require operating qualification."
+    },
+    {
+      "group": "bounded-deployment-commitment",
+      "indices": [
+        290
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "deploymentCommitment loops16 fixed module IDs plus6 fixed ledger slots and then binds the actual ProtocolPolicy address/runtime/version/configurationHash. Inert source/import states prevent policy mutation during capture/import; destination commitment is rechecked at commit. It is a review commitment, not proof arbitrary governance-approved code is safe."
+    },
+    {
+      "group": "nft-revision-callback-guard",
+      "indices": [
+        342
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "NFT mint is fixed-Vault-only, operating/principalOperating/nonReentrant. mintedCount increments before asynchronous request creation, then ID/epoch/provider reuse checks bind the result before receiver callbacks. Provider runtime and vrfRevision are checked after callbacks; Vault checks complete mint fingerprint after paying captured recipient. Authorized fulfillment only stores exact2 words and cannot finalize through the entered mint guard."
+    },
+    {
+      "group": "assembly-budget-and-returndata",
+      "indices": [
+        376,
+        378
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "Oracle staticcall copies only exact32/160-byte results and fails on excess/failed responses; optional royalty self-call copies no revert data. Gas values come from bound policy and remain engineering limits, while exact ABI/freshness/backing/eligibility checks remain. Activation caller-underfunding reverts rather than falsely deferring a healthy full-budget call; isolated actual currency failure protects the earlier cohort."
+    },
+    {
+      "group": "complexity-tradeoff",
+      "indices": [
+        384,
+        386,
+        388
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "Manager/Entry/routePlan complexity arises from explicitly distinct native/ERC20, historical typed routes, main/residual, review and emergency paths. Reviewed source branches retain bounded custody and post-callback checks; no behavior-preserving simplification was justified solely by cyclomatic score in this static refresh. Independent maintainability/security review remains useful."
+    },
+    {
+      "group": "structural-interface-flags",
+      "indices": [
+        403,
+        404,
+        406,
+        408,
+        409,
+        410,
+        411,
+        412,
+        414,
+        416,
+        417,
+        418,
+        419,
+        421,
+        423,
+        424,
+        426,
+        427,
+        428,
+        429,
+        430
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "These are intentional structural typed interfaces, not evidence of missing implementations or missing authorization. Current compiler closure type-checks all callers and actual bound-module/runtime/version admission is distinct. Nominal inheritance can require otherwise unnecessary struct/interface rewrites; no proven behavior/security defect justifies that refactor in this pass."
+    },
+    {
+      "group": "naming-and-explicit-unit-literals",
+      "indices": [
+        431,
+        436,
+        437,
+        438,
+        442,
+        444,
+        448
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "VERSION getter follows the explicit profile ABI. Literal flags concern bounded gas/USD18/wei/search constants and constructor initialization; values/bounds/units were inspected in ProtocolPolicy and LPBalancer rather than transformed to quiet the analyzer. No economic value or ceiling was changed."
+    },
+    {
+      "group": "cache-length-optional-optimization",
+      "indices": [
+        450,
+        453,
+        460,
+        467
+      ],
+      "disposition": "current-context-reviewed-no-new-defect-proven",
+      "rationale": "Pricing marks, royalty currencies and reviewed venues have explicit bounds. Several loops cross external calls, so naive caching can alter callback-sensitive meaning. No measured material saving justifies an unverified source edit; retain existing protections and qualify worst-case gas. This is an optimization deferral, not a claim current gas is production-qualified."
+    }
+  ],
+  "new_confirmed_solidity_exploits": [],
+  "source_fixes": [],
+  "remaining": [
+    "Actual dependency/provider/proxy trust, VRF funding/proofs and original-provider outage recovery.",
+    "Real target-chain gas for 32-payout and 33-currency worst-case paths; engineering gas bounds do not qualify operating batch sizes.",
+    "Market execution economics/manipulation and governance emergency financial bypass trust.",
+    "Independent audit/remediation, actual hosted service recovery and source6 website consumers."
+  ]
+}

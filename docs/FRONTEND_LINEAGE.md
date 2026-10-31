@@ -89,6 +89,14 @@ and still treats its peer addresses as source commitments.
 
 ## Trust and release boundary
 
+Fresh accounting5/6 predecessor inventories may reuse only the reviewed external
+`pool_manager`, `state_view`, `position_manager` and `permit2` identities in the
+same role with the same runtime pin. PoPL modules/helpers must remain distinct;
+cross-role collisions and different pins for one shared address are rejected.
+Every predecessor still needs its own exact accounting/canonical profile,
+retirement/activation proof and complete history. Sharing Uniswap infrastructure
+does not establish economic lineage. See the [change audit](../reports/today-audit-20261031/REVIEW.md).
+
 RPC observations and operator-maintained complete indexer ingestion remain the
 data trust model. Stored SQLite rows and matching event receipts are not a
 cryptographic proof of log completeness or L1 finality. Reviewed replacement code

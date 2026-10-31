@@ -4,7 +4,9 @@ Reviewed2026-10-31. [Todo](../TODO.md) alone owns status; this page gives sequen
 The [optional portfolio implementation](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)
 is local source, not rollout. [Current adaptable-policy evidence](../reports/adaptable-policy-20261031/VERIFICATION.md)
 keeps scoped new checks and43normal gates separate from staged reuse and the older
-manual/static records. Older triage does not verify the new policy source.
+manual/static records. The [October31 follow-up](../reports/today-audit-20261031/VERIFICATION.md)
+refreshes source6 static contexts, publication closure and affected accounting/API
+checks. It does not qualify live services or independent release approval.
 The offline review helper is not yet a live operation planner or simulator;
 rehearse actual authority/wallet/host/dependency workflows before production.
 

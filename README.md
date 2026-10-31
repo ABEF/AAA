@@ -13,6 +13,11 @@ The prior [source audit](reports/day-audit-20261031/REVIEW.md) fixes physical-re
 availability, activation bindings and ordinary replacement activity. Source changes do not update existing
 Anvil contracts, journals, workers or websites. Public signing remains disabled.
 
+The [current change audit](reports/today-audit-20261031/REVIEW.md) fixes publication
+closure and replacement-history admission, repairs accounting fixtures and
+refreshes source6 static review. [Evidence](reports/today-audit-20261031/VERIFICATION.md)
+keeps affected checks and unchanged build reuse separate from release approval.
+
 ## Project navigation
 
 | Purpose | Start here |

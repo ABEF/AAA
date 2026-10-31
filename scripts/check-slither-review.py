@@ -231,7 +231,7 @@ def check(report, review, root=ROOT):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("report", type=Path)
-    parser.add_argument("--review", type=Path, default=ROOT / "reports/production/slither-review.json")
+    parser.add_argument("--review", type=Path, default=ROOT / "reports/today-audit-20261031/static-review.json")
     args = parser.parse_args()
     try:
         report = read_json(args.report,encoding="utf-8")

@@ -9,6 +9,14 @@ to 0.8.26/Cancun with the committed via-IR/optimizer profile. Use the actual
 
 ## Setup and change verification
 
+Before publication, check the exact staged Python source closure with
+`python3 scripts/check-python-publication.py --index`. After committing, use the
+same command without `--index` to check HEAD. It parses Git blobs rather than
+importing local packages, so untracked reader files cannot hide a missing
+published dependency. The full verifier checks HEAD first. This is a static
+repository-import check; dynamic imports, dependencies and runtime behavior still
+need their own checks. An unstaged working file does not repair a failing commit.
+
 From the repository root in the supported environment:
 
 ```bash
@@ -90,13 +98,16 @@ checker strictly loads JSON objects and preserves source/finding coverage gates.
 CI uploads only these new static directories. Older canonical analysis/review
 files are not deleted or refreshed automatically.
 
-The [last full audit](../reports/full-audit-20261025/VERIFICATION.md) records
+The [historical full audit](../reports/full-audit-20261025/VERIFICATION.md) records
 actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
-not a current green workflow or independent approval. The [current applicability
+not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-finds19of47source pins changed; refresh analysis/triage for the actual release.
-Check exact-revision CI.
+records19of47then-changed source pins. The [source6 refresh](../reports/today-audit-20261031/VERIFICATION.md)
+now records471 flags with exact-context reuse/current review and a new default
+[review record](../reports/today-audit-20261031/static-review.json). Old records
+remain untouched; the checker still requires exact source/finding coverage.
+Refresh after relevant changes and check exact-revision CI.
 Keep normal runtime/initcode/gas gates and exact constructor arguments.
 
 ## Focused keeper verification

@@ -47,7 +47,7 @@ sum can differ from unrounded bucket NAV by rounding dust. No token-market or US
 price is invented by the API or browser.
 
 Activated count means reward eligibility, including parked and terminal Exited
-NFTs in accounting4/5; historical custody-outbound/remote states retain their old meaning. It
+NFTs in accounting4/5/6; historical custody-outbound/remote states retain their old meaning. It
 does not assert that every position is currently in range or earning fees. A
 non-local or failed LP valuation makes the total unavailable while verified
 positions and eligibility counts can remain visible. An unreadable dormant LP

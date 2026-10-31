@@ -6,6 +6,7 @@ import {ZZZContributionPricing} from "../src/ZZZContributionPricing.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {ZZZVaultCanonical} from "../src/ZZZVaultCanonical.sol";
 import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
+import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 
 contract PortfolioAccountingAccess {
@@ -13,6 +14,9 @@ contract PortfolioAccountingAccess {
     uint8 public canonicalState;
     bool public paused;
     bool public lpExitStarted;
+    address public protocolPolicy;
+    function setProtocolPolicy(address target) external { protocolPolicy = target; }
+    function canConfigure(address caller) external view returns(bool) { return caller == module[Ids.MIGRATION]; }
     function set(bytes32 id,address target) external { module[id] = target; }
     function setState(uint8 state) external { canonicalState = state; }
     function setPaused(bool value) external { paused = value; }
@@ -85,11 +89,14 @@ contract PortfolioAccountingOracle {
 
 contract PortfolioAccountingPolicy {
     uint64 public revision = 1;
+    uint16 public mainFloor = 6000;
     bool private hybrid;
     function set(bool value) external { hybrid = value; ++revision; }
     // The real helper is per-pool. This fixture isolates the Budget's captured
     // revision and replacement/compound capability, not execution geometry.
     function enabled(bytes32) external view returns(bool) { return hybrid; }
+    function minimumMainBps(bytes32) external view returns(uint16) { return mainFloor; }
+    function setMainFloor(uint16 next) external { mainFloor = next; ++revision; }
 }
 
 contract PortfolioAccountingConfirmation {
@@ -137,6 +144,9 @@ contract PortfolioAccountingTest is Test {
         access.set(Ids.POOLS,address(pools)); access.set(Ids.ORACLE,address(oracle));
         access.set(Ids.STRATEGY,address(new PortfolioAccountingStrategy(address(policy),address(confirmation))));
         access.set(Ids.MIGRATION,address(this)); access.set(Ids.CANONICAL,address(this));
+        // Source6 requires the fixed operating policy. Do not let a missing
+        // fixture selector turn a negative accounting case into a false pass.
+        access.setProtocolPolicy(address(new ZZZProtocolPolicy(address(access),address(0x7EA5))));
         access.set(Ids.REWARDS,address(new PortfolioAccountingRewards()));
         PoolConfig memory c; c.operationsEnabled = true; c.key.currency1 = address(1);
         c.key.tickSpacing = 60; c.key.fee = 3000; pools.set(c); POOL = keccak256(abi.encode(c.key));
@@ -201,6 +211,26 @@ contract PortfolioAccountingTest is Test {
         _position(0,0,address(budget)); vault.checkpoint(11,0); vault.checkpoint(11,1);
         policy.set(true);
         vm.expectRevert(ZZZMigrationBudget.InvalidState.selector); vault.checkpoint(11,2);
+    }
+    function testCapturedMaintenancePolicyCannotBeRevivedByRestoringIdleLimit() public {
+        _legs(60,40);
+        ZZZMigrationBudget budget = new ZZZMigrationBudget(address(access));
+        _position(0,0,address(budget)); vault.checkpoint(11,0); vault.checkpoint(11,1);
+        ZZZProtocolPolicy operating = ZZZProtocolPolicy(access.protocolPolicy());
+        operating.setMaintenancePolicy(4000,keccak256("TEST ONLY wider maintenance idle"));
+        operating.setMaintenancePolicy(500,keccak256("TEST ONLY restored maintenance idle"));
+        vm.expectRevert(ZZZContributionPricing.InvalidState.selector); vault.checkpoint(11,2);
+        // A failing proof cannot silently clear the live operation context.
+        assertEq(budget.maintenanceBucket(),11);
+    }
+    function testConfiguredMainFloorCountsBothLegsAndIdleAtStartingPrices() public {
+        policy.setMainFloor(8000); _legs(79,21);
+        vm.expectRevert(ZZZContributionPricing.Slippage.selector);
+        pricing.assertPortfolioUtilization(11,1e18,1e18,1e18,1e18);
+        _legs(80,20); pricing.assertPortfolioUtilization(11,1e18,1e18,1e18,1e18);
+        _position(1,0,address(this));
+        vm.expectRevert(ZZZContributionPricing.Slippage.selector);
+        pricing.assertPortfolioUtilization(11,1e18,1e18,1e18,1e18);
     }
     function testSamePairPoolMoveKeepsOriginalObservationControl() public {
         _legs(60,40);

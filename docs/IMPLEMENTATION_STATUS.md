@@ -14,6 +14,13 @@ parked same-chain canonical V6 wire remain; they do not imply old runtime compat
 Production inventory is schema8 with21 helper pins. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
+The [October31 change audit](../reports/today-audit-20261031/REVIEW.md) repairs
+published reader omissions and same-chain lineage admission for shared Uniswap
+dependencies, corrects recovery-profile guidance and repairs affected accounting
+fixtures. [Evidence](../reports/today-audit-20261031/VERIFICATION.md) separates new
+affected execution, current static contexts and unchanged normal build reuse.
+No economic rules, deployed contracts or operating services changed.
+
 ## Smart contracts
 
 | Capability | Implemented behavior | Reference |

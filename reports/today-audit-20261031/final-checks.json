@@ -1,0 +1,27 @@
+{
+  "kind": "Final documentation/source-preservation checks; not transaction tests",
+  "checks": [
+    {
+      "command": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Project Todo verified.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 37, \"functions\": 826, \"constructors\": 37, \"receive_hooks\": 14, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\n",
+      "stderr": ""
+    }
+  ],
+  "task_ids_statuses_order_unchanged": true,
+  "omitted_readers_exact_initial_bytes": true,
+  "no_production_solidity_change": true,
+  "no_deployment_or_service_change": true
+}

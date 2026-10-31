@@ -1,0 +1,60 @@
+{
+  "kind": "source-body-review-not-execution",
+  "baseline": "e4113b79526adec829c8b888b2ca7795fdf0008b",
+  "scope": [
+    "src/ZZZProtocolPolicy.sol",
+    "src/ZZZNFT.sol",
+    "src/ZZZNFTCanonical.sol",
+    "src/ZZZVaultCanonical.sol",
+    "src/ZZZAccessController.sol",
+    "src/ZZZCanonicalHandoff.sol",
+    "src/ZZZVault.sol",
+    "src/ZZZNFTMetadata.sol",
+    "src/base/ZZZModule.sol",
+    "src/ZZZOracle.sol",
+    "src/ZZZRoyaltyRewards.sol",
+    "src/ZZZMigration.sol",
+    "src/ZZZPythPriceFeed.sol",
+    "test/ProtocolPolicy.t.sol",
+    "test/AdaptableTerms.t.sol",
+    "test/RandomnessRequestSettings.t.sol"
+  ],
+  "sha256": {
+    "src/ZZZProtocolPolicy.sol": "312d944c92829a755a7b2f0276f0ef26d08266cbd33262954a8dfd01445b6182",
+    "src/ZZZNFT.sol": "9f673b4e441c449c45ffe71537565ff4c73a32cf75df88f78fb3f03af206c829",
+    "src/ZZZNFTCanonical.sol": "40be978cdc4764ae01e9c06fc5350dbfca755ef6d6309ae18b7bef48f159714b",
+    "src/ZZZVaultCanonical.sol": "2377ffc5adf74cde1cc1d4aebaac5aeca0d3dc1f0042870032855c850d3f8300",
+    "src/ZZZAccessController.sol": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+    "src/ZZZCanonicalHandoff.sol": "f1a38365013d839a28badf7a4b2a503b07878608cae94659ecdbf0bed50ded06",
+    "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
+    "src/ZZZNFTMetadata.sol": "7dc7d9e8a82e9256004163ac5375c64abe34a7a02d96de6b2a01eeb41b897328",
+    "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+    "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
+    "src/ZZZRoyaltyRewards.sol": "235e3f175cdb7347a8a7db05ae682d24cb8496342b95015729eb9dd6746448f0",
+    "src/ZZZMigration.sol": "8c5faa68d88a320fcfef2339de891e67103ee1369893970ba4bd9827e11a703d",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "test/ProtocolPolicy.t.sol": "dcc5bbaeec5d2964d57923b1c498028709c031e5c78abc2c6260a5ee6a72abb1",
+    "test/AdaptableTerms.t.sol": "e25e024582a6f070463cc14e8be9b0defef60f11780bde29c397a6f2b6608371",
+    "test/RandomnessRequestSettings.t.sol": "4a97ef995808fcce113a7617f059bdfc6dcf96fdc889fd3eab7b3080460ab244"
+  },
+  "new_tests_executed": 0,
+  "source_changes": [],
+  "proven_new_solidity_defects": [],
+  "coverage": [
+    "ProtocolPolicy defaults/bounds/scoped revisions/change-restore/propose-accept/cancel/frozen importer",
+    "NFT asynchronous request creation/provider runtime pre-post pin/request-ID namespaces/drained rotations/authenticated words/exact quotas/Fisher-Yates lookup",
+    "Vault reviewed mint exact value/recipient capture/receiver and payout callbacks/post-callback fingerprint/atomic rollback",
+    "Canonical helper threshold-value compatibility/capture/import/final validation/retired read/epoch separation/parked no-residual boundary",
+    "Oracle exact-length staticcall/returndata bounds/source gas config/dual reference freshness and agreement/no fallback",
+    "Royalty bounded optional self-sync/EIP150 full-budget margin/caller underfunding/recovered old-cohort isolation",
+    "Payout per-batch budget capture/current owner/isolation/gas-tail/backed retries"
+  ],
+  "limits": [
+    "Static review is not exhaustive execution, independent audit or operating qualification.",
+    "Original VRF outage still blocks ordered reveals, provider rotation and whole-collection handoff; ordinary LP operation and terminal holder return remain independent.",
+    "Codehash does not freeze proxy upstreams or prove VRF/source authenticity; provider authority and proof/security qualification remain release work.",
+    "Governed 100k-1m budgets are engineering limits; actual full batches and 32 admitted optional currencies require gas qualification and bounded worker sizing.",
+    "Optional-currency failure deliberately defers new membership for only that currency, protecting earlier unseen receipts.",
+    "Canonical import mints inert contract ownership without receiver callbacks: incompatible escrow-holder preflight remains release work."
+  ]
+}

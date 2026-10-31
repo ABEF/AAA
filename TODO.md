@@ -481,6 +481,7 @@ The data and services behind the app.
   - [Whole-project execution](reports/whole-project-execution-20261029/REVIEW.md): Ordered transaction provenance now rejects contradictory supplied indices/hash interleaving at ingestion and stored replay; numeric gaps/missing optional legacy indices remain valid. Final depth and signed legacy fee evidence are rechecked. Exact balances/earned/claimable/claimed semantics remain; provider completeness/authenticity stays open.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Confirmed ingestion no longer stores chunks that lost depth, changed predecessor through an ABA writer race, or regressed block time. Equal L2 timestamps and unknown unindexed parent time remain valid. This fixes reporting consistency; actual history completeness/provider qualification remains open.
   - [Reader chronology repair](reports/comprehensive-popl-20261029/REVIEW.md) rejects contradictory timestamps throughout the stored block prefix, including eventless/filtered blocks, while allowing equal L2 timestamps. Diagnose/preserve inconsistent restored data; never repair timestamps to pass. Qualify actual archive/provider/reorg histories and a reviewed authenticated archival/checkpoint/read-model evolution before bounded full replay reaches lifetime service limits; no truncation or guessed zero.
+  - [Current lineage correction](reports/today-audit-20261031/REVIEW.md) removes a false rejection of reviewed shared Uniswap infrastructure without weakening retirement/history proof. Qualify actual complete accounting6 replacement ingestion, retention and today-price reporting; local constructor tests are not live history acceptance.
 
   </details>
 
@@ -566,6 +567,7 @@ The data and services behind the app.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Sold-out mint readiness now reports exact remaining supply/supply-stop while preserving pending reveal information, without extra RPC. Indexer confirms final depth, exact write boundary and nondecreasing timestamps; provider consistency is not authenticity/history completeness.
   - Current full-prefix chronology admission is implemented with no extra RPC/query/schema change. Real complete-history availability and long-term bounded replay design stay separate qualification tasks; raw funded claims do not depend on the history API being online.
   - [October31 audit](reports/day-audit-20261031/REVIEW.md): physical-only accounting5 authentication retains exact runtime/owner/PoolKey/tick/liquidity/aggregate checks while skipping maintenance-price diagnostics only. It cannot assert readiness; keeper default checks remain strict. Rehearse real RPC failure/latency and hosted API acceptance separately; never substitute zero for missing NAV or accept malformed physical evidence.
+  - [October31 audit](reports/today-audit-20261031/REVIEW.md): publish the previously omitted portfolio5/6 reader modules and admit only same-role/same-runtime shared Uniswap dependencies across verified predecessor inventories. Protocol identity collisions and complete pinned lineage requirements remain strict; service rollout is separate.
 
   </details>
 
@@ -910,6 +912,7 @@ Three required testing layers, with source-bound evidence.
   - [Keeper coordination evidence](reports/keeper-coordination-20261029/VERIFICATION.md): preserve prior report scopes, the newly exposed private-getter fixture error and current ABI-bound regression. Source-only automation/diagnostics checks do not close actual services, economics, target gas or independent approval.
   - [Complete-project audit](reports/comprehensive-popl-20261029/VERIFICATION.md) adds16 scoped EVM passes,82 distinct Python methods across source stages (80pass/two Windows skips),39 fresh normal production gates and semantic ABI/storage comparison. Only Registry bytecode changes. Generated structured IR inspection narrows named compiler advisory applicability, not compiler correctness. Refresh actual source-bound static analysis/triage and independent frozen-release audit; tooling repair and historical399findings are not current approval.
   - [October31 audit](reports/day-audit-20261031/REVIEW.md): fresh final-source463 Slither findings all have contextual dispositions (164High/Medium tool labels plus299lower),42normal gates pass and scoped156Python/19EVM methods retain source stages/failures. This closes only this internal source-triage checkpoint. Independent frozen-source audit/remediation, full regression/CI, actual target gas and host/market qualification remain open; reanalyse changed source.
+  - [October31 current-source review](reports/today-audit-20261031/VERIFICATION.md) refreshes source6 detector context disposition without recompilation or relaxing the source/finding checker. This internal assessment does not replace independent audit/remediation, target gas or actual operating/provider qualification.
 
   </details>
 
@@ -925,6 +928,7 @@ Three required testing layers, with source-bound evidence.
   - [Additional audit verification](reports/confirmation-followup-20261028/VERIFICATION.md):399distinct affected Python methods,398pass/1explicit missing-cast skip,53new. Retained failed attempts have explicit corrected-case receipts; counts are not summed across overlap. Unchanged217Solidity/39normal gates reused only after exact source/test/dependency/build comparison.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Full Python runner selects canonical defined classes/methods once and keeps locally defined inherited tests. Inventory-only is0execution, empty/custom/duplicate selections fail and source drift invalidates results. Default/explicit evidence is fresh; full verifier inspects normal effective profile/tool/filters/fuzz/invariants and preserves prior reports. Scoped metadata and inert wrapper controls are not a full CI/build acceptance.
   - [Exclusive evidence admission and provenance](reports/comprehensive-popl-20261029/VERIFICATION.md): JSON/log outputs are reserved before imports/tests/scans, nonpass partial evidence is retained and source hashes precede selection. Keeper selection includes both new regression modules, rejects custom loaders and verifies exact execution identities. Two Windows filesystem skips require Unix rehearsal. Inventories and synthetic sentinels are not additional real project passes.
+  - [October31 source audit](reports/today-audit-20261031/VERIFICATION.md) repairs source6 accounting fixtures, adds change/restore and main/residual/idle regressions, and verifies exact Git publication imports plus lineage admission. Fresh affected methods, preserved failures and exact-source reused normal gates remain separate from full-suite or operating approval.
 
   </details>
 
@@ -1146,6 +1150,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Current composed audit](reports/comprehensive-popl-20261029/COVERAGE.md) traces contract/keeper/history/tooling and operator boundaries; source-body coverage, targeted execution and generated-lowering checks retain distinct scopes. The terminal venue fixture explicitly overrides only native runtime binding for positive cases; concrete production rejection is checked. No actual mainnet admission, website wallet or operating qualification follows from synthetic tests.
   - [October31 audit](reports/day-audit-20261031/REVIEW.md): verify price-outage physical-read isolation, actual executor preparation and ordinary active-main guards without weakening keeper pricing, custody or initial/growth/emergency boundaries. Qualify narrow candidate ranking, bounded-loop external gas, immutable metadata URI payload, receiver rejection and upstream dependencies at actual release bindings.
   - [Manual-operation audit](reports/manual-operations-20261031/REVIEW.md): classify all231writes into90 manual/relay and141 other endpoints, correct46 preseal canConfigure access descriptions and verify one NEW composed actual-v4 unpaused merge/harvest/claim journey.16 scoped helper methods exercise strict schema/ABI/precision/source binding/file handling without network/signing. This is not exhaustive state-path execution or independent release approval.
+  - [October31 change audit](reports/today-audit-20261031/REVIEW.md) corrects clean-checkout reader omissions and predecessor dependency identity handling, refreshes current static context review and corrects recovery profile labels. Retain exact publication-closure checks and qualify actual startup/restart/provider/gas behavior before rollout.
 
   </details>
 
@@ -1358,4 +1363,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `358b08faf87a8021e6fde29e0a3906257bfb9a0bc1d72ca28d0a5963166a9e8a`.
+Snapshot SHA-256: `6947b14cd36b76ff919fe5fdbe692de0237cc517c99388b5d52567af429a59bc`.

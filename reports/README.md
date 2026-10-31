@@ -1,5 +1,12 @@
 # Verification evidence
 
+[October31 source/operating follow-up](today-audit-20261031/REVIEW.md) executes
+the [reviewed audit prompt](today-audit-20261031/PROMPT.md), repairs published
+reader omissions and replacement-history admission, restores useful accounting
+fixtures and corrects current recovery labels. [Verification](today-audit-20261031/VERIFICATION.md)
+separates fresh affected checks/current static contexts from exact normal-build
+reuse. No deployment, service change or production approval.
+
 [Current documentation synchronization](documentation-sync-20261031/REVIEW.md)
 reconciles current policy6 guides/Todo/memory and separates historical evidence.
 It reuses unchanged code pins; no test campaign, deployment or operating

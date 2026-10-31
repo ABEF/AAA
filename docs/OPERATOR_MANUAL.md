@@ -1699,6 +1699,13 @@ documented compensating control, never a guessed rollback or journal deletion.
 
 ## Services and server recovery
 
+Before adopting a source release, run
+`python3 scripts/check-python-publication.py --revision <exact-commit>` in its Git
+checkout. It checks published static imports rather than allowing untracked local
+readers to hide an incomplete release. Runtime/config/dependency checks and the
+stop/reconcile/restart procedure below remain separate; this command starts no
+service and changes no journal. [Publication/lineage repair](../reports/today-audit-20261031/REVIEW.md).
+
 The read/activation service CLIs and indexer now reject duplicate JSON fields,
 nonfinite numbers and nonobject configuration before starting resources. The
 activation CLI also loads its request before RPC/projection construction. Keep
@@ -1830,7 +1837,7 @@ adds no on-chain function, permission, config key, write action or service rollo
 | Fee/dust mismatch or malformed core value | Stop serving the affected report; preserve raw logs, database, request/config hash, cutoff and error. Compare a separate replay copy with authentic independent-provider windows. Do not edit/delete history, guess zero, relabel a profile or trigger a financial transaction to hide an error. |
 | Malformed stored JSON or event envelope | Duplicate fields, nonfinite numbers, missing `removed:false`, malformed hex data and parser-resource failures make history unavailable. Preserve the original DB/WAL; restore/replay a consistent separate copy. Do not normalize corrupt evidence into apparently clean claims or earnings. |
 | Optional royalty-currency outage and wallet inventory | Ownership inventory retains exact admitted addresses, lifecycle/history, balance and owner checks even if optional token runtime/decimals fail. It reports no token balances; affected financial metrics remain unavailable. Required module, asset-list, history, budget or canonical faults still reject. Roll out/rollback only a compatible reviewed API release when authorized. |
-| Accounting3/4/5 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked NFTs and accounting4/5 Exited NFTs retain eligible funded rewards; historical outbound semantics remain profile-specific. |
+| Accounting3/4/5/6 balances | Rewards inventory must actually start with native ETH. An NFT that never activated cannot have positive available LP/royalty entitlement. Optional unavailable currencies remain null. Activated parked NFTs and accounting4/5/6 Exited NFTs retain eligible funded rewards; historical outbound semantics remain profile-specific. |
 | Wallet read budget | Accounting3/4 checks pinned `weightOf(id)` and `nftStatus(id)` per NFT. This follow-up adds one custody read to profile3; profile4 strengthens its existing status read. Historical1/2 read shapes remain. Keep16-item chunks, finite request limits and complete same-block chunk verification. Requalify actual latency/budgets before rollout; no unbounded retry or limit relaxation. |
 | Display totals | Ready to claim = funded LP plus royalty balances now. Earnings 24h/all time includes earlier claims and past owners; claims/conversions are not new income. Compound/buyback/gross receipts are not additional NFT claimable funds. |
 
@@ -1842,7 +1849,7 @@ ABI, or contradictory available/value data now rejects the request. See
 [earnings operations](EARNINGS_HISTORY.md) and [167-method evidence](../reports/backend-remediation-20261026/VERIFICATION.md).
 Production feeds/history capacity and service acceptance remain open.
 
-In accounting4/5, native royalty eligibility cannot be delayed by an external
+In accounting4/5/6, native royalty eligibility cannot be delayed by an external
 custody transfer because that drain is removed. Optional ERC20 royalty currency
 faults still defer only that currency's new eligibility; recovery synchronization
 protects the older cohort. Historical profile3 custody events remain readable,

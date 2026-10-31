@@ -32,7 +32,8 @@ the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 
 ## Deployment and journal identity
 
-Fresh configuration explicitly selects `accounting_version: 5`, portfolio2, maintenance3,
+Fresh configuration explicitly selects `accounting_version: 6`,
+`protocol_policy_version: 1`, portfolio2, maintenance3,
 confirmation3, compound4 and LP routing2 and
 `fee_intake_version: 1`, the exact chain/deployment identity, real Vault/Fees
 addresses and independently reviewed deployed runtimes in `code_hashes`.
@@ -72,11 +73,11 @@ permit. Governance alone starts exit and closes every funded bucket. The optiona
 in bounded batches, including while paused; it never initiates or closes LP.
 It is disabled by default and is not enabled on any installed service here.
 Never restart LP as a recovery shortcut: retirement is irreversible. Metadata
-profiles4/5 accept terminal stage4; old metadata journals cannot be relabeled.
+profiles4/5/6 accept terminal stage4; old metadata journals cannot be relabeled.
 
 ### Optional automatic principal delivery
 
-For a reviewed accounting4/5 deployment, replace the disabled object in the keeper
+For a reviewed accounting4/5/6 deployment, replace the disabled object in the keeper
 configuration with the following complete object, using the actual NFT runtime:
 
 ```json

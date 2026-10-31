@@ -49,6 +49,13 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
+The [current follow-up](../reports/today-audit-20261031/REVIEW.md) fixes exact
+publication closure and predecessor dependency admission; its
+[verification](../reports/today-audit-20261031/VERIFICATION.md) distinguishes useful
+affected accounting/API checks, current static contexts and final0a build reuse.
+Check committed/staged Python imports, not only local files. No old journal or
+service is adopted by these source repairs.
+
 1. Establish publication state from exact local/remote main heads. Git publication
    is not deployment or qualification. Keep source, docs and linked evidence
    together; preserve the unrelated dirty files and drafts below.
