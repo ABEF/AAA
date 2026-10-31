@@ -4,7 +4,7 @@ This is the pre-native/pricing-V2 fixture guide. Fresh current-artifact startup
 is blocked by `require_legacy_fixture_artifacts` before Anvil/deployment. Existing
 chains, balances and journals retain their original profile. Do not relabel or
 reset them. A historical fresh run needs a separately reviewed matching
-source/artifact set; this is not an accounting3 or fresh accounting4 production rehearsal recipe.
+source/artifact set; this is not an accounting3 or fresh accounting6 production rehearsal recipe.
 
 The [launcher](../scripts/local-stack.py) starts its own loopback Anvil chain,
 deploys and seals its matching historical core, seeds four NFTs, and connects the

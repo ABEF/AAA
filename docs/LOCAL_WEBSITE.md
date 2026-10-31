@@ -2,7 +2,7 @@
 
 This guide records the historical pre-native/pricing-V2 Anvil `/app/` fixture.
 Its mock assets, 1% guard, calldata and journals belong to that exact profile.
-Fresh current-artifact launcher startup is blocked; the fresh accounting4
+Fresh current-artifact launcher startup is blocked; the fresh accounting6
 candidate accepts ETH/fixed ZZZ and defaults to2% contribution loss. The later
 accounting3 local/API profile also remains historical. Do not relabel or reset an
 existing fixture to match it. See [current compatibility](LOCAL_API_REHEARSAL.md#current-compatibility-boundary).
