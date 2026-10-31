@@ -5,8 +5,10 @@ import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {PoolConfig, PoolKey, Position} from "../src/libraries/ZZZTypes.sol";
 
-/// @notice Contract-enforced cadence and accounting composition. The venue,
-/// admission and trigger are explicit mocks, not market/MEV qualification.
+/// @notice Current Budget4 cadence and accounting composition. The venue and
+/// need flag are explicit synthetic fixtures; real Strategy3/Confirmation3
+/// trigger sampling is verified separately in RebalanceConfirmation/PortfolioPolicy.
+/// No native venue, market/MEV or installed-keeper qualification is implied.
 contract MaintenanceCadenceTest is PooledVaultFixture {
     uint256 private constant INTERVAL = 600;
 
@@ -31,7 +33,7 @@ contract MaintenanceCadenceTest is PooledVaultFixture {
         uint256 id = activatedPosition();
         uint256 bucket = _bucket();
         uint256 created = vault.group(bucket).lastRebalance;
-        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(), 3);
+        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(), 4);
         venue.setFees(100, 100);
         vm.warp(created + INTERVAL - 1);
         assertFalse(_ready(bucket));

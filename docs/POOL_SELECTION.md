@@ -82,14 +82,14 @@ the full custody and ledger boundary.
 
 | Intent | Current operation | Boundary |
 | --- | --- | --- |
-| Another native ETH/ZZZ fee tier | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)` | Atomic actual destination LP, unchanged shares and one captured maintenance cap; default3%, governance maximum10%, gas separate. Deliberate contribution/route cutover. |
+| Another native ETH/ZZZ fee tier | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)` | Atomic actual destination LP, unchanged shares and one captured maintenance cap; default 3%, governance maximum 10%, gas separate. Deliberate contribution/route cutover. |
 | Wait through an outage | Exact approved paused `Migration.park`; guarded `resume` later | Principal stays attributed in Vault. Parking uses raw close-only minima and no source USD prices; resume needs healthy guarded deployment. |
 | Permanently return principal to NFT holders | Paused governance `beginCollectiveExit`, then `closeBucket`, bounded allocation and direct payout batches | Actual ETH/ZZZ and pending compound by shares; no swaps, historical USD guarantee or arbitrary recipient. NFTs keep transfers, royalties and earned rewards. |
 
 The holder-exit lock permanently stops mint/contribution/LP work and canonical
 replacement, including after unpause. Failed recipients retain backed rights and
 current-owner fallback; venue/token failures can still delay close or payment.
-Raw minima/exact settlement remain; no aggregate3% USD guarantee or automatic
+Raw minima/exact settlement remain; no aggregate 3% USD guarantee or automatic
 swap fallback applies. [Full procedure](HOLDER_COLLECTIVE_EXIT.md).
 
 ETH/WETH are distinct, and this release does not admit a WETH/ZZZ LP destination.
@@ -107,12 +107,12 @@ ETH/ZZZ contribution and reward-conversion routes, any optional royalty-currency
 conversion, full execution/gas economics, production inventory,
 VRF, authorities, marketplace support, operating rehearsals and independent audit
 remain open. Bounded post-seal request/buyback controls and typed v4 conversion are implemented;
-actual provider/market qualification remains open. Current-accounting4 holder
+actual provider/market qualification remains open. Current-accounting6 holder
 payouts need their own target-chain/receiver/gas qualification. Historical fork
 observations retain their exact source scope; local fixtures do not qualify live
-services. Fresh accounting4/custody3/fee1/governance2/canonicalV5 runtime pins and
+services. Fresh accounting6/custody4/portfolio2/fee1/governance2/canonicalV6 runtime pins and
 actual native wallet/service acceptance are required. Historical native2 and
-served accounting3 website artifacts do not qualify accounting4 integration. Existing fixtures/journals keep their original
+served accounting3 website artifacts do not qualify accounting6 integration. Existing fixtures/journals keep their original
 profiles and public deployment is null.
 
 [Native candidate evidence](../reports/native-eth-port/VERIFICATION.md) |

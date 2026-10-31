@@ -1,5 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -114,13 +119,13 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         assertEq(positions.permit2(), PERMIT2);
         assertEq(IStateViewMinimal(STATE).poolManager(), CORE);
 
-        access = new MockAccess();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         canonicalNFT = new ZZZNFT(address(access), "ipfs://");
         vrf = new MockVRF();
-        canonicalNFT.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        ProtocolPolicyFixture.randomness(address(canonicalNFT.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         pools = new ZZZPoolRegistry(address(access));
         ZZZOracle oracle = new ZZZOracle(address(access), address(0));
-        ZZZStrategy strategy = new ZZZStrategy(address(access));
+        ZZZStrategy strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         // Synthetic feeds belong only to the separate local test pool's reference price.
         oracle.setTestFeed(WETH, address(new MockFeed(8, 1e8)), 1 days);
         oracle.setTestFeed(ZZZ, address(new MockFeed(8, 1e8)), 1 days);
@@ -129,7 +134,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         access.bind(Ids.ORACLE, address(oracle));
         access.bind(Ids.REWARDS, address(new ForkRewardAssetAllowlist()));
         access.bind(Ids.STRATEGY, address(strategy));
-        manager = new ZZZLiquidityManager(address(access), POSM, STATE, CORE, PERMIT2);
+        manager = new ZZZLiquidityManager(address(access), POSM, STATE, CORE, PERMIT2, address(new ZZZLPBalancer(address(access), CORE, STATE)));
         access.bind(Ids.LIQUIDITY, address(manager));
 
         PoolConfig memory config = _testConfig();
@@ -141,8 +146,8 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         IForkWETH(WETH).deposit{value: 90 ether}();
         // Storage funding applies to the local fork only, without external mint authority.
         deal(ZZZ, address(this), 100 ether);
-        IERC20(WETH).approve(address(manager), type(uint256).max);
-        IERC20(ZZZ).approve(address(manager), type(uint256).max);
+        IERC20(WETH).approve(address(manager), type(uint256).max); IERC20(WETH).approve(manager.positionOperator(), type(uint256).max);
+        IERC20(ZZZ).approve(address(manager), type(uint256).max); IERC20(ZZZ).approve(manager.positionOperator(), type(uint256).max);
     }
 
     function _testConfig() private pure returns (PoolConfig memory c) {
@@ -160,7 +165,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
 
     function _mint() private returns (uint256 id) {
         (id,,) = manager.mint(testPool, -600, 600, 10 ether, 10 ether, 1, block.timestamp + 100);
-        positions.approve(address(manager), id);
+        positions.approve(manager.positionOperator(), id);
     }
 
     function _assertApprovalsCleared() private view {
@@ -214,7 +219,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         assertEq(IERC20(WETH).balanceOf(address(manager)), 0);
         assertEq(IERC20(ZZZ).balanceOf(address(manager)), 0);
         _assertApprovalsCleared();
-        positions.approve(address(manager), id);
+        positions.approve(manager.positionOperator(), id);
         uint128 beforeLiquidity = positions.getPositionLiquidity(id);
         uint256 next = positions.nextTokenId();
         manager.increase(testPool, id, 2 ether, 2 ether, 1, block.timestamp + 100);
@@ -288,7 +293,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         IForkWETH(WETH).deposit{value: 150_000 ether}();
         deal(ZZZ, address(this), 150_000 ether);
         manager.mint(testPool, -600, 600, 100_000 ether, 100_000 ether, 1, block.timestamp + 100);
-        s.vault = new ZZZVault(address(access), block.chainid, payable(address(0x7EA5)));
+        s.vault = new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
         s.rewards = new ZZZRewards(address(access)); s.fees = new ZZZFeeController(address(access));
         s.membership = new ZZZMembership(address(access));
         access.bind(Ids.VAULT, address(s.vault)); access.bind(Ids.NFT, address(canonicalNFT));
@@ -306,7 +311,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
     }
 
     function _sharedMint(SharedSystem memory s, uint256 amount0, uint256 amount1) private returns (uint256 id) {
-        id = s.vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy1 = s.vault.mintPolicyFingerprint(); id = s.vault.mintDormant{value: 0.05 ether}(reviewedPolicy1);
         _finalizeTraits(id);
         s.vault.activate(id, testPool, amount0, amount1, 1, block.timestamp + 100);
     }
@@ -351,7 +356,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         uint256 incumbentIdle = beforeEntry.idle0 + beforeEntry.idle1 +
             s.fees.compoundBalance(bucket, WETH) + s.fees.compoundBalance(bucket, ZZZ);
         uint256 nextPosition = positions.nextTokenId();
-        uint256 second = s.vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy2 = s.vault.mintPolicyFingerprint(); uint256 second = s.vault.mintDormant{value: 0.05 ether}(reviewedPolicy2);
         _finalizeTraits(second);
         vm.recordLogs(); s.vault.activate(second, testPool, 310 ether, 290 ether, 1, block.timestamp + 100);
         Vm.Log[] memory logs = vm.getRecordedLogs(); uint256 freshCompound;

@@ -1,0 +1,182 @@
+{
+  "kind": "source-scoped local implementation verification",
+  "production_approved": false,
+  "head_before_and_after": "37577ebf610ed7182c3d5bc481d7bb32ec5438c1",
+  "publication": "Uncommitted working tree; no push or deployment",
+  "final_actual_core": {
+    "passed": 14,
+    "methods": [
+      "testActualCoreHybridAtInsideRangeTriggerProvesBothLegsAndSixtyPercentFloor",
+      "testAlreadySufficientSixtyPercentMainDoesNotRequireAnySwapVenue",
+      "testAuxiliaryBurnFailureRollsBackWholeMerge",
+      "testBothLegsHarvestWithoutReplacingEitherPosition",
+      "testCollectiveExitClosesBothAndDirectlyPaysHolderKeepingRoyalties",
+      "testDisabledModePreservesBothUntilGuardedAtomicMerge",
+      "testGrowingMainPreservesAuxiliaryAndClocks",
+      "testNewEntrantBuysAggregateNAVWithoutOldRewardsOrResidualMutation",
+      "testNewExecutorDoesNotAddHolderOrGovernanceWithdrawalAuthority",
+      "testPausedParkingClosesBothWithoutOracleAndPreservesAttributedAssets",
+      "testPreviouslyEarnedHybridRightsFollowNFTTransfer",
+      "testSamePairMoveClosesBothAndKeepsNFTSharesAtNewPool",
+      "testSecondMintFailureRollsBackOldPrincipalFeesAndCustody",
+      "testSingleModeActivationUsesOneVaultOwnedLPAndExactOperatorApproval"
+    ],
+    "log_sha256": "1143653e5ec2d7d4624314fdf953e50ad0d561eb064f4134b76472129b04510a",
+    "real": "Local installed Uniswap v4 PoolManager, PositionManager and StateView",
+    "substitutes": [
+      "Access controller",
+      "correlated USD feeds",
+      "VRF",
+      "Permit2",
+      "Registry admission seam",
+      "explicit PosM failure seam"
+    ],
+    "source_test_sha256": "cf22be80ad25660d40480a6062b61fa0d0ba16f23becde0ec788075370d8778a"
+  },
+  "final_active_main_guard": {
+    "passed": 8,
+    "methods": [
+      "testActualLowerTickIsActiveAndReachesMintBoundary",
+      "testDifferentPhysicalMarkCannotMasqueradeAsActiveMain",
+      "testExactDownwardCrossingUsesStoredTickRatherThanSqrtAlone",
+      "testInverseReferenceDeviationCanPassWhileRoundedMainIsInactive",
+      "testLateTickFlipAtIdenticalSqrtRevertsMintAndAllNativeMovement",
+      "testNonHybridOperationRetainsItsSeparateExistingPolicy",
+      "testSuccessfulFixtureMintPreservesActiveTickAndExactNativeBudget",
+      "testUpperTickIsInactiveAndCannotSatisfyHybridActiveFloor"
+    ],
+    "log_sha256": "9ebb969f61057b72518c4714281638e1dea396906de709b28af0411abbdeb373",
+    "scope": "Typed arithmetic/venue sentinels, including positive mint and late callback rollback; not market qualification"
+  },
+  "final_half_policy": {
+    "passed": 26,
+    "overlaps_earlier_policy": true,
+    "stage": "Half default and pre-postcallback guard closure"
+  },
+  "earlier_policy_math_cadence_confirmation_distinct": 91,
+  "accounting_canonical_custody_earlier_source_passes": 15,
+  "ledger_harness_earlier_source_passes": 35,
+  "api_distinct_across_stages": 181,
+  "api_final_half_focused": 12,
+  "api_final_subset_of_181": true,
+  "keeper_inventory_distinct_across_recorded_stages": 298,
+  "keeper_groups": {
+    "fresh_keeper": 38,
+    "fresh_inventory": 25,
+    "historical_keeper": 161,
+    "historical_inventory_cli": 74
+  },
+  "normal_compiler": {
+    "source_count": 81,
+    "gates": 42,
+    "errors": 0,
+    "all_pass": true,
+    "input_sha256": "f8b9b8f1b072ccde019a51e3892033c6db02053ef286cbb24a1d64a6e0a6bf74",
+    "output_sha256": "42ec549b2d99e54264d031ddcb6d274416bc38109c7348a200bc81f1bd12474b"
+  },
+  "protected_dirty": {
+    "reports/source-checks.json": {
+      "expected": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "actual": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "unchanged": true
+    },
+    "scripts/run-fork-checks.py": {
+      "expected": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "actual": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "unchanged": true
+    },
+    "tests_python/test_fork_runner.py": {
+      "expected": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "actual": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "unchanged": true
+    },
+    "tests_python/test_frontend_history.py": {
+      "expected": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "actual": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "unchanged": true
+    }
+  },
+  "raw_external_evidence": [
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\core-postcallback-final-09.log",
+      "sha256": "1143653e5ec2d7d4624314fdf953e50ad0d561eb064f4134b76472129b04510a"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\active-main-final-c00ad86c8c\\forge.log",
+      "sha256": "9ebb969f61057b72518c4714281638e1dea396906de709b28af0411abbdeb373"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\api-half-final.log",
+      "sha256": "653beedd3f8c476e45f9138c6e56b9bf590296dd29a718c263d6b6c39270b351"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\core-attempt-01.log",
+      "sha256": "0d849e02e693dbfa0aec204715874aad5bf43dc681b71ea3bcef41263f58be0a"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\core-attempt-03.log",
+      "sha256": "6f2f7d7ec0cc485377acc43797ed406ba1d0c6da361f1150db20014f7867134a"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\core-attempt-04.log",
+      "sha256": "859105ec39c8c9f3fd43e70b8c4ab2cfe3dae4c06b8683f8e08a8c34648e182d"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\core-attempt-05.log",
+      "sha256": "0e0d10f1a819cb97bb9dea8a2c9bb6e490641119618fc7c919deb8f5919cbc6c"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\core-final-06.log",
+      "sha256": "6595d32b55ad7e98228a795e54e648ad8b45bf221f71f9598f519963a2c02606"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\core-half-final-07.log",
+      "sha256": "008019be6fa5cd47c25b72db309e622f5a97864e112b5c85ccf5adcbd4a7c949"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\core-trace-half-08.log",
+      "sha256": "744a7b89b6beedee9fb972a5c6b735036f43ef7ed4b14d9615d430df5848b456"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\api-v5-stage1.json",
+      "sha256": "fe933b4f5271d53588f1ea114ef3db6cbf6af5fcc172263ab98d7bf00cd8c093"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\api-v5-stage2.json",
+      "sha256": "4c88f1bb70b68cf00361166fe9f755abea636ae5ac94202656df05c404062d56"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\api-v5-stage3.json",
+      "sha256": "6f3b58b34485901de6273130b4f8ff26a706a8447a52f7908e6dbd33eb638198"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\execution-independent-review-bafe47aa03\\REVIEW.json",
+      "sha256": "e9ee62593826050caf158d3ad67f3542f1000d88728b14dfdaaf02f29b5fd7e6"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\optional-portfolio-implementation-20261030\\policy-evm-final-5823547c46\\receipt.json",
+      "sha256": "554a9fe27da7603c8e069ac359b8ac54d687f25dea6ca2e738c15002112dfd7b"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\range85-two-position-20261030\\accounting-source-pool-2ca706d8a8\\receipt.json",
+      "sha256": "96c2fe908989e0f6d962074ae189b250b09e2bc5afe932a03a3c10894b8ab51e"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\range85-two-position-20261030\\ledger-harness-tests-892b19bf8b\\receipt.json",
+      "sha256": "b7c6fad4ca46735bb056e6978f92e5ddd380b6ad72c6429a249eb1eb9efee3e3"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\range85-two-position-20261030\\custody-integration-tests-64fe52cf7a\\failure.json",
+      "sha256": "f9319583ca9a17ff0546f3faa99179734a0c2d7fbaf4861a6f703bf56f16e685"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\range85-two-position-20261030\\callable-reference-e3d3001c86\\normal-final-dcd9c3bb14\\compiler-input.json",
+      "sha256": "f8b9b8f1b072ccde019a51e3892033c6db02053ef286cbb24a1d64a6e0a6bf74"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\range85-two-position-20261030\\callable-reference-e3d3001c86\\normal-final-dcd9c3bb14\\compiler-output.json",
+      "sha256": "42ec549b2d99e54264d031ddcb6d274416bc38109c7348a200bc81f1bd12474b"
+    }
+  ],
+  "counts_notice": "Do not sum overlapping stages/reruns. This is not a final whole-regression, CI or operating campaign."
+}

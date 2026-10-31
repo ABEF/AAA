@@ -15,7 +15,7 @@ the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 
 The current holder-exit example remains deliberately blocked; its2.5Mgas cap is
 not adequate evidence for current routing. Earlier balance-only cold fixtures
-already exceeded it; complete current operation+25%padding and network-fee budgets
+already exceeded it; complete current operation+25% padding and network-fee budgets
 need qualification. Refusal above the cap is correct, not permission to widen it
 automatically. Health schema2 now exports confirmed-block quality metadata and
 gas review diagnostics; local source hashes identify file bytes, not the running
@@ -25,31 +25,32 @@ binary. The matching writer/checker must be rolled out together. See the
 ## Current deployment and configuration
 
 Current [keeper coordination](KEEPER_COORDINATION.md) adds service-only compound
-waiting for an authenticated in-range physical LP with no pending operator width
-change. Budget3 readiness and every contract guard remain; hourly harvesting is
+waiting at the 85% main threshold/outside range or a pending operator width/mode/active geometry
+change. Budget4 readiness and every contract guard remain; hourly harvesting is
 independent. Physical reader bindings/pins must be qualified for an older
 policy2/LP-routing0 worker too, rather than guessed. Related observed-negative/
 interrupted physical evidence uses the existing reset path; missing local
 reader configuration alone does not invalidate a healthy window. Source updates
 need matching worker/checker rollout and a controlled journal-preserving restart.
 
-Use explicit accounting4, fee intake1, direct governance2, custody3, pricing2,
-routing2 and `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5` with actual bindings. The
+Use explicit accounting6, portfolio2, maintenance3, confirmation3, Budget4,
+LP routing2, fee intake1, governance2, custody4, pricing2, Entry routing2 and
+`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` with actual bindings. The historical accounting4
 [holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
-not a working deployment. Review the distinct fresh accounting4 inventory,
+not a working deployment. Review the distinct fresh accounting6/schema8 inventory,
 its exact supported observer bindings, assets/routes/feeds/authorities and gas policy
 under [preflight](PRODUCTION_PREFLIGHT.md). Historical schema5/accounting3 records
-cannot be relabelled profile4; placeholder inventory remains blocked. LP routing1 additionally needs
+and schema6/accounting4 cannot be relabelled profile6; placeholder inventory remains blocked. LP routing2 additionally needs
 exact Manager/balancer/core/state runtime/parent pins and a reviewed execution
 catalog; source settings do not qualify a live service.
 
-`rebalance_confirmation_version:2` additionally pins the Strategy-created helper
+`rebalance_confirmation_version:3` additionally pins the separately deployed Strategy helper
 in `contracts.rebalance_confirmation` and its runtime. The existing
 `idle_compounding_budget` address/runtime is also mandatory, even when standalone
-compounding is disabled: the actual Vault Budget must advertise its configured confirmation1/2
+compounding is disabled: the actual Vault Budget must advertise confirmation3/compound4
 and bind the same Vault/Access. An old raw-eligibility-only Budget is rejected.
-This profile also requires explicit integer `interval_seconds` from60through240.
-It cannot inherit the historical600second default. The outer loop includes work
+This profile also requires explicit integer `interval_seconds` from 60through240.
+It cannot inherit the historical600 second default. The outer loop includes work
 and receipt latency; even a permitted interval is not an exact sample guarantee.
 Known confirmation renewals/resets now precede optional conversion/buyback/metadata
 work after pending recovery and shared gates. Optional degradation does not stretch
@@ -59,16 +60,17 @@ Read-only keeper preflight validates the actual helper/Budget runtime, capabilit
 bindings and policy before cooldown expires and with compounding disabled.
 
 Pin `contracts.principal_exit` and its runtime plus the Access runtime. The
-keeper checks fixed module/access ownership and custody version3. Existing
+keeper checks fixed module/access ownership and custody version4. Existing
 accounting1/2/3 configurations, journals and the old example remain historical
 profiles; do not edit their version to use new code. The served poplint artifact
 is still an unconfigured accounting3 build, not a deployed profile4 frontend.
 
-Current contributions are native ETH/fixedZZZ, minimum$100 activation/$5growth.
-Actual marginal newLP is measured; default2%contribution/1%conversion/3%maintenance
-limits are distinct and may be governed up to10%, gas separate. Read live/captured
+Current contributions are native ETH/fixedZZZ; future-governed minima default
+to100USD activation/5USD growth, with stronger admitted pool minima retained.
+Actual marginal newLP is measured; default 2% contribution/1% conversion/3% maintenance
+limits are distinct and may be governed up to 10%, gas separate. Read live/captured
 policy and caller minima; never assume a default or count incumbent funds/idle as
-newly deployed LP. Source disagreement3% is a different guard and does not guarantee
+newly deployed LP. Source disagreement 3% is a different guard and does not guarantee
 an executable quote. Failed final Entry reverts input/LP changes, not earlier
 approval or network gas. [Entry flow](ACTIVATION_ENTRY.md), [prices](PRICE_SECURITY.md).
 
@@ -83,7 +85,7 @@ A response containing both a result and a missing-block error is malformed,
 not evidence of correct unavailable-block handling. Socket inactivity timeouts
 are not absolute DNS/header/body deadlines; use the reviewed systemd progress
 watchdog below for keeper stall containment. API request workers retain their
-separate hard30second supervisor.
+separate hard30 second supervisor.
 
 On persistent failure, keep pending intents/index state, inspect fixed error
 site/type diagnostics and compare the same canonical block with a reviewed
@@ -115,9 +117,9 @@ the original intent remains first.
 canonical policy-only anchor for confirmation1/2, even with quality0, LP cooldown
 or compounding off. It records helper/Budget capabilities and bindings, runtime
 pins and config/source identity; it reads no bucket condition or price and proves
-neither readiness nor continuous history. `stopped` means gap0 and
-`incompatible_cadence` a nonzero gap below240seconds in the current source;
-the selected on-chain maximum remains300seconds. Active-principal health/preflight
+neither readiness nor continuous history. `stopped` means gap 0 and
+`incompatible_cadence` a nonzero gap below 240 seconds in the current source;
+the selected on-chain maximum remains 300 seconds. Active-principal health/preflight
 refuse both. `unavailable` labels retained prior evidence stale. Independent
 hourly harvest continues under its own guards. After explicit terminal
 `lp_exit_started:true`, health treats stop/cadence as informational, while actual
@@ -140,19 +142,19 @@ RPC usage. [Scoped evidence](../reports/practical-improvements-20261028/VERIFICA
 
 ## Keeper progress watchdog
 
-The shipped [source unit](../keeper/zzz-keeper.service) opts into120second
+The shipped [source unit](../keeper/zzz-keeper.service) opts into120 second
 systemd supervision, with main-PID notification, control-group SIGKILL and no
 core dumps. The keeper sends fixed progress datagrams from its main execution
 path after RPC returns and during intentional idle sleep; no background timer
-can conceal stalled I/O. Notifications are at most10seconds apart while making
-progress, leaving room for the existing90second signer step. A locally overdue
+can conceal stalled I/O. Notifications are at most 10 seconds apart while making
+progress, leaving room for the existing90 second signer step. A locally overdue
 pulse rejects instead of reviving a missed deadline.
 
 Install/review matching source and unit together only through an authorized
 rollout. Validate systemd>=240, effective settings and real group cleanup first;
 a file containing a setting does not prove the manager applied it. No environment
 means the original standalone path, with no hard supervisor. This is a
-no-progress watchdog, not a120second whole-cycle SLA, and it does not replace
+no-progress watchdog, not a120 second whole-cycle SLA, and it does not replace
 off-host health checks. [Exact operator/recovery procedure](KEEPER_RECOVERY.md#stalled-rpc-and-progress-watchdog).
 No current service or paused monitor was changed.
 
@@ -178,22 +180,26 @@ Read [keeper recovery](KEEPER_RECOVERY.md), [service rehearsals](KEEPER_REHEARSA
 
 ## Operator-selected LP policy
 
-[Maintenance policy2](LP_EXECUTION_POLICY.md) implements outside-or-operator-range
-eligibility after the configured hard interval, durable service jitter and
-independent Budget3 compound cadence. Intended initial values are12hours,
-60-600second jitter and $1m cumulative per-NFT contributions. Historical policy2
-without confirmation1 uses hourly eligible inside-range checks. Fresh confirmation2
-records eligible observations every240seconds; its example outer loop polls60seconds
-to keep independent receipt/harvest work responsive. Neither interval guarantees
-inclusion within the strict300-second receipt gap. LP routing1 now
-compares up to four reviewed ETH/ZZZ execution venues independently of the LP
-destination, using post-close depth, bounded actual-core sizing and zero/one
-swap. Contributions balance/deploy only their own amounts; incumbent idle and
-compound remains in old NAV for guarded maintenance. [Protection inventory](KEEPER_SAFEGUARDS.md). [Operator calls/restart](OPERATOR_MANUAL.md#operator-selected-lp-policy).
+[Maintenance policy3](LP_EXECUTION_POLICY.md) uses 85% of actual centre-to-main-boundary
+ZZZ-in-ETH price distance, same-side physical/reference confirmation or deliberate
+operator width/mode/active geometry change, then the hard configured interval.
+Initial values:12 hours,600/300sampled window,240 second raw checks and one durable
+60–300 second service jitter after readiness. Ordinary paid samples enroll only
+at cooldown minus duration minus maximum gap, initially the final15 minutes.
+Re-entry/side change/configuration/identity/fault resets require fresh evidence.
+
+LP routing2 compares up to four reviewed ETH/ZZZ swap venues after closing all
+old legs. Single mode maximizes sampled deployment; hybrid mode seeks a smallest
+qualifying sampled swap supporting the active main>=60%/residual<=40% guards at
+captured starting prices, including idle. No more than one real swap and one
+residual exist. Contributions deploy only their own amounts into current main
+ticks; old residual/idle/compound remain incumbent NAV. Separate Budget4 compound
+cadence and independent hourly harvest remain. [Safeguards](KEEPER_SAFEGUARDS.md).
+[Operator calls/restart](OPERATOR_MANUAL.md#operator-selected-lp-policy).
 
 ## Reward timing and maintenance schedule
 
-Harvest funds the fixed80/10/5/5 allocation once. The10% is indexed equally across
+Harvest funds the fixed80/10/5/5 allocation once. The 10% is indexed equally across
 activated NFTs at that receipt; claiming does not change the denominator or
 another NFT's entitlement. Individual and collective LP rewards are claimed
 together for the NFT. Compound/buyback reserves stay outside that claim ledger.
@@ -202,19 +208,19 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 | Job | Reviewed operating policy | Confirmed evidence |
 | --- | --- | --- |
 | Harvest | `maintenance.harvest=true`, `harvest_interval_seconds`; permissionless manual `Vault.collectFees` is also available. Contribution/rebalance/compound paths harvest as well. | Canonical `FeesCollected`; funded allocation/reserve evidence when fees are nonzero. A valid 0/0 collection needs no allocation event. Uncollected pool fees are not claimable yet. |
-| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting4 also requires the exact Budget pin, capability3 and `compoundReady` under policy2; all standalone compounds yield to range maintenance. Rebalance/guarded compound can reinvest the bucket's reserve; contributions only synchronize/release it into incumbent idle/NAV and deploy entrant funds. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
-| Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
+| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting6 also requires the exact Budget pin, capability4 and `compoundReady` under policy3; all standalone compounds yield to range maintenance. Rebalance/guarded compound can reinvest the bucket's reserve; contributions only synchronize/release it into incumbent idle/NAV and deploy entrant funds. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
+| Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most 32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
-| Collective principal delivery | Opt-in accounting4 `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. Confirmed Ready batches have a separate default-hourly retry interval and durable first/last priority rotation so receiver deferrals cannot monopolize the transaction lane. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
+| Collective principal delivery | Opt-in accounting4/5 `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. Confirmed Ready batches have a separate default-hourly retry interval and durable first/last priority rotation so receiver deferrals cannot monopolize the transaction lane. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
 
-The fresh policy2 accounting4 sample polls60seconds and schedules independent standalone
-harvests every3600seconds (one hour). It disables standalone compounding and has
+The historical policy2 accounting4 sample polls60 seconds and schedules independent standalone
+harvests every 3600 seconds (one hour). It disables standalone compounding and has
 an empty buyback list. Historical profiles/example3 retain the original omitted-
-field14400second/four-hour schedule; explicit per-bucket/global intervals win. These are inactive/placeholder
+field14400 second/four-hour schedule; explicit per-bucket/global intervals win. These are inactive/placeholder
 choices, not qualified production settings. Choose intervals/batches from actual
 revenue, decimals, gas and market depth; a common raw threshold across ETH/ZZZ is
 not a common economic value. Network gas is paid by the keeper separately; it is
-not taken from a holder's80% or the collective10% by claim logic.
+not taken from a holder's 80% or the collective 10% by claim logic.
 
 For the exact JSON field, per-bucket override precedence and controlled
 config/restart/health procedure, use [change the harvesting interval](OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval).
@@ -255,37 +261,30 @@ intent before another action. See [review/evidence](../reports/reward-resilience
 
 ## Maintenance and range policy
 
-The keeper discovers shared custody buckets; it does not rebalance each NFT.
-An example600-second poll is an eligibility check, not a guaranteed execution.
-Actual physical range exit or an approved width change, cooldown, fresh prices,
-snapshot/lifecycle, execution loss and gas checks must pass. Optional reviewed
-+/-25/50% width selection in ZZZ-price-in-ETH is explicitly enabled and bounded
-by governance's policy; the keeper cannot invent a new range/algorithm.
-[Range procedure](RANGE_POLICY_UPDATES.md).
+The keeper discovers shared custody buckets, not one job per NFT. Fresh3 raw
+checks target240 seconds, including cooldown; clock, same-side 85% price-distance
+condition, sampled readiness, fresh prices, custody, financial and gas checks
+remain separate. The operator deliberately chooses main width/mode; leave
+automatic width selection disabled for this policy. [Range procedure](RANGE_POLICY_UPDATES.md).
 
 ### Recorded rebalance confirmation
 
-Fresh confirmation2 checks ordinary eligibility every240seconds after the hard
-cooldown, including when LP remains inside range. The selected observed window
-is900seconds with a **strict300-second maximum observation gap**; governance must
-configure the helper with the reviewed hash. Source starts with gap0, which stops
-ordinary confirmation until configured. The reviewed240-second source checks
-leave roughly60seconds for delays without on-chain grace: a gap above300seconds makes prior evidence unusable,
-and the next successful observation restarts the window.
-Receipt/block latency can therefore repeatedly restart it and requires actual
-operating qualification. A nonzero gap below the worker's240-second cadence is
-reported unsupported rather than spending gas on perpetual restarts.
+Fresh confirmation3 uses 600 seconds of sampled confirmation and a strict 300 second
+maximum confirmed gap, configured with an actual review hash; constructor gap 0
+stops ordinary readiness. Raw checks continue every 240 seconds during cooldown,
+while paid ordinary enrollment begins only near its final duration+gap. Known
+recovery/foreign resets retain priority. A gap below the source cadence is
+reported incompatible; exceeding the on-chain gap restarts evidence.
 
-The worker submits one bounded `observe(bucket)` transaction on each due ordinary
-outside check; receipt delay does not suppress the next scheduled renewal.
-Observed readiness starts the existing durable60–600second jitter. Four-minute
-observations continue during that wait; final readiness is read again before
-submission. An approved manual width change bypasses the confirmation window,
-including when gap0, but retains cooldown, jitter and every execution guard.
-This is sampled evidence, not proof that price stayed outside between samples.
+Readiness creates one durable 60–300 second jitter, excluding that bucket’s prior
+chosen delay. Samples continue during that wait and readiness is rechecked before
+submission. Deliberate width/mode/active geometry changes bypass sampled threshold
+confirmation but retain hard cooldown, healthy price/tick and financial guards.
+The fresh `observed_adjustment_v3` namespace does not adopt historical
+`observed_rebalance_v1` or `outside_rebalance_v2` schedules. This is sampled
+evidence, not uninterrupted history or a private-ordering guarantee.
 
-The separate `observed_rebalance_v1` namespace never rewrites historical
-`outside_rebalance_v2` scheduling. Startup with an existing candidate, a confirmation/
+Startup with an existing candidate, a confirmation/
 raw-eligibility read or clock fault, an observed pause, or an interrupted/failed
 related observation/rebalance requires a receipt-backed `resetObservation(bucket)`
 before extending old evidence. Durable `confirmation_reset_v1` markers survive
@@ -317,7 +316,7 @@ not redraw it; a newly completed window cannot reuse an old expired delay.
 Unknown hidden movements or pause/unpause between observations are not proven.
 Hourly harvest and saved-receipt recovery remain independent. [Verification](../reports/practical-improvements-20261028/VERIFICATION.md).
 
-Fresh policy2 accounting4 standalone compounding requires Budget capability3:
+Fresh policy3 accounting6 standalone compounding requires Budget capability4:
 `now >= max(lastCompound,lastRebalance) + compoundInterval(poolId)`, plus
 no eligible rebalance and no available preapproved adaptive-range selection.
 The rule includes no-swap compounds and the first compound after LP creation.
@@ -327,10 +326,10 @@ are unaffected; contributions release designated reserves into incumbent idle/NA
 but never use them to satisfy the entrant's LP floor. Configure reviewed idle
 compounding thresholds to pick up useful residuals without new fees.
 
-Every due accounting4 compound job, even reserve-only, authenticates
+Every due accounting6 compound job, even reserve-only, authenticates
 `idle_compounding_budget`, `code_hashes.idle_compounding_budget`, its Vault binding,
-capability3 and `compoundReady`. Current source also requires an authenticated
-in-range physical LP with no pending operator width change, including before
+capability4 and `compoundReady`. Current source also waits at the 85% main threshold,
+outside its physical range or pending width/mode/active geometry change, including before
 the rebalance cooldown expires. An upgrade of a policy2/LP-routing0 worker needs
 the reviewed physical reader/module runtime pins too; no inferred fallback.
 Due harvest remains independent. See [coordination and report](KEEPER_COORDINATION.md).
@@ -346,7 +345,7 @@ follow from these source instructions.
 Enable LP/royalty conversion, idle-only compounding, buyback and metadata watching
 only under their reviewed configs/bindings/budgets. They are separate jobs;
 harvesting, conversion and payout are different accounting actions. Native ETH
-fees need no conversion. ZZZ conversion at default1% requires a cheaper qualified
+fees need no conversion. ZZZ conversion at default 1% requires a cheaper qualified
 route than the selected pool's recorded effective fee. Unconverted balances stay
 backed; failure is not permission to widen a caller floor. Noncanonical converter
 or route Boolean flags are errors/deferred work, not legitimate disabled controls;
@@ -357,7 +356,7 @@ inbox, remote reward/ACK or bridge jobs: those current modules are removed.
 
 Watcher defaults disabled. Observe revealed state, current marked valuation and
 evolution at a confirmed block, then use the bounded keeper transaction/receipt
-path for metadata notifications. Up to50mint ordinals per range notification;
+path for metadata notifications. Up to 50mint ordinals per range notification;
 ordinals are not hashed token IDs. ERC-4906 is a notification, not proof of an
 instant marketplace cache refresh. No LP action is needed just to refresh art.
 [Metadata/hosting](NFT_METADATA.md), [artwork publication](ARTWORK_PUBLICATION.md).

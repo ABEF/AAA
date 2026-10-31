@@ -1,0 +1,107 @@
+{
+  "scope": "11 distinct root mint/native cases reach success across recorded stages; old source/test-stage evidence retained, not a final whole-suite pass",
+  "stages": {
+    "root-terms-native-b": {
+      "sha256": "b6054b14fd49d0ead1fcfb0ff8a389f6a347e5926d820b1f9fa243348e5febf4",
+      "executed": 11,
+      "passed": 9,
+      "cases": [
+        {
+          "case": "test/AdaptableTerms.t.sol:AdaptableTermsTest::testActivationAndGrowthPolicyAreFutureOnlyAndPoolMinimumStillApplies()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/AdaptableTerms.t.sol:AdaptableTermsTest::testChangedMintPriceRequiresFreshReviewAndOnlyChangesFuturePayment()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/AdaptableTerms.t.sol:AdaptableTermsTest::testCosmeticAndGasPoliciesDoNotInvalidateReviewedMint()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/AdaptableTerms.t.sol:AdaptableTermsTest::testFutureRecipientAcceptanceInvalidatesReviewWithoutMovingPastProceeds()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/AdaptableTerms.t.sol:AdaptableTermsTest::testFutureVrfRequestPolicyInvalidatesMintReviewBeforeRequest()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/AdaptableTerms.t.sol:AdaptableTermsTest::testRecipientCallbackCannotChangeAndCommitReviewedMintTerms()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testManualEmergencyReentersWithoutPricesPreservingSharesAndFundedRewards()",
+          "status": "Failure",
+          "reason": "InvalidConfiguration()"
+        },
+        {
+          "case": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeFailedActivationAndIncreaseKeepFundsAndTraits()",
+          "status": "Failure",
+          "reason": "next call did not revert as expected"
+        },
+        {
+          "case": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeFeesFollowOwnerThroughGrowthAndRepeatedRebalances()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeHolderExitUsesActualManagerAndPreservesRewardsWithoutPrices()",
+          "status": "Success",
+          "reason": null
+        }
+      ]
+    },
+    "root-native-retry-c": {
+      "sha256": "35355b8725b8c02691ce36f9677cf34700ddb2ae15629c527ba05f2d1c180d2f",
+      "executed": 2,
+      "passed": 2,
+      "cases": [
+        {
+          "case": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testManualEmergencyReentersWithoutPricesPreservingSharesAndFundedRewards()",
+          "status": "Success",
+          "reason": null
+        },
+        {
+          "case": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeFailedActivationAndIncreaseKeepFundsAndTraits()",
+          "status": "Success",
+          "reason": null
+        }
+      ]
+    }
+  },
+  "distinct_successful_cases": [
+    "test/AdaptableTerms.t.sol:AdaptableTermsTest::testActivationAndGrowthPolicyAreFutureOnlyAndPoolMinimumStillApplies()",
+    "test/AdaptableTerms.t.sol:AdaptableTermsTest::testChangedMintPriceRequiresFreshReviewAndOnlyChangesFuturePayment()",
+    "test/AdaptableTerms.t.sol:AdaptableTermsTest::testCosmeticAndGasPoliciesDoNotInvalidateReviewedMint()",
+    "test/AdaptableTerms.t.sol:AdaptableTermsTest::testFutureRecipientAcceptanceInvalidatesReviewWithoutMovingPastProceeds()",
+    "test/AdaptableTerms.t.sol:AdaptableTermsTest::testFutureVrfRequestPolicyInvalidatesMintReviewBeforeRequest()",
+    "test/AdaptableTerms.t.sol:AdaptableTermsTest::testRecipientCallbackCannotChangeAndCommitReviewedMintTerms()",
+    "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testManualEmergencyReentersWithoutPricesPreservingSharesAndFundedRewards()",
+    "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+    "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeFailedActivationAndIncreaseKeepFundsAndTraits()",
+    "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeFeesFollowOwnerThroughGrowthAndRepeatedRebalances()",
+    "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest::testNativeHolderExitUsesActualManagerAndPreservesRewardsWithoutPrices()"
+  ],
+  "corrections": [
+    "Capture fixture Entry fingerprint before outer expectRevert; no getter consumes expectation.",
+    "Emergency fixture custody hash includes physical portfolio fingerprint required by current source."
+  ],
+  "production_source_current_matches_final_normal": true,
+  "test_file_sha256": {
+    "test/AdaptableTerms.t.sol": "e25e024582a6f070463cc14e8be9b0defef60f11780bde29c397a6f2b6608371",
+    "test/NativeVaultFlows.t.sol": "448fc5f0dfa279a4e8668c1116d025b3e343303ec18e83dbc63cba1506deae15"
+  },
+  "no_rpc_deployment_service_signing": true
+}

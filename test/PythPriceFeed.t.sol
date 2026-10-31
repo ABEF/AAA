@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZPythPriceFeed} from "../src/ZZZPythPriceFeed.sol";
@@ -143,7 +144,7 @@ contract PythPriceFeedTest is Test {
         assertEq(ok, expected);
     }
     function _oracle() private returns (ZZZOracle oracle, MockFeed first) {
-        MockAccess access = new MockAccess();
+        MockAccess access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         first = new MockFeed(8, 2000e8);
         oracle = new ZZZOracle(address(access), address(0));
         oracle.setDualFeed(address(0),

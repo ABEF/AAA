@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
@@ -31,7 +32,7 @@ contract NativeSourceIdentityTest is Test {
 
     function setUp() public {
         vm.chainId(4663);
-        access = new MockAccess();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         registry = new ZZZPoolRegistry(address(access));
         assets = registry.activationAssets();
         access.bind(Ids.POOLS, address(registry));

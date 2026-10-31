@@ -1,22 +1,29 @@
 # Keeper coordination and operation review
 
-This describes the fresh accounting4 / maintenance-policy2 source. It does not
-upgrade installed services, old deployments or journals. Read the
+This describes the fresh [accounting6 / maintenance3 / portfolio2](POSITION_V6.md)
+source candidate. Normal gates, scoped offline checks and local actual-v4-core
+integration pass within their [recorded scope](../reports/residual-operations-20261031/VERIFICATION.md);
+actual operating/dependency qualification remains open. It does not upgrade installed services,
+old deployments or journals. Read the
 [operator manual](OPERATOR_MANUAL.md) before changing an operating service.
 
 ## Compounding and rebalancing have different jobs
 
 Compounding adds the bucket's attributed idle and designated 5% compound reserve
-to its existing LP range. It does not replace the range or reset the rebalance
-clock. It may need an ETH/ZZZ swap. Rebalancing closes and replaces the shared LP.
+to its existing main LP range. It does not replace the range, alter a residual or
+reset the rebalance clock. It may need an ETH/ZZZ swap. Rebalancing closes the
+old main and any residual, then atomically rebuilds the selected one/two-leg
+portfolio. Both physical positions and attributed idle back the same NFT shares.
 Compound swaps spend only the
 idle/reserve budget, but a swap in the same pool can also reprice the incumbent
 LP and change its NAV. Keeping its LP token does not eliminate market risk.
 
-The ordinary keeper waits to compound whenever the actual LP is outside its
-physical tick range, or an operator width change is pending. This applies during
-the 12-hour rebalance cooldown too. It reads the real LP identity, custody, ticks,
-pool state and width-pending flag at one canonical block; an unknown or
+The ordinary keeper waits to compound whenever the main crosses the 85% physical
+price-distance threshold, is outside its physical tick range, or an operator
+width/mode/active residual-geometry change is pending. This applies during
+the 12-hour rebalance cooldown too. It reads actual main/residual identity,
+Vault custody, ticks, token amounts, desired/applied revisions, helper graph,
+pool state and pending flag at one canonical block; an unknown or
 contradictory result is unavailable, not an assumed in-range position.
 
 This is a keeper scheduling policy. The contract's `compoundReady` decision,
@@ -30,12 +37,48 @@ check and before transaction inclusion. No new on-chain in-range guarantee is cl
 Waiting, or an unavailable compound observation, must not stop an independently
 due fee harvest. It also does not enable idle-only scheduling automatically.
 
-When a live worker sees inside-range or opposite-side evidence, it checks any
+When a live worker sees a return inside the trigger threshold, opposite-side or
+required independent-reference disagreement, it checks any
 tracked ordinary confirmation window at that same block hash. A proved nonempty
 old window goes through the existing reset/acknowledgement path; it cannot be
 reused if price returns before the next official sample. Empty/manual windows
 do not cause repeated paid clears. Missing compound-reader configuration alone
 must not invalidate a healthy rebalance window. The report only reads this state.
+
+A deliberate configuration repair skips threshold interpolation, so an old
+centre outside physical bounds cannot prevent that manual repair path. Its
+threshold-side diagnostics are unavailable rather than guessed zero; healthy
+on-chain price/tick and execution guards remain.
+
+## Confirmation, cooldown and durable delay
+
+The source evaluates the 85% actual centre-to-main-boundary ZZZ-in-ETH price
+condition during cooldown too. Ordinary samples require physical/reference
+thresholds on the same side. Initial policy is 600 seconds of sampled evidence,
+240 second checks and a strict 300 second maximum confirmed gap. A known maturity
+or cooldown boundary may schedule an earlier read. Eligibility still requires
+the full initial 43,200 second hard execution interval.
+
+The service keeps raw checks during cooldown but opens paid ordinary observations
+only at `earliestCooldown - duration - maximumGap`: initially the final 15 minutes.
+Already-due candidates enroll immediately. Foreign records, acknowledgements,
+fault resets and pending intents retain their original priority. The service does
+not silently delete an earlier record; its next confirmed observation naturally
+restarts stale evidence. It does not keep waking on an intentionally dormant
+early maturity deadline. Clock/configuration changes recompute enrollment.
+
+Readiness starts one durable OS-random60–300 second delay, different from that
+bucket's preceding chosen delay; routine renewal does not redraw it. Returns,
+side/policy/physical identity changes and relevant faults clear the candidate and
+its delay through canonical reset/recovery. Samples continue through the wait.
+Known renewal/reset deadlines follow pending recovery and precede optional jobs.
+One serial nonce lane and actual inclusion latency can still miss300 seconds;
+there is no uninterrupted-price or timing guarantee.
+
+The fresh journal namespace is `observed_adjustment_v3`; historical namespaces
+retain their own profiles. No automatic journal migration or pending deletion is
+provided. A fresh source/capability deployment requires separately reviewed
+configuration and recovery identity, not relabeling an old Anvil or live service.
 
 ## What idle means
 
@@ -59,8 +102,8 @@ idle or silently bypass the rebalance cooldown. See
 
 ## Harvest clocks follow proved collection
 
-Standalone harvesting remains hourly by default for accounting4. Harvesting
-collects actual LP fees and applies the existing allocation/dust rules; it does
+Standalone harvesting remains hourly by default for accounting6. Harvesting
+collects actual LP fees from both live legs and applies the allocation/dust rules; it does
 not itself convert rewards, compound, buy back, burn or pay a holder claim.
 
 The worker can also collect fees inside a successful compound/rebalance. When
@@ -89,7 +132,9 @@ python3 -m keeper.ops --config /path/to/reviewed-keeper.json review --bucket 123
 Replace `123` with an observed bucket ID, not an NFT ID. The example configurations
 remain unconfigured; filling a field or obtaining a report is not release approval.
 
-The report covers rebalance, compound and standalone harvest. It separates
+The report covers profile4/policy2 and fresh profile6/policy3 rebalance, compound
+and standalone harvest. Fresh output shows actual physical legs, aggregate
+amounts and desired/applied mode; secondary ID0 does not imply disabled mode. It separates
 not-needed work, timing waits, known blockers, unavailable evidence and missing
 configuration. Other operation families are explicitly unsupported. Read the
 individual checks: `ok: true` and exit code zero mean the report was produced,
@@ -125,6 +170,11 @@ not invent an exact slippage inequality from a generic error.
   including released compound? Its default ceiling is 3%; it is separate from
   the contribution check and the 5% idle ceiling.
 
+- **Hybrid utilization:** after an ordinary hybrid replacement, does main value
+  reach 60% and residual stay within 40% of retained principal at the same starting
+  price vector? These are separate from the idle and loss ceilings and are not
+  continuous market-allocation requirements.
+
 These limits are ceilings, not targeted losses. Actual settings and stronger
 caller/venue limits apply; network gas is separate. No financial check was removed
 or widened by this keeper work. Missing actual prices or post-execution deltas
@@ -138,6 +188,12 @@ inventory faults do not become evidence of price-condition failure. Pending
 recovery stays first; saved clear acknowledgements prevent repeated paid clears.
 Do not delete schedules/journals to recover. Terminal stop creates no new
 ordinary confirmation work for these identity faults.
+
+Fresh snapshots bind the separately deployed Budget/Balancer/Policy/Confirmation
+to the sealed controller's fixed parent modules, and the typed physical executor
+and arithmetic child to exact parents/dependencies. `portfolioFingerprint`
+excludes changing liquidity; `executionPortfolioFingerprint` includes it for
+custody manifests. Source hashes are not remote attestation.
 
 Execution telemetry additionally rechecks the final latest head, depth,
 chronology, canonical anchor and freshness before publishing `last_confirmed`.

@@ -1,14 +1,20 @@
 # Price security and factual LP verification
 
-Current fresh LP protection uses confirmation2 and separate emergency capability1.
-Ordinary readiness requires physical/reference same-side range exit (unless a
-reviewed policy relaxation or deliberate governance width exception applies).
-Reference prices remain the configured dual USD sources, not a newly qualified
-market feed. A separate paused governance emergency may explicitly bypass
-financial guards; it preserves exact accounting/custody but can cause near-total
-economic loss. It is not a user transaction, keeper fallback or API signing
-feature. [Policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
-[emergency procedure](EMERGENCY_REBALANCE.md).
+Fresh source uses accounting6, maintenance3, confirmation3 and optional portfolio2.
+Ordinary samples require the physical pool and independent reference on the same
+85%-of-centre-to-boundary threshold side in ZZZ-in-ETH price, using actual rounded
+main bounds. This threshold can be reached while the main remains active. The
+600-second sampled window may accumulate during the hard twelve-hour cooldown;
+execution needs both, then one persisted 60–300-second keeper delay. Source checks
+are 240 seconds; the configured maximum confirmed gap is 300 seconds. A gap-0 helper
+is unconfigured and cannot authorize ordinary sampled execution. Earlier
+maintenance2/confirmation2 deployments retain their outside-only policy and selected 900/300 settings; other historical profiles stay explicit.
+
+A separate paused governance emergency capability2 may explicitly bypass chosen
+financial/timing checks; exact custody/accounting remain, but near-total economic
+loss is possible. It is not an automatic keeper fallback or API signing feature.
+Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUTION_POLICY.md),
+[optional portfolio](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md), [emergency procedure](EMERGENCY_REBALANCE.md).
 
 ## Status and security boundary
 
@@ -17,33 +23,49 @@ is proposed separately from the implemented safeguards below.
 
 ## Physical pool and independent reference
 
-Our physical pool's tick determines whether the actual LP is in range; another
-pool's tick cannot substitute for it. Current `Strategy.needsRebalance` requires
-cooldown/operation eligibility, reads the configured Oracle reference and checks
-the managed pool spot against `maxSpotDeviationBps` before testing actual ticks.
-Fresh confirmation2 `condition` additionally requires both actual physical and
-independent-reference exit on the same side of the identical LP bounds. Target-
-only, reference-only and opposite-side exits cannot qualify ordinary upkeep.
-Governance may explicitly relax the reference rule with a review hash and sample
-invalidation; automatic keeper widths cannot coexist with enabled protection.
+Actual physical ticks determine whether each LP is active; a different pool's
+tick cannot substitute for custody or mint geometry. Maintenance3 instead starts
+its ordinary adjustment condition at 85% of the actual centre-to-boundary PRICE
+distance. For centre C and physical ZZZ-in-ETH price bounds D/U, thresholds are
+`C-0.85*(C-D)` and `C+0.85*(U-C)`. This is not 85% of ticks/sqrt-price or an 85% token
+price move. Main ±50% therefore triggers near ±42.5%, before full exit; actual
+rounding changes the exact values.
 
-On2026-10-29 the user requested corroboration from a reviewed higher-liquidity
-market because the managed pool can be manipulated. Selecting that market,
-averaging window, real depth, independence and failure/reset behavior remains
-unqualified; no deeper-pool/TWAP adapter was added. The new reference-range trigger
-uses the existing configured dual USD sources, whose actual independence and
-market averaging still require qualification.
-Deeper instantaneous spot alone is not manipulation proof, and the greatest
-reported liquidity need not mean the best manipulation resistance.
+With the default reference requirement, physical and independent prices must
+cross the same threshold side. Target-only, reference-only or opposite-side
+moves cannot confirm ordinary adjustment. `rebalanceCondition` is observable
+during cooldown; `needsRebalance` adds the hard interval; `rebalanceReady` also
+adds recorded maturity. Return inside/side changes, policy or portfolio identity
+changes, stale observations and relevant faults invalidate evidence and jitter.
+Changing main liquidity through an entrant does not reset stable confirmation.
+The selected 600-second window/300-second maximum gap is sampled, not uninterrupted
+history. A separate persisted 60–300-second service delay follows actual readiness.
 
-The selected and implemented confirmation2 rule requires independent-reference
-and physical exit on the same side through the sampled window. It can deliberately
-leave the physical LP inactive during disagreement; governance may explicitly
-change the reviewed reference requirement, invalidating samples. Actual deeper-
-market/provider/window selection remains unqualified. Preserve actual ticks,
-dual-source USD valuation, identity/policy resets and ordinary execution floors.
-No automatic reference rotation or use of our own LP as an independent source is
-implied. Concrete market/window selection requires source/operating qualification.
+Manual width/mode changes are explicit geometry exceptions after cooldown, with
+normal prices and financial checks retained; they can repair deliberately changed
+geometry without interpreting an invalid old centre as a market signal. Ordinary
+threshold interpolation fails closed on an invalid centre. Governance may
+explicitly relax independent-reference confirmation with a review hash and sample
+invalidation; automatic keeper widths cannot coexist with required protection.
+
+The reference remains the configured two-source USD ratio. A genuinely reviewed
+higher-liquidity independent market/TWAP, source independence, depth, averaging
+window and outage behavior are still unqualified; no new market adapter or
+same-pool spot fallback is inferred. A deeper instantaneous spot or high reported
+TVL alone is not manipulation proof. Price disagreement can intentionally leave
+LP inactive until evidence agrees or governance uses a separately reviewed control.
+
+Every ordinary new main, in single or hybrid replacement, verifies the actual
+physical stored tick is active before mint and after mint/refund callbacks.
+Value retention alone is insufficient: an inactive main can retain100% of marked
+principal. Hybrid additionally proves its60% allocation floor. Initial activation,
+growth and explicit emergency retain their separately documented policies.
+This matters for narrow inverse-price bands: a raw spot-deviation cap does not
+by itself prove the new ZZZ-price band contains that spot. Exact downward-crossing
+slot0 semantics are retained. A residual starts one-sided with a full-spacing gap,
+using the corresponding half main side by default (`5000`; full 10000 is governed).
+After replacement, actual main/residual/idle are checked at the same captured USD
+vector; market movement can later change allocation and activity.
 
 ## Implemented valuation boundary
 
@@ -70,11 +92,11 @@ prices cannot prove that liquidity was deployed.
 The Oracle adds no separate percentage or LINK payment for price reads. Ordinary
 public Chainlink push-feed getters have no per-read LINK charge. On-chain reads
 consume transaction gas; off-chain eth_call has no transaction gas fee but RPC,
-custom data/provider and hosting bills may apply. The 500,000-gas source-call
-limit is a ceiling, not a flat charge. Actual provider terms and full-operation
+custom data/provider and hosting bills may apply. The default500,000-gas source-call
+limit is a governed ceiling (100,000–1,000,000 via ProtocolPolicy.sourceCallGas), not a flat charge. Actual provider terms and full-operation
 gas are release work; VRF/data-reporting products are separate services.
 
-[The dated25October observation](../reports/price-reference-20261025/OBSERVATION.md)
+[The dated 25 October observation](../reports/price-reference-20261025/OBSERVATION.md)
 is candidate research, not configured PoPL output. Its ETH round was last updated
 the previous evening; ZZZ was calculated from instantaneous pool spot. The
 catalog's second Shared-SVR proxy does not supply independent coverage. Record
@@ -105,8 +127,8 @@ Every price read requires both sources to:
 - Agree within the asset's configured tolerance, measured against the lower
   answer. Rounding cannot admit a spread just outside that tolerance.
 
-Price-source, asset-decimals and configured sequencer calls have a 500,000-gas
-ceiling and exact 32-byte decimals / 160-byte round responses. Oversized replies,
+Price-source, asset-decimals and configured sequencer calls have a governed100,000–1,000,000-gas
+ceiling (default500,000) and exact 32-byte decimals / 160-byte round responses. Oversized replies,
 noncanonical round widths and revert data cannot bypass those boundaries. These
 are implementation limits to qualify against actual providers,
 not measured live-service requirements. Maximum source age is bounded to one day;
@@ -184,9 +206,11 @@ mechanism and manipulation assessment.
 [Activation Entry](../src/ZZZActivationEntry.sol) calls
 `ZZZContributionPricing.beginEntryReviewed` before pulling tokens, approving routers or
 converting assets. The caller supplies `maximumLossBps` through
-`Entry.executeReviewed(Request,maximumLossBps)`. The captured governed cap must
-not exceed that signed maximum before funds move. Release/preparation profiles
-require `review_policy_version: 1`; old execute is not a current alternative.
+`Entry.executeReviewed(Request,maximumLossBps,expectedContributionPolicy)`. The captured governed cap must
+not exceed that signed maximum before funds move. The expectedContributionPolicy
+argument must equal the reviewed helper.entryFingerprint, including future
+action minima and idle ceiling; stale or callback-mutated terms fail atomically. Release/preparation profiles
+require `review_policy_version: 2`; old execute is not a current alternative.
 The fixed [pricing companion](../src/ZZZContributionPricing.sol) is created by the Oracle and authenticated to the actual Entry and Vault Budget.
 It holds no user funds, approves no assets and supplies no arbitrary executor or
 sweep path.
@@ -257,13 +281,14 @@ subject to the independent-reference deviation guard. These checks bound
 execution; they do not eliminate market risk, impermanent loss or every possible
 MEV cost within an explicitly allowed execution budget.
 
-Fresh LP routing1 additionally binds source fingerprints, full Registry policy
+Fresh LP routing2 additionally binds source fingerprints, full Registry policy
 and monotonic revision, reviewed execution revision and derived target ticks
 across Vault approvals/balancing/resets. Actual-core quotes revert simulated
 state; the selected exact-input swap must match quoted output/post-price.
 Only the entrant budget can be swapped and deployed. Old idle/compound remains
-in incumbent NAV, but only repriced old physical LP is subtracted from the final
-physical LP to measure new deployment. Exact raw deltas exclude prefund subsidy.
+in incumbent NAV, but only repriced incumbent aggregate physical LP is subtracted from final
+aggregate LP to measure new deployment. Both legs remain incumbent backing;
+entrant funds increase only the existing main and do not repair the residual. Exact raw deltas exclude prefund subsidy.
 See [routing review](../reports/atomic-routing-20261028/REVIEW.md). These are
 execution protections, not new Oracle providers or independence qualification.
 

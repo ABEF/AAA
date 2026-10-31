@@ -1,5 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -66,7 +72,7 @@ contract TypedV4EntryTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000); vm.deal(address(this), 10000000 ether); vm.deal(ALICE, 1000 ether);
-        access = new MockAccess(); source = new MockToken(18); zzz = new NativeFlowToken();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); source = new MockToken(18); zzz = new NativeFlowToken();
         brokenWrapper = new BoundaryWETH(); brokenWrapper.failures(true, true);
         ZZZOracle oracle = new ZZZOracle(address(access), address(0)); MockFeed feed = new MockFeed(8, 1e8);
         oracle.setTestFeed(address(0), address(feed), 1 hours); oracle.setTestFeed(address(zzz), address(feed), 1 hours);
@@ -79,15 +85,15 @@ contract TypedV4EntryTest is Test {
         BoundaryCore lpCore = new BoundaryCore(); FakePermit2 permit = new FakePermit2();
         positions = new BoundaryPositions(address(lpCore), address(permit), address(brokenWrapper)); lpCore.setPositions(address(positions));
         FakeState lpState = new FakeState(address(lpCore));
-        ZZZLiquidityManager manager = new ZZZLiquidityManager(address(access), address(positions), address(lpState), address(lpCore), address(permit));
-        vault = new ZZZVault(address(access), block.chainid, payable(address(0x7EA5)));
+        ZZZLiquidityManager manager = new ZZZLiquidityManager(address(access), address(positions), address(lpState), address(lpCore), address(permit), address(new ZZZLPBalancer(address(access), address(lpCore), address(lpState))));
+        vault = new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
         nft = new ZZZNFT(address(access), "ipfs://typed-v4-entry-fixture/"); membership = new ZZZMembership(address(access));
         ZZZRewards rewards = new ZZZRewards(address(access)); ZZZFeeController fees = new ZZZFeeController(address(access));
         access.bind(Ids.VAULT, address(vault)); access.bind(Ids.NFT, address(nft)); access.bind(Ids.MEMBERSHIP, address(membership));
         access.bind(Ids.REWARDS, address(rewards)); access.bind(Ids.FEES, address(fees)); access.bind(Ids.POOLS, address(registry));
-        access.bind(Ids.LIQUIDITY, address(manager)); access.bind(Ids.STRATEGY, address(new ZZZStrategy(address(access))));
+        access.bind(Ids.LIQUIDITY, address(manager)); access.bind(Ids.STRATEGY, address(new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))))));
         access.bind(Ids.MIGRATION, address(this)); rewards.addAsset(address(zzz));
-        vrf = new MockVRF(); nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        vrf = new MockVRF(); ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         CanonicalFixture.bind(address(access)); access.seal();
         PoolConfig memory lp = registry.get(bytes32(0)); lpPool = keccak256(abi.encode(lp.key));
         vm.mockCall(address(lpState), abi.encodeWithSignature("getSlot0(bytes32)", lpPool),
@@ -131,7 +137,7 @@ contract TypedV4EntryTest is Test {
         p.reviewHash = keccak256("actual local core, not production route qualification");
     }
     function _mint() private returns (uint256 id) {
-        vm.prank(ALICE); id = vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vm.prank(ALICE); id = vault.mintDormant{value: 0.05 ether}(reviewedPolicy1);
         vrf.fulfill(nft.requestOf(id), 0, 0); nft.finalizeTraits(id);
     }
     function _request(uint256 id, address input, uint256 amount, bytes32 route, bool increase)
@@ -148,11 +154,11 @@ contract TypedV4EntryTest is Test {
 
     function testActualV4SourceToNativeActivationAndSourceToZZZGrowthReachRealVault() public {
         uint256 id = _mint(); vm.prank(ALICE); source.approve(address(entry), 105 ether);
-        vm.prank(ALICE); entry.executeReviewed(_request(id, address(source), 100 ether, toETH, false), 200);
+        bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); entry.executeReviewed(_request(id, address(source), 100 ether, toETH, false), 200,reviewedPolicy2);
         uint256 shares = vault.sharesOf(id); assertGt(shares, 0); assertTrue(membership.eligible(id));
         assertEq(vault.contributionUSD(id), 100 ether); assertEq(nft.ownerOf(id), ALICE);
         (bool available, uint256 value) = nft.currentLPValue(id); assertTrue(available); assertGe(value, 99 ether); _assertClean();
-        vm.prank(ALICE); entry.executeReviewed(_request(id, address(source), 5 ether, toZZZ, true), 200);
+        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); entry.executeReviewed(_request(id, address(source), 5 ether, toZZZ, true), 200,reviewedPolicy3);
         assertGt(vault.sharesOf(id), shares); assertEq(vault.contributionUSD(id), 105 ether);
         assertEq(vault.bucketCount(), 1); assertEq(source.allowance(ALICE, address(entry)), 0);
         (available, value) = nft.currentLPValue(id); assertTrue(available); assertGe(value, 103.95 ether); _assertClean();
@@ -161,21 +167,21 @@ contract TypedV4EntryTest is Test {
         uint256 id = _mint(); vm.prank(ALICE); source.approve(address(entry), 100 ether);
         ZZZActivationEntry.Request memory r = _request(id, address(source), 100 ether, toETH, false);
         uint256 beforeSource = source.balanceOf(ALICE); uint256 beforeETH = ALICE.balance;
-        positions.retain(true); vm.prank(ALICE); vm.expectRevert(); entry.executeReviewed(r, 200);
+        positions.retain(true); bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); vm.expectRevert(); entry.executeReviewed(r, 200,reviewedPolicy4);
         assertEq(source.balanceOf(ALICE), beforeSource); assertEq(ALICE.balance, beforeETH); assertEq(vault.sharesOf(id), 0);
         assertFalse(membership.eligible(id)); assertTrue(nft.traitsReady(id)); assertEq(nft.ownerOf(id), ALICE);
         assertEq(source.allowance(ALICE, address(entry)), 100 ether); _assertClean();
         (uint160 price,,,) = conversionState.getSlot0(PoolId.wrap(keccak256(abi.encode(sourceETH))));
         assertEq(price, uint160(1 << 96));
         positions.retain(false); r.minimumOut = 100 ether;
-        vm.prank(ALICE); vm.expectRevert(); entry.executeReviewed(r, 200);
+        bytes32 reviewedPolicy5 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); vm.expectRevert(); entry.executeReviewed(r, 200,reviewedPolicy5);
         assertEq(source.balanceOf(ALICE), beforeSource); assertEq(vault.sharesOf(id), 0); _assertClean();
         (price,,,) = conversionState.getSlot0(PoolId.wrap(keccak256(abi.encode(sourceETH)))); assertEq(price, uint160(1 << 96));
     }
     function testActualV4NativeInputToZZZUsesExactValueAndOriginalValueBudget() public {
         uint256 id = _mint(); uint256 beforeETH = ALICE.balance;
         ZZZActivationEntry.Request memory r = _request(id, address(0), 100 ether, nativeToZZZ, false);
-        vm.prank(ALICE); entry.executeReviewed{value: 100 ether}(r, 200);
+        bytes32 reviewedPolicy6 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); entry.executeReviewed{value: 100 ether}(r, 200,reviewedPolicy6);
         assertEq(ALICE.balance, beforeETH - 100 ether); assertEq(vault.contributionUSD(id), 100 ether);
         assertGt(vault.sharesOf(id), 0); assertTrue(membership.eligible(id));
         (bool available, uint256 value) = nft.currentLPValue(id); assertTrue(available); assertGe(value, 99 ether); _assertClean();
@@ -184,14 +190,14 @@ contract TypedV4EntryTest is Test {
         uint256 id=_mint();uint256 beforeETH=ALICE.balance;
         ZZZActivationEntry.Request memory request=_request(id,address(0),100 ether,nativeToZZZ,false);
         assertEq(vault.migrationBudget().contributionLossBps(),200);
-        vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
-        entry.executeReviewed{value:100 ether}(request,100);
+        bytes32 reviewedPolicy7 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
+        entry.executeReviewed{value:100 ether}(request,100,reviewedPolicy7);
         assertEq(ALICE.balance,beforeETH);assertEq(vault.sharesOf(id),0);
         assertFalse(membership.eligible(id));_assertClean();
         (uint160 price,,,)=conversionState.getSlot0(PoolId.wrap(keccak256(abi.encode(nativeZZZ))));
         assertEq(price,uint160(1<<96));
         vault.migrationBudget().setLossLimits(100,300);
-        vm.prank(ALICE);entry.executeReviewed{value:100 ether}(request,100);
+        bytes32 reviewedPolicy8 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE);entry.executeReviewed{value:100 ether}(request,100,reviewedPolicy8);
         assertEq(ALICE.balance,beforeETH-100 ether);assertGt(vault.sharesOf(id),0);_assertClean();
     }
 }

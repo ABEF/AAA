@@ -1,0 +1,201 @@
+{
+  "scope": "Scoped adaptation-policy evidence; staged EVM successes, fixture failures and empty selectors remain distinct. No full suite/live-provider/target gas/independent audit claim.",
+  "stages": {
+    "policy-evm-191e15cbbc": {
+      "executed": 39,
+      "pass": 37,
+      "failed": [
+        "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testLargerGapKeepsBothResidualSidesOneSidedAndInsideMain()",
+        "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testRecipientRotationRequiresNewRecipientAcceptanceAndPreservesOtherTerms()"
+      ]
+    },
+    "policy-composed-d9684d0f78": {
+      "executed": 0,
+      "pass": 0,
+      "failed": []
+    },
+    "gap-retry-7db1494358": {
+      "executed": 0,
+      "pass": 0,
+      "failed": []
+    },
+    "policy-composed-60531cd4e5": {
+      "executed": 12,
+      "pass": 12,
+      "failed": []
+    }
+  },
+  "distinct_successful_test_cases": 42,
+  "successful_case_ids": [
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testGovernedEightyPercentMainAndLargerGapExecuteThenGrowthPreservesResidual()",
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testMidReplacementMaintenancePolicyChangeRevertsBothLegsAndAllBacking()",
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testReviewedEntryIdleHeadroomRecoversGrowthWithoutSpendingOldIdle()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testActualRoundedBoundsAndInversePriceDoNotUseTickPercentage()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testAuxiliaryIdentityResetsButNormalLiquidityIncreaseDoesNot()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testBroaderManualRangeUsesStrictlyPositivePriceBoundsAndTickMathLimits()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testChangingAndRestoringPolicyCannotRestoreOldSamples()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testConfiguringUnusedResidualGeometryDoesNotForceSinglePositionTrade()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testDisablingDesiredModeDoesNotRequireHealthyVenueDependencies()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testDisablingRecordsPendingMergeAndCannotDiscardAuxiliary()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testEightyFivePercentPriceDistanceTriggersInsideBothPhysicalEdges()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testFreshVersionsDefaultsAndUnconfiguredConfirmation()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testFullResidualUsesCorrectSideWithinMainAndLeavesFullTickGap()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testGapStrictlyGreaterThanFiveMinutesRestartsWindow()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testGovernedAllocationPreservesEnvelopeAndPendingGeometrySemantics()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testHalfSideMeansHalfPriceExtentNotHalfTicksOrFullWidth()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testIndependentDecimalThresholdFixturesOnBothSides()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testInvalidCentreFailsThresholdButDeliberateRepairRetainsGuards()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testLargerGapKeepsBothResidualSidesOneSidedAndInsideMain()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testModeCanEnableWithApprovedHalfSideDefaultAndRejectsInvalidGeometry()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testModePendingIsVisibleDuringCooldownButCannotExecute()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testOnlyCurrentSealedManagerCanRecordAppliedGeometry()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testPhysicalReadFaultClearsEvidenceWithoutReverting()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testRecordedGeometryValidatesActualVaultOwnershipAndDistinctLegs()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testReferenceMustCrossTheSameInsideRangeThreshold()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testResidualFailsRatherThanCrossSpotOrInventWidth()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testReturningInsideAndChangingSidesRestartEvidence()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testSamplesAccumulateDuringCooldownWithoutGrantingReadiness()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testScopedPolicyChangesResetOnlyRelevantSamplesAndNeverCreateCosmeticTrade()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testTenMinuteMaturityAndCooldownMustBothHold()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testThresholdGeometryScalesNearBothTickExtremes()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testTriggerBoundsAuthorizationAndTerminalLock()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testTriggerChangeInvalidatesSamplesWithoutManualModeException()",
+    "test/PortfolioPolicy.t.sol:PortfolioPolicyTest::testUnrelatedPoolGeometryKeepsOtherPoolControlFingerprintStable()",
+    "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testCosmeticGasAndSaleChangesDoNotInvalidateFinancialDomains()",
+    "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testDefaultsAreCompleteWithoutGuessedUnconfiguredValues()",
+    "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testEntryAndIdleBoundsCannotCreateFreeOrUnboundedContributions()",
+    "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testFinancialDomainsAreIndependentAndRestoreCannotReviveOldReview()",
+    "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testFrozenUnsealedImporterCannotMutatePolicyOrAcceptRecipient()",
+    "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testFutureRequestSettingsChangeMintReviewButDoNotRetargetPendingDraws()",
+    "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testGasBudgetsStayBoundedAndUnauthorizedChangesRevert()",
+    "test/ProtocolPolicy.t.sol:ProtocolPolicyTest::testRecipientRotationRequiresNewRecipientAcceptanceAndPreservesOtherTerms()"
+  ],
+  "final_selected_cases": 12,
+  "final_source_drift": [],
+  "final_evm_vs_normal43_production_source_differences": [],
+  "earlier_portfolio_successes_static_body_comparison": [
+    {
+      "name": "testActualRoundedBoundsAndInversePriceDoNotUseTickPercentage",
+      "body_identical": true
+    },
+    {
+      "name": "testAuxiliaryIdentityResetsButNormalLiquidityIncreaseDoesNot",
+      "body_identical": true
+    },
+    {
+      "name": "testBroaderManualRangeUsesStrictlyPositivePriceBoundsAndTickMathLimits",
+      "body_identical": true
+    },
+    {
+      "name": "testChangingAndRestoringPolicyCannotRestoreOldSamples",
+      "body_identical": true
+    },
+    {
+      "name": "testConfiguringUnusedResidualGeometryDoesNotForceSinglePositionTrade",
+      "body_identical": true
+    },
+    {
+      "name": "testDisablingDesiredModeDoesNotRequireHealthyVenueDependencies",
+      "body_identical": true
+    },
+    {
+      "name": "testDisablingRecordsPendingMergeAndCannotDiscardAuxiliary",
+      "body_identical": true
+    },
+    {
+      "name": "testEightyFivePercentPriceDistanceTriggersInsideBothPhysicalEdges",
+      "body_identical": true
+    },
+    {
+      "name": "testFreshVersionsDefaultsAndUnconfiguredConfirmation",
+      "body_identical": true
+    },
+    {
+      "name": "testFullResidualUsesCorrectSideWithinMainAndLeavesFullTickGap",
+      "body_identical": true
+    },
+    {
+      "name": "testGapStrictlyGreaterThanFiveMinutesRestartsWindow",
+      "body_identical": true
+    },
+    {
+      "name": "testGovernedAllocationPreservesEnvelopeAndPendingGeometrySemantics",
+      "body_identical": true
+    },
+    {
+      "name": "testHalfSideMeansHalfPriceExtentNotHalfTicksOrFullWidth",
+      "body_identical": true
+    },
+    {
+      "name": "testIndependentDecimalThresholdFixturesOnBothSides",
+      "body_identical": true
+    },
+    {
+      "name": "testInvalidCentreFailsThresholdButDeliberateRepairRetainsGuards",
+      "body_identical": true
+    },
+    {
+      "name": "testModeCanEnableWithApprovedHalfSideDefaultAndRejectsInvalidGeometry",
+      "body_identical": true
+    },
+    {
+      "name": "testModePendingIsVisibleDuringCooldownButCannotExecute",
+      "body_identical": true
+    },
+    {
+      "name": "testOnlyCurrentSealedManagerCanRecordAppliedGeometry",
+      "body_identical": true
+    },
+    {
+      "name": "testPhysicalReadFaultClearsEvidenceWithoutReverting",
+      "body_identical": true
+    },
+    {
+      "name": "testRecordedGeometryValidatesActualVaultOwnershipAndDistinctLegs",
+      "body_identical": true
+    },
+    {
+      "name": "testReferenceMustCrossTheSameInsideRangeThreshold",
+      "body_identical": true
+    },
+    {
+      "name": "testResidualFailsRatherThanCrossSpotOrInventWidth",
+      "body_identical": true
+    },
+    {
+      "name": "testReturningInsideAndChangingSidesRestartEvidence",
+      "body_identical": true
+    },
+    {
+      "name": "testSamplesAccumulateDuringCooldownWithoutGrantingReadiness",
+      "body_identical": true
+    },
+    {
+      "name": "testScopedPolicyChangesResetOnlyRelevantSamplesAndNeverCreateCosmeticTrade",
+      "body_identical": true
+    },
+    {
+      "name": "testTenMinuteMaturityAndCooldownMustBothHold",
+      "body_identical": true
+    },
+    {
+      "name": "testThresholdGeometryScalesNearBothTickExtremes",
+      "body_identical": true
+    },
+    {
+      "name": "testTriggerBoundsAuthorizationAndTerminalLock",
+      "body_identical": true
+    },
+    {
+      "name": "testTriggerChangeInvalidatesSamplesWithoutManualModeException",
+      "body_identical": true
+    },
+    {
+      "name": "testUnrelatedPoolGeometryKeepsOtherPoolControlFingerprintStable",
+      "body_identical": true
+    }
+  ],
+  "reuse_limits": "Thirty Portfolio cases executed at their first-stage exact source; unchanged bodies are static supporting evidence, not thirty additional final-stage executions. Seven Policy successes overlap its final8-case rerun. Two prior fixture failures were fixed without relaxing production code. Two selector attempts executed zero tests and count as zero passes.",
+  "actual_core_scope": "Three new composed journeys use actual local v4 PoolManager/PositionManager/StateView and PoPL accounting, with explicit mock Access, feeds, VRF, Permit2 and native registry. Injected callback is a test seam, not behavior asserted of the deployed hookless venue.",
+  "remaining": "Qualified feeds/routes/VRF/authorities, API/website deployment, target-chain costs, maximum receiver/provider gas, sustained Linux/inclusion recovery and independent audit/remediation remain unverified. Narrow-route sampled search remains its separately documented liveness limitation."
+}

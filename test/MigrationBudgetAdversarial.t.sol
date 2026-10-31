@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {NoHybridPolicyFixture, SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -16,7 +17,7 @@ import {IZZZStrategy} from "../src/interfaces/IZZZ.sol";
 /// @dev Deliberately adversarial TEST ONLY venue. Exact transfers and honest
 /// reported retained amounts isolate Vault's loss budget from venue minima.
 /// Losses are removed from attributed LP amounts, never fabricated as backing.
-contract BudgetAdversarialVenue is ERC721 {
+contract BudgetAdversarialVenue is ERC721 , SinglePositionFixture {
     MockToken private immutable token0;
     MockToken private immutable token1;
     mapping(uint256 => uint256) public amount0;
@@ -119,7 +120,7 @@ contract BudgetAdversarialVenue is ERC721 {
     }
 }
 
-contract BudgetAdversarialPolicy {
+contract BudgetAdversarialPolicy is NoHybridPolicyFixture {
     BudgetAdversarialVenue private venue;
     uint256 private amountIn;
     uint256 private plannedAtCount;

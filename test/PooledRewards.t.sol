@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {Test} from "forge-std/Test.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
@@ -18,13 +19,13 @@ contract PooledRewardsTest is Test {
     address constant ALICE = address(0xA11CE); address constant BOB = address(0xB0B); address constant CAROL = address(0xCA201);
     address constant FOREIGN_VAULT = address(0xF001); address constant CANONICAL0 = address(0xC001); address constant CANONICAL1 = address(0xC002);
     function setUp() public {
-        ac = new MockAccess(); token0 = new MockToken(18); token1 = new MockToken(18); pools = new MockPools();
+        ac = new MockAccess(); ProtocolPolicyFixture.bind(address(ac)); token0 = new MockToken(18); token1 = new MockToken(18); pools = new MockPools();
         nft = new ZZZNFT(address(ac), "ipfs://"); membership = new ZZZMembership(address(ac)); rewards = new ZZZRewards(address(ac));
         fees = new ZZZFeeController(address(ac)); vault = new RewardsVaultFixture(rewards);
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft)); ac.bind(Ids.MEMBERSHIP, address(membership));
         ac.bind(Ids.REWARDS, address(rewards)); ac.bind(Ids.FEES, address(fees)); ac.bind(Ids.POOLS, address(pools));
         rewards.addAsset(address(token0)); rewards.addAsset(address(token1));
-        nft.configureRandomness(address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false); ac.seal();
+        ProtocolPolicyFixture.randomness(address(nft.access()),address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false); ac.seal();
         PoolConfig memory c; c.key.currency0 = address(token0); c.key.currency1 = address(token1); pools.set(POOL, c);
         Position memory p; p.poolId = POOL; p.status = PositionStatus.Active;
         vault.set(BUCKET, p); vault.set(SECOND, p);

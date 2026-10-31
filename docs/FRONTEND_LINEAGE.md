@@ -9,8 +9,9 @@ This implements the [read API task](../TODO.md#task-read-api) for the supported
 same-chain handoff. It does not implement cross-chain consensus verification,
 marketplace cutover or a hosted production indexer.
 
-For fresh accounting4/canonical holder-exit V5, every configured predecessor must
-explicitly use accounting4 too. Explicit accounting3/V4 similarly requires
+For fresh accounting6/portfolio2/canonical adaptable-policy V6, every configured
+predecessor must explicitly use accounting6 and its complete helper/runtime graph
+too. Historical accounting4/V5 requires 4 throughout; accounting3/V4 similarly requires
 accounting3 predecessors. Older1/2 readers remain for compatible historical
 lineages; changing a version cannot import another schema. Collective holder
 exit does not relocate NFT identities or reward ledgers, and permanently blocks
@@ -29,9 +30,9 @@ Every entry contains exactly these fields:
 
 | Field | Required meaning |
 | --- | --- |
-| `accounting_version` | Fresh V5 requires4 for every predecessor; explicit historical V4 requires3. Other historical configurations retain their supported codec. |
+| `accounting_version` | Fresh profile6/V6 requires6 for every predecessor; historical profile5/V5 requires5 and profile4/V5 requires4 and V4 requires 3. Other historical configurations retain their supported codec. |
 | `deployment_block`, `deployment_block_hash` | Reviewed sealed-deployment anchor, at or before its outgoing retirement; the destination anchor must also precede that handoff |
-| `contracts` | All nine independently reviewed address/runtime pins for accounting4, including `principal_exit`; historical accounting3 retains eight. Use the [API configuration format](FRONTEND_API.md#deployment-configuration). |
+| `contracts` | Complete fresh6 address/runtime graph, including `principal_exit` plus ProtocolPolicy1/Portfolio2/Manager/math/physical executor/core bindings. Historical accounting4 retains its nine base pins; accounting3 retains eight. Use the [API configuration format](FRONTEND_API.md#deployment-configuration). |
 | `assets` | Exact historical LP/royalty asset union and descriptors at retirement, using the same API format |
 | `history` | Separate complete creation-to-retirement indexer history, using the [history configuration](FRONTEND_HISTORY.md#configuration-and-genuine-coverage) |
 | `retirement_transaction_hash` | Successful source-retirement transaction containing the matching successor activation |

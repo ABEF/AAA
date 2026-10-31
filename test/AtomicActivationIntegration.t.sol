@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -125,7 +126,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
             block.timestamp + 100, increase);
     }
     function _execute(address owner, ZZZActivationEntry.Request memory request) private {
-        vm.prank(owner); entry.executeReviewed(request, 100);
+        bytes32 reviewedPolicy1 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(owner); entry.executeReviewed(request, 100,reviewedPolicy1);
     }
     function _cleanEntry() private {
         assertEq(stable.balanceOf(address(entry)), 0); assertEq(t0.balanceOf(address(entry)), 0);
@@ -168,7 +169,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         shares = vault.sharesOf(id); deployed = venue.a0(lp);
         uint256 balance = stable.balanceOf(alice);
         router.setOutputBps(9899);
-        vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100);
+        bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100,reviewedPolicy2);
         assertEq(vault.sharesOf(id), shares); assertEq(venue.a0(lp), deployed);
         assertEq(stable.balanceOf(alice), balance); assertEq(vault.contributionUSD(id), 105e18);
     }
@@ -178,11 +179,11 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         ZZZActivationEntry.Request memory r = _request(id, true);
         r.minimumOut = 1; r.amountIn = 5e6 - 1;
         uint256 balance = stable.balanceOf(alice); uint256 shares = vault.sharesOf(id);
-        vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100);
+        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100,reviewedPolicy3);
         assertEq(stable.balanceOf(alice), balance); assertEq(vault.sharesOf(id), shares);
         stableFeed.set(5e7, block.timestamp, block.timestamp);
         r.amountIn = 5e6;
-        vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100);
+        bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100,reviewedPolicy4);
         r.amountIn = 10e6; router.setOutputBps(4950);
         _execute(alice, r);
         assertEq(vault.contributionUSD(id), 105e18); _cleanEntry();
@@ -202,13 +203,13 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         uint256 id = _mint(alice); _execute(alice, _request(id, false));
         PoolConfig memory c = registry.get(poolId); c.minDepositUSD = 6e18; registry.configure(c);
         ZZZActivationEntry.Request memory r = _request(id, true); r.amountIn = 5e6; r.minimumOut = 1;
-        vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100);
+        bytes32 reviewedPolicy5 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100,reviewedPolicy5);
         c.minDepositUSD = 1; registry.configure(c);
         r.amountIn = 5e6 - 1;
-        vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100);
+        bytes32 reviewedPolicy6 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100,reviewedPolicy6);
         r.amountIn = 5e6; _execute(alice, r);
         uint256 dormant = _mint(alice); r.nftId = dormant; r.increase = false;
-        vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100);
+        bytes32 reviewedPolicy7 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice); vm.expectRevert(); entry.executeReviewed(r, 100,reviewedPolicy7);
         assertEq(vault.nftBucket(dormant), 0); assertEq(vault.contributionUSD(id), 105e18);
     }
 

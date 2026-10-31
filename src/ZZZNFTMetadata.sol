@@ -30,7 +30,17 @@ struct NFTMetadataInput {
 contract ZZZNFTMetadata {
     IZZZAccess public immutable access;
     error ValuationUnavailable();
+    error InvalidArtwork();
     constructor(address controller) { access = IZZZAccess(controller); }
+
+    /// @notice Fixed artwork lookup only. The NFT retains its draw state/order;
+    /// this immutable read-only child holds the same finite prepared tables.
+    function artworkItem(uint8 rarity, uint256 item)
+        external pure returns (uint8 palette, uint8 pattern, uint8 color) {
+        if (rarity > 2 || item >= (rarity == 0 ? 600 : rarity == 1 ? 300 : 100)) revert InvalidArtwork();
+        (palette, pattern) = ZZZArtwork.item(rarity, item);
+        color = ZZZArtwork.primaryColor(palette);
+    }
 
     function currentValue(uint256 id) external view returns (uint256 valueUSD) {
         IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
@@ -45,7 +55,7 @@ contract ZZZNFTMetadata {
         // agrees with fresh oracle prices. Disabled operations do not invalidate
         // an otherwise honest mark; this view never changes rights or custody.
         IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(position.poolId);
-        (uint256 a0, uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(position.lpTokenId);
+        (uint256 a0, uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).portfolioAmounts(position.lpTokenId);
         IZZZFees fees = IZZZFees(access.module(Ids.FEES));
         a0 += position.idle0 + fees.compoundBalance(bucket, config.key.currency0);
         a1 += position.idle1 + fees.compoundBalance(bucket, config.key.currency1);

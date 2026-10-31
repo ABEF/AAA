@@ -1,6 +1,6 @@
 # Dynamic contributions, LP replacement and current NFT value
 
-Fresh accounting4 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+Fresh accounting6 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
 After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
 rewards and future royalty eligibility. Direct payouts are separate from income;
 no holder principal withdrawal exists during normal operation. LP cannot reopen
@@ -20,13 +20,16 @@ oracle-relative loss after actual directional core trading fees, default 1%.
 Known fees still count toward gross and aggregate limits. Network gas is separate.
 Historical fixed-limit profiles keep their own meaning.
 
-## One shared LP, independent NFT accounts
+<a id="one-shared-lp-independent-nft-accounts"></a>
+
+## One shared bucket, independent NFT accounts
 
 ```mermaid
 flowchart LR
   A[Owner contribution] --> E[Typed Activation Entry]
   E --> V[Vault: current shared bucket]
-  V --> L[Current Uniswap LP NFT]
+  V --> L[Current main LP NFT]
+  V --> X[Optional single residual LP NFT]
   N[PoPL NFT: stable ID and shares] --> V
   L --> R[Replacement LP after rebalance]
   R --> V
@@ -35,22 +38,27 @@ flowchart LR
 `nftBucket` and `sharesOf` connect each PoPL NFT to a shared bucket. The bucket's
 `Position.lpTokenId` identifies its **current** physical Uniswap position. It can
 change on rebalance without changing the PoPL NFT ID, its owner or its share count.
-One shared pool does not require 1,000 independent rebalances.
+One shared pool does not require 1,000 independent rebalances. Optional mode
+adds at most one Vault-owned residual in that same pool. Its token amounts and
+fees remain in the same bucket; do not sum raw liquidity across ranges.
 
 | Operation | Actual source path | Accounting consequence |
 | --- | --- | --- |
 | Activate/top up | [Entry](../src/ZZZActivationEntry.sol), [Vault `_join`](../src/ZZZVault.sol), [budget `contributionResult`](../src/ZZZMigrationBudget.sol) | Original source value, current incumbent NAV and measured marginal LP determine entry; minimum $100 gross activation/$5 growth and the captured marginal-deployed floor (98% at current default), gas separate. |
 | Select token mix and swap venue | [Manager `balance`](../src/ZZZLiquidityManager.sol), [LPBalancer `plan`](../src/ZZZLPBalancer.sol) | Actual-core revert quotes compare bounded reviewed venues against current physical ticks; initial positions use Strategy `target`. Zero or one actual swap balances only the supplied budget. |
-| Replace LP | [Vault `rebalance`](../src/ZZZVault.sol) | Harvest, release designated compound, close, balance and mint atomically; update current physical LP ID. Share counts persist. |
-| Read current value | [LiquidityManager `amounts`](../src/ZZZLiquidityManager.sol), [Metadata `currentValue`](../src/ZZZNFTMetadata.sol) | Current position liquidity/ticks/spot determine token amounts; fresh, deviation-checked oracle prices mark those actual amounts. |
+| Replace LP | [Vault `rebalance`](../src/ZZZVault.sol) | Harvest both legs, release designated compound, close both, balance and rebuild the selected one/two-leg portfolio atomically. Keep shares; authenticate both actual IDs and final active-main/60%–40% guards. Share counts persist. |
+| Read current value | [LiquidityManager `portfolioAmounts`](../src/ZZZLiquidityManager.sol), [Metadata `currentValue`](../src/ZZZNFTMetadata.sol) | Current position liquidity/ticks/spot determine token amounts; fresh, deviation-checked oracle prices mark those actual amounts. |
 | Fund and claim | [Fees](../src/ZZZFeeController.sol), [LP rewards](../src/ZZZRewards.sol), [royalties](../src/ZZZRoyaltyRewards.sol) | Actual receipts back separate ledgers. Ownership transfer carries accrued unclaimed rights with the NFT. |
 | Retire LP and return principal | [Collective holder return](HOLDER_COLLECTIVE_EXIT.md), [Migration](../src/ZZZMigration.sol) | Governance alone starts retirement and closes buckets; bounded allocation/direct-payout calls then return actual ETH/ZZZ by frozen shares to current owners. Normal holders need no action. Earned fees/royalties stay separate; rejected recipients retain retry/exceptional owner fallback. |
 
 `Strategy.swapPlan` and `compoundPlan` remain callable calculation views; the
-Vault no longer uses them to execute balancing. The Manager-created Balancer
+Vault no longer uses them to execute balancing. The separately deployed, reciprocally bound Balancer
 simulates only admitted static, hookless ETH/fixed-ZZZ venues, after funds are
 pulled and, for replacement, after the old LP has closed. It compares deployable
-target LP value under one independent price vector, not raw liquidity units.
+target LP value under one independent price vector in single mode. Hybrid mode
+seeks a smallest qualifying sampled swap supporting the active main’s fixed
+60% floor and residual’s 40% ceiling at captured prices, including retained idle.
+It does not impose a fixed residual allocation or compare raw liquidity units.
 This bounded search is not a global best-price or minimum-gas guarantee. An empty
 venue catalog disables swaps; it does not silently fall back to the LP pool.
 
@@ -120,9 +128,9 @@ pinned slot0 response, without another RPC read or response-schema change.
 
 | Warning state | Meaning shown to the holder |
 | --- | --- |
-| Cooldown | Earliest eligibility is `lastRebalance + minRebalanceInterval`, shown as a UTC timestamp. Policy2 physical range exit or a pending approved range update and execution checks must still pass. |
-| Eligible candidate | Raw cooldown and range-exit/manual-width conditions pass at the confirmed snapshot. Ordinary execution additionally requires confirmation2 readiness, keeper timing and all execution checks; this is not a guaranteed submission time. |
-| Waiting for range exit | Cooldown has ended, the actual stored tick remains inside the physical range and no approved range mismatch exists; there is no scheduled rebalance. |
+| Cooldown | Earliest eligibility is `lastRebalance + minRebalanceInterval`, shown as a UTC timestamp. Fresh policy3 requires the same-side 85% physical/reference threshold or deliberate pending geometry, plus all readiness/execution checks. |
+| Eligible candidate | Raw cooldown and threshold/manual-geometry conditions pass at the confirmed snapshot. Ordinary execution additionally requires confirmation3 readiness, keeper timing and all execution checks; this is not a guaranteed submission time. |
+| Waiting for adjustment threshold | Cooldown has ended, no same-side physical/reference threshold candidate or deliberate geometry mismatch exists; there is no scheduled rebalance. |
 | Keeper timing unavailable | `next_keeper_check_at` and `expected_execution_at` are null. Never fabricate a countdown from the 600-second example polling setting. |
 
 A wide range and frequent polling reduce the chance/time out of range; they do
@@ -137,23 +145,23 @@ The selected [hookless native ETH/ZZZ pool](POOL_SELECTION.md) earns conventiona
 LP fees when its position is active. Out-of-range liquidity earns no conventional
 swap fees until price returns or guarded maintenance changes its range. Funded
 claims and activation/royalty eligibility survive. This does not promise continuous
-fee income or external creator payments. Policy2 initially imposes a hard
-12-hour minimum; early range exit does not bypass it. The fresh confirmation2
-keeper profile checks eligible inside/outside positions every four minutes.
-Historical policy2 profiles without that capability retain their hourly checks.
-Durable 1-10-minute jitter and current execution guards still apply independently.
+fee income or external creator payments. Policy3 initially imposes a hard
+12-hour minimum; early threshold crossing or range exit does not bypass it.
+Fresh confirmation3 checks raw conditions every four minutes during cooldown,
+then uses a durable 1–5-minute source delay after readiness. Historical profiles
+retain their own schedules and journals.
 
-Fresh Strategy creates [RebalanceConfirmation](../src/ZZZRebalanceConfirmation.sol).
-Its ordinary range-exit window defaults to15minutes, measured by receipt-backed
-on-chain observations on the same side of the same physical LP. A maximum gap
-must be explicitly configured by governance; source default0 blocks ordinary
-rebalance, not the safeguard. The selected operating configuration is900seconds
-with a strict300second maximum gap: any greater gap restarts confirmation. A
-four-minute source schedule leaves roughly60seconds for work/inclusion delay;
-longer delays can still restart. The on-chain300-second gap gains no grace.
-Gaps, observed range re-entry, opposite-side exit,
+Fresh Strategy binds a separately deployed [RebalanceConfirmation](../src/ZZZRebalanceConfirmation.sol).
+Ordinary confirmation requires 600 seconds of sampled same-side physical and
+independent-reference crossing of 85% of actual centre-to-main-edge ZZZ-in-ETH
+price distance. A strict 300-second maximum gap must be explicitly reviewed;
+constructor gap 0 stops readiness. Raw source checks continue every 240 seconds.
+Paid samples enroll at cooldown minus duration minus maximum gap, initially the
+final 15 minutes; earlier checks do not prove persistence. Delays beyond the
+roughly 60-second margin can restart the window. No on-chain grace exists.
+Gaps, observed threshold re-entry, opposite-side threshold crossing,
 LP/configuration changes and successfully recorded faults invalidate old evidence.
-Normal healthy feed rounds do not reset it. The existing deliberate width-change
+Normal healthy feed rounds do not reset it. The deliberate width/mode/active residual-geometry
 exception still requires raw cooldown/price eligibility, but bypasses this timer.
 
 `needsRebalance` remains raw candidacy so compound yields while confirmation is
@@ -197,14 +205,14 @@ The separate opt-in automatic-selection source capability is limited to
 governance-approved +/-25% and +/-50%
 presets in ZZZ-price-in-ETH orientation. The on-chain rule chooses the width from
 reviewed displacement thresholds and cadence; the keeper supplies no arbitrary
-width. It is not the manual-width policy2 keeper's enabled scheduling mode.
+width. It is not the manual-width policy3 keeper's enabled scheduling mode; leave it disabled.
 Selection only updates desired configuration; a separately confirmed
 guarded rebalance applies physical ticks. Cooldown, pending-tick mismatch and
 configuration fingerprints still constrain it. See [range operations](RANGE_POLICY_UPDATES.md).
 
 ### Standalone compounding gives range maintenance priority
 
-Fresh maintenance policy2 Budget capability3 permits a standalone compound only after
+Fresh maintenance policy3 Budget capability4 permits a standalone compound only after
 `max(lastCompound, lastRebalance) + compoundInterval(poolId)`, including
 after LP creation and for jobs with no swap. It also waits if a rebalance is
 eligible or the preapproved adaptive-range rule already has a nonzero target.
@@ -217,11 +225,13 @@ and guarded user contributions remain independent. A contribution can release
 old designated compound into incumbent idle, but may not swap or deploy it;
 guarded compounding can use it later, including without new fees. Historical
 accounting1/2/3 keeps capability1 semantics. Fresh keeper jobs must pin and verify
-Budget capability3 before trusting `compoundReady`, even for reserve-only work.
-Explicit historical accounting4/helper2 retains its old shared interval. New compound
-interval defaults3600seconds and is governed600seconds-7days independently of
-rebalance. Policy2 rebalance uses actual physical range exit or an operator width
-change after the configured hard minimum. [Scope](../reports/maintenance-policy-20261027/VERIFICATION.md).
+Budget capability4 before trusting `compoundReady`, even for reserve-only work.
+Historical profiles retain their original shared/separate interval semantics.
+The current compound interval defaults3600 seconds and is governed600 seconds-7 days
+independently of rebalance. Policy3 uses the 85% price-distance condition or explicit
+operator width/mode/active geometry after the hard minimum. Service compound
+waits at that physical threshold or a pending change, including during cooldown;
+independent harvest continues. [Current scope](../reports/optional-portfolio-20261030/VERIFICATION.md).
 An eligible adaptive policy with its local range job disabled can defer compound;
 review the policy/job instead of forcing reinvestment past it.
 
@@ -232,7 +242,7 @@ hard maximum 1,000), principal and attributed idle at fresh initial prices
 **before harvest**. It adds exact released compound, closes/balances/mints and
 requires final LP plus idle to retain at least
 `startingValue - floor(startingValue * L / 10000)` at that same initial
-price/decimal vector. The 5% idle ceiling and every per-step guard remain.
+price/decimal vector. The captured maintenance idle ceiling(default5%, governed0–40%) and every per-step guard remain.
 New fee receipts, claim balances, buyback funds and donations cannot cover a
 deficit. Failure rolls back the operation, including its harvesting; gas is spent.
 A callback or later policy edit cannot weaken the captured operation.
@@ -249,7 +259,7 @@ is a terminal operation with reviewed raw minima, not another rebalance budget.
 ## Current value, metadata and frontend
 
 For each NFT: `floor(bucket NAV * NFT shares / bucket total shares)`. NAV includes
-current deployed token amounts, attributed idle and designated compound reserves.
+both current physical legs’ token amounts, attributed idle and designated compound reserves.
 It excludes claimable LP fees, royalties, buyback reserves and unallocated gifts.
 The `contributionUSD` counter is historical gross input, never current LP value.
 Current value is an oracle mark, not an executable redemption quote: holders
@@ -262,10 +272,10 @@ operations are disabled. Parked custody and dependency failures
 stay unavailable, not zero or an invented historical price. Activation and its
 royalty weight persist through falling value and unavailable valuation.
 
-Fresh accounting4/custody3 uses canonical
-`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. After a bucket closes for holder return,
+Fresh accounting6/custody4 uses canonical
+`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. After a bucket closes for holder return,
 Exited5 reports confirmed zero LP and terminal `lp_exited`/`LP exited`, while
-retaining royalty eligibility. Pending5%compound joins returned principal;
+retaining royalty eligibility. Pending 5% compound joins returned principal;
 earned LP/royalties, buyback reserves and unrelated funds do not. Principal
 allocations/payouts are never added to earnings or reward claim totals. All new
 mint/LP work and canonical replacement remain blocked once exit starts, even
@@ -291,8 +301,8 @@ contract safeguards still pass. Do not claim an on-chain stale-position veto.
 
 The separate popldemo website remains a labelled simulation with example amounts,
 Number-based demo IDs and no live dependency on this API. Served poplint uses
-the [unconfigured current3 profile](CURRENT_WEBSITE_PROFILE.md), not fresh4.
-Fresh4 live integration must
+the [unconfigured current3 profile](CURRENT_WEBSITE_PROFILE.md), not fresh6.
+Fresh6 live integration must
 use decimal-string IDs/amounts, canonical block provenance, current marked NAV,
 separate LP/royalty claim balances, full lifetime claims and unavailable states.
 An indexer `Rebalanced` event invalidates cached position identity; events alone

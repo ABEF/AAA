@@ -15,7 +15,7 @@ observation, not a cryptographic proof that no event was omitted.
 
 Use the reviewed schema-2 API configuration with `history`, `earnings_history`
 and every required same-chain predecessor. Fresh deployments explicitly select
-accounting4/fee-intake1/canonical V5; each predecessor must use the same profile.
+accounting4/fee-intake1/canonical V6; each predecessor must use the same profile.
 Explicit historical accounting3/V4 remains separate and similarly requires its
 own compatible predecessors. A config version does not upgrade old deployments.
 The constructor verifies that each earnings profile has all seven emitters.

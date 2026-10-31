@@ -2,16 +2,16 @@
 
 Sealing fixes core implementations, bindings and the one ZZZ identity. Immediate
 governance can change supported policy within guards, not rewrite NFT rights.
-The fresh source is [accounting4/custody3/canonical V5](POSITION_V4.md), undeployed
+The fresh source is [accounting6/custody4/portfolio2/canonical V6](POSITION_V6.md), undeployed
 and **NOT APPROVED**. The [sole Todo](../TODO.md#task-post-seal-configuration)
 owns qualification; the [operator manual](OPERATOR_MANUAL.md) owns exact procedures.
 
 Fresh execution-quality1 additionally permits governance to set the Strategy-owned
-additional oracle-relative loss limit after known core fees, initial1% and bounded
+additional oracle-relative loss limit after known core fees, initial 1% and bounded
 0-10%. Gross venue, captured operation and caller floors remain independent;
 separate reward converters retain their own all-in policy. [Exact controls](EXECUTION_QUALITY.md).
 
-Fresh confirmation2/emergency1 adds two post-seal controls: reviewed
+Fresh confirmation3/emergency2 retains two post-seal controls: reviewed
 `setRequireReferenceExit` (sample-invalidating policy change) and a separate
 paused-governance manual rebalance with explicitly optional financial guards.
 This is a governance trust expansion, never a keeper fallback or a way to reopen
@@ -21,18 +21,19 @@ terminal LP exit. [Complete procedure and risk](EMERGENCY_REBALANCE.md).
 
 | Category | What remains configurable | Limit |
 | --- | --- | --- |
-| Governance | Direct governance wallet and proposal/acceptance handover, without delay. | No generic executor/timelock; guardian/keeper and immutable mint recipient do not rotate automatically. Lost governance has no hidden administrator rescue. |
-| Routine LP operation | Roles, pause, supported manual range/orientation, hard rebalance interval and operating ceilings. Policy2 uses actual outside ticks or explicit range change; the legacy movement field does not trigger replacement. | Applies only before `lpExitStarted`. Initial intended interval12hours remains governable. Ordinary unpause cannot undo collective exit. |
-| Compound cadence | Budget3 `setCompoundInterval(poolId,seconds)`, default3600 and governed600seconds-7days. | Independent interval; no clock/backing rewrite or compound postponement of due rebalance. |
-| Sampled confirmation | Fixed Strategy helper `configure(seconds,gap,reviewHash)`; selected900/300, duration60seconds-7days, gap0(stopped) or at most half duration. | Source checks240seconds; on-chain maximum gap300 stays strict. Longer delays restart. Manual width exception keeps cooldown. No continuous-history proof. [Procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation). |
+| Governance | Direct governance wallet and proposal/acceptance handover, without delay. | No generic executor/timelock; guardian/keeper and separately accepted future mint recipient do not rotate automatically. Lost governance has no hidden administrator rescue. |
+| Routine LP operation | Roles, pause, supported manual range/orientation, hard rebalance interval and operating ceilings. Policy3 uses the 85% physical/reference price-distance threshold or deliberate width/mode/active geometry change; the legacy movement field does not trigger replacement. | Applies only before `lpExitStarted`. Initial intended interval12 hours remains governable. Ordinary unpause cannot undo collective exit. |
+| Compound cadence | Budget4 `setCompoundInterval(poolId,seconds)`, default 3600 and governed600 seconds-7 days. | Independent interval; no clock/backing rewrite or compound postponement of due rebalance. |
+| Sampled confirmation | Fixed Strategy helper `configure(seconds,gap,reviewHash)`; selected600/300, duration60 seconds-7 days, gap 0(stopped) or at most half duration. | Source checks240 seconds; on-chain maximum gap 300 stays strict. Longer delays restart. Manual width/mode/active geometry exception keeps cooldown. No continuous-history proof. [Procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation). |
+| Portfolio policy | `PortfolioPolicy.setMode`, `setTriggerBps` and `configureResidualSide` with review hashes; default one main, optional at most one residual in the same pool. Residual side defaults5000 (half); reviewed10000 selects full-side width. | Mode/active geometry changes apply after hard cooldown; flip-and-restore remains pending. Trigger-only/unused residual changes invalidate reviews without forcing replacement. Pool-specific main floor6000–9999bps (default6000), complementary residual maximum, configured positive tick-spacing gap and separate captured maintenance idle cap0–4000bps (default500). Active main and stronger financial checks remain. |
 | Inputs | Enable/disable/re-enable native ETH and the fixed ZZZ with reviewed append-only source policies. | No third input or post-seal replacement ZZZ. Source, Buyback and settlement identities must match before seal. |
 | LP pools | Admit initialized pinned static hookless native ETH/fixedZZZ fee tiers; one contribution pool at a time. | No generic ERC20/WETH LP admission or arbitrary different-pair movement. Movement and deposit/route cutover are separate actions. |
-| LP swap selection | LP routing1 helper's complete reviewed list of0-4 admitted ETH/ZZZ pools, solver4-12 iterations/100000-300000quote gas (defaults8/200000), and Registry venue slippage1-1000bps. | Empty list disables swaps with no target fallback. Tighter target/venue, caller and captured loss/price guards remain. Configuration is not LP movement or an automatic operating-limit increase. |
+| LP swap selection | LP routing2 helper's complete reviewed list of 0-4 admitted ETH/ZZZ pools, solver4-12 iterations/100000-300000quote gas (defaults8/200000), and Registry venue slippage1-1000bps. | Empty list disables swaps with no target fallback. Tighter target/venue, caller and captured loss/price guards remain. Configuration is not LP movement or an automatic operating-limit increase. |
 | Conversion venues | Reviewed typed single-hop v3/v4 routes for contributions or already-earned LP/royalty balances. | Conversion admission does not add an LP currency or input. Explicit wrapper-dependent routes still need wrapper qualification. |
-| Pricing | Reviewed two-source USD policies, source runtimes/independence, ages and0-500bps agreement setting; selected tolerance300bps. Governed sequencer-source replacement. | Both feeds must pass; no peg/spot/missing-source fallback. Captured operation prices/policy cannot be replaced mid-call. |
-| Loss policy | Contribution2%, conversion1%, maintenance3% defaults, each governance ceiling10%; separate converter settings. | Stronger caller/venue minima and separate gas remain. Raw collective principal return uses raw minima, not a3% USD guarantee. |
-| Randomness requests | Future confirmations3-200 and callback gas200,000-10,000,000 via `setRandomnessRequestSettings`. | Coordinator, key/lane, subscription and payment mode fixed; no reroll/repair of old requests. Actual provider bounds may be narrower. |
-| Buyback | `setOperatingTradeUSD` from zero through immutable `maxTradeUSD`; zero stops buys before price/reserve reads. | Fixed ZZZ target; no administrator withdrawal of reserves or automatic keeper salary. |
+| Pricing | Reviewed two-source USD policies, source runtimes/independence, ages and 0-500bps agreement setting; selected tolerance300bps. Governed sequencer-source replacement. | Both feeds must pass; no peg/spot/missing-source fallback. Captured operation prices/policy cannot be replaced mid-call. |
+| Loss policy | Contribution 2%, conversion 1%, maintenance 3% defaults, each governance ceiling 10%; separate converter settings. | Stronger caller/venue minima and separate gas remain. Raw collective principal return uses raw minima, not a 3% USD guarantee. |
+| Randomness requests | Future confirmations3-200 and callback gas200,000-10,000,000 via `setRandomnessRequestSettings`. | ProtocolPolicy permits planned coordinator/lane/subscription/payment rotation only after all old draws finalize; no pending reroll/repair/retargeting. Actual provider bounds may be narrower. |
+| Buyback | `setOperatingTradeUSD` from zero through reviewed `maxTradeUSD`, whose positive uint128 USD18 bound governance can change separately; zero stops buys before price/reserve reads. | Fixed ZZZ target; no administrator withdrawal of reserves or automatic keeper salary. |
 | Royalties | Admit reviewed marketplace currencies and configure guarded conversion. | Actual received receipts and original per-NFT rights remain; no external royalty-custody exit/drain. |
 | Services | Qualified RPC/hosting/API/keeper settings with preserved deployment and pending records. | A config edit does not change deployed code, safely migrate a journal or qualify a new source profile. |
 
@@ -44,7 +45,7 @@ routes, VRF, authorities or services. Historical
 its own source scope.
 
 The selected pool's observed approximately1.101% swap fee cannot qualify a
-full-balance ZZZ conversion at the default1% ceiling at reference prices. Require
+full-balance ZZZ conversion at the default 1% ceiling at reference prices. Require
 a cheaper reviewed route or leave balances backed and report unavailable. Do not
 silently widen policy or use spot to manufacture independent valuation.
 
@@ -59,18 +60,19 @@ remain classified separately; future NFT royalties continue.
 There is no chosen custody recipient, all-ZZZ exit, full-balance royalty drain,
 external return/completion ingress, bridge or generic sweep. Failed recipient
 payouts remain backed and can use current-owner fallback. Same-chain canonical
-replacement is available only before LP exit starts; its V5 importer cannot
+replacement is available only before LP exit starts; its V6 importer cannot
 carry terminal holder-principal accounting or reopen an exited deployment.
 
 ## Native implementation and profile qualification
 
 Native ETH remains the actual zero currency through LP, fees, principal and
 payouts. Only explicit conversion routes may use WETH. Current services/inventory
-must select accounting4, custody3, fee1, governance2, pricing2, routing2, reviewed
-Entry1 and exact holder-exit V5 schema/runtime/parent pins. Position length alone
+must select accounting6, custody4, portfolio2, maintenance3, confirmation3,
+compound4, LP routing2, fee1, governance2, pricing2, Entry routing2/reviewed Entry2
+and exact adaptable-policy V6 schema/runtime/parent pins. Inventory is schema8/21 helpers. Position length alone
 does not identify a profile. Historical accounting1/2/3 deployments and journals
 keep their own meanings. The served accounting3 poplint artifact is not a
-qualified accounting4 integration; public deployment stays null and browser
+qualified accounting6 integration; public deployment stays null and browser
 signing remains Anvil-only.
 
 [Dual-source prices and actual LP](PRICE_SECURITY.md) are implemented, but actual
@@ -98,7 +100,7 @@ At the end of an authorized disposable campaign:
 1. Stop new mints/contributions; reconcile pending transactions and preserve journals.
 2. If appropriate, govern the irreversible collective exit, close buckets,
    apportion actual ETH/ZZZ and distribute to current test NFT owners. There is
-   no custody-wallet shortcut, withdrawal reset or3% promise on raw return.
+   no custody-wallet shortcut, withdrawal reset or 3% promise on raw return.
 3. Claim earned rewards as current owners; account separately for pending
    principal, royalties, buyback reserve, rounding dust, mint proceeds and gas.
    Compounding belongs in returned principal, not an administrator sweep.

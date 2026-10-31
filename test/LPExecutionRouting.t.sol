@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {PoolManager} from "@uniswap/v4-core/src/PoolManager.sol";
@@ -55,14 +58,14 @@ contract LPExecutionRoutingTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000); vm.deal(address(this),10_000_000 ether);
-        access = new MockAccess(); token = new FactualToken(); token.mint(address(this),10_000_000 ether);
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); token = new FactualToken(); token.mint(address(this),10_000_000 ether);
         core = new PoolManager(address(this)); state = new StateView(IPoolManager(address(core)));
         FactualPermit permit = new FactualPermit();
         positions = new PositionManager(IPoolManager(address(core)),IAllowanceTransfer(address(permit)),100000,
             IPositionDescriptor(address(0)),IWETH9(address(0)));
-        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit));
+        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
         router = manager.balancingRouter();
-        oracle = new ZZZOracle(address(access),address(0)); strategy = new ZZZStrategy(address(access));
+        oracle = new ZZZOracle(address(access),address(0)); strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         registry = new ExecutionPools(); first = new MockFeed(8,1e8); second = new MockFeed(8,1e8);
         access.bind(Ids.VAULT,address(this)); access.bind(Ids.LIQUIDITY,address(manager));
         access.bind(Ids.ORACLE,address(oracle)); access.bind(Ids.STRATEGY,address(strategy)); access.bind(Ids.POOLS,address(registry));
@@ -77,7 +80,7 @@ contract LPExecutionRoutingTest is Test {
         _external(targetKey,1_000_000 ether); _external(alternateKey,1_000_000 ether);
         access.seal(); _catalog(true,true);
         vm.deal(address(manager),PREFUND); token.mint(address(manager),PREFUND);
-        token.approve(address(manager),type(uint128).max);
+        token.approve(address(manager),type(uint128).max); token.approve(manager.positionOperator(), type(uint128).max);
     }
     function _feeds(address asset) private {
         oracle.setDualFeed(asset,
@@ -161,7 +164,7 @@ contract LPExecutionRoutingTest is Test {
         uint256 a0=SqrtPriceMath.getAmount0Delta(q,TickMath.getSqrtPriceAtTick(upper),1e20,true);
         uint256 a1=SqrtPriceMath.getAmount1Delta(TickMath.getSqrtPriceAtTick(lower),q,1e20,true);
         (uint256 id,,)=manager.mint{value:a0}(target,lower,upper,a0,a1,1,block.timestamp+100);
-        assertGt(state.getLiquidity(PoolId.wrap(target)),0); positions.approve(address(manager),id);
+        assertGt(state.getLiquidity(PoolId.wrap(target)),0); positions.approve(manager.positionOperator(),id);
         manager.close(target,id,block.timestamp+100);
         assertEq(state.getLiquidity(PoolId.wrap(target)),0,"removed own LP cannot fund replacement swap");
         assertEq(_plan(100 ether,0).poolId,alternate); _assertPrefunds();

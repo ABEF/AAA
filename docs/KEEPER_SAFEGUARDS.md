@@ -1,9 +1,13 @@
 # Keeper safeguards
 
-Reviewed 2026-10-28 against the [two-day reviewed candidate](../reports/two-day-audit-20261028/VERIFICATION.md) (LP implementation `1cabb85`): accounting4, Strategy maintenance2,
-Budget compound3 and LP routing1. The later [execution-quality1 review](../reports/fee-impact-policy-20261028/REVIEW.md)
-adds an independent fee-aware floor; it does not relabel earlier evidence or
-deployments. Entry source-routing2 is a separate capability.
+Fresh [accounting6 / portfolio2](POSITION_V6.md) source: Strategy maintenance3,
+confirmation3, Budget compound4, LP routing2, custody4 and emergency2. The
+[current source review](../reports/optional-portfolio-20261030/REVIEW.md) and
+[verification record](../reports/residual-operations-20261031/VERIFICATION.md)
+record passing normal gates, scoped offline checks and local actual-v4-core
+integration, with explicit external mocks and live operating/dependency limits.
+Earlier routing/timing evidence retains its original source scope.
+Entry source-routing2 and execution-quality1 are separate capabilities.
 **Undeployed candidate; production NOT APPROVED.** This inventory describes
 implemented protections, not installed service settings or an independent audit.
 
@@ -18,8 +22,9 @@ Use the [operator manual](OPERATOR_MANUAL.md) for exact calls and stop/recovery,
 This file is explanatory documentation, not another task ledger.
 
 Current [keeper coordination](KEEPER_COORDINATION.md) adds a service-only wait
-for an actual in-range LP with no pending operator width change, including during
-rebalance cooldown. The contract's existing eligibility/financial checks remain.
+when the main reaches its 85% price-distance threshold or an operator
+width/mode/active geometry change is pending, including during rebalance cooldown. An
+outside-range main also waits. The contract's eligibility/financial checks remain.
 Canonical own successful internal harvests coalesce the local hourly clock only
 with verified Vault event proof. The new policy helper is included in local
 source fingerprints; matching worker/checker rollout is required. These file
@@ -35,6 +40,8 @@ read-only operation report does not sign, mutate journals or approve execution.
 - **Fixed assets.** Principal uses native ETH and the deployment’s fixed ZZZ token; the keeper cannot substitute another token or burn target.
 - **Restricted venues.** LP execution supports admitted, static-fee, hookless ETH/ZZZ v4 pools with checked contract identities and wiring.
 - **Shared LP management.** Maintenance operates per shared bucket, avoiding 1,000 separate NFT rebalances.
+- **Bounded portfolio.** Default one main; optional one main plus one residual in the same ETH/ZZZ pool. Both are Vault-owned. Filled residuals remain accounted until a whole adjustment; no third position or indefinite stacking exists.
+- **Typed fixed companions.** Separately deployed Budget, Balancer and Strategy helpers resolve their sealed parent with reciprocal binding. The fixed physical position executor and arithmetic child expose narrow typed operations, not a generic executor or another human role. Schema8 checks the complete 20-helper graph.
 - **No principal sweep or external custody recipient.** Routine maintenance cannot send everyone’s liquidity to an arbitrary address.
 
 ## 2. Deterministic routing and swap execution
@@ -44,6 +51,7 @@ read-only operation report does not sign, mutate journals or approve execution.
 - **Post-removal depth.** Rebalance quotes happen after closing our old LP, so the calculation cannot rely on liquidity we just removed.
 - **Actual-size quotes.** Quotes account for directional fees, liquidity across ticks, price impact and the resulting LP ratio.
 - **Independent valuation.** Candidates are compared by useful deployed value using the same independent price vector—not headline fees, displayed TVL or raw liquidity units.
+- **Mode-specific objective.** Single-main routing maximizes sampled useful deployment. Optional hybrid routing seeks the smallest qualifying sampled swap that supports the main-value floor; it does not force a fixed residual allocation or promise a global optimum.
 - **Contract-calculated direction and amount.** For LP balancing, the keeper cannot simply choose an unfavorable swap size, direction or route.
 - **Quote/execution matching.** Actual output and post-swap price must match the selected quote.
 - **Zero or one actual balancing swap.** The former second fee-bearing correction is removed.
@@ -66,7 +74,7 @@ These controls provide the best sampled valid result among the reviewed candidat
 - **Actual pool-state validation.** Price, tick, fee and physical-range observations must be consistent, including legitimate boundary ticks.
 - **Conservative valuation.** Upper input prices and lower output/LP prices make execution floors harder to satisfy.
 - **Captured valuations.** Maintenance measures retained value against its starting price vector; repricing cannot simply conceal execution loss.
-- **Fee-aware additional-loss floor.** Current directional LP/protocol fees are separated from a default1% additional oracle-relative allowance. Conservative output bounds supplement existing gross/aggregate/caller limits; known fees remain costs under those limits. Spread, source uncertainty and rounding also consume the allowance, so it is not isolated AMM impact.
+- **Fee-aware additional-loss floor.** Current directional LP/protocol fees are separated from a default 1% additional oracle-relative allowance. Conservative output bounds supplement existing gross/aggregate/caller limits; known fees remain costs under those limits. Spread, source uncertainty and rounding also consume the allowance, so it is not isolated AMM impact.
 
 Two different feed addresses or matching answers alone do not prove independence. [Price-security rules](PRICE_SECURITY.md).
 
@@ -83,12 +91,14 @@ These are distinct protections; increasing one does not remove the others.
 | Venue slippage | Governed 1–1,000 bps; balancing uses the tighter target/selected-venue value |
 | Additional execution loss after known fees | 1% default; Strategy governs 0–1,000 bps with a nonzero review hash; existing all-in limits remain |
 | Spot/reference deviation | Governed 1–500 bps, separate from source agreement |
-| Final idle ceiling | 5%, with positive deployed LP required |
+| Final idle ceiling | Captured entry/maintenance policy, default5%, governed0–40%; positive deployed LP and stronger marginal/main floors remain |
+| Optional portfolio allocation | After ordinary hybrid replacement, actual main value at least 60% and residual at most 40% of retained principal, including idle, at captured starting prices. The configured main floor is6000–9999bps(default6000), with complementary residual ceiling. These are post-adjustment guards, not continuous ratios or entrant splits. |
+| Active replacement main | Actual stored pool tick must be inside the newly minted main; a marked-value pass cannot authorize an inactive main. Failure rolls back both legs and accounting. |
 | Caller protection | Minimum LP/output amounts remain enforced |
 | Contract deadline | No more than 10 minutes ahead |
 | Solver | Default 8 iterations, governed 4–12 |
 | Quote gas | Default 200,000, governed 100,000–300,000 per attempt |
-| Contribution minimums | $100 activation / $5 growth, subject to stronger pool minimums |
+| Contribution minimums | Defaults$100 activation/$5growth; ProtocolPolicy governs future minima>=1USD, growth<=activation, subject to stronger pool minima |
 | NFT contribution ceiling | Governed cumulative per-NFT maximum; intended setting $1 million |
 
 Network gas is separate. Operating limits are not automatically increased after failure.
@@ -96,30 +106,32 @@ Network gas is separate. Operating limits are not automatically increased after 
 
 ## 5. Rebalance timing and unnecessary-turnover prevention
 
-- **Outside-only ordinary rebalancing.** A 1% price movement or imperfect centring no longer authorizes replacement.
+- **85% price-distance trigger.** The main and normally the independent reference must cross the same side of 85% of the actual centre-to-main-boundary ZZZ-in-ETH price distance. Ideal ±50% bounds trigger at ±42.5%; the main may still be active. A 1% movement or imperfect centring is insufficient.
 - **Hard configured cooldown.** The selected initial interval is 12 hours, even if liquidity leaves range earlier.
 - **Governance-controlled interval.** Supported bounds remain 10 minutes–7 days.
-- **Operator-directed range changes.** Your deliberate width change can apply after cooldown while the old LP remains in range; the keeper cannot invent that request.
+- **Operator-directed configuration.** Deliberate width, mode or active residual-geometry changes can apply after cooldown while the old main remains in range. Trigger-only changes do not create that exception. Monotonic geometry revisions prevent mode flip-and-restore from silently cancelling replacement.
 - **Manual range selection.** The chosen operating policy uses your ±25%/±50% selection, with automatic selection disabled.
 - **Separate compound clock.** Default one hour after the later of the last compound or LP replacement.
 - **Rebalance priority.** Compounding yields to eligible rebalancing and cannot reset or postpone the rebalance clock.
-- **Persistent 1–10-minute jitter.** The service draws and saves one random delay; restarting, harvesting or topping up does not redraw it.
-- **Four-minute eligible checks with confirmation2.** After cooldown, the fresh worker samples every240seconds inside/outside; historical policy2 keeps hourly inside checks. Receipt handling and independent harvest remain separate.
-- **Fresh eligibility rechecks.** Ordinary scheduled work is cancelled if liquidity returns inside before submission.
+- **Persistent 1–5-minute jitter.** The service draws and saves one OS-random delay, excluding the previous chosen delay for that bucket. Restart, harvest and top-up do not redraw it; values are not guaranteed unique forever.
+- **Four-minute raw checks.** Fresh source checks the threshold during cooldown too. Paid ordinary observations start at cooldown minus duration minus maximum gap, initially the final 15 minutes, rather than writing through all 12 hours. Pending recovery/foreign clears/fault resets retain priority.
+- **Fresh eligibility rechecks.** Return inside the threshold, side reversal, policy/physical identity change or relevant fault invalidates the ordinary candidate and queued delay.
 - **Independent hourly harvesting.** Harvesting performs no swaps. `Vault.collectFees` is permissionless, but cannot initiate rebalancing or spend principal.
 - Claims trigger neither compounding nor buybacks.
 - **Currency-specific compound thresholds.** ETH and ZZZ are checked separately rather than adding incompatible raw units or continually chasing tiny dust.
 
 [Current timing policy](LP_EXECUTION_POLICY.md).
 
-Fresh confirmation2 enforces15-minute sampled confirmation with selected strict
-maximum gap300seconds, restarting on observed failure, side/LP/policy change or
-staleness. Constructor gap0 blocks ordinary readiness until reviewed configuration.
+Fresh confirmation3 enforces a ten-minute minimum sampled confirmation with selected strict
+maximum gap 300 seconds, restarting on observed failure, side/LP/policy change or
+staleness. Constructor gap0 blocks the sampled market path until reviewed configuration;
+deliberate geometry changes retain their raw/cooldown exception. This setting
+is not a universal execution pause.
 Budget gates execution and rechecks stable controls across the whole operation.
 Matching worker records/clears observations with canonical receipts and keeps
 samples fresh during post-ready jitter. Hidden moves between observations and
-publicly visible pending upkeep remain limitations. Source checks every240seconds
-leave roughly60seconds before the strict300-second maximum gap; larger delays
+publicly visible pending upkeep remain limitations. Source checks every 240 seconds
+leave roughly 60 seconds before the strict 300-second maximum gap; larger delays
 can still restart. No uninterrupted-price or MEV guarantee.
 Relevant raw bucket/pool faults invalidate that bucket; initial global
 lifecycle/authority/head faults mark only known fresh windows. Every foreign
@@ -159,7 +171,7 @@ while the live caller uses existing durable resets. [Coordination](KEEPER_COORDI
 - **Actual burn verification.** Checks both the ZZZ balance decrease and total-supply reduction.
 - **Fixed-ledger conversions.** Approved routes convert only authorized earned balances and return ETH to the same accounting domain.
 - **Exact receipts and minimum outputs.** Conversion cannot replace missing proceeds with another reserve.
-- **Manager buyback floor.** Direct Manager swaps also enforce the fee-aware quality minimum and retain a positive caller minimum. Separate V3/V4 LP-reward/royalty converters retain their existing all-in conversion limit (default1%); the new additional-loss cap does not apply to them.
+- **Manager buyback floor.** Direct Manager swaps also enforce the fee-aware quality minimum and retain a positive caller minimum. Separate V3/V4 LP-reward/royalty converters retain their existing all-in conversion limit (default 1%); the new additional-loss cap does not apply to them.
 
 Buyback routing remains separate: the keeper chooses a permitted amount,
 admitted pool and execution time, subject to the output guards above. LP venue
@@ -173,7 +185,7 @@ These protect the automated service; they are not substitutes for contract guard
 - Chain, signer, contract-code, module-binding and capability checks.
 - Canonical-block observations and fresh-head validation.
 - Explicit quality1 capability checks on Manager, Balancer and actual Strategy, including same-block policy-owner/quality-revision validation and forwarded-cap agreement. API reviews and confirmed keeper health expose the metadata. Historical absent/zero configurations retain their old ABI reads. Reviews do not freeze quality policy until inclusion; signed caller loss limits remain binding.
-- Explicit confirmation1/2 policy preflight/health checks actual helper/Budget runtimes, versions and bindings even in cooldown with compounding disabled. Its latest canonical policy-only anchor reads no prices or bucket condition and proves neither readiness nor continuous history. Local source hashes identify files, not an attested running binary.
+- Explicit matching confirmation capability preflight/health checks actual helper/Budget/policy runtimes, versions and bindings even in cooldown with compounding disabled. Fresh profile6 also checks both physical legs and the complete helper graph. Its latest canonical policy-only anchor reads no prices or bucket condition and proves neither readiness nor continuous history. Local source hashes identify files, not an attested running binary.
 - Explicit `stopped`/`incompatible_cadence`/`unavailable` health states; retained older evidence stays stale. Active-principal policy faults preserve the prior last-success time and increment failures while independent harvest remains available. Terminal LP exit makes intentional stop/cadence informational, with real bindings and freshness still enforced.
 - Exact transaction simulation before signing.
 - Gas-limit, gas-price, per-transaction and daily spending ceilings.
@@ -208,8 +220,8 @@ These protect the automated service; they are not substitutes for contract guard
 - Governed parking or collective holder return provides recovery without forcing an unacceptable swap.
 - Emergency recovery retains authorization, actual backing, raw minima and protected destinations.
 
-Fresh confirmation2 requires physical and independent reference exit on the
-same side. Governed relaxation invalidates samples. Automatic keeper-width
+Fresh confirmation3 requires physical and independent reference crossing of the
+same 85% threshold side. Governed relaxation invalidates samples. Automatic keeper-width
 policies and enabled reference-exit protection are mutually exclusive; deliberate
 governance width changes retain their exception. An observed mismatch forces a
 durable clear before renewal. This is sampled evidence, not an independent-market
@@ -241,6 +253,8 @@ separately confirmed approval is not reverted by a later failed contribution.
 - [Strategy](../src/ZZZStrategy.sol), [LPBalancer](../src/ZZZLPBalancer.sol),
   [LiquidityManager](../src/ZZZLiquidityManager.sol), [Vault](../src/ZZZVault.sol),
   [Budget](../src/ZZZMigrationBudget.sol) and [Oracle](../src/ZZZOracle.sol).
+- [Portfolio policy](../src/ZZZPortfolioPolicy.sol), [confirmation](../src/ZZZRebalanceConfirmation.sol),
+  [physical executor](../src/ZZZLPPositionExecutor.sol) and [arithmetic child](../src/ZZZLPBalanceMath.sol).
 - [Buyback](../src/ZZZBuyback.sol), [conversion guards](../src/base/ZZZRewardConverter.sol),
   [keeper](../keeper/monitor.py), [RPC](../zzz_ops/rpc.py) and [journal](../zzz_ops/state.py).
 - [Atomic routing review/verification](../reports/atomic-routing-20261028/VERIFICATION.md),
@@ -254,3 +268,15 @@ separately confirmed approval is not reverted by a later failed contribution.
 Update this inventory when authority, execution, accounting, pricing, limits,
 scheduling or recovery behavior changes; update the owning procedure and evidence
 in the same change under [documentation maintenance](TODO_WORKFLOW.md).
+
+## Manual residual management boundary
+
+`Migration.closeResidual` is paused governance work, not a new keeper capability
+or an automatic failed-swap fallback. It closes only the associated residual,
+allocates harvested fees separately and preserves main/shares/clock/policy.
+Post-callback main/control/pause/nonce checks and raw minima remain mandatory.
+No principal leaves Vault. [Operator procedure](OPERATOR_MANUAL.md#portfolio-management-controls).
+Shared terminal-lock checks are privately deduplicated with identical pre/post
+semantics; [current source evidence](../reports/residual-operations-20261031/VERIFICATION.md)
+is separate from the earlier portfolio build. Reconcile manual transactions and
+fresh physical observations before restarting a worker; never rewrite journals.

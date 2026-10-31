@@ -1,15 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import {IZZZAccess, IZZZVault, IZZZPools, IZZZMigration, IZZZNFT} from "./interfaces/IZZZ.sol";
+import {IZZZAccess, IZZZVault, IZZZPools, IZZZMigration, IZZZNFT, IZZZLiquidity} from "./interfaces/IZZZ.sol";
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
 import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 
 interface ICanonicalVaultState is IZZZVault {
+    function ACCOUNTING_VERSION() external view returns(uint256);
     function migrationBudget() external view returns (ZZZMigrationBudget);
-    function MINT_PRICE() external view returns (uint256);
+    function mintPrice() external view returns (uint256);
     function sequence() external view returns (uint256);
     function contributionUSD(uint256 id) external view returns (uint256);
     function totalIdle(address asset) external view returns (uint256);
@@ -17,6 +19,7 @@ interface ICanonicalVaultState is IZZZVault {
     function canonicalSend(address asset, address destination, uint256 amount) external;
     function canonicalBarrier() external;
 }
+interface ICanonicalPortfolio { function PORTFOLIO_VERSION() external view returns(uint256); }
 interface ICanonicalVaultNFT { function tokenAtOrdinal(uint256 ordinal) external view returns (uint256); }
 interface ICanonicalVaultRewards {
     function assetCount() external view returns (uint256);
@@ -47,11 +50,13 @@ contract ZZZVaultCanonical {
     error Unauthorized();
     error InvalidState();
     error InvalidAmount();
+    error InvalidConfiguration();
 
     constructor(address controller, address vaultController, uint256 chain) {
         access = IZZZAccess(controller);
         if (vaultController.code.length == 0 || IZZZAccess(controller).module(Ids.VAULT) != vaultController ||
-            chain == 0 || IZZZVault(vaultController).canonicalChainId() != chain) revert InvalidState();
+            chain == 0 || IZZZVault(vaultController).canonicalChainId() != chain ||
+            ICanonicalVaultState(vaultController).ACCOUNTING_VERSION() != 6) revert InvalidState();
         vault = ICanonicalVaultState(vaultController);
         originChain = chain;
         originVault = vaultController;
@@ -82,18 +87,43 @@ contract ZZZVaultCanonical {
         if (p.status != PositionStatus.Active ||
             IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        IZZZProtocolPolicy.EntryPolicy memory entry = IZZZProtocolPolicy(access.protocolPolicy()).entryPolicy();
         if (!c.depositsEnabled || inputTotal == 0 || minimumLiquidity == 0 ||
-            (activation && inputUSD < 100e18) || (!activation && inputUSD < 5e18) || inputUSD < c.minDepositUSD ||
+            inputUSD < (activation ? entry.minActivationUSD : entry.minGrowthUSD) || inputUSD < c.minDepositUSD ||
             vault.contributionUSD(id) + inputUSD > c.maxPositionUSD) revert InvalidAmount();
         return(c.key.currency0,c.key.currency1,c.maxSlippageBps);
+    }
+    /// @notice Read-only extraction of the same holder-exit guards previously
+    /// executed in Vault. Budget supplies the original module caller; this does
+    /// not authorize a destination, token transfer or canonical state change.
+    function validateHolderExit(uint256 id,address migrationCaller)
+        external view onlyBudget returns(address token0,address token1) {
+        if(!access.paused() || !access.lpExitStarted()) revert InvalidState();
+        Position memory p=vault.group(id);
+        if((p.status!=PositionStatus.Active && p.status!=PositionStatus.Parked) ||
+            vault.bucketTotalShares(id)==0) revert InvalidState();
+        PoolConfig memory c=IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        token0=c.key.currency0;token1=c.key.currency1;
+        if(token0!=address(0) || token1!=IZZZMigration(migrationCaller).currentZZZ()) revert InvalidConfiguration();
     }
     function mintIdentity(uint256 ordinal) external view returns (uint256) {
         return uint256(keccak256(abi.encode(originChain, originVault, ordinal)));
     }
-    function validateMint(uint256 value,uint256 ordinal) external view onlyVault returns (uint256) {
+    function mintPrice() external view returns(uint256) {
+        return IZZZProtocolPolicy(access.protocolPolicy()).salePolicy().mintPrice;
+    }
+    function mintProceedsRecipient() external view returns(address) {
+        return IZZZProtocolPolicy(access.protocolPolicy()).salePolicy().recipient;
+    }
+    function mintPolicyFingerprint() external view returns(bytes32) {
+        return IZZZProtocolPolicy(access.protocolPolicy()).mintFingerprint();
+    }
+    function validateMint(uint256 value,uint256 ordinal,bytes32 expectedPolicy) external view onlyVault returns (uint256,address) {
         if (block.chainid != vault.canonicalChainId()) revert InvalidState();
-        if (value != vault.MINT_PRICE()) revert InvalidAmount();
-        return uint256(keccak256(abi.encode(originChain,originVault,ordinal)));
+        IZZZProtocolPolicy policy = IZZZProtocolPolicy(access.protocolPolicy());
+        IZZZProtocolPolicy.SalePolicy memory sale = policy.salePolicy();
+        if(value != sale.mintPrice || expectedPolicy == bytes32(0) || expectedPolicy != policy.mintFingerprint()) revert InvalidAmount();
+        return (uint256(keccak256(abi.encode(originChain,originVault,ordinal))),sale.recipient);
     }
     function bucketIdentity(bytes32 pool) external view returns (uint256) {
         return uint256(keccak256(abi.encode(originChain, originVault, pool)));
@@ -106,6 +136,7 @@ contract ZZZVaultCanonical {
     function canonicalCapture() external onlyHandoff {
         if (IZZZCanonicalAccess(address(access)).canonicalState() != 1) revert InvalidState();
         vault.canonicalBarrier();
+        _closedPortfolio();
         // A proved abort may be followed by a fresh freeze. Only snapshot caches
         // reset; ordinary shares, reservations and principal remain untouched.
         bool reset = captured || imported;
@@ -163,6 +194,7 @@ contract ZZZVaultCanonical {
     function canonicalImport(uint256 row, bytes calldata record) external onlyHandoff {
         if (IZZZCanonicalAccess(address(access)).canonicalState() != 2 || row != cursor++) revert InvalidState();
         if (row == 0) {
+            _closedPortfolio();
             if (record.length != 192) revert InvalidState();
             if (vault.sequence() != 0 || vault.bucketCount() != 0 || aliases.length != 0) revert InvalidState();
             uint256 assetCount;
@@ -181,12 +213,13 @@ contract ZZZVaultCanonical {
             (uint256 id, Position memory p, uint256 shares, bytes32 homePool, uint64 epoch) =
                 abi.decode(record, (uint256,Position,uint256,bytes32,uint64));
             if (p.status != PositionStatus.None && p.status != PositionStatus.Parked) revert InvalidState();
+            if (p.lpTokenId != 0 || (p.status == PositionStatus.None &&
+                (p.idle0 != 0 || p.idle1 != 0 || shares != 0))) revert InvalidState();
             if (p.status == PositionStatus.Parked) {
                 // The admitted pool key supplies the actual local currencies.
                 // Exact backing rows below must fund their attributed idle;
                 // there is no remote/home token identity to reinterpret.
                 IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
-                if (p.lpTokenId != 0) revert InvalidState();
             }
             vault.canonicalWrite(2, abi.encode(id, p, shares, homePool));
             vault.migrationBudget().importComposition(id,epoch);
@@ -253,6 +286,7 @@ contract ZZZVaultCanonical {
         ExactAsset.push(asset,address(vault),amount);
     }
     function canonicalValidate() external view {
+        _closedPortfolio();
         if (imported) {
             if (cursor != canonicalCount() || vault.bucketCount() != groupCount || aliases.length != aliasCount) revert InvalidState();
             for (uint256 i; i < groupCount; ++i) {
@@ -266,5 +300,13 @@ contract ZZZVaultCanonical {
     }
     function canonicalActivate() external onlyHandoff {
         if (IZZZCanonicalAccess(address(access)).canonicalState() != 2) revert InvalidState();
+        _closedPortfolio();
+    }
+    /// @dev V5 exports only closed parked principal. The eight-word record
+    /// cannot silently omit a live residual or an orphaned registered LP.
+    function _closedPortfolio() private view {
+        address manager = access.module(Ids.LIQUIDITY);
+        if (ICanonicalPortfolio(manager).PORTFOLIO_VERSION() != 2 ||
+            IZZZLiquidity(manager).activeSecondaryCount() != 0) revert InvalidState();
     }
 }

@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
@@ -46,8 +49,8 @@ contract StrategyPriceSnapshotTest is Test {
     address private constant TOKEN1=address(0x2000);
 
     function setUp() public {
-        vm.warp(1_000_000);access=new MockAccess();pools=new MockPools();
-        oracle=new ZZZOracle(address(access),address(0));strategy=new ZZZStrategy(address(access));
+        vm.warp(1_000_000);access=new MockAccess(); ProtocolPolicyFixture.bind(address(access));pools=new MockPools();
+        oracle=new ZZZOracle(address(access),address(0));strategy=new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         venue=new SnapshotVenue();ledger=new SnapshotVault();
         access.bind(Ids.POOLS,address(pools));access.bind(Ids.ORACLE,address(oracle));
         access.bind(Ids.LIQUIDITY,address(venue));access.bind(Ids.VAULT,address(ledger));

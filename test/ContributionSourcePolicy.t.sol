@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
@@ -53,7 +55,7 @@ contract ContributionSourcePolicyTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access=new MockAccess();oracle=new ZZZOracle(address(access),address(0));
+        access=new MockAccess(); ProtocolPolicyFixture.bind(address(access));oracle=new ZZZOracle(address(access),address(0));
         access.bind(Ids.ORACLE,address(oracle));
         zzz=new MockToken(18);stable=new MockToken(6);replacement=new MockToken(18);
         feed=new MockFeed(8,1e8);
@@ -151,7 +153,7 @@ contract ContributionSourcePolicyTest is Test {
         stable.approve(address(entry),100e6);access.seal();
         ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(
             1,bytes32(uint256(42)),address(stable),100e6,bytes32(0),0,1,block.timestamp+100,false);
-        vm.expectRevert();entry.executeReviewed(request,200);
+        bytes32 reviewedPolicy1 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.expectRevert();entry.executeReviewed(request,200,reviewedPolicy1);
         assertEq(stable.balanceOf(address(this)),100e6);
         assertEq(stable.balanceOf(address(registry.activationEntry())),0);
         assertEq(stable.allowance(address(this),address(registry.activationEntry())),100e6);

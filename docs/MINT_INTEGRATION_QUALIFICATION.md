@@ -1,7 +1,9 @@
 # Qualify randomness and OpenSea primary mint
 
 
-Current source issues paid NFTs through `Vault.mintDormant()`. It does not yet
+Fresh accounting6 issues paid NFTs through `Vault.mintDormant(expectedMintPolicy)`
+with exact reviewed current price(default0.05ETH), accepted future payee and
+sale+VRF fingerprint. Historical no-argument selectors stay on their own profiles. It does not yet
 implement an OpenSea primary-drop mint path. Marketplaces may recognize the
 ERC-721 collection for secondary sales without supporting its primary mint.
 Keep these two acceptance criteria separate before sealing.
@@ -40,8 +42,9 @@ profile update; manifest metadata alone cannot add it.
 ## Qualify the original randomness request
 
 Production minting is intended for OpenSea; website minting is demonstrative. This decision is not marketplace acceptance. Current PoPL needs the subscription-v2.5 tuple request selector `0x9b1c385e`,
-exactly two words, its configured nonzero immutable lane/subscription/payment
-mode and authenticated asynchronous callback. The version-1 randomness record
+exactly two words, the reviewed provider/lane/subscription/payment mode fixed
+for that request, and authenticated asynchronous callback. Future provider changes
+require the fully drained ProtocolPolicy rotation procedure; no pending reroll or retargeting. The version-1 randomness record
 contains:
 
 | Field | Required reviewed meaning |
@@ -95,19 +98,23 @@ a fee refund supplies no randomness and does not refund the NFT mint price.
    checks and applicable global/lifecycle controls. Future callback tuning does
    not repair a request already submitted with insufficient gas.
 
-An unanswered draw can block later reveals, activation of unrevealed NFTs and
+Planned provider rotation requires all old draws finalized and cannot bypass a
+stuck original request. Planned provider rotation requires all old draws finalized and cannot bypass a
+stuck original request. An unanswered draw can block later reveals, activation of unrevealed NFTs and
 whole-collection replacement. It does not block ordinary LP pool movement merely
 because randomness is pending. No promise of post-provider-failure recovery is
 made without a genuine still-valid original result.
 
 ## Design and qualify the OpenSea path
 
-The user's decision is **0.05 ETH total mint price paid by the buyer**, with
+The initial user decision is **0.05 ETH total mint price paid by the buyer**, with
 network gas separate. The mint-proceeds recipient receives that gross payment
 minus the actual OpenSea platform fee. The actual fee is not yet verified; do
 not assume a fee percentage or invent a platform recipient. Confirm the supported
 ERC-721 drop product and exact reviewed SeaDrop deployment on Robinhood. Current
-Vault direct mint forwards all 0.05 ETH and does not implement this future split;
+Vault direct mint forwards all of its reviewed current gross price(default0.05ETH)
+and does not implement this future split. Any future price/payee change must be
+reflected in the compatible drop review;
 do not charge the mint twice or claim marketplace compatibility is complete.
 
 A compatible implementation must retain canonical hashed NFT IDs, Vault issuance

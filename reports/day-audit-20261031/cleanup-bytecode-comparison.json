@@ -1,0 +1,262 @@
+{
+  "scope": "Dead private wrapper removal after affected EVM execution. Compiler metadata suffixes were matched per actual compiled object; constructor/runtime bytes otherwise compared exactly. Not an execution test or independent audit.",
+  "before_output_sha256": "6991b0cd3b28bf2fde3e960c3e7d31e299acf57d1314a586fe72a4e4865c7c58",
+  "after_output_sha256": "5e94e8046b7219dbef7cf60681b64720d3f99a8f0249fabf80851573130ab145",
+  "compared_objects": 42,
+  "all_pass": true,
+  "failures": [],
+  "objects": [
+    {
+      "object": "src/ZZZAccessController.sol:ZZZAccessController",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZActivationAssets.sol:ZZZActivationAssets",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZActivationAssetsFactory.sol:ZZZActivationAssetsFactory",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZActivationEntry.sol:ZZZActivationEntry",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZBuyback.sol:ZZZBuyback",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZCanonicalHandoff.sol:ZZZCanonicalHandoff",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZClaimRouter.sol:ZZZClaimRouter",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZCompounder.sol:ZZZCompounder",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZContributionPricing.sol:ZZZContributionPricing",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZCustodyValidation.sol:ZZZCustodyValidation",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZFeeController.sol:ZZZFeeController",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZFeesCanonical.sol:ZZZFeesCanonical",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZLPBalanceMath.sol:ZZZLPBalanceMath",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZLPBalancer.sol:ZZZLPBalancer",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZLPPositionExecutor.sol:ZZZLPPositionExecutor",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZLPRewardConverter.sol:ZZZLPRewardConverter",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZLiquidityManager.sol:ZZZLiquidityManager",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZMembership.sol:ZZZMembership",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZMigration.sol:ZZZMigration",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZMigrationBudget.sol:ZZZMigrationBudget",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZNFT.sol:ZZZNFT",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZNFTCanonical.sol:ZZZNFTCanonical",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZNFTMetadata.sol:ZZZNFTMetadata",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZOracle.sol:ZZZOracle",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZPoolRegistry.sol:ZZZPoolRegistry",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZPortfolioPolicy.sol:ZZZPortfolioPolicy",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZPythPriceFeed.sol:ZZZPythPriceFeed",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZRebalanceConfirmation.sol:ZZZRebalanceConfirmation",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZRewards.sol:ZZZRewards",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZRoyaltyConverter.sol:ZZZRoyaltyConverter",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZRoyaltyFactory.sol:ZZZRoyaltyFactory",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZStrategy.sol:ZZZStrategy",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZV4RouteExecutor.sol:ZZZV4RouteExecutor",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZVault.sol:ZZZVault",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/ZZZVaultCanonical.sol:ZZZVaultCanonical",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/libraries/ExactAsset.sol:ExactAsset",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/libraries/ExactToken.sol:ExactToken",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/libraries/ZZZArtwork.sol:ZZZArtwork",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/libraries/ZZZPriceMath.sol:ZZZPriceMath",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/libraries/ZZZTypes.sol:Ids",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    },
+    {
+      "object": "src/libraries/ZZZV3VenueValidation.sol:ZZZV3VenueValidation",
+      "abi_identical": true,
+      "runtime_equal_excluding_compiler_metadata": true,
+      "creation_equal_excluding_known_embedded_metadata": true
+    }
+  ]
+}

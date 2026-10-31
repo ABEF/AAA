@@ -138,7 +138,8 @@ class Review:
     def market(self, position, config, bucket):
         from keeper.compound_policy import observe
         return observe(self.read, lambda target: self.k.rpc.call('eth_getCode', [target, 'latest']),
-            contracts=self.k.contracts, code_hashes=self.k.config.get('code_hashes', {}), bucket=bucket)
+            contracts=self.k.contracts, code_hashes=self.k.config.get('code_hashes', {}), bucket=bucket,
+            **({'accounting_version':self.k.accounting_version} if self.k.accounting_version in (5,6) else {}))
 
     def harvest_custody(self, position):
         # Manager.collect checks owner and PoolKey, without a market/price read.
@@ -161,20 +162,43 @@ class Review:
         pool = '0x'+keccak256(bytes.fromhex(''.join(physical[:5]))).hex()
         reasons = ([] if owner==int(self.k.contracts['vault'],16) else ['lp_owner_mismatch']) + (
             [] if pool==position['pool_id'] else ['lp_pool_identity_mismatch'])
-        return {'allowed': not reasons, 'reasons': reasons, 'position_manager': posm,
+        result={'allowed': not reasons, 'reasons': reasons, 'position_manager': posm,
             'owner': '0x'+f'{owner:040x}', 'pool_id': pool,
             'scope': 'Pinned Manager binding and PosM custody only; no slot0, range, price or earned-fee inference.'}
+        if self.k.accounting_version in (5,6):
+            if self.uint('liquidity','PORTFOLIO_VERSION()')!=(2 if self.k.accounting_version==6 else 1):
+                raise RpcError('Harvest portfolio capability differs')
+            secondary=self.uint('liquidity','secondaryId(uint256)',lp)
+            count=self.uint('liquidity','activeSecondaryCount()')
+            if secondary==lp or count>4 or secondary and count==0:
+                raise RpcError('Harvest secondary inventory differs')
+            legs=[dict(lp_token_id=str(lp),owner=result['owner'],pool_id=pool)]
+            if secondary:
+                extra_owner=self.uint(posm,'ownerOf(uint256)',secondary)
+                extra=self.read(posm,'getPoolAndPositionInfo(uint256)',secondary,count=6)
+                from zzz_ops.production_v4 import verify_position_identity
+                packed=int(extra[5],16)
+                def signed24(value):return value-2**24 if value>=2**23 else value
+                ticks=[signed24((packed>>offset)&(2**24-1)) for offset in (8,32)]
+                verify_position_identity(extra[:5],extra[5],int(position['pool_id'],16),ticks)
+                if extra_owner!=int(self.k.contracts['vault'],16):reasons.append('residual_lp_owner_mismatch')
+                if not 0<self.uint(posm,'getPositionLiquidity(uint256)',secondary)<2**128:
+                    reasons.append('residual_lp_empty')
+                legs.append(dict(lp_token_id=str(secondary),owner='0x'+f'{extra_owner:040x}',pool_id=position['pool_id']))
+            if not 0<self.uint(posm,'getPositionLiquidity(uint256)',lp)<2**128:reasons.append('main_lp_empty')
+            result.update(allowed=not reasons,physical_legs=legs,secondary_id=str(secondary),portfolio_version=2 if self.k.accounting_version==6 else 1)
+        return result
 
     def execution(self):
         # Request-local only: every reused observation has this one pinned hash.
         if self._execution is None:
             self._execution = (_attempt(lambda: self.k._lp_routing_snapshot(self.header), 'lp_execution_capability_unavailable')
-                if self.k.lp_routing_version == 1 else {'available': False, 'value': None, 'reason': 'lp_execution_profile_unconfigured'})
+                if self.k.lp_routing_version in (1,2) else {'available': False, 'value': None, 'reason': 'lp_execution_profile_unconfigured'})
         return self._execution
 
     def budget(self):
         if self._budget is None:
-            target = self.k._compound_budget(3)
+            target = self.k._compound_budget(4 if self.k.accounting_version in (5,6) else 3)
             if self.uint(target, 'access()') != int(self.k.contracts['access'], 16):
                 raise RpcError('Review Budget controller differs')
             self._budget = target
@@ -186,20 +210,29 @@ class Review:
             loss = self.uint(budget, 'maintenanceLossBps()')
             if not 0 <= loss <= 1000: raise RpcError('Review maintenance loss is malformed')
             return {'budget': budget, 'runtime_code_hash': self.k.config['code_hashes']['idle_compounding_budget'],
-                    'compound_capability_version': 3, 'maintenance_loss_bps': loss}
+                    'compound_capability_version': 4 if self.k.accounting_version in (5,6) else 3, 'maintenance_loss_bps': loss}
         execution = self.execution()
         quality = (execution['value']['metadata'].get('execution_quality') if execution['available'] else None)
         fee,width,trigger,deviation,slip = [int(config[n],16) for n in (2,7,8,9,10)]
-        if (not 100 <= width <= 5000 or not 100 <= trigger < width or
+        if (not 100 <= width <= (9999 if self.k.accounting_version==6 else 5000) or not 100 <= trigger < width or
                 not 1 <= slip <= 1000 or not 1 <= deviation <= 500 or deviation >= width or
                 not 0 <= fee <= 100000 or fee >= slip*100 or
                 int(config[12],16)==0 or int(config[13],16)<int(config[12],16)):
             raise RpcError('Review pool financial policy is malformed')
+        idle={'bps':500,'source':'fixed_source_rule_not_a_measured_margin'}
+        if self.k.accounting_version==6:
+            from zzz_ops.protocol_policy import observe as observe_policy
+            def current_idle():
+                terms=observe_policy(lambda target,method,*args,count:self.read(target,method,*args,count=count),
+                    policy=self.k.contracts['protocol_policy'],access=self.k.contracts['access'],domain='maintenance')
+                return {'bps':terms['maximum_idle_bps'],'source':'captured_protocol_policy1','policy':terms}
+            captured=_attempt(current_idle,'maintenance_idle_policy_unavailable')
+            idle=captured['value'] if captured['available'] else {'bps':None,'source':'unavailable','reason':captured['reason']}
         return {'pool_policy': {'max_slippage_bps': slip, 'max_spot_deviation_bps': deviation},
                 'maintenance_policy': _attempt(maintenance, 'maintenance_loss_policy_unavailable'),
                 'execution_quality': {'available': quality is not None, 'value': quality,
                     'reason': None if quality is not None else 'quality_profile_unconfigured_or_unavailable'},
-                'post_deployment_idle_ceiling': {'bps': 500, 'source': 'fixed_source_rule_not_a_measured_margin'},
+                'post_deployment_idle_ceiling':idle,
                 'measured_margins': {'available': False, 'retained_usd': None, 'swap_margin_bps': None,
                     'aggregate_margin_bps': None, 'reason': 'Independent price/trace valuation was not measured by this report.'}}
 
@@ -360,23 +393,41 @@ class Review:
                     _set(row, 'blocked', 'pool_operations_disabled'); continue
                 m = market['value']
                 if action == 'rebalance':
-                    needed = not m['in_range'] or m['range_update_pending']
-                    row['checks']['raw_market_condition'] = {'needed': needed, 'source': 'physical_range_and_explicit_width'}
-                    if not needed: _set(row, 'not_needed', 'physical_range_inside_and_no_width_change'); continue
+                    fresh=self.k.accounting_version in (5,6)
+                    needed = (m['threshold_side']!=0 if fresh else not m['in_range']) or m['range_update_pending']
+                    row['checks']['raw_market_condition'] = {'needed': needed,
+                        'source': 'main_price_distance_and_explicit_width_or_mode' if fresh else 'physical_range_and_explicit_width'}
+                    if not needed: _set(row, 'not_needed', 'inside_adjustment_threshold_and_no_configuration_change' if fresh else 'physical_range_inside_and_no_width_change'); continue
+                    confirmation=None
+                    if fresh:
+                        confirmation=_attempt(lambda:self.k.rebalance_confirmation.status(bucket),'confirmation_unavailable')
+                        row['checks']['confirmation']=confirmation
+                        if not confirmation['available']:_set(row,'unavailable',confirmation['reason']);continue
+                        v=confirmation['value'];enrollment=self.k._confirmation_enrollment_at(v)
+                        cadence_supported=not v['manual'] and v['maximum_gap_seconds']>=240
+                        row['checks']['source_observation_enrollment']={
+                            'earliest_paid_observation_at':enrollment if cadence_supported else None,
+                            'cadence_supported':cadence_supported,
+                            'paid_window_open':cadence_supported and self.stamp>=enrollment,
+                            'scope':'source_policy_only_raw_checks_continue_not_an_execution_time_guarantee'}
                     if self.stamp < earliest: _set(row, 'not_due', 'hard_rebalance_interval'); continue
                     raw = _attempt(lambda: self.flag('strategy', 'needsRebalance(uint256)', bucket), 'raw_condition_unavailable')
                     row['checks']['onchain_raw_condition'] = raw
                     if not raw['available']: _set(row, 'unavailable', raw['reason']); continue
                     if raw['value'] is not True: _set(row, 'unavailable', 'raw_condition_contradicts_observed_market'); continue
-                    if self.k.rebalance_confirmation.version in (1, 2):
-                        confirmation = _attempt(lambda: self.k.rebalance_confirmation.status(bucket), 'confirmation_unavailable')
+                    if self.k.rebalance_confirmation.version in (1, 2,3):
+                        confirmation = confirmation or _attempt(lambda: self.k.rebalance_confirmation.status(bucket), 'confirmation_unavailable')
                         row['checks']['confirmation'] = confirmation
                         if not confirmation['available']: _set(row, 'unavailable', confirmation['reason']); continue
                         v = confirmation['value']
                         if not v['manual'] and v['maximum_gap_seconds'] == 0:
                             _set(row, 'unconfigured', 'confirmation_stopped'); continue
+                        if fresh and not v['manual'] and v['maximum_gap_seconds'] < 240:
+                            _set(row, 'blocked', 'confirmation_source_cadence_incompatible'); continue
                         if not v['ready']:
-                            reason = ('reference_disagreement' if v.get('reference_exit_required') and v.get('physical_exit_side') != v.get('reference_exit_side') else
+                            physical=v.get('physical_threshold_side') if fresh else v.get('physical_exit_side')
+                            reference=v.get('reference_threshold_side') if fresh else v.get('reference_exit_side')
+                            reason = ('reference_disagreement' if v.get('reference_exit_required') and physical != reference else
                                 'confirmation_not_started' if v['first_seen'] == 0 else
                                 'confirmation_identity_changed' if v['identity'] != v['observation_identity'] or v['side'] != v['observation_side'] else
                                 'confirmation_observation_stale' if self.stamp-v['last_seen'] > v['maximum_gap_seconds'] else 'confirmation_accumulating')
@@ -454,7 +505,8 @@ def review(config, buckets, *, rpc=None, simulate=False, now=None):
             'Work budget is cooperative; standalone DNS/socket stalls still need external supervision.'])
     base['profile'].update(fee_intake_version=keeper.fee_intake_version,
                            rebalance_confirmation_version=keeper.rebalance_confirmation.version)
-    if keeper.accounting_version != 4 or keeper.maintenance_policy_version != 2:
+    base['profile']['portfolio_version']=keeper.portfolio_version
+    if (keeper.accounting_version,keeper.maintenance_policy_version) not in ((4,2),(5,3),(6,3)):
         return dict(base, ok=True, provenance=None, operations=[_set(_row(a, b), 'unsupported', 'explicit_historical_profile') for b in buckets for a in ACTIONS])
     clock = time.time if now is None else now
     with request_scope(Budget(seconds=MAX_SECONDS, calls=MAX_CALLS, posts=1024)):

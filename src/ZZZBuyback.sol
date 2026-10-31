@@ -11,20 +11,28 @@ import {ExactAsset} from "./libraries/ExactAsset.sol";
 contract ZZZBuyback is ZZZModule, ReentrancyGuard {
     /// @notice Fixed deployment ZZZ identity; issuer migration requires exit/redeployment.
     address public immutable zzz;
-    uint256 public immutable maxTradeUSD;
-    /// @notice Immediate operating limit within the immutable deployment ceiling.
+    uint256 public maxTradeUSD;
+    /// @notice Immediate operating limit within the reviewed governance ceiling.
     /// Zero stops new buybacks without consulting an oracle or releasing reserves.
     uint256 public operatingTradeUSD;
     event BoughtAndBurned(address indexed input, uint256 inputAmount, uint256 zzzBurned);
     event OperatingTradeLimitChanged(uint256 previous, uint256 current);
+    event MaximumTradeLimitChanged(uint256 previous,uint256 current,bytes32 reviewHash);
     constructor(address controller, address zzzToken, uint256 maximumTradeUSD) ZZZModule(controller) {
-        if (zzzToken.code.length == 0 || maximumTradeUSD == 0) revert InvalidConfiguration();
+        if (zzzToken.code.length == 0 || maximumTradeUSD == 0 || maximumTradeUSD > type(uint128).max) revert InvalidConfiguration();
         zzz = zzzToken;
         maxTradeUSD = maximumTradeUSD;
         operatingTradeUSD = maximumTradeUSD;
     }
     receive() external payable {
         if (msg.sender != access.module(Ids.FEES)) revert Unauthorized();
+    }
+    /// @notice Future-only sizing; cannot change ZZZ, reserves, recipients or allocation.
+    function setMaximumTradeUSD(uint256 limit,bytes32 reviewHash) external onlyGovernance operating nonReentrant {
+        if(limit == 0 || limit > type(uint128).max || limit < operatingTradeUSD || reviewHash == bytes32(0))
+            revert InvalidConfiguration();
+        emit MaximumTradeLimitChanged(maxTradeUSD,limit,reviewHash);
+        maxTradeUSD = limit;
     }
     /// @notice Changes execution policy only; cannot withdraw funds, change the
     /// revenue split or exceed the hard ceiling. Available during an ordinary

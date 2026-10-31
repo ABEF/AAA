@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
@@ -95,7 +96,7 @@ contract NativeFeeRewardsTest is Test {
         ac.bind(Ids.REWARDS, address(rewards)); ac.bind(Ids.FEES, address(fees)); ac.bind(Ids.POOLS, address(pools));
         ac.bind(Ids.BUYBACK, address(this)); ac.bind(Ids.CANONICAL, address(this)); ac.bind(Ids.FEES_CANONICAL, address(canonical));
         rewards.addAsset(address(token));
-        nft.configureRandomness(address(new MockVRF()), bytes32(uint256(1)), 1, 3, 500000, false);
+        ProtocolPolicyFixture.randomness(address(nft.access()),address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false);
         ac.seal();
         PoolConfig memory c; c.key.currency1 = address(token); pools.set(POOL, c);
         Position memory p; p.poolId = POOL; p.status = PositionStatus.Active;

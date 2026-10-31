@@ -1,5 +1,52 @@
 # Verification evidence
 
+[Current documentation synchronization](documentation-sync-20261031/REVIEW.md)
+reconciles current policy6 guides/Todo/memory and separates historical evidence.
+It reuses unchanged code pins; no test campaign, deployment or operating
+qualification is implied.
+
+
+[Adaptable policy source6](adaptable-policy-20261031/REVIEW.md) adds bounded
+future operating controls, explicit schema8/Entry2/Portfolio2/canonicalV6 readers
+and exact policy-bound reviews. [Scoped verification](adaptable-policy-20261031/VERIFICATION.md)
+records43 fresh normal gates and stage-bound EVM/backend checks; earlier static
+and42-gate records below remain historical. No deployment/rollout or independent
+production approval.
+
+
+[Manual-operation audit](manual-operations-20261031/REVIEW.md) covers39 action
+groups and231 classified writes, with90 directly indexed management/relay calls.
+Exact authority/inputs/reverse steps, pool reservations, pause/park/resume and
+offline review preparation are documented. [Verification](manual-operations-20261031/VERIFICATION.md):
+16 final offline helper methods and one new actual-local-v4 merge/harvest/claim
+journey; unchanged50-source production closure reuses42 normal gates and463
+static dispositions. No live authority, simulation, signing, rollout or release
+approval is implied; original intermediate/historical evidence stays unchanged.
+
+[October31 current-change audit](day-audit-20261031/REVIEW.md) consolidates
+management into the Operator manual and fixes API price-outage isolation,
+fresh activation executor binding and ordinary single/hybrid active-main checks.
+[Verification](day-audit-20261031/VERIFICATION.md):156 scoped Python methods,
+19 distinct affected EVM cases across stages,42 fresh normal gates and463
+contextually triaged static findings. Unused private wrapper cleanup has exact
+instruction/ABI comparison excluding compiler metadata. No full-suite/CI,
+independent audit, public signing or operating rollout is claimed. Earlier
+partial/failing evidence and original report bytes remain unchanged.
+
+[Residual operations](residual-operations-20261031/REVIEW.md) adds paused governance
+closure of only the residual into attributed Vault idle, exact identity/minimum/
+nonce checks and size-safe guard extraction. [Verification](residual-operations-20261031/VERIFICATION.md)
+separates source stages/failures, local EVM and normal42size gates; no rollout or
+production approval. Previous portfolio and historical report bytes retain scope.
+
+[Optional portfolio source implementation](optional-portfolio-20261030/REVIEW.md)
+adds fresh accounting5, default main-only/optional one residual,85%threshold,
+600/240/300confirmation and60–300jitter. Latest initial residual width is half
+the corresponding main side. [Verification](optional-portfolio-20261030/VERIFICATION.md)
+separates current/earlier source-stage EVM/Python checks, normal size gates,
+failures and remaining real qualification. No service/site/Anvil/signing change
+or production approval. Earlier report narratives keep original bytes and scope.
+
 [Passive inventory research](passive-inventory-research-20261030/README.md) compares
 bounded main/residual strategies and economic edge cases. Research/calculation
 only: no contract tests, implementation or rollout.

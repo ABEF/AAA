@@ -1,0 +1,38 @@
+{
+  "scope": "Current local manual-operation audit receipts; rows/body inventory are not execution tests. Actual code sources unchanged; raw evidence and intermediate metadata stages stay external, final helper verification is attempt3 against final corrected catalog.",
+  "evidence_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031",
+  "artifacts": {
+    "access-corrections.json": "a68c6bbd899b6fc0cffd9c042639b0aa2470896260e583c5cae1c004da0839bb",
+    "catalog-qa.json": "e33d6660af4148b4156c728139663ffbd0f0c922ad765a9f21126297833e9c80",
+    "documentation-checks.json": "f3af270b743e95f3c374ffe34b68ab557128bb79ea80e8e7384fa8b243a5d633",
+    "documentation-links.json": "50d77815c082e088862c0b8a7ef48c3a943480df01b16c839ff30e123a86d3a3",
+    "helper-design-stage.json": "ae0ca703de3c6ae9dfceb50958f2ca9b3567b91394c0d9fb6115dd953258b3eb",
+    "helper-verification.json": "7f8648f3a94a3b04472d1205d17cf119e7a34bd7e81911607d84f6fb8d46e2f5",
+    "new-journey-verification.json": "42e8fa7957cc7d999e93c72aa496891bb293309dccdd0f58d845a3b5608e5ee9",
+    "operation-inventory.json": "f40cd798853602acc0499d6d7bcc9da1ea5c07eed11f584791809e724e347be9",
+    "operation-matrix.json": "7730793fbb58c8646ddaa72a27c0a5b93cc4da6ec93bca3125fc711612dbe4a0",
+    "REVIEW.md": "04202c41dfb857ce9879f3d1a3dca8797b31293e5d7f270419adc7bf96cd9287",
+    "source-preservation.json": "b0e5a19f59b623ad33180262dbaab98102e934694adfa58cadc77ce0638655a0",
+    "template-admission.json": "c6402028abdc2cdc27a6b76fc3bdcae1a8e426911c7aa23635f62e10c632a628",
+    "VERIFICATION.md": "40bf2d5d4e8583037c318882005b7c56a46293eda577400743dddf289b982fd0"
+  },
+  "external": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\BASELINE.json": "a41ce3cb118df1c8ac0fbd33a7ff7b4e3a773dc6d451344c09c7f54012247246",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\tooling\\attempt3.log": "645d757f27a05d335e957339535886c705e8b1edd6cc6e185cf6248d8ebc2d56",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\catalog\\OPERATIONS.json": "ad025db54a24adac334ee3499a18d55c346f7a086017ee926d764a32973b0c78",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\catalog\\APPENDABLE_OPERATOR_CATALOG.md": "2356aed53d7be085fc8459ee595cfcbedf952ea50d8886a051031355567e1292"
+  },
+  "reused_production_build": "consolidation-audit-20261031/normal-final-8511732986",
+  "reused_static_triage": "reports/day-audit-20261031/static-triage.json",
+  "no_deployment": true,
+  "no_signing": true,
+  "final_local_code": {
+    "zzz_ops/operator_review.py": "8f634ee584dd721e5668514b3d92e820408ffdf1ce9ab57d5833dea603b7b397",
+    "scripts/prepare-operator-review.py": "9f807258fc681cb831ebf45ee89bb2028cbc4daf12a5a1beba3fae2feb1d9dbb",
+    "tests_python/test_operator_review.py": "0725097aedbe56f7a33c72b888f6c594271b82073b21900e97e9ba43395412a2",
+    "test/OptionalPortfolioCore.t.sol": "a3a69ce55b99c10681b64361b4bc3476298c59656b78d4a71db0d19e34613334",
+    "docs/function-reference.json": "7b1ec5394cf727e59e061dc0140bc61bc8e1442db8bddfcc33f2f63ba8937147",
+    "docs/function-reference-notes.json": "3d376725cc8317b7b270da7bae00dab2fecbaf8bce211d8bc623b10dbac737d9",
+    "docs/OPERATOR_MANUAL.md": "7f207b50a7b1eae0d311880ff98285db4e582049d6849f72aa824c52772b09c7"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "at_utc": "2026-10-31T02:59:26.814164+00:00",
+  "external_evidence_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\adaptable-policy-20261031",
+  "scope": "Compact new source-scoped evidence; historical reports untouched; no manifest self-hash",
+  "files": {
+    "backend-corrections.json": "7a9b0c7cc66c1ced813ba433df28ffad65c246ca628c750acf6958d557e469e4",
+    "backend-verification.json": "df89b82b071e4b44db7c02466f0f63c17f478e0d128057d460981133077c8128",
+    "callable-verification.json": "4d5f5f4ef9d69ca7eef1c5eae9067607806b78ad8ea34253f2c81f81d78b323f",
+    "conversion-profile-verification.json": "d2a3e3a45172e0d4d7c546e65fbd60b8eaecd9f504a3d8d6ceb0e025f4bcfc10",
+    "documentation-links.json": "9075ca36f0ca361912573ac55442a3fdd3c8745fcb98ae1f937692a6c17895f1",
+    "dollar-cli-verification.json": "fbc7478ec64adf2367a66c0532ff101e786867354bb278ea5e07d570a2aa030e",
+    "final-checks.json": "c6983de19b043988e85e75831738a7131eaddc94afb3396051590aeb7c69d9ac",
+    "mint-native-verification.json": "7b6f1eb269c2dfdbdabfacb7414f80ea01c4fde63e7e9442dbea4849ed2dd15a",
+    "nft-verification.json": "d480fdd8c5037c4b3b6d9d6f0d22151b22522e4f08745d7fb7471dad2ce4a044",
+    "payout-buyback-source-gas.json": "e7201b99e4d19a2f71acdb0a5fd989749b16990af141524d198f3d1747c7cefc",
+    "policy-verification.json": "d3152fb1f4af3d889b5c85e99b7df7fe9f78a1f360ac0ef9e2b77d70ad652df9",
+    "production-size-gates.json": "ae0e9caa4d33ded3e9675841d9c87126e27793384d8d52a4ee5c14c2e4ed2ed1",
+    "REVIEW.md": "57bdbb65bb0a425a15c42dc85b843f6d114ebbfdff37d8e318425142c766e3b4",
+    "source-preservation.json": "afe0d04271f530be90837054eae42967c568dfe36dad33287050a2d1ab071fef",
+    "VERIFICATION.md": "f6840a221b3ce53f38d5aa92faff1195c540978e1413dcc7730c9802e80e5c63"
+  }
+}

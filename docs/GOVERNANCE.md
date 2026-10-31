@@ -6,7 +6,7 @@ There is one human project operator: the user. That operator controls governance
 and runs the services. There is no separate operator role, committee or additional
 human approval. Keep the automated keeper's limited service key separate from the
 governance key; this does not imply another person. Production authorities remain
-unset. The fresh candidate is accounting4/custody3/canonicalV5, **NOT APPROVED**.
+unset. The fresh candidate is accounting6/custody4/portfolio2/canonicalV6, **NOT APPROVED**.
 
 The selected governance wallet calls target modules directly. Access authenticates
 it through `canConfigure(caller)`; Access does not schedule or forward calls.
@@ -32,7 +32,7 @@ Guardian can pause, but cannot unpause, configure or move principal. Ordinary
 pause preserves claims and transfers; canonical freezes and terminal locks have
 separate effects. Keeper executes authorized bounded maintenance and pays gas.
 Governance alone does not imply a keeper grant for ordinary `Vault.rebalance`.
-Bootstrap disappears at seal. The immutable mint recipient gains no management
+Bootstrap disappears at seal. The current accepted mint recipient gains no management
 authority from receiving payments. Current direct mint forwards0.05ETH; the
 required OpenSea path must keep0.05ETH gross buyer price and pay that recipient
 net of the actual marketplace fee, gas separate. That integration is unfinished.
@@ -69,7 +69,7 @@ capabilities remain separately granted and revocable within their actual control
    new governance and cleared pending proposal. Proposal alone preserves the old
    wallet's authority. Preparation/frozen/terminal handoff states block rotation.
 
-This does not rotate keepers, guardians or the immutable mint recipient. Lost
+This does not rotate keepers, guardians or the current accepted mint recipient. Lost
 governance keys have no controller-admin rescue. One-person governance remains
 supported; no new wallet or mandatory multi-person approval is imposed.
 
@@ -91,8 +91,8 @@ supported; no new wallet or mandatory multi-person approval is imposed.
 
 Ordinary rebalance cooldowns, sampled confirmation, transaction expiry, oracle
 freshness and sequencer/finality policy serve execution/accounting safety. Direct
-governance does not remove them. Ordinary defaults remain contribution2%,
-conversion1%, maintenance3%, each governed up to10%; stronger caller/venue floors
+governance does not remove them. Ordinary defaults remain contribution 2%,
+conversion 1%, maintenance 3%, each governed up to 10%; stronger caller/venue floors
 and captured policy remain binding. The explicitly separate emergency manifest
 may bypass selected economic/timing groups, not structural custody/accounting or
 terminal/canonical locks. Parking and collective closes use raw minima, without
@@ -111,7 +111,7 @@ identify bytes, not honest behavior. The user accepted reviewed different
 successor code; no identical-code restriction is added. Emergency financial
 bypass expands this trust further. [Change boundaries](CHANGE_AND_RECOVERY.md).
 
-Fresh accounting4/schema6 inventory binds governance2, actual governance and
+Fresh accounting6/schema8 inventory binds governance2, actual governance and
 pending-governance state, capability grants and their complete history. Actual
 wallet type, signers/threshold and recovery require qualification; no mandatory
 committee is implied. Historical manifests retain their own semantics and cannot

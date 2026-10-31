@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
@@ -40,7 +43,7 @@ contract StrategyFeeSizingTest is Test {
     uint160 private constant SPOT = uint160(1 << 96);
 
     function setUp() public {
-        MockAccess access = new MockAccess();
+        MockAccess access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         MockPools pools = new MockPools();
         FeeSizingOracle oracle = new FeeSizingOracle();
         venue = new FeeSizingVenue();
@@ -57,7 +60,7 @@ contract StrategyFeeSizingTest is Test {
         access.bind(Ids.POOLS, address(pools));
         access.bind(Ids.ORACLE, address(oracle));
         access.bind(Ids.LIQUIDITY, address(venue));
-        strategy = new ZZZStrategy(address(access));
+        strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
     }
 
     function _deployed(bool zeroForOne, uint256 amountIn, uint24 swapFee) private view returns (uint256) {

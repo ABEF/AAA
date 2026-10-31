@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -52,11 +56,11 @@ contract DynamicRangeTest is Test {
     MockFeed feed0; MockFeed feed1; PoolConfig config; bytes32 pool;
     address constant T0=address(0x1000); address constant T1=address(0x2000);
     function setUp() public {
-        vm.warp(1000000); ac=new MockAccess();pools=new MockPools();ledger=new RangeLedger();
+        vm.warp(1000000); ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));pools=new MockPools();ledger=new RangeLedger();
         address core=address(new RangeDependency());address permit=address(new RangeDependency());
         state=new RangeState(core);posm=new RangePositionManager(core,permit);
-        manager=new ZZZLiquidityManager(address(ac),address(posm),address(state),core,permit);
-        oracle=new ZZZOracle(address(ac),address(0));strategy=new ZZZStrategy(address(ac));
+        manager=new ZZZLiquidityManager(address(ac),address(posm),address(state),core,permit, address(new ZZZLPBalancer(address(ac), core, address(state))));
+        oracle=new ZZZOracle(address(ac),address(0));strategy=new ZZZStrategy(address(ac), address(new ZZZPortfolioPolicy(address(ac))), address(new ZZZRebalanceConfirmation(address(ac))));
         metadata=new ZZZNFTMetadata(address(ac));feed0=new MockFeed(8,1e8);feed1=new MockFeed(8,1e8);
         ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.ORACLE,address(oracle));ac.bind(Ids.STRATEGY,address(strategy));
         ac.bind(Ids.LIQUIDITY,address(manager));ac.bind(Ids.VAULT,address(ledger));ac.bind(Ids.FEES,address(ledger));ac.seal();

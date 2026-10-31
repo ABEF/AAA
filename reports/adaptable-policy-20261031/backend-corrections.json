@@ -1,0 +1,20 @@
+{
+  "executed": 10,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "ok": true,
+  "source_unchanged": true,
+  "elapsed_seconds": 11.93,
+  "targets": [
+    "tests_python.test_frontend_policy_v6",
+    "tests_python.test_production_v6",
+    "tests_python.test_frontend_transactions.FrontendTransactionTests.test_mint_exact_target_value_chain_and_simulation_no_reserved_identity"
+  ],
+  "corrections": [
+    "Fresh mint provenance is mint_policy, not claim_operations.",
+    "Fresh inventory never calls removed Migration.PAYOUT_GAS; dynamic full Policy1 gas tuple is authenticated.",
+    "Review2 preview text names both captured guards."
+  ],
+  "scope": "Affected final corrections only; overlaps prior160 methods and is not added to that distinct count."
+}

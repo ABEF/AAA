@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZContributionPricing} from "../src/ZZZContributionPricing.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZVaultCanonical} from "../src/ZZZVaultCanonical.sol";
 import {ZZZCanonicalHandoff} from "../src/ZZZCanonicalHandoff.sol";
@@ -19,11 +21,14 @@ contract NativeCustodyAssets {
     function assets(uint256) external pure returns(address){return address(0);}
 }
 contract NativeCustodyOracle {
+    ZZZContributionPricing public immutable contributionPricing;
+    constructor(address controller) { contributionPricing = new ZZZContributionPricing(controller,address(this)); }
     function price(address) external pure returns(uint256){return 1e18;}
     function tokenDecimals(address) external pure returns(uint8){return 0;}
     function value(address,uint256 amount) external pure returns(uint256){return amount*1e18;}
 }
 contract NativeCanonicalVault {
+    uint256 public constant ACCOUNTING_VERSION=6;
     uint256 public immutable canonicalChainId=block.chainid;
     uint256 public constant sequence=0;
     uint256 public constant bucketCount=0;
@@ -32,6 +37,10 @@ contract NativeCanonicalVault {
     function canonicalWrite(uint8,bytes calldata) external {}
     function canonicalSend(address asset,address destination,uint256 amount) external {ExactAsset.push(asset,destination,amount);}
     receive() external payable {}
+}
+contract NativeClosedPortfolio {
+    uint256 public constant PORTFOLIO_VERSION=2;
+    function activeSecondaryCount() external pure returns(uint256){return 0;}
 }
 contract NativeLedgerHarness is ZZZCanonicalLedger {
     address private immutable controller;
@@ -59,7 +68,10 @@ contract OldNativeFeeSchema {
 contract RejectNativeCustody {receive() external payable {revert("recipient rejects");}}
 
 contract NativeCanonicalFundingTest is Test {
-    function _access() private returns(MockAccess a){a=new MockAccess();a.bind(Ids.CANONICAL,address(this));}
+    function _access() private returns(MockAccess a){
+        a=new MockAccess(); ProtocolPolicyFixture.bind(address(a));a.bind(Ids.CANONICAL,address(this));
+        a.bind(Ids.LIQUIDITY,address(new NativeClosedPortfolio()));
+    }
     function testCanonicalLedgerNativeTwoStageFundingPartialAbortAndPrefund() public {
         MockAccess a=_access();MockAccess b=_access();NativeLedgerHarness source=new NativeLedgerHarness(address(a));
         NativeLedgerHarness target=new NativeLedgerHarness(address(b));a.setCanonicalState(1);b.setCanonicalState(2);
@@ -110,20 +122,21 @@ contract NativeCanonicalFundingTest is Test {
     }
     function testNativeImporterRejectsAnOldAccountingSchema() public {
         MockAccess oldSource=_access();oldSource.bind(Ids.CANONICAL,address(new OldCanonicalSchema()));oldSource.seal();
-        NativeVersionAccess targetAccess=new NativeVersionAccess();targetAccess.bind(Ids.VAULT,address(new NativeCanonicalVault()));
+        NativeVersionAccess targetAccess=new NativeVersionAccess(); ProtocolPolicyFixture.bind(address(targetAccess));targetAccess.bind(Ids.VAULT,address(new NativeCanonicalVault()));
         ZZZCanonicalHandoff target=new ZZZCanonicalHandoff(address(targetAccess));
         vm.expectRevert(ZZZCanonicalHandoff.UnsupportedTransport.selector);target.prepareImport(address(oldSource));
         assertEq(target.incomingSource(),address(0));assertEq(target.phase(),0);
     }
     function testCanonicalSchemaNamesNativeAccountingVersion() public {
         MockAccess a=_access();ZZZCanonicalHandoff handoff=new ZZZCanonicalHandoff(address(a));
-        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5"));
+        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6"));
+        assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_V1"));
     }
     function testLPOnlyImporterRejectsTheOldNativeFeeCodec() public {
         MockAccess oldSource=_access();oldSource.bind(Ids.CANONICAL,address(new OldNativeFeeSchema()));oldSource.seal();
-        NativeVersionAccess targetAccess=new NativeVersionAccess();targetAccess.bind(Ids.VAULT,address(new NativeCanonicalVault()));
+        NativeVersionAccess targetAccess=new NativeVersionAccess(); ProtocolPolicyFixture.bind(address(targetAccess));targetAccess.bind(Ids.VAULT,address(new NativeCanonicalVault()));
         ZZZCanonicalHandoff target=new ZZZCanonicalHandoff(address(targetAccess));
         vm.expectRevert(ZZZCanonicalHandoff.UnsupportedTransport.selector);target.prepareImport(address(oldSource));
         assertEq(target.incomingSource(),address(0));assertEq(target.phase(),0);
@@ -140,21 +153,24 @@ contract NativeHistoricalAssets {
 }
 contract NativeMigrationBudgetTest is Test {
     Position private p;
+    ZZZMigrationBudget public migrationBudget;
     mapping(address=>uint256) public totalIdle;
     function group(uint256) external view returns(Position memory){return p;}
     function testHistoricalNativeCompoundIncludesFullThirtyThreeAssetBound() public {
-        MockAccess ac=new MockAccess();MockPools pools=new MockPools();NativeHistoricalAssets assets=new NativeHistoricalAssets();
+        MockAccess ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));MockPools pools=new MockPools();NativeHistoricalAssets assets=new NativeHistoricalAssets();
         ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.REWARDS,address(assets));ac.bind(Ids.FEES,address(assets));
-        ac.bind(Ids.ORACLE,address(new NativeCustodyOracle()));
+        ac.bind(Ids.ORACLE,address(new NativeCustodyOracle(address(ac))));
         PoolConfig memory c;c.key=PoolKey(address(100),address(200),3000,60,address(0));p.poolId=keccak256(abi.encode(c.key));pools.set(p.poolId,c);
-        ZZZMigrationBudget budget=new ZZZMigrationBudget(address(ac));budget.recordComposition(1);
+        ZZZMigrationBudget budget=new ZZZMigrationBudget(address(ac));migrationBudget=budget;
+        ac.bind(Ids.VAULT,address(this));budget.recordComposition(1);
         assertEq(budget.historicalCompoundValue(1),3e18);
         assets.setCount(34);vm.expectRevert();budget.historicalCompoundValue(1);
     }
     function testNativeIdleBackingReadsBalanceWithoutERC20Call() public {
-        MockAccess ac=new MockAccess();MockPools pools=new MockPools();MockToken t=new MockToken(0);ac.bind(Ids.POOLS,address(pools));
+        MockAccess ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));MockPools pools=new MockPools();MockToken t=new MockToken(0);ac.bind(Ids.POOLS,address(pools));
         PoolConfig memory c;c.key=PoolKey(address(0),address(t),3000,60,address(0));p.poolId=keccak256(abi.encode(c.key));pools.set(p.poolId,c);
-        ZZZMigrationBudget budget=new ZZZMigrationBudget(address(ac));totalIdle[address(0)]=2;vm.deal(address(this),2);budget.assertIdle(1);
+        ZZZMigrationBudget budget=new ZZZMigrationBudget(address(ac));migrationBudget=budget;ac.bind(Ids.VAULT,address(this));
+        totalIdle[address(0)]=2;vm.deal(address(this),2);budget.assertIdle(1);
         vm.deal(address(this),1);vm.expectRevert();budget.assertIdle(1);
     }
 }

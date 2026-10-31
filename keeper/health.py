@@ -11,7 +11,7 @@ HEALTH_SCHEMA = 2
 OBSERVATION_SCHEMA = 1
 SOURCE_FILES = ('keeper/monitor.py', 'keeper/ops.py', 'keeper/health.py', 'keeper/rebalance_confirmation.py',
     'keeper/compound_policy.py',
-    'zzz_ops/lp_execution.py', 'zzz_ops/abi.py', 'zzz_ops/rpc.py', 'zzz_ops/state.py')
+    'zzz_ops/protocol_policy.py', 'zzz_ops/lp_execution.py', 'zzz_ops/rebalance_confirmation.py', 'zzz_ops/abi.py', 'zzz_ops/rpc.py', 'zzz_ops/state.py')
 RUNTIME_ROLES = ('access', 'pools', 'liquidity', 'balancing_router', 'pool_manager', 'state_view', 'strategy')
 CONFIRMATION_RUNTIME_ROLES = ('access', 'strategy', 'vault', 'rebalance_confirmation', 'idle_compounding_budget')
 CONFIRMATION_SCOPE = 'latest_canonical_policy_only_not_continuous_evidence'
@@ -43,9 +43,27 @@ def _confirmation_bindings(config):
     access, strategy, vault, helper = (address(contracts.get(role)) for role in
         ('access', 'strategy', 'vault', 'rebalance_confirmation'))
     budget = address(config.get('idle_compounding_budget'))
-    return {'strategy_access':access, 'strategy_helper':helper, 'helper_strategy':strategy,
+    result={'strategy_access':access, 'strategy_helper':helper, 'helper_strategy':strategy,
         'helper_access':access, 'vault_budget':budget, 'budget_vault':vault, 'budget_access':access,
         'access_strategy':strategy, 'access_vault':vault}
+    if config.get('rebalance_confirmation_version')==3:
+        policy=address(contracts.get('portfolio_policy'))
+        result.update(strategy_portfolio_policy=policy,portfolio_policy_strategy=strategy,portfolio_policy_access=access)
+    return result
+
+
+def _confirmation_roles(config):
+    return CONFIRMATION_RUNTIME_ROLES+(('portfolio_policy',) if config.get('rebalance_confirmation_version')==3 else ())+(
+        ('protocol_policy',) if config.get('accounting_version')==6 else ())
+
+
+def _confirmation_capabilities(config):
+    result={role:config['rebalance_confirmation_version'] for role in
+        ('strategy','rebalance_confirmation','idle_compounding_budget')}
+    if config.get('rebalance_confirmation_version')==3:
+        result.update(portfolio_policy=2 if config.get('accounting_version')==6 else 1,budget_compounding=4)
+    if config.get('accounting_version')==6:result['protocol_policy']=1
+    return result
 
 
 def observe_confirmation_health(keeper, previous=None):
@@ -58,7 +76,7 @@ def observe_confirmation_health(keeper, previous=None):
     from zzz_ops.rpc import RpcError
     report = {'schema':OBSERVATION_SCHEMA, 'state':'not_configured',
         'last_observed':previous.get('last_observed') if isinstance(previous,dict) else None, 'last_error':None}
-    if keeper.rebalance_confirmation.version not in (1,2):
+    if keeper.rebalance_confirmation.version not in (1,2,3):
         return report
     try:
         identity = digest(keeper.config)
@@ -82,10 +100,9 @@ def observe_confirmation_health(keeper, previous=None):
             'configuration_sha256':identity, 'source_files_sha256':keeper.source_files_sha256,
             'source_identity_scope':'local_files_at_keeper_start_not_runtime_attestation',
             'runtime_code_hashes':{role:keeper.config['code_hashes'][role].lower()
-                for role in CONFIRMATION_RUNTIME_ROLES},
+                for role in _confirmation_roles(keeper.config)},
             'validated_bindings':_confirmation_bindings(keeper.config),
-            'validated_capabilities':{role:keeper.rebalance_confirmation.version for role in
-                ('strategy','rebalance_confirmation','idle_compounding_budget')}}
+            'validated_capabilities':_confirmation_capabilities(keeper.config)}
         gap = policy['maximum_gap_seconds']
         report.update(state='stopped' if gap==0 else 'incompatible_cadence' if gap<CHECK_SECONDS else 'observed_this_cycle',
             last_observed=observed)
@@ -96,11 +113,15 @@ def observe_confirmation_health(keeper, previous=None):
 
 def confirmation_reasons(data, config, *, now, max_age):
     """Require fresh confirmation evidence independently of execution quality."""
-    if config.get('rebalance_confirmation_version',0) not in (1,2):
+    if config.get('rebalance_confirmation_version',0) not in (1,2,3):
         return []
     interval = config.get('interval_seconds')
-    if (type(config.get('accounting_version')) is not int or config['accounting_version'] != 4 or
-            type(config.get('maintenance_policy_version')) is not int or config['maintenance_policy_version'] != 2 or
+    fresh=config['rebalance_confirmation_version']==3
+    if (type(config.get('accounting_version')) is not int or config['accounting_version'] not in ((5,6) if fresh else (4,)) or
+            config.get('accounting_version')==6 and (type(config.get('protocol_policy_version')) is not int or config['protocol_policy_version']!=1) or
+            type(config.get('maintenance_policy_version')) is not int or config['maintenance_policy_version'] != (3 if fresh else 2) or
+            fresh and (type(config.get('portfolio_version')) is not int or config['portfolio_version']!=(2 if config.get('accounting_version')==6 else 1) or
+                type(config.get('lp_routing_version')) is not int or config['lp_routing_version']!=2) or
             type(interval) is not int or not 60 <= interval <= CHECK_SECONDS):
         return ['confirmation_health_profile_invalid']
     outer = data.get('rebalance_confirmation_health')
@@ -135,18 +156,20 @@ def confirmation_reasons(data, config, *, now, max_age):
     if observation.get('source_identity_scope') != 'local_files_at_keeper_start_not_runtime_attestation':
         reasons.append('confirmation_observation_source_scope_unknown')
     runtimes, expected = observation.get('runtime_code_hashes'), config.get('code_hashes',{})
-    if (not isinstance(runtimes,dict) or set(runtimes) != set(CONFIRMATION_RUNTIME_ROLES) or
+    roles=_confirmation_roles(config)
+    if (not isinstance(runtimes,dict) or set(runtimes) != set(roles) or
             any(not _hash(runtimes.get(role)) or runtimes.get(role) != str(expected.get(role,'')).lower()
-                for role in CONFIRMATION_RUNTIME_ROLES)):
+                for role in roles)):
         reasons.append('confirmation_observation_runtime_mismatch')
     try:
         bindings = _confirmation_bindings(config)
     except (ValueError,TypeError,KeyError):
         bindings = None
     capabilities = observation.get('validated_capabilities')
+    wanted=_confirmation_capabilities(config)
     if (bindings is None or observation.get('validated_bindings') != bindings or
-            not isinstance(capabilities,dict) or set(capabilities) != {'strategy','rebalance_confirmation','idle_compounding_budget'} or
-            any(type(value) is not int or value != expected_version for value in capabilities.values())):
+            not isinstance(capabilities,dict) or set(capabilities)!=set(wanted) or
+            any(type(value) is not int or value!=wanted[role] for role,value in capabilities.items())):
         reasons.append('confirmation_observation_bindings_invalid')
     duration, gap = observation.get('duration_seconds'), observation.get('maximum_gap_seconds')
     review = observation.get('review_hash')
@@ -154,11 +177,20 @@ def confirmation_reasons(data, config, *, now, max_age):
         _uint(duration,604800) and duration>=60 and _uint(gap) and gap<=duration//2 and
         _uint(observation.get('policy_revision'),2**64-1) and isinstance(review,str) and
         re.fullmatch(r'0x[0-9a-f]{64}',review) is not None and (gap==0 or _hash(review)))
-    if expected_version==2:
+    if expected_version in (2,3):
         reference_review=observation.get('reference_review_hash')
         valid_policy = (valid_policy and type(observation.get('reference_exit_required')) is bool and
             isinstance(reference_review,str) and re.fullmatch(r'0x[0-9a-f]{64}',reference_review) is not None and
             (observation['reference_exit_required'] or _hash(reference_review)))
+    if fresh:
+        valid_policy=(valid_policy and type(observation.get('portfolio_version')) is int and observation['portfolio_version']==(2 if config.get('accounting_version')==6 else 1) and
+            observation.get('portfolio_policy')==str(config.get('contracts',{}).get('portfolio_policy','')).lower() and
+            _uint(observation.get('portfolio_policy_revision'),2**64-1) and
+            _uint(observation.get('threshold_bps'),10000) and observation['threshold_bps']>0 and
+            observation.get('threshold_basis')=='ZZZ_in_ETH_actual_centre_to_physical_boundary' and
+            ((observation.get('minimum_main_bps') is None and observation.get('maximum_residual_bps') is None) if config.get('accounting_version')==6 else
+             type(observation.get('minimum_main_bps')) is int and observation['minimum_main_bps']==6000 and
+             type(observation.get('maximum_residual_bps')) is int and observation['maximum_residual_bps']==4000))
     if not valid_policy:
         reasons.append('confirmation_observation_policy_invalid')
     elif gap==0 and data.get('lp_exit_started') is not True:
@@ -181,14 +213,14 @@ def execution_reasons(data, config, *, now, max_age):
     if type(quality_version) is not int or quality_version not in (0,1):
         return ['execution_health_profile_invalid']
     confirmation_version=config.get('rebalance_confirmation_version',0)
-    if type(confirmation_version) is not int or confirmation_version not in (0,1,2):
+    if type(confirmation_version) is not int or confirmation_version not in (0,1,2,3):
         return ['execution_health_profile_invalid']
-    if confirmation_version in (1,2) and version!=HEALTH_SCHEMA:
+    if confirmation_version in (1,2,3) and version!=HEALTH_SCHEMA:
         return ['execution_health_schema_required']
     confirmation = confirmation_reasons(data,config,now=now,max_age=max_age)
     if quality_version != 1:
         return confirmation
-    if type(config.get('lp_routing_version')) is not int or config['lp_routing_version'] != 1:
+    if type(config.get('lp_routing_version')) is not int or config['lp_routing_version'] != (2 if config.get('accounting_version') in (5,6) else 1):
         return ['execution_health_profile_invalid']
     if version != HEALTH_SCHEMA:
         return ['execution_health_schema_required']
@@ -221,14 +253,15 @@ def execution_reasons(data, config, *, now, max_age):
         reasons.append('execution_observation_source_scope_unknown')
     runtimes = observation.get('runtime_code_hashes')
     expected = config.get('code_hashes', {})
-    if (not isinstance(runtimes, dict) or set(runtimes) != set(RUNTIME_ROLES) or
+    roles=RUNTIME_ROLES+(('lp_balance_math','lp_position_executor') if config['lp_routing_version']==2 else ())
+    if (not isinstance(runtimes, dict) or set(runtimes) != set(roles) or
             any(not _hash(runtimes.get(role)) or runtimes.get(role) != str(expected.get(role, '')).lower()
-                for role in RUNTIME_ROLES)):
+                for role in roles)):
         reasons.append('execution_observation_runtime_mismatch')
     policy = observation.get('metadata')
     quality = policy.get('execution_quality') if isinstance(policy, dict) else None
     catalog=policy.get('execution_pools') if isinstance(policy,dict) else None
-    if (not isinstance(policy, dict) or type(policy.get('version')) is not int or policy['version'] != 1 or
+    if (not isinstance(policy, dict) or type(policy.get('version')) is not int or policy['version'] != config['lp_routing_version'] or
             policy.get('router') != config.get('contracts', {}).get('balancing_router', '').lower() or
             not _uint(policy.get('execution_revision'),2**64-1) or
             not _uint(policy.get('registry_configuration_revision'),2**64-1) or
@@ -246,6 +279,11 @@ def execution_reasons(data, config, *, now, max_age):
             quality.get('known_pool_fees_excluded_from_additional_limit') is not True or
             quality.get('policy_frozen_by_wallet_review') is not False):
         reasons.append('execution_observation_policy_invalid')
+    if config['lp_routing_version']==2 and (not isinstance(policy,dict) or
+            type(policy.get('portfolio_version')) is not int or policy['portfolio_version']!=(2 if config.get('accounting_version')==6 else 1) or
+            policy.get('math_helper')!=str(config.get('contracts',{}).get('lp_balance_math','')).lower() or
+            policy.get('position_executor')!=str(config.get('contracts',{}).get('lp_position_executor','')).lower()):
+        reasons.append('execution_portfolio_helper_invalid')
     return reasons
 
 

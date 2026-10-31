@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -136,7 +137,7 @@ contract KeeperCompoundCompletionTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        control = new MockAccess();
+        control = new MockAccess(); ProtocolPolicyFixture.bind(address(control));
         callback = new KeeperCompletionCallback(control, address(this));
         vault = new KeeperCompletionVaultStub(callback);
         compounder = new ZZZCompounder(address(control));
@@ -218,7 +219,7 @@ contract KeeperBuybackCompletionTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        control = new MockAccess();
+        control = new MockAccess(); ProtocolPolicyFixture.bind(address(control));
         callback = new KeeperCompletionCallback(control, address(this));
         token = new KeeperCompletionBurnToken(callback);
         reserve = new KeeperCompletionReserve(token);

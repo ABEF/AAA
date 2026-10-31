@@ -4,6 +4,7 @@ pragma solidity 0.8.26;
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {IZZZAccess, IZZZOracle, IZZZVault, IZZZPools, IZZZFees, IZZZLiquidity, IZZZStrategy} from "./interfaces/IZZZ.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 
 interface IPricingVault { function migrationBudget() external view returns (address); }
 interface IPricingEntry {
@@ -16,11 +17,12 @@ interface IPricingBudget {
     function lastCompound(uint256) external view returns(uint64);
     function compoundInterval(bytes32) external view returns(uint32);
 }
+interface IPricingPortfolio {function minimumMainBps(bytes32) external view returns(uint16);}
 
 /// @notice Fixed Oracle-created accounting companion. No funds, approvals, user
 /// setter, arbitrary call or sweep. A whole contribution uses one price vector.
 contract ZZZContributionPricing {
-    uint256 public constant ENTRY_REVIEW_VERSION = 1;
+    uint256 public constant ENTRY_REVIEW_VERSION = 2;
     IZZZAccess public immutable access;
     IZZZOracle public immutable oracle;
     // Oracle USD18 prices are at most 1e36, below uint128.max. Packing the
@@ -39,10 +41,13 @@ contract ZZZContributionPricing {
         address token0;
         address token1;
         uint32 limits;
+        uint16 maxIdleBps;
+        bytes32 entryPolicyFingerprint;
     }
     struct MaintenanceMark {
         uint256 value; uint256 price0; uint256 price1; uint256 scale0; uint256 scale1;
         uint256 idle0; uint256 idle1;
+        uint16 maxIdleBps;bytes32 maintenancePolicy;
     }
     Basis private basis;
     mapping(address => Mark) private marks;
@@ -67,6 +72,32 @@ contract ZZZContributionPricing {
         if (!access.isSealed() || access.paused() || access.preparationActive() || access.canonicalState() != 0) revert InvalidState();
     }
     function active() external view returns(bool) { return basis.phase != 0; }
+    function _protocolPolicy() private view returns(IZZZProtocolPolicy){return IZZZProtocolPolicy(access.protocolPolicy());}
+    /// @notice The fixed Budget may only use the contribution cap captured
+    /// before external input movement, never a guessed current/default value.
+    function entryIdleLimit(uint256 bucket) external view onlyBudget returns(uint16){
+        if(basis.phase==0 || basis.phase>4 || basis.bucket!=bucket)revert InvalidState();
+        return basis.maxIdleBps;
+    }
+    function assertDeployed(uint256 bucket,uint16 maxIdleBps) external view onlyBudget {
+        if(maxIdleBps>4000)revert InvalidState();
+        (uint256 deployed,uint256 idle)=nav(bucket);
+        if(deployed==0 || idle>Math.mulDiv(deployed+idle,maxIdleBps,10000))revert Slippage();
+    }
+    /// @notice Typed read-only extraction of the Budget's post-maintenance
+    /// value proof. The starting vector/caps remain captured by its fixed caller;
+    /// source scope cannot be repriced or relaxed by a later governance callback.
+    function checkMaintenance(uint256 bucket,uint256 beforeValue,uint256 price0,uint256 price1,
+        uint256 scale0,uint256 scale1,uint16 lossBps,uint16 maxIdleBps,bytes32 expectedMaintenancePolicy)
+        external view onlyBudget returns(uint256 deployed,uint256 idle,bytes32 poolId) {
+        if(beforeValue==0 || lossBps>1000 || maxIdleBps>4000 ||
+            _protocolPolicy().maintenanceFingerprint()!=expectedMaintenancePolicy)revert InvalidState();
+        Position memory p=IZZZVault(access.module(Ids.VAULT)).group(bucket);poolId=p.poolId;
+        (deployed,idle)=_maintenanceValues(p,price0,price1,scale0,scale1);
+        uint256 retained=deployed+idle;
+        if(retained<beforeValue-Math.mulDiv(beforeValue,lossBps,10000) || deployed==0 ||
+            idle>Math.mulDiv(retained,maxIdleBps,10000))revert Slippage();
+    }
     function compoundReady(uint256 bucket) external view onlyBudget returns(bool) {
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
         if(p.status != PositionStatus.Active || p.lpTokenId == 0) return false;
@@ -82,6 +113,10 @@ contract ZZZContributionPricing {
     /// @notice Stateless exact valuation for the fixed Budget's captured vector.
     /// This shares accounting math; it creates no new authority or price fallback.
     function markMaintenance(uint256 bucket) external view onlyBudget returns(MaintenanceMark memory mark) {
+        IZZZProtocolPolicy policy=_protocolPolicy();
+        IZZZProtocolPolicy.MaintenancePolicy memory limits=policy.maintenancePolicy();
+        mark.maxIdleBps=limits.maxIdleBps;
+        mark.maintenancePolicy=keccak256(abi.encode(address(policy),limits));
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         mark.price0 = oracle.price(c.key.currency0); mark.price1 = oracle.price(c.key.currency1);
@@ -90,14 +125,30 @@ contract ZZZContributionPricing {
         (uint256 deployed,uint256 idle) = _maintenanceValues(p,mark.price0,mark.price1,mark.scale0,mark.scale1);
         mark.value = deployed+idle;
     }
-    function maintenanceValues(uint256 bucket,uint256 price0,uint256 price1,uint256 scale0,uint256 scale1)
-        external view onlyBudget returns(uint256 deployed,uint256 idle) {
-        return _maintenanceValues(IZZZVault(access.module(Ids.VAULT)).group(bucket),price0,price1,scale0,scale1);
+    /// @notice Post-replacement utilization uses actual physical principal and
+    /// the Budget's starting USD vector. The main floor, residual ceiling and
+    /// idle ceiling are independent of the operation's execution-loss budget.
+    function assertPortfolioUtilization(uint256 bucket,uint256 price0,uint256 price1,uint256 scale0,uint256 scale1)
+        external view onlyBudget {
+        Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
+        IZZZLiquidity manager = IZZZLiquidity(access.module(Ids.LIQUIDITY));
+        (uint256 a0,uint256 a1) = manager.amounts(p.lpTokenId);
+        uint256 main = Math.mulDiv(a0,price0,scale0)+Math.mulDiv(a1,price1,scale1);
+        uint256 secondary = manager.secondaryId(p.lpTokenId);
+        uint256 residual;
+        if (secondary != 0) {
+            (a0,a1) = manager.amounts(secondary);
+            residual = Math.mulDiv(a0,price0,scale0)+Math.mulDiv(a1,price1,scale1);
+        }
+        uint256 retained = main+residual+Math.mulDiv(p.idle0,price0,scale0)+Math.mulDiv(p.idle1,price1,scale1);
+        uint16 floor=IPricingPortfolio(IZZZStrategy(access.module(Ids.STRATEGY)).portfolioPolicy()).minimumMainBps(p.poolId);
+        if (main < Math.mulDiv(retained,floor,10000,Math.Rounding.Ceil) ||
+            residual > Math.mulDiv(retained,10000-floor,10000)) revert Slippage();
     }
     function _maintenanceValues(Position memory p,uint256 price0,uint256 price1,uint256 scale0,uint256 scale1)
         private view returns(uint256 deployed,uint256 idle) {
         if(p.lpTokenId != 0) {
-            (uint256 a0,uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
+            (uint256 a0,uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).portfolioAmounts(p.lpTokenId);
             deployed = Math.mulDiv(a0,price0,scale0)+Math.mulDiv(a1,price1,scale1);
         }
         idle = Math.mulDiv(p.idle0,price0,scale0)+Math.mulDiv(p.idle1,price1,scale1);
@@ -113,6 +164,10 @@ contract ZZZContributionPricing {
     function _pair(bytes32 pool) private {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(pool);
         basis.pool = pool; basis.token0 = c.key.currency0; basis.token1 = c.key.currency1;
+        IZZZProtocolPolicy policy=_protocolPolicy();
+        IZZZProtocolPolicy.EntryPolicy memory entry=policy.entryPolicy();
+        basis.maxIdleBps=entry.maxIdleBps;
+        basis.entryPolicyFingerprint=keccak256(abi.encode(address(policy),entry));
         // Entry freezes operating limits before the original-source transfer
         // and conversion, not only when it eventually enters the Vault.
         uint16 cap = IPricingBudget(IPricingVault(access.module(Ids.VAULT)).migrationBudget()).contributionLossBps();
@@ -139,13 +194,15 @@ contract ZZZContributionPricing {
     /// @dev Entry calls BEFORE token pulls, approvals or conversion. No later
     /// quote can replace this original-source value or LP-pair price basis.
     /// @notice Freeze the reviewed Entry basis and enforce the caller's maximum loss.
-    function beginEntryReviewed(uint256 nft,bytes32 pool,address source,uint256 amount,uint16 maximumLossBps)
+    function beginEntryReviewed(uint256 nft,bytes32 pool,address source,uint256 amount,uint16 maximumLossBps,
+        bytes32 expectedContributionPolicy)
         external returns(uint256 lowerUSD) {
         if (msg.sender != _entry()) revert Unauthorized();
         _live(); if (basis.phase != 0 || amount == 0) revert InvalidState();
         if (maximumLossBps > 1000) revert InvalidAmount();
         basis.phase = 1; basis.entry = true; basis.nft = nft;
         _pair(pool);
+        if(expectedContributionPolicy==bytes32(0) || basis.entryPolicyFingerprint!=expectedContributionPolicy)revert InvalidState();
         if (uint16(basis.limits >> 16) > maximumLossBps) revert Slippage();
         _mark(source);
         Mark memory m = marks[source];
@@ -201,10 +258,17 @@ contract ZZZContributionPricing {
     function nav(uint256 bucket) public view returns(uint256 deployed,uint256 idle) {
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
         if (p.lpTokenId != 0) {
-            (uint256 a0,uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
+            (uint256 a0,uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).portfolioAmounts(p.lpTokenId);
             deployed = valueBucket(bucket,a0,a1);
         }
         idle = valueBucket(bucket,p.idle0,p.idle1);
+    }
+    /// @notice Exact attributed idle only; deliberately independent of physical
+    /// LP reads, principal activity and terminal valuation availability.
+    function idleValue(uint256 bucket) external view onlyBudget returns(uint256) {
+        Position memory p=IZZZVault(access.module(Ids.VAULT)).group(bucket);
+        PoolConfig memory c=IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        return oracle.value(c.key.currency0,p.idle0)+oracle.value(c.key.currency1,p.idle1);
     }
     /// @dev The Vault already performs these three marks in fixed order: before
     /// its deliberate balancing swap, before _put, and after every _put callback.
@@ -232,7 +296,9 @@ contract ZZZContributionPricing {
         if (IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(basis.pool) != basis.putSpot) revert Slippage();
     }
     function _unchanged() private view returns(bytes32 hash) {
-        hash = keccak256(abi.encode(basis.pool,basis.nft,basis.lowerInput,basis.upperInput));
+        if(_protocolPolicy().entryFingerprint()!=basis.entryPolicyFingerprint)revert InvalidState();
+        hash = keccak256(abi.encode(basis.pool,basis.nft,basis.lowerInput,basis.upperInput,
+            basis.maxIdleBps,basis.entryPolicyFingerprint));
         for (uint256 i; i < assets.length; ++i) {
             address token = assets[i]; Mark memory m = marks[token];
             (uint256 low,uint256 high,bytes32 fingerprint) = oracle.priceBounds(token);
@@ -251,7 +317,7 @@ contract ZZZContributionPricing {
         // never overwrite a starting mark or count it as newly deployed LP.
         _historicalMarks(bucket);
         _putUnchanged(); bytes32 hash = _unchanged();
-        if (deployed == 0 || idle > Math.mulDiv(deployed+idle,500,10000) ||
+        if (deployed == 0 || idle > Math.mulDiv(deployed+idle,basis.maxIdleBps,10000) ||
             deployed+idle <= incumbentNAV || deployed < incumbentDeployed) revert Slippage();
         netUSD = deployed+idle-incumbentNAV;
         uint256 required = basis.upperInput - Math.mulDiv(basis.upperInput,uint16(limits >> 16),10000);

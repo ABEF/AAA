@@ -1,0 +1,9 @@
+{
+  "executed": 4,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "ok": true,
+  "source_unchanged": true,
+  "scope": "Explicit conversion configuration and pending-first behavior plus existing pinned native conversion and disabled fallback; offline injected RPC only."
+}

@@ -14,6 +14,7 @@ import {ZZZContributionPricing} from "./ZZZContributionPricing.sol";
 import {ZZZV4RouteExecutor} from "./ZZZV4RouteExecutor.sol";
 import {IV3RouteRouter} from "./interfaces/IZZZV3Route.sol";
 import {ZZZV3VenueValidation} from "./libraries/ZZZV3VenueValidation.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 
 interface IActivationVault {
     function activate(uint256, bytes32, uint256, uint256, uint128, uint256) external payable;
@@ -25,7 +26,7 @@ interface IActivationVault {
 contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
     /// @notice Signed contribution policy: no legacy unbounded entry fallback.
-    uint256 public constant REVIEW_POLICY_VERSION = 1;
+    uint256 public constant REVIEW_POLICY_VERSION = 2;
     address public immutable registry;
     ZZZActivationAssets public immutable activationAssets;
     ZZZV4RouteExecutor public immutable v4Executor;
@@ -201,9 +202,13 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
 
     /// @notice The signed maximum includes conversion and placement loss; gas is separate.
     /// A tighter execution-time policy is allowed, but never a wider one than reviewed.
-    function executeReviewed(Request calldata request, uint16 maximumLossBps)
+    function executeReviewed(Request calldata request, uint16 maximumLossBps,bytes32 expectedContributionPolicy)
         external payable live operating principalOperating nonReentrant {
         _deadline(request.deadline);
+        IZZZProtocolPolicy policySource=IZZZProtocolPolicy(access.protocolPolicy());
+        if(expectedContributionPolicy==bytes32(0) || policySource.entryFingerprint()!=expectedContributionPolicy)
+            revert InvalidState();
+        IZZZProtocolPolicy.EntryPolicy memory entryTerms=policySource.entryPolicy();
         address vault = _vault();
         if (request.amountIn == 0 || request.minimumLiquidity == 0 || _owner(request.nftId) != msg.sender) revert Unauthorized();
         PoolConfig memory pool = IZZZPools(registry).accounting(request.poolId);
@@ -240,10 +245,11 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         // Admit and freeze source + LP-pair prices BEFORE a token pull, approval
         // or conversion can call external code. Both bounds come from two sources.
         uint256 grossUSD = activationAssets.value(source, request.amountIn);
-        if (_pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps) != grossUSD) revert InvalidState();
+        if (grossUSD == 0 || grossUSD < (request.increase?entryTerms.minGrowthUSD:entryTerms.minActivationUSD))
+            revert InvalidAmount();
+        if (_pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps,
+            expectedContributionPolicy) != grossUSD) revert InvalidState();
         if (source != address(0)) ExactToken.pull(source, msg.sender, request.amountIn);
-        if (grossUSD == 0 || (!request.increase && grossUSD < 100e18) ||
-            (request.increase && grossUSD < 5e18)) revert InvalidAmount();
         uint256 acquired = request.amountIn;
         if (kind == 2) {
             acquired = _convertV4(request,output,sourceBaseline,outputBaseline);
@@ -274,6 +280,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         if (_owner(request.nftId) != msg.sender || ExactAsset.balance(output,address(this)) != outputBaseline ||
             ExactAsset.balance(source,address(this)) != sourceBaseline || address(this).balance != nativeBaseline) revert InvalidState();
         _pricing().endEntry();
+        if(policySource.entryFingerprint()!=expectedContributionPolicy)revert InvalidState();
         emit SourceContributed(msg.sender, request.nftId, request.poolId, request.sourceAsset,
             request.amountIn, grossUSD, output, acquired, request.increase);
     }

@@ -120,6 +120,8 @@ class Projection:
             expected.add('accounting_version')
         if isinstance(config, dict) and 'fee_intake_version' in config:
             expected.add('fee_intake_version')
+        if isinstance(config, dict) and 'protocol_policy_version' in config:
+            expected.add('protocol_policy_version')
         if isinstance(config, dict) and 'history' in config:
             expected.add('history')
         if isinstance(config, dict) and 'predecessors' in config:
@@ -132,16 +134,19 @@ class Projection:
         if type(config['schema']) is not int or config['schema'] != 2:
             raise ValueError('Unsupported frontend API configuration schema')
         self.accounting_version = config.get('accounting_version', 1)
-        if type(self.accounting_version) is not int or self.accounting_version not in (1, 2, 3, 4):
+        if type(self.accounting_version) is not int or self.accounting_version not in (1, 2, 3, 4, 5, 6):
             raise ValueError('Unsupported deployment accounting version')
+        self.protocol_policy_version=config.get('protocol_policy_version',0)
+        if type(self.protocol_policy_version) is not int or self.protocol_policy_version!=(1 if self.accounting_version==6 else 0):
+            raise ValueError('Accounting6 requires explicit protocol-policy1; historical profiles cannot adopt it')
         self.fee_intake_version = config.get('fee_intake_version', 0)
         if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0, 1) or \
-                (self.fee_intake_version == 1 and self.accounting_version not in (2, 3, 4)):
+                (self.fee_intake_version == 1 and self.accounting_version not in (2, 3, 4, 5, 6)):
             raise ValueError('Unsupported LP fee-intake profile')
-        if self.accounting_version in (3, 4) and self.fee_intake_version != 1:
+        if self.accounting_version in (3, 4, 5, 6) and self.fee_intake_version != 1:
             raise ValueError('Local Position V3 requires LP-only fee intake')
-        self.dormant_status = 3 if self.accounting_version in (3, 4) else 5
-        self.parked_status = 4 if self.accounting_version in (3, 4) else 6
+        self.dormant_status = 3 if self.accounting_version in (3, 4, 5, 6) else 5
+        self.parked_status = 4 if self.accounting_version in (3, 4, 5, 6) else 6
         self.chain = integer(config['chain_id'], 'chain_id', minimum=1)
         self.start = integer(config['deployment_block'], 'deployment_block')
         self.start_hash = _hash(config['deployment_block_hash'])
@@ -156,7 +161,12 @@ class Projection:
         chosen_rpc = rpc or validated_rpc
         self.rpc = chosen_rpc if isinstance(chosen_rpc, BudgetedRPC) else BudgetedRPC(chosen_rpc)
         self.clock = clock
-        self.roles = ROLES + (('principal_exit',) if self.accounting_version == 4 else ())
+        self.roles = ROLES + (('principal_exit',) if self.accounting_version in (4,5,6) else ())
+        if self.accounting_version in (5,6):
+            from frontend_api.portfolio_v5 import ROLES as old_portfolio_roles
+            from frontend_api.portfolio_v6 import ROLES as policy_portfolio_roles
+            portfolio_roles = policy_portfolio_roles if self.accounting_version == 6 else old_portfolio_roles
+            self.roles += portfolio_roles
         _keys(config['contracts'], set(self.roles), 'contracts')
         self.contracts = {}
         for role in self.roles:
@@ -232,7 +242,7 @@ class Projection:
             'eligibleWeight(address)': {0}, 'index(address)': {0}, 'pending(address)': {0},
             'custodyNonce(address)': {0},
         }
-        if self.accounting_version in (2, 3, 4):
+        if self.accounting_version in (2, 3, 4, 5, 6):
             native_slots.update({
                 'feeds(address)': {0}, 'price(address)': {0}, 'tokenDecimals(address)': {0},
                 'priceBounds(address)': {0},
@@ -281,10 +291,11 @@ class Projection:
         for item in self.contracts.values():
             self._code(item.address, item.code_hash, block)
         access = self.contracts['access'].address
-        if self.accounting_version in (2, 3, 4):
+        if self.accounting_version in (2, 3, 4, 5, 6):
             if self._uint('vault', 'ACCOUNTING_VERSION()', block=block) != self.accounting_version:
                 raise ProjectionError('Native accounting profile differs from the deployed Vault version')
-            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5' if self.accounting_version == 4 else
+            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6' if self.accounting_version==6 else
+                      b'ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5' if self.accounting_version in (4,5) else
                       b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4' if self.accounting_version == 3 else
                       b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3' if self.fee_intake_version == 1
                       else b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2')
@@ -292,7 +303,7 @@ class Projection:
             actual = '0x' + self._call(self.contracts['handoff'].address, 'SCHEMA()', block=block)[0]
             if actual != native_schema:
                 raise ProjectionError('Native canonical schema differs from the reviewed profile')
-        if self.accounting_version in (3, 4):
+        if self.accounting_version in (3, 4, 5, 6):
             if self._uint('access','GOVERNANCE_VERSION()',block=block) != 2:
                 raise ProjectionError('Local profile requires direct governance V2')
             governor = self._addr('access','governance()',block=block)
@@ -315,12 +326,16 @@ class Projection:
         for role, method, expected in bindings:
             if self._addr(role, method, block=block) != self.contracts[expected].address:
                 raise ProjectionError('Immutable NFT/helper binding differs from deployment pins')
-        if self.accounting_version == 4:
+        if self.accounting_version in (4,5,6):
             module_id = '0x' + keccak256(b'ZZZMigration').hex()
             if (self._addr('access', 'module(bytes32)', module_id, block=block) != self.contracts['principal_exit'].address or
                     self._addr('principal_exit', 'access()', block=block) != access or
-                    self._uint('principal_exit', 'CUSTODY_VERSION()', block=block) != 3):
+                    self._uint('principal_exit', 'CUSTODY_VERSION()', block=block) != (4 if self.accounting_version in (5,6) else 3)):
                 raise ProjectionError('Holder-exit module differs from the reviewed deployment')
+        if self.accounting_version in (5,6):
+            from frontend_api.portfolio_v5 import verify_profile as verify_v5
+            from frontend_api.portfolio_v6 import verify_profile as verify_v6
+            (verify_v6 if self.accounting_version == 6 else verify_v5)(self,block)
         lifecycle = read_lifecycle(self, block)
         if not allow_locked and lifecycle['state'] != 'operating':
             raise ProjectionError('Canonical deployment is locked; use the protocol status endpoint')
@@ -359,7 +374,7 @@ class Projection:
                          for n in range(count)]
             if len(set(addresses)) != count or role == 'royalties' and (not addresses or addresses[0] != ZERO):
                 raise ProjectionError('Malformed admitted asset inventory')
-            if role == 'rewards' and self.accounting_version in (3, 4) and (not addresses or addresses[0] != ZERO):
+            if role == 'rewards' and self.accounting_version in (3, 4, 5, 6) and (not addresses or addresses[0] != ZERO):
                 raise ProjectionError('Current LP ledger must begin with native ETH')
             if role == 'rewards' and (len(set(addresses)-{ZERO}) > 32 or (ZERO in addresses and addresses[0] != ZERO)):
                 raise ProjectionError('Malformed LP native settlement inventory')
@@ -492,7 +507,7 @@ class Projection:
                 raise ProjectionError('Traits exceed the immutable artwork catalogue')
             traits = {'rarity': ('Commun', 'Rare', 'Legendary')[rarity], 'palette': palette, 'pattern': pattern}
         status = self._uint('vault', 'nftStatus(uint256)', nft_id, block=block)
-        status_limit = 6 if self.accounting_version == 4 else 5 if self.accounting_version == 3 else len(STATUS)
+        status_limit = 6 if self.accounting_version in (4,5,6) else 5 if self.accounting_version == 3 else len(STATUS)
         if status == 0 or status >= status_limit:
             raise ProjectionError('Missing or unsupported canonical vault state')
         bucket = self._uint('vault', 'nftBucket(uint256)', nft_id, block=block)
@@ -503,7 +518,7 @@ class Projection:
         if weight > 0 and (not ready or weight != rarity + 1) or (status == self.dormant_status) != (shares == 0):
             raise ProjectionError('Activation differs from the canonical revealed NFT state')
         custody = None
-        exited = self.accounting_version == 4 and status == 5
+        exited = self.accounting_version in (4,5,6) and status == 5
         if status in (1, self.parked_status) or exited:
             group = self._position(bucket, block)
             decoded = decode_position(group, self.accounting_version)
@@ -518,6 +533,11 @@ class Projection:
                        'share_numerator_raw': str(shares), 'share_denominator_raw': str(supply),
                        'last_rebalance_at': int(group[6], 16),
                        'identity_source': 'Vault.group at the confirmed snapshot'}
+            if self.accounting_version in (5,6) and status == 1:
+                from frontend_api.portfolio_v5 import read_bucket as read_v5
+                from frontend_api.portfolio_v6 import read_bucket as read_v6
+                read_bucket = read_v6 if self.accounting_version == 6 else read_v5
+                custody['portfolio'] = read_bucket(self,bucket,block)
         contribution = self._uint('vault', 'contributionUSD(uint256)', nft_id, block=block)
         value = self._call(self.contracts['nft'].address, 'currentLPValue(uint256)', nft_id, block=block, words=2)
         available = _bool(value[0])
@@ -537,6 +557,14 @@ class Projection:
         # Derive precisely the same four-state display from the single current
         # value read. Activation eligibility persists independently of its mark.
         stage = 4 if exited else 0 if weight == 0 else 3 if available and raw_usd >= 10000 * 10**18 else 2 if available and raw_usd >= 1000 * 10**18 else 1
+        if self.accounting_version==6:
+            from zzz_ops.protocol_policy import observe as observe_policy
+            try:
+                metadata_policy=observe_policy(lambda target,method,*args,count:self._call(target,method,*args,block=block,words=count),
+                    policy=self.contracts['protocol_policy'].address,access=self.contracts['access'].address,domain='metadata')
+            except (ValueError,TypeError,KeyError) as exc:
+                raise ProjectionError('NFT evolution policy cannot be authenticated') from exc
+            stage=4 if exited else 0 if weight==0 else 3 if available and raw_usd>=metadata_policy['singularity_usd_18'] else 2 if available and raw_usd>=metadata_policy['enhanced_usd_18'] else 1
         settlement = None
         if self.royalty_reporting is not None:
             settlement = self.royalty_reporting.read(nft_id, weight, royalty_assets, health, block)
@@ -575,7 +603,7 @@ class Projection:
                            'eip1898_require_canonical': True, 'deployment_block': self.start,
                            'deployment_block_hash': self.start_hash, 'configuration_sha256': self.identity, 'accounting_version': self.accounting_version},
         }
-        if self.accounting_version == 4:
+        if self.accounting_version in (4,5,6):
             from frontend_api.principal_return import read
             result['principal_return'] = read(self, nft_id, status, shares, owner, lifecycle, block)
             result['position']['principal_redeemable'] = result['principal_return']['holder_claim_available_by_lifecycle']

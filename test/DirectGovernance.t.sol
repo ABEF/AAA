@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {Vm} from "forge-std/Vm.sol";
@@ -39,7 +40,7 @@ contract DirectGovernanceTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access = new ZZZAccessController(GOVERNANCE, KEEPER, GUARDIAN);
+        access = new ZZZAccessController(GOVERNANCE, KEEPER, GUARDIAN); ProtocolPolicyFixture.bind(address(access));
         zzz = new MockToken(18);
         pools = new ZZZPoolRegistry(address(access));
         oracle = new ZZZOracle(address(access), address(0));
@@ -81,7 +82,7 @@ contract DirectGovernanceTest is Test {
 
     function testInitialRoleLogsReconstructBothConstructorGrants() public {
         vm.recordLogs();
-        ZZZAccessController fresh = new ZZZAccessController(GOVERNANCE, KEEPER, GUARDIAN);
+        ZZZAccessController fresh = new ZZZAccessController(GOVERNANCE, KEEPER, GUARDIAN); ProtocolPolicyFixture.bind(address(fresh));
         Vm.Log[] memory logs = vm.getRecordedLogs();
         assertEq(logs.length, 2);
         _assertRoleLog(logs[0], address(fresh), keccak256("KeeperChanged(address,bool)"), KEEPER, true);

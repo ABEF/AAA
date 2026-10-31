@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {PoolManager} from "@uniswap/v4-core/src/PoolManager.sol";
@@ -54,14 +57,14 @@ contract FeeAdjustedExecutionTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000); vm.deal(address(this),10_000_000 ether);
-        access = new MockAccess(); token = new FactualToken(); token.mint(address(this),10_000_000 ether);
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); token = new FactualToken(); token.mint(address(this),10_000_000 ether);
         core = new PoolManager(address(this)); state = new StateView(IPoolManager(address(core)));
         FactualPermit permit = new FactualPermit();
         PositionManager positions = new PositionManager(IPoolManager(address(core)),IAllowanceTransfer(address(permit)),100000,
             IPositionDescriptor(address(0)),IWETH9(address(0)));
-        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit));
+        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
         router = manager.balancingRouter();
-        oracle = new ZZZOracle(address(access),address(0)); strategy = new ZZZStrategy(address(access));
+        oracle = new ZZZOracle(address(access),address(0)); strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         registry = new QualityPools(); first = new MockFeed(8,1e8); second = new MockFeed(8,1e8);
         access.bind(Ids.VAULT,address(this)); access.bind(Ids.BUYBACK,address(this));
         access.bind(Ids.LIQUIDITY,address(manager)); access.bind(Ids.ORACLE,address(oracle));
@@ -72,7 +75,7 @@ contract FeeAdjustedExecutionTest is Test {
         core.setProtocolFeeController(address(this)); core.setProtocolFee(key,uint24(137|(997<<12)));
         _external(1_000_000 ether); access.seal();
         bytes32[] memory ids = new bytes32[](1); ids[0]=pool; router.configureExecutionPools(ids,REVIEW);
-        token.approve(address(manager),type(uint128).max);
+        token.approve(address(manager),type(uint128).max); token.approve(manager.positionOperator(), type(uint128).max);
         vm.deal(address(manager),PREFUND); token.mint(address(manager),PREFUND);
     }
     function _feeds(address asset) private {
@@ -111,7 +114,7 @@ contract FeeAdjustedExecutionTest is Test {
     }
 
     function test_DefaultAndSeparateCapabilityAreExplicit() public view {
-        assertEq(router.LP_ROUTING_VERSION(),1);assertEq(manager.LP_ROUTING_VERSION(),1);
+        assertEq(router.LP_ROUTING_VERSION(),2);assertEq(manager.LP_ROUTING_VERSION(),2);
         assertEq(router.EXECUTION_QUALITY_VERSION(),1);assertEq(manager.EXECUTION_QUALITY_VERSION(),1);
         assertEq(router.additionalLossBps(),100);assertEq(router.MAX_ADDITIONAL_LOSS_BPS(),1000);
     }

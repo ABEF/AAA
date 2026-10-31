@@ -4,7 +4,7 @@ Confirmed financial history rejects contradictory transaction-index/hash groupin
 at ingestion and replay. Valid filtered-log gaps and optional historical indices
 remain supported; consistency does not prove provider/database completeness.
 Observation also rechecks final confirmation depth and signed legacy gas-price
-agreement. Contradictory evidence is an error/unavailable amount, never guessed0.
+agreement. Contradictory evidence is an error/unavailable amount, never guessed 0.
 See [current review](../reports/whole-project-execution-20261029/BACKEND.md).
 
 The `frontend_api` Python service reads confirmed contract state and optional
@@ -13,68 +13,106 @@ administrator write endpoint. Optional typed preparation returns simulated,
 unsigned drafts only; public signing remains disabled. Production hosting,
 current-profile website integration and actual dependencies are not qualified.
 
-Current fresh LP protection uses confirmation2 and separate emergency capability1.
-Ordinary readiness requires physical/reference same-side range exit (unless a
-reviewed policy relaxation or deliberate governance width exception applies).
-Reference prices remain the configured dual USD sources, not a newly qualified
-market feed. A separate paused governance emergency may explicitly bypass
-financial guards; it preserves exact accounting/custody but can cause near-total
-economic loss. It is not a user transaction, keeper fallback or API signing
-feature. [Policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
-[emergency procedure](EMERGENCY_REBALANCE.md).
+Fresh source uses accounting6, maintenance3, confirmation3 and optional portfolio2.
+Ordinary samples require the physical pool and independent reference on the same
+85%-of-centre-to-boundary threshold side in ZZZ-in-ETH price, using actual rounded
+main bounds. This threshold can be reached while the main remains active. The
+600-second sampled window may accumulate during the hard twelve-hour cooldown;
+execution needs both, then one persisted 60–300-second keeper delay. Source checks
+are 240 seconds; the configured maximum confirmed gap is 300 seconds. A gap-0 helper
+is unconfigured and cannot authorize ordinary sampled execution. Earlier
+maintenance2/confirmation2 deployments retain their outside-only policy and selected 900/300 settings; other historical profiles stay explicit.
+
+A separate paused governance emergency capability2 may explicitly bypass chosen
+financial/timing checks; exact custody/accounting remain, but near-total economic
+loss is possible. It is not an automatic keeper fallback or API signing feature.
+Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUTION_POLICY.md),
+[optional portfolio](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md), [emergency procedure](EMERGENCY_REBALANCE.md).
 
 ## Current deployment profile
 
-Use explicit `accounting_version: 4` and `fee_intake_version: 1` with read
-configuration **schema 2**. The service checks Vault accounting 4, direct
-Access governance 2, actual governance identity and canonical
-`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. The Position codec
-has eight words; dormant/parked/exited states are 3/4/5. No retired remote fields
-are synthesized. Both LP and royalty ledgers support native ETH; current LP
-inventory must actually begin with ETH. Validated never-activated NFTs cannot
-report positive available rewards. Malformed wallet-summary core data rejects;
-a genuine view outage leaves the affected metric unavailable.
+Fresh configuration uses explicit `accounting_version:6` and `fee_intake_version:1`
+with read schema2. It verifies Vault6, direct governance2, custody4 and the
+explicit `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` admission domain. Position still has
+eight words; dormant/parked/exited states remain 3/4/5. The main physical LP ID is
+never replaced by an aggregate or virtual ID.
 
-Fee-intake1 earnings verify the actual module version, exact funded-credit /
-allocation pairing and observed-key final dust. See [earnings semantics and
-configuration](EARNINGS_HISTORY.md), [royalty reporting](ROYALTY_REPORTING.md) and
-[current backend verification](../reports/backend-remediation-20261026/VERIFICATION.md).
-Native USD policies use direct address zero and dual-source pricing 2; no wrapper
-runtime or single-source fallback is invented.
+Profile6 requires these additional `{address,code_hash}` pins, beyond the existing
+base contracts and `principal_exit`:
 
-Explicit accounting 1/2/3 readers remain for reviewed historical deployments.
-Omitting accounting version selects legacy1, not the release candidate. Preserve
-old addresses, codecs, journals and snapshots. Current V5 lineage requires
-accounting 4 predecessors; historical V4 requires accounting 3. Neither imports
-another accounting/canonical profile. Source
-publication never changes an existing API, Anvil deployment or website server.
+| Boundary | Explicit contract roles |
+| --- | --- |
+| Principal and strategy | `pools`, `liquidity`, `strategy`, `budget` |
+| Protocol and strategy policy | `protocol_policy`, `portfolio_policy`, `rebalance_confirmation` |
+| Typed LP execution | `balancing_router`, `lp_balance_math`, `lp_position_executor` |
+| Reviewed v4 dependencies | `pool_manager`, `state_view`, `position_manager`, `permit2` |
 
-Accounting4 also requires `contracts.principal_exit: {address, code_hash}` for
-the fixed Migration module. Every read verifies its runtime, Access/module
-bindings and `CUSTODY_VERSION()==3`. The existing served poplint artifact remains
-an unconfigured accounting3 reader; source publication does not upgrade it to4.
-Public signing remains disabled and the local signer remains Anvil-only.
+The service verifies runtime, sealed module, parent/child and dependency bindings.
+Capabilities are accounting6/maintenance3/confirmation3/compound4/custody4,
+LP routing2/portfolio2/execution quality1 and emergency2. Math is noncustodial;
+the fixed PositionExecutor accepts only Manager's typed LP operations. No new
+wallet, signing authority, generic executor or custody recipient is introduced.
 
-The optional activation companion uses an independent schema1 configuration;
-fresh source declares maintenance2, LP routing1, execution-quality1 and
-`rebalance_confirmation_version:2`. Explicit historical version1 remains a separate profile. It additionally pins the immutable
-Strategy-created confirmation child and verifies Strategy/Budget/helper versions,
-parent/controller/runtime bindings and policy at one canonical hash. Its range
-context distinguishes raw `needsRebalance` candidates from confirmed
-`rebalanceReady` eligibility, with unconfigured/not-started/stale/confirming/ready
-states. Intended operation is a15-minute recorded window and four-minute checks
-after the hard12-hour cooldown, with an exact300-second maximum gap and no grace.
-The source constructor gap0 stops ordinary rebalancing until reviewed
-configuration; a delayed sample restarts the window. This is sampled evidence,
-not proof of uninterrupted prices or a promised execution time. Historical
-absent/0 remains a separate profile. See [preparation](ACTIVATION_PREPARATION.md).
+Active positions authenticate the actual main and optional residual owners,
+full PoolKeys, ticks and positive liquidity at the same canonical block.
+`Manager.amounts(actualId)` remains physical; `portfolioAmounts(main)` must equal
+the exact two-leg sum. `position.local_custody.portfolio` exposes both IDs/bounds,
+raw physical principal, desired mode and pending geometry. NFT LP USD value also
+includes attributed idle/compound through the existing on-chain share valuation.
+Collection/wallet chunks reuse a verified bucket only within that request; there
+is no cross-user/latest-state cache. A missing or contradictory leg fails closed.
+Desired single mode does not erase a residual awaiting atomic merging.
 
-Production inventory schema6 is separate from read API schema2 and activation
-schema1. The new [schema6 observer/validator](PRODUCTION_PREFLIGHT.md) checks the
-accounting4/custody3/V5 profile and17helpers; actual source/service/dependency
-qualification remains blocked. The served poplint accounting3 artifact and
-preserved Anvil deployments are unchanged by this source work. See
-[scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+Accounting6 uses an explicit physical-only observation for this authentication.
+It skips maintenance-price diagnostics, not owners, runtime bindings, PoolKeys,
+main range geometry consistency, positive liquidity or aggregate raw amounts.
+A reference-price outage therefore leaves confirmed ownership and funded raw
+claim balances available; LP/USD valuation can remain unavailable. Contradictory
+physical evidence still fails closed. Physical-only results carry no `allowed`,
+`status` or maintenance readiness assertion. The default keeper observation
+retains price/eligibility checks. [Regression evidence](../reports/day-audit-20261031/VERIFICATION.md).
+
+Optional residual mode is disabled by default. Its approved default is half of
+the corresponding main side (`residualSideBps=5000`), with an actual tick-spacing
+gap; governance may review another fraction from 1 to 10000. For a main 50–150 around 100,
+the outer targets are 75 or 125, not a forced 40% capital allocation. Ordinary
+replacement proves the configured main floor(default60%, hardminimum60%) and
+complementary residual ceiling(default40%) at captured USD marks. Subsequent market changes may alter
+those percentages or make a residual mixed; the API must not call all capital
+active or continuously 60% active.
+
+The optional schema1 activation configuration explicitly declares range1,
+maintenance3, LP routing2, execution quality1, confirmation3, reviewed Entry2 and `portfolio_version:2`.
+It pins ProtocolPolicy1/PortfolioPolicy2/Confirmation/BalanceMath/PositionExecutor
+as well as existing helpers. ProtocolPolicy version1 is explicit on the read
+configuration; the activation subsection inherits it rather than accepting a duplicate key. Shared read/preparation pins and venue dependency hashes must match.
+The unsigned context distinguishes physical threshold, independent agreement,
+cooldown, sampled maturity and actual readiness; it reports no promised keeper
+time. Its execution portfolio fingerprint includes current liquidity, while the
+confirmation identity excludes mutable liquidity so another contribution does
+not reset the window. Exact simulated deployment follows
+Vault→Manager→PositionExecutor→PosM; later Policy bookkeeping reads cannot count
+as marginal LP. Entrant funds increase/create only the main, not an incumbent
+inventory-repair residual. [Preparation](ACTIVATION_PREPARATION.md).
+
+Accounting1-5 readers remain explicit historical profiles. Omitting the version
+selects legacy1, never6. Their codecs, addresses, runtimes, timing and journals
+are not rewritten. API6 predecessor history requires explicit accounting6 and canonicalV6
+throughout; the retained record shape does not authorize relabelling old V5
+accounting4/5 history. Historical accounting4 remains a separately pinned custody3 profile.
+
+Production inventory schema8 is separate from read schema2 and activation schema1;
+it authenticates the complete fresh helper graph. Historical schema7/6 stay tied
+to their recorded profiles. Actual provider/route/VRF/gas/service qualification is
+still open. The served poplint accounting3 artifact remains unconfigured;
+popldemo remains the separate simulation. Source changes do not deploy either
+site, change Anvil, or enable public signing. Browser signing remains Anvil-only.
+
+Fee-intake1 history still verifies actual funded-credit/allocation pairing and
+final dust. Native ETH is address zero, without a wrapper or presumed USD peg.
+Validated dormant NFTs cannot report positive available rewards. Currency outages
+may leave the affected metric unavailable; contradictory core data is an error.
+See [earnings semantics](EARNINGS_HISTORY.md) and [royalty reporting](ROYALTY_REPORTING.md).
 
 After governance starts collective exit, `lifecycle.lp_exit_started` is permanent.
 Mint/contribution preparation stops; NFT transfers and earned LP/royalty claims
@@ -238,7 +276,10 @@ deployment anchor and header age, and uses EIP-1898
 `eth_getCode`. Providers that do not support hash-pinned calls fail closed; no
 fallback to `latest` or a number-only call is used.
 
-Every accounting4 request verifies nine runtime pins; sealed module bindings; their common
+Historical accounting4 verifies its nine base runtime pins and accounting5 its
+explicit old portfolio graph. Accounting6 additionally authenticates ProtocolPolicy1
+and Portfolio2 with the complete execution/dependency graph above.
+Every request checks sealed module bindings and their common
 controller; the Vault's home chain; NFT/royalty/helper ownership; and canonical
 lifecycle/origin. NFT and wallet requests additionally verify the full admitted
 asset inventory and asset code/decimals. The status endpoint omits those asset
@@ -367,3 +408,12 @@ Only display totals once every chunk is verified; never present partial sums.
 LP uses currentLPValue; funded ETH combines LP and royalties. Missing values
 remain null. Historical earnings and unconverted source currencies are excluded.
 See [aggregation and recovery procedure](LOCAL_API_REHEARSAL.md#full-wallet-totals).
+
+## Accounting6 policy observation
+
+Fresh reads explicitly require protocol_policy_version1 and the reviewed bound
+helper/runtime. Dynamic sale/VRF mint provenance is `mint_policy`, separate from
+`claim_operations` (empty for mint). Entry minima/idle and cosmetic tier thresholds
+are read at the same confirmed block; missing policy never becomes guessed
+defaults. Stage1 means actual activation, not a persistent100USD value floor.
+Inventory is schema8; public signing remains disabled. [Exact profile](POSITION_V6.md).

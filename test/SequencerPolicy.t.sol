@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -33,7 +34,7 @@ contract SequencerPolicyTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access = new MockAccess();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         token = new MockToken(18);
         usd = new MockFeed(8, 2e8);
         sequencer = new MockFeed(0, 0);
@@ -152,7 +153,7 @@ contract SequencerPolicyTest is Test {
         assertEq(oracle.price(address(token)), 2e18);
     }
     function testActualSealedDirectGovernanceControlsReplacementAndCannotDisable() public {
-        ZZZAccessController controller = new ZZZAccessController(address(0xA0A0), address(0x111), address(0x222));
+        ZZZAccessController controller = new ZZZAccessController(address(0xA0A0), address(0x111), address(0x222)); ProtocolPolicyFixture.bind(address(controller));
         RecoverableUptimeFeed oldSource = new RecoverableUptimeFeed(block.timestamp - 2 hours);
         ZZZOracle governed = new ZZZOracle(address(controller), address(oldSource));
         governed.setTestFeed(address(token), address(usd), 1 days);

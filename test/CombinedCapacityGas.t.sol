@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+import {SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -36,7 +40,7 @@ contract CapacityRoyaltyFaultToken is MockToken {
 
 /// @dev TEST ONLY: multi-pair venue that deploys every contributed token unit.
 /// It models custody and fee separation, not Uniswap execution or production gas.
-contract CombinedCapacityVenue is ERC721 {
+contract CombinedCapacityVenue is ERC721 , SinglePositionFixture {
     MockPools private immutable pools;
     mapping(uint256 => uint256) private amount0;
     mapping(uint256 => uint256) private amount1;
@@ -113,8 +117,8 @@ contract CombinedCapacityGasTest is Test {
     function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
 
     function _mint(address owner) private returns (uint256 id) {
-        vm.prank(owner);
-        id = vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vm.prank(owner);
+        id = vault.mintDormant{value: 0.05 ether}(reviewedPolicy1);
         vrf.fulfill(nft.requestOf(id), 0, 0);
         nft.finalizeTraits(id);
     }
@@ -122,16 +126,16 @@ contract CombinedCapacityGasTest is Test {
     function _fixture() private {
         vm.pauseGasMetering();
         vm.warp(1_000_000);
-        access = new MockAccess();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         pools = new MockPools();
         feed = new MockFeed(8, 1e8);
         policy = new VaultPolicyMock();
         venue = new CombinedCapacityVenue(pools);
-        vault = new ZZZVault(address(access), block.chainid, TREASURY);
+        vault = new AccountingVaultHarness(address(access), block.chainid, TREASURY, address(new ZZZMigrationBudget(address(access))));
         assertEq(vault.MAX_BUCKETS(), SUPPORTED_BUCKETS, "Requalify combined gas before changing capacity");
         nft = new ZZZNFT(address(access), "");
         vrf = new MockVRF();
-        nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         membership = new ZZZMembership(address(access));
         rewards = new ZZZRewards(address(access));
         fees = new ZZZFeeController(address(access));

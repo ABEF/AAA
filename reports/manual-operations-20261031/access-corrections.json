@@ -1,0 +1,375 @@
+{
+  "scope": "46 source-checked canConfigure-derived access explanations only; no Solidity or permission change. Propose/accept/setPaused and sealed-only recovery permissions unchanged.",
+  "notes_before_sha256": "b8ad9380660cd7cd0673c26cff165be80a1b01d45e612b39219aca970d58e9ee",
+  "notes_after_sha256": "76bfd52541278be4d973be3e1880ec6b97a8812dc8c9c4a9f50993e4dc4b0949",
+  "changes": [
+    {
+      "contract": "ZZZAccessController",
+      "signature": "setGuardian(address,bool)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZAccessController.sol",
+      "body_sha256": "f49a0d8e51397e79729fe22cb9b61b86977a9a413d9244ed26103489ed1663ef"
+    },
+    {
+      "contract": "ZZZAccessController",
+      "signature": "setKeeper(address,bool)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZAccessController.sol",
+      "body_sha256": "41f7c35dd57a624e55b9fc5ce93652a6a37e095853fe2b76d8dc176cd6c318ce"
+    },
+    {
+      "contract": "ZZZActivationAssets",
+      "signature": "configureZZZ(address,bytes32,bytes32)",
+      "old_access": "Bootstrap governance only, before access.isSealed(), while zzz is unset. It requires current code, decimals and valid dual-price admission; live contributions cannot run before sealing.",
+      "new_access": "Only the current bootstrap before sealing; unavailable after sealing. A distinct governance wallet is not the bootstrap. Additional guards: unset fixed ZZZ identity and valid current code/decimals/dual pricing.",
+      "source": "src/ZZZActivationAssets.sol",
+      "body_sha256": "dac47502f6b9d60acaacb95afef3af7df3114b719a01ae86ec7fa10eee30a538"
+    },
+    {
+      "contract": "ZZZActivationAssets",
+      "signature": "setAsset(address,bool,bytes32,bytes32)",
+      "old_access": "Immediate controller governance or unsealed bootstrap under existing configuration/lifecycle rules; no additional waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZActivationAssets.sol",
+      "body_sha256": "5af2a14e34d8c51cd68e0ba885249be454b88d19944a4bd079a5aa241a2cb2c9"
+    },
+    {
+      "contract": "ZZZActivationEntry",
+      "signature": "addRoute((address,address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32))",
+      "old_access": "Immediate governance, operating state, nonReentrant; complete existing router/factory/pool/token runtime and identity checks still apply.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/ZZZActivationEntry.sol",
+      "body_sha256": "9764412ca378a847912ee3777d5226f6ea5ef463a180c4a42f1bede0890a8e63"
+    },
+    {
+      "contract": "ZZZActivationEntry",
+      "signature": "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))",
+      "old_access": "Immediate governance, operating state and nonReentrant; fixed executor validates exact policy/runtime/venue identities.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/ZZZActivationEntry.sol",
+      "body_sha256": "e886cc862a880ac38725ba69e5272761aae62dc7a78516268881636d2e976d42"
+    },
+    {
+      "contract": "ZZZActivationEntry",
+      "signature": "setRouteEnabled(bytes32,bool)",
+      "old_access": "Immediate governance, operating state and nonReentrant. Re-enable revalidates the existing typed route and allowed source.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/ZZZActivationEntry.sol",
+      "body_sha256": "271afcd9946d9d2e993c9b0295f78791ddb80fd0ece6730af2cfbf309e7336e3"
+    },
+    {
+      "contract": "ZZZBuyback",
+      "signature": "setOperatingTradeUSD(uint256)",
+      "old_access": "Governance via controller; operating lifecycle, ordinary pause permitted.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/ZZZBuyback.sol",
+      "body_sha256": "1e35a09b35a8111947679218f972df31242de25556b6198f75916ad5c19d2818"
+    },
+    {
+      "contract": "ZZZLPBalancer",
+      "signature": "configureExecutionPools(bytes32[],bytes32)",
+      "old_access": "Selected governance wallet directly, or valid pre-seal bootstrap; canonical/preparation and terminal principal-exit guards remain. No timelock.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit.",
+      "source": "src/ZZZLPBalancer.sol",
+      "body_sha256": "554280b504740b114a5bdf97de2b15dffea4e855e3b6ff29d0053ada728d115d"
+    },
+    {
+      "contract": "ZZZLPBalancer",
+      "signature": "configureSolver(uint8,uint32,bytes32)",
+      "old_access": "Selected governance wallet directly, or valid pre-seal bootstrap; canonical/preparation and terminal principal-exit guards remain. No timelock.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit.",
+      "source": "src/ZZZLPBalancer.sol",
+      "body_sha256": "f747918b449fd6efc5162cfe7a0f9bfc6b8ee43136ce2db06b3c445bc85a3078"
+    },
+    {
+      "contract": "ZZZLPRewardConverter",
+      "signature": "addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))",
+      "old_access": "Governance via controller.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "1f455fedce9d7058424574771626b09323c8d4989bc4b616234fb99e375e6f5e"
+    },
+    {
+      "contract": "ZZZLPRewardConverter",
+      "signature": "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))",
+      "old_access": "Governance via controller.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "eef94dcf407f372e4396413ac4c3c3cac5d381c7cc5634aba63fb7178e028d94"
+    },
+    {
+      "contract": "ZZZLPRewardConverter",
+      "signature": "configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))",
+      "old_access": "Governance via controller; active operation lifecycle.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "731e0c4b7d0ee86729e429b62475508276647adc3b9a24a219a4abf16c3ff389"
+    },
+    {
+      "contract": "ZZZLPRewardConverter",
+      "signature": "setConversionLossBps(uint16)",
+      "old_access": "Governance via controller; active operation lifecycle.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "6769a0626092cb1d2b4ab9680f64ba08cfebdaff03e0e84a1c04d5e43ec7e8dd"
+    },
+    {
+      "contract": "ZZZLPRewardConverter",
+      "signature": "setEnabled(bool)",
+      "old_access": "Governance via controller; active operation lifecycle.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "aa342c973a4cdf1ff8a0052f3edf71d6154c4e0f5df5bc94e85e6c23a1e51465"
+    },
+    {
+      "contract": "ZZZLPRewardConverter",
+      "signature": "setRouteEnabled(bytes32,bool)",
+      "old_access": "Governance via controller.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "e55851255070c0794bcdd7daf8b4eda2671ff797deabb795348f25a9e458504a"
+    },
+    {
+      "contract": "ZZZMigration",
+      "signature": "configureZZZ(address,bytes32,bytes32)",
+      "old_access": "Authorized bootstrap configuration only; unsealed and currentZZZ unset.",
+      "new_access": "Only the current bootstrap before sealing; unavailable after sealing. A distinct governance wallet is not the bootstrap. Additional guards: nonReentrant, unset fixed ZZZ identity matching source admission, Rewards and immutable Buyback.",
+      "source": "src/ZZZMigration.sol",
+      "body_sha256": "e7b8089253d25ae0b156afdcd115de4f678066092b8360b464767ccc107b32c3"
+    },
+    {
+      "contract": "ZZZMigrationBudget",
+      "signature": "setCompoundInterval(bytes32,uint32)",
+      "old_access": "Governance through controller; no preparation/non-operating canonical state or active captured operation. Ordinary pause permits configuration.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: nonReentrant, no preparation/canonical lock or active captured snapshot.",
+      "source": "src/ZZZMigrationBudget.sol",
+      "body_sha256": "9f224a14a07a29dbe5610fd3b17cf8109ac4ef3619cd16511ed1ecbd08ba15be"
+    },
+    {
+      "contract": "ZZZMigrationBudget",
+      "signature": "setLossLimits(uint16,uint16)",
+      "old_access": "Controller-authorized governance; no waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: nonReentrant, no preparation/canonical lock or active captured snapshot.",
+      "source": "src/ZZZMigrationBudget.sol",
+      "body_sha256": "67af0766615025685d9bf1028f869c75208e583f49d18c0385523f107a7fea50"
+    },
+    {
+      "contract": "ZZZNFT",
+      "signature": "addRoyaltyAsset(address)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZNFT.sol",
+      "body_sha256": "890f285721a81133337cba652ed2b5f10d550576ca43a2767afc8ecb4e166fe1"
+    },
+    {
+      "contract": "ZZZNFT",
+      "signature": "configureRandomness(address,bytes32,uint256,uint16,uint32,bool)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Only the current bootstrap before sealing; unavailable after sealing. A distinct governance wallet is not the bootstrap. Additional guards: unused original provider configuration and valid bounded request settings.",
+      "source": "src/ZZZNFT.sol",
+      "body_sha256": "2d876cd1e129bb76a5394644a814149a22b276e1e6b9e4d69b48371e9918fa5d"
+    },
+    {
+      "contract": "ZZZNFT",
+      "signature": "setBaseURI(string)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Only the current bootstrap before sealing; unavailable after sealing. A distinct governance wallet is not the bootstrap. Additional guards: empty/unconfigured base and valid nonempty IPFS/Arweave root.",
+      "source": "src/ZZZNFT.sol",
+      "body_sha256": "fe52f692f4ecfb57fa567c25190707aac6d4864dbacd3bb6d3b8fc1925b426d0"
+    },
+    {
+      "contract": "ZZZNFT",
+      "signature": "setMintPaused(bool)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZNFT.sol",
+      "body_sha256": "a8c3c3b7015fb3e1cfc08ef4da2fd1bebc4225f7804ab2172c9f12c19f70be28"
+    },
+    {
+      "contract": "ZZZNFT",
+      "signature": "setRandomnessRequestSettings(uint16,uint32)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/ZZZNFT.sol",
+      "body_sha256": "d9d0672d495125325affb4ccce82448002b13d9898f86097a2783bc8304230a9"
+    },
+    {
+      "contract": "ZZZOracle",
+      "signature": "setDualFeed(address,(address,bytes32,bytes32,uint32,uint8),(address,bytes32,bytes32,uint32,uint8),uint16,bytes32)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZOracle.sol",
+      "body_sha256": "b80fbeb83b79c6cfaede97b33265988827a8e9ec268659dc6b39ff572900f19f"
+    },
+    {
+      "contract": "ZZZOracle",
+      "signature": "setSequencerFeed(address,bytes32,bytes32)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZOracle.sol",
+      "body_sha256": "904ce5aed2c0ba223d7a5a7e6077dfcc89cddab5eddaccb4a4d3ad9fbc849530"
+    },
+    {
+      "contract": "ZZZPoolRegistry",
+      "signature": "configureNative(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: exact nativeConfiguration admission/terminal-exit guards and full venue validation.",
+      "source": "src/ZZZPoolRegistry.sol",
+      "body_sha256": "8f38d9454ea80b5369ee890b6968d76456433b799dc201c1390760690d34ece3"
+    },
+    {
+      "contract": "ZZZPoolRegistry",
+      "signature": "disablePool(bytes32,bool,bool)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZPoolRegistry.sol",
+      "body_sha256": "2d932912e5b8104c18d9360093f9018578d49e4ba5f8e685e0afacb515c9371e"
+    },
+    {
+      "contract": "ZZZPortfolioPolicy",
+      "signature": "configureResidualSide(bytes32,uint16,bytes32)",
+      "old_access": "Selected governance wallet through controller authorization; operating canonical lifecycle and no terminal LP exit. No timelock or extra human operator role.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit.",
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "body_sha256": "ff4233ccb7be0a94954f82142e71450c8a49efba57b8c7beac0a8dcb1125ab82"
+    },
+    {
+      "contract": "ZZZPortfolioPolicy",
+      "signature": "setMode(bytes32,bool,bytes32)",
+      "old_access": "Selected governance wallet through controller authorization; operating canonical lifecycle and no terminal LP exit. No timelock or extra human operator role.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit.",
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "body_sha256": "89f3caaa8ff7b4f29ac207941a6c0fb30a1634c9367b6edac77cf8377bad21eb"
+    },
+    {
+      "contract": "ZZZPortfolioPolicy",
+      "signature": "setTriggerBps(uint16,bytes32)",
+      "old_access": "Selected governance wallet through controller authorization; operating canonical lifecycle and no terminal LP exit. No timelock or extra human operator role.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit.",
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "body_sha256": "02e12d311516da812cabeb900e259efa6dcea60ff7dd8c683a4096f16fc0ca83"
+    },
+    {
+      "contract": "ZZZRebalanceConfirmation",
+      "signature": "configure(uint32,uint32,bytes32)",
+      "old_access": "Governance or valid pre-seal bootstrap through canConfigure; operating canonical lifecycle and no principal exit. Ordinary pause is allowed.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit, nonReentrant.",
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "body_sha256": "8ebd067e05aab2b474cc347403be79de7acfa2d75a706e68c7422156f916bd61"
+    },
+    {
+      "contract": "ZZZRebalanceConfirmation",
+      "signature": "setRequireReferenceExit(bool,bytes32)",
+      "old_access": "Governance or valid pre-seal bootstrap via canConfigure; operating canonical lifecycle and before terminal principal exit.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit, nonReentrant.",
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "body_sha256": "71b8dd3ec33392c12652f7c80c4263004475bc5faed1d55d0e0173c911fd77b7"
+    },
+    {
+      "contract": "ZZZRewards",
+      "signature": "addAsset(address)",
+      "old_access": "Governance via controller.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+      "source": "src/ZZZRewards.sol",
+      "body_sha256": "95b2de1d251a0f8f0d8a0c9925f3affbfff9d6a0ee14e5fc0609f3fc75b557a0"
+    },
+    {
+      "contract": "ZZZRewards",
+      "signature": "bindConverter(address)",
+      "old_access": "Governance before seal; matching ledger/controller required.",
+      "new_access": "Only the current bootstrap before sealing; unavailable after sealing. A distinct governance wallet is not the bootstrap. Additional guards: economic canonical state0, nonReentrant, one-time unused converter slot and exact ledger/controller bindings.",
+      "source": "src/ZZZRewards.sol",
+      "body_sha256": "68592064c3da77e1603e5546102acbf24ad507a7b8042510ce06ee31589d7f4d"
+    },
+    {
+      "contract": "ZZZRoyaltyConverter",
+      "signature": "addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))",
+      "old_access": "Governance via controller.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "1f455fedce9d7058424574771626b09323c8d4989bc4b616234fb99e375e6f5e"
+    },
+    {
+      "contract": "ZZZRoyaltyConverter",
+      "signature": "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))",
+      "old_access": "Governance via controller.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "eef94dcf407f372e4396413ac4c3c3cac5d381c7cc5634aba63fb7178e028d94"
+    },
+    {
+      "contract": "ZZZRoyaltyConverter",
+      "signature": "configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))",
+      "old_access": "Governance via controller; active operation lifecycle.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "731e0c4b7d0ee86729e429b62475508276647adc3b9a24a219a4abf16c3ff389"
+    },
+    {
+      "contract": "ZZZRoyaltyConverter",
+      "signature": "setConversionLossBps(uint16)",
+      "old_access": "Governance via controller; active operation lifecycle.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "6769a0626092cb1d2b4ab9680f64ba08cfebdaff03e0e84a1c04d5e43ec7e8dd"
+    },
+    {
+      "contract": "ZZZRoyaltyConverter",
+      "signature": "setEnabled(bool)",
+      "old_access": "Governance via controller; active operation lifecycle.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "aa342c973a4cdf1ff8a0052f3edf71d6154c4e0f5df5bc94e85e6c23a1e51465"
+    },
+    {
+      "contract": "ZZZRoyaltyConverter",
+      "signature": "setRouteEnabled(bytes32,bool)",
+      "old_access": "Governance via controller.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
+      "source": "src/base/ZZZRewardConverter.sol",
+      "body_sha256": "e55851255070c0794bcdd7daf8b4eda2671ff797deabb795348f25a9e458504a"
+    },
+    {
+      "contract": "ZZZRoyaltyRewards",
+      "signature": "bindConverter(address)",
+      "old_access": "Controller-authorized governance; correct NFT/ledger/access bindings required.",
+      "new_access": "Only the current bootstrap before sealing; unavailable after sealing. A distinct governance wallet is not the bootstrap. Additional guards: economic canonical state0, nonReentrant, one-time unused converter slot and exact ledger/controller bindings.",
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "body_sha256": "7d30dd67052f85c2d33dd787db0953dc177eb157c30b94ae10df7f5892389d71"
+    },
+    {
+      "contract": "ZZZStrategy",
+      "signature": "setAdditionalLossBps(uint16,bytes32)",
+      "old_access": "Governance or valid pre-seal bootstrap through canConfigure; operating lifecycle required. Ordinary global pause and post-LP-exit buybacks remain supported; preparation/canonical locks reject.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation.",
+      "source": "src/ZZZStrategy.sol",
+      "body_sha256": "7431281036379c0bdf8cf28675f4085c11dff65ed628489314201c2c614c1e70"
+    },
+    {
+      "contract": "ZZZStrategy",
+      "signature": "setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation.",
+      "source": "src/ZZZStrategy.sol",
+      "body_sha256": "9a19fa208dcaba041ea3473b4f2b4719dece2e068d3e376a983cb8c16919f02f"
+    },
+    {
+      "contract": "ZZZStrategy",
+      "signature": "setRangeOrientation(bytes32,uint8)",
+      "old_access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation.",
+      "source": "src/ZZZStrategy.sol",
+      "body_sha256": "eaa7cd008d68950e1f39818a7b07c3d73d333cacbfc0661c93e7c6b522097bd9"
+    },
+    {
+      "contract": "ZZZVault",
+      "signature": "reservePool(bytes32,uint256)",
+      "old_access": "Governance via the controller; lifecycle guards apply.",
+      "new_access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: no terminal LP exit.",
+      "source": "src/ZZZVault.sol",
+      "body_sha256": "926922d1d4cb2fc0341d05d51c053b754265e2e73628ca111a97bf0a321d4e1a"
+    }
+  ]
+}

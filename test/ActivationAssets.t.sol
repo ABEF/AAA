@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -55,7 +56,7 @@ contract ActivationAssetsTest is Test {
 
     function setUp() public {
         vm.warp(1000000);
-        access = new ZZZAccessController(address(0xA0A0), address(0xBEEF), GUARDIAN);
+        access = new ZZZAccessController(address(0xA0A0), address(0xBEEF), GUARDIAN); ProtocolPolicyFixture.bind(address(access));
         oracle = new ZZZOracle(address(access), address(0));
         registry = new ActivationRegistryFixture(address(access)); assets = registry.assets();
         access.bind(Ids.ORACLE, address(oracle)); access.bind(Ids.POOLS, address(registry));

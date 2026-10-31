@@ -1,5 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
+import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+import {NoHybridPolicyFixture, SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -21,7 +26,7 @@ import {Ids,PoolKey,PoolConfig,Position,PositionStatus} from "../src/libraries/Z
 import {MockVRF} from "./mocks/MockVRF.sol";
 import {MockAccess,MockToken,MockPools,MockFeed} from "./mocks/Mocks.sol";
 import {IZZZStrategy} from "../src/interfaces/IZZZ.sol";
-contract VaultPolicyMock {
+contract VaultPolicyMock is NoHybridPolicyFixture {
     bool public need=true;
     uint256 public swapAmount;
     uint16 public rangeTarget;
@@ -46,7 +51,7 @@ contract VaultPolicyMock {
     function compoundPlan(uint256,uint256,uint256) external view returns(bool,uint256,uint256){return(true,swapAmount,swapAmount);}
     function swapPlan(bytes32,uint256,uint256) external pure returns(bool,uint256,uint256){return(false,0,0);}
 }
-contract VaultLiquidityMock is ERC721 {
+contract VaultLiquidityMock is ERC721 , SinglePositionFixture {
     // Default positive fixture deploys every supplied unit. Tests that exercise
     // idle/rounding losses select 9900 explicitly instead of taxing all entries.
     MockToken public t0;MockToken public t1;uint256 public next=1;bool public failMint;uint256 public spendBps=10000;
@@ -108,17 +113,17 @@ contract VaultLiquidityMock is ERC721 {
     function close(bytes32,uint256 id,uint256) external {uint256 x=a0[id]*(10000-closeLossBps)/10000;uint256 y=a1[id]*(10000-closeLossBps)/10000;delete a0[id];delete a1[id];_burn(id);require(t0.transfer(msg.sender,x));require(t1.transfer(msg.sender,y));}
 }
 contract RejectingMintReceiver {
-    function mint(ZZZVault target) external payable returns(uint256) {return target.mintDormant{value:msg.value}();}
+    function mint(ZZZVault target) external payable returns(uint256) {bytes32 reviewedPolicy1 = target.mintPolicyFingerprint(); return target.mintDormant{value:msg.value}(reviewedPolicy1);}
 }
 contract RejectingMintTreasury { receive() external payable {revert("reject proceeds");} }
 contract ReentrantMintReceiver is IERC721Receiver {
     ZZZVault public immutable vault;bool public attempted;bool public reentrySucceeded;bytes4 public reentryError;
     constructor(ZZZVault target){vault=target;}
-    function mint() external payable returns(uint256){return vault.mintDormant{value:msg.value}();}
+    function mint() external payable returns(uint256){bytes32 reviewedPolicy2 = vault.mintPolicyFingerprint(); return vault.mintDormant{value:msg.value}(reviewedPolicy2);}
     function onERC721Received(address,address,uint256,bytes calldata) external returns(bytes4) {
         if (!attempted) {
             attempted=true;
-            (bool ok,bytes memory result)=address(vault).call{value:0.05 ether}(abi.encodeCall(ZZZVault.mintDormant,()));
+            (bool ok,bytes memory result)=address(vault).call{value:0.05 ether}(abi.encodeCall(ZZZVault.mintDormant,(vault.mintPolicyFingerprint())));
             reentrySucceeded=ok;if(result.length>=4)reentryError=bytes4(result);
         }
         return IERC721Receiver.onERC721Received.selector;
@@ -130,7 +135,7 @@ contract ReentrantMintTreasury is IERC721Receiver {
     receive() external payable {
         if (!attempted) {
             attempted=true;
-            (bool ok,bytes memory result)=address(vault).call{value:0.05 ether}(abi.encodeCall(ZZZVault.mintDormant,()));
+            (bool ok,bytes memory result)=address(vault).call{value:0.05 ether}(abi.encodeCall(ZZZVault.mintDormant,(vault.mintPolicyFingerprint())));
             reentrySucceeded=ok;if(result.length>=4)reentryError=bytes4(result);
         }
     }
@@ -152,8 +157,8 @@ abstract contract PooledVaultFixture is Test {
     function activePlan(uint256) external pure returns(bytes32) {return bytes32(0);}
     function setUp() public virtual { _fixture(treasury); }
     function _fixture(address payable recipient) internal {
-        vm.warp(1_000_000);ac=new MockAccess();t0=new MockToken(0);t1=new MockToken(0);pools=new MockPools();policy=new VaultPolicyMock();
-        venue=new VaultLiquidityMock(address(t0),address(t1));vault=new ZZZVault(address(ac),block.chainid,recipient);nft=new ZZZNFT(address(ac),"");
+        vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));t0=new MockToken(0);t1=new MockToken(0);pools=new MockPools();policy=new VaultPolicyMock();
+        venue=new VaultLiquidityMock(address(t0),address(t1));vault=new AccountingVaultHarness(address(ac),block.chainid,recipient, address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"");
         membership=new ZZZMembership(address(ac));rewards=new ZZZRewards(address(ac));fees=new ZZZFeeController(address(ac));
         compounder=new ZZZCompounder(address(ac));oracle=new ZZZOracle(address(ac),address(0));
         MockFeed feed=new MockFeed(8,1e8);oracle.setTestFeed(address(t0),address(feed),3600);oracle.setTestFeed(address(t1),address(feed),3600);
@@ -161,7 +166,7 @@ abstract contract PooledVaultFixture is Test {
         ac.bind(Ids.FEES,address(fees));ac.bind(Ids.COMPOUNDER,address(compounder));ac.bind(Ids.LIQUIDITY,address(venue));
         ac.bind(Ids.STRATEGY,address(policy));ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.ORACLE,address(oracle));
         ac.bind(Ids.MIGRATION,address(this));ac.setKeeper(address(this),true);
-        vrf=new MockVRF();nft.configureRandomness(address(vrf),bytes32(uint256(1)),1,3,500000,false);
+        vrf=new MockVRF();ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         rewards.addAsset(address(t0));rewards.addAsset(address(t1));
         PoolConfig memory c;c.key=PoolKey(address(t0),address(t1),3000,60,address(0));c.operationsEnabled=true;c.depositsEnabled=true;
         c.minDepositUSD=1e18;c.maxPositionUSD=1e30;c.maxSlippageBps=100;poolId=keccak256(abi.encode(c.key));pools.set(poolId,c);
@@ -172,7 +177,7 @@ abstract contract PooledVaultFixture is Test {
         vm.deal(owner,1 ether);t0.mint(owner,100000);t1.mint(owner,100000);
         vm.startPrank(owner);t0.approve(address(vault),type(uint256).max);t1.approve(address(vault),type(uint256).max);vm.stopPrank();
     }
-    function _mint(address owner) internal returns(uint256 id){vm.prank(owner);id=vault.mintDormant{value:0.05 ether}();vrf.fulfill(nft.requestOf(id),0,0);nft.finalizeTraits(id);}
+    function _mint(address owner) internal returns(uint256 id){bytes32 reviewedPolicy3 = vault.mintPolicyFingerprint(); vm.prank(owner);id=vault.mintDormant{value:0.05 ether}(reviewedPolicy3);vrf.fulfill(nft.requestOf(id),0,0);nft.finalizeTraits(id);}
     function _activate(address owner,uint256 id,uint256 amount0,uint256 amount1) internal {
         vm.prank(owner);vault.activate(id,poolId,amount0,amount1,1,block.timestamp+100);
     }
@@ -231,16 +236,16 @@ contract VaultAccountingTest is PooledVaultFixture {
         assertEq(_record(id).lpTokenId,lp);assertEq(rewards.claimable(id,address(t0)),90);assertTrue(membership.eligible(id));assertEq(vault.contributionUSD(id),2200e18);
     }
     function testSatelliteCannotIssueAnotherCollection() public {
-        vm.chainId(block.chainid+1);vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
+        vm.chainId(block.chainid+1);bytes32 reviewedPolicy4 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}(reviewedPolicy4);
         assertEq(vault.sequence(),0);
     }
     function testPauseBlocksMint() public {
-        ac.setPaused(true);vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
+        ac.setPaused(true);bytes32 reviewedPolicy5 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}(reviewedPolicy5);
         assertEq(vault.sequence(),0);
     }
     function testDormantMintForwardsPriceWithoutLiquidityOrRewards() public {
         uint256 beforeTreasury=treasury.balance;uint256 beforeOwner=alice.balance;uint256 id=_mint(alice);Position memory p=_record(id);
-        assertEq(vault.MINT_PRICE(),0.05 ether); // Gross minimum is exercised by the 99/100 input tests.
+        assertEq(vault.mintPrice(),0.05 ether); // Gross minimum is exercised by the 99/100 input tests.
         assertEq(vault.mintProceedsRecipient(),treasury);assertEq(treasury.balance,beforeTreasury+0.05 ether);
         assertEq(alice.balance,beforeOwner-0.05 ether);assertEq(address(vault).balance,0);assertEq(nft.ownerOf(id),alice);
         assertEq(uint256(p.status),uint256(PositionStatus.Dormant));assertEq(p.poolId,bytes32(0));assertEq(p.lpTokenId,0);
@@ -252,12 +257,12 @@ contract VaultAccountingTest is PooledVaultFixture {
     }
     function testFuzzMintRejectsAnyUnderpayment(uint256 payment) public {
         payment=bound(payment,0,0.05 ether-1);uint256 beforeTreasury=treasury.balance;uint256 beforeOwner=alice.balance;
-        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:payment}();
+        bytes32 reviewedPolicy6 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();vault.mintDormant{value:payment}(reviewedPolicy6);
         assertEq(vault.sequence(),0);assertEq(treasury.balance,beforeTreasury);assertEq(alice.balance,beforeOwner);
     }
     function testFuzzMintRejectsAnyOverpayment(uint256 payment) public {
         payment=bound(payment,0.05 ether+1,1 ether);uint256 beforeTreasury=treasury.balance;uint256 beforeOwner=alice.balance;
-        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:payment}();
+        bytes32 reviewedPolicy7 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();vault.mintDormant{value:payment}(reviewedPolicy7);
         assertEq(vault.sequence(),0);assertEq(treasury.balance,beforeTreasury);assertEq(alice.balance,beforeOwner);
     }
     function testRejectingNFTReceiverRollsBackMintAndPayment() public {
@@ -269,7 +274,7 @@ contract VaultAccountingTest is PooledVaultFixture {
     }
     function testRejectingTreasuryRollsBackNFTAndPayment() public {
         RejectingMintTreasury receiver=new RejectingMintTreasury();_fixture(payable(address(receiver)));uint256 beforeOwner=alice.balance;
-        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
+        bytes32 reviewedPolicy8 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}(reviewedPolicy8);
         assertEq(vault.sequence(),0);assertEq(alice.balance,beforeOwner);assertEq(address(receiver).balance,0);assertEq(address(vault).balance,0);
         uint256 rejectedId=uint256(keccak256(abi.encode(block.chainid,address(vault),uint256(1))));
         assertEq(uint256(_record(rejectedId).status),uint256(PositionStatus.None));vm.expectRevert();nft.ownerOf(rejectedId);
@@ -287,15 +292,15 @@ contract VaultAccountingTest is PooledVaultFixture {
         assertEq(address(receiver).balance,0.05 ether);assertEq(address(vault).balance,0);
     }
     function testZeroProceedsRecipientRejected() public {
-        vm.expectRevert();new ZZZVault(address(ac),block.chainid,payable(address(0)));
+        vm.expectRevert();new ZZZProtocolPolicy(address(ac),address(0));
     }
     function testSelfProceedsRecipientRejected() public {
         address predicted=vm.computeCreateAddress(address(this),vm.getNonce(address(this)));
-        vm.expectRevert();new ZZZVault(address(ac),block.chainid,payable(predicted));
+        vm.expectRevert();new ZZZProtocolPolicy(address(ac),predicted);
     }
     function testUnsealedSystemCannotMint() public {
-        MockAccess unsealed=new MockAccess();ZZZVault candidate=new ZZZVault(address(unsealed),block.chainid,treasury);
-        vm.prank(alice);vm.expectRevert();candidate.mintDormant{value:0.05 ether}();assertEq(candidate.sequence(),0);
+        MockAccess unsealed=new MockAccess(); ProtocolPolicyFixture.bind(address(unsealed));ZZZVault candidate=new ZZZVault(address(unsealed),block.chainid,address(new ZZZMigrationBudget(address(unsealed))));
+        bytes32 reviewedPolicy9 = candidate.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();candidate.mintDormant{value:0.05 ether}(reviewedPolicy9);assertEq(candidate.sequence(),0);
     }
     function testDormantTransferOnlyNewOwnerCanActivate() public {
         uint256 id=_mint(alice);vm.prank(alice);nft.transferFrom(alice,bob,id);

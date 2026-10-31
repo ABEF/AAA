@@ -5,6 +5,7 @@ import {Ids} from "./libraries/ZZZTypes.sol";
 import {ZZZCanonicalHandoff} from "./ZZZCanonicalHandoff.sol";
 import {ZZZRoyaltyFactory} from "./ZZZRoyaltyFactory.sol";
 import {ZZZActivationAssetsFactory} from "./ZZZActivationAssetsFactory.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 
 interface ICanonicalOwnerBinding {
     function nft() external view returns (address);
@@ -33,6 +34,9 @@ contract ZZZAccessController {
     bool public preparationActive;
     address public immutable royaltyFactory;
     address public immutable activationAssetsFactory;
+    /// @notice Fixed noncustodial policy companion. Only its bounded settings
+    /// change after sealing; the companion itself cannot be replaced.
+    address public protocolPolicy;
     uint8 public canonicalState;
     bool public canonicalSettling;
     bool public preparationReadyDestination;
@@ -49,6 +53,7 @@ contract ZZZAccessController {
     }
     PreparationNotice public preparationNotice;
     event ModuleBound(bytes32 indexed id, address indexed implementation);
+    event ProtocolPolicyBound(address indexed implementation, bytes32 codeHash);
     event SystemSealed();
     event PauseChanged(bool paused);
     event LPExitStarted();
@@ -166,11 +171,22 @@ contract ZZZAccessController {
         module[id] = implementation;
         emit ModuleBound(id, implementation);
     }
+    function bindProtocolPolicy(address implementation) external {
+        if (msg.sender != bootstrap || isSealed) revert Unauthorized();
+        if (protocolPolicy != address(0) || implementation.code.length == 0 ||
+            IZZZProtocolPolicy(implementation).access() != address(this) ||
+            IZZZProtocolPolicy(implementation).PROTOCOL_POLICY_VERSION() != 1) revert InvalidConfiguration();
+        protocolPolicy = implementation;
+        emit ProtocolPolicyBound(implementation, implementation.codehash);
+    }
     function seal() external {
         if (msg.sender != bootstrap || isSealed) revert Unauthorized();
+        if (protocolPolicy.code.length == 0 ||
+            IZZZProtocolPolicy(protocolPolicy).access() != address(this) ||
+            IZZZProtocolPolicy(protocolPolicy).PROTOCOL_POLICY_VERSION() != 1) revert InvalidConfiguration();
         bytes32[16] memory required = _moduleIds();
         for (uint256 i; i < required.length; ++i) {
-            if (module[required[i]].code.length == 0) revert InvalidConfiguration();
+            if (module[required[i]].code.length == 0 || module[required[i]] == protocolPolicy) revert InvalidConfiguration();
             for (uint256 j; j < i; ++j) {
                 if (module[required[i]] == module[required[j]]) revert InvalidConfiguration();
             }
@@ -183,6 +199,7 @@ contract ZZZAccessController {
         // leave a deployment unable to accept its intended ZZZ contributions.
         address sourceZZZ = IContributionRegistry(module[Ids.POOLS]).activationAssets().zzz();
         if (sourceZZZ == address(0) || IExitIdentity(module[Ids.MIGRATION]).currentZZZ() != sourceZZZ) revert InvalidConfiguration();
+        IZZZProtocolPolicy(protocolPolicy).validateMintRecipient();
 
         // NFT randomness is configured only before sealing. Do not irreversibly
         // lock the canonical collection while its mint configuration is absent.

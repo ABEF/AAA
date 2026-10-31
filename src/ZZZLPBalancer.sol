@@ -4,23 +4,24 @@ pragma solidity 0.8.26;
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
-import {LiquidityAmounts} from "@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol";
+import {ZZZLPBalanceMath} from "./ZZZLPBalanceMath.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ZZZPriceMath} from "./libraries/ZZZPriceMath.sol";
 import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZPools, IZZZOracle, IZZZStrategy, IZZZLiquidity, IPositionManagerMinimal, IStateViewMinimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
 
+interface IPortfolioRoutePolicy { function controlFingerprint(bytes32) external view returns(bytes32); }
 interface ILPRegistryRevision { function configurationRevision() external view returns (uint64); }
 
 /// @notice Bounded, typed ETH/ZZZ balancing. Quotes revert all core changes and
 /// compare useful target LP value at one independent price vector, not raw L.
 /// This is a bounded search of reviewed venues, not a global optimum promise.
 contract ZZZLPBalancer is ZZZModule {
-    uint256 public constant LP_ROUTING_VERSION = 1;
+    uint256 public constant LP_ROUTING_VERSION = 2;
     uint256 public constant EXECUTION_QUALITY_VERSION = 1;
     uint256 public constant MAX_ADDITIONAL_LOSS_BPS = 1000;
     uint256 public constant MAX_EXECUTION_POOLS = 4;
-    address public immutable liquidityManager;
+    ZZZLPBalanceMath public immutable balanceMath;
     IPoolManagerMinimal public immutable poolManager;
     IStateViewMinimal public immutable stateView;
     bytes32[] private venues;
@@ -29,10 +30,7 @@ contract ZZZLPBalancer is ZZZModule {
     uint32 public quoteGasLimit = 200000;
     bytes32 private pendingQuoteHash;
 
-    struct Prices { uint256 lower0; uint256 upper0; uint256 lower1; uint256 upper1; uint256 scale1; uint160 referenceX96; uint16 extraLoss; }
-    struct Context { bytes32 target; uint160 spot; uint160 lower; uint160 upper; uint256 amount0; uint256 amount1; Prices prices; }
     struct Plan { bytes32 poolId; bool zeroForOne; uint256 amountIn; uint256 amountOut; uint256 minimumOut; uint160 sqrtAfter; uint160 targetSqrtAfter; uint64 revision; bytes32 fingerprint; }
-    struct Evaluation { uint256 deployed; uint256 retained; uint256 imbalance; bool excess0; }
     error QuoteResult(uint256 output, uint160 sqrtAfter);
     event ExecutionPoolsConfigured(uint64 indexed revision, bytes32[] pools, bytes32 indexed reviewHash);
     event SolverConfigured(uint64 indexed revision, uint8 iterations, uint32 gasLimit, bytes32 indexed reviewHash);
@@ -42,34 +40,23 @@ contract ZZZLPBalancer is ZZZModule {
         uint256 amountIn, uint256 expectedOutput, uint64 revision);
 
     constructor(address controller, address core, address state) ZZZModule(controller) {
-        // Created by the manager while its runtime does not yet exist.
-        liquidityManager = msg.sender;
+        balanceMath = new ZZZLPBalanceMath();
         poolManager = IPoolManagerMinimal(core);
         stateView = IStateViewMinimal(state);
     }
+    /// @notice The sealed controller fixes the sole parent. Standalone creation
+    /// avoids embedding this router in Manager initcode; no mutable parent setter.
+    function liquidityManager() public view returns(address) { return access.module(Ids.LIQUIDITY); }
     function executionPoolCount() external view returns (uint256) { return venues.length; }
     function executionPoolAt(uint256 index) external view returns (bytes32) { return venues[index]; }
     /// @notice Shared exact v4 math avoids embedding a second copy in Manager.
     /// Pure calculation, no custody or authorization; Manager verifies raw spends.
     function deploymentAmounts(uint160 current,int24 lower,int24 upper,uint256 amount0,uint256 amount1)
-        external pure returns(uint128 liquidity,uint256 nativeDebt) {
-        uint160 a = TickMath.getSqrtPriceAtTick(lower); uint160 b = TickMath.getSqrtPriceAtTick(upper);
-        liquidity = LiquidityAmounts.getLiquidityForAmounts(current,a,b,amount0,amount1);
-        if(current < b) nativeDebt = SqrtPriceMath.getAmount0Delta(current <= a ? a : current,b,liquidity,true);
+        external view returns(uint128 liquidity,uint256 nativeDebt) {
+        return balanceMath.deploymentAmounts(current,lower,upper,amount0,amount1);
     }
     function principalAmounts(uint256 id) external view returns(uint256 amount0,uint256 amount1) {
-        IPositionManagerMinimal posm = IPositionManagerMinimal(IZZZLiquidity(liquidityManager).positionManager());
-        (PoolKey memory key,uint256 info) = posm.getPoolAndPositionInfo(id);
-        uint160 a = TickMath.getSqrtPriceAtTick(int24(uint24(info >> 8)));
-        uint160 b = TickMath.getSqrtPriceAtTick(int24(uint24(info >> 32)));
-        (uint160 current,,,) = stateView.getSlot0(keccak256(abi.encode(key)));
-        uint128 liquidity = posm.getPositionLiquidity(id);
-        if(current <= a) amount0 = SqrtPriceMath.getAmount0Delta(a,b,liquidity,false);
-        else if(current >= b) amount1 = SqrtPriceMath.getAmount1Delta(a,b,liquidity,false);
-        else {
-            amount0 = SqrtPriceMath.getAmount0Delta(current,b,liquidity,false);
-            amount1 = SqrtPriceMath.getAmount1Delta(a,current,liquidity,false);
-        }
+        return balanceMath.principalAmounts(IZZZLiquidity(liquidityManager()).positionManager(),address(stateView),id);
     }
     /// @notice Policy belongs to the fixed Strategy; never a keeper input.
     function additionalLossBps() public view returns(uint16) {
@@ -87,7 +74,9 @@ contract ZZZLPBalancer is ZZZModule {
         (int24 lower,int24 upper,uint160 referencePrice) = IZZZStrategy(access.module(Ids.STRATEGY)).target(target);
         return keccak256(abi.encode(registry,ILPRegistryRevision(registry).configurationRevision(),t,route,
             address(oracle),access.module(Ids.STRATEGY),
-            IZZZStrategy(access.module(Ids.STRATEGY)).executionQualityRevision(),lower,upper,referencePrice,first,second));
+            IZZZStrategy(access.module(Ids.STRATEGY)).executionQualityRevision(),
+            IPortfolioRoutePolicy(IZZZStrategy(access.module(Ids.STRATEGY)).portfolioPolicy()).controlFingerprint(target),
+            lower,upper,referencePrice,first,second));
     }
 
     /// @notice Empty removes all swap venues without consulting prices or core.
@@ -125,7 +114,7 @@ contract ZZZLPBalancer is ZZZModule {
             c.key.hooks != address(0) || c.key.fee > 100000 || c.maxSlippageBps > 1000 ||
             keccak256(abi.encode(c.key)) != id) revert InvalidConfiguration();
     }
-    function _prices(address token) private view returns (Prices memory p) {
+    function _prices(address token) private view returns (ZZZLPBalanceMath.Prices memory p) {
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         (p.lower0,p.upper0,) = oracle.priceBounds(address(0));
         (p.lower1,p.upper1,) = oracle.priceBounds(token);
@@ -140,90 +129,73 @@ contract ZZZLPBalancer is ZZZModule {
         uint256 ratio = Math.mulDiv(root,root,1e18);
         return (ratio > 1e18 ? ratio-1e18 : 1e18-ratio) <= uint256(deviation)*1e14;
     }
-    function _values(Prices memory p, uint256 amount0, uint256 amount1) private pure returns (uint256 v0, uint256 v1) {
-        return (Math.mulDiv(amount0,p.lower0,1e18),Math.mulDiv(amount1,p.lower1,p.scale1));
+    function _evaluate(ZZZLPBalanceMath.Context memory x,uint160 price,uint256 a0,uint256 a1)
+        private view returns(ZZZLPBalanceMath.Evaluation memory) {
+        return balanceMath.evaluate(x,price,a0,a1);
     }
-    function _evaluate(Context memory x, uint160 price, uint256 a0, uint256 a1) private pure returns (Evaluation memory e) {
-        (uint256 v0,uint256 v1) = _values(x.prices,a0,a1);
-        e.retained = v0+v1;
-        uint256 u0; uint256 u1;
-        if (price <= x.lower) u0 = SqrtPriceMath.getAmount0Delta(x.lower,x.upper,1e18,false);
-        else if (price >= x.upper) u1 = SqrtPriceMath.getAmount1Delta(x.lower,x.upper,1e18,false);
-        else {
-            u0 = SqrtPriceMath.getAmount0Delta(price,x.upper,1e18,false);
-            u1 = SqrtPriceMath.getAmount1Delta(x.lower,price,1e18,false);
-        }
-        (u0,u1) = _values(x.prices,u0,u1);
-        if (u0+u1 == 0) revert InvalidAmount();
-        uint256 desired0 = Math.mulDiv(e.retained,u0,u0+u1);
-        e.excess0 = v0 > desired0;
-        e.imbalance = e.excess0 ? v0-desired0 : desired0-v0;
-        uint128 liquidity = LiquidityAmounts.getLiquidityForAmounts(price,x.lower,x.upper,a0,a1);
-        uint256 used0; uint256 used1;
-        if (price <= x.lower) used0 = SqrtPriceMath.getAmount0Delta(x.lower,x.upper,liquidity,false);
-        else if (price >= x.upper) used1 = SqrtPriceMath.getAmount1Delta(x.lower,x.upper,liquidity,false);
-        else {
-            used0 = SqrtPriceMath.getAmount0Delta(price,x.upper,liquidity,false);
-            used1 = SqrtPriceMath.getAmount1Delta(x.lower,price,liquidity,false);
-        }
-        (used0,used1) = _values(x.prices,used0,used1);
-        e.deployed = used0+used1;
-    }
-    function _quoted(Prices memory p, bool direction, uint256 amount) private pure returns (uint256) {
+    function _quoted(ZZZLPBalanceMath.Prices memory p, bool direction, uint256 amount) private pure returns (uint256) {
         uint256 value = Math.mulDiv(amount,direction ? p.upper0 : p.upper1,direction ? 1e18 : p.scale1);
         return Math.mulDiv(value,direction ? p.scale1 : 1e18,direction ? p.lower1 : p.lower0);
     }
-    function _minimum(Prices memory p, bool direction, uint256 amount, uint16 loss, uint256 fee) private pure returns (uint256) {
+    function _minimum(ZZZLPBalanceMath.Prices memory p, bool direction, uint256 amount, uint16 loss, uint256 fee) private pure returns (uint256) {
         uint256 gross = Math.mulDiv(_quoted(p,direction,amount),10000-loss,10000);
         uint256 netInput = Math.mulDiv(amount,1_000_000-fee,1_000_000);
         return Math.max(gross,Math.mulDiv(_quoted(p,direction,netInput),10000-p.extraLoss,10000,Math.Rounding.Ceil));
     }
     /// @dev Fee-aware seed usually gives one quote for deep, small trades.
-    function _seed(Context memory x, bool direction, uint256 fee) private pure returns (uint256 input,uint256 residual) {
-        uint256 unit0; uint256 unit1;
-        if (x.spot <= x.lower) unit0 = SqrtPriceMath.getAmount0Delta(x.lower,x.upper,1e18,false);
-        else if (x.spot >= x.upper) unit1 = SqrtPriceMath.getAmount1Delta(x.lower,x.upper,1e18,false);
-        else {
-            unit0 = SqrtPriceMath.getAmount0Delta(x.spot,x.upper,1e18,false);
-            unit1 = SqrtPriceMath.getAmount1Delta(x.lower,x.spot,1e18,false);
-        }
-        (unit0,unit1) = _values(x.prices,unit0,unit1);
-        (uint256 v0,uint256 v1) = _values(x.prices,x.amount0,x.amount1);
-        uint256 desired = Math.mulDiv(v0+v1,unit0,unit0+unit1);
-        uint256 excess = direction ? v0-desired : desired-v0;
-        residual = excess;
-        uint256 weight = Math.mulDiv(direction ? unit0 : unit1,1e18,unit0+unit1);
-        excess = Math.mulDiv(excess,1e18,1e18-Math.mulDiv(weight,fee,1_000_000));
-        input = Math.mulDiv(excess,direction ? 1e18 : x.prices.scale1,direction ? x.prices.lower0 : x.prices.lower1);
+    function _seed(ZZZLPBalanceMath.Context memory x,bool direction,uint256 fee)
+        private view returns(uint256 input,uint256 residual) {
+        // routePlan passes a calldata copy. Seed a needed partial trade with
+        // the same rounding headroom as its later qualification, without making
+        // a naturally sufficient main require another swap.
+        if(x.mainFloor<9999)++x.mainFloor;
+        return balanceMath.seed(x,direction,fee);
     }
-    function plan(bytes32 target, int24 lower, int24 upper, uint256 amount0, uint256 amount1)
-        external returns (Plan memory best) {
-        if (msg.sender != liquidityManager || access.module(Ids.LIQUIDITY) != msg.sender || !access.isSealed()) revert Unauthorized();
+    function plan(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1)
+        external returns(Plan memory) { uint256[4] memory marks; return _plan(target,lower,upper,amount0,amount1,10000,marks); }
+    /// @notice Fresh replacement only: minimum qualifying main allocation, not
+    /// maximum-main turnover. Manager captures permission from its fixed Budget.
+    function planPartial(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1,uint16 mainFloor,uint256[4] calldata marks)
+        external returns(Plan memory) {
+        if(mainFloor<6000 || mainFloor>=10000)revert InvalidConfiguration();
+        return _plan(target,lower,upper,amount0,amount1,mainFloor,marks);
+    }
+    function _plan(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1,uint16 mainFloor,uint256[4] memory marks)
+        private returns(Plan memory best) {
+        if (msg.sender != liquidityManager() || access.module(Ids.LIQUIDITY) != msg.sender || !access.isSealed()) revert Unauthorized();
         if (amount0 > type(uint128).max || amount1 > type(uint128).max || lower >= upper) revert InvalidAmount();
         PoolConfig memory destination = _pool(target);
-        Context memory x = Context(target,IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(target),
-            TickMath.getSqrtPriceAtTick(lower),TickMath.getSqrtPriceAtTick(upper),amount0,amount1,_prices(destination.key.currency1));
-        Evaluation memory baseline = _evaluate(x,x.spot,amount0,amount1);
+        ZZZLPBalanceMath.Context memory x = ZZZLPBalanceMath.Context(target,IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(target),
+            TickMath.getSqrtPriceAtTick(lower),TickMath.getSqrtPriceAtTick(upper),amount0,amount1,_prices(destination.key.currency1),mainFloor,marks);
+        ZZZLPBalanceMath.Evaluation memory baseline = _evaluate(x,x.spot,amount0,amount1);
         best.revision = executionRevision;
         best.targetSqrtAfter = x.spot;
         bytes32 original = policyFingerprint(target,bytes32(0));
         best.fingerprint = original;
         uint256 bestValue = baseline.deployed;
         // A balanced budget needs no swap just to chase rounding dust.
-        if (baseline.retained == 0 || baseline.deployed >= Math.mulDiv(baseline.retained,9990,10000)) {
+        // A naturally sufficient main already satisfies the policy. The extra
+        // 1bp sizing headroom is only for a needed trade, not a hidden reason
+        // to swap an otherwise sufficient portfolio or require a live venue.
+        if (baseline.retained == 0 || baseline.deployed >= Math.mulDiv(baseline.retained,mainFloor==10000?9990:mainFloor,10000,Math.Rounding.Ceil)) {
             emit BalancePlanned(target,bytes32(0),false,0,0,best.revision);
             return best;
         }
         for (uint256 i; i < venues.length; ++i) {
             // An independently disabled venue must not freeze healthy candidates.
             try this.routePlan(x,venues[i],baseline.excess0) returns (Plan memory candidate,uint256 deployed) {
-                if (deployed > bestValue) { best = candidate; bestValue = deployed; }
+                if (mainFloor==10000 ? deployed>bestValue : candidate.amountIn!=0 &&
+                    (best.amountIn==0 || candidate.amountIn<best.amountIn ||
+                        (candidate.amountIn==best.amountIn && candidate.amountOut>best.amountOut))) {
+                    best=candidate;bestValue=deployed;
+                }
             } catch {}
         }
+        if (mainFloor<10000 && best.amountIn==0) revert Slippage();
         if (executionRevision != best.revision || policyFingerprint(target,bytes32(0)) != original) revert InvalidState();
         emit BalancePlanned(target,best.poolId,best.zeroForOne,best.amountIn,best.amountOut,best.revision);
     }
-    function routePlan(Context calldata x, bytes32 id, bool direction) external returns (Plan memory best,uint256 bestValue) {
+    function routePlan(ZZZLPBalanceMath.Context calldata x, bytes32 id, bool direction) external returns (Plan memory best,uint256 bestValue) {
         if (msg.sender != address(this)) revert Unauthorized();
         PoolConfig memory c = _pool(id);
         PoolConfig memory target = _pool(x.target);
@@ -254,19 +226,35 @@ contract ZZZLPBalancer is ZZZModule {
                 else {
                     uint256 a0 = direction ? x.amount0-input : x.amount0+output;
                     uint256 a1 = direction ? x.amount1+output : x.amount1-input;
-                    Evaluation memory e = _evaluate(x,id == x.target ? afterPrice : x.spot,a0,a1);
-                    if (e.deployed > bestValue) {
-                        bestValue = e.deployed;
-                        best = Plan(id,direction,input,output,minimum,afterPrice,id == x.target ? afterPrice : x.spot,
-                            executionRevision,policyFingerprint(x.target,id));
-                        if (e.deployed >= Math.mulDiv(e.retained,9990,10000)) break;
+                    ZZZLPBalanceMath.Evaluation memory e = _evaluate(x,id == x.target ? afterPrice : x.spot,a0,a1);
+                    // Keep one basis point of search headroom for rounded mint
+                    // debts. A9999floor may be unavailable if full deployment
+                    // cannot be represented; governance can choose a lower one.
+                    bool meets=x.mainFloor<10000 && e.deployed>=Math.mulDiv(e.retained,x.mainFloor+1,10000,Math.Rounding.Ceil);
+                    if(x.mainFloor<10000) {
+                        if(meets) {
+                            if(best.amountIn==0 || input<best.amountIn) {
+                                bestValue=e.deployed;
+                                best=Plan(id,direction,input,output,minimum,afterPrice,id==x.target?afterPrice:x.spot,
+                                    executionRevision,policyFingerprint(x.target,id));
+                            }
+                            hi=input;
+                        } else if(e.excess0==direction)lo=input+1;
+                        else hi=input;
+                    } else {
+                        if(e.deployed>bestValue) {
+                            bestValue=e.deployed;
+                            best=Plan(id,direction,input,output,minimum,afterPrice,id==x.target?afterPrice:x.spot,
+                                executionRevision,policyFingerprint(x.target,id));
+                            if(e.deployed>=Math.mulDiv(e.retained,9990,10000))break;
+                        }
+                        if(e.excess0==direction)lo=input+1;
+                        else hi=input;
                     }
-                    if (e.excess0 == direction) lo = input+1;
-                    else hi = input;
                     // Safeguarded secant from the original zero-input residual:
                     // smooth v4 curves converge faster than midpoint-only
                     // search, without another real swap or an unbounded loop.
-                    if (initialResidual != 0) {
+                    if (x.mainFloor==10000 && initialResidual != 0) {
                         if (e.excess0 == direction && e.imbalance < initialResidual) {
                             uint256 denominator = initialResidual-e.imbalance;
                             // Prove the quotient is bounded before mulDiv;

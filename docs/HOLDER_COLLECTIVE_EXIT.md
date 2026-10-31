@@ -1,7 +1,7 @@
 # Collective LP exit to NFT holders
 
-Fresh undeployed candidate: accounting **4**, custody **3**, canonical LP-only
-**V5**. Production is **NOT APPROVED**. External principal and royalty custody
+Fresh undeployed candidate: accounting **6**, custody **4**, canonical adaptable-policy
+**V6**. Production is **NOT APPROVED**. External principal and royalty custody
 exits are removed. Existing deployments are not upgraded or relabelled.
 
 ## Rights and authority
@@ -33,7 +33,7 @@ close. Paying old rewards or converting their currency is not new LP income.
 
 ## Operator procedure
 
-1. Verify accounting4/custody3 runtime pins, fixed ZZZ, chain, governance and
+1. Verify accounting6/custody4/portfolio2 runtime pins, fixed ZZZ, chain, governance and
    canonical operating state. Inventory all historical buckets and NFT ordinals.
    Stop/reconcile pending keeper work using its original journal; never reset
    or repeat an unresolved transaction. Review the permanent shutdown decision.
@@ -42,7 +42,8 @@ close. Paying old rewards or converting their currency is not new LP income.
    funded buckets before setting the irreversible `Access.lpExitStarted` lock
    through the Vault's reentrancy barrier. Guardian pause alone cannot start exit.
 3. Simulate/call `closeBucket(bucketId,minimumETH,minimumZZZ,deadline)` for every
-   snapshotted bucket. Minimums are raw **total principal** including idle and
+   snapshotted bucket. The operation harvests/closes both actual main/residual
+   positions; no auxiliary may remain. Minimums are raw **total principal** including idle and
    pending compound; deadline is at most ten minutes. No swaps or USD oracle
    reads are required. Venue checks, exact deltas and minima remain. A failed
    transaction leaves that bucket unchanged; earlier closes stay closed. Repair
@@ -72,7 +73,7 @@ once governance finishes all closes. It uses a separately funded keeper wallet,
 reviewed module/NFT pins and existing transaction budgets/journal/recovery;
 it cannot start exit or close LP. It is disabled until explicitly configured and
 qualified. Its ordinary polling/confirmation interval and batch/gas limits affect
-completion time. Ready-phase retries default hourly (configurable60seconds-1day), measured from canonical batch receipts; durable scheduling alternates delivery with other jobs. A successful batch is not proof that every receiver accepted payment. See [configuration/retry/restart](KEEPER_RECOVERY.md#optional-automatic-principal-delivery) and [operations](OPERATIONS.md). Manual delivery can also use
+completion time. Ready-phase retries default hourly (configurable60 seconds-1 day), measured from canonical batch receipts; durable scheduling alternates delivery with other jobs. A successful batch is not proof that every receiver accepted payment. See [configuration/retry/restart](KEEPER_RECOVERY.md#optional-automatic-principal-delivery) and [operations](OPERATIONS.md). Manual delivery can also use
 the governance wallet; normal holders neither submit transactions nor pay gas.
 
 ## Restore a reserve swap venue after exit
@@ -94,7 +95,7 @@ does not reverse `lpExitStarted`. [Exact operator steps](OPERATOR_MANUAL.md#rest
 
 ## Transfers, status and recovery
 
-`exitPhase`: Operating0, Closing1, Allocating2, Ready3. Accounting4 appends
+`exitPhase`: Operating0, Closing1, Allocating2, Ready3. Accounting6 retains
 `PositionStatus.Exited=5`; historical profiles keep their original meanings.
 Closed NFTs show known zero attached LP and terminal `LP exited` metadata,
 while remaining activated for royalties. Principal return is separate from
@@ -128,7 +129,7 @@ outages and insufficient gas can still delay closing/payment. Exact checks fail
 rather than erase liabilities. There is no automatic resend, swap fallback,
 operator custody address, recovery-to-pool ingress or bridge.
 
-Use [accounting4](POSITION_V4.md), [function reference](CONTRACT_FUNCTIONS.md),
+Use [accounting6](POSITION_V6.md), [function reference](CONTRACT_FUNCTIONS.md),
 [feature evidence](IMPLEMENTATION_STATUS.md) and [sole Todo](../TODO.md).
 Existing Anvil/NFTs/LP/journals, popldemo and the accounting3 poplint artifact stay
 unchanged. Website payout controls, actual inventory/service acceptance,

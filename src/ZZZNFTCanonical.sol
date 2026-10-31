@@ -3,6 +3,12 @@ pragma solidity 0.8.26;
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
 import {CanonicalNFTHeader, CanonicalNFTRecord, IZZZNFTCanonicalState} from "./interfaces/IZZZNFTCanonical.sol";
+import {IZZZAccess} from "./interfaces/IZZZ.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
+interface INFTPolicyHandoff {
+    function incomingSource() external view returns(address);
+    function destinationController() external view returns(address);
+}
 
 /// @notice Seal-bound NFT state codec. It has no custody or independent economic
 /// authority; typed writes are usable only by the fixed handoff while importing.
@@ -14,6 +20,7 @@ contract ZZZNFTCanonical is ZZZModule {
         nft = IZZZNFTCanonicalState(collection);
     }
     function canonicalCapture() external onlyHandoff {
+        _sameMetadataPolicy();
         uint256 count = nft.mintedCount();
         if (nft.nextToFinalize() != count + 1 || nft.remainingToReveal() != 1000 - count ||
             uint256(nft.rarityRemaining(0)) + nft.rarityRemaining(1) + nft.rarityRemaining(2) != nft.remainingToReveal()) revert InvalidState();
@@ -41,6 +48,7 @@ contract ZZZNFTCanonical is ZZZModule {
     function canonicalImport(uint256 row, bytes calldata record) external onlyHandoff {
         if (access.canonicalState() != 2 || row != cursor++) revert InvalidState();
         if (row == 0) {
+            _sameMetadataPolicy();
             if (nft.mintedCount() != 0) revert InvalidState();
             CanonicalNFTHeader memory header = abi.decode(record,(CanonicalNFTHeader));
             if (header.count > 1000 || header.next != header.count + 1 || header.remaining != 1000 - header.count ||
@@ -72,9 +80,27 @@ contract ZZZNFTCanonical is ZZZModule {
     }
     function canonicalAssetCount() external pure returns (uint256) { return 0; }
     function canonicalValidate() external view {
-        if (access.canonicalState() == 2 && cursor != canonicalCount()) revert InvalidState();
+        uint8 state=access.canonicalState();
+        if (state == 2 && cursor != canonicalCount()) revert InvalidState();
+        if(state==1 || state==2) _sameMetadataPolicy();
     }
     function canonicalActivate() external onlyHandoff {
         if (access.canonicalState() != 2) revert InvalidState();
+        _sameMetadataPolicy();
+    }
+    /// @dev Keep the existing NFT record wire only when visual semantics match.
+    /// Future provider policy is separately reviewed at the successor; every old
+    /// draw is already final. Compare threshold values, never local revision or
+    /// helper addresses, which necessarily differ between deployments.
+    function _sameMetadataPolicy() private view {
+        uint8 state=access.canonicalState();
+        INFTPolicyHandoff handoff=INFTPolicyHandoff(access.canonicalHandoff());
+        address peer=state==2 ? handoff.incomingSource() : handoff.destinationController();
+        if((state!=1 && state!=2) || peer==address(0)) revert InvalidState();
+        IZZZProtocolPolicy.MetadataPolicy memory local=
+            IZZZProtocolPolicy(access.protocolPolicy()).metadataPolicy();
+        IZZZProtocolPolicy.MetadataPolicy memory other=
+            IZZZProtocolPolicy(IZZZAccess(peer).protocolPolicy()).metadataPolicy();
+        if(local.enhancedUSD!=other.enhancedUSD || local.singularityUSD!=other.singularityUSD) revert InvalidConfiguration();
     }
 }

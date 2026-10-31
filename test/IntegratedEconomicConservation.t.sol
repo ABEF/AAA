@@ -1,5 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test, Vm} from "forge-std/Test.sol";
 import {PoolManager} from "@uniswap/v4-core/src/PoolManager.sol";
@@ -118,7 +123,7 @@ contract IntegratedEconomicConservationTest is Test {
     function setUp() public {
         vm.warp(1_000_000);vm.deal(address(this),1_000_000 ether);
         vm.deal(ALICE,100_000 ether);vm.deal(BOB,100_000 ether);vm.deal(CAROL,100_000 ether);
-        access=new MockAccess();token=new FactualToken();
+        access=new MockAccess(); ProtocolPolicyFixture.bind(address(access));token=new FactualToken();
         oracle=new ZZZOracle(address(access),address(0));access.bind(Ids.ORACLE,address(oracle));
         primary=new MockFeed(8,1e8);secondary=new MockFeed(8,1e8);
         _feeds(address(0));_feeds(address(token));
@@ -127,18 +132,18 @@ contract IntegratedEconomicConservationTest is Test {
         FactualPermit permit=new FactualPermit();
         positions=new PositionManager(IPoolManager(address(core)),IAllowanceTransfer(address(permit)),100000,
             IPositionDescriptor(address(0)),IWETH9(address(0)));
-        manager=new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit));
-        vault=new ZZZVault(address(access),block.chainid,payable(address(0x7EA5)));
+        manager=new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
+        vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
         nft=new ZZZNFT(address(access),"ipfs://integrated-test/");
         membership=new ZZZMembership(address(access));rewards=new ZZZRewards(address(access));
         fees=new ZZZFeeController(address(access));compounder=new ZZZCompounder(address(access));
         access.bind(Ids.VAULT,address(vault));access.bind(Ids.NFT,address(nft));
         access.bind(Ids.MEMBERSHIP,address(membership));access.bind(Ids.REWARDS,address(rewards));
         access.bind(Ids.FEES,address(fees));access.bind(Ids.POOLS,address(registry));
-        access.bind(Ids.LIQUIDITY,address(manager));access.bind(Ids.STRATEGY,address(new ZZZStrategy(address(access))));
+        access.bind(Ids.LIQUIDITY,address(manager));access.bind(Ids.STRATEGY,address(new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))))));
         access.bind(Ids.MIGRATION,address(this));access.bind(Ids.COMPOUNDER,address(compounder));
         access.setKeeper(address(this),true);rewards.addAsset(address(token));
-        vrf=new MockVRF();nft.configureRandomness(address(vrf),bytes32(uint256(1)),1,3,500000,false);
+        vrf=new MockVRF();ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         // Match the fixed production contribution identity before sealing. Pool
         // admission alone deliberately does not approve arbitrary source tokens.
         registry.activationAssets().configureZZZ(address(token),address(token).codehash,
@@ -191,12 +196,12 @@ contract IntegratedEconomicConservationTest is Test {
         else {token.transfer(address(core),amount);assertEq(core.settle(),amount);}
     }
     function _mint(address owner) private returns(uint256 id) {
-        vm.prank(owner);id=vault.mintDormant{value:0.05 ether}();
+        bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vm.prank(owner);id=vault.mintDormant{value:0.05 ether}(reviewedPolicy1);
         vrf.fulfill(nft.requestOf(id),0,0);nft.finalizeTraits(id);
     }
     function _contribute(address owner,uint256 id,uint256 amount,bool increase) private {
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),amount,bytes32(0),0,1,block.timestamp+100,increase);
-        vm.prank(owner);entry.executeReviewed{value:amount}(r, 200);
+        bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(owner);entry.executeReviewed{value:amount}(r, 200,reviewedPolicy2);
     }
     function _balanced(address owner,uint256 id,uint256 half,bool increase) private {
         vm.startPrank(owner);token.approve(address(vault),half);
@@ -410,7 +415,7 @@ contract IntegratedEconomicConservationTest is Test {
         // The second supported source currency must also grow an existing NFT.
         uint256 amount=(5e18*1e8+price-1)/price;
         vm.startPrank(ALICE);token.approve(address(entry),amount);
-        entry.executeReviewed(ZZZActivationEntry.Request(a,pool,address(token),amount,bytes32(0),0,1,block.timestamp+100,true),200);
+        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); entry.executeReviewed(ZZZActivationEntry.Request(a,pool,address(token),amount,bytes32(0),0,1,block.timestamp+100,true),200,reviewedPolicy3);
         vm.stopPrank();_assertBacking();
         assertGt(vault.sharesOf(a),sharesA);assertEq(vault.sharesOf(b),sharesB);
         assertGe(rewards.claimable(b,address(0)),oldB0);assertGe(rewards.claimable(b,address(token)),oldB1);
@@ -506,7 +511,7 @@ contract IntegratedEconomicConservationTest is Test {
         token.arm(address(entry),2,address(this),abi.encodeCall(this.changePriceDuringFinalReset,()));
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(token),100 ether,bytes32(0),0,1,block.timestamp+100,false);
         vm.expectCall(address(primary),abi.encodeCall(primary.set,(100_100_000,block.timestamp,block.timestamp)));
-        vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.InvalidState.selector);entry.executeReviewed(r, 200);
+        bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.InvalidState.selector);entry.executeReviewed(r, 200,reviewedPolicy4);
         assertEq(ALICE.balance,beforeETH);assertEq(token.balanceOf(ALICE),beforeToken);
         assertEq(token.allowance(ALICE,address(entry)),100 ether);assertEq(vault.nftBucket(id),0);
         assertEq(vault.sharesOf(id),0);assertFalse(membership.eligible(id));assertEq(royalties.weightOf(id),0);
@@ -544,7 +549,7 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(protocol,uint24(1000|(1000<<12)));assertEq(lpFee,10020);
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
         vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector));
-        vm.prank(ALICE);vm.expectRevert(bytes4(keccak256("Slippage()")));entry.executeReviewed{value:100 ether}(r, 200);
+        bytes32 reviewedPolicy5 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE);vm.expectRevert(bytes4(keccak256("Slippage()")));entry.executeReviewed{value:100 ether}(r, 200,reviewedPolicy5);
         assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);
         assertEq(address(core).balance,coreETH);assertEq(token.balanceOf(address(core)),coreToken);
         (uint160 spotAfter,,,)=state.getSlot0(PoolId.wrap(pool));assertEq(spotAfter,spotBefore);
@@ -569,7 +574,7 @@ contract IntegratedEconomicConservationTest is Test {
         vm.mockCallRevert(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector),failure);
         vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector),uint64(1));
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
-        vm.prank(ALICE);vm.expectRevert(failure);entry.executeReviewed{value:100 ether}(r, 200);
+        bytes32 reviewedPolicy6 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE);vm.expectRevert(failure);entry.executeReviewed{value:100 ether}(r, 200,reviewedPolicy6);
         vm.clearMockedCalls();vm.getRecordedLogs();vm.recordLogs();
         assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);
         assertEq(address(core).balance,coreETH);assertEq(token.balanceOf(address(core)),coreToken);
@@ -641,7 +646,7 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),shares);
         assertEq(royalties.claimable(id,address(0)),royalty);
         assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
-        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),3);_assertBacking();
+        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),4);_assertBacking();
         vm.expectRevert();compounder.compound(bucket,1,block.timestamp+100);
         assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
     }

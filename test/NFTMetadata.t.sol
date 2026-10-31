@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -14,6 +15,7 @@ import {ZZZNFTMetadata, NFTMetadataInput} from "../src/ZZZNFTMetadata.sol";
 import {Ids, Position, PositionStatus, PoolConfig, PoolKey} from "../src/libraries/ZZZTypes.sol";
 import {MockAccess, MockToken, MockFeed, MockPools} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
+import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
 
 /// @dev TEST ONLY. Marks synthetic LP shares/NAV without real LP custody.
 contract MetadataVaultMock {
@@ -39,7 +41,7 @@ contract MetadataVaultMock {
     }
 }
 
-contract MetadataVenueMock {
+contract MetadataVenueMock is SinglePositionFixture {
     uint256 private a0; uint256 private a1; bool private failing;
     function set(uint256 x, uint256 y) external { a0 = x; a1 = y; }
     function setFail(bool fail) external { failing = fail; }
@@ -64,6 +66,7 @@ contract NFTMetadataTest is Test {
     MockAccess private access;
     ZZZNFT private nft;
     MockVRF private vrf;
+    ZZZProtocolPolicy private policy;
     MetadataVaultMock private vault;
     MetadataVenueMock private venue;
     MetadataFeesMock private fees;
@@ -79,8 +82,10 @@ contract NFTMetadataTest is Test {
     function setUp() public {
         vm.warp(1000000);
         access = new MockAccess(); vault = new MetadataVaultMock(); vrf = new MockVRF();
+        policy = new ZZZProtocolPolicy(address(access), vault.mintProceedsRecipient());
+        access.setProtocolPolicy(address(policy));
         nft = new ZZZNFT(address(access), "ipfs://example/"); vault.setNFT(nft);
-        nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        policy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(1)), 1, 3, 500000, false, keccak256("mock VRF review"));
         venue = new MetadataVenueMock(); fees = new MetadataFeesMock(); pools = new MockPools();
         token0 = new MockToken(0); token1 = new MockToken(0);
         oracle = new ZZZOracle(address(access), address(0)); feed0 = new MockFeed(8, 1e8); feed1 = new MockFeed(8, 1e8);
@@ -136,6 +141,7 @@ contract NFTMetadataTest is Test {
 
     function testMintRequiresFixedVRFAndRollbackLeavesNoRequest() public {
         MockAccess otherAccess = new MockAccess(); ZZZNFT other = new ZZZNFT(address(otherAccess), "");
+        otherAccess.setProtocolPolicy(address(new ZZZProtocolPolicy(address(otherAccess),payable(address(0x7EA5)))));
         otherAccess.bind(Ids.VAULT, address(this)); otherAccess.seal();
         vm.expectRevert(); other.mint(ALICE, 1);
         assertEq(other.mintedCount(), 0); assertEq(other.requestOf(1), 0);
@@ -143,8 +149,8 @@ contract NFTMetadataTest is Test {
         assertEq(nft.mintedCount(), 0); assertEq(vrf.sequence(), 0);
     }
 
-    function testVRFConfigurationAndRequestTupleAreFixed() public {
-        vm.expectRevert(); nft.configureRandomness(address(vrf), bytes32(uint256(2)), 2, 3, 500000, false);
+    function testInitialVRFConfigurationCannotRepeatAndRequestTupleIsCaptured() public {
+        vm.expectRevert(); policy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(2)), 2, 3, 500000, false, keccak256("mock VRF review"));
         vault.mint(ALICE, 1);
         assertEq(nft.randomnessCoordinator(), address(vrf)); assertEq(nft.subscriptionId(), 1);
         assertEq(vrf.lastKeyHash(), bytes32(uint256(1))); assertEq(vrf.lastSubscriptionId(), 1);
@@ -165,15 +171,38 @@ contract NFTMetadataTest is Test {
 
     function testUnsealedConfigurationRejectsUnauthorizedInvalidAndSecondConfiguration() public {
         MockAccess otherAccess = new MockAccess(); ZZZNFT other = new ZZZNFT(address(otherAccess), "");
-        vm.prank(BOB); vm.expectRevert(); other.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
-        vm.expectRevert(); other.configureRandomness(address(0), bytes32(uint256(1)), 1, 3, 500000, false);
-        vm.expectRevert(); other.configureRandomness(address(vrf), bytes32(0), 1, 3, 500000, false);
-        vm.expectRevert(); other.configureRandomness(address(vrf), bytes32(uint256(1)), 0, 3, 500000, false);
-        vm.expectRevert(); other.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 2, 500000, false);
-        vm.expectRevert(); other.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 100000, false);
-        other.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, true);
-        vm.expectRevert(); other.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, true);
+        ZZZProtocolPolicy otherPolicy = new ZZZProtocolPolicy(address(otherAccess), payable(address(0x7EA5)));
+        otherAccess.setProtocolPolicy(address(otherPolicy));
+        bytes32 reviewed=keccak256("mock VRF review");
+        vm.prank(BOB); vm.expectRevert(); otherPolicy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(1)), 1, 3, 500000, false, reviewed);
+        vm.expectRevert(); otherPolicy.configureRandomness(address(0), address(0).codehash, bytes32(uint256(1)), 1, 3, 500000, false, reviewed);
+        vm.expectRevert(); otherPolicy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(0), 1, 3, 500000, false, reviewed);
+        vm.expectRevert(); otherPolicy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(1)), 0, 3, 500000, false, reviewed);
+        vm.expectRevert(); otherPolicy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(1)), 1, 2, 500000, false, reviewed);
+        vm.expectRevert(); otherPolicy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(1)), 1, 3, 100000, false, reviewed);
+        otherPolicy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(1)), 1, 3, 500000, true, reviewed);
+        vm.expectRevert(); otherPolicy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(1)), 1, 3, 500000, true, reviewed);
         assertTrue(other.nativePayment());
+    }
+
+    function testCosmeticThresholdsChangeStagesWithoutChangingVestedRights() public {
+        _active(444,0,0); _stage(444,2);
+        bytes32 traits=keccak256(abi.encode(nft.rarityOf(444),nft.paletteOf(444),nft.patternOf(444),nft.colorOf(444)));
+        policy.setEvolutionThresholds(3000e18,15000e18,keccak256("cosmetic review"));
+        _stage(444,1);
+        policy.setEvolutionThresholds(100e18,1000e18,keccak256("cosmetic review 2"));
+        _stage(444,3);
+        assertEq(keccak256(abi.encode(nft.rarityOf(444),nft.paletteOf(444),nft.patternOf(444),nft.colorOf(444))),traits);
+        assertEq(nft.royaltyRewards().weightOf(444),1);assertEq(nft.ownerOf(444),ALICE);
+        assertEq(vault.sharesOf(444),100);assertEq(vault.bucketTotalShares(1),100);
+    }
+
+    function testOnlyPolicyEmitsCosmeticInvalidationAndInvalidThresholdsReject() public {
+        vm.expectRevert();nft.policyMetadataChanged();
+        vm.prank(BOB);vm.expectRevert();policy.setEvolutionThresholds(200e18,2000e18,keccak256("review"));
+        vm.expectRevert();policy.setEvolutionThresholds(0,2000e18,keccak256("review"));
+        vm.expectRevert();policy.setEvolutionThresholds(2000e18,2000e18,keccak256("review"));
+        vm.expectRevert();policy.setEvolutionThresholds(2000e18,1000e18,keccak256("review"));
     }
 
     function testOnlyCoordinatorMayFulfillKnownRequestOnceWithTwoWords() public {

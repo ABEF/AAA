@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -75,12 +77,12 @@ contract NativeAssetFoundationTest is Test {
     }
     function setUp() public {
         vm.warp(10 days);
-        access = new MockAccess(); brokenWrapper = new BoundaryWETH(); token = new NativeCallbackToken();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); brokenWrapper = new BoundaryWETH(); token = new NativeCallbackToken();
         brokenWrapper.failures(true, true);
         permit = new FakePermit2(); core = new BoundaryCore();
         positions = new BoundaryPositions(address(core), address(permit), address(brokenWrapper)); core.setPositions(address(positions));
         FakeState state = new FakeState(address(core));
-        manager = new ZZZLiquidityManager(address(access), address(positions), address(state), address(core), address(permit));
+        manager = new ZZZLiquidityManager(address(access), address(positions), address(state), address(core), address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
         PoolConfig memory c; c.key = PoolKey(address(0), address(token), 10020, 60, address(0));
         c.operationsEnabled = true; c.maxSlippageBps = 200; poolId = keccak256(abi.encode(c.key));
         vm.mockCall(address(state), abi.encodeWithSignature("getSlot0(bytes32)", poolId),
@@ -91,11 +93,11 @@ contract NativeAssetFoundationTest is Test {
         access.bind(Ids.ORACLE, address(new BoundaryOracle())); access.seal();
         vm.deal(address(this), 100 ether); vm.deal(address(core), 100 ether);
         token.mint(address(core), 100 ether); token.mint(address(this), 50 ether);
-        token.approve(address(manager), type(uint256).max);
+        token.approve(address(manager), type(uint256).max); token.approve(manager.positionOperator(), type(uint256).max);
     }
     function _mint() private returns (uint256 id) {
         (id,,) = manager.mint{value: 10 ether}(poolId, -600, 600, 10 ether, 10 ether, 1, block.timestamp + 100);
-        positions.approve(address(manager), id);
+        positions.approve(manager.positionOperator(), id);
     }
     function testNativeMintAndIncreaseReturnUnusedETHWithoutCallingBrokenWrapper() public {
         new BoundaryForce{value: 123}(payable(address(manager)));
@@ -105,7 +107,7 @@ contract NativeAssetFoundationTest is Test {
         (uint256 id, uint256 spent0, uint256 spent1) = manager.mint{value: 10 ether}(
             poolId, -600, 600, 10 ether, 10 ether, 1, block.timestamp + 100);
         assertEq(address(this).balance, beforeETH - spent0); assertGt(spent1, 0);
-        positions.approve(address(manager), id);
+        positions.approve(manager.positionOperator(), id);
         uint128 original = positions.getPositionLiquidity(id);
         (uint256 added0,) = manager.increase{value: 3 ether}(poolId, id, 3 ether, 3 ether, 1, block.timestamp + 100);
         assertEq(address(this).balance, beforeETH - spent0 - added0);

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -34,10 +35,10 @@ contract OperatorControlsTest is Test, IERC721Receiver {
 
     function setUp() public {
         vm.warp(1000000);
-        ac = new ZZZAccessController(address(this), KEEPER, GUARDIAN);
+        ac = new ZZZAccessController(address(this), KEEPER, GUARDIAN); ProtocolPolicyFixture.bind(address(ac));
         registry = new ZZZPoolRegistry(address(ac)); nft = new ZZZNFT(address(ac), "");
         oracle = new ZZZOracle(address(ac), address(0)); vrf = new MockVRF();
-        nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         t0 = new MockToken(0); t1 = new MockToken(0);
         if (address(t0) > address(t1)) (t0, t1) = (t1, t0);
         feed = new MockFeed(8, 1e8);
@@ -126,13 +127,13 @@ contract OperatorControlsTest is Test, IERC721Receiver {
 contract MintControlIntegrationTest is PooledVaultFixture {
     function testPausedMintCannotSpendPaymentOrCreateRequestAndResumeWorks() public {
         nft.setMintPaused(true);uint256 beforeBalance=alice.balance;uint256 beforeTreasury=treasury.balance;
-        vm.prank(alice);vm.expectRevert(bytes4(keccak256("Paused()")));vault.mintDormant{value:0.05 ether}();
+        bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert(bytes4(keccak256("Paused()")));vault.mintDormant{value:0.05 ether}(reviewedPolicy1);
         assertEq(alice.balance,beforeBalance);assertEq(treasury.balance,beforeTreasury);
         assertEq(vault.sequence(),0);assertEq(nft.mintedCount(),0);assertEq(vrf.sequence(),0);
         nft.setMintPaused(false);assertEq(nft.ownerOf(_mint(alice)),alice);
     }
     function testPendingFulfillmentAndRevealContinueWhileMintPaused() public {
-        vm.prank(alice);uint256 id=vault.mintDormant{value:0.05 ether}();uint256 request=nft.requestOf(id);
+        bytes32 reviewedPolicy2 = vault.mintPolicyFingerprint(); vm.prank(alice);uint256 id=vault.mintDormant{value:0.05 ether}(reviewedPolicy2);uint256 request=nft.requestOf(id);
         nft.setMintPaused(true);vrf.fulfill(request,0,0);nft.finalizeTraits(id);
         assertTrue(nft.traitsReady(id));assertEq(nft.requestOf(id),request);assertEq(nft.nextToFinalize(),2);
     }
@@ -150,10 +151,10 @@ contract MintControlIntegrationTest is PooledVaultFixture {
     }
     function testUnpausingMintCannotBypassGlobalPauseOrPreparation() public {
         nft.setMintPaused(true);ac.setPaused(true);nft.setMintPaused(false);
-        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
+        bytes32 reviewedPolicy3 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}(reviewedPolicy3);
         ac.setPaused(false);ac.setPreparation(true);
         vm.expectRevert();nft.setMintPaused(false);
-        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
+        bytes32 reviewedPolicy4 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}(reviewedPolicy4);
         assertEq(nft.mintedCount(),0);
     }
 }

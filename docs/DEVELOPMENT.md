@@ -3,7 +3,7 @@
 Use Linux/Unix with Python3.11+ for full keeper/state-lock operation and tests:
 `fcntl` and Unix0600 semantics are required. Windows editing/publication and
 portable checks do not establish Unix operating acceptance. Solidity is pinned
-to0.8.26/Cancun with the committed via-IR/optimizer profile. Use the actual
+to 0.8.26/Cancun with the committed via-IR/optimizer profile. Use the actual
 [Foundry settings](../foundry.toml), [packages](../package.json), lockfile and
 [dependency installer](../scripts/install-deps.sh), not an old report's sizes.
 
@@ -122,7 +122,7 @@ qualify Linux operation.
 The separate [current native-pool harness](../test/CurrentNativePoolFork.t.sol)
 and [bounded read-only runner](../scripts/run-current-pool-fork.py) replace the
 archived wrapped fixture for this campaign. [Verification](../reports/current-pool-fork-20261026/VERIFICATION.md)
-records11distinct successful methods across source-bound affected runs, not a
+records 11distinct successful methods across source-bound affected runs, not a
 fresh whole final11-case pass. Pinax served the fixed chain4663 block; mock
 governance/VRF/correlated USD feeds and fork-funded balances are explicit.
 ETH100 activation, ETH5 growth and ZZZ100 activation pass in the stated fixture;
@@ -140,7 +140,7 @@ normal Forge configuration and actual source inputs, creates an exclusive output
 the keyless Pinax endpoint by default, and permits only read RPC methods through
 its bounded serialized relay. Optional `ROBINHOOD_FORK_RPC_URL` comes from outside
 Git; do not paste credentials into commands or logs. It never broadcasts. A
-future whole run must contain all11expected methods with no skips; the legacy
+future whole run must contain all 11expected methods with no skips; the legacy
 dirty runner and old fixture evidence were not repurposed.
 
 The committed fork CI job now invokes this current runner, with a checksum-pinned
@@ -153,7 +153,7 @@ artifacts before saying it passed. [Compiler/dependency scope](../reports/whole-
 Actual feeds/routes, real keeper/rebalance and target-gas qualification remain
 open. Provider batching hit a documented429; serialized archive success is not
 production SLA/provider approval. Do not copy old Pons/WETH fixtures as current
-evidence or add overlapping attempts to the11-method count. Three layers remain: local adversarial tests,
+evidence or add overlapping attempts to the 11-method count. Three layers remain: local adversarial tests,
 selected Robinhood mainnet fork and Robinhood Testnet wallet/operator rehearsals.
 The concrete production Registry deliberately pins chain4663 and mainnet native
 runtimes. A byte-identical full venue flow cannot simply be redeployed on a
@@ -163,13 +163,15 @@ actual mainnet-venue qualification in the selected fork/approved rehearsal, neve
 weaken production pins or label test dependencies real.
 See [release preflight](PRODUCTION_PREFLIGHT.md) and [sole Todo](../TODO.md).
 
-Fresh source profile: accounting4/custody3/governance2/fee1/canonicalV5 with
-maintenance2/compound3/LP1/quality1/confirmation2 and separate manual emergency1. Inventory uses schema6;
-historical schema5/accounting3 is inspection-only. Preserve actual historical
+Fresh source profile: accounting6/custody4/governance2/fee1/canonicalV6 with
+portfolio2/maintenance3/compound4/LP2/quality1/confirmation3 and separate manual
+emergency2. Inventory uses schema8/21 helpers; schema6/accounting4 and
+schema5/accounting3 remain explicitly historical. Local actual-v4-core portfolio
+checks are source-scoped with mock external dependencies, not live qualification. Preserve actual historical
 Anvil profiles and immutable runtimes. The following local scaffolds remain
 historical accounting3/governance2/fee1/localV4, ETH/fixedZZZ inputs,
-$100activation/$5growth,2/1/3%defaults with10%ceilings, gas separate. Parked status
-is4, not a historical code6. Local scaffold is unsealed/local-only; it does not
+$100activation/$5growth,2/1/3% defaults with 10% ceilings, gas separate. Parked status
+is 4, not a historical code6. Local scaffold is unsealed/local-only; it does not
 approve real addresses. The historical local-stack launcher rejects incompatible
 current pricing/native artifacts before creating state/processes. Preserve
 existing Anvil/journals; use their actual historical configuration.

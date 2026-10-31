@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 
 import {AtomicActivationIntegrationTest} from "./AtomicActivationIntegration.t.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
@@ -25,8 +26,8 @@ contract EntryReviewPolicyTest is AtomicActivationIntegrationTest {
         assertFalse(oracle.contributionPricing().active());assertEq(nft.ownerOf(id),alice);
     }
     function testReviewVersionsAreExplicit() public realIntegration {
-        assertEq(entry.REVIEW_POLICY_VERSION(),1);
-        assertEq(oracle.contributionPricing().ENTRY_REVIEW_VERSION(),1);
+        assertEq(entry.REVIEW_POLICY_VERSION(),2);
+        assertEq(oracle.contributionPricing().ENTRY_REVIEW_VERSION(),2);
     }
     function testReviewedMaximumRejectsRaisedGovernedCapBeforeSourcePullAndSwap() public realIntegration {
         uint256 id=_mint(alice);uint256 balance=stable.balanceOf(alice);
@@ -36,40 +37,40 @@ contract EntryReviewPolicyTest is AtomicActivationIntegrationTest {
         vault.migrationBudget().setLossLimits(200,300);
         vm.mockCallRevert(address(stable),abi.encodeWithSignature("transferFrom(address,address,uint256)",
             alice,address(entry),100e6),abi.encodeWithSignature("PullWasReached()"));
-        vm.prank(alice);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
-        entry.executeReviewed(request,100);
+        bytes32 reviewedPolicy1 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
+        entry.executeReviewed(request,100,reviewedPolicy1);
         assertEq(stable.allowance(alice,address(entry)),allowance);_assertNotSpent(id,balance);
         vm.clearMockedCalls();
         // The exact old signed transaction can work after policy tightens back.
         vault.migrationBudget().setLossLimits(100,300);
-        vm.prank(alice);entry.executeReviewed(request,100);
+        bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);entry.executeReviewed(request,100,reviewedPolicy2);
         assertEq(vault.sharesOf(id),99e18);assertTrue(membership.eligible(id));
     }
     function testSignedMaximumAllowsTighterGovernedPolicyButNeverWidensActualFloor() public realIntegration {
         uint256 id=_mint(alice);uint256 balance=stable.balanceOf(alice);
         router.setOutputBps(9899); // 1.01%, below the captured 1% floor.
-        vm.prank(alice);vm.expectRevert();entry.executeReviewed(_review(id,false),200);
+        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_review(id,false),200,reviewedPolicy3);
         _assertNotSpent(id,balance);
         router.setOutputBps(9900);
-        vm.prank(alice);entry.executeReviewed(_review(id,false),200);
+        bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);entry.executeReviewed(_review(id,false),200,reviewedPolicy4);
         assertEq(vault.sharesOf(id),99e18);assertEq(vault.contributionUSD(id),100e18);
     }
     function testZeroMaximumRequiresZeroGovernedCapAndLosslessActualDeployment() public realIntegration {
         uint256 id=_mint(alice);uint256 balance=stable.balanceOf(alice);
-        vm.prank(alice);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
-        entry.executeReviewed(_review(id,false),0);_assertNotSpent(id,balance);
+        bytes32 reviewedPolicy5 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
+        entry.executeReviewed(_review(id,false),0,reviewedPolicy5);_assertNotSpent(id,balance);
         vault.migrationBudget().setLossLimits(0,300);
-        vm.prank(alice);vm.expectRevert();entry.executeReviewed(_review(id,false),0);
+        bytes32 reviewedPolicy6 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_review(id,false),0,reviewedPolicy6);
         _assertNotSpent(id,balance);
         router.setOutputBps(10000);
-        vm.prank(alice);entry.executeReviewed(_review(id,false),0);
+        bytes32 reviewedPolicy7 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);entry.executeReviewed(_review(id,false),0,reviewedPolicy7);
         assertEq(vault.sharesOf(id),100e18);assertFalse(oracle.contributionPricing().active());
     }
     function testMaximumAboveTenPercentAndLegacySelectorsFailClosed() public realIntegration {
         uint256 id=_mint(alice);uint256 balance=stable.balanceOf(alice);
         ZZZContributionPricing pricing=oracle.contributionPricing();
-        vm.prank(alice);vm.expectRevert(ZZZContributionPricing.InvalidAmount.selector);
-        entry.executeReviewed(_review(id,false),1001);_assertNotSpent(id,balance);
+        bytes32 reviewedPolicy8 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert(ZZZContributionPricing.InvalidAmount.selector);
+        entry.executeReviewed(_review(id,false),1001,reviewedPolicy8);_assertNotSpent(id,balance);
         // Removed historical selectors must fail with their exact old calldata,
         // including for the formerly authorized Entry caller. No ABI shim needed.
         bytes memory retired=abi.encodeWithSignature(
@@ -97,27 +98,27 @@ contract EntryReviewPolicyTest is AtomicActivationIntegrationTest {
         vault.migrationBudget().setLossLimits(1000,300);
         router.setOutputBps(9800);
         // The LP venue remains at 1%; a signed 10% maximum cannot relax it.
-        vm.prank(alice);vm.expectRevert();entry.executeReviewed(_review(id,false),1000);
+        bytes32 reviewedPolicy9 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_review(id,false),1000,reviewedPolicy9);
         _assertNotSpent(id,balance);
         router.setOutputBps(9900);
-        vm.prank(alice);entry.executeReviewed(_review(id,false),1000);
+        bytes32 reviewedPolicy10 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);entry.executeReviewed(_review(id,false),1000,reviewedPolicy10);
         assertEq(vault.sharesOf(id),99e18);
     }
     function testGrowthReviewRejectsWideningAndPreservesExistingSharesAndClaims() public realIntegration {
         uint256 id=_mint(alice);
-        vm.prank(alice);entry.executeReviewed(_review(id,false),100);
+        bytes32 reviewedPolicy11 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);entry.executeReviewed(_review(id,false),100,reviewedPolicy11);
         uint256 shares=vault.sharesOf(id);uint256 bucket=vault.nftBucket(id);
         uint256 lp=vault.group(bucket).lpTokenId;uint256 deployed=venue.a0(lp);
         uint256 balance=stable.balanceOf(alice);uint256 receiverBalance=t0.balanceOf(address(vault));
         vault.migrationBudget().setLossLimits(200,300);
-        vm.prank(alice);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
-        entry.executeReviewed(_review(id,true),100);
+        bytes32 reviewedPolicy12 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
+        entry.executeReviewed(_review(id,true),100,reviewedPolicy12);
         assertEq(vault.sharesOf(id),shares);assertEq(venue.a0(lp),deployed);
         assertEq(stable.balanceOf(alice),balance);assertEq(t0.balanceOf(address(vault)),receiverBalance);
         assertEq(vault.contributionUSD(id),100e18);assertTrue(membership.eligible(id));
         assertEq(nft.royaltyRewards().weightOf(id),1);assertFalse(oracle.contributionPricing().active());
         vault.migrationBudget().setLossLimits(100,300);
-        vm.prank(alice);entry.executeReviewed(_review(id,true),100);
+        bytes32 reviewedPolicy13 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);entry.executeReviewed(_review(id,true),100,reviewedPolicy13);
         assertGt(vault.sharesOf(id),shares);assertEq(vault.contributionUSD(id),105e18);
         assertEq(venue.a0(lp)-deployed,4.95e18);
     }

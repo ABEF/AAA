@@ -1,0 +1,58 @@
+{
+  "utc": "2026-10-30T23:42:04.528777+00:00",
+  "review_scope": [
+    "src/ZZZLiquidityManager.sol",
+    "src/ZZZLPPositionExecutor.sol",
+    "src/ZZZLPBalancer.sol",
+    "src/ZZZLPBalanceMath.sol"
+  ],
+  "source_sha256": {
+    "src/ZZZLiquidityManager.sol": "fdefbf872cf087e18b127f4162412b48250c1152e8518172ae7701132638e7b9",
+    "src/ZZZLPPositionExecutor.sol": "effc3f1f7d342556c00f0a62cbdcd67ee7128046921206c0646601d88203e734",
+    "src/ZZZLPBalancer.sol": "dc4a2ec2ee9ee8617783c3f0518560ef0e1e374a6dc54da608bd9e91bbbfc8d2",
+    "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898"
+  },
+  "prior_review": "execution-independent-review-bafe47aa03/REVIEW.json",
+  "review_change_since_prior": {
+    "ZZZLPPositionExecutor": "Hybrid-only actual-main physical mark/tick revalidated before mint and after final mint/refund callbacks; exact stored lower<=tick<upper is required even when sqrt is unchanged at a downward boundary. Other reviewed modules retain prior review source hashes unless listed by hash."
+  },
+  "findings": [
+    {
+      "id": "R85-EXEC-01",
+      "status": "corrected",
+      "detail": "Passive baseline accepts actual6000bps; quoted candidates retain6001bps rounding headroom. Parent independently owns final actual-core regression evidence."
+    },
+    {
+      "id": "R85-EXEC-02",
+      "status": "corrected_and_focused_tests_pass",
+      "detail": "Active-main tick guard now runs before and after external mint/refund calls. Real Executor isolated fixture has8/8 passing methods, including completed positive mint and paired late same-sqrt tick flip; exact funds/state rollback verified."
+    },
+    {
+      "id": "R85-EXEC-03",
+      "status": "remaining_bounded_route_liveness",
+      "detail": "Best-ranked narrow own-pool candidate can safely revert active-main placement despite an alternative venue; no guard bypass. Root records qualified route/depth/solver work in Todo."
+    }
+  ],
+  "verification": {
+    "receipt": "active-main-final-c00ad86c8c/receipt.json",
+    "methods": 8,
+    "pass": 8,
+    "skip": 0,
+    "source_changes_during_run": [],
+    "limits": "Normal-profile execution of real Executor with fake arithmetic/venue fixtures. Not actual-core market behavior, provider qualification, full suite, target gas rehearsal or external audit. Other91 distinct policy/math/cadence methods were source-staged,26default-half policy subset overlaps, and earlier6guard methods overlap these8; do not sum runs."
+  },
+  "retained_dependency_risk": "Conventional exact-transfer deltas do not prove fixed ZZZ has no market-changing callbacks/proxy changes; no deployed callback exploit is established. Root records token/dependency qualification separately.",
+  "docs": {
+    "files_sha256": {
+      "docs/FRONTEND_API.md": "983de87eb61412c3f3b308fd05ead15386c17eb35df6750f1e4f110b46f7c0c9",
+      "docs/PRICE_SECURITY.md": "bc99427fc3df3ed0cb09024061ef8d80c8500f1368905e1ba8267a945a6a379a",
+      "docs/EXECUTION_QUALITY.md": "26d2abeca6845aa78776f1c4a6dbacb1b12e5189d4ce64dbb2da6d83992142ff",
+      "docs/ARCHITECTURE.md": "cb268f11506df95c3708014f653e8c0d59770ab9a455caa43dfa290e53636e05"
+    },
+    "original_archive": "current-guides-before/api-docs-37d04626f0/",
+    "local_link_count": 88,
+    "broken_or_stale": [],
+    "changes": "Current accounting5 aggregate physical-leg read/profile graph; optional mode disabled/half-side5000default;85%human-price sampled600s during cooldown/240source/300maxgap/postreadiness60-300jitter; captured60/40postcost+5%idle; exact before/after active-main check; source-pool vs target controls; historical profiles remain explicitly historical. Docs do not close live dependencies/services/signing/audit gates."
+  },
+  "boundaries": "No historical report bytes, public signing, services, installed workers, sites, Anvil, journals, custody/economic allocation or production deployment changed by this child."
+}

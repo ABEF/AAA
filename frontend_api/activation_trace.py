@@ -4,11 +4,13 @@ RPC traces are observations, not execution proofs. Never infer new LP from a
 before/after bucket NAV: repricing and incumbent compound would contaminate it.
 """
 from __future__ import annotations
+import re
 
 from frontend_api.service import ProjectionError, ZERO, _address_word, _quantity
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 
 EXECUTE = 'execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))'
+EXECUTE_REVIEWED_V2 = 'executeReviewed((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool),uint16,bytes32)'
 EXECUTE_REVIEWED = 'executeReviewed((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool),uint16)'
 LEGACY_RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
 RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
@@ -17,10 +19,12 @@ VALUE = 'value(address,uint256)'
 MINT = 'mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)'
 INCREASE = 'increase(bytes32,uint256,uint256,uint256,uint128,uint256)'
 BALANCE = 'balance(bytes32,uint256,uint256,uint256,uint256)'
+PORTFOLIO_CREATED = '0x'+keccak256(b'PortfolioCreated(uint256,uint256,bytes32)').hex()
 SOURCE = '0x' + keccak256(b'SourceContributed(address,uint256,bytes32,address,uint256,uint256,address,uint256,bool)').hex()
 SHARES = '0x' + keccak256(b'SharesAdded(uint256,uint256,uint256,uint256)').hex()
 VERIFIED = '0x' + keccak256(b'ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)').hex()
 BEGIN_ENTRY = 'beginEntry(uint256,bytes32,address,uint256)'
+BEGIN_ENTRY_REVIEWED_V2 = 'beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)'
 BEGIN_ENTRY_REVIEWED = 'beginEntryReviewed(uint256,bytes32,address,uint256,uint16)'
 BEGIN_PRICING = 'begin(uint256,uint256,uint256,uint256,uint32)'
 FINISH_PRICING = 'finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)'
@@ -41,19 +45,24 @@ def words(raw, length):
 
 
 def request_data(identifier, pool, source, amount, route, minimum_out, minimum_lp, deadline, increase,
-                 *, review_policy_version=0, maximum_loss_bps=None):
+                 *, review_policy_version=0, maximum_loss_bps=None,expected_contribution_policy=None):
     # One STATIC tuple has no dynamic offset. Zero source is native ETH.
     values = (identifier, int(pool, 16), int(source, 16), amount, int(route, 16),
               minimum_out, minimum_lp, deadline, int(increase))
     if any(type(x) is not int or not 0 <= x < 2**256 for x in values) or not 0 < minimum_lp < 2**128:
         raise ValueError('Invalid Entry tuple')
-    if type(review_policy_version) is not int or review_policy_version not in (0,1):
+    if type(review_policy_version) is not int or review_policy_version not in (0,1,2):
         raise ValueError('Unsupported Entry review-policy profile')
-    if review_policy_version == 1:
+    if review_policy_version in (1,2):
         if type(maximum_loss_bps) is not int or not 0 <= maximum_loss_bps <= 1000:
             raise ValueError('Invalid reviewed Entry maximum loss')
+        if review_policy_version==2:
+            if not isinstance(expected_contribution_policy,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',expected_contribution_policy) or int(expected_contribution_policy,16)==0:
+                raise ValueError('Reviewed Entry2 requires an exact nonzero contribution policy')
+            return selector(EXECUTE_REVIEWED_V2)+''.join(f'{x:064x}' for x in (*values,maximum_loss_bps,int(expected_contribution_policy,16)))
+        if expected_contribution_policy is not None:raise ValueError('Historical Entry cannot adopt protocol policy')
         return selector(EXECUTE_REVIEWED) + ''.join(f'{x:064x}' for x in (*values,maximum_loss_bps))
-    if maximum_loss_bps is not None:
+    if maximum_loss_bps is not None or expected_contribution_policy is not None:
         raise ValueError('Legacy Entry cannot encode a reviewed maximum')
     return selector(EXECUTE) + ''.join(f'{x:064x}' for x in values)
 
@@ -87,14 +96,32 @@ def static_data(signature, *values):
     return selector(signature)+''.join(f'{int(v,16) if isinstance(v,str) else v:064x}' for v in values)
 
 
+def lp_execution_frame(mint,pins,request,create):
+    """Fresh accounting5 measures only the exact fixed Executor child call.
+
+    Manager's later Policy.recordApplied reads are not marginal deployment;
+    they must never be mistaken for before/after LP liquidity observations.
+    """
+    if request.get('accounting_version',1) not in (5,6):return mint,pins['liquidity']
+    if request.get('lp_routing_version')!=2 or request.get('portfolio_version')!=(2 if request.get('accounting_version')==6 else 1):
+        raise ProjectionError('Accounting5 trace requires explicit portfolio1/routing2')
+    executor=pins['lp_position_executor'];method=MINT if create else INCREASE
+    executed=child(mint,pins['liquidity'],executor,method,'CALL')
+    if (executed.get('input','').lower()!=mint.get('input','').lower() or
+            executed.get('output')!=mint.get('output') or
+            _quantity(executed.get('value','0x0'))!=_quantity(mint.get('value','0x0'))):
+        raise ProjectionError('Accounting5 typed Executor call differs from its Manager wrapper')
+    return executed,executor
+
+
 def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical):
     """Match the native dual-price phase machine; never reinterpret old traces."""
     helper=pins['contribution_pricing'];budget=pins['budget'];bucket=req['bucket']
     input_usd,supply,incumbent_nav,incumbent_deployed,deployed,idle,limits=economics
     if check.get('type')!='CALL':raise ProjectionError('Dual-price result must execute its authenticated phase transition')
-    reviewed=req.get('review_policy_version',0)==1
-    begin_signature=BEGIN_ENTRY_REVIEWED if reviewed else BEGIN_ENTRY
-    begin_args=(req['id'],req['pool'],req['source'],req['amount'])+((req['maximum_loss_bps'],) if reviewed else ())
+    reviewed=req.get('review_policy_version',0) in (1,2)
+    begin_signature=BEGIN_ENTRY_REVIEWED_V2 if req.get('review_policy_version')==2 else BEGIN_ENTRY_REVIEWED if reviewed else BEGIN_ENTRY
+    begin_args=(req['id'],req['pool'],req['source'],req['amount'])+((req['maximum_loss_bps'],) if reviewed else ())+((req['expected_contribution_policy'],) if req.get('review_policy_version')==2 else ())
     begun=child(root,pins['entry'],helper,begin_signature,'CALL')
     if (begun['input'].lower()!=static_data(begin_signature,*begin_args) or
             int(words(begun.get('output'),1)[0],16)!=gross):
@@ -150,7 +177,7 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
     if not index(mint_calls[0])<index(buckets[-1])<index(navs[2]) or supply and not index(navs[0])<index(buckets[0])<index(navs[1]):
         raise ProjectionError('Incumbent compound values are outside their captured phases')
     fresh=values[0] if supply else 0;late=values[-1]
-    capped=req.get('lp_routing_version',0)==1
+    capped=req.get('lp_routing_version',0) in (1,2)
     expected_deployed=nav_values[1][0] if capped else nav_values[1][0]+nav_values[0][1]+fresh
     expected_nav=nav_values[1][0]+nav_values[0][1]+fresh+late
     if (incumbent_deployed!=expected_deployed or incumbent_nav!=expected_nav or [deployed,idle]!=nav_values[-1]):
@@ -268,10 +295,11 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     reviewed=req.get('review_policy_version',0)
     expected_data=request_data(req['id'],req['pool'],req['source'],req['amount'],req['route'],
         req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'],
-        review_policy_version=reviewed,maximum_loss_bps=req.get('maximum_loss_bps'))
+        review_policy_version=reviewed,maximum_loss_bps=req.get('maximum_loss_bps'),
+        expected_contribution_policy=req.get('expected_contribution_policy'))
     if tx['data'].lower()!=expected_data:
         raise ProjectionError('Unsigned Entry selector or reviewed maximum differs from its explicit profile')
-    native_profile = req.get('accounting_version', 1) in (2, 3, 4)
+    native_profile = req.get('accounting_version', 1) in (2, 3, 4, 5, 6)
     dual_pricing = req.get('pricing_version',1)==2
     topic_word = lambda n: '0x' + f'{n:064x}'
     source = event(root, pins['entry'], SOURCE,
@@ -323,7 +351,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         int(x, 16) for x in values]
     packed_limits=slippage
     loss=req.get('execution_loss_bps',100)
-    if reviewed == 1 and (type(req.get('maximum_loss_bps')) is not int or
+    if reviewed in (1,2) and (type(req.get('maximum_loss_bps')) is not int or
             not 0 <= loss <= req['maximum_loss_bps'] <= 1000):
         raise ProjectionError('Execution policy exceeds the signed reviewed maximum')
     if configurable:
@@ -362,10 +390,10 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
             verify_historical(historical)
     issued, net = [int(x, 16) for x in words(check.get('output'), 2)]
     floor = upper_input - upper_input * loss // 10000
-    if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= (1000 if req.get('lp_routing_version',0)==1 else 200) or
+    if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= (1000 if req.get('lp_routing_version',0) in (1,2) else 200) or
             deployed < incumbent_deployed + floor or net != deployed + idle - incumbent_nav or
             net < floor or net < upper_input * (10000 - slippage) // 10000 or
-            idle > (deployed + idle) * 500 // 10000 or deployed == 0 or
+            idle > (deployed + idle) * (req['maximum_idle_bps'] if req.get('accounting_version')==6 else 500) // 10000 or deployed == 0 or
             supply and incumbent_nav == 0):
         raise ProjectionError('Simulated contribution violates its original-source execution budget')
     expected_shares = supply * net // (incumbent_nav + historical_value) if supply else net
@@ -390,11 +418,16 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         if _quantity(mint.get('value', '0x0')) != expected_value:
             raise ProjectionError('LP child call does not carry the exact declared native budget')
     output = words(mint.get('output'), 3 if create else 2)
-    if req.get('lp_routing_version',0)==1 and any(int(used,16)>budget for used,budget in zip(output[1:] if create else output,req['_lp_balanced'])):
+    if req.get('lp_routing_version',0) in (1,2) and any(int(used,16)>budget for used,budget in zip(output[1:] if create else output,req['_lp_balanced'])):
         raise ProjectionError('LP deployment spent more than the entrant budget')
     lp_id = int(output[0], 16) if create else req['old_lp_id']
+    measurement,operator=lp_execution_frame(mint,pins,req,create)
+    if create and req.get('accounting_version',1) in (5,6):
+        # Entrant funds create only the main. Residual construction is reserved
+        # for captured maintenance, not an activation-side inventory repair.
+        event(measurement,operator,PORTFOLIO_CREATED,[topic_word(lp_id),topic_word(0),req['pool']],0)
     target_call = calldata('getPositionLiquidity(uint256)', lp_id)
-    readings = [x for x in mint.get('calls', []) if x.get('from', '').lower() == pins['liquidity'] and
+    readings = [x for x in measurement.get('calls', []) if x.get('from', '').lower() == operator and
                 x.get('to', '').lower() == pins['position_manager'] and x.get('input', '').lower() == target_call]
     if lp_id == 0 or len(readings) != (1 if create else 2):
         raise ProjectionError('LP liquidity delta is missing or ambiguous')

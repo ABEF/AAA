@@ -71,7 +71,7 @@ revert the entire operation. Input/output are bounded by signed int128 settlemen
    The output must be one actual currency of the selected contribution pool.
    Direct pair input still uses route zero; token approvals remain exact amounts.
 3. Add a reviewed activation configuration with accounting4 / custody3 /
-   canonicalV5 / fee-intake1 in its parent, explicit routing2 / pricing2 / review1 and
+   canonicalV6 / fee-intake1 in its parent, explicit routing2 / pricing2 / review2 and
    `contracts.v4_executor: {address,code_hash}` plus the fixed pricing companion. Every source entry declares
    `route_kind` (0 direct, 1 v3 or 2 v4). Include reviewed token/feed and conversion
    manager/StateView dependency pins. No automatic v3/native fallback exists.

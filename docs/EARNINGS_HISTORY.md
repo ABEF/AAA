@@ -2,8 +2,10 @@
 
 This optional read-only backend reports processed collection and per-NFT
 earnings. It never harvests, synchronizes, converts, claims or signs. The current
-candidate uses accounting4, fee intake1 and same-chain canonical V5. Explicit
-historical3/V4 readers retain their original deployment scope. The public demo
+candidate uses accounting6/portfolio2, fee intake1 and compatible parked
+same-chain canonical V6. Both physical LPs contribute to one funded allocation
+per bucket/asset, not duplicate income streams. Explicit historical4 and3 readers
+retain their original deployment scope. The public demo
 remains a simulation; current-profile service, website and provider
 qualification remain open. See the [financial-history task](../TODO.md#task-financial-history).
 
@@ -48,7 +50,7 @@ a coherently forged database or provider and adds no RPC or financial transactio
 
 ## Historical native royalty custody compatibility
 
-Current accounting4 has no external royalty-custody exit/return function. LP
+Current accounting6 has no external royalty-custody exit/return function. LP
 holder principal return is not royalty income and never clears earned royalties.
 Historical3 replay accepts native deferral only within an authenticated custody
 exit/full-return interval. Returned backing is not royalty revenue. Ordinary

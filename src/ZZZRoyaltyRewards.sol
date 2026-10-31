@@ -9,6 +9,7 @@ import {ExactToken} from "./libraries/ExactToken.sol";
 import {ZZZCanonicalLedger} from "./base/ZZZCanonicalLedger.sol";
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {IZZZAccess} from "./interfaces/IZZZ.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 import {Ids} from "./libraries/ZZZTypes.sol";
 interface IZZZRoyaltySuccessor {
     function destinationController() external view returns (address);
@@ -63,7 +64,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     mapping(address => uint256) public eligibleWeight;
     struct Join { uint256 first; uint256 last; uint256 baseline; }
     mapping(address => Join[]) private deferredJoins;
-    uint256 public constant ACTIVATION_SYNC_GAS = 250_000;
 
     error Unauthorized();
     error InvalidConfiguration();
@@ -188,6 +188,8 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if (weight == 0 || weight > 3 || weightOf[id] != 0) revert InvalidConfiguration();
         if (IZZZRoyaltyNFTOwner(nft).ownerOf(id) == address(0)) revert InvalidState();
         if (activationCount == 1000) revert InvalidConfiguration();
+        uint256 syncGas;
+        if(assets.length > 1) syncGas = IZZZProtocolPolicy(IZZZAccess(canonicalController).protocolPolicy()).royaltySyncGas();
         uint256 successful;
         for (uint256 i; i < assets.length; ++i) {
             address asset = assets[i];
@@ -196,9 +198,9 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             else {
                 // Reserve enough gas for the complete isolated call and tail.
                 // Caller underfunding cannot deliberately defer a healthy read.
-                if (gasleft() < ACTIVATION_SYNC_GAS + 120_000) revert InvalidState();
+                if (gasleft() < syncGas + 120_000) revert InvalidState();
                 bytes memory data = abi.encodeCall(this.syncForActivation, (asset));
-                uint256 budget = ACTIVATION_SYNC_GAS;
+                uint256 budget = syncGas;
                 assembly ("memory-safe") { ok := call(budget, address(), 0, add(data, 32), mload(data), 0, 0) }
             }
             if (ok) { _checkpoint(id, asset); successful |= uint256(1) << i; }

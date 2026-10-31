@@ -1,4 +1,14 @@
-# Bounded passive inventory plan - design, not implemented
+# Bounded passive inventory research and design rationale
+
+This page preserves the earlier research/design discussion; its unresolved choices
+and no-swap examples are historical alternatives, not current implementation.
+The approved [implementation plan](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md),
+[profile6](POSITION_V6.md) and [operator procedure](OPERATOR_MANUAL.md) own behavior.
+The implemented hybrid permits a guarded partial swap to attain main>=60%, with
+one residual<=40%; latest initial geometry is HALF corresponding side (5000bps),
+not the earlier full-side choice. Threshold85%,600/240/300sampled window,
+60–300jitter and hard initial12hours are explicit. No live qualification follows.
+Read [review/evidence](../reports/optional-portfolio-20261030/REVIEW.md).
 
 Requested30October2026. This is a researched proposal for a fresh candidate, not
 an operating procedure, provider qualification or approval of a swap fallback.

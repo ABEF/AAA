@@ -57,11 +57,11 @@ Use [post-seal policy](POST_SEAL_POLICY.md) and the [operator manual](OPERATOR_M
 
 ## Explicit compatibility boundary
 
-The source requires accounting4, custody3, governance2, fee intake1, pricing2,
-routing2, reviewed Entry1 and canonical
-`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Position remains eight words; statuses
+The source requires accounting6, ProtocolPolicy1, Portfolio2, custody4, governance2,
+fee intake1, pricing2, routing2, reviewed Entry2 and canonical
+`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Position remains eight words; statuses
 are None0, Active1, reserved Outbound2, Dormant3, Parked4, Exited5. Canonical group
-rows retain twelve words; V5 peers must match exactly and cannot hand off after
+rows retain twelve words; V6 peers must match exactly and cannot hand off after
 LP exit because that importer does not carry terminal principal liabilities.
 
 No automatic historical profile migration exists. Old Anvil deployments,

@@ -1,0 +1,56 @@
+{
+  "scope": "Read-only exact final source/dependency/build/protected-report/task and ABI identity check; inventories are not tests or deployment approval.",
+  "checks": {
+    "production_source": {
+      "count": 50,
+      "mismatches": []
+    },
+    "normal_build_sources": {
+      "count": 50,
+      "mismatches": []
+    },
+    "dependencies": {
+      "count": 31,
+      "mismatches": []
+    },
+    "build_inputs": {
+      "count": 4,
+      "mismatches": []
+    },
+    "protected_dirty": {
+      "count": 4,
+      "mismatches": []
+    },
+    "original_reports": {
+      "count": 35,
+      "mismatches": []
+    },
+    "final_helper_and_reference": {
+      "count": 5,
+      "mismatches": []
+    },
+    "task_ids_statuses_order": {
+      "unchanged": true
+    },
+    "callable_abi_and_order": {
+      "unchanged": true,
+      "functions": 778
+    },
+    "compiled_abi_snapshot": {
+      "unchanged": true
+    },
+    "catalog": {
+      "mutable": 231,
+      "manual": 90,
+      "reference_matches": true
+    },
+    "git": {
+      "head": "37577ebf610ed7182c3d5bc481d7bb32ec5438c1",
+      "unchanged": true,
+      "branch": "main",
+      "main": true
+    }
+  },
+  "failures": [],
+  "pass": true
+}

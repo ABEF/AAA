@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "profile": "accounting6/protocol-policy1/portfolio2/maintenance3/confirmation3/compound4/custody4/emergency2/LP-routing2/pricing2/Entry-routing2/reviewedEntry2/directgovernance2/fee-intake1",
+  "reference_sha256": "<COPY_REFERENCE_SHA256_FROM_PROFILE>",
+  "source_snapshot_sha256": "<COPY_SOURCE_SNAPSHOT_SHA256_FROM_PROFILE>",
+  "chain": {
+    "id": "<DEPLOYMENT_CHAIN_ID_DECIMAL>",
+    "controller": "<CURRENT_CONTROLLER_ADDRESS>",
+    "governance": "<CURRENT_GOVERNANCE_ADDRESS>",
+    "target": "<CURRENT_MIGRATION_ADDRESS>",
+    "target_runtime_keccak256": "<REVIEWED_MIGRATION_RUNTIME_KECCAK256>"
+  },
+  "snapshot": {
+    "block_number": "<CONFIRMED_BLOCK_DECIMAL>",
+    "block_hash": "<CONFIRMED_BLOCK_HASH>",
+    "timestamp": "<BLOCK_UNIX_SECONDS>"
+  },
+  "contract": "ZZZMigration",
+  "signature": "closeResidual((uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32))",
+  "arguments": {
+    "r": {
+      "bucketId": "<SHARED_BUCKET_DECIMAL>",
+      "poolId": "<ACTUAL_POOL_ID>",
+      "lpTokenId": "<MAIN_PHYSICAL_ID_DECIMAL>",
+      "totalShares": "<BUCKET_TOTAL_SHARES_DECIMAL>",
+      "depositUSD": "<BUCKET_DEPOSIT_USD18_DECIMAL>",
+      "custodyEpoch": "<CURRENT_EPOCH_DECIMAL>",
+      "nonce": "<CURRENT_PARKING_NONCE_DECIMAL>",
+      "token0": "0x0000000000000000000000000000000000000000",
+      "token1": "<FIXED_ZZZ_ADDRESS>",
+      "minimum0": "<RESIDUAL_PRINCIPAL_WEI_MINIMUM>",
+      "minimum1": "<RESIDUAL_PRINCIPAL_RAW_ZZZ_MINIMUM>",
+      "deadline": "<REVIEWED_UNIX_DEADLINE>",
+      "reviewHash": "$REVIEW_HASH",
+      "portfolioHash": "<EXECUTION_PORTFOLIO_FINGERPRINT_READ_FROM_MANAGER>"
+    }
+  },
+  "review_notes_sha256": "<SHA256_OF_PUBLIC_REVIEW_NOTES_64_LOWER_HEX_NO_0X>",
+  "evidence_sha256": [
+    "<SHA256_OF_PUBLIC_SUPPORTING_EVIDENCE_64_LOWER_HEX_NO_0X>"
+  ]
+}

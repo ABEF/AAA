@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {AtomicActivationIntegrationTest} from "./AtomicActivationIntegration.t.sol";
@@ -86,7 +87,7 @@ contract ContributionEntryPriceSecurityTest is AtomicActivationIntegrationTest {
         selected.configure(address(budget),abi.encodeCall(budget.setLossLimits,(contribution,300)),outputBps);
         vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(selected))),abi.encode(true));
         uint256 id=_mint(alice);uint256 beforeSource=stable.balanceOf(alice);uint256 beforeOutput=t0.balanceOf(address(selected));
-        vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100);
+        bytes32 reviewedPolicy1 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100,reviewedPolicy1);
         assertEq(budget.contributionLossBps(),100);_assertRollback(id,selected,beforeSource,beforeOutput);
     }
     function testEntryPriceCaptureRejectsWiderLossPolicyDuringSourceConversion() public realIntegration {
@@ -101,14 +102,14 @@ contract ContributionEntryPriceSecurityTest is AtomicActivationIntegrationTest {
         selected.configure(address(registry),abi.encodeCall(registry.configure,(c)),9900);
         vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(selected))),abi.encode(true));
         uint256 id=_mint(alice);uint256 beforeSource=stable.balanceOf(alice);uint256 beforeOutput=t0.balanceOf(address(selected));
-        vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100);
+        bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100,reviewedPolicy2);
         assertEq(registry.get(poolId).maxSlippageBps,100);_assertRollback(id,selected,beforeSource,beforeOutput);
     }
     function testEntryPriceCaptureRejectsSourceRoundChangeDuringConversion() public realIntegration {
         (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();
         selected.configure(address(stableFeed),abi.encodeCall(stableFeed.set,(101e6,block.timestamp,block.timestamp)),9900);
         uint256 id=_mint(alice);uint256 beforeSource=stable.balanceOf(alice);uint256 beforeOutput=t0.balanceOf(address(selected));
-        vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100);
+        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100,reviewedPolicy3);
         assertEq(stableFeed.answer(),1e8);_assertRollback(id,selected,beforeSource,beforeOutput);
     }
     function testEntryPriceCaptureSurvivesUntilFinalApprovalReset() public realIntegration {
@@ -119,12 +120,12 @@ contract ContributionEntryPriceSecurityTest is AtomicActivationIntegrationTest {
             abi.encodeCall(feed.set,(101e6,block.timestamp,block.timestamp)));
         (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();
         uint256 id=_mint(alice);uint256 beforeSource=stable.balanceOf(alice);uint256 beforeOutput=t0.balanceOf(address(selected));
-        vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100);
+        bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100,reviewedPolicy4);
         assertEq(feed.answer(),1e8);_assertRollback(id,selected,beforeSource,beforeOutput);
     }
     function testEntryPriceCaptureHonestReviewedRouteCommitsAndClearsBasis() public realIntegration {
         (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();uint256 id=_mint(alice);
-        vm.prank(alice);entry.executeReviewed(_request(id,route), 100);
+        bytes32 reviewedPolicy5 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);entry.executeReviewed(_request(id,route), 100,reviewedPolicy5);
         assertEq(vault.contributionUSD(id),100e18);assertEq(vault.sharesOf(id),99e18);
         assertTrue(membership.eligible(id));assertEq(nft.royaltyRewards().weightOf(id),1);
         assertFalse(oracle.contributionPricing().active());assertEq(stable.balanceOf(address(selected)),100e6);

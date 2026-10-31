@@ -1,6 +1,6 @@
 # Security model and invariants
 
-Fresh accounting4 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+Fresh accounting6 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
 After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
 rewards and future royalty eligibility. Direct payouts are separate from income;
 no holder principal withdrawal exists during normal operation. LP cannot reopen
@@ -16,7 +16,11 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
 
 ## Custody and authority
 
-- The Vault owns shared physical LP and attributed idle principal. Each NFT has
+- The Vault owns the main and optional single same-pool residual plus attributed idle principal.
+  All-leg valuation/harvest/close must authenticate actual IDs/keys/ticks/custody/liquidity;
+  no third leg or hidden auxiliary may be created or omitted. A new hybrid main
+  must be active and satisfy 60% main/40% residual value guards at captured prices.
+- Each NFT has
   independently accounted, nonredeemable shares. Fees separates funded dust,
   compounding and buyback reserves; Rewards holds LP claim liabilities. The NFT's
   separate royalty ledger accounts for actual marketplace receipts. Principal,
@@ -95,7 +99,7 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
    ERC20 balance/synchronization call defers only that currency's new eligibility;
    recovery assigns previously unseen receipts to the earlier cohort before
    enrolling waiting NFTs. Native ETH has no token balance-read failure or
-   external-custody deferral in accounting4. Gas bounds and full backing checks
+   external-custody deferral in accounting4/5. Gas bounds and full backing checks
    remain. Not every technical activation failure is isolated.
 6. LP/royalty conversions debit the selected NFTs' source entitlements and credit
    actual ETH to those same NFTs. Conversion, claim, transfer and principal return
@@ -115,17 +119,17 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
 ## Reveal, metadata and replacement
 
 - The maximum supply is **1,000**. Ordered draw without replacement yields exactly
-  **600 Commun / 300 Rare / 100 Legendary** if all are revealed. The fixed VRF
+  **600 Commun / 300 Rare / 100 Legendary** if all are revealed. The current request's authenticated VRF
   coordinator alone fulfills each known request once; finalization consumes the
   existing artwork inventory in mint order. No new image generation, cancellation,
   reroll or administrator-selected traits exists.
-- Coordinator identity, subscription/payment mode and artwork base are fixed at
+- Artwork base remains fixed after sealing; planned coordinator/subscription/payment rotation requires all old draws finalized. Initial provider policy is reviewed at
   seal. Bounded confirmation/callback-gas changes affect future requests only.
   An unanswered earlier request blocks later finalization and activation; whole-
   collection capture also requires completed reveal. Provider authenticity,
   funding and actual fulfillment remain release gates, not ABI assumptions.
 - Artwork follows current marked attached LP/idle/compound value and can downgrade
-  across $1,000/$10,000 tiers. Valuation can be unavailable while parked or during
+  across governed display-only tiers(default$1,000/$10,000). Valuation can be unavailable while parked or during
   dependency faults. Metadata grants no financial permissions and claims do not
   depend on a successful metadata price read. Exited5 reports verified zero LP;
   terminal `LP exited` uses the existing Activated image, preserving rarity/traits.
@@ -139,10 +143,10 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
 
 ## Exit, operations and remaining limits
 
-The current profile is accounting4/custody3/canonical
-`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Governance starts collective retirement
+The current profile is accounting6/custody4/portfolio2/canonical
+`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Governance starts collective retirement
 while paused. Every funded bucket must be actual native ETH/fixed ZZZ before the
-irreversible lock. Final collection classifies fees normally; pending5%compound
+irreversible lock. Final collection classifies fees normally; pending 5% compound
 joins principal. Exact close deltas and raw minima protect that bucket's returned
 assets. No swap or oracle-dependent USD-loss promise is part of holder return.
 

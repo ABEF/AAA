@@ -1,21 +1,27 @@
 # Fee-aware execution quality
 
-The current candidate adds an independent limit on oracle-relative execution
+The current candidate retains an independent limit on oracle-relative execution
 loss **after known trading fees**, alongside the existing all-in loss controls.
 It does not discount those fees from contribution, maintenance, venue or caller
 limits. [Review](../reports/fee-impact-policy-20261028/REVIEW.md) and
 [verification](../reports/fee-impact-policy-20261028/VERIFICATION.md) record the
 source scope and remaining qualification. Production is **NOT APPROVED**.
 
-Current fresh LP protection uses confirmation2 and separate emergency capability1.
-Ordinary readiness requires physical/reference same-side range exit (unless a
-reviewed policy relaxation or deliberate governance width exception applies).
-Reference prices remain the configured dual USD sources, not a newly qualified
-market feed. A separate paused governance emergency may explicitly bypass
-financial guards; it preserves exact accounting/custody but can cause near-total
-economic loss. It is not a user transaction, keeper fallback or API signing
-feature. [Policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
-[emergency procedure](EMERGENCY_REBALANCE.md).
+Fresh source uses accounting6, maintenance3, confirmation3 and optional portfolio2.
+Ordinary samples require the physical pool and independent reference on the same
+85%-of-centre-to-boundary threshold side in ZZZ-in-ETH price, using actual rounded
+main bounds. This threshold can be reached while the main remains active. The
+600-second sampled window may accumulate during the hard twelve-hour cooldown;
+execution needs both, then one persisted 60–300-second keeper delay. Source checks
+are 240 seconds; the configured maximum confirmed gap is 300 seconds. A gap-0 helper
+is unconfigured and cannot authorize ordinary sampled execution. Earlier
+maintenance2/confirmation2 deployments retain their outside-only policy and selected 900/300 settings; other historical profiles stay explicit.
+
+A separate paused governance emergency capability2 may explicitly bypass chosen
+financial/timing checks; exact custody/accounting remain, but near-total economic
+loss is possible. It is not an automatic keeper fallback or API signing feature.
+Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUTION_POLICY.md),
+[optional portfolio](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md), [emergency procedure](EMERGENCY_REBALANCE.md).
 
 ## Policy and scope
 
@@ -70,10 +76,11 @@ Network gas is separate.
 ## Explicit capability and observations
 
 Manager, LPBalancer and Strategy advertise `EXECUTION_QUALITY_VERSION()==1`.
-This capability is separate from `LP_ROUTING_VERSION()==1`; existing LP-routing1
-deployments do not gain it through a configuration rename. Fresh keeper/API
-configs explicitly set `execution_quality_version:1`. Historical absent/zero
-configurations retain their old reads and never probe these new getters.
+Fresh LP routing2 uses quality1 and a separately pinned, fixed BalanceMath child;
+the typed PositionExecutor mints/updates the actual Vault-owned LPs. Historical
+routing1/quality1 remains explicit, while absent/zero retains its older reads.
+Neither an old deployment nor a saved journal acquires the fresh portfolio graph
+through a version rename. Keeper/API configs explicitly set their full profile.
 
 Quality1 observations use one pinned block, checked runtime/module bindings and
 the real Strategy resolved through Access. They compare its policy with the
@@ -92,11 +99,40 @@ inclusion-time checks. Implemented source-anchored telemetry and block/config-lo
 read caching require matching writer/checker operating qualification; fresh
 pre-signing checks are not cached. [Evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
 
+## Optional portfolio execution
+
+Mode is disabled by default. When enabled, the residual uses half of the
+corresponding main side (`5000`) with at least one full tick-spacing gap; governance
+may review a fraction from 1 to 10000, including full 10000. It is not a forced 40% allocation. A whole
+adjustment harvests/closes both old legs before quoting, so the route observes
+liquidity actually remaining after our withdrawal. LP destination and swap venues
+remain separate reviewed choices.
+
+A naturally deployable main of at least 60% needs no balancing swap. Otherwise the
+partial solver seeks a qualifying small swap, using a captured USD vector for
+post-cost utilization and current validated bounds for financial execution floors.
+Quoted sizing uses one basis point of headroom; the final actual main minimum
+is the configured minimumMainBps(pool), default6000bps. The solver adds headroom; it does not change the actual floor. At most one swap and one residual are permitted. Search
+is bounded rather than a proof of the globally smallest or best trade.
+
+After actual mint, Budget values main/residual/attributed idle at the SAME captured
+prices: main meets the configured floor(default60%), residual stays below its
+complementary ceiling, idle meets the captured maintenance cap(default5%), plus the
+unchanged aggregate maintenance loss floor. The ordinary hybrid main must have
+an active actual physical tick before mint and after final mint/refund callbacks,
+not merely enough NAV in an out-of-range position.
+Financial floors and structural ownership/balance checks remain independent.
+Later market movement may change activity, inventory and allocation. Entrant
+contributions still fund only their marginal main increase, never repair old
+residual/idle with a new user's budget. Standalone compounding keeps its separate
+interval and does not acquire replacement/residual-mint permission.
+
 ## Fresh deployment and failure boundaries
 
-Strategy's new policy fields shift the old mapping storage offsets. This is a
-fresh undeployed contract layout, never an upgrade or relabel of preserved
-Anvil deployments. Use exact new compiler/runtime and immutable bindings.
+Accounting6/ProtocolPolicy1/Portfolio2/maintenance3/confirmation3/compound4 and the new fixed companions are
+fresh source/deployment boundaries, never an upgrade or relabel of preserved
+Anvil contracts. Standalone children have explicit parent/controller bindings;
+normal runtime/initcode gates still apply. Use the exact compiler/runtime graph.
 Direct Manager swaps/buybacks now capture the complete policy/source/target
 context before the input pull and recheck it after settlement. Consequently a
 constructible configured target range is required; near extreme TickMath prices
@@ -110,12 +146,14 @@ rejects and a stronger caller minimum still binds.
 The guard constrains accepted execution; it does not prove feed independence,
 provider authenticity, organic prices, globally optimal routing or resistance
 to profitable surrounding trades. Qualified feeds, actual routes/depth/gas,
-ordering and operating rehearsals remain open. No TWAP, passive inventory
-strategy or new 40% displacement trigger is introduced. Source/configuration
-changes do not update installed services, websites, existing deployments or
-transaction journals.
+ordering and operating rehearsals remain open. The optional one-residual policy
+reduces some immediate balancing demand; it does not remove IL, sandwiching or
+adverse selection. No automatic volatility policy, staged TWAP execution or 40%
+displacement strategy is introduced. Source/configuration changes do not update
+installed services, sites, existing deployments or journals.
 
 Sources: [Strategy](../src/ZZZStrategy.sol), [LPBalancer](../src/ZZZLPBalancer.sol),
 [LiquidityManager](../src/ZZZLiquidityManager.sol),
+[PositionExecutor](../src/ZZZLPPositionExecutor.sol), [BalanceMath](../src/ZZZLPBalanceMath.sol),
 [reader](../zzz_ops/lp_execution.py), [loss policy](EXECUTION_LOSS_POLICY.md) and
 [keeper safeguards](KEEPER_SAFEGUARDS.md).

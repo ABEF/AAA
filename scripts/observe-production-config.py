@@ -29,6 +29,8 @@ def main(argv=None):
     parser.add_argument('--block-number', type=int, help='Optional cross-check of the inventory block; never a latest fallback')
     parser.add_argument('--expected-block-hash', help='Required with --block-number; must match the reviewed inventory anchor')
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--historical-consistency',action='store_true',
+        help='Inspect an explicitly historical inventory; never qualify the fresh portfolio release')
     try:
         args = parser.parse_args(argv)
         if not re.fullmatch(r'[A-Z][A-Z0-9_]{0,63}', args.rpc_env) or any(
@@ -48,11 +50,20 @@ def main(argv=None):
         chain_id = config['chains'][0]['chain_id']
         endpoint = os.environ[args.rpc_env]
         rpc = Rpc([endpoint], chain_id, timeout=10, retries=2)
-        if type(config.get('schema_version')) is int and config['schema_version']==6:
+        version=config.get('schema_version')
+        if type(version) is int and version==8 and not args.historical_consistency:
+            from zzz_ops.production_observer_v6 import observe as observe_current
+            result=observe_current(config,rpc)
+        elif type(version) is int and version==7 and args.historical_consistency:
+            from zzz_ops.production_observer_v5 import observe as observe_current
+            result=observe_current(config,rpc)
+        elif type(version) is int and version==6 and args.historical_consistency:
             from zzz_ops.production_observer_v4 import observe as observe_current
             result = observe_current(config,rpc)
-        else:
+        elif args.historical_consistency:
             result = observe(config, rpc)
+        else:
+            raise ValueError('Historical inventory needs explicit inspection; no relabeling')
         write_observation(args.output, result)
     except Exception:
         print('Inventory observation failed; previous output preserved. Check public configuration, canonical anchor and read RPC availability.', file=sys.stderr)

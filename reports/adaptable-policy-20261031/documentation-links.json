@@ -1,0 +1,10 @@
+{
+  "scope": "all changed Markdown/new current guides/new optional-portfolio/residual-operation/day-audit/manual-operation reports plus inbound links from tracked non-report Markdown; old unrelated report bytes untouched",
+  "changed_markdown_count": 70,
+  "new_markdown_count": 15,
+  "checked_documents": 85,
+  "links_checked": 2052,
+  "inbound_checked": 97,
+  "introduced_or_unclassified_failures": [],
+  "preexisting_head_failures": []
+}

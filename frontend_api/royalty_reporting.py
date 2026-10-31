@@ -102,7 +102,7 @@ class Reporting:
             if count > total or eligible != (ordinal != 0 and ordinal <= count):
                 raise ProjectionError('Inconsistent royalty currency eligibility')
             if asset == ZERO and count != total:
-                if p.accounting_version == 4:
+                if p.accounting_version in (4,5,6):
                     # There is no native-token read fault or external custody
                     # path in this fresh ledger. Never invoke removed selectors.
                     raise ProjectionError('Inconsistent native royalty eligibility')

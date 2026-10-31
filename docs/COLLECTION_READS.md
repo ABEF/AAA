@@ -1,9 +1,11 @@
 # Confirmed collection positions and attached LP
 
-The backend supports explicit fresh accounting4/custody3/canonical holder-exit V5
+The backend supports explicit fresh accounting6/custody4/portfolio2/canonical adaptable-policy V6
 and reviewed historical codecs. The separately served poplint website remains
 accounting3/canonical V4; native2 and other local profiles remain historical.
-Backend support does not upgrade a browser reader or its deployment manifest.
+Fresh6 authenticates both actual main/residual legs and the complete fixed
+helper/dependency graph; aggregate token amounts back attached LP. Backend
+support does not upgrade a browser reader or its deployment manifest.
 Public configuration stays disabled until matching readers/services are reviewed.
 
 The read API and opt-in website deployment profile list the complete canonical
@@ -45,7 +47,7 @@ sum can differ from unrounded bucket NAV by rounding dust. No token-market or US
 price is invented by the API or browser.
 
 Activated count means reward eligibility, including parked and terminal Exited
-NFTs in accounting4; historical custody-outbound/remote states retain their old meaning. It
+NFTs in accounting4/5; historical custody-outbound/remote states retain their old meaning. It
 does not assert that every position is currently in range or earning fees. A
 non-local or failed LP valuation makes the total unavailable while verified
 positions and eligibility counts can remain visible. An unreadable dormant LP

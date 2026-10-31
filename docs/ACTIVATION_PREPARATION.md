@@ -17,39 +17,41 @@ the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 
 ## Current deployment and review profile
 
-The read configuration selects accounting 4 / fee-intake 1; deployment checks
-require direct governance 2, custody3 and holder-exit canonical V5. Activation uses explicit
-routing 2 / pricing 2 / review policy 1. These are separate version fields,
-not a synthetic service-profile string or an upgrade of an existing deployment.
-Accounting4 activation configuration also requires explicit
-`maintenance_policy_version`:1 for historical movement eligibility,2 for current
-outside-or-operator-range eligibility. Policy2 requires range_policy_version1,
-authenticates Strategy2 and Budget3 at the pinned hash, and reports actual
-outside state with obsolete movement-trigger fields null. Missing/malformed
-capabilities fail closed; keeper check/execution times remain unavailable without
-real telemetry. No historical deployment is upgraded by changing a field.
-Fresh LP routing1 adds explicit `lp_routing_version:1` and authenticated immutable
-Manager/balancer/core/state runtime/parent bindings at the same pinned block.
-It is separate from Entry routing2. The trace must witness entrant-only balance
-and capped mint/increase; only repriced incumbent physical LP is the marginal
-deployed baseline, while old idle/compound stays in incumbent NAV. Historical0
-keeps its old equations; never infer a profile from tuple length or retry old ABI.
-Only native ETH and fixed ZZZ are original inputs. Their two-source policies
-use the reviewed 3% disagreement tolerance.
+Fresh read configuration explicitly selects accounting6/fee-intake1 and the
+complete [portfolio graph](POSITION_V6.md). Unsigned activation selects Entry
+routing2/pricing2/review2, maintenance3/range1/LP-routing2/portfolio2/
+confirmation3/execution-quality1. Pin Policy, Confirmation, Budget, Balancer,
+math, typed LP child and actual core/periphery, including reciprocal module/parent
+bindings. Fresh pins must match their corresponding parent read configuration.
+No version field upgrades old contracts or grants signing permission.
+Fresh LP-routing2 verification passes the configured `lp_position_executor`
+binding into the actual execution observer; a present address alone is not
+verification. Missing helpers, wrong parent/core/runtime and historical profile
+substitution fail closed. [Actual verifier tests](../reports/day-audit-20261031/VERIFICATION.md)
+exercise the full graph, not just configuration construction.
 
-Fresh confirmation source additionally selects `rebalance_confirmation_version:2`
-and pins the immutable Strategy-created helper's address/runtime. Strategy,
-Budget and helper must expose the matching confirmation capability2; helper Strategy/Access bindings,
-duration/gap/review hash/revision and per-bucket observations are read at the
-same canonical hash. Version2 also authenticates the governed reference-exit
-policy and requires physical/reference exit on the same side when enabled.
-Explicit version1 retains its historical physical-only confirmation semantics;
-absent/0 retains its original path. A failed read never selects an older profile. The intended900-second window uses
-four-minute checks after the hard12-hour cooldown and an exact300-second maximum
-recorded gap, without grace. Source defaults remain900/0: ordinary rebalancing
-is stopped until reviewed governance configuration. Config values and release
-approval are separate; the current production inventory uses explicit schema6.
-[Profile](POSITION_V4.md) and [preflight](PRODUCTION_PREFLIGHT.md).
+At one pinned canonical hash, authenticate both physical LP IDs, keys, owners,
+ticks, liquidity and aggregate raw amounts. Value both legs at the captured
+prices. Trace entrant funds through exact Manager→typed LP child→PosM calls;
+initial activation creates main only, while growth increases only the existing
+main. Existing residual/idle/compound remain in incumbent NAV but cannot pay an
+entrant's marginal deployed-LP execution floor. Confirmed receipt/actual deployment
+comes before shares, artwork or LP amount updates.
+
+Preparation binds reviewed controls and portfolio geometry, distinguishes raw85%
+need from600/300sampled readiness and hard cooldown, and does not promise keeper
+inclusion time without real telemetry. A desired-disabled live residual is still
+authenticated. Source checks240seconds and60–300jitter are service policy, not an
+on-chain commitment that a user action will rebalance; contributions never recenter.
+
+Historical accounting4 retains its separately selected maintenance1/2,
+LP-routing0/1 and confirmation0/1/2 paths; historical3 and earlier retain their
+own codecs. Fresh6 never falls back to those ABIs after an error. Legacy900-second
+confirmation and old child creation rules are not the fresh profile.
+
+Only native ETH and fixed ZZZ are original inputs; the two-source agreement
+tolerance is3%, independently of loss budgets. Actual routes/feeds/trace providers
+and website consumption remain unqualified. See [preflight](PRODUCTION_PREFLIGHT.md).
 
 The parent read configuration requires the additional `principal_exit` runtime
 pin. It must exactly equal the nested activation `migration` address/code hash;
@@ -58,7 +60,7 @@ activation/growth drafts stop before approval, pricing or route work, including
 after ordinary unpause. Existing profile3 deployments retain their old schema;
 the served poplint artifact is not automatically upgraded or enabled for signing.
 
-`executeReviewed(Request,maximumLossBps)` encodes the review's captured current
+`executeReviewed(Request,maximumLossBps,expectedContributionPolicy)` encodes the review's captured current
 contribution cap. Responses expose `reviewed_maximum_loss_bps`, actual
 `execution_limit_bps` and `provenance.review_policy_version`. A later cap above
 the signed maximum rejects; a tighter policy remains binding. Default
@@ -81,13 +83,13 @@ contribution's marginal deployed-LP floor. See [price security](PRICE_SECURITY.m
 | Value | Source and meaning |
 | --- | --- |
 | Current attached LP value | `NFT.currentLPValue(tokenId)` at the confirmed block: the NFT's share of marked deployed LP, attributed idle and compound reserves. It is not lifetime deposits, a withdrawal entitlement or claimable fees. Unavailable valuation is `null`, never an invented zero. |
-| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Current accounting 4 prices actual ETH directly at currency zero; historical profiles retain their original mapping. No assumed USD peg. |
+| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Current accounting6 prices actual ETH directly at currency zero; historical profiles retain their original mapping. No assumed USD peg. |
 | New deployed LP | The successful Entry/Vault execution's **marginal** deployment, taken from the fixed budget helper's accounting inputs. Incumbent liquidity, idle and compound cannot subsidize the new contribution. |
 | New share issuance and LP units | Budget output and `SharesAdded`, cross-checked with the one LiquidityManager mint/increase and its PositionManager liquidity readings. Physical LP units belong to the shared pool; NFT shares are reported separately. |
 | Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the captured contribution execution limit (2% by default). |
 
-Activation requires at least $100 original input value; increases require at least
-$5. The backend rejects below-floor requests before preparing approvals/traces.
+Activation/growth minima default100/5USD and are governed for future contributions
+through ProtocolPolicy; each is at least1USD and growth cannot exceed activation. The backend rejects below-floor requests before preparing approvals/traces.
 The effective minimum also respects any higher pool `minDepositUSD`. Entry and
 the fixed Vault helper enforce the same floors, including direct Vault calls.
 See [contribution minimums](CONTRIBUTION_MINIMUMS.md) for configuration and evidence.
@@ -185,36 +187,52 @@ examples deliberately contain placeholders, not purported live addresses.
 
 ## Activation configuration schema 1
 
-The current profile requires the base fields and explicit version fields below;
-additional or missing fields are rejected. Historical profiles have their own
-exact shape, not null placeholders for newly required fields.
+Fresh activation uses a separate schema1 configuration with the exact fields below.
+The parent read configuration is schema2 and explicitly selects
+`accounting_version:6`, `fee_intake_version:1`, `protocol_policy_version:1` and the
+complete source6 contract graph. Its required base fields are `schema`, `chain_id`,
+`rpc_urls`, `deployment_block`, `deployment_block_hash`, `confirmations`,
+`max_block_age_seconds`, `contracts`, `assets`; optional history/predecessor/royalty/
+earnings sections retain their own exact schemas. See [read configuration](FRONTEND_API.md#deployment-configuration).
 
-Use current accounting 4 / fee-intake 1 in the parent read configuration. The
-nested activation schema remains 1. Native ETH has address zero, code hash null,
-18 decimals and its own two-source policy; on-chain admission uses
-`NATIVE_ASSET_CODE_HASH()`. Exact ETH value is verified at Entry-to-Vault and
-Vault-to-manager boundaries, not only on the outer transaction.
+**Do not add `protocol_policy_version` to the activation configuration.** It
+inherits authenticated Policy1 from Projection; an extra key is rejected. Both
+configurations pin the same `protocol_policy` address/code hash and every other
+shared role. `activation.contracts.migration` must equal the parent's
+`contracts.principal_exit`. The parent has8 base roles, `principal_exit`, and14
+source6 portfolio/policy/dependency roles; its23 bindings are not interchangeable
+with the production inventory's17 modules/21 helpers.
 
-| Field | Contents |
+Native ETH has address zero, code hash null,18 decimals and its own two-source
+policy; on-chain admission uses `NATIVE_ASSET_CODE_HASH()`. Exact native value is
+verified at Entry-to-Vault and Vault-to-manager boundaries, not only outside.
+
+| Field | Fresh source6 contents |
 | --- | --- |
-| `schema` | Integer `1`. |
-| `routing_version`, `pricing_version`, `review_policy_version` | Explicit integers `2`, `2`, `1` for this candidate. |
-| `lp_routing_version` | Fresh `1` authenticates Manager/balancer capability and entrant-capped trace. Historical absent/0 retains its original policy/trace, never an automatic upgrade. |
-| `execution_quality_version` | Fresh `1` additionally authenticates actual Strategy policy ownership, cap/MAX and quality revision. Historical absent/0 stays historical. |
-| `maintenance_policy_version` | Explicit `2` for current outside-or-operator-range candidates, with Strategy2/Budget3 and range policy1. Explicit `1` retains the historical movement rule. |
-| `rebalance_confirmation_version` | Fresh `2` requires accounting4, maintenance2 and execution-quality1, plus the pinned confirmation child and matching capability2. Explicit historical `1` remains physical-only; absent/0 is separate. No runtime/profile fallback. |
-| `contracts` | `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `v4_executor`, `contribution_pricing`, plus `balancing_router` for LP routing1 and `rebalance_confirmation` for confirmation1/2; each has `address` and `code_hash`. The read-service has its own nine current bindings. |
-| `tokens` | 2..33 reviewed currency descriptors, at most 32 ERC20s plus ETH. Current fields: `address`, `code_hash`, `decimals`, `price_policy`; input, pair currencies and required nonzero historical backing must be present. `price_policy` contains `policy_id`, `ordinal`, `policy`. The policy includes `token`, `primary`, `secondary`, `maxDeviationBps`, `assetDecimals`, `reviewHash`; each source includes `source`, `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`. Token/feed precision is 0..18 and source age 1..86400 seconds. Native code hash is null and decimals 18. No legacy single-feed keys in pricing 2. |
-| `dependencies` | 1..64 `{address, code_hash}` entries covering PositionManager, PoolManager, StateView, Permit2 and every applicable conversion router/factory/pool, sequencer, implementation or other reviewed dependency. |
-| `sources` | 1..64 `{pool_id, source_asset, route_id, asset_policy_id, route_kind}` entries. One route per input/pool: kind 0 direct, 1 v3, 2 v4. For fee-intake 1, source identities must contain native ETH and exactly one reviewed ZZZ; no third input. Zero route is direct; nonzero native-source conversion requires v4. |
-| `range_policy_version`, `range_policies` | Optional explicit range profile 1 adds a required list of `{pool_id, orientation, keeper}` reviewed policies covering every source pool. Its absence/profile 0 retains the explicit historical raw-direction interpretation; it does not verify a newer range policy. See [range policy](RANGE_POLICY_UPDATES.md). |
-| `sequencer` | `{address, policy_id}` exactly matching Oracle. Explicit zero/zero only when that absence was reviewed for this network; no implicit omission. |
-| `call_pins` | Up to 128 `{target, data, expected}` exact getter checks on pinned contracts, tokens, feeds or dependencies. Include implementation/admin or wrapper policy getters where applicable. |
-| `storage_pins` | Up to 64 `{target, slot, expected}` exact storage checks; 32-byte words. Include applicable proxy implementation/admin/beacon slots and pin the implementation code in dependencies. |
-| `fee_policy` | `{estimate_includes_all_fees: true, review_hash, max_gas_price_wei}`. The ceiling is a positive decimal string. The review must establish that `eth_estimateGas * eth_gasPrice` covers all network fee components for this network/provider. |
+| `schema` | Integer1. Missing/unknown/boolean versions and extra fields fail closed. |
+| `routing_version`, `pricing_version`, `review_policy_version` | Explicit integers2,2,2. Reviewed Entry2 calldata includes `expectedContributionPolicy`. |
+| `lp_routing_version` | Explicit2: authenticate Manager/Balancer, arithmetic and typed physical execution helpers and entrant-capped trace. |
+| `portfolio_version` | Explicit2: authenticate PortfolioPolicy2 and configured main floor/gap with both physical legs. |
+| `execution_quality_version` | Explicit1: authenticate Strategy ownership, additional-loss cap/MAX and monotonic revision. |
+| `maintenance_policy_version` | Explicit3: configured85%-of-centre-to-boundary physical/reference condition or deliberate operator geometry update, with Strategy3/Budget4. |
+| `rebalance_confirmation_version` | Explicit3: pinned matching confirmation child, range1/maintenance3/quality1, sampled600-second window/strict300-second maximum gap as selected policy; actual values are observed, not invented defaults. |
+| `range_policy_version`, `range_policies` | Explicit1 plus a required list of `{pool_id,orientation,keeper}` covering every source pool. Manual ZZZ-in-ETH orientation and exact optional keeper policy are reviewed separately. |
+| `contracts` | Exactly18 roles, each `{address,code_hash}`: `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `v4_executor`, `contribution_pricing`, `balancing_router`, `portfolio_policy`, `lp_balance_math`, `lp_position_executor`, `protocol_policy`, `rebalance_confirmation`. Shared pins must equal the parent read configuration. |
+| `tokens` |2..33 reviewed currency descriptors, at most32 ERC20s plus ETH. Fields: `address`, `code_hash`, `decimals`, `price_policy`; original input, pair currencies and required historical backing must be covered. This inventory does not admit new contribution inputs. `price_policy` has `policy_id`, `ordinal`, `policy`; policy fields are `token`, `primary`, `secondary`, `maxDeviationBps`, `assetDecimals`, `reviewHash`. Each source has `source`, `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`; decimals0..18 and age1..86400seconds. Native code hash is null/decimals18; no single-feed fallback. |
+| `dependencies` |1..64 `{address,code_hash}` entries covering PositionManager, PoolManager, StateView, Permit2 and every applicable conversion router/factory/pool, sequencer, implementation or other reviewed dependency. The four venue pins must equal the parent's exact dependencies. |
+| `sources` |1..64 `{pool_id,source_asset,route_id,asset_policy_id,route_kind}` entries; one route per input/pool. Kind0 direct,1 v3,2 v4. Inputs must contain only native ETH and exactly the fixed reviewed ZZZ. Zero route is direct; nonzero native-source conversion requires v4. |
+| `sequencer` | `{address,policy_id}` exactly matching Oracle. Explicit zero/zero only when that absence was reviewed; no implicit omission. Nonzero sequencer needs its dependency code pin. |
+| `call_pins` | Up to128 `{target,data,expected}` exact getter checks on reviewed contracts, tokens, feeds or dependencies. Include applicable implementation/admin policy. |
+| `storage_pins` | Up to64 `{target,slot,expected}` exact32-byte storage checks. Include applicable proxy implementation/admin/beacon slots and implementation code pins. |
+| `fee_policy` | `{estimate_includes_all_fees:true,review_hash,max_gas_price_wei}`. Positive bounded decimal-string gas ceiling; independent review must establish complete network-fee estimation. No missing-component zero fallback. |
+
+Historical accounting4 keeps its explicit maintenance1/2, LP-routing0/1 and
+confirmation0/1/2 shapes; accounting5 keeps Portfolio1/Entry-review1 with its own
+pins. Those configurations are not source6 templates and are never promoted
+by omitting fields, changing version labels or falling back after an error.
 
 Configuration hashes are returned in provenance. Runtime hashes alone cannot
-establish a usable swap. LP1 `provenance.lp_execution` reports the bounded
+establish a usable swap. LP2 `provenance.lp_execution` reports the bounded
 catalog/revisions/work settings; `swaps_enabled` means its list is nonempty,
 not that a listed venue is currently executable. Full simulation and on-chain
 output/LP guards decide that. The catalog is not frozen by a wallet review.
@@ -227,6 +245,27 @@ for L1/data fees. The backend does not infer Robinhood support from generic EVM
 compatibility. Suggested gas cost is an estimate, not a maximum final receipt fee.
 
 ## Confirmed range and timing context
+
+Fresh source6 uses maintenance3/confirmation3/Portfolio2. The main may still be
+active when its configured centre-to-boundary threshold is crossed. Physical
+pool and independent reference must confirm the same threshold side; the
+600-second sampled window, strict300-second maximum gap and hard cooldown are
+distinct. The service checks every240seconds; execution additionally awaits its
+persisted60–300-second random delay and financial/custody checks.
+
+`rebalance.eligibility_rule` is `confirmed_threshold_or_operator_geometry_update`;
+`eligibility_reason` is `threshold_distance`, `operator_geometry_update` or null.
+`raw_eligible_at_snapshot` and confirmed `eligible_at_snapshot` remain separate.
+The report includes actual main/residual geometry, current policy fingerprint,
+physical/reference threshold sides, sampled status and the cooldown boundary.
+`next_keeper_check_at`/`expected_execution_at` remain null without qualified
+telemetry: no sampled countdown promises transaction inclusion. Deliberate
+operator geometry updates retain their explicit cooldown-gated exception.
+
+The following compatibility labels belong to explicitly historical profiles;
+they are not the source6 decision rule.
+
+### Historical timing labels
 
 `liquidity_context` accompanies both approval and full Entry drafts. It contains
 current/proposed ticks, current physical LP ID, active-range status and the
@@ -244,7 +283,7 @@ remaining seconds and readiness at that block. The status distinguishes
 unconfigured, not started, stale, confirming and ready; a late observation or
 changed side/identity must restart. A deliberate governed range change bypasses
 the sampled window after the existing raw cooldown/price checks. A countdown is
-not a service schedule or proof of continuous price history. Fresh confirmation2
+not a service schedule or proof of continuous price history. Historical confirmation2
 also reports the reference policy and physical/reference sides; a coherent
 disagreement is `reference_disagreement`, not ready. Independent-source/provider
 qualification remains separate from internally consistent observations.
@@ -291,3 +330,12 @@ feature evidence and remaining gates are maintained in the [feature reference](I
 and [sole Todo](../TODO.md). The fresh confirmation/schema6 additions have
 [separate scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md);
 they do not requalify those historical providers or the served poplint artifact.
+
+## Accounting6 policy binding
+
+Projection requires protocol_policy_version1 and its reviewed helper/runtime.
+The activation subsection pins the same helper but does not accept a duplicate
+protocol_policy_version key. Entry2 calldata includes the exact captured
+entryFingerprint after the maximum loss field; source minima and entrant idle cap
+are dynamic at the pinned block. Stale policy or mid-call changes revert; no
+legacy Entry selector is substituted. [Policy semantics](ADAPTABLE_POLICY.md).

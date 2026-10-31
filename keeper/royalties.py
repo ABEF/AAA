@@ -48,6 +48,12 @@ class RoyaltyAutomation:
             raise ValueError('royalty_conversion requires an explicit enabled boolean')
         self.enabled = cfg.get('enabled',False)
         if not self.enabled: return
+        self.missing_explicit_profile = getattr(keeper,'accounting_version',1)==6 and 'profile' not in cfg
+        if self.missing_explicit_profile:
+            # A new job configuration must not acquire authority over recovery
+            # of a saved transaction. Refuse this job after recovery instead.
+            if keeper.state.get('pending'): return
+            raise ValueError('Accounting6 enabled conversion requires an explicit reviewed profile')
         self.profile = cfg.get('profile','v3_wrapper')
         if self.profile not in ('v3_wrapper','v3_wrapper_configurable','v4_native'):
             raise ValueError('Unsupported royalty conversion profile')
@@ -91,6 +97,8 @@ class RoyaltyAutomation:
             if type(state.get('next_first')) is not bool: raise ValueError('Invalid royalty scheduling state')
 
     def scan_once(self):
+        if getattr(self,'missing_explicit_profile',False):
+            raise ValueError('Accounting6 conversion profile is unconfigured; review configuration before new work')
         from keeper.monitor import rpc_hash, rpc_quantity
         k=self.k; state=k.state[self.key]; contracts=k.contracts
         latest=k.rpc.call('eth_getBlockByNumber',['latest',False])

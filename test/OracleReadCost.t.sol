@@ -1,8 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
+import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 import {IPriceFeed} from "../src/interfaces/IZZZ.sol";
 import {MockAccess, MockToken, MockFeed} from "./mocks/Mocks.sol";
 
@@ -37,6 +40,15 @@ contract FaultyUptimeRead {
     }
 }
 
+/// @dev TEST ONLY deterministic budget boundary; not a measured live provider.
+contract GasBudgetPriceRead {
+    function decimals() external pure returns(uint8) {return 8;}
+    function latestRoundData() external view returns(uint80,int256,uint256,uint256,uint80) {
+        require(gasleft()>200000,"fixture needs larger source budget");
+        return(1,1e8,block.timestamp,block.timestamp,1);
+    }
+}
+
 contract OracleReadCostTest is Test {
     ZZZOracle private oracle;
     MockAccess private access;
@@ -51,7 +63,7 @@ contract OracleReadCostTest is Test {
     }
     function setUp() public {
         vm.warp(1_000_000);
-        access = new MockAccess(); token = new MockToken(18);
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); token = new MockToken(18);
         first = new MockFeed(8, 1e8); second = new MockFeed(8, 1e8);
         uptime = new FaultyUptimeRead(block.timestamp - 2 hours);
         oracle = new ZZZOracle(address(access),address(uptime));
@@ -97,5 +109,23 @@ contract OracleReadCostTest is Test {
         access.seal();
         oracle.setSequencerFeed(address(next),address(next).codehash,REVIEW);
         assertEq(oracle.price(address(token)),1e18);
+    }
+    function testAdaptableSourceGasRestoresSameFeedsWithoutRelaxingPriceAgreement() public {
+        GasBudgetPriceRead dependent=new GasBudgetPriceRead();
+        ZZZOracle.SourcePolicy memory reviewed=ZZZOracle.SourcePolicy(
+            address(dependent),address(dependent).codehash,bytes32(uint256(3)),3600,8);
+        bytes32 feedPolicy=oracle.setDualFeed(address(token),reviewed,_source(second,2),300,REVIEW);
+        assertEq(oracle.price(address(token)),1e18);
+        ZZZProtocolPolicy policy=ZZZProtocolPolicy(access.protocolPolicy());
+        IZZZProtocolPolicy.GasPolicy memory g=policy.gasPolicy();access.seal();
+        policy.setGasPolicy(g.payoutGas,100000,g.royaltySyncGas,REVIEW);
+        vm.expectRevert(abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector,address(token)));
+        oracle.price(address(token));
+        assertEq(oracle.activePolicy(address(token)),feedPolicy);
+        policy.setGasPolicy(g.payoutGas,1000000,g.royaltySyncGas,REVIEW);
+        assertEq(oracle.price(address(token)),1e18);assertEq(oracle.activePolicy(address(token)),feedPolicy);
+        second.set(104e6,block.timestamp,block.timestamp);
+        vm.expectRevert(abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector,address(token)));
+        oracle.price(address(token));
     }
 }

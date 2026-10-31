@@ -59,8 +59,8 @@ contract CollectionScaleTest is PooledVaultFixture {
     function _mintScale(uint256 ordinal, bool varied) private returns (uint256 id) {
         address owner = _holder(ordinal);
         if (ordinal == 0 || ordinal >= 10) _fundUser(owner);
-        vm.prank(owner);
-        id = vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vm.prank(owner);
+        id = vault.mintDormant{value: 0.05 ether}(reviewedPolicy1);
         assertEq(id, uint256(keccak256(abi.encode(block.chainid, address(vault), ordinal + 1))));
         assertEq(nft.tokenAtOrdinal(ordinal + 1), id);
         assertEq(nft.mintOrdinalOf(id), ordinal + 1);
@@ -187,7 +187,7 @@ contract CollectionScaleTest is PooledVaultFixture {
         assertEq(venue.next(), 2); assertEq(treasury.balance, COUNT * 0.05 ether);
         assertEq(royalties.orphaned(address(t0)), 23); assertEq(royalties.orphaned(address(stable)), 41);
         assertEq(royalties.orphaned(address(0)), 17);
-        vm.prank(_holder(0)); vm.expectRevert(); vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy2 = vault.mintPolicyFingerprint(); vm.prank(_holder(0)); vm.expectRevert(); vault.mintDormant{value: 0.05 ether}(reviewedPolicy2);
 
         // Actual venue receipts preserve the same 40/60 gross fee vector;
         // no optional creator-payment path is part of this candidate.

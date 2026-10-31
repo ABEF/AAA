@@ -1,0 +1,42 @@
+{
+  "scope": "Local/offline helper; no contract/source, service, site, chain, journal or signer changes.",
+  "commands": [
+    "python scripts/prepare-operator-review.py profile --output operator-profile.json",
+    "python scripts/prepare-operator-review.py prepare reviewed-request.json --output operator-review.json",
+    "python scripts/prepare-operator-review.py check operator-review.json --output operator-check.json"
+  ],
+  "input_contract": "Exact current source contract name and full canonical signature from the callable reference. Named nested arguments follow its labels; explorer output orders tuples recursively.",
+  "hash_algorithm": "SHA-256, output as 0x plus64 lower-case hex digits.",
+  "preimage": "ASCII bytes ZZZ_POPL_OPERATOR_REVIEW_V1 followed by LF, then json.dumps(manifest,sort_keys=True,separators=(comma,colon),ensure_ascii=True,allow_nan=False). No trailing newline in canonical manifest.",
+  "marker": "Every exact bytes32 reviewHash/reviewed ABI field uses literal $REVIEW_HASH in the preimage; derived hash replaces it only in ordered explorer output. Never use it for custodyHash/portfolioHash.",
+  "units": "Every ABI integer, chain ID, snapshot height and timestamp is a canonical decimal STRING. Signed ticks preserve minus signs; booleans are JSON true/false; addresses and bytes use lowercase0x hex.",
+  "output": "--output creates a new UTF-8 file exclusively; existing files are never overwritten. Validation/source refusal creates no output. A disk write failure can leave a partial new file, so a failed write must not be used; check rejects incomplete/malformed artifacts.",
+  "limits": {
+    "request_bytes": 131072,
+    "artifact_bytes": 524288,
+    "catalog_bytes": 4194304,
+    "json_depth": 16,
+    "abi_array_length": 128,
+    "evidence_count": 16,
+    "abi_dynamic_bytes": 4096
+  },
+  "no_qualification": "Declared chain/block/runtime/governance are supplied metadata. No RPC, runtime, freshness, authority, operational guard or simulation claim. ready_for_submission=false. Contract checks nonzero provenance only, not this preimage.",
+  "remaining": [
+    "A human must read exact live governance/module versions/bindings/custody/nonce/epoch/physical fingerprint and simulate the full actual call through separately approved read tools.",
+    "An explorer is only a transport UI. A matching ABI and local review artifact do not authorize fixed-module/callback functions for a human wallet.",
+    "Changing source/catalog/arguments/evidence requires a new review; never update pins blindly or substitute the review hash for an on-chain fingerprint."
+  ],
+  "verification": {
+    "final": "attempt2.json",
+    "methods": 16,
+    "earlier_overlapping": "attempt1.json:12methods, not added",
+    "stdout_entrypoint_profile": "PROFILE.json",
+    "no_execution_tests": true
+  },
+  "source_sha256": {
+    "zzz_ops/operator_review.py": "8f634ee584dd721e5668514b3d92e820408ffdf1ce9ab57d5833dea603b7b397",
+    "scripts/prepare-operator-review.py": "9f807258fc681cb831ebf45ee89bb2028cbc4daf12a5a1beba3fae2feb1d9dbb",
+    "tests_python/test_operator_review.py": "0725097aedbe56f7a33c72b888f6c594271b82073b21900e97e9ba43395412a2",
+    "docs/function-reference.json": "c09fed2ec1a6c39e9a26d40c15a97381adcd42352abdbab279951986650df2b9"
+  }
+}

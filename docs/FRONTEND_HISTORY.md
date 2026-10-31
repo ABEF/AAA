@@ -9,8 +9,9 @@ website's simulated actions.
 
 ## Current and historical scope
 
-Fresh reads explicitly use accounting4/fee-intake1 and same-chain canonical
-holder-exit V5. Explicit accounting3/V4 remains a supported historical profile.
+Fresh reads explicitly use accounting6/ProtocolPolicy1/fee-intake1 and same-chain
+canonical adaptable-policyV6. Accounting5/4 withV5 and accounting3/V4 remain
+explicit historical profiles.
 Native ETH is admitted by both ledgers; historical accounting 1 retains its
 ERC20-only LP boundary. No profile or old journal is relabeled automatically.
 
@@ -21,7 +22,7 @@ confirmed-price USD marks. Claims and conversions never create extra income;
 current native claimable already includes remaining conversion credits. A
 transfer preserves lifetime history for the NFT, including its earlier owners.
 
-Accounting4 principal return is a separate holder ledger, not a reward payout or
+Current principal return is a separate holder ledger, not a reward payout or
 new earnings. Historical external native custody exit/return history must
 authenticate the exact interval. Historical return
 restores backing rather than income; unavailable backing/reconciliation never

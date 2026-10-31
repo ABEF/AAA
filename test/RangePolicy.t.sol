@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -55,12 +58,12 @@ contract RangePolicyTest is Test {
     uint256 constant BUCKET = 44;
 
     function setUp() public {
-        vm.warp(1_000_000); MockAccess mock = new MockAccess();
+        vm.warp(1_000_000); MockAccess mock = new MockAccess(); ProtocolPolicyFixture.bind(address(mock));
         _system(address(mock)); mock.seal();
     }
     function _system(address access) private {
         controller = access; IRangeBinder binder = IRangeBinder(access);
-        registry = new ZZZPoolRegistry(access); strategy = new ZZZStrategy(access);
+        registry = new ZZZPoolRegistry(access); strategy = new ZZZStrategy(access, address(new ZZZPortfolioPolicy(access)), address(new ZZZRebalanceConfirmation(access)));
         oracle = new ZZZOracle(access, address(0)); vault = new RangePolicyRecord(access); venue = new RangePolicyRecord(access);
         binder.bind(Ids.POOLS, address(registry)); binder.bind(Ids.STRATEGY, address(strategy));
         binder.bind(Ids.ORACLE, address(oracle)); binder.bind(Ids.VAULT, address(vault));
@@ -150,7 +153,7 @@ contract RangePolicyTest is Test {
         assertFalse(strategy.needsRebalance(BUCKET));
     }
     function testRealSealedGovernanceCanImmediatelyApproveRangeChange() public {
-        ZZZAccessController access = new ZZZAccessController(address(0xA0A0), address(0x20), address(0x21));
+        ZZZAccessController access = new ZZZAccessController(address(0xA0A0), address(0x20), address(0x21)); ProtocolPolicyFixture.bind(address(access));
         _system(address(access));
         // The removed LP bridge/transport identities are intentionally unbindable.
         bytes32[6] memory rest = [Ids.NFT, Ids.MEMBERSHIP, Ids.FEES, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION];

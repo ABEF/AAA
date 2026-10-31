@@ -8,9 +8,12 @@ incomplete history distinct from zero balances and zero earnings.
 
 Use exact emitter inventories for the selected deployment profile, not familiar
 token names or an old Anvil manifest. Earnings needs all seven reviewed emitters
-from creation. Fresh accounting4/canonical V5, historical3/V4 and older codecs
+from creation. Fresh accounting6/portfolio2/canonical V6, historical4/V5,3/V4 and older codecs
 remain distinct; adding emitters or changing profiles is not a cursor-only edit. Backfill and
-verify a separate database before switching consumers.
+verify a separate database before switching consumers. Profile6 consumers also
+authenticate both physical legs and the full pinned helper graph at the selected
+block; an event alone does not establish current LP value. Backend support does
+not deploy a fresh6 browser consumer or enable public signing.
 
 The shared read-only RPC client refuses HTTP redirects, including redirects on
 the same host. Endpoint rotation uses only the configured reviewed URL list and

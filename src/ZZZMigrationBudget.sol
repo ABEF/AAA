@@ -23,22 +23,30 @@ interface IEmergencyManifest {
 interface IMigrationIdle { function totalIdle(address) external view returns(uint256); }
 interface IBudgetVaultValidation {
     function validateOwner(uint256,address,bool,bool) external view returns(address);
+    function validateHolderExit(uint256,address) external view returns(address,address);
     function validateContribution(uint256,uint256,uint256,uint256,uint128,bool)
         external view returns(address,address,uint16);
 }
+interface IBudgetPortfolioStrategy { function portfolioPolicy() external view returns(address); }
+interface IBudgetPortfolioPolicy {
+    function revision() external view returns(uint64);
+    function enabled(bytes32) external view returns(bool);
+}
+interface IBudgetPositionOperator { function positionOperator() external view returns(address); }
 
 /// @notice Bounded execution policy for contributions and principal maintenance.
-/// Created by Vault; governance can change future loss limits, never custody or recipients.
+/// A separately deployed fixed-controller companion. Governance can change
+/// future loss limits, never custody or recipients. The sealed controller fixes
+/// the sole Vault caller; there is no mutable parent setter.
 contract ZZZMigrationBudget is ReentrancyGuard {
-    address public immutable vault;
     IZZZAccess public immutable access;
     uint16 public constant MAX_LOSS_BPS = 1000;
-    uint256 public constant IDLE_COMPOUNDING_VERSION = 3;
-    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 2;
+    uint256 public constant IDLE_COMPOUNDING_VERSION = 4;
+    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 3;
     uint32 public constant DEFAULT_COMPOUND_INTERVAL = 1 hours;
     uint16 public contributionLossBps = 200;
     uint16 public maintenanceLossBps = 300;
-    uint256 public constant EMERGENCY_REBALANCE_VERSION = 1;
+    uint256 public constant EMERGENCY_REBALANCE_VERSION = 2;
     bool public emergencyActive;
     uint256 public emergencyBucket;
     uint8 public emergencyChecks;
@@ -53,7 +61,12 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         uint256 idle0;
         uint256 idle1;
         uint16 lossBps;
+        uint16 maxIdleBps;
+        bytes32 maintenancePolicy;
         bytes32 confirmationControl;
+        bytes32 sourcePool;
+        uint64 portfolioRevision;
+        bool replacement;
     }
     Snapshot private snapshot;
     bool private compoundIncluded;
@@ -75,9 +88,11 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     event CompoundIntervalChanged(bytes32 indexed poolId,uint32 previous,uint32 current);
 
     constructor(address controller) {
-        vault = msg.sender;
         access = IZZZAccess(controller);
     }
+    /// @notice Canonical parent follows only the controller's sealed module binding.
+    /// Before binding, address zero cannot invoke a Vault-only entry point.
+    function vault() public view returns(address) { return access.module(Ids.VAULT); }
     /// @dev Only Migration's paused governance entry may arm the atomic context.
     function beginEmergency(uint256 bucket,uint8 checks) external nonReentrant {
         if(msg.sender != access.module(Ids.MIGRATION) || emergencyActive || snapshot.value != 0) revert Unauthorized();
@@ -101,7 +116,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         // value guard is deliberately disabled. Compare the stable policy/raw
         // record, not readiness against the deliberately replaced LP identity.
         if((emergencyChecks & 16) != 0) result = keccak256(abi.encode(result,
-            _confirmationControl(emergencyBucket,IZZZVault(vault).group(emergencyBucket).poolId)));
+            _confirmationControl(emergencyBucket,IZZZVault(vault()).group(emergencyBucket).poolId)));
     }
     function _skip(uint8 bit) private view returns(bool) { return emergencyActive && (emergencyChecks & bit) == 0; }
     /// @notice One bounded immediate governance update. After the static access
@@ -142,7 +157,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         if (poolId == bytes32(0) || c.key.tickSpacing <= 0 || keccak256(abi.encode(c.key)) != poolId) revert InvalidConfiguration();
     }
     modifier onlyVault() {
-        if (msg.sender != vault) revert Unauthorized();
+        if (msg.sender != vault()) revert Unauthorized();
         _;
     }
     function recordComposition(uint256 id) external onlyVault {
@@ -157,12 +172,17 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         compositionEpoch[id] = epoch;
     }
     function _balance(address asset) private view returns(uint256) {
-        return asset==address(0)?vault.balance:IERC20(asset).balanceOf(vault);
+        return asset==address(0)?vault().balance:IERC20(asset).balanceOf(vault());
     }
     function assertIdle(uint256 id) external view onlyVault {
-        (address a,address b) = poolTokens(IZZZVault(vault).group(id).poolId);
-        if (_balance(a) < IMigrationIdle(vault).totalIdle(a) ||
-            _balance(b) < IMigrationIdle(vault).totalIdle(b)) revert InvalidState();
+        Position memory p = IZZZVault(vault()).group(id);
+        // Vault calls this immediately after its local attribution writes.
+        // Check the same bounded amounts before any token balance callbacks;
+        // a failure atomically rolls back the entire operation and those writes.
+        if ((p.idle0 | p.idle1) > type(uint128).max) revert InvalidAmount();
+        (address a,address b) = poolTokens(p.poolId);
+        if (_balance(a) < IMigrationIdle(vault()).totalIdle(a) ||
+            _balance(b) < IMigrationIdle(vault()).totalIdle(b)) revert InvalidState();
     }
     function validateCanonicalWriter(address caller) external view onlyVault {
         if (caller != access.module(Ids.VAULT_CANONICAL) || IZZZCanonicalAccess(address(access)).canonicalState() != 2) revert Unauthorized();
@@ -182,26 +202,48 @@ contract ZZZMigrationBudget is ReentrancyGuard {
             validateEmergency(id);
             if(_skip(4)) return;
         }
-        if (phase == 0) _beforeMove(id);
+        if (phase == 0) _beforeMove(id,true);
         else if (phase == 1) _includeCompound(id);
         else if (phase == 2) _afterMove(id);
         else if (phase == 3) {
             if (!compoundReady(id)) revert InvalidState();
-            _beforeMove(id);
+            _beforeMove(id,false);
             lastCompound[id] = uint64(block.timestamp);
         }
         else revert InvalidState();
     }
-    function _beforeMove(uint256 id) private {
+    /// @notice Only a normal whole-position replacement may mint a residual.
+    /// First activation, standalone compounding and manual emergency never
+    /// acquire hybrid execution permission merely by calling the Manager.
+    function maintenanceBucket() external view returns(uint256) {
+        return !emergencyActive && snapshot.value != 0 && snapshot.replacement ? snapshot.bucketId : 0;
+    }
+    /// @notice Captured utilization basis for the normal partial-swap solver.
+    /// This is never a substitute for current independent swap-price guards.
+    function maintenancePrices() external view returns(uint256 price0,uint256 price1,uint256 scale0,uint256 scale1) {
+        Snapshot storage s = snapshot;
+        if (emergencyActive || s.value == 0 || !s.replacement || s.bucketId == 0) revert InvalidState();
+        return (s.price0,s.price1,s.scale0,s.scale1);
+    }
+    function _portfolioPolicy() private view returns(IBudgetPortfolioPolicy) {
+        return IBudgetPortfolioPolicy(IBudgetPortfolioStrategy(access.module(Ids.STRATEGY)).portfolioPolicy());
+    }
+    function _beforeMove(uint256 id,bool replacement) private {
         if (snapshot.value != 0) revert InvalidState();
-        Position memory p = IZZZVault(vault).group(id);
+        Position memory p = IZZZVault(vault()).group(id);
         Snapshot memory s;
         s.bucketId = id;
+        s.sourcePool = p.poolId;
         s.lossBps = maintenanceLossBps;
         s.confirmationControl = _confirmationControl(id,p.poolId);
+        if (!emergencyActive) {
+            s.portfolioRevision = _portfolioPolicy().revision();
+            s.replacement = replacement;
+        }
         // Price validates feed/sequencer freshness. Reuse this exact vector after
         // close, swap and mint; callbacks cannot reprice away execution loss.
         ZZZContributionPricing.MaintenanceMark memory mark = _pricing().markMaintenance(id);
+        s.maxIdleBps = mark.maxIdleBps; s.maintenancePolicy = mark.maintenancePolicy;
         s.price0 = mark.price0; s.price1 = mark.price1; s.scale0 = mark.scale0; s.scale1 = mark.scale1;
         s.idle0 = mark.idle0; s.idle1 = mark.idle1; s.value = mark.value;
         if (s.value == 0) revert InvalidState();
@@ -213,23 +255,30 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     function _includeCompound(uint256 id) private {
         Snapshot memory s = snapshot;
         if (s.value == 0 || s.bucketId != id || compoundIncluded) revert InvalidState();
-        Position memory p = IZZZVault(vault).group(id);
+        Position memory p = IZZZVault(vault()).group(id);
         snapshot.value = s.value + _value(p.idle0 - s.idle0, p.idle1 - s.idle1, s);
         compoundIncluded = true;
     }
     function _afterMove(uint256 id) private {
         Snapshot memory s = snapshot;
         if (s.value == 0 || s.bucketId != id || !compoundIncluded) revert InvalidState();
-        Position memory afterPosition = IZZZVault(vault).group(id);
-        (uint256 deployed, uint256 idle) = _pricing().maintenanceValues(id,s.price0,s.price1,s.scale0,s.scale1);
-        uint256 retained = deployed + idle;
+        (uint256 deployed, uint256 idle,bytes32 targetPool) = _pricing().checkMaintenance(id,s.value,
+            s.price0,s.price1,s.scale0,s.scale1,s.lossBps,s.maxIdleBps,s.maintenancePolicy);
         // Round the captured retained-value floor up. Later policy changes cannot
         // weaken this operation's aggregate budget. Gas is
-        // outside these custody ledgers. Keep the existing 5% idle ceiling under
+        // outside these custody ledgers. Keep the captured maintenance idle ceiling under
         // this same vector, including when an admitted feed changes mid-call.
-        if (s.confirmationControl != _confirmationControl(id,afterPosition.poolId) ||
-            retained < s.value - Math.mulDiv(s.value, s.lossBps, 10000) || deployed == 0 ||
-            idle > Math.mulDiv(retained, 500, 10000)) revert Slippage();
+        // A reviewed same-pair move deliberately changes the destination pool.
+        // Preserve the ORIGINAL raw observation/control across all callbacks;
+        // Manager's separate context freezes target execution controls.
+        if (s.confirmationControl != _confirmationControl(id,s.sourcePool)) revert Slippage();
+        if (!emergencyActive) {
+            IBudgetPortfolioPolicy policy = _portfolioPolicy();
+            if (policy.revision() != s.portfolioRevision) revert InvalidState();
+            if (s.replacement && policy.enabled(targetPool)) {
+                _pricing().assertPortfolioUtilization(id,s.price0,s.price1,s.scale0,s.scale1);
+            }
+        }
         delete snapshot;
         delete compoundIncluded;
         emit MigrationValueChecked(id, s.value, deployed, idle);
@@ -252,21 +301,30 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         return _pricing().contributionNav(id);
     }
     function assertDeployed(uint256 id) external view {
-        if(msg.sender == vault && _skip(4)) return;
-        (uint256 deployed, uint256 idle) = nav(id);
-        if (deployed == 0 || idle > Math.mulDiv(deployed + idle, 500, 10000)) revert Slippage();
+        if(msg.sender == vault() && _skip(4)) return;
+        uint16 cap = snapshot.value != 0 && snapshot.bucketId == id
+            ? snapshot.maxIdleBps : _pricing().entryIdleLimit(id);
+        _pricing().assertDeployed(id,cap);
     }
     function assertPut(uint256 id, uint256 a0, uint256 a1, uint256 spent0, uint256 spent1,
         uint256 before0, uint256 before1) external view onlyVault {
-        Position memory p = IZZZVault(vault).group(id);
+        Position memory p = IZZZVault(vault()).group(id);
         (address token0, address token1) = poolTokens(p.poolId);
-        address manager = IZZZLiquidity(access.module(Ids.LIQUIDITY)).positionManager();
+        IZZZLiquidity liquidity = IZZZLiquidity(access.module(Ids.LIQUIDITY));
+        IPositionManagerMinimal manager = IPositionManagerMinimal(liquidity.positionManager());
+        uint256 secondary = liquidity.secondaryId(p.lpTokenId);
         if (spent0 > a0 || spent1 > a1 || _balance(token0) + spent0 != before0 ||
             _balance(token1) + spent1 != before1 ||
-            IPositionManagerMinimal(manager).ownerOf(p.lpTokenId) != vault) revert InvalidState();
+            manager.ownerOf(p.lpTokenId) != vault() ||
+            (secondary != 0 && (secondary == p.lpTokenId || manager.ownerOf(secondary) != vault()))) revert InvalidState();
     }
     function validateNativeSender(address sender) external view onlyVault returns (bool liquidityCredit) {
-        liquidityCredit = sender == access.module(Ids.LIQUIDITY);
+        address manager = access.module(Ids.LIQUIDITY);
+        liquidityCredit = manager != address(0) && sender == manager;
+        if (!liquidityCredit && manager != address(0)) {
+            address operator = IBudgetPositionOperator(manager).positionOperator();
+            liquidityCredit = operator != address(0) && sender == operator;
+        }
         if (!liquidityCredit && sender != access.module(Ids.FEES) &&
             sender != access.module(Ids.VAULT_CANONICAL)) revert Unauthorized();
     }
@@ -279,15 +337,15 @@ contract ZZZMigrationBudget is ReentrancyGuard {
             validateEmergency(id);
             (int24 lower,int24 upper) = IEmergencyManifest(access.module(Ids.MIGRATION)).emergencyTarget();
             return(lower,upper,
-                IZZZLiquidity(access.module(Ids.LIQUIDITY)).spot(IZZZVault(vault).group(id).poolId));
+                IZZZLiquidity(access.module(Ids.LIQUIDITY)).spot(IZZZVault(vault()).group(id).poolId));
         }
-        return IZZZStrategy(access.module(Ids.STRATEGY)).target(IZZZVault(vault).group(id).poolId);
+        return IZZZStrategy(access.module(Ids.STRATEGY)).target(IZZZVault(vault()).group(id).poolId);
     }
     /// @notice Bind prices, target policy and admitted execution controls across
     /// the Vault's complete approval/balance/reset sequence, not only the router.
     function balanceContext(uint256 id) external view onlyVault returns(bytes32) {
         if(emergencyActive) { validateEmergency(id); return this.emergencyFingerprint(); }
-        return IZZZLiquidity(access.module(Ids.LIQUIDITY)).balanceContext(IZZZVault(vault).group(id).poolId);
+        return IZZZLiquidity(access.module(Ids.LIQUIDITY)).balanceContext(IZZZVault(vault()).group(id).poolId);
     }
     function poolTokens(bytes32 poolId) public view returns (address token0, address token1) {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
@@ -296,18 +354,33 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     function validateReservation(bytes32 poolId,uint256 bucket) external view onlyVault {
         if (poolId == bytes32(0) || bucket == 0) revert InvalidConfiguration();
         IZZZPools(access.module(Ids.POOLS)).get(poolId);
-        uint256 old = IZZZVault(vault).poolBucket(poolId);
+        uint256 old = IZZZVault(vault()).poolBucket(poolId);
         if (old != 0 && old != bucket) revert InvalidState();
     }
     function validateMove(uint256 id, bytes32 nextPool, uint128 minimumLiquidity) external view onlyVault {
-        PoolConfig memory oldConfig = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId);
+        PoolConfig memory oldConfig = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault()).group(id).poolId);
         PoolConfig memory nextConfig = IZZZPools(access.module(Ids.POOLS)).accounting(nextPool);
         if (minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 ||
             oldConfig.key.currency1 != nextConfig.key.currency1 || !nextConfig.operationsEnabled) revert InvalidConfiguration();
     }
     function validateUnwind(uint256 id) external view onlyVault {
         if(_skip(2)) return;
-        IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault).group(id).poolId);
+        IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault()).group(id).poolId);
+    }
+    /// @notice Read-only extraction of the Vault's existing terminal holder-exit
+    /// preconditions. Caller identity remains supplied by the module-only Vault;
+    /// no asset movement or new exit authority is introduced here.
+    function validateHolderExit(uint256 id,address migrationCaller)
+        external view onlyVault returns(address token0,address token1) {
+        return IBudgetVaultValidation(access.module(Ids.VAULT_CANONICAL)).validateHolderExit(id,migrationCaller);
+    }
+    /// @notice No USD/spot/operations-enabled dependency is required to remove
+    /// only the registered residual. The fixed main and all rights remain.
+    function validateResidualClose(uint256 id) external view onlyVault {
+        Position memory p=IZZZVault(vault()).group(id);
+        if(!access.isSealed() || !access.paused() || access.lpExitStarted() || emergencyActive || snapshot.value!=0 ||
+            p.status!=PositionStatus.Active || p.lpTokenId==0 ||
+            IZZZLiquidity(access.module(Ids.LIQUIDITY)).secondaryId(p.lpTokenId)==0) revert InvalidState();
     }
     function validateRebalance(uint256 id, uint128 minimumLiquidity) external view onlyVault {
         if(emergencyActive) {
@@ -327,15 +400,12 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         return confirmation.observationFingerprint(id,poolId);
     }
     function idleValue(uint256 id) public view returns (uint256) {
-        if(msg.sender == vault && _skip(4)) return 0; // Internal sentinel, never an external zero USD valuation.
-        Position memory p = IZZZVault(vault).group(id);
-        (address token0, address token1) = poolTokens(p.poolId);
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        return oracle.value(token0, p.idle0) + oracle.value(token1, p.idle1);
+        if(msg.sender == vault() && _skip(4)) return 0; // Internal sentinel, never an external zero USD valuation.
+        return _pricing().idleValue(id);
     }
     function assertIdleLoss(uint256 id, uint256 beforeValue) external view onlyVault {
         if(_skip(4)) return;
-        uint16 slippage = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId).maxSlippageBps;
+        uint16 slippage = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault()).group(id).poolId).maxSlippageBps;
         if (beforeValue == 0 || idleValue(id) < Math.mulDiv(beforeValue, 10000 - slippage, 10000)) revert Slippage();
     }
     function validateContribution(uint256 id, uint256 bucket, uint256 inputUSD, uint256 inputTotal,

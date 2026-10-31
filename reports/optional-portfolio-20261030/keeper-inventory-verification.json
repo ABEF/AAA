@@ -1,0 +1,286 @@
+{
+  "schema": 3,
+  "captured_at": "2026-10-30T23:34:41.641812+00:00",
+  "scope": "keeper fresh3, schema7/default-half-side inventory and39 owned current guides; offline synthetic RPC checks and documentation only",
+  "owned_source_sha256": {
+    "keeper/monitor.py": "573128edbe4d39ed9bc5f3ac1118742106240b1bfd85a5005742b400a4c439ed",
+    "keeper/rebalance_confirmation.py": "9d46ec556436abd7139682c94e2b3cb1a28c3ba78d8f72f85067c2fced83699b",
+    "keeper/compound_policy.py": "b0a85dcdcb423d6e81b4fc5eb0cd7b72bf6432e13e250064dd5f4b7c843d2ad7",
+    "keeper/health.py": "3bc9d124b99cefb6db0a8d112f173b2ff6c4ddfc1a8112c938f63e3013ba1880",
+    "keeper/operation_review.py": "d3a85aa81d90b16c64262948babc4bb0d7452e5ff70307f4c694bc9a334c7ac6",
+    "keeper/ops.py": "7d49446e3cee73b46c41257ee0e4dca2683bde1bf9c18772bb11538af9e7752f",
+    "keeper/principal.py": "3735199c4fbe4db4f7d23514c603c8832fe4ade0a620c87162cd46813ebfe9a5",
+    "zzz_ops/rebalance_confirmation.py": "3c4dfb68fb36c4e76d7917fce1e2072fa9416e99ebd89c2321609cd3eff326e9",
+    "zzz_ops/production_v5.py": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153",
+    "zzz_ops/production_observer_v5.py": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc",
+    "scripts/validate-production-config.py": "7f509eaa71ca31f47c24b911e86a6ae27816d689a634da54653fc5f8d8164ffa",
+    "scripts/observe-production-config.py": "03d510a956613c1d89c0e8385dbb9a7c3bf7ddefffabee2e1e8c6ba386e113f3",
+    "config/production.example.json": "487d28ee2d0b32f36e8e15f12efc031b51a60783239b59d39a1231ca9c2b07c0",
+    "tests_python/test_keeper_portfolio_policy.py": "860dae56f514ba1c38b0f46b1ca178eae302efedb2dabdecbbf3aa328e853d8d",
+    "tests_python/production_v5_fixtures.py": "a73e8e63595665edcf66685965dbb75933f954ca54a42c21d0181eca93d92762",
+    "tests_python/test_production_v5.py": "973378842ca2eb8f6f0549b936bf7738354ca45ca147562c7fcb4537cd7795e0",
+    "tests_python/test_production_preflight_cli.py": "a58da773b13bbb3140dd0a273a866eada700c25a588562c1708d730d14d360bd",
+    "tests_python/test_production_v4.py": "fbb6132ba4c74e429519324a1bbdbf0a948e3cd2d6eadda23cc32b23da3be7b8"
+  },
+  "shared_source_sha256": {
+    "zzz_ops/position.py": "f14d48cdbd0ae1ef77aea10781729908ed5241005aeef7d639fc4a4e73b56f7d",
+    "zzz_ops/lp_execution.py": "57049d7d13b0302b63b14bf8e7073dd7c5b573a71537eb3dc498591c688c16d5",
+    "zzz_ops/production_v4.py": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c",
+    "zzz_ops/production_observer_v4.py": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+  },
+  "current_docs_sha256": {
+    "docs/OPERATOR_MANUAL.md": "c1d8d1acda8051c7fba3ec295aab1bfad08b9bf6feee5f91f05713534384edb4",
+    "docs/LP_EXECUTION_POLICY.md": "dd06423f57febef5930eb9e12f7a3c18816e152c8aa83e9b35fdb7c4c432233b",
+    "docs/RANGE_POLICY_UPDATES.md": "0e6b3c11bcf853b00df8e6b02eef838e98f5936596b0d6a92bf0fe6575551eae",
+    "docs/KEEPER_COORDINATION.md": "8f5d33c8ab06e16751d6c743bb3507cc7a5085833137da8b7492e13f58a4b8fd",
+    "docs/KEEPER_SAFEGUARDS.md": "d3353fa7bee38a7eb7c35a861b5c9bc66e18b74892f395b2c239d4f92a1985f7",
+    "docs/NATIVE_ETH_ARCHITECTURE.md": "a2207ac5686462a51ac49a9957805b5773f1edfd028b962c55bc0ee8d7814d04",
+    "docs/PRODUCTION_PREFLIGHT.md": "1e538c84c65aadc1d37fdf70ce23e5599751ed316daa9ceca9c54e160651d929",
+    "docs/POSITION_V4.md": "46b3cbc9542c53ed6bf69a2f9bc173ab1a3e45ebe443267677f3785fdc88c940",
+    "docs/CUSTODY_PARKING.md": "81cde28d004e068da1ecc1924c9e894261ff1aefc1fc2dd41d274edd9c10180b",
+    "docs/EMERGENCY_REBALANCE.md": "96c37cb2bc8d1b88cbab7c5a93a2bf0c43225c7dfc993889084bf54dc58d7c9c",
+    "docs/COMPONENT_STATUS.md": "1f2593af9363b74246845c4f97642cb7f70bfe3e37fb54fc66988b1f438fcc3e",
+    "docs/DYNAMIC_LIQUIDITY.md": "555a5ef5279a012eaec1e8e9d5d8f1cd07de78f8c36539611bfe9decfb2419ac",
+    "docs/IDLE_AND_DUST.md": "8ed74ee161ed118027c54b4dfc6de5d93002b3edc6d7d708f4ac4e4caf6a162b",
+    "docs/POST_SEAL_POLICY.md": "f5929bb31158deb6d77c027c24c058166530c93fe9b32a98bfdc33b2e48eecdc",
+    "docs/CANONICAL_HANDOFF.md": "a5fbc65f6a26a7f946f3aa9a0ef9f73414f31d9db663f5f30e42a3252e75ef00",
+    "docs/GOVERNED_CUSTODY_HANDOFF.md": "b82b3248671afac35b545a83046b68d923a2c526cb4414acd96e313eab3b594c",
+    "docs/HOLDER_COLLECTIVE_EXIT.md": "77ddb3f68f711cb6719b90b96570c82ca7265847eefc4b8607167caa61f854ad",
+    "docs/DEPLOYMENT_ADDRESSES.md": "5043a8a3e34d2c7a07684649c3b9fde84e85d7945791730a35b11a5288cbefdd",
+    "docs/CHANGE_AND_RECOVERY.md": "65cdc074ed92012434a86e5890467d6109d1c9ec9a8816e7a778e71fb101a03a",
+    "docs/ARCHITECTURE_EVOLUTION.md": "e3f2e61f666edfde281e24bcda5989096be009a61e7a9073843b12abedc3d5ea",
+    "docs/MIGRATION_SAFETY.md": "f36a83faaa393c4b892cde5eea7ddb353292e28f71a739494095a9dc6ffacc8e",
+    "docs/OPERATIONS.md": "ec09e0c65f304043c404bfc19902b210469af59f97d2875942fe1ffba7173806",
+    "docs/KEEPER_RECOVERY.md": "9d8f2c6261e77d2fe3f33612ebbaf89931679aa0089c35d86a20803430e88c8b",
+    "docs/DEVELOPMENT.md": "573b4f2e3358aba2ecbe67b43f8e479326fce77493cde013347748291075ecfe",
+    "docs/ECONOMICS.md": "d7fe015e68c7c59cdce87d5a8ca4af5a434fed97a85b06e4de8ed297dfb150bc",
+    "docs/GOVERNANCE.md": "baf160b07a652cc1536d6a2e1657132a72278ae5676d217dd8062c2e525cea48",
+    "docs/SECURITY.md": "1f563c0f5eb56f93902076356b0eade87126179de2e97514d750637f96c9a30d",
+    "docs/SECURITY_AUDIT_PLAN.md": "d62d8c5b6566fbb0cb49affcfe496b017b42a00fdd3eeece4c165a3b561ffd2d",
+    "docs/PRODUCTION_SERVICES.md": "b021246d7993ea27e99184b953ec13d3b94aa21a9561182eabd018e902ba9a61",
+    "docs/POOL_SELECTION.md": "1cd86a8f2cd0d864af1646ad531820d8492faf5b486744d31a4b93426632020f",
+    "docs/EXECUTION_LOSS_POLICY.md": "af2f0df89b073ad6f86d345f7aaf05e2499541ca891f5dd8eaef804cdb003df7",
+    "docs/HOLDER_PREFLIGHT.md": "fe63c6c6519eed2cbddb1def4a6e0653df042d9222b03b147201d007045e2e00",
+    "docs/COLLECTION_READS.md": "d6f3aed6b975aa1cccda824bf07287b4de604be3f4b5474786c69f82ecfc121f",
+    "docs/FRONTEND_LINEAGE.md": "780d4742aa0991b77fcadd602409f824f5039bc3f2d761f956af746a26733658",
+    "docs/DEPLOYMENT_WEBSITE.md": "6537d067c4e6ea983e30561760abe2b2e2c1cdf64fcc50293c2cbf93d66ffe1e",
+    "docs/NFT_METADATA.md": "9d79ff8509107f081d22d34bfbfe2889573a8e3c553b1f800256e48785bca1e3",
+    "docs/INDEXER_RECOVERY.md": "7bf95a6ed16a29732ea5f3594535bbcef1b1f3ecba6b2e73583c97d57b4e6565",
+    "docs/CONTRIBUTION_MINIMUMS.md": "8b78148ebd2e0d6cbe3e3d700a25cbde8c2d15e55f33eb05add72db12200b7ee",
+    "docs/POSITION_V5.md": "73d88ef5e030c38efb0d07704103b24dd02159a584cd81a7892bf757468379e3"
+  },
+  "original_archives_verified": {
+    "docs/OPERATOR_MANUAL.md": {
+      "directory": "operator-guides-before",
+      "sha256": "453a17df45fe7337a88c89892dcd878d6503cb5e0e5b02464a599787379ff88e"
+    },
+    "docs/LP_EXECUTION_POLICY.md": {
+      "directory": "operator-guides-before",
+      "sha256": "45b4aa1b8871a82cded2e6f721442ad5db5bc0d330b3c9812bd84c07cd1842c1"
+    },
+    "docs/RANGE_POLICY_UPDATES.md": {
+      "directory": "operator-guides-before",
+      "sha256": "ff0b0833ecff27d2b0719de859ff68bac02821c019c28da57fcdd2ed9df6d7af"
+    },
+    "docs/KEEPER_COORDINATION.md": {
+      "directory": "operator-guides-before",
+      "sha256": "35e36b0514b82d9f5769110837da2e125a91fd8c66ae70f7b4a8d8ef3475a41d"
+    },
+    "docs/KEEPER_SAFEGUARDS.md": {
+      "directory": "operator-guides-before",
+      "sha256": "cb4d6636e89a23a439d3616a96f248c5e15cb43c133c04354fbd42eec0d62148"
+    },
+    "docs/NATIVE_ETH_ARCHITECTURE.md": {
+      "directory": "operator-guides-before",
+      "sha256": "bf2df50e3b5156855216a0b581b750571c869cf74bc350b7628e2d1b18c34c1a"
+    },
+    "docs/PRODUCTION_PREFLIGHT.md": {
+      "directory": "operator-guides-before",
+      "sha256": "6126ce73ff660ac1f6cce8924f4fd5b0acae95a3c90daa03eb6487ac82433760"
+    },
+    "docs/POSITION_V4.md": {
+      "directory": "operator-guides-before",
+      "sha256": "9a948020f6a1091a8164bf5bf23be483ec95ab1fc134c950912b9e97d1c2ff90"
+    },
+    "docs/CUSTODY_PARKING.md": {
+      "directory": "operator-guides-before",
+      "sha256": "ec8338f805f856c28b57b13a499954f5c82fe6c1cb2ad47de984fd980fe7f74e"
+    },
+    "docs/EMERGENCY_REBALANCE.md": {
+      "directory": "operator-guides-before",
+      "sha256": "218834171f2e4be3d54c5b786975dd9cae3f3c937ccc263005e2871837e62cd3"
+    },
+    "docs/COMPONENT_STATUS.md": {
+      "directory": "followup-guides-before",
+      "sha256": "a8322b3b3d3723c7a24f68f5b4a499de4f00573450639118b7342fbbeda81f98"
+    },
+    "docs/DYNAMIC_LIQUIDITY.md": {
+      "directory": "followup-guides-before",
+      "sha256": "a8d63eeed672b36faf491ab15c0a08d3ee4e2c322377e93b9137172bc12bb155"
+    },
+    "docs/IDLE_AND_DUST.md": {
+      "directory": "followup-guides-before",
+      "sha256": "e6b386ecba3b87f8d0e93ed363360f47d758dfba25fd83c3d8a7b2c0a52bff09"
+    },
+    "docs/POST_SEAL_POLICY.md": {
+      "directory": "followup-guides-before",
+      "sha256": "c67c954047d6a7a7f096bd00390429a3f0595608d88000bd725210ab0a80932c"
+    },
+    "docs/CANONICAL_HANDOFF.md": {
+      "directory": "followup-guides-before",
+      "sha256": "11ac18758dac238d04c77d0b7dc7104fef315d6484300ad4ee6bf13803440dce"
+    },
+    "docs/GOVERNED_CUSTODY_HANDOFF.md": {
+      "directory": "followup-guides-before",
+      "sha256": "135a55871d652b800d8a32a2b894222163204a7cde2832daa26586f09fe34f58"
+    },
+    "docs/HOLDER_COLLECTIVE_EXIT.md": {
+      "directory": "followup-guides-before",
+      "sha256": "5c15c5afea8d30653276786f26792817f991c7ef264ca53a53214d9329a7c61f"
+    },
+    "docs/DEPLOYMENT_ADDRESSES.md": {
+      "directory": "followup-guides-before",
+      "sha256": "d42da101e91cc49092f8b0f7697f86d1fd889bc9f71353820ffeba773aef2a50"
+    },
+    "docs/CHANGE_AND_RECOVERY.md": {
+      "directory": "followup-guides-before",
+      "sha256": "9f3feeed70948e0c02e2d8476b95bd722f9c16828fdc4b94329e7e41fbe7c0cd"
+    },
+    "docs/ARCHITECTURE_EVOLUTION.md": {
+      "directory": "followup-guides-before",
+      "sha256": "5d297bf4f737d5155edc591da9f5ffc4965be428c4c65812270a9c3aef7b1c61"
+    },
+    "docs/MIGRATION_SAFETY.md": {
+      "directory": "followup-guides-before",
+      "sha256": "83e7ef34f3993b9d2ce83714810d38b0983e96854fa7c70382012e01a3890950"
+    },
+    "docs/OPERATIONS.md": {
+      "directory": "followup-guides-before",
+      "sha256": "a374fe774b2993e8e2f59ad621ba16c4ca3ab2be6f4854841da9acafddff9529"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "directory": "followup-guides-before",
+      "sha256": "06d32fd8e4863d65841ee4036589935506f37bf518c1bece643b747386b05fa8"
+    },
+    "docs/DEVELOPMENT.md": {
+      "directory": "followup-guides-before",
+      "sha256": "2ae9a7223cb1a32db3bac385bb6acc9c2f1261d4849fb20b22597152a03f1544"
+    },
+    "docs/ECONOMICS.md": {
+      "directory": "followup-guides-before",
+      "sha256": "454273a5c29f54b4bbc600ab6dc39ac197edc8c36aa605553cb2fa48ea3a803f"
+    },
+    "docs/GOVERNANCE.md": {
+      "directory": "followup-guides-before",
+      "sha256": "b3413646227f043814fecdd55f84c020f720376366e029825d9bafd52fcb3d28"
+    },
+    "docs/SECURITY.md": {
+      "directory": "followup-guides-before",
+      "sha256": "286860c06ecdf602900beb7b702c2537b8006612b791730bf6dddbdd7fac8652"
+    },
+    "docs/SECURITY_AUDIT_PLAN.md": {
+      "directory": "followup-guides-before",
+      "sha256": "74f5383b38a86e185bc83a53c4db2e7fb92167eae7aa4512590f5a2a878edaf1"
+    },
+    "docs/PRODUCTION_SERVICES.md": {
+      "directory": "followup-guides-before",
+      "sha256": "ead34fc074a28f2818e6a919102cd01bcc776277bc96077b42d56dd11b967e56"
+    },
+    "docs/POOL_SELECTION.md": {
+      "directory": "followup-guides-before",
+      "sha256": "2167c36ea8dce8b820d8c74b876e6f82e63b700a5aeb4d1a2c0c905fca2596fe"
+    },
+    "docs/EXECUTION_LOSS_POLICY.md": {
+      "directory": "followup-guides-before",
+      "sha256": "6bd4c1776be2cb870e9ee09ecea0b856892b03903b4c2ab2b778793075852dbd"
+    },
+    "docs/HOLDER_PREFLIGHT.md": {
+      "directory": "followup-guides-before",
+      "sha256": "0fd60876a2942228e99ecc1c305a1cc69c59b20eda2da370574c560276c1aca7"
+    },
+    "docs/COLLECTION_READS.md": {
+      "directory": "leaf-guides-before",
+      "sha256": "e6bd1f462591456e252616f5d3c3f6a1b2a97715e2fb9abb9979b0a2b54b5cc3"
+    },
+    "docs/FRONTEND_LINEAGE.md": {
+      "directory": "leaf-guides-before",
+      "sha256": "ec72451acb0479a3787b8905d95b6a1fd71a0d1bd41bb7d80896645ea7f45db3"
+    },
+    "docs/DEPLOYMENT_WEBSITE.md": {
+      "directory": "leaf-guides-before",
+      "sha256": "a68239cc78d44b8ef2aa8825ce95beef10326df993fa9d138c8b0abcc6c24d89"
+    },
+    "docs/NFT_METADATA.md": {
+      "directory": "leaf-guides-before",
+      "sha256": "e88667a029a9565f0fbae4709ec2a4a4c7a94d8c93b44f2226d51b6e2c5391c1"
+    },
+    "docs/INDEXER_RECOVERY.md": {
+      "directory": "leaf-guides-before",
+      "sha256": "9fbd16f1e0f2abedb5a7661a2293c5c56f7194a0d2f261c8581b0e426ae54fba"
+    },
+    "docs/CONTRIBUTION_MINIMUMS.md": {
+      "directory": "leaf-guides-before",
+      "sha256": "8373a1002124a3b8facd484dd88574144e3811b8f8c898a772bc29302c1ba001"
+    }
+  },
+  "runs": [
+    {
+      "log": "keeper-late-enrollment-final1.log",
+      "sha256": "992d59e7c65580e79dc654721a3f9d260a7281aad400ae8fb6fd3799d9c286f1",
+      "passed_methods": 37,
+      "scope": "37 fresh keeper methods after late enrollment"
+    },
+    {
+      "log": "keeper-late-enrollment-report-final1.log",
+      "sha256": "f4902746387a23dea877c3e86b989e7c80872cccad7d53ec63d4449ad434abfa",
+      "passed_methods": 4,
+      "scope": "4 affected diagnostic checks;3 overlap and1new"
+    },
+    {
+      "log": "keeper-half-side-final1.log",
+      "sha256": "dae9fb2fbddebae6cb1ca8ef535afbcff3e3f6e12e8c2345f9f7ae313af7dca8",
+      "passed_methods": 4,
+      "scope": "4 affected reader/health/report checks at5000;all reused"
+    },
+    {
+      "log": "inventory-half-side-final1.log",
+      "sha256": "51e4e75d4ffea02df43c8bcb51c8bb42a17d3d12a40ae28f35a6142eafc56aaf",
+      "passed_methods": 25,
+      "scope": "all25 fresh inventory methods at5000 default, including new full-side review requirement; prior24 subsumed"
+    }
+  ],
+  "distinct_fresh_keeper_methods": 38,
+  "distinct_fresh_inventory_methods": 25,
+  "reused_historical_methods": {
+    "keeper": 161,
+    "inventory_cli": 74,
+    "base_evidence": "keeper-inventory-evidence-v2.json",
+    "sha256": "c06958a1a7ad20b48ef59c8c7d1cb88a13f7f1c1f5c947dea85bb3a8df21ccf3",
+    "scope": "unchanged historical branches/inventory/CLI sources, not rerun for fresh3 enrollment or half-side default"
+  },
+  "distinct_scoped_union": 298,
+  "stage_note": "38keeper/25inventory are distinct methods, not a single whole-project final run.37source-stage keeper plus affected report rechecks; only fresh default transcripts changed later and4affected methods reran. Earlier logs/evidence retained.",
+  "doc_check": {
+    "scope": "39 owned guides and all repository-documentation inbound links to those guides; no execution or external link qualification",
+    "links_checked": 967,
+    "inbound_checked": 330,
+    "failures": []
+  },
+  "doc_check_evidence_sha256": "28105a738ce8a270be4cc87b650e911be1fe8a18a17b5b3f29de818ae16259f1",
+  "scoped_diff_check": "passed",
+  "history": "original report bytes unchanged; old guide originals archived externally; old examples/journals retain their profiles",
+  "not_performed": [
+    "service change",
+    "deployment",
+    "website rollout",
+    "journal edit",
+    "public transaction",
+    "signer change",
+    "heartbeat restart"
+  ],
+  "limits": [
+    "strict sample timing/gas/provider qualification remains open",
+    "no continuous price evidence or MEV immunity",
+    "actual-core EVM14 scope/source pins are in the separate parent campaign, not this offline count"
+  ]
+}

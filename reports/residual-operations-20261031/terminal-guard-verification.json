@@ -1,0 +1,12 @@
+{
+  "passed": 3,
+  "methods": [
+    "testAlreadyTerminalRejectsBeforeBodyOrCallback",
+    "testNormalOperationCompletesWithBothWrites",
+    "testTerminalCallbackRejectsAtEndAndRollsBackAllWrites"
+  ],
+  "log_sha256": "894e02f1cdb98ec7c08eacdd6810a3c8de5e9f89c91766f8a087388e58646be6",
+  "test_sha256": "a280825222a6ccbf86faa4002ccfa054eb34db698de1e526cddc498f8d6bd36d",
+  "module_sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+  "scope": "Minimal callback fixture, not deployed Access authority or a whole-system proof"
+}

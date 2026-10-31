@@ -9,12 +9,12 @@ unavailable, and the shared signer remains Anvil-only.
 | Profile | Scope |
 | --- | --- |
 | Historical schema 1 | Wrapped-asset/single-feed local deployments, original 1% contribution policy and original journals |
-| Historical schema2/native2 | Accounting2, dual pricing2, routing2 and reviewed Entry1; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
+| Historical schema2/native2 | Accounting2, dual pricing2, routing2 and reviewed Entry2; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
 | Served schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified |
-| Fresh accounting4/custody3/canonical V5 contracts | No compatible website profile is implemented. Add an explicit reviewed frontend profile and current module/runtime/exit-state handling before connecting these contracts; never relabel schema3 or an old journal |
+| Fresh accounting6/custody4/portfolio2/canonical V6 contracts | Backend read/unsigned adapters authenticate both physical legs and full helper/core graph. A compatible deployed website consumer is still pending; add/review its explicit profile before connecting these contracts, never relabel schema3 or old journals |
 
 The legacy configuration and local-wallet procedures below retain their own
-profile scope; they are not instructions to configure fresh4. Native2 supports a captured governed contribution cap;
+profile scope; they are not instructions to configure fresh6. Native2 supports a captured governed contribution cap;
 the schema 1 99% fixture floor is not a universal current rule. The contract
 candidate accepts ETH/fixed ZZZ only and defaults to 2% contribution loss; manifest
 input admission, code/runtime pins and quote policy must match the selected
@@ -126,7 +126,7 @@ profile ignores this configuration and retains its own local wallet admission.
 - For a configuration/runtime/hash mismatch: stop preparation, investigate the
   reviewed deployment/service config and reissue a reviewed build. Never accept
   the changed target automatically or turn off identity checks to resume.
-- For an accounting4/holder-exit deployment: stop at the unsupported-profile
+- For a fresh accounting6/portfolio2/holder-exit deployment: stop at the unsupported-profile
   boundary until its frontend is implemented and qualified. Do not substitute
   a schema3 manifest, historical API or example data to make the site load.
 - For a missing/failed input route: disable that input in the operator manifest

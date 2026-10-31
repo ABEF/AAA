@@ -1,0 +1,32 @@
+{
+  "scope": "One NEW composed actual-local-v4 manual journey only; no old tests rerun, no production source change, no production gas or full-suite qualification",
+  "receipt": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\contracts-review-fefa34b1ea\\focused-755cf5a19d\\receipt.json",
+  "receipt_sha256": "678d71c6f4166c194f3693e2e04f6ac85c5cc9c056ee5dc928b88004d49795e0",
+  "passed": [
+    "testManualSingleModeJourneyMergesUnpausedThenHarvestsAndClaimsNewFees"
+  ],
+  "zero_production_source_differences_from_final851": true,
+  "zero_source_drift_during_run": true,
+  "test_sha256": "a3a69ce55b99c10681b64361b4bc3476298c59656b78d4a71db0d19e34613334",
+  "elapsed_seconds": 176.42,
+  "explicit_mocks": [
+    "Access",
+    "Token",
+    "correlated USD feeds",
+    "VRF",
+    "Permit2",
+    "native registry admission"
+  ],
+  "normal_settings": "solc0.8.26/Cancun/viaIR optimizer1,Yulfalse,unchanged",
+  "asserted_effects": [
+    "mode false while unpaused",
+    "cooldown-eligible normal guarded merge",
+    "old main and residual burned",
+    "new main physically active and Vault-owned",
+    "residual association/count0 and desired/applied single mode",
+    "NFT owner and per-NFT/bucket share totals unchanged",
+    "actual v4 fee-growth donation collected after merge",
+    "exact native payout and second claim0"
+  ],
+  "limit": "Fee-growth input uses actual local core donate, not claimed market trading volume. Composite test gas is not a production transaction cost."
+}

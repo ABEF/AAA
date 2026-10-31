@@ -1,0 +1,49 @@
+{
+  "observed_utc": "2026-10-30T23:38:23.628909+00:00",
+  "scope": "Source-bound callable documentation and normal closed compiler size gates, not execution tests or release approval.",
+  "check_exit_code": 0,
+  "check_result": {
+    "checked": true,
+    "contracts": 36,
+    "functions": 765,
+    "constructors": 36,
+    "receive_hooks": 14,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "source_drift": [],
+  "normal_gates": {
+    "directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\range85-two-position-20261030\\callable-reference-e3d3001c86\\normal-final-dcd9c3bb14",
+    "count": 42,
+    "all_pass": true,
+    "errors": []
+  },
+  "protected_original_dirty_source_checks": {
+    "expected_sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "actual_sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "unchanged": true
+  },
+  "generator_tools_unchanged": {
+    "scripts/generate-function-reference.py": true,
+    "zzz_ops/function_reference.py": true
+  },
+  "artifacts_sha256": {
+    "docs/CONTRACT_FUNCTIONS.md": "82a5a685d26ff3c2ad34086db11fd3b4f58acf1a47c0d3efd24b2c0169a08ea5",
+    "docs/function-reference.json": "483c23174e5636e9273b06166bdaa98d59eb194a7ed48b2b7b4cb21f2e81e924",
+    "docs/function-reference-notes.json": "05950731cd9bfb7e8e2301be99fa89eae4ff089eab2764edef79904474e7fde7"
+  },
+  "build_artifacts_sha256": {
+    "compiler-input.json": "f8b9b8f1b072ccde019a51e3892033c6db02053ef286cbb24a1d64a6e0a6bf74",
+    "compiler-output.json": "42ec549b2d99e54264d031ddcb6d274416bc38109c7348a200bc81f1bd12474b",
+    "production-size-gates.json": "2f5004fe4b9d9fd5eef00ae7e58fea6bc6e01a8c5d43d5bb975fdc42a763402b",
+    "START.json": "c9980dc8989f1a3fbc9194c6ab5c7acc799802425105d67c09eccfd07fceda27"
+  },
+  "limitations": [
+    "No deployments, transactions, services, old Anvil state, journals, public signing, or website changes.",
+    "No claim of independent audit, complete test-suite execution, qualified providers, or production readiness.",
+    "Dynamic constructor argument payloads still require exact production-argument qualification."
+  ],
+  "all_checks_pass": true
+}

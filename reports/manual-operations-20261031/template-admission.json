@@ -1,0 +1,23 @@
+{
+  "scope": "Three intentionally incomplete examples reject before any file or network transaction; CLI admission checks, not EVM cases or additional method counts.",
+  "checks": [
+    {
+      "template": "mode",
+      "exit_code": 1,
+      "output_created": false,
+      "diagnostic": "Offline review rejected: invalid input, changed source bindings or modified artifact."
+    },
+    {
+      "template": "residual-close",
+      "exit_code": 1,
+      "output_created": false,
+      "diagnostic": "Offline review rejected: invalid input, changed source bindings or modified artifact."
+    },
+    {
+      "template": "emergency",
+      "exit_code": 1,
+      "output_created": false,
+      "diagnostic": "Offline review rejected: invalid input, changed source bindings or modified artifact."
+    }
+  ]
+}

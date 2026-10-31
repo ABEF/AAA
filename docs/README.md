@@ -1,63 +1,46 @@
 # Documentation map
 
-[Complete-project audit and improvements](../reports/comprehensive-popl-20261029/REVIEW.md)
-implements terminal reserve-venue recovery, relevant keeper identity resets,
-final telemetry depth/chronology, stored-history chronology and exclusive,
-source-pinned evidence production. See the [coverage](../reports/comprehensive-popl-20261029/COVERAGE.md) and
-[verification](../reports/comprehensive-popl-20261029/VERIFICATION.md) for actual
-scope and remaining gates. Earlier reports retain their original bytes.
+Reviewed2026-10-31. [README](../README.md) explains the project; [sole Todo](../TODO.md)
+owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
+capabilities. **Undeployed; production NOT APPROVED.**
 
-[Completed historical reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
-maps352 original report narratives to current mechanisms, dispositions and owning
-tasks. It includes strict frontend/indexer startup-input fixes and corrected
-evidence/cadence guidance. Original reports retain their scope; live qualification
-and independent release approval remain open.
+For enable/disable, independent residual close, urgent consolidation, raw
+parking and recovery, use [main/residual management](OPERATOR_MANUAL.md#portfolio-management-controls).
+[Current manual-operation audit and verification](../reports/manual-operations-20261031/VERIFICATION.md)
+record exact manual controls, inputs, caller/restart boundaries, offline review
+preparation and scoped verification. The earlier source audit retains its
+three corrections, normal gates and static-triage scope. The former portfolio guide is a compatibility
+pointer; all maintained management procedures are in the Operator manual.
 
-[Keeper coordination and operation review](KEEPER_COORDINATION.md): service-only compound waits,
-proved internal harvest clocks, read-only LP diagnostics and corrected actual-ABI
-reservation observation. No source publication implies operating rollout.
+Start with the [optional portfolio implementation](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md),
+[profile6](POSITION_V6.md), [current management review](../reports/residual-operations-20261031/REVIEW.md)
+and [verification](../reports/residual-operations-20261031/VERIFICATION.md).
+Default single main, optional main/residual, explicit fresh accounting6 capabilities
+and schema8 inventory are source-only; historical profiles and existing sites,
+workers, Anvil and journals retain their meanings.
 
-Reviewed2026-10-29. [Root README](../README.md) introduces PoPL and its code.
-[TODO.md](../TODO.md) is the only task/status list; [feature reference](IMPLEMENTATION_STATUS.md)
-states what exists and what was verified. **Undeployed; production NOT APPROVED.**
-Current guides describe accounting4/directgovernance2/fee1/custody3/holder-exitV5.
-Historical reports and explicitly legacy local profiles retain their own semantics.
-
-[Current whole-project audit execution](../reports/whole-project-execution-20261029/REVIEW.md) includes
-two prompt challenges, exact handwritten/dependency body coverage, keeper/backend/
-tooling/artwork repairs and completed callable outputs. Its scoped verification
-and unresolved live/independent gates supersede no historical report bytes.
-
-[Normal-operation reassessment](../reports/normal-operation-design-20261029/REVIEW.md) maps contribution/idle/fees,
-all service clocks, compound asymmetry, harvest coordination and proposed
-non-signing diagnostics. It records design choices; no new timer/planner or
-financial policy is implemented by this assessment.
-
-[Operational reliability code follow-up](../reports/operational-reliability-20261029/REVIEW.md) fixes
-confirmed history/checkpoints/management/readiness/preflight/tooling defects;
-[verification](../reports/operational-reliability-20261029/VERIFICATION.md) separates focused passes,
-local metadata checks and unchanged Solidity/build reuse.
-
-[Passive inventory proposal](PASSIVE_INVENTORY_PLAN.md): bounded main/residual
-lifecycle, primary protocol research,85%trigger arithmetic and unresolved
-inventory decisions. Research only; current functions/services are unchanged.
+The [research plan](PASSIVE_INVENTORY_PLAN.md) explains earlier alternatives and
+tradeoffs; it is not the implemented operating procedure. Older
+[reports](../reports/README.md) retain source scope and unchanged bytes. The
+[completed reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
+does not qualify later source or close external release gates.
 
 ## 1. Smart contracts
 
 | Topic | Current guide |
 | --- | --- |
-| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile](POSITION_V4.md), [simplified scope](SIMPLIFIED_RELEASE.md) |
+| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile6](POSITION_V6.md), [simplified scope](SIMPLIFIED_RELEASE.md) |
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Atomic Entry](ACTIVATION_ENTRY.md), [routing](ACTIVATION_ROUTING.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
-| LP execution and upkeep | [Policy2/Budget3, LP routing1 and confirmation2](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled range-exit confirmation. Distinguish source implementation from live operating qualification. |
+| LP execution and upkeep | [Policy3/Budget4, LP routing2 and confirmation3](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled85%-threshold confirmation. Distinguish source implementation from live operating qualification. |
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
 | Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V5 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
 | Callable inputs/outputs/permissions | [Generated source-bound function reference](CONTRACT_FUNCTIONS.md) |
 
 Manual paused LP recovery: [emergency procedure](EMERGENCY_REBALANCE.md),
-[independent confirmation policy](LP_EXECUTION_POLICY.md#independent-reference-in-confirmation2),
+[independent confirmation policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer),
 [new scoped verification](../reports/independent-rebalance-20261029/VERIFICATION.md).
 Governance may bypass financial protections explicitly; this is an accepted
 authority risk and does not grant a keeper fallback or deployment approval.
@@ -78,7 +61,7 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | Topic | Scope |
 | --- | --- |
 | Demo versus integration release targets | [Environment map](SITE_ENVIRONMENTS.md): popldemo remains the existing simulation; served poplint has its own unconfigured current3 build/root and no demo fallback. |
-| Website read/review compatibility | [Served current3 and fresh4 gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting4/custody3/V5 frontend integration is not implemented; public signing remains disabled. |
+| Website read/review compatibility | [Served current3 and fresh4 gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting6/custody4 backend reads/unsigned preparation are implemented locally; matching website consumption remains open; public signing remains disabled. |
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 local build](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 
@@ -117,3 +100,10 @@ pages are merged into their owning guides; removal details and old Git paths are
 recorded in [documentation cleanup](../reports/documentation-cleanup-20261026/README.md).
 Existing actual dependency/package pins and [primary-source review](../reports/full-audit-20261025/UPSTREAM.md)
 take precedence over early unpinned upstream links.
+
+## Current adaptable policy
+
+[Accounting6 profile](POSITION_V6.md) and [bounded post-seal controls](ADAPTABLE_POLICY.md)
+replace fresh accounting5 assumptions. [Operator inputs](OPERATOR_MANUAL.md#future-operating-settings)
+and [callable reference](CONTRACT_FUNCTIONS.md) describe exact procedures. Existing
+runtimes, source-scoped evidence and served websites retain their own boundaries.

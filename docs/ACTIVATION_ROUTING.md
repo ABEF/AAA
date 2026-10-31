@@ -2,7 +2,7 @@
 
 The current candidate accepts only **native ETH or one fixed ZZZ**. Its profile
 is accounting 4 / fee-intake 1 / routing 2 / pricing 2 / review 1, with direct
-governance 2, custody 3 and local canonical holder-exit V5. A route is a reviewed conversion path,
+governance 2, custody 3 and local canonical adaptable-policy V6. A route is a reviewed conversion path,
 not the NFT's liquidity ownership or a new accepted currency.
 
 ## Three distinct routing jobs

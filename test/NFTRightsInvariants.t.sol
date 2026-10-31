@@ -42,7 +42,7 @@ contract NFTRightsHandler is PooledVaultFixture {
         for (uint256 i; i < ids.length; ++i) {
             address holder = address(uint160(0x10000 + i)); owner[i] = holder;
             _fundUser(holder);
-            vm.prank(holder); uint256 id = vault.mintDormant{value: 0.05 ether}(); ids[i] = id;
+            bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vm.prank(holder); uint256 id = vault.mintDormant{value: 0.05 ether}(reviewedPolicy1); ids[i] = id;
             uint256 draw = i % 3 == 0 ? 0 : uint256(nft.rarityRemaining(0));
             if (i % 3 == 2) draw += nft.rarityRemaining(1);
             vrf.fulfill(nft.requestOf(id), draw, i * 59); nft.finalizeTraits(id);

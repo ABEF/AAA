@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -161,7 +165,7 @@ contract BuybackExecutionTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access = new MockAccess(); input = new BuybackInputToken(); zzz = new BuybackBurnToken();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); input = new BuybackInputToken(); zzz = new BuybackBurnToken();
         inputFeed = new MockFeed(8, 1e8); zzzFeed = new MockFeed(8, 1e8);
         oracle = new ZZZOracle(address(access), address(0));
         oracle.setTestFeed(address(input), address(inputFeed), 3600);
@@ -169,12 +173,12 @@ contract BuybackExecutionTest is Test {
         rewards = new ZZZRewards(address(access)); membership = new ZZZMembership(address(access));
         fees = new ZZZFeeController(address(access)); vault = new RewardsVaultFixture(rewards);
         nft = new ZZZNFT(address(access), "ipfs://test-only/");
-        nft.configureRandomness(address(new MockVRF()), bytes32(uint256(1)), 1, 3, 500000, false);
-        pools = new ZZZPoolRegistry(address(access)); strategy = new ZZZStrategy(address(access));
+        ProtocolPolicyFixture.randomness(address(nft.access()),address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false);
+        pools = new ZZZPoolRegistry(address(access)); strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         core = new BuybackCoreFixture(); state = new BuybackStateFixture(address(core));
         FakePermit2 permit = new FakePermit2();
         FakePositionManager positions = new FakePositionManager(address(core), address(permit));
-        manager = new ZZZLiquidityManager(address(access), address(positions), address(state), address(core), address(permit));
+        manager = new ZZZLiquidityManager(address(access), address(positions), address(state), address(core), address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
         buyback = new ZZZBuyback(address(access), address(zzz), 100 ether);
         access.bind(Ids.NFT, address(nft)); access.bind(Ids.VAULT, address(vault));
         access.bind(Ids.MEMBERSHIP, address(membership)); access.bind(Ids.REWARDS, address(rewards));
@@ -231,6 +235,50 @@ contract BuybackExecutionTest is Test {
         assertEq(input.allowance(address(buyback), address(manager)), 0);
         assertEq(zzz.allowance(address(buyback), address(manager)), 0);
         assertEq(input.balanceOf(address(manager)), 0); assertEq(zzz.balanceOf(address(manager)), 0);
+    }
+
+    function testAdaptableMaximumTradeChecksAuthorityReviewBoundsAndOperatingFloor() public {
+        _fund(address(zzz), GROSS); bytes32 beforeState = _ledger(address(zzz));
+        bytes32 review = keccak256("reviewed buyback ceiling only");
+        vm.prank(ALICE); vm.expectRevert(bytes4(keccak256("Unauthorized()")));
+        buyback.setMaximumTradeUSD(200 ether, review);
+        vm.expectRevert(INVALID_CONFIGURATION); buyback.setMaximumTradeUSD(0, review);
+        vm.expectRevert(INVALID_CONFIGURATION); buyback.setMaximumTradeUSD(uint256(type(uint128).max) + 1, review);
+        vm.expectRevert(INVALID_CONFIGURATION); buyback.setMaximumTradeUSD(200 ether, bytes32(0));
+        vm.expectRevert(INVALID_CONFIGURATION); buyback.setMaximumTradeUSD(99 ether, review);
+        assertEq(buyback.maxTradeUSD(), 100 ether); assertEq(buyback.operatingTradeUSD(), 100 ether);
+        assertEq(_ledger(address(zzz)), beforeState);
+        buyback.setMaximumTradeUSD(200 ether, review);
+        assertEq(buyback.maxTradeUSD(), 200 ether); assertEq(buyback.operatingTradeUSD(), 100 ether);
+        assertEq(_ledger(address(zzz)), beforeState);
+        buyback.setOperatingTradeUSD(25 ether); buyback.setMaximumTradeUSD(25 ether, review);
+        vm.expectRevert(INVALID_CONFIGURATION); buyback.setOperatingTradeUSD(25 ether + 1);
+        assertEq(buyback.maxTradeUSD(), 25 ether); assertEq(buyback.operatingTradeUSD(), 25 ether);
+        assertEq(_ledger(address(zzz)), beforeState);
+    }
+
+    function testAdaptableMaximumTradeRemainsLifecycleLockedButAvailableDuringPause() public {
+        _fund(address(zzz), GROSS); bytes32 beforeState = _ledger(address(zzz));
+        bytes32 review = keccak256("reviewed paused buyback sizing");
+        access.setPaused(true); buyback.setMaximumTradeUSD(200 ether, review);
+        assertEq(buyback.operatingTradeUSD(), 100 ether);
+        access.setCanonicalState(2);
+        vm.expectRevert(bytes4(keccak256("CanonicalLocked()"))); buyback.setMaximumTradeUSD(300 ether, review);
+        access.setCanonicalState(0); access.setPreparation(true);
+        vm.expectRevert(bytes4(keccak256("Unauthorized()"))); buyback.setMaximumTradeUSD(300 ether, review);
+        access.setPreparation(false); assertEq(buyback.maxTradeUSD(), 200 ether);
+        assertEq(_ledger(address(zzz)), beforeState);
+    }
+
+    function testAdaptableMaximumTradeCannotBurnBeyondTheAllocatedFivePercent() public {
+        _fund(address(zzz), GROSS); zzz.mint(address(buyback), 17 ether);
+        buyback.setMaximumTradeUSD(200 ether, keccak256("reviewed larger future buybacks"));
+        buyback.setOperatingTradeUSD(200 ether); bytes32 beforeState = _ledger(address(zzz));
+        vm.expectRevert(INVALID_AMOUNT); _execute(address(zzz), RESERVE + 1);
+        assertEq(_ledger(address(zzz)), beforeState);
+        uint256 beforeSupply = zzz.totalSupply(); _execute(address(zzz), RESERVE);
+        assertEq(zzz.totalSupply(), beforeSupply - RESERVE); assertEq(zzz.balanceOf(address(buyback)), 17 ether);
+        assertEq(core.swaps(), 0); _assertReserves(address(zzz), 0); _claimBoth(address(zzz));
     }
 
     function testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations() public {

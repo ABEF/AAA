@@ -1,0 +1,227 @@
+{
+  "at_utc": "2026-10-31T02:56:55.095532+00:00",
+  "head": "37577ebf610ed7182c3d5bc481d7bb32ec5438c1",
+  "branch": "main",
+  "unchanged_head": true,
+  "protected": {
+    "reports/source-checks.json": {
+      "sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "unchanged": true
+    },
+    "scripts/run-fork-checks.py": {
+      "sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "unchanged": true
+    },
+    "tests_python/test_fork_runner.py": {
+      "sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "unchanged": true
+    },
+    "tests_python/test_frontend_history.py": {
+      "sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "unchanged": true
+    }
+  },
+  "old_reports": {
+    "reports/optional-portfolio-20261030/active-main-verification.json": {
+      "sha256": "a7d30e916c457fe9ff9efcb08366e0ca2b025aac03f9d51bdf55c5dac958e4db",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/callable-reference-verification.json": {
+      "sha256": "81d612995c42f5609ccc965cea6cc95000f39ee701f5d60c9a47ff4a0da44a2f",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/documentation-verification.json": {
+      "sha256": "27dad17b5fe32faf53065d90523f0f9ba9206abdec0ad4e83d044b2874eef6b8",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/half-policy-verification.json": {
+      "sha256": "51f2e45481cad28ce42ea839aef295f3e04aaf7fcf974847a486c858e8bfaa5b",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/independent-source-review.json": {
+      "sha256": "df5fa19c703c4c9086f72313c94c1fa56a3120e927ee6c2df4045c30bd845574",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/keeper-inventory-verification.json": {
+      "sha256": "a7e30372d1e89654ee82e4b598d3ce335359f8e4341cb4aca9e5ca51a29bb249",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/normal-size-gates.json": {
+      "sha256": "2f5004fe4b9d9fd5eef00ae7e58fea6bc6e01a8c5d43d5bb975fdc42a763402b",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/REVIEW.md": {
+      "sha256": "1024e5a81cb03528761da01f1656502b9463e4ec74de8560f53648fd0b291423",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/source-pins.json": {
+      "sha256": "7cb5df264bc2ea54827b6c897053913bc211abb0730618d1822d27f6c62762d0",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/verification-ledger.json": {
+      "sha256": "cdc553ce90800da2b93b19b4a4ccd83edf273adb59e9993aeb4a9707df1f1e75",
+      "unchanged": true
+    },
+    "reports/optional-portfolio-20261030/VERIFICATION.md": {
+      "sha256": "597792aa87acf2f1ad2f2741326835dc0a2720c3cc73c222f119607c34e1d920",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/actual-core-verification.json": {
+      "sha256": "baa2d1c92d882a64aed7d721704a0fee4674c0186fd4ecf0331e078133b3995d",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/callable-reference-verification.json": {
+      "sha256": "b7927a001dfd11eaae92bf655d29549042630d3d89b113ca93b4b802f2305085",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/core-stage1.json": {
+      "sha256": "843c28b5491f79df21d3a10141108ae2d9c1608c9deab67cb8e160d23f0dfa55",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/core-stage2.json": {
+      "sha256": "e1b65c9a1d04474a7d52cb456fdfe132864ca5b45c437b492f595d96aa54c9c3",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/core-stage3.json": {
+      "sha256": "dc36757834d3352dd511d459da0653d940b4b1ba8a5d8f929a3fe2cba4da6b77",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/documentation-verification.json": {
+      "sha256": "ff7e88c53b0aee1c34a8ff72a9fe872829013212181236e855d8ecf37cabca15",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/interface-storage-comparison.json": {
+      "sha256": "c8202b94f43db322355c6c7706295ee052c263d6edc8d4d78767cd84def2eecd",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/normal-size-gates.json": {
+      "sha256": "fae2fedef9a0ec117527655e6cf52a4446539524fa047614996b61258e33aeea",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/REVIEW.md": {
+      "sha256": "72b17bac48afc704050495af19ca83f5cea4e49bac22ccf4bc7cb012663f0470",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/source-pins.json": {
+      "sha256": "89cb4376d5f29aaa871c4b9954b3d246606fb40ce6e54a88702c0b3e867baa05",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/terminal-guard-verification.json": {
+      "sha256": "ceb5d30383078a324f0a3bf83d46e3e74764410016a1eb01bb623261beb4b19c",
+      "unchanged": true
+    },
+    "reports/residual-operations-20261031/VERIFICATION.md": {
+      "sha256": "e72b34a25c9e6f000c5109d119f8fba122f0c7fa2abecf1ee3d87173389a4964",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/artifact-manifest.json": {
+      "sha256": "602c42c94d8bccca703942f09834d05cf2f94a86b0748d9a46cea11ede7f261f",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/backend-verification.json": {
+      "sha256": "998b85acf760f121e92f4d7a0f21a3d27339ac8e9be80434e612bb2dbb336c98",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/cleanup-bytecode-comparison.json": {
+      "sha256": "e180921854bcb907db93dee2b4a2fdea8cb947d7b7e308eaeb1b470390faeee3",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/documentation-links.json": {
+      "sha256": "78567af01123d2ab7b74eb91c1afa559d455d35fa4105adef70520aa91d65b35",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/evm-verification.json": {
+      "sha256": "d22e910a56170c48980c93b8a777ed37e6d04fa8579a6f44edb521b95ccbf87a",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/final-documentation-checks.json": {
+      "sha256": "956d4f37aee626fe3311445d462a95b5fde1c02e013c0ce2987c7e8782a8fa3f",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/production-size-gates.json": {
+      "sha256": "def98db814f6cb96dd5e3a940ebe5dae9f49ece3a139ac7e31144deb8630b2c2",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/REVIEW.md": {
+      "sha256": "da80ffcec66f6707e6edec480cebffc1228d7a4d4765613ec904ccfb97241650",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/source-preservation.json": {
+      "sha256": "a208b8b0fc447f91e9066a68a16a105a477fe899cc049a66722e0c545ba3b225",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/static-analysis-receipt.json": {
+      "sha256": "7df9ad32c21fa60f7123d6b7a5e601b800d034f3fa317e97a7da0c88979578a1",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/static-triage.json": {
+      "sha256": "5a7ec81c90d4662116285d00383304574a366a933faee0b2f4f645709f73f907",
+      "unchanged": true
+    },
+    "reports/day-audit-20261031/VERIFICATION.md": {
+      "sha256": "778fb87069e0644e0f4671d69ff1d3e1ecf79e97debcbdb0324aaf51c13f2148",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/access-corrections.json": {
+      "sha256": "a68c6bbd899b6fc0cffd9c042639b0aa2470896260e583c5cae1c004da0839bb",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/artifact-manifest.json": {
+      "sha256": "3f02103269478d515ea9a5ff147780c59b6b22f70c941a6ff5587c43ffe07101",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/catalog-qa.json": {
+      "sha256": "e33d6660af4148b4156c728139663ffbd0f0c922ad765a9f21126297833e9c80",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/documentation-checks.json": {
+      "sha256": "f3af270b743e95f3c374ffe34b68ab557128bb79ea80e8e7384fa8b243a5d633",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/documentation-links.json": {
+      "sha256": "50d77815c082e088862c0b8a7ef48c3a943480df01b16c839ff30e123a86d3a3",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/helper-design-stage.json": {
+      "sha256": "ae0ca703de3c6ae9dfceb50958f2ca9b3567b91394c0d9fb6115dd953258b3eb",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/helper-verification.json": {
+      "sha256": "7f8648f3a94a3b04472d1205d17cf119e7a34bd7e81911607d84f6fb8d46e2f5",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/new-journey-verification.json": {
+      "sha256": "42e8fa7957cc7d999e93c72aa496891bb293309dccdd0f58d845a3b5608e5ee9",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/operation-inventory.json": {
+      "sha256": "f40cd798853602acc0499d6d7bcc9da1ea5c07eed11f584791809e724e347be9",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/operation-matrix.json": {
+      "sha256": "7730793fbb58c8646ddaa72a27c0a5b93cc4da6ec93bca3125fc711612dbe4a0",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/REVIEW.md": {
+      "sha256": "04202c41dfb857ce9879f3d1a3dca8797b31293e5d7f270419adc7bf96cd9287",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/source-preservation.json": {
+      "sha256": "b0e5a19f59b623ad33180262dbaab98102e934694adfa58cadc77ce0638655a0",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/template-admission.json": {
+      "sha256": "c6402028abdc2cdc27a6b76fc3bdcae1a8e426911c7aa23635f62e10c632a628",
+      "unchanged": true
+    },
+    "reports/manual-operations-20261031/VERIFICATION.md": {
+      "sha256": "40bf2d5d4e8583037c318882005b7c56a46293eda577400743dddf289b982fd0",
+      "unchanged": true
+    }
+  },
+  "old_report_count": 49,
+  "archived_original_file_count": 365,
+  "task_ids_status_order_unchanged": true,
+  "normal_source_hashes_still_exact": true,
+  "publication_deployment_service_site_anvil_journal_signer_heartbeat_changes": false
+}

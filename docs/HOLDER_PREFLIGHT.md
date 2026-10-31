@@ -6,8 +6,8 @@ owners exactly; it does not call receiver hooks or rewrite owners. This procedur
 inventories that risk before [whole-collection replacement](CANONICAL_HANDOFF.md).
 It does not apply to ordinary LP rebalancing or moving LP between pools.
 
-The current collection handoff is same-chain canonical holder-exit V5 with a
-compatible accounting4 successor, only before LP exit starts. No external custody
+The current collection handoff is same-chain canonical adaptable-policy V6 with a
+reviewed compatible accounting6 successor, only before LP exit starts. No external custody
 exit remains. Governance may instead end LP and return actual ETH+ZZZ directly
 to NFT owners; this neither relocates their NFTs nor permits later canonical
 replacement. This inventory adds no bridge or post-halt recovery capability.
@@ -52,7 +52,7 @@ Exit 1 means the operation failed. **None is release approval.**
 
 ## Input validation and failed commands
 
-Every config/page read is capped at2MiB+1 before parsing; above2MiB rejects.
+Every config/page read is capped at 2MiB+1 before parsing; above2MiB rejects.
 Duplicate object fields and nonfinite/overflowing numbers reject, and parser-limit
 failures use the same sanitized failure path. Do not hand-edit evidence to make
 it pass: reduce a genuine oversized page through a smaller scan and rerun at the

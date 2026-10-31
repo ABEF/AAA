@@ -1,0 +1,30 @@
+{
+  "scope": "Compact immutable receipts for this local source audit. Raw logs and closed compiler/analyzer data remain external at the referenced paths; no public deployment or whole-suite/CI approval.",
+  "evidence_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031",
+  "artifacts": {
+    "backend-verification.json": "998b85acf760f121e92f4d7a0f21a3d27339ac8e9be80434e612bb2dbb336c98",
+    "cleanup-bytecode-comparison.json": "e180921854bcb907db93dee2b4a2fdea8cb947d7b7e308eaeb1b470390faeee3",
+    "documentation-links.json": "78567af01123d2ab7b74eb91c1afa559d455d35fa4105adef70520aa91d65b35",
+    "evm-verification.json": "d22e910a56170c48980c93b8a777ed37e6d04fa8579a6f44edb521b95ccbf87a",
+    "final-documentation-checks.json": "956d4f37aee626fe3311445d462a95b5fde1c02e013c0ce2987c7e8782a8fa3f",
+    "production-size-gates.json": "def98db814f6cb96dd5e3a940ebe5dae9f49ece3a139ac7e31144deb8630b2c2",
+    "REVIEW.md": "da80ffcec66f6707e6edec480cebffc1228d7a4d4765613ec904ccfb97241650",
+    "source-preservation.json": "a208b8b0fc447f91e9066a68a16a105a477fe899cc049a66722e0c545ba3b225",
+    "static-analysis-receipt.json": "7df9ad32c21fa60f7123d6b7a5e601b800d034f3fa317e97a7da0c88979578a1",
+    "static-triage.json": "5a7ec81c90d4662116285d00383304574a366a933faee0b2f4f645709f73f907",
+    "VERIFICATION.md": "778fb87069e0644e0f4671d69ff1d3e1ecf79e97debcbdb0324aaf51c13f2148"
+  },
+  "external": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\normal-final-8511732986\\compiler-input.json": "13e9b1586356317d80d520c8af979d3214650793104dd21eaf6ca2d9eed1192c",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\normal-final-8511732986\\compiler-output.json": "5e94e8046b7219dbef7cf60681b64720d3f99a8f0249fabf80851573130ab145",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\static-attempt-5c26f66e51\\slither.json": "5403665463b766ec152b2e52c4e4185d13ce45e1836faaa70712f4704922ff2f",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\static-attempt-5c26f66e51\\EXECUTION.json": "e3903186c03f90f00a3df95dceacd7b853ec6ed1e5336cf11570400f95d4ddb1",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\static-attempt-5c26f66e51\\MANUAL_TRIAGE.json": "d9bb8dd43ce1d993d9f238ae72a0d0f57e44dab505cac1a61ceca3dec8bf95f9",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\operator-consolidation\\CONSOLIDATION.json": "cb84ad3d9fc5e730a087dad228efd19b995deddebe4e9a02132d28bda92a95e2"
+  },
+  "baseline": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\AUDIT_BASELINE.json",
+    "sha256": "1aa8e8d743c6964ff9489089cc7985311cb7ae8c440a5e93c29bc64b5d6f313b"
+  },
+  "final_documentation_review": "Management is maintained only in Operator manual; compatibility pointer and all new/current task links checked. Historical report bytes and source pins verified without deployment or publication."
+}

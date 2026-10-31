@@ -1,9 +1,9 @@
-"""Prepare an isolated $1 local rehearsal; never edit production or broadcast.
+"""Legacy source-patch rehearsal generator; never edit production or broadcast.
 
-Both floor-modified contracts require chain ID 31337 at construction. This is a test
-artifact guard, not cryptographic chain authentication or deployment approval.
-Only the two gross-activation floors and constructor guards change. Mint price,
-governed execution-loss policy, LP ownership and reward rules remain unchanged.
+Fresh accounting6 uses governed contribution minima and is refused before source
+copying or output creation. Its isolated test procedure configures ProtocolPolicy;
+it needs no altered contract build. Compatible historical source snapshots retain
+the reviewed two-floor/chain31337 transformation and their original evidence.
 """
 from __future__ import annotations
 
@@ -34,6 +34,28 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def solidity_code(data: bytes) -> str:
+    """Strip non-code before inspecting literal profile/policy declarations."""
+    return re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
+                  lambda match: ' ' * len(match.group()), data.decode('utf-8'))
+
+
+def require_legacy_profile(root: Path) -> None:
+    """No compiler lookup, fixture walk, source transformation or output here."""
+    current = (root/'src/ZZZProtocolPolicy.sol').exists()
+    vault = root/'src/ZZZVault.sol'
+    if not current and vault.is_file():
+        match = re.search(r'\buint256\s+public\s+constant\s+ACCOUNTING_VERSION\s*=\s*([0-9]+)\s*;',
+                          solidity_code(vault.read_bytes()))
+        current = match is not None and int(match[1]) >= 6
+    if current:
+        raise ValueError(
+            'Fresh accounting6+ uses governed minima; legacy source patches are disabled. '
+            'For a separately authorized isolated test deployment, review '
+            'ProtocolPolicy.setEntryPolicy(1e18,1e18,reviewedIdleBps,reviewHash) and the '
+            'pool minimum. Preserve mint/loss settings; no deployment or transaction is authorized by this tool.')
+
+
 def transform(name: str, data: bytes) -> bytes:
     if name not in PATCHES:
         return data
@@ -52,8 +74,7 @@ def loss_policy(data: bytes) -> tuple[int, int]:
     default. Comments/string literals cannot supply a declaration. Unknown
     declaration syntax needs review before generating any output directory.
     """
-    text = re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
-                  lambda match: ' ' * len(match.group()), data.decode('utf-8'))
+    text = solidity_code(data)
     values = []
     for name, modifiers in (('contributionLossBps','public'), ('MAX_LOSS_BPS','public constant')):
         declarations = []
@@ -86,6 +107,7 @@ def validate_destination(root: Path, output: Path) -> Path:
 
 def prepare(root: Path, output: Path, solc: Path) -> dict:
     root = root.resolve()
+    require_legacy_profile(root)
     output = validate_destination(root, output)
     solc = solc.resolve(strict=True)
     if not solc.is_file():

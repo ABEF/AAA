@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
@@ -32,7 +33,7 @@ contract FixedZZZBindingTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access=new ZZZAccessController(address(this), address(this), address(0x600D));
+        access=new ZZZAccessController(address(this), address(this), address(0x600D)); ProtocolPolicyFixture.bind(address(access));
         token=new MockToken(18);other=new MockToken(18);
         pools=new ZZZPoolRegistry(address(access));oracle=new ZZZOracle(address(access),address(0));
         rewards=new ZZZRewards(address(access));migration=new ZZZMigration(address(access));

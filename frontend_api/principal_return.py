@@ -1,4 +1,4 @@
-"""Profile-4 collective principal return; never reward or earnings income."""
+"""Explicit profile4/5 collective return; never reward or earnings income."""
 from frontend_api.service import ProjectionError, ZERO, _bool
 
 PHASES = ('operating', 'closing', 'allocating', 'ready')

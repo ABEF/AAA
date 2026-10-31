@@ -20,7 +20,7 @@ swaps unavailable; it is not a stop flag or a fee waiver.
 ## Additional loss after known trading fees
 
 Fresh Strategy/Manager/balancer execution-quality1 separately limits additional
-oracle-relative deterioration to1% by default, governance-adjustable0-10% with
+oracle-relative deterioration to 1% by default, governance-adjustable0-10% with
 `Strategy.setAdditionalLossBps(limit,reviewHash)`. Actual directional core trading
 fees are removed from input before computing its conservative output floor.
 The existing gross venue floor, caller minimum and captured contribution/
@@ -76,8 +76,8 @@ see [the complete review procedure](EMERGENCY_REBALANCE.md).
 
 ## Independent safeguards and version boundaries
 
-Fresh LP routing1 removes the former hard2% venue ceiling: governance can set
-pool `maxSlippageBps` within1-1000, without changing its operating value
+Fresh LP routing2 retains removal of the former hard 2% venue ceiling: governance can set
+pool `maxSlippageBps` within 1-1000, without changing its operating value
 automatically. A selected balancing route obeys the tighter target/venue guard,
 plus captured contribution/maintenance and caller minima. Catalog/solver policy
 does not waive these guards. Historical LP routing0 configuration readers keep
@@ -90,7 +90,7 @@ bound cumulative turnover, impermanent loss, depegs or future price changes.
 Governance remains trusted and has no advance-warning delay.
 
 Current activation preparation uses explicit `routing_version: 2` and reviewed
-current accounting4/runtime pins. It reads the current contribution cap and
+current accounting6/portfolio2/runtime pins. It reads the current contribution cap and
 cross-checks the packed `contributionResult(...,uint32)` trace. Legacy profiles
 retain their old `uint16`/fixed-1% interpretation; no missing-getter fallback.
 Current conversion workers explicitly use `v4_native` or
@@ -104,7 +104,7 @@ Existing Anvil state, saved reviews and public simulation are unchanged. See
 [feature evidence](IMPLEMENTATION_STATUS.md) and [central Todo](../TODO.md).
 
 The public website remains simulated. Historical native2 source/read profiles
-do not match current accounting4 merely through a configuration edit. Current
+do not match current accounting6 merely through a configuration edit. Current
 website/service qualification and public signing remain open; existing local
 deployments/journals keep their original semantics.
 
@@ -112,10 +112,11 @@ deployments/journals keep their original semantics.
 
 ### Review-time policy binding
 
-The undeployed candidate adds `REVIEW_POLICY_VERSION()==1` on Entry and
-`ENTRY_REVIEW_VERSION()==1` on its fixed Pricing helper. The owner calls
-`executeReviewed(Request,uint16 maximumLossBps)`; the original nine-field Request
-is retained. The maximum is 0..1,000 bps and is encoded in signed calldata.
+The undeployed candidate adds `REVIEW_POLICY_VERSION()==2` on Entry and
+`ENTRY_REVIEW_VERSION()==2` on its fixed Pricing helper. The owner calls
+`executeReviewed(Request,uint16 maximumLossBps,bytes32 expectedContributionPolicy)`; the original nine-field Request
+is retained. The expectedContributionPolicy must match the captured scoped
+ProtocolPolicy.entryFingerprint (future minima/idle/revision). The maximum is0..1,000bps and is encoded in signed calldata.
 
 Before pulling tokens or converting funds, Pricing captures the current governed
 contribution cap and rejects it if greater than the caller maximum. A lower
@@ -130,8 +131,8 @@ governance can still approve dangerous dependencies; this guard does not remove
 that accepted trust. Direct owner-to-Vault calls do not acquire a reviewed-Entry
 guarantee, and the preparer never silently falls back to them.
 
-Current pricing-V2 activation preparation and schema6/accounting4 release inventory require
-explicit `review_policy_version: 1`, matching getters, runtime pins and exact new
+Current pricing-V2 activation preparation and schema8/accounting6 release inventory require
+explicit `review_policy_version: 2`, matching getters, runtime pins and exact new
 selector/trace. The response carries `reviewed_maximum_loss_bps` separately from
 the captured `execution_limit_bps`; provenance includes the policy version.
 Historical pricing-V1/local profiles keep their old semantics. Old native2
@@ -139,6 +140,6 @@ activation configurations require an explicit source-matched replacement profile
 never mean legacy support. Read-only historical profiles remain separate.
 
 The historical Anvil profile retains its original policy and runtime; never
-reinterpret saved journals. The current read/unsigned integration must explicitly require accounting4, the
+reinterpret saved journals. The current read/unsigned integration must explicitly require accounting6/ProtocolPolicy1/Portfolio2/Entry2, the
 reviewed selector and current limit checks; actual wallet/provider
 acceptance and public signing remain [open](../TODO.md#task-reviewed-contribution-policy). [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).

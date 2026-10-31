@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
@@ -47,7 +48,7 @@ contract PostExitReserveVenueTest is Test {
     bytes32 private pool;
 
     function setUp() public {
-        control = new MockAccess();
+        control = new MockAccess(); ProtocolPolicyFixture.bind(address(control));
         registry = new ReserveVenueRegistryFixture(address(control));
         oracle = new ReserveVenueOracleFixture();
         rewards = new ReserveVenueRewardsFixture();

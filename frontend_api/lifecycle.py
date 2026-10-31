@@ -50,7 +50,7 @@ def read_lifecycle(p, block):
     operating = state == 0
     lp_exit = False
     lp_phase = 0
-    if p.accounting_version == 4:
+    if p.accounting_version in (4,5,6):
         lp_exit = _bool(p._call(access, 'lpExitStarted()', block=block)[0])
         lp_phase = p._uint('principal_exit', 'exitPhase()', block=block)
         if lp_phase > 3 or lp_exit != bool(lp_phase):
@@ -77,7 +77,7 @@ def read_lifecycle(p, block):
         'scope': 'Confirmed same-chain lifecycle only. Flags are lifecycle permissions, not execution guarantees. '
                  'Peer addresses are source commitments; no peer code or cross-chain finality is verified.',
     }
-    if p.accounting_version == 4:
+    if p.accounting_version in (4,5,6):
         result['lp_exit_started'] = lp_exit
         result['lp_exit_phase_code'] = lp_phase
         result['lp_exit_phase'] = ('operating', 'closing', 'allocating', 'ready')[lp_phase]

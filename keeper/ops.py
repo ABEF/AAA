@@ -63,7 +63,7 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
         reasons.append('configuration_mismatch')
     reasons.extend(execution_reasons(data,config,now=now,max_age=max_age))
     expected = 'dry_run' if allow_dry_run else 'healthy'
-    if config.get('execution_quality_version',0) == 1 or config.get('rebalance_confirmation_version',0) in (1,2):expected += '_v2'
+    if config.get('execution_quality_version',0) == 1 or config.get('rebalance_confirmation_version',0) in (1,2,3):expected += '_v2'
     if data.get('status') != expected or data.get('live') is not (not allow_dry_run): reasons.append('maintenance_not_healthy')
     for field in ('pending','strategy_paused'):
         if data.get(field) is not False: reasons.append(field)
@@ -128,7 +128,7 @@ def preflight(config, *, rpc=None):
     if balance < positive(config['max_transaction_cost_wei'],'max_transaction_cost_wei'):
         reasons.append('balance_below_transaction_budget')
     confirmation = None
-    if keeper.rebalance_confirmation.version in (1,2):
+    if keeper.rebalance_confirmation.version in (1,2,3):
         # Pending recovery must not acquire a dependency on a new policy read.
         # Otherwise validate the gate even before any bucket leaves cooldown.
         if keeper.state.get('pending') is not None:

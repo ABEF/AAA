@@ -13,6 +13,7 @@ interface IZZZAccess {
     function canonicalHandoff() external view returns (address);
     function royaltyFactory() external view returns (address);
     function activationAssetsFactory() external view returns (address);
+    function protocolPolicy() external view returns (address);
     function canonicalState() external view returns (uint8);
     function canonicalSettling() external view returns (bool);
     function keepers(address who) external view returns (bool);
@@ -72,6 +73,7 @@ interface IZZZOracle {
 }
 interface IZZZStrategy {
     function rebalanceConfirmation() external view returns(address);
+    function portfolioPolicy() external view returns(address);
     function rebalanceReady(uint256 id) external view returns(bool);
     function rebalanceObservation(uint256 id) external view returns(uint8 side,bytes32 identity,bool manual);
     function additionalLossBps() external view returns (uint16);
@@ -101,6 +103,14 @@ interface IZZZLiquidity {
     function swap(bytes32 poolId, bool zeroForOne, uint256 amountIn, uint256 minimumOut, uint256 deadline)
         external payable returns (uint256 amountOut);
     function amounts(uint256 tokenId) external view returns (uint256 amount0, uint256 amount1);
+    /// @notice Fresh portfolio1 aggregate; amounts(actualId) remains physical.
+    function portfolioAmounts(uint256 mainId) external view returns (uint256 amount0, uint256 amount1);
+    function secondaryId(uint256 mainId) external view returns (uint256);
+    function activeSecondaryCount() external view returns (uint256);
+    /// @notice Stable physical identity, excluding ordinary liquidity increases.
+    function portfolioFingerprint(uint256 mainId) external view returns (bytes32);
+    function executionPortfolioFingerprint(uint256 mainId) external view returns(bytes32);
+    function positionOperator() external view returns(address);
     function ticks(uint256 tokenId) external view returns (int24 lower, int24 upper);
     function spot(bytes32 poolId) external view returns (uint160);
     function positionManager() external view returns (address);
@@ -118,7 +128,9 @@ interface IZZZVault {
     function bucketCount() external view returns (uint256);
     function MAX_BUCKETS() external view returns (uint256);
     function bucketAt(uint256 index) external view returns (uint256);
-    function mintDormant() external payable returns (uint256 id);
+    function mintDormant(bytes32 expectedMintPolicy) external payable returns (uint256 id);
+    function mintPrice() external view returns(uint256);
+    function mintPolicyFingerprint() external view returns(bytes32);
     function activate(uint256 id, bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external payable;
     function increase(uint256 id, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external payable;
     function park(uint256 id, uint256 deadline) external;

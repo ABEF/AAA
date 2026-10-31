@@ -11,20 +11,22 @@ CHECK_SECONDS = 240
 # Accepted only when reading an existing schedule; new checks use four minutes.
 LEGACY_CHECK_SECONDS = 300
 STATE_NAMESPACE = 'observed_rebalance_v1'
+PORTFOLIO_STATE_NAMESPACE = 'observed_adjustment_v3'
 
 
 class RebalanceConfirmation:
     def __init__(self,keeper):
         self.k=keeper
         self.version=keeper.config.get('rebalance_confirmation_version',0)
-        if type(self.version) is not int or self.version not in (0,1,2):
+        if type(self.version) is not int or self.version not in (0,1,2,3):
             raise ValueError('Unsupported explicit rebalance confirmation profile')
-        if self.version in (1,2):
+        if self.version in (1,2,3):
             interval=keeper.config.get('interval_seconds')
             if type(interval) is not int or not 60<=interval<=CHECK_SECONDS:
                 raise ValueError('Confirmation requires explicit interval_seconds 60-240; no historical default')
-            if keeper.accounting_version != 4 or keeper.maintenance_policy_version != 2:
-                raise ValueError('Rebalance confirmation requires accounting4 and maintenance2')
+            if ((self.version in (1,2) and (keeper.accounting_version!=4 or keeper.maintenance_policy_version!=2)) or
+                    (self.version==3 and (keeper.accounting_version not in (5,6) or keeper.maintenance_policy_version!=3))):
+                raise ValueError('Rebalance confirmation requires its explicit accounting/maintenance profile')
             if 'rebalance_confirmation' not in keeper.contracts:
                 raise ValueError('Missing reviewed rebalance confirmation helper')
             pin=keeper.config.get('code_hashes',{}).get('rebalance_confirmation','')
@@ -42,7 +44,7 @@ class RebalanceConfirmation:
     def status(self,bucket,*,with_candidate=True):
         """Read policy, condition and candidate at one fresh canonical block."""
         from keeper.monitor import rpc_hash, rpc_quantity
-        if self.version not in (1,2):raise ValueError('Confirmation profile is not enabled')
+        if self.version not in (1,2,3):raise ValueError('Confirmation profile is not enabled')
         k=self.k
         header=k.rpc.call('eth_getBlockByNumber',['latest',False])
         if not isinstance(header,dict):raise RpcError('Missing confirmation header')
@@ -56,7 +58,9 @@ class RebalanceConfirmation:
             if len(values)!=count:raise RpcError('Malformed confirmation response')
             return [int(value,16) for value in values]
         try:
-            for role,target in tuple((role,k.contracts[role]) for role in ('access','strategy','rebalance_confirmation','vault'))+(
+            for role,target in tuple((role,k.contracts[role]) for role in ('access','strategy','rebalance_confirmation','vault')+
+                    (('portfolio_policy',) if self.version==3 else ())+(
+                    ('protocol_policy',) if k.accounting_version==6 else ()))+(
                     ('idle_compounding_budget',self.budget),):
                 code=k.rpc.call('eth_getCode',[target,block])
                 pin=k.config.get('code_hashes',{}).get(role,'')
@@ -64,6 +68,33 @@ class RebalanceConfirmation:
                         not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or
                         '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=pin.lower()):
                     raise RpcError('Confirmation runtime differs from the reviewed profile')
+            if self.version==3:
+                from zzz_ops.rebalance_confirmation import observe
+                def pinned(target,method,*args,count=1):
+                    return decode_words(k.rpc.call('eth_call',[{'to':target,'data':calldata(method,*args)},block]))
+                result=observe(pinned,strategy=strategy,budget=self.budget,confirmation=helper,access=access,
+                    bucket=bucket if with_candidate else None,timestamp=stamp,version=3,
+                    portfolio_policy=k.contracts['portfolio_policy'],accounting_version=k.accounting_version)
+                if k.accounting_version==6:
+                    from zzz_ops.protocol_policy import observe as observe_policy
+                    result['maintenance_policy']=observe_policy(pinned,policy=k.contracts['protocol_policy'],access=access,domain='maintenance')
+                converted={**result,'block_number':number,'block_hash':block['blockHash'],'block_timestamp':stamp,
+                    'maximum_gap_seconds':result['max_observation_gap_seconds']}
+                if with_candidate:
+                    converted.update(side=result['exit_side'],identity=result['condition_identity'],
+                        manual=result['manual_range_exception'],ready=result['ready_at_snapshot'],
+                        first_seen=result['first_observed_at'] or 0,last_seen=result['last_observed_at'] or 0,
+                        observation_identity=result['recorded_identity'],
+                        observation_side=result['recorded_side'])
+                final=k.rpc.call('eth_getBlockByNumber',[hex(number),False])
+                if (not isinstance(final,dict) or rpc_quantity(final.get('number'),'final confirmation number')!=number or
+                        rpc_hash(final.get('hash'),'final confirmation hash')!=block['blockHash'] or
+                        rpc_quantity(final.get('timestamp'),'final confirmation timestamp',minimum=1)!=stamp or
+                        abs(time.time()-stamp)>600):
+                    raise RpcError('Portfolio confirmation anchor changed or became stale')
+                if with_candidate:
+                    self.last_observation=converted
+                return converted
             for target,signature,value in ((strategy,'access()',int(access,16)),
                     (strategy,'rebalanceConfirmation()',int(helper,16)),
                     (strategy,'REBALANCE_CONFIRMATION_VERSION()',self.version),

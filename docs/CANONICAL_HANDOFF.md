@@ -13,16 +13,19 @@ original source scope. **Production NOT APPROVED.**
 ## Supported boundary
 
 The current coordinator binds
-`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5")`, matching
-accounting4 eight-word local Positions and LP-only fee intake1. Both peers must
+`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6")`, matching
+fresh accounting6 eight-word local Positions and LP-only fee intake1. Both peers must
 expose this exact schema. Older WETH/native V1/V2/V3/V4 codecs are rejected, not
 reinterpreted. Native ETH is asset zero; every admitted principal, reserve and
 reward currency remains explicit. Current Positions contain no remote location
-or composition-epoch fields. See [the profile](POSITION_V4.md).
+or composition-epoch fields. See [the profile](POSITION_V6.md). Matching wire schema is necessary, not proof
+that a proposed different-code successor is economically compatible.
 
 The candidate transfers the collection and classified economic state to one
 replacement **on the same chain, before collective LP exit starts**. Every
-nonempty bucket must be parked at Vault and every draw complete. Once
+nonempty bucket must be parked at Vault, every physical main/residual closed,
+`LiquidityManager.activeSecondaryCount()==0`, and every draw complete. The V5
+wire carries classified parked backing, not a live residual association. Once
 `lpExitStarted` is set, preparation/transition/freeze are permanently blocked,
 even after all holder payouts: this importer does not carry terminal principal
 liabilities or authorize reopening LP. No external principal/royalty custody
@@ -114,7 +117,7 @@ authenticated acknowledgment. Preparation, parking, deployment, confirmation
 waits, receipts and retries are additional work.
 
 For `N=1000, B=1, L=1, A=2, R=1`:8019rows,2012export/import calls,7funding legs
-and9control calls, or2028direct calls before those additional operations.
+and 9control calls, or2028direct calls before those additional operations.
 These are function-call counts, not measured gas, guaranteed transaction counts
 or target-chain qualification; a reviewed batching relay would need separate
 simulation and gas bounds. Rehearse the actual dimensions and abort budget
@@ -172,12 +175,13 @@ recovery promise is made for a broken or malicious token.
 
 ## Integration and qualification
 
-Fresh API/keeper profiles explicitly select accounting version4, custody3 and fee intake1,
+Fresh API/keeper profiles explicitly select accounting6, custody4, portfolio2,
+maintenance3/confirmation3/Budget4/LP routing2 and fee intake1,
 and verify `Vault.ACCOUNTING_VERSION()` plus reviewed runtime pins. Legacy WETH profiles and
 predecessor epochs retain their own currency/version interpretation; saved nonce,
 receipt and pending journals cannot be reset or reinterpreted as a native upgrade.
-Historical native2/accounting3 website artifacts cannot serve accounting4 merely
-by relabeling a manifest. Accounting4 website/service acceptance remains open; public
+Historical native2/accounting3/accounting4 artifacts cannot serve accounting6 merely
+by relabeling a manifest. Accounting6 website/service acceptance remains open; public
 DEPLOYMENT is null, signing stays Anvil-only and existing fixtures are unchanged.
 
 Keeper reads `canonicalState()` strictly and stops all new transaction submissions

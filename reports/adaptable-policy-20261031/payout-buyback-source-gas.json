@@ -1,0 +1,97 @@
+{
+  "at_utc": "2026-10-31T02:48:26.833703+00:00",
+  "scope": "Seven distinct NEW cases only; no whole-suite, public-provider, economic, exact target-gas, operating-rehearsal or independent-audit claim. Synthetic venue/feed/gas threshold/authority seams explicitly named. Production source not edited by this subtask.",
+  "executions": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\adaptable-policy-20261031\\payout-buyback-runtime-562aadf828\\EXECUTION.json": "e0d0e43d34154d7efb16fbd56e7e24597d90045b1e8d1a6389df09337f6366b4",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\adaptable-policy-20261031\\source-gas-runtime-824e931f55\\EXECUTION.json": "427fdaa2da2ef4d027c4452669e8de9d39041e6feac28c4aa0fb76034c451bc0"
+  },
+  "normal_compiler_input": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\adaptable-policy-20261031\\normal-final-0a0cac9f06\\compiler-input.json",
+  "normal_compiler_input_sha256": "e25ab51ff0ce71b591b7cc8a25f1f89d5fc759041eb16fcee8ceac5ae6743649",
+  "current_production_source_bytes_decode_matches_normal_input": true,
+  "production_source_count": 52,
+  "new_case_count": 7,
+  "tests": [
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testAdaptableMaximumTradeCannotBurnBeyondTheAllocatedFivePercent()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1326431
+        }
+      }
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testAdaptableMaximumTradeChecksAuthorityReviewBoundsAndOperatingFloor()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 992594
+        }
+      }
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testAdaptableMaximumTradeRemainsLifecycleLockedButAvailableDuringPause()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 718068
+        }
+      }
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "test": "testAdaptablePayoutGasBoundsAndAuthorityCannotChangeBacking()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 4436056
+        }
+      }
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "test": "testAdaptablePayoutGasKeepsRejectingOwnerIsolatedAndRetryPaysNewOwner()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 8142928
+        }
+      }
+    },
+    {
+      "suite": "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest",
+      "test": "testAdaptablePayoutGasRetriesSameBatchWithoutRepayingSuccessfulOwner()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 7407503
+        }
+      }
+    },
+    {
+      "suite": "test/OracleReadCost.t.sol:OracleReadCostTest",
+      "test": "testAdaptableSourceGasRestoresSameFeedsWithoutRelaxingPriceAgreement()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 883473
+        }
+      }
+    }
+  ],
+  "test_file_sha256": {
+    "test/BuybackExecution.t.sol": "900dd77de43bdbf0610304f60edcc79fb0df456bd3eabbea055cdd94500b5efc",
+    "test/HolderCollectiveExit.t.sol": "67906e3379b23966460e5715977e4476aba435ea15714f42d6b0083e3014b1f0",
+    "test/OracleReadCost.t.sol": "482ea5eaec4104f4d81e5056a742eee3c70856a9ae4defe3cc70f8d1cce440dd"
+  }
+}

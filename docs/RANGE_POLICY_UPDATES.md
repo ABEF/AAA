@@ -1,258 +1,146 @@
 # Applying range settings after sealing
 
-Governance can change the admitted pool's range through direct calls from the selected governance wallet.
-The keeper can then apply it through the ordinary `Vault.rebalance` path even
-while the old position is still within its physical range. A separate,
-default-disabled policy lets it select **only** the reviewed 25%/50% presets under
-governance-approved rules. Selecting a width and moving physical LP are distinct
-transactions; neither gives the keeper general configuration or custody power.
-
-The following is an undeployed candidate. [Earlier scoped evidence](../reports/liquidity-operations-20261025/VERIFICATION.md)
-and [remaining release gates](../TODO.md) distinguish implemented controls from
-actual provider, strategy/backtest and operating qualification.
+Fresh [accounting6 / portfolio2](POSITION_V6.md) source candidate. Governance is
+the user's operator wallet; the automated keeper has a separate limited grant.
+Changing desired policy and replacing physical LP are different actions. Current
+size/runtime gates, scoped offline checks and local actual-v4-core integration
+pass within their [recorded scope](../reports/residual-operations-20261031/VERIFICATION.md).
+Market, gas, host and independent qualification remain open.
+No source or documentation update changes an installed service or deployment.
 
 ## Selected operating policy and source versions
 
-Fresh `MAINTENANCE_POLICY_VERSION()==2` requires the configured hard cooldown,
-then actual physical range exit or an explicit desired-width/orientation change.
-Initial intended cooldown is12hours. Manual +/-25/50% widths are selected; leave
-optional automatic selection disabled. The matching keeper adds durable60-600s
-jitter and fast receipt/health/harvest work. Fresh confirmation2 evaluates eligible
-inside/outside positions every240seconds; historical policy2 without confirmation
-retains hourly ordinary checks. Source behavior does not install configuration or services.
-Budget capability3 has a separate compound interval. [Operator procedure](OPERATOR_MANUAL.md#operator-selected-lp-policy),
-[policy and limitations](LP_EXECUTION_POLICY.md), [verification](../reports/maintenance-policy-20261027/VERIFICATION.md).
+Strategy maintenance3 and Confirmation3 use 85% of actual centre-to-main-boundary
+ZZZ-in-ETH price distance. The selected sample window is 600 seconds, source
+checks 240 seconds, maximum confirmed gap 300 seconds, then one durable random
+60–300 second service delay. Samples may accumulate during the initial hard
+12-hour cooldown; they never authorize early execution. Raw checks continue,
+but paid ordinary samples enroll only from cooldown minus duration minus maximum
+gap, initially the last 15 minutes. Earlier observations are not credited as
+continuous evidence; required recovery/reset work remains first. Direct keeper calls skip
+Python scheduling/jitter while preserving ordinary on-chain guards.
+
+Governance manually selects width, normally +/-25% or +/-50%. Leave automatic
+keeper width selection disabled. Mode and active residual-geometry changes also
+create an explicit pending replacement after cooldown. [Full policy](LP_EXECUTION_POLICY.md)
+and [operator steps](OPERATOR_MANUAL.md#operator-selected-lp-policy).
 
 ## From approval to execution
 
-1. Governance reviews the complete pool configuration and executes the exact
-   selected-pool `PoolRegistry.configureNative` call. Bootstrap
-   and keeper addresses cannot perform these complete configuration calls after
-   sealing. The controller has no
-   mandatory governance time delay; review and the maintenance cooldown are
-   distinct controls.
-2. After governance executes, `Strategy.rangeUpdatePending(bucket)` compares
-   the current physical LP's ticks with the configured target calculated at
-   the bucket's **recorded creation/rebalance center**. Using today's price for
-   this comparison would cause needless repeated replacements as prices drift.
-3. `needsRebalance` requires an active funded position, enabled operations,
-   the configured cooldown and a fresh reference price. Either
-   actual physical range exit or this range mismatch can then make it eligible.
-4. The existing keeper discovers that shared bucket and submits the ordinary
-   rebalance. Vault's keeper/lifecycle/pause, deadline, price/deviation,
-   swap/close/mint minimums, the **captured governed maintenance-loss budget**
-   (default 3%, maximum 10%) and **5% idle ceiling** remain in force. Network gas
-   is separate. Later governance changes do not relax an already captured budget.
-5. Successful replacement records the new physical LP, center and cooldown
-   checkpoint. The mismatch clears. Any failed execution rolls back custody,
-   accounting and the old position; the desired range remains pending.
+1. Read the complete `PoolRegistry.get(poolId)` and actual physical main/secondary
+   IDs, bounds, custody and latest confirmed clocks. Governance changes only the
+   reviewed fields through `configureNative(fullConfig)`; retain native ETH and
+   the fixed ZZZ identity, static fee/key and every stronger limit.
+2. `Strategy.rangeUpdatePending(bucket)` compares desired main ticks at the
+   **recorded centre**, not today's drifting price, and includes Policy
+   `configurationPending(bucket)`. It is not permission to trade immediately.
+3. After the hard cooldown, a deliberate width/mode/active geometry mismatch can
+   apply while the old main is in range. This manual exception skips the ordinary
+   sample window, preserving healthy prices, exact custody and financial guards.
+   It can repair an old centre outside the existing bounds without requiring
+   threshold interpolation. Ordinary market candidates remain fail-closed.
+4. The keeper runs the ordinary guarded `Vault.rebalance(bucket,minLP,deadline)`.
+   It harvests and closes both actual old legs, balances within reviewed limits,
+   and atomically creates the selected single or main/residual portfolio.
+5. Verify confirmed new main/auxiliary IDs, owners, ticks, actual token amounts,
+   applied geometry revision, new centre/clock, retained value and unchanged NFT
+   shares/earned rights. Failure restores the old portfolio and leaves the
+   desired configuration pending; it does not permit a raw fallback.
+
+On-chain settings are read afresh and normally need no keeper restart or reseal.
+Local source, version/runtime, RPC, schedule or threshold JSON changes require
+controlled restart, with pending/nonce/spend evidence preserved. A configuration
+change does not cancel a broadcast transaction. Reconcile it by its original hash.
 
 ## Explicit price direction
 
-`Strategy.RANGE_POLICY_VERSION()==1` exposes `rangeOrientation(poolId)`:
+`Strategy.rangeOrientation(pool)` is 1 for ETH per ZZZ, the requested usual token
+price view; 0 retains the historical raw inverse. Use governance
+`setRangeOrientation(pool,1)` with reviewed full configuration. This changes
+future target ticks, not existing custody or historical earnings. A direction
+change disables an enabled automatic width policy.
 
-- **Mode 0:** historical token1 per token0. Existing deployments/configurations
-  remain in this mode unless governance explicitly opts in.
-- **Mode 1:** token0 per token1. With the native ETH/ZZZ key, this is **ZZZ priced
-  in ETH**, the usual token-price view requested for the new presets.
-
-Governance calls `setRangeOrientation(poolId,1)` to opt in. This changes the
-desired range and historical displacement orientation; it does not rewrite
-existing physical ticks, historical LP values or NFT rights. Inspect
-`rangeUpdatePending` and apply the normal rebalance when eligible. A direction
-change disables an active automatic policy and requires a separate new review.
-The versioned API/inventory profile must read and verify the intended direction;
-old profiles make no new getter calls and retain their raw-price interpretation.
-
-Supported examples around the independent oracle's reference price `P` in the
-**selected direction**:
-
-| Reference interval | `rangeBps` | Endpoints before outward tick rounding |
+| Desired interval around ZZZ price P in ETH | `rangeBps` | Endpoints before outward tick rounding |
 | --- | --- | --- |
-| Minus/plus 25% | `2500` | `0.75P` to `1.25P` |
-| Minus/plus 50% | `5000` | `0.50P` to `1.50P` |
-| Minus/plus 10% | `1000` | `0.90P` to `1.10P` |
+| +/-25% | `2500` | `0.75P` to `1.25P` |
+| +/-50% | `5000` | `0.50P` to `1.50P` |
+| +/-10% | `1000` | `0.90P` to `1.10P` |
 
-The center remains a fresh independent oracle reference, with the ordinary
-spot/deviation checks. It is not an unchecked venue spot or a USD peg. In mode 1,
-the desired 50% ETH-per-ZZZ interval is converted into the corresponding
-asymmetric raw Uniswap interval before outward tick rounding. Lower denominators
-round up and upper bounds round outwards so inversion cannot trim an endpoint.
-It is not a promise to hold half the capital in each token. A config change that rounds
-to the same ticks needs no replacement. Changing slippage or deposit limits
-alone does not create a range-update trigger. Contributions use the current
-physical ticks until replacement. Fresh capability3 standalone compounding also
-uses those ticks but waits whenever rebalance or adaptive range selection is due.
+The independently checked reference centres a replacement. Inversion produces an
+asymmetric raw Uniswap range; outward rounding preserves the reviewed endpoints.
+It does not promise half the assets in each token. Ordinary trigger math always
+uses ZZZ-in-ETH price distance from actual main bounds, irrespective of this
+range-orientation switch. With ideal +/-50% bounds the 85% trigger is +/-42.5%.
+Side1/2 returned by `marketSides` remain raw-ratio directions: side1 means higher
+ZZZ-in-ETH price, side2 lower. Main range membership still follows actual ticks.
 
 ## Scope and safeguards
 
-The comparison always resolves the bucket's current pool and physical LP ID.
-There is no stored update request that can accidentally refer to a retired LP,
-be replayed, or require a cancellation nonce. Before execution, governance may
-restore the configuration matching the deployed range; this clears the pending
-mismatch. After replacement, another width change requires another governed
-configuration and remains subject to the cooldown. Actual physical range exit
-can still authorize policy2 rebalance; a separate movement trigger belongs only
-to explicit historical policy1.
+A width restored to the old main's actual ticks can remove that width mismatch
+**only if no portfolio geometry revision remains pending**. Portfolio mode and
+active residual-width revisions are monotonic: enabling then disabling/restoring
+values does not undo their pending reviewed replacement. Inspect
+`configurationPending`, `geometryRevision(pool)` and `appliedRevision(main)`.
+Trigger-only changes invalidate samples but do not create the manual exception.
+Configuring an unused residual width while mode is off likewise does not force
+single-mode replacement.
+
+The old `triggerBps` PoolConfig field is retained for compatibility and bounds;
+it does not control the new 85% threshold. Use Policy
+`setTriggerBps(uint16 threshold,bytes32 reviewHash)`, where `8500` means 85% and
+allowed values are 1–10000. This is separate from range width, source agreement,
+spot deviation, execution loss and cooldown. A changed trigger needs fresh
+review/samples; it is not an emergency bypass.
 
 ## Manual execution
 
-Use [the manual rebalance procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)
-for exact caller, shared bucket, simulated raw LP minimum, short expiry and
-separate gas. Direct `Vault.rebalance` skips service jitter/check scheduling, never
-contract cooldown, range/operator-update eligibility or ordinary confirmation2. Governance must also be
-keeper-authorized to call it. Reconcile service pending work and any same-key
-out-of-band nonce before restarting; the physical LP/timer refresh alone cannot
-repair a stale signer journal.
+A genuinely keeper-authorized wallet can call normal `Vault.rebalance`; governance
+configuration permission alone is insufficient. Simulate from that exact caller
+and preserve cooldown/ready, prices, minima and deadline. See [manual execution](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time).
+For a separately reviewed paused governance emergency, use [the emergency procedure](EMERGENCY_REBALANCE.md),
+never an automatic workaround. An optional financial bypass may lose almost all
+principal even while exact structural custody is preserved.
 
 ## Optional keeper selection: 25% or 50%
 
-Fresh confirmation2 reference protection and automatic keeper width policies
-cannot coexist. Keep automation disabled for the selected manual operating
-policy. Enabling automation requires a deliberate reviewed relaxation through
-`setRequireReferenceExit(false,reviewHash)`, invalidating old samples; restoring
-protection requires zero active automatic policies. This is not an automatic
-response to a failed rebalance.
-
-If that separate policy is explicitly selected, governance first selects mode1
-and one of `rangeBps=2500`/`5000`, then reviews and calls:
-
-`Strategy.setKeeperRangePolicy(poolId,true,narrowTriggerBps,widenTriggerBps,minInterval,reviewHash)`
-
-No automatic thresholds are chosen by the contract or example configuration.
-The enabled policy requires `0 <= narrowTriggerBps < widenTriggerBps < 2500`,
-a 600-604800-second interval at least as long as the pool's existing rebalance
-cooldown, and a nonzero review hash. Existing `triggerBps` and spot-tolerance
-settings must fit the narrower 25% width. Store the real reviewed parameters,
-price direction, strategy tests and expected costs behind that review hash.
-
-The rule measures **current reference-price displacement from the physical LP's
-recorded center** in mode 1:
-
-- A deployed 50% range may select 25% when displacement is at or below the
-  approved narrow threshold.
-- A deployed 25% range may select 50% when displacement is at or above the
-  approved widen threshold.
-
-This is a bounded price-displacement rule with hysteresis and cooldown. It is
-not a continuously sampled volatility model, evidence of a quiet trading window
-or a guarantee the LP stays in range. The policy also requires an active funded
-bucket, fully applied current ticks, enabled operations, fresh prices and both
-the policy and ordinary maintenance cooldowns. A pending range replacement must
-finish before the policy can choose another width.
-
-`keeperRangeTarget(poolId)` returns `0`, `2500` or `5000`. With explicit
-`adaptive_range={"enabled":true,"policy_version":1}` and reviewed Strategy/Pool
-Registry runtime pins, the keeper validates the policy and submits
-`Strategy.applyKeeperRange(poolId)`. It supplies **no width argument**. Strategy
-derives the allowed choice and calls the Registry's fixed-Strategy-only range
-callback; all other parameters, assets and flags remain unchanged. The successful
-Strategy event records old/new widths and the review hash. The next ordinary
-rebalance applies the new ticks under all existing guards. Allow for this serial
-two-step scheduling and separately fund both transactions' gas.
-
-The policy fingerprint includes price direction and every PoolConfig field
-except width. Changes to flags, venue identity, limits, trigger, slippage or
-cooldown make it ineligible until governance reapproves the policy. Width-only
-manual changes can remain compatible: disable the automatic policy first if
-you intend a purely manual range. Governance disables it with
-`setKeeperRangePolicy(poolId,false,0,0,0,bytes32(0))`; this needs no healthy price
-or venue read. Audit fields persist. Global pause, preparation and canonical
-locks stop keeper selection; stopping pool operations also stops it. Disabling
-the policy does not undo a selected or physically deployed width.
-
-The example keeps this option disabled. No current service or journal is
-changed automatically. Neither narrow nor wide selection authorizes a different
-pool, arbitrary width, new token, oracle update, bridge or external custody exit.
-
-Execution uses the **current** approved configuration. The existing keeper
-transaction contains bucket, minimum liquidity and deadline, not a configuration
-hash or physical-LP-version lock. Operators must resimulate after configuration
-or position changes. A signed transaction can still execute if the new current
-state satisfies every guard. This is deliberate reuse of the existing governed
-policy, not an exact historical-policy execution promise.
-
-The range-mismatch comparison has no state-changing external calls.
-Missing position data, malformed intervals and invalid target arithmetic fail
-closed. A wider target near Uniswap's extreme tick limits can be unrepresentable;
-governance must simulate the target and keeper transaction before approving it.
-Cooldown and the per-operation loss cap do not prevent cumulative costs from
-repeated governance-approved changes. Production parameter/backtest, MEV and
-operating qualification remain required. This code must be included before
-sealing a deployment; it cannot patch an already sealed strategy.
+The retained automatic width capability is not the selected operating policy.
+Keep `adaptive_range.enabled=false` and disable any on-chain policy through
+`setKeeperRangePolicy(pool,false,0,0,0,bytes32(0))`. Enabled independent-reference
+confirmation and automatic width policies are mutually exclusive. Do not relax
+that protection merely to enable automation. Governance manual widths remain
+available. [Detailed controls](OPERATOR_MANUAL.md#explicit-zzz-price-orientation-and-two-range-selection).
 
 ## Reinvesting attributed idle without dust churn
 
-The current candidate's ordinary `compound` call can also reinvest the bucket's
-own attributed idle. It preserves NFT share ownership, fee/royalty liabilities,
-captured maintenance loss and deployment minima. This is not an administrative
-sweep or a withdrawal: principal stays in the shared LP or its attributed idle
-ledger. Raw donations, other buckets' cash and claim reserves are excluded.
+Attributed idle is the bucket's ETH/ZZZ outside physical LP, not available rewards,
+royalties, buyback reserve or unclassified prefunds. It remains in NAV and can be
+reinvested through eligible compounding/rebalancing or returned in collective exit.
+No operator dust sweep or external recipient is introduced.
 
-Keeper idle scheduling is disabled by default. Fresh accounting4 due compounds,
-including reserve-only jobs, require an exact `idle_compounding_budget` address
-and `code_hashes.idle_compounding_budget`. The keeper verifies runtime, mutual
-Vault binding and `IDLE_COMPOUNDING_VERSION()==3` for policy2, then reads `compoundReady`.
-Explicit historical policy1 retains its helper2 reader.
-To additionally use attributed idle, set `maintenance.compound_idle=true`,
-`compound_thresholds` for **both actual pool currencies** and an explicit
-`compound_interval_seconds` from600to604800. Currency zero is native ETH under
-the explicit profile. Historical accounting1/2/3 retains its original helper1
-reader and journal; changing a version field never upgrades an old deployment.
+Fresh Budget compound capability4 retains a separate governed per-pool interval,
+default 3600 seconds, supported 600 seconds–7 days. Every standalone compound
+waits after `max(lastCompound,lastRebalance)` and yields to raw rebalance need.
+The keeper also waits at the main's 85% physical threshold or pending geometry,
+including during cooldown. It does not create/rebuild the residual independently.
 
-Thresholds are positive **raw units per currency**, such as independently chosen
-ETH-wei and ZZZ-unit amounts. They are never summed across currencies or inferred
-from a shared decimal count. An incomplete map stops that bucket's compound
-attempt. The keeper combines only that currency's attributed idle and compound
-reserve. It waits for both its confirmed local checkpoint/interval and the
-on-chain Budget decision, including work by another keeper. Capability3 requires
-`now >= max(lastCompound,lastRebalance) + compoundInterval(poolId)` for all
-standalone compounds, including no-swap work and immediately after LP creation.
-It yields to eligible `needsRebalance` or nonzero `keeperRangeTarget`. Rebalances
-retain their existing eligibility and ignore `lastCompound`, so a compound cannot
-delay needed range replacement. This read is not authorization or a guarantee
-that the complete transaction will succeed. A threshold is a scheduling rule,
-not a gas/value profitability guarantee: review simulated costs and turnover.
-
-If the on-chain adaptive policy offers a selection but local `adaptive_range`
-is disabled, standalone compounding remains deferred. Enable the reviewed job,
-or deliberately review and disable/change the on-chain policy; do not bypass the
-priority check. Independent harvesting, claims and guarded user contributions
-continue under their own controls and do not reset this standalone wait.
-
-The old `minimum_compound_units` remains a compatibility option for reserve-only
-profiles; one raw value across different decimals is unsuitable as a production
-economic policy. No threshold or idle option is activated in an existing service
-by updating this documentation/example. Existing pending journals are preserved.
-Retired `reward_routes` cannot schedule bridge transactions; remove a nonempty
-legacy list from configuration after reconciling any saved transaction. Recovery
-of an existing hash runs first and does not resend or delete it.
+Enabled compound jobs require positive `compound_thresholds` for both actual
+currencies, in their own raw units. `compound_idle=true` is explicit opt-in; its
+local interval remains an additional scheduling constraint. Use the reviewed
+Budget, complete physical helper graph, runtime pins and [controlled service procedure](KEEPER_RECOVERY.md).
+No policy read or threshold guarantees gas profitability. Hourly harvest and
+funded claims keep separate controls. [Coordination](KEEPER_COORDINATION.md).
 
 ## Rewards, API and operations
 
-NFT ownership, bucket share counts and LP/royalty ledgers are unchanged by this
-feature. Ordinary rebalance still harvests before closing and keeps accrued
-claims attached to their PoPL NFTs. New physical Uniswap IDs do not create new
-PoPL NFTs or reset claims.
+Physical LP changes do not create new PoPL NFTs or reset earned rights. Both legs
+feed the same 80/10/5/5 fee accounting; rarity affects received royalties only.
+Consumers must select profile6, authenticate/sum both actual legs and distinguish
+raw condition, cooldown, sampled readiness and service jitter. A manual repair
+reports threshold-side evidence unavailable rather than fabricating a side.
+Missing prices/ownership/partial inventory remain unavailable; guessed zero and
+relabeled historical profiles are forbidden.
 
-Confirmed activation/approval responses include `range_update_pending` and
-`eligibility_reason` (`range_update`, `price_trigger`, `price_and_range`, or null).
-The reason describes the observed trigger even while cooldown blocks execution.
-Fresh policy2 uses reasons out_of_range/range_update/out_of_range_and_range_update,
-with obsolete price trigger fields null; explicit historical policy1 retains
-the listed movement reasons. The API checks eligibility against cooldown and
-profile-specific actual observations at
-the same pinned hash. Missing/malformed getters fail closed; manifests must bind
-the matching Strategy runtime. Ordinary rebalance retains its call and role; optional selection uses the separately versioned call above.
-`next_keeper_check_at` and `expected_execution_at` remain null without qualified
-fresh telemetry. A polling interval is not a guaranteed rebalance schedule.
-
-See the earlier [scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md)
-and [review](../reports/liquidity-operations-20261025/REVIEW.md), plus
-[manual-range evidence](../reports/range-policy/VERIFICATION.md) in its original
-source scope, [idle/dust classification](IDLE_AND_DUST.md) and remaining
-[strategy qualification](../TODO.md#task-security-strategy).
-
-Those historical reports retain their original timing/capability scope; they do
-not verify the later capability3 timing/outside policy. Use the new scoped
-[maintenance verification](../reports/maintenance-policy-20261027/VERIFICATION.md).
+Future next-check/execute times require fresh matching worker telemetry; a poll
+interval is not a promised deadline. Old profile4 outside-only timing and earlier
+[range evidence](../reports/range-policy/VERIFICATION.md) retain their scope.
+Source publication performs no deployment, service restart or website rollout.

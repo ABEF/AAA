@@ -1,0 +1,76 @@
+{
+  "source_identity": {
+    "src/ZZZLiquidityManager.sol": "7da09a64a01235214bce891f83cf73729d63655e3143b2ec46bc87325aa4749d",
+    "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b"
+  },
+  "test_identity": {
+    "test/HybridActiveMain.t.sol": "7e1891acdb6cc89a5fa6ab82942dc0b791115f461f614e1713ec99b062e92831",
+    "test/OptionalPortfolioCore.t.sol": "a202c1c6df2930335d5ec915b1288e8f88101200971e9bdc28543c46e15faae1"
+  },
+  "stages": [
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\normal-active\\focused-bd9fce0d26",
+      "receipt_sha256": "b115024870fa91b7cfd77a5b8f623ab72ffce60314586c5a58cf4b3ca2e91a31",
+      "exit_code": 1,
+      "passed_methods": [
+        "testActualLowerTickIsActiveAndReachesMintBoundary",
+        "testDifferentPhysicalMarkCannotMasqueradeAsActiveMain",
+        "testExactDownwardCrossingUsesStoredTickRatherThanSqrtAlone",
+        "testInitialOperationRetainsItsSeparateExistingPolicy",
+        "testInitialOutsideMintRemainsAllowedWithoutOrdinaryReplacementContext",
+        "testInverseReferenceDeviationCanPassWhileRoundedMainIsInactive",
+        "testLateTickFlipAtIdenticalSqrtRevertsMintAndAllNativeMovement",
+        "testOrdinarySingleCannotMintInactiveMainDespiteFullValueRetention",
+        "testOrdinarySingleCompletesWithActiveMainAndExactNativeBudget",
+        "testOrdinarySingleLateTickFlipRollsBackMintAndNativeBudget",
+        "testSuccessfulFixtureMintPreservesActiveTickAndExactNativeBudget",
+        "testUpperTickIsInactiveAndCannotSatisfyHybridActiveFloor",
+        "testActualCoreHybridAtInsideRangeTriggerProvesBothLegsAndSixtyPercentFloor",
+        "testOrdinarySingleNarrowReplacementRejectsInactiveTargetAndKeepsOldLP",
+        "testResidualControlForcedSingleBypassesTimingButKeepsFinancialGuardsAndModeOff",
+        "testResidualControlForcedSingleDoesNotSilentlyDisableFutureHybridMode",
+        "testSamePairMoveClosesBothAndKeepsNFTSharesAtNewPool",
+        "testSingleModeActivationUsesOneVaultOwnedLPAndExactOperatorApproval"
+      ],
+      "test_source_sha256": {
+        "test/HybridActiveMain.t.sol": "7e1891acdb6cc89a5fa6ab82942dc0b791115f461f614e1713ec99b062e92831",
+        "test/OptionalPortfolioCore.t.sol": "99b6c0c0642a2456e4806b6613f5181a232c9a4270bec450292ff5f8944bf79b"
+      }
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\normal-active\\focused-127eb5c031",
+      "receipt_sha256": "afd0f0578fe4a74693002dd2576241acbbe26832636697dbeceef9d8a412fac8",
+      "exit_code": 0,
+      "passed_methods": [
+        "testInitialAndGrowthOutsideRangeRemainAllowedAndDoNotRecenter"
+      ],
+      "test_source_sha256": {
+        "test/HybridActiveMain.t.sol": "7e1891acdb6cc89a5fa6ab82942dc0b791115f461f614e1713ec99b062e92831",
+        "test/OptionalPortfolioCore.t.sol": "a202c1c6df2930335d5ec915b1288e8f88101200971e9bdc28543c46e15faae1"
+      }
+    }
+  ],
+  "final_distinct_pass_identities": [
+    "testActualCoreHybridAtInsideRangeTriggerProvesBothLegsAndSixtyPercentFloor",
+    "testActualLowerTickIsActiveAndReachesMintBoundary",
+    "testDifferentPhysicalMarkCannotMasqueradeAsActiveMain",
+    "testExactDownwardCrossingUsesStoredTickRatherThanSqrtAlone",
+    "testInitialAndGrowthOutsideRangeRemainAllowedAndDoNotRecenter",
+    "testInitialOperationRetainsItsSeparateExistingPolicy",
+    "testInitialOutsideMintRemainsAllowedWithoutOrdinaryReplacementContext",
+    "testInverseReferenceDeviationCanPassWhileRoundedMainIsInactive",
+    "testLateTickFlipAtIdenticalSqrtRevertsMintAndAllNativeMovement",
+    "testOrdinarySingleCannotMintInactiveMainDespiteFullValueRetention",
+    "testOrdinarySingleCompletesWithActiveMainAndExactNativeBudget",
+    "testOrdinarySingleLateTickFlipRollsBackMintAndNativeBudget",
+    "testOrdinarySingleNarrowReplacementRejectsInactiveTargetAndKeepsOldLP",
+    "testResidualControlForcedSingleBypassesTimingButKeepsFinancialGuardsAndModeOff",
+    "testResidualControlForcedSingleDoesNotSilentlyDisableFutureHybridMode",
+    "testSamePairMoveClosesBothAndKeepsNFTSharesAtNewPool",
+    "testSingleModeActivationUsesOneVaultOwnedLPAndExactOperatorApproval",
+    "testSuccessfulFixtureMintPreservesActiveTickAndExactNativeBudget",
+    "testUpperTickIsInactiveAndCannotSatisfyHybridActiveFloor"
+  ],
+  "counting_limit": "19 distinct affected identities over two stages, not one fresh 19-pass run. Initial stage preserves the failed $5 fixture growth; exact retry meets stronger admitted $100 pool minimum. No production guard relaxed.",
+  "coverage_limit": "Local actual v4 core/periphery plus explicit policy, token and price mocks, and typed sentinels. No live-chain/provider qualification, full-suite/CI assertion, MEV immunity or production approval."
+}

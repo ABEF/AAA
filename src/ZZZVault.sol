@@ -17,9 +17,10 @@ import {
     IZZZLiquidity,
     IPositionManagerMinimal,
     IZZZRewards,
-    IZZZActivationEntry,
-    IZZZMigration
+    IZZZActivationEntry
 } from "./interfaces/IZZZ.sol";
+interface IVaultPositionOperator { function positionOperator() external view returns(address); }
+interface IVaultResidualLiquidity { function closeSecondary(bytes32,uint256,uint256) external; }
 
 /// @notice Non-upgradeable custody. No holder redemption during operation.
 /// Governance may irreversibly settle actual principal to NFT holders.
@@ -44,10 +45,9 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     uint256 private nativeReceived;
     uint256 public sequence;
     uint256 public immutable canonicalChainId;
-    address payable public immutable mintProceedsRecipient;
     ZZZMigrationBudget public immutable migrationBudget;
-    uint256 public constant MINT_PRICE = 0.05 ether;
-    uint256 public constant ACCOUNTING_VERSION = 4;
+    uint256 public constant ACCOUNTING_VERSION = 6;
+    uint256 public constant RESIDUAL_EXIT_VERSION = 1;
     event DormantMinted(uint256 indexed nftId, address indexed owner, uint256 mintPrice);
     event Activated(
         uint256 indexed nftId, address indexed owner, bytes32 indexed poolId, uint256 amount0, uint256 amount1
@@ -59,13 +59,15 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     event PrincipalReturnedToHolders(uint256 indexed bucketId, uint256 amountETH, uint256 amountZZZ);
     event PrincipalParked(uint256 indexed bucketId, uint256 oldLpTokenId);
 
-    constructor(address controller, uint256 nftHomeChain, address payable mintRecipient) ZZZModule(controller) {
-        if (nftHomeChain == 0 || mintRecipient == address(0) || mintRecipient == address(this)) {
+    constructor(address controller, uint256 nftHomeChain, address budget)
+        ZZZModule(controller) {
+        if (nftHomeChain == 0 || access.protocolPolicy().code.length == 0) {
             revert InvalidConfiguration();
         }
+        if (budget.code.length == 0 || address(ZZZMigrationBudget(budget).access()) != controller ||
+            ZZZMigrationBudget(budget).IDLE_COMPOUNDING_VERSION() != 4) revert InvalidConfiguration();
         canonicalChainId = nftHomeChain;
-        mintProceedsRecipient = mintRecipient;
-        migrationBudget = new ZZZMigrationBudget(controller);
+        migrationBudget = ZZZMigrationBudget(budget);
     }
 
     receive() external payable {
@@ -139,15 +141,23 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         return ExactAsset.balance(token, address(this));
     }
 
-    function _receiveAssets(address token0, address token1, uint256 amount0, uint256 amount1) private {
-        // Registry admission fixes venue ordering: native can only be slot 0.
-        if (msg.value != (token0 == address(0) ? amount0 : 0)) revert InvalidAmount();
-        if (token0 != address(0)) ExactToken.pull(token0, msg.sender, amount0);
+    function _receiveAssets(address token0, address token1, uint256 amount0, uint256 amount1) internal virtual {
+        // Every admitted current pool is native ETH/fixed ZZZ. Historical
+        // wrapped/foreign-pair deployments retain their own source profile.
+        if (token0 != address(0) || msg.value != amount0) revert InvalidAmount();
         ExactToken.pull(token1, msg.sender, amount1);
     }
 
+    /// @dev Production always admits native ETH in slot zero. This typed
+    /// internal seam permits isolated accounting fixtures to substitute transport;
+    /// it creates no public extension, upgrade or configurable approval target.
+    function _approvePrincipalAssets(address token0,address token1,address spender,uint256,uint256 amount1)
+        internal virtual {
+        if (token0 != address(0)) revert InvalidConfiguration();
+        ExactAsset.approve(token1,spender,amount1);
+    }
+
     function _idle(uint256 bucketId, uint256 new0, uint256 new1) private {
-        if ((new0 | new1) > type(uint128).max) revert InvalidAmount();
         Position storage p = positions[bucketId];
         (address token0, address token1) = _tokens(bucketId);
         totalIdle[token0] = totalIdle[token0] - p.idle0 + new0;
@@ -160,6 +170,9 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function _valueBucket(uint256 bucketId, uint256 amount0, uint256 amount1) private view returns (uint256) {
         return migrationBudget.valueBucket(bucketId, amount0, amount1);
     }
+    function _approveLP(IPositionManagerMinimal positionManager,address manager,uint256 id) private {
+        positionManager.approve(manager,id);
+    }
 
     function _put(uint256 bucketId, bool create, uint128 minimumLiquidity, uint256 deadline,
         uint256 a0, uint256 a1) private {
@@ -167,13 +180,13 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         Position storage p = positions[bucketId];
         (address token0, address token1) = _tokens(bucketId);
         IZZZLiquidity manager = IZZZLiquidity(_moduleLiquidity());
+        address operator = IVaultPositionOperator(address(manager)).positionOperator();
         // A contribution can deploy only its own post-swap amounts. Incumbent
         // idle and released compound remain attributed for guarded maintenance.
         if (a0 > p.idle0 || a1 > p.idle1) revert InvalidAmount();
         uint256 before0 = _tokenBalance(token0);
         uint256 before1 = _tokenBalance(token1);
-        ExactAsset.approve(token0, address(manager), a0);
-        ExactAsset.approve(token1, address(manager), a1);
+        _approvePrincipalAssets(token0,token1,operator,a0,a1);
         uint256 nativeValue = token0 == address(0) ? a0 : 0;
         uint256 spent0;
         uint256 spent1;
@@ -181,15 +194,17 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             (int24 lower, int24 upper, uint160 ref) = budget.mintTarget(bucketId);
             (p.lpTokenId, spent0, spent1) =
                 manager.mint{value: nativeValue}(p.poolId, lower, upper, a0, a1, minimumLiquidity, deadline);
-            IPositionManagerMinimal(manager.positionManager()).approve(address(manager), p.lpTokenId);
+            IPositionManagerMinimal positionManager = IPositionManagerMinimal(manager.positionManager());
+            _approveLP(positionManager,operator,p.lpTokenId);
+            uint256 secondary = manager.secondaryId(p.lpTokenId);
+            if (secondary != 0) _approveLP(positionManager,operator,secondary);
             p.centerX96 = ref;
             p.lastRebalance = uint64(block.timestamp);
         } else {
             (spent0, spent1) =
                 manager.increase{value: nativeValue}(p.poolId, p.lpTokenId, a0, a1, minimumLiquidity, deadline);
         }
-        ExactAsset.approve(token0, address(manager), 0);
-        ExactAsset.approve(token1, address(manager), 0);
+        _approvePrincipalAssets(token0,token1,operator,0,0);
         budget.assertPut(bucketId, a0, a1, spent0, spent1, before0, before1);
         _idle(bucketId, p.idle0 - spent0, p.idle1 - spent1);
         budget.assertDeployed(bucketId);
@@ -197,14 +212,23 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
 
     /// @notice Paid issuance creates no LP, collective membership or fee entitlement. Proceeds are
     /// forwarded separately and never enter the permanently locked principal ledger.
-    function mintDormant() external payable live operating principalOperating nonReentrant returns (uint256 id) {
-        // Companion preserves the exact price and home-chain issuance checks.
-        id = canonicalModule().validateMint(msg.value, ++sequence);
+    function mintPrice() external view returns(uint256) {
+        return canonicalModule().mintPrice();
+    }
+    function mintProceedsRecipient() external view returns(address payable) {
+        return payable(canonicalModule().mintProceedsRecipient());
+    }
+    function mintPolicyFingerprint() external view returns(bytes32) {
+        return canonicalModule().mintPolicyFingerprint();
+    }
+    function mintDormant(bytes32 expectedMintPolicy) external payable live operating principalOperating nonReentrant returns (uint256 id) {
+        address recipient;
+        (id,recipient) = canonicalModule().validateMint(msg.value, ++sequence,expectedMintPolicy);
         if (minted[id]) revert InvalidState();
         minted[id] = true;
         _nft().mint(msg.sender, id);
-        (bool paid,) = mintProceedsRecipient.call{value: msg.value}("");
-        if (!paid) revert InvalidState();
+        (bool paid,) = payable(recipient).call{value: msg.value}("");
+        if (!paid || canonicalModule().mintPolicyFingerprint() != expectedMintPolicy) revert InvalidState();
         emit DormantMinted(id, msg.sender, msg.value);
     }
 
@@ -329,24 +353,36 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         ExactAsset.approve(token, fees, 0);
     }
 
+    /// @dev Separate and fund venue fees before closing principal.
     function _harvest(uint256 bucketId, uint256 deadline) private {
-        _harvestVenue(bucketId, deadline);
+        _receiveVenue(bucketId, deadline, 0);
     }
 
-    /// @dev Separate and fund venue fees before closing principal.
-    function _harvestVenue(uint256 bucketId, uint256 deadline) private {
+    /// @dev Collection and closure share the same exact net-receipt proof.
+    /// Manager performs the bounded portfolio operation atomically; neither
+    /// raw prefunds nor forced ETH can become attributed receipts.
+    /// @param operation Internal typed mode: collect=0, full close=1, residual close=2.
+    function _receiveVenue(uint256 bucketId, uint256 deadline, uint8 operation) private {
         Position storage p = positions[bucketId];
         (address token0, address token1) = _tokens(bucketId);
         uint256 before0 = _tokenBalance(token0);
         uint256 before1 = _tokenBalance(token1);
         uint256 received = nativeReceived;
-        IZZZLiquidity(_moduleLiquidity()).collect(p.poolId, p.lpTokenId, deadline);
-        uint256 fee0 = _tokenBalance(token0) - before0;
-        uint256 fee1 = _tokenBalance(token1) - before1;
-        if (token0 == address(0) && fee0 != nativeReceived - received) revert InvalidState();
-        _allocate(bucketId, token0, fee0);
-        _allocate(bucketId, token1, fee1);
-        emit FeesCollected(bucketId, fee0, fee1);
+        IZZZLiquidity manager = IZZZLiquidity(_moduleLiquidity());
+        if (operation == 0) manager.collect(p.poolId, p.lpTokenId, deadline);
+        else if (operation == 1) manager.close(p.poolId, p.lpTokenId, deadline);
+        else IVaultResidualLiquidity(address(manager)).closeSecondary(p.poolId, p.lpTokenId, deadline);
+        uint256 amount0 = _tokenBalance(token0) - before0;
+        uint256 amount1 = _tokenBalance(token1) - before1;
+        if (token0 == address(0) && amount0 != nativeReceived - received) revert InvalidState();
+        if (operation != 0) {
+            if (operation == 1) p.lpTokenId = 0;
+            _idle(bucketId, p.idle0 + amount0, p.idle1 + amount1);
+        } else {
+            _allocate(bucketId, token0, amount0);
+            _allocate(bucketId, token1, amount1);
+            emit FeesCollected(bucketId, amount0, amount1);
+        }
     }
 
     function collectFees(uint256 id, uint256 deadline) external live nonReentrant canonicalAccounting principalOperating {
@@ -384,17 +420,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     }
 
     function _close(uint256 bucketId, uint256 deadline) private {
-        Position storage p = positions[bucketId];
-        (address token0, address token1) = _tokens(bucketId);
-        uint256 before0 = _tokenBalance(token0);
-        uint256 before1 = _tokenBalance(token1);
-        uint256 received = nativeReceived;
-        IZZZLiquidity(_moduleLiquidity()).close(p.poolId, p.lpTokenId, deadline);
-        uint256 closed0 = _tokenBalance(token0) - before0;
-        uint256 closed1 = _tokenBalance(token1) - before1;
-        if (token0 == address(0) && closed0 != nativeReceived - received) revert InvalidState();
-        p.lpTokenId = 0;
-        _idle(bucketId, p.idle0 + closed0, p.idle1 + closed1);
+        _receiveVenue(bucketId, deadline, 1);
     }
 
     /// @dev One atomic route/size decision consumes only this explicit budget.
@@ -408,13 +434,11 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         uint256 before0 = _tokenBalance(token0);
         uint256 before1 = _tokenBalance(token1);
         bytes32 context = migrationBudget.balanceContext(bucketId);
-        ExactAsset.approve(token0, manager, amount0);
-        ExactAsset.approve(token1, manager, amount1);
+        _approvePrincipalAssets(token0,token1,manager,amount0,amount1);
         (balanced0, balanced1) = IZZZLiquidity(manager).balance{value: token0 == address(0) ? amount0 : 0}(
             p.poolId, p.lpTokenId, amount0, amount1, deadline
         );
-        ExactAsset.approve(token0, manager, 0);
-        ExactAsset.approve(token1, manager, 0);
+        _approvePrincipalAssets(token0,token1,manager,0,0);
         if (migrationBudget.balanceContext(bucketId) != context) revert InvalidState();
         // A typed return must match actual net receipts. Existing raw prefunds
         // or callback donations cannot fill a claimed balancing-output shortfall.
@@ -500,14 +524,10 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         returns (uint256 amountETH, uint256 amountZZZ)
     {
         _deadline(deadline);
-        if (!access.paused() || !access.lpExitStarted()) revert InvalidState();
         Position storage p = positions[id];
-        if ((p.status != PositionStatus.Active && p.status != PositionStatus.Parked) || bucketTotalShares[id] == 0)
-            revert InvalidState();
-        (address token0, address token1) = _tokens(id);
-        if (token0 != address(0) || token1 != IZZZMigration(msg.sender).currentZZZ()) revert InvalidConfiguration();
+        (address token0, address token1) = migrationBudget.validateHolderExit(id,msg.sender);
         // Final harvest runs while Active, as required by funded fee allocation.
-        if (p.status == PositionStatus.Active) _harvestVenue(id, deadline);
+        if (p.status == PositionStatus.Active) _harvest(id, deadline);
         IZZZFees fees = IZZZFees(_moduleFees());
         fees.flushDust(id, token0);
         fees.flushDust(id, token1);
@@ -525,6 +545,19 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         emit PrincipalReturnedToHolders(id, amountETH, amountZZZ);
     }
 
+    /// @notice Paused governed residual-only close. Actual proceeds remain
+    /// attributed to this bucket; no swap, holder payout or main replacement.
+    /// A large retained idle balance is intentional recovery state, not entry
+    /// permission to bypass the ordinary deployment/idle/loss checks.
+    function closeResidual(uint256 id,uint256 deadline)
+        external onlyModule(Ids.MIGRATION) operating principalOperating nonReentrant {
+        _deadline(deadline);
+        migrationBudget.validateResidualClose(id);
+        _harvest(id,deadline);
+        _receiveVenue(id,deadline,2);
+        if(!access.paused()) revert InvalidState();
+    }
+
     /// @notice Only the fixed Migration module can park an LP. Its governed
     /// request binds exact custody and raw close minimums. No assets leave Vault.
     function park(uint256 id, uint256 deadline) external onlyModule(Ids.MIGRATION) nonReentrant canonicalAccounting principalOperating {
@@ -532,7 +565,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _active(id);
         if (!access.paused() || positions[id].lpTokenId == 0) revert InvalidState();
         uint256 oldLp = positions[id].lpTokenId;
-        _harvestVenue(id, deadline);
+        _harvest(id, deadline);
         _close(id, deadline);
         positions[id].status = PositionStatus.Parked;
         emit PrincipalParked(id, oldLp);

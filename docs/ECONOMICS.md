@@ -1,14 +1,14 @@
 # Economic rights and allocation rules
 
-Fresh accounting4 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+Fresh accounting6 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
 After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
 rewards and future royalty eligibility. Direct payouts are separate from income;
 no holder principal withdrawal exists during normal operation. LP cannot reopen
 after exit starts. Historical deployments keep their original rules.
 
 
-**Undeployed candidate; production NOT APPROVED.** Accounting4, custody3,
-direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5` retain
+**Undeployed candidate; production NOT APPROVED.** Accounting6, custody4, portfolio2,
+direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` retain
 the economic rights below. Historical profiles retain their own layouts and
 evidence; no existing local deployment is upgraded. See [profile boundaries](POSITION_V3.md)
 and [pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
@@ -49,7 +49,14 @@ there is no USD-loss promise when closing without price feeds.
 
 ## Permanent capital
 
-Current direct mint forwards its full 0.05 ETH charge to the immutable mint recipient; none becomes LP or rewards. The intended OpenSea path must keep the buyer total at 0.05 ETH, deduct the actual platform fee and pay that recipient the remainder, with gas separate. That compatible mint integration is not implemented; no platform percentage is assumed. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Contributions accept native ETH or fixed ZZZ only. Activation starts at **$100 conservative original-source value** and growth at **$5**, subject to a higher pool minimum. The **captured marginal-LP floor is 98% at the default 2% limit**, with gas separate. Conversion and deployment share that budget; Entry V1 also binds the caller maximum. Incumbent LP, idle and compound cannot subsidize a newcomer. Stricter venue bounds remain. The immutable [Entry](ACTIVATION_ENTRY.md) authenticates exact source ingress, owner intent and measured USD through the actual Vault call. Its context prevents resetting the budget after conversion. Actual feeds/routes and selected-pool execution remain unqualified.
+Current direct mint forwards its reviewed current price (default0.05 ETH) to the current accepted mint recipient; none becomes LP or rewards. The intended OpenSea path must keep the buyer total at 0.05 ETH, deduct the actual platform fee and pay that recipient the remainder, with gas separate. That compatible mint integration is not implemented; no platform percentage is assumed. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Contributions accept native ETH or fixed ZZZ only. Activation defaults to **$100 conservative original-source value** and growth to **$5**, governed for future contributions through ProtocolPolicy, subject to a higher pool minimum. The **captured marginal-LP floor is 98% at the default 2% limit**, with gas separate. Conversion and deployment share that budget; Entry2 also binds the caller maximum and exact entry-policy fingerprint. Incumbent LP, idle and compound cannot subsidize a newcomer. Stricter venue bounds remain. The immutable [Entry](ACTIVATION_ENTRY.md) authenticates exact source ingress, owner intent and measured USD through the actual Vault call. Its context prevents resetting the budget after conversion. Actual feeds/routes and selected-pool execution remain unqualified.
+
+The default shared bucket has one physical main; optional mode adds at most one
+Vault-owned residual in the same pool. NAV and harvest include both legs, not
+summed raw liquidity. Entry increases only the current main. Ordinary adjustment
+requires an active new main with at least 60% of retained principal and residual at
+most 40%, using captured starting prices including idle; those are post-adjustment
+guards, not continuous allocation promises.
 
 Shares are nonredeemable during normal operation. They are priced against the pool's current principal NAV, including attributed idle and designated compounding reserves. Earlier owner fees are checkpointed before new shares. Swaps can reprice incumbent LP; this gain/loss belongs to incumbents, and execution losses are charged to the net new contribution. Compounding and market changes do not create collective memberships. Transfers preserve shares and unclaimed rights for the current holder.
 
@@ -71,7 +78,7 @@ distribution transaction every minute. `Vault.collectFees` collects actual fees,
 then FeeController funds the four allocations in that same transaction. Joining,
 growing, rebalancing and standalone compounding also harvest fees along their
 guarded paths. Uncollected venue fees are not yet a holder's funded claim balance.
-The current accounting4 keeper defaults to a standalone harvest every hour,
+The current accounting6 keeper defaults to a standalone harvest every hour,
 independent of rebalance eligibility. This is a nominal off-chain schedule, not
 a wall-clock contract timer. Governance can also call the same collectFees
 function manually; all actual allocation arithmetic stays on-chain.
@@ -115,7 +122,7 @@ Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH t
 
 The old bridge/pair execution stack, external-custodian exits and remote-fee
 intake are removed. Historical profiles retain their original ledgers and
-decoding. Before retirement, same-pair pool moves and compatible canonicalV5
+decoding. Before retirement, same-pair pool moves and compatible canonicalV6
 handoff remain separate operations. Once collective exit starts, minting and all
 new principal work stop permanently; canonical replacement cannot bypass it.
 
@@ -164,18 +171,18 @@ newly eligible NFTs.
 
 Mint supply is capped at 1,000, with exact 600/300/100 rarity quotas. Authenticated VRF words are bound to each NFT/request, and permissionless reveal proceeds strictly in mint order. Draws use remaining quotas; 60/30/10 describes initial odds only. Earlier unavailable randomness blocks later reveals; there is no reroll or administrator bypass.
 
-Evolution follows current marked LP share NAV, including attributed idle and compounding reserves, excluding claimable rewards and donations. Enhanced starts at $1,000; Singularity at $10,000. A decline can lower evolution while activation, collective membership and rarity royalties remain. Stale/oracle or parked-custody valuation is unavailable, not a zero-price observation. After confirmed collective closure, Exited5 has verified zero remaining LP and the terminal `LP exited` label using existing Activated artwork. This does not remove royalties or earned rewards.
+Evolution follows current marked LP share NAV, including attributed idle and compounding reserves, excluding claimable rewards and donations. Enhanced defaults to$1,000 and Singularity$10,000; governance may change these display-only increasing thresholds through ProtocolPolicy without changing economic rights. A decline can lower evolution while activation, collective membership and rarity royalties remain. Stale/oracle or parked-custody valuation is unavailable, not a zero-price observation. After confirmed collective closure, Exited5 has verified zero remaining LP and the terminal `LP exited` label using existing Activated artwork. This does not remove royalties or earned rewards.
 
 ## Strategy and migrations
 
 Rebalancing uses configured range/deviation/cooldown, fresh valuation and bounded swaps. It does not eliminate impermanent loss or guarantee capital/returns. Buyback supports approved direct routes or direct ZZZ burn, not arbitrary multi-hop conversion. Atomic moves between admitted native ETH/fixed ZZZ pools preserve NFT shares and apply one captured aggregate maintenance floor (default 3% loss, governance maximum 10%). WETH is not native ETH and is not an admitted principal destination.
 
-Governance may irreversibly start [collective holder return](HOLDER_COLLECTIVE_EXIT.md) while paused. Final harvested fees keep the fixed allocation; pending5%compound joins that bucket's principal. Each NFT receives its frozen share of actual ETH/ZZZ, including idle and reinvested compound, by deterministic raw-unit apportionment. Earned LP/royalty liabilities, buyback reserves, donations and quarantines are excluded. The operator closes and allocates bounded batches, then sends direct payouts to current owners; normal recipients take no action. A rejecting or unusually expensive receiver is deferred without blocking others, with retry or owner-selected fallback as exceptional recovery. Receipt cannot be forced for every address. Unpaid rights follow NFT transfer; a paid NFT cannot be paid twice. LP earnings end after all LP closes, while NFTs and future royalty shares remain.
+Governance may irreversibly start [collective holder return](HOLDER_COLLECTIVE_EXIT.md) while paused. Final harvested fees keep the fixed allocation; pending 5% compound joins that bucket's principal. Each NFT receives its frozen share of actual ETH/ZZZ, including idle and reinvested compound, by deterministic raw-unit apportionment. Earned LP/royalty liabilities, buyback reserves, donations and quarantines are excluded. The operator closes and allocates bounded batches, then sends direct payouts to current owners; normal recipients take no action. A rejecting or unusually expensive receiver is deferred without blocking others, with retry or owner-selected fallback as exceptional recovery. Receipt cannot be forced for every address. Unpaid rights follow NFT transfer; a paid NFT cannot be paid twice. LP earnings end after all LP closes, while NFTs and future royalty shares remain.
 
-Whole-collection handoff is separate and requires compatible accounting4/canonicalV5 while LP is still operating; it is blocked permanently once collective exit starts. No issuer exchange, bridge or post-exit canonical import is implemented. Failed venues/tokens, gas and recipient behavior can prevent or delay settlement. Actual operating rehearsals and independent review remain release gates.
+Whole-collection handoff is separate and requires compatible accounting6/canonicalV6 while LP is still operating; it is blocked permanently once collective exit starts. No issuer exchange, bridge or post-exit canonical import is implemented. Failed venues/tokens, gas and recipient behavior can prevent or delay settlement. Actual operating rehearsals and independent review remain release gates.
 
 Governance is immediate: the selected wallet/Safe calls modules directly, with
 its own signature/nonce policy. There is no protocol timelock, queued executor
 or role-grant API. Proposal/acceptance protects governance handover; it does not
-change ownership, economic allocation, keeper/guardian roles or the immutable
-mint recipient. Sealing does not remove governance or reviewed-replacement trust.
+change ownership, economic allocation, keeper/guardian roles or automatically rotate the separately governed
+future mint recipient. Sealing does not remove governance or reviewed-replacement trust.

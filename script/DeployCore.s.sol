@@ -1,8 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {Script} from "forge-std/Script.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
+import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
@@ -30,22 +35,24 @@ contract DeployCore is Script {
         ZZZAccessController a=new ZZZAccessController(vm.envAddress("GOVERNANCE_MULTISIG"),
             vm.envAddress("KEEPER_ADDRESS"),vm.envAddress("GUARDIAN_ADDRESS"));
         address controller=address(a);
-        a.bind(Ids.VAULT,address(new ZZZVault(controller,home,payable(vm.envAddress("MINT_PROCEEDS_RECIPIENT")))));
+        ZZZProtocolPolicy policy=new ZZZProtocolPolicy(controller,vm.envAddress("MINT_PROCEEDS_RECIPIENT"));
+        a.bindProtocolPolicy(address(policy));
+        a.bind(Ids.VAULT,address(new ZZZVault(controller,home,address(new ZZZMigrationBudget(controller)))));
         ZZZNFT nft=new ZZZNFT(controller,vm.envString("NFT_BASE_URI"));
         a.bind(Ids.NFT,address(nft));
         // Optional LOCAL reviewed coordinator configuration. Without it minting
         // remains disabled. No public-network coordinator is assumed here.
         address coordinator=vm.envOr("NFT_VRF_COORDINATOR",address(0));
-        if(coordinator!=address(0))nft.configureRandomness(coordinator,vm.envBytes32("NFT_VRF_KEY_HASH"),
+        if(coordinator!=address(0))policy.configureRandomness(coordinator,coordinator.codehash,vm.envBytes32("NFT_VRF_KEY_HASH"),
             vm.envUint("NFT_VRF_SUBSCRIPTION_ID"),uint16(vm.envUint("NFT_VRF_CONFIRMATIONS")),
-            uint32(vm.envUint("NFT_VRF_CALLBACK_GAS")),vm.envBool("NFT_VRF_NATIVE_PAYMENT"));
+            uint32(vm.envUint("NFT_VRF_CALLBACK_GAS")),vm.envBool("NFT_VRF_NATIVE_PAYMENT"),vm.envBytes32("NFT_VRF_REVIEW_HASH"));
         a.bind(Ids.LIQUIDITY,address(new ZZZLiquidityManager(controller,
             vm.envAddress("V4_POSITION_MANAGER"),vm.envAddress("V4_STATE_VIEW"),
-            vm.envAddress("V4_POOL_MANAGER"),vm.envAddress("PERMIT2"))));
+            vm.envAddress("V4_POOL_MANAGER"),vm.envAddress("PERMIT2"), address(new ZZZLPBalancer(controller, vm.envAddress("V4_POOL_MANAGER"), vm.envAddress("V4_STATE_VIEW"))))));
         a.bind(Ids.REWARDS,address(new ZZZRewards(controller)));
         a.bind(Ids.MEMBERSHIP,address(new ZZZMembership(controller)));
         a.bind(Ids.FEES,address(new ZZZFeeController(controller)));
-        a.bind(Ids.STRATEGY,address(new ZZZStrategy(controller)));
+        a.bind(Ids.STRATEGY,address(new ZZZStrategy(controller, address(new ZZZPortfolioPolicy(controller)), address(new ZZZRebalanceConfirmation(controller)))));
         a.bind(Ids.COMPOUNDER,address(new ZZZCompounder(controller)));
         a.bind(Ids.BUYBACK,address(new ZZZBuyback(controller,vm.envAddress("ZZZ_TOKEN"),vm.envUint("MAX_BUYBACK_USD18"))));
         a.bind(Ids.MIGRATION,address(new ZZZMigration(controller)));

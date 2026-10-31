@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
@@ -30,7 +31,7 @@ contract DualOracleSecurityTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access = new MockAccess();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         token = new MockToken(6);
         first = new MockFeed(8, 1e8);
         second = new MockFeed(8, 1e8);

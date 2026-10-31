@@ -2,6 +2,7 @@
 pragma solidity 0.8.26;
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 import {IPriceFeed} from "./interfaces/IZZZ.sol";
 import {ZZZContributionPricing} from "./ZZZContributionPricing.sol";
 import {ZZZPriceMath} from "./libraries/ZZZPriceMath.sol";
@@ -12,7 +13,6 @@ contract ZZZOracle is ZZZModule {
     ZZZContributionPricing public immutable contributionPricing;
     uint256 public constant PRICING_VERSION = 2;
     uint16 public constant MAX_DEVIATION_BPS = 500;
-    uint256 public constant SOURCE_CALL_GAS = 500_000;
     bytes32 public constant FINGERPRINT_DOMAIN = keccak256("ZZZ_DUAL_USD_V2");
     struct SourcePolicy {
         address source;
@@ -137,7 +137,7 @@ contract ZZZOracle is ZZZModule {
         private view returns (bytes memory result) {
         bool success;
         uint256 returned;
-        uint256 gasLimit = SOURCE_CALL_GAS;
+        uint256 gasLimit = IZZZProtocolPolicy(access.protocolPolicy()).sourceCallGas();
         // Copy only the exact bounded ABI result. A source cannot make the
         // caller allocate arbitrary returndata or disclose its revert payload.
         assembly ("memory-safe") {

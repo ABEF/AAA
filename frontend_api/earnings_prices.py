@@ -11,7 +11,7 @@ class Prices:
         self.pricing_version = config.get('pricing_version', 1)
         if type(self.pricing_version) is not int or self.pricing_version not in (1,2):
             raise ValueError('Unsupported explicit earnings pricing profile')
-        if projection.accounting_version in (3, 4) and self.pricing_version != 2:
+        if projection.accounting_version in (3, 4, 5, 6) and self.pricing_version != 2:
             raise ValueError('Local Position V3 has no single-source earnings price getter')
         _keys(config, {'oracle', 'sequencer', 'feeds'} | ({'pricing_version'} if 'pricing_version' in config else set()), 'earnings prices')
         def contract(item):
@@ -27,7 +27,7 @@ class Prices:
             _keys(item, {'asset', 'priced_token', 'token_code_hash'} | ({'price_policy'} if self.pricing_version == 2 else
                 {'source','source_code_hash','max_age','feed_decimals'}), 'earnings price feed')
             asset = ZERO if item['asset'] == ZERO else address(item['asset'])
-            native = projection.accounting_version in (2, 3, 4) and asset == ZERO
+            native = projection.accounting_version in (2, 3, 4, 5, 6) and asset == ZERO
             token = ZERO if native and item['priced_token'] == ZERO else address(item['priced_token'])
             if native and (token != ZERO or item['token_code_hash'] is not None or descriptors[asset].decimals != 18):
                 raise ValueError('Native accounting requires a direct ETH feed without a wrapped-token pin')

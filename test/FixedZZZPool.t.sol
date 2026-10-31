@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 // TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
@@ -46,7 +47,7 @@ contract FixedZZZPoolTest is Test {
     address private constant NATIVE_ZZZ=0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a;
 
     function setUp() public {
-        access=new MockAccess();registry=new ZZZPoolRegistry(address(access));assets=registry.activationAssets();
+        access=new MockAccess(); ProtocolPolicyFixture.bind(address(access));registry=new ZZZPoolRegistry(address(access));assets=registry.activationAssets();
         oracle=new FixedPoolOracleFixture();rewards=new FixedPoolRewardsFixture();
         access.bind(Ids.POOLS,address(registry));access.bind(Ids.ORACLE,address(oracle));
         access.bind(Ids.REWARDS,address(rewards));

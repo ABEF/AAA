@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -252,27 +256,27 @@ contract NativeLiquidityTest is Test {
     }
     function setUp() public {
         vm.warp(1_000_000); vm.deal(address(this), 100_000 ether);
-        access = new MockAccess(); wrapped = new BoundaryWETH(); token = new MockToken(18);
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); wrapped = new BoundaryWETH(); token = new MockToken(18);
         permit = new FactualPermit(); core = new PoolManager(address(this));
         state = new StateView(IPoolManager(address(core)));
         positions = new PositionManager(IPoolManager(address(core)), IAllowanceTransfer(address(permit)),
             100000, IPositionDescriptor(address(0)), IWETH9(address(wrapped)));
-        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit));
+        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
         PoolConfig memory c = PoolConfig(PoolKey(address(0),address(token),10020,60,address(0)),
             true,true,1000,100,500,200,600,100e18,1e30);
         poolId = keccak256(abi.encode(c.key)); pools = new NativeLiquidityPools(c);
-        policy = new ZZZStrategy(address(access));
+        policy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         access.bind(Ids.VAULT,address(this)); access.bind(Ids.POOLS,address(pools));
         access.bind(Ids.LIQUIDITY,address(manager)); access.bind(Ids.STRATEGY,address(policy));
         access.bind(Ids.ORACLE,address(new BoundaryOracle())); access.seal();
         key = CoreKey(Currency.wrap(address(0)),Currency.wrap(address(token)),10020,60,IHooks(address(0)));
         core.initialize(key,uint160(1 << 96)); core.setProtocolFeeController(address(this));
         core.setProtocolFee(key,uint24(1000 | (1000 << 12)));
-        token.mint(address(this),100_000 ether); token.approve(address(manager),type(uint256).max);
+        token.mint(address(this),100_000 ether); token.approve(address(manager),type(uint256).max); token.approve(manager.positionOperator(), type(uint256).max);
     }
     function _mint() private returns (uint256 id) {
         (id,,) = manager.mint{value: 10 ether}(poolId,-600,600,10 ether,10 ether,1,block.timestamp+100);
-        positions.approve(address(manager),id);
+        positions.approve(manager.positionOperator(),id);
     }
     function _clearApprovals() private view {
         assertEq(token.allowance(address(manager),address(permit)),0);

@@ -21,16 +21,14 @@ sys.path.insert(0,str(ROOT))
 
 def validate(config: Any, *, expected_commit: str | None = None, now: int | None = None) -> dict[str,Any]:
     """Evaluate current release only; old configuration never enters legacy code."""
-    if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==6:
-        from zzz_ops.production_v4 import validate as validate_current
+    if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==8:
+        from zzz_ops.production_v6 import validate as validate_current
         return validate_current(config,expected_commit=expected_commit,now=now)
-    # Accounting4 changes terminal rights and removes external custody. The
-    # historical accounting3 inventory/observer cannot qualify that new ABI.
-    # Only schema6 enters the current validator; never reuse a historical ready.
-    return {'schema_version':6,'status':'blocked','ready':False,'deployment_authorized':False,
+    # Fresh portfolio accounting must never inherit a historical single-LP pass.
+    return {'schema_version':8,'status':'blocked','ready':False,'deployment_authorized':False,
         'current_release_gate':True,'production_qualification_supported':False,
         'issues':[{'code':'holder_exit_qualification_pending','path':'current_release_profile',
-            'message':'Use explicit schema6/accounting4/custody3/canonical holder-exit V5 for the current inventory. Actual production qualification remains open. Accounting3 is historical; use explicit --historical-consistency only for inspection.'}],
+            'message':'Use explicit schema8/accounting6/custody4/portfolio2/protocol1 with canonical adaptable-policy V6. Schema7/accounting5 and older layouts require --historical-consistency for inspection only; no deployment or journal is relabeled.'}],
         'limitations':['Source implementation and focused tests do not qualify actual release bindings, services or deployment.']}
 
 
@@ -67,14 +65,19 @@ def main() -> int:
     try:
         config=read_config(Path(args.config))
         if args.historical_consistency:
-            from zzz_ops.historical_production import validate as validate_historical
+            if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==7:
+                from zzz_ops.production_v5 import validate as validate_historical
+            elif isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==6:
+                from zzz_ops.production_v4 import validate as validate_historical
+            else:
+                from zzz_ops.historical_production import validate as validate_historical
             result=validate_historical(config,expected_commit=args.expected_commit,now=int(time.time()))
             result.update(current_release_gate=False,approval_scope='historical_manifest_consistency_only',
                 production_qualification_supported=False,deployment_authorized=False)
         else:
             result=validate(config,expected_commit=args.expected_commit,now=int(time.time()))
     except (OSError,UnicodeError,ValueError,RecursionError,TypeError,KeyError,OverflowError) as exc:
-        result={'schema_version':4 if args.historical_consistency else 6,'status':'blocked','ready':False,
+        result={'schema_version':4 if args.historical_consistency else 8,'status':'blocked','ready':False,
             'deployment_authorized':False,'current_release_gate':not args.historical_consistency,
             'production_qualification_supported':False,
             'issues':[{'code':'config.unreadable','path':'config','message':type(exc).__name__}]}

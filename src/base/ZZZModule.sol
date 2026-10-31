@@ -59,8 +59,11 @@ abstract contract ZZZModule {
     /// canonical ownership. Check after callbacks so retirement cannot begin
     /// inside an otherwise valid contribution or maintenance operation.
     modifier principalOperating() {
-        if (access.lpExitStarted()) revert LPExitLocked();
+        _checkPrincipalOperating();
         _;
+        _checkPrincipalOperating();
+    }
+    function _checkPrincipalOperating() private view {
         if (access.lpExitStarted()) revert LPExitLocked();
     }
     modifier onlyHandoff() {

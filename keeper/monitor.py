@@ -29,7 +29,7 @@ from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_b
 from keeper.watchdog import ProgressWatchdog, ProgressRPC
 from keeper.principal import PrincipalDistribution, BATCH as PRINCIPAL_BATCH, encode_batch as encode_principal_batch
 from keeper.health import HEALTH_SCHEMA, OBSERVATION_SCHEMA, source_hashes, observe_confirmation_health
-from keeper.rebalance_confirmation import RebalanceConfirmation, CHECK_SECONDS as CONFIRMATION_CHECK_SECONDS, LEGACY_CHECK_SECONDS as LEGACY_CONFIRMATION_CHECK_SECONDS, STATE_NAMESPACE as CONFIRMATION_STATE
+from keeper.rebalance_confirmation import RebalanceConfirmation, CHECK_SECONDS as CONFIRMATION_CHECK_SECONDS, LEGACY_CHECK_SECONDS as LEGACY_CONFIRMATION_CHECK_SECONDS, STATE_NAMESPACE as CONFIRMATION_STATE, PORTFOLIO_STATE_NAMESPACE
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
 NATIVE_ASSET = '0x'+'0'*40
@@ -125,18 +125,21 @@ class Keeper:
             'last_observed':None,'last_error':None}
         self.gas_review_health = {'state':'not_reviewed_this_cycle','last_review':None}
         self.accounting_version = config.get('accounting_version',1)
-        if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4):
+        if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6):
             raise ValueError('Unsupported keeper accounting version')
+        self.protocol_policy_version=config.get('protocol_policy_version',0)
+        if type(self.protocol_policy_version) is not int or self.protocol_policy_version!=(1 if self.accounting_version==6 else 0):
+            raise ValueError('Accounting6 keeper requires explicit protocol-policy1')
         self.fee_intake_version = config.get('fee_intake_version',0)
         if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0,1) or \
-                (self.fee_intake_version == 1 and self.accounting_version not in (2,3,4)) or \
-                (self.accounting_version in (3,4) and self.fee_intake_version != 1):
+                (self.fee_intake_version == 1 and self.accounting_version not in (2,3,4,5,6)) or \
+                (self.accounting_version in (3,4,5,6) and self.fee_intake_version != 1):
             raise ValueError('Unsupported keeper fee-intake profile')
         self.chain = positive(config['chain_id'],'chain_id')
         self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
         self.sender = address(config['sender'])
         self.contracts = {k:address(v) for k,v in config['contracts'].items()}
-        for name in ('access','vault','strategy','fees','compounder','buyback','pools') + (('principal_exit',) if self.accounting_version == 4 else ()):
+        for name in ('access','vault','strategy','fees','compounder','buyback','pools') + (('principal_exit',) if self.accounting_version in (4,5,6) else ()):
             if name not in self.contracts: raise ValueError(f'Missing contract: {name}')
         adaptive = config.get('adaptive_range',{})
         if not isinstance(adaptive,dict) or type(adaptive.get('enabled',False)) is not bool:
@@ -145,22 +148,22 @@ class Keeper:
         # Absent accounting4 policy is explicitly the historical service mode.
         # A fresh deployment must opt into version2; never probe/fallback from a
         # failed getter or relabel a saved old deployment to activate new rules.
-        self.maintenance_policy_version = config.get('maintenance_policy_version',1 if self.accounting_version == 4 else 0)
+        self.maintenance_policy_version = config.get('maintenance_policy_version',1 if self.accounting_version in (4,5,6) else 0)
         if type(self.maintenance_policy_version) is not int or self.maintenance_policy_version not in (
-                (1,2) if self.accounting_version == 4 else (0,)):
+                (3,) if self.accounting_version in (5,6) else (1,2) if self.accounting_version == 4 else (0,)):
             raise ValueError('Unsupported keeper maintenance policy version')
-        if self.maintenance_policy_version == 2 and self.adaptive_range_enabled:
+        if self.maintenance_policy_version in (2,3) and self.adaptive_range_enabled:
             raise ValueError('Outside-only policy requires operator-selected ranges')
         self.lp_routing_version = config.get('lp_routing_version',0)
-        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0,1):
+        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0,1,2):
             raise ValueError('Unsupported keeper LP-routing profile')
         self.execution_quality_version = config.get('execution_quality_version',0)
         if type(self.execution_quality_version) is not int or self.execution_quality_version not in (0,1):
             raise ValueError('Unsupported keeper execution-quality profile')
-        if self.execution_quality_version == 1 and self.lp_routing_version != 1:
+        if self.execution_quality_version == 1 and self.lp_routing_version not in (1,2):
             raise ValueError('Execution quality requires explicit LP-routing profile1')
-        if self.lp_routing_version == 1:
-            if self.accounting_version != 4 or self.maintenance_policy_version != 2:
+        if self.lp_routing_version in (1,2):
+            if self.accounting_version not in (4,5,6) or self.maintenance_policy_version not in (2,3):
                 raise ValueError('LP routing requires explicit accounting4 and maintenance2')
             for role in ('liquidity','balancing_router','pool_manager','state_view'):
                 if role not in self.contracts: raise ValueError('Missing reviewed LP execution contract: '+role)
@@ -169,6 +172,19 @@ class Keeper:
                     raise ValueError('Missing reviewed LP execution runtime: '+role)
         if self.adaptive_range_enabled and (type(adaptive.get('policy_version')) is not int or adaptive['policy_version'] != 1):
             raise ValueError('Adaptive range requires the explicit reviewed policy version 1')
+        self.portfolio_version = config.get('portfolio_version',0)
+        if (type(self.portfolio_version) is not int or
+                (self.accounting_version in (5,6) and (self.portfolio_version!=(2 if self.accounting_version==6 else 1) or self.lp_routing_version!=2 or
+                 self.maintenance_policy_version!=3 or config.get('rebalance_confirmation_version')!=3 or
+                 self.execution_quality_version!=1)) or
+                (self.accounting_version not in (5,6) and (self.portfolio_version!=0 or self.lp_routing_version==2))):
+            raise ValueError('Fresh portfolio requires explicit accounting5/portfolio1/routing2/maintenance3/confirmation3/quality1')
+        if self.accounting_version in (5,6):
+            for role in ('portfolio_policy','lp_balance_math','lp_position_executor')+(('protocol_policy',) if self.accounting_version==6 else ()):
+                if role not in self.contracts:raise ValueError('Missing reviewed portfolio helper: '+role)
+                pin=config.get('code_hashes',{}).get(role,'')
+                if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16)==0:
+                    raise ValueError('Missing reviewed portfolio helper runtime: '+role)
         self.rebalance_confirmation=RebalanceConfirmation(self)
         self._rebalance_observation_due=None
         self._confirmation_seen_buckets=set()
@@ -291,7 +307,7 @@ class Keeper:
             if (not isinstance(bucket,str) or str(positive(bucket,'confirmation reset bucket'))!=bucket or
                     int(bucket)>=1<<256 or needed is not True):
                 raise ValueError('Malformed confirmation reset marker')
-        for namespace in (OUTSIDE_REBALANCE_STATE,CONFIRMATION_STATE):
+        for namespace in (OUTSIDE_REBALANCE_STATE,CONFIRMATION_STATE,PORTFOLIO_STATE_NAMESPACE):
             schedules = self.state.get(namespace,{})
             if not isinstance(schedules,dict) or len(schedules) > min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
                 raise ValueError('Malformed outside-rebalance schedule inventory')
@@ -299,7 +315,7 @@ class Keeper:
                 if not isinstance(bucket,str) or str(positive(bucket,'schedule bucket')) != bucket or int(bucket) >= 1 << 256:
                     raise ValueError('Outside-rebalance bucket identity must be canonical')
                 fields={'identity','observed_at','next_check_at','execute_after'}
-                if namespace==CONFIRMATION_STATE:fields.add('last_checked_at')
+                if namespace in (CONFIRMATION_STATE,PORTFOLIO_STATE_NAMESPACE):fields.add('last_checked_at')
                 if not isinstance(record,dict) or set(record) != fields:
                     raise ValueError('Malformed outside-rebalance schedule')
                 rpc_hash(record['identity'],'outside-rebalance identity')
@@ -308,13 +324,20 @@ class Keeper:
                     if type(value) is not int or not 0 <= value < 1 << 64:
                         raise ValueError('Malformed outside-rebalance schedule time')
                 observed,check,execute = (record[name] for name in ('observed_at','next_check_at','execute_after'))
-                if namespace==CONFIRMATION_STATE:
+                if namespace in (CONFIRMATION_STATE,PORTFOLIO_STATE_NAMESPACE):
                     last=record['last_checked_at']
-                    valid=last>=observed and check-last in (CONFIRMATION_CHECK_SECONDS,LEGACY_CONFIRMATION_CHECK_SECONDS) and (
-                        execute==0 or 60<=execute-observed<=600)
+                    cadence=(1<=check-last<=CONFIRMATION_CHECK_SECONDS if namespace==PORTFOLIO_STATE_NAMESPACE else
+                        check-last in (CONFIRMATION_CHECK_SECONDS,LEGACY_CONFIRMATION_CHECK_SECONDS))
+                    valid=last>=observed and cadence and (
+                        execute==0 or 60<=execute-observed<=(300 if namespace==PORTFOLIO_STATE_NAMESPACE else 600))
                 else:valid=(execute==0 and check==observed+REBALANCE_CHECK_SECONDS or
                     check==0 and 60<=execute-observed<=600)
                 if not valid:raise ValueError('Invalid outside-rebalance schedule bounds')
+        prior_draws=self.state.get('adjustment_jitter_last_v3',{})
+        if (not isinstance(prior_draws,dict) or len(prior_draws)>min(self.max_buckets,MAX_OUTSIDE_SCHEDULES) or
+                any(not isinstance(k,str) or not re.fullmatch(r'[1-9][0-9]{0,77}',k) or int(k)>=1<<256 or
+                    type(v) is not int or not 60<=v<=300 for k,v in prior_draws.items())):
+            raise ValueError('Invalid saved adjustment jitter history')
         for field in ('last','spent','retry_after'):
             values = self.state.get(field,{}) if field == 'retry_after' else self.state.get(field)
             if not isinstance(values,dict): raise ValueError('Malformed keeper counters')
@@ -437,7 +460,7 @@ class Keeper:
                 'gas_review':self.gas_review_health,
                 'rebalance_confirmation_health':{
                     'version':self.rebalance_confirmation.version,
-                    'check_interval_seconds':CONFIRMATION_CHECK_SECONDS if self.rebalance_confirmation.version in (1,2) else None,
+                    'check_interval_seconds':CONFIRMATION_CHECK_SECONDS if self.rebalance_confirmation.version in (1,2,3) else None,
                     'pending_reset_buckets':sorted(self.state.get(CONFIRMATION_RESETS,{}),key=int),
                     'awaiting_healthy_read_buckets':sorted((bucket for bucket,record in
                         self.state.get(CONFIRMATION_CLEARS,{}).items() if record['awaiting_healthy_read']),key=int),
@@ -465,7 +488,7 @@ class Keeper:
             if not started_pending and not self.state.get('pending'):
                 self._observe_execution_health()
                 self.confirmation_policy_health=observe_confirmation_health(self,self.confirmation_policy_health)
-            elif self.rebalance_confirmation.version in (1,2):
+            elif self.rebalance_confirmation.version in (1,2,3):
                 self.confirmation_policy_health['state']='pending_recovery'
         except Exception as exc:
             self._cycle_error = True
@@ -499,10 +522,10 @@ class Keeper:
                 ('degraded' if self.confirmed_reverts else ('healthy' if self.live else 'dry_run')))
         # Older checkers do not understand schema2 metadata requirements. Their
         # old success strings must not approve the new quality profile silently.
-        if (self.execution_quality_version == 1 or self.rebalance_confirmation.version in (1,2)) and status in ('healthy','dry_run'):
+        if (self.execution_quality_version == 1 or self.rebalance_confirmation.version in (1,2,3)) and status in ('healthy','dry_run'):
             status += '_v2'
         quality_fault=self.execution_quality_version==1 and self.lp_execution_health['state']!='observed_this_cycle'
-        confirmation_fault=(self.rebalance_confirmation.version in (1,2) and
+        confirmation_fault=(self.rebalance_confirmation.version in (1,2,3) and
             self.confirmation_policy_health['state']!='observed_this_cycle' and not (
                 self.principal_exit_started and self.confirmation_policy_health['state'] in ('stopped','incompatible_cadence')))
         metadata_degraded=not pending and self.canonical_lifecycle in (None,0) and (quality_fault or confirmation_fault)
@@ -521,9 +544,9 @@ class Keeper:
         # Optional-job/metadata degradation remains unhealthy, but must not
         # stretch a known confirmation's polling deadline. Actual cycle-level
         # RPC/recovery failures retain the historical exponential backoff.
-        known = (self.state.get(CONFIRMATION_STATE) or self.state.get(CONFIRMATION_RESETS) or
+        known = (self.state.get(self._confirmation_namespace()) or self.state.get(CONFIRMATION_RESETS) or
             any(record['awaiting_healthy_read'] for record in self.state.get(CONFIRMATION_CLEARS,{}).values()))
-        if self.rebalance_confirmation.version in (1,2) and known and not self._cycle_error:
+        if self.rebalance_confirmation.version in (1,2,3) and known and not self._cycle_error:
             return interval
         return min(interval * 2**min(self.cycle_failures,3),max(interval,3600))
 
@@ -579,10 +602,10 @@ class Keeper:
             self._validate_maintenance_settings(settings,allow_retired=allow_retired)
         for override in ({},*self.overrides.values()):
             settings = {**self.maintenance,**override}
-            if self.maintenance_policy_version == 2 and settings.get('compound',True) and not settings.get('compound_thresholds'):
+            if self.maintenance_policy_version in (2,3) and settings.get('compound',True) and not settings.get('compound_thresholds'):
                 raise ValueError('Fresh compounding requires explicit actual-currency thresholds')
             if settings.get('compound_idle',False):
-                if self.accounting_version not in (2,3,4) or not settings.get('compound_thresholds') or \
+                if self.accounting_version not in (2,3,4,5,6) or not settings.get('compound_thresholds') or \
                         not 600 <= positive(settings.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True) <= 604800:
                     raise ValueError('Idle compounding requires native V2, currency thresholds and an explicit 600-604800-second interval')
                 address(self.config.get('idle_compounding_budget'))
@@ -623,7 +646,7 @@ class Keeper:
 
     def _compound_ready(self,bucket: int) -> bool:
         """Read the exact historical V2 or separate-interval V3 companion policy."""
-        budget = self._compound_budget(3 if self.maintenance_policy_version == 2 else 2)
+        budget = self._compound_budget(4 if self.accounting_version in (5,6) else 3 if self.maintenance_policy_version==2 else 2)
         ready = uint_result(self.rpc.eth_call(budget,calldata('compoundReady(uint256)',bucket)))
         if ready not in (0,1): raise RpcError('Malformed compound eligibility')
         return ready == 1
@@ -631,7 +654,8 @@ class Keeper:
     def _compound_policy_status(self,bucket: int) -> dict[str,Any]:
         """One fresh physical snapshot; no confirmation or scheduling mutation."""
         from keeper.compound_policy import observe
-        roles=('access','vault','strategy','pools','liquidity','pool_manager','state_view')
+        roles=('access','vault','strategy','pools','liquidity','pool_manager','state_view')+(
+            ('portfolio_policy','rebalance_confirmation','lp_position_executor','balancing_router','lp_balance_math') if self.accounting_version in (5,6) else ())
         if any(role not in self.contracts or
                 not isinstance(self.config.get('code_hashes',{}).get(role),str) or
                 re.fullmatch(r'0x[0-9a-fA-F]{64}',self.config['code_hashes'][role]) is None or
@@ -646,8 +670,9 @@ class Keeper:
             if abs(time.time()-stamp)>600:raise ValueError('Stale compound policy header')
             def read(target,signature,*args,count=1):
                 return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},block]))
+            profile={'accounting_version':self.accounting_version} if self.accounting_version in (5,6) else {}
             proof=observe(read,lambda target:self.rpc.call('eth_getCode',[target,block]),
-                contracts=self.contracts,code_hashes=self.config.get('code_hashes',{}),bucket=bucket)
+                contracts=self.contracts,code_hashes=self.config.get('code_hashes',{}),bucket=bucket,**profile)
             if proof['last_rebalance']>stamp:raise ValueError('Compound position checkpoint is in the future')
             final=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
             if (not isinstance(final,dict) or
@@ -662,13 +687,13 @@ class Keeper:
 
     def _compound_policy_allowed(self,bucket: int) -> bool:
         key=str(bucket)
-        confirmation=self.rebalance_confirmation.version in (1,2)
+        confirmation=self.rebalance_confirmation.version in (1,2,3)
         if confirmation and self.state.get(CONFIRMATION_RESETS,{}).get(key):
             self._rebalance_reset_due=bucket
             log('compound_waiting',bucket_id=key,reason='waiting_confirmation_clear',
                 scope='keeper_policy_not_contract_eligibility')
             return False
-        tracked=key in self.state.get(CONFIRMATION_STATE,{}) or key in self.state.get(CONFIRMATION_CLEARS,{})
+        tracked=key in self.state.get(self._confirmation_namespace(),{}) or key in self.state.get(CONFIRMATION_CLEARS,{})
         try:status=self._compound_policy_status(bucket)
         except CompoundPolicyUnconfigured:raise
         except (ValueError,RpcError):
@@ -679,7 +704,10 @@ class Keeper:
             except (ValueError,RpcError):
                 self._mark_confirmation_reset(bucket)
                 raise
-            side=1 if status['tick']<status['tick_lower'] else 2 if status['tick']>=status['tick_upper'] else 0
+            side=(status['threshold_side'] if self.rebalance_confirmation.version==3 else
+                1 if status['tick']<status['tick_lower'] else 2 if status['tick']>=status['tick_upper'] else 0)
+            if (self.rebalance_confirmation.version==3 and status['reference_threshold_required'] and
+                    side!=status['reference_threshold_side']):side=0
             acknowledged=key in self.state.get(CONFIRMATION_CLEARS,{})
             if record['nonempty'] and (acknowledged or side==0 or side!=record['side']):
                 # A same-hash inside/opposite-side read is negative evidence. A
@@ -700,7 +728,7 @@ class Keeper:
         try:
             number,stamp=proof['block_number'],proof['block_timestamp']
             digest=rpc_hash(proof['block_hash'],'compound confirmation proof hash')
-            schedule=self.state.get(CONFIRMATION_STATE,{}).get(str(bucket))
+            schedule=self.state.get(self._confirmation_namespace(),{}).get(str(bucket))
             clear=self.state.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
             if (schedule is not None and stamp<schedule['last_checked_at'] or
                     clear is not None and (stamp<clear['timestamp'] or number<clear['number'])):
@@ -744,13 +772,13 @@ class Keeper:
             raise RpcError('Compound confirmation evidence is unavailable') from exc
 
     def _compound_submission_ready(self,args: tuple[int|str,...]) -> bool:
-        if self.accounting_version!=4 or self.maintenance_policy_version!=2:return True
+        if self.accounting_version not in (4,5,6) or self.maintenance_policy_version not in (2,3):return True
         if len(args)!=3 or type(args[0]) is not int or not 0<args[0]<1<<256:
             raise ValueError('Malformed compound submission')
         return self._compound_policy_allowed(args[0])
 
     def _validate_upkeep_policy(self) -> None:
-        if self.maintenance_policy_version != 2: return
+        if self.maintenance_policy_version not in (2,3): return
         for name in ('strategy','pools'):
             pin = self.config.get('code_hashes',{}).get(name,'')
             code = self.rpc.call('eth_getCode',[self.contracts[name],'latest'])
@@ -762,12 +790,12 @@ class Keeper:
             if self.view(name,'access()') != int(self.contracts['access'],16) or \
                     self.view('access','module(bytes32)',module) != int(self.contracts[name],16):
                 raise RpcError('Outside-only module binding differs from the reviewed profile')
-        if self.view('strategy','MAINTENANCE_POLICY_VERSION()') != 2:
+        if self.view('strategy','MAINTENANCE_POLICY_VERSION()') != self.maintenance_policy_version:
             raise RpcError('Outside-only maintenance policy version differs')
 
     def _lp_routing_snapshot(self,header: dict[str,Any],*,use_cache: bool = False) -> dict[str,Any]:
         """Read one exact canonical state; only cycle discovery can reuse it."""
-        if self.lp_routing_version != 1: return
+        if self.lp_routing_version not in (1,2): return
         from zzz_ops.lp_execution import observe
         if not isinstance(header,dict): raise RpcError('Missing LP execution header')
         block={'blockHash':rpc_hash(header.get('hash'),'LP execution block hash'),'requireCanonical':True}
@@ -788,8 +816,10 @@ class Keeper:
         def read(target,method,*args):
             return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(method,*args)},block]))
         try:
-            for role in ('access','pools','liquidity','balancing_router','pool_manager','state_view') + (
-                    ('strategy',) if self.execution_quality_version == 1 else ()):
+            runtime_roles=('access','pools','liquidity','balancing_router','pool_manager','state_view')+(
+                ('strategy',) if self.execution_quality_version==1 else ())+(
+                ('lp_balance_math','lp_position_executor') if self.lp_routing_version==2 else ())
+            for role in runtime_roles:
                 expected=self.config.get('code_hashes',{}).get(role,'')
                 code=self.rpc.call('eth_getCode',[self.contracts[role],block])
                 if (not isinstance(expected,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',expected) or
@@ -803,7 +833,9 @@ class Keeper:
             observation=observe(read,liquidity=self.contracts['liquidity'],
                 router=self.contracts['balancing_router'],pool_manager=self.contracts['pool_manager'],
                 state_view=self.contracts['state_view'],access=self.contracts['access'],pools=self.contracts['pools'],
-                quality_version=self.execution_quality_version,strategy=self.contracts['strategy'])
+                quality_version=self.execution_quality_version,strategy=self.contracts['strategy'],
+                **({'routing_version':2,'math_helper':self.contracts['lp_balance_math'],
+                    'position_executor':self.contracts['lp_position_executor'],'portfolio_version':self.portfolio_version} if self.lp_routing_version==2 else {}))
         except (ValueError,TypeError,KeyError) as exc:
             raise RpcError('LP execution capability differs from the reviewed profile') from exc
         if hashlib.sha256(json.dumps(self.config,sort_keys=True,separators=(',',':')).encode()).hexdigest() != identity:
@@ -812,8 +844,7 @@ class Keeper:
             'block_timestamp':rpc_quantity(header.get('timestamp'),'LP execution timestamp',minimum=1),
             'configuration_sha256':identity,
             'runtime_code_hashes':{role:self.config['code_hashes'][role].lower()
-                for role in ('access','pools','liquidity','balancing_router','pool_manager','state_view')+(
-                    ('strategy',) if self.execution_quality_version == 1 else ())}}
+                for role in runtime_roles}}
         if cache is not None:
             if len(cache)>=8: cache.clear()
             cache[cache_key]=copy.deepcopy(result)
@@ -821,7 +852,7 @@ class Keeper:
 
     def _validate_lp_routing(self,*,use_cache: bool = False) -> None:
         """Fresh pre-simulation/signing checks never reuse discovery metadata."""
-        if self.lp_routing_version != 1: return
+        if self.lp_routing_version not in (1,2): return
         try:
             header=self.rpc.call('eth_getBlockByNumber',['latest',False])
             result=self._lp_routing_snapshot(header,use_cache=use_cache)
@@ -875,12 +906,23 @@ class Keeper:
             if self._lp_metadata_cache is not None:self._lp_metadata_cache.clear()
             self.lp_execution_health.update(state='unavailable',last_error=error_context(exc))
 
+    def _confirmation_namespace(self):
+        return PORTFOLIO_STATE_NAMESPACE if self.rebalance_confirmation.version==3 else CONFIRMATION_STATE
+
+    def _rebalance_delay(self,bucket):
+        if self.rebalance_confirmation.version!=3:return 60+secrets.randbelow(541)
+        previous=self.state.get('adjustment_jitter_last_v3',{}).get(str(bucket))
+        if previous is None:return 60+secrets.randbelow(241)
+        # Uniform over the other240delays; no unbounded rejection/restart loop.
+        selected=60+secrets.randbelow(240)
+        return selected+1 if selected>=previous else selected
+
     def _store_rebalance_schedule(self,bucket: int,record: dict[str,Any] | None) -> None:
         # Durability precedes both waiting and any eventual signer. A failed save
         # restores memory too; restart never draws a fresh delay to bypass it.
         previous = self.state
         updated = copy.deepcopy(previous)
-        namespace=CONFIRMATION_STATE if self.rebalance_confirmation.version in (1,2) else OUTSIDE_REBALANCE_STATE
+        namespace=self._confirmation_namespace() if self.rebalance_confirmation.version in (1,2,3) else OUTSIDE_REBALANCE_STATE
         schedules = updated.setdefault(namespace,{})
         if record is None:
             if str(bucket) not in schedules: return
@@ -888,7 +930,13 @@ class Keeper:
         else:
             if str(bucket) not in schedules and len(schedules) >= min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
                 raise ValueError('Outside-rebalance schedule inventory is full')
+            old=schedules.get(str(bucket))
             schedules[str(bucket)] = record
+            if namespace==PORTFOLIO_STATE_NAMESPACE and record['execute_after'] and (
+                    old is None or old['execute_after']==0 or old['identity']!=record['identity']):
+                delay=record['execute_after']-record['observed_at']
+                if not 60<=delay<=300:raise ValueError('Invalid fresh adjustment delay')
+                updated.setdefault('adjustment_jitter_last_v3',{})[str(bucket)]=delay
         self.state = updated
         try: self.save()
         except BaseException:
@@ -898,13 +946,13 @@ class Keeper:
     def _rebalance_due(self,bucket: int,fields: list[str],now: int,*,force: bool = False) -> bool:
         try:return self._rebalance_due_checked(bucket,fields,now,force=force)
         except (ValueError,RpcError):
-            if self.rebalance_confirmation.version in (1,2):self._mark_confirmation_reset(bucket)
+            if self.rebalance_confirmation.version in (1,2,3):self._mark_confirmation_reset(bucket)
             raise
 
     def _rebalance_due_checked(self,bucket: int,fields: list[str],now: int,*,force: bool = False) -> bool:
         self._rebalance_observation_due=None
         self._rebalance_reset_due=None
-        if self.maintenance_policy_version != 2:
+        if self.maintenance_policy_version not in (2,3):
             return bool(self.view('strategy','needsRebalance(uint256)',bucket))
         position = decode_position(fields,self.accounting_version)
         if position['status'] != 'active' or position['lp_token_id'] == 0:
@@ -925,11 +973,11 @@ class Keeper:
             self.config['code_hashes']['strategy'],self.contracts['pools'],self.config['code_hashes']['pools'],
             bucket,position['pool_id'],position['lp_token_id'],position['last_rebalance'],config,orientation]
         identity = '0x'+keccak256(json.dumps(basis,separators=(',',':')).encode()).hex()
-        if self.rebalance_confirmation.version in (1,2):
-            record=self.state.get(CONFIRMATION_STATE,{}).get(str(bucket))
+        if self.rebalance_confirmation.version in (1,2,3):
+            record=self.state.get(self._confirmation_namespace(),{}).get(str(bucket))
             if record is not None and now<record['last_checked_at']:
                 raise RpcError('Confirmation chain clock retreated')
-            if int(config[6],16)!=1 or now<position['last_rebalance']+interval:return False
+            if int(config[6],16)!=1 or (self.rebalance_confirmation.version!=3 and now<position['last_rebalance']+interval):return False
             return self._confirmed_rebalance_due(bucket,identity,now,force=force)
         record = self.state.get(OUTSIDE_REBALANCE_STATE,{}).get(str(bucket))
         if record is not None and record['identity'] != identity:
@@ -961,7 +1009,7 @@ class Keeper:
         if self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket)):
             self._rebalance_reset_due=bucket
             return False
-        record=self.state.get(CONFIRMATION_STATE,{}).get(str(bucket))
+        record=self.state.get(self._confirmation_namespace(),{}).get(str(bucket))
         if record is not None and now<record['last_checked_at']:
             raise RpcError('Confirmation chain clock retreated')
         # The four-minute cadence is an evaluation schedule, not an attestation
@@ -1013,6 +1061,8 @@ class Keeper:
             status['maximum_gap_seconds'],status['review_hash'],status['manual'],
             status['identity'] if not status['manual'] else None,
             status['first_seen'] if not status['manual'] else None]
+        if self.rebalance_confirmation.version==3:
+            policy.extend((status['portfolio_control_fingerprint'],status['portfolio_policy_revision']))
         identity='0x'+keccak256(json.dumps(policy,separators=(',',':')).encode()).hex()
         if record is not None and record['identity']!=identity:
             self._store_rebalance_schedule(bucket,None);record=None
@@ -1022,26 +1072,53 @@ class Keeper:
             self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
                 last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS,execute_after=0))
             return False
-        if self.rebalance_confirmation.observation_due(status,now):
+        enrolled=(self.rebalance_confirmation.version!=3 or
+            now>=self._confirmation_enrollment_at(status))
+        if enrolled and self.rebalance_confirmation.observation_due(status,now):
             self._rebalance_observation_due=bucket
         if not status['manual'] and status['maximum_gap_seconds']==0:
             self.blocked_actions+=1
             log('confirmation_policy_stopped',bucket_id=str(bucket))
         if not status['ready']:
             self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
-                last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS,execute_after=0))
+                last_checked_at=now,next_check_at=self._next_confirmation_check(status,now),execute_after=0))
             return False
         if record is not None and record['execute_after']:
             if now>=record['execute_after']:return True
             updated=dict(record,last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS)
             self._store_rebalance_schedule(bucket,updated)
             return False
-        delay=60+secrets.randbelow(541)
+        delay=self._rebalance_delay(bucket)
         self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
             last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS,execute_after=now+delay))
         log('rebalance_scheduled',bucket_id=str(bucket),execute_after=now+delay,manual_range=status['manual'],
             sampled_confirmation=True)
         return False
+
+    def _next_confirmation_check(self,status,now):
+        """A maturity/cooldown boundary may precede the ordinary240-second read.
+
+        Early reads grant no execution permission and never extend the strict
+        on-chain maximum gap. Historical schedules keep their original cadence.
+        """
+        due=now+CONFIRMATION_CHECK_SECONDS
+        if self.rebalance_confirmation.version==3:
+            enrollment=self._confirmation_enrollment_at(status)
+            boundaries=((enrollment,) if now<enrollment and not status['manual'] else
+                (status.get('earliest_confirmation_at'),status.get('earliest_cooldown_at')))
+            for stamp in boundaries:
+                if type(stamp) is int and now<stamp<due:due=stamp
+        return due
+
+    @staticmethod
+    def _confirmation_enrollment_at(status):
+        """Service-only paid-window lead; raw checks and resets remain active.
+
+        Only the final duration+max-gap before the hard cooldown needs a paid
+        ordinary window. Already-eligible work begins immediately. No earlier
+        uninterrupted history is inferred or old on-chain observation erased.
+        """
+        return max(0,status['earliest_cooldown_at']-status['duration_seconds']-status['maximum_gap_seconds'])
 
     def _confirmation_status(self,bucket: int) -> dict[str,Any]:
         try:return self.rebalance_confirmation.status(bucket)
@@ -1050,12 +1127,12 @@ class Keeper:
             raise
 
     def _mark_confirmation_reset(self,bucket: int,*,force: bool = False) -> None:
-        if self.rebalance_confirmation.version not in (1,2):return
+        if self.rebalance_confirmation.version not in (1,2,3):return
         already_needed=self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))
-        if already_needed and str(bucket) not in self.state.get(CONFIRMATION_STATE,{}):return
+        if already_needed and str(bucket) not in self.state.get(self._confirmation_namespace(),{}):return
         previous=self.state;updated=copy.deepcopy(previous)
         clear=updated.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
-        schedules=updated.get(CONFIRMATION_STATE,{})
+        schedules=updated.get(self._confirmation_namespace(),{})
         stale_schedule=schedules.pop(str(bucket),None)
         if clear is not None and not force:
             if clear['awaiting_healthy_read'] and stale_schedule is None:return
@@ -1080,20 +1157,20 @@ class Keeper:
 
     def _mark_known_confirmation_resets(self) -> None:
         """Invalidate only known fresh windows after an initial raw-state fault."""
-        if self.rebalance_confirmation.version not in (1,2) or self.state.get('pending'):return
-        buckets=set(self.state.get(CONFIRMATION_STATE,{})) | set(self.state.get(CONFIRMATION_CLEARS,{}))
+        if self.rebalance_confirmation.version not in (1,2,3) or self.state.get('pending'):return
+        buckets=set(self.state.get(self._confirmation_namespace(),{})) | set(self.state.get(CONFIRMATION_CLEARS,{}))
         for bucket in sorted(buckets,key=int):self._mark_confirmation_reset(int(bucket))
 
     def _rebalance_submission_ready(self,args: tuple[int|str,...]) -> bool:
-        if self.maintenance_policy_version != 2: return True
+        if self.maintenance_policy_version not in (2,3): return True
         if len(args) != 3 or type(args[0]) is not int:
             raise ValueError('Malformed outside-rebalance submission')
         try:
             fields,_ = self._bucket(args[0])
             _,fresh = self._head()
-            return self._rebalance_due(args[0],fields,fresh,force=self.rebalance_confirmation.version in (1,2))
+            return self._rebalance_due(args[0],fields,fresh,force=self.rebalance_confirmation.version in (1,2,3))
         except (ValueError,RpcError):
-            if self.rebalance_confirmation.version in (1,2):self._mark_confirmation_reset(args[0])
+            if self.rebalance_confirmation.version in (1,2,3):self._mark_confirmation_reset(args[0])
             raise
 
     def _adaptive_range_target(self,pool: str,now: int) -> int:
@@ -1137,14 +1214,14 @@ class Keeper:
         else:
             threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
             due = any(amount >= threshold for amount in reserves)
-        if due and self.accounting_version == 4:
+        if due and self.accounting_version in (4,5,6):
             # Authoritative shared cooldown includes other keepers and the last
             # rebalance. Never infer it solely from this sender's journal.
             if not self._compound_ready(bucket):return False
             # Avoid physical reads when no compound is possible. During hard
             # cooldown Budget may allow a range exit, so the service still
             # requires this additional fresh physical proof before proceeding.
-            return self.maintenance_policy_version!=2 or self._compound_policy_allowed(bucket)
+            return self.maintenance_policy_version not in (2,3) or self._compound_policy_allowed(bucket)
         if due and item.get('compound_idle',False):
             chain_last,chain_interval = self._idle_compound_checkpoint(bucket,fields)
             if now < max(last,chain_last)+max(interval,chain_interval): return False
@@ -1154,7 +1231,7 @@ class Keeper:
         return uint_result(self.rpc.eth_call(self.contracts[name],self._calldata(signature,*args)))
 
     def _asset(self,value: Any) -> str:
-        if self.accounting_version in (2,3,4) and isinstance(value,str) and value.lower() == NATIVE_ASSET:
+        if self.accounting_version in (2,3,4,5,6) and isinstance(value,str) and value.lower() == NATIVE_ASSET:
             return NATIVE_ASSET
         return address(value)
 
@@ -1197,7 +1274,7 @@ class Keeper:
                 raise RpcError('LP-only fee-controller runtime differs from the reviewed keeper profile')
             if self.view('fees','FEE_INTAKE_VERSION()') != 1:
                 raise RpcError('LP-only fee-intake version differs from the reviewed keeper profile')
-        if self.accounting_version == 4:
+        if self.accounting_version in (4,5,6):
             for name in ('access', 'principal_exit'):
                 pin = self.config.get('code_hashes',{}).get(name, '')
                 code = self.rpc.call('eth_getCode', [self.contracts[name], 'latest'])
@@ -1208,14 +1285,14 @@ class Keeper:
             module = '0x'+keccak256(b'ZZZMigration').hex()
             if (self.view('access','module(bytes32)',module) != int(self.contracts['principal_exit'],16) or
                     self.view('principal_exit','access()') != int(self.contracts['access'],16) or
-                    self.view('principal_exit','CUSTODY_VERSION()') != 3):
+                    self.view('principal_exit','CUSTODY_VERSION()') != (4 if self.accounting_version in (5,6) else 3)):
                 raise RpcError('Holder-exit module binding or capability differs')
         self._validate_upkeep_policy()
 
     def lp_exit_started(self) -> bool:
         # Historical controllers have no such getter. Their profiles and
         # pending journals must never inherit a fabricated retirement state.
-        if self.accounting_version != 4: return False
+        if self.accounting_version not in (4,5,6): return False
         value = self.view('access','lpExitStarted()')
         phase = self.view('principal_exit','exitPhase()')
         if value not in (0,1) or not 0 <= phase <= 3 or bool(value) != bool(phase):
@@ -1304,7 +1381,7 @@ class Keeper:
 
     def _receipt_harvest_bucket(self,pending: dict[str,Any],receipt: dict[str,Any]) -> int | None:
         """Optional accounting4 clock proof; never a substitute for paid recovery."""
-        if self.accounting_version != 4:return None
+        if self.accounting_version not in (4,5,6):return None
         match=re.fullmatch(r'(compound|rebalance):([1-9][0-9]{0,77})',pending['key'])
         if match is None or pending['value']!=0:return None
         action,bucket=match[1],int(match[2])
@@ -1461,7 +1538,7 @@ class Keeper:
                 clears[reset[1]]={
                     'number':block,'hash':block_hash,'timestamp':timestamp,'nonce':pending['nonce'],
                     'awaiting_healthy_read':True}
-                updated.get(CONFIRMATION_STATE,{}).pop(reset[1],None)
+                updated.get(self._confirmation_namespace(),{}).pop(reset[1],None)
         else:
             updated.setdefault('retry_after',{})[pending['key']] = timestamp+self.retry_cooldown
             failed_confirmation=self._interrupted_confirmation_bucket(pending)
@@ -1471,7 +1548,7 @@ class Keeper:
                 if key not in resets and len(resets)>=min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
                     raise RpcError('Confirmation reset inventory is full; preserve pending recovery')
                 resets[key]=True
-                updated.get(CONFIRMATION_STATE,{}).pop(key,None)
+                updated.get(self._confirmation_namespace(),{}).pop(key,None)
         if metadata_records is not None: updated['metadata_refresh']['notified'] = metadata_records
         updated['pending'] = None
         updated['next_nonce'] = pending['nonce']+1
@@ -1529,7 +1606,7 @@ class Keeper:
         if lp_balance_action:self._validate_lp_routing()
         confirmation_action=name=='rebalance_confirmation' and signature in ('observe(uint256)','resetObservation(uint256)')
         if confirmation_action:
-            if self.rebalance_confirmation.version not in (1,2) or len(args)!=1:
+            if self.rebalance_confirmation.version not in (1,2,3) or len(args)!=1:
                 raise ValueError('Observation requires the explicit reviewed confirmation profile')
             if signature=='observe(uint256)':self._confirmation_status(args[0])
             else:self.rebalance_confirmation.validate()
@@ -1723,7 +1800,7 @@ class Keeper:
         if type(record.get('ordinal')) is not int or record.get('token_id') != str(token) or \
             ordinal > MAX_METADATA_SUPPLY or token >= 1 << 256 or \
             type(record.get('available')) is not bool or type(record.get('traits_ready')) is not bool or \
-            type(record.get('stage')) is not int or not 0 <= record['stage'] <= (4 if self.accounting_version == 4 else 3) or \
+            type(record.get('stage')) is not int or not 0 <= record['stage'] <= (4 if self.accounting_version in (4,5,6) else 3) or \
             not record['available'] and record['stage'] != 1 or \
             not record['traits_ready'] and (record['stage'] != 0 or not record['available']):
             raise ValueError('Noncanonical metadata state')
@@ -1926,7 +2003,7 @@ class Keeper:
             if self.principal_exit_started is not True:
                 self._mark_confirmation_reset(bucket)
             raise RpcError('Malformed shared-pool state')
-        if self.accounting_version not in (3,4):
+        if self.accounting_version not in (3,4,5,6):
             if int(fields[8],16) == 0 or int(fields[13],16) == 0:
                 raise RpcError('Missing shared-pool provenance')
             for index in (9,10,12,14): self._address_word(fields[index])
@@ -1950,7 +2027,7 @@ class Keeper:
             raise
         if status == 'exited' and (int(fields[1],16) or int(fields[2],16) or int(fields[3],16) or not self.lp_exit_started()):
             raise RpcError('Exited shared pool retains principal or lacks its lifecycle lock')
-        if status == 'parked' and self.accounting_version not in (3,4) and (
+        if status == 'parked' and self.accounting_version not in (3,4,5,6) and (
                 position['location_chain'] != self.chain or position['location_vault'] != self.contracts['vault']):
             raise RpcError('Parked principal is not in this local vault')
         try:
@@ -1962,7 +2039,7 @@ class Keeper:
             if len(accounting) != 14 or accounting[1:] != config[1:]:
                 raise RpcError('Accounting configuration differs from the venue policy')
             tokens = [self._asset_word(accounting[0]),self._address_word(accounting[1])]
-            if self.accounting_version in (2,3,4):
+            if self.accounting_version in (2,3,4,5,6):
                 if accounting != config: raise RpcError('Native accounting currencies differ from actual venue currencies')
             elif int(config[0],16) == 0:
                 wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
@@ -2047,7 +2124,7 @@ class Keeper:
         return False
 
     def _interrupted_confirmation_bucket(self,pending: Any) -> int | None:
-        if self.rebalance_confirmation.version not in (1,2) or not isinstance(pending,dict):return None
+        if self.rebalance_confirmation.version not in (1,2,3) or not isinstance(pending,dict):return None
         key=pending.get('key')
         if not isinstance(key,str):return None
         match=re.fullmatch(r'(rebalance|rebalance_observation|rebalance_reset):([1-9][0-9]{0,77})',key)
@@ -2078,9 +2155,9 @@ class Keeper:
         fairness. A serial sender can still miss strict gaps under slow finality
         or several simultaneous windows; this is priority, never an SLA.
         """
-        if self.rebalance_confirmation.version not in (1,2) or preparing or lp_exit:
+        if self.rebalance_confirmation.version not in (1,2,3) or preparing or lp_exit:
             return False
-        schedules = self.state.get(CONFIRMATION_STATE,{})
+        schedules = self.state.get(self._confirmation_namespace(),{})
         resets = self.state.get(CONFIRMATION_RESETS,{})
         clears = {key for key,record in self.state.get(CONFIRMATION_CLEARS,{}).items()
             if record['awaiting_healthy_read']}
@@ -2159,7 +2236,7 @@ class Keeper:
                 bucket=self._interrupted_confirmation_bucket(pending)
                 if bucket is not None:self._confirmation_recovery_interrupted.add(bucket)
             raise
-        if self.rebalance_confirmation.version in (1,2) and self._confirmation_recovery_interrupted:
+        if self.rebalance_confirmation.version in (1,2,3) and self._confirmation_recovery_interrupted:
             for bucket in self._confirmation_recovery_interrupted:
                 self._mark_confirmation_reset(bucket)
             self._confirmation_recovery_interrupted.clear()
@@ -2234,14 +2311,14 @@ class Keeper:
                 self._validate_maintenance_settings(item)
                 fields,tokens = self._bucket(bucket)
                 status = decode_position(fields,self.accounting_version)['status']
-                if self.maintenance_policy_version == 2 and status != 'active':
+                if self.maintenance_policy_version in (2,3) and status != 'active':
                     self._store_rebalance_schedule(bucket,None)
                 if status in ('none','dormant'): continue
                 # Canonical funded revenue and claims remain available during
                 # pauses and while the physical LP is away. No principal moves.
                 if self.fee_intake_version == 0 and item.get('sync_external_rewards',True) and self._sync_external(bucket): return
                 if paused:
-                    if (self.rebalance_confirmation.version in (1,2) and status=='active' and not lp_exit and
+                    if (self.rebalance_confirmation.version in (1,2,3) and status=='active' and not lp_exit and
                             bucket not in confirmation_checked):
                         if bucket not in self._confirmation_pause_seen:
                             self._mark_confirmation_reset(bucket)
@@ -2285,7 +2362,7 @@ class Keeper:
                             log('maintenance_deferred',bucket_id=str(bucket),**error_context(exc))
                     # Fresh accounting4 defaults to hourly independent collection;
                     # historical profiles keep their original omitted-field schedule.
-                    default_harvest = 3600 if self.accounting_version == 4 else 14400
+                    default_harvest = 3600 if self.accounting_version in (4,5,6) else 14400
                     interval = positive(item.get('harvest_interval_seconds',default_harvest),'harvest_interval_seconds')
                     if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
                         if maintenance_failed:

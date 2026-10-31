@@ -1,317 +1,193 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed 2026-10-29. Read [current context](PROJECT_CONTEXT.md), [README](README.md),
-[sole Todo](TODO.md) and the relevant [operator procedure](docs/OPERATOR_MANUAL.md)
-before changing behavior. This file contains current instructions, not a timeline.
+Reviewed2026-10-31. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+[sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
+[operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
+This file is current instructions, not a report timeline.
 
-## Repository and authorization boundaries
+## Authorization and preservation
 
-- Contract repository: `ABEF/AAA`, this checkout. Website: `ABEF/AAA-website`,
-  sibling `aaa-website`. Use **main only**, as explicitly requested by the user.
-- Git publication is not deployment. No public contract transaction, deployment,
-  sealing, operating-service change or website rollout is authorized by a docs
-  or source publication request. Verify exact local/remote heads before saying
-  pushed. Current production status is **NOT APPROVED**.
-- Preserve existing local Anvil services, port8902, NFTs, LP, balances, transaction
-  journals and website dist overlay. Do not reset/relabel old deployments to
-  match newer source profiles. Historical codecs and receipt recovery remain.
-- Public sites are distinct: `popldemo.0xwave.com` keeps the existing simulation;
-  `poplint.0xwave.com` is the separately built current-contract read/unsigned-review
-  site. See [environment map](docs/SITE_ENVIRONMENTS.md); never use the demo
-  installer/root/dist for poplint. Missing integration configuration is not demo data.
-- Browser signing remains **Anvil-only**; public `DEPLOYMENT` remains null.
-  The staging heartbeat was paused by the user; do not restart it.
-- Never print, log or commit keys, credentialed endpoints, keystores or passwords.
-  Preserve unrelated work. Read Git status and the handoff before staging;
-  archive original dirty documentation before consolidating it.
-- Website product changes normally follow local edit/verification, website
-  commit/push, then authorized server deployment. Contract/docs-only changes
-  may update website memory; they do not change its source, build or server.
+- Contract repository ABEF/AAA is this checkout; website ABEF/AAA-website is sibling
+  aaa-website. **Main only**, as requested. Read Git status before edits/staging;
+  verify exact local/remote heads before claiming pushed. Production NOT APPROVED.
+- Source/docs publication is not deployment. It authorizes no public transaction,
+  sealing, operating-service change, website rollout or local-chain reset.
+- Preserve existing Anvil8902, NFTs/LP/balances, journals and dist overlay. Never
+  relabel old runtimes, codecs or pending records as a newer profile.
+- Popldemo is the existing simulation; poplint is separately built read/unsigned
+  integration. Follow [environment map](docs/SITE_ENVIRONMENTS.md). Missing actual
+  integration config is unavailable data, not demo data. Do not use demo roots,
+  installers or dist for poplint. Current source6 is not the served current3 site.
+- Browser signing remains **Anvil-only**, public DEPLOYMENT null. Staging heartbeat
+  was paused by the user; never restart it without explicit authorization.
+- Never print/log/commit keys, passwords, credentialed RPC endpoints or keystores.
+  Preserve unrelated work and archive original dirty docs before consolidation.
+- Preserve four unrelated tracked dirty files byte-identically: reports/source-checks.json,
+  scripts/run-fork-checks.py, tests_python/test_fork_runner.py and
+  tests_python/test_frontend_history.py. Original hashes/evidence locations are in
+  the [handoff](docs/WORK_HANDOFF.md). Do not stage unrelated untracked drafts.
 
-## Current architecture and rules
+## Fresh architecture and rules
 
-- Fresh candidate: accounting4, direct governance2, fee intake1, custody3,
-  pricing2, Entry routing2, LP execution1, reviewed Entry1 and local canonical V5. See
-  [exact profile](docs/POSITION_V4.md) and [inventory](docs/PRODUCTION_PREFLIGHT.md).
-  No automatic historical profile/journal migration or dummy module bindings.
-- One fixed deployment ZZZ token and native ETH are the only contribution inputs.
-  Buyback and collective holder return use that same ZZZ. Token identity is not
-  replaceable after seal. Issuer/chain migration has no external custody executor.
-  Marketplace royalty currencies and optional conversion routes are separate.
-- Activation minimum $100; growth minimum $5, subject to stronger pool minima.
-  Two independently reviewed USD sources per priced asset; agreement tolerance
-  3%. Actual marginal deployed LP must satisfy captured contribution loss limits
-  and a caller maximum. Defaults: contribution2%, conversion1%, maintenance3%;
-  each governance ceiling10%, gas separate. Do not confuse source agreement,
-  budget retention, idle ceilings or caller minima with each other.
-- Fresh Strategy maintenance policy2 uses actual physical tick range exit or deliberate operator range change after the configured hard interval (initial12hours), never the old movement trigger. Historical matching keeper policy2 adds durable60-600second service jitter/hourly ordinary inside checks; fresh confirmation2 below uses240-second checks; preserve manual widths and fast independent receipt/harvest work. Budget capability3 uses max(lastCompound,lastRebalance) plus its independent per-pool compoundInterval (default3600seconds, governed600seconds-7days), yields to due rebalance and never changes its clock. Fresh API configs declare policy2; explicit historical policy1/helper2 and older readers/journals remain separate. See [current evidence](reports/maintenance-policy-20261027/VERIFICATION.md).
-- Fixed LP allocation80/10/5/5: individual shares / equal activated collective /
-  compound / ZZZ buyback-burn. Rarity affects only actual received royalties at
-  Commun1/Rare2/Legendary3. No Power score or configurable split.
-- One contribution pool enabled at a time; historical custody buckets remain
-  bounded for movement/history. Many NFTs share a physical LP with independent
-  nonredeemable shares. The selected native ETH/ZZZ v4 pool is static/hookless;
-  actual dependency/fee/route qualification remains required.
-- No creator-payment inboxes, integrated bridges, remote-proof intake or remote
-  ownership/reward ledgers in current contracts. Retain compatible same-chain
-  handoff before LP exit, same-native-pair pool moves and parking. No external
-  principal or royalty custody-address exit remains. All production LP pools are ETH/ZZZ.
-- Governance acts directly, without timelock machinery. A paused collective exit
-  permanently stops new principal/mint activity, closes all ETH/ZZZ buckets and
-  allocates actual principal plus pending compound by NFT shares. Bounded direct
-  payouts go only to current owners, with owner fallback for rejecting receivers.
-  NFTs retain transfers/future royalties/old reward claims. Buyback and reward
-  liabilities stay separate; no external recipient, swap exit or sweep exists.
-  Post-exit canonical replacement is blocked; see the holder-exit runbook.
-- One human operator (the user) controls governance and operates the services;
-  operator and governance are not separate people or approval roles. Keep the
-  automated keeper's limited key/capability distinct from governance. No extra
-  operator role, mandatory multi-person committee or new wallet is implied.
-- Current owner holds unclaimed rights, including prior owners' accruals.
-  NFT earnings are individual+collective LP plus royalties, excluding reserves
-  and duplicate claims/conversions/imports. Earnings, claimable and claimed differ.
-  Missing or inconsistent data must remain unavailable/error, never guessed zero.
+- Fresh [profile6](docs/POSITION_V6.md): accounting6/portfolio2/maintenance3/
+  confirmation3/compound4/custody4/emergency2/LP-routing2, pricing2/Entry-routing2/
+  reviewedEntry2/directgovernance2/fee-intake1. Position remains eight words;
+  compatible parked same-chain canonical V6 wire does not imply runtime compatibility.
+  Schema8 inventory has21helpers. Historical schema6 is inspection-only; historical
+  codecs/readers/receipts/journals remain separate and explicit.
+- Only native ETH and one fixed deployment ZZZ are contribution/LP assets.
+  Buyback/holder return use that same ZZZ. Token identity cannot change after
+  seal; issuer/chain migration uses terminal holder exit and redeployment, with
+  no external principal/royalty custody address or integrated bridge.
+- Activation/growth minima default$100/$5; ProtocolPolicy governs future minima
+  >=1USD, growth<=activation, subject to stronger admitted minima. Use two
+  independently reviewed USD sources per priced asset, agreement tolerance3%.
+  Prove actual marginal deployed LP and captured caller/operation floors. Default
+  contribution2%, conversion1%, maintenance3%; governance ceilings10%, gas separate.
+  Additional execution-loss default1% after actual directional core fees is distinct
+  from gross budgets, oracle agreement, governed idle ceilings(default5%) and caller minimums.
+- Fixed80/10/5/5 actual LP revenue allocation: individual / equal activated
+  collective / compound / ZZZ buyback-burn. Rarity affects only actual received
+  royalties at Commun1/Rare2/Legendary3. No configurable split or Power score.
+- One contribution pool at a time. At most four admitted/historical custody
+  buckets; each is one logical share account, with default one main physical LP
+  or optional main plus ONE residual in that same native ETH/fixed-ZZZ pool.
+  Both NFTs stay Vault-owned. Never add raw L across different ranges for value.
+- User approved optional hybrid main>=60%/residual<=40% of post-cost attributed
+  principal AT replacement; it is not a continuously maintained target. Initial
+  residual width is HALF corresponding main side, default5000bps, governed1–10000.
+  Use the configured positive full tick-spacing gap beyond spot(default1); default50–150 main yields
+  approximately75–100 or100–125 residual before gap/rounding. Mode defaultsOFF.
+  Filled/mixed/outside residuals remain valued/harvested. Disabling desired mode
+  records a pending guarded whole merge, never drops backing or creates a third leg.
+- Ordinary fresh threshold85%actual centre-to-boundary ZZZ-in-ETH price distance;
+  both physical price and independent reference must corroborate the same side.
+ 600-second sampled window/strict maximum gap300; source checks240seconds;
+  then durable freshly drawn60–300-second jitter. Initial hard12hours remains.
+  Returning inside/fault/identity/control changes reset sampled evidence/jitter.
+  Manual geometry changes apply after cooldown as an explicit exception.
+  This is sampled evidence, not uninterrupted history or MEV immunity.
+- Raw checks can occur during cooldown. Paid enrollment starts near eligibility
+  (earliest-duration-maxgap), avoiding many redundant nonce/gas writes. Preserve
+  pending-first recovery, reset acknowledgements and receipt provenance. Main
+  contributions do not invalidate stable geometry identity or reset clocks.
+- Manager's typed LP child has fixed parent/core/periphery and Vault recipients;
+  no delegatecall/generic executor/sweep. Vault approves individual LP IDs, not
+  collection-wide approval. Math child is read-only. Constructors now deploy
+  standalone Budget/Policy/Confirmation/Balancer in reviewed order with frozen
+  Access module parents; no dummy bindings or manual journal migration.
+- Balancing uses a bounded list of reviewed venues independent of LP destination,
+  actual-core quotes and captured valuation. Empty list disables swaps with no
+  fallback. Hybrid natural>=configured main floor(default60%) needs no trade; otherwise bounded partial sizing
+  targets rounding headroom. Every ordinary new main, single or hybrid, must be
+  physically active before/after mint/refund callbacks; hybrid also proves its
+  main-floor allocation. Initial/growth and explicit emergency remain separate. At most one balancing swap;
+  no automatic unsafe fallback if liquidity/fees make placement impossible.
+- Contributions checkpoint incumbents, swap/deploy entrant funds only, increase
+  MAIN only, verify marginal deployed LP and issue shares from aggregate NAV.
+  Existing idle/compound/residual cannot fund entrant execution floors. Never
+  recenter, reset rebalance clocks or modify residual L during activation/growth.
+- Hourly harvest collects both legs and applies80/10/5/5 once per actual asset
+  receipt. Claims, conversions, compound and burn are separate. Compound uses
+  independent governed interval after max(lastCompound,lastRebalance); service
+  waits for in-range main below the adjustment threshold/no pending geometry. Preserve authenticated internal-
+  harvest coalescing and raw need vs sampled readiness vs timing diagnostics.
+- Both legs close for same-pair movement, parking and terminal holder return.
+  Source controls compare captured sourcePool during movement. Stable geometry
+  fingerprint excludes L; parking/emergency fingerprint includes both IDs/ticks/L.
+  Canonical V6 capture/import/activation requires zero registered live residuals.
+- Collective exit is paused-governance-triggered, terminal, no swaps required.
+  Close actual ETH/ZZZ and designated compound; allocate by NFT shares, pay current
+  owners through bounded isolated direct batches. Rewards/buyback backing stay
+  separate; NFTs keep transfers/future royalties/old claims. No custody recipient,
+  reopening or post-exit canonical replacement. Post-exit venue admission is
+  reserve-only after Ready with deposits disabled; cannot reopen principal.
+- One human operator/governance (the user), not two people or a committee.
+  Automated keeper's limited key/capability remains distinct. Governance direct,
+  no timelock. Sealing fixes implementation/module/venue parent/token identities;
+  many reviewed policies/routes remain configurable within explicit bounds.
+- Manual Vault.rebalance requires actual keeper permission and preserves on-chain
+  guards; it bypasses only service scheduling. Paused governance-only emergency2
+  uses a separate exact manifest with optional financial guards and can lose nearly
+  all principal. It is never automated day-to-day fallback. Same-key out-of-band
+  signing requires nonce/receipt/spend journal reconciliation, never guessed adoption.
+- Current owner owns prior unclaimed rights. Earned/claimable/claimed differ;
+  conversion/claim/import is not new income. Missing/inconsistent data remains
+  unavailable/error, never guessed zero. Royalty currencies are separate from
+  permitted contribution inputs and preserve outage/deferred-entry entitlements.
 
-- Requested next LP operating policy is recorded in [execution decisions](docs/LP_EXECUTION_POLICY.md): manual +/-25/50% selection, twelve-hour outside-only upkeep (fresh confirmation2 checks every240seconds after cooldown) and durable 1-10-minute service jitter, best reviewed execution venues independent of the LP target and $1m cumulative contributions per NFT. Policy2/Budget3 timing and LP routing1 bounded reviewed-venue selection/actual-core sizing are implemented. Contributions swap/deploy only entrant budgets; incumbent idle/compound stays in NAV for guarded maintenance. Empty execution list disables swaps with no fallback. Fresh profiles bind Manager/balancer version/runtime/parent/core/state; Entry routing2 remains separate. Venue slippage is governed1-1000bps; operating values/caller/captured floors are not widened automatically. See [new review](reports/atomic-routing-20261028/REVIEW.md). Twelve hours is a hard initial minimum, explicit range changes may apply inside after cooldown, and compounding has its own interval. Do not silently interpret 1% centring tolerance as the old movement trigger or replace independent pricing with pool spot.
+## Adaptable policy source boundary
 
-- Direct manual `Vault.rebalance` uses an actual keeper grant (governance alone is not enough), bypasses only service jitter/check scheduling and preserves all on-chain guards. Follow [manual procedure](docs/OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time). Same-service-key signing outside its journal requires reviewed nonce/receipt/spend reconciliation; restart or new LP/timer discovery alone cannot adopt it. No manual transaction/service change is authorized by updating these instructions.
+ProtocolPolicy1 is separately predeployed and Access-bound once before consumers.
+Current defaults remain100USD activation/5USD growth/0.05ETH direct mint,500bps
+entry and maintenance idle,180k payout/500k source/250k optional royalty sync gas,
+1000/10000USD cosmetic thresholds. Governed bounds and exact procedures are in
+[policy](docs/ADAPTABLE_POLICY.md) and [operator](docs/OPERATOR_MANUAL.md#future-operating-settings).
+Future minima>=1USD; lowering changes future participant economics. Mint payee
+propose/accept changes future payments only. New mint binds sale+VRF fingerprint;
+Entry2 binds exact entry fingerprint before callbacks. Scoped revisions prevent
+restore-to-revive reviews and avoid cosmetic/gas/mint changes resetting LP samples.
+Portfolio2 main floor6000–9999bps; hard6000 stays because lowering was not approved.
+Gas bounds100k–1m are engineering limits, not provider/chain qualification.
+Provider rotation requires all draws finalized, no pending reroll/retargeting.
+Coordinator runtime is pinned for new requests; original-address callbacks may
+drain before planned rotation. Codehash does not freeze proxy implementations.
+Canonical V6 rejects old schemas early and binds helper/runtime/config commitment;
+threshold VALUES must match during source/import lifecycle, not local revisions.
+Current owner/rewards/quotas/ETH-ZZZ/fixed splits and terminal custody guarantees
+are unchanged. No deployment/service/site/Anvil/journal/signing change authorized.
 
-- Fresh execution-quality1 binds Strategy-owned additionalLossBps(default100,
-  governance0-1000), actual directional core fees and captured monotonic quality
-  revision. Existing gross/caller/operation floors and separate converter policy
-  remain. Explicit keeper/API execution_quality_version1/runtime/owner checks;
-  historical absent/0 stays historical. See [scope](docs/EXECUTION_QUALITY.md) and
-  [evidence](reports/fee-impact-policy-20261028/VERIFICATION.md). Strategy storage
-  changes belong only to a fresh deployment. Passive/40% trigger strategies
-  remain discussion only. Fresh confirmation2 adds a fixed Strategy child and
-  Budget gate. Selected duration900seconds/max observation gap300seconds;
-  constructor gap0 blocks ordinary readiness until reviewed configuration.
-  Matching keeper checks every240seconds after cooldown, with durable reset
-  requirements after faults/startup/pause and canonical receipt recovery. Greater
-  gaps restart; delays beyond the roughly60-second scheduling margin can still
-  restart. The user approved240-second source checks on2026-10-29; on-chain900/300
-  stays unchanged. No installed worker was restarted.
-  Preserve raw eligibility versus sampled readiness, manual width exception after
-  cooldown, compound yielding, independent harvest and jitter after readiness.
-  This is sampled evidence, never uninterrupted history/MEV protection. Match
-  helper/version/runtime/profile; never relabel old deployments/journals. See
-  [policy](docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
-  No service/site/Anvil change is authorized by source publication.
+## Verification and records
 
-- [Current buffer audit](reports/practical-improvements-20261028/VERIFICATION.md)
-  captures raw evidence across maintenance, preserves post-exit parent-only
-  orientation invalidation, scopes resets to relevant faults, prevents repeated
-  paid clears via canonical acknowledgements and requires fresh recovery reads.
-  Failed related receipts atomically require reset; new windows draw new jitter.
-  Confirmation1 requires explicit main poll60-240seconds; source sample240 and
-  selected strict maxgap300 are different. Preserve versioned journals and old services. Current
-  inventory schema6 observes17helpers; historical5 is inspection-only. Health2
-  writer/checker rollout remains unqualified; local file hashes are not attestation.
+- Current source-scoped [adaptable-policy evidence](reports/adaptable-policy-20261031/VERIFICATION.md)
+  binds52 production sources/31 dependencies and43 normal gates at final0a.
+  Vault635/Budget237/Migration20 runtime headroom is exact-source evidence, not
+  future edit capacity or target-chain gas qualification. Current callable
+  reference is37contracts/826functions/37constructors/14receivers, zero gaps.
+- Scoped EVM/backend campaigns retain original failures, empty attempts, corrected
+  retries and body-based reuse. They are not a current full suite, published CI,
+  provider/operating acceptance or independent audit. Older42-gate/778-callable/
+  463-static reports are historical; refresh analysis before release approval.
+- Offline operator-review tooling only hashes a strict source-bound manifest and
+  orders explorer inputs. No live authority/snapshot/simulation/signing is implied.
+  Preserve false readiness flags, exact integer/hash inputs and saved journals.
+- Matching source6 APIs authenticate both LP legs while retaining price-outage
+  ownership/raw-claim availability. USD/NAV can remain unavailable. Never infer
+  keeper readiness from physical-only data or relabel old services/journals.
+- Actual dual feeds/routes/VRF/authorities/OpenSea, source6 site/services, target
+  gas/economics, storage/recovery and independent audit/remediation remain open.
+- Management has one maintained Operator manual; PORTFOLIO_OPERATIONS is only
+  a compatibility pointer. Update exact procedure/input/permission/rollback and
+  callable notes with behavior changes; no background synchronization is implied.
+- One ledger docs/project-todo.json generates TODO.md. Preserve stable IDs/status
+  evidence and Contract/Backend/Frontend ordering; follow docs/TODO_WORKFLOW.md.
+  Check feature/evidence, roadmap, release, current context and operator guidance.
+- Preserve historical report bytes/source scopes, unrelated dirty files and all
+  services/sites/Anvil/journals/signing. Use exclusive evidence paths and exact
+  source pins; do not rerun unchanged contract suites for documentation sync.
+- Main only. Verify exact local/remote heads before reporting publication. Git
+  publication is separate from deployment; source6 code does not update old sites.
+- Current guides replace stale prose. Scoped history belongs in reports/Git;
+  archive original dirty docs first. Repo memory is not global personal memory.
 
-Fresh confirmation2 defaults to same-side physical/independent-reference range
-exit through the existing900/300 sampled window; service checks240seconds.
-`setRequireReferenceExit` is governed/review-hashed and invalidates samples.
-Automatic keeper width policies cannot coexist with enabled protection; manual
-governance width exceptions remain. Fresh emergency capability1 is a separate
-globally paused governance-only `Migration.emergencyRebalance` manifest with
-optional financial/timing/operation checks. It is never daily keeper work or an
-automatic fallback. Structural custody, exact settlement, shares/rewards and
-canonical/terminal locks remain; optional financial bypass can lose nearly all
-principal. Preserve old runtimes/journals/profiles. See
-[manual procedure](docs/EMERGENCY_REBALANCE.md) and
-[verification](reports/independent-rebalance-20261029/VERIFICATION.md).
-No service/site/Anvil/public transaction/deployment is authorized or performed.
-Current handwritten Solidity-body review is recorded in the [source-scoped ledger](reports/comprehensive-popl-20261029/COVERAGE.md); this is not exhaustive execution or independent release approval.
+## Manual portfolio management follow-up
 
-Current [whole-project execution](reports/whole-project-execution-20261029/REVIEW.md) completes the internal
-source/body review and implements keeper deadline priority, strict durable/log
-provenance, final-depth/fee/pool observation and artifact-tooling repairs.
-All122previously missing callable outputs are explained. Static review is not
-exhaustive execution or independent release approval. Website reference metadata
-was published separately at cae44a1d without changing images/signing/configs
-or deploying sites.
-Actual providers, economics, gas/host/marketplace qualification and audit remain open.
-
-Known confirmation windows now precede optional nonce users after pending recovery;
-optional-job degradation does not stretch their cadence, global failures still
-back off. Strict300seconds remains a release liveness limit, not an SLA. Duplicate
-JSON/nonfinite state is rejected; never repair a journal manually to pass.
-
-The keeper-coordination checkpoint is `4579eeb` on main. [Keeper coordination](docs/KEEPER_COORDINATION.md)
-implements service-only in-range/no-pending-width compound waits, same-hash
-known-evidence reset coordination, canonical receipt-backed harvest coalescing
-and a read-only three-operation report. The [261-method evidence](reports/keeper-coordination-20261029/VERIFICATION.md)
-separates 185 final keeper/report methods, 12 final reservation methods and 64
-before one diagnostic-only change; it is not a fresh whole-suite/CI or operating
-qualification. Registration derives from complete actual bucket inventory;
-there is no public registeredBucket getter. No Solidity, on-chain clock, financial
-limit, installed worker/site/Anvil, signer or journal was changed by publication.
-Early confirmation enrollment, an outside-range no-swap exception, idle-only
-trigger enablement and broader operation-report adapters remain separate work.
-
-The [operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md) fixes
-indexer final depth/transaction-boundary/time consistency; keeper head/receipt
-chronology and strict object JSON; sold-out mint reporting; current schema6
-reservation evidence; and canonical test selection/normal-profile/evidence safety.
-No Solidity/economic/timing policy or installed service/site/Anvil/signer changed.
-Require fresh reservation observations and matching source rollout; never rewrite
-journals or populate guessed fields. Verification: 221 distinct affected passes are
-source-scoped, not a fresh full suite/CI/live qualification. Python inventories
-execute no tests; full verifier creates new evidence directories and rejects altered
-normal filters/settings. Its reservation registration getter claim was corrected
-by the current keeper-coordination follow-up; preserve the original report scope.
-
-
-Requested85% passive adjustment is under [researched design](docs/PASSIVE_INVENTORY_PLAN.md),
-not implemented. Ten-minute confirmation and1-5minute jitter are requested;
-funding/recovery/secondary lifecycle and the12hour minimum remain unresolved.
-No-swap85% recentering can leave most NAV inactive; do not silently add a swap
-fallback or reinterpret accounting4. The sole Todo owns this proposed work.
-
-## Latest audit and source boundary
-
-[Complete-project review](reports/comprehensive-popl-20261029/REVIEW.md) implements
-validated post-exit reserve venue recovery, bucket identity reset, final telemetry
-depth/chronology, full-prefix history chronology and verification evidence
-admission/provenance. After exit begins, `configureNative` is allowed only at
-Migration Ready(3) with deposits disabled. Ready means allocated principal;
-payouts may still be pending. It cannot reopen LP or access holder backing.
-
-[Evidence](reports/comprehensive-popl-20261029/VERIFICATION.md):16 scoped EVM
-passes,82 distinct Python methods across source stages (80pass/two explicit Windows
-skips),39 fresh normal production gates. Semantic ABI/storage unchanged; only
-Registry bytecode changes. Generated compiler graph evidence narrows named
-advisories, not compiler correctness. Static triage and actual external/operating
-qualification remain open. Use exclusive new evidence paths before imports;
-never rerun into existing outputs or count inventories/fixture sentinels as tests.
-Preserve the same four unrelated dirty files and all old report bytes. No service,
-site, Anvil, journal, shared signer, public signing or paused heartbeat changed.
-
-## Verification and documentation workflow
-
-- [Completed historical reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md)
-  accounts for352 original report narratives/91current guides and preserves the
-  two published partial-checkpoint reports.235overlapping material groups carry
-  original sections, current mechanisms, dispositions and owning Todo links;
-  this is not235bugs/tests or proof all historical risks are solved. New strict
-  frontend/indexer CLI object admission precedes resources;15affected methods
-  pass. Earlier13verifier methods are reused without rerun. Current source build
-  reuse remains82pins/39normal gates, Manager37initcode/Vault59runtime margin.
-  Historical Slither19of47pins differ: refresh analysis/triage before approval.
-  No Solidity/economic/timing/service/site/Anvil/journal/signer/heartbeat change.
-  Keep original reports and negative/partial evidence unchanged; only current
-  guides and the navigation index are reconciled. See the final evidence ledger.
-
-- [Whole-project review](reports/whole-project-audit-20261029/REVIEW.md) fixes
-  ownership inventory optional-currency isolation, stored JSON integrity and
-  metadata restart fairness. Preserve durable metadata turn before optional RPC;
-  failed atomic replacement can affect only its priority bit, never erase pending
-  nonce/spend truth. Four-minute source checks were explicitly approved; retain
-  legacy300schedule validation and no construction/pending rewrite. On-chain900/
-  maxgap300 remains strict. Matching health writer/checker and real rollout stay
-  separate. Observation during cooldown is proposed only. Current canonical5
-  passes, scoped Python75 and reused EVM217/gates39 are different evidence; the
-  [coverage ledger](reports/whole-project-audit-20261029/COVERAGE.md) explicitly
-  retains its original individual-body/external gaps. Current body review and local metadata correction are in the [execution record](reports/whole-project-execution-20261029/REVIEW.md); no service
-  or protected signer change. Do not relabel this internal pass production-ready.
-
-- Maintain one task ledger: `docs/project-todo.json` -> generated `TODO.md`.
-  Preserve stable task IDs, clickable source links and Contract / Backend /
-  Frontend ordering. Follow [maintenance procedure](docs/TODO_WORKFLOW.md).
-- Keep the feature/evidence reference, roadmap, release record, operator guide
-  and repository context consistent with actual implementation. Update the
-  source-bound callable reference for ABI, behavior, permission/input changes.
-- Keep current guides concise. Replace superseded guidance; do not prepend
-  another dated checkpoint to every file. Store scoped history in reports/Git,
-  linked from the documentation index. Historical reports retain original bytes,
-  source identities, failures, skips and limitations; never relabel them current.
-- Run useful affected checks; reuse unchanged Solidity/dependency/build evidence
-  only with exact source pins. Do not inflate counts by adding overlapping runs.
-  No gate relaxation, invented provider qualification or global audit guarantee.
-- Reconcile current Todo acceptance text as well as its summary: old inputs, loss
-  policies, governance and codecs belong to explicitly historical evidence. Do not
-  turn deferred work or deliberately disabled public signing into an approval.
-  Documentation-only synchronization does not close implementation/release tasks.
-- Current integration/source operations are documented in [site boundaries](docs/SITE_ENVIRONMENTS.md)
-  and [serving evidence](reports/current3-website-20261026/DEPLOYMENT.md). Current
-  contract work targets poplint; leave the existing popldemo release untouched.
-  Poplint remains unconfigured/read-unsigned, never an Anvil/public-signing bridge.
-- [Current fork verification](reports/current-pool-fork-20261026/VERIFICATION.md)
-  records11distinct successful methods across scoped runs, not a fresh whole
-  suite; retain mock-price/VRF/authority and real swap-floor limitations. New
-  runner is read-only and independent of the preserved old dirty runner/tests.
-- [Documentation cleanup/publication](reports/documentation-cleanup-20261026/PUBLICATION.md)
-  records the consolidated current guides and original-draft preservation.
-- Current manipulation-related hardening: [review](reports/manipulation-hardening-20261027/REVIEW.md) and [verification](reports/manipulation-hardening-20261027/VERIFICATION.md). Paid-revert health markers require matching writer/checker rollout; do not alter journals to pass. Rebalance/compound/buyback recheck keeper/pause at completion. Economic profitability/ordering work remains open; no new24-hour or cumulative limit.
-- Earlier keeper/LP source-scoped review: [audit](reports/keeper-lp-audit-20261026/REVIEW.md)
-  and [verification](reports/keeper-lp-audit-20261026/VERIFICATION.md). Health binds
-  loaded config; deploy checker/writer together, never alter journals to pass.
-- [Reward allocation review](reports/reward-allocation-20261026/REVIEW.md) verifies
-  claim-order conservation and fixes off-chain buyback scheduling fairness.
-  Allocation is at harvest; LP claims never run compound/buyback. Rollout and
-  actual schedule/route/burn/gas qualification remain separate; preserve journals.
-- [Reward resilience review](reports/reward-resilience-20261026/REVIEW.md) isolates
-  maintenance RPC failures from independently guarded due harvests; malformed
-  configuration/ABI still fails closed. Pending intents stop all scheduling.
-  Current3 unsigned claims reject contradictory inactive rewards; preserve legacy,
-  parked/outbound and deferred-currency rights. No installed service was changed.
-- [Market/input review](reports/market-adversarial-20261026/REVIEW.md) adds shared
-  exact TickMath/slot0 checks to unsigned reviews and observed/manual inventory.
-  Preserve real downward-boundary ticks; never repair an inconsistent observation
-  by guessing. Actual PoolManager donations are funded fees, unlike raw Vault
-  prefunds; neither consistency nor funded earnings proves provider authenticity
-  or organic trading volume. Production Solidity/services remain unchanged.
-- [Systematic adversarial review](reports/system-adversarial-20261026/REVIEW.md)
-  maps608 functions plus31 constructors/13 receivers to multiple static cases; rows
-  and1,987 scenario instances are not execution tests. Strict RPC identity/JSON/
-  envelope/decoder failure and bounded/sanitized holder CLI inputs and systemd progress watchdog have244affected
-  methods:241 passes/3 explicit skips; production Solidity/services remain unchanged. Owner callbacks
-  can legitimately change later batch claim amounts; do not add unconditional
-  preview equality or skip liabilities to overcome dependency failure.
-- Current source/evidence references: [backend fee integrity](reports/backend-remediation-20261026/VERIFICATION.md),
-  [full candidate audit](reports/full-audit-20261025/VERIFICATION.md),
-  [cleanup compiler comparison](reports/deep-cleanup-20261025/compiler-comparison.md).
-  Actual feeds/routes/VRF/authorities/OpenSea, current3 website/services, target
-  gas/operations, metadata hosting and independent audit/remediation remain open.
-
-- [Two-day change audit](reports/two-day-audit-20261028/REVIEW.md) covers the October27-28 changes. Principal delivery now uses canonical receipt-based per-batch retries and durable first/last job priority; pending recovery remains first and paid truth stays on-chain. Comment-only source corrections retain identical ABI/storage/instructions except compiler metadata. No installed service/site/journal changed. Maintain [Keeper safeguards](docs/KEEPER_SAFEGUARDS.md) alongside future execution changes.
-
-- [Paris28October audit](reports/day-audit-20261028/REVIEW.md) covers the five
-  reachable commits through b61aecb and separately records the pending buffer.
-  Reused55Solidity/53backend/38size evidence remains source-bound; no new suite
-  was run by this docs audit. The keeper validates quality metadata internally;
-  that historical health writer did not export it. Current schema2 exports
-  quality and separately anchored policy observations. The blocked2.5Mgas example is unqualified,
-  not an operating recommendation; never widen it automatically.
-
-- [Third-pass review](reports/third-pass-20261028/REVIEW.md) freezes the
-  October26-28 Paris main window (35commits) at cb0aadf; completion after midnight
-  does not change that scope. Checkpoint faults for a used signer without pending
-  work now reset known confirmation windows; original pending recovery stays
-  first. Indexer head quantities and both conversion workers' header/timestamp
-  checks fail closed with bounded diagnostics. Conversion deliberately rereads
-  the final post-quote head (one extra ready-path read); do not remove this guard
-  to satisfy obsolete no-extra-RPC prose. Solidity/economics,
-  services/sites/Anvil/journals/signing are unchanged. The
-  [audit prompt](docs/THIRD_PASS_AUDIT_PROMPT.md) and source-bound coverage distinguish
-  reviewed code, fresh evidence, exact reuse and actual external qualification.
-
-- [Confirmation follow-up](reports/confirmation-followup-20261028/REVIEW.md)
-  rejects foreign observations while any clear acknowledgement remains and
-  invalidates known windows on relevant raw bucket/pool/global read faults;
-  unrelated jobs and pending-first recovery remain independent. Preflight/health
-  validate actual helper/Budget pins even during cooldown without compounding.
-  Latest policy-only observations are separate from confirmed quality evidence;
-  metadata failure cannot advance last healthy time. Post-exit intentional stop
-  alone does not degrade remaining operations; bad bindings/freshness still do.
-  Schema6 now requires physical ticks, full PosM PoolKey/packed identity and a
-  recorded-centre range-update check; old observations must be recollected, not
-  defaulted. Wallet3/4 totals check custody as well as royalty eligibility.
-  [Verification](reports/confirmation-followup-20261028/VERIFICATION.md):399 distinct
-  affected Python methods,398pass/1missing-cast skip,53new; unchanged217Solidity/
-  39normal gates reused at exact pins. No source Solidity or operating state change.
-
-Archived checkpoints and original dirty documentation are preserved outside
-the checkout under the documentation-cleanup evidence directory recorded in
-[work handoff](docs/WORK_HANDOFF.md). They are historical context, not overrides
-of these current instructions. Durable repo context is not global personal memory.
+Additional RESIDUAL_EXIT_VERSION1 on Migration/Vault/Manager/position child,
+same accounting6/custody4 wire and no new modules. Paused governance can call
+Migration.closeResidual(ParkingRequest): harvest both, close only associated
+residual into attributed Vault idle, preserve main/shares/clock/configuration.
+Raw minima, physical/control fingerprint, current governance/pause and shared
+parking nonce/custody epoch are enforced. No implicit setMode/recordApplied,
+swap, external recipient, holder payout or compound release. To stay single,
+setMode(false) first. Mode(true) enables future guarded adjustment; an alreadyON
+geometry can be re-reviewed with same-value configureResidualSide after cooldown.
+EmergencyRebalance already forces one main at its actual required token ratio,
+not necessarily50/50USD. [Complete controls](docs/OPERATOR_MANUAL.md#portfolio-management-controls).
+Large idle is intentional recovery state; do not bypass later entrant/deployment
+guards. Existing both-leg park/holder-return remain fallbacks.
+Behavior-preserving private terminal-check dedup and read-only holder-exit
+validation extraction preserve normal limits. Current source6 gates are
+43 at exact final0a pins, with Vault635/Budget237runtime margins; old905/286
+margins remain historical.
+Preserve exact pre/post checks and caller/error semantics. No existing deployment,
+service/site/Anvil/journal/signer/heartbeat was changed; work remains local.

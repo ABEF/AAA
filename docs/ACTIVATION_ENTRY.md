@@ -2,8 +2,8 @@
 
 `ZZZActivationEntry` is the immutable PoolRegistry-created contribution entry,
 paired with `ZZZActivationAssets`. The current undeployed profile is accounting
-4 / fee-intake 1 / routing 2 / pricing 2 / reviewed policy 1, with direct
-governance 2, custody 3 and local canonical holder-exit V5. It accepts **native ETH or the one fixed
+6 / fee-intake1 / routing2 / pricing2 / reviewed policy2 / ProtocolPolicy1, with direct
+governance2, custody4 and local canonical adaptable-policy V6. It accepts **native ETH or the one fixed
 ZZZ only**. USDC, USDG and WETH are not user contribution inputs.
 
 Entry never owns the NFT or grants principal redemption. It authenticates one
@@ -13,7 +13,7 @@ an unsigned review; source support does not qualify a live deployment or service
 
 ## Request and wallet call
 
-The current owner calls `executeReviewed(Request,uint16 maximumLossBps)`.
+The current owner calls `executeReviewed(Request,uint16 maximumLossBps,bytes32 expectedContributionPolicy)`.
 The old `execute` selector is absent from the current Entry; historical deployments
 keep their original ABI. The request has these nine fields, in ABI order:
 
@@ -29,6 +29,8 @@ keep their original ABI. The request has these nine fields, in ABI order:
 | `deadline` | `uint256`: Unix time, current and at most ten minutes ahead. Prepared reviews expire sooner. |
 | `increase` | `bool`: false for first activation, true for growing an already active NFT. |
 
+`expectedContributionPolicy` must equal the reviewed ProtocolPolicy.entryFingerprint,
+covering action minima, idle ceiling and revision; stale/callback-mutated terms revert.
 `maximumLossBps` is the caller's reviewed cap, at most 1000 bps. The captured
 contribution policy must not exceed it. Governance can tighten future execution;
 a widening beyond that signed review requires a new review. ERC20 allowance is
@@ -37,8 +39,8 @@ to Entry for exactly the chosen source amount; native input requires exactly
 
 ## One source value and one execution budget
 
-Activation requires at least **$100 original source value**; growth at least
-**$5**, with any higher configured pool minimum also enforced. Entry freezes
+Activation defaults to **$100 original source value** and growth **$5**;
+ProtocolPolicy may set future USD18 minima, each>=1USD and growth<=activation, with any higher configured pool minimum also enforced. Entry freezes
 two-source source/pair price bounds, policy identities and limits through
 `ContributionPricing.beginEntryReviewed` before token pulls, approvals or
 conversion. The selected source-agreement tolerance is 3%, distinct from the

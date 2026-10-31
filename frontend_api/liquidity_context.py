@@ -18,6 +18,14 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
                          *, range_policy_version=0, range_policy=None, maintenance_policy_version=0,
                          rebalance_confirmation_version=0):
     """All RPC reads use the caller's pinned hash, including approval previews."""
+    if p.accounting_version in (5,6):
+        from frontend_api.portfolio_v5 import contribution_context as context_v5
+        from frontend_api.portfolio_v6 import contribution_context as context_v6
+        portfolio_context = context_v6 if p.accounting_version == 6 else context_v5
+        return portfolio_context(p,pins,pool,bucket,position,config,header,block,
+            range_policy_version=range_policy_version,range_policy=range_policy,
+            maintenance_policy_version=maintenance_policy_version,
+            rebalance_confirmation_version=rebalance_confirmation_version)
     def read(role, method, *args, count=1):
         return p._call(pins[role], method, *args, block=block, words=count)
 
@@ -76,7 +84,7 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
                       'range_update' if range_pending else 'out_of_range' if not in_range else None)
         else:
             ref = int(read('oracle', 'referenceX96(address,address)',
-                           _address_word(config[0], native=p.accounting_version in (2, 3, 4)), _address_word(config[1]))[0], 16)
+                           _address_word(config[0], native=p.accounting_version in (2, 3, 4, 5, 6)), _address_word(config[1]))[0], 16)
             if not 0 < ref < 2**160:
                 raise ProjectionError('Invalid oracle reference price')
             root_ratio = (center * 10**18 // ref if orientation == 1 else ref * 10**18 // center)

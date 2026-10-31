@@ -1,5 +1,10 @@
 # Accounting4: collective holder principal return
 
+**Historical profile4 reference.** The fresh source candidate now uses
+[accounting5 / optional bounded portfolio](POSITION_V5.md). Keep this profile,
+its deployments, codecs, journals and evidence separate; do not relabel it V5.
+The descriptions below retain profile4's behavior and original verification scope.
+
 Current fresh LP protection uses confirmation2 and separate emergency capability1.
 Ordinary readiness requires physical/reference same-side range exit (unless a
 reviewed policy relaxation or deliberate governance width exception applies).

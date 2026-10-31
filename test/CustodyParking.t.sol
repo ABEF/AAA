@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {PortfolioFixture} from "./helpers/PortfolioFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -26,6 +27,7 @@ contract CustodyParkingTest is PooledVaultFixture {
         r.token0 = address(t0); r.token1 = address(t1);
         r.minimum0 = uint128(venue.a0(p.lpTokenId)); r.minimum1 = uint128(venue.a1(p.lpTokenId));
         r.deadline = block.timestamp + 100; r.reviewHash = keccak256("reviewed-token-close-minima");
+        r.portfolioHash = PortfolioFixture.executionHash(ac.module(Ids.LIQUIDITY),p.lpTokenId);
     }
     function _park(ZZZMigration migration) private {
         ac.setPaused(true); migration.park(_request(migration, _bucket()));

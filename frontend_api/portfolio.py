@@ -33,6 +33,7 @@ def read(p, wallet_address, block_number, offset):
     if offset>=count and not (offset==0 and count==0):raise ValueError('Cursor is outside wallet inventory')
     selected=ids[offset:offset+CHUNK_SIZE]
     total_lp=0;total_eth=0;lp_ok=True;eth_ok=ZERO in lp and ZERO in royalties
+    verified_buckets=set()
     for identifier in selected:
         if p._addr('nft','ownerOf(uint256)',identifier,block=block)!=wallet:
             raise HistoryError('Wallet ownership differs from indexed snapshot')
@@ -40,19 +41,26 @@ def read(p, wallet_address, block_number, offset):
         # activated; eligibility is permanent. Read actual views anyway so an
         # unavailable or contradictory response is never replaced with zero.
         inactive=False
-        if p.accounting_version in (3,4):
+        if p.accounting_version in (3,4,5,6):
             weight=p._uint('royalties','weightOf(uint256)',identifier,block=block)
             if weight>3:raise ProjectionError('Wallet NFT royalty weight exceeds the reviewed bound')
             inactive=weight==0
         status=None
-        if p.accounting_version in (3,4):
+        if p.accounting_version in (3,4,5,6):
             status=p._uint('vault','nftStatus(uint256)',identifier,block=block)
-            limit=6 if p.accounting_version==4 else 5
+            limit=6 if p.accounting_version in (4,5,6) else 5
             if type(status) is not int or not 1<=status<limit:
                 raise ProjectionError('Wallet NFT has unsupported canonical custody')
             if (status==p.dormant_status)!=inactive:
                 raise ProjectionError('Wallet custody and royalty eligibility disagree')
-        exited = p.accounting_version == 4 and status == 5
+        exited = p.accounting_version in (4,5,6) and status == 5
+        if p.accounting_version in (5,6) and status == 1:
+            bucket=p._uint('vault','nftBucket(uint256)',identifier,block=block)
+            if bucket not in verified_buckets:
+                from frontend_api.portfolio_v5 import read_bucket as read_v5
+                from frontend_api.portfolio_v6 import read_bucket as read_v6
+                read_bucket = read_v6 if p.accounting_version == 6 else read_v5
+                read_bucket(p,bucket,block);verified_buckets.add(bucket)
         # Keep each metric independent: unreadable LP never becomes a zero sum.
         try:
             value=p._call(p.contracts['nft'].address,'currentLPValue(uint256)',identifier,block=block,words=2)

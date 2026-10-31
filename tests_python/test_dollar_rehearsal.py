@@ -3,6 +3,7 @@ import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('dollar_rehearsal', ROOT/'scripts/prepare-dollar-rehearsal.py')
@@ -11,11 +12,19 @@ spec.loader.exec_module(module)
 
 
 class DollarRehearsalTests(unittest.TestCase):
-    def test_only_two_sources_transform_and_preserve_deployment_budget(self):
+    @staticmethod
+    def legacy_source(name):
+        # Explicit generator-only legacy anchors, not current Solidity/runtime
+        # qualification. Missing/duplicate anchors are separately rejected below.
+        return ('// TEST ONLY historical generator fixture\n'+
+                '\n'.join(before for before,_ in module.PATCHES[name])).encode('utf-8')
+
+    def test_legacy_only_two_sources_transform_and_preserve_deployment_budget(self):
         changed = []
-        for source in (ROOT/'src').rglob('*.sol'):
-            name = source.relative_to(ROOT).as_posix()
-            before = source.read_bytes(); after = module.transform(name, before)
+        sources={name:self.legacy_source(name) for name in module.PATCHES}
+        sources['src/ZZZMigrationBudget.sol']=(ROOT/'src/ZZZMigrationBudget.sol').read_bytes()
+        for name,before in sources.items():
+            after = module.transform(name, before)
             if before != after:
                 changed.append(name)
                 self.assertIn(b'LOCAL_REHEARSAL_ONLY', after)
@@ -23,7 +32,7 @@ class DollarRehearsalTests(unittest.TestCase):
         self.assertEqual(set(changed), set(module.PATCHES))
         self.assertEqual(set(module.PATCHES),{'src/ZZZActivationEntry.sol','src/ZZZVaultCanonical.sol'})
         for name in module.PATCHES:
-            source=(ROOT/name).read_bytes()
+            source=self.legacy_source(name)
             expected=source.decode('utf-8')
             for before,after in module.PATCHES[name]:expected=expected.replace(before,after,1)
             self.assertEqual(module.transform(name,source),expected.encode('utf-8'))
@@ -35,7 +44,8 @@ class DollarRehearsalTests(unittest.TestCase):
         root=parent/'repository'
         for name in module.PATCHES:
             path=root/name;path.parent.mkdir(parents=True,exist_ok=True)
-            path.write_bytes((ROOT/name).read_bytes())
+            path.write_bytes(self.legacy_source(name))
+        (root/'src/ZZZVault.sol').write_text('uint256 public constant ACCOUNTING_VERSION = 5;\n',encoding='utf-8')
         (root/'src/ZZZMigrationBudget.sol').write_bytes(budget)
         for name in ('test/AtomicActivationIntegration.t.sol','rehearsal/one-dollar/DollarActivation.t.sol'):
             path=root/name;path.parent.mkdir(parents=True,exist_ok=True)
@@ -89,12 +99,36 @@ class DollarRehearsalTests(unittest.TestCase):
 
     def test_missing_or_duplicated_anchor_fails_closed(self):
         for name, replacements in module.PATCHES.items():
-            source = (ROOT/name).read_bytes()
+            source = self.legacy_source(name)
             for anchor, _ in replacements:
                 with self.assertRaises(ValueError):
                     module.transform(name, source.replace(anchor.encode(), b'changed', 1))
                 with self.assertRaises(ValueError):
                     module.transform(name, source + anchor.encode())
+
+    def test_fresh_profile_refuses_before_compiler_fixture_walk_or_source_changes(self):
+        names=('src/ZZZProtocolPolicy.sol','src/ZZZVault.sol','src/ZZZActivationEntry.sol','src/ZZZMigrationBudget.sol')
+        before={name:(ROOT/name).read_bytes() for name in names}
+        with tempfile.TemporaryDirectory() as tmp:
+            parent=Path(tmp);output=parent/'must-not-exist';missing_solc=parent/'missing-solc'
+            with (patch.object(module,'transform',side_effect=AssertionError('must not transform')),
+                  patch.object(module,'loss_policy',side_effect=AssertionError('must not inspect/copy full inputs'))):
+                with self.assertRaisesRegex(ValueError,'ProtocolPolicy.setEntryPolicy'):
+                    module.prepare(ROOT,output,missing_solc)
+            self.assertFalse(output.exists());self.assertFalse(missing_solc.exists())
+            self.assertEqual(list(parent.iterdir()),[])
+        self.assertEqual(before,{name:(ROOT/name).read_bytes() for name in names})
+
+    def test_fresh_or_future_accounting_marker_alone_cannot_bypass_refusal(self):
+        for version in (6,7):
+            with self.subTest(version=version),tempfile.TemporaryDirectory() as tmp:
+                parent=Path(tmp);root=parent/'repository';(root/'src').mkdir(parents=True)
+                (root/'src/ZZZVault.sol').write_text(
+                    f'uint256 public constant ACCOUNTING_VERSION = {version};\n',encoding='utf-8')
+                output=parent/'must-not-exist'
+                with self.assertRaisesRegex(ValueError,'legacy source patches are disabled'):
+                    module.prepare(root,output,parent/'missing-solc')
+                self.assertFalse(output.exists())
 
     def test_repository_and_ancestor_output_are_rejected(self):
         for output in (ROOT, ROOT/'tmp-rehearsal', ROOT.parent):

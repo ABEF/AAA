@@ -28,14 +28,14 @@ class ProductionPreflightCLITests(unittest.TestCase):
 
     def test_accounting3_never_qualifies_fresh_holder_exit_release(self):
         report=gate.validate({'schema_version':5,'accounting_version':3,'mint_integration_version':1,'fee_intake_version':1,'custody_architecture':'governed-v1'})
-        self.assertEqual(report['schema_version'],6)
+        self.assertEqual(report['schema_version'],8)
         self.assertFalse(report['ready']);self.assertFalse(report['deployment_authorized'])
         self.assertNotIn('custody.inventory_schema_pending',[i['code'] for i in report['issues']])
         self.assertEqual(report['issues'][0]['code'],'holder_exit_qualification_pending')
 
     def test_float_version_cannot_enter_new_profile(self):
         report=gate.validate({'schema_version':5.0,'custody_architecture':'governed-v1'})
-        self.assertFalse(report['ready']);self.assertEqual(report['schema_version'],6)
+        self.assertFalse(report['ready']);self.assertEqual(report['schema_version'],8)
         self.assertEqual(report['issues'][0]['code'],'holder_exit_qualification_pending')
 
     def test_default_validation_never_imports_historical_engine(self):

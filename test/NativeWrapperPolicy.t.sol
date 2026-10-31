@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
@@ -10,7 +11,7 @@ import {MockAccess} from "./mocks/Mocks.sol";
 /// remain in NativeAssetFoundation/NativeCustody and the conversion suites.
 contract RegistryNativeFundsBoundaryTest is Test {
     function testRegistryDoesNotAcceptNativeFunds() public {
-        MockAccess access = new MockAccess();
+        MockAccess access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         ZZZPoolRegistry registry = new ZZZPoolRegistry(address(access));
         vm.deal(address(this), 1);
         (bool ok,) = address(registry).call{value: 1}("");

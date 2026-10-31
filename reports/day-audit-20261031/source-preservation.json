@@ -1,0 +1,58 @@
+{
+  "scope": "Read-only final source/evidence/task structure and protected-byte verification; not tests, deployment or remote publication verification.",
+  "checks": {
+    "production_source": {
+      "count": 50,
+      "mismatches": []
+    },
+    "dependencies": {
+      "count": 31,
+      "mismatches": []
+    },
+    "build_inputs": {
+      "count": 4,
+      "mismatches": []
+    },
+    "final_backend": {
+      "count": 3,
+      "mismatches": []
+    },
+    "new_backend_tests": {
+      "count": 2,
+      "mismatches": []
+    },
+    "protected_original_dirty": {
+      "count": 4,
+      "mismatches": []
+    },
+    "prior_report_bytes": {
+      "count": 23,
+      "mismatches": []
+    },
+    "task_ids_statuses_order": {
+      "identical": true
+    },
+    "static_finding_coverage": {
+      "count": 463,
+      "all_indices": true,
+      "all_dispositioned": true
+    },
+    "normal_gates": {
+      "count": 42,
+      "all_pass": true,
+      "source_closed": true
+    },
+    "git": {
+      "head": "37577ebf610ed7182c3d5bc481d7bb32ec5438c1",
+      "unchanged": true,
+      "branch": "main",
+      "main": true
+    },
+    "single_manual": {
+      "compatibility_pointer_lines": 5,
+      "new_guide_has_no_procedure": true
+    }
+  },
+  "failures": [],
+  "pass": true
+}

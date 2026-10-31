@@ -1,5 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -101,6 +106,7 @@ contract NativeVaultFlowsTest is Test {
     ZZZFeeController private fees;
     ZZZBuyback private buyback;
     MockVRF private vrf;
+    bytes32 private reviewedEntryPolicy;
     bytes32 private poolId;
     address private constant ALICE = address(0xA11CE);
     address private constant BOB = address(0xB0B);
@@ -109,7 +115,9 @@ contract NativeVaultFlowsTest is Test {
     function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
     function currentZZZ() external view returns(address) { return address(token); }
     function setUp() public {
-        vm.warp(1_000_000); access = new MockAccess(); token = new NativeFlowToken(); wrapper = new BoundaryWETH();
+        vm.warp(1_000_000); access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
+        reviewedEntryPolicy=IZZZProtocolPolicy(access.protocolPolicy()).entryFingerprint();
+        token = new NativeFlowToken(); wrapper = new BoundaryWETH();
         wrapper.failures(true,true);
         ZZZOracle oracle = new ZZZOracle(address(access),address(0));
         MockFeed price = new MockFeed(8,1e8);
@@ -121,16 +129,16 @@ contract NativeVaultFlowsTest is Test {
         core = new BoundaryCore(); FakePermit2 permit = new FakePermit2();
         positions = new BoundaryPositions(address(core),address(permit),address(wrapper)); core.setPositions(address(positions));
         FakeState state = new FakeState(address(core));
-        ZZZLiquidityManager manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit));
-        vault = new ZZZVault(address(access),block.chainid,TREASURY); nft = new ZZZNFT(address(access),"ipfs://native/");
+        ZZZLiquidityManager manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
+        vault = new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access)))); nft = new ZZZNFT(address(access),"ipfs://native/");
         membership = new ZZZMembership(address(access)); rewards = new ZZZRewards(address(access)); fees = new ZZZFeeController(address(access));
         buyback = new ZZZBuyback(address(access),address(token),1000e18);
         access.bind(Ids.VAULT,address(vault)); access.bind(Ids.NFT,address(nft)); access.bind(Ids.MEMBERSHIP,address(membership));
         access.bind(Ids.REWARDS,address(rewards)); access.bind(Ids.FEES,address(fees)); access.bind(Ids.POOLS,address(pools));
-        access.bind(Ids.LIQUIDITY,address(manager)); access.bind(Ids.STRATEGY,address(new ZZZStrategy(address(access))));
+        access.bind(Ids.LIQUIDITY,address(manager)); access.bind(Ids.STRATEGY,address(new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))))));
         access.bind(Ids.MIGRATION,address(this)); access.bind(Ids.BUYBACK,address(buyback)); access.setKeeper(address(this),true);
         rewards.addAsset(address(token));
-        vrf = new MockVRF(); nft.configureRandomness(address(vrf),bytes32(uint256(1)),1,3,500000,false);
+        vrf = new MockVRF(); ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         CanonicalFixture.bind(address(access)); access.seal();
         PoolConfig memory config = pools.get(bytes32(0)); poolId = keccak256(abi.encode(config.key));
         vm.mockCall(address(state),abi.encodeWithSignature("getSlot0(bytes32)",poolId),
@@ -141,17 +149,20 @@ contract NativeVaultFlowsTest is Test {
         token.mint(address(core),10000 ether); token.mint(ALICE,1000 ether); token.mint(BOB,1000 ether);
     }
     function _mint(address owner) private returns (uint256 id) {
-        vm.prank(owner); id = vault.mintDormant{value:0.05 ether}();
+        bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vm.prank(owner); id = vault.mintDormant{value:0.05 ether}(reviewedPolicy1);
         vrf.fulfill(nft.requestOf(id),0,0); nft.finalizeTraits(id);
     }
     function _entry(address owner,uint256 id,uint256 amount,bool grow) private {
         ZZZActivationEntry.Request memory r = ZZZActivationEntry.Request(id,poolId,address(0),amount,bytes32(0),0,1,block.timestamp+100,grow);
-        vm.prank(owner); entry.executeReviewed{value:amount}(r,200);
+        // Fixture's unchanged initial policy is captured before callers can arm
+        // expectRevert; evaluating a view here would consume that expectation.
+        vm.prank(owner); entry.executeReviewed{value:amount}(r,200,reviewedEntryPolicy);
     }
     function _emergency(uint256 bucket) private view returns(EmergencyRebalance memory r) {
         (r.lower,r.upper) = ZZZLiquidityManager(payable(access.module(Ids.LIQUIDITY))).ticks(vault.group(bucket).lpTokenId);
         r.bucket=bucket; r.minimumLiquidity=1; r.deadline=block.timestamp+100;
-        r.custodyHash=keccak256(abi.encode(block.chainid,address(vault),bucket,vault.group(bucket),vault.bucketTotalShares(bucket)));
+        r.custodyHash=keccak256(abi.encode(block.chainid,address(vault),bucket,vault.group(bucket),vault.bucketTotalShares(bucket),
+            ZZZLiquidityManager(payable(access.module(Ids.LIQUIDITY))).executionPortfolioFingerprint(vault.group(bucket).lpTokenId)));
         r.reviewHash=keccak256("TEST ONLY explicit manual emergency risk review");
     }
     function _manualMigration() private returns(ZZZMigration migration) {
@@ -355,7 +366,7 @@ contract NativeVaultFlowsTest is Test {
     function testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper() public {
         uint256 id = _mint(ALICE); _entry(ALICE,id,100 ether,false);
         uint256 shares = vault.sharesOf(id); uint256 bucket = vault.nftBucket(id);
-        assertGt(shares,0); assertTrue(membership.eligible(id)); assertEq(vault.ACCOUNTING_VERSION(),4);
+        assertGt(shares,0); assertTrue(membership.eligible(id)); assertEq(vault.ACCOUNTING_VERSION(),6);
         assertEq(vault.contributionUSD(id),100 ether); assertEq(wrapper.totalSupply(),0);
         (bool available,uint256 beforeValue) = nft.currentLPValue(id); assertTrue(available); assertGe(beforeValue,99 ether);
         _entry(ALICE,id,5 ether,true);

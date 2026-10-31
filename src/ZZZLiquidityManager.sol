@@ -8,6 +8,7 @@ import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
+import {ZZZLPPositionExecutor} from "./ZZZLPPositionExecutor.sol";
 import {ZZZLPBalancer} from "./ZZZLPBalancer.sol";
 import {EmergencyRebalance, IZZZEmergencyBudget, IZZZEmergencyVault, IZZZEmergencyController} from "./interfaces/IZZZEmergency.sol";
 import {IZZZPools, IZZZStrategy, IPositionManagerMinimal, IStateViewMinimal,
@@ -17,15 +18,29 @@ interface INativePoolAssets {
     function isNativePool(bytes32 poolId) external view returns (bool);
 }
 interface IEmergencyOutput { function minimumOutputForExit(bytes32,bool,uint256) external view returns(uint256); }
+interface IPortfolioVault { function migrationBudget() external view returns(address); }
+interface IPortfolioBudget {
+    function maintenanceBucket() external view returns(uint256);
+    function maintenancePrices() external view returns(uint256,uint256,uint256,uint256);
+}
+interface IManagerPortfolioPolicy {
+    function enabled(bytes32) external view returns(bool);
+    function minimumMainBps(bytes32) external view returns(uint16);
+    function residualRange(bytes32,uint160,int24,int24,bool) external view returns(int24,int24);
+    function recordApplied(uint256,bytes32) external;
+}
 
 /// @notice Typed v4 operations only. No arbitrary call/action/recipient entrypoint.
 /// Vault owns every LP NFT. Per-NFT approvals authorize this immutable module.
 contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
-    uint256 public constant LP_ROUTING_VERSION = 1;
+    uint256 public constant LP_ROUTING_VERSION = 2;
+    uint256 public constant PORTFOLIO_VERSION = 2;
+    uint256 public constant RESIDUAL_EXIT_VERSION = 1;
     uint256 public constant EXECUTION_QUALITY_VERSION = 1;
-    uint256 public constant EMERGENCY_REBALANCE_VERSION = 1;
+    uint256 public constant EMERGENCY_REBALANCE_VERSION = 2;
     ZZZLPBalancer public immutable balancingRouter;
+    ZZZLPPositionExecutor private immutable positionExecutor;
     IPositionManagerMinimal private immutable posm;
     IStateViewMinimal public immutable stateView;
     IPoolManagerMinimal public immutable poolManager;
@@ -36,14 +51,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     // Forced ETH is preserved and never counted as contribution or revenue.
     address private nativeSender;
     uint256 private nativeReceived;
-    uint8 private constant INCREASE = 0x00;
-    uint8 private constant DECREASE = 0x01;
-    uint8 private constant MINT = 0x02;
-    uint8 private constant BURN = 0x03;
-    uint8 private constant SETTLE_PAIR = 0x0d;
-    uint8 private constant TAKE_PAIR = 0x11;
-
-    constructor(address controller, address positionManager_, address stateView_, address poolManager_, address permit2_)
+    constructor(address controller,address positionManager_,address stateView_,address poolManager_,address permit2_,address balancer_)
         ZZZModule(controller) {
         if (positionManager_.code.length == 0 || stateView_.code.length == 0 || poolManager_.code.length == 0 ||
             permit2_.code.length == 0) revert InvalidConfiguration();
@@ -53,7 +61,11 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         permit2 = IPermit2Minimal(permit2_);
         if (posm.poolManager() != poolManager_ || posm.permit2() != permit2_ ||
             stateView.poolManager() != poolManager_) revert InvalidConfiguration();
-        balancingRouter = new ZZZLPBalancer(controller,poolManager_,stateView_);
+        if(balancer_.code.length==0)revert InvalidConfiguration();
+        balancingRouter=ZZZLPBalancer(balancer_);
+        if(address(balancingRouter.access())!=controller || address(balancingRouter.poolManager())!=poolManager_ ||
+            address(balancingRouter.stateView())!=stateView_ || balancingRouter.LP_ROUTING_VERSION()!=2)revert InvalidConfiguration();
+        positionExecutor=new ZZZLPPositionExecutor(controller,positionManager_,stateView_,poolManager_,permit2_,balancer_);
     }
     receive() external payable {
         if (msg.sender != nativeSender || nativeSender == address(0)) revert Unauthorized();
@@ -71,7 +83,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
             balancingRouter.policyFingerprint(targetPool,bytes32(0))));
     }
     function _emergencyBudget() private view returns(address budget) {
-        return msg.sender == access.module(Ids.VAULT) ? emergencyBudget : address(0);
+        return msg.sender == access.module(Ids.VAULT) || msg.sender == address(positionExecutor) ? emergencyBudget : address(0);
     }
     /// @dev Scoped to the Vault's atomic manual-emergency wrapper. Ordinary
     /// operations perform no extra Budget RPC/capability probe.
@@ -133,116 +145,59 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         lower = int24(uint24(info >> 8));
         upper = int24(uint24(info >> 32));
     }
-    function _approve(address token, uint256 amount, uint256 deadline) private {
-        if (amount > type(uint128).max) revert InvalidAmount();
-        IERC20(token).forceApprove(address(permit2), amount);
-        permit2.approve(token, address(posm), uint160(amount), uint48(deadline));
+    function _portfolioPolicy() private view returns(IManagerPortfolioPolicy) {
+        return IManagerPortfolioPolicy(IZZZStrategy(access.module(Ids.STRATEGY)).portfolioPolicy());
     }
-    function _reset(address token) private {
-        permit2.approve(token, address(posm), 0, 0);
-        IERC20(token).forceApprove(address(permit2), 0);
+    function _ordinaryReplacement() private view returns(bool) {
+        return _emergencyBudget()==address(0) &&
+            IPortfolioBudget(IPortfolioVault(access.module(Ids.VAULT)).migrationBudget()).maintenanceBucket()!=0;
     }
-    function _mintOrIncrease(bytes32 poolId, uint256 id, int24 lower, int24 upper, uint256 amount0,
-        uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
-        private returns (uint256 tokenId, uint256 spent0, uint256 spent1) {
-        _deadline(deadline);
-        if (amount0 > type(uint128).max || amount1 > type(uint128).max) revert InvalidAmount();
-        PoolConfig memory c = _config(poolId, true);
-        uint160 current = _policySpot(poolId);
-        if (lower % c.key.tickSpacing != 0 || upper % c.key.tickSpacing != 0 || lower >= upper) revert InvalidConfiguration();
-        uint128 previousLiquidity = id == 0 ? 0 : posm.getPositionLiquidity(id);
-        (uint128 liquidity,uint256 nativeValue) = balancingRouter.deploymentAmounts(current,lower,upper,amount0,amount1);
-        if (liquidity == 0 || liquidity < minimumLiquidity) revert Slippage();
-        address t1 = c.key.currency1;
-        if (msg.value != amount0) revert InvalidAmount();
-        uint256 before0 = address(this).balance - msg.value;
-        uint256 before1 = IERC20(t1).balanceOf(address(this));
-        ExactToken.pull(t1, msg.sender, amount1);
-        uint256 beforeNative = address(this).balance;
-        if (beforeNative != before0 + msg.value) revert InvalidState();
-        // No SWEEP: pay exactly rounded-up principal debt. Prior PosM donations
-        // cannot fund this operation and any unconsumed value makes it revert.
-        if (nativeValue > amount0) revert Slippage();
-        uint256 beforePosmNative = address(posm).balance;
-        _approve(t1, amount1, deadline);
-        bytes[] memory parameters = new bytes[](2);
-        tokenId = id;
-        if (id == 0) {
-            tokenId = posm.nextTokenId();
-            parameters[0] = abi.encode(c.key, lower, upper, uint256(liquidity), uint128(amount0), uint128(amount1),
-                access.module(Ids.VAULT), bytes(""));
-        } else {
-            parameters[0] = abi.encode(id, uint256(liquidity), uint128(amount0), uint128(amount1), bytes(""));
-        }
-        parameters[1] = abi.encode(c.key.currency0, c.key.currency1);
-        posm.modifyLiquidities{value: nativeValue}(
-            abi.encode(abi.encodePacked(id == 0 ? MINT : INCREASE, SETTLE_PAIR), parameters), deadline);
-        if (address(posm).balance != beforePosmNative || address(this).balance + nativeValue != beforeNative) revert InvalidState();
-        _reset(t1);
-        uint256 unused0 = address(this).balance - before0;
-        uint256 unused1 = IERC20(t1).balanceOf(address(this)) - before1;
-        if (unused0 > amount0 || unused1 > amount1) revert InvalidState();
-        spent0 = amount0 - unused0;
-        spent1 = amount1 - unused1;
-        _sendNative(msg.sender, unused0);
-        ExactToken.push(t1, msg.sender, unused1);
-        // A static hookless mint/increase does not move the pool price. Token
-        // approvals, pulls, settlement and refunds can nevertheless call external
-        // code. Check the final mark and physical LP only after ALL those calls,
-        // so incumbent repricing or a late LP mutation cannot masquerade as new LP.
-        if (_policySpot(poolId) != current) revert Slippage();
-        (int24 actualLower, int24 actualUpper) = _checkPosition(poolId, tokenId);
-        if (actualLower != lower || actualUpper != upper ||
-            uint256(posm.getPositionLiquidity(tokenId)) != uint256(previousLiquidity) + liquidity) revert InvalidState();
+    function _hybridReplacement(bytes32 poolId) private view returns(bool) {
+        return _ordinaryReplacement() && _portfolioPolicy().enabled(poolId);
     }
-    function mint(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1,
-        uint128 minimumLiquidity, uint256 deadline)
-        external payable onlyModule(Ids.VAULT) nonReentrant returns (uint256 tokenId, uint256 spent0, uint256 spent1) {
-        return _mintOrIncrease(poolId, 0, lower, upper, amount0, amount1, minimumLiquidity, deadline);
-    }
-    function increase(bytes32 poolId, uint256 id, uint256 amount0, uint256 amount1,
-        uint128 minimumLiquidity, uint256 deadline)
-        external payable onlyModule(Ids.VAULT) nonReentrant returns (uint256 spent0, uint256 spent1) {
-        (int24 lower, int24 upper) = _checkPosition(poolId, id);
-        (, spent0, spent1) = _mintOrIncrease(poolId, id, lower, upper, amount0, amount1, minimumLiquidity, deadline);
-    }
-    function collect(bytes32 poolId, uint256 id, uint256 deadline) external onlyModule(Ids.VAULT) nonReentrant {
-        _deadline(deadline);
-        PoolConfig memory c = _config(poolId, false);
-        _checkPosition(poolId, id);
-        bytes[] memory parameters = new bytes[](2);
-        parameters[0] = abi.encode(id, uint256(0), uint128(0), uint128(0), bytes(""));
-        _settleTakePair(c.key, DECREASE, parameters, deadline);
-    }
+    /// @notice Stable IDs, full keys and bounds. Main increases must not reset
+    /// ordinary confirmation; actual current liquidity is checked separately.
+    /// @dev Deploy only the excess asset. The scarce remainder stays attributed
+    /// as rounding idle; no third leg or mutation of an existing residual.
     /// @dev Only collect/close supply fixed typed actions. Keep recipient reads
     /// after their original callbacks; native and ERC20 prefunds stay untouched.
-    function _settleTakePair(PoolKey memory key, uint8 action, bytes[] memory parameters, uint256 deadline) private {
-        uint256 beforeNative = address(this).balance;
-        nativeSender = address(poolManager); nativeReceived = 0;
-        parameters[1] = abi.encode(key.currency0, key.currency1, address(this));
-        uint256 beforeToken1 = IERC20(key.currency1).balanceOf(address(this));
-        posm.modifyLiquidities(abi.encode(abi.encodePacked(action, TAKE_PAIR), parameters), deadline);
-        _finishNativeCredit(beforeNative, access.module(Ids.VAULT));
-        ExactToken.push(key.currency1, access.module(Ids.VAULT), IERC20(key.currency1).balanceOf(address(this)) - beforeToken1);
+    function positionOperator()external view returns(address){return address(positionExecutor);}
+    function secondaryId(uint256 main)external view returns(uint256){return positionExecutor.secondaryId(main);}
+    function activeSecondaryCount()external view returns(uint256){return positionExecutor.activeSecondaryCount();}
+    function portfolioFingerprint(uint256 main)external view returns(bytes32){return positionExecutor.portfolioFingerprint(main);}
+    function executionPortfolioFingerprint(uint256 main)external view returns(bytes32) {
+        uint256 aux=positionExecutor.secondaryId(main);
+        return keccak256(abi.encode(positionExecutor.portfolioFingerprint(main),
+            main==0?uint128(0):posm.getPositionLiquidity(main),aux==0?uint128(0):posm.getPositionLiquidity(aux)));
     }
-    function close(bytes32 poolId, uint256 id, uint256 deadline) external onlyModule(Ids.VAULT) nonReentrant {
-        _deadline(deadline);
-        PoolConfig memory c = _config(poolId, false);
-        _checkPosition(poolId, id);
-        (uint256 expected0, uint256 expected1) = amounts(id);
-        uint256 min0 = Math.mulDiv(expected0, 10000 - c.maxSlippageBps, 10000);
-        uint256 min1 = Math.mulDiv(expected1, 10000 - c.maxSlippageBps, 10000);
-        if (min0 > type(uint128).max || min1 > type(uint128).max) revert InvalidAmount();
-        bytes[] memory parameters = new bytes[](2);
-        parameters[0] = abi.encode(id, uint128(min0), uint128(min1), bytes(""));
-        _settleTakePair(c.key, BURN, parameters, deadline);
+    function portfolioAmounts(uint256 main)external view returns(uint256,uint256){return positionExecutor.portfolioAmounts(main);}
+    function amounts(uint256 id)external view returns(uint256,uint256){return positionExecutor.amounts(id);}
+    function ticks(uint256 id)external view returns(int24,int24){return positionExecutor.ticks(id);}
+    modifier onlyPositionExecutor(){if(msg.sender!=address(positionExecutor))revert Unauthorized();_;}
+    function executionConfig(bytes32 pool,bool ops)external view onlyPositionExecutor returns(PoolConfig memory){return _config(pool,ops);}
+    function executionSpot(bytes32 pool)external view onlyPositionExecutor returns(uint160){return _policySpot(pool);}
+    /// @notice Normal replacement must restore active LP in single or hybrid
+    /// mode. Initial entry, growth, compound and explicit emergency are separate.
+    function executionOrdinaryReplacement()external view onlyPositionExecutor returns(bool){return _ordinaryReplacement();}
+    function executionHybridReplacement(bytes32 pool)external view onlyPositionExecutor returns(bool){return _hybridReplacement(pool);}
+    function mint(bytes32 pool,int24 lower,int24 upper,uint256 a0,uint256 a1,uint128 minL,uint256 deadline)
+        external payable onlyModule(Ids.VAULT) nonReentrant returns(uint256 id,uint256 spent0,uint256 spent1) {
+        (id,spent0,spent1)=positionExecutor.mint{value:msg.value}(pool,lower,upper,a0,a1,minL,deadline);
+        _portfolioPolicy().recordApplied(id,pool);
     }
-    function ticks(uint256 id) external view returns (int24 lower, int24 upper) {
-        (, uint256 info) = posm.getPoolAndPositionInfo(id);
-        return (int24(uint24(info >> 8)), int24(uint24(info >> 32)));
+    function increase(bytes32 pool,uint256 id,uint256 a0,uint256 a1,uint128 minL,uint256 deadline)
+        external payable onlyModule(Ids.VAULT) nonReentrant returns(uint256,uint256) {
+        return positionExecutor.increase{value:msg.value}(pool,id,a0,a1,minL,deadline);
     }
-    function amounts(uint256 id) public view returns (uint256 amount0, uint256 amount1) {
-        return balancingRouter.principalAmounts(id);
+    function collect(bytes32 pool,uint256 id,uint256 deadline)external onlyModule(Ids.VAULT) nonReentrant{positionExecutor.collect(pool,id,deadline);}
+    function close(bytes32 pool,uint256 id,uint256 deadline)external onlyModule(Ids.VAULT) nonReentrant{positionExecutor.close(pool,id,deadline);}
+    /// @notice Close only the registered residual to Vault. This typed recovery
+    /// path never swaps, changes the main or authorizes an external recipient.
+    function closeSecondary(bytes32 pool,uint256 main,uint256 deadline)
+        external onlyModule(Ids.VAULT) nonReentrant {
+        if(!access.isSealed() || !access.paused())revert InvalidState();
+        positionExecutor.closeSecondary(pool,main,deadline);
+        if(!access.paused())revert InvalidState();
     }
     function swap(bytes32 poolId, bool zeroForOne, uint256 amountIn, uint256 minimumOut, uint256 deadline)
         external payable nonReentrant returns (uint256 amountOut) {
@@ -303,6 +258,14 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         if(emergency) {
             p.poolId = request.swapPool; p.zeroForOne = request.zeroForOne;
             p.amountIn = request.amountIn; p.minimumOut = request.minimumOut;
+        } else if(existingLpId==0 && _hybridReplacement(targetPool)) {
+            // The router adds sizing headroom only when a trade is needed.
+            // Actual final allocation retains the captured governed floor.
+            uint256[4] memory marks;
+            (marks[0],marks[1],marks[2],marks[3])=
+                IPortfolioBudget(IPortfolioVault(access.module(Ids.VAULT)).migrationBudget()).maintenancePrices();
+            p=balancingRouter.planPartial(targetPool,lower,upper,amount0,amount1,
+                _portfolioPolicy().minimumMainBps(targetPool),marks);
         } else p = balancingRouter.plan(targetPool,lower,upper,amount0,amount1);
         balanced0 = amount0; balanced1 = amount1;
         uint256 refund0 = amount0; uint256 refund1 = amount1;

@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {NoHybridPolicyFixture, SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
@@ -10,6 +13,8 @@ import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZBuyback} from "../src/ZZZBuyback.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
+import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {Ids,PoolKey,PoolConfig,Position,PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {ExactAsset} from "../src/libraries/ExactAsset.sol";
@@ -21,7 +26,7 @@ using DualOracleFixture for ZZZOracle;
 
 /// @dev Deliberately fake venue quantities; real Vault, NFT, fee/reward and
 /// settlement modules compose below. Not target-chain market qualification.
-contract HolderExitVenue is ERC721 {
+contract HolderExitVenue is ERC721 , SinglePositionFixture {
     MockToken public immutable token;
     uint256 public next=1;
     uint256 public fee0;
@@ -61,7 +66,7 @@ contract HolderExitVenue is ERC721 {
         ExactAsset.push(address(0),msg.sender,x);ExactAsset.push(address(token),msg.sender,y);
     }
 }
-contract HolderExitPolicy {
+contract HolderExitPolicy is NoHybridPolicyFixture {
     // TEST ONLY disabled confirmation seam: this suite covers holder settlement,
     // while real Strategy/helper confirmation is tested separately.
     function rebalanceReady(uint256) external pure returns(bool) {return true;}
@@ -92,6 +97,7 @@ contract HolderExitIdentity {address public immutable zzz;constructor(address t)
 contract RejectHolderETH {
     receive() external payable {revert("cannot receive ETH");}
     function recover(ZZZMigration migration,uint256 id,address recipient) external {migration.claimPrincipal(id,recipient);}
+    function transferNFT(ZZZNFT nft,address recipient,uint256 id) external {nft.transferFrom(address(this),recipient,id);}
 }
 contract ReenterHolderETH {
     ZZZMigration public migration;uint256 public id;bool public reentered;
@@ -101,6 +107,8 @@ contract ReenterHolderETH {
     }
 }
 contract GasConsumingHolderETH {receive() external payable {while(true){assembly{pop(gas())}}}}
+/// @dev TEST ONLY explicit gas-sensitive receiver; not a benchmark of a real wallet.
+contract GasBudgetHolderETH {receive() external payable {require(gasleft()>200000,"fixture needs larger budget");}}
 
 contract HolderCollectiveExitTest is Test {
     event MetadataUpdate(uint256 tokenId);
@@ -110,10 +118,10 @@ contract HolderCollectiveExitTest is Test {
     address alice=address(0xA11CE);address bob=address(0xB0B);address payable treasury=payable(address(0x7EA5));
     receive() external payable {}
     function setUp() public {
-        vm.warp(1_000_000);ac=new MockAccess();token=new HolderExitCallbackToken();pools=new MockPools();venue=new HolderExitVenue(token);
+        vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));token=new HolderExitCallbackToken();pools=new MockPools();venue=new HolderExitVenue(token);
         oracle=new ZZZOracle(address(ac),address(0));MockFeed feed=new MockFeed(8,1e8);
         oracle.setTestFeed(address(0),address(feed),1 hours);oracle.setTestFeed(address(token),address(feed),1 hours);
-        vault=new ZZZVault(address(ac),block.chainid,treasury);nft=new ZZZNFT(address(ac),"ipfs://exit/");
+        vault=new ZZZVault(address(ac),block.chainid,address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"ipfs://exit/");
         membership=new ZZZMembership(address(ac));rewards=new ZZZRewards(address(ac));fees=new ZZZFeeController(address(ac));
         migration=new ZZZMigration(address(ac));
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.MEMBERSHIP,address(membership));
@@ -126,14 +134,14 @@ contract HolderCollectiveExitTest is Test {
         PoolConfig memory c;c.key=PoolKey(address(0),address(token),10020,60,address(0));c.operationsEnabled=true;c.depositsEnabled=true;
         c.rangeBps=1000;c.triggerBps=100;c.maxSpotDeviationBps=100;c.maxSlippageBps=200;c.minRebalanceInterval=600;
         c.minDepositUSD=5e18;c.maxPositionUSD=1e30;poolId=keccak256(abi.encode(c.key));pools.set(poolId,c);
-        vrf=new MockVRF();nft.configureRandomness(address(vrf),bytes32(uint256(1)),1,3,500000,false);
+        vrf=new MockVRF();ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         CanonicalFixture.bind(address(ac));ac.seal();
         vm.deal(alice,10000 ether);vm.deal(bob,10000 ether);vm.deal(address(this),10000 ether);vm.deal(address(venue),10000 ether);
         token.mint(alice,10000 ether);token.mint(bob,10000 ether);
         vm.prank(alice);token.approve(address(vault),type(uint256).max);vm.prank(bob);token.approve(address(vault),type(uint256).max);
     }
     function _mint(address who) private returns(uint256 id) {
-        vm.prank(who);id=vault.mintDormant{value:0.05 ether}();vrf.fulfill(nft.requestOf(id),0,0);nft.finalizeTraits(id);
+        bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vm.prank(who);id=vault.mintDormant{value:0.05 ether}(reviewedPolicy1);vrf.fulfill(nft.requestOf(id),0,0);nft.finalizeTraits(id);
     }
     function _activate(address who,uint256 amount) private returns(uint256 id) {
         id=_mint(who);vm.prank(who);vault.activate{value:amount}(id,poolId,amount,amount,1,block.timestamp+100);
@@ -141,6 +149,66 @@ contract HolderCollectiveExitTest is Test {
     function _start() private {ac.setPaused(true);migration.beginCollectiveExit(review);}
     function _ready(uint256 bucket) private {_start();migration.closeBucket(bucket,0,0,block.timestamp+100);migration.allocatePrincipal(32);}
     function _ids(uint256 first,uint256 second) private pure returns(uint256[] memory ids) {ids=new uint256[](2);ids[0]=first;ids[1]=second;}
+    function testAdaptablePayoutGasBoundsAndAuthorityCannotChangeBacking() public {
+        uint256 a=_activate(alice,100 ether);_ready(vault.nftBucket(a));
+        ZZZProtocolPolicy policy=ZZZProtocolPolicy(ac.protocolPolicy());
+        IZZZProtocolPolicy.GasPolicy memory g=policy.gasPolicy();
+        bytes32 beforePolicy=policy.gasFingerprint();
+        vm.prank(alice);vm.expectRevert(bytes4(keccak256("Unauthorized()")));
+        policy.setGasPolicy(100000,g.sourceCallGas,g.royaltySyncGas,review);
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()")));
+        policy.setGasPolicy(99999,g.sourceCallGas,g.royaltySyncGas,review);
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()")));
+        policy.setGasPolicy(1000001,g.sourceCallGas,g.royaltySyncGas,review);
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()")));
+        policy.setGasPolicy(100000,g.sourceCallGas,g.royaltySyncGas,bytes32(0));
+        assertEq(policy.gasFingerprint(),beforePolicy);assertEq(policy.payoutGas(),g.payoutGas);
+        assertEq(migration.remainingETH(),100 ether);assertEq(migration.remainingZZZ(),100 ether);
+        assertEq(address(migration).balance,100 ether);assertEq(token.balanceOf(address(migration)),100 ether);
+        (uint256 x,uint256 y)=migration.claimablePrincipal(a);assertEq(x,100 ether);assertEq(y,100 ether);
+    }
+    function testAdaptablePayoutGasRetriesSameBatchWithoutRepayingSuccessfulOwner() public {
+        uint256 a=_activate(alice,100 ether);uint256 b=_activate(bob,100 ether);
+        GasBudgetHolderETH receiver=new GasBudgetHolderETH();
+        vm.prank(alice);nft.transferFrom(alice,address(receiver),a);_ready(vault.nftBucket(a));
+        ZZZProtocolPolicy policy=ZZZProtocolPolicy(ac.protocolPolicy());IZZZProtocolPolicy.GasPolicy memory g=policy.gasPolicy();
+        policy.setGasPolicy(100000,g.sourceCallGas,g.royaltySyncGas,review);
+        uint256 beforeBob=bob.balance;uint256 beforeBobZZZ=token.balanceOf(bob);
+        assertEq(migration.distributePrincipal(_ids(a,b)),1);
+        assertEq(address(receiver).balance,0);assertEq(token.balanceOf(address(receiver)),0);
+        (,,,bool paid)=migration.principalOf(a);assertFalse(paid);
+        assertEq(bob.balance-beforeBob,100 ether);assertEq(token.balanceOf(bob)-beforeBobZZZ,100 ether);
+        assertEq(migration.remainingETH(),100 ether);assertEq(migration.remainingZZZ(),100 ether);
+        assertEq(address(migration).balance,100 ether);assertEq(token.balanceOf(address(migration)),100 ether);
+        policy.setGasPolicy(1000000,g.sourceCallGas,g.royaltySyncGas,review);
+        assertEq(migration.distributePrincipal(_ids(a,b)),1);
+        assertEq(address(receiver).balance,100 ether);assertEq(token.balanceOf(address(receiver)),100 ether);
+        assertEq(bob.balance-beforeBob,100 ether);assertEq(token.balanceOf(bob)-beforeBobZZZ,100 ether);
+        assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+        assertEq(migration.distributePrincipal(_ids(a,b)),0);
+    }
+    function testAdaptablePayoutGasKeepsRejectingOwnerIsolatedAndRetryPaysNewOwner() public {
+        uint256 a=_activate(alice,100 ether);uint256 b=_activate(bob,100 ether);
+        RejectHolderETH receiver=new RejectHolderETH();
+        vm.prank(alice);nft.transferFrom(alice,address(receiver),a);
+        venue.setFees(20 ether,40 ether);_ready(vault.nftBucket(a));
+        ZZZProtocolPolicy policy=ZZZProtocolPolicy(ac.protocolPolicy());IZZZProtocolPolicy.GasPolicy memory g=policy.gasPolicy();
+        policy.setGasPolicy(1000000,g.sourceCallGas,g.royaltySyncGas,review);
+        uint256 rewardsETH=rewards.claimable(a,address(0));uint256 rewardsZZZ=rewards.claimable(a,address(token));
+        uint256 beforeBob=bob.balance;uint256 beforeBobZZZ=token.balanceOf(bob);
+        assertEq(migration.distributePrincipal(_ids(a,b)),1);
+        assertEq(address(receiver).balance,0);assertEq(token.balanceOf(address(receiver)),0);
+        (uint256 x,uint256 y)=migration.claimablePrincipal(a);assertEq(x,100.5 ether);assertEq(y,101 ether);
+        assertEq(migration.remainingETH(),x);assertEq(migration.remainingZZZ(),y);
+        assertEq(address(migration).balance,x);assertEq(token.balanceOf(address(migration)),y);
+        receiver.transferNFT(nft,alice,a);uint256 beforeAlice=alice.balance;uint256 beforeAliceZZZ=token.balanceOf(alice);
+        assertEq(migration.distributePrincipal(_ids(a,b)),1);
+        assertEq(alice.balance-beforeAlice,x);assertEq(token.balanceOf(alice)-beforeAliceZZZ,y);
+        assertEq(bob.balance-beforeBob,x);assertEq(token.balanceOf(bob)-beforeBobZZZ,y);
+        assertEq(rewards.claimable(a,address(0)),rewardsETH);assertEq(rewards.claimable(a,address(token)),rewardsZZZ);
+        assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+        assertEq(fees.buybackBalance(address(0)),1 ether);assertEq(fees.buybackBalance(address(token)),2 ether);
+    }
     function testPrincipalIsProportionalNotEqualAndExactAfterAutomaticPayout() public {
         uint256 a=_activate(alice,100 ether);uint256 b=_activate(bob,300 ether);uint256 bucket=vault.nftBucket(a);
         uint256 aShares=vault.sharesOf(a);uint256 bShares=vault.sharesOf(b);assertEq(bShares,3*aShares);
@@ -215,7 +283,7 @@ contract HolderCollectiveExitTest is Test {
         uint256 a=_activate(alice,100 ether);uint256 dormant=_mint(alice);uint256 bucket=vault.nftBucket(a);ac.setPaused(true);
         vm.prank(alice);vm.expectRevert();migration.beginCollectiveExit(review);migration.beginCollectiveExit(review);
         vm.expectRevert();migration.beginCollectiveExit(review);ac.setPaused(false);
-        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
+        bytes32 reviewedPolicy2 = vault.mintPolicyFingerprint(); vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}(reviewedPolicy2);
         vm.prank(alice);vm.expectRevert();vault.increase{value:5 ether}(a,5 ether,5 ether,1,block.timestamp+100);
         vm.prank(alice);vm.expectRevert();vault.activate{value:100 ether}(dormant,poolId,100 ether,100 ether,1,block.timestamp+100);
         vm.expectRevert();vault.rebalance(bucket,1,block.timestamp+100);
@@ -310,7 +378,7 @@ contract HolderExitScaleTest is Test {
     MockAccess ac;MockToken token;MockPools pools;ExitScaleVault vault;ExitScaleNFT nft;ZZZMigration migration;
     bytes32 review=keccak256("scale model only");address owner=address(0xA11CE);
     function _setup(bool zeroFourth) private {
-        vm.warp(1_000_000);ac=new MockAccess();token=new MockToken(18);pools=new MockPools();
+        vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));token=new MockToken(18);pools=new MockPools();
         vault=new ExitScaleVault(ac,token,pools,zeroFourth);nft=new ExitScaleNFT(owner);migration=new ZZZMigration(address(ac));
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.POOLS,address(pools));
         ac.bind(Ids.MIGRATION,address(migration));ac.bind(Ids.REWARDS,address(new ExitScaleAssets()));

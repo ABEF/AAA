@@ -12,8 +12,8 @@ Use the [rehearsal guide](KEEPER_REHEARSALS.md) for commands and evidence, the
 [keeper internal review](../reports/keeper-recovery/REVIEW.md) for its original
 scope, and the [central Todo](../TODO.md#task-keeper-recovery) for remaining work.
 
-Fresh confirmation2 requires explicit matching helper/Strategy/Budget capability
-and runtime pins; historical confirmation1 journals remain historical. An observed
+Fresh confirmation3 requires explicit matching policy/helper/Strategy/Budget
+capabilities and runtime pins; historical confirmation1/2 journals remain historical. An observed
 physical/reference disagreement requires a confirmed clear before renewing an
 existing window, even if price recovers before inclusion. Never relabel/reset a
 journal to fit new code. [Manual paused-governance emergency](EMERGENCY_REBALANCE.md)
@@ -32,14 +32,15 @@ the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 
 ## Deployment and journal identity
 
-Current configuration explicitly selects `accounting_version: 4` and
+Fresh configuration explicitly selects `accounting_version: 5`, portfolio2, maintenance3,
+confirmation3, compound4 and LP routing2 and
 `fee_intake_version: 1`, the exact chain/deployment identity, real Vault/Fees
 addresses and independently reviewed deployed runtimes in `code_hashes`.
 A compiler template is not a deployed runtime pin. Verify actual version getters
 before new work; pending receipt recovery always runs first.
 
-Fresh LP routing1 requires reviewed Manager/balancer/core/state runtime and
-immutable binding pins. A saved pending transaction is recovered before new
+Fresh LP routing2 requires the reviewed Manager/Balancer/policy/math/physical
+executor graph,21helper runtimes and reciprocal sealed parent/core/state bindings. A saved pending transaction is recovered before new
 LP-router metadata checks; an unavailable router never permits a new balance
 operation. Runtime, signer, accounting and nonce/receipt checkpoints still apply.
 Independently due harvesting does not depend on swap-router metadata. Do not
@@ -54,12 +55,13 @@ stops without rewriting pending hashes, nonces, costs or receipts. Restore the
 original matching release/profile; never upgrade a journal by editing its version.
 Accounting3 retains its original local codec and journal, without terminal
 holder-exit interpretation. The new blocked
-[holder-exit example](../keeper/config.holder-exit.example.json) uses distinct
+[historical holder-exit example](../keeper/config.holder-exit.example.json) uses distinct
 `keeper-holder-exit-v4-lp-only` paths. It requires `contracts.principal_exit` and
 independently reviewed `code_hashes.access` / `code_hashes.principal_exit`, in
 addition to Vault/Fees pins. No example upgrades an installed service.
 
-For accounting4, verify `CUSTODY_VERSION()==3`, the fixed Migration/module/access
+For fresh accounting6, verify `CUSTODY_VERSION()==4`; historical accounting4 requires 3.
+Check the fixed Migration/module/access
 binding, and consistent `Access.lpExitStarted()` / `Migration.exitPhase()`.
 Recovery of an already-saved transaction remains first. Once exit starts, the
 keeper schedules no range change, rebalance, compound or standalone harvest,
@@ -70,11 +72,11 @@ permit. Governance alone starts exit and closes every funded bucket. The optiona
 in bounded batches, including while paused; it never initiates or closes LP.
 It is disabled by default and is not enabled on any installed service here.
 Never restart LP as a recovery shortcut: retirement is irreversible. Metadata
-profile4 accepts terminal stage4; old metadata journals cannot be relabeled.
+profiles4/5 accept terminal stage4; old metadata journals cannot be relabeled.
 
 ### Optional automatic principal delivery
 
-For a reviewed accounting4 deployment, replace the disabled object in the keeper
+For a reviewed accounting4/5 deployment, replace the disabled object in the keeper
 configuration with the following complete object, using the actual NFT runtime:
 
 ```json
@@ -89,8 +91,8 @@ configuration with the following complete object, using the actual NFT runtime:
 ```
 
 The worker checks NFT runtime, Access owner/module binding, frozen minted count
-(at most1000), allocation cursor and ordinal identity. Phase2 submits only
-`allocatePrincipal(batch_size)`; Ready3 scans at most32 ordinals and submits
+(at most 1000), allocation cursor and ordinal identity. Phase2 submits only
+`allocatePrincipal(batch_size)`; Ready3 scans at most 32 ordinals and submits
 `distributePrincipal(ids)` for unpaid nonzero allocations. Recipients and amounts
 are fixed on-chain by current NFT ownership, not supplied by keeper configuration.
 The ordinary signer, simulation, nonce/receipt journal and transaction/day/gas
@@ -150,7 +152,7 @@ The state file preserves deployment identity, next nonce, pending intent/hash, d
 
 A peer can trickle HTTP headers/body, or DNS can stall, beyond urllib's socket
 inactivity timeout. Without an outer supervisor, retries cannot begin until
-that call returns. API workers have a separate killable30second deadline; a
+that call returns. API workers have a separate killable30 second deadline; a
 standalone keeper command does not. A stale health alert alone cannot interrupt
 blocked I/O.
 
@@ -160,8 +162,8 @@ The reviewed source [unit](../keeper/zzz-keeper.service) sets
 `LimitCORE=0`. Main progress notifications bracket startup/cycles, follow
 completed RPC and cover intentional polling sleep; there is no timer thread.
 A stuck read/signer cannot keep reporting progress. Default notification cadence
-is at most10seconds, leaving margin for the existing90second signer timeout.
-A progressing cycle may legitimately exceed120seconds.
+is at most 10 seconds, leaving margin for the existing90 second signer timeout.
+A progressing cycle may legitimately exceed120 seconds.
 
 Before a separately authorized rollout:
 
@@ -177,7 +179,7 @@ Before a separately authorized rollout:
    systemctl show zzz-keeper.service -p WatchdogUSec -p WatchdogSignal -p NotifyAccess -p KillMode -p SendSIGKILL -p FinalKillSignal -p LimitCORE -p WatchdogTimestampMonotonic
    ```
 
-   Require the reviewed120second timeout, main-process notification, group
+   Require the reviewed120 second timeout, main-process notification, group
    termination, SIGKILL (signal9), no core dumps and advancing accepted timestamps.
    Older managers can ignore unsupported options; warnings or ignored settings
    block qualification. Review manual timeout changes against maximum legitimate
@@ -243,7 +245,7 @@ the actual chain fee model before production.
 
 ## Internal harvest proof and source update
 
-Current accounting4 recovery can acknowledge an internal compound/rebalance
+Current accounting6 recovery (and explicit historical4/5 support) can acknowledge an internal compound/rebalance
 harvest only from the saved action and a matching authenticated Vault event in
 its canonical successful receipt. The harvest clock is saved atomically with
 paid nonce/spend truth. Missing optional proof leaves that clock unchanged but
@@ -294,7 +296,26 @@ transaction. Preserve evidence and never edit next_nonce to force signing.
 
 ## Versioned maintenance schedule recovery
 
-Fresh accounting4 service configuration explicitly selects maintenance_policy_version2
+Fresh accounting6 selects maintenance3/confirmation3/portfolio2 and Budget4,
+with exact runtime/parent pins. Both physical NFTs and desired/applied policy
+must be authenticated; missing auxiliary data is unavailable, never a zero leg.
+Main increases preserve stable confirmation identity; parking/emergency manifests
+also bind both liquidities. Do not relabel an old journal or copy its timers.
+
+The fresh `observed_adjustment_v3` journal evaluates raw 85% physical/reference
+price-distance conditions every 240 seconds during the initial 12-hour cooldown.
+Paid ordinary samples begin at cooldown minus duration minus max-gap, initially
+the last15 minutes. This saves early observation gas without claiming earlier
+persistence. Foreign records, reset acknowledgements, faults and pending recovery
+remain first. A successful on-chain window needs600 seconds with no confirmed gap
+above300 seconds, then durable 60–300 second jitter excluding the preceding delay.
+Known maturity/cooldown boundaries may wake earlier. Clock/configuration changes
+recompute enrollment, never erase submitted truth. Manual geometry updates keep
+their after-cooldown exception. Recover canonical receipts before new work.
+
+Installed historical releases retain the following profile-specific schedules:
+
+Historical accounting4 service configuration explicitly selects maintenance_policy_version2
 and authenticates Strategy2. Enabled standalone compound also authenticates Budget3.
 Accounting4 configs without this new field retain historical mode1; do not change
 the field/runtime pin to relabel a running deployment. API preparation separately
@@ -302,7 +323,7 @@ requires explicit1or2 for accounting4.
 
 Historical policy2 without confirmation1 retains its `outside_rebalance_v2` namespace. It stores bounded scheduling
 records: stable deployment/pool/LP/clock identity, hourly ordinary check time or
-one persisted60-600second jitter. Top-ups, harvesting and balances cannot redraw
+one persisted60-600 second jitter. Top-ups, harvesting and balances cannot redraw
 it. Only obsolete scheduling records are pruned; existing pending, nonce, receipt,
 spend and history fields remain. Save failure prevents signing. Restore the same
 record after restart; never delete it to redraw a convenient delay. Downtime checks
@@ -310,12 +331,14 @@ current state once, not missed rebalance cycles. A deliberate width change bypas
 the local hourly wait but preserves on-chain cooldown and the jitter. Fresh eligibility
 is checked before simulation and after gas review. Jitter is not an on-chain guarantee.
 
-The historical source example polls60seconds while keeping hourly harvest separate.
+The historical source example polls60 seconds while keeping hourly harvest separate.
 A local JSON change needs controlled restart and fresh matching health; changing
 on-chain range/rebalance/compound intervals normally does not. No existing service
 is upgraded by publishing this guide. [Exact policy/evidence](LP_EXECUTION_POLICY.md).
 
-### Sampled confirmation1 recovery
+<a id="sampled-confirmation1-recovery"></a>
+
+### Historical sampled confirmation1/2 recovery
 
 The explicit `rebalance_confirmation_version:1` profile additionally pins
 `contracts.rebalance_confirmation`/runtime, the actual Vault's
@@ -326,28 +349,28 @@ Read-only keeper preflight validates actual policy/runtime/capability/bindings
 even while every LP is in cooldown. Its policy-only read needs no price or bucket
 condition; a matching runtime pin alone cannot approve an unsupported Budget.
 `interval_seconds` must be explicitly configured as an integer60–240; the old
-600second default is refused for confirmation1. Work and receipt delays still
+600 second default is refused for confirmation1. Work and receipt delays still
 add latency, so an admitted interval does not promise an exact sample schedule.
 
-New `observed_rebalance_v1` schedules ordinary checks every240seconds after the
-hard cooldown, including inside-range checks. The selected policy is a900second
-observed window with strict300second maximum sample gap. Initial source gap0
+New `observed_rebalance_v1` schedules ordinary checks every 240 seconds after the
+hard cooldown, including inside-range checks. The selected policy is a900 second
+observed window with strict 300 second maximum sample gap. Initial source gap 0
 stops ordinary readiness until governance configures900/300 with its review hash.
-The explicitly reviewed240-second source schedule leaves roughly60seconds for
-delays without adding on-chain grace. A gap above300seconds
+The explicitly reviewed240-second source schedule leaves roughly 60 seconds for
+delays without adding on-chain grace. A gap above300 seconds
 makes old evidence unusable; the next successful observation restarts the window.
-Receipt delays can cause repeated restarts. A nonzero gap below the fixed240second worker
+Receipt delays can cause repeated restarts. A nonzero gap below the fixed240 second worker
 cadence is reported unsupported rather than triggering perpetual paid restarts.
 
-Once sampled readiness passes, the worker saves its60–600second jitter and keeps
+Once sampled readiness passes, the worker saves its60–600 second jitter and keeps
 refreshing samples on due four-minute checks. It rereads readiness before any
 rebalance submission. A deliberate operator width change retains its source
-exception to the window, including gap0, while respecting cooldown/jitter/value
+exception to the window, including gap 0, while respecting cooldown/jitter/value
 guards. This is recorded sampling, not uninterrupted price-history proof.
 
 For a reviewed source rollout, first reconcile pending work using its original
 release/configuration. A prior300-second outer poll must be deliberately reduced
-to60-240 before the updated worker starts. Preserve the journal: old300-second
+to 60-240 before the updated worker starts. Preserve the journal: old300-second
 schedule rows remain validated historical rows, with the next effective check
 no later than `last_checked_at+240`; successful normal evaluation writes the new
 schedule. No receipt, nonce, spend checkpoint, clear acknowledgement or stored
@@ -429,8 +452,8 @@ runtime/config/source identity. Confirmation1 requires this record independently
 of quality1, including during cooldown with compounding disabled. It reads no
 condition or prices and proves neither sampled readiness nor continuous history.
 
-Policy state `stopped` means gap0; `incompatible_cadence` means a nonzero gap
-below240seconds in the current source. This is the source cadence-compatibility
+Policy state `stopped` means gap 0; `incompatible_cadence` means a nonzero gap
+below 240 seconds in the current source. This is the source cadence-compatibility
 threshold, not a change to the selected300-second on-chain maximum. Both degrade active-principal health and refuse preflight
 without blocking independently guarded hourly harvest. `unavailable` retains any
 prior observation explicitly as stale. After explicit terminal

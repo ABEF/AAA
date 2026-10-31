@@ -1,7 +1,7 @@
 # Marketplace royalty settlement
 
 The undeployed current profile is accounting 4 / fee-intake 1 / direct governance
-2 / holder-exit canonical V5. This page covers marketplace receipts, distinct from
+2 / holder-exit canonical V6. This page covers marketplace receipts, distinct from
 activation contributions and venue LP fees. Conversion loss defaults to **1%**,
 governed up to **10%**, with network gas separate. See [execution policy](EXECUTION_LOSS_POLICY.md)
 and the [sole task](../TODO.md#task-royalty-eth-settlement).

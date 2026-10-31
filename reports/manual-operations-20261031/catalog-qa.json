@@ -1,0 +1,27 @@
+{
+  "kind": "Read-only final manual QA; prototype/source/reference inspection, no tests or transactions",
+  "manual_sha256_at_observation": "1e40e204a9c9816c5185ea92b7789e16cf89ce3c9a40a003d453836ae9c44a12",
+  "manual_may_continue_to_change_by_root": true,
+  "reference_sha256": "7b1ec5394cf727e59e061dc0140bc61bc8e1442db8bddfcc33f2f63ba8937147",
+  "notes_sha256": "3d376725cc8317b7b270da7bae00dab2fecbaf8bce211d8bc623b10dbac737d9",
+  "operations_final_sha256": "f40cd798853602acc0499d6d7bcc9da1ea5c07eed11f584791809e724e347be9",
+  "earlier_operations_sha256": "ad025db54a24adac334ee3499a18d55c346f7a086017ee926d764a32973b0c78",
+  "earlier_draft_sha256": "2356aed53d7be085fc8459ee595cfcbedf952ea50d8886a051031355567e1292",
+  "exact_ordered_named_prototype_rows": 90,
+  "duplicate_rows": 0,
+  "missing_rows": 0,
+  "unexpected_rows": 0,
+  "all_current_source_snapshot_pins_match": true,
+  "manual_contextual_review": [
+    "Actual G/B before/after-seal authority and special Access pause/propose/accept exceptions.",
+    "Manual modefalse ordinary merge without pause; emergency and residual-close require paused governance and deliberate unpause; no per-Uniswap-leg pause.",
+    "Same NFT retains conversion credit through owner transfer, not previous-owner credit.",
+    "Gap0 stops sampled market path, not pending deliberate geometry exception.",
+    "Current October31 source-bound static status stated without claiming independent approval.",
+    "Two wording concerns sent to root: first-activation reservation versus existing custody identity; explicit emergency swap manifest versus ordinary Balancer list."
+  ],
+  "limits": [
+    "A procedure/catalog is not live simulation, deployment qualification, independent audit or execution authority.",
+    "Current manual changes by root after this read do not alter the frozen source/reference pins."
+  ]
+}

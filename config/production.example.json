@@ -1,24 +1,20 @@
 {
-  "schema_version": 5,
-  "accounting_model": "shared-pools-native-v2",
-  "accounting_version": 3,
+  "schema_version": 8,
+  "accounting_model": "shared-pools-native-v6",
+  "accounting_version": 6,
   "routing_version": 2,
-  "custody_architecture": "governed-v1",
+  "custody_architecture": "collective-holder-return-v4",
   "_notes": [
-    "HISTORICAL accounting3/custody2 inventory only. Fresh source is accounting4/custody3/canonical HOLDER_EXIT_V5. The default release gate blocks this inventory; use explicit historical inspection only. No external custody exits exist in current source.",
-    "UNQUALIFIED EXAMPLE. No PoPL deployment, approved authority wallets, live price feeds, complete read-only observations or independent production evidence is supplied. Public signing and deployment are not authorized.",
-    "Only known source-selected Robinhood native venue/token identities and hard pins are populated. They are intended references, not fresh on-chain observations or a service qualification. Observed fields and review evidence stay unset.",
-    "Schema 5 is the explicit native/accounting-V2/routing-V2/pricing-V2/review-policy-V1 governed profile. The preserved schema-4 example remains historical and blocked for this layout; never relabel WETH ledgers or existing journals as native V2. Current Entry requires executeReviewed with a caller maximum; legacy execute fails closed.",
-    "Pricing version 2 requires two independently reviewed USD sources PER asset, immutable source-runtime pins, full append-only policy and fresh agreed rounds. Two addresses, the target pool spot, a presumed stable peg or correlated test mirrors do not qualify independence. The user-selected disagreement tolerance is 300 bps (3%); source addresses and freshness limits are deliberately unset; no live ZZZ pair of sources is supplied.",
-    "A 3% agreement tolerance does not raise the separate default 2% contribution and 1% conversion loss caps. Upper-input/lower-output conservative valuation can reject an operation within 3% agreement; there is no averaging, one-source fallback or automatic cap increase.",
-    "One ETH/ZZZ contribution pool at a time. The selected static hookless pool is 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b, fee 10020 pips, spacing 200. Actual fees/state/liquidity must be read and independently qualified.",
-    "Current policy defaults shown are contribution 2%, LP/royalty conversion 1%, maintenance 3%, each governance-configurable up to 10%. Observe and review actual values; do not assume defaults or raise caps automatically. Gas is separate.",
-    "A cheaper independently qualified ZZZ-to-ETH route is still required at the default 1% limit. Empty conversion routes, missing source policies or unknown prices block this example. Activation and LP growth accept only native ETH or the reviewed current ZZZ. Marketplace royalty currencies and their separate conversions do not add user contribution inputs.",
-    "Current fee_intake_version1 requires accounting3: eight-word local Positions, direct governance version2 and Native LP-only V4 canonical schema, with15helpers including ActivationAssetsFactory. Creator inboxes and remote-fee intake are removed. Historical accounting1/2 rows, statuses, snapshots and journals retain their original schema; no automatic upgrade or reinterpretation is supported. Cross-chain canonical import and legacy V1 ledgers remain unsupported.",
-    "Production minting is intended for OpenSea but chain/product/recipient/VRF compatibility is unqualified. ERC-2981 requests 5%; only royalties actually received can be distributed.",
-    "Publish and review the complete 2784-asset content-addressed artwork root. No new artwork generation is implied. Exact quota draw uses verified randomness; live coordinator/subscription/provider qualification remains open.",
-    "Keep credentials and private material outside this inventory. The observer performs only bounded read-only RPC calls and does not set approved pins or evidence. Offline ready means declared inventory consistency only and never authorizes deployment, sealing or spending.",
-    "Range-policy version 1 is explicit for this candidate. Set Strategy setRangeOrientation(pool,1) for ZZZ priced in ETH. Adaptive selection is disabled until reviewed drift thresholds, cooldown and policy hash are approved; observing a new runtime is not approval. Historical profiles retain their original raw-ratio semantics."
+    "Fresh schema8/accounting6/ProtocolPolicy1/Portfolio2 candidate, never a deployed/runtime profile. Historical schema7 and earlier remain explicit inspection only.",
+    "Only native ETH and one fixed ZZZ. Fixed80/10/5/5, separate received-only rarity royalties, terminal return to holders, no integrated bridge or external custody recipient.",
+    "Operating defaults are source references, not observations. Two independent qualified USD sources with3% agreement; contribution2%, conversion1%, maintenance3% operating defaults and10% hard ceilings; gas separate.",
+    "Current global activation/growth minima and idle/gas/sale/metadata terms must be declared with exact revisions/fingerprints and independently observed. Do not infer defaults from missing reads.",
+    "Main minimum defaults60%, residual maximum40%, residual half-side width5000bps, one full aligned tick gap; per-pool governed allocation may raise main floor, never lower the hard60% envelope.",
+    "At most two physical legs per logical bucket, both Vault-owned and included in exact principal. Desired mode/geometry are distinct from physically applied state. At most21 reviewed helpers.",
+    "Fresh85% main threshold,600-second sampled evidence/strict300-second maximum gap,240-second source checks, durable60-300-second random delay, hard12-hour initial cooldown; sampled observations are not continuous history or MEV immunity.",
+    "Source6 canonical admission uses ADAPTABLE_POLICY_V6 even though principal Position retains eight words. Never relabel old runtimes, templates, journals, receipts or interfaces.",
+    "Combined reviewed mint binds sale terms and current VRF generation/settings. Cosmetic/gas changes do not invalidate mint review; neither mint nor Entry policy changes reset LP confirmation.",
+    "All real pins/roles/feeds/routes/VRF/storage/services remain unset where unqualified. Public signing disabled, OpenSea primary drop unimplemented, independent audit/rehearsals open; no deployment authorized."
   ],
   "release_commit": null,
   "canonical_chain_id": 4663,
@@ -66,7 +62,7 @@
     "randomness_policy": "verified_coordinator_two_words",
     "evolution_thresholds_usd18": [
       "0",
-      "100000000000000000000",
+      "0",
       "1000000000000000000000",
       "10000000000000000000000"
     ],
@@ -86,7 +82,9 @@
     "remediation": null,
     "native_accounting": null,
     "typed_v4_routes": null,
-    "custody_handoff": null
+    "holder_return": null,
+    "portfolio": null,
+    "protocol_policy": null
   },
   "chains": [
     {
@@ -280,7 +278,11 @@
             "vault": null,
             "MAX_LOSS_BPS": 1000,
             "contributionLossBps": 200,
-            "maintenanceLossBps": 300
+            "maintenanceLossBps": 300,
+            "IDLE_COMPOUNDING_VERSION": 4,
+            "REBALANCE_CONFIRMATION_VERSION": 3,
+            "EMERGENCY_REBALANCE_VERSION": 2,
+            "emergencyActive": false
           }
         },
         "custody_validation": {
@@ -305,8 +307,7 @@
           "bindings": {
             "nft": null,
             "canonicalController": null,
-            "converter": null,
-            "custodyCount": 0
+            "converter": null
           }
         },
         "metadata_renderer": {
@@ -437,6 +438,105 @@
             "access": null,
             "assetsOfRegistry": null
           }
+        },
+        "balancing_router": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "liquidityManager": null,
+            "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "stateView": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+            "LP_ROUTING_VERSION": 2,
+            "EXECUTION_QUALITY_VERSION": 1,
+            "MAX_EXECUTION_POOLS": 4,
+            "MAX_ADDITIONAL_LOSS_BPS": 1000,
+            "additionalLossBps": 100,
+            "executionRevision": null,
+            "searchIterations": 8,
+            "quoteGasLimit": 200000,
+            "balanceMath": null
+          }
+        },
+        "rebalance_confirmation": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "strategy": null,
+            "REBALANCE_CONFIRMATION_VERSION": 3,
+            "duration": 600,
+            "maxObservationGap": 300,
+            "policyRevision": null,
+            "reviewHash": null,
+            "requireReferenceExit": true,
+            "referenceReviewHash": null
+          }
+        },
+        "portfolio_policy": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "strategy": null,
+            "PORTFOLIO_VERSION": 1,
+            "thresholdBps": 8500,
+            "revision": null,
+            "minimumMainBps": 6000,
+            "maximumResidualBps": 4000,
+            "DEFAULT_RESIDUAL_SIDE_BPS": 5000
+          }
+        },
+        "lp_balance_math": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "balancer": null,
+            "LP_BALANCE_MATH_VERSION": 1
+          }
+        },
+        "lp_position_executor": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "liquidityManager": null,
+            "positionManager": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+            "stateView": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+            "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "permit2": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+            "balancingRouter": null,
+            "LP_POSITION_EXECUTOR_VERSION": 1
+          }
+        },
+        "protocol_policy": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "bindings": null,
+          "observed_bindings": null,
+          "review_evidence": null
         }
       },
       "dependencies": {
@@ -501,8 +601,8 @@
         "asset": "0x0000000000000000000000000000000000000000",
         "decimals": 18,
         "runtime_hash": null,
-        "version": 3,
-        "canonical_schema": "0x9b5a59d6f91788ab6de97291bf61eab0a5eeee8b439b7c976b8f278e06e34368",
+        "version": 6,
+        "canonical_schema": "0x0d5e1dc9dd446c57a6c00ee26b443e08b324e1decfca4b9729d790420a257ee7",
         "wrapper_independent": true,
         "eth_weth_principal_boundary": false,
         "legacy_v1_import": false
@@ -525,13 +625,13 @@
           "hooks": "0x0000000000000000000000000000000000000000",
           "depositsEnabled": true,
           "operationsEnabled": true,
-          "rangeBps": null,
-          "triggerBps": null,
+          "rangeBps": 5000,
+          "triggerBps": 100,
           "maxSpotDeviationBps": null,
           "maxSlippageBps": null,
-          "minRebalanceInterval": null,
+          "minRebalanceInterval": 43200,
           "minDepositUSD": "5000000000000000000",
-          "maxPositionUSD": null,
+          "maxPositionUSD": "1000000000000000000000000",
           "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
           "observed_config": null,
           "observed_accounting": null,
@@ -721,15 +821,6 @@
         "origin_vault": null,
         "review_evidence": null
       },
-      "custody": {
-        "cross_chain_enabled": false,
-        "pending_principal_count": null,
-        "pending_royalty_custody_count": null,
-        "recipient_trust_accepted": null,
-        "normal_floors_preserved": null,
-        "raw_exit_separately_approved": null,
-        "review_evidence": null
-      },
       "inventory_history": {
         "complete": null,
         "evidence": null
@@ -755,14 +846,14 @@
           "requestConfirmations": null,
           "callbackGasLimit": null,
           "nativePayment": null,
-          "immutable_provider_configuration": true,
           "mutable_request_parameters": [
             "requestConfirmations",
             "callbackGasLimit"
           ],
           "no_admin_reroll": true,
           "review_evidence": null,
-          "integration_evidence": null
+          "integration_evidence": null,
+          "provider_rotation_when_drained": true
         },
         "observed_bindings": null,
         "artwork_publication": {
@@ -808,7 +899,7 @@
         },
         "keeper": {
           "status": "unqualified",
-          "profile": "local_position_v3_governed_limits",
+          "profile": "accounting6_policy1_portfolio2_upkeep3_compound4_lp2_quality1_confirmation3",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -816,7 +907,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting_v3_routing_v2_pricing_v2_review_v1",
+          "profile": "accounting6_policy1_custody4_holder_exit_v6_portfolio2_confirmation3",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -843,12 +934,149 @@
           "evidence": null,
           "collection_url": null
         }
+      },
+      "maintenance": {
+        "compound_intervals": {
+          "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b": 3600
+        },
+        "observed_compound_intervals": null
+      },
+      "lp_execution": {
+        "execution_revision": null,
+        "registry_configuration_revision": null,
+        "quality_policy_revision": null,
+        "search_iterations": 8,
+        "quote_gas_limit": 200000,
+        "additional_loss_bps": 100,
+        "execution_pools": [],
+        "observed": null,
+        "review_evidence": null
+      },
+      "holder_exit": {
+        "observed": null,
+        "review_evidence": null
+      },
+      "contribution_reservation": null,
+      "rebalance_confirmation": {
+        "duration": 600,
+        "max_observation_gap": 300,
+        "policy_revision": null,
+        "review_hash": null,
+        "reference_exit_required": true,
+        "reference_review_hash": null,
+        "observed": null,
+        "review_evidence": null
+      },
+      "portfolio": {
+        "threshold_bps": 8500,
+        "policy_revision": null,
+        "trigger_review_hash": null,
+        "source_check_interval_seconds": 240,
+        "pools": [
+          {
+            "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+            "enabled": false,
+            "geometry_revision": null,
+            "residual_side_bps": 5000,
+            "mode_review_hash": null,
+            "residual_review_hash": null,
+            "control_revision": null,
+            "minimum_main_bps": 6000,
+            "residual_gap_spacings": 1
+          }
+        ],
+        "observed": null,
+        "review_evidence": null,
+        "trigger_revision": null
+      },
+      "protocol_policy": {
+        "entry": {
+          "version": 1,
+          "domain": "entry",
+          "policy": null,
+          "fingerprint": null,
+          "minimum_activation_usd_18": null,
+          "minimum_growth_usd_18": null,
+          "maximum_idle_bps": null,
+          "revision": null
+        },
+        "maintenance": {
+          "version": 1,
+          "domain": "maintenance",
+          "policy": null,
+          "fingerprint": null,
+          "maximum_idle_bps": null,
+          "revision": null
+        },
+        "gas": {
+          "version": 1,
+          "domain": "gas",
+          "policy": null,
+          "fingerprint": null,
+          "payout_gas": null,
+          "source_call_gas": null,
+          "royalty_sync_gas": null,
+          "revision": null
+        },
+        "sale": {
+          "version": 1,
+          "domain": "sale",
+          "policy": null,
+          "fingerprint": null,
+          "mint_price_wei": null,
+          "recipient": null,
+          "pending_recipient": null,
+          "revision": null
+        },
+        "metadata": {
+          "version": 1,
+          "domain": "metadata",
+          "policy": null,
+          "fingerprint": null,
+          "enhanced_usd_18": null,
+          "singularity_usd_18": null,
+          "revision": null
+        },
+        "mint": {
+          "version": 1,
+          "policy": null,
+          "fingerprint": null,
+          "vrf_revision": null,
+          "sale_fingerprint": null,
+          "randomness": {
+            "coordinator": null,
+            "expected_code_hash": null,
+            "key_hash": null,
+            "subscription_id": null,
+            "request_confirmations": null,
+            "callback_gas_limit": null,
+            "native_payment": null,
+            "generation": null,
+            "configured": null,
+            "review_hash": null
+          }
+        },
+        "configuration_hash": null,
+        "vrf_revision": null,
+        "observed": null,
+        "review_evidence": null
       }
     }
   ],
   "pricing_version": 2,
-  "review_policy_version": 1,
+  "review_policy_version": 2,
   "range_policy_version": 1,
   "mint_integration_version": 1,
-  "fee_intake_version": 1
+  "fee_intake_version": 1,
+  "governance_version": 2,
+  "custody_version": 4,
+  "maintenance_policy_version": 3,
+  "compound_capability_version": 4,
+  "lp_routing_version": 2,
+  "execution_quality_version": 1,
+  "rebalance_confirmation_version": 3,
+  "emergency_rebalance_version": 2,
+  "portfolio_version": 2,
+  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6",
+  "protocol_policy_version": 1
 }

@@ -1,0 +1,22 @@
+{
+  "scope": "Final callable check after shared nonce/epoch explanations were corrected; source compiler graph unchanged",
+  "exit_code": 0,
+  "result": {
+    "checked": true,
+    "contracts": 36,
+    "functions": 777,
+    "constructors": 36,
+    "receive_hooks": 14,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "artifacts_sha256": {
+    "docs/CONTRACT_FUNCTIONS.md": "899139066332665b5589d02c335297d31272c65925a29d0a2c8a92571cd9b020",
+    "docs/function-reference.json": "78a7f7c521691f62700d00c1d33323b65029ff893c51197318fbc642437cd83d",
+    "docs/function-reference-notes.json": "6c94985601bb82e0feab7a98db41aafb8fa888eb9ff10ef436ac6513df2022ad"
+  },
+  "compiler_input_sha256": "712f0b92f7079b07f128d19fcdd928d17a2384f05ad609a315793b7d39f73ae5",
+  "compiler_output_sha256": "39083c6e2456fec4db9988b14d759d9a2bd0c46f87e67e1fca7241e2f260c05d"
+}

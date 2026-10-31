@@ -1,17 +1,17 @@
 # Security audit plan
 
-Current fresh source: **accounting4 / custody3 / canonical holder-exit V5**.
+Current fresh source: **accounting6 / custody4 / portfolio2 / canonical adaptable-policy V6**.
 [Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
 and royalty custody exits. Governance permanently ends LP and pays actual
 ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
 No external recipient/bridge/return ingress remains. Whole-collection handoff
 is available only before exit. Earlier source-scoped evidence and accounting3
 service/inventory/website qualification remain historical to their original pins.
-See [profile4](POSITION_V4.md); new release qualification remains open.
+See [profile6](POSITION_V6.md); new release qualification remains open.
 
 
-Current threat model: native ETH/fixedZZZ, accounting4/directgovernance2/fee1/
-custody3/holder-exitV5; fixed80/10/5/5 and separate eligible rarity royalties.
+Current threat model: native ETH/fixedZZZ, accounting6/directgovernance2/fee1/
+custody4/portfolio2/holder-exitV5; fixed80/10/5/5 and separate eligible rarity royalties.
 Governance may irreversibly end LP and pay current holders proportionally. It
 cannot choose an external recipient through the removed custody APIs. Immediate
 configuration and reviewed replacement-code approval remain governance trust
@@ -28,7 +28,7 @@ and unresolved live/independent gates supersede no historical report bytes.
 
 ## Priorities and evidence
 
-Fresh confirmation2/emergency1 expands this threat model: test physical/reference
+Fresh confirmation3/emergency2 expands this threat model: test physical/reference
 same-side sampled persistence and governed relaxation; prevent automatic width
 policies bypassing the reference guard; preserve mandatory reset after an observed
 disagreement even if price recovers before inclusion. Manual paused governance
@@ -155,13 +155,16 @@ journals and budgets supplement on-chain controls, not replace them.
   and [operating rehearsals](KEEPER_REHEARSALS.md), including off-host recovery.
 
 The [operator-selected execution record](LP_EXECUTION_POLICY.md) separates the
-implemented policy2/Budget3 timing and LP routing1 reviewed execution routes/
-solver from actual market qualification. See the [new scoped review](../reports/atomic-routing-20261028/REVIEW.md). Timing exceptions are settled: hard initial
-12hours, operator width-change exception after cooldown, separate compound interval. Review route selection
+implemented policy3/Budget4/confirmation3 timing and LP routing2 bounded execution
+from actual market qualification. Audit both physical legs, main-only entrant
+increases, stable versus liquidity-sensitive fingerprints, full-side versus
+half-side geometry and post-cost active-main 60%/residual 40% floors. Test fill,
+reversal, disable/merge and all-leg park/move/exit/canonical drains. See the [new scoped review](../reports/atomic-routing-20261028/REVIEW.md). Timing exceptions are settled: hard initial
+12 hours, operator width-change exception after cooldown, separate compound interval. Review route selection
 at full post-close size, on-chain versus service-only restrictions, jitter
 restart/reroll behavior, public entrant-only contribution swaps, bounded quote/single-swap costs and proxy
-upstream changes. The [new verification](../reports/maintenance-policy-20261027/VERIFICATION.md) covers
-changed source; actual economic qualification remains open. Timed 10% replacement is a separate optional state-machine design, not
+upstream changes. The [current scoped verification](../reports/optional-portfolio-20261030/VERIFICATION.md)
+records local actual-v4-core and offline behavior, not all economic cases; actual economic qualification remains open. Timed 10% replacement is a separate optional state-machine design, not
 a small TWAP setting or a selected release feature.
 
 ### Keeper-originated manipulation
@@ -173,7 +176,7 @@ fresh prices and loss bounds reduce discretion but do not prove no profitable
 attack. Compound cadence V3 is implemented mitigation: its independent interval waits after
 LP creation/replacement; all standalone compound yields to eligible rebalance or
 adaptive selection. Rebalance retains priority and does not read lastCompound.
-No24-hour production default or cumulative-loss restriction is selected.
+No 24-hour production default or cumulative-loss restriction is selected.
 
 Evaluate every relevant swap surface separately: rebalance, compound, buyback
 and reward conversion. Include repeated permissible losses, current fee/depth,
@@ -203,7 +206,7 @@ maintenance gas grief. Distinguish legitimate external LP fee/arbitrage revenue
 from an exploitable protocol loss.
 
 Review actual independent sources, stale/correlated data and bounded divergence.
-The3% feed agreement band, spot tolerance, swap minimum and total maintenance
+The 3% feed agreement band, spot tolerance, swap minimum and total maintenance
 loss limit are different controls. Qualify depth-aware/fee-aware bounds against
 raw asset and gas/trading-cost witnesses. Protected submission is optional and
 unqualified: provider auction hints can reveal pool/direction before ordering.
@@ -330,7 +333,7 @@ token balances and allowances, other-bucket/donation isolation, current and
 historical compound, entry marginal NAV, local fee dust/late venue receipts, composition
 epochs and successor import. Authenticate complete records and exact classified
 backing; native receiver protection must not be counted twice. Whole-collection
-capture rejects lpExitStarted permanently; canonical V5 does not import the
+capture rejects lpExitStarted permanently; canonical V6 does not import the
 terminal principal payout ledger. Repeated successor and
 funded-abort paths need version-compatible source/destination code and actual
 dependency qualification.

@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
 // These are ABI/action/custody unit tests with fake settlement, NOT real Uniswap integration tests.
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -62,16 +64,16 @@ contract LiquidityEncodingTest is Test {
     MockAccess ac;MockToken t0;MockToken t1;MockPools pools;FakePermit2 permit;
     FakePositionManager posm;ZZZLiquidityManager manager;bytes32 poolId;
     function setUp() public {
-        ac=new MockAccess();t0=new MockToken(18);t1=new MockToken(18);pools=new MockPools();permit=new FakePermit2();
+        ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));t0=new MockToken(18);t1=new MockToken(18);pools=new MockPools();permit=new FakePermit2();
         FakePoolManager core=new FakePoolManager();FakeState state=new FakeState(address(core));FakePolicy policy=new FakePolicy();
         posm=new FakePositionManager(address(core),address(permit));
-        manager=new ZZZLiquidityManager(address(ac),address(posm),address(state),address(core),address(permit));
+        manager=new ZZZLiquidityManager(address(ac),address(posm),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(ac), address(core), address(state))));
         PoolConfig memory c;c.key=PoolKey(address(t0),address(t1),3000,60,address(0));c.operationsEnabled=true;c.maxSlippageBps=100;
         poolId=keccak256(abi.encode(c.key));pools.set(poolId,c);
         ac.bind(Ids.VAULT,address(this));ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.STRATEGY,address(policy));ac.seal();
-        t0.mint(address(this),100e18);t1.mint(address(this),100e18);t0.approve(address(manager),type(uint256).max);t1.approve(address(manager),type(uint256).max);
+        t0.mint(address(this),100e18);t1.mint(address(this),100e18);t0.approve(address(manager),type(uint256).max); t0.approve(manager.positionOperator(), type(uint256).max);t1.approve(address(manager),type(uint256).max); t1.approve(manager.positionOperator(), type(uint256).max);
     }
-    function mint() private returns(uint256 id){(id,,)=manager.mint(poolId,-600,600,10e18,10e18,1,block.timestamp+100);posm.approve(address(manager),id);}
+    function mint() private returns(uint256 id){(id,,)=manager.mint(poolId,-600,600,10e18,10e18,1,block.timestamp+100);posm.approve(manager.positionOperator(),id);}
     function testMintKeepsNFTInVaultAndRefundsExactUnused() public {
         (uint256 id,uint256 s0,uint256 s1)=manager.mint(poolId,-600,600,10e18,10e18,1,block.timestamp+100);
         assertEq(posm.ownerOf(id),address(this));assertEq(s0,5e18);assertEq(s1,5e18);

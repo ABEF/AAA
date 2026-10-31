@@ -111,7 +111,7 @@ contract ZZZPoolRegistry is ZZZModule {
         if (poolId == bytes32(0) || (config.depositsEnabled && contributionPool != bytes32(0) &&
             contributionPool != poolId)) revert InvalidConfiguration();
         if (k.tickSpacing <= 0 || k.tickSpacing > 32767 || k.fee > 100000 ||
-            config.rangeBps < 100 || config.rangeBps > 5000 || config.triggerBps < 100 ||
+            config.rangeBps < 100 || config.rangeBps >= 10000 || config.triggerBps < 100 ||
             config.triggerBps >= config.rangeBps || config.maxSpotDeviationBps == 0 ||
             config.maxSpotDeviationBps > 500 || config.maxSpotDeviationBps >= config.rangeBps || config.maxSlippageBps == 0 || config.maxSlippageBps > 1000 || k.fee >= uint24(config.maxSlippageBps) * 100 ||
             config.minRebalanceInterval < 600 || config.minRebalanceInterval > 7 days ||

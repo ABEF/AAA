@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -14,7 +15,7 @@ contract TransferHarness {
 contract OracleAndTransfersTest is Test {
     MockAccess ac;MockToken t0;MockToken t1;MockFeed f0;MockFeed f1;ZZZOracle oracle;
     function setUp() public {
-        vm.warp(1_000_000);ac=new MockAccess();t0=new MockToken(18);t1=new MockToken(6);
+        vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));t0=new MockToken(18);t1=new MockToken(6);
         f0=new MockFeed(8,2000e8);f1=new MockFeed(8,1e8);oracle=new ZZZOracle(address(ac),address(0));
         oracle.setTestFeed(address(t0),address(f0),3600);oracle.setTestFeed(address(t1),address(f1),3600);
     }

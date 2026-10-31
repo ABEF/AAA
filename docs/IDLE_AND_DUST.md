@@ -8,10 +8,13 @@ settings and preserve captured operation and raw-output minima.
 
 ## Reduce idle before accepting it
 
-Fresh LP routing1 compares up to four explicitly reviewed ETH/ZZZ execution
-venues using bounded reverted actual-core quotes. It selects the best sampled
-deployed value for the actual target ticks and performs **zero or one** real
-balancing swap. A fee-aware seed, depth/post-swap ratio and0.1% retained-value
+Fresh LP routing2 compares up to four explicitly reviewed ETH/ZZZ execution
+venues using bounded reverted actual-core quotes. Single mode selects useful
+deployed value; hybrid mode seeks a smallest qualifying sampled swap with a
+final active main meeting the configured floor (default60%, hardminimum60%)
+and residual below its complementary ceiling (default40%) of retained
+principal, including idle, at captured prices. Both use **zero or one** real
+balancing swap. A fee-aware seed, depth/post-swap ratio and 0.1% retained-value
 early stop replace the old two-pass loop. This does not promise a global optimum
 or zero idle. [Policy and configuration](LP_EXECUTION_POLICY.md).
 
@@ -25,7 +28,9 @@ unclaimed fees or donations. At the current 2% default, conservative $100 input
 requires at least $98 of new LP; $5 growth requires at least $4.90. Any retained
 idle still belongs to the NFT-share bucket and is included in current NAV. Thus
 undeployed value and execution loss are different, even though both consume the
-deployed-LP allowance. The separate 5% whole-bucket idle ceiling remains.
+deployed-LP allowance. The separate whole-bucket idle ceiling defaults5%, independently governed for
+entry and maintenance within0–40%. Increasing it never relaxes marginal LP or
+loss floors. Captured policy/revisions prevent callback widening.
 
 If an operation cannot satisfy all guards, the complete transaction reverts.
 A separately confirmed ERC20 approval and spent network gas are not undone by
@@ -38,7 +43,7 @@ allowance; do not repeat a successful approval blindly.
 | --- | --- | --- |
 | Vault `Position.idle0/idle1` | Principal attributed to that shared bucket and its NFT shares | Reinvest through guarded compounding/rebalance; collective holder return includes it in actual ETH/ZZZ principal. |
 | Fees' designated compound reserve | The fixed 5% LP-compounding allocation | Release only through the fixed compound path into the same bucket. It is not claimable operator revenue. |
-| Buyback reserve | Fixed5% buyback/burn purpose | Use the governed, bounded buyback worker and actual burn evidence; no dust transfer to a treasury. |
+| Buyback reserve | Fixed 5% buyback/burn purpose | Use the governed, bounded buyback worker and actual burn evidence; no dust transfer to a treasury. |
 | Per-NFT reward fractions and global division residuals | Backing for exact reward accounting | Carry/checkpoint under the existing ledger, including through transfer/handoff. Never round them into an operator sweep. |
 | Small LP fee receipt dust | Existing fee allocation/membership semantics | Keep reserved and settle under incumbent weights before membership changes; historical raw-unit exceptions need asset-specific economic review. |
 | Royalties, quarantines and orphaned receipts | Separate royalty domains/cohorts | Convert only earned balances under the royalty converter. No external-custodian drain remains; quarantine is not distributable surplus. |
@@ -57,13 +62,13 @@ that bucket's attributed idle even when no fresh compound reserve is available.
 It captures starting prices/principal and the current maintenance cap before
 harvest, adds only actually released designated compound, and checks retained
 LP plus idle afterward at that same price vector. The stricter venue idle-loss
-guard, actual LP increase and 5% idle ceiling still apply. NFT shares are unchanged.
+guard, actual LP increase and captured maintenance idle ceiling(default5%) still apply. NFT shares are unchanged.
 
-Fresh maintenance policy2 requires Budget `IDLE_COMPOUNDING_VERSION()==3`. Every
+Fresh maintenance policy3 requires Budget `IDLE_COMPOUNDING_VERSION()==4`. Every
 standalone compound, including idle-only work or work requiring no swap, waits
 until `max(lastCompound(bucket), Position.lastRebalance) + compoundInterval(poolId)`.
-The independent pool interval defaults to3600seconds; governance tunes it through
-`setCompoundInterval(poolId,seconds)` within600seconds-7days, without resetting clocks.
+The independent pool interval defaults to 3600 seconds; governance tunes it through
+`setCompoundInterval(poolId,seconds)` within 600 seconds-7 days, without resetting clocks.
 This includes the wait after initial LP creation or replacement. It also yields
 when `Strategy.needsRebalance(bucket)` is true or
 `Strategy.keeperRangeTarget(poolId)` offers an approved adaptive selection.
@@ -88,17 +93,19 @@ idle-only work. Reinvesting principal, moving pools and converting/claiming rewa
 are not new earnings. Actual LP/raw balances and existing history events must be
 used to reconcile the operation.
 
-Keeper scheduling is separately opt-in. Fresh accounting4 requires
+Keeper scheduling is separately opt-in. Fresh accounting6 requires
 `idle_compounding_budget` and its exact reviewed runtime pin for every due
-compound, including reserve-only jobs. Fresh policy2 verifies capability3, mutual Vault
+compound, including reserve-only jobs. Fresh policy3 verifies capability4, mutual Vault
 binding and `compoundReady`; a missing/old helper is not silently accepted.
 Configure reviewed Budget/runtime pins,
 positive raw thresholds for **both actual currencies** and an explicit interval;
 do not sum ETH-wei and ZZZ units or use a common raw threshold as economic value.
 Honor both confirmed local intervals and the on-chain compound decision. Defaults do not enable idle
 scheduling or automatic range selection in any running service.
-Fresh keeper source also requires the actual LP to be in range with no pending
-operator width update before compounding, including during rebalance cooldown.
+Fresh keeper source also waits at the main’s 85% physical threshold, outside
+its actual range, or while width/mode/active residual geometry is pending,
+including during rebalance cooldown. Main and residual remain fully valued;
+compound increases only the existing main and does not rebuild the residual.
 Idle may consequently wait and can reach the separate 5% contribution-blocking
 ceiling. Missing physical evidence does not authorize a swap or stop independent
 due harvesting. See [coordination/review](KEEPER_COORDINATION.md) and
@@ -132,7 +139,9 @@ fresh fees arrive. Actual thresholds/gas remain to be qualified.
 The earlier [scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md)
 separates actual installed-v4 local execution from substituted feeds, tokens,
 VRF and maximum-state gas fixtures; it does not verify later capability3 timing.
-Current upkeep source/evidence is [maintenance policy2](../reports/maintenance-policy-20261027/VERIFICATION.md).
+That earlier maintenance-policy evidence is historical. Current profile6
+[portfolio evidence](../reports/optional-portfolio-20261030/VERIFICATION.md) records
+local actual-v4-core and scoped offline checks without qualifying live services.
 Real depth/ticks, dual sources, route costs,
 MEV/turnover, keeper profitability, exact-release size/gas and independent audit
 remain release requirements. Wider ranges and ten-minute checks do not guarantee

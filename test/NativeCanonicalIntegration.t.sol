@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {PortfolioFixture} from "./helpers/PortfolioFixture.sol";
+import {SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -22,14 +26,14 @@ import {IZZZAccess} from "../src/interfaces/IZZZ.sol";
 import {IZZZCanonicalModule} from "../src/interfaces/IZZZCanonical.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
-import {ICanonicalHandoffTest} from "./CanonicalHandoff.t.sol";
-import {PreparationPools, PreparationPolicy} from "./CanonicalPreparation.t.sol";
+import {ICanonicalHandoffTest} from "./helpers/CanonicalInterface.sol";
+import {PreparationPools, PreparationPolicy} from "./helpers/CanonicalPreparationFixtures.sol";
 import {MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 
 /// @dev Deterministic settlement fixture only. All custody, NFT, fee/reward,
 /// royalty, lifecycle and canonical transfer contracts in the test are real.
-contract CanonicalNativeVenue is ERC721 {
+contract CanonicalNativeVenue is ERC721 , SinglePositionFixture {
     IZZZAccess public immutable access;
     MockToken private immutable token;
     uint256 private next = 1;
@@ -107,9 +111,9 @@ contract NativeCanonicalIntegrationTest is Test {
         token.approve(address(destination.vault), type(uint256).max); vm.stopPrank();
     }
     function _deploy(bool sealNow) private returns (System memory s) {
-        s.access = new ZZZAccessController(address(this), address(this), GUARDIAN);
+        s.access = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(s.access));
         s.pools = new PreparationPools(address(s.access)); s.venue = new CanonicalNativeVenue(address(s.access), address(token));
-        s.vault = new ZZZVault(address(s.access), block.chainid, TREASURY);
+        s.vault = new ZZZVault(address(s.access),block.chainid,address(new ZZZMigrationBudget(address(s.access))));
         s.nft = new ZZZNFT(address(s.access), "ipfs://native-canonical-fixture/"); s.royalties = s.nft.royaltyRewards();
         s.rewards = new ZZZRewards(address(s.access)); s.fees = new ZZZFeeController(address(s.access));
         s.migration = new ZZZMigration(address(s.access)); ZZZOracle oracle = new ZZZOracle(address(s.access), address(0));
@@ -124,7 +128,7 @@ contract NativeCanonicalIntegrationTest is Test {
         s.rewards.addAsset(address(token)); s.nft.addRoyaltyAsset(address(token));
         s.pools.setTestZZZIdentity(address(token));
         s.migration.configureZZZ(address(token),address(token).codehash,keccak256("native handoff fixed ZZZ"));
-        s.vrf = new MockVRF(); s.nft.configureRandomness(address(s.vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        s.vrf = new MockVRF(); ProtocolPolicyFixture.randomness(address(s.nft.access()),address(s.vrf),bytes32(uint256(1)),1,3,500000,false);
         PoolConfig memory config; config.key = PoolKey(address(0), address(token), 3000, 60, address(0));
         config.operationsEnabled = true; config.depositsEnabled = true; config.minDepositUSD = 1e18;
         config.maxPositionUSD = 1e30; config.maxSlippageBps = 100; s.pools.set(poolId, config);
@@ -138,7 +142,7 @@ contract NativeCanonicalIntegrationTest is Test {
         if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
     }
     function _mint() private returns (uint256 id) {
-        vm.prank(ALICE); id = source.vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy1 = source.vault.mintPolicyFingerprint(); vm.prank(ALICE); id = source.vault.mintDormant{value: 0.05 ether}(reviewedPolicy1);
         source.vrf.fulfill(source.nft.requestOf(id), 0, 0); source.nft.finalizeTraits(id);
     }
     function _seed() private returns (uint256 id) {
@@ -161,7 +165,7 @@ contract NativeCanonicalIntegrationTest is Test {
         ZZZMigration.ParkingRequest memory request = ZZZMigration.ParkingRequest(bucket, p.poolId, p.lpTokenId,
             source.vault.bucketTotalShares(bucket), p.depositUSD, source.migration.custodyEpoch(bucket),
             source.migration.parkingNonce(bucket), address(0), address(token), 1, 1,
-            block.timestamp + 100, keccak256("native parked fixture"));
+            block.timestamp + 100, keccak256("native parked fixture"), PortfolioFixture.executionHash(source.access.module(Ids.LIQUIDITY),p.lpTokenId));
         _govern(source, address(source.migration), abi.encodeCall(source.migration.park, (request)));
         _govern(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
         for (uint8 slot; slot < 6; ++slot) source.handoff.settle(slot);

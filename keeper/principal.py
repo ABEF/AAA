@@ -43,7 +43,7 @@ class PrincipalDistribution:
                 raise ValueError('Disabled principal distribution accepts only its enable control')
             self.configured = True
             return
-        if (keeper.accounting_version != 4 or
+        if (keeper.accounting_version not in (4,5,6) or
                 not {'enabled','batch_size','nft'} <= set(cfg) <=
                     {'enabled','batch_size','nft','retry_interval_seconds'}):
             raise ValueError('Principal distribution requires explicit accounting4 and reviewed settings')

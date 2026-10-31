@@ -11,13 +11,15 @@ against disposable Anvil contracts. No production PoPL deployment is configured.
 
 | Action | Fixed target and call | Native value | Approvals |
 | --- | --- | --- | --- |
-| Dormant mint | Canonical Vault `mintDormant()` | Exactly 0.05 ETH | None |
+| Fresh6 dormant mint | Canonical Vault `mintDormant(expectedMintPolicy)` | Exact reviewed current mint price(default0.05ETH) | None |
 | LP and royalty claims | Immutable NFT-owned router `claimBatch((uint256,address,bool)[])` | Zero | None |
 
 Direct mint is an implemented unsigned backend capability and historical Anvil
 path, **not an OpenSea primary mint integration**. The production qualification
 gate rejects that unsupported OpenSea path; public website minting remains a
-demonstration. Direct mint forwards the full 0.05 ETH to its recipient. The requested
+demonstration. Direct mint forwards the reviewed current price(default0.05ETH) to the accepted payee.
+Fresh6 provenance binds sale+VRF through mint_policy; claim_operations stays empty.
+Historical Anvil profiles retain their actual no-argument selector/fixed terms. The requested
 OpenSea buyer total of 0.05 ETH/platform-fee split needs compatible code and review.
 See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Enabling transaction
 configuration does not implement that path or enable signing.
@@ -142,7 +144,7 @@ do not acquire this getter requirement. No optional currency read is added merel
 to check activation. [Scoped review](../reports/reward-resilience-20261026/REVIEW.md).
 
 Accounting4 requires the additional pinned `principal_exit` module, custody3 and
-holder-exit canonical V5. Its irreversible LP-exit flag blocks new mint and
+holder-exit canonical V6. Its irreversible LP-exit flag blocks new mint and
 activation/top-up drafts, including after unpause; earned LP/royalty claims stay
 available to the current owner. Principal returns appear separately in read
 responses and cannot be submitted as ClaimRouter reward operations. No backend

@@ -8,7 +8,7 @@ was updated. Remaining work belongs to the [read API task](../TODO.md#task-read-
 
 Configuration and read responses use **schema 2**. The current release explicitly
 selects `accounting_version: 4`, `fee_intake_version: 1`, direct governance V2
-and `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Its Position codec has eight
+and `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Its Position codec has eight
 words and terminal Exited5 in addition to Dormant3/Parked4. Legacy accounting1/2/3
 readers keep their original profile; no old journal is upgraded or reinterpreted.
 Existing schema-1
@@ -73,8 +73,9 @@ previous deployments. With the optional [complete predecessor configuration](FRO
 the API now verifies same-chain retirement/activation links and replays all prior
 LP/royalty claims. Without it, imported successor lifetime totals remain
 unavailable, even if current history contains nonzero claims. Invalid configured
-lineage fails closed; zero and partial totals are never substituted. V5 source
-and successor require accounting4; historical V4 remains accounting3. They must
+lineage fails closed; zero and partial totals are never substituted. Current V6 source
+and successor require accounting6; historicalV5 accounting5/4 andV4 accounting3
+retain their separately pinned profiles. They must
 use the same canonical schema and codec; historical
 reader support does not add cross-codec import compatibility.
 

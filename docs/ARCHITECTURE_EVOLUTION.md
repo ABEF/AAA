@@ -5,8 +5,8 @@ second roadmap. [Architecture](ARCHITECTURE.md) explains interactions,
 [components](COMPONENT_STATUS.md) maps source ownership, and the [sole Todo](../TODO.md)
 tracks unfinished work. Production is NOT APPROVED.
 
-The current profile is accounting4 / direct governance2 / fee-intake1 /
-custody3 / `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Native ETH and one fixed ZZZ are the only contribution
+The current profile is accounting6 / direct governance2 / fee-intake1 /
+custody4 / portfolio2 / `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Native ETH and one fixed ZZZ are the only contribution
 inputs. The current contracts contain no integrated bridge, creator-payment
 inbox, remote reward intake, external-custodian exit or post-seal ZZZ replacement. Historical profiles
 retain their own codecs and evidence; changing a configuration version does
@@ -16,7 +16,7 @@ not upgrade deployed storage, journals or ownership.
 
 | Change | Current boundary |
 | --- | --- |
-| Tune range, cooldown, confirmation or execution limits | Direct governance through bounded setters. Ordinary policy2 uses physical range exit or an operator width change, not the retired centre-movement trigger. Optional25%/50% keeper selection cannot coexist with enabled confirmation2 reference-exit protection; manual governed widths remain available. Physical replacement remains guarded maintenance. |
+| Tune range, cooldown, confirmation or execution limits | Direct governance through bounded setters. Ordinary policy3 uses the 85% actual centre-to-main-boundary ZZZ-in-ETH price-distance threshold or deliberate width/mode/active residual geometry change, with 600/300 sampled confirmation and hard cooldown. Optional 25%/50% automatic width selection cannot coexist with enabled confirmation3 reference protection; manual governed widths remain available. Physical replacement remains guarded maintenance. |
 | Select another contribution pool | Admit the supported pool, preserve historical bucket identities and deliberately switch the one enabled contribution pool. Admission alone does not move liquidity or qualify routes. |
 | Move LP to another local fee tier | `Migration.moveFunds` atomically redeploys the same actual ordered pair, preserving NFT shares and the captured maintenance floor. |
 | Change ETH to WETH accounting or another pair | Not supported by this deployment's principal-pool admission or `moveFunds`. Separate reward-conversion routes do not expand LP admission. |
@@ -25,7 +25,7 @@ not upgrade deployed storage, journals or ownership.
 | Replace the ZZZ token contract | No setter or issuer-exchange call exists. Governance may return actual ETH/ZZZ to holders; any later token exchange/new deployment is separate, without automatic continuity. |
 | Return LP principal to NFT holders | Governance starts irreversible collective retirement while paused. Operator closes/allocates bounded batches and directly pays current NFT owners. Normal recipients take no action; rejected payouts remain backed for retry or exceptional owner-only fallback. |
 | Hand assets to an operator/custodian for external work | Removed. No external custody address, all-ZZZ conversion exit, arbitrary transfer or funded local return path remains. |
-| Replace the complete collection on this chain | Before collective exit only: compatible accounting4/canonicalV5 handoff carries ownership, both ledgers, shares and backing, with checked retirement/activation or funded abort. Replacement is permanently blocked after LP exit begins. |
+| Replace the complete collection on this chain | Before collective exit only: reviewed compatible accounting6/canonicalV6 handoff carries ownership, both ledgers, shares and backing after all main/residual legs close into parked custody. Checked retirement/activation or funded abort; permanently blocked after LP exit begins. |
 | Relocate canonical ownership/rewards to another chain or recover after chain halt | Not implemented. Moving tokens externally is not movement or revocation of the original NFT/accounting system. |
 
 Native ETH and WETH are distinct assets. Reversed currency slots, unrelated
@@ -77,7 +77,7 @@ retain old composition/claim records without re-enabling those operations.
 | Value | Required treatment |
 | --- | --- |
 | Principal and attributed idle | At collective exit, return actual ETH/ZZZ proportional to frozen bucket shares, never another bucket's assets. |
-| Designated compound | Pending5%compound joins that bucket's returned principal; already reinvested compound is already inside LP. |
+| Designated compound | Pending 5% compound joins that bucket's returned principal; already reinvested compound is already inside LP. |
 | Owner/collective LP claims | Preserve existing liabilities and fractions. Guarded reward conversion credits the same NFTs without recognizing new income. |
 | Royalties | Preserve eligible cohorts, existing liabilities, future receipts and current-owner claims; no external royalty-custodian drain. |
 | Buyback reserves, donations and quarantines | Keep their existing classifications; exclude them from holder principal and newcomer LP execution budgets. |
@@ -100,7 +100,7 @@ close, swap and redeployment.
 Atomic maintenance values starting principal plus released compound and final
 LP plus attributed idle at one starting price vector. Contributions additionally
 require actual marginal deployed LP at the captured floor, excluding incumbent
-capital; the default is 98%. The separate 5% idle ceiling remains. Governed
+capital; the default is 98%. The separately captured entry/maintenance idle ceilings default5% and are governed within0–40%; neither relaxes a contribution loss floor. Governed
 parking and collective closure use independently reviewed raw output minima,
 without swaps or oracle-valued aggregate loss promises. They do not claim one
 cached price vector across separate operator transactions.
@@ -117,7 +117,7 @@ and [idle classification](IDLE_AND_DUST.md).
 Compatible [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership
 and accounting, exports/imports all required domains and exact backing, and
 activates exactly one successor when the source retires. Source and successor
-must use accounting4 and the compatible holder-exit V5 schema; old remote/home
+must use reviewed compatible accounting6 and the adaptable-policy V6 schema; old remote/home
 fields are not filled with invented values. Collective exit permanently blocks
 canonical replacement because the transport does not import principal-return
 liabilities. Before retirement, pending draws, missing backing or
@@ -136,7 +136,7 @@ VRF, authority wallets, OpenSea primary mint, target-chain gas or operating and
 recovery services. The two-source price policy still needs independently
 qualified observations with the selected 3% disagreement tolerance. Public
 website deployment remains null and its signer Anvil-only; old native-2 views
-are not accounting4 wallet integration. The served unconfigured poplint artifact
+are not accounting6 wallet integration. The served unconfigured poplint artifact
 retains its accounting3 reader until a separately reviewed frontend update.
 
 The [operator manual](OPERATOR_MANUAL.md) owns stop/restart and exact call

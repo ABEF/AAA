@@ -1,7 +1,7 @@
 # LP holder rewards settled in ETH
 
 The current undeployed candidate uses native accounting 4, custody 3, fee-intake 1, direct
-governance 2 and local canonical V5. Native ETH fees are indexed directly in ETH;
+governance 2 and local canonical V6. Native ETH fees are indexed directly in ETH;
 only already-earned ERC20 balances, including ZZZ, need conversion. The default
 conversion loss cap is **1%**, governed up to **10%**, with gas paid separately by
 the keeper. See [execution policy](EXECUTION_LOSS_POLICY.md) and the
@@ -120,7 +120,7 @@ separate. Earnings are the original processed LP allocations plus royalties,
 valued at today's reviewed prices. Conversion, claim and imported/returned
 backing are not new income. Missing complete predecessor history is unavailable.
 
-Compatible pre-exit same-chain canonical V5 carries native/source balances,
+Compatible pre-exit same-chain canonical V6 carries native/source balances,
 component indices, fractions and exact backing, with checked funding and funded
 abort. Destination prefunds cannot replace source backing. Old profiles retain
 their own schemas; they are not accounting4 imports. No external custody exit

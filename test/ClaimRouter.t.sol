@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
@@ -87,7 +88,7 @@ contract ClaimRouterTest is Test {
     address private constant ATTACKER = address(0xBAD);
 
     function setUp() public {
-        access = new MockAccess(); vrf = new MockVRF(); token = new MockToken(18); other = new MockToken(6);
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); vrf = new MockVRF(); token = new MockToken(18); other = new MockToken(6);
         nft = new ZZZNFT(address(access), "ipfs://example/"); rewards = new ZZZRewards(address(access));
         royalties = nft.royaltyRewards(); router = nft.claimRouter(); membership = new ZZZMembership(address(access));
         vault = new ClaimVaultFixture(nft, rewards, membership);
@@ -96,7 +97,7 @@ contract ClaimRouterTest is Test {
         access.bind(Ids.FEES, address(this));
         rewards.addAsset(address(token)); rewards.addAsset(address(other));
         nft.addRoyaltyAsset(address(token)); nft.addRoyaltyAsset(address(other));
-        nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         access.seal();
         _mint(ALICE, 1, 100); _mint(ALICE, 2, 300); _mint(BOB, 3, 100); _mint(ALICE, 4, 0);
         vm.deal(address(this), 100 ether);
@@ -202,7 +203,7 @@ contract ClaimRouterTest is Test {
     }
 
     function testUnsealedOrNoncanonicalBindingRejected() public {
-        MockAccess unsealed = new MockAccess(); ZZZNFT otherNFT = new ZZZNFT(address(unsealed), "");
+        MockAccess unsealed = new MockAccess(); ProtocolPolicyFixture.bind(address(unsealed)); ZZZNFT otherNFT = new ZZZNFT(address(unsealed), "");
         ZZZClaimRouter unsealedRouter = otherNFT.claimRouter();
         vm.expectRevert(ZZZClaimRouter.InvalidConfiguration.selector); unsealedRouter.claimBatch(_both(1));
         access.bind(Ids.NFT, address(otherNFT));

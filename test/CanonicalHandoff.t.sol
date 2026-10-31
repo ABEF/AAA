@@ -1,5 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ICanonicalHandoffTest} from "./helpers/CanonicalInterface.sol";
+import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+import {PortfolioFixture} from "./helpers/PortfolioFixture.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -25,29 +30,10 @@ import {Ids, PoolKey, PoolConfig, Position, PositionStatus}
     from "../src/libraries/ZZZTypes.sol";
 import {MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
-import {PreparationPools, PreparationPolicy, PreparationVenue} from "./CanonicalPreparation.t.sol";
+import {PreparationPools, PreparationPolicy, PreparationVenue} from "./helpers/CanonicalPreparationFixtures.sol";
 
-interface ICanonicalHandoffTest {
-    function prepareImport(address sourceController) external;
-    function deploymentCommitment() external view returns (bytes32);
-    function freeze() external;
-    function settle(uint8 slot) external;
-    function settlementCursor() external view returns (uint8);
-    function phase() external view returns (uint8);
-    function moduleAt(uint8 slot) external view returns (address);
-    function recordCount(uint256 slot) external view returns (uint256);
-    function assetCount(uint256 slot) external view returns (uint256);
-    function exportRows(uint8 slot, uint256 count) external;
-    function importRows(uint8 slot, bytes[] calldata records) external;
-    function completeImport() external;
-    function fund(uint8 slot, uint256 index) external;
-    function commit() external;
-    function abort() external;
-    function returnFunds(uint8 slot, uint256 index) external;
-    function finishAbort() external;
-    function stateRoot() external view returns (bytes32);
-    function funded(uint8 slot, uint256 index) external view returns (bool);
-}
+// Shared ABI only; importing it does not compile this complete test suite.
+
 
 /// @dev TEST ONLY: exact-transfer token with an armed external callback. This
 /// exercises cross-module lifecycle reentry, not an approved production asset.
@@ -137,10 +123,10 @@ contract CanonicalHandoffTest is Test {
         return _deploySystemWithChain(sealNow, admitAssets, block.chainid);
     }
     function _deploySystemWithChain(bool sealNow, bool admitAssets, uint256 homeChain) private returns (System memory s) {
-        s.ac = new ZZZAccessController(address(this), address(this), GUARDIAN);
+        s.ac = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(s.ac));
         s.pools = new PreparationPools(address(s.ac));
         s.venue = new PreparationVenue(address(s.ac), address(token0), address(token1));
-        s.vault = new ZZZVault(address(s.ac), homeChain, TREASURY);
+        s.vault = new AccountingVaultHarness(address(s.ac), homeChain, TREASURY, address(new ZZZMigrationBudget(address(s.ac))));
         s.nft = new ZZZNFT(address(s.ac), "ipfs://canonical-handoff-fixture/");
         s.royalties = s.nft.royaltyRewards();
         s.rewards = new ZZZRewards(address(s.ac)); s.membership = new ZZZMembership(address(s.ac));
@@ -164,7 +150,7 @@ contract CanonicalHandoffTest is Test {
             s.nft.addRoyaltyAsset(address(token0));
         }
         s.vrf = new MockVRF();
-        s.nft.configureRandomness(address(s.vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        ProtocolPolicyFixture.randomness(address(s.nft.access()),address(s.vrf),bytes32(uint256(1)),1,3,500000,false);
         PoolConfig memory config;
         config.key = PoolKey(address(token0), address(token1), 3000, 60, address(0));
         config.operationsEnabled = true; config.depositsEnabled = true;
@@ -203,7 +189,7 @@ contract CanonicalHandoffTest is Test {
     }
     function _fresh() private { feed.set(1e8, block.timestamp, block.timestamp); }
     function _mint(System memory s, uint256 rarityWord, uint256 artworkWord) private returns (uint256 id) {
-        vm.prank(ALICE); id = s.vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy1 = s.vault.mintPolicyFingerprint(); vm.prank(ALICE); id = s.vault.mintDormant{value: 0.05 ether}(reviewedPolicy1);
         s.vrf.fulfill(s.nft.requestOf(id), rarityWord, artworkWord); s.nft.finalizeTraits(id);
     }
     function _activate(System memory s, uint256 id, uint256 amount) private {
@@ -228,7 +214,7 @@ contract CanonicalHandoffTest is Test {
         ZZZMigration.ParkingRequest memory request = ZZZMigration.ParkingRequest(bucket, p.poolId, p.lpTokenId,
             source.vault.bucketTotalShares(bucket), p.depositUSD, source.migration.custodyEpoch(bucket),
             source.migration.parkingNonce(bucket), address(token0), address(token1), 1, 1,
-            block.timestamp + 100, keccak256("handoff parking fixture"));
+            block.timestamp + 100, keccak256("handoff parking fixture"), PortfolioFixture.executionHash(source.ac.module(Ids.LIQUIDITY),p.lpTokenId));
         _govern(source, address(source.migration), abi.encodeCall(source.migration.park, (request)));
     }
     function _freeze(uint256 activeId) private {
@@ -347,7 +333,7 @@ contract CanonicalHandoffTest is Test {
 
     function testImportingDestinationCannotMintOrAllocateRights() public {
         assertEq(destination.ac.canonicalState(), 2);
-        vm.prank(ALICE); vm.expectRevert(); destination.vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy2 = destination.vault.mintPolicyFingerprint(); vm.prank(ALICE); vm.expectRevert(); destination.vault.mintDormant{value: 0.05 ether}(reviewedPolicy2);
         assertEq(destination.nft.mintedCount(), 0); assertEq(destination.membership.totalEligible(), 0);
         assertEq(source.ac.canonicalState(), 0);
     }
@@ -381,7 +367,7 @@ contract CanonicalHandoffTest is Test {
     }
 
     function testFreezeRequiresGovernanceAndFullyRevealedMintInventory() public {
-        vm.prank(ALICE); source.vault.mintDormant{value: 0.05 ether}(); _prepare();
+        bytes32 reviewedPolicy3 = source.vault.mintPolicyFingerprint(); vm.prank(ALICE); source.vault.mintDormant{value: 0.05 ether}(reviewedPolicy3); _prepare();
         vm.prank(ALICE); vm.expectRevert(); source.handoff.freeze();
         _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
         assertEq(source.ac.canonicalState(), 0);
@@ -465,9 +451,9 @@ contract CanonicalHandoffTest is Test {
         assertEq(source.ac.canonicalState(), 1); assertEq(destination.ac.canonicalState(), 2);
     }
 
-    function testAccountingV3UsesEightWordPositionAndRejectsLegacyOrTrailingGroupRows() public {
+    function testAccountingV5KeepsEightWordCanonicalPositionAndRejectsLegacyOrTrailingGroupRows() public {
         (uint256 first,,) = _seed(); _freeze(first);
-        assertEq(source.vault.ACCOUNTING_VERSION(), 3);
+        assertEq(source.vault.ACCOUNTING_VERSION(), 6);
         IZZZCanonicalModule from = IZZZCanonicalModule(source.handoff.moduleAt(1));
         IZZZCanonicalModule to = IZZZCanonicalModule(destination.handoff.moduleAt(1));
         bytes memory header = from.canonicalExport(0);
@@ -526,7 +512,7 @@ contract CanonicalHandoffTest is Test {
         _govern(source, address(source.ac), abi.encodeCall(source.ac.setPaused, (false)));
         assertEq(source.ac.canonicalState(), 3);
         vm.prank(ALICE); vm.expectRevert(); source.nft.transferFrom(ALICE, BOB, first);
-        vm.prank(ALICE); vm.expectRevert(); source.vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy4 = source.vault.mintPolicyFingerprint(); vm.prank(ALICE); vm.expectRevert(); source.vault.mintDormant{value: 0.05 ether}(reviewedPolicy4);
     }
 
     function testRemainingRarityAndArtworkInventoryContinueAfterMigration() public {
@@ -659,7 +645,7 @@ contract CanonicalHandoffTest is Test {
         assertFalse(destination.membership.eligible(last));
         assertGt(destination.rewards.claimable(first, address(token0)), 0);
         assertEq(destination.rewards.claimable(last, address(token0)), 0);
-        vm.prank(ALICE); vm.expectRevert(); destination.vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy5 = destination.vault.mintPolicyFingerprint(); vm.prank(ALICE); vm.expectRevert(); destination.vault.mintDormant{value: 0.05 ether}(reviewedPolicy5);
         bytes[] memory duplicate = new bytes[](1); duplicate[0] = hex"00";
         vm.expectRevert(); destination.handoff.importRows(0, duplicate);
         _logGasPeaks();

@@ -1,5 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {PreparationPools,PreparationPolicy,PreparationVenue} from "./helpers/CanonicalPreparationFixtures.sol";
+import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+import {PortfolioFixture} from "./helpers/PortfolioFixture.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -30,21 +35,9 @@ import {MockToken, MockPools, MockFeed}
 import {MockVRF} from "./mocks/MockVRF.sol";
 
 // TEST ONLY: real sealed controller and economic modules; venue, prices and VRF are explicit fixtures.
-contract PreparationPools is MockPools {
-    IZZZAccess public immutable access;
-    constructor(address controller) { access = IZZZAccess(controller); activationAssets=address(this); }
-    // TEST ONLY: admission is explicitly mocked; economic accounting is real.
-    address public zzz;
-    function setTestZZZIdentity(address token) external { zzz=token; }
-}
-contract PreparationPolicy is VaultPolicyMock {
-    IZZZAccess public immutable access;
-    constructor(address controller) { access = IZZZAccess(controller); }
-}
-contract PreparationVenue is VaultLiquidityMock {
-    IZZZAccess public immutable access;
-    constructor(address controller, address a, address b) VaultLiquidityMock(a, b) { access = IZZZAccess(controller); }
-}
+
+
+
 contract PreparationMintCallback is IERC721Receiver {
     ZZZAccessController public immutable controller;
     ZZZVault public immutable vault;
@@ -53,7 +46,7 @@ contract PreparationMintCallback is IERC721Receiver {
         controller = c; vault = v; announcement = data;
     }
     function acceptGovernance() external { controller.acceptGovernance(); }
-    function mint() external payable { vault.mintDormant{value: msg.value}(); }
+    function mint() external payable { bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); vault.mintDormant{value: msg.value}(reviewedPolicy1); }
     function onERC721Received(address, address, uint256, bytes calldata) external returns (bytes4) {
         (bool ok, bytes memory result) = address(controller).call(announcement);
         if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
@@ -100,12 +93,12 @@ contract CanonicalPreparationTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        ac = new ZZZAccessController(address(this), address(this), GUARDIAN);
+        ac = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(ac));
         t0 = new MockToken(0); t1 = new MockToken(0);
         pools = new PreparationPools(address(ac));
         venue = new PreparationVenue(address(ac), address(t0), address(t1));
         treasury = new PreparationTreasuryCallback();
-        vault = new ZZZVault(address(ac), block.chainid, payable(address(treasury)));
+        vault = new AccountingVaultHarness(address(ac), block.chainid, payable(address(treasury)), address(new ZZZMigrationBudget(address(ac))));
         nft = new ZZZNFT(address(ac), "");
         rewards = new ZZZRewards(address(ac)); membership = new ZZZMembership(address(ac));
         fees = new ZZZFeeController(address(ac)); compounder = new ZZZCompounder(address(ac));
@@ -122,7 +115,7 @@ contract CanonicalPreparationTest is Test {
         oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
         rewards.addAsset(address(t0)); rewards.addAsset(address(t1));
         pools.setTestZZZIdentity(address(t0)); migration.configureZZZ(address(t0),address(t0).codehash,keccak256("preparation fixed ZZZ"));
-        vrf = new MockVRF(); nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        vrf = new MockVRF(); ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         PoolConfig memory c; c.key = PoolKey(address(t0), address(t1), 3000, 60, address(0));
         c.operationsEnabled = true; c.depositsEnabled = true; c.minDepositUSD = 1e18;
         c.maxPositionUSD = 1e30; c.maxSlippageBps = 100; poolId = keccak256(abi.encode(c.key)); pools.set(poolId, c);
@@ -145,7 +138,7 @@ contract CanonicalPreparationTest is Test {
     function _prepare() private { _govern(address(ac), abi.encodeCall(ac.startPreparation, (_notice()))); }
     function _fresh() private { feed.set(1e8, block.timestamp, block.timestamp); }
     function _mint(bool reveal) private returns (uint256 id) {
-        vm.prank(ALICE); id = vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy2 = vault.mintPolicyFingerprint(); vm.prank(ALICE); id = vault.mintDormant{value: 0.05 ether}(reviewedPolicy2);
         if (reveal) { vrf.fulfill(nft.requestOf(id), 0, 0); nft.finalizeTraits(id); }
     }
     function _active() private returns (uint256 id) {
@@ -200,7 +193,7 @@ contract CanonicalPreparationTest is Test {
         vm.prank(GUARDIAN); ac.setPaused(true); assertTrue(ac.paused());
         vm.prank(GUARDIAN); vm.expectRevert(ZZZAccessController.Unauthorized.selector); ac.setPaused(false);
         _govern(address(ac), abi.encodeCall(ac.setPaused, (false))); assertFalse(ac.paused()); assertTrue(ac.preparationActive());
-        vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy3 = vault.mintPolicyFingerprint(); vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.mintDormant{value: 0.05 ether}(reviewedPolicy3);
     }
     function testGovernanceAnnouncementInNFTCallbackRollsBackTheEntireMint() public {
         bytes memory data = abi.encodeCall(ac.startPreparation, (_notice()));
@@ -216,7 +209,7 @@ contract CanonicalPreparationTest is Test {
         bytes memory data = abi.encodeCall(ac.startPreparation, (_notice()));
         ac.proposeGovernance(address(treasury)); treasury.acceptGovernance(ac);
         treasury.arm(ac, data);
-        vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy4 = vault.mintPolicyFingerprint(); vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.mintDormant{value: 0.05 ether}(reviewedPolicy4);
         assertFalse(ac.preparationActive()); assertEq(ac.preparationNonce(), 0);
         assertEq(vault.sequence(), 0); assertEq(nft.mintedCount(), 0); assertEq(address(treasury).balance, 0);
         assertEq(ac.governance(), address(treasury));
@@ -231,7 +224,7 @@ contract CanonicalPreparationTest is Test {
         vm.prank(GUARDIAN); ac.setPaused(true); Position memory p = vault.group(bucket);
         ZZZMigration.ParkingRequest memory request = ZZZMigration.ParkingRequest(bucket, poolId, p.lpTokenId,
             vault.bucketTotalShares(bucket), p.depositUSD, migration.custodyEpoch(bucket), migration.parkingNonce(bucket),
-            address(t0), address(t1), 1000, 1000, block.timestamp + 100, keccak256("parking review"));
+            address(t0), address(t1), 1000, 1000, block.timestamp + 100, keccak256("parking review"), PortfolioFixture.executionHash(ac.module(Ids.LIQUIDITY),p.lpTokenId));
         _govern(address(migration), abi.encodeCall(migration.park, (request)));
         p = vault.group(bucket); assertEq(uint256(p.status), uint256(PositionStatus.Parked));
         assertEq(p.idle0, 1000); assertEq(p.idle1, 1000); assertEq(vault.sharesOf(id), 2000e18);

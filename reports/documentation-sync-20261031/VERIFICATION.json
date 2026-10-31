@@ -1,0 +1,97 @@
+{
+  "at_utc": "2026-10-31T03:12:12.634098+00:00",
+  "scope": "Documentation-only synchronization, reused exact source/compiler evidence; no test execution",
+  "changed_current_documents": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "TODO.md",
+    "docs/ACTIVATION_PREPARATION.md",
+    "docs/API_INGRESS.md",
+    "docs/ARCHITECTURE_EVOLUTION.md",
+    "docs/CANONICAL_HANDOFF.md",
+    "docs/COMPONENT_STATUS.md",
+    "docs/DEPLOYMENT_ADDRESSES.md",
+    "docs/DYNAMIC_LIQUIDITY.md",
+    "docs/EARNINGS_HISTORY.md",
+    "docs/EXECUTION_LOSS_POLICY.md",
+    "docs/EXECUTION_QUALITY.md",
+    "docs/FRONTEND_API.md",
+    "docs/FRONTEND_HISTORY.md",
+    "docs/FRONTEND_LIFECYCLE.md",
+    "docs/HOLDER_COLLECTIVE_EXIT.md",
+    "docs/IMPLEMENTATION_STATUS.md",
+    "docs/KEEPER_RECOVERY.md",
+    "docs/KEEPER_SAFEGUARDS.md",
+    "docs/LOCAL_TEST_STACK.md",
+    "docs/LOCAL_WEBSITE.md",
+    "docs/LP_EXECUTION_POLICY.md",
+    "docs/MINT_INTEGRATION_QUALIFICATION.md",
+    "docs/NATIVE_ETH_ARCHITECTURE.md",
+    "docs/NATIVE_WEBSITE_PROFILE.md",
+    "docs/NFT_METADATA.md",
+    "docs/OPERATIONS.md",
+    "docs/OPERATOR_MANUAL.md",
+    "docs/PRODUCTION_PREFLIGHT.md",
+    "docs/RELEASE_CHECKLIST.md",
+    "docs/ROADMAP.md",
+    "docs/SIMPLIFIED_RELEASE.md",
+    "docs/THIRD_PASS_AUDIT_PROMPT.md",
+    "docs/WORK_HANDOFF.md",
+    "docs/project-todo.json"
+  ],
+  "current_source_52_unchanged": true,
+  "dependencies_31_unchanged": true,
+  "build_inputs_unchanged": true,
+  "four_protected_files_unchanged": true,
+  "prior_report_files_checked": 1795,
+  "prior_report_navigation_only_changes": [
+    "reports/README.md"
+  ],
+  "task_ids_statuses_order_unchanged": true,
+  "utf8_and_no_doubled_cr": true,
+  "checks": [
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.whitespace=cr-at-eol",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+        "-X",
+        "utf8",
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "Project Todo verified.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+        "-X",
+        "utf8",
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 37, \"functions\": 826, \"constructors\": 37, \"receive_hooks\": 14, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Final documentation link/anchor check",
+      "result": "91 documents,2074 local links,0 failures; exact receipt included"
+    }
+  ],
+  "source_test_service_site_anvil_journal_signing_changes": false,
+  "publication": "Verify exact local/remote main in external publication receipt; not deployment"
+}

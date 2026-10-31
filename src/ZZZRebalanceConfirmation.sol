@@ -4,12 +4,16 @@ pragma solidity 0.8.26;
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
+import {ZZZPortfolioPolicy} from "./ZZZPortfolioPolicy.sol";
 import {Ids, Position, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZVault, IZZZPools, IZZZLiquidity, IZZZOracle, IStateViewMinimal} from "./interfaces/IZZZ.sol";
 import {IZZZEmergencyVault, IZZZEmergencyBudget} from "./interfaces/IZZZEmergency.sol";
 
 interface IConfirmationStrategy {
+    function rebalanceConfirmation() external view returns(address);
     function needsRebalance(uint256) external view returns(bool);
+    function rebalanceCondition(uint256) external view returns(uint8,bool);
+    function portfolioPolicy() external view returns(ZZZPortfolioPolicy);
     function rangeUpdatePending(uint256) external view returns(bool);
     function rangeOrientation(bytes32) external view returns(uint8);
     function executionQualityRevision() external view returns(uint64);
@@ -21,19 +25,20 @@ interface IConfirmationOracle {
     function activeSequencerPolicy() external view returns(bytes32);
 }
 interface IConfirmationLiquidity { function stateView() external view returns(IStateViewMinimal); }
+interface IConfirmationPortfolio { function portfolioFingerprint(uint256) external view returns(bytes32); }
 
 /// @notice Receipt-backed sampled confirmation, not proof of uninterrupted price.
 /// Created by the fixed Strategy. No funds, approvals, execution or custody rights.
 contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
-    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 2;
+    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 3;
     uint32 public constant MAX_DURATION = 7 days;
-    address public immutable strategy;
-    uint32 public duration = 15 minutes;
+    uint32 public duration = 10 minutes;
     /// @notice Zero is unconfigured/stopped; it never disables the safeguard.
     uint32 public maxObservationGap;
     uint64 public policyRevision;
     bytes32 public reviewHash;
-    /// @notice Ordinary samples require physical AND independent reference exit.
+    /// @notice Ordinary samples require physical AND independent reference to
+    /// cross the same85%-of-price-distance threshold, including during cooldown.
     /// Governance may explicitly relax this rule; changing/restoring it always
     /// invalidates previous samples. This never disables execution loss guards.
     bool public requireReferenceExit = true;
@@ -48,7 +53,10 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
     /// 4=manual exception, 5=keeper invalidation after an observed incident.
     event ObservationReset(uint256 indexed bucket,uint8 reason);
 
-    constructor(address controller) ZZZModule(controller) { strategy = msg.sender; }
+    constructor(address controller) ZZZModule(controller) {}
+    /// @notice Sole parent selected by the immutable sealed module registry;
+    /// standalone creation avoids Strategy initcode embedding both children.
+    function strategy() public view returns(address) { return access.module(Ids.STRATEGY); }
 
     /// @notice Review the actual cadence/receipt latency before setting a gap.
     /// Reconfiguration always invalidates prior samples, including change/restore.
@@ -63,7 +71,7 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
     function setRequireReferenceExit(bool required,bytes32 reviewed)
         external onlyGovernance operating principalOperating nonReentrant {
         if(reviewed == bytes32(0)) revert InvalidConfiguration();
-        if(required && IConfirmationStrategy(strategy).activeKeeperRangePolicies() != 0) revert InvalidConfiguration();
+        if(required && IConfirmationStrategy(strategy()).activeKeeperRangePolicies() != 0) revert InvalidConfiguration();
         requireReferenceExit = required;
         referenceReviewHash = reviewed;
         ++policyRevision;
@@ -73,7 +81,7 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
     /// setting remains configurable after LP exit for post-exit buyback context;
     /// invalidation grants no principal readiness or execution capability.
     function invalidatePolicy() external operating {
-        if(msg.sender != strategy) revert Unauthorized();
+        if(msg.sender != strategy()) revert Unauthorized();
         ++policyRevision;
         emit ConfirmationInvalidated(policyRevision);
     }
@@ -83,34 +91,31 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
         return _condition(bucket,false);
     }
     function _condition(uint256 bucket,bool pausedEmergency) private view returns(uint8 side,bytes32 identity,bool manual) {
-        if(access.module(Ids.STRATEGY) != strategy || !access.isSealed() || (access.paused() && !pausedEmergency) ||
+        if(strategy() == address(0) || !access.isSealed() || (access.paused() && !pausedEmergency) ||
             access.preparationActive() || access.canonicalState() != 0 || access.lpExitStarted()) return(0,bytes32(0),false);
-        IConfirmationStrategy policy = IConfirmationStrategy(strategy);
-        if(!policy.needsRebalance(bucket)) return(0,bytes32(0),false);
-        if(policy.rangeUpdatePending(bucket)) return(0,bytes32(0),true);
+        IConfirmationStrategy policy = IConfirmationStrategy(strategy());
+        if(policy.rebalanceConfirmation() != address(this)) revert InvalidState();
+        (side,manual) = policy.rebalanceCondition(bucket);
+        if(manual) return(0,bytes32(0),true);
+        if(side == 0) return(0,bytes32(0),false);
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
         address registry = access.module(Ids.POOLS);
         PoolConfig memory c = IZZZPools(registry).accounting(p.poolId);
         address manager = access.module(Ids.LIQUIDITY);
         (int24 lower,int24 upper) = IZZZLiquidity(manager).ticks(p.lpTokenId);
-        (,int24 tick,,) = IConfirmationLiquidity(manager).stateView().getSlot0(p.poolId);
-        side = tick < lower ? 1 : tick >= upper ? 2 : 0;
-        if(side == 0) revert InvalidState(); // Raw and current physical observations must agree.
         if(requireReferenceExit) {
-            // Compare the identical physical boundaries in raw token1/token0
-            // orientation. No inverted display price, rounded tick or target
-            // range can turn disagreement into same-side confirmation.
-            if(_referenceSide(c,lower,upper) != side) return(0,bytes32(0),false);
+            if(_referenceSide(policy.portfolioPolicy(),c,p.centerX96,lower,upper) != side)
+                return(0,bytes32(0),false);
         }
         // Normal feed rounds and fresh token balances do not reset the window.
         // Policy IDs/revisions, physical LP identity and both boundaries do.
         bytes32 physical = keccak256(abi.encode(block.chainid,address(this),bucket,p.poolId,p.lpTokenId,
-            p.lastRebalance,lower,upper,manager));
+            p.lastRebalance,lower,upper,manager,IConfirmationPortfolio(manager).portfolioFingerprint(p.lpTokenId)));
         identity = keccak256(abi.encode(physical,keccak256(abi.encode(c)),
             policy.rangeOrientation(p.poolId),_controlFingerprint(c)));
     }
     /// @notice Pinned-reader explanation, not readiness or permission to trade.
-    /// Side0=inside, 1=below, 2=above, in the same raw pool-key orientation.
+    /// Side0=below trigger distance,1/2=threshold side in raw pool-key orientation.
     function marketSides(uint256 bucket) external view returns(uint8 physical,uint8 referenceSide) {
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
         if(p.lpTokenId == 0) revert InvalidState();
@@ -118,17 +123,19 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
         address manager = access.module(Ids.LIQUIDITY);
         (int24 lower,int24 upper) = IZZZLiquidity(manager).ticks(p.lpTokenId);
         if(lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) revert InvalidState();
-        (,int24 tick,,) = IConfirmationLiquidity(manager).stateView().getSlot0(p.poolId);
-        physical = tick < lower ? 1 : tick >= upper ? 2 : 0;
-        referenceSide = _referenceSide(c,lower,upper);
+        (uint160 price,,,) = IConfirmationLiquidity(manager).stateView().getSlot0(p.poolId);
+        ZZZPortfolioPolicy portfolio = IConfirmationStrategy(strategy()).portfolioPolicy();
+        physical = portfolio.thresholdSide(p.centerX96,lower,upper,price);
+        referenceSide = _referenceSide(portfolio,c,p.centerX96,lower,upper);
     }
-    function _referenceSide(PoolConfig memory c,int24 lower,int24 upper) private view returns(uint8) {
+    function _referenceSide(ZZZPortfolioPolicy portfolio,PoolConfig memory c,uint160 center,int24 lower,int24 upper)
+        private view returns(uint8) {
         uint160 price = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0,c.key.currency1);
-        if(price < TickMath.MIN_SQRT_PRICE || price >= TickMath.MAX_SQRT_PRICE) revert InvalidState();
-        return price < TickMath.getSqrtPriceAtTick(lower) ? 1 : price >= TickMath.getSqrtPriceAtTick(upper) ? 2 : 0;
+        return portfolio.thresholdSide(center,lower,upper,price);
     }
     /// @notice Stable controls for the complete close/swap/deploy operation.
-    /// Same-native-pair moves may change pool ID, but not this asset policy.
+    /// Pool-specific policy is intentional. Budget must retain the original
+    /// source pool when checking a move; Manager binds the destination context.
     /// Physical LP state and healthy round updates are deliberately excluded.
     function controlFingerprint(bytes32 poolId) external view returns(bytes32) {
         return _controlFingerprint(IZZZPools(access.module(Ids.POOLS)).accounting(poolId));
@@ -149,10 +156,12 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
         if(first == bytes32(0) || second == bytes32(0)) revert InvalidState();
         bytes32 sources = keccak256(abi.encode(address(oracle),first,second,oracle.activeSequencerPolicy()));
         return keccak256(abi.encode(registry,IConfirmationRegistry(registry).configurationRevision(),sources,
-            IConfirmationStrategy(strategy).executionQualityRevision(),policyRevision));
+            IConfirmationStrategy(strategy()).executionQualityRevision(),policyRevision,
+            IConfirmationStrategy(strategy()).portfolioPolicy().controlFingerprint(keccak256(abi.encode(c.key)))));
     }
     /// @notice A fresh read never writes/reset samples and fails closed on faults.
     function ready(uint256 bucket) external view returns(bool) {
+        if(!IConfirmationStrategy(strategy()).needsRebalance(bucket)) return false;
         (uint8 side,bytes32 identity,bool manual) = condition(bucket);
         if(manual) return true;
         return _ready(observations[bucket],side,identity);
@@ -163,6 +172,7 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
         address budget = IZZZEmergencyVault(access.module(Ids.VAULT)).migrationBudget();
         if(msg.sender != budget || !access.paused()) revert Unauthorized();
         IZZZEmergencyBudget(budget).validateEmergency(bucket);
+        if(!IConfirmationStrategy(strategy()).needsRebalance(bucket)) return false;
         (uint8 side,bytes32 identity,bool manual) = _condition(bucket,true);
         return manual || _ready(observations[bucket],side,identity);
     }
@@ -184,7 +194,7 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
             if(manual || side == 0 || maxObservationGap == 0) {
                 delete observations[bucket];
                 emit ObservationReset(bucket,manual ? 4 : side == 0 ? 1 : 3);
-                return manual;
+                return _withCooldown(bucket,manual);
             }
             if(block.timestamp == 0 || block.timestamp > type(uint64).max) revert InvalidState();
             Observation memory old = observations[bucket];
@@ -194,8 +204,19 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
                 uint64(block.timestamp),side);
             observations[bucket] = next;
             emit Observed(bucket,side,identity,next.firstSeen,next.lastSeen);
-            return _ready(next,side,identity);
+            return _withCooldown(bucket,_ready(next,side,identity));
         } catch {
+            delete observations[bucket];
+            emit ObservationReset(bucket,2);
+            return false;
+        }
+    }
+    /// @dev A fresh eligibility fault must clear the just-recorded evidence in a
+    /// successful transaction, never revert and restore the previous window.
+    function _withCooldown(uint256 bucket,bool candidate) private returns(bool) {
+        if(!candidate) return false;
+        try IConfirmationStrategy(strategy()).needsRebalance(bucket) returns(bool due) { return due; }
+        catch {
             delete observations[bucket];
             emit ObservationReset(bucket,2);
             return false;

@@ -21,6 +21,8 @@ contract MockAccess {
     address public immutable royaltyFactory;
     address public immutable activationAssetsFactory;
     address public governor;
+    address public protocolPolicy;
+    function setProtocolPolicy(address policy) external { protocolPolicy=policy; }
     constructor(){governor=msg.sender;royaltyFactory=address(new ZZZRoyaltyFactory());activationAssetsFactory=address(new ZZZActivationAssetsFactory());}
     function governance() external view returns(address){return governor;}
     function canonicalHandoff() external view returns(address){return module[Ids.CANONICAL];}
@@ -98,6 +100,8 @@ contract BoundDummy {
     bool public randomnessConfigured = true;
     address public zzz;
     constructor(address a){access=IZZZAccess(a);zzz=address(this);}
+    function ACCOUNTING_VERSION() external pure returns(uint256){return 6;}
+    function royaltyRewards() external pure returns(address){return address(0);}
     // TEST ONLY: seal identity stubs. This dummy has no financial behavior.
     function FEE_INTAKE_VERSION() external pure returns(uint256){return 1;}
     function activationAssets() external view returns(address){return address(this);}

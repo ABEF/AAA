@@ -6,6 +6,7 @@ import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ZZZPriceMath} from "./libraries/ZZZPriceMath.sol";
 import {ZZZRebalanceConfirmation} from "./ZZZRebalanceConfirmation.sol";
+import {ZZZPortfolioPolicy} from "./ZZZPortfolioPolicy.sol";
 import {Ids, PoolConfig, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {IZZZPools, IZZZOracle, IZZZLiquidity, IZZZVault, IStateViewMinimal} from "./interfaces/IZZZ.sol";
 
@@ -15,10 +16,12 @@ interface IRangeRegistry { function applyKeeperRange(bytes32 poolId,uint16 range
 /// @notice Bounded strategy policy. Only the vault commits physical LP changes.
 contract ZZZStrategy is ZZZModule {
     uint256 public constant RANGE_POLICY_VERSION = 1;
-    /// @notice Physical outside-range upkeep, with a governed range-change exception.
-    uint256 public constant MAINTENANCE_POLICY_VERSION = 2;
-    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 2;
+    /// @notice Price-space edge threshold, with governed geometry exceptions.
+    uint256 public constant MAINTENANCE_POLICY_VERSION = 3;
+    uint256 public constant REBALANCE_CONFIRMATION_VERSION = 3;
+    uint256 public constant PORTFOLIO_VERSION = 2;
     ZZZRebalanceConfirmation public immutable rebalanceConfirmation;
+    ZZZPortfolioPolicy public immutable portfolioPolicy;
     uint256 public constant EXECUTION_QUALITY_VERSION = 1;
     uint256 public constant MAX_ADDITIONAL_LOSS_BPS = 1000;
     uint16 public additionalLossBps = 100;
@@ -42,8 +45,14 @@ contract ZZZStrategy is ZZZModule {
     event AdditionalLossLimitChanged(uint16 previous,uint16 current,uint64 revision,bytes32 indexed reviewHash);
     struct AssetPrice { uint256 lower; uint256 upper; uint256 scale; }
     struct PairPrices { AssetPrice first; AssetPrice second; uint160 referenceX96; }
-    constructor(address controller) ZZZModule(controller) {
-        rebalanceConfirmation = new ZZZRebalanceConfirmation(controller);
+    constructor(address controller,address portfolio,address confirmation) ZZZModule(controller) {
+        if(portfolio.code.length == 0 || confirmation.code.length == 0 ||
+            address(ZZZPortfolioPolicy(portfolio).access()) != controller ||
+            ZZZPortfolioPolicy(portfolio).PORTFOLIO_VERSION() != 2 ||
+            address(ZZZRebalanceConfirmation(confirmation).access()) != controller ||
+            ZZZRebalanceConfirmation(confirmation).REBALANCE_CONFIRMATION_VERSION() != 3) revert InvalidConfiguration();
+        portfolioPolicy = ZZZPortfolioPolicy(portfolio);
+        rebalanceConfirmation = ZZZRebalanceConfirmation(confirmation);
     }
     /// @notice Separate from raw needsRebalance so pending upkeep blocks compound.
     function rebalanceReady(uint256 id) external view returns(bool) { return rebalanceConfirmation.ready(id); }
@@ -96,11 +105,6 @@ contract ZZZStrategy is ZZZModule {
         uint256 net = Math.mulDiv(amount,1_000_000-fee,1_000_000);
         return Math.max(gross,Math.mulDiv(_quoted(prices,direction,net),10000-additionalLossBps,10000,Math.Rounding.Ceil));
     }
-    function _floor(int24 tick, int24 spacing) private pure returns (int24) {
-        int24 quotient = tick / spacing;
-        if (tick < 0 && tick % spacing != 0) --quotient;
-        return quotient * spacing;
-    }
     function target(bytes32 poolId) public view returns (int24 lower, int24 upper, uint160 referenceX96) {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
         if (!c.operationsEnabled) revert InvalidState();
@@ -108,17 +112,7 @@ contract ZZZStrategy is ZZZModule {
         (lower, upper) = _range(c, referenceX96);
     }
     function _range(PoolConfig memory c, uint160 referenceX96) private view returns (int24 lower, int24 upper) {
-        uint256 below = Math.sqrt(uint256(10000 - c.rangeBps) * 1e28);
-        uint256 above = Math.sqrt(uint256(10000 + c.rangeBps) * 1e28);
-        bool inverse = rangeOrientation[keccak256(abi.encode(c.key))] == 1;
-        uint256 lowerRoot = inverse ? Math.mulDiv(referenceX96,1e16,
-            Math.sqrt(uint256(10000+c.rangeBps)*1e28,Math.Rounding.Ceil)) : Math.mulDiv(referenceX96,below,1e16);
-        uint256 upperRoot = inverse ? Math.mulDiv(referenceX96,1e16,below,Math.Rounding.Ceil) : Math.mulDiv(referenceX96,above,1e16);
-        if (lowerRoot <= TickMath.MIN_SQRT_PRICE || upperRoot >= TickMath.MAX_SQRT_PRICE) revert InvalidConfiguration();
-        lower = _floor(TickMath.getTickAtSqrtPrice(uint160(lowerRoot)), c.key.tickSpacing);
-        // Always round the upper limit outward, including an exact tick boundary.
-        upper = _floor(TickMath.getTickAtSqrtPrice(uint160(upperRoot)), c.key.tickSpacing) + c.key.tickSpacing;
-        if (lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) revert InvalidConfiguration();
+        return portfolioPolicy.range(c,referenceX96,rangeOrientation[keccak256(abi.encode(c.key))]);
     }
     /// @notice Explicit opt-in; existing physical ticks are not reinterpreted.
     function setRangeOrientation(bytes32 poolId,uint8 orientation) external onlyGovernance operating {
@@ -231,14 +225,27 @@ contract ZZZStrategy is ZZZModule {
         if (p.status != PositionStatus.Active || p.centerX96 == 0 || p.lpTokenId == 0) return false;
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (!c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval) return false;
-        uint160 ref = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
-        _checkedSpot(p.poolId,c,ref);
+        (uint8 side,bool manual) = _rebalanceCondition(id,p,c);
+        return side != 0 || manual;
+    }
+    /// @notice Sample during cooldown; this is not permission to execute.
+    /// needsRebalance and Confirmation.ready independently enforce the clock.
+    function rebalanceCondition(uint256 id) external view returns(uint8 side,bool manual) {
+        Position memory p = IZZZVault(access.module(Ids.VAULT)).group(id);
+        if(p.status != PositionStatus.Active || p.centerX96 == 0 || p.lpTokenId == 0) return(0,false);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        if(!c.operationsEnabled) return(0,false);
+        return _rebalanceCondition(id,p,c);
+    }
+    function _rebalanceCondition(uint256 id,Position memory p,PoolConfig memory c) private view returns(uint8 side,bool manual) {
+        uint160 ref = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0,c.key.currency1);
+        uint160 spotX96 = _checkedSpot(p.poolId,c,ref);
         (int24 lower,int24 upper) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).ticks(p.lpTokenId);
         if (lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) revert InvalidState();
-        int24 tick = _checkedPoolTick(p.poolId,c);
-        // A true range exit cannot bypass the governed minimum interval. A
-        // deliberate width/orientation change may still apply while in range.
-        return tick < lower || tick >= upper || _rangeUpdatePending(p,c);
+        _checkedPoolTick(p.poolId,c);
+        manual = _rangeUpdatePending(p,c) || portfolioPolicy.configurationPending(id);
+        if(manual) return(0,true);
+        side = portfolioPolicy.thresholdSide(p.centerX96,lower,upper,spotX96);
     }
     /// @dev Preserve v4's exact downward-crossing tick, which may be one below
     /// getTickAtSqrtPrice. Using a recomputed tick would misclassify that edge.
@@ -256,7 +263,8 @@ contract ZZZStrategy is ZZZModule {
     function rangeUpdatePending(uint256 id) external view returns (bool) {
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(id);
         if (p.status != PositionStatus.Active || p.centerX96 == 0 || p.lpTokenId == 0) return false;
-        return _rangeUpdatePending(p, IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId));
+        return _rangeUpdatePending(p, IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId)) ||
+            portfolioPolicy.configurationPending(id);
     }
     function _rangeUpdatePending(Position memory p, PoolConfig memory c) private view returns (bool) {
         (int24 expectedLower, int24 expectedUpper) = _range(c, p.centerX96);

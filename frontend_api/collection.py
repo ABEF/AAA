@@ -35,6 +35,15 @@ def read(p, block_number, offset):
     if offset >= count and not (offset == count == 0):
         raise ValueError('Cursor is outside collection inventory')
     rows, total, active, all_available = [], 0, 0, True
+    verified_buckets={}
+    metadata_policy=None
+    if p.accounting_version==6:
+        from zzz_ops.protocol_policy import observe as observe_policy
+        try:
+            metadata_policy=observe_policy(lambda target,method,*args,count:p._call(target,method,*args,block=block,words=count),
+                policy=p.contracts['protocol_policy'].address,access=p.contracts['access'].address,domain='metadata')
+        except (ValueError,TypeError,KeyError) as exc:
+            raise ProjectionError('NFT evolution policy cannot be authenticated') from exc
     for identifier in ids[offset:offset + CHUNK_SIZE]:
         checkpoint()
         ordinal = p._uint('nft', 'mintOrdinalOf(uint256)', identifier, block=block)
@@ -53,11 +62,16 @@ def read(p, block_number, offset):
         bucket = p._uint('vault', 'nftBucket(uint256)', identifier, block=block)
         shares = p._uint('vault', 'sharesOf(uint256)', identifier, block=block)
         weight = p._uint('royalties', 'weightOf(uint256)', identifier, block=block)
-        limit = 6 if p.accounting_version == 4 else 5 if p.accounting_version == 3 else len(STATUS)
+        limit = 6 if p.accounting_version in (4,5,6) else 5 if p.accounting_version == 3 else len(STATUS)
         if not 1 <= status < limit or weight > 3 or (weight > 0) != (shares > 0) or (shares > 0) != (bucket > 0) or (status == p.dormant_status) != (weight == 0):
             raise ProjectionError('Collection activation state differs')
         if weight and (not ready or weight != rarity + 1):
             raise ProjectionError('Collection royalty weight differs from rarity')
+        if p.accounting_version in (5,6) and status == 1 and bucket not in verified_buckets:
+            from frontend_api.portfolio_v5 import read_bucket as read_v5
+            from frontend_api.portfolio_v6 import read_bucket as read_v6
+            read_bucket = read_v6 if p.accounting_version == 6 else read_v5
+            verified_buckets[bucket]=read_bucket(p,bucket,block)
         try:
             value = p._call(p.contracts['nft'].address, 'currentLPValue(uint256)', identifier, block=block, words=2)
             available, amount = _bool(value[0]), int(value[1], 16)
@@ -67,10 +81,12 @@ def read(p, block_number, offset):
             if not weight:
                 raise
             available, amount = False, 0
-        exited = p.accounting_version == 4 and status == 5
+        exited = p.accounting_version in (4,5,6) and status == 5
         if (not available and amount) or (status not in (1, p.dormant_status) and not exited and available) or (status == p.dormant_status and (not available or amount)) or (exited and (not available or amount or not life['lp_exit_started'])):
             raise ProjectionError('Collection LP valuation contradicts custody')
         stage = 4 if exited else 0 if not weight else 3 if available and amount >= 10000 * 10**18 else 2 if available and amount >= 1000 * 10**18 else 1
+        if p.accounting_version==6:
+            stage=4 if exited else 0 if weight==0 else 3 if available and amount>=metadata_policy['singularity_usd_18'] else 2 if available and amount>=metadata_policy['enhanced_usd_18'] else 1
         active += bool(weight)
         total += amount
         all_available = all_available and available
@@ -78,7 +94,9 @@ def read(p, block_number, offset):
             position=dict(status=status_name(p.accounting_version,status), activated=bool(weight), royalty_weight=weight,
                 principal_redeemable=False, current_lp_value=dict(available=available, raw=str(amount) if available else None,
                 decimals=18, unit='USD', source='NFT.currentLPValue'), evolution=EVOLUTION[stage], evolution_value_available=available)))
-        if p.accounting_version == 4:
+        if p.accounting_version in (5,6) and status == 1:
+            rows[-1]['position']['portfolio']=verified_buckets[bucket]
+        if p.accounting_version in (4,5,6):
             from frontend_api.principal_return import read as principal_return
             rows[-1]['principal_return'] = principal_return(p, identifier, status, shares, owner, life, block)
             rows[-1]['position']['principal_redeemable'] = rows[-1]['principal_return']['holder_claim_available_by_lifecycle']

@@ -23,7 +23,7 @@ qualification or production approval. Never point public browsers at a developer
 ## Version and data boundaries
 
 The new website manifest is explicitly schema3: accounting3, direct governance2,
-fee intake1, pricing2, routing2, Entry review1 and canonical local V4. The HTTP
+fee intake1, pricing2, routing2, Entry review2 and canonical local V4. The HTTP
 API's envelope schema remains its own version; do not relabel it to match the
 website manifest. Existing schema1/native2 manifests, Anvil deployments and
 saved transaction journals retain their original meanings.

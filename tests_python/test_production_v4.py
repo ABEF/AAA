@@ -59,7 +59,9 @@ class CurrentProductionTests(unittest.TestCase):
         old=F.old.fixture();report=CLI.validate(old,now=F.NOW)
         self.assertFalse(report['ready']);self.assertEqual('holder_exit_qualification_pending',report['issues'][0]['code'])
         with self.assertRaises(ValueError):O.observe(old,F.RPC(self.cfg))
-        self.assertEqual(6,CLI.validate(self.cfg,now=F.NOW)['schema_version'])
+        report=CLI.validate(self.cfg,now=F.NOW)
+        self.assertEqual(8,report['schema_version'])
+        self.assertFalse(report.get('inventory_consistent',False))
 
     def test_wrong_runtime_parent_owner_and_forwarded_quality_are_not_approved(self):
         cases=(('helpers','balancing_router','observed_runtime_hash',F.old.addr(999)),

@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -116,24 +120,24 @@ contract LiquidityFactualChecksTest is Test {
     receive() external payable {}
     function setUp() public {
         vm.warp(1_000_000); vm.deal(address(this), 10000 ether);
-        access = new MockAccess(); pools = new FactualPools(); permit = new FactualPermit();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); pools = new FactualPools(); permit = new FactualPermit();
         FactualToken a = new FactualToken(); FactualToken b = new FactualToken();
         (token0,token1) = address(a)<address(b) ? (a,b) : (b,a);
         core = new PoolManager(address(this)); state = new StateView(IPoolManager(address(core)));
         // No descriptor/wrapper operation is used by these typed LP actions.
         positions = new PositionManager(IPoolManager(address(core)), IAllowanceTransfer(address(permit)),
             100000, IPositionDescriptor(address(0)), IWETH9(address(0)));
-        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit));
-        strategy = new ZZZStrategy(address(access));
+        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
+        strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         access.bind(Ids.VAULT,address(this)); access.bind(Ids.LIQUIDITY,address(manager));
         access.bind(Ids.POOLS,address(pools)); access.bind(Ids.STRATEGY,address(strategy));
         access.bind(Ids.ORACLE,address(new FactualReference())); access.seal();
         key = PoolKey(address(token0),address(token1),3000,60,address(0));
         poolId = _admit(key); core.initialize(_coreKey(key),uint160(1 << 96));
         token0.mint(address(this),10000 ether); token1.mint(address(this),10000 ether);
-        token0.approve(address(manager),type(uint256).max); token1.approve(address(manager),type(uint256).max);
+        token0.approve(address(manager),type(uint256).max); token0.approve(manager.positionOperator(), type(uint256).max); token1.approve(address(manager),type(uint256).max); token1.approve(manager.positionOperator(), type(uint256).max);
         (incumbent,,) = manager.mint(poolId,-600,600,1000 ether,1000 ether,1,block.timestamp+100);
-        positions.approve(address(manager),incumbent);
+        positions.approve(manager.positionOperator(),incumbent);
         trader=new FactualTrader(core,_coreKey(key));token1.mint(address(trader),10 ether);
     }
     function _admit(PoolKey memory k) private returns(bytes32 id) {
@@ -207,7 +211,7 @@ contract LiquidityFactualChecksTest is Test {
         uint256 nativeBefore=address(this).balance;
         (uint256 lp,uint256 spent0,uint256 spent1)=manager.mint{value:100 ether}(id,-600,600,100 ether,150 ether,1,block.timestamp+100);
         assertEq(nativeBefore-address(this).balance,spent0);assertGt(spent1,0);
-        positions.approve(address(manager),lp);uint128 l=positions.getPositionLiquidity(lp);
+        positions.approve(manager.positionOperator(),lp);uint128 l=positions.getPositionLiquidity(lp);
         manager.increase{value:5 ether}(id,lp,5 ether,10 ether,1,block.timestamp+100);
         assertGt(positions.getPositionLiquidity(lp),l);assertEq(positions.ownerOf(lp),address(this));
         assertEq(address(manager).balance,0);assertEq(address(positions).balance,0);

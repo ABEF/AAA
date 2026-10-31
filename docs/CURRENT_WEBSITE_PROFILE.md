@@ -1,9 +1,9 @@
-# Served current3 website profile and fresh4 boundary
+# Served current3 website profile and fresh6 boundary
 
 The separately served [poplint integration target](SITE_ENVIRONMENTS.md) uses the
 explicit current3 reader/unsigned-review profile below. Its reviewed deployment
 configuration remains absent. The fresh contract candidate is now
-[accounting4/custody3/canonical V5](POSITION_V4.md), which this website profile
+[accounting6/custody4/portfolio2/canonical V6](POSITION_V6.md), which this website profile
 does not support. Neither source publication nor changing a manifest's version
 upgrades the served build, a schema1/native2 deployment or an existing journal.
 Public signing remains disabled.
@@ -31,15 +31,16 @@ states. Actual LP, ETH claimable and history may be unavailable independently;
 never invent zero or display an unconverted source balance as ETH. A confirmed
 claim is a payout, not new income or an artwork evolution.
 
-## Fresh4 integration still required
+## Fresh6 integration still required
 
-A new explicitly versioned frontend profile must verify accounting4/custody3,
-canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`, current Manager/Balancer,
-execution-quality and rebalance-confirmation capabilities, exact runtimes and
-their parent/core bindings.
+A new explicitly versioned frontend profile must verify accounting6/custody4/portfolio2,
+canonical `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`, Manager/typed LP child/Balancer/math/policy,
+execution-quality1/maintenance3/compound4/confirmation3 capabilities, exact runtimes
+and both physical LP IDs/owners/keys/ticks at one canonical block. Desired-disabled
+residuals remain included until merged; eight Position words alone are not compatibility.
 It must distinguish terminal zero LP from unavailable data, unpaid holder
 principal from rewards, and continuing royalty rights from ended LP earnings.
-The backend's current accounting4 support or a matching eight-word position
+The backend's current accounting6 support or a matching eight-word position
 length does not establish browser compatibility. Do not deploy fresh contracts
 under schema3 or relabel the current3 artifact as fresh4.
 
@@ -74,4 +75,4 @@ The served-profile [verification](../reports/current3-website-20261026/VERIFICAT
 uses actual Python projection/preparation DTO code with synthetic RPC, venue,
 price and authority dependencies. It verifies integration behavior, not real
 prices, provider authenticity, deployed contracts, marketplace operation or an
-independent audit. It is not fresh4 acceptance. Production remains **NOT APPROVED**.
+independent audit. It is not fresh6 acceptance. Production remains **NOT APPROVED**.

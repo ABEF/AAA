@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
@@ -48,7 +49,7 @@ contract ZeroAssetCanonicalTest is Test {
     }
     function _fresh() private returns (MockAccess access, ZZZMembership member,
         ZeroAssetNFTFixture nft, ZeroAssetCheckpointFixture reward) {
-        access = new MockAccess(); member = new ZZZMembership(address(access));
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); member = new ZZZMembership(address(access));
         nft = new ZeroAssetNFTFixture(address(access)); reward = new ZeroAssetCheckpointFixture(member);
         nft.seed(101, ALICE); nft.seed(102, BOB); nft.seed(103, CAROL);
         access.bind(Ids.NFT, address(nft)); access.bind(Ids.MEMBERSHIP, address(member));

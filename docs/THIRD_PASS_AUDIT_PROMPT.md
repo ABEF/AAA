@@ -94,84 +94,95 @@ prove no possible bug or replace independent release approval.
 
 ## 2. Established rules and authorization
 
-- Fresh accounting4/governance2/fee1/custody3/pricing2/routing2/reviewedEntry1,
-  LP-routing1/quality1/confirmation2/emergency1 and canonical same-chain holder-exitV5.
-  Existing Anvil/legacy codecs/journals keep exact identities; no silent migration.
-- One fixed deployment ZZZ and native ETH inputs, minimum100USD activation/5USD
-  growth, stronger pool minima, governed cumulative `maxPositionUSD` cap, intended initially at1mUSD per NFT. One enabled
-  contribution destination and at most four permanently registered custody
-  buckets (including reservations); aliases/history can grow separately.
-  No stablecoin input, replaceable ZZZ, creator inbox, integrated
-  bridge, arbitrary executor/sweep or external-custody exit.
-- At most1,000ERC721 NFTs, exact600/300/100 rarities and finite fixed artwork draw;
-  reveal-bound palette/pattern/rarity immutable. Activation is permanent; current
-  marked LP selects artwork, not eligibility. Metadata terminal stage4 differs
-  from PositionStatus.Exited5. No new artwork texture or palette policy.
-- Actual harvest80/10/5/5: share-weighted owner/equal activated collective/
-  compound/fixed-ZZZ buyback-burn.20raw-unit split/remainders and fractions are
-  explicit, including incumbent-owner settlement of sub20 boundary dust.
-  Separate100% actual eligible royalties use rarity1/2/3; ERC2981
-  requests5% but does not universally enforce payment. Current owner inherits
-  all unclaimed rights. Earnings, claimable, claimed and principal differ.
-- Two reviewed independent USD sources per asset, selected3% agreement, no
-  spot/peg/missing-feed fallback. Captured contribution2%, conversion1% and
-  maintenance3% default caps, governed at most10%; gas separate. Additional loss
-  after actual directional trading fees defaults1%, governed0-10%. Stronger
-  caller/venue/captured floors remain. These are different control categories.
-- Hard initial12-hour ordinary rebalance interval; physical outside range or
-  explicit governed width update, no centre chasing. Manual ZZZ-price-in-ETH
-  +/-25/50%; separate compound interval and independent hourly harvest. No new
-  passive/40%/volatility/TWAP strategy or cumulative loss breaker without decision.
-- Sampled900sec confirmation, source checks240sec and strict maxgap300sec, greater delay
-  restarts; constructor gap0 stops ordinary sampled readiness. Manual-width exception
-  preserves cooldown. Service jitter60-600sec begins after readiness; continue
-  sampling. Outer polling, sample clock, receipt time and execution are distinct.
-- Confirmation2 defaults to physical **and configured independent-reference**
-  exit on the same side of the actual LP bounds. Target-only/reference-only/
-  opposite-side exits do not qualify ordinary replacement. Governed reviewed
-  relaxation invalidates samples. Optional automatic keeper widths cannot
-  coexist with enabled reference protection; manual governance widths retain
-  their cooldown exception. Source/market independence is not established by
-  this control. Observing during cooldown is still proposed, not authorized
-  merely by this audit; changing it requires an explicit policy decision.
-- Separate manual emergency1 is paused-governance-only, before terminal exit,
-  no keeper scheduler/API fallback. Selected timing/price/value/operation/sample
-  checks may be bypassed per reviewed manifest; exact assets, custody, budgets,
-  shares/reserves, typed venues, raw minima and lifecycle remain structural.
-  Financial bypass can permit near-total principal loss. Treat this as accepted
-  governance trust, then audit accidental privilege leakage/context cleanup/
-  retained-control pinning and rollback, not as a claim of trustless protection.
-- Distinguish selected initial settings from governed legal bounds. Supported
-  changes require compatible downstream cadence/configuration and requalification;
-  do not make12hours or900/300 immutable by rewriting documentation.
-- One human operator controls direct governance; limited automated keeper and
-  separate guardian capabilities remain. No new committee, role or timelock.
-  Reviewed replacement code/dependencies remain accepted governance trust.
-- Normal holders cannot redeem principal. Paused governance may irrevocably end
-  LP, close actual ETH/ZZZ buckets, include pending compound and allocate/pay
-  current holders in bounded batches. Earned rewards/future royalties/transfers
-  survive. No restart, custodian recipient or post-exit canonical replacement.
-  Same-pair moves/parking and compatible pre-exit same-chain handoff remain.
-- Production mint is intended for OpenSea; current direct0.05ETH mint lacks that
-  primary-drop integration. Intended buyer gross0.05ETH, recipient net actual
-  platform fee, gas separate. Supported VRF/marketplace/provider/authority facts
-  must be evidenced, not inferred from mocks or generic chain support.
-- Use main only. Preserve unrelated dirty files, old reports, Anvil8902/NFTs/LP/
-  balances/journals/dist, public site roots and paused monitoring. Public signing
-  remains disabled; browser signing remains Anvil-only; public
-  DEPLOYMENT/INTEGRATION_DEPLOYMENT null. Popldemo remains
-  simulation; served poplint is unconfigured current3, not fresh4 acceptance.
-- This source audit authorizes no public transaction, funded-wallet use,
-  deployment, seal, service/website rollout, server access or monitor restart.
-  Do not print/log/commit secrets. Source publication is separate from deployment.
-  The website checkout is outside the task's writable roots: inspect it and
-  prepare/test any justified source patch in an isolated evidence copy. Apply a
-  concrete, reviewed non-signing source correction only through the proper file
-  approval boundary; preserve signer bytes, old profiles/journals, dist overlays
-  and public configs. Do not build/install into a preserved serving directory. Continue all
-  independently authorized contract/backend/CI/documentation repairs.
-  Primary-source browsing is read-only research. No public RPC probe is required
-  to complete local review; any optional probe needs its own authorized read scope.
+Re-establish these against actual source and current repo instructions before
+execution. [Accounting6](POSITION_V6.md), [policy](ADAPTABLE_POLICY.md), the sole
+Todo and operator manual take precedence over old campaign assumptions.
+
+- Fresh accounting6/ProtocolPolicy1/Portfolio2/governance2/fee1/custody4/pricing2/
+  routing2/reviewedEntry2, LP-routing2/quality1/maintenance3/confirmation3/
+  compound4/emergency2 and same-chain ADAPTABLE_POLICY_V6. Preserve historical
+  codecs/Anvil/journals rather than silently migrating or relabelling them.
+- One fixed ZZZ and native ETH are contribution/LP inputs. Future action minima
+  default100USD activation/5USD growth, governed>=1USD with growth<=activation;
+  stronger pool minima remain. Intended cumulative per-NFT maxPositionUSD is1mUSD.
+  One contribution destination and at most four permanent historical/reserved
+  custody buckets; no third input, replaceable ZZZ, creator inbox, bridge,
+  arbitrary executor/sweep or external custody exit.
+- One default main plus at most one optional residual in the same pool, both
+  Vault-owned. Sum actual amounts/NAV, not liquidity across different ticks.
+  Per-pool main floor6000–9999bps(default6000), complementary residual maximum,
+  governed side fraction(default5000bps) and positive tick-spacing gap(default1).
+  Ratios apply at guarded replacement, not continuously. Disabling records a
+  desired merge; a live residual remains valued/harvested until safely closed.
+- Contributions checkpoint incumbents, spend only entrant funds, increase the
+  existing main, prove marginal deployed LP, then issue shares from net added
+  NAV. No recenter/rebalance-clock reset or incumbent idle/residual subsidy.
+- At most1000ERC721 NFTs; exact600/300/100 rarity quotas and fixed prepared
+  artwork draw. Revealed rarity/palette/pattern and art root are immutable.
+  Activated eligibility is independent of falling NAV. Governed positive
+  enhanced/singularity thresholds change display only(default1000/10000USD).
+  Terminal visual stage4 differs from PositionStatus.Exited5.
+- Actual harvested fees allocate80/10/5/5: individual/equal activated collective/
+  compound/fixed-ZZZ burn. Dust/fractions and incumbent checkpoints remain.
+  Separate100% received eligible royalties use rarity1/2/3; ERC2981 requests5%
+  without universal enforcement. Current owners inherit unclaimed rights.
+  Earnings, claimable, paid and returned principal are distinct.
+- Two independent reviewed USD sources, selected3% agreement, no spot/peg/missing
+  fallback. Contribution2%/conversion1%/maintenance3% defaults, ceilings10%, gas
+  separate. Additional loss after known directional fees defaults1%, governed
+ 0–10%. Caller/venue/raw-output floors and dual-source agreement are separate.
+- Separate captured entry/maintenance idle caps default5%, governed0–40%.
+  Changing idle never waives marginal deployed-LP or retained-value floors.
+  Source/payout/optional-currency budgets are bounded100k–1m, not provider/gas
+  qualification. Pyth's optional adapter has its own immutable300k inner cap.
+- Ordinary trigger85% of actual centre-to-boundary ZZZ-in-ETH price distance;
+  physical pool and independent reference must corroborate the same side.
+ 600second sampled window,240second source checks, strict300second max gap,
+  then durable fresh60–300second service jitter; initial hard12hours remains.
+  Raw cooldown checks and near-eligibility paid enrollment are implemented.
+  Reset on observed return/side/fault/identity/relevant-policy change. This is
+  sampled evidence, not uninterrupted history or MEV immunity.
+- Deliberate governed geometry changes retain their cooldown exception. Manual
+  ranges may extend below100% within Registry/tick constraints; optional automatic
+  two-width selection remains distinct and disabled under selected protection.
+  Separate compound cadence; worker waits for in-range main below adjustment
+  threshold/no pending geometry. Independent hourly harvest and pending-first
+  nonce/receipt recovery must not be blocked by optional jobs.
+- Paused governance emergency2 is a separate exact manifest, never ordinary
+  keeper fallback. Optional financial/timing checks may be bypassed deliberately,
+  but exact assets/custody/settlement/shares/reserves/lifecycle stay structural.
+  Accepted governance trust can permit near-total economic loss.
+- ProtocolPolicy is fixed noncustodial code with bounded future settings.
+  Mint binds sale+VRF fingerprint; Entry2 binds exact entry policy; maintenance
+  captures its own values. Revisions prevent change-and-restore stale review
+  revival. Cosmetic/gas/sale changes must not reset unrelated LP samples.
+- Planned VRF provider/subscription/lane/payment rotation requires every old draw
+  finalized; no pending retarget/reroll/admin traits. New requests pin runtime;
+  original-address callbacks can drain pending work. Provider upgrade/proof/
+  funding recovery remains a real qualification requirement.
+- One human operator controls direct governance, without timelock/committee;
+  automated keeper and guardian capabilities remain distinct. Reviewed successor
+  and dependency code remain governance trust. Future mint recipient proposes/
+  accepts without moving old payments or granting management powers.
+- Normal holders cannot redeem principal. Paused governance can permanently stop
+  LP, close both legs, allocate principal+compound by shares and pay current
+  owners in isolated bounded batches. Old rewards/future royalties/transfers
+  survive; no restart or post-exit canonical replacement. Before exit, compatible
+  same-pair moves/parking and complete same-chain handoff remain.
+- Production mint is intended for OpenSea; reviewed direct mint is not compatible
+  primary-drop integration. Default gross0.05ETH is future-governed; actual
+  platform fee comes from gross buyer price, with recipient net and gas separate.
+  No live provider/authority/product support may be inferred from mocks.
+- Main only; preserve unrelated dirty files, original reports, Anvil8902/NFTs/LP/
+  balances/journals/dist and paused monitoring. Popldemo stays simulation; served
+  poplint remains current3, not qualified source6. Public DEPLOYMENT stays null,
+  signing Anvil-only. Source publication is separate from deployment/rollout.
+- This audit authorizes no public/funded transaction, deployment, seal, server or
+  service/site change, signing extension or monitor restart. Never print/log/
+  commit secrets. Respect website checkout write boundaries; a reviewed isolated
+  patch is not permission to modify shared signers or serving directories.
+  Continue independently authorized source/backend/docs improvements; optional
+  public RPC probes need their own authorized read scope.
 
 ## 3. Whole-project review matrix
 

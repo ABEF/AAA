@@ -1,0 +1,639 @@
+{
+  "distinct_successful_methods": 53,
+  "staged_scope_not_fresh_whole_suite": true,
+  "stages": {
+    "nft-runtime-20de7c39d4": {
+      "execution_sha256": "daf2f3063443724762ab3ad6dfe453735277a2d3ee89ee6b9785118308a86970",
+      "executed": 52,
+      "passed": 51,
+      "source_unchanged_during_stage": false,
+      "failed": [
+        "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest::testCanonicalHandoffRejectsMismatchedVisualThresholdsBeforeImport()"
+      ],
+      "cases": [
+        {
+          "suite": "test/ArtworkLookup.t.sol:ArtworkLookupTest",
+          "test": "testAll100LegendaryMappingsUnchanged()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1896531
+            }
+          }
+        },
+        {
+          "suite": "test/ArtworkLookup.t.sol:ArtworkLookupTest",
+          "test": "testAll300RareMappingsUnchanged()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 5955612
+            }
+          }
+        },
+        {
+          "suite": "test/ArtworkLookup.t.sol:ArtworkLookupTest",
+          "test": "testAll600CommunMappingsUnchanged()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 13556557
+            }
+          }
+        },
+        {
+          "suite": "test/ArtworkLookup.t.sol:ArtworkLookupTest",
+          "test": "testInvalidLookupDomainRejects()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 20776
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testBaseURICannotChangeAfterSealOrOverwriteConstructorCommitment()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 19995391
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testCosmeticThresholdsChangeStagesWithoutChangingVestedRights()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1784013
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testCurrentNAVIncludesIdleAndCompoundAndAttributesOnlyNFTShares()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1425691
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testERC2981UsesFivePercentSingleImmutableReceiverAndERC4906IsSupported()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 717392
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testExitedPrincipalIsExplicitZeroWithoutPricesAndKeepsRoyaltyRights()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 3235644
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testFullSupplyConsumesExactQuotasAndCannotRequestMint1001()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 439913232
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testFuzzInitialRarityOddsAndIndependentArtwork(uint256,uint256)",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Fuzz": {
+              "first_case": {
+                "calldata": "0xaaa477610000000000000000000000024b3ee4a1909c23c52330dd4730a76700a1b879f300000000000000000000000000000000000000000000000000100dc6a6aafb41",
+                "gas": 761680,
+                "stipend": 21644
+              },
+              "runs": 1000,
+              "mean_gas": 718633,
+              "median_gas": 719258,
+              "failed_corpus_replays": 0
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testInitialRarityBoundaries()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 4256664
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testInitialVRFConfigurationCannotRepeatAndRequestTupleIsCaptured()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 552823
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testIvoryOnyxBicolorAndTricolorMetadataNeverAffectRarityRoyaltyWeight()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 5743910
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testLiveEvolutionThresholdsAndDownwardMarketMovesDoNotRemoveRights()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 2682854
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testMetadataActivationFlagChangesWithoutChangingRarityWeightOrFeeRightsOnTransfer()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 9686608
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testMigrationStatesAndUnavailableVenueKeepRightsAndReadableMetadata()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 5668930
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testMintRecipientCannotDivertMintProceedsIntoRoyaltyLedgerOrNFT()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 186244
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testMintRequiresFixedVRFAndRollbackLeavesNoRequest()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 23213687
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testOnlyCoordinatorMayFulfillKnownRequestOnceWithTwoWords()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 835485
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testOnlyPolicyEmitsCosmeticInvalidationAndInvalidThresholdsReject()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 88957
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testOutOfOrderCallbackCannotReorderQuotaConsumption()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1164349
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 5792007
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testPendingTraitsCannotActivateAndTransferCannotReroll()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 860008
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testPriceGuardFailureReportsUnavailableAndPreservesOwnershipAndRoyaltyEligibility()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1627641
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testRefreshMetadataRangeAcceptsOneAndMaximumFifty()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 13134172
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testRefreshMetadataRangeDoesNotCacheOrChangePriceDrivenEvolution()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 3747913
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testRefreshMetadataRangeEmitsActualHashedIDsInMintOrder()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1231000
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testRefreshMetadataRangeIgnoresPauseTransferAndUnavailableValuation()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1232692
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testRefreshMetadataRangeRejectsEmptyZeroReversedAndUnmintedBoundsAtomically()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 760356
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testRefreshMetadataRangeRejectsFiftyOneBeforeAnyNotification()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 12269870
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testRevealedDormantMetadataShowsFixedRarityWeightWithoutRewardEligibility()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 8002555
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testStaleOracleDoesNotBreakURIOrRoyaltyClaimsOrFabricateDormantState()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 3808257
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testTraitsStayFixedThroughActivationTopUpAndTransfer()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1085354
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testUnsealedConfigurationRejectsUnauthorizedInvalidAndSecondConfiguration()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 23259689
+            }
+          }
+        },
+        {
+          "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+          "test": "testZeroWordsConsumeTheFullInventoryWithoutArtworkRerollsOrQuotaLoss()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 394458920
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testAuthorizedProviderCallbackCannotChangeRequestSettingsMidMint()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 761169
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testCanonicalHandoffRejectsMismatchedVisualThresholdsBeforeImport()",
+          "status": "Failure",
+          "reason": "InvalidConfiguration()",
+          "kind": {
+            "Unit": {
+              "gas": 31103830
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testCosmeticProviderCallbackDoesNotInvalidateTheVrfRevision()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 761255
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testImmediateGovernanceChangesOnlyFutureRequestArgumentsAndEmitsExactEvent()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1074798
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testInvalidBoundsAndNonGovernanceCannotChangeSettings()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 786513
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testPauseDoesNotPreventGovernanceRepairOrChangePauseState()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 639731
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testPendingAuthenticationOrderedRevealAndFinalTraitsSurviveTuning()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1542666
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testPreparationAndAllCanonicalLocksRejectTuningWhileRevealMayDrain()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1061528
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testProviderRuntimeChangeBlocksNewMintButOriginalCallbackCanDrain()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 2074092
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testRotationRequiresExplicitMatchingRuntimeAndReview()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1076100
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testRotationWaitsForFulfilledANDMintOrderedFinalizedDraws()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 2348743
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testSameProviderCannotRecycleAnOldRequestIDAfterRotation()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 880664
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testSuccessorKeepsOwnFutureSettingsAndImportedHistoricalRequestEpoch()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 72654352
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testTuningRequiresConfigurationAndWorksBeforeSealWithoutProviderReplacement()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 54470925
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testUnprivilegedCoordinatorCallbackCannotChangeGovernanceSettingsDuringMint()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 1038884
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testUnsealedImporterBootstrapCannotBypassCanonicalOperatingLock()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 30832013
+            }
+          }
+        }
+      ]
+    },
+    "nft-canonical-fix-fc793b0c89": {
+      "execution_sha256": "e35cd5ac6703a1c47c75073aeca9d568ae7badc81f0ebfef673647dbe403d915",
+      "executed": 3,
+      "passed": 3,
+      "source_unchanged_during_stage": true,
+      "failed": [],
+      "cases": [
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testCanonicalHandoffRejectsMismatchedVisualThresholdsBeforeImport()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 31169865
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testRetiredHeaderRemainsReadableAfterSuccessorChangesCosmetics()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 31046640
+            }
+          }
+        },
+        {
+          "suite": "test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest",
+          "test": "testSuccessorKeepsOwnFutureSettingsAndImportedHistoricalRequestEpoch()",
+          "status": "Success",
+          "reason": null,
+          "kind": {
+            "Unit": {
+              "gas": 72670991
+            }
+          }
+        }
+      ]
+    }
+  }
+}

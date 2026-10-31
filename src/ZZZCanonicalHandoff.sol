@@ -6,6 +6,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {IZZZAccess, IZZZVault} from "./interfaces/IZZZ.sol";
 import {IZZZCanonicalModule} from "./interfaces/IZZZCanonical.sol";
 import {Ids} from "./libraries/ZZZTypes.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 
 interface ICanonicalController is IZZZAccess {
     function bootstrap() external view returns (address);
@@ -28,7 +29,7 @@ interface ICanonicalHelpers {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6");
     // Numeric values are wire-compatible; coordinator phases and Access states
     // are separate state machines. Constants add no public getter or storage.
     uint8 private constant PHASE_IDLE = 0;
@@ -160,6 +161,9 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
             address target = moduleAt(slot);
             result = keccak256(abi.encode(result, slot, target, target.codehash));
         }
+        address policy = access.protocolPolicy();
+        result = keccak256(abi.encode(result,policy,policy.codehash,
+            IZZZProtocolPolicy(policy).PROTOCOL_POLICY_VERSION(),IZZZProtocolPolicy(policy).configurationHash()));
     }
 
     /// @notice Only an unused, unsealed deployment can become an inert importer.

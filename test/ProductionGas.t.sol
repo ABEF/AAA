@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -45,16 +48,16 @@ contract ProductionGasTest is Test {
     function activePlan(uint256) external pure returns(bytes32) {return bytes32(0);}
     function _fixture(uint256 assetCount) private {
         vm.warp(1_000_000);
-        access = new MockAccess();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
         pools = new MockPools();
         policy = new VaultPolicyMock();
         feed = new MockFeed(8, 1e8);
         for (uint256 i; i < assetCount; ++i) tokens.push(new MockToken(0));
         venue = new VaultLiquidityMock(address(tokens[0]), address(tokens[1]));
-        vault = new ZZZVault(address(access), block.chainid, TREASURY);
+        vault = new AccountingVaultHarness(address(access), block.chainid, TREASURY, address(new ZZZMigrationBudget(address(access))));
         nft = new ZZZNFT(address(access), "");
         vrf = new MockVRF();
-        nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         membership = new ZZZMembership(address(access));
         rewards = new ZZZRewards(address(access));
         fees = new ZZZFeeController(address(access));
@@ -142,7 +145,7 @@ contract ProductionGasTest is Test {
         _fixture(assetCount);
         for (uint256 i = 1; i < size; ++i) {
             vm.startPrank(OWNER);
-            uint256 previous = vault.mintDormant{value: 0.05 ether}();
+            bytes32 reviewedPolicy2 = vault.mintPolicyFingerprint(); uint256 previous = vault.mintDormant{value: 0.05 ether}(reviewedPolicy2);
             vm.stopPrank();
             _finalizeTraits(previous);
             vm.startPrank(OWNER);
@@ -154,7 +157,7 @@ contract ProductionGasTest is Test {
         _cool();
         vm.prank(OWNER);
         uint256 start = gasleft();
-        id = vault.mintDormant{value: 0.05 ether}();
+        bytes32 reviewedPolicy1 = vault.mintPolicyFingerprint(); id = vault.mintDormant{value: 0.05 ether}(reviewedPolicy1);
         uint256 spent = start - gasleft();
         _report(prefix, "mintDormant", spent);
         assertEq(nft.balanceOf(OWNER), size);

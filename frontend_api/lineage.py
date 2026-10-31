@@ -38,14 +38,14 @@ class Lineage:
         for item in items:
             fields = {'deployment_block', 'deployment_block_hash', 'contracts', 'assets',
                       'history', 'retirement_transaction_hash'}
-            if isinstance(item, dict) and ('accounting_version' in item or current.accounting_version in (2, 3, 4)):
+            if isinstance(item, dict) and ('accounting_version' in item or current.accounting_version in (2, 3, 4, 5, 6)):
                 fields.add('accounting_version')
             _keys(item, fields, 'predecessor')
             # Do not inherit a successor's new ledger ABI/profile or converter
             # into an older deployment. Historical event replay needs no new getters.
             previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version')}
             previous_config['accounting_version'] = item.get('accounting_version', 1)
-            if current.accounting_version in (3, 4) and previous_config['accounting_version'] != current.accounting_version:
+            if current.accounting_version in (3, 4, 5, 6) and previous_config['accounting_version'] != current.accounting_version:
                 raise ValueError('Local handoff requires identical explicit accounting and canonical profiles')
             previous_config.update({k: v for k, v in item.items() if k != 'retirement_transaction_hash'})
             previous = Projection(previous_config, current.rpc, clock=current.clock)

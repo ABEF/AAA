@@ -13,7 +13,7 @@ contract CompoundIntervalTest is PooledVaultFixture {
     }
     function testDefaultCompoundHourIsIndependentOfTwelveHourRebalance() public {
         activatedPosition();uint256 bucket=_bucket();uint256 created=vault.group(bucket).lastRebalance;
-        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),3);
+        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),4);
         assertEq(vault.migrationBudget().compoundInterval(poolId),3600);
         venue.setFees(100,100);
         vm.warp(created+3599);assertFalse(vault.migrationBudget().compoundReady(bucket));

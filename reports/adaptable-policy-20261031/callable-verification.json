@@ -1,0 +1,20 @@
+{
+  "reference": {
+    "contracts": 37,
+    "functions": 826,
+    "constructors": 37,
+    "receive_hooks": 14,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "executed_methods": 16,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "ok": true,
+  "source_unchanged": true,
+  "elapsed_seconds": 8.07,
+  "scope": "Generated ABI/source/normal-size evidence check and offline operator review helper only. No signing,RPC,live state gathering,calldata broadcast or permission qualification."
+}

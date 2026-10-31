@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {NoHybridPolicyFixture, SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -91,7 +93,7 @@ contract MigrationExecutionBudgetTest is PooledVaultFixture {
 
 /// @dev Only the helper valuation math is isolated here. Integration tests above
 /// and the adversarial suite use the actual Vault, fees, ownership and shares.
-contract MigrationBudgetScaleHarness {
+contract MigrationBudgetScaleHarness is SinglePositionFixture, NoHybridPolicyFixture {
     ZZZMigrationBudget public immutable budget;
     Position private position;
     uint256 private amount0;
@@ -124,7 +126,7 @@ contract MigrationBudgetScaleTest is Test {
     MockFeed private nativeFeed;
     function setUp() public {
         vm.warp(1_000_000);
-        MockAccess ac = new MockAccess();
+        MockAccess ac = new MockAccess(); ProtocolPolicyFixture.bind(address(ac));
         MockPools pools = new MockPools();
         MockToken stable = new MockToken(6);
         MockToken native = new MockToken(18);

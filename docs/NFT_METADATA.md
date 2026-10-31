@@ -1,6 +1,6 @@
 # NFT traits, royalties and live artwork
 
-Fresh accounting4 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+Fresh accounting6 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
 After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
 rewards and future royalty eligibility. Direct payouts are separate from income;
 no holder principal withdrawal exists during normal operation. LP cannot reopen
@@ -30,29 +30,32 @@ The immutable 1,000-entry inventory contains 200 monochrome, 500 bicolor and 300
 
 ## Random reveal
 
-Before sealing, governance configures a VRF-v2.5-compatible coordinator, key, funded subscription, confirmations, callback gas and payment currency exactly once. There is no coordinator replacement or trait setter. Production must verify actual proof-verifying code and availability on the selected chain; the matching ABI and mock tests are not proof of a working oracle.
+Before sealing/import preparation, bootstrap configures a reviewed VRF-v2.5-compatible coordinator, expected runtime, key, funded subscription, confirmations, callback gas and payment mode through ProtocolPolicy. Governance may later perform planned provider/subscription/lane/payment rotation only after every existing draw finalizes; no pending retargeting, reroll or trait setter exists. Production must verify actual proof-verifying code and availability on the selected chain; the matching ABI and mock tests are not proof of a working oracle.
 
 Mint records its ordinal and one request for two words. The authenticated callback only stores words. Anyone may finalize the next mint ordinal. The first word draws a rarity from the remaining quotas; the second independently selects one remaining entry from that rarity's fixed visual inventory, using a sparse Fisher-Yates draw without replacement. Consuming an entry swaps the final remaining index into its place. Neither callback ordering nor token ownership selects an entry. The first rarity odds are 60/30/10; later odds depend on remaining quotas. Color-style and palette odds likewise follow their remaining finite inventories, rather than promising fixed independent odds throughout a sellout. No reroll or cancellation exists. An unavailable earlier request blocks later finalization, so subscription backing, callback gas and fulfillment recovery need explicit operational review. Activation requires revealed traits.
 
-Governance may tune only future request confirmations and callback gas using
-`setRandomnessRequestSettings(uint16,uint32)` after the initial one-time setup.
+Governance may tune future request confirmations and callback gas through
+`ProtocolPolicy.setRandomnessRequestSettings(uint16,uint32,bytes32 reviewHash)` after initial setup.
 The bounds remain 3-200 and 200,000-10,000,000; actual provider limits may be
-narrower. Coordinator, lane/key, subscription and payment mode remain fixed.
+narrower. Planned rotation uses the separately governed drain-first procedure.
 Pending requests retain their original provider-recorded arguments, so this
 cannot repair an already-submitted callback or create another draw. Ordinary
-pause permits tuning; preparation/canonical locks and reentry do not. Review
-[operator steps](OPERATOR_MANUAL.md#mint-and-metadata) and [scoped evidence](../reports/post-seal-controls/VERIFICATION.md).
+pause permits tuning; preparation/canonical locks prevent configuration. A policy
+change during a mint callback invalidates that mint atomically. Review
+[operator steps](OPERATOR_MANUAL.md#mint-and-metadata), [rotation limits](ADAPTABLE_POLICY.md#planned-vrf-rotation)
+and [current scoped evidence](../reports/adaptable-policy-20261031/VERIFICATION.md).
 
 Traits remain bound to the NFT through transfers, additions and migration. `paletteOf` and `patternOf` identify the immutable visual entry; the compatibility getter `colorOf` reports its first canonical color. Metadata publishes Color style, Palette, Color 1/2/3 as applicable, Circuit pattern, Rarity, Evolution and fixed revealed NFT-sale royalty weight (activation is separate). Unrevealed NFTs return an embedded placeholder. Revealed SVG filenames are `palette-pattern-rarity-evolution.svg`, such as `cyan-amber-onyx-arcs-rare-enhanced.svg`. The root can only be populated once before sealing; it is not a post-seal governance image switch. Production admission requires the entire supported 2,784-path publication with independent content-root/manifest review. No SVG publication, website preview or local VRF mock establishes deployment readiness.
 
 ## Current LP value and ERC-4906
 
-`currentLPValue` returns availability and current 18-decimal oracle-USD marked principal/idle/compound NAV proportional to NFT shares. It does not include unclaimed rewards, arbitrary donations or historical contribution USD. Enhanced starts at$1,000 and Singularity at$10,000; losses may downgrade artwork. An activated NFT below$100 remains activated.
+`currentLPValue` returns availability and current 18-decimal oracle-USD marked principal/idle/compound NAV proportional to NFT shares. Fresh6 values both authenticated main/residual token amounts, attributed idle and designated compound; it does not sum raw liquidity across ranges. It does not include unclaimed rewards, arbitrary donations or historical contribution USD. Enhanced/Singularity thresholds default to$1,000/$10,000 and are governed
+display-only positive increasing USD18 values; losses or threshold changes may alter artwork, never economic rights. An activated NFT below$100 remains activated.
 
 Parked local custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate prices. Claims and collective principal return do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
 
-Fresh accounting4/custody3 uses canonical
-`ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`. Confirmed collective closure marks
+Fresh accounting6/custody4 uses canonical
+`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Confirmed collective closure marks
 Exited5 and `currentLPValue` returns available/zero without a price-feed read.
 `evolution` returns terminal stage4 and metadata labels `LP exited`; it reuses
 the existing Activated image, not a new fifth artwork evolution or a Dormant NFT.
@@ -98,7 +101,7 @@ mark; ownership, activated royalty eligibility and claims persist. See
 See [the operator manual](OPERATOR_MANUAL.md#mint-and-metadata). Qualify/fund and
 monitor the original randomness service; for planned collection replacement stop
 new mints through the supported lifecycle control and finalize all existing draws.
-No request carry, reroll, admin trait choice or post-seal coordinator switch exists.
+No pending request carry, reroll or admin trait choice exists. Planned post-seal provider rotation through ProtocolPolicy requires every existing draw finalized; [exact limits](ADAPTABLE_POLICY.md#planned-vrf-rotation).
 The confirmed mint-readiness endpoint is an observation, not provider/recovery
 qualification. A permanently unanswered request remains a replacement blocker.
 

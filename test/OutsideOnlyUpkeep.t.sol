@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
@@ -13,7 +16,9 @@ import {MockAccess,MockPools,MockToken,MockFeed} from "./mocks/Mocks.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 using DualOracleFixture for ZZZOracle;
 
-/// Controlled physical observations, not a live market or oracle qualification.
+/// Current maintenance3 threshold observations. The historical filename is kept
+/// for navigation; these tests do not assert the removed outside-only trigger.
+/// Controlled source/physical observations, not live-market qualification.
 contract UpkeepObservation {
     Position private record;
     int24 public lower; int24 public upper;
@@ -31,12 +36,12 @@ contract UpkeepObservation {
     function getSlot0(bytes32) external view returns(uint160,int24,uint24,uint24) {return(price,tick,protocol,fee);}
 }
 
-contract OutsideOnlyUpkeepTest is Test {
+contract ThresholdUpkeepTest is Test {
     MockAccess private access;
     MockPools private pools;
     ZZZStrategy private strategy;
     ZZZOracle private oracle;
-    MockToken private t0; MockToken private t1;
+    MockToken private t1;
     MockFeed private f0; MockFeed private f1;
     UpkeepObservation private observed;
     PoolConfig private config; Position private position; bytes32 private pool;
@@ -45,14 +50,14 @@ contract OutsideOnlyUpkeepTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access=new MockAccess();pools=new MockPools();oracle=new ZZZOracle(address(access),address(0));
-        strategy=new ZZZStrategy(address(access));observed=new UpkeepObservation();
-        t0=new MockToken(18);t1=new MockToken(18);f0=new MockFeed(8,1e8);f1=new MockFeed(8,1e8);
-        oracle.setTestFeed(address(t0),address(f0),1 days);oracle.setTestFeed(address(t1),address(f1),1 days);
+        access=new MockAccess(); ProtocolPolicyFixture.bind(address(access));pools=new MockPools();oracle=new ZZZOracle(address(access),address(0));
+        strategy=new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));observed=new UpkeepObservation();
+        t1=new MockToken(18);f0=new MockFeed(8,1e8);f1=new MockFeed(8,1e8);
+        oracle.setTestFeed(address(0),address(f0),1 days);oracle.setTestFeed(address(t1),address(f1),1 days);
         access.bind(Ids.POOLS,address(pools));access.bind(Ids.ORACLE,address(oracle));
         access.bind(Ids.VAULT,address(observed));access.bind(Ids.LIQUIDITY,address(observed));
         access.bind(Ids.STRATEGY,address(strategy));access.seal();
-        config=PoolConfig(PoolKey(address(t0),address(t1),3000,60,address(0)),
+        config=PoolConfig(PoolKey(address(0),address(t1),3000,60,address(0)),
             true,true,2500,100,100,100,uint32(INTERVAL),100e18,1e24);
         pool=keccak256(abi.encode(config.key));pools.set(pool,config);
         strategy.setRangeOrientation(pool,1);
@@ -70,7 +75,7 @@ contract OutsideOnlyUpkeepTest is Test {
     function _afterCooldown() private {vm.warp(uint256(position.lastRebalance)+INTERVAL);}
 
     function testVersionAndOnePercentMoveInsideWideRangeDoNotAuthorizeReplacement() public {
-        assertEq(strategy.MAINTENANCE_POLICY_VERSION(),2);
+        assertEq(strategy.MAINTENANCE_POLICY_VERSION(),3);
         _afterCooldown();_market(100,false); // About one percent, still well inside.
         assertFalse(strategy.rangeUpdatePending(BUCKET));assertFalse(strategy.needsRebalance(BUCKET));
     }
@@ -80,17 +85,19 @@ contract OutsideOnlyUpkeepTest is Test {
         vm.warp(uint256(position.lastRebalance)+INTERVAL-1);assertFalse(strategy.needsRebalance(BUCKET));
         _afterCooldown();_market(observed.upper(),false);assertTrue(strategy.needsRebalance(BUCKET));
     }
-    function testPhysicalLowerIsInclusiveAndUpperExclusive() public {
+    function testThresholdIsAlreadyMetAtBothPhysicalRangeEdges() public {
         _afterCooldown();
-        _market(observed.lower(),false);assertFalse(strategy.needsRebalance(BUCKET));
-        _market(observed.upper()-1,false);assertFalse(strategy.needsRebalance(BUCKET));
+        _market(observed.lower(),false);assertTrue(strategy.needsRebalance(BUCKET));
+        _market(observed.upper()-1,false);assertTrue(strategy.needsRebalance(BUCKET));
         _market(observed.upper(),false);assertTrue(strategy.needsRebalance(BUCKET));
         _market(observed.lower()-1,false);assertTrue(strategy.needsRebalance(BUCKET));
     }
     function testExactDownwardCrossingRetainsActualStoredTick() public {
         _afterCooldown();
         _market(observed.lower()-1,true);assertTrue(strategy.needsRebalance(BUCKET));
-        _market(observed.upper()-1,true);assertFalse(strategy.needsRebalance(BUCKET));
+        // The stored tick may still be inside at an exact downward crossing,
+        // but85%price distance is already exceeded. Do not restore outside-only.
+        _market(observed.upper()-1,true);assertTrue(strategy.needsRebalance(BUCKET));
     }
     function testDeliberateWidthChangeAppliesInsideOnlyAfterCooldown() public {
         config.rangeBps=5000;pools.set(pool,config);
@@ -98,7 +105,7 @@ contract OutsideOnlyUpkeepTest is Test {
         _afterCooldown();assertTrue(strategy.needsRebalance(BUCKET));
         config.rangeBps=2500;pools.set(pool,config);assertFalse(strategy.needsRebalance(BUCKET));
     }
-    function testReturnInsideCancelsOrdinaryEligibility() public {
+    function testReturnInsideThresholdCancelsOrdinaryEligibility() public {
         _afterCooldown();_market(observed.upper(),false);assertTrue(strategy.needsRebalance(BUCKET));
         _market(0,false);assertFalse(strategy.needsRebalance(BUCKET));
     }

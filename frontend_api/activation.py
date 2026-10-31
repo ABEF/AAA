@@ -76,7 +76,7 @@ class ActivationTransactions:
         if '0x'+p._call(pins['activation_assets'],'activePolicy(address)',source,block=block)[0] != policy_id:
             raise ProjectionError('Active source policy differs from the reviewed policy')
         policy=p._call(pins['activation_assets'],'policies(bytes32)',policy_id,block=block,words=6)
-        if (_address_word(policy[0],native=p.accounting_version in (2, 3, 4))!=source or not _bool(policy[1]) or
+        if (_address_word(policy[0],native=p.accounting_version in (2, 3, 4, 5, 6))!=source or not _bool(policy[1]) or
                 '0x'+policy[2]!=(NATIVE_ASSET_CODE_HASH if source==ZERO else cfg.tokens[source]['code_hash']) or
                 int(policy[3],16)==0 or int(policy[4],16)!=cfg.tokens[source]['decimals']):
             raise ProjectionError('Source asset is disabled or its admission changed')
@@ -132,6 +132,7 @@ class ActivationTransactions:
         req['accounting_version'] = p.accounting_version
         req['routing_version'] = cfg.routing_version
         req['lp_routing_version'] = cfg.lp_routing_version
+        req['portfolio_version'] = cfg.portfolio_version if p.accounting_version in (5,6) else 0
         req['execution_quality_version'] = cfg.execution_quality_version
         req['pricing_version'] = cfg.pricing_version
         req['review_policy_version'] = cfg.review_policy_version
@@ -162,9 +163,9 @@ class ActivationTransactions:
         if ('0x'+keccak256(bytes.fromhex(''.join(actual[:5]))).hex()!=req['pool'] or actual[1:]!=account[1:] or
                 not _bool(account[5]) or not _bool(account[6])):
             raise ProjectionError('Pool identity/configuration is invalid or contributions are disabled')
-        if not 0 < int(account[10],16) <= (1000 if cfg.lp_routing_version == 1 else 200):
+        if not 0 < int(account[10],16) <= (1000 if cfg.lp_routing_version in (1,2) else 200):
             raise ProjectionError('Pool swap guard exceeds the explicit LP execution profile')
-        native_profile = p.accounting_version in (2, 3, 4)
+        native_profile = p.accounting_version in (2, 3, 4, 5, 6)
         req['token0'] = _address_word(account[0], native=native_profile)
         req['token1'] = _address_word(account[1])
         if req['token0']==req['token1']: raise ProjectionError('Invalid accounting pair')
@@ -192,7 +193,7 @@ class ActivationTransactions:
             if maximum != 1000 or not 0 <= loss <= maximum:
                 raise ProjectionError('Contribution execution-loss policy is invalid')
             req['execution_loss_bps']=loss
-        if cfg.review_policy_version == 1:
+        if cfg.review_policy_version in (1,2):
             # Bind the review's current policy in the wallet calldata. Governance
             # may tighten before inclusion; widening beyond this value reverts.
             req['maximum_loss_bps']=req['execution_loss_bps']
@@ -203,6 +204,16 @@ class ActivationTransactions:
         if measured!=gross: raise ProjectionError('Original-source valuation mismatch')
         contributed=p._uint('vault','contributionUSD(uint256)',req['id'],block=block)
         minimum_usd = (5 if req['increase'] else 100)*10**18
+        if p.accounting_version==6:
+            from zzz_ops.protocol_policy import observe as observe_policy
+            try:
+                terms=observe_policy(lambda target,method,*args,count:p._call(target,method,*args,block=block,words=count),
+                    policy=pins['protocol_policy'],access=pins['access'],domain='entry')
+            except (ValueError,TypeError,KeyError) as exc:
+                raise ProjectionError('Contribution-policy terms are unavailable or inconsistent') from exc
+            req['expected_contribution_policy']=terms['fingerprint'];req['entry_policy']=terms
+            req['maximum_idle_bps']=terms['maximum_idle_bps']
+            minimum_usd=terms['minimum_growth_usd_18' if req['increase'] else 'minimum_activation_usd_18']
         if gross<max(int(account[12],16),minimum_usd) or contributed+gross>int(account[13],16):
             raise ActivationInputError('Contribution is outside the original-source value limits')
         bucket=p._uint('vault','poolBucket(bytes32)',req['pool'],block=block)
@@ -256,7 +267,8 @@ class ActivationTransactions:
                         'data':request_data(req['id'],req['pool'],req['source'],req['amount'],req['route'],
                                             req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'],
                                             review_policy_version=cfg.review_policy_version,
-                                            maximum_loss_bps=req.get('maximum_loss_bps'))}
+                                            maximum_loss_bps=req.get('maximum_loss_bps'),
+                                            expected_contribution_policy=req.get('expected_contribution_policy'))}
             # Probe is NEVER returned to the wallet. The actual contract's
             # current contribution floor also applies to internal simulation.
             initial=self._trace(tx(),pins,req,gross,int(account[10],16),block)
@@ -281,7 +293,7 @@ class ActivationTransactions:
                 'liquidity_context':liquidity_context,
                 'contribution':None if result is None else {k:str(v) for k,v in result.items()},
                 'execution_limit_bps':req['execution_loss_bps'],
-                **({'reviewed_maximum_loss_bps':req['maximum_loss_bps']} if cfg.review_policy_version == 1 else {}),
+                **({'reviewed_maximum_loss_bps':req['maximum_loss_bps']} if cfg.review_policy_version in (1,2) else {}),
                 'minimum_deployed_usd_18':str(req['upper_input_usd']-req['upper_input_usd']*req['execution_loss_bps']//10000),
                 'minimum_liquidity_raw':str(req['minimum_lp']) if result else None,
                 'minimum_conversion_output_raw':str(req['minimum_out']) if result else None,
@@ -294,18 +306,23 @@ class ActivationTransactions:
                               'accounting_version':p.accounting_version,'routing_version':cfg.routing_version,
                               'pricing_version':cfg.pricing_version,
                               'lp_routing_version':cfg.lp_routing_version,
+                              **({'portfolio_version':cfg.portfolio_version} if cfg.portfolio_version else {}),
                               'execution_quality_version':cfg.execution_quality_version,
                               **({'rebalance_confirmation_version':cfg.rebalance_confirmation_version} if cfg.rebalance_confirmation_version else {}),
-                              **({'lp_execution':req['lp_execution']} if cfg.lp_routing_version == 1 else {}),
+                              **({'lp_execution':req['lp_execution']} if cfg.lp_routing_version in (1,2) else {}),
                               **({'maintenance_policy_version':cfg.maintenance_policy_version}
                                  if cfg.maintenance_policy_version else {}),
-                              **({'review_policy_version':1} if cfg.review_policy_version == 1 else {})},
+                              **({'review_policy_version':cfg.review_policy_version} if cfg.review_policy_version in (1,2) else {})},
                 'wallet_revalidation_required':True,'state_overrides':False,
+                **({'contribution_policy':{k:str(v) if type(v) is int else v for k,v in req['entry_policy'].items()}} if p.accounting_version==6 else {}),
                 'scope':'Confirmed-block unsigned preview. Wallet must recheck owner/network, exact calldata, '
                         'deadline, live simulation and gas. Approval is a separate transaction; reprepare after confirmation. '
-                        + ('Review-policy 1 encodes the reviewed maximum only in the Entry transaction; '
+                        + ('Review-policy 2 binds the scoped contribution-policy fingerprint and reviewed maximum in calldata; '
+                           'a contribution-policy change requires a fresh review. '
+                           if cfg.review_policy_version == 2 else
+                           'Review-policy 1 encodes the reviewed maximum only in the Entry transaction; '
                            'a stricter execution-time cap remains binding, and a wider cap requires a fresh review. '
-                           if cfg.review_policy_version == 1 else '') +
+                           if cfg.review_policy_version in (1,2) else '') +
                         'The reported on-chain execution bound excludes gas. Future execution and production qualification are not guaranteed.'}
 
 

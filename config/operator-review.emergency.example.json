@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "profile": "accounting6/protocol-policy1/portfolio2/maintenance3/confirmation3/compound4/custody4/emergency2/LP-routing2/pricing2/Entry-routing2/reviewedEntry2/directgovernance2/fee-intake1",
+  "reference_sha256": "<COPY_REFERENCE_SHA256_FROM_PROFILE>",
+  "source_snapshot_sha256": "<COPY_SOURCE_SNAPSHOT_SHA256_FROM_PROFILE>",
+  "chain": {
+    "id": "<DEPLOYMENT_CHAIN_ID_DECIMAL>",
+    "controller": "<CURRENT_CONTROLLER_ADDRESS>",
+    "governance": "<CURRENT_GOVERNANCE_ADDRESS>",
+    "target": "<CURRENT_MIGRATION_ADDRESS>",
+    "target_runtime_keccak256": "<REVIEWED_MIGRATION_RUNTIME_KECCAK256>"
+  },
+  "snapshot": {
+    "block_number": "<CONFIRMED_BLOCK_DECIMAL>",
+    "block_hash": "<CONFIRMED_BLOCK_HASH>",
+    "timestamp": "<BLOCK_UNIX_SECONDS>"
+  },
+  "contract": "ZZZMigration",
+  "signature": "emergencyRebalance((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))",
+  "arguments": {
+    "request": {
+      "bucket": "<SHARED_BUCKET_DECIMAL>",
+      "custodyHash": "<EMERGENCY_CUSTODY_HASH_READ_FROM_MIGRATION>",
+      "checks": "<EXPLICIT_RETAINED_CHECK_MASK_DECIMAL>",
+      "lower": "<ALIGNED_SIGNED_LOWER_TICK_DECIMAL>",
+      "upper": "<ALIGNED_SIGNED_UPPER_TICK_DECIMAL>",
+      "swapPool": "<ADMITTED_SWAP_POOL_ID_OR_ZERO_IF_NO_SWAP>",
+      "zeroForOne": "<REPLACE_WITH_JSON_TRUE_OR_FALSE>",
+      "amountIn": "<RAW_INPUT_DECIMAL_OR_ZERO_IF_NO_SWAP>",
+      "minimumOut": "<RAW_OUTPUT_FLOOR_OR_ZERO_IF_NO_SWAP>",
+      "minimumLiquidity": "<POSITIVE_SIMULATED_MAIN_LIQUIDITY_FLOOR>",
+      "deadline": "<REVIEWED_UNIX_DEADLINE>",
+      "reviewHash": "$REVIEW_HASH"
+    }
+  },
+  "review_notes_sha256": "<SHA256_OF_PUBLIC_REVIEW_NOTES_64_LOWER_HEX_NO_0X>",
+  "evidence_sha256": [
+    "<SHA256_OF_PUBLIC_SUPPORTING_EVIDENCE_64_LOWER_HEX_NO_0X>"
+  ]
+}

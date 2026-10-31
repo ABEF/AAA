@@ -1,5 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -87,9 +93,9 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         (uint160 spot,,,uint24 fee) = IStateViewMinimal(STATE).getSlot0(POOL);
         assertGt(spot, 0); assertEq(fee, 10020);
 
-        access = new MockAccess(); oracle = new ZZZOracle(address(access), address(0));
-        strategy = new ZZZStrategy(address(access)); pools = new ZZZPoolRegistry(address(access));
-        manager = new ZZZLiquidityManager(address(access), POSM, STATE, CORE, PERMIT2);
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); oracle = new ZZZOracle(address(access), address(0));
+        strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access)))); pools = new ZZZPoolRegistry(address(access));
+        manager = new ZZZLiquidityManager(address(access), POSM, STATE, CORE, PERMIT2, address(new ZZZLPBalancer(address(access), CORE, STATE)));
         access.bind(Ids.VAULT,address(this)); access.bind(Ids.POOLS,address(pools));
         access.bind(Ids.ORACLE,address(oracle)); access.bind(Ids.STRATEGY,address(strategy));
         access.bind(Ids.LIQUIDITY,address(manager)); access.bind(Ids.REWARDS,address(new CurrentForkRewardAllowlist()));
@@ -107,7 +113,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         strategy.setRangeOrientation(POOL,1);
         vm.deal(address(this),100 ether); vm.deal(ALICE,100 ether); vm.deal(BOB,100 ether);
         deal(ZZZ,address(this),10_000_000 ether);
-        IERC20(ZZZ).approve(address(manager),type(uint256).max);
+        IERC20(ZZZ).approve(address(manager),type(uint256).max); IERC20(ZZZ).approve(manager.positionOperator(), type(uint256).max);
     }
     function _config() private pure returns (PoolConfig memory c) {
         c = PoolConfig(PoolKey(address(0),ZZZ,10020,200,address(0)),
@@ -116,7 +122,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
     function _mint() private returns (uint256 id) {
         (int24 lower,int24 upper,) = strategy.target(POOL);
         (id,,) = manager.mint{value:0.01 ether}(POOL,lower,upper,0.01 ether,2000 ether,1,block.timestamp+100);
-        positions.approve(address(manager),id);
+        positions.approve(manager.positionOperator(),id);
     }
     function _approvalsCleared() private view {
         assertEq(IERC20(ZZZ).allowance(address(manager),PERMIT2),0);
@@ -203,7 +209,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
     struct System { ZZZVault vault; ZZZNFT nft; MockVRF vrf; ZZZMembership membership; ZZZRewards rewards; ZZZFeeController fees; }
     function _system() private returns (System memory s) {
         access.beginBootstrap();
-        s.vault=new ZZZVault(address(access),block.chainid,payable(address(0x7EA5)));
+        s.vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
         s.nft=new ZZZNFT(address(access),"ipfs://TEST_ONLY/"); s.vrf=new MockVRF();
         s.membership=new ZZZMembership(address(access)); s.rewards=new ZZZRewards(address(access));
         s.fees=new ZZZFeeController(address(access));
@@ -212,18 +218,18 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         access.bind(Ids.FEES,address(s.fees)); access.bind(Ids.MIGRATION,address(this));
         access.bind(Ids.BUYBACK,address(new ZZZBuyback(address(access),ZZZ,1000e18)));
         access.setKeeper(address(this),true); s.rewards.addAsset(ZZZ);
-        s.nft.configureRandomness(address(s.vrf),bytes32(uint256(1)),1,3,500000,false);
+        ProtocolPolicyFixture.randomness(address(s.nft.access()),address(s.vrf),bytes32(uint256(1)),1,3,500000,false);
         CanonicalFixture.bind(address(access)); access.seal();
     }
     function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
     function _issue(System memory s,address owner) private returns (uint256 id) {
-        vm.prank(owner); id=s.vault.mintDormant{value:0.05 ether}();
+        bytes32 reviewedPolicy1 = s.vault.mintPolicyFingerprint(); vm.prank(owner); id=s.vault.mintDormant{value:0.05 ether}(reviewedPolicy1);
         s.vrf.fulfill(s.nft.requestOf(id),0,0); s.nft.finalizeTraits(id);
     }
     function _entry(uint256 id,uint256 value,bool grow) private {
         ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,POOL,address(0),value,bytes32(0),0,1,block.timestamp+100,grow);
         ZZZActivationEntry entry=pools.activationEntry();
-        vm.prank(ALICE); entry.executeReviewed{value:value}(request,200);
+        bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); entry.executeReviewed{value:value}(request,200,reviewedPolicy2);
     }
     function testCurrentVaultActivationGrowthUsesOneBackedSharedLP() public {
         System memory s=_system();
@@ -243,10 +249,10 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         ZZZActivationEntry entry=pools.activationEntry();
         vm.prank(ALICE); IERC20(ZZZ).approve(address(entry),sourceAmount);
         ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(b,POOL,ZZZ,sourceAmount,bytes32(0),0,1,block.timestamp+100,false);
-        vm.prank(ALICE); entry.executeReviewed(request,200);
+        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); entry.executeReviewed(request,200,reviewedPolicy3);
         assertEq(IERC20(ZZZ).allowance(ALICE,address(entry)),0);
         assertEq(IERC20(ZZZ).allowance(address(entry),address(s.vault)),0);
-        assertEq(s.vault.ACCOUNTING_VERSION(),4); assertEq(s.vault.bucketCount(),1);
+        assertEq(s.vault.ACCOUNTING_VERSION(),6); assertEq(s.vault.bucketCount(),1);
         assertEq(s.vault.nftBucket(b),bucket); assertEq(s.vault.group(bucket).lpTokenId,lp);
         assertGt(positions.getPositionLiquidity(lp),oldLiquidity); assertGt(s.vault.sharesOf(a),shares);
         assertEq(positions.ownerOf(lp),address(s.vault)); assertEq(s.membership.totalEligible(),2);
@@ -260,10 +266,10 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         // A separate test-authorized trader generates real swap fees without
         // spending or altering any recorded Vault principal/idle asset.
         uint256 lp=s.vault.group(bucket).lpTokenId;
-        MockAccess traderAccess=new MockAccess();
+        MockAccess traderAccess=new MockAccess(); ProtocolPolicyFixture.bind(address(traderAccess));
         traderAccess.bind(Ids.VAULT,address(this)); traderAccess.bind(Ids.POOLS,address(pools));
         traderAccess.bind(Ids.STRATEGY,address(strategy)); traderAccess.bind(Ids.ORACLE,address(oracle));
-        ZZZLiquidityManager trader=new ZZZLiquidityManager(address(traderAccess),POSM,STATE,CORE,PERMIT2);
+        ZZZLiquidityManager trader=new ZZZLiquidityManager(address(traderAccess),POSM,STATE,CORE,PERMIT2, address(new ZZZLPBalancer(address(traderAccess), CORE, STATE)));
         traderAccess.seal();
         uint256 minimum=Math.mulDiv(oracle.quote(address(0),ZZZ,0.0001 ether),9800,10000);
         trader.swap{value:0.0001 ether}(POOL,true,0.0001 ether,minimum,block.timestamp+100);
@@ -312,8 +318,8 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         uint256 claimable=s.rewards.claimable(a,address(0)); assertGt(claimable,0);
         ZZZActivationEntry entry=pools.activationEntry();
         ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(a,POOL,address(0),0.05 ether,bytes32(0),0,1,block.timestamp+100,true);
-        vm.expectRevert(bytes4(keccak256("Slippage()")));
-        vm.prank(ALICE); entry.executeReviewed{value:0.05 ether}(request,200);
+        bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.expectRevert(bytes4(keccak256("Slippage()")));
+        vm.prank(ALICE); entry.executeReviewed{value:0.05 ether}(request,200,reviewedPolicy4);
         assertEq(_economicState(s,a,b),beforeState);
         uint256 beforeETH=ALICE.balance;
         vm.prank(ALICE); uint256 paid=s.rewards.claim(a,address(0));

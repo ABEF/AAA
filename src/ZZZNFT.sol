@@ -9,10 +9,10 @@ import {IZZZVault, IZZZAccess} from "./interfaces/IZZZ.sol";
 import {ZZZRoyaltyRewards} from "./ZZZRoyaltyRewards.sol";
 import {ZZZClaimRouter} from "./ZZZClaimRouter.sol";
 import {ZZZNFTMetadata, NFTMetadataInput} from "./ZZZNFTMetadata.sol";
-import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
 import {ZZZRoyaltyFactory} from "./ZZZRoyaltyFactory.sol";
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {CanonicalNFTRecord} from "./interfaces/IZZZNFTCanonical.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 interface IZZZNFTSuccessor {
     function destinationController() external view returns (address);
 }
@@ -40,13 +40,6 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     ZZZRoyaltyRewards public immutable royaltyRewards;
     ZZZClaimRouter public immutable claimRouter;
     ZZZNFTMetadata public immutable metadataRenderer;
-    address public randomnessCoordinator;
-    bytes32 public keyHash;
-    uint256 public subscriptionId;
-    uint16 public requestConfirmations;
-    uint32 public callbackGasLimit;
-    bool public nativePayment;
-    bool public randomnessConfigured;
     uint256 public constant MAX_SUPPLY = 1000;
     uint256 public constant MAX_METADATA_REFRESH_BATCH = 50;
     uint256 public mintedCount;
@@ -74,14 +67,14 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     }
     mapping(bytes32 => RandomnessResult) private randomness;
     mapping(uint256 => uint256) public requestEpochOf;
-    uint256 public randomnessEpoch;
+    uint256 private randomnessBaseEpoch;
+    // A provider must not recycle a request ID for this consumer after rotation:
+    // callbacks carry requestId, not our generation. Different providers may
+    // independently use the same ID without colliding in the epoch namespace.
+    mapping(bytes32 => bool) private providerRequestUsed;
     bool public mintPaused;
     event MintPauseChanged(bool paused);
     event MetadataBaseChanged(string newBase);
-    event RandomnessConfigured(address indexed coordinator, bytes32 keyHash, uint256 subscriptionId,
-        uint16 confirmations, uint32 callbackGasLimit, bool nativePayment);
-    event RandomnessRequestSettingsChanged(uint16 previousConfirmations, uint32 previousCallbackGasLimit,
-        uint16 confirmations, uint32 callbackGasLimit);
     event RandomnessRequested(uint256 indexed nftId, uint256 indexed requestId, uint256 indexed ordinal);
     event RandomnessReceived(uint256 indexed requestId);
     event TraitsFinalized(uint256 indexed nftId, uint8 rarity, uint8 color);
@@ -100,33 +93,26 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         metadataRenderer = new ZZZNFTMetadata(controller);
     }
 
-    /// @notice Configure the provider and initial settings once before sealing. No coordinator replacement,
-    /// cancellation, retry, owner-selected traits or administrator reroll exists.
-    function configureRandomness(address coordinator, bytes32 gasLane, uint256 subId, uint16 confirmations,
-        uint32 gasLimit, bool payNative) external onlyGovernance {
-        if (access.isSealed() || randomnessConfigured || coordinator.code.length == 0 ||
-            gasLane == bytes32(0) || subId == 0 || confirmations < 3 || confirmations > 200 ||
-            gasLimit < 200000 || gasLimit > 10000000) revert InvalidConfiguration();
-        randomnessCoordinator = coordinator; keyHash = gasLane; subscriptionId = subId;
-        requestConfirmations = confirmations; callbackGasLimit = gasLimit; nativePayment = payNative;
-        randomnessConfigured = true;
-        emit RandomnessConfigured(coordinator, gasLane, subId, confirmations, gasLimit, payNative);
+    function _policy() private view returns (IZZZProtocolPolicy) {
+        return IZZZProtocolPolicy(access.protocolPolicy());
     }
+    /// @notice Current read compatibility only. Governance writes the bound
+    /// ProtocolPolicy directly; it never rewrites old requests or trait words.
+    function randomnessCoordinator() external view returns(address) { return _policy().vrfPolicy().coordinator; }
+    function keyHash() external view returns(bytes32) { return _policy().vrfPolicy().keyHash; }
+    function subscriptionId() external view returns(uint256) { return _policy().vrfPolicy().subscriptionId; }
+    function requestConfirmations() external view returns(uint16) { return _policy().vrfPolicy().requestConfirmations; }
+    function callbackGasLimit() external view returns(uint32) { return _policy().vrfPolicy().callbackGasLimit; }
+    function nativePayment() external view returns(bool) { return _policy().vrfPolicy().nativePayment; }
+    function randomnessConfigured() external view returns(bool) { return _policy().vrfPolicy().configured; }
+    function randomnessEpoch() public view returns(uint256) { return randomnessBaseEpoch + _policy().vrfPolicy().generation; }
 
-    /// @notice Tune only future requests within the original reviewed bounds.
-    /// The coordinator, gas lane, subscription and payment mode stay fixed.
-    /// Already submitted requests keep their coordinator-recorded arguments;
-    /// no pending request, fulfilled word or ordered artwork draw is replaced.
-    /// Pause is allowed; preparation and canonical locks still prevent changes.
-    function setRandomnessRequestSettings(uint16 confirmations, uint32 gasLimit)
-        external onlyGovernance operating nonReentrant {
-        if (!randomnessConfigured) revert NotReady();
-        if (confirmations < 3 || confirmations > 200 || gasLimit < 200000 || gasLimit > 10000000)
-            revert InvalidConfiguration();
-        uint16 previousConfirmations = requestConfirmations;
-        uint32 previousCallbackGasLimit = callbackGasLimit;
-        requestConfirmations = confirmations; callbackGasLimit = gasLimit;
-        emit RandomnessRequestSettingsChanged(previousConfirmations, previousCallbackGasLimit, confirmations, gasLimit);
+    /// @notice Event-only invalidation from the immutable policy. Thresholds
+    /// change appearance only; ownership, traits and earned rights stay intact.
+    function policyMetadataChanged() external {
+        address policy=access.protocolPolicy();
+        if(policy==address(0) || msg.sender!=policy) revert Unauthorized();
+        emit BatchMetadataUpdate(0,type(uint256).max);
     }
 
     /// @notice Stop new requests/mints independently of existing NFT rights and
@@ -138,7 +124,10 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
 
     function mint(address to, uint256 id) external onlyModule(Ids.VAULT) operating principalOperating nonReentrant {
         if (mintPaused) revert Paused();
-        if (!randomnessConfigured) revert NotReady();
+        IZZZProtocolPolicy policy = _policy();
+        IZZZProtocolPolicy.VrfPolicy memory vrf = policy.vrfPolicy();
+        uint64 revision = policy.vrfRevision();
+        if (!vrf.configured || vrf.coordinator.codehash != vrf.expectedCodeHash) revert NotReady();
         if (mintedCount == MAX_SUPPLY) revert InvalidState();
         address recipient = IZZZVault(msg.sender).mintProceedsRecipient();
         if (recipient == address(royaltyRewards) || recipient == address(this)) revert InvalidConfiguration();
@@ -146,24 +135,32 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         mintOrdinalOf[id] = ordinal; tokenAtOrdinal[ordinal] = id;
         // Bind before the ERC721 receiver callback. Official fulfillment is
         // asynchronous; a synchronous coordinator callback is rejected.
-        uint256 requestId = IZZZVRFCoordinator(randomnessCoordinator).requestRandomWords(
-            IZZZVRFCoordinator.RandomWordsRequest(keyHash, subscriptionId, requestConfirmations,
-                callbackGasLimit, 2, abi.encodeWithSelector(bytes4(keccak256("VRF ExtraArgsV1")), nativePayment)));
-        bytes32 requestKey = _requestKey(randomnessEpoch, requestId);
-        if (requestId == 0 || randomness[requestKey].requested) revert InvalidState();
+        uint256 epoch = randomnessBaseEpoch + vrf.generation;
+        uint256 requestId = IZZZVRFCoordinator(vrf.coordinator).requestRandomWords(
+            IZZZVRFCoordinator.RandomWordsRequest(vrf.keyHash, vrf.subscriptionId, vrf.requestConfirmations,
+                vrf.callbackGasLimit, 2, abi.encodeWithSelector(bytes4(keccak256("VRF ExtraArgsV1")), vrf.nativePayment)));
+        bytes32 requestKey = _requestKey(epoch, requestId);
+        bytes32 providerKey = keccak256(abi.encode(vrf.coordinator,requestId));
+        if (requestId == 0 || randomness[requestKey].requested || providerRequestUsed[providerKey]) revert InvalidState();
+        providerRequestUsed[providerKey] = true;
         randomness[requestKey].nftId = id; randomness[requestKey].requested = true;
-        requestEpochOf[id] = randomnessEpoch;
+        requestEpochOf[id] = epoch;
         requestOf[id] = requestId;
         _safeMint(to, id);
         if (mintPaused) revert Paused();
+        if(policy.vrfRevision() != revision || vrf.coordinator.codehash != vrf.expectedCodeHash) revert InvalidState();
         emit RandomnessRequested(id, requestId, ordinal);
     }
 
     /// @dev Bounded callback stores only authenticated words. Metadata work can
     /// neither consume its gas nor turn a fulfilled request into another draw.
     function rawFulfillRandomWords(uint256 requestId, uint256[] calldata words) external {
-        if (msg.sender != randomnessCoordinator) revert Unauthorized();
-        RandomnessResult storage result = randomness[_requestKey(randomnessEpoch, requestId)];
+        IZZZProtocolPolicy.VrfPolicy memory vrf = _policy().vrfPolicy();
+        // Keep the original request's address authorization even if its provider
+        // later changes runtime: new requests stay code-pinned, while pending
+        // original callbacks must be able to drain before a reviewed rotation.
+        if (!vrf.configured || msg.sender != vrf.coordinator) revert Unauthorized();
+        RandomnessResult storage result = randomness[_requestKey(randomnessBaseEpoch + vrf.generation, requestId)];
         if (!result.requested || result.fulfilled || words.length != 2) revert InvalidState();
         result.fulfilled = true; result.rarityWord = words[0]; result.colorWord = words[1];
         emit RandomnessReceived(requestId);
@@ -181,17 +178,17 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         uint256 rarityRoll = result.rarityWord % remainingToReveal;
         uint8 rarity = rarityRoll < rarityRemaining[0] ? 0 :
             rarityRoll < uint256(rarityRemaining[0]) + rarityRemaining[1] ? 1 : 2;
-        (uint8 palette, uint8 pattern) = _drawArtwork(rarity, result.colorWord, rarityRemaining[rarity]);
+        (uint8 palette, uint8 pattern, uint8 color) = _drawArtwork(rarity, result.colorWord, rarityRemaining[rarity]);
         --rarityRemaining[rarity]; --remainingToReveal; ++nextToFinalize;
         rarityOf[id] = rarity; paletteOf[id] = palette; patternOf[id] = pattern;
-        colorOf[id] = ZZZArtwork.primaryColor(palette);
+        colorOf[id] = color;
         traitsReady[id] = true;
         emit TraitsFinalized(id, rarity, colorOf[id]);
         emit ArtworkFinalized(id, palette, pattern);
         emit MetadataUpdate(id);
     }
 
-    function _drawArtwork(uint8 rarity, uint256 word, uint256 remaining) private returns (uint8, uint8) {
+    function _drawArtwork(uint8 rarity, uint256 word, uint256 remaining) private returns (uint8, uint8, uint8) {
         uint256 draw = word % remaining;
         uint16 stored = artworkDraw[rarity][draw];
         uint256 entry = stored == 0 ? draw : uint256(stored) - 1;
@@ -201,7 +198,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
             artworkDraw[rarity][draw] = replacement == 0 ? uint16(last + 1) : replacement;
         }
         delete artworkDraw[rarity][last];
-        return ZZZArtwork.item(rarity, entry);
+        return metadataRenderer.artworkItem(rarity, entry);
     }
 
     /// @notice Called after the Vault commits successful share issuance.
@@ -245,7 +242,8 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     function _stage(uint256 id, uint256 value, uint256 weight) private view returns (uint8) {
         if (weight == 0) return 0;
         if (IZZZVault(access.module(Ids.VAULT)).nftStatus(id) == PositionStatus.Exited) return 4;
-        return value >= 10000e18 ? 3 : value >= 1000e18 ? 2 : 1;
+        IZZZProtocolPolicy.MetadataPolicy memory policy = _policy().metadataPolicy();
+        return value >= policy.singularityUSD ? 3 : value >= policy.enhancedUSD ? 2 : 1;
     }
 
     function tokenURI(uint256 id) public view override returns (string memory) {
@@ -321,8 +319,11 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     function canonicalArtwork(uint8 rarity, uint256 item) external view returns (uint16) { return artworkDraw[rarity][item]; }
     function canonicalWriteHeader(uint256 count, uint256 next, uint256 remaining, uint16[3] calldata quotas, uint256 epoch)
         external onlyCanonicalWriter {
+        // A fresh inert importer has not rotated its future provider. Imported
+        // historical records remain below this new namespace permanently.
+        if(_policy().vrfPolicy().generation != 0) revert InvalidState();
         mintedCount = count; nextToFinalize = next; remainingToReveal = remaining;
-        rarityRemaining = quotas; randomnessEpoch = epoch;
+        rarityRemaining = quotas; randomnessBaseEpoch = epoch;
     }
     function canonicalWriteRecord(uint256 row, CanonicalNFTRecord calldata value) external onlyCanonicalWriter {
         bytes32 key = _requestKey(value.requestEpoch, value.requestId);

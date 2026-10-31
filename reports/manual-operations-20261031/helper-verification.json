@@ -1,0 +1,41 @@
+{
+  "scope": "Final16 offline helper methods repeated only because callable-reference metadata was corrected; overlapping12/16 earlier stages are not added. No RPC/contract execution/deployment/signing.",
+  "tests_run": 16,
+  "passed": [
+    "tests_python.test_operator_review.OperatorReviewTests.test_artifact_hash_arguments_and_false_qualification_flags_cannot_be_tampered",
+    "tests_python.test_operator_review.OperatorReviewTests.test_booleans_addresses_bytes_markers_and_nested_shape_are_strict",
+    "tests_python.test_operator_review.OperatorReviewTests.test_canonical_hash_and_self_reference_preserve_exact_tuple_order",
+    "tests_python.test_operator_review.OperatorReviewTests.test_cli_never_accesses_network_or_subprocess_and_sanitizes_rejection",
+    "tests_python.test_operator_review.OperatorReviewTests.test_duplicate_nonfinite_float_depth_and_size_are_rejected_before_use",
+    "tests_python.test_operator_review.OperatorReviewTests.test_hashless_pause_is_only_an_offline_audit_record",
+    "tests_python.test_operator_review.OperatorReviewTests.test_large_valid_byte_array_artifact_roundtrips_under_its_separate_bound",
+    "tests_python.test_operator_review.OperatorReviewTests.test_malformed_catalog_roots_and_list_shapes_refuse_explicitly",
+    "tests_python.test_operator_review.OperatorReviewTests.test_object_key_order_is_irrelevant_but_every_reviewed_binding_changes_hash",
+    "tests_python.test_operator_review.OperatorReviewTests.test_pool_config_nested_tuple_and_array_arguments_use_catalog_order",
+    "tests_python.test_operator_review.OperatorReviewTests.test_real_closed_reference_and_profile_have_no_deployment_claim",
+    "tests_python.test_operator_review.OperatorReviewTests.test_signed_emergency_ticks_and_large_units_remain_exact_strings",
+    "tests_python.test_operator_review.OperatorReviewTests.test_source_dependency_build_and_catalog_drift_are_rejected",
+    "tests_python.test_operator_review.OperatorReviewTests.test_supplied_chain_runtime_and_future_timestamp_remain_unverified",
+    "tests_python.test_operator_review.OperatorReviewTests.test_unknown_endpoint_profile_evidence_and_callable_fields_reject",
+    "tests_python.test_operator_review.OperatorReviewTests.test_utf8_output_is_exclusive_and_validation_does_not_create_files"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "elapsed_seconds": 7.125,
+  "source_before": {
+    "zzz_ops/operator_review.py": "8f634ee584dd721e5668514b3d92e820408ffdf1ce9ab57d5833dea603b7b397",
+    "scripts/prepare-operator-review.py": "9f807258fc681cb831ebf45ee89bb2028cbc4daf12a5a1beba3fae2feb1d9dbb",
+    "tests_python/test_operator_review.py": "0725097aedbe56f7a33c72b888f6c594271b82073b21900e97e9ba43395412a2",
+    "docs/function-reference.json": "7b1ec5394cf727e59e061dc0140bc61bc8e1442db8bddfcc33f2f63ba8937147",
+    "docs/function-reference-notes.json": "3d376725cc8317b7b270da7bae00dab2fecbaf8bce211d8bc623b10dbac737d9"
+  },
+  "source_after": {
+    "zzz_ops/operator_review.py": "8f634ee584dd721e5668514b3d92e820408ffdf1ce9ab57d5833dea603b7b397",
+    "scripts/prepare-operator-review.py": "9f807258fc681cb831ebf45ee89bb2028cbc4daf12a5a1beba3fae2feb1d9dbb",
+    "tests_python/test_operator_review.py": "0725097aedbe56f7a33c72b888f6c594271b82073b21900e97e9ba43395412a2",
+    "docs/function-reference.json": "7b1ec5394cf727e59e061dc0140bc61bc8e1442db8bddfcc33f2f63ba8937147",
+    "docs/function-reference-notes.json": "3d376725cc8317b7b270da7bae00dab2fecbaf8bce211d8bc623b10dbac737d9"
+  },
+  "inputs_unchanged": true
+}

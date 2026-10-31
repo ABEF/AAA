@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
@@ -43,7 +44,7 @@ contract KeeperRangePolicyTest is Test {
         vm.warp(1_000_000);
         controller = new KeeperRangeAccess();
         registry = new ZZZPoolRegistry(address(controller));
-        strategy = new ZZZStrategy(address(controller));
+        strategy = new ZZZStrategy(address(controller), address(new ZZZPortfolioPolicy(address(controller))), address(new ZZZRebalanceConfirmation(address(controller))));
         oracle = new ZZZOracle(address(controller),address(0));
         vault = new KeeperRangeVault(address(controller));
         venue = new RangePolicyRecord(address(controller));

@@ -1,0 +1,339 @@
+{
+  "kind": "Compiler ABI/storage comparison, not execution tests or a proof of behavior equivalence",
+  "all_existing_interfaces_and_storage_preserved": true,
+  "contracts_compared": 141,
+  "failures": [],
+  "changes": [
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "function",
+          "residualMainFingerprint",
+          [
+            [
+              "uint256",
+              []
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "contract": "ZZZLPPositionExecutor",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "function",
+          "RESIDUAL_EXIT_VERSION",
+          []
+        ],
+        [
+          "function",
+          "closeSecondary",
+          [
+            [
+              "bytes32",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "function",
+          "RESIDUAL_EXIT_VERSION",
+          []
+        ],
+        [
+          "function",
+          "closeSecondary",
+          [
+            [
+              "bytes32",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IHolderExitVault",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "function",
+          "closeResidual",
+          [
+            [
+              "uint256",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "event",
+          "ResidualClosed",
+          [
+            [
+              "bytes32",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ],
+            [
+              "uint64",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ]
+          ]
+        ],
+        [
+          "function",
+          "RESIDUAL_EXIT_VERSION",
+          []
+        ],
+        [
+          "function",
+          "closeResidual",
+          [
+            [
+              "tuple",
+              [
+                [
+                  "uint256",
+                  []
+                ],
+                [
+                  "bytes32",
+                  []
+                ],
+                [
+                  "uint256",
+                  []
+                ],
+                [
+                  "uint256",
+                  []
+                ],
+                [
+                  "uint256",
+                  []
+                ],
+                [
+                  "uint64",
+                  []
+                ],
+                [
+                  "uint64",
+                  []
+                ],
+                [
+                  "address",
+                  []
+                ],
+                [
+                  "address",
+                  []
+                ],
+                [
+                  "uint128",
+                  []
+                ],
+                [
+                  "uint128",
+                  []
+                ],
+                [
+                  "uint256",
+                  []
+                ],
+                [
+                  "bytes32",
+                  []
+                ],
+                [
+                  "bytes32",
+                  []
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetVaultValidation",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "function",
+          "validateHolderExit",
+          [
+            [
+              "uint256",
+              []
+            ],
+            [
+              "address",
+              []
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "function",
+          "validateHolderExit",
+          [
+            [
+              "uint256",
+              []
+            ],
+            [
+              "address",
+              []
+            ]
+          ]
+        ],
+        [
+          "function",
+          "validateResidualClose",
+          [
+            [
+              "uint256",
+              []
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "function",
+          "RESIDUAL_EXIT_VERSION",
+          []
+        ],
+        [
+          "function",
+          "closeResidual",
+          [
+            [
+              "uint256",
+              []
+            ],
+            [
+              "uint256",
+              []
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "removed_existing_abi": [],
+      "changed_existing_abi": [],
+      "added_abi": [
+        [
+          "error",
+          "InvalidConfiguration",
+          []
+        ],
+        [
+          "function",
+          "validateHolderExit",
+          [
+            [
+              "uint256",
+              []
+            ],
+            [
+              "address",
+              []
+            ]
+          ]
+        ]
+      ],
+      "semantic_storage_unchanged": true
+    }
+  ],
+  "before_compiler_output_sha256": "42ec549b2d99e54264d031ddcb6d274416bc38109c7348a200bc81f1bd12474b",
+  "after_compiler_output_sha256": "39083c6e2456fec4db9988b14d759d9a2bd0c46f87e67e1fca7241e2f260c05d"
+}
