@@ -49,13 +49,14 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
-The [current follow-up](../reports/improvement-audit-20261102/REVIEW.md) consolidates
-custody checks, repairs current buyback-policy admission and health/report
-diagnostics, and includes current keeper/source cases in verification. Its
-[evidence](../reports/improvement-audit-20261102/VERIFICATION.md) separates affected
-checks from unchanged final0a build/static reuse. Complete fresh schema8 with a
-reviewed current buyback_maximum_usd18; preserve constructor provenance. Check
-committed/staged imports, not only local files. No old journal/service is adopted.
+The [five-audit consolidation](../reports/five-audit-consolidation-20261102/REVIEW.md)
+maps41 grouped findings/boundaries, adds mandatory fresh-profile health admission
+and corrects two stale test scenarios. Its [evidence](../reports/five-audit-consolidation-20261102/VERIFICATION.md)
+preserves failures, stage-specific checks and unchanged final0a build/static reuse.
+Next engineering work: ordinary candidate viability, retaining final active-main
+checks; conditional operator route triage is not an implementation fix. Complete
+schema8 with a reviewed current buyback_maximum_usd18; preserve constructor
+provenance and old journals/services. Check exact staged/committed imports.
 
 1. Establish publication state from exact local/remote main heads. Git publication
    is not deployment or qualification. Keep source, docs and linked evidence

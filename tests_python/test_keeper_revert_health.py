@@ -139,6 +139,10 @@ class KeeperRevertHealthTests(unittest.TestCase):
 
     def test_delayed_confirmation_still_reports_current_paid_revert_after_cooldown_expired(self):
         self._receipt(False)
+        # A delayed receipt still follows its saved canonical checkpoint.
+        # Moving only block99 backward would intentionally violate that guard.
+        self.headers[98]['timestamp'] = hex(self.rpc.now-3602)
+        self.k.state['receipt_anchor']['timestamp'] = self.rpc.now-3602
         self.headers[99]['timestamp'] = hex(self.rpc.now-3601)
         self.assertTrue(self._run(self.k.poll_pending))
         health = self._health()

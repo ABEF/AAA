@@ -1,5 +1,6 @@
 """Stored Policy1 evidence and transient report faults; no RPC, signer or service."""
 import copy
+import datetime as dt
 import json
 from pathlib import Path
 import tempfile
@@ -9,6 +10,7 @@ from unittest.mock import patch
 from keeper.health import confirmation_reasons, execution_reasons, observe_confirmation_health
 from keeper.monitor import Keeper
 from keeper.operation_review import review
+from keeper.ops import digest, health_check
 from tests_python.test_keeper_policy_v6 import PolicyRPC
 from tests_python.test_keeper_portfolio_policy import PortfolioRPC
 from zzz_ops.abi import calldata
@@ -69,6 +71,55 @@ class KeeperPolicyIntegrityTests(unittest.TestCase):
                     self.assertEqual(['confirmation_health_profile_invalid'],self.reasons(data,config))
                     self.assertEqual(['execution_health_profile_invalid'],
                         execution_reasons(data,config,now=self.rpc.now,max_age=600))
+
+    def test_fresh_profile_cannot_disable_required_health_evidence(self):
+        data=self.health()
+        for accounting,portfolio,policy in ((5,1,0),(6,2,1)):
+            valid=copy.deepcopy(self.rpc.cfg)
+            valid.update(accounting_version=accounting,portfolio_version=portfolio,protocol_policy_version=policy)
+            fields={'rebalance_confirmation_version':(None,0,1,2,True),
+                'execution_quality_version':(None,0,True),'maintenance_policy_version':(None,0,2,True),
+                'lp_routing_version':(None,0,1,True),'portfolio_version':(None,0,3-portfolio,True),
+                'protocol_policy_version':(None,1-policy,True),'fee_intake_version':(None,0,True)}
+            for field,values in fields.items():
+                for value in values:
+                    bad=copy.deepcopy(valid)
+                    if value is None:bad.pop(field,None)
+                    else:bad[field]=value
+                    # Historical policy0 is legitimately absent for accounting5.
+                    if field=='protocol_policy_version' and value is None and accounting==5:continue
+                    with self.subTest(accounting=accounting,field=field,value=value):
+                        self.assertEqual(['confirmation_health_profile_invalid'],
+                            confirmation_reasons(data,bad,now=self.rpc.now,max_age=600))
+                        self.assertEqual(['execution_health_profile_invalid'],
+                            execution_reasons(data,bad,now=self.rpc.now,max_age=600))
+
+    def test_health_command_cannot_call_downgraded_current_profile_healthy(self):
+        config=copy.deepcopy(self.rpc.cfg)
+        config.update(rebalance_confirmation_version=0,execution_quality_version=0)
+        config['health_path']=str(Path(self.tmp.name)/'downgraded.health.json')
+        stamp=dt.datetime.fromtimestamp(self.rpc.now,dt.timezone.utc).isoformat()
+        data={'time':stamp,'last_success_at':stamp,'chain_id':config['chain_id'],
+            'sender':config['sender'].lower(),'configuration_sha256':digest(config),
+            'status':'dry_run','live':False,'pending':False,'strategy_paused':False,
+            'preparation_active':False,'canonical_state':0,'confirmed_reverts':0,
+            'active_revert_cooldowns':0,'next_revert_retry_after':None,
+            'skipped_buckets':0,'blocked_actions':0,'consecutive_failures':0}
+        Path(config['health_path']).write_text(json.dumps(data),encoding='utf-8')
+        before=self.k.path.read_bytes()
+        result=health_check(config,now=self.rpc.now,allow_dry_run=True)
+        self.assertFalse(result['ok'])
+        self.assertIn('execution_health_profile_invalid',result['reasons'])
+        self.assertEqual(before,self.k.path.read_bytes())
+
+    def test_unknown_or_ambiguous_accounting_cannot_select_historical_health(self):
+        for value in (None,True,0,7,'6'):
+            config={'accounting_version':value}
+            with self.subTest(value=value):
+                self.assertEqual(['confirmation_health_profile_invalid'],
+                    confirmation_reasons({},config,now=self.rpc.now,max_age=600))
+                self.assertEqual(['execution_health_profile_invalid'],
+                    execution_reasons({},config,now=self.rpc.now,max_age=600))
 
     def test_unknown_financial_idle_policy_prevents_principal_simulation_but_not_harvest(self):
         original=self.rpc.call;reads=0;simulations=[]

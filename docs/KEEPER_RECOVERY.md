@@ -441,6 +441,17 @@ require a fresh matching cycle after a reviewed config change. Never patch the
 hash, edit/reset a journal or assume this digest authenticates the host/provider.
 There is no in-process config reload: finalize config before constructing Keeper.
 
+Accounting5/6 health admission requires its complete matching profile, including
+quality1, confirmation3, maintenance3, routing2 and the correct portfolio/policy
+versions. Missing or downgraded required tags return
+`execution_health_profile_invalid` (`confirmation_health_profile_invalid` for the
+confirmation-only check); they cannot select a legacy healthy status. Diagnose the
+reviewed deployment/configuration identity rather than deleting fields or setting
+versions to zero. Do not relabel an old service or journal. If a real config change
+is needed, use the controlled stop/reconcile/dry-run/restart procedure with matching
+writer/checker and a fresh health record. This source change itself restarts
+nothing and never signs, repairs a nonce or changes the saved transaction.
+
 Health schema2 adds `lp_execution_health`: the last confirmed block/hash/time,
 observed head, policy owner/revision/limit, reviewed runtime hashes, configuration
 digest and local source-file hashes. The current cycle state is separate from

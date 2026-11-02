@@ -80,14 +80,14 @@ runtime and backend checks are recorded in the new report; older50-source/42-gat
 public CI, market/provider/host qualification or independent approval is implied.
 The new callable reference/operator procedures must match source6, not old profiles.
 
-[Current audit follow-up](reports/improvement-audit-20261102/REVIEW.md) consolidates
-NFT/collection/wallet custody proof and bounds per-request caching. Fresh schema8
-uses a separately reviewed current buyback maximum, never rewritten constructor
-history. Source6 health validates maintenance policy evidence; unavailable idle
-policy blocks principal simulation while harvest remains independent. Focused
-keeper selection and source/publication checks cover current helpers/scopes.
-The earlier published reader/lineage repairs remain in place. Production Solidity
-is unchanged; exact build/static reuse and new affected checks have separate scopes.
+[Five-audit consolidation](reports/five-audit-consolidation-20261102/REVIEW.md)
+reconciles41 grouped findings/boundaries, preserving the original reports. Earlier
+custody/reader/lineage, current buyback-cap, policy/report and verification repairs
+remain implemented. Health additionally rejects missing/downgraded source5/6 tags
+before legacy early returns; two stale test scenarios are corrected. Ordinary
+route-candidate viability remains open; the operator workaround preserves all
+final guards and is conditional. Production Solidity is unchanged; new affected
+checks, artifact integrity and exact build/static reuse retain separate scopes.
 
 ## What remains
 

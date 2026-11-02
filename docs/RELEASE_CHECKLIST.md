@@ -35,11 +35,13 @@ runtime, simulation, gas and operating/marketplace rehearsal remain release gate
 
 ## Current candidate and evidence limits
 
-[November2 scoped corrections](../reports/improvement-audit-20261102/VERIFICATION.md)
-cover read-side custody consistency, live buyback policy admission, keeper
-diagnostic integrity and verification selection. Production Solidity is unchanged;
-normal gates and prior static review are reused only at exact pins. This is not
-a new frozen full suite, CI, actual service/gas rehearsal or independent approval.
+[Five-audit reconciliation](../reports/five-audit-consolidation-20261102/VERIFICATION.md)
+preserves those reports' scopes, verifies artifact integrity and corrects a further
+health-profile diagnostic gap plus two stale test scenarios. Ordinary route
+candidate viability remains open with the active-main guard retained. Production
+Solidity is unchanged; normal gates and prior static review are reused only at
+exact pins. This is not a new frozen full suite, CI, actual service/gas rehearsal
+or independent approval.
 
 | Boundary | Current requirement |
 | --- | --- |

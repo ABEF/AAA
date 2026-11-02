@@ -1,0 +1,13 @@
+{
+  "scope": "This consolidated report only; self excluded. Original five report families unchanged.",
+  "files": {
+    "documentation-links.json": "7d91f420a5874ea3d1a2e5cd46c4d1817f770b594a1f5fea3eb92f32f8446d9a",
+    "evidence-integrity.json": "795800a5755b082d919b1ce44248da6e49d758fb3279b4238dfcd69e49282aee",
+    "final-checks.json": "9720f8f98a75e59afa1c14a82a44faca86a5ddce65e5755daac5d85cabbd83fb",
+    "findings.json": "ee1db5baeb40aeb2acf1f21b5354f26446f6929ebf872770c403caf2232fe4a5",
+    "method-ledger.json": "2365159684a6af55bbc6f34229662a34873518824aead64a877d3791d8f602e1",
+    "REVIEW.md": "c2222b69df6493ec69cf02113ee13106bedec00347a595809b746d1888ded3a6",
+    "test-verification.json": "ce28a942c05138b4d484365ceb1945715ae37e7ac614e278890313376378972a",
+    "VERIFICATION.md": "a6dad81c73b94828c06bdc955feac5c080704631450cf0545da64f26e09a5884"
+  }
+}

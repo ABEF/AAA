@@ -167,9 +167,15 @@ class KeeperExecutionTelemetryTests(unittest.TestCase):
             self.k._validate_lp_routing(use_cache=True)
             with patch('subprocess.run') as signer,patch.object(self.k,'_validate_accounting_version'), \
                     patch.object(self.k,'_validate_checkpoint'),patch.object(self.k,'_validate_code_hashes'), \
-                    patch.object(self.k,'_defer_for_lifecycle',return_value=False),self.assertRaises(RpcError):
+                    patch.object(self.k,'_compound_submission_ready',return_value=True), \
+                    patch.object(self.k,'_defer_for_lifecycle',return_value=False), \
+                    self.assertRaisesRegex(RpcError,'LP execution capability differs from the reviewed profile'):
                 self.k.submit('compounder','compound(uint256,uint128,uint256)',(7,1,self.rpc.now+180),'compound:7')
             signer.assert_not_called();self.assertIsNone(self.k.state['pending'])
+        # Isolate the policy-change race, not the separately tested compound
+        # eligibility proof. This fixture must actually reach gas estimation.
+        self.assertTrue(any(method=='eth_estimateGas' for method,_ in self.requests))
+        self.assertEqual('0x'+f'{99:064x}',self.values[self.cfg['contracts']['strategy'],calldata('additionalLossBps()')])
 
     def test_cycles_do_not_reuse_metadata_or_change_transaction_journal(self):
         self.k.save();before=self.k.path.read_bytes()

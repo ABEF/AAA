@@ -37,6 +37,23 @@ def _hash(value, *, prefix=True):
         and int(value[-64:],16) != 0)
 
 
+def _health_profile_valid(config):
+    """Required fresh evidence cannot be opted out of via legacy defaults.
+
+    This local admission check does not construct a keeper, contact RPC or
+    attest a service. Explicit historical configurations keep their old scope.
+    """
+    accounting=config.get('accounting_version',1)
+    if type(accounting) is not int or accounting not in (1,2,3,4,5,6):return False
+    if accounting not in (5,6):return True
+    required={'fee_intake_version':1,'maintenance_policy_version':3,
+        'rebalance_confirmation_version':3,'execution_quality_version':1,
+        'lp_routing_version':2,'portfolio_version':2 if accounting==6 else 1}
+    policy=config.get('protocol_policy_version',0)
+    return (type(policy) is int and policy==(1 if accounting==6 else 0) and
+        all(type(config.get(key)) is int and config[key]==value for key,value in required.items()))
+
+
 def _confirmation_bindings(config):
     from zzz_ops.abi import address
     contracts = config.get('contracts', {})
@@ -130,6 +147,8 @@ def observe_confirmation_health(keeper, previous=None):
 
 def confirmation_reasons(data, config, *, now, max_age):
     """Require fresh confirmation evidence independently of execution quality."""
+    if not _health_profile_valid(config):
+        return ['confirmation_health_profile_invalid']
     if config.get('rebalance_confirmation_version',0) not in (1,2,3):
         return []
     if not isinstance(config.get('contracts'),dict) or not isinstance(config.get('code_hashes'),dict):
@@ -230,6 +249,8 @@ def execution_reasons(data, config, *, now, max_age):
     version = data.get('health_schema')
     if version is not None and (type(version) is not int or version != HEALTH_SCHEMA):
         return ['unsupported_health_schema']
+    if not _health_profile_valid(config):
+        return ['execution_health_profile_invalid']
     quality_version=config.get('execution_quality_version',0)
     if type(quality_version) is not int or quality_version not in (0,1):
         return ['execution_health_profile_invalid']

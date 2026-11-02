@@ -12,11 +12,13 @@ rehearse actual authority/wallet/host/dependency workflows before production.
 
 ## LP execution next steps
 
-The [November2 audit](../reports/improvement-audit-20261102/REVIEW.md) closes
-source-level custody/admission/diagnostic gaps and verification omissions.
-Review current buyback-cap declarations and matching health/API source before
-an authorized rollout; no constructor/journal rewrite or existing service update
-is implied. Actual providers, budgets and operating acceptance remain next.
+The [five-audit consolidation](../reports/five-audit-consolidation-20261102/REVIEW.md)
+retains the earlier custody/admission repairs and closes a further health-profile
+downgrade gap. Next address ordinary route-candidate viability without weakening
+the active-main guard; the conditional operator workaround is not a solver fix.
+Qualify real venues/providers and operating budgets alongside this work. Review
+current buyback-cap declarations and matching health/API source before any
+authorized rollout; no constructor/journal rewrite or service update is implied.
 
 [Bounded adaptable settings](ADAPTABLE_POLICY.md) are implemented in source6 with
 unchanged defaults and explicit schema8/Entry2/canonicalV6 boundaries. Qualify

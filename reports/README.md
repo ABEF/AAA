@@ -1,5 +1,14 @@
 # Verification evidence
 
+[Five-audit consolidation](five-audit-consolidation-20261102/REVIEW.md) reconciles
+the five latest substantive technical reviews below without rewriting them.
+The [disposition matrix](five-audit-consolidation-20261102/findings.json) maps
+41 grouped findings/boundaries to current mechanisms and the sole Todo. It fixes
+a further fresh-profile health downgrade gap and two stale test scenarios;
+route-candidate viability and real qualification remain open.
+[Verification](five-audit-consolidation-20261102/VERIFICATION.md) distinguishes
+fresh affected checks, artifact integrity and exact unchanged source reuse.
+
 [November2 audit and consolidation](improvement-audit-20261102/REVIEW.md) executes
 the [improved request](improvement-audit-20261102/PROMPT.md), unifies read-side
 custody proof, repairs current-policy preflight and keeper diagnostic gaps, and

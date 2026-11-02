@@ -259,6 +259,20 @@ A saved pending transaction is recovered before new LP-router metadata checks;
 an unavailable router never permits a new balance operation. Runtime, signer,
 accounting and nonce/receipt guards remain; due fee harvesting stays independent.
 
+**If the selected route fails the final active-main check:** do not loosen that
+check or retry a known failing transaction. The bounded planner can rank an
+own-pool quote that moves the destination outside the new main range, even when
+another reviewed venue could work. Inspect the full post-close simulation and
+exact ticks, candidate list, fees and loss margins. Governance may review and
+replace the complete execution list above to exclude the problematic venue while
+retaining a qualified compatible alternative. Re-simulate the whole operation,
+then reconcile existing pending work before submitting anything new. This changes
+the swap list, not the contribution destination, Entry routes or explicit
+conversion/buyback requests. It is a conditional workaround, not a guaranteed
+solution or an automatic retry. An empty list disables swaps; no viable admitted
+venue means the operation remains blocked. Candidate viability filtering is still
+owned by [LP execution routing](../TODO.md#task-lp-execution-routing).
+
 Governance can tune `configureSolver(iterations,gasLimit,reviewHash)` within 4-12
 iterations and 100000-300000 gas per attempted quote; defaults8/200000. More search
 can cost more gas; inadequate quote gas may skip a usable venue. Keep actual

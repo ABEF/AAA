@@ -66,14 +66,16 @@ change to the website is part of this contract implementation.
 
 ## Current evidence and limits
 
-[November2 repairs and consolidation](../reports/improvement-audit-20261102/REVIEW.md)
-unify NFT/collection/wallet custody proof with bounded request caching, separate
-current governed buyback caps from constructor provenance, validate source6
-health-policy evidence, and make missing idle policy explicit before principal
-simulation. Focused verification now selects current keeper cases and checks
-required source classes/package scopes. [Evidence](../reports/improvement-audit-20261102/VERIFICATION.md)
-distinguishes new affected execution from exact unchanged Solidity/build reuse.
-Source6 service/schema8 inputs need reviewed rollout; no deployed behavior changed.
+[Five-audit consolidation](../reports/five-audit-consolidation-20261102/REVIEW.md)
+maps historical findings to current mechanisms and open work. The earlier custody,
+buyback-admission, policy/report and publication repairs remain implemented.
+Fresh-profile health now rejects missing/downgraded required tags before legacy
+early returns; two older test scenarios reach their intended race/receipt checks.
+[Evidence](../reports/five-audit-consolidation-20261102/VERIFICATION.md) separates
+affected execution from historical artifact integrity and exact unchanged Solidity
+reuse. The Operator manual adds conditional route-failure triage; ordinary
+candidate viability remains open. Source6 inputs/services need reviewed rollout;
+no deployed behavior changed.
 
 [Current adaptable-policy verification](../reports/adaptable-policy-20261031/VERIFICATION.md)
 binds52production sources/31dependencies and43normal object gates at the unchanged
