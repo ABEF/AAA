@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed2026-11-02. [Instructions](AGENTS.md), [README](README.md),
+Reviewed2026-11-03. [Instructions](AGENTS.md), [README](README.md),
 [sole Todo](TODO.md) and [operator manual](docs/OPERATOR_MANUAL.md) are the starting
 points. This is a current snapshot, not a timeline or global personal memory.
 
@@ -109,7 +109,14 @@ the same asset side. This is not a live keeper/browser/load/profit qualification
 
 ## What remains
 
-[Current action resilience](reports/action-resilience-audit-20261102/REVIEW.md)
+[Current consolidation](reports/consolidation-20261103/REVIEW.md) reconciles the
+three latest audits without changing contract policy. RPC clients snapshot their
+reviewed endpoints; metered eth_call cannot delegate around count/expiry checks.
+Strict maintenance validators no longer have a permissive mode; constructor-only
+paid-intent deferral remains explicit. Oversized override IDs fail early. Prior
+reports retain original source scopes; real service/market qualification is open.
+
+[Action resilience](reports/action-resilience-audit-20261102/REVIEW.md)
 fixes RPC body progress budgets and rejects unknown maintenance names before new
 work. Validated saved pending intents recover before invalid new maintenance
 values halt future work; receipt/nonce/spend/deployment identity stays intact.

@@ -16,7 +16,7 @@ from tests_python.test_keeper_policy_v6 import PolicyRPC
 from tests_python.test_keeper_compound_range_policy import words
 from zzz_ops.errors import WorkLimit
 from zzz_ops.rpc import Rpc, RpcError
-from zzz_ops.work_budget import Budget, request_scope
+from zzz_ops.work_budget import Budget, BudgetedRPC, request_scope
 
 
 class _Clock:
@@ -98,6 +98,17 @@ class RPCProgressDeadlineTests(unittest.TestCase):
 
 
 class MaintenanceConfigurationRecoveryTests(unittest.TestCase):
+    def test_override_bucket_ids_fit_the_onchain_uint256_domain(self):
+        f=fixtures.PoolKeeperTests('runTest');f.setUp();self.addCleanup(f.doCleanups)
+        for bucket in (1<<256,10**78):
+            cfg=copy.deepcopy(f.cfg);cfg['bucket_overrides']={str(bucket):{'harvest':False}}
+            with self.subTest(bucket=bucket),patch('keeper.monitor.subprocess.run') as signer:
+                with self.assertRaisesRegex(ValueError,'bucket'):
+                    Keeper(cfg,rpc=f.rpc)
+                signer.assert_not_called()
+        cfg=copy.deepcopy(f.cfg);cfg['bucket_overrides']={str((1<<256)-1):{'harvest':False}}
+        Keeper(cfg,rpc=f.rpc)
+
     def test_unknown_defaults_and_overrides_fail_before_signing(self):
         f=fixtures.PoolKeeperTests('runTest');f.setUp();self.addCleanup(f.doCleanups)
         f.k.save();before=f.k.path.read_bytes()
@@ -159,6 +170,71 @@ class PortfolioTransientFaultTests(unittest.TestCase):
         self.assertTrue(self.k.state[CONFIRMATION_RESETS]['7']);self.assertNotIn('7',self.k.state.get(PORTFOLIO_STATE_NAMESPACE,{}))
         self.rpc.reference=1 # Recovery cannot make old-side evidence valid again.
         self.assertFalse(self.due());self.assertEqual(self.k._rebalance_reset_due,7)
+
+
+class ReviewedEndpointTests(unittest.TestCase):
+    def test_mutating_the_source_config_does_not_replace_reviewed_endpoints(self):
+        urls=['https://reviewed.invalid'];rpc=Rpc(urls,1,retries=1)
+        urls[0]='http://unreviewed.invalid'
+        self.assertEqual(rpc.active_url,'https://reviewed.invalid')
+
+    def test_clearing_the_source_config_does_not_break_bounded_failover(self):
+        urls=['https://a.invalid','https://b.invalid'];rpc=Rpc(urls,1,retries=1)
+        urls.clear();seen=[]
+        def respond(url,method,params):
+            seen.append((url,method))
+            if url=='https://a.invalid':raise OSError('inert failure')
+            return '0x1' if method=='eth_chainId' else '0x9'
+        with patch.object(rpc,'_post',side_effect=respond),patch('zzz_ops.rpc.time.sleep'):
+            self.assertEqual(rpc.call('eth_blockNumber'),'0x9')
+        self.assertEqual(seen,[('https://a.invalid','eth_chainId'),
+            ('https://b.invalid','eth_chainId'),('https://b.invalid','eth_blockNumber')])
+
+    def test_expanding_the_source_config_cannot_expand_the_retry_budget(self):
+        urls=['https://reviewed.invalid'];rpc=Rpc(urls,1,retries=1)
+        urls.extend(['https://unreviewed.invalid']*9)
+        with patch.object(rpc,'_post',side_effect=OSError('inert failure')) as post,patch('zzz_ops.rpc.time.sleep'):
+            with self.assertRaises(RpcError):rpc.call('eth_blockNumber')
+        self.assertEqual(post.call_count,1)
+
+
+class _BudgetTransport:
+    def __init__(self,clock=None):self.calls=[];self.unmetered=[];self.clock=clock
+    def call(self,method,params):
+        self.calls.append((method,params))
+        if self.clock:self.clock.now=2
+        return '0x99'
+    def eth_call(self,*args,**kwargs):
+        self.unmetered.append((args,kwargs))
+        return 'unmetered'
+
+
+class ContractReadBudgetTests(unittest.TestCase):
+    def test_contract_reads_share_call_budget_and_preserve_exact_sender_and_block(self):
+        transport=_BudgetTransport();rpc=BudgetedRPC(transport)
+        selector={'blockHash':'0x'+'7'*64,'requireCanonical':True}
+        with request_scope(Budget(calls=1)):
+            self.assertEqual(rpc.eth_call(fixtures.B,'0x12345678',sender=fixtures.A,block=selector),'0x99')
+            with self.assertRaises(WorkLimit):rpc.eth_call(fixtures.B,'0x12345678')
+        self.assertEqual(transport.unmetered,[])
+        self.assertEqual(transport.calls,[('eth_call',[{'to':fixtures.B,'data':'0x12345678','from':fixtures.A},selector])])
+
+    def test_contract_read_result_is_discarded_after_deadline(self):
+        clock=_Clock();transport=_BudgetTransport(clock);rpc=BudgetedRPC(transport)
+        with request_scope(Budget(seconds=1,clock=clock)):
+            try:
+                with self.assertRaises(WorkLimit):rpc.eth_call(fixtures.B,'0x12345678')
+            finally:clock.now=0
+        self.assertEqual(len(transport.calls),1);self.assertEqual(transport.unmetered,[])
+
+    def test_expired_contract_read_cannot_start_the_injected_transport(self):
+        clock=_Clock();transport=_BudgetTransport();rpc=BudgetedRPC(transport)
+        with request_scope(Budget(seconds=1,clock=clock)):
+            clock.now=2
+            try:
+                with self.assertRaises(WorkLimit):rpc.eth_call(fixtures.B,'0x12345678')
+            finally:clock.now=0
+        self.assertEqual(transport.calls,[]);self.assertEqual(transport.unmetered,[])
 
 
 if __name__=='__main__':unittest.main()

@@ -9,6 +9,12 @@ rollout or permission to modify existing journals.
 
 Operating runbook for an **undeployed candidate; production NOT APPROVED**.
 
+The [current consolidation](../reports/consolidation-20261103/REVIEW.md) makes
+maintenance validation always strict, keeping constructor-only pending-intent
+deferral explicit. Oversized override IDs fail before work. RPC clients preserve
+their reviewed endpoint snapshot; changing providers needs controlled restart
+and the same receipt/nonce journal, not deletion or guessed adoption.
+
 Unknown maintenance names now fail before new work, including defaults and
 per-bucket overrides. A valid saved pending intent still recovers first despite
 invalid new maintenance values; strict validation then halts before another job.

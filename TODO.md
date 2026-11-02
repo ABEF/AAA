@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-11-02 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-03 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -152,7 +152,7 @@ Custody, ownership and reward accounting.
 
   - Verify final fees/pending compound and exact native/token deltas; no prefund subsidy or reserve mixing.
   - Qualify per-recipient gas, callback/rejection/token fault isolation, current-owner fallback and complete backing/remaining balances on the target chain.
-  - Old native-custody reports remain historical; qualify the new accounting4/custody3 code independently before approval.
+  - Old native-custody reports remain historical; qualify the current accounting6/custody4 code independently before approval.
   - After principal allocation, reserve-only venue recovery remains available without reopening custody or changing unpaid owner allocations. Keep buyback reserve, allocated principal and old reward liabilities separate; qualify pending payouts and actual venue re-admission on the target chain.
 
   </details>
@@ -582,6 +582,7 @@ The data and services behind the app.
   - [October31 audit](reports/today-audit-20261031/REVIEW.md): publish the previously omitted portfolio5/6 reader modules and admit only same-role/same-runtime shared Uniswap dependencies across verified predecessor inventories. Protocol identity collisions and complete pinned lineage requirements remain strict; service rollout is separate.
   - [November2 custody consolidation](reports/improvement-audit-20261102/REVIEW.md): collection and wallet chunks now share NFT-detail local custody/share proof, with per-request bucket caching, per-NFT numerator checks and a distinct-NFT partial-share sum bound without extra RPC. Contradictory parked/exited/active evidence rejects; healthy ownership/raw claims survive price outages. Additional required reads stay bounded; actual latency/service rollout remains unqualified.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): RPC bodies use bounded available fragments with attempt/request progress checks. Chain/envelope/size validation remains. Affected price-outage projections preserve ownership/raw claims without fabricated zero valuations. Source publication is not source6 service/site rollout.
+  - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): Shared RPC snapshots validated endpoints; convenience contract reads consume the same call/expiry budget. Injected-transport hardening does not qualify actual providers or rollout.
 
   </details>
 
@@ -623,6 +624,7 @@ The data and services behind the app.
   - [Scoped verification](reports/api-admission/VERIFICATION.md): 47 affected Python cases plus three supplemental cases, and 22 actual Nginx/loopback assertions. Spoofed forwarding/origin, overload, full-table, disconnection and upstream failure cases preserve isolation; no extra worker/RPC work starts on rejected admission.
   - Maintain proxy/service identity policy together, with exact same-origin POST, no signer/cache/replay, bounded logs and documented stop/restart/rollback. Per-IP budgets are not authenticated users or a distributed/DDoS guarantee; production qualification stays under [host services](TODO.md#task-host-services).
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): Affected real spawned-worker and loopback HTTP checks pass across recorded stages after correcting the external Windows driver. Blocked child termination, subsequent request recovery and isolated parallel payloads are verified locally; actual provider/header/DNS/process-host behavior and production load remain unqualified.
+  - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): Caller mutation cannot replace/empty endpoints or expand reviewed retries. Contract-read shortcuts reject exhausted/expired work; process/watchdog and actual load qualification remain separate.
 
   </details>
 
@@ -950,6 +952,7 @@ Three required testing layers, with source-bound evidence.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): 65 distinct successful EVM methods across recorded stages, not a fresh final full suite. Preserve the original two routing failures, one rejected size attempt and two corrected fixture-expectation failures; rerun only the two changed lifecycle methods and authenticate reused bodies through compiler metadata. Five backend methods pass. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Retain three initial InvalidAmount failures and a trace identifying the100USD test-pool floor. Explicitly admit5USD for corrected journeys and preserve the stronger-floor rejection test; no production guard loosened. Three corrected methods pass; one earlier unchanged successful method/body/helpers is reused. No broad unchanged suite repeated.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): 176 distinct successful selected Python methods across retained stages plus one explicit Unix skip. Register9 new regressions;851-method selection executes zero bodies. Preserve initial negative fixture omission, corrected causal reproduction, Windows driver errors/corrections and exact inventory update. No unchanged Solidity suite repeated.
+  - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): New defect controls and affected consumer checks are source-scoped. Earlier three reports/normal gates retain exact scopes; inventory listing is not execution, and Unix permissions remain unqualified.
 
   </details>
 
@@ -1177,6 +1180,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Actual-v4 composed hybrid/entry/disable/harvest/partial-claim/merge checks preserve both-leg backing, shares, exact80/10/5/5 receipts, carried dust and the other NFT's rewards. Correction is scoped, not universal adversarial or real-market qualification. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Both live legs remain valued/backed when mixed or fully outside; pricing outage rejects activation atomically while funded raw claims continue, followed by guarded merge and resumed entry. This is scoped contract evidence, not independent audit or arbitrary dependency-failure recovery.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): Three backend availability/recovery gaps are repaired without Solidity/economic changes. Also review one admitted token/venue failing while both LP legs need close/return: exact atomic accounting can retain backing yet movement can remain unavailable. Qualify actual issuer/transfer/periphery behavior and documented incident paths; no arbitrary recipient/executor/sweep is approved.
+  - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): Three-report reconciliation preserves both-leg accounting/atomic safeguards and all real service, market, history and independent-review gates. No Solidity or economic policy changed.
 
   </details>
 
@@ -1317,6 +1321,7 @@ Decisions and rehearsals before real funds.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Ordinary routing now checks quote activity before candidate ranking while retaining final guards and separate entry/emergency rules. No keeper scheduler, signer, journal or operating service changed; actual target timing/gas/provider qualification remains open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Contract order tests preserve stable sampled geometry through contributions and resolve new main IDs after rebalance. No worker, signer, journal or service behavior changed. Real inclusion/cadence/gas/provider/load qualification remains open.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): Unknown maintenance names/defaults/overrides reject before new work. A validated saved intent can recover despite invalid new maintenance values; strict validation then halts before another job. Receipt/nonce/fee/deployment checks and existing journals remain intact; no signing or financial guard widened.
+  - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): One immutable maintenance field set; always-strict validators with explicit constructor-only paid-intent deferral. Canonical bucket overrides must fit uint256; no retired scheduling or new stop bypass.
 
   </details>
 
@@ -1343,6 +1348,7 @@ Decisions and rehearsals before real funds.
   - [Manual-operation audit](reports/manual-operations-20261031/REVIEW.md): manual same-key nonce/receipt reconciliation, exact input units/roles, reverse controls, source/config restart and partial multi-transaction recovery are documented for90 entrypoints. Local offline review helper generates provenance/ordered inputs only and never signs, calls RPC, simulates or declares ready. Rehearse actual Safe/EOA, host, feed/venue failure and bound inclusion; preserve existing journals.
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Use the main/residual case matrix in the next authorized source6 operating rehearsal: restart/pending recovery, stale heads, RPC/nonce/reorg faults, mode pending and idle backlog. Virtual-day direct contract calls do not verify actual service cadence/jitter, off-host recovery or sustained uptime.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): Exercise one-minute required-condition faults and rapid price/reference reversal on source6 transcripts: discard jitter, persist reset and block old evidence across restart. Retain one Unix permissions skip and remaining real watchdog/backup/reorg/off-host qualification. Other invalid deployment/signer/job fields can still require restoring original reviewed config.
+  - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): Paid receipt/nonce recovery and strict pre-job validation remain. Endpoint changes require reviewed config/controlled restart with the same journal; no guessed adoption or automatic migration.
 
   </details>
 
@@ -1400,4 +1406,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `504f620a1615a5b92bd438ec0429d8a24fb4fab6d675a7bb8b089cb714e9a3a5`.
+Snapshot SHA-256: `b0320e0903040e17d9e6ed07e74510606b1e6c514c7a3a62cd16f6e15c945aaf`.

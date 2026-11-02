@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed2026-11-02. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-03. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.
@@ -138,6 +138,15 @@ Current owner/rewards/quotas/ETH-ZZZ/fixed splits and terminal custody guarantee
 are unchanged. No deployment/service/site/Anvil/journal/signing change authorized.
 
 ## Verification and records
+
+- [Three-audit consolidation](reports/consolidation-20261103/REVIEW.md) retains
+  all three source scopes/open gates. RPC endpoints are an immutable reviewed
+  snapshot; BudgetedRPC.eth_call uses the same count/expiry path as call.
+  Maintenance validators are always strict; only constructor scheduling-value
+  validation waits for a validated pending intent. Override IDs fit uint256.
+  Current182 distinct selected Python successes/one Unix skip remain scoped;
+  858-method inventory executes zero bodies. Prior reports retain original pins.
+  No Solidity/economic/profile change or deployment/service/journal adoption.
 
 - [Action resilience review](reports/action-resilience-audit-20261102/REVIEW.md)
   adds bounded RPC body progress, strict maintenance names and maintenance-value

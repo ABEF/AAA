@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-Reviewed2026-11-02. [Todo](../TODO.md) alone owns status; this page gives sequence.
+Reviewed2026-11-03. [Todo](../TODO.md) alone owns status; this page gives sequence.
 The [optional portfolio implementation](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)
 is local source, not rollout. [Current adaptable-policy evidence](../reports/adaptable-policy-20261031/VERIFICATION.md)
 keeps scoped new checks and43normal gates separate from staged reuse and the older
@@ -11,6 +11,11 @@ The offline review helper is not yet a live operation planner or simulator;
 rehearse actual authority/wallet/host/dependency workflows before production.
 
 ## LP execution next steps
+
+[Three-audit consolidation](../reports/consolidation-20261103/REVIEW.md) hardens
+shared RPC input/budget boundaries and simplifies strict keeper validation.
+It closes no live-market, host, history-scaling or independent-release gate;
+use the reconciled three-report boundaries for the next qualification campaign.
 
 [Action resilience fixes](../reports/action-resilience-audit-20261102/REVIEW.md)
 now bound RPC body progress, reject unknown maintenance names and preserve paid

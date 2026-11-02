@@ -31,6 +31,11 @@ Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUT
 
 ## Current deployment profile
 
+Shared contract-read shortcuts now use the same request call/expiry budget as
+direct calls, including injected transports. RPC configuration is captured at
+client construction. [Evidence and limits](../reports/consolidation-20261103/VERIFICATION.md).
+No API schema, response economics or served website changes with this hardening.
+
 The shared read-only RPC client checks response-body progress against attempt and
 request budgets while retaining strict chain/envelope/size checks. This is not
 hard preemption of every OS/header read; API workers retain independent bounded

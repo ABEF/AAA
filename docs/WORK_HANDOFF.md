@@ -1,6 +1,6 @@
 # Work handoff
 
-Reviewed2November2026, Europe/Paris. Read [instructions](../AGENTS.md),
+Reviewed3November2026, Europe/Paris. Read [instructions](../AGENTS.md),
 [context](../PROJECT_CONTEXT.md), [README](../README.md), [sole Todo](../TODO.md)
 and the relevant [operator procedure](OPERATOR_MANUAL.md).
 
@@ -49,6 +49,13 @@ visualization root; it preserves105 current documents and1795 report hashes.
 Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
+
+The [three-audit consolidation](../reports/consolidation-20261103/VERIFICATION.md)
+fixes mutable endpoint aliases, meters eth_call through the wrapper and bounds
+override IDs. Maintenance validators are always strict; explicit constructor
+deferral preserves paid recovery. Production52/dependency31 pins are unchanged.
+Use exact staged/committed publication checks; no existing journal/runtime/site
+is upgraded. Provider/watchdog/market/history/independent gates remain open.
 
 The [action resilience review](../reports/action-resilience-audit-20261102/VERIFICATION.md)
 fixes RPC body progress/maintenance validation and preserves exact paid recovery

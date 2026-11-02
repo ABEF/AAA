@@ -103,6 +103,13 @@ qualification remains open. [Review and evidence](../reports/system-adversarial-
 
 ## Maintenance configuration errors and paid recovery
 
+Each RPC client retains an immutable snapshot of its validated endpoint list.
+Review the new configuration and perform the documented controlled restart to
+change endpoints; mutating an existing config list does not rotate a running
+client. The shared budget wrapper's `call` and `eth_call` enforce the same call
+count and discard expired results. This is not preemption of blocking I/O.
+[Consolidation evidence](../reports/consolidation-20261103/VERIFICATION.md).
+
 `maintenance` and each `bucket_overrides` object accept only `compound`,
 `compound_idle`, `harvest`, `sync_external_rewards`, `minimum_liquidity`,
 `minimum_compound_units`, `harvest_interval_seconds`, `compound_interval_seconds`,
@@ -111,6 +118,10 @@ routes and current fee-intake1 creator synchronization still cannot schedule wor
 Unknown names are errors: a typo is never silently ignored. `rebalance:false` is
 not a supported local stop control; use the reviewed Access/pool/pause controls
 in the [operator manual](OPERATOR_MANUAL.md#common-stop-and-restart-sequences).
+
+Override keys must be canonical positive decimal uint256 bucket IDs. Validation
+has no permissive mode: only constructor scheduling-value validation is deferred
+for a validated saved intent; new-job checks always use the strict validator.
 
 A validated saved intent is recovered before new maintenance-value validation.
 Its exact sender/chain/contracts/receipt/nonce/fees remain checked. Once recovered,

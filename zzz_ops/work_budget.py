@@ -105,5 +105,12 @@ class BudgetedRPC:
         checkpoint()
         return result
 
+    def eth_call(self, to, data, sender=None, block='latest'):
+        # Route the convenience API through this wrapper, not inner.eth_call:
+        # injected transports must obey the same call count and result expiry.
+        tx = {'to':to, 'data':data}
+        if sender: tx['from'] = sender
+        return self.call('eth_call', [tx,block])
+
     def __getattr__(self, name):
         return getattr(self.inner, name)

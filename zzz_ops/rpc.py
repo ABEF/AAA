@@ -54,7 +54,10 @@ class Rpc:
         'eth_getBalance','eth_feeHistory','eth_maxPriorityFeePerGas','web3_clientVersion','debug_traceCall',
     })
     def __init__(self, urls: list[str], chain_id: int, *, timeout: float = 10, retries: int = 3):
-        if not isinstance(urls,list) or not 1 <= len(urls) <= 8 or type(chain_id) is not int or chain_id <= 0:
+        # Validate and retain the same snapshot. Editing a caller's config list
+        # later must not replace endpoints or expand this client's retry bound.
+        urls = tuple(urls) if isinstance(urls,list) else ()
+        if not 1 <= len(urls) <= 8 or type(chain_id) is not int or chain_id <= 0:
             raise ValueError('One to eight RPC URLs and positive integer chain_id are required')
         if type(retries) is not int or not 1 <= retries <= 10 or type(timeout) not in (int,float) or not 0 < timeout <= 60:
             raise ValueError('RPC retries/timeouts exceed supported bounds')

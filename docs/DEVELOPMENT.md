@@ -122,10 +122,12 @@ Keep normal runtime/initcode/gas gates and exact constructor arguments.
 The focused selection includes current portfolio, ProtocolPolicy1 and integrity
 regressions alongside historical cases. `--list` proves selection only and runs
 zero test bodies; count actual scoped executions separately.
-It now includes the9 action-resilience regressions for streaming RPC, strict
-maintenance fields, paid recovery and source6 transient conditions. The current
-851-method inventory is not851 executed passes. [Recorded affected stages](../reports/action-resilience-audit-20261102/VERIFICATION.md)
-retain negative controls, Windows driver corrections and the Unix-only skip.
+It now includes16 action-resilience regressions: streaming RPC, immutable endpoint
+configuration, metered contract reads, strict fields/uint256 overrides, paid
+recovery and source6 transient conditions. The current858-method inventory runs
+zero bodies. [Current affected stages](../reports/consolidation-20261103/VERIFICATION.md)
+and [earlier evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md)
+retain negative controls, source scopes and the Unix-only skip.
 
 ```bash
 python3 scripts/run-keeper-tests.py --list --output path/to/new-selection.json

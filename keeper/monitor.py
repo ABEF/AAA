@@ -46,6 +46,11 @@ MAX_BUYBACK_TASKS = 32
 OUTSIDE_REBALANCE_STATE = 'outside_rebalance_v2'
 REBALANCE_CHECK_SECONDS = 3600
 MAX_OUTSIDE_SCHEDULES = 10000
+MAINTENANCE_FIELDS = frozenset({
+    'compound','compound_idle','harvest','sync_external_rewards',
+    'minimum_liquidity','minimum_compound_units','harvest_interval_seconds',
+    'compound_interval_seconds','compound_thresholds','reward_routes',
+})
 CONFIRMATION_RESETS = 'confirmation_reset_v1'
 CONFIRMATION_CLEARS = 'confirmation_clear_v1'
 FEES_COLLECTED_TOPIC = '0x'+keccak256(b'FeesCollected(uint256,uint256,uint256)').hex()
@@ -204,8 +209,9 @@ class Keeper:
         if not isinstance(self.maintenance,dict) or not isinstance(self.overrides,dict):
             raise ValueError('Maintenance defaults and bucket overrides must be objects')
         for bucket,settings in self.overrides.items():
-            if str(positive(bucket,'bucket_overrides key')) != bucket or not isinstance(settings,dict):
-                raise ValueError('Bucket overrides require canonical decimal bucket IDs and object settings')
+            number = positive(bucket,'bucket_overrides key')
+            if str(number) != bucket or number >= 1 << 256 or not isinstance(settings,dict):
+                raise ValueError('Bucket overrides require canonical uint256 bucket IDs and object settings')
         self.path = Path(config.get('state_path','var/keeper.json'))
         self.health_path = Path(config.get('health_path',str(self.path.with_suffix('.health.json'))))
         paths = [self.path.resolve(),self.health_path.resolve(),Path(config.get('lock_path','var/keeper.lock')).resolve()]
@@ -230,10 +236,10 @@ class Keeper:
             raise ValueError('Persistent keeper state belongs to another deployment')
         positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
         self._validate_state()
-        # Old pending transactions retain their original recovery path. Retired
-        # bridge configuration may not schedule any NEW transaction, but must
-        # not prevent inspection of an already saved hash.
-        self._validate_maintenance_config(allow_retired=bool(self.state.get('pending')))
+        # Recover an existing validated intent before checking new scheduling
+        # values. The validator itself is always strict: no permissive mode can
+        # leak into cycle()/submit(). Deployment/signer/journal checks still run.
+        if not self.state.get('pending'): self._validate_maintenance_config()
         self.retry_cooldown = positive(config.get('revert_cooldown_seconds',3600),'revert_cooldown_seconds')
         if not 60 <= self.retry_cooldown <= 86400: raise ValueError('Revert cooldown must be 60-86400 seconds')
         self.cycle_failures = 0
@@ -563,13 +569,10 @@ class Keeper:
         self.active_revert_cooldowns = count
         self.next_revert_retry_after = earliest
 
-    def _validate_maintenance_settings(self,settings: dict[str,Any],*,allow_retired: bool = False) -> None:
+    def _validate_maintenance_settings(self,settings: dict[str,Any]) -> None:
         if not isinstance(settings,dict): raise ValueError('Maintenance settings must be an object')
-        allowed = {'compound','compound_idle','harvest','sync_external_rewards',
-            'minimum_liquidity','minimum_compound_units','harvest_interval_seconds',
-            'compound_interval_seconds','compound_thresholds','reward_routes'}
-        if set(settings)-allowed: raise ValueError('Unknown maintenance setting; use documented fields')
-        if self.fee_intake_version == 1 and settings.get('sync_external_rewards',False) and not allow_retired:
+        if set(settings)-MAINTENANCE_FIELDS: raise ValueError('Unknown maintenance setting; use documented fields')
+        if self.fee_intake_version == 1 and settings.get('sync_external_rewards',False):
             raise ValueError('LP-only fee intake has no creator-payment synchronization job')
         for name in ('compound','compound_idle','harvest','sync_external_rewards'):
             if name in settings and type(settings[name]) is not bool:
@@ -595,18 +598,12 @@ class Keeper:
                     raise ValueError('Compound threshold exceeds uint256')
         if 'reward_routes' in settings:
             routes = settings['reward_routes']
-            if not isinstance(routes,list) or routes and not allow_retired:
+            if not isinstance(routes,list) or routes:
                 raise ValueError('Reward bridge scheduling is retired; remove reward_routes without changing pending evidence')
 
-    def _validate_maintenance_config(self,*,allow_retired: bool = False) -> None:
-        # This constructor-only exception is for an existing saved intent, not
-        # permission to schedule new work. cycle() recovers it first, then calls
-        # this validator strictly before any new task. Deployment/signer/receipt/
-        # nonce bindings are still validated; never rewrite a pending record to
-        # make a new maintenance configuration appear valid.
-        if allow_retired: return
+    def _validate_maintenance_config(self) -> None:
         for settings in (self.maintenance,*self.overrides.values()):
-            self._validate_maintenance_settings(settings,allow_retired=allow_retired)
+            self._validate_maintenance_settings(settings)
         for override in ({},*self.overrides.values()):
             settings = {**self.maintenance,**override}
             if self.maintenance_policy_version in (2,3) and settings.get('compound',True) and not settings.get('compound_thresholds'):

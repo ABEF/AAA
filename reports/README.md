@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Three-audit consolidation](consolidation-20261103/REVIEW.md) reconciles the
+following three reports and their open gates. It snapshots reviewed RPC endpoint
+configuration, meters convenience contract reads, removes permissive maintenance
+validation switches and rejects impossible override IDs. [Verification](consolidation-20261103/VERIFICATION.md)
+records negative controls and affected checks; production Solidity and prior
+normal/static pins remain unchanged. No live rollout or independent approval.
+
 [Action resilience audit](action-resilience-audit-20261102/REVIEW.md) fixes RPC
 body progress, ignored maintenance names and new-maintenance blocking of paid
 recovery. Its [action matrix](action-resilience-audit-20261102/ACTION_MATRIX.md)

@@ -13,23 +13,14 @@ The prior [source audit](reports/day-audit-20261031/REVIEW.md) fixes physical-re
 availability, activation bindings and ordinary replacement activity. Source changes do not update existing
 Anvil contracts, journals, workers or websites. Public signing remains disabled.
 
-The [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
-ordinary single/hybrid quote selection before final minting, verifies reward and
-enable/disable/merge sequences, and corrects the earlier harvest-source independence
-claim. [Evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md) records the
-actual negative cases, scoped EVM/backend checks, fresh normal sizes and internal
-static review. Original reports retain their historical scope.
-
-The [multi-day portfolio study](reports/portfolio-long-horizon-20261102/REVIEW.md)
-extends that evidence through six virtual days, repeated one/two-leg transitions,
-ETH/ZZZ entries, compounding, claims and serialized user/keeper ordering. It
-changes no production contract; real service/market qualification remains open.
-
-The [action resilience audit](reports/action-resilience-audit-20261102/REVIEW.md)
-fixes streaming RPC progress, ignored maintenance keys and maintenance-value
-blocking of paid recovery. Its [output matrix](reports/action-resilience-audit-20261102/ACTION_MATRIX.md)
-separates confirmed execution from temporarily unavailable API results. Solidity
-and economic policy are unchanged; source publication is not service rollout.
+The [current consolidation](reports/consolidation-20261103/REVIEW.md) reconciles
+the latest three audits and hardens shared RPC configuration/read budgets and
+strict keeper validation. [Verification](reports/consolidation-20261103/VERIFICATION.md)
+preserves the exact contract [LP lifecycle scope](reports/lp-lifecycle-audit-20261102/VERIFICATION.md),
+[multi-day study](reports/portfolio-long-horizon-20261102/VERIFICATION.md) and
+[action/output boundaries](reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
+Real service/market qualification and independent review remain open. Source
+publication changes neither contract policy nor running services.
 
 ## Project navigation
 

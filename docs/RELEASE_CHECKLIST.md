@@ -1,11 +1,17 @@
 # Release approval record - NOT APPROVED
 
-Reviewed2026-11-02. This approves one frozen release; it is not a second Todo.
+Reviewed2026-11-03. This approves one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
 
 ## Evidence and approval boundary
+
+[Shared-client consolidation](../reports/consolidation-20261103/VERIFICATION.md)
+records focused backend checks and unchanged contract evidence. Endpoint input
+isolation and metered contract-read shortcuts do not qualify actual providers,
+Unix watchdog/storage, target gas or sustained operations. Production stays
+NOT APPROVED; earlier reports keep their original source scopes.
 
 Current [accounting6 policy verification](../reports/adaptable-policy-20261031/VERIFICATION.md)
 adds fresh43 normal gates and scoped new runtime/backend checks. Old42-gate/463

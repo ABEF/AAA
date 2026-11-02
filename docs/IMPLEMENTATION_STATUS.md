@@ -1,6 +1,6 @@
 # Feature and evidence reference
 
-Reviewed 2026-11-02. This records implemented source, not another task list.
+Reviewed 2026-11-03. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 
@@ -41,6 +41,12 @@ No economic rules, deployed contracts or operating services changed.
 | Emergency | Paused governance-only reviewed manifest; both-leg liquidity-sensitive fingerprint. Financial bypass is explicit and can lose nearly all principal; structural rights/ownership/settlement remain. | [Emergency](EMERGENCY_REBALANCE.md) |
 
 ## Backend and operations
+
+The [current consolidation](../reports/consolidation-20261103/REVIEW.md) adds
+immutable validated RPC endpoints and budgeted convenience contract reads,
+removes permissive maintenance-validation switches and bounds override IDs.
+Pending receipt recovery remains separate from strict new-work validation.
+No contract ABI/policy, API schema, signing or running service changed.
 
 | Capability | Implemented source boundary |
 | --- | --- |

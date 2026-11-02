@@ -1,0 +1,12 @@
+{
+  "base_head": "cf4e161b04c52325022e8fead7e3ca417fd8cc86",
+  "scope": "Report artifacts excluding this manifest",
+  "artifacts": {
+    "FINAL_CHECKS.json": "992f92d0fe2f6ecf321a49b1bb2d6ba9a7123ad5ec615a363117d5fba94e7484",
+    "REVIEW.md": "a53f09815a273e1af9898979a63642ec623477ddf69b041a3f3660e44a972efe",
+    "VERIFICATION.md": "25a7897844f8bc2ba48c9eade7c375ac43223bf1ea989d0d96ca9808614ded81",
+    "documentation-links.json": "c77e8a9c3ba8dc84ab9e01bba3714c4c400f02a21fc199c1f64debea07f1cfb4",
+    "source-preservation.json": "553768bba126f4e635b71ea956d1fe7173d8f3267dffbc986e3b7c87080f3366",
+    "tests.json": "8ddb201391935ace46b92de842875f42dc77a5fa18f25d3835a5d519305e558d"
+  }
+}

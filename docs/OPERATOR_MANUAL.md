@@ -1809,6 +1809,13 @@ documented compensating control, never a guessed rollback or journal deletion.
 
 ### Confirm action results before retry
 
+Changing RPC endpoints requires a reviewed configuration and controlled service
+restart: existing clients retain their validated endpoint snapshot. Preserve the
+same journal and resolve pending transactions/checkpoints; do not erase history
+to switch providers. Call budgets cover both direct and convenience contract
+reads. They do not replace the process/host watchdog for blocked network I/O.
+[Current shared-client review](../reports/consolidation-20261103/REVIEW.md).
+
 Keep transaction confirmation separate from availability of the next API read.
 If the chain confirms an action but the API/prices fail for a minute, retain the
 hash and confirmed status; refresh that action's post-state without submitting
