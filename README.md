@@ -25,6 +25,12 @@ extends that evidence through six virtual days, repeated one/two-leg transitions
 ETH/ZZZ entries, compounding, claims and serialized user/keeper ordering. It
 changes no production contract; real service/market qualification remains open.
 
+The [action resilience audit](reports/action-resilience-audit-20261102/REVIEW.md)
+fixes streaming RPC progress, ignored maintenance keys and maintenance-value
+blocking of paid recovery. Its [output matrix](reports/action-resilience-audit-20261102/ACTION_MATRIX.md)
+separates confirmed execution from temporarily unavailable API results. Solidity
+and economic policy are unchanged; source publication is not service rollout.
+
 ## Project navigation
 
 | Purpose | Start here |

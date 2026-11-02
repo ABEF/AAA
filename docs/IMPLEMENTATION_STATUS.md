@@ -66,6 +66,13 @@ change to the website is part of this contract implementation.
 
 ## Current evidence and limits
 
+[Action resilience evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md)
+records RPC body progress checks, exact maintenance-name validation and paid
+recovery before new maintenance work.176 distinct selected Python methods succeed
+across retained stages, with one Unix permission skip. Actual spawned API worker
+containment and price-outage projections are scoped local evidence; live provider/
+OS/keeper and website qualification remain open. No Solidity or economic change.
+
 [Multi-day portfolio evidence](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
 adds four scoped actual-core journeys across stages: six virtual days, repeated
 one/two-leg transitions, both Entry assets,5USD growth, hourly collections,

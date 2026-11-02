@@ -8,6 +8,17 @@ archives remain historical and verifiable. This source change is not a service
 rollout or permission to modify existing journals.
 
 Operating runbook for an **undeployed candidate; production NOT APPROVED**.
+
+Unknown maintenance names now fail before new work, including defaults and
+per-bucket overrides. A valid saved pending intent still recovers first despite
+invalid new maintenance values; strict validation then halts before another job.
+Preserve that confirmed receipt/nonce/spend trail, correct config and restart with
+the same journal. No new signer/adoption or journal migration is implied.
+[Exact accepted fields and recovery order](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
+The shared RPC body progress guard closes reads that exceed attempt/request work
+between fragments; DNS/headers/in-progress reads still need socket/process/host
+containment. API isolated-worker termination is separate from keeper watchdog
+qualification. [Scoped fault evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md).
 Use the [rehearsal guide](KEEPER_REHEARSALS.md) for commands and evidence, the
 [keeper internal review](../reports/keeper-recovery/REVIEW.md) for its original
 scope, and the [central Todo](../TODO.md#task-keeper-recovery) for remaining work.

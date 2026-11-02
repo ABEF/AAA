@@ -35,6 +35,12 @@ runtime, simulation, gas and operating/marketplace rehearsal remain release gate
 
 ## Current candidate and evidence limits
 
+[Action resilience verification](../reports/action-resilience-audit-20261102/VERIFICATION.md)
+adds scoped Python fault/transport/recovery fixes at unchanged Solidity pins.
+One Unix ownership/permission method remains skipped; actual provider/OS/watchdog
+and sustained source6 operating acceptance are not signed off. A post-action
+API outage must not trigger duplicate submission or guessed balances.
+
 [Multi-day portfolio execution](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
 adds scoped virtual-time contract evidence at unchanged production source pins.
 It does not sign off uninterrupted keeper operation, actual service jitter,

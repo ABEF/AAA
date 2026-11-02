@@ -23,7 +23,7 @@ class KeeperRunnerInventoryTests(unittest.TestCase):
                          'test_typed_v4_conversion_keeper', 'test_lp_conversion',
                          'test_rpc', 'test_rpc_integrity', 'test_state', 'test_staging_monitor',
                          'test_state_json_integrity',
-                         'test_reference_confirmation_v2'})
+                         'test_reference_confirmation_v2','test_action_resilience'})
         self.assertEqual(set(RUNNER.MODULES), required)
         self.assertEqual(len(RUNNER.MODULES), len(required))
 

@@ -31,6 +31,15 @@ Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUT
 
 ## Current deployment profile
 
+The shared read-only RPC client checks response-body progress against attempt and
+request budgets while retaining strict chain/envelope/size checks. This is not
+hard preemption of every OS/header read; API workers retain independent bounded
+process supervision. Preserve confirmed ownership/raw claims when optional USD
+pricing fails, but reject inconsistent physical backing. A read503 after a mined
+action is not evidence that the transaction failed; recover the same hash rather
+than prepare a duplicate. [Action output boundaries](../reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
+Source publication does not update the currently served older integration site.
+
 Fresh configuration uses explicit `accounting_version:6` and `fee_intake_version:1`
 with read schema2. It verifies Vault6, direct governance2, custody4 and the
 explicit `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` admission domain. Position still has

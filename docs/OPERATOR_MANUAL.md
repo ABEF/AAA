@@ -1805,6 +1805,33 @@ documented compensating control, never a guessed rollback or journal deletion.
 
 ## Services and server recovery
 
+<a id="confirm-action-results-before-retry"></a>
+
+### Confirm action results before retry
+
+Keep transaction confirmation separate from availability of the next API read.
+If the chain confirms an action but the API/prices fail for a minute, retain the
+hash and confirmed status; refresh that action's post-state without submitting
+again. Before retrying an unconfirmed action, recover its exact saved hash/nonce
+and inspect allowances. A separately mined approval is not rolled back by a later
+failed contribution, and network gas remains separate.
+
+Verify operation events **and** current confirmed state. `FeesCollected` is the
+actual combined receipt before allocation, not one NFT's payout. `Compounded`
+reports released designated reserves, not total newly deployed LP if existing
+idle also participates. Use actual LP/idle/reserve/share balances. Router claim
+results are input-ordered raw amounts; never add unlike currencies. A failed
+claim batch is atomic, not a partial payment. Conversion/claim/import is not new
+income, and a reserved buyback allocation is not an executed burn.
+[Action/output and fault matrix](../reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
+
+Maintenance defaults/overrides now reject unknown names. There is no
+`rebalance:false` local stop setting. Use the actual documented Access/pool/pause
+controls above. A validated saved transaction recovers before invalid new
+maintenance values halt further work; repair config and restart with the same
+journal/receipt/nonce history. Do not edit history to match a changed source hash.
+[Exact fields and recovery boundary](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
+
 Fresh schema8 preflight separates current `chains[].buyback_maximum_usd18` from
 `constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
 the actual pinned live getter as current policy, preserve creation provenance

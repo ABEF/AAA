@@ -1,0 +1,13 @@
+{
+  "base_head": "8240de0092c6d7364eb34e8c6c6bbc1b476ff982",
+  "kind": "owned action resilience report artifacts, excluding this manifest",
+  "artifacts": {
+    "ACTION_MATRIX.md": "eec3f6c71b684587049524d6eef259e8bd68b8b799b24ff9626e8e4bc187ef08",
+    "FINAL_CHECKS.json": "abbdb8d50adc95de2420a587c8ec21014972f8870ebfc37cbf798a12500af8fa",
+    "REVIEW.md": "bc1001b727392ea80f5833aac8a416e0ba337e0df09513388a26aa6dd5eaaa5a",
+    "VERIFICATION.md": "1ae68b31a7095b66b55a7cd5af139dd67bea5071e8b36de6d388b057b1179ccf",
+    "documentation-links.json": "7da47b5ba91a3f70c8438a692a09a7d1e4d0d4bcf5cfaebb47640914baafb996",
+    "source-preservation.json": "32f23b2c59b50d5667f5ad71b0db7d3158656aa86705ad64f3c2936fd5cc5106",
+    "tests.json": "a99b54b88757fc719cda5f7a4393bd5939216967c5368e8cf3d733a03ebac2b5"
+  }
+}

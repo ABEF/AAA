@@ -50,6 +50,14 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
+The [action resilience review](../reports/action-resilience-audit-20261102/VERIFICATION.md)
+fixes RPC body progress/maintenance validation and preserves exact paid recovery
+before new-job validation.176 distinct selected Python successes across stages,
+one Unix skip;851-method selection is inventory only. No production Solidity
+change; prior exact-source size/static evidence below remains applicable. Real
+provider/header/DNS/watchdog, source6 service/site and long-term history gates
+stay open; do not alter old journals or repeat confirmed actions after API failure.
+
 The [multi-day portfolio study](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
 adds four scoped contract journeys, including six virtual days and both serialized
 user/keeper orderings.52 production/31dependency pins remain unchanged; normal

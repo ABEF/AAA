@@ -82,16 +82,43 @@ Malformed/oversized/parser-limited replies fail through bounded configured
 endpoint retries; WorkLimit still stops request work immediately. Valid finite
 fee-history floats and the adapter's checked integer chain-ID return are retained.
 A response containing both a result and a missing-block error is malformed,
-not evidence of correct unavailable-block handling. Socket inactivity timeouts
-are not absolute DNS/header/body deadlines; use the reviewed systemd progress
-watchdog below for keeper stall containment. API request workers retain their
-separate hard30 second supervisor.
+not evidence of correct unavailable-block handling. Response bodies now use
+bounded available fragments with monotonic attempt-time and request-budget
+checks between reads; bytes arriving do not restart the attempt clock. The8MiB
+payload limit and sanitized bounded endpoint failover remain. WorkLimit never
+starts another endpoint attempt.
+
+This progress guard cannot preempt DNS, slow headers/chunk metadata or an
+in-progress blocked read. Use the reviewed systemd progress watchdog below for
+keeper stall containment; actual provider/OS behavior still needs qualification.
+API request workers retain their separate hard30 second supervisor. Affected
+worker termination/reaping and HTTP checks are in the
+[action resilience evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md).
 
 On persistent failure, keep pending intents/index state, inspect fixed error
 site/type diagnostics and compare the same canonical block with a reviewed
 independent endpoint. Do not echo raw provider responses/credentials, reset a
 journal, resend a saved transaction or bypass strict decoding. Actual provider
 qualification remains open. [Review and evidence](../reports/system-adversarial-20261026/VERIFICATION.md).
+
+## Maintenance configuration errors and paid recovery
+
+`maintenance` and each `bucket_overrides` object accept only `compound`,
+`compound_idle`, `harvest`, `sync_external_rewards`, `minimum_liquidity`,
+`minimum_compound_units`, `harvest_interval_seconds`, `compound_interval_seconds`,
+`compound_thresholds` and the compatibility-only `reward_routes`. Retired nonempty
+routes and current fee-intake1 creator synchronization still cannot schedule work.
+Unknown names are errors: a typo is never silently ignored. `rebalance:false` is
+not a supported local stop control; use the reviewed Access/pool/pause controls
+in the [operator manual](OPERATOR_MANUAL.md#common-stop-and-restart-sequences).
+
+A validated saved intent is recovered before new maintenance-value validation.
+Its exact sender/chain/contracts/receipt/nonce/fees remain checked. Once recovered,
+invalid maintenance values halt before any new job. Correct the configuration,
+review the matching source release and restart with the **same journal**; do not
+erase the confirmed receipt or resend it. Structural/deployment/signer and other
+job configuration still must be valid, or restore the original reviewed config
+to perform recovery. [Implemented boundary](../reports/action-resilience-audit-20261102/REVIEW.md).
 
 ## Versioned health and execution diagnostics
 

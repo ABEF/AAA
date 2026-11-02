@@ -109,6 +109,17 @@ the same asset side. This is not a live keeper/browser/load/profit qualification
 
 ## What remains
 
+[Current action resilience](reports/action-resilience-audit-20261102/REVIEW.md)
+fixes RPC body progress budgets and rejects unknown maintenance names before new
+work. Validated saved pending intents recover before invalid new maintenance
+values halt future work; receipt/nonce/spend/deployment identity stays intact.
+176 distinct selected Python methods pass across recorded stages, with one Unix
+permission skip and original negative/driver/fixture failures retained. No
+Solidity/policy change: reuse prior52/31-source43-gate/static scope. Body progress
+is not DNS/header preemption; API worker containment and keeper watchdog/provider
+operating acceptance remain separate. The action matrix distinguishes confirmed
+execution from API/price unavailability and event labels from actual post-state.
+
 Production NOT APPROVED. Actual dual feeds/routes/VRF/authorities/OpenSea,
 accounting6 website/services, target gas/market economics, operating recovery,
 metadata hosting and independent audit/remediation remain open.60/40 is an

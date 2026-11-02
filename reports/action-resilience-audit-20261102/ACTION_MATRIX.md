@@ -1,0 +1,59 @@
+# Action outputs, failure boundaries and recovery
+
+Reviewed2November2026. Inspected current production code and its callers/readers;
+fresh backend evidence and reused contract scope are in [verification](VERIFICATION.md).
+This is a bounded interaction inventory, not proof of all executions or another
+Todo/operator manual. Use the [maintained manual](../../docs/OPERATOR_MANUAL.md).
+
+## A successful transaction is not a complete UI read
+
+Record the exact transaction hash. Verify canonical inclusion, receipt status,
+sender/target/calldata/value and current deployment. Check operation-specific
+events and current state at a consistent confirmed block. A later API failure
+means the post-state is temporarily unreadable, not that execution reverted.
+Keep confirmed status and last-confirmed data explicitly labelled; never resend
+the action or substitute zero. Quote/simulation success is not a mined receipt.
+
+| Action | Successful output/post-state to inspect | Failure and next step |
+| --- | --- | --- |
+| Mint dormant NFT | Returned NFT ID in simulation; canonical mint ordinal, current owner, `DormantMinted`, exact mint payment and original randomness request. Revealing is separate. | Failed mint reverts its payment/mint. A mined unrevealed NFT is not another mint attempt. Pause new mints on provider outage; preserve original draws, no reroll. OpenSea integration remains unqualified. |
+| Activation | `SourceContributed` for Entry; `Activated`, `SharesAdded`, `ContributionVerified`; actual marginal deployed main LP, aggregate NAV shares, new membership and NFT owner. | Approval alone is not activation. Reverted execution returns in-transaction contribution changes; separately mined approvals and gas remain. Inspect current allowance before a new review. A successful contribution can precede metadata/API refresh. |
+| Growth | Same Entry/share/deployment proofs plus `LiquidityAdded`; main L grows, residual L/IDs/centre/clock unchanged. Membership unchanged. | Reject below effective action/pool minimum, bad price, stale controls, insufficient marginal deployment or caller floors. Never use incumbent residual/idle to fill an entrant shortfall. |
+| NFT transfer | ERC721 Transfer/current owner. Principal shares and all past unclaimed LP/royalty rights follow the NFT. | Queued previous-owner claims/growth must reject at execution. Transfer is not income, a membership change or a receipt of new LP fees. |
+| Harvest | `FeesCollected` exact actual combined ETH/ZZZ receipts from both live legs, allocation events/indices/reserves and carried dust.0/0 can be valid. | No per-NFT payout, swap or burn is implied. A failed leg reverts the entire collection; independently allocated past claims stay backed. Paused/terminal/lifecycle guards still apply. |
+| Claim / bounded claim batch | Exact ledger `Claimed` events, paid raw currency/amount, current owner, reduced liabilities. Router returns input-ordered raw amount array; never add unlike currencies. | Batch is atomic if a selected claim fails. Exclude a failed optional currency and review a healthy subset; do not assume partial batch payment. Claim does not rebalance, compound, burn or create income. |
+| Convert holder LP/royalty balances | Source entitlements consumed, actual ETH credited to the same NFTs, conversion receipt and backing/approval checks. | Prices/route/amount/output failure reverts original entitlements. Unconverted ZZZ is not ETH and converter output is not a payout or new income. Qualify actual cheap routes. |
+| Compound | `Compounded` reserve-release amounts, actual main L/NAV/idle before/after, captured retention/utilization and residual L unchanged. Shares unchanged. | Event amounts are not total LP deployed when old idle is included; use actual post-state. Revert preserves reserves/principal. Keeper waits in-range/below-threshold/no pending geometry; do not use it as a rebalance bypass. |
+| Buyback/burn | `BoughtAndBurned`, actual acquired fixed ZZZ and verified total-supply reduction; only buyback reserves spent. | Reserving5% is not burning. Failed swap/burn reverts reserve release. Real fixed-ZZZ burn behavior and fees remain qualification gates. |
+| Ordinary rebalance | `Rebalanced`, new main and optional residual, both old IDs burned, applied revision, active main, aggregate retained principal and allocation/idle floors. | Any close/swap/mint/control failure reverts the whole action. Earlier separately mined configuration remains. No unsafe fallback or creation of a third leg. Source-trigger/reference disagreement or cooldown can legitimately delay it. |
+| Enable/disable/change portfolio policy | Monotonic desired/geometry/control revisions and current getter values; no immediate LP movement. | Desired off with a residual is valid pending state. Do not hide its value/fees. Same-value restore is not permission to revive old observations. Changes need fresh review and later guarded application. |
+| Pause / unpause | Exact Access/mint/deposit flag changed and documented affected operations; actual LP remains in Uniswap until a separate close. | Pause does not redeem principal, stop market trading or reverse terminal exit. Unpause does not redeploy parked/idle assets or clear other stopped flags. |
+| Close residual only | Exact paused governance manifest/nonce/epoch/minima, both-leg harvest, residual burn, same-bucket attributed idle; main/shares/clock preserved. | No immediate payout/swap/reinvestment or automatic mode change. Large idle may block entries until guarded recovery. Failed call rolls back this operation; prior pause/settings remain. |
+| Park / resume | Both legs close into attributed Vault inventory; Parked status/no live residual. Resume validates actual destination and deployed portfolio. | Unpause alone is not resume. Broken token/venue can still prevent movement. Preserve classification, original shares and rewards; no arbitrary sweep. |
+| Same-actual-pair pool movement | Both source legs close, captured source controls remain valid, reviewed native ETH/fixed-ZZZ destination opens and shares persist. | Swap venue and LP destination are different policies. Changing a pool catalog alone does not migrate LP. Other pairs/chains require terminal return/redeployment; no bridge or external custodian. |
+| Manual emergency consolidation | Paused governance exact manifest, chosen retained guards, actual single main and classified backing. | Optional financial bypass can lose almost all principal. Never automate as everyday retry. Desired hybrid mode is a separate setting; verify/unpause deliberately. |
+| Terminal holder return | Exit phase/cursors, both legs/compound closed, allocated proportional raw principal, per-NFT paid flags and isolated direct delivery receipts. | No reopen/cancel. Rejecting receivers stay backed for retry/fallback; cannot force arbitrary contracts to accept payment. Old rewards, NFT transfers and future royalties remain separate. |
+| Canonical same-chain replacement | Reviewed notice/freeze, exact ownership/reward/backing records, zero live residuals before parked capture, one activated successor or fully funded abort. | Record compatibility is not runtime compatibility. No post-halt recovery, integrated cross-chain transport or multisig-only finality shortcut is supplied. |
+| Metadata / indexing / earnings | Current chain-derived stage/ownership, both-leg valuation, canonical receipt provenance and exact earned/claimable/claimed distinctions. | Missing price/history is unavailable, not zero. Reorg rollback and complete pinned history remain required. Cached artwork can lag successful execution; image change is not financial confirmation. |
+
+## Fault and volatility cases
+
+| Case | Required response / mitigation | Evidence boundary |
+| --- | --- | --- |
+| One-minute required-price/condition fault during mature jitter | Drop jitter, persist reset requirement and block ordinary submission across restart. Recovery cannot extend old sampled evidence merely because price returned. | New source6 synthetic transcript regression. |
+| Price/reference reverse side while waiting | Old-side mature evidence cannot authorize the new side. Reset and collect valid new evidence; retain hard cooldown and financial checks. | New source6 transcript; prior actual-core guard evidence reused. |
+| Price swings between observations | Sampled evidence cannot detect every unseen move. Recheck on-chain at execution; use independent reviewed sources and bounded output/loss safeguards. | Known design limit; no uninterrupted TWAP/MEV guarantee. |
+| Price exits both legs during12-hour minimum | Both can become same-asset inactive inventory. Report exposure and blocker; no automatic clock override or financial relaxation. | User-chosen hard minimum; virtual-day evidence is not optimized policy proof. |
+| RPC sends slow body fragments | Check read progress against attempt/request budgets, close incomplete response, bounded failover. API isolated worker can terminate blocked work. | New timed fragments plus affected transport/process/HTTP tests. DNS/header/chunk-metadata/in-progress read and keeper watchdog still need actual provider/OS qualification. |
+| RPC missing/oversized/malformed/wrong-chain/stale/reorged data | Reject; do not treat missing pool, balances or receipts as zero/success. Pin canonical snapshots and verify identity, not just endpoint availability. | Affected RPC/integrity and API regression checks. Provider honesty/independence remains a trust/qualification requirement. |
+| Paid action confirmed but post-action API fails | Keep the transaction/hash and last-confirmed status. Recover/read the same action; no new submission or repeated approval as a substitute. | Existing transaction/receipt recovery source; source6 browser/service rollout remains open. |
+| Mistyped maintenance key / unsupported stop toggle | Reject before new work, without echoing unknown values. `rebalance:false` is not a supported local stop switch. | New global/override regressions; use reviewed Access/pool/manual controls. |
+| New maintenance values invalid while a receipt is pending | Validate/recover the exact saved intent first; then halt before any new task. Correct configuration and restart with the unchanged journal/nonce trail. | New paid-recovery/restart regressions; identity/fee/receipt checks not bypassed. |
+| Crash before/after broadcast or missing hash | Preserve durable intent; reconcile exact original sender/nonce/transaction. Ambiguous does not mean unsent. | Existing recovery tests; no automated resend/adoption. |
+| Extended server outage / server migration | Restore verified backup and matching source/config, reconcile chain/nonce/pending receipts, then resume eligible work; funds remain in on-chain custody. | Unix ownership/permissions skip and real off-host/watchdog/reorg rehearsals remain open. |
+| Broken admitted token, pool/periphery or price infrastructure | Stop affected work, keep healthy independent claims paths where available and preserve backing; use permitted raw recovery only when executable. | No guarantee against arbitrary upstream failure/blacklists/chain loss. No new arbitrary recipient/executor. |
+| Repeated allowed losses / expensive maintenance | Observe actual costs and inactive time. Per-operation caps do not bound cumulative losses or guarantee profitable fees. | Economics/gas/MEV qualification remains open; preserve selected policy. |
+| Long-lived history exceeds replay budgets | Fail explicitly and retain raw/canonical history. Design measured authenticated archive/read model, not unsigned cached totals or truncated lifetime claims. | Existing open history-scaling task. |
+
+All public signing, existing sites/Anvil, operating services, recovery journals and
+the user-paused heartbeat remain unchanged by this audit.

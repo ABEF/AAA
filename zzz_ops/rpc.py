@@ -77,9 +77,28 @@ class Rpc:
     def _read_http(self, url: str, raw: bytes) -> bytes:
         """Transport hook; response identity, limits and budgets stay in _post."""
         request = urllib.request.Request(url, data=raw, headers={'Content-Type':'application/json'})
+        attempt_timeout = timeout(self.timeout)
+        deadline = time.monotonic() + attempt_timeout
         try:
-            with self._opener.open(request,timeout=timeout(self.timeout)) as response:
-                return response.read(8 * 1024 * 1024 + 1)
+            with self._opener.open(request,timeout=attempt_timeout) as response:
+                # read(n) may wait across many individually timely socket reads.
+                # Read available fragments instead, checking elapsed/request work
+                # between them. Never reset the attempt clock as bytes arrive.
+                # A blocked read/header still relies on socket/provider/host
+                # limits; this is not a hard preemption of DNS or HTTP headers.
+                read = getattr(response,'read1',None)
+                if not callable(read): raise RpcError('RPC stream cannot provide bounded reads')
+                body = bytearray()
+                while len(body) <= 8 * 1024 * 1024:
+                    checkpoint()
+                    if time.monotonic() >= deadline: raise RpcError('RPC response deadline exceeded')
+                    chunk = read(min(65536,8 * 1024 * 1024 + 1 - len(body)))
+                    checkpoint()
+                    if time.monotonic() >= deadline: raise RpcError('RPC response deadline exceeded')
+                    if not isinstance(chunk,bytes): raise RpcError('Malformed RPC transport payload')
+                    if not chunk: break
+                    body.extend(chunk)
+                return bytes(body)
         except urllib.error.HTTPError as exc:
             # Error responses own sockets too; release them before bounded retry.
             exc.close()

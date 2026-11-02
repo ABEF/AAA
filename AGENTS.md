@@ -139,6 +139,16 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
+- [Action resilience review](reports/action-resilience-audit-20261102/REVIEW.md)
+  adds bounded RPC body progress, strict maintenance names and maintenance-value
+  deferral only for validated saved-intent recovery. Identity/receipt/nonce/fees
+  still bind; after recovery invalid settings halt before new work.176 distinct
+  selected Python methods succeed across recorded stages, one Unix skip;851
+  inventory entries execute zero bodies. Keep driver/fixture failures explicit.
+  Production52/dependency31 pins stay unchanged; no source6 site/service/journal
+  adoption. Do not confuse a post-action read outage with failed execution or
+  Compounded reserve-release events with total actual LP deployment.
+
 - [Multi-day portfolio study](reports/portfolio-long-horizon-20261102/REVIEW.md)
   adds four scoped actual-core journeys across recorded stages without production
   source/policy changes. Preserve its100USD-fixture rejection, explicit5USD

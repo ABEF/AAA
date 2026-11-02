@@ -1,5 +1,13 @@
 # Verification evidence
 
+[Action resilience audit](action-resilience-audit-20261102/REVIEW.md) fixes RPC
+body progress, ignored maintenance names and new-maintenance blocking of paid
+recovery. Its [action matrix](action-resilience-audit-20261102/ACTION_MATRIX.md)
+separates confirmed results, missing reads and exact post-state. [Verification](action-resilience-audit-20261102/VERIFICATION.md)
+records176 distinct successful selected Python methods across retained stages,
+one Unix skip and driver/fixture corrections. Solidity/build/static pins remain
+unchanged; no live-service qualification or independent approval.
+
 [Multi-day portfolio review](portfolio-long-horizon-20261102/REVIEW.md) and
 [case matrix](portfolio-long-horizon-20261102/CASE_MATRIX.md) study entries,
 growth, markets, modes and recovery. Four new scoped actual-core journeys succeed

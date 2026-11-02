@@ -206,9 +206,6 @@ class Keeper:
         for bucket,settings in self.overrides.items():
             if str(positive(bucket,'bucket_overrides key')) != bucket or not isinstance(settings,dict):
                 raise ValueError('Bucket overrides require canonical decimal bucket IDs and object settings')
-        for settings in (self.maintenance,*self.overrides.values()):
-            if 'sync_external_rewards' in settings and type(settings['sync_external_rewards']) is not bool:
-                raise ValueError('sync_external_rewards must be an explicit boolean')
         self.path = Path(config.get('state_path','var/keeper.json'))
         self.health_path = Path(config.get('health_path',str(self.path.with_suffix('.health.json'))))
         paths = [self.path.resolve(),self.health_path.resolve(),Path(config.get('lock_path','var/keeper.lock')).resolve()]
@@ -568,6 +565,10 @@ class Keeper:
 
     def _validate_maintenance_settings(self,settings: dict[str,Any],*,allow_retired: bool = False) -> None:
         if not isinstance(settings,dict): raise ValueError('Maintenance settings must be an object')
+        allowed = {'compound','compound_idle','harvest','sync_external_rewards',
+            'minimum_liquidity','minimum_compound_units','harvest_interval_seconds',
+            'compound_interval_seconds','compound_thresholds','reward_routes'}
+        if set(settings)-allowed: raise ValueError('Unknown maintenance setting; use documented fields')
         if self.fee_intake_version == 1 and settings.get('sync_external_rewards',False) and not allow_retired:
             raise ValueError('LP-only fee intake has no creator-payment synchronization job')
         for name in ('compound','compound_idle','harvest','sync_external_rewards'):
@@ -598,6 +599,12 @@ class Keeper:
                 raise ValueError('Reward bridge scheduling is retired; remove reward_routes without changing pending evidence')
 
     def _validate_maintenance_config(self,*,allow_retired: bool = False) -> None:
+        # This constructor-only exception is for an existing saved intent, not
+        # permission to schedule new work. cycle() recovers it first, then calls
+        # this validator strictly before any new task. Deployment/signer/receipt/
+        # nonce bindings are still validated; never rewrite a pending record to
+        # make a new maintenance configuration appear valid.
+        if allow_retired: return
         for settings in (self.maintenance,*self.overrides.values()):
             self._validate_maintenance_settings(settings,allow_retired=allow_retired)
         for override in ({},*self.overrides.values()):

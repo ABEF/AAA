@@ -12,6 +12,12 @@ rehearse actual authority/wallet/host/dependency workflows before production.
 
 ## LP execution next steps
 
+[Action resilience fixes](../reports/action-resilience-audit-20261102/REVIEW.md)
+now bound RPC body progress, reject unknown maintenance names and preserve paid
+recovery before new-job validation. Qualify actual DNS/header/provider/watchdog
+behavior, Unix permissions and source6 consumer rollout; local process/fault
+tests do not close those operating gates or long-lived history scaling.
+
 [Multi-day contract journeys](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
 now exercise repeated modes, entry, rewards and compound over virtual days. Their
 controlled caller/time/feed substitutes do not close sustained source6 keeper,
