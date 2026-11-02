@@ -1,0 +1,23 @@
+{
+  "scope": "Generated document consistency, not EVM tests",
+  "checks": [
+    {
+      "command": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Project Todo verified.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 37, \"functions\": 826, \"constructors\": 37, \"receive_hooks\": 14, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\n",
+      "stderr": ""
+    }
+  ]
+}

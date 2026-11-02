@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-Reviewed2026-10-31. [Todo](../TODO.md) alone owns status; this page gives sequence.
+Reviewed2026-11-02. [Todo](../TODO.md) alone owns status; this page gives sequence.
 The [optional portfolio implementation](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)
 is local source, not rollout. [Current adaptable-policy evidence](../reports/adaptable-policy-20261031/VERIFICATION.md)
 keeps scoped new checks and43normal gates separate from staged reuse and the older
@@ -11,6 +11,12 @@ The offline review helper is not yet a live operation planner or simulator;
 rehearse actual authority/wallet/host/dependency workflows before production.
 
 ## LP execution next steps
+
+The [November2 audit](../reports/improvement-audit-20261102/REVIEW.md) closes
+source-level custody/admission/diagnostic gaps and verification omissions.
+Review current buyback-cap declarations and matching health/API source before
+an authorized rollout; no constructor/journal rewrite or existing service update
+is implied. Actual providers, budgets and operating acceptance remain next.
 
 [Bounded adaptable settings](ADAPTABLE_POLICY.md) are implemented in source6 with
 unchanged defaults and explicit schema8/Entry2/canonicalV6 boundaries. Qualify

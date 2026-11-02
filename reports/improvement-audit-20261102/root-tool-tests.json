@@ -1,0 +1,36 @@
+{
+  "selected_methods": [
+    "tests_python.test_python_publication.PythonPublicationTests.test_complete_namespaces_relative_imports_and_external_libraries_are_accepted",
+    "tests_python.test_python_publication.PythonPublicationTests.test_conflicted_index_and_wrong_git_blob_identity_fail_closed",
+    "tests_python.test_python_publication.PythonPublicationTests.test_direct_and_transitive_missing_modules_cannot_be_satisfied_by_local_files",
+    "tests_python.test_python_publication.PythonPublicationTests.test_git_index_reads_only_stage_zero_blob_bytes_not_worktree",
+    "tests_python.test_python_publication.PythonPublicationTests.test_invalid_syntax_is_nonpass_and_no_inspected_code_is_executed",
+    "tests_python.test_python_publication.PythonPublicationTests.test_module_scope_exports_survive_nested_scope_exclusion",
+    "tests_python.test_python_publication.PythonPublicationTests.test_nested_bindings_cannot_hide_an_unpublished_package_member",
+    "tests_python.test_python_publication.PythonPublicationTests.test_package_member_import_requires_published_submodule_or_explicit_export",
+    "tests_python.test_python_publication.PythonPublicationTests.test_scripts_namespace_and_relative_imports_beyond_root_are_checked",
+    "tests_python.test_source_inventory.SourceInventoryTests.test_new_standalone_policy_sources_cannot_silently_disappear",
+    "tests_python.test_source_inventory.SourceInventoryTests.test_required_source_classes_match_compiler_bound_callable_inventory"
+  ],
+  "tests_run": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "source_before": {
+    "scripts/check-python-publication.py": "eb09d6a808d0c54bf811ce484e1c36f0ef2a3acc229696dd25a653f33ff69eb7",
+    "scripts/source_checks.py": "64b8e6f227f7a1ce6ffb6c35dbf038ef5ea34c5fbe5de7420914ba3b058ada39",
+    "tests_python/test_python_publication.py": "fbf33c98aca5d5796914402b5c006a3305786a9cc6d8599f8b58ee520ee15228",
+    "tests_python/test_source_inventory.py": "b6a075344ced04abb69eb1548fe4715dbf7ef1bafe6129a2e0811ff7d1ea2485",
+    "zzz_ops/evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1"
+  },
+  "source_after": {
+    "scripts/check-python-publication.py": "eb09d6a808d0c54bf811ce484e1c36f0ef2a3acc229696dd25a653f33ff69eb7",
+    "scripts/source_checks.py": "64b8e6f227f7a1ce6ffb6c35dbf038ef5ea34c5fbe5de7420914ba3b058ada39",
+    "tests_python/test_python_publication.py": "fbf33c98aca5d5796914402b5c006a3305786a9cc6d8599f8b58ee520ee15228",
+    "tests_python/test_source_inventory.py": "b6a075344ced04abb69eb1548fe4715dbf7ef1bafe6129a2e0811ff7d1ea2485",
+    "zzz_ops/evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1"
+  },
+  "drift": false,
+  "successful": true,
+  "scope": "11 affected verification-tool methods, not EVM or service qualification"
+}

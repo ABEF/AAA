@@ -30,6 +30,7 @@ class CollectionSnapshot(Snapshot):
         i = args[0] if args else 0
         if (method, i) in self.overrides: return self.overrides[method, i]
         if method == 'mintedCount()': return len(self.ids)
+        if method == 'bucketTotalShares(uint256)': return len(self.ids)
         if method.startswith(('mintOrdinalOf', 'tokenAtOrdinal')): return i
         if method.startswith('rarityOf'): return i % 3
         if method.startswith('paletteOf'): return i % 58

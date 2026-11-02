@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-10-31 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-02 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -528,6 +528,7 @@ The data and services behind the app.
   - Verify default5000 half-side or explicitly reviewed alternative1–10000, mode/threshold,600/300window, policy controls, both-leg maintenance and terminal/canonical lifecycle. Schema6 remains explicit historical consistency inspection; old observations must be freshly collected, not relabelled.
   - Example configuration and synthetic25-method inventory evidence do not supply actual providers, addresses, routes/fees, upgrade/control qualification, gas limits or operating acceptance. Qualify exact current source/host/writer-checker and [release inventory](docs/RELEASE_CHECKLIST.md) before approval.
   - Preserve original [native inventory evidence](reports/native-preflight/VERIFICATION.md), older schema6 observations and failures at their original source scope. New source publication neither deploys nor approves a mainnet/testnet binding.
+  - [Current buyback admission](reports/improvement-audit-20261102/REVIEW.md): fresh schema8 requires chains[].buyback_maximum_usd18 matched to the pinned live getter. Constructor maximum remains immutable creation provenance, not the current policy or a missing-value fallback. Old incomplete fresh records require reviewed recollection; malformed object/value input fails before RPC. Historical profiles remain unchanged.
 
   </details>
 
@@ -546,6 +547,7 @@ The data and services behind the app.
   - Verify useful typed results, source/profile drift, unavailable/independent sections and complete same-snapshot simulations before claiming readiness. Present source-only planning separately from live provider/route/gas/host and independent production qualification.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Partial concrete diagnostics now distinguish supply exhaustion and reservation/custody/capacity availability; the universal operation report remains unimplemented. Continue binding source/snapshot/action and never promote these partial statuses, stale health or generic simulation errors into complete readiness.
   - [Keeper coordination](reports/keeper-coordination-20261029/VERIFICATION.md): Source-only bounded LP report distinguishes timing waits, known blockers, unconfigured and unavailable data; fixed simulations never fabricate a cause from opaque RPC failure. Qualify actual host/provider/runtime/gas and add remaining typed adapters before calling it a universal report.
+  - [November2 report correction](reports/improvement-audit-20261102/REVIEW.md): maintenance_idle_policy_unavailable explicitly prevents an eligible/simulated principal result when the required current idle ceiling could not be read, while independently valid harvest is evaluated. This adds no scheduling, signing, write or financial authority.
 
   </details>
 
@@ -568,6 +570,7 @@ The data and services behind the app.
   - Current full-prefix chronology admission is implemented with no extra RPC/query/schema change. Real complete-history availability and long-term bounded replay design stay separate qualification tasks; raw funded claims do not depend on the history API being online.
   - [October31 audit](reports/day-audit-20261031/REVIEW.md): physical-only accounting5 authentication retains exact runtime/owner/PoolKey/tick/liquidity/aggregate checks while skipping maintenance-price diagnostics only. It cannot assert readiness; keeper default checks remain strict. Rehearse real RPC failure/latency and hosted API acceptance separately; never substitute zero for missing NAV or accept malformed physical evidence.
   - [October31 audit](reports/today-audit-20261031/REVIEW.md): publish the previously omitted portfolio5/6 reader modules and admit only same-role/same-runtime shared Uniswap dependencies across verified predecessor inventories. Protocol identity collisions and complete pinned lineage requirements remain strict; service rollout is separate.
+  - [November2 custody consolidation](reports/improvement-audit-20261102/REVIEW.md): collection and wallet chunks now share NFT-detail local custody/share proof, with per-request bucket caching, per-NFT numerator checks and a distinct-NFT partial-share sum bound without extra RPC. Contradictory parked/exited/active evidence rejects; healthy ownership/raw claims survive price outages. Additional required reads stay bounded; actual latency/service rollout remains unqualified.
 
   </details>
 
@@ -929,6 +932,7 @@ Three required testing layers, with source-bound evidence.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Full Python runner selects canonical defined classes/methods once and keeps locally defined inherited tests. Inventory-only is0execution, empty/custom/duplicate selections fail and source drift invalidates results. Default/explicit evidence is fresh; full verifier inspects normal effective profile/tool/filters/fuzz/invariants and preserves prior reports. Scoped metadata and inert wrapper controls are not a full CI/build acceptance.
   - [Exclusive evidence admission and provenance](reports/comprehensive-popl-20261029/VERIFICATION.md): JSON/log outputs are reserved before imports/tests/scans, nonpass partial evidence is retained and source hashes precede selection. Keeper selection includes both new regression modules, rejects custom loaders and verifies exact execution identities. Two Windows filesystem skips require Unix rehearsal. Inventories and synthetic sentinels are not additional real project passes.
   - [October31 source audit](reports/today-audit-20261031/VERIFICATION.md) repairs source6 accounting fixtures, adds change/restore and main/residual/idle regressions, and verifies exact Git publication imports plus lineage admission. Fresh affected methods, preserved failures and exact-source reused normal gates remain separate from full-suite or operating approval.
+  - [November2 verification improvements](reports/improvement-audit-20261102/VERIFICATION.md): focused keeper selection includes current portfolio/policy/integrity modules; inventory executes zero bodies. Required source classes match the compiler-bound reference, and nested Python locals no longer hide absent published modules. Scoped causal failures/fixes and method identities remain separate from full-suite or Solidity/operating acceptance.
 
   </details>
 
@@ -1151,6 +1155,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [October31 audit](reports/day-audit-20261031/REVIEW.md): verify price-outage physical-read isolation, actual executor preparation and ordinary active-main guards without weakening keeper pricing, custody or initial/growth/emergency boundaries. Qualify narrow candidate ranking, bounded-loop external gas, immutable metadata URI payload, receiver rejection and upstream dependencies at actual release bindings.
   - [Manual-operation audit](reports/manual-operations-20261031/REVIEW.md): classify all231writes into90 manual/relay and141 other endpoints, correct46 preseal canConfigure access descriptions and verify one NEW composed actual-v4 unpaused merge/harvest/claim journey.16 scoped helper methods exercise strict schema/ABI/precision/source binding/file handling without network/signing. This is not exhaustive state-path execution or independent release approval.
   - [October31 change audit](reports/today-audit-20261031/REVIEW.md) corrects clean-checkout reader omissions and predecessor dependency identity handling, refreshes current static context review and corrects recovery profile labels. Retain exact publication-closure checks and qualify actual startup/restart/provider/gas behavior before rollout.
+  - [November2 follow-up](reports/improvement-audit-20261102/REVIEW.md) repairs inconsistent API custody validation, mutable-current versus constructor configuration, diagnostic policy evidence and verification scope. No production Solidity/economic change; source-matched43 normal gates and prior static review are reused, not relabelled fresh execution. Real operating/dependency/independent qualification remains open.
 
   </details>
 
@@ -1284,6 +1289,7 @@ Decisions and rehearsals before real funds.
   - [Operational reliability follow-up](reports/operational-reliability-20261029/REVIEW.md): Reject latest-head timestamp regression and successor-receipt height/time retreat without changing pending/spend truth, timing or journal schema. Same-block receipts remain valid. Actual rollout/provider/finality/gas/host qualification remains open.
   - [Keeper coordination](reports/keeper-coordination-20261029/VERIFICATION.md): Fresh accounting4/policy2 waits for authenticated physical in-range/no-pending-width evidence before compound, including pre-cooldown. Missing reader pins defer compound without guessed fallback or blocking due harvest. Canonical own successful compound/rebalance FeesCollected proof coalesces the hourly harvest clock in the original paid-state save; no event guessing, nonce reset, on-chain rebalance-clock rewrite, guard relaxation or installed rollout.
   - [Current keeper repairs](reports/comprehensive-popl-20261029/REVIEW.md) durably reset only affected confirmation windows on physical/occupancy identity faults and recheck final telemetry depth/chronology before healthy evidence. Qualify the extra ready-path latest-head observation, writer/checker/source rollout and strict cadence on actual providers; preserve pending-first recovery and journals. Offline18-method evidence is not installed acceptance.
+  - [November2 diagnostic repairs](reports/improvement-audit-20261102/REVIEW.md): source6 health validates exact maintenance Policy1 bounds/address/revision/fingerprint and nested config objects. A missing governed idle-policy read makes the operation report unavailable and skips principal simulation; independent harvest remains separate. Install matching reviewed source/checker only through authorized rollout; preserve journals and do not guess evidence.
 
   </details>
 
@@ -1313,7 +1319,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-deployment-initcode"></a>
 
-- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - In progress. Fresh production compilation passes39normal object gates at78closed sources. Manager initcode margin37bytes and Vault runtime margin59bytes remain tight; only Registry bytecode changes (+270runtime/+270creation) for validated post-exit swap-only venue recovery. Exact arguments, bindings, dynamic URI and target gas remain unqualified.
+- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - In progress. Current accounting6 source matches52 production and31 dependency files at43 normal object gates. Vault635/Budget237/Migration20 runtime margins are exact-source reused evidence; constructor arguments, bindings, dynamic URI and target gas remain unqualified. Earlier37/59-byte metrics belong to historical source.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1324,6 +1330,7 @@ Decisions and rehearsals before real funds.
   - Controlled same-context Access comparison reproduces9207→9252runtime and42081→42256creation (+45/+175); constructor fixed arguments96bytes give42352total/6800margin. Four isolated role-gas measurements pass, including CREATE+12312raw execution gas. RoyaltyFactory runtime margin69bytes and actual NFT URI constructor arguments require exact release qualification; see [gas evidence](reports/day-readiness-20261025/role-gas.md).
   - The blocked holder-exit keeper example cap2.5Mgas is not a qualified current maintenance budget. Earlier balance-only cold fixture observations2,590,680(one venue)/5,963,090(four) already exceed it before full operation/25%padding. Qualify exact fresh operations, network fee accounting and daily budgets; do not raise limits automatically or treat prior fixture gas as target-chain approval.
   - [Fresh normal compilation](reports/comprehensive-popl-20261029/VERIFICATION.md):39objects pass at78closed source pins; Manager runtime23111/creation48955+160arguments leaves37initcode bytes; Vault runtime24517 leaves59runtime bytes and creation48951+96arguments leaves105initcode bytes. Registry runtime10718/creation42362. Other38bytecode objects are identical to the exact prior production artifact. Exact dynamic NFT URI/arguments, release bindings and target gas still require qualification; no gate relaxation.
+  - [Current reuse verification](reports/improvement-audit-20261102/VERIFICATION.md) checks exact52 production/31 dependency/build pins against final0a and reuses43 normal gates. Vault635/Budget237/Migration20 runtime margins supersede older37/59-byte claims for current source only; exact constructor arguments and target gas remain open.
 
   </details>
 
@@ -1363,4 +1370,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `6947b14cd36b76ff919fe5fdbe692de0237cc517c99388b5d52567af429a59bc`.
+Snapshot SHA-256: `3736e75ad334978bfa42d4284d78b0df77ed3d66e787dfcc6e6acd612eb93361`.

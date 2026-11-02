@@ -1,0 +1,43 @@
+{
+  "scope": "Final health admission correction:3methods, one new raw-config case; two overlap prior16",
+  "selected": [
+    "tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_malformed_nested_health_config_is_rejected_without_attribute_errors",
+    "tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_corrupt_missing_or_misbound_idle_policy_cannot_report_healthy",
+    "tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_valid_governed_bounds_and_historical_profile_remain_supported"
+  ],
+  "tests_run": 3,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "source_before": {
+    "keeper/monitor.py": "f9110cd190929f8229d8534acc21a716aca9b2e15ad281bebc16cf0bcd0010bd",
+    "keeper/ops.py": "7d49446e3cee73b46c41257ee0e4dca2683bde1bf9c18772bb11538af9e7752f",
+    "keeper/health.py": "234f0a713f35a002d3eb0c730dd5f16e01e5746f533d8483151a1ce649911864",
+    "keeper/rebalance_confirmation.py": "9d635b3d9282bd5cd10e794d3598153cc731c219b9d77b0e5407efdddec12d03",
+    "keeper/compound_policy.py": "77542483e60df3dcff539f6feeb7dc4b01fea76c4a509a05e62859ea29c2834d",
+    "zzz_ops/protocol_policy.py": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+    "zzz_ops/lp_execution.py": "d7d2affb84a647f0b33396ab2b644a75580d1ed7fc621e9993589665c85aa77b",
+    "zzz_ops/rebalance_confirmation.py": "edd67977cf59fba3e6cdb136d0191a60db9143f506cd6cc91ee1d3a16c7cabfa",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/rpc.py": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    "keeper/operation_review.py": "1ef5aec369916debb56fa94fdd4c0be25b0b9d9d40796b13e5fcd8ab6f76b65e",
+    "tests_python/test_keeper_policy_integrity.py": "f9644c8a297c0779eb58a0c344c4ab0fad6a0f62e35bfd6ea77f3a062efedefb"
+  },
+  "source_after": {
+    "keeper/monitor.py": "f9110cd190929f8229d8534acc21a716aca9b2e15ad281bebc16cf0bcd0010bd",
+    "keeper/ops.py": "7d49446e3cee73b46c41257ee0e4dca2683bde1bf9c18772bb11538af9e7752f",
+    "keeper/health.py": "234f0a713f35a002d3eb0c730dd5f16e01e5746f533d8483151a1ce649911864",
+    "keeper/rebalance_confirmation.py": "9d635b3d9282bd5cd10e794d3598153cc731c219b9d77b0e5407efdddec12d03",
+    "keeper/compound_policy.py": "77542483e60df3dcff539f6feeb7dc4b01fea76c4a509a05e62859ea29c2834d",
+    "zzz_ops/protocol_policy.py": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+    "zzz_ops/lp_execution.py": "d7d2affb84a647f0b33396ab2b644a75580d1ed7fc621e9993589665c85aa77b",
+    "zzz_ops/rebalance_confirmation.py": "edd67977cf59fba3e6cdb136d0191a60db9143f506cd6cc91ee1d3a16c7cabfa",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/rpc.py": "ff6fd4d5b9276170d5e78b81fb59a4b81b55869e7689bccf80eb6d513553e5b7",
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    "keeper/operation_review.py": "1ef5aec369916debb56fa94fdd4c0be25b0b9d9d40796b13e5fcd8ab6f76b65e",
+    "tests_python/test_keeper_policy_integrity.py": "f9644c8a297c0779eb58a0c344c4ab0fad6a0f62e35bfd6ea77f3a062efedefb"
+  },
+  "successful": true
+}

@@ -1,6 +1,6 @@
 # Release approval record - NOT APPROVED
 
-Reviewed2026-10-31. This approves one frozen release; it is not a second Todo.
+Reviewed2026-11-02. This approves one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
@@ -34,6 +34,12 @@ The helper always reports not ready for submission; actual authority, snapshot,
 runtime, simulation, gas and operating/marketplace rehearsal remain release gates.
 
 ## Current candidate and evidence limits
+
+[November2 scoped corrections](../reports/improvement-audit-20261102/VERIFICATION.md)
+cover read-side custody consistency, live buyback policy admission, keeper
+diagnostic integrity and verification selection. Production Solidity is unchanged;
+normal gates and prior static review are reused only at exact pins. This is not
+a new frozen full suite, CI, actual service/gas rehearsal or independent approval.
 
 | Boundary | Current requirement |
 | --- | --- |

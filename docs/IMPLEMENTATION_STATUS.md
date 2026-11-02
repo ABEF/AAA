@@ -1,6 +1,6 @@
 # Feature and evidence reference
 
-Reviewed 2026-10-31. This records implemented source, not another task list.
+Reviewed 2026-11-02. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 
@@ -65,6 +65,15 @@ change to the website is part of this contract implementation.
 [Environment map](SITE_ENVIRONMENTS.md), [website profile](CURRENT_WEBSITE_PROFILE.md).
 
 ## Current evidence and limits
+
+[November2 repairs and consolidation](../reports/improvement-audit-20261102/REVIEW.md)
+unify NFT/collection/wallet custody proof with bounded request caching, separate
+current governed buyback caps from constructor provenance, validate source6
+health-policy evidence, and make missing idle policy explicit before principal
+simulation. Focused verification now selects current keeper cases and checks
+required source classes/package scopes. [Evidence](../reports/improvement-audit-20261102/VERIFICATION.md)
+distinguishes new affected execution from exact unchanged Solidity/build reuse.
+Source6 service/schema8 inputs need reviewed rollout; no deployed behavior changed.
 
 [Current adaptable-policy verification](../reports/adaptable-policy-20261031/VERIFICATION.md)
 binds52production sources/31dependencies and43normal object gates at the unchanged

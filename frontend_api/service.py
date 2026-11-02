@@ -19,7 +19,7 @@ from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import integer
 from zzz_ops.work_budget import BudgetedRPC, bounded_request, expire_at
 from zzz_ops.errors import WorkLimit
-from zzz_ops.position import decode_position, position_word_count, status_name, is_local_position
+from zzz_ops.position import decode_position, position_word_count, status_name
 
 ZERO = '0x' + '0' * 40
 ROLES = ('access', 'nft', 'vault', 'rewards', 'royalties', 'claim_router', 'handoff', 'vault_canonical')
@@ -517,22 +517,10 @@ class Projection:
             raise ProjectionError('Inconsistent activation/royalty/share state')
         if weight > 0 and (not ready or weight != rarity + 1) or (status == self.dormant_status) != (shares == 0):
             raise ProjectionError('Activation differs from the canonical revealed NFT state')
-        custody = None
+        from frontend_api.custody import read as read_custody
+        custody = read_custody(self, status, bucket, shares, block)
         exited = self.accounting_version in (4,5,6) and status == 5
-        if status in (1, self.parked_status) or exited:
-            group = self._position(bucket, block)
-            decoded = decode_position(group, self.accounting_version)
-            supply = self._uint('vault', 'bucketTotalShares(uint256)', bucket, block=block)
-            if (int(group[0], 16) == 0 or (int(group[1], 16) == 0) != (status != 1) or int(group[7], 16) != status or
-                    not is_local_position(decoded,self.accounting_version,self.chain,self.contracts['vault'].address) or
-                    supply < shares or (exited and (int(group[2], 16) or int(group[3], 16)))):
-                raise ProjectionError('Local principal differs from its canonical custody state')
-            custody = {'pool_id': '0x' + group[0],
-                       'lp_token_id': str(int(group[1], 16)) if status == 1 else None,
-                       'bucket_total_shares_raw': str(supply),
-                       'share_numerator_raw': str(shares), 'share_denominator_raw': str(supply),
-                       'last_rebalance_at': int(group[6], 16),
-                       'identity_source': 'Vault.group at the confirmed snapshot'}
+        if custody is not None:
             if self.accounting_version in (5,6) and status == 1:
                 from frontend_api.portfolio_v5 import read_bucket as read_v5
                 from frontend_api.portfolio_v6 import read_bucket as read_v6

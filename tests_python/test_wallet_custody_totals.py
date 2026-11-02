@@ -23,6 +23,12 @@ class CustodySnapshot(Snapshot):
             self.calls.append((method,args,block));self.check(block);return 0
         return super()._uint(role,method,*args,block=block)
 
+    def _position(self,bucket,block):
+        row=super()._position(bucket,block)
+        row[1]=f'{123 if self.status==1 else 0:064x}'
+        row[7]=f'{self.status:064x}'
+        return row
+
     def _call(self,target,method,i,*,block,words):
         self.calls.append((method,(i,),block));self.check(block)
         if isinstance(self.valuation,Exception):raise self.valuation

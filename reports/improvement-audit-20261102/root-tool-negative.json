@@ -1,0 +1,8 @@
+{
+  "tests_run": 3,
+  "failures": 12,
+  "errors": 0,
+  "expected_negative_before_fix": true,
+  "successful": false,
+  "scope": "New tests execute original verification source, no Solidity execution"
+}

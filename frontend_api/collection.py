@@ -9,6 +9,7 @@ import hashlib
 from frontend_api.history import HistoryError
 from frontend_api.service import ProjectionError, STATUS, EVOLUTION, _bool
 from frontend_api.portfolio import CHUNK_SIZE
+from frontend_api.custody import read as read_custody
 from zzz_ops.errors import RpcError, WorkLimit
 from zzz_ops.work_budget import expire_at, checkpoint
 
@@ -36,6 +37,8 @@ def read(p, block_number, offset):
         raise ValueError('Cursor is outside collection inventory')
     rows, total, active, all_available = [], 0, 0, True
     verified_buckets={}
+    custody_buckets={}
+    custody_shares={}
     metadata_policy=None
     if p.accounting_version==6:
         from zzz_ops.protocol_policy import observe as observe_policy
@@ -67,6 +70,8 @@ def read(p, block_number, offset):
             raise ProjectionError('Collection activation state differs')
         if weight and (not ready or weight != rarity + 1):
             raise ProjectionError('Collection royalty weight differs from rarity')
+        if p.accounting_version in (3,4,5,6):
+            read_custody(p,status,bucket,shares,block,cache=custody_buckets,totals=custody_shares)
         if p.accounting_version in (5,6) and status == 1 and bucket not in verified_buckets:
             from frontend_api.portfolio_v5 import read_bucket as read_v5
             from frontend_api.portfolio_v6 import read_bucket as read_v6

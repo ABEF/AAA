@@ -1,0 +1,13 @@
+{
+  "condition": "Two distinct NFTs each11e36 shares, bucket total20e36, individually <=total but partial sum22e36>total",
+  "result": {
+    "collection": {
+      "accepted": true,
+      "lp_value": null
+    },
+    "wallet": {
+      "accepted": true,
+      "lp_value": null
+    }
+  }
+}

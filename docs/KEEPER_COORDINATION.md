@@ -171,7 +171,8 @@ not invent an exact slippage inequality from a generic error.
   the contribution check and the 5% idle ceiling.
 
 - **Hybrid utilization:** after an ordinary hybrid replacement, does main value
-  reach 60% and residual stay within 40% of retained principal at the same starting
+  reach the configured main floor(default60%) and residual stay within its
+  complementary ceiling(default40%) of retained principal at the same starting
   price vector? These are separate from the idle and loss ceilings and are not
   continuous market-allocation requirements.
 
@@ -181,6 +182,21 @@ or widened by this keeper work. Missing actual prices or post-execution deltas
 leave a margin unavailable, rather than calculated from a guessed price.
 
 ## Identity faults and confirmed telemetry
+
+Fresh source6 confirmation health requires the exact stored maintenance Policy1
+record: domain/version, configured policy address, idle bound0–4000bps, nonzero
+uint64 revision and its recomputed scoped fingerprint. Missing or contradictory
+evidence reports `confirmation_observation_maintenance_policy_invalid`; it does
+not become healthy because the outer observation otherwise matches. Enabled
+confirmation/quality checks also reject malformed nested configuration objects.
+This checks stored consistency, not current chain truth or keeper attestation.
+
+The operation report requires an available governed idle ceiling before marking
+a principal operation eligible or simulating it. A transient read failure reports
+`maintenance_idle_policy_unavailable`; independent harvest remains separate.
+Collect fresh valid evidence under the matching reviewed configuration/source;
+never fill unknown values, rewrite a journal or bypass the policy to make a
+diagnostic green. The diagnostic cannot pause/repair or submit transactions.
 
 Missing/mismatched pool occupancy or contradictory active/parked LP identity now
 requires a durable reset for that bucket's confirmation/jitter. Unrelated share

@@ -1,0 +1,24 @@
+{
+  "baseline": "44f21926caf8caafecac07d3de25ba7f8e09d67f",
+  "kind": "Staged API custody/share integrity correction, not a fresh101-method suite",
+  "final_files": {
+    "frontend_api/custody.py": "d9bb8b9e38d2ae6671c7de2866ae010c38fd8795e553f9976d440c9a573b9db0",
+    "frontend_api/service.py": "615932686749a943626fdf59ad21c4ae052164c570866b2ccb4ded22c48276b8",
+    "frontend_api/collection.py": "2641a2e6f735f16cb87514d073663c95a18d8c1442122cdde8a3a9a8d865998b",
+    "frontend_api/portfolio.py": "56e590e4cda76d946d7d9a25f96c4cf4bdfebdc2d5351ba532fe98aacc5ed8b6",
+    "tests_python/test_inventory_custody.py": "fad177a33cae538fae842d23863d0ba88e774f000382f4d93c81ba603f5c8276",
+    "tests_python/test_wallet_summary.py": "0491ebd9349a267c03b2ffd2650876ba51f4fc17cba3b6a5e09957a55f78c076",
+    "tests_python/test_collection.py": "7490a8ae0db5a9d1dda299f08afd5eac4323cf2c6ae0f67364222070a2d64714",
+    "tests_python/test_wallet_custody_totals.py": "4492d9115dcd2d9950c5e7b3959001bdc5d07666c32cb2832f2634241062a17a"
+  },
+  "distinct_methods_reach_success": 101,
+  "final_guard_methods": 4,
+  "final_guard_new_methods": 1,
+  "final_guard_overlap_methods": 3,
+  "final_guard_results_successful": true,
+  "final_guard_source_unchanged": true,
+  "earlier_scope": "Initial79(78pass/1fixtureerror), correction17allpass, additional8allpass:100distinct before final cumulative guard. Final4tests after guard; earlier exact receipts retained, no blanket final-source101claim.",
+  "no_additional_rpc_for_cumulative_guard": true,
+  "cumulative_guard_scope": "Per-request selected-chunk distinct NFT shares per bucket may not exceed its pinned total; no cross-chunk/global share reconciliation or provider authenticity claimed",
+  "operator_impact": "Matching read-service source rollout only; unchanged ABI/profile/schema/config/economics; no database/journal migration. New shared helper must ship."
+}

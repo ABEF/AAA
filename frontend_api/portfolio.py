@@ -6,6 +6,7 @@ total. No rolling latest-state sum, balance cache, signing or partial total.
 import hashlib
 from frontend_api.service import ProjectionError, ZERO, _bool
 from frontend_api.history import HistoryError
+from frontend_api.custody import read as read_custody
 from zzz_ops.abi import address
 from zzz_ops.errors import RpcError, WorkLimit
 from zzz_ops.work_budget import expire_at
@@ -34,6 +35,8 @@ def read(p, wallet_address, block_number, offset):
     selected=ids[offset:offset+CHUNK_SIZE]
     total_lp=0;total_eth=0;lp_ok=True;eth_ok=ZERO in lp and ZERO in royalties
     verified_buckets=set()
+    custody_buckets={}
+    custody_shares={}
     for identifier in selected:
         if p._addr('nft','ownerOf(uint256)',identifier,block=block)!=wallet:
             raise HistoryError('Wallet ownership differs from indexed snapshot')
@@ -54,8 +57,13 @@ def read(p, wallet_address, block_number, offset):
             if (status==p.dormant_status)!=inactive:
                 raise ProjectionError('Wallet custody and royalty eligibility disagree')
         exited = p.accounting_version in (4,5,6) and status == 5
-        if p.accounting_version in (5,6) and status == 1:
+        if p.accounting_version in (3,4,5,6):
             bucket=p._uint('vault','nftBucket(uint256)',identifier,block=block)
+            shares=p._uint('vault','sharesOf(uint256)',identifier,block=block)
+            if (shares>0)!=(bucket>0) or inactive!=(shares==0):
+                raise ProjectionError('Wallet custody and shares disagree')
+            read_custody(p,status,bucket,shares,block,cache=custody_buckets,totals=custody_shares)
+        if p.accounting_version in (5,6) and status == 1:
             if bucket not in verified_buckets:
                 from frontend_api.portfolio_v5 import read_bucket as read_v5
                 from frontend_api.portfolio_v6 import read_bucket as read_v6

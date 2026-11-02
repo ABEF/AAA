@@ -1,0 +1,17 @@
+{
+  "scope": "Replay archived function bodies with inert current-source6 transcripts; no signer/resources",
+  "sources": {
+    "health": "9934d7a095f3f4658d6f6852cdee407f836eeb1b08ea34b257a8e17ab3fa3390",
+    "operation_review": "7aae60724bc629219e39ea070950917c240034325bdd6a7430f158cc089c37e5"
+  },
+  "archived_missing_maintenance_policy_reasons": [],
+  "archived_compound_state": "observed_eligible",
+  "archived_compound_reasons": [
+    "evaluated_view_prerequisites_satisfied"
+  ],
+  "archived_idle_policy": {
+    "bps": null,
+    "source": "unavailable",
+    "reason": "maintenance_idle_policy_unavailable"
+  }
+}

@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed2026-10-31. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-02. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.
@@ -139,9 +139,14 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
-- [Current change audit](reports/today-audit-20261031/REVIEW.md) repairs published
-  portfolio-reader omissions and same-chain lineage admission of matching external
-  dependencies, corrects recovery labels and restores current accounting fixtures.
+- [Current improvement audit](reports/improvement-audit-20261102/REVIEW.md) unifies
+  detail/chunk custody proof, separates current governed buyback caps from
+  constructor provenance, validates maintenance health evidence and makes missing
+  idle-policy diagnostics explicit. Fresh schema8 now requires reviewed current
+  buyback_maximum_usd18; never fill it from constructor history or alter journals.
+  Focused keeper selection includes current policy/portfolio cases; inventory
+  executes zero bodies. Required source classes and Python package-scope checks
+  are verification safeguards, not compiler/security or operating acceptance.
   Before Python publication check exact staged Git blobs with
   `python scripts/check-python-publication.py --index`, then the committed revision.
   Local imports are insufficient. Keep protocol identities distinct, exact runtime
@@ -199,4 +204,5 @@ validation extraction preserve normal limits. Current source6 gates are
 43 at exact final0a pins, with Vault635/Budget237runtime margins; old905/286
 margins remain historical.
 Preserve exact pre/post checks and caller/error semantics. No existing deployment,
-service/site/Anvil/journal/signer/heartbeat was changed; work remains local.
+service/site/Anvil/journal/signer/heartbeat was changed. Source publication is
+separate from deployment; the candidate remains undeployed.

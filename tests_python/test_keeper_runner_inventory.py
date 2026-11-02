@@ -83,6 +83,18 @@ class KeeperRunnerInventoryTests(unittest.TestCase):
         for identity, test in tests.items():
             self.assertEqual('.'.join(identity.split('.')[:-2]), test.__class__.__module__)
 
+    def test_current_policy_and_portfolio_safety_cases_are_reachable_without_execution(self):
+        modules=('test_keeper_portfolio_policy','test_keeper_policy_v6','test_keeper_policy_integrity')
+        self.assertTrue(set(modules)<=set(RUNNER.MODULES))
+        with patch('unittest.TextTestRunner.run',side_effect=AssertionError('inventory must not execute')):
+            tests,_classes=RUNNER.select_tests(modules)
+        required={
+            'tests_python.test_keeper_policy_v6.KeeperPolicyV6Tests.test_actual_confirmation_reads_pool_allocation_and_retains_raw_sample_separation',
+            'tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_corrupt_missing_or_misbound_idle_policy_cannot_report_healthy',
+            'tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_unknown_financial_idle_policy_prevents_principal_simulation_but_not_harvest'}
+        self.assertTrue(required<=set(tests))
+        self.assertEqual(len(tests),len({test.id() for test in tests.values()}))
+
     def test_list_cli_writes_inventory_without_executing_selected_methods(self):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp) / 'inventory.json'

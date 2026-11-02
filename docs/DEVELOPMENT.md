@@ -17,6 +17,12 @@ published dependency. The full verifier checks HEAD first. This is a static
 repository-import check; dynamic imports, dependencies and runtime behavior still
 need their own checks. An unstaged working file does not repair a failing commit.
 
+Package-local function/class/comprehension bindings do not count as initializer
+exports in that check. It remains syntactic, with dynamic exports/control flow
+outside runtime assurance. The narrow source consistency check now requires all
+current source classes, including standalone policies; its source helper count
+differs from deployed helper instances. Neither check replaces compilation.
+
 From the repository root in the supported environment:
 
 ```bash
@@ -111,6 +117,10 @@ Refresh after relevant changes and check exact-revision CI.
 Keep normal runtime/initcode/gas gates and exact constructor arguments.
 
 ## Focused keeper verification
+
+The focused selection includes current portfolio, ProtocolPolicy1 and integrity
+regressions alongside historical cases. `--list` proves selection only and runs
+zero test bodies; count actual scoped executions separately.
 
 ```bash
 python3 scripts/run-keeper-tests.py --list --output path/to/new-selection.json

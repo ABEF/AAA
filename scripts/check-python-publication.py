@@ -15,6 +15,39 @@ PACKAGES = ('frontend_api', 'keeper', 'zzz_ops', 'indexer', 'tests_python', 'scr
 DIRECTORIES = PACKAGES
 
 
+class PackageBindings(ast.NodeVisitor):
+    """Possible module bindings, without mistaking nested locals for exports.
+
+    This does not execute/control-flow-prove a package initializer. Comprehension
+    and function/class-local names cannot satisfy a missing published submodule.
+    """
+    def __init__(self):
+        self.names = set()
+
+    def visit_FunctionDef(self, node):
+        self.names.add(node.name)
+
+    visit_AsyncFunctionDef = visit_FunctionDef
+    visit_ClassDef = visit_FunctionDef
+
+    def visit_Lambda(self, node):
+        pass
+
+    visit_ListComp = visit_Lambda
+    visit_SetComp = visit_Lambda
+    visit_DictComp = visit_Lambda
+    visit_GeneratorExp = visit_Lambda
+
+    def visit_Name(self, node):
+        if isinstance(node.ctx, ast.Store):
+            self.names.add(node.id)
+
+    def visit_Import(self, node):
+        self.names.update(alias.asname or alias.name.split('.')[0] for alias in node.names)
+
+    visit_ImportFrom = visit_Import
+
+
 def check_sources(sources):
     modules = {path[:-3].replace('/', '.'): path for path in sources if path.endswith('.py')}
     packages = {name[:-9] for name in modules if name.endswith('.__init__')}
@@ -29,13 +62,9 @@ def check_sources(sources):
         if init is not None:
             try:
                 body = ast.parse(sources[init], filename=init)
-                for item in ast.walk(body):
-                    if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-                        names.add(item.name)
-                    elif isinstance(item, ast.Name) and isinstance(item.ctx, ast.Store):
-                        names.add(item.id)
-                    elif isinstance(item, (ast.Import, ast.ImportFrom)):
-                        names.update(alias.asname or alias.name.split('.')[0] for alias in item.names)
+                bindings = PackageBindings()
+                bindings.visit(body)
+                names = bindings.names
             except (SyntaxError, ValueError):
                 pass  # The source pass below records the syntax failure.
         exports[package] = names

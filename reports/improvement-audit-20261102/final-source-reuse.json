@@ -1,0 +1,12 @@
+{
+  "scope": "Exact final owned-source and unchanged compiler artifact reuse; no tests/compilation executed",
+  "owned_source_pins_matched": {
+    "nov02-data-ad821b7f/final-summary.json": 8,
+    "nov02-admission-f32af074/summary.json": 5,
+    "nov02-keeper-69ef1775/REVIEW.json": 5
+  },
+  "compiler_executable_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "compiler_input_sha256": "e25ab51ff0ce71b591b7cc8a25f1f89d5fc759041eb16fcee8ceac5ae6743649",
+  "compiler_output_sha256": "db4d9dba99d0ad274c9d073d8097fcd086b09ac12f75ff0c4995dfd72076de43",
+  "normal_settings_unchanged": true
+}

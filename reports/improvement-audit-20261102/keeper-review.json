@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-02 Europe/Paris",
+  "baseline_head": "44f21926caf8caafecac07d3de25ba7f8e09d67f",
+  "scope": "Keeper stored health evidence, read-only LP operation review and focused test inventory; no onchain/clock/economic changes",
+  "findings": [
+    {
+      "id": "maintenance-health-evidence",
+      "before": "Source6 maintenance_policy could be absent, malformed or inconsistent while checker returned no reason.",
+      "after": "Exact Policy1 shape/types/bounds/address/revision and ABI fingerprint validated, structured refusal; raw nested config admission prevents AttributeError.",
+      "impact": "Health evidence integrity/diagnostics, not signing or contract authorization."
+    },
+    {
+      "id": "unknown-maintenance-idle-review",
+      "before": "Transient policy-read fault could leave compound observed_eligible while nested idle ceiling was unavailable.",
+      "after": "Ready principal report unavailable with exact sanitized reason and no principal simulation; separately guarded due harvest unaffected."
+    },
+    {
+      "id": "omitted-current-keeper-cases",
+      "before": "Focused keeper runner explicit MODULES omitted previous portfolio/policy cases; full Python discovery was separate.",
+      "after": "Three current modules included, canonical inventory regression checks source6 cases once."
+    }
+  ],
+  "final_source_sha256": {
+    "keeper/health.py": "234f0a713f35a002d3eb0c730dd5f16e01e5746f533d8483151a1ce649911864",
+    "keeper/operation_review.py": "1ef5aec369916debb56fa94fdd4c0be25b0b9d9d40796b13e5fcd8ab6f76b65e",
+    "scripts/run-keeper-tests.py": "44c620273ed4a304ae0331b5a0e821c4f47e50f13dcf4d578da8ec4e5c4547ea",
+    "tests_python/test_keeper_runner_inventory.py": "2ce995ca7e456806743f852b43a4834baca79b058cd9a8396551a757b4ee8e5b",
+    "tests_python/test_keeper_policy_integrity.py": "f9644c8a297c0779eb58a0c344c4ab0fad6a0f62e35bfd6ea77f3a062efedefb"
+  },
+  "distinct_affected_method_count": 27,
+  "actual_methods": [
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_fresh_policy_binds_latest_anchor_runtime_and_helpers_without_candidate_or_oracle_reads",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_rejects_stale_future_and_malformed_policy_fields",
+    "tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_requires_budget_pin_binding_and_nonboolean_capability",
+    "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_financial_thresholds_are_observed_but_margins_remain_unavailable",
+    "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_inside_observation_is_not_needed_while_independent_work_is_eligible",
+    "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_physical_or_compound_guard_fault_does_not_block_harvest",
+    "tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_corrupt_missing_or_misbound_idle_policy_cannot_report_healthy",
+    "tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_healthy_financial_policy_keeps_principal_report_available_without_writes",
+    "tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_malformed_nested_health_config_is_rejected_without_attribute_errors",
+    "tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_unknown_financial_idle_policy_prevents_principal_simulation_but_not_harvest",
+    "tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_valid_governed_bounds_and_historical_profile_remain_supported",
+    "tests_python.test_keeper_policy_v6.KeeperPolicyV6Tests.test_actual_confirmation_reads_pool_allocation_and_retains_raw_sample_separation",
+    "tests_python.test_keeper_policy_v6.KeeperPolicyV6Tests.test_default_keeper_requires_policy_while_raw_physical_claim_read_does_not",
+    "tests_python.test_keeper_policy_v6.KeeperPolicyV6Tests.test_explicit_source6_constructor_and_policy_only_health",
+    "tests_python.test_keeper_policy_v6.KeeperPolicyV6Tests.test_historical_profile_cannot_adopt_policy_or_portfolio2",
+    "tests_python.test_keeper_policy_v6.KeeperPolicyV6Tests.test_mutable_floor_and_gap_are_current_perpool_values_not_hard_envelope",
+    "tests_python.test_keeper_portfolio_policy.KeeperPortfolioPolicyTests.test_fresh_health_binds_policy_runtime_and_explicit_capabilities",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_current_policy_and_portfolio_safety_cases_are_reachable_without_execution",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_duplicate_method_identity_fails_even_without_python_assertions",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_duplicate_module_fails_closed",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_every_keeper_test_module_is_selected",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_foreign_import_does_not_make_empty_selection_successful",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_import_failure_is_not_silently_skipped",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_list_cli_writes_inventory_without_executing_selected_methods",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_only_defined_classes_selected_and_aliases_not_duplicated",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_real_selection_has_unique_defined_method_ids_without_execution",
+    "tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_wrong_import_identity_fails_closed"
+  ],
+  "new_method_count": 6,
+  "reused_existing_method_count": 21,
+  "stages": [
+    {
+      "receipt": "affected-tests.json",
+      "methods": 16
+    },
+    {
+      "receipt": "runner-inventory-tests.json",
+      "methods": 10
+    },
+    {
+      "receipt": "final-health-admission.json",
+      "methods": 3,
+      "new_distinct": 1,
+      "overlap": 2
+    }
+  ],
+  "all_stages_pass": true,
+  "inventory_only": {
+    "receipt": "inventory-final2.json",
+    "selected_methods": 834,
+    "tests_run": 0,
+    "successful": true
+  },
+  "limitations": [
+    "27distinct methods succeed across scoped stages; not a fresh full keeper suite or current CI pass. Final raw-config admission change has3affected methods; unchanged earlier report/runner bodies are reused, not rerun.",
+    "Stored self-consistent health evidence is not authentication of chain state, running code or an uncompromised host.",
+    "Source/writer/checker rollout and actual provider/Unix restart/gas qualification remain separate. No installed worker/service/journal/site/Anvil/signer changed.",
+    "No Solidity tests, compiler invocation, public RPC or transactions in this slice."
+  ]
+}

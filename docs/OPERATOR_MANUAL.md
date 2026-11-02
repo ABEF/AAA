@@ -699,7 +699,7 @@ never set legacy `triggerBps` to 8500 or use emergency as a routine substitute.
 
 ### Operator-selected LP policy
 
-Fresh Strategy maintenance3, PortfolioPolicy1, Confirmation3 and Budget compound4
+Fresh Strategy maintenance3, PortfolioPolicy2, Confirmation3 and Budget compound4
 implement the [current source policy](LP_EXECUTION_POLICY.md). Choose main width
 manually; disable on-chain automatic policies and local `adaptive_range.enabled`.
 For the intended initial settings, use orientation1, `rangeBps=2500` or `5000`,
@@ -1698,6 +1698,22 @@ does not undo successful steps1–2. Record the last confirmed state and use the
 documented compensating control, never a guessed rollback or journal deletion.
 
 ## Services and server recovery
+
+Fresh schema8 preflight separates current `chains[].buyback_maximum_usd18` from
+`constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
+the actual pinned live getter as current policy, preserve creation provenance
+and observe/validate again. Do not invent a value or edit constructor history to
+make it pass. [Exact input and recovery](PRODUCTION_PREFLIGHT.md#current-buyback-maximum-and-creation-history).
+
+For source6 confirmation health,
+`confirmation_observation_maintenance_policy_invalid` means the stored policy
+record is missing, malformed, misbound or inconsistent. Preserve the original
+evidence/config and collect a fresh matching observation; do not rewrite a
+journal or insert guessed fields. The operation report separately uses
+`maintenance_idle_policy_unavailable` to skip principal simulation after a failed
+required idle-policy read. Independently due harvest remains evaluated. A report
+or health checker cannot pause, repair or send transactions. Install matching
+reviewed checker/source only through the authorized procedure below.
 
 Before adopting a source release, run
 `python3 scripts/check-python-publication.py --revision <exact-commit>` in its Git

@@ -14,8 +14,10 @@ class Snapshot:
         self.ids=list(range(1,count+1));self.history=True;self.chain=31337;self.start=1
         self.accounting_version=3;self.weights={i:1 for i in self.ids}
         self.dormant_status=3
+        self.parked_status=4
         self.max_age=120;self.clock=lambda:1000;self.confirmations=1;self.identity='d'*64
-        self.contracts={'nft':SimpleNamespace(address='0x'+'3'*40)}
+        self.contracts={'nft':SimpleNamespace(address='0x'+'3'*40),
+                        'vault':SimpleNamespace(address='0x'+'4'*40)}
         self.header=dict(number=90,hash=HASH,timestamp=990);self.calls=[]
         self.lp_missing=None;self.eth_missing=None;self.bad_owner=None;self.changed=False;self.limit=False
     def _snapshot(self):return dict(self.header,number=100),100,{}
@@ -30,11 +32,17 @@ class Snapshot:
         if method.startswith('balanceOf'):return len(self.ids)
         if method=='weightOf(uint256)':return self.weights[args[0]]
         if method=='nftStatus(uint256)':return 3 if self.weights[args[0]]==0 else 1
+        if method=='nftBucket(uint256)':return int(self.weights[args[0]]!=0)
+        if method=='sharesOf(uint256)':return int(self.weights[args[0]]!=0)
+        if method=='bucketTotalShares(uint256)':return len(self.ids)
         if args[0]==self.eth_missing:raise RpcError('unreadable')
         return args[0]*(2 if role=='rewards' else 3)
     def _addr(self,role,method,i,block):
         self.calls.append((method,(i,),block));self.check(block)
         return OTHER if i==self.bad_owner else OWNER
+    def _position(self,bucket,block):
+        self.calls.append(('group(uint256)',(bucket,),block));self.check(block)
+        return [f'{value:064x}' for value in (1,123,0,0,0,1,0,1)]
     def _call(self,target,method,i,block,words):
         self.calls.append((method,(i,),block));self.check(block)
         if self.limit:raise WorkLimit('rpc_budget')
@@ -55,9 +63,9 @@ class WalletSummaryTests(unittest.TestCase):
     def test_one_chunk_work_is_bounded_at_collection_cap(self):
         p=Snapshot(1000);r=read(p,OWNER,90,992)
         self.assertEqual(len(r['token_ids']),8);self.assertIsNone(r['next_offset'])
-        # Owner, weight, custody, LP value and two claim views per NFT.
-        # This adds one required custody read without widening runtime budgets.
-        self.assertEqual(len(p.calls),1+8*6)
+        # Owner, weight/status, bucket/shares, LP and two claim views per NFT;
+        # the shared bucket row and denominator are read once per chunk.
+        self.assertEqual(len(p.calls),1+8*8+2)
     def test_empty_wallet_is_verified_zero(self):
         r=read(Snapshot(0),OWNER,90,0)
         self.assertEqual((r['lp_usd_18'],r['claimable_eth_wei']),('0','0'))

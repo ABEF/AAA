@@ -1,0 +1,24 @@
+{
+  "method": "tests_python.test_production_v6.PolicyProductionV6Tests.test_malformed_chain_object_fails_typed_admission_before_rpc",
+  "tests_run": 1,
+  "successful": true,
+  "errors": 0,
+  "failures": 0,
+  "skips": 0,
+  "source_before": {
+    "zzz_ops/production_v6.py": "3fa5de73ff8488fc661fccdbe712138348c65d7735bf162c2253f51bbd9529d7",
+    "zzz_ops/production_observer_v6.py": "dec4111ddb22f7858b3448e83a5d2401ccdc06f18d2b608efe03552920c02a58",
+    "tests_python/production_v6_fixtures.py": "d0172754c64a2126ee8287f2b39d5f88f152cabde8b754649854e1b9a83e923d",
+    "tests_python/test_production_v6.py": "526742983c39b4c9a338ced40d34fb1747bfb6c6eefbd192d6d02504fced3944",
+    "config/production.example.json": "b53851323ae01b965edc65742432799c6a4592d7a20a769dda7353c390896112"
+  },
+  "source_after": {
+    "zzz_ops/production_v6.py": "3fa5de73ff8488fc661fccdbe712138348c65d7735bf162c2253f51bbd9529d7",
+    "zzz_ops/production_observer_v6.py": "dec4111ddb22f7858b3448e83a5d2401ccdc06f18d2b608efe03552920c02a58",
+    "tests_python/production_v6_fixtures.py": "d0172754c64a2126ee8287f2b39d5f88f152cabde8b754649854e1b9a83e923d",
+    "tests_python/test_production_v6.py": "526742983c39b4c9a338ced40d34fb1747bfb6c6eefbd192d6d02504fced3944",
+    "config/production.example.json": "b53851323ae01b965edc65742432799c6a4592d7a20a769dda7353c390896112"
+  },
+  "source_drift": false,
+  "scope": "New malformed direct observer object regression only; earlier49 retain pre-additive-guard source scope"
+}

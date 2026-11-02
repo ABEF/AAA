@@ -1,0 +1,32 @@
+{
+  "shares_above_denominator": {
+    "nft": {
+      "accepted": false,
+      "type": "ProjectionError",
+      "message": "Local principal differs from its canonical custody state"
+    },
+    "collection": {
+      "accepted": true,
+      "amount": null
+    },
+    "wallet_summary": {
+      "accepted": true,
+      "amount": null
+    }
+  },
+  "parked_status_with_active_bucket": {
+    "nft": {
+      "accepted": false,
+      "type": "ProjectionError",
+      "message": "Local principal differs from its canonical custody state"
+    },
+    "collection": {
+      "accepted": true,
+      "amount": null
+    },
+    "wallet_summary": {
+      "accepted": true,
+      "amount": null
+    }
+  }
+}

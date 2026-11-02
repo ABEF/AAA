@@ -20,7 +20,7 @@ VERSIONS=dict(H.VERSIONS,schema_version=8,accounting_version=6,custody_version=4
     maintenance_policy_version=3,compound_capability_version=4,lp_routing_version=2,
     rebalance_confirmation_version=3,emergency_rebalance_version=2,portfolio_version=2,protocol_policy_version=1,review_policy_version=2)
 TOP_FIELDS=H.TOP_FIELDS|set(VERSIONS)
-CHAIN_FIELDS=H.CHAIN_FIELDS|{'portfolio','protocol_policy'}
+CHAIN_FIELDS=H.CHAIN_FIELDS|{'portfolio','protocol_policy','buyback_maximum_usd18'}
 EVIDENCE=H.EVIDENCE+('portfolio','protocol_policy')
 SERVICE_PROFILES=dict(H.SERVICE_PROFILES,
     keeper='accounting6_policy1_portfolio2_upkeep3_compound4_lp2_quality1_confirmation3',
@@ -48,6 +48,9 @@ def expected_bindings(chain):
     result['modules']['vault'].update(mintPrice=V._obj(protocol.get('sale')).get('mint_price_wei'),
         mintPolicyFingerprint=V._obj(protocol.get('mint')).get('fingerprint'),
         mintProceedsRecipient=V._obj(protocol.get('sale')).get('recipient'))
+    # Source6 permits reviewed maximum changes. Constructor provenance stays
+    # historical; compare the live getter with a separate current declaration.
+    result['modules']['buyback']['maxTradeUSD']=V._numeric(chain.get('buyback_maximum_usd18'))
     result['helpers']['activation_entry']['REVIEW_POLICY_VERSION']=2
     result['helpers']['contribution_pricing']['ENTRY_REVIEW_VERSION']=2
     result['modules']['migration'].update(CUSTODY_VERSION=4,EMERGENCY_REBALANCE_VERSION=2)
@@ -465,9 +468,11 @@ def _release_records(g,chain,path,home,tokens):
     addresses=[r.get('address') for group in ('modules','helpers') for r in V._obj(chain.get(group)).values() if isinstance(r,dict)]
     g.check(recipient is not None and recipient not in addresses,path+'.constructor','mint.recipient','Mint proceeds cannot use a protocol custody/helper address.')
     g.check(ctor.get('canonical_chain_id')==home,path+'.constructor','canonical.chain','Preserve the canonical construction chain.')
-    hard=g.num(ctor.get('maximum_buyback_usd18'),path+'.constructor.maximum_buyback_usd18',1)
+    g.num(ctor.get('maximum_buyback_usd18'),path+'.constructor.maximum_buyback_usd18',1,2**128-1)
+    hard=g.num(chain.get('buyback_maximum_usd18'),path+'.buyback_maximum_usd18',1,2**128-1)
     operating=g.num(chain.get('operating_buyback_usd18'),path+'.operating_buyback_usd18')
-    g.check(hard is not None and operating is not None and operating<=hard,path,'buyback.ceiling','Retain deployment maximum and reviewed operating ceiling.')
+    g.check(hard is not None and operating is not None and operating<=hard,path,'buyback.ceiling',
+        'Retain constructor provenance separately; operating spend must not exceed the reviewed current maximum.')
     g.proof(ctor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
     native=dict(version=6,asset=ZERO,decimals=18,runtime_hash=None,canonical_schema=SCHEMA_HASH,
         wrapper_independent=True,eth_weth_principal_boundary=False,legacy_v1_import=False)

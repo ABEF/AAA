@@ -303,6 +303,10 @@ def observe(config,rpc):
         raise ValueError('Use explicit schema8/accounting6/custody4/portfolio2/V6 capabilities')
     if not isinstance(config.get('chains'),list) or len(config['chains'])!=1:raise ValueError('Use one canonical chain inventory')
     output=copy.deepcopy(config);chain=output['chains'][0]
+    if not isinstance(chain,dict):raise ValueError('Use one canonical chain inventory object')
+    maximum=P.V._numeric(chain.get('buyback_maximum_usd18'))
+    if maximum is None or not 0<maximum<2**128:
+        raise ValueError('Review the current buyback maximum separately from constructor provenance')
     for group,roles in (('modules',P.MODULES),('helpers',P.HELPERS)):
         if not isinstance(chain.get(group),dict) or set(chain[group])!=set(roles):raise ValueError('Use exact current module/helper inventory')
     for key,maximum in (('dependencies',32),('tokens',33),('pools',16),('activation_sources',64),('conversion_routes',64)):

@@ -1,0 +1,31 @@
+{
+  "scope": "Compact evidence and audit text; no self-hash. Raw negative attempts/logs remain external.",
+  "files": {
+    "admission-object-tests.json": "62c58fda69baeb27764a6d9e158d4d4ead099963c472e5ce71f5582691725c7e",
+    "admission-summary.json": "af778284eb515293ec2732a169a3de0f39f220b5110a4749932ece13f21d04e0",
+    "admission-tests.json": "f838537ff134fbfd57fdf48eb861b2dba170b1fb691240a9bfc73896cb6b3a9b",
+    "data-final-chunk-tests.json": "c729fdc664417102f355d2a68fd03bedc86a2759a982f8668eb0b8620e1d27ce",
+    "data-final-summary.json": "35ce4785ed0f4f3cf04a89d60230e7156cbc8dfb3e608416b6ae5ba130a05005",
+    "data-negative.json": "1941edd2579645e2c1fc8f01d25bf79539053a22ade3f4ebbcd277a63db5a01e",
+    "data-partial-negative.json": "f2f9c0a9c8d98cff69acc45eb738d2dbd6aa8e4cafea2b5456c9766dd947aea2",
+    "data-partial-tests.json": "b6490755f45e36a41ab31aa0c8c81b42bde1692e07018002b1dd722f2e63f18e",
+    "data-summary.json": "76f28696f056e7f2cd3ea23d1263cf1e40206700b30b1c7692d86278bb63aac4",
+    "documentation-checks.json": "c281538034dac22cf0b1245ec81a12ffa7e83e8ab894885b121f0e43638f2055",
+    "documentation-links.json": "19227f4fcdc6f365e2a47c909aa06ddc0e6b8aafdab2efeab175795cef715ece",
+    "final-source-reuse.json": "3c1550e2d4be136c596c5880968a71a3c82f9816646519319c9c19797d267cba",
+    "keeper-final-health.json": "ef3e66a04ff42c7821f1eaf29505afd99a6d28d4aa3c4731e1d9fe8299de5b6a",
+    "keeper-negative.json": "0ff53e57834b01874b72de687f38d8d6da2fc9377fc718d034d81d366ac4398a",
+    "keeper-review.json": "67135cb4cff3fd7f68799787a043cd512d0f7f05cc073498d8d603de57c00bcb",
+    "KNOWLEDGE.md": "54ea3b36c8cb7ced39f5aea9ff5a5fbd7b09b5289cb9888de1906ebd201efc42",
+    "method-ledger.json": "c3d6e83513c61c9f32a7182c2a876d4bc33311c5c7b3376f1e3415749f1e837c",
+    "PROMPT.md": "d9b1bc491a674248dfca5d03fd686b16c6dd1c4fc9f5914fb4cb7c8578e8f045",
+    "publication-index.json": "318202cfcafec7a271e8188bf9dac09c7cb949c528394202eff81d95d0c87086",
+    "publication-runtime.json": "6f07cfedfca2516bca3823795b2721eb2e68c22ece631410b92c2a39e701a00c",
+    "REVIEW.md": "d9714b4cae71215b4941f9f440043e46e4a9cebf9a47556b8355ee643e92ec57",
+    "root-tool-negative.json": "80c9396c6c7a5c70f595fe4b9a4c4482724a562a015285f9f40c0b758115c370",
+    "root-tool-tests.json": "f901097ab66368dde984df9f0d2d5fdcf8f1f4394444697475389ff9034070a1",
+    "source-consistency.json": "d14ac51ccf8dbbffa91045814a25e2bb248bda23b0acdef7cc4d777aefa75e28",
+    "source-preservation.json": "634705e751ede7b16c584fd207b6ba1333b288e47f1c574c409ca90be90ee508",
+    "VERIFICATION.md": "075d1a8708c434ff85a623567d613ca40f8854f6fc967b316c84c3a8e58f3a2c"
+  }
+}

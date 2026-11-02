@@ -37,6 +37,21 @@ Verify its Manager/core/state/PosM/Permit2/router wiring, the Balancer arithmeti
 child, actual runtime pins and every code-owned getter. Never assume all helpers
 have the same interface or expose `access()`.
 
+## Current buyback maximum and creation history
+
+Fresh schema8 requires `chains[].buyback_maximum_usd18`: the reviewed current
+`Buyback.maxTradeUSD()` in USD18, positive and at most uint128.max. It is matched
+to the exact pinned live getter. `operating_buyback_usd18` must not exceed it.
+`constructor.maximum_buyback_usd18` remains the original creation value; do not
+rewrite it after `setMaximumTradeUSD` or use it as a fallback for missing current
+configuration. Raise/lower ordering remains in the [operator procedure](OPERATOR_MANUAL.md#future-operating-settings).
+
+Older incomplete fresh8 records must be reviewed/completed and observed again;
+missing/invalid current declarations and non-object chain records fail before
+RPC. The example remains null/unqualified. Historical profiles retain their own
+formats; neither this field nor an on-chain setting change upgrades a journal,
+service or old runtime.
+
 ## Selected contribution reservation
 
 `contribution_reservation` contains `pool_id`, current/alias/canonical bucket IDs,

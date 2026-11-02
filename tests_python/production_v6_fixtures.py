@@ -20,6 +20,7 @@ def refresh_bindings(cfg):
 def fixture(*,active=True,residual=True):
     cfg=H.fixture(active=active,residual=residual);cfg.update(P.VERSIONS,accounting_model='shared-pools-native-v6',canonical_schema=P.SCHEMA_NAME)
     chain=cfg['chains'][0];target=H.F.old.addr(10026)
+    chain['buyback_maximum_usd18']=chain['constructor']['maximum_buyback_usd18']
     chain['helpers']['protocol_policy']=dict(address=target,runtime_hash=H.F.old.HASH,
         observed_runtime_hash=H.F.old.HASH,immutable=True,review_evidence=H.F.old.proof())
     data={'entry':(100*10**18,5*10**18,500,1),'maintenance':(500,1),'gas':(180000,500000,250000,1),

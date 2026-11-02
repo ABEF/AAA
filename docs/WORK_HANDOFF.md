@@ -1,6 +1,6 @@
 # Work handoff
 
-Reviewed31October2026, Europe/Paris. Read [instructions](../AGENTS.md),
+Reviewed2November2026, Europe/Paris. Read [instructions](../AGENTS.md),
 [context](../PROJECT_CONTEXT.md), [README](../README.md), [sole Todo](../TODO.md)
 and the relevant [operator procedure](OPERATOR_MANUAL.md).
 
@@ -49,12 +49,13 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
-The [current follow-up](../reports/today-audit-20261031/REVIEW.md) fixes exact
-publication closure and predecessor dependency admission; its
-[verification](../reports/today-audit-20261031/VERIFICATION.md) distinguishes useful
-affected accounting/API checks, current static contexts and final0a build reuse.
-Check committed/staged Python imports, not only local files. No old journal or
-service is adopted by these source repairs.
+The [current follow-up](../reports/improvement-audit-20261102/REVIEW.md) consolidates
+custody checks, repairs current buyback-policy admission and health/report
+diagnostics, and includes current keeper/source cases in verification. Its
+[evidence](../reports/improvement-audit-20261102/VERIFICATION.md) separates affected
+checks from unchanged final0a build/static reuse. Complete fresh schema8 with a
+reviewed current buyback_maximum_usd18; preserve constructor provenance. Check
+committed/staged imports, not only local files. No old journal/service is adopted.
 
 1. Establish publication state from exact local/remote main heads. Git publication
    is not deployment or qualification. Keep source, docs and linked evidence
@@ -72,7 +73,8 @@ service is adopted by these source repairs.
 5. Qualify target gas/constructor arguments, liquidity/strategy economics,
   600/240/300 sampled timing, jitter, Linux storage/restart/recovery and exact
    authorities. Migration's20-byte runtime margin needs care in any future edit.
-6. Refresh source-bound static analysis and independent audit/remediation for
+6. Retain exact source-bound static evidence, refresh after relevant changes,
+   and complete independent audit/remediation for
    this candidate; complete metadata hosting, operating rehearsals and release
    sign-off. Production remains NOT APPROVED.
 

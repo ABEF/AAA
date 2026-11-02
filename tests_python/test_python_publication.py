@@ -53,6 +53,24 @@ class PythonPublicationTests(unittest.TestCase):
         self.assertEqual([dict(file='frontend_api/service.py',line=1,error='relative_import_beyond_package'),
             dict(file='keeper/monitor.py',line=1,missing_module='scripts.local_reader')],checker.check_sources(sources))
 
+    def test_nested_bindings_cannot_hide_an_unpublished_package_member(self):
+        for raw in (b'def setup():\n    portfolio_v6 = 1',
+                    b'class Setup:\n    portfolio_v6 = 1',
+                    b'def setup():\n    import json as portfolio_v6',
+                    b'values = [portfolio_v6 for portfolio_v6 in ()]',
+                    b'def setup():\n    def __getattr__(name): pass'):
+            sources={'frontend_api/service.py':b'from zzz_ops import portfolio_v6',
+                'zzz_ops/__init__.py':raw}
+            with self.subTest(raw=raw):
+                self.assertEqual([dict(file='frontend_api/service.py',line=1,
+                    missing_module='zzz_ops.portfolio_v6')],checker.check_sources(sources))
+
+    def test_module_scope_exports_survive_nested_scope_exclusion(self):
+        sources={'frontend_api/service.py':b'from zzz_ops import helper, Setting, value, alias',
+            'zzz_ops/__init__.py':b'def helper(): pass\nclass Setting: pass\n'
+                b'if True:\n    value = 1\nimport json as alias'}
+        self.assertEqual([],checker.check_sources(sources))
+
     def test_git_index_reads_only_stage_zero_blob_bytes_not_worktree(self):
         raw=b'import frontend_api.missing\n';digest=b'a'*40
         transcript={('ls-files','--stage','-z','--',*checker.DIRECTORIES):b'100644 '+digest+b' 0\tkeeper/monitor.py\0',

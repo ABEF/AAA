@@ -1,0 +1,34 @@
+{
+  "baseline": "44f21926caf8caafecac07d3de25ba7f8e09d67f",
+  "kind": "Current3-6 inventory custody consistency repair; staged affected evidence, not full suite or production qualification",
+  "files": {
+    "frontend_api/custody.py": "d4d2f5286af3a686b0a1f76f1563dada42f98c01844f9a824d98a526421de511",
+    "frontend_api/service.py": "615932686749a943626fdf59ad21c4ae052164c570866b2ccb4ded22c48276b8",
+    "frontend_api/collection.py": "815c8b89c573ae5ce92bb5b4eb4b9e12a34122c1122f83e57784205ce2d6bad4",
+    "frontend_api/portfolio.py": "7540ff5e26c59cad30cc7f513e14c8b19444ee6d66a84f6637dfc9e69d5d6cdc",
+    "tests_python/test_inventory_custody.py": "5127d7d8f0f21218524a01110c261bd7caf3052db12e7a0e34d77225e6840b04",
+    "tests_python/test_wallet_summary.py": "0491ebd9349a267c03b2ffd2650876ba51f4fc17cba3b6a5e09957a55f78c076",
+    "tests_python/test_collection.py": "7490a8ae0db5a9d1dda299f08afd5eac4323cf2c6ae0f67364222070a2d64714",
+    "tests_python/test_wallet_custody_totals.py": "4492d9115dcd2d9950c5e7b3959001bdc5d07666c32cb2832f2634241062a17a"
+  },
+  "distinct_methods": 100,
+  "latest_outcomes": {
+    "pass": 100,
+    "failed": 0,
+    "skip": 0
+  },
+  "new_inventory_methods": 5,
+  "initial79": {
+    "passed": 78,
+    "fixture_error": 1
+  },
+  "final_correction17": {
+    "passed": 17
+  },
+  "additional_custody8": {
+    "passed": 8
+  },
+  "initial_duplicate_selection_executed": 0,
+  "no_solidity_deployment_service_or_signing_changes": true,
+  "operator_impact": "One matching read-service source release only; no schema/config/on-chain operation. Chunks add required bounded group/denominator identity reads and per-NFT shares; no price fallback; no journal or database migration."
+}

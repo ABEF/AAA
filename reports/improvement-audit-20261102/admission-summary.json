@@ -1,0 +1,39 @@
+{
+  "scope": "Fresh6 production inventory governed-buyback maximum correctness; no Solidity behavior or historical profile change",
+  "finding": "constructor.maximum_buyback_usd18 incorrectly reused as current maxTradeUSD after governed updates",
+  "new_current_field": "chains[].buyback_maximum_usd18",
+  "units": "USD18 exact positive uint128; integer or canonical decimal string",
+  "constructor_terms_preserved": true,
+  "refuse_missing_invalid_before_rpc": true,
+  "live_getter": "Buyback.maxTradeUSD()",
+  "operating_limit": "chains[].operating_buyback_usd18 <= current maximum",
+  "source_paths": [
+    "zzz_ops/production_v6.py",
+    "zzz_ops/production_observer_v6.py",
+    "tests_python/production_v6_fixtures.py",
+    "tests_python/test_production_v6.py",
+    "config/production.example.json"
+  ],
+  "new_regression_methods": 5,
+  "affected_methods_passed": 50,
+  "failures": 0,
+  "skips": 0,
+  "source_drift": false,
+  "unchanged_production_sources": 52,
+  "normal_gates_reused_not_reexecuted": 43,
+  "no_public_rpc_service_deployment_or_signing": true,
+  "release_still_blocked": true,
+  "limitations": [
+    "Mocked source6 observer roundtrip and historical/CLI offline tests; no live provider or production operating qualification.",
+    "Unknown template values remain null. Existing schema8 configs require an explicitly reviewed new current field; no value is guessed from historical construction.",
+    "Independent audit, actual services, market/provider/gas/VRF/OpenSea remain separate release gates."
+  ],
+  "verification_scope": "49 original passes then1new malformed-chain pass after additive pre-RPC dict admission; valid-dict body unchanged",
+  "final_owned_source_sha256": {
+    "zzz_ops/production_v6.py": "3fa5de73ff8488fc661fccdbe712138348c65d7735bf162c2253f51bbd9529d7",
+    "zzz_ops/production_observer_v6.py": "dec4111ddb22f7858b3448e83a5d2401ccdc06f18d2b608efe03552920c02a58",
+    "tests_python/production_v6_fixtures.py": "d0172754c64a2126ee8287f2b39d5f88f152cabde8b754649854e1b9a83e923d",
+    "tests_python/test_production_v6.py": "526742983c39b4c9a338ced40d34fb1747bfb6c6eefbd192d6d02504fced3944",
+    "config/production.example.json": "b53851323ae01b965edc65742432799c6a4592d7a20a769dda7353c390896112"
+  }
+}

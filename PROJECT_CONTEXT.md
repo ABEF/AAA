@@ -1,10 +1,10 @@
 # PoPL current project context
 
-Reviewed2026-10-31. [Instructions](AGENTS.md), [README](README.md),
+Reviewed2026-11-02. [Instructions](AGENTS.md), [README](README.md),
 [sole Todo](TODO.md) and [operator manual](docs/OPERATOR_MANUAL.md) are the starting
 points. This is a current snapshot, not a timeline or global personal memory.
 
-## Current local implementation
+## Current source candidate
 
 Fresh accounting6/portfolio2/maintenance3/confirmation3/compound4/custody4/
 emergency2/LP-routing2; pricing2/Entry-routing2/governance2/fee1 retained.
@@ -80,12 +80,14 @@ runtime and backend checks are recorded in the new report; older50-source/42-gat
 public CI, market/provider/host qualification or independent approval is implied.
 The new callable reference/operator procedures must match source6, not old profiles.
 
-[Current audit follow-up](reports/today-audit-20261031/REVIEW.md) repairs omitted
-published portfolio readers and valid same-role/same-runtime shared Uniswap
-dependency admission for predecessor history. Exact Git-blob publication checks
-prevent local untracked files hiding missing imports. Source6 accounting fixtures
-and current recovery labels are corrected; production Solidity remains unchanged.
-Fresh static contexts and affected execution retain their explicit evidence scope.
+[Current audit follow-up](reports/improvement-audit-20261102/REVIEW.md) consolidates
+NFT/collection/wallet custody proof and bounds per-request caching. Fresh schema8
+uses a separately reviewed current buyback maximum, never rewritten constructor
+history. Source6 health validates maintenance policy evidence; unavailable idle
+policy blocks principal simulation while harvest remains independent. Focused
+keeper selection and source/publication checks cover current helpers/scopes.
+The earlier published reader/lineage repairs remain in place. Production Solidity
+is unchanged; exact build/static reuse and new affected checks have separate scopes.
 
 ## What remains
 

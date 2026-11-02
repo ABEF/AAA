@@ -596,6 +596,7 @@
         "nft_base_uri": null,
         "recipient_payment_evidence": null
       },
+      "buyback_maximum_usd18": null,
       "operating_buyback_usd18": null,
       "native_accounting": {
         "asset": "0x0000000000000000000000000000000000000000",

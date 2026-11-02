@@ -1,5 +1,12 @@
 # Verification evidence
 
+[November2 audit and consolidation](improvement-audit-20261102/REVIEW.md) executes
+the [improved request](improvement-audit-20261102/PROMPT.md), unifies read-side
+custody proof, repairs current-policy preflight and keeper diagnostic gaps, and
+strengthens focused verification. [Evidence](improvement-audit-20261102/VERIFICATION.md)
+distinguishes affected executions/inventories from exact unchanged Solidity,
+build/static reuse. No deployment/service change or production approval.
+
 [October31 source/operating follow-up](today-audit-20261031/REVIEW.md) executes
 the [reviewed audit prompt](today-audit-20261031/PROMPT.md), repairs published
 reader omissions and replacement-history admission, restores useful accounting

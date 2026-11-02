@@ -40,6 +40,21 @@ The website independently reconciles both against each row before aggregation.
 
 ## Financial meaning and failure behavior
 
+Current3–6 collection and wallet-summary chunks use the same canonical custody
+proof as NFT detail: the NFT's active/parked/exited state must match its local
+bucket, physical-ID presence and share denominator. Neither an NFT's shares nor
+the chunk's partial sum of distinct NFT shares may exceed bucket supply. The sum
+check uses a separate request-local map with no extra RPC. Exited buckets retain
+no attributed idle. Contradictions reject
+the read; they are not merely unavailable prices. Historical outbound meanings
+remain profile-specific.
+
+Group/supply reads are cached only per bucket within one pinned request, while
+each NFT's shares remain checked. Wallet chunks also read bucket/share identity
+per NFT. Additional work is bounded by existing16-item chunks and existing
+budgets; do not raise them automatically. Verify actual provider latency before
+rollout. A price outage still preserves verified ownership/raw funded claims.
+
 Attached LP is the sum of each NFT's `currentLPValue` quote, using the current
 on-chain LP mark, attributed idle and compound reserves. It is neither lifetime
 contributions nor claimable rewards. Per-NFT integer rounding is preserved; the

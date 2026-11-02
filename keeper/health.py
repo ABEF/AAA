@@ -66,6 +66,23 @@ def _confirmation_capabilities(config):
     return result
 
 
+def _maintenance_policy_valid(value, config):
+    """Validate the stored Policy1 evidence, not current chain state or authority."""
+    from zzz_ops.abi import address, keccak256
+    if (not isinstance(value,dict) or set(value)!={'version','domain','policy','fingerprint','maximum_idle_bps','revision'} or
+            type(value.get('version')) is not int or value['version']!=1 or value.get('domain')!='maintenance' or
+            not _uint(value.get('maximum_idle_bps'),4000) or
+            not _uint(value.get('revision'),2**64-1) or value['revision']==0 or not _hash(value.get('fingerprint'))):
+        return False
+    contracts=config.get('contracts') if isinstance(config,dict) else None
+    if not isinstance(contracts,dict): return False
+    try: target=address(contracts.get('protocol_policy'))
+    except (ValueError,TypeError): return False
+    if value.get('policy')!=target: return False
+    encoded=f'{int(target,16):064x}{value["maximum_idle_bps"]:064x}{value["revision"]:064x}'
+    return value['fingerprint']=='0x'+keccak256(bytes.fromhex(encoded)).hex()
+
+
 def observe_confirmation_health(keeper, previous=None):
     """Fresh policy-only latest reads; diagnostic metadata never authorizes work.
 
@@ -115,6 +132,8 @@ def confirmation_reasons(data, config, *, now, max_age):
     """Require fresh confirmation evidence independently of execution quality."""
     if config.get('rebalance_confirmation_version',0) not in (1,2,3):
         return []
+    if not isinstance(config.get('contracts'),dict) or not isinstance(config.get('code_hashes'),dict):
+        return ['confirmation_health_profile_invalid']
     interval = config.get('interval_seconds')
     fresh=config['rebalance_confirmation_version']==3
     if (type(config.get('accounting_version')) is not int or config['accounting_version'] not in ((5,6) if fresh else (4,)) or
@@ -191,6 +210,8 @@ def confirmation_reasons(data, config, *, now, max_age):
             ((observation.get('minimum_main_bps') is None and observation.get('maximum_residual_bps') is None) if config.get('accounting_version')==6 else
              type(observation.get('minimum_main_bps')) is int and observation['minimum_main_bps']==6000 and
              type(observation.get('maximum_residual_bps')) is int and observation['maximum_residual_bps']==4000))
+    if config.get('accounting_version')==6 and not _maintenance_policy_valid(observation.get('maintenance_policy'),config):
+        reasons.append('confirmation_observation_maintenance_policy_invalid')
     if not valid_policy:
         reasons.append('confirmation_observation_policy_invalid')
     elif gap==0 and data.get('lp_exit_started') is not True:
@@ -214,6 +235,9 @@ def execution_reasons(data, config, *, now, max_age):
         return ['execution_health_profile_invalid']
     confirmation_version=config.get('rebalance_confirmation_version',0)
     if type(confirmation_version) is not int or confirmation_version not in (0,1,2,3):
+        return ['execution_health_profile_invalid']
+    if ((quality_version==1 or confirmation_version in (1,2,3)) and
+            (not isinstance(config.get('contracts'),dict) or not isinstance(config.get('code_hashes'),dict))):
         return ['execution_health_profile_invalid']
     if confirmation_version in (1,2,3) and version!=HEALTH_SCHEMA:
         return ['execution_health_schema_required']

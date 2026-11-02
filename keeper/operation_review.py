@@ -468,6 +468,8 @@ class Review:
             if action != 'harvest':
                 if not financial['available'] or not financial['value']['maintenance_policy']['available']:
                     _set(row, 'unavailable', 'financial_policy_unavailable'); continue
+                if financial['value']['post_deployment_idle_ceiling']['bps'] is None:
+                    _set(row, 'unavailable', 'maintenance_idle_policy_unavailable'); continue
                 execution = self.execution()
                 row['checks']['lp_execution'] = execution
                 if not execution['available']:
