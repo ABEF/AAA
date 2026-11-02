@@ -66,16 +66,15 @@ change to the website is part of this contract implementation.
 
 ## Current evidence and limits
 
-[Five-audit consolidation](../reports/five-audit-consolidation-20261102/REVIEW.md)
-maps historical findings to current mechanisms and open work. The earlier custody,
-buyback-admission, policy/report and publication repairs remain implemented.
-Fresh-profile health now rejects missing/downgraded required tags before legacy
-early returns; two older test scenarios reach their intended race/receipt checks.
-[Evidence](../reports/five-audit-consolidation-20261102/VERIFICATION.md) separates
-affected execution from historical artifact integrity and exact unchanged Solidity
-reuse. The Operator manual adds conditional route-failure triage; ordinary
-candidate viability remains open. Source6 inputs/services need reviewed rollout;
-no deployed behavior changed.
+[Ten-report consolidation](../reports/ten-audit-consolidation-20261102/REVIEW.md)
+maps current mechanisms, superseded recommendations and remaining work. Earlier
+custody/admission, health/profile and publication repairs remain implemented.
+Harvest diagnostics independently authenticate stored main/residual ticks against
+packed PosM identity without requiring prices or active ranges, and report the
+explicit ProtocolPolicy version. [Evidence](../reports/ten-audit-consolidation-20261102/VERIFICATION.md)
+separates affected execution, artifact integrity and unchanged Solidity reuse.
+Ordinary candidate viability and lifetime history scaling remain open. Source6
+inputs/services need reviewed rollout; no deployed behavior changed.
 
 [Current adaptable-policy verification](../reports/adaptable-policy-20261031/VERIFICATION.md)
 binds52production sources/31dependencies and43normal object gates at the unchanged

@@ -1,0 +1,1087 @@
+{
+  "scope": "Artifact integrity and preservation, not independent authentication or re-execution.",
+  "artifact_entries": [
+    {
+      "path": "reports/improvement-audit-20261102/admission-object-tests.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/admission-summary.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/admission-tests.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/data-final-chunk-tests.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/data-final-summary.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/data-negative.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/data-partial-negative.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/data-partial-tests.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/data-summary.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/documentation-checks.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/documentation-links.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/final-source-reuse.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/keeper-final-health.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/keeper-negative.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/keeper-review.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/KNOWLEDGE.md",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/method-ledger.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/PROMPT.md",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/publication-index.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/publication-runtime.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/REVIEW.md",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/root-tool-negative.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/root-tool-tests.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/source-consistency.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/source-preservation.json",
+      "match": true
+    },
+    {
+      "path": "reports/improvement-audit-20261102/VERIFICATION.md",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/accounting-summary.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/accounting-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/backend-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/default-static-coverage.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/documentation-links.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/final-checks.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/KNOWLEDGE.md",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/policy-body-review.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/PROMPT.md",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/publication-final-tests.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/publication-index.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/publication-runtime-imports.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/publication-runtime-reuse.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/REVIEW.md",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/source-preservation.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/static-context-triage.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/static-execution.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/static-review-coverage.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/static-review.json",
+      "match": true
+    },
+    {
+      "path": "reports/today-audit-20261031/VERIFICATION.md",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/backend-corrections.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/backend-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/callable-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/conversion-profile-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/documentation-links.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/dollar-cli-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/final-checks.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/mint-native-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/nft-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/payout-buyback-source-gas.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/policy-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/production-size-gates.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/REVIEW.md",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/source-preservation.json",
+      "match": true
+    },
+    {
+      "path": "reports/adaptable-policy-20261031/VERIFICATION.md",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/access-corrections.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/catalog-qa.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/documentation-checks.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/documentation-links.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/helper-design-stage.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/helper-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/new-journey-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/operation-inventory.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/operation-matrix.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/REVIEW.md",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/source-preservation.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/template-admission.json",
+      "match": true
+    },
+    {
+      "path": "reports/manual-operations-20261031/VERIFICATION.md",
+      "match": true
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\BASELINE.json",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\tooling\\attempt3.log",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\catalog\\OPERATIONS.json",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-operations-audit-20261031\\catalog\\APPENDABLE_OPERATOR_CATALOG.md",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "reports/day-audit-20261031/backend-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/cleanup-bytecode-comparison.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/documentation-links.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/evm-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/final-documentation-checks.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/production-size-gates.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/REVIEW.md",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/source-preservation.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/static-analysis-receipt.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/static-triage.json",
+      "match": true
+    },
+    {
+      "path": "reports/day-audit-20261031/VERIFICATION.md",
+      "match": true
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\normal-final-8511732986\\compiler-input.json",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\normal-final-8511732986\\compiler-output.json",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\static-attempt-5c26f66e51\\slither.json",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\static-attempt-5c26f66e51\\EXECUTION.json",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\static-attempt-5c26f66e51\\MANUAL_TRIAGE.json",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-audit-20261031\\operator-consolidation\\CONSOLIDATION.json",
+      "match": true,
+      "scope": "external recorded file"
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/source-checks-final.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-last-report-qa.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/prompt-review-amended.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/contracts-inventory.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/contracts-body-reading.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/contracts-understanding.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/contracts-research.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/contracts-compiler-advisories.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/contracts-compiler-generated-followup-FINAL.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/contracts-review.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/contracts-final-report-qa.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/current-solidity-body-coverage.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/current-source-inventory.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/feature-operation-coverage.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-understanding-and-coverage.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-findings.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-research.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-admission-findings.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-admission-provenance.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-cross-review-static.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-guide-final-qa.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/backend-review.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/backend-cross-review-keeper.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/backend-cross-review-evidence.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/backend-cross-review-evidence-followup.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/verification-aggregate.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-final-targeted.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-final-targeted.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/admission-final-focused.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/admission-final-focused.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/admission-provenance-final.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/admission-provenance-final.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-final-verified.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-final-verified.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-escaped-key-final.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-escaped-key-final.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-stage-reuse.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/backend-history-chronology-after.txt",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/production-comparison.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/reserve-venue-tests.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-bucket-reset-before.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-bucket-reset-before.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-telemetry-before.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-telemetry-before.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/backend-history-chronology-before.txt",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/admission-before.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/admission-before.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/admission-provenance-before.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/admission-provenance-before.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-negative-before.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-negative-before.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-diagnostics-negative-before.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/static-log-capture-corrected-negative.log",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/production-size-gates.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/compiler-analyser-independent-review.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/compiler-analyser-fixture-scope.json",
+      "match": true
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/compiler-ast-coverage-crosscheck.json",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/frontend-cli-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/frontend-cli-before.txt",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/frontend-cli-after.txt",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/frontend-cli-state-compatibility.txt",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/indexer-config-final.json",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/indexer-config-final.log",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/indexer-config-negative-before.log",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/compiler-reuse.json",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/contracts-final-qa.json",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/operations-final-qa.json",
+      "match": true
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/read-services-final-qa.json",
+      "match": true
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/documentation-links.json",
+      "match": true
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/evidence-integrity.json",
+      "match": true
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/final-checks.json",
+      "match": true
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/findings.json",
+      "match": true
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/method-ledger.json",
+      "match": true
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/REVIEW.md",
+      "match": true
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/test-verification.json",
+      "match": true
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/VERIFICATION.md",
+      "match": true
+    }
+  ],
+  "historical_stage_notes": [
+    {
+      "report": "residual-operations-20261031",
+      "scope": "No report-local artifact manifest in this format; baseline preservation and original stage receipts checked. Historical source pins are not current-source equality claims."
+    },
+    {
+      "report": "optional-portfolio-20261030",
+      "scope": "No report-local artifact manifest in this format; baseline preservation and original stage receipts checked. Historical source pins are not current-source equality claims."
+    },
+    {
+      "report": "keeper-coordination-20261029",
+      "scope": "No report-local artifact manifest in this format; baseline preservation and original stage receipts checked. Historical source pins are not current-source equality claims."
+    }
+  ],
+  "historical_preservation": {
+    "reports/adaptable-policy-20261031/REVIEW.md": true,
+    "reports/adaptable-policy-20261031/VERIFICATION.md": true,
+    "reports/adaptable-policy-20261031/artifact-manifest.json": true,
+    "reports/adaptable-policy-20261031/backend-corrections.json": true,
+    "reports/adaptable-policy-20261031/backend-verification.json": true,
+    "reports/adaptable-policy-20261031/callable-verification.json": true,
+    "reports/adaptable-policy-20261031/conversion-profile-verification.json": true,
+    "reports/adaptable-policy-20261031/documentation-links.json": true,
+    "reports/adaptable-policy-20261031/dollar-cli-verification.json": true,
+    "reports/adaptable-policy-20261031/final-checks.json": true,
+    "reports/adaptable-policy-20261031/mint-native-verification.json": true,
+    "reports/adaptable-policy-20261031/nft-verification.json": true,
+    "reports/adaptable-policy-20261031/payout-buyback-source-gas.json": true,
+    "reports/adaptable-policy-20261031/policy-verification.json": true,
+    "reports/adaptable-policy-20261031/production-size-gates.json": true,
+    "reports/adaptable-policy-20261031/source-preservation.json": true,
+    "reports/comprehensive-popl-20261029/ARTIFACTS.json": true,
+    "reports/comprehensive-popl-20261029/CONSISTENCY.json": true,
+    "reports/comprehensive-popl-20261029/COVERAGE.md": true,
+    "reports/comprehensive-popl-20261029/KNOWLEDGE.md": true,
+    "reports/comprehensive-popl-20261029/PROMPT_REVIEW.md": true,
+    "reports/comprehensive-popl-20261029/REVIEW.md": true,
+    "reports/comprehensive-popl-20261029/UNDERSTANDING.md": true,
+    "reports/comprehensive-popl-20261029/VERIFICATION.md": true,
+    "reports/comprehensive-popl-20261029/admission-before.json": true,
+    "reports/comprehensive-popl-20261029/admission-before.log": true,
+    "reports/comprehensive-popl-20261029/admission-final-focused.json": true,
+    "reports/comprehensive-popl-20261029/admission-final-focused.log": true,
+    "reports/comprehensive-popl-20261029/admission-provenance-before.json": true,
+    "reports/comprehensive-popl-20261029/admission-provenance-before.log": true,
+    "reports/comprehensive-popl-20261029/admission-provenance-final.json": true,
+    "reports/comprehensive-popl-20261029/admission-provenance-final.log": true,
+    "reports/comprehensive-popl-20261029/backend-cross-review-evidence-followup.json": true,
+    "reports/comprehensive-popl-20261029/backend-cross-review-evidence.json": true,
+    "reports/comprehensive-popl-20261029/backend-cross-review-keeper.json": true,
+    "reports/comprehensive-popl-20261029/backend-history-chronology-after.txt": true,
+    "reports/comprehensive-popl-20261029/backend-history-chronology-before.txt": true,
+    "reports/comprehensive-popl-20261029/backend-review.json": true,
+    "reports/comprehensive-popl-20261029/compiler-analyser-fixture-scope.json": true,
+    "reports/comprehensive-popl-20261029/compiler-analyser-independent-review.json": true,
+    "reports/comprehensive-popl-20261029/compiler-ast-coverage-crosscheck.json": true,
+    "reports/comprehensive-popl-20261029/contracts-body-reading.json": true,
+    "reports/comprehensive-popl-20261029/contracts-compiler-advisories.json": true,
+    "reports/comprehensive-popl-20261029/contracts-compiler-generated-followup-FINAL.json": true,
+    "reports/comprehensive-popl-20261029/contracts-final-report-qa.json": true,
+    "reports/comprehensive-popl-20261029/contracts-inventory.json": true,
+    "reports/comprehensive-popl-20261029/contracts-research.json": true,
+    "reports/comprehensive-popl-20261029/contracts-review.json": true,
+    "reports/comprehensive-popl-20261029/contracts-understanding.json": true,
+    "reports/comprehensive-popl-20261029/current-solidity-body-coverage.json": true,
+    "reports/comprehensive-popl-20261029/current-source-inventory.json": true,
+    "reports/comprehensive-popl-20261029/feature-operation-coverage.json": true,
+    "reports/comprehensive-popl-20261029/operations-admission-findings.json": true,
+    "reports/comprehensive-popl-20261029/operations-admission-provenance.json": true,
+    "reports/comprehensive-popl-20261029/operations-bucket-reset-before.json": true,
+    "reports/comprehensive-popl-20261029/operations-bucket-reset-before.log": true,
+    "reports/comprehensive-popl-20261029/operations-cross-review-static.json": true,
+    "reports/comprehensive-popl-20261029/operations-final-targeted.json": true,
+    "reports/comprehensive-popl-20261029/operations-final-targeted.log": true,
+    "reports/comprehensive-popl-20261029/operations-findings.json": true,
+    "reports/comprehensive-popl-20261029/operations-guide-final-qa.json": true,
+    "reports/comprehensive-popl-20261029/operations-last-report-qa.json": true,
+    "reports/comprehensive-popl-20261029/operations-research.json": true,
+    "reports/comprehensive-popl-20261029/operations-telemetry-before.json": true,
+    "reports/comprehensive-popl-20261029/operations-telemetry-before.log": true,
+    "reports/comprehensive-popl-20261029/operations-understanding-and-coverage.json": true,
+    "reports/comprehensive-popl-20261029/production-comparison.json": true,
+    "reports/comprehensive-popl-20261029/production-size-gates.json": true,
+    "reports/comprehensive-popl-20261029/prompt-review-amended.json": true,
+    "reports/comprehensive-popl-20261029/reserve-venue-tests.json": true,
+    "reports/comprehensive-popl-20261029/source-checks-final.json": true,
+    "reports/comprehensive-popl-20261029/static-diagnostics-negative-before.log": true,
+    "reports/comprehensive-popl-20261029/static-escaped-key-final.json": true,
+    "reports/comprehensive-popl-20261029/static-escaped-key-final.log": true,
+    "reports/comprehensive-popl-20261029/static-final-verified.json": true,
+    "reports/comprehensive-popl-20261029/static-final-verified.log": true,
+    "reports/comprehensive-popl-20261029/static-log-capture-corrected-negative.log": true,
+    "reports/comprehensive-popl-20261029/static-negative-before.json": true,
+    "reports/comprehensive-popl-20261029/static-negative-before.log": true,
+    "reports/comprehensive-popl-20261029/static-stage-reuse.json": true,
+    "reports/comprehensive-popl-20261029/verification-aggregate.json": true,
+    "reports/day-audit-20261031/REVIEW.md": true,
+    "reports/day-audit-20261031/VERIFICATION.md": true,
+    "reports/day-audit-20261031/artifact-manifest.json": true,
+    "reports/day-audit-20261031/backend-verification.json": true,
+    "reports/day-audit-20261031/cleanup-bytecode-comparison.json": true,
+    "reports/day-audit-20261031/documentation-links.json": true,
+    "reports/day-audit-20261031/evm-verification.json": true,
+    "reports/day-audit-20261031/final-documentation-checks.json": true,
+    "reports/day-audit-20261031/production-size-gates.json": true,
+    "reports/day-audit-20261031/source-preservation.json": true,
+    "reports/day-audit-20261031/static-analysis-receipt.json": true,
+    "reports/day-audit-20261031/static-triage.json": true,
+    "reports/five-audit-consolidation-20261102/REVIEW.md": true,
+    "reports/five-audit-consolidation-20261102/VERIFICATION.md": true,
+    "reports/five-audit-consolidation-20261102/artifact-manifest.json": true,
+    "reports/five-audit-consolidation-20261102/documentation-links.json": true,
+    "reports/five-audit-consolidation-20261102/evidence-integrity.json": true,
+    "reports/five-audit-consolidation-20261102/final-checks.json": true,
+    "reports/five-audit-consolidation-20261102/findings.json": true,
+    "reports/five-audit-consolidation-20261102/method-ledger.json": true,
+    "reports/five-audit-consolidation-20261102/test-verification.json": true,
+    "reports/historical-reconciliation-completion-20261029/CLI_VERIFICATION.json": true,
+    "reports/historical-reconciliation-completion-20261029/EVIDENCE_COPIES.json": true,
+    "reports/historical-reconciliation-completion-20261029/FINAL_CHECKS.json": true,
+    "reports/historical-reconciliation-completion-20261029/FINDINGS.json": true,
+    "reports/historical-reconciliation-completion-20261029/INPUTS.json": true,
+    "reports/historical-reconciliation-completion-20261029/PRESERVATION.json": true,
+    "reports/historical-reconciliation-completion-20261029/PROVENANCE_CHECK.json": true,
+    "reports/historical-reconciliation-completion-20261029/READING_INVENTORY.json": true,
+    "reports/historical-reconciliation-completion-20261029/REVIEW.md": true,
+    "reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json": true,
+    "reports/historical-reconciliation-completion-20261029/VERIFICATION.md": true,
+    "reports/historical-reconciliation-completion-20261029/compiler-reuse.json": true,
+    "reports/historical-reconciliation-completion-20261029/contracts-final-qa.json": true,
+    "reports/historical-reconciliation-completion-20261029/frontend-cli-after.txt": true,
+    "reports/historical-reconciliation-completion-20261029/frontend-cli-before.txt": true,
+    "reports/historical-reconciliation-completion-20261029/frontend-cli-state-compatibility.txt": true,
+    "reports/historical-reconciliation-completion-20261029/frontend-cli-verification.json": true,
+    "reports/historical-reconciliation-completion-20261029/indexer-config-final.json": true,
+    "reports/historical-reconciliation-completion-20261029/indexer-config-final.log": true,
+    "reports/historical-reconciliation-completion-20261029/indexer-config-negative-before.log": true,
+    "reports/historical-reconciliation-completion-20261029/operations-final-qa.json": true,
+    "reports/historical-reconciliation-completion-20261029/read-services-final-qa.json": true,
+    "reports/improvement-audit-20261102/KNOWLEDGE.md": true,
+    "reports/improvement-audit-20261102/PROMPT.md": true,
+    "reports/improvement-audit-20261102/REVIEW.md": true,
+    "reports/improvement-audit-20261102/VERIFICATION.md": true,
+    "reports/improvement-audit-20261102/admission-object-tests.json": true,
+    "reports/improvement-audit-20261102/admission-summary.json": true,
+    "reports/improvement-audit-20261102/admission-tests.json": true,
+    "reports/improvement-audit-20261102/artifact-manifest.json": true,
+    "reports/improvement-audit-20261102/data-final-chunk-tests.json": true,
+    "reports/improvement-audit-20261102/data-final-summary.json": true,
+    "reports/improvement-audit-20261102/data-negative.json": true,
+    "reports/improvement-audit-20261102/data-partial-negative.json": true,
+    "reports/improvement-audit-20261102/data-partial-tests.json": true,
+    "reports/improvement-audit-20261102/data-summary.json": true,
+    "reports/improvement-audit-20261102/documentation-checks.json": true,
+    "reports/improvement-audit-20261102/documentation-links.json": true,
+    "reports/improvement-audit-20261102/final-source-reuse.json": true,
+    "reports/improvement-audit-20261102/keeper-final-health.json": true,
+    "reports/improvement-audit-20261102/keeper-negative.json": true,
+    "reports/improvement-audit-20261102/keeper-review.json": true,
+    "reports/improvement-audit-20261102/method-ledger.json": true,
+    "reports/improvement-audit-20261102/publication-index.json": true,
+    "reports/improvement-audit-20261102/publication-runtime.json": true,
+    "reports/improvement-audit-20261102/root-tool-negative.json": true,
+    "reports/improvement-audit-20261102/root-tool-tests.json": true,
+    "reports/improvement-audit-20261102/source-consistency.json": true,
+    "reports/improvement-audit-20261102/source-preservation.json": true,
+    "reports/keeper-coordination-20261029/RESERVATION_REPAIR.md": true,
+    "reports/keeper-coordination-20261029/REVIEW.md": true,
+    "reports/keeper-coordination-20261029/VERIFICATION.md": true,
+    "reports/keeper-coordination-20261029/abi-signatures.json": true,
+    "reports/keeper-coordination-20261029/keeper-tests.json": true,
+    "reports/keeper-coordination-20261029/keeper-tests.log": true,
+    "reports/keeper-coordination-20261029/python-inventory-summary.json": true,
+    "reports/keeper-coordination-20261029/reservation-negative-abi.json": true,
+    "reports/keeper-coordination-20261029/reservation-negative-inventory.json": true,
+    "reports/keeper-coordination-20261029/reservation-pre-diagnostic-tests.json": true,
+    "reports/keeper-coordination-20261029/reservation-source-pins.json": true,
+    "reports/keeper-coordination-20261029/reservation-tests.json": true,
+    "reports/keeper-coordination-20261029/verification-summary.json": true,
+    "reports/manual-operations-20261031/REVIEW.md": true,
+    "reports/manual-operations-20261031/VERIFICATION.md": true,
+    "reports/manual-operations-20261031/access-corrections.json": true,
+    "reports/manual-operations-20261031/artifact-manifest.json": true,
+    "reports/manual-operations-20261031/catalog-qa.json": true,
+    "reports/manual-operations-20261031/documentation-checks.json": true,
+    "reports/manual-operations-20261031/documentation-links.json": true,
+    "reports/manual-operations-20261031/helper-design-stage.json": true,
+    "reports/manual-operations-20261031/helper-verification.json": true,
+    "reports/manual-operations-20261031/new-journey-verification.json": true,
+    "reports/manual-operations-20261031/operation-inventory.json": true,
+    "reports/manual-operations-20261031/operation-matrix.json": true,
+    "reports/manual-operations-20261031/source-preservation.json": true,
+    "reports/manual-operations-20261031/template-admission.json": true,
+    "reports/optional-portfolio-20261030/REVIEW.md": true,
+    "reports/optional-portfolio-20261030/VERIFICATION.md": true,
+    "reports/optional-portfolio-20261030/active-main-verification.json": true,
+    "reports/optional-portfolio-20261030/callable-reference-verification.json": true,
+    "reports/optional-portfolio-20261030/documentation-verification.json": true,
+    "reports/optional-portfolio-20261030/half-policy-verification.json": true,
+    "reports/optional-portfolio-20261030/independent-source-review.json": true,
+    "reports/optional-portfolio-20261030/keeper-inventory-verification.json": true,
+    "reports/optional-portfolio-20261030/normal-size-gates.json": true,
+    "reports/optional-portfolio-20261030/source-pins.json": true,
+    "reports/optional-portfolio-20261030/verification-ledger.json": true,
+    "reports/residual-operations-20261031/REVIEW.md": true,
+    "reports/residual-operations-20261031/VERIFICATION.md": true,
+    "reports/residual-operations-20261031/actual-core-verification.json": true,
+    "reports/residual-operations-20261031/callable-reference-verification.json": true,
+    "reports/residual-operations-20261031/core-stage1.json": true,
+    "reports/residual-operations-20261031/core-stage2.json": true,
+    "reports/residual-operations-20261031/core-stage3.json": true,
+    "reports/residual-operations-20261031/documentation-verification.json": true,
+    "reports/residual-operations-20261031/interface-storage-comparison.json": true,
+    "reports/residual-operations-20261031/normal-size-gates.json": true,
+    "reports/residual-operations-20261031/source-pins.json": true,
+    "reports/residual-operations-20261031/terminal-guard-verification.json": true,
+    "reports/today-audit-20261031/KNOWLEDGE.md": true,
+    "reports/today-audit-20261031/PROMPT.md": true,
+    "reports/today-audit-20261031/REVIEW.md": true,
+    "reports/today-audit-20261031/VERIFICATION.md": true,
+    "reports/today-audit-20261031/accounting-summary.json": true,
+    "reports/today-audit-20261031/accounting-verification.json": true,
+    "reports/today-audit-20261031/artifact-manifest.json": true,
+    "reports/today-audit-20261031/backend-verification.json": true,
+    "reports/today-audit-20261031/default-static-coverage.json": true,
+    "reports/today-audit-20261031/documentation-links.json": true,
+    "reports/today-audit-20261031/final-checks.json": true,
+    "reports/today-audit-20261031/policy-body-review.json": true,
+    "reports/today-audit-20261031/publication-final-tests.json": true,
+    "reports/today-audit-20261031/publication-index.json": true,
+    "reports/today-audit-20261031/publication-runtime-imports.json": true,
+    "reports/today-audit-20261031/publication-runtime-reuse.json": true,
+    "reports/today-audit-20261031/source-preservation.json": true,
+    "reports/today-audit-20261031/static-context-triage.json": true,
+    "reports/today-audit-20261031/static-execution.json": true,
+    "reports/today-audit-20261031/static-review-coverage.json": true,
+    "reports/today-audit-20261031/static-review.json": true
+  },
+  "protected_preservation": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "production_preservation": {
+    "src/ZZZAccessController.sol": true,
+    "src/ZZZActivationAssets.sol": true,
+    "src/ZZZActivationAssetsFactory.sol": true,
+    "src/ZZZActivationEntry.sol": true,
+    "src/ZZZBuyback.sol": true,
+    "src/ZZZCanonicalHandoff.sol": true,
+    "src/ZZZClaimRouter.sol": true,
+    "src/ZZZCompounder.sol": true,
+    "src/ZZZContributionPricing.sol": true,
+    "src/ZZZCustodyValidation.sol": true,
+    "src/ZZZFeeController.sol": true,
+    "src/ZZZFeesCanonical.sol": true,
+    "src/ZZZLiquidityManager.sol": true,
+    "src/ZZZLPBalanceMath.sol": true,
+    "src/ZZZLPBalancer.sol": true,
+    "src/ZZZLPPositionExecutor.sol": true,
+    "src/ZZZLPRewardConverter.sol": true,
+    "src/ZZZMembership.sol": true,
+    "src/ZZZMigration.sol": true,
+    "src/ZZZMigrationBudget.sol": true,
+    "src/ZZZNFT.sol": true,
+    "src/ZZZNFTCanonical.sol": true,
+    "src/ZZZNFTMetadata.sol": true,
+    "src/ZZZOracle.sol": true,
+    "src/ZZZPoolRegistry.sol": true,
+    "src/ZZZPortfolioPolicy.sol": true,
+    "src/ZZZProtocolPolicy.sol": true,
+    "src/ZZZPythPriceFeed.sol": true,
+    "src/ZZZRebalanceConfirmation.sol": true,
+    "src/ZZZRewards.sol": true,
+    "src/ZZZRoyaltyConverter.sol": true,
+    "src/ZZZRoyaltyFactory.sol": true,
+    "src/ZZZRoyaltyRewards.sol": true,
+    "src/ZZZStrategy.sol": true,
+    "src/ZZZV4RouteExecutor.sol": true,
+    "src/ZZZVault.sol": true,
+    "src/ZZZVaultCanonical.sol": true,
+    "src/base/ZZZCanonicalLedger.sol": true,
+    "src/base/ZZZModule.sol": true,
+    "src/base/ZZZRewardConverter.sol": true,
+    "src/interfaces/IZZZ.sol": true,
+    "src/interfaces/IZZZCanonical.sol": true,
+    "src/interfaces/IZZZEmergency.sol": true,
+    "src/interfaces/IZZZNFTCanonical.sol": true,
+    "src/interfaces/IZZZProtocolPolicy.sol": true,
+    "src/interfaces/IZZZV3Route.sol": true,
+    "src/libraries/ExactAsset.sol": true,
+    "src/libraries/ExactToken.sol": true,
+    "src/libraries/ZZZArtwork.sol": true,
+    "src/libraries/ZZZPriceMath.sol": true,
+    "src/libraries/ZZZTypes.sol": true,
+    "src/libraries/ZZZV3VenueValidation.sol": true
+  },
+  "compiler_input_source_reuse": {
+    "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": true,
+    "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": true,
+    "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": true,
+    "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": true,
+    "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": true,
+    "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": true,
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": true,
+    "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": true,
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": true,
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": true,
+    "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": true,
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/Base64.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/Context.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/Strings.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": true,
+    "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": true,
+    "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol": true,
+    "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol": true,
+    "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol": true,
+    "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": true,
+    "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol": true,
+    "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": true,
+    "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": true,
+    "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol": true,
+    "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": true,
+    "src/ZZZAccessController.sol": true,
+    "src/ZZZActivationAssets.sol": true,
+    "src/ZZZActivationAssetsFactory.sol": true,
+    "src/ZZZActivationEntry.sol": true,
+    "src/ZZZBuyback.sol": true,
+    "src/ZZZCanonicalHandoff.sol": true,
+    "src/ZZZClaimRouter.sol": true,
+    "src/ZZZCompounder.sol": true,
+    "src/ZZZContributionPricing.sol": true,
+    "src/ZZZCustodyValidation.sol": true,
+    "src/ZZZFeeController.sol": true,
+    "src/ZZZFeesCanonical.sol": true,
+    "src/ZZZLPBalanceMath.sol": true,
+    "src/ZZZLPBalancer.sol": true,
+    "src/ZZZLPPositionExecutor.sol": true,
+    "src/ZZZLPRewardConverter.sol": true,
+    "src/ZZZLiquidityManager.sol": true,
+    "src/ZZZMembership.sol": true,
+    "src/ZZZMigration.sol": true,
+    "src/ZZZMigrationBudget.sol": true,
+    "src/ZZZNFT.sol": true,
+    "src/ZZZNFTCanonical.sol": true,
+    "src/ZZZNFTMetadata.sol": true,
+    "src/ZZZOracle.sol": true,
+    "src/ZZZPoolRegistry.sol": true,
+    "src/ZZZPortfolioPolicy.sol": true,
+    "src/ZZZProtocolPolicy.sol": true,
+    "src/ZZZPythPriceFeed.sol": true,
+    "src/ZZZRebalanceConfirmation.sol": true,
+    "src/ZZZRewards.sol": true,
+    "src/ZZZRoyaltyConverter.sol": true,
+    "src/ZZZRoyaltyFactory.sol": true,
+    "src/ZZZRoyaltyRewards.sol": true,
+    "src/ZZZStrategy.sol": true,
+    "src/ZZZV4RouteExecutor.sol": true,
+    "src/ZZZVault.sol": true,
+    "src/ZZZVaultCanonical.sol": true,
+    "src/base/ZZZCanonicalLedger.sol": true,
+    "src/base/ZZZModule.sol": true,
+    "src/base/ZZZRewardConverter.sol": true,
+    "src/interfaces/IZZZ.sol": true,
+    "src/interfaces/IZZZCanonical.sol": true,
+    "src/interfaces/IZZZEmergency.sol": true,
+    "src/interfaces/IZZZNFTCanonical.sol": true,
+    "src/interfaces/IZZZProtocolPolicy.sol": true,
+    "src/interfaces/IZZZV3Route.sol": true,
+    "src/libraries/ExactAsset.sol": true,
+    "src/libraries/ExactToken.sol": true,
+    "src/libraries/ZZZArtwork.sol": true,
+    "src/libraries/ZZZPriceMath.sol": true,
+    "src/libraries/ZZZTypes.sol": true,
+    "src/libraries/ZZZV3VenueValidation.sol": true
+  },
+  "ok": true
+}

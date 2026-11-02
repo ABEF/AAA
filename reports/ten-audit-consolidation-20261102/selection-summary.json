@@ -1,0 +1,8 @@
+{
+  "scope": "Inventory only; zero selected bodies executed.",
+  "selected_methods": 842,
+  "tests_run": 0,
+  "successful": true,
+  "source_changes_during_run": [],
+  "raw_receipt_sha256": "b028ea4edf9813e7a7111c8720ec57a400deef3a0cd6ccd402936b6a68b47aa8"
+}

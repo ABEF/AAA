@@ -13,12 +13,13 @@ The prior [source audit](reports/day-audit-20261031/REVIEW.md) fixes physical-re
 availability, activation bindings and ordinary replacement activity. Source changes do not update existing
 Anvil contracts, journals, workers or websites. Public signing remains disabled.
 
-The [five-audit consolidation](reports/five-audit-consolidation-20261102/REVIEW.md)
-reconciles the latest technical reviews, fixes a further health-profile admission
-gap and corrects two stale test scenarios. Its [disposition matrix](reports/five-audit-consolidation-20261102/findings.json)
-separates implemented repairs, superseded records, accepted boundaries and open
-work. [Evidence](reports/five-audit-consolidation-20261102/VERIFICATION.md) keeps new
-affected checks separate from exact unchanged Solidity/build/static reuse.
+The [ten-report consolidation](reports/ten-audit-consolidation-20261102/REVIEW.md)
+expands the earlier reconciliation, independently validates both LP legs in
+harvest diagnostics and makes current policy metadata explicit. Its
+[dispositions](reports/ten-audit-consolidation-20261102/findings.json) separate
+implemented repairs, superseded records, accepted boundaries and open work.
+[Evidence](reports/ten-audit-consolidation-20261102/VERIFICATION.md) keeps affected
+checks separate from exact unchanged Solidity/build/static reuse.
 
 ## Project navigation
 

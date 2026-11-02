@@ -1,0 +1,1088 @@
+{
+  "schema": 1,
+  "reviewed": "2026-11-02",
+  "baseline_commit": "9bd13dfbc5a6a27d4694631f24352fb610025491",
+  "scope": "Ten underlying technical report narratives and relevant receipts; prior consolidation reused without rewriting. Group counts are not independent bugs/tests; upstream352/235 review retains original scope.",
+  "selected_reports": [
+    "reports/improvement-audit-20261102/REVIEW.md",
+    "reports/today-audit-20261031/REVIEW.md",
+    "reports/adaptable-policy-20261031/REVIEW.md",
+    "reports/manual-operations-20261031/REVIEW.md",
+    "reports/day-audit-20261031/REVIEW.md",
+    "reports/residual-operations-20261031/REVIEW.md",
+    "reports/optional-portfolio-20261030/REVIEW.md",
+    "reports/comprehensive-popl-20261029/REVIEW.md",
+    "reports/historical-reconciliation-completion-20261029/REVIEW.md",
+    "reports/keeper-coordination-20261029/REVIEW.md"
+  ],
+  "reused_consolidation": "reports/five-audit-consolidation-20261102/findings.json",
+  "findings": [
+    {
+      "id": "N01",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Detail/chunk custody inconsistency and partial summed shares",
+      "status": "resolved_in_source",
+      "current_disposition": "Shared pinned request-local custody validator preserves raw claims through price outages.",
+      "current_references": [
+        "frontend_api/custody.py",
+        "frontend_api/collection.py",
+        "frontend_api/portfolio.py"
+      ],
+      "task_id": "read-api"
+    },
+    {
+      "id": "N02",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Governed buyback limit confused with original constructor cap",
+      "status": "resolved_in_source",
+      "current_disposition": "Schema8 current declaration and exact live getter binding remain distinct from immutable creation history.",
+      "current_references": [
+        "zzz_ops/production_v6.py",
+        "zzz_ops/production_observer_v6.py"
+      ],
+      "task_id": "native-production-preflight"
+    },
+    {
+      "id": "N03",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Stored Policy1 record and malformed nested health inputs",
+      "status": "resolved_in_source",
+      "current_disposition": "Exact policy shape, address, integer bounds/revision and scoped fingerprint checked. Additional mandatory-profile admission repaired by C01.",
+      "current_references": [
+        "keeper/health.py",
+        "tests_python/test_keeper_policy_integrity.py"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "N04",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Unknown maintenance idle ceiling reported eligible",
+      "status": "resolved_in_source",
+      "current_disposition": "Explicit unavailable reason prevents principal simulation; independently eligible harvest remains separate.",
+      "current_references": [
+        "keeper/operation_review.py",
+        "tests_python/test_keeper_policy_integrity.py"
+      ],
+      "task_id": "operation-review"
+    },
+    {
+      "id": "N05",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Focused keeper test selection omitted current profiles",
+      "status": "resolved_in_source",
+      "current_disposition": "Current policy/portfolio modules included; selection inventory is not executed-method evidence.",
+      "current_references": [
+        "scripts/run-keeper-tests.py"
+      ],
+      "task_id": "local-verification"
+    },
+    {
+      "id": "N06",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Nested package locals masked missing published imports",
+      "status": "resolved_in_source",
+      "current_disposition": "AST binding scopes exclude nested locals; publication checked from Git blobs. Dynamic imports remain outside static guarantee.",
+      "current_references": [
+        "scripts/check-python-publication.py"
+      ],
+      "task_id": "local-verification"
+    },
+    {
+      "id": "N07",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Required concrete source-class inventory stale",
+      "status": "resolved_in_source",
+      "current_disposition": "Current source/callable inventory includes standalone policy/portfolio classes; runtime instances and source classes differ.",
+      "current_references": [
+        "scripts/source_checks.py",
+        "docs/CONTRACT_FUNCTIONS.md"
+      ],
+      "task_id": "local-verification"
+    },
+    {
+      "id": "N08",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Current navigation and size/allocation labels stale",
+      "status": "resolved_in_source",
+      "current_disposition": "Maintained guides describe source6 and governed main floor; old report numbers retain original scope.",
+      "current_references": [
+        "docs/IMPLEMENTATION_STATUS.md",
+        "docs/OPERATOR_MANUAL.md"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "T01",
+      "origin_reports": [
+        "today-audit-20261031"
+      ],
+      "finding": "Reader modules missing from published closure",
+      "status": "resolved_in_source",
+      "current_disposition": "Portfolio5/6 readers are tracked; static Git closure and isolated runtime import evidence remain source-bound.",
+      "current_references": [
+        "frontend_api/portfolio_v5.py",
+        "frontend_api/portfolio_v6.py",
+        "scripts/check-python-publication.py"
+      ],
+      "task_id": "read-api"
+    },
+    {
+      "id": "T02",
+      "origin_reports": [
+        "today-audit-20261031"
+      ],
+      "finding": "Same-chain lineage rejected matching shared external infrastructure",
+      "status": "resolved_in_source",
+      "current_disposition": "Same-role identical-runtime Uniswap dependencies may repeat; protocol modules, lineage proof and runtime identities remain strict.",
+      "current_references": [
+        "frontend_api/lineage.py"
+      ],
+      "task_id": "read-api"
+    },
+    {
+      "id": "T03",
+      "origin_reports": [
+        "today-audit-20261031"
+      ],
+      "finding": "Current portfolio accounting fixture obsolete",
+      "status": "resolved_in_source",
+      "current_disposition": "Actual policy fixture and governed floor cases present; no production accounting weakened.",
+      "current_references": [
+        "test/PortfolioAccounting.t.sol"
+      ],
+      "task_id": "local-verification"
+    },
+    {
+      "id": "T04",
+      "origin_reports": [
+        "today-audit-20261031"
+      ],
+      "finding": "Recovery guide conflated source5 and source6",
+      "status": "resolved_in_source",
+      "current_disposition": "Explicit version/configuration boundaries; no relabeling old runtime or journal.",
+      "current_references": [
+        "docs/KEEPER_RECOVERY.md",
+        "docs/WORK_HANDOFF.md"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "T05",
+      "origin_reports": [
+        "today-audit-20261031"
+      ],
+      "finding": "Default static record stale for current production source",
+      "status": "resolved_in_source",
+      "current_disposition": "Current 471-context source-bound internal review replaces default historical coverage. Analyzer flags are not 471 exploitable vulnerabilities or a clean independent audit.",
+      "current_references": [
+        "reports/today-audit-20261031/static-review.json",
+        "scripts/check-slither-review.py"
+      ],
+      "task_id": "audit-release"
+    },
+    {
+      "id": "A01",
+      "origin_reports": [
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Future operating settings unnecessarily fixed",
+      "status": "resolved_in_source",
+      "current_disposition": "Noncustodial Access-bound ProtocolPolicy1 governs reviewed future minima, price/payee, idle/gas/display and drained provider changes within bounds.",
+      "current_references": [
+        "src/ZZZProtocolPolicy.sol",
+        "docs/ADAPTABLE_POLICY.md"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "A02",
+      "origin_reports": [
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Callback changes could revive/weaken old sale and entry reviews",
+      "status": "resolved_in_source",
+      "current_disposition": "Exact sale/VRF and entry fingerprints with scoped monotonic revisions and atomic rollback.",
+      "current_references": [
+        "src/ZZZNFT.sol",
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "task_id": "local-verification"
+    },
+    {
+      "id": "A03",
+      "origin_reports": [
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Portfolio allocation/gap policy and canonical threshold compatibility",
+      "status": "resolved_in_source",
+      "current_disposition": "Portfolio2 configured floor and positive gap; canonicalV6 source/import checks compare threshold values and required helper/runtime/config identity.",
+      "current_references": [
+        "src/ZZZPortfolioPolicy.sol",
+        "src/ZZZVaultCanonical.sol"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "A04",
+      "origin_reports": [
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Planned randomness rotation and original callback continuity",
+      "status": "resolved_in_source",
+      "current_disposition": "Rotation requires all draws finalized; original-address callbacks may drain. No reroll or metadata retargeting. Live outage/qualification remains Q02.",
+      "current_references": [
+        "src/ZZZNFT.sol",
+        "docs/NFT_METADATA.md"
+      ],
+      "task_id": "fair-draw"
+    },
+    {
+      "id": "A05",
+      "origin_reports": [
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Current read/preparation/conversion tooling boundaries",
+      "status": "resolved_in_source",
+      "current_disposition": "Explicit schema8/source6/Entry2/Portfolio2 readers and current conversion profile; source6 dollar patch refuses before output/compile.",
+      "current_references": [
+        "zzz_ops/production_v6.py",
+        "docs/ACTIVATION_PREPARATION.md",
+        "docs/ONE_DOLLAR_REHEARSAL.md"
+      ],
+      "task_id": "native-production-preflight"
+    },
+    {
+      "id": "M01",
+      "origin_reports": [
+        "manual-operations-20261031"
+      ],
+      "finding": "Duplicated management guides and incorrect authorization notes",
+      "status": "resolved_in_source",
+      "current_disposition": "Single Operator manual, exact authority before/after seal, named tuple inputs and reversible/terminal effects.",
+      "current_references": [
+        "docs/OPERATOR_MANUAL.md",
+        "docs/PORTFOLIO_OPERATIONS.md"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "M02",
+      "origin_reports": [
+        "manual-operations-20261031"
+      ],
+      "finding": "Pool reservation and park/resume ordering could strand operations",
+      "status": "resolved_in_source",
+      "current_disposition": "Document permanent reservation and explicit deposit/operation pause order; multi-transaction steps are not atomic.",
+      "current_references": [
+        "docs/OPERATOR_MANUAL.md",
+        "docs/CUSTODY_PARKING.md"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "M03",
+      "origin_reports": [
+        "manual-operations-20261031"
+      ],
+      "finding": "Offline review fingerprint could imply readiness",
+      "status": "resolved_in_source",
+      "current_disposition": "Strict source-bound manifest hashing with explicit false readiness; no actual authority, chain snapshot, simulation or signing.",
+      "current_references": [
+        "zzz_ops/operator_review.py",
+        "docs/OPERATOR_MANUAL.md"
+      ],
+      "task_id": "operation-review"
+    },
+    {
+      "id": "M04",
+      "origin_reports": [
+        "manual-operations-20261031"
+      ],
+      "finding": "Manual mode/geometry/empty-route controls conflated",
+      "status": "resolved_in_source",
+      "current_disposition": "Mode off is pending guarded merge; gap0 does not block explicit geometry exception; empty automatic venue list is not emergency explicit-swap prohibition.",
+      "current_references": [
+        "docs/OPERATOR_MANUAL.md",
+        "src/ZZZPortfolioPolicy.sol"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "D01",
+      "origin_reports": [
+        "day-audit-20261031"
+      ],
+      "finding": "Reference outage hid owner and raw funded claim evidence",
+      "status": "resolved_in_source",
+      "current_disposition": "Physical custody proof remains strict while price-dependent NAV/USD may be unavailable; keeper eligibility still requires its own financial proof.",
+      "current_references": [
+        "frontend_api/custody.py",
+        "frontend_api/portfolio_v6.py"
+      ],
+      "task_id": "read-api"
+    },
+    {
+      "id": "D02",
+      "origin_reports": [
+        "day-audit-20261031"
+      ],
+      "finding": "Activation preparation omitted actual position executor binding",
+      "status": "resolved_in_source",
+      "current_disposition": "Current explicit executor identity is required rather than an inferred helper.",
+      "current_references": [
+        "docs/ACTIVATION_PREPARATION.md",
+        "docs/ACTIVATION_ENTRY.md"
+      ],
+      "task_id": "native-production-preflight"
+    },
+    {
+      "id": "D03",
+      "origin_reports": [
+        "day-audit-20261031"
+      ],
+      "finding": "Ordinary single/hybrid replacement could mint inactive main",
+      "status": "resolved_in_source",
+      "current_disposition": "Typed executor requires actual main tick active before/after mint/refund callbacks. Initial/growth and emergency semantics remain separate.",
+      "current_references": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "D04",
+      "origin_reports": [
+        "day-audit-20261031"
+      ],
+      "finding": "Unused Balancer wrapper",
+      "status": "resolved_in_source",
+      "current_disposition": "Historical private wrapper removed with scoped ABI/instruction comparison; metadata differences retained honestly.",
+      "current_references": [
+        "src/ZZZLPBalancer.sol",
+        "reports/day-audit-20261031/cleanup-bytecode-comparison.json"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "H01",
+      "origin_reports": [
+        "manual-operations-20261031",
+        "day-audit-20261031"
+      ],
+      "finding": "Old source5 size/callable/static counts",
+      "status": "superseded_by_current_profile",
+      "current_disposition": "Source6 has 52 production files, 43 normal gates, 37 concrete contracts/826 function rows and current 471 static contexts. Historical EVM checks retain their original stage; no summed full-suite claim.",
+      "current_references": [
+        "reports/adaptable-policy-20261031/VERIFICATION.md",
+        "reports/today-audit-20261031/VERIFICATION.md"
+      ],
+      "task_id": "local-verification"
+    },
+    {
+      "id": "H02",
+      "origin_reports": [
+        "day-audit-20261031"
+      ],
+      "finding": "Obsolete WETH example comment",
+      "status": "superseded_by_current_profile",
+      "current_disposition": "Native ETH/fixed ZZZ are authoritative; obsolete illustrative comment does not enable WETH input. No cosmetic Solidity edit or changed build claim.",
+      "current_references": [
+        "src/ZZZActivationAssets.sol",
+        "docs/POSITION_V6.md"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "C01",
+      "origin_reports": [
+        "improvement-audit-20261102"
+      ],
+      "finding": "Health admission could disable both mandatory fresh evidence paths",
+      "status": "resolved_in_source",
+      "current_disposition": "New common admission rejects unsupported/ambiguous accounting and missing/downgraded source5/6 profile tags before legacy early returns. No signer/journal/RPC authority.",
+      "current_references": [
+        "keeper/health.py",
+        "tests_python/test_keeper_policy_integrity.py",
+        "docs/KEEPER_RECOVERY.md"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "C02",
+      "origin_reports": [
+        "today-audit-20261031",
+        "improvement-audit-20261102"
+      ],
+      "finding": "Two older fixtures missed their intended scenario",
+      "status": "resolved_in_source",
+      "current_disposition": "Original-code controls reproduce both failures. Corrected telemetry race proves actual estimation reached; delayed receipt follows a coherent saved checkpoint. Production guards unchanged.",
+      "current_references": [
+        "tests_python/test_keeper_execution_telemetry.py",
+        "tests_python/test_keeper_revert_health.py"
+      ],
+      "task_id": "local-verification"
+    },
+    {
+      "id": "I01",
+      "origin_reports": [
+        "day-audit-20261031",
+        "manual-operations-20261031"
+      ],
+      "finding": "Best quote may fail destination active-main guard despite viable alternative",
+      "status": "open_implementation",
+      "current_disposition": "Safety guard remains; planner needs ordinary candidate viability with exact actual tick and bounded sizing. Added conditional operator triage, not a partial solver or relaxed check.",
+      "current_references": [
+        "src/ZZZLPBalancer.sol",
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZLPPositionExecutor.sol",
+        "docs/OPERATOR_MANUAL.md"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "Q01",
+      "origin_reports": [
+        "improvement-audit-20261102",
+        "today-audit-20261031",
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Actual dual feeds, routes, RPC and pricing budget liveness",
+      "status": "open_qualification",
+      "current_disposition": "Review real provider independence, directional fees/depth and actual conservative bounds. 3% source agreement does not guarantee passing 2% deployed-LP budget.",
+      "current_references": [
+        "docs/PRICE_SECURITY.md",
+        "docs/PRODUCTION_SERVICES.md"
+      ],
+      "task_id": "native-production-preflight"
+    },
+    {
+      "id": "Q02",
+      "origin_reports": [
+        "today-audit-20261031",
+        "adaptable-policy-20261031"
+      ],
+      "finding": "VRF outage/rotation/whole-collection handoff liveness",
+      "status": "open_qualification",
+      "current_disposition": "Qualify actual provider/subscription/funding and pending-draw drain. No reroll. Ordinary LP movement and terminal return are independent.",
+      "current_references": [
+        "docs/NFT_METADATA.md",
+        "docs/CANONICAL_HANDOFF.md"
+      ],
+      "task_id": "fair-draw"
+    },
+    {
+      "id": "Q03",
+      "origin_reports": [
+        "manual-operations-20261031",
+        "day-audit-20261031",
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Maximum target gas, deployment arguments and runtime headroom",
+      "status": "open_qualification",
+      "current_disposition": "Qualify actual 1000-NFT/bucket/currency/URI/rejecting-receiver cases and exact constructor args; Migration margin20 requires care. Gas budget bounds and size gates are not target-chain acceptance.",
+      "current_references": [
+        "docs/RELEASE_CHECKLIST.md",
+        "docs/DEPLOYMENT_ADDRESSES.md"
+      ],
+      "task_id": "deployment-initcode"
+    },
+    {
+      "id": "Q04",
+      "origin_reports": [
+        "improvement-audit-20261102",
+        "today-audit-20261031",
+        "manual-operations-20261031"
+      ],
+      "finding": "Source6 writer/checker/host and off-host recovery rollout",
+      "status": "open_qualification",
+      "current_disposition": "Qualify actual Linux storage, restart, backup, load, source identity and strict 600/240/300 timing/jitter under finite budgets; no services changed here.",
+      "current_references": [
+        "docs/KEEPER_RECOVERY.md",
+        "docs/KEEPER_REHEARSALS.md"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "Q05",
+      "origin_reports": [
+        "improvement-audit-20261102",
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Current website consumer and marketplace/storage integration",
+      "status": "open_qualification",
+      "current_disposition": "Served current3 poplint and demo remain separate from source6. Public signing null; actual OpenSea, wallet acceptance and permanent metadata hosting are not qualified.",
+      "current_references": [
+        "docs/SITE_ENVIRONMENTS.md",
+        "docs/CURRENT_WEBSITE_PROFILE.md"
+      ],
+      "task_id": "security-integration"
+    },
+    {
+      "id": "Q06",
+      "origin_reports": [
+        "improvement-audit-20261102",
+        "today-audit-20261031",
+        "adaptable-policy-20261031",
+        "manual-operations-20261031",
+        "day-audit-20261031"
+      ],
+      "finding": "Independent audit and production approval",
+      "status": "open_qualification",
+      "current_disposition": "Internal scoped checks/source review do not establish independent audit, frozen full regression, published CI or actual operating approval.",
+      "current_references": [
+        "docs/SECURITY_AUDIT_PLAN.md",
+        "docs/RELEASE_CHECKLIST.md"
+      ],
+      "task_id": "audit-release"
+    },
+    {
+      "id": "B01",
+      "origin_reports": [
+        "today-audit-20261031",
+        "manual-operations-20261031"
+      ],
+      "finding": "Governance/emergency trust and key loss",
+      "status": "accepted_boundary",
+      "current_disposition": "Direct governance and reviewed replacement trust accepted; paused exact emergency may bypass financial safeguards and lose near-total principal. No silent authority expansion.",
+      "current_references": [
+        "docs/OPERATOR_MANUAL.md",
+        "docs/CHANGE_AND_RECOVERY.md"
+      ],
+      "task_id": "audit-release"
+    },
+    {
+      "id": "B02",
+      "origin_reports": [
+        "today-audit-20261031",
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Runtime pins and health hashes do not freeze proxies/attest hosts",
+      "status": "accepted_boundary",
+      "current_disposition": "Exact pins identify local/runtime evidence, not underlying implementation honesty, loaded process or independent market truth.",
+      "current_references": [
+        "docs/KEEPER_SAFEGUARDS.md",
+        "docs/PRODUCTION_SERVICES.md"
+      ],
+      "task_id": "security-integration"
+    },
+    {
+      "id": "B03",
+      "origin_reports": [
+        "today-audit-20261031",
+        "day-audit-20261031"
+      ],
+      "finding": "Sampled trigger, geometry, idle and independent financial guards can block",
+      "status": "accepted_boundary",
+      "current_disposition": "Sampled evidence is not continuous/MEV immunity; active main, configured floor/gap and separated entry/maintenance/idle/caller budgets retain distinct purposes. No automatic unsafe fallback.",
+      "current_references": [
+        "docs/LP_EXECUTION_POLICY.md",
+        "docs/PRICE_SECURITY.md"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "B04",
+      "origin_reports": [
+        "manual-operations-20261031",
+        "adaptable-policy-20261031"
+      ],
+      "finding": "Broken external dependencies and rejecting contract owners",
+      "status": "accepted_boundary",
+      "current_disposition": "Isolated retry and terminal separation limit propagation but cannot guarantee receipt by arbitrary contracts or recover lost keys/frozen external assets. Qualify actual receiver/escrow workflows.",
+      "current_references": [
+        "docs/OPERATOR_MANUAL.md",
+        "docs/CANONICAL_HANDOFF.md"
+      ],
+      "task_id": "audit-release"
+    },
+    {
+      "id": "R01",
+      "origin_reports": [
+        "residual-operations-20261031"
+      ],
+      "finding": "Residual-only close missing from manual management",
+      "status": "resolved_in_source",
+      "current_disposition": "Paused governance closeResidual preserves main, share supply, centre/clock and mode; both legs harvest first. Exact nonce/epoch/fingerprint/raw minima and rollback remain.",
+      "current_references": [
+        "src/ZZZMigration.sol",
+        "docs/OPERATOR_MANUAL.md"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "R02",
+      "origin_reports": [
+        "residual-operations-20261031"
+      ],
+      "finding": "Terminal checks and holder-exit validation exceeded bytecode limits",
+      "status": "resolved_in_source",
+      "current_disposition": "Behavior-preserving extraction retained; source6 exact normal closure supersedes initial oversize/source5 margins. No broad executor or relaxed guard.",
+      "current_references": [
+        "src/ZZZVault.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "task_id": "deployment-initcode"
+    },
+    {
+      "id": "R03",
+      "origin_reports": [
+        "residual-operations-20261031"
+      ],
+      "finding": "Mode enable/disable mistaken for immediate creation/consolidation",
+      "status": "resolved_in_source",
+      "current_disposition": "Desired mode and current physical positions are separate; explicit closure/guarded merge and same-value geometry re-review remain documented.",
+      "current_references": [
+        "docs/OPERATOR_MANUAL.md",
+        "src/ZZZPortfolioPolicy.sol"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "R04",
+      "origin_reports": [
+        "residual-operations-20261031"
+      ],
+      "finding": "Residual close can leave substantial attributed idle",
+      "status": "accepted_boundary",
+      "current_disposition": "Idle remains same-bucket principal, not operator surplus; later entrant/idle/deployment guards still apply. Both-leg parking and terminal holder return remain separate fallbacks.",
+      "current_references": [
+        "docs/CUSTODY_PARKING.md",
+        "docs/KEEPER_COORDINATION.md"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "P01",
+      "origin_reports": [
+        "optional-portfolio-20261030"
+      ],
+      "finding": "Unbounded physical-position strategy and incomparable raw liquidity",
+      "status": "resolved_in_source",
+      "current_disposition": "One main plus at most one residual in the same pool; aggregate token amounts/value instead of raw-L sums, with fixed Vault recipients and individual LP approvals.",
+      "current_references": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZLPPositionExecutor.sol",
+        "docs/POSITION_V6.md"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "P02",
+      "origin_reports": [
+        "optional-portfolio-20261030"
+      ],
+      "finding": "Same-pair move rechecked destination using captured source controls",
+      "status": "resolved_in_source",
+      "current_disposition": "Captured sourcePool retained in Budget; current source6 source/destination boundaries remain distinct.",
+      "current_references": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "P03",
+      "origin_reports": [
+        "optional-portfolio-20261030"
+      ],
+      "finding": "Rounding headroom forced a needless swap at natural floor",
+      "status": "resolved_in_source",
+      "current_disposition": "Natural placement meeting configured main floor takes no trade; rounding headroom applies to bounded trade sizing, with final floor proof retained. Source6 floor is governed, not fixed60%.",
+      "current_references": [
+        "src/ZZZLPBalancer.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "P04",
+      "origin_reports": [
+        "optional-portfolio-20261030"
+      ],
+      "finding": "Ordinary replacement could create an inactive main after callbacks",
+      "status": "resolved_in_source",
+      "current_disposition": "Actual stored tick activity checked before/after mint/refund for both ordinary modes. Initial/growth and paused explicit emergency remain separate. Candidate selection itself remains I01.",
+      "current_references": [
+        "src/ZZZLPPositionExecutor.sol"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "P05",
+      "origin_reports": [
+        "optional-portfolio-20261030"
+      ],
+      "finding": "Paid observation throughout hard cooldown wasted nonce/gas writes",
+      "status": "resolved_in_source",
+      "current_disposition": "Raw checks continue during cooldown; paid enrollment begins near eligibility. Stable geometry excludes main L so contributions do not reset clocks/evidence. Pending-first recovery/reset acknowledgement retained.",
+      "current_references": [
+        "keeper/rebalance_confirmation.py",
+        "keeper/monitor.py"
+      ],
+      "task_id": "rebalance-confirmation-buffer"
+    },
+    {
+      "id": "P06",
+      "origin_reports": [
+        "optional-portfolio-20261030"
+      ],
+      "finding": "Source5 hard floor/old URI sizes/canonicalV5 labels treated current",
+      "status": "superseded_by_current_profile",
+      "current_disposition": "Current source6/Portfolio2/canonicalV6 and43 normal gates/826 function rows replace current guidance; source5 test stages and original report remain historical.",
+      "current_references": [
+        "docs/POSITION_V6.md",
+        "reports/adaptable-policy-20261031/VERIFICATION.md"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "P07",
+      "origin_reports": [
+        "optional-portfolio-20261030"
+      ],
+      "finding": "Late market-changing token callbacks and real hybrid gas/economics",
+      "status": "open_qualification",
+      "current_disposition": "Local seams test guards, not actual ZZZ behavior or organic markets. Prior hybrid gas trace is not a current production transaction estimate; qualify real token/depth/callback/target-gas cases.",
+      "current_references": [
+        "docs/RELEASE_CHECKLIST.md",
+        "reports/optional-portfolio-20261030/VERIFICATION.md"
+      ],
+      "task_id": "audit-release"
+    },
+    {
+      "id": "C03",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Final buyback venue could not be re-enabled after terminal LP exit",
+      "status": "resolved_in_source",
+      "current_disposition": "Ready-only reserve venue admission with deposits disabled remains; independent buyback reserve cannot spend allocated holder principal or reopen LP.",
+      "current_references": [
+        "src/ZZZPoolRegistry.sol",
+        "docs/OPERATOR_MANUAL.md"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "C04",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Identity faults could preserve confirmation/jitter",
+      "status": "resolved_in_source",
+      "current_disposition": "Affected bucket identity/occupancy/custody faults durably require reset. Unrelated optional reads, independent harvest and saved pending recovery remain separate.",
+      "current_references": [
+        "keeper/monitor.py",
+        "keeper/rebalance_confirmation.py"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "C05",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Execution telemetry could retain depth after head retreat",
+      "status": "resolved_in_source",
+      "current_disposition": "Final head/depth/time/hash and canonical anchor rechecked before publishing confirmed quality; unavailable data cannot advance health time.",
+      "current_references": [
+        "keeper/monitor.py"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "C06",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Stored eventless history timestamps could regress unnoticed",
+      "status": "resolved_in_source",
+      "current_disposition": "Complete stored-prefix chronology checked before replay, including eventless/filtered blocks; exact integer timestamp, equal L2 times permitted.",
+      "current_references": [
+        "frontend_api/history.py"
+      ],
+      "task_id": "financial-history"
+    },
+    {
+      "id": "C07",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Static runner destroyed outputs or ignored pipeline failure",
+      "status": "resolved_in_source",
+      "current_disposition": "Exclusive output directories and both statuses, strict JSON admission and sanitized diagnostics retained. Current471-context source6 review exists; older calls for refreshing the Oct25 record are superseded.",
+      "current_references": [
+        "scripts/check-slither-review.py",
+        "zzz_ops/evidence.py"
+      ],
+      "task_id": "audit-release"
+    },
+    {
+      "id": "C08",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Verification output reservation happened after work/imports",
+      "status": "resolved_in_source",
+      "current_disposition": "Shared exclusive Evidence reserve precedes work; nonpass markers and owned handles preserve partial attempts. Lazy imports are included in source-before-import provenance.",
+      "current_references": [
+        "zzz_ops/evidence.py",
+        "scripts/run-keeper-tests.py"
+      ],
+      "task_id": "local-verification"
+    },
+    {
+      "id": "C09",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Lifetime complete history eventually exceeds bounded replay budget",
+      "status": "open_implementation",
+      "current_disposition": "A reviewed archival/checkpoint/read-model evolution and measured integrity-preserving latency are still needed. Never remove bounds or trust unsigned caches merely to restore availability.",
+      "current_references": [
+        "docs/FRONTEND_API.md",
+        "docs/RELEASE_CHECKLIST.md"
+      ],
+      "task_id": "financial-history"
+    },
+    {
+      "id": "C10",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Mainnet-pinned Registry cannot be qualified by relabeled testnet mocks",
+      "status": "open_qualification",
+      "current_disposition": "Preserve independent local, actual-mainnet-fork and explicitly testnet-scoped rehearsals. Actual chain4663 dependency qualification cannot be inferred from a synthetic subclass.",
+      "current_references": [
+        "docs/RELEASE_CHECKLIST.md"
+      ],
+      "task_id": "audit-release"
+    },
+    {
+      "id": "C11",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Perpetual rights do not fund perpetual operations",
+      "status": "open_qualification",
+      "current_disposition": "Gas/RPC/VRF/hosting/storage funding, archive retention, key recovery and measured outage/restart must be established operationally. No invented funding/provider arrangements.",
+      "current_references": [
+        "docs/KEEPER_RECOVERY.md",
+        "docs/PRODUCTION_SERVICES.md"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "C12",
+      "origin_reports": [
+        "comprehensive-popl-20261029"
+      ],
+      "finding": "Compiler advisory exclusions overstated as compiler-wide safety",
+      "status": "accepted_boundary",
+      "current_disposition": "Named settings/source/IR analyses retain exact original scope, not compiler correctness or guarantee against later code changes. Current source-bound static review and independent audit are separate.",
+      "current_references": [
+        "reports/comprehensive-popl-20261029/VERIFICATION.md",
+        "docs/SECURITY_AUDIT_PLAN.md"
+      ],
+      "task_id": "audit-release"
+    },
+    {
+      "id": "H03",
+      "origin_reports": [
+        "historical-reconciliation-completion-20261029"
+      ],
+      "finding": "Frontend/indexer ambiguous JSON accepted before constructors",
+      "status": "resolved_in_source",
+      "current_disposition": "Strict shared required-object parsing rejects duplicate/nonfinite/nonobject roots before RPC/listener/DB/lock construction. Fixed diagnostics preserve normal values and historical profiles.",
+      "current_references": [
+        "zzz_ops/state.py",
+        "frontend_api/server.py",
+        "indexer/monitor.py"
+      ],
+      "task_id": "security-integration"
+    },
+    {
+      "id": "H04",
+      "origin_reports": [
+        "historical-reconciliation-completion-20261029"
+      ],
+      "finding": "Incomplete historical report relabeled complete or synthetic locators",
+      "status": "resolved_in_source",
+      "current_disposition": "Original partial checkpoints remain immutable; completed inventory/ledger uses actual source sections and symbols. This review reads the ten selected narratives and relevant receipts, not352 new report reviews.",
+      "current_references": [
+        "reports/historical-reconciliation-completion-20261029/READING_INVENTORY.json",
+        "reports/historical-reconciliation-completion-20261029/FINDINGS.json"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "H05",
+      "origin_reports": [
+        "historical-reconciliation-completion-20261029"
+      ],
+      "finding": "Retired Power/bridge/creator inbox/input/recipient recommendations",
+      "status": "superseded_by_current_profile",
+      "current_disposition": "Do not reintroduce removed architecture. Fixed ETH/ZZZ, direct governance and terminal holder return remain; old codecs required for old deployments are preserved.",
+      "current_references": [
+        "docs/ARCHITECTURE.md",
+        "docs/POSITION_V6.md"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "H06",
+      "origin_reports": [
+        "historical-reconciliation-completion-20261029"
+      ],
+      "finding": "Cooldown observation and stale static refresh still described as proposals",
+      "status": "superseded_by_current_profile",
+      "current_disposition": "Near-eligibility paid enrollment/raw cooldown observation and current source6 static review are already implemented. No new features/tests claimed from relabeling original reports.",
+      "current_references": [
+        "keeper/monitor.py",
+        "reports/today-audit-20261031/static-review.json"
+      ],
+      "task_id": "historical-findings"
+    },
+    {
+      "id": "K01",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Compounding before cooldown could swap into an unsuitable range",
+      "status": "resolved_in_source",
+      "current_disposition": "Keeper waits for an in-range main below threshold and no pending geometry even before12h. Separate on-chain budgets remain. An alternate authorized keeper can bypass service policy, not contract guards.",
+      "current_references": [
+        "keeper/compound_policy.py",
+        "keeper/monitor.py"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "K02",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Healthy inside/opposite observation preserved an old sampled window",
+      "status": "resolved_in_source",
+      "current_disposition": "Durable reset/clear acknowledgement avoids old-window reuse and repeated paid clears; pure readers/report never mutate coordination state.",
+      "current_references": [
+        "keeper/monitor.py",
+        "keeper/rebalance_confirmation.py"
+      ],
+      "task_id": "rebalance-confirmation-buffer"
+    },
+    {
+      "id": "K03",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Internal compound/rebalance harvest not coalesced into hourly clock",
+      "status": "resolved_in_source",
+      "current_disposition": "Only own canonically confirmed exact typed successful receipts with matching Vault events update the existing per-bucket harvest clock in the paid save. Missing optional proof leaves clock unchanged; no adoption of manual/unrelated activity.",
+      "current_references": [
+        "keeper/monitor.py"
+      ],
+      "task_id": "keeper-guardrails"
+    },
+    {
+      "id": "K04",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Read-only maintenance diagnostics conflated readiness and availability",
+      "status": "resolved_in_source",
+      "current_disposition": "Bounded explicit bucket report separates observed views, timing, known blockers, unavailable/config state and discarded simulation. New T10-01 repairs independent both-leg geometry proof. Generic reverts stay unclassified.",
+      "current_references": [
+        "keeper/operation_review.py",
+        "docs/KEEPER_COORDINATION.md"
+      ],
+      "task_id": "operation-review"
+    },
+    {
+      "id": "K05",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Reservation observer called nonexistent private-mapping getter",
+      "status": "resolved_in_source",
+      "current_disposition": "Actual-ABI observation derives registration from complete pinned bucketAt inventory, refusing incomplete/stale/missing evidence. No invented getter.",
+      "current_references": [
+        "reports/keeper-coordination-20261029/RESERVATION_REPAIR.md"
+      ],
+      "task_id": "native-production-preflight"
+    },
+    {
+      "id": "K06",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Idle treated as surplus or entrant funds and conditional floors as redundant",
+      "status": "accepted_boundary",
+      "current_disposition": "Idle remains attributed principal; new entries spend only entrant budget. Swap output, pre-mint buffer, marginal LP, aggregate maintenance and idle/caller floors protect different scopes. No generic sweep or blanket guard removal.",
+      "current_references": [
+        "docs/KEEPER_COORDINATION.md",
+        "docs/PRICE_SECURITY.md"
+      ],
+      "task_id": "lp-execution-routing"
+    },
+    {
+      "id": "K07",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Cooperative report budget mistaken for absolute DNS/socket timeout",
+      "status": "accepted_boundary",
+      "current_disposition": "Finite calls/deadline checks do not preempt an OS/DNS stall; external supervision and real provider latency remain required. No report signature or readiness grant.",
+      "current_references": [
+        "keeper/operation_review.py",
+        "docs/KEEPER_COORDINATION.md"
+      ],
+      "task_id": "operation-review"
+    },
+    {
+      "id": "T10-01",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Main packed identity omitted; residual geometry comparison self-referential",
+      "status": "resolved_in_source",
+      "current_disposition": "Harvest diagnostics now independently read Manager ticks and validate canonical bounds/spacing and packed PosM identity for both legs. No spot/oracle/active-range requirement, signer or journal mutation.",
+      "current_references": [
+        "keeper/operation_review.py",
+        "tests_python/test_keeper_harvest_identity.py"
+      ],
+      "task_id": "operation-review"
+    },
+    {
+      "id": "T10-02",
+      "origin_reports": [
+        "keeper-coordination-20261029"
+      ],
+      "finding": "Current operation report omitted ProtocolPolicy profile tag",
+      "status": "resolved_in_source",
+      "current_disposition": "Add explicit protocol_policy_version to additive profile metadata; old profile0 remains explicit. New cases enter the focused keeper selection.",
+      "current_references": [
+        "keeper/operation_review.py",
+        "scripts/run-keeper-tests.py"
+      ],
+      "task_id": "local-verification"
+    }
+  ]
+}

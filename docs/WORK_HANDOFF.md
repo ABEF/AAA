@@ -49,14 +49,15 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
-The [five-audit consolidation](../reports/five-audit-consolidation-20261102/REVIEW.md)
-maps41 grouped findings/boundaries, adds mandatory fresh-profile health admission
-and corrects two stale test scenarios. Its [evidence](../reports/five-audit-consolidation-20261102/VERIFICATION.md)
-preserves failures, stage-specific checks and unchanged final0a build/static reuse.
-Next engineering work: ordinary candidate viability, retaining final active-main
-checks; conditional operator route triage is not an implementation fix. Complete
-schema8 with a reviewed current buyback_maximum_usd18; preserve constructor
-provenance and old journals/services. Check exact staged/committed imports.
+The [ten-report consolidation](../reports/ten-audit-consolidation-20261102/REVIEW.md)
+maps75 grouped findings/boundaries and repairs independent stored main/residual
+identity proofs in read-only harvest diagnostics. Its [evidence](../reports/ten-audit-consolidation-20261102/VERIFICATION.md)
+retains failures, affected checks and unchanged final0a build/static reuse. Next:
+ordinary candidate viability retaining final active-main guards, and measured
+integrity-preserving lifetime archive/read-model design. Conditional route triage
+is not a solver fix; unsigned cached totals are not verified history. Complete
+schema8 with reviewed current buyback_maximum_usd18, preserving constructor
+provenance, old journals/services and exact staged/committed import checks.
 
 1. Establish publication state from exact local/remote main heads. Git publication
    is not deployment or qualification. Keep source, docs and linked evidence

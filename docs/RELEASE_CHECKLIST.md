@@ -35,13 +35,13 @@ runtime, simulation, gas and operating/marketplace rehearsal remain release gate
 
 ## Current candidate and evidence limits
 
-[Five-audit reconciliation](../reports/five-audit-consolidation-20261102/VERIFICATION.md)
-preserves those reports' scopes, verifies artifact integrity and corrects a further
-health-profile diagnostic gap plus two stale test scenarios. Ordinary route
-candidate viability remains open with the active-main guard retained. Production
-Solidity is unchanged; normal gates and prior static review are reused only at
-exact pins. This is not a new frozen full suite, CI, actual service/gas rehearsal
-or independent approval.
+[Ten-report reconciliation](../reports/ten-audit-consolidation-20261102/VERIFICATION.md)
+preserves original scopes and strengthens independent harvest identity diagnostics
+for both physical legs. Earlier health/profile repairs remain. Ordinary route
+candidate viability and lifetime history scaling remain open; no financial guards
+are weakened. Production Solidity is unchanged; normal gates and static review
+are reused only at exact pins. This is not a frozen full suite, CI, actual
+service/gas rehearsal or independent approval.
 
 | Boundary | Current requirement |
 | --- | --- |

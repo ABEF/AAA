@@ -142,6 +142,17 @@ not that an operation is ready or authorized. A timing lower bound is not a
 promised execution time, and a
 missing local scheduling record is not a fabricated future jitter deadline.
 
+Harvest custody diagnostics independently read `LiquidityManager.ticks(lpId)`
+for the main and any residual. Each stored range must have canonical signed tick
+bounds/order/spacing and match the PositionManager's packed identity. Returned
+`main_ticks` and per-leg ticks describe stored geometry, not whether it is active.
+No spot/USD/quote read is needed by this proof: out-of-range or filled legs remain
+harvestable and price outages can leave harvesting available. Missing or
+contradictory geometry yields `harvest_custody_unavailable`, never a guessed valid
+position. Check the exact pinned Manager/PosM association/provider response;
+do not rewrite records or disable checks. Report profile metadata includes
+`protocol_policy_version` (1 for source6; historical0 remains explicit).
+
 Rows use `not_needed`, `not_due`, `blocked`, `unavailable`, `unconfigured`,
 `observed_eligible`, `simulated` or `unsupported`. `observed_eligible` and `simulated`
 cover evaluated views or a discarded simulation, not complete worker readiness.

@@ -1,5 +1,14 @@
 # Verification evidence
 
+[Ten-report findings consolidation](ten-audit-consolidation-20261102/REVIEW.md)
+expands the previous five-report reconciliation to ten underlying technical
+narratives. Its [75-group matrix](ten-audit-consolidation-20261102/findings.json)
+retains original scopes and existing Todo ownership. Independent main/residual
+harvest-identity diagnostics and complete policy metadata are corrected; ordinary
+route-candidate viability and lifetime history scaling remain open.
+[Verification](ten-audit-consolidation-20261102/VERIFICATION.md) separates affected
+checks, original failures and preserved artifacts from unchanged Solidity reuse.
+
 [Five-audit consolidation](five-audit-consolidation-20261102/REVIEW.md) reconciles
 the five latest substantive technical reviews below without rewriting them.
 The [disposition matrix](five-audit-consolidation-20261102/findings.json) maps

@@ -139,13 +139,15 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
-- [Five-audit consolidation](reports/five-audit-consolidation-20261102/REVIEW.md)
-  maps41 grouped findings/boundaries without rewriting the originals. Fresh-profile
-  health admission rejects required-tag downgrades before legacy early returns;
-  two stale test scenarios are corrected, not production guards weakened. Ordinary
-  candidate viability remains open; operator route triage is conditional and never
-  waives final activity/value checks. Reuse unchanged Solidity only at exact pins;
-  method/artifact counts are not a full suite or operating acceptance.
+- [Ten-report consolidation](reports/ten-audit-consolidation-20261102/REVIEW.md)
+  maps75 grouped findings/boundaries without rewriting original reports or the
+  earlier five-report aggregate. Harvest diagnostics independently authenticate
+  Manager ticks/packed PosM identity for both legs without a spot/price/active-range
+  requirement; report profile includes ProtocolPolicy version. Earlier health
+  admission fixes remain. Candidate viability and lifetime history scaling remain
+  open; no unsafe route fallback, unsigned totals or relaxed financial guards.
+  Reuse unchanged Solidity only at exact pins; artifact/method/inventory counts
+  are not a full suite or operating acceptance.
 
 - [Current improvement audit](reports/improvement-audit-20261102/REVIEW.md) unifies
   detail/chunk custody proof, separates current governed buyback caps from

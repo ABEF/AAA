@@ -80,14 +80,14 @@ runtime and backend checks are recorded in the new report; older50-source/42-gat
 public CI, market/provider/host qualification or independent approval is implied.
 The new callable reference/operator procedures must match source6, not old profiles.
 
-[Five-audit consolidation](reports/five-audit-consolidation-20261102/REVIEW.md)
-reconciles41 grouped findings/boundaries, preserving the original reports. Earlier
-custody/reader/lineage, current buyback-cap, policy/report and verification repairs
-remain implemented. Health additionally rejects missing/downgraded source5/6 tags
-before legacy early returns; two stale test scenarios are corrected. Ordinary
-route-candidate viability remains open; the operator workaround preserves all
-final guards and is conditional. Production Solidity is unchanged; new affected
-checks, artifact integrity and exact build/static reuse retain separate scopes.
+[Ten-report consolidation](reports/ten-audit-consolidation-20261102/REVIEW.md)
+reconciles75 grouped findings/boundaries, retaining original reports and earlier
+repairs. Harvest diagnostics independently authenticate both legs' Manager ticks
+and packed PosM identity, preserving price-outage availability; profile metadata
+includes ProtocolPolicy version. Candidate viability and lifetime history scaling
+remain open; neither a conditional route workaround nor unsigned cached history
+closes those gaps. Production Solidity is unchanged; affected checks, artifact
+integrity and exact build/static reuse retain separate scopes.
 
 ## What remains
 

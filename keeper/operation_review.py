@@ -141,6 +141,18 @@ class Review:
             contracts=self.k.contracts, code_hashes=self.k.config.get('code_hashes', {}), bucket=bucket,
             **({'accounting_version':self.k.accounting_version} if self.k.accounting_version in (5,6) else {}))
 
+    def _harvest_ticks(self, lp, physical, pool, spacing):
+        """Authenticate stored geometry without requiring spot, range or prices."""
+        from zzz_ops.production_v4 import verify_position_identity
+        from zzz_ops.tick_math import MIN_TICK, MAX_TICK
+        ticks=[int(word,16) for word in self.read('liquidity','ticks(uint256)',lp,count=2)]
+        ticks=[value-2**256 if value>=2**255 else value for value in ticks]
+        if (not 1<=spacing<=32767 or not MIN_TICK<=ticks[0]<ticks[1]<=MAX_TICK or
+                any(value%spacing for value in ticks)):
+            raise RpcError('Harvest stored tick geometry differs')
+        verify_position_identity(physical[:5],physical[5],int(pool,16),ticks)
+        return {'tick_lower':ticks[0],'tick_upper':ticks[1]}
+
     def harvest_custody(self, position):
         # Manager.collect checks owner and PoolKey, without a market/price read.
         self.pin('liquidity')
@@ -162,9 +174,10 @@ class Review:
         pool = '0x'+keccak256(bytes.fromhex(''.join(physical[:5]))).hex()
         reasons = ([] if owner==int(self.k.contracts['vault'],16) else ['lp_owner_mismatch']) + (
             [] if pool==position['pool_id'] else ['lp_pool_identity_mismatch'])
+        ticks=self._harvest_ticks(lp,physical,pool,spacing) if pool==position['pool_id'] else None
         result={'allowed': not reasons, 'reasons': reasons, 'position_manager': posm,
-            'owner': '0x'+f'{owner:040x}', 'pool_id': pool,
-            'scope': 'Pinned Manager binding and PosM custody only; no slot0, range, price or earned-fee inference.'}
+            'owner': '0x'+f'{owner:040x}', 'pool_id': pool, 'main_ticks':ticks,
+            'scope': 'Pinned Manager binding, PosM custody and stored geometry only; no slot0, active-range, price or earned-fee inference.'}
         if self.k.accounting_version in (5,6):
             if self.uint('liquidity','PORTFOLIO_VERSION()')!=(2 if self.k.accounting_version==6 else 1):
                 raise RpcError('Harvest portfolio capability differs')
@@ -172,19 +185,15 @@ class Review:
             count=self.uint('liquidity','activeSecondaryCount()')
             if secondary==lp or count>4 or secondary and count==0:
                 raise RpcError('Harvest secondary inventory differs')
-            legs=[dict(lp_token_id=str(lp),owner=result['owner'],pool_id=pool)]
+            legs=[dict(lp_token_id=str(lp),owner=result['owner'],pool_id=pool,**(ticks or {}))]
             if secondary:
                 extra_owner=self.uint(posm,'ownerOf(uint256)',secondary)
                 extra=self.read(posm,'getPoolAndPositionInfo(uint256)',secondary,count=6)
-                from zzz_ops.production_v4 import verify_position_identity
-                packed=int(extra[5],16)
-                def signed24(value):return value-2**24 if value>=2**23 else value
-                ticks=[signed24((packed>>offset)&(2**24-1)) for offset in (8,32)]
-                verify_position_identity(extra[:5],extra[5],int(position['pool_id'],16),ticks)
+                extra_ticks=self._harvest_ticks(secondary,extra,position['pool_id'],spacing)
                 if extra_owner!=int(self.k.contracts['vault'],16):reasons.append('residual_lp_owner_mismatch')
                 if not 0<self.uint(posm,'getPositionLiquidity(uint256)',secondary)<2**128:
                     reasons.append('residual_lp_empty')
-                legs.append(dict(lp_token_id=str(secondary),owner='0x'+f'{extra_owner:040x}',pool_id=position['pool_id']))
+                legs.append(dict(lp_token_id=str(secondary),owner='0x'+f'{extra_owner:040x}',pool_id=position['pool_id'],**extra_ticks))
             if not 0<self.uint(posm,'getPositionLiquidity(uint256)',lp)<2**128:reasons.append('main_lp_empty')
             result.update(allowed=not reasons,physical_legs=legs,secondary_id=str(secondary),portfolio_version=2 if self.k.accounting_version==6 else 1)
         return result
@@ -507,7 +516,8 @@ def review(config, buckets, *, rpc=None, simulate=False, now=None):
             'Work budget is cooperative; standalone DNS/socket stalls still need external supervision.'])
     base['profile'].update(fee_intake_version=keeper.fee_intake_version,
                            rebalance_confirmation_version=keeper.rebalance_confirmation.version)
-    base['profile']['portfolio_version']=keeper.portfolio_version
+    base['profile'].update(portfolio_version=keeper.portfolio_version,
+                           protocol_policy_version=keeper.protocol_policy_version)
     if (keeper.accounting_version,keeper.maintenance_policy_version) not in ((4,2),(5,3),(6,3)):
         return dict(base, ok=True, provenance=None, operations=[_set(_row(a, b), 'unsupported', 'explicit_historical_profile') for b in buckets for a in ACTIONS])
     clock = time.time if now is None else now

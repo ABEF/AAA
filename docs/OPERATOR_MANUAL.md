@@ -415,6 +415,13 @@ It reports known blockers and explicitly unavailable evidence, not a universal
 execution approval. Do not infer a specific cause from stale health or a generic
 simulation error, or replace raw need with sampled readiness.
 
+For `harvest_custody_unavailable`, compare the pinned Manager `ticks(lpId)` and
+PosM `getPoolAndPositionInfo(lpId)`/owner for both actual legs. Stored geometry
+must agree; no price feed or active-range condition is required merely to harvest.
+The report exposes validated main/per-leg ticks and its ProtocolPolicy version.
+Keep the journal and current profiles intact; a report is not a transaction or an
+instruction to alter geometry. [Exact diagnostic scope](KEEPER_COORDINATION.md#read-only-operation-review).
+
 ### Configure rebalance confirmation
 
 For fresh confirmation3, resolve `Strategy.rebalanceConfirmation()` from the

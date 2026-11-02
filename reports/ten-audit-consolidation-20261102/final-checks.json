@@ -1,0 +1,52 @@
+{
+  "todo": {
+    "exit_code": 0,
+    "stdout": "Project Todo verified."
+  },
+  "callable_reference": {
+    "exit_code": 0,
+    "stdout": "{\"checked\": true, \"contracts\": 37, \"functions\": 826, \"constructors\": 37, \"receive_hooks\": 14, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}"
+  },
+  "unchanged_static_record": {
+    "exit_code": 0,
+    "stdout": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}"
+  },
+  "whitespace": {
+    "exit_code": 0,
+    "stdout": ""
+  },
+  "source_preservation": {
+    "exit_code": 0,
+    "stdout": "{\"ok\": true, \"artifact_entries\": 172, \"preserved_reports\": 222, \"compiler_sources\": 83, \"failures\": [], \"stage_notes\": 3}"
+  },
+  "task_status_identity_order_preserved": true,
+  "manager_tick_getter_actual_abi": {
+    "signature": "ticks(uint256)",
+    "inputs": [
+      "uint256"
+    ],
+    "outputs": [
+      "int24",
+      "int24"
+    ],
+    "scope": "Current source-bound compiler reference, no live constructor/provider qualification."
+  },
+  "reused_build_pins": {
+    "foundry.toml": "35d073e0cad1e77849c99409c7492d115eb286f5e38839db8b32993646f170c7",
+    "scripts/install-deps.sh": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+    "compiler_input_sha256": "e25ab51ff0ce71b591b7cc8a25f1f89d5fc759041eb16fcee8ceac5ae6743649",
+    "compiler_output_sha256": "db4d9dba99d0ad274c9d073d8097fcd086b09ac12f75ff0c4995dfd72076de43",
+    "compiler_executable_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67"
+  },
+  "documentation_links": {
+    "exit_code": 0,
+    "stdout": "{\n  \"scope\": \"all changed/new consolidation Markdown plus inbound links from tracked non-report Markdown; old unrelated report bytes untouched\",\n  \"changed_markdown_count\": 11,\n  \"new_markdown_count\": 2,\n  \"checked_documents\": 13,\n  \"links_checked\": 1242,\n  \"inbound_checked\": 187,\n  \"introduced_or_unclassified_failures\": [],\n  \"preexisting_head_failures\": []\n}"
+  },
+  "python_publication_index": {
+    "successful": true,
+    "files": 283,
+    "errors": [],
+    "receipt_sha256": "d91847bd6b2f5cdddbf54e5de493f8a41ed880ead0b287aa37aa391ca2e1e3b3",
+    "scope": "Exact staged Python blobs, not third-party/dynamic/runtime qualification."
+  }
+}
