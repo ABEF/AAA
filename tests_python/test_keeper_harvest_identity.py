@@ -43,7 +43,7 @@ class KeeperHarvestIdentityTests(unittest.TestCase):
                 with self.subTest(profile=keeper.accounting_version,fault=fault),self.assertRaises((ValueError,RpcError)):
                     report.harvest_custody(position)
 
-    def test_residual_ticks_must_match_manager_not_themselves(self):
+    def test_residual_getter_paths_must_report_consistent_geometry(self):
         for kind in (PortfolioRPC,PolicyRPC):
             rpc,keeper,report,position=self.fixture(kind)
             rpc.secondary=124;rpc.secondary_count=1;original=rpc.read
@@ -75,6 +75,7 @@ class KeeperHarvestIdentityTests(unittest.TestCase):
             with self.subTest(profile=keeper.accounting_version),patch('subprocess.run') as signer:
                 result=report.harvest_custody(position)
                 self.assertTrue(result['allowed']);signer.assert_not_called()
+                self.assertFalse(result['geometry_sources_independent'])
                 self.assertEqual({'tick_lower':rpc.lower,'tick_upper':rpc.upper},result['main_ticks'])
                 if kind is not ReportRPC:self.assertEqual(rpc.aux_ticks[0],result['physical_legs'][1]['tick_lower'])
                 self.assertFalse(keeper.path.exists())

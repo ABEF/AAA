@@ -109,9 +109,10 @@ actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-records19of47then-changed source pins. The [source6 refresh](../reports/today-audit-20261031/VERIFICATION.md)
-now records471 flags with exact-context reuse/current review and a new default
-[review record](../reports/today-audit-20261031/static-review.json). Old records
+records19of47then-changed source pins. The [current LP lifecycle refresh](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
+records475 flags:407 exact unchanged detector/source contexts reused and68 current
+contexts reviewed, with a source-matched default
+[review record](../reports/lp-lifecycle-audit-20261102/static-review.json). Old records
 remain untouched; the checker still requires exact source/finding coverage.
 Refresh after relevant changes and check exact-revision CI.
 Keep normal runtime/initcode/gas gates and exact constructor arguments.

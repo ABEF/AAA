@@ -31,7 +31,7 @@ contract ZZZLPBalancer is ZZZModule {
     bytes32 private pendingQuoteHash;
 
     struct Plan { bytes32 poolId; bool zeroForOne; uint256 amountIn; uint256 amountOut; uint256 minimumOut; uint160 sqrtAfter; uint160 targetSqrtAfter; uint64 revision; bytes32 fingerprint; }
-    error QuoteResult(uint256 output, uint160 sqrtAfter);
+    error QuoteResult(uint256 output, uint160 sqrtAfter, int24 tickAfter);
     event ExecutionPoolsConfigured(uint64 indexed revision, bytes32[] pools, bytes32 indexed reviewHash);
     event SolverConfigured(uint64 indexed revision, uint8 iterations, uint32 gasLimit, bytes32 indexed reviewHash);
     /// @dev This is a selected quote, not income. The manager verifies exact
@@ -152,15 +152,23 @@ contract ZZZLPBalancer is ZZZModule {
         return balanceMath.seed(x,direction,fee);
     }
     function plan(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1)
-        external returns(Plan memory) { uint256[4] memory marks; return _plan(target,lower,upper,amount0,amount1,10000,marks); }
-    /// @notice Fresh replacement only: minimum qualifying main allocation, not
-    /// maximum-main turnover. Manager captures permission from its fixed Budget.
-    function planPartial(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1,uint16 mainFloor,uint256[4] calldata marks)
+        external returns(Plan memory) { uint256[4] memory marks; return _plan(target,lower,upper,amount0,amount1,10000,marks,false); }
+    /// @notice Ordinary replacement requires an actually active main. Single
+    /// mode uses10000; hybrid uses its captured minimum qualifying allocation.
+    function planReplacement(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1,uint16 mainFloor,uint256[4] calldata marks)
         external returns(Plan memory) {
-        if(mainFloor<6000 || mainFloor>=10000)revert InvalidConfiguration();
-        return _plan(target,lower,upper,amount0,amount1,mainFloor,marks);
+        if(mainFloor<6000 || mainFloor>10000)revert InvalidConfiguration();
+        return _plan(target,lower,upper,amount0,amount1,mainFloor,marks,true);
     }
-    function _plan(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1,uint16 mainFloor,uint256[4] memory marks)
+    function _activeTarget(ZZZLPBalanceMath.Context memory x) private view returns(bool) {
+        (uint160 price,int24 tick,,)=stateView.getSlot0(x.target);
+        return price==x.spot && _tickSide(x.lower,x.upper,tick)==0;
+    }
+    function _tickSide(uint160 lower,uint160 upper,int24 tick) private pure returns(int8) {
+        uint160 atTick=TickMath.getSqrtPriceAtTick(tick);
+        return atTick<lower?int8(-1):atTick>=upper?int8(1):int8(0);
+    }
+    function _plan(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1,uint16 mainFloor,uint256[4] memory marks,bool requireActive)
         private returns(Plan memory best) {
         if (msg.sender != liquidityManager() || access.module(Ids.LIQUIDITY) != msg.sender || !access.isSealed()) revert Unauthorized();
         if (amount0 > type(uint128).max || amount1 > type(uint128).max || lower >= upper) revert InvalidAmount();
@@ -172,18 +180,19 @@ contract ZZZLPBalancer is ZZZModule {
         best.targetSqrtAfter = x.spot;
         bytes32 original = policyFingerprint(target,bytes32(0));
         best.fingerprint = original;
-        uint256 bestValue = baseline.deployed;
+        bool baselineActive=!requireActive || _activeTarget(x);
+        uint256 bestValue = baselineActive?baseline.deployed:0;
         // A balanced budget needs no swap just to chase rounding dust.
         // A naturally sufficient main already satisfies the policy. The extra
         // 1bp sizing headroom is only for a needed trade, not a hidden reason
         // to swap an otherwise sufficient portfolio or require a live venue.
-        if (baseline.retained == 0 || baseline.deployed >= Math.mulDiv(baseline.retained,mainFloor==10000?9990:mainFloor,10000,Math.Rounding.Ceil)) {
+        if (baselineActive && (baseline.retained == 0 || baseline.deployed >= Math.mulDiv(baseline.retained,mainFloor==10000?9990:mainFloor,10000,Math.Rounding.Ceil))) {
             emit BalancePlanned(target,bytes32(0),false,0,0,best.revision);
             return best;
         }
         for (uint256 i; i < venues.length; ++i) {
             // An independently disabled venue must not freeze healthy candidates.
-            try this.routePlan(x,venues[i],baseline.excess0) returns (Plan memory candidate,uint256 deployed) {
+            try this.routePlan(x,venues[i],baseline.excess0,requireActive) returns (Plan memory candidate,uint256 deployed) {
                 if (mainFloor==10000 ? deployed>bestValue : candidate.amountIn!=0 &&
                     (best.amountIn==0 || candidate.amountIn<best.amountIn ||
                         (candidate.amountIn==best.amountIn && candidate.amountOut>best.amountOut))) {
@@ -191,15 +200,16 @@ contract ZZZLPBalancer is ZZZModule {
                 }
             } catch {}
         }
-        if (mainFloor<10000 && best.amountIn==0) revert Slippage();
+        if (best.amountIn==0 && (mainFloor<10000 || !baselineActive)) revert Slippage();
         if (executionRevision != best.revision || policyFingerprint(target,bytes32(0)) != original) revert InvalidState();
         emit BalancePlanned(target,best.poolId,best.zeroForOne,best.amountIn,best.amountOut,best.revision);
     }
-    function routePlan(ZZZLPBalanceMath.Context calldata x, bytes32 id, bool direction) external returns (Plan memory best,uint256 bestValue) {
+    function routePlan(ZZZLPBalanceMath.Context calldata x, bytes32 id, bool direction,bool requireActive) external returns (Plan memory best,uint256 bestValue) {
         if (msg.sender != address(this)) revert Unauthorized();
         PoolConfig memory c = _pool(id);
         PoolConfig memory target = _pool(x.target);
         if (c.key.currency1 != target.key.currency1) revert InvalidConfiguration();
+        if(requireActive && id!=x.target && !_activeTarget(x))return(best,0);
         (uint160 beforePrice,,uint24 protocol,uint24 fee) = stateView.getSlot0(id);
         uint256 swapFee = _fee(c,direction,protocol,fee);
         if (!_validSpot(beforePrice,x.prices.referenceX96,c.maxSpotDeviationBps)) revert InvalidState();
@@ -211,18 +221,25 @@ contract ZZZLPBalancer is ZZZModule {
         best.revision = executionRevision;
         for (uint256 pass; pass < searchIterations && lo < hi; ++pass) {
             uint256 interpolated;
-            bool quoted; uint256 output; uint160 afterPrice;
-            try this.quoteCandidate{gas:quoteGasLimit}(c.key,direction,input) returns (uint256 out,uint160 price) {
-                quoted = true; output = out; afterPrice = price;
+            bool quoted; uint256 output; uint160 afterPrice;int24 afterTick;
+            try this.quoteCandidate{gas:quoteGasLimit}(c.key,direction,input) returns (uint256 out,uint160 price,int24 tick) {
+                quoted = true; output = out; afterPrice = price;afterTick=tick;
             } catch {}
             if (!quoted) hi = input;
             else {
+                int8 outside=requireActive && id==x.target?_tickSide(x.lower,x.upper,afterTick):int8(0);
                 uint256 minimum = _minimum(x.prices,direction,input,
                     c.maxSlippageBps < target.maxSlippageBps ? c.maxSlippageBps : target.maxSlippageBps,swapFee);
                 if (minimum == 0) lo = input+1;
                 // Feasibility comes before the target-ratio bracket. Increasing
                 // an already excessive trade cannot repair impact/spot limits.
                 else if (output < minimum || !_validSpot(afterPrice,x.prices.referenceX96,c.maxSpotDeviationBps)) hi = input;
+                else if(outside!=0) {
+                    // Shrink an overshoot, but increase a trade which has not
+                    // yet brought the destination into its required range.
+                    if(direction ? outside<0 : outside>0)hi=input;
+                    else lo=input+1;
+                }
                 else {
                     uint256 a0 = direction ? x.amount0-input : x.amount0+output;
                     uint256 a1 = direction ? x.amount1+output : x.amount1-input;
@@ -274,7 +291,7 @@ contract ZZZLPBalancer is ZZZModule {
     }
     /// @dev Only our bounded search may quote. No funds settle; the custom
     /// revert rolls back every tick, price, fee and transient core delta.
-    function quoteCandidate(PoolKey calldata key, bool direction, uint256 amount) external returns (uint256 output,uint160 afterPrice) {
+    function quoteCandidate(PoolKey calldata key, bool direction, uint256 amount) external returns (uint256 output,uint160 afterPrice,int24 afterTick) {
         if (msg.sender != address(this) || amount == 0 || amount > uint256(uint128(type(int128).max))) revert Unauthorized();
         bytes memory payload = abi.encode(key,direction,amount);
         pendingQuoteHash = keccak256(payload);
@@ -282,10 +299,12 @@ contract ZZZLPBalancer is ZZZModule {
         catch (bytes memory reason) {
             pendingQuoteHash = bytes32(0);
             bytes4 selector;
-            if (reason.length == 68) assembly ("memory-safe") { selector := mload(add(reason,32)) }
+            if (reason.length == 100) assembly ("memory-safe") { selector := mload(add(reason,32)) }
             if (selector != QuoteResult.selector) revert InvalidState();
-            assembly ("memory-safe") { output := mload(add(reason,36)) afterPrice := mload(add(reason,68)) }
-            if (output == 0 || afterPrice == 0) revert InvalidState();
+            int256 tickWord;
+            assembly ("memory-safe") { output := mload(add(reason,36)) afterPrice := mload(add(reason,68)) tickWord := mload(add(reason,100)) }
+            if (output == 0 || afterPrice == 0 || tickWord<TickMath.MIN_TICK || tickWord>=TickMath.MAX_TICK) revert InvalidState();
+            afterTick=int24(tickWord);
         }
     }
     function unlockCallback(bytes calldata data) external returns (bytes memory) {
@@ -296,7 +315,7 @@ contract ZZZLPBalancer is ZZZModule {
         int128 d0 = int128(delta >> 128); int128 d1 = int128(uint128(uint256(delta)));
         int128 spent = direction ? d0 : d1; int128 received = direction ? d1 : d0;
         if (spent >= 0 || received <= 0 || uint256(-int256(spent)) != amount) revert Slippage();
-        (uint160 afterPrice,,,) = stateView.getSlot0(keccak256(abi.encode(key)));
-        revert QuoteResult(uint256(int256(received)),afterPrice);
+        (uint160 afterPrice,int24 afterTick,,) = stateView.getSlot0(keccak256(abi.encode(key)));
+        revert QuoteResult(uint256(int256(received)),afterPrice,afterTick);
     }
 }

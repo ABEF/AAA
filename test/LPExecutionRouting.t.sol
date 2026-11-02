@@ -12,7 +12,7 @@ import {PoolKey as CoreKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
 import {PoolId} from "@uniswap/v4-core/src/types/PoolId.sol";
 import {Currency} from "@uniswap/v4-core/src/types/Currency.sol";
 import {BalanceDelta, BalanceDeltaLibrary} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
-import {ModifyLiquidityParams} from "@uniswap/v4-core/src/types/PoolOperation.sol";
+import {ModifyLiquidityParams,SwapParams} from "@uniswap/v4-core/src/types/PoolOperation.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {StateView} from "@uniswap/v4-periphery/src/lens/StateView.sol";
@@ -54,7 +54,12 @@ contract LPExecutionRoutingTest is Test {
     bytes32 private target;
     bytes32 private alternate;
     uint256 private constant PREFUND = 17;
+    bool private ordinaryReplacementFixture;
     receive() external payable {}
+    // TEST ONLY Budget capability: entry tests have no maintenance context.
+    function migrationBudget() external view returns(address){return address(this);}
+    function maintenanceBucket() external view returns(uint256){return ordinaryReplacementFixture?1:0;}
+    function maintenancePrices() external pure returns(uint256,uint256,uint256,uint256){return(1e18,1e18,1e18,1e18);}
 
     function setUp() public {
         vm.warp(1_000_000); vm.deal(address(this),10_000_000 ether);
@@ -101,8 +106,14 @@ contract LPExecutionRoutingTest is Test {
         core.unlock(abi.encode(key,liquidity));
     }
     function unlockCallback(bytes calldata data) external returns (bytes memory) {
-        require(msg.sender==address(core)); (CoreKey memory key,int256 liquidity)=abi.decode(data,(CoreKey,int256));
-        (BalanceDelta delta,) = core.modifyLiquidity(key,ModifyLiquidityParams(-60000,60000,liquidity,bytes32(0)),"");
+        require(msg.sender==address(core));CoreKey memory key;BalanceDelta delta;
+        if(data.length==224){
+            bool direction;uint160 limit;(key,direction,limit)=abi.decode(data,(CoreKey,bool,uint160));
+            delta=core.swap(key,SwapParams(direction,-int256(1_000_000 ether),limit),"");
+        }else{
+            int256 liquidity;(key,liquidity)=abi.decode(data,(CoreKey,int256));
+            (delta,)=core.modifyLiquidity(key,ModifyLiquidityParams(-60000,60000,liquidity,bytes32(0)),"");
+        }
         _settle(Currency.unwrap(key.currency0),delta.amount0()); _settle(Currency.unwrap(key.currency1),delta.amount1()); return "";
     }
     function _settle(address asset,int128 delta) private {
@@ -296,5 +307,62 @@ contract LPExecutionRoutingTest is Test {
         vm.expectRevert(ZZZModule.InvalidState.selector);
         manager.mint(id,-100,100,0,100 ether,1,block.timestamp+100);
         _assertPrefunds();
+    }
+
+    function _replacementMarket() private {
+        // Approved but deliberately permissive TEST policy exposes a narrow
+        // physically inactive quote. No production defaults are widened.
+        PoolConfig memory c=registry.get(target);c.rangeBps=400;c.maxSpotDeviationBps=399;c.maxSlippageBps=500;
+        registry.configure(target,c);strategy.setRangeOrientation(target,1);
+        strategy.setAdditionalLossBps(500,keccak256("TEST ONLY EXPLICIT EXECUTION POLICY"));
+        router.configureSolver(12,300000,keccak256("TEST ONLY BOUNDED SEARCH"));
+        _external(targetKey,-int256(1_000_000 ether));_external(targetKey,1000 ether);
+        core.unlock(abi.encode(targetKey,true,TickMath.getSqrtPriceAtTick(-395)));
+        ordinaryReplacementFixture=true;
+    }
+    function _assertReplacementMarketActive() private view {
+        (int24 lower,int24 upper,)=strategy.target(target);
+        (,int24 tick,,)=state.getSlot0(PoolId.wrap(target));
+        assertGe(tick,lower,"replacement planner cannot select below main");
+        assertLt(tick,upper,"replacement planner cannot select above main");
+    }
+    function testReplacementSingleSelectsPhysicallyViableExecution() public {
+        _replacementMarket();
+        manager.balance{value:10000 ether}(target,0,10000 ether,0,block.timestamp+100);
+        _assertReplacementMarketActive();_assertPrefunds();
+    }
+    function testReplacementHybridSelectsPhysicallyViableExecution() public {
+        _replacementMarket();strategy.portfolioPolicy().setMode(target,true,keccak256("TEST ONLY OPTIONAL MODE"));
+        manager.balance{value:10000 ether}(target,0,10000 ether,0,block.timestamp+100);
+        _assertReplacementMarketActive();_assertPrefunds();
+    }
+    function testReplacementExactLowerTickRemainsAllowedWithoutASwap() public {
+        _replacementMarket();
+        core.unlock(abi.encode(targetKey,true,TickMath.getSqrtPriceAtTick(-400)));
+        (uint160 price,int24 tick,,)=state.getSlot0(PoolId.wrap(target));
+        assertEq(price,TickMath.getSqrtPriceAtTick(-400));assertEq(tick,-400);
+        _catalog(false,false);
+        (uint256 a0,uint256 a1)=manager.balance{value:100 ether}(target,0,100 ether,0,block.timestamp+100);
+        assertEq(a0,100 ether);assertEq(a1,0);_assertPrefunds();
+    }
+    function testReplacementDownwardBoundaryUsesStoredTickAndPreservesEntryPolicy() public {
+        _replacementMarket();
+        manager.mint{value:100 ether}(target,-400,600,100 ether,100 ether,1,block.timestamp+100);
+        core.unlock(abi.encode(targetKey,true,TickMath.getSqrtPriceAtTick(-400)));
+        (uint160 price,int24 tick,,)=state.getSlot0(PoolId.wrap(target));
+        assertEq(price,TickMath.getSqrtPriceAtTick(-400));assertEq(tick,-401);
+        _catalog(false,false);
+        vm.expectRevert(ZZZModule.Slippage.selector);
+        manager.balance{value:100 ether}(target,0,100 ether,0,block.timestamp+100);
+        // Initial/growth budgets retain the explicitly allowed outside-range
+        // semantics; an ordinary replacement cannot silently reuse that path.
+        ordinaryReplacementFixture=false;
+        (uint256 a0,uint256 a1)=manager.balance{value:100 ether}(target,0,100 ether,0,block.timestamp+100);
+        assertEq(a0,100 ether);assertEq(a1,0);_assertPrefunds();
+    }
+    function testReplacementPlannerCannotBeCalledByAnUnboundCaller() public {
+        uint256[4] memory marks=[uint256(1e18),1e18,1e18,1e18];
+        vm.expectRevert(ZZZModule.Unauthorized.selector);
+        router.planReplacement(target,-400,600,100 ether,0,10000,marks);
     }
 }

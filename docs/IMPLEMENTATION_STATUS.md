@@ -28,10 +28,10 @@ No economic rules, deployed contracts or operating services changed.
 | NFT identity | ERC-721, fixed artwork draw, exact1,000 rarity quotas; actual VRF provider still unqualified. | [Metadata](NFT_METADATA.md) |
 | Contributions | ETH or the fixed ZZZ; future-governed minima(default$100 activation/$5 growth); checkpoint incumbents, use entrant-only budgets, verify marginal main LP, then issue shares from aggregate NAV. Residuals and rebalance centre/clock remain unchanged. | [Entry](ACTIVATION_ENTRY.md), [pricing](PRICE_SECURITY.md) |
 | Shared LP portfolio | Single main by default, optional one residual in the same pool; both NFTs remain Vault-owned. Aggregate raw principal/valuation includes both actual ranges, not a sum of their liquidity units. | [Portfolio profile](POSITION_V6.md) |
-| Ordinary replacement | Both single/hybrid verify the new main is physically active before/after callbacks; hybrid requires its configured6000–9999bps main floor(default60%) and complementary residual ceiling(default40%) at captured post-cost valuation. Natural placement meeting that floor needs no swap. Otherwise bounded approved-route sizing targets a rounding-safe floor. Failed sizing/mint/close reverts atomically. | [Execution policy](LP_EXECUTION_POLICY.md) |
+| Ordinary replacement | Both single/hybrid reject inactive stored-tick quotes before ranking and verify the new main is physically active before/after callbacks; hybrid requires its configured6000–9999bps main floor(default60%) and complementary residual ceiling(default40%) at captured post-cost valuation. Natural placement meeting that floor needs no swap. Otherwise bounded approved-route sizing targets a rounding-safe floor. Failed sizing/mint/close reverts atomically. | [Execution policy](LP_EXECUTION_POLICY.md) |
 | Residual geometry | Default half of the corresponding main side, a governed positive tick-spacing gap(default1) beyond spot. Width governed1–10000bps of that side. At most one residual; mixed/filled inventory remains valued until whole adjustment. | [Range controls](RANGE_POLICY_UPDATES.md) |
 | Residual-only recovery | New paused governance-only Migration.closeResidual(ParkingRequest), explicit RESIDUAL_EXIT_VERSION1 across Migration/Vault/Manager/position child. Harvest both then burn only registered residual; exact raw proceeds to same bucket idle. Main/shares/clocks/configuration preserved; no swap/payout/compound release. | [Management controls](OPERATOR_MANUAL.md#portfolio-management-controls) |
-| Enable/disable | Manual reviewed desired mode. Disabling does not discard live residuals; both remain valued/harvested until an atomic single-position merge succeeds after cooldown. | [Operator](OPERATOR_MANUAL.md) |
+| Enable/disable | Manual reviewed desired mode; enabling permits rather than forces a residual. Disabling retains both actual legs and NFT reward membership until a guarded single-position merge succeeds; no immediate deactivation or trade. | [Operator](OPERATOR_MANUAL.md) |
 | Ordinary eligibility | 85% actual centre-to-edge human ZZZ-price distance; physical and independent reference on the same side.600-second sampled window/maxgap300, source240-second checks, fresh60–300-second service jitter, initial hard12hours. Manual geometry changes are a distinct cooldown-gated exception. | [Confirmation](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer) |
 | Financial checks | Dual USD sources with3% agreement; captured default2% contribution/1% conversion/3% maintenance limits, governance ceilings10%, gas separate. Additional-loss default1% after known directional fees remains separate. | [Price security](PRICE_SECURITY.md), [execution quality](EXECUTION_QUALITY.md) |
 | LP revenue | Combined actual fees from both legs allocated once per asset at80/10/5/5. Individual shares/equal active collective; no dormant dilution. Independent claims, compound and buyback reserves. | [Economics](ECONOMICS.md) |
@@ -66,22 +66,23 @@ change to the website is part of this contract implementation.
 
 ## Current evidence and limits
 
-[Ten-report consolidation](../reports/ten-audit-consolidation-20261102/REVIEW.md)
-maps current mechanisms, superseded recommendations and remaining work. Earlier
+[LP lifecycle review](../reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
+ordinary candidate selection before final active-main checks in single/hybrid
+mode and verifies enable/disable/entry/harvest/claim/merge composition. Earlier
 custody/admission, health/profile and publication repairs remain implemented.
-Harvest diagnostics independently authenticate stored main/residual ticks against
-packed PosM identity without requiring prices or active ranges, and report the
-explicit ProtocolPolicy version. [Evidence](../reports/ten-audit-consolidation-20261102/VERIFICATION.md)
-separates affected execution, artifact integrity and unchanged Solidity reuse.
-Ordinary candidate viability and lifetime history scaling remain open. Source6
-inputs/services need reviewed rollout; no deployed behavior changed.
+Harvest diagnostics validate geometry/custody coherence; Manager ticks forward
+to the same packed PosM source and are not independent evidence. Report
+geometry_sources_independent:false, preserve price-outage availability and
+ProtocolPolicy version metadata. Lifetime history and real venue/residual
+feasibility qualification remain open.
 
-[Current adaptable-policy verification](../reports/adaptable-policy-20261031/VERIFICATION.md)
-binds52production sources/31dependencies and43normal object gates at the unchanged
-compiler settings. The reference explains37contracts/826function rows,37constructors
-and14receivers, with zero recorded explanation gaps. Scoped EVM/backend methods,
-intermediate failures/empty attempts and exact staged reuse remain separate; this
-is not a fresh whole-suite/CI or independent approval.
+[Current verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
+binds52production sources/31dependencies,43normal gates at final-a8e7dc7cc5 and
+fresh475-record internal static disposition.65 distinct selected EVM methods
+succeeded across recorded stages and5 backend methods pass; original failures,
+two fixture corrections and body reuse remain explicit. The reference explains
+37contracts/826functions/37constructors/14receivers with zero recorded gaps.
+This is not a fresh full-suite/CI, live qualification or independent approval.
 
 The [earlier manual-operation audit](../reports/manual-operations-20261031/REVIEW.md),
 [earlier source audit](../reports/day-audit-20261031/REVIEW.md) and

@@ -1,0 +1,726 @@
+{
+  "rejected_attempt": {
+    "label": "normal-final-c29b64099e",
+    "all_pass": false,
+    "gates": [
+      {
+        "name": "ZZZAccessController",
+        "runtime": 10438,
+        "creation": 41519,
+        "minimum_args": 96,
+        "runtime_margin": 14138,
+        "path": "src/ZZZAccessController.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 7633,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZActivationAssets",
+        "runtime": 5849,
+        "creation": 6660,
+        "minimum_args": 64,
+        "runtime_margin": 18727,
+        "path": "src/ZZZActivationAssets.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 42492,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZActivationAssetsFactory",
+        "runtime": 7480,
+        "creation": 7534,
+        "minimum_args": 0,
+        "runtime_margin": 17096,
+        "path": "src/ZZZActivationAssetsFactory.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 41618,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZActivationEntry",
+        "runtime": 18581,
+        "creation": 31139,
+        "minimum_args": 96,
+        "runtime_margin": 5995,
+        "path": "src/ZZZActivationEntry.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 18013,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZBuyback",
+        "runtime": 7877,
+        "creation": 8626,
+        "minimum_args": 96,
+        "runtime_margin": 16699,
+        "path": "src/ZZZBuyback.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "uint256"
+        ],
+        "maximum_total_argument_bytes": 40526,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZCanonicalHandoff",
+        "runtime": 21531,
+        "creation": 22175,
+        "minimum_args": 32,
+        "runtime_margin": 3045,
+        "path": "src/ZZZCanonicalHandoff.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 26977,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZClaimRouter",
+        "runtime": 2885,
+        "creation": 3443,
+        "minimum_args": 96,
+        "runtime_margin": 21691,
+        "path": "src/ZZZClaimRouter.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 45709,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZCompounder",
+        "runtime": 2206,
+        "creation": 2605,
+        "minimum_args": 32,
+        "runtime_margin": 22370,
+        "path": "src/ZZZCompounder.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 46547,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZContributionPricing",
+        "runtime": 22254,
+        "creation": 23083,
+        "minimum_args": 64,
+        "runtime_margin": 2322,
+        "path": "src/ZZZContributionPricing.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 26069,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZCustodyValidation",
+        "runtime": 8626,
+        "creation": 9081,
+        "minimum_args": 32,
+        "runtime_margin": 15950,
+        "path": "src/ZZZCustodyValidation.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 40071,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZFeeController",
+        "runtime": 9702,
+        "creation": 10179,
+        "minimum_args": 32,
+        "runtime_margin": 14874,
+        "path": "src/ZZZFeeController.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 38973,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZFeesCanonical",
+        "runtime": 10223,
+        "creation": 11231,
+        "minimum_args": 64,
+        "runtime_margin": 14353,
+        "path": "src/ZZZFeesCanonical.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 37921,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZLPBalanceMath",
+        "runtime": 8409,
+        "creation": 8456,
+        "minimum_args": 0,
+        "runtime_margin": 16167,
+        "path": "src/ZZZLPBalanceMath.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 40696,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZLPBalancer",
+        "runtime": 24953,
+        "creation": 34292,
+        "minimum_args": 96,
+        "runtime_margin": -377,
+        "path": "src/ZZZLPBalancer.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 14860,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": false,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZLPPositionExecutor",
+        "runtime": 20312,
+        "creation": 21379,
+        "minimum_args": 192,
+        "runtime_margin": 4264,
+        "path": "src/ZZZLPPositionExecutor.sol",
+        "static_argument_bytes": 192,
+        "constructor_types": [
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 27773,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZLPRewardConverter",
+        "runtime": 16830,
+        "creation": 29162,
+        "minimum_args": 96,
+        "runtime_margin": 7746,
+        "path": "src/ZZZLPRewardConverter.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 19990,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZLiquidityManager",
+        "runtime": 21943,
+        "creation": 45584,
+        "minimum_args": 192,
+        "runtime_margin": 2633,
+        "path": "src/ZZZLiquidityManager.sol",
+        "static_argument_bytes": 192,
+        "constructor_types": [
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 3568,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZMembership",
+        "runtime": 7389,
+        "creation": 7838,
+        "minimum_args": 32,
+        "runtime_margin": 17187,
+        "path": "src/ZZZMembership.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 41314,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZMigration",
+        "runtime": 24556,
+        "creation": 34404,
+        "minimum_args": 32,
+        "runtime_margin": 20,
+        "path": "src/ZZZMigration.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 14748,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZMigrationBudget",
+        "runtime": 24339,
+        "creation": 25177,
+        "minimum_args": 32,
+        "runtime_margin": 237,
+        "path": "src/ZZZMigrationBudget.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 23975,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZNFT",
+        "runtime": 22192,
+        "creation": 45823,
+        "minimum_args": 96,
+        "runtime_margin": 2384,
+        "path": "src/ZZZNFT.sol",
+        "static_argument_bytes": null,
+        "constructor_types": [
+          "address",
+          "string"
+        ],
+        "maximum_total_argument_bytes": 3329,
+        "dynamic_constructor_exact_argument_qualification_required": true,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZNFTCanonical",
+        "runtime": 11762,
+        "creation": 12696,
+        "minimum_args": 64,
+        "runtime_margin": 12814,
+        "path": "src/ZZZNFTCanonical.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 36456,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZNFTMetadata",
+        "runtime": 16266,
+        "creation": 16590,
+        "minimum_args": 32,
+        "runtime_margin": 8310,
+        "path": "src/ZZZNFTMetadata.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 32562,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZOracle",
+        "runtime": 10373,
+        "creation": 36329,
+        "minimum_args": 64,
+        "runtime_margin": 14203,
+        "path": "src/ZZZOracle.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 12823,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZPoolRegistry",
+        "runtime": 10719,
+        "creation": 42736,
+        "minimum_args": 32,
+        "runtime_margin": 13857,
+        "path": "src/ZZZPoolRegistry.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 6416,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZPortfolioPolicy",
+        "runtime": 17622,
+        "creation": 18120,
+        "minimum_args": 32,
+        "runtime_margin": 6954,
+        "path": "src/ZZZPortfolioPolicy.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 31032,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZProtocolPolicy",
+        "runtime": 14746,
+        "creation": 17755,
+        "minimum_args": 64,
+        "runtime_margin": 9830,
+        "path": "src/ZZZProtocolPolicy.sol",
+        "static_argument_bytes": 64,
+        "constructor_types": [
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 31397,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZPythPriceFeed",
+        "runtime": 2193,
+        "creation": 3259,
+        "minimum_args": 224,
+        "runtime_margin": 22383,
+        "path": "src/ZZZPythPriceFeed.sol",
+        "static_argument_bytes": 224,
+        "constructor_types": [
+          "address",
+          "bytes32",
+          "bytes32",
+          "int32",
+          "uint32",
+          "uint16",
+          "bytes32"
+        ],
+        "maximum_total_argument_bytes": 45893,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRebalanceConfirmation",
+        "runtime": 14565,
+        "creation": 15283,
+        "minimum_args": 32,
+        "runtime_margin": 10011,
+        "path": "src/ZZZRebalanceConfirmation.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 33869,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRewards",
+        "runtime": 21311,
+        "creation": 22332,
+        "minimum_args": 32,
+        "runtime_margin": 3265,
+        "path": "src/ZZZRewards.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 26820,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRoyaltyConverter",
+        "runtime": 16830,
+        "creation": 29162,
+        "minimum_args": 96,
+        "runtime_margin": 7746,
+        "path": "src/ZZZRoyaltyConverter.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 19990,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRoyaltyFactory",
+        "runtime": 22584,
+        "creation": 22637,
+        "minimum_args": 0,
+        "runtime_margin": 1992,
+        "path": "src/ZZZRoyaltyFactory.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 26515,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZRoyaltyRewards",
+        "runtime": 21037,
+        "creation": 21974,
+        "minimum_args": 32,
+        "runtime_margin": 3539,
+        "path": "src/ZZZRoyaltyRewards.sol",
+        "static_argument_bytes": 32,
+        "constructor_types": [
+          "address"
+        ],
+        "maximum_total_argument_bytes": 27178,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZStrategy",
+        "runtime": 23912,
+        "creation": 25389,
+        "minimum_args": 96,
+        "runtime_margin": 664,
+        "path": "src/ZZZStrategy.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 23763,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZV4RouteExecutor",
+        "runtime": 11164,
+        "creation": 11322,
+        "minimum_args": 0,
+        "runtime_margin": 13412,
+        "path": "src/ZZZV4RouteExecutor.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 37830,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZVault",
+        "runtime": 23941,
+        "creation": 25339,
+        "minimum_args": 96,
+        "runtime_margin": 635,
+        "path": "src/ZZZVault.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "uint256",
+          "address"
+        ],
+        "maximum_total_argument_bytes": 23813,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZVaultCanonical",
+        "runtime": 21392,
+        "creation": 22944,
+        "minimum_args": 96,
+        "runtime_margin": 3184,
+        "path": "src/ZZZVaultCanonical.sol",
+        "static_argument_bytes": 96,
+        "constructor_types": [
+          "address",
+          "address",
+          "uint256"
+        ],
+        "maximum_total_argument_bytes": 26208,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ExactAsset",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ExactAsset.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ExactToken",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ExactToken.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZArtwork",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ZZZArtwork.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZPriceMath",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ZZZPriceMath.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "Ids",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ZZZTypes.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      },
+      {
+        "name": "ZZZV3VenueValidation",
+        "runtime": 62,
+        "creation": 93,
+        "minimum_args": 0,
+        "runtime_margin": 24514,
+        "path": "src/libraries/ZZZV3VenueValidation.sol",
+        "static_argument_bytes": 0,
+        "constructor_types": [],
+        "maximum_total_argument_bytes": 49059,
+        "dynamic_constructor_exact_argument_qualification_required": false,
+        "runtime_ok": true,
+        "creation_ok": true
+      }
+    ],
+    "report_sha256": "2147bf718fdce8904cf6d826086f0ad1c57b52a7039a42d8c4cb699e00ed6440"
+  },
+  "accepted_attempt": {
+    "label": "normal-final-a8e7dc7cc5",
+    "report_sha256": "57041fd8ddaded7c103560c77a99afe5488bc1133221996b80ec26fd6b59a6b1"
+  },
+  "normal_limits_relaxed": false,
+  "note": "Inverse tick reconstruction exceeded normal Balancer size. Final code compares sqrt at the actual stored tick, preserving exact downward-boundary semantics."
+}

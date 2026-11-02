@@ -16,10 +16,10 @@
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
       "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
-      "src/ZZZLPBalancer.sol": "75a510c68a476142e6be166ea8e4b7a7c6611ecf4ca3f7cd5159c0abf56caef9",
+      "src/ZZZLPBalancer.sol": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
       "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
       "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
-      "src/ZZZLiquidityManager.sol": "48465fb5a98277da939a42f5c0e88d7914692831429526685134e10b50a9deae",
+      "src/ZZZLiquidityManager.sol": "12873c25305934e8efd4c0f037221946030cba1f68e46815c0420fa5b7fc88a3",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
       "src/ZZZMigration.sol": "8c5faa68d88a320fcfef2339de891e67103ee1369893970ba4bd9827e11a703d",
       "src/ZZZMigrationBudget.sol": "ee057e36f4179b9a2b541ebb16772cf53c8279e77ac603d8073bb79c2e01101a",
@@ -221,9 +221,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "e25ab51ff0ce71b591b7cc8a25f1f89d5fc759041eb16fcee8ceac5ae6743649",
-    "compiler_output_sha256": "db4d9dba99d0ad274c9d073d8097fcd086b09ac12f75ff0c4995dfd72076de43",
-    "size_evidence_sha256": "ae0e9caa4d33ded3e9675841d9c87126e27793384d8d52a4ee5c14c2e4ed2ed1",
+    "compiler_input_sha256": "25fc704e5ff685845563d69f37ef362c5a92a4cd1399fc2cafaf936718f2299b",
+    "compiler_output_sha256": "069ae7fcc97ea97f7a114576c95c25da44937b9edf769672acb6d90771178e36",
+    "size_evidence_sha256": "57041fd8ddaded7c103560c77a99afe5488bc1133221996b80ec26fd6b59a6b1",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -5953,6 +5953,11 @@
               "internalType": "uint160",
               "name": "sqrtAfter",
               "type": "uint160"
+            },
+            {
+              "internalType": "int24",
+              "name": "tickAfter",
+              "type": "int24"
             }
           ],
           "name": "QuoteResult",
@@ -6425,7 +6430,7 @@
               "type": "uint256[4]"
             }
           ],
-          "name": "planPartial",
+          "name": "planReplacement",
           "outputs": [
             {
               "components": [
@@ -6600,6 +6605,11 @@
               "internalType": "uint160",
               "name": "afterPrice",
               "type": "uint160"
+            },
+            {
+              "internalType": "int24",
+              "name": "afterTick",
+              "type": "int24"
             }
           ],
           "stateMutability": "nonpayable",
@@ -6718,6 +6728,11 @@
               "internalType": "bool",
               "name": "direction",
               "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "requireActive",
+              "type": "bool"
             }
           ],
           "name": "routePlan",
@@ -6829,7 +6844,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "b37bd90254a9fc74eae47c3114287ac405f153586cfe236aa76350af2670588d"
+      "abi_sha256": "0ca18bc0f6b01acd4e1ee3cb73e1fb34d68642fb75d17880918494ddac40f312"
     },
     "ZZZLPPositionExecutor": {
       "source": "src/ZZZLPPositionExecutor.sol",
@@ -24525,7 +24540,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "ed49eea5f094d9f23cbfede24b24f4e340cf87fa63a47e44e54d2f5216872b55",
+  "notes_sha256": "31ac6e8f4c72763c339be22f6adc54f12e71215007db4302d22f957e5eb8ccd6",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -32623,11 +32638,11 @@
           "notes": "Full-mode bounded search at one fresh independent vector. Near-full no-swap deployment avoids dust-chasing. Quote reverts restore core state; no funds settle and no global optimum is promised."
         },
         {
-          "signature": "planPartial(bytes32,int24,int24,uint256,uint256,uint16,uint256[4])",
+          "signature": "planReplacement(bytes32,int24,int24,uint256,uint256,uint16,uint256[4])",
           "kind": "function",
-          "name": "planPartial",
+          "name": "planReplacement",
           "state_mutability": "nonpayable",
-          "purpose": "Plan minimum bounded trade for qualifying post-cost main allocation during hybrid replacement.",
+          "purpose": "Plan a bounded ordinary single or hybrid replacement whose main is physically active at the quoted stored pool tick.",
           "access": "Sealed controller-bound Manager only; nonpayable integration surface.",
           "status": "documented",
           "inputs": [
@@ -32683,7 +32698,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": "Exact current per-pool main allocation bps,6000..9999. Balancer applies up to1bp sizing headroom only to a needed partial trade."
+              "explanation": "10000 selects single main;6000..9999 selects the captured hybrid main floor. Needed partial trades retain rounding headroom; an already sufficient active main needs no swap."
             },
             {
               "position": 6,
@@ -32790,7 +32805,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Naturally sufficient main at the configured floor requires no venue/trade just to chase headroom. Otherwise select one qualifying reviewed candidate or revert; independent reference,fee/additional-loss/impact and final actual NAV checks remain."
+          "notes": "Ordinary replacement only, with no permissionless/keeper entry to this helper. Candidates leaving the main inactive are excluded before ranking; final mint/retention guards remain. Initial/growth use plan; paused emergency stays separate."
         },
         {
           "signature": "policyFingerprint(bytes32,bytes32)",
@@ -33001,10 +33016,19 @@
               "canonical_type": "uint160",
               "internal_type": "uint160",
               "explanation": "Quoted post-swap sqrtPriceX96."
+            },
+            {
+              "position": 2,
+              "name": "afterTick",
+              "label": "afterTick",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Actual quoted stored post-swap int24 tick, not recomputed from sqrt price; exact initialized downward crossings may be one tick lower."
             }
           ],
           "native_value": null,
-          "notes": "Quotes hold/transfer no principal and settle no deltas. Gas is spent even though core changes revert."
+          "notes": "QuoteResult carries output,sqrtPriceX96,stored tick with exact100-byte custom-error shape and tick-domain checks. All core price/tick/fee/transient effects revert; no funds settle or change recipient."
         },
         {
           "signature": "quoteGasLimit()",
@@ -33030,7 +33054,7 @@
           "notes": null
         },
         {
-          "signature": "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool)",
+          "signature": "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)",
           "kind": "function",
           "name": "routePlan",
           "state_mutability": "nonpayable",
@@ -33212,6 +33236,15 @@
               "canonical_type": "bool",
               "internal_type": "bool",
               "explanation": "True ETH to ZZZ, false ZZZ to ETH."
+            },
+            {
+              "position": 3,
+              "name": "requireActive",
+              "label": "requireActive",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True only for ordinary replacement planning: require a physically active target using actual stored ticks, including exact downward boundaries."
             }
           ],
           "outputs": [
@@ -33318,7 +33351,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Partial chooses smallest qualifying sampled input; full chooses largest useful deployment. Fees/output floors, spot bounds and actual post-withdrawal depth remain guarded; no global optimum promise."
+          "notes": "Full objective ranks useful main value; hybrid minimizes sampled qualifying input. Stored-tick activity is required only for ordinary replacement. A target-pool overshoot shrinks the bracket; a trade not yet entering the range increases it. Another venue cannot repair an already inactive target. Bounded search remains non-global; no fallback or financial limit is relaxed."
         },
         {
           "signature": "searchIterations()",
@@ -33371,7 +33404,7 @@
           "kind": "function",
           "name": "unlockCallback",
           "state_mutability": "nonpayable",
-          "purpose": "Authenticate pending quote payload/core, execute exact-input simulated swap and deliberately revert QuoteResult(output,sqrtAfter).",
+          "purpose": "Authenticate pending quote payload/core, execute exact-input simulated swap and deliberately revert QuoteResult(output,sqrtAfter,tickAfter).",
           "access": "Only immutable PoolManager with the exact active pending payload. Not callable by operator/user.",
           "status": "documented",
           "inputs": [

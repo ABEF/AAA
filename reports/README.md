@@ -1,11 +1,22 @@
 # Verification evidence
 
+[Current LP lifecycle review](lp-lifecycle-audit-20261102/REVIEW.md) repairs
+ordinary single/hybrid quote viability before ranking and verifies composed
+mode/entry/harvest/claim/merge behavior. Its [evidence](lp-lifecycle-audit-20261102/VERIFICATION.md)
+retains negative cases, fixture corrections,43 fresh normal gates and475 current
+static records with explicit reuse. It also corrects the independence claim in
+the ten-report entry below: Manager/child geometry getters forward to the same
+packed PosM source, so coherence is not independent stored-range evidence.
+Older report narratives below retain their original scope and are superseded
+where this new review explicitly says so.
+
 [Ten-report findings consolidation](ten-audit-consolidation-20261102/REVIEW.md)
 expands the previous five-report reconciliation to ten underlying technical
 narratives. Its [75-group matrix](ten-audit-consolidation-20261102/findings.json)
-retains original scopes and existing Todo ownership. Independent main/residual
-harvest-identity diagnostics and complete policy metadata are corrected; ordinary
-route-candidate viability and lifetime history scaling remain open.
+retains original scopes and existing Todo ownership. Main/residual
+harvest-identity diagnostics and complete policy metadata are corrected; its
+independence claim and ordinary candidate-viability status are superseded by the
+current review above. Lifetime history scaling remains open.
 [Verification](ten-audit-consolidation-20261102/VERIFICATION.md) separates affected
 checks, original failures and preserved artifacts from unchanged Solidity reuse.
 

@@ -142,7 +142,7 @@ class Review:
             **({'accounting_version':self.k.accounting_version} if self.k.accounting_version in (5,6) else {}))
 
     def _harvest_ticks(self, lp, physical, pool, spacing):
-        """Authenticate stored geometry without requiring spot, range or prices."""
+        """Validate physical geometry and consistent getter paths, not independent sources."""
         from zzz_ops.production_v4 import verify_position_identity
         from zzz_ops.tick_math import MIN_TICK, MAX_TICK
         ticks=[int(word,16) for word in self.read('liquidity','ticks(uint256)',lp,count=2)]
@@ -177,6 +177,7 @@ class Review:
         ticks=self._harvest_ticks(lp,physical,pool,spacing) if pool==position['pool_id'] else None
         result={'allowed': not reasons, 'reasons': reasons, 'position_manager': posm,
             'owner': '0x'+f'{owner:040x}', 'pool_id': pool, 'main_ticks':ticks,
+            'geometry_sources_independent':False,
             'scope': 'Pinned Manager binding, PosM custody and stored geometry only; no slot0, active-range, price or earned-fee inference.'}
         if self.k.accounting_version in (5,6):
             if self.uint('liquidity','PORTFOLIO_VERSION()')!=(2 if self.k.accounting_version==6 else 1):

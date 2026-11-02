@@ -74,20 +74,29 @@ captures its own policy. Restore operations advance revisions rather than revive
 old reviews. Cosmetic/gas/mint changes do not invalidate unrelated LP samples.
 
 Current compiler closure:52 production source files/31 dependencies,43 normal
-object gates at normal-final-0a0cac9f06, unchanged compiler/settings. Source-scoped
-runtime and backend checks are recorded in the new report; older50-source/42-gate/
-463-static evidence is historical and does not verify these changes. No full-suite,
-public CI, market/provider/host qualification or independent approval is implied.
-The new callable reference/operator procedures must match source6, not old profiles.
+object gates at normal-final-a8e7dc7cc5, unchanged compiler/settings. The
+[LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
+single/hybrid ordinary quote ranking using actual stored post-swap ticks.
+The no-swap baseline must be active; final pre/post-mint checks remain. Initial/
+growth and explicit emergency policies remain separate. Only Balancer/Manager
+production sources changed; exact runtimes/constructor pins must be refreshed
+for a reviewed fresh deployment, never relabelled on existing services/journals.
 
-[Ten-report consolidation](reports/ten-audit-consolidation-20261102/REVIEW.md)
-reconciles75 grouped findings/boundaries, retaining original reports and earlier
-repairs. Harvest diagnostics independently authenticate both legs' Manager ticks
-and packed PosM identity, preserving price-outage availability; profile metadata
-includes ProtocolPolicy version. Candidate viability and lifetime history scaling
-remain open; neither a conditional route workaround nor unsigned cached history
-closes those gaps. Production Solidity is unchanged; affected checks, artifact
-integrity and exact build/static reuse retain separate scopes.
+The [verification](reports/lp-lifecycle-audit-20261102/VERIFICATION.md) records65
+distinct successful selected EVM methods across stages,5 backend methods,43 normal
+gates and475 detector records with407 exact unchanged-context reuse/68 current
+reviews. Original failures, two corrected fixture expectations and their narrow
+reruns are retained. This is not a fresh full suite, clean static run, public CI,
+market/provider/host acceptance or independent approval. Callable reference:
+37contracts/826functions/37constructors/14receivers, zero recorded gaps.
+
+Harvest geometry diagnostics compare Manager/child getters to the same packed
+PosM source, not independent stored ledgers. Report
+geometry_sources_independent:false, preserve custody/shape/coherence checks and
+price-outage availability. The new review corrects prior ten-report independence
+claims without rewriting that historical evidence. Lifetime history scaling,
+residual feasibility/bounded-search qualification and actual source6 rollout
+remain open.
 
 ## What remains
 
@@ -96,7 +105,7 @@ accounting6 website/services, target gas/market economics, operating recovery,
 metadata hosting and independent audit/remediation remain open.60/40 is an
 approved tradeoff, not an optimized/proven profitable strategy. Private submission
 and manipulation immunity are not claimed. Exact deployment sizes are source-bound;
-Current measured Vault635/Budget237/Migration20 runtime margins supersede old14/37/59-byte claims only at the new exact source closure.
+Current measured Balancer360/Vault635/Budget237/Migration20 runtime margins supersede old14/37/59-byte claims only at the new exact source closure.
 
 ## Boundaries and preservation
 

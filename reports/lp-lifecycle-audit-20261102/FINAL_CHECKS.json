@@ -1,0 +1,69 @@
+{
+  "todo": {
+    "pass": true,
+    "stdout_sha256": "84da3985b677083ac5dbd5a81b35925d8966cf6a0d6fc610df91cb30dce624ee",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "callable": {
+    "pass": true,
+    "stdout_sha256": "9e00cee1f3531ff0db0e24358246a4f15301a752c045281d03a9efd720edd433",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "static_exact_source_coverage": {
+    "pass": true,
+    "stdout_sha256": "e371f6273e3cba08937f19e115e4ae55f53fe74154a0d2f52a657cf5635d2734",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "whitespace": {
+    "pass": true,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "protected": {
+    "unchanged": true,
+    "count": 4
+  },
+  "historical_reports": {
+    "unchanged": true,
+    "count": 2568
+  },
+  "build_source_scope": {
+    "all_source_pins_match": true,
+    "normal_gates_pass": 43,
+    "compiler_input_sha256": "25fc704e5ff685845563d69f37ef362c5a92a4cd1399fc2cafaf936718f2299b",
+    "compiler_output_sha256": "069ae7fcc97ea97f7a114576c95c25da44937b9edf769672acb6d90771178e36"
+  },
+  "compiler_and_dependency_install_settings_preserved": true,
+  "task_identity_status_order_preserved": true,
+  "no_deployment_site_service_anvil_journal_signer_heartbeat_change": true,
+  "scope": "Generated references, current docs and exact source coverage; no contract rerun for documentation edits. Published Git and operating qualification are separate.",
+  "callable_after_final_note_correction": {
+    "checked": true,
+    "contracts": 37,
+    "functions": 826,
+    "constructors": 37,
+    "receive_hooks": 14,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "documentation_links": {
+    "scope": "all changed/new consolidation Markdown plus inbound links from tracked non-report Markdown; old unrelated report bytes untouched",
+    "changed_markdown_count": 16,
+    "new_markdown_count": 2,
+    "checked_documents": 18,
+    "links_checked": 1424,
+    "inbound_checked": 218,
+    "introduced_or_unclassified_failures": [],
+    "preexisting_head_failures": []
+  },
+  "publication_check": "Exact staged Python closure checked before commit; committed revision and remote main verified separately in external publication evidence. No deployment.",
+  "staged_python_publication": {
+    "successful": true,
+    "errors": [],
+    "module_count": 283,
+    "external_receipt_sha256": "845aab23f3bd465c0802306af26552ca653959966a0725cbd67cc669f33658d1",
+    "scope": "Exact staged Python blobs before commit; no Python source changed afterward. Committed closure and remote main are checked separately."
+  }
+}

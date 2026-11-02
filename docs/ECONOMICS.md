@@ -90,6 +90,15 @@ function manually; all actual allocation arithmetic stays on-chain.
 | Reinvestment | Keeper `Compounder.compound` or guarded rebalance reinvests the bucket's compound funds for existing shares. A contribution may release old compound into incumbent idle/NAV, but swaps/deploys only the entrant's budget. | It does not consume holder claim balances or mint another collective membership. Retained attributed idle remains backing, not completed LP deployment. |
 | Buyback | A separate keeper `Buyback.execute` spends only the designated reserve, swaps ETH to ZZZ when required, then verifies the actual ZZZ burn and supply reduction. | It does not depend on a holder claiming. Failed execution reverts reserve release; an allocated 5% is not an executed burn. |
 
+Optional portfolio mode does not change NFT activation or reward weights. Enabling
+permits one residual; disabling requests a later guarded merge. Harvest both
+actual legs until replacement succeeds, combine their actual asset receipts and
+apply the fixed split once. No per-leg membership, split duplication or reward
+reset occurs. The [composed lifecycle verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
+checks both currencies, carried split dust, partial claims and reserve conservation
+through entry, disable and merge. This is scoped execution evidence, not a
+universal proof or production approval.
+
 The collective denominator is the eligible count **when receipts are allocated**,
 not the number who have claimed and not a reconstructed count at each swap.
 Dormant NFTs do not participate; activation grants one membership regardless of

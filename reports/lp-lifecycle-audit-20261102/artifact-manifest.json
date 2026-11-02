@@ -1,0 +1,16 @@
+{
+  "scope": "This report family only, self excluded; historical reports and unrelated files preserved. Raw execution artifacts stay external.",
+  "files": {
+    "build-attempts.json": "142afa95b8f6944073954ca5c4423ed6fb8feb457144f66da344627eb3c20e45",
+    "documentation-links.json": "45174515c9efcff2d295bf6e19abd7d3a725eddfdcc32d3508d8f4bd5bc9fd82",
+    "FINAL_CHECKS.json": "47c228719cae714b3541fafd46d9244ed6e4d98a1d253c886ec16509ee82269b",
+    "production-size-gates.json": "31596d22ae0c5d00ad857daa8f3ed4b45742d45b5b25ed38839179fa43d6ef20",
+    "REVIEW.md": "28e12eb8f626ba2d644e7619c2ee21d3dd0e214d0acd99f1c318d04f5e15fd2b",
+    "source-preservation.json": "660075dab8f3a7535f2b241bc4a34761c40a7412c20e3376469231ac0b323335",
+    "static-coverage.json": "04869d8f25ade71e6865ed56e5187261b71fc49c9e381e71985615432446ebfa",
+    "static-execution.json": "a61e967a4d7e2beb6d4ed098efe9b73280312086ebab4bfb4f9d4e57cfc4542d",
+    "static-review.json": "d531f78188f2e86f9962117e374e29dc574d87a005ee3efc4bf606ac06af39a7",
+    "tests.json": "c84b205ed285509f3e617febc09a9a4efd3199a779f0db88d767b9e11cce9fd5",
+    "VERIFICATION.md": "f450da73c7342f3a04a10d3870a5d2796b4e9ff10ba4cb5791a73c66afc32d0d"
+  }
+}

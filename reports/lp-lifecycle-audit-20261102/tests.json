@@ -1,0 +1,172 @@
+{
+  "base_head": "846ccd1ff3576412c1fec36c52a93bc573af5855",
+  "stages": {
+    "routing-negative": {
+      "exit_code": 1,
+      "elapsed_seconds": 160.25,
+      "methods": {
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementHybridSelectsPhysicallyViableExecution()": "Failure",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementSingleSelectsPhysicallyViableExecution()": "Failure"
+      },
+      "successful": false,
+      "source_unchanged": true,
+      "raw_status_sha256": "182fea8e2603c7f12848440c1017e094174f6de164a3cf8dd8f1899e27b58291",
+      "output_sha256": "19c9e643e86820e69c73ed81b6e3919aedebf80bb0d72f1fb1c5b4a01f0d3421",
+      "command_sha256": "b3675045df231bc48237da7e82dcb1dce73b012ac7ab27928172b5b4c630ed5c"
+    },
+    "routing-fixed": {
+      "exit_code": 0,
+      "elapsed_seconds": 167.75,
+      "methods": {
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementHybridSelectsPhysicallyViableExecution()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementSingleSelectsPhysicallyViableExecution()": "Success"
+      },
+      "successful": true,
+      "source_unchanged": true,
+      "raw_status_sha256": "09ebd423a6f3253887acb5394eeef18ec1f2c0c428fc904cc6a08426f903e4d7",
+      "output_sha256": "83c8637b3c84043b9c1836e55409a69628d90a18e7e818f1b35ef6e2fe68d624",
+      "command_sha256": "f0f698ed9007fa8d5ca971cc7e3e3c654d83f4cb3f95636be3fc2602cccf281b"
+    },
+    "routing-regression": {
+      "exit_code": 0,
+      "elapsed_seconds": 178.421,
+      "methods": {
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementDownwardBoundaryUsesStoredTickAndPreservesEntryPolicy()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementExactLowerTickRemainsAllowedWithoutASwap()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementHybridSelectsPhysicallyViableExecution()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementPlannerCannotBeCalledByAnUnboundCaller()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::testReplacementSingleSelectsPhysicallyViableExecution()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_ActualSizeRoutingSelectsCheaperVenueAndPreservesQuotes()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_BalancedBudgetDoesNotChaseDust()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_ColdDeepSingleVenueFastPathWithinExistingGasGate()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_ColdFourVenueSearchWithinExistingGasGate()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_DisabledCandidateDoesNotFreezeHealthyRouting()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_EmptyCatalogNeverImplicitlySwapsInDestination()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_ManagerRejectsERC20PairBeforeAssetPull()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_ManagerRejectsNonNativeMintEvenIfRegistryClaimsNative()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_PartialInputEmptyVenueDoesNotBlockHealthyAlternative()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_PlannerFindsSmallerFeasibleSwapWhenSeedViolatesSpotLimit()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_QuoteUsesExternalDepthAfterActualOwnedLPClose()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_RefundCallbackCannotChangeAndRestoreRegistryPolicy()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_RefundCallbackCannotChangeCapturedPriceVector()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_RefundCallbackCannotChangeRoutingPolicy()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_RefundCallbackCannotChangeTargetOrientation()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_RoutesCanBeAdmittedAfterSealWithoutMovingLP()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_SolverBoundsAndQuoteAuthentication()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_ThinCheaperVenueCannotBeatDeepSafeVenue()": "Success",
+        "test/LPExecutionRouting.t.sol:LPExecutionRoutingTest::test_UnknownDuplicateAndOverlongCatalogRejected()": "Success"
+      },
+      "successful": true,
+      "source_unchanged": true,
+      "raw_status_sha256": "505a0627c51106d72f9178df0044290d0db58f48816cfb538a13e5c2ee0e4ea7",
+      "output_sha256": "1056e5ed68760cf6749c539020af6205ee385e708ca689d5b32440fea4bf7fd6",
+      "command_sha256": "48364da96d27c1d73201657db32a68bac1e770aa9bea2b96eb4ca96dc1b1ce02"
+    },
+    "lifecycle-core": {
+      "exit_code": 1,
+      "elapsed_seconds": 188.938,
+      "methods": {
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testActualCoreHybridAtInsideRangeTriggerProvesBothLegsAndSixtyPercentFloor()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testAlreadySufficientSixtyPercentMainDoesNotRequireAnySwapVenue()": "Failure",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testAuxiliaryBurnFailureRollsBackWholeMerge()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testBothLegsHarvestWithoutReplacingEitherPosition()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testCollectiveExitClosesBothAndDirectlyPaysHolderKeepingRoyalties()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testDisabledModePreservesBothUntilGuardedAtomicMerge()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testGovernedEightyPercentMainAndLargerGapExecuteThenGrowthPreservesResidual()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testGrowingMainPreservesAuxiliaryAndClocks()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testInitialAndGrowthOutsideRangeRemainAllowedAndDoNotRecenter()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLifecycleEnableDisableEnableAcknowledgesGeometryWithoutForcingFortyPercent()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLifecycleModeOffPreservesBothLegFeesAndOtherHolderAfterPartialClaims()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testManualSingleModeJourneyMergesUnpausedThenHarvestsAndClaimsNewFees()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testMidReplacementMaintenancePolicyChangeRevertsBothLegsAndAllBacking()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testNewEntrantBuysAggregateNAVWithoutOldRewardsOrResidualMutation()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testNewExecutorDoesNotAddHolderOrGovernanceWithdrawalAuthority()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testOrdinarySingleNarrowReplacementRejectsInactiveTargetAndKeepsOldLP()": "Failure",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testPausedParkingClosesBothWithoutOracleAndPreservesAttributedAssets()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testPreviouslyEarnedHybridRightsFollowNFTTransfer()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCallbackModeChangeRollsBackBurnFeesAndPrincipal()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCallbackNonceChangeRollsBackBurnFeesAndPrincipal()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCallbackUnpauseRollsBackBurnFeesAndPrincipal()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseAcceptsMixedInventoryWithBrokenUSDAndDisabledOperations()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseBurnFailureRollsBackAssociationBalancesAndNonce()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseCannotRunAfterTerminalHolderExitStarts()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseDoesNotExemptNewGrowthFromUndeployedPrincipalGuard()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseKeepsDisabledModeAndPendingConfiguration()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseMinimumFailureRollsBackBurnAndFeeCheckpoint()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualClosePreservesClaimAndTransferRightsWhilePaused()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseRejectsReplayAndNoLongerExistingResidual()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseRejectsWrongCustodyReviewAndRawMinima()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseRequiresGovernanceAndNoDirectModuleBypass()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseRequiresPauseAndSealedOperatingCanonicalLifecycle()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseReturnsExactPrincipalToSameBucketWithoutChangingMainOrRights()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualCloseThenCollectiveExitStillReturnsAttributedPrincipal()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualControlEnableIsDesiredStateThenNextGuardedAdjustmentCreatesOneResidual()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualControlForcedSingleBypassesTimingButKeepsFinancialGuardsAndModeOff()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualControlForcedSingleDoesNotSilentlyDisableFutureHybridMode()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testReviewedEntryIdleHeadroomRecoversGrowthWithoutSpendingOldIdle()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testSamePairMoveClosesBothAndKeepsNFTSharesAtNewPool()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testSecondMintFailureRollsBackOldPrincipalFeesAndCustody()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testSingleModeActivationUsesOneVaultOwnedLPAndExactOperatorApproval()": "Success"
+      },
+      "successful": false,
+      "source_unchanged": true,
+      "raw_status_sha256": "fdd5781cffddf53afd8746f8906fb8f6cfb7f8d8736f20c28d348feee64771ba",
+      "output_sha256": "519ce34d5328b41d6f936dfb3c92c9d137633342084dfb0335f18ddd68e25c79",
+      "command_sha256": "e0d071d27f90093e3e9d62d9fc7daedb77654d54ccf0d46a5f1d62c23c4e6f4c"
+    },
+    "lifecycle-corrections": {
+      "exit_code": 0,
+      "elapsed_seconds": 168.86,
+      "methods": {
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testAlreadySufficientSixtyPercentMainDoesNotRequireAnySwapVenue()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testOrdinarySingleNarrowReplacementRejectsInactiveTargetAndKeepsOldLP()": "Success"
+      },
+      "successful": true,
+      "source_unchanged": true,
+      "raw_status_sha256": "71aa80d0d6f827b58422ef4985dab37626e32bc89a0f49bd6ba7e778cfb63adc",
+      "output_sha256": "0a56b74f95a0e9a305fce9dda71111297c32d85a0ba8c45fbf143f5c5902260f",
+      "command_sha256": "15407a83321b48be829963425058a2dfb983c9b40b8ee499089cd65ca8d0c2d7"
+    }
+  },
+  "unique_successful_evm_methods": 65,
+  "final_lifecycle_test_scope": {
+    "source_line_endings": "Forge compiler metadata source normalized to LF; raw SHA256 is retained separately",
+    "lifecycle_core_source_keccak256": "0xcd07760656b1442df48029b25baf16f24ffbbeef81e9f784fe8cdfde71f1c796",
+    "final_source_keccak256": "0xb3cfeb2f1505beb76ff76be89c373cd0303e8ae01015e1986cb18bab665415c3",
+    "earlier_test_source_reconstruction_verified": true,
+    "two_changed_test_bodies": [
+      "testAlreadySufficientSixtyPercentMainDoesNotRequireAnySwapVenue",
+      "testOrdinarySingleNarrowReplacementRejectsInactiveTargetAndKeepsOldLP"
+    ],
+    "unchanged_successful_bodies_reused": 39,
+    "corrected_bodies_fresh_passes": 2,
+    "note": "No fresh one-shot 41-method final lifecycle run. Source reconstruction is authenticated by the first compiler metadata; only these two expectation bodies differ.",
+    "routing-regression_final_test_source_keccak256": "0x17bb897da9356cf8c80a1ef733aebf60f1eb27b55f4e53aff62b72bb9b0aaa1f",
+    "lifecycle-corrections_final_test_source_keccak256": "0xb3cfeb2f1505beb76ff76be89c373cd0303e8ae01015e1986cb18bab665415c3"
+  },
+  "python": {
+    "selected_method_ids": [
+      "tests_python.test_keeper_harvest_identity.KeeperHarvestIdentityTests.test_healthy_both_leg_geometry_needs_no_market_read",
+      "tests_python.test_keeper_harvest_identity.KeeperHarvestIdentityTests.test_main_packed_identity_cannot_be_ignored",
+      "tests_python.test_keeper_harvest_identity.KeeperHarvestIdentityTests.test_matching_but_impossible_geometry_is_rejected",
+      "tests_python.test_keeper_harvest_identity.KeeperHarvestIdentityTests.test_residual_getter_paths_must_report_consistent_geometry",
+      "tests_python.test_keeper_harvest_identity.KeeperHarvestIdentityTests.test_source6_report_preserves_harvest_through_price_fault"
+    ],
+    "methods_run": 5,
+    "failures": [],
+    "errors": [],
+    "skips": [],
+    "ok": true,
+    "sources": {
+      "keeper/operation_review.py": "e820de9fc6d4ec57e4d8ee985c606b75374c13e49a4f3d06b68c3ccd6bae3680",
+      "keeper/monitor.py": "f9110cd190929f8229d8534acc21a716aca9b2e15ad281bebc16cf0bcd0010bd",
+      "scripts/run-keeper-tests.py": "e525ecbc556074859115b55e716230d6e5636c0a3b5021c377d7f4cd35daf3c6",
+      "tests_python/test_keeper_harvest_identity.py": "efa1a66ba26de72a5e36b99f77e1cf4b7c706a2772bd7b90b14619161d589c15"
+    }
+  },
+  "python_log_sha256": "07f26b6f3e9762f862ac1c9d39d47e148f04cec0da0a2b4f0ebec3d2fdab3fe0",
+  "full_suite": false,
+  "public_ci": false,
+  "real_market_qualification": false,
+  "independent_audit": false
+}

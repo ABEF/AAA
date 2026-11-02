@@ -139,15 +139,14 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
-- [Ten-report consolidation](reports/ten-audit-consolidation-20261102/REVIEW.md)
-  maps75 grouped findings/boundaries without rewriting original reports or the
-  earlier five-report aggregate. Harvest diagnostics independently authenticate
-  Manager ticks/packed PosM identity for both legs without a spot/price/active-range
-  requirement; report profile includes ProtocolPolicy version. Earlier health
-  admission fixes remain. Candidate viability and lifetime history scaling remain
-  open; no unsafe route fallback, unsigned totals or relaxed financial guards.
-  Reuse unchanged Solidity only at exact pins; artifact/method/inventory counts
-  are not a full suite or operating acceptance.
+- [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
+  ordinary single/hybrid candidate activity before ranking, retaining final
+  pre/post-mint checks and separate initial/growth/emergency policies. Quotes
+  expose actual stored post-swap ticks, including initialized downward boundaries.
+  Desired mode changes preserve physical backing and reward membership until
+  guarded replacement. Enabling does not force a residual. Harvest getter paths
+  share the same PosM source; geometry_sources_independent:false corrects the
+  prior ten-report independence claim. Preserve original historical report bytes.
 
 - [Current improvement audit](reports/improvement-audit-20261102/REVIEW.md) unifies
   detail/chunk custody proof, separates current governed buyback caps from
@@ -163,9 +162,9 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
   pins/history proof and old deployment/journal profiles. No production Solidity
   or economic policy changed; use the audit's fresh/reused evidence boundaries.
 
-- Current source-scoped [adaptable-policy evidence](reports/adaptable-policy-20261031/VERIFICATION.md)
-  binds52 production sources/31 dependencies and43 normal gates at final0a.
-  Vault635/Budget237/Migration20 runtime headroom is exact-source evidence, not
+- Current source-scoped [LP lifecycle evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
+  binds52 production sources/31 dependencies and43 normal gates at final-a8e7dc7cc5.
+  Balancer360/Vault635/Budget237/Migration20 runtime headroom is exact-source evidence, not
   future edit capacity or target-chain gas qualification. Current callable
   reference is37contracts/826functions/37constructors/14receivers, zero gaps.
 - Scoped EVM/backend campaigns retain original failures, empty attempts, corrected
@@ -211,7 +210,7 @@ Large idle is intentional recovery state; do not bypass later entrant/deployment
 guards. Existing both-leg park/holder-return remain fallbacks.
 Behavior-preserving private terminal-check dedup and read-only holder-exit
 validation extraction preserve normal limits. Current source6 gates are
-43 at exact final0a pins, with Vault635/Budget237runtime margins; old905/286
+43 at exact final-a8e7dc7cc5 pins, with Balancer360/Vault635/Budget237 margins; old905/286
 margins remain historical.
 Preserve exact pre/post checks and caller/error semantics. No existing deployment,
 service/site/Anvil/journal/signer/heartbeat was changed. Source publication is

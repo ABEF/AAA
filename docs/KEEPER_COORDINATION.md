@@ -142,9 +142,12 @@ not that an operation is ready or authorized. A timing lower bound is not a
 promised execution time, and a
 missing local scheduling record is not a fabricated future jitter deadline.
 
-Harvest custody diagnostics independently read `LiquidityManager.ticks(lpId)`
+Harvest custody diagnostics read `LiquidityManager.ticks(lpId)`
 for the main and any residual. Each stored range must have canonical signed tick
-bounds/order/spacing and match the PositionManager's packed identity. Returned
+bounds/order/spacing and match the PositionManager's packed identity. Manager
+forwards these ticks through its child to that same PosM record: the getters
+are consistency checks, not independent stored ledgers. The report explicitly
+returns `geometry_sources_independent:false`. Returned
 `main_ticks` and per-leg ticks describe stored geometry, not whether it is active.
 No spot/USD/quote read is needed by this proof: out-of-range or filled legs remain
 harvestable and price outages can leave harvesting available. Missing or

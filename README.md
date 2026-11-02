@@ -13,13 +13,12 @@ The prior [source audit](reports/day-audit-20261031/REVIEW.md) fixes physical-re
 availability, activation bindings and ordinary replacement activity. Source changes do not update existing
 Anvil contracts, journals, workers or websites. Public signing remains disabled.
 
-The [ten-report consolidation](reports/ten-audit-consolidation-20261102/REVIEW.md)
-expands the earlier reconciliation, independently validates both LP legs in
-harvest diagnostics and makes current policy metadata explicit. Its
-[dispositions](reports/ten-audit-consolidation-20261102/findings.json) separate
-implemented repairs, superseded records, accepted boundaries and open work.
-[Evidence](reports/ten-audit-consolidation-20261102/VERIFICATION.md) keeps affected
-checks separate from exact unchanged Solidity/build/static reuse.
+The [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
+ordinary single/hybrid quote selection before final minting, verifies reward and
+enable/disable/merge sequences, and corrects the earlier harvest-source independence
+claim. [Evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md) records the
+actual negative cases, scoped EVM/backend checks, fresh normal sizes and internal
+static review. Original reports retain their historical scope.
 
 ## Project navigation
 
@@ -29,7 +28,7 @@ checks separate from exact unchanged Solidity/build/static reuse.
 | Operate the protocol | **[Operator manual and management procedures](docs/OPERATOR_MANUAL.md)**; [callable inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Current policy evidence](reports/adaptable-policy-20261031/VERIFICATION.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Current LP lifecycle evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -50,7 +49,7 @@ checks separate from exact unchanged Solidity/build/static reuse.
 | [Activation Entry](src/ZZZActivationEntry.sol), [Registry](src/ZZZPoolRegistry.sol) | Atomic native ETH/fixed-ZZZ contributions; one admitted contribution pool at a time. |
 | [Vault](src/ZZZVault.sol), [pricing companion](src/ZZZContributionPricing.sol) | Own both physical LP NFTs, record per-NFT shares and prove actual marginal deployed LP before issuing shares. |
 | [Liquidity Manager](src/ZZZLiquidityManager.sol), [typed position child](src/ZZZLPPositionExecutor.sol) | Mint/increase, harvest and close a main plus at most one residual. The child has typed actions and fixed Vault recipients, not a generic withdrawal path. |
-| [LP Balancer](src/ZZZLPBalancer.sol), [math child](src/ZZZLPBalanceMath.sol) | Compare bounded reviewed swap venues using actual-core sizing; swap entrant budgets or captured maintenance inventory within execution limits. |
+| [LP Balancer](src/ZZZLPBalancer.sol), [math child](src/ZZZLPBalanceMath.sol) | Compare bounded reviewed swap venues using actual-core sizing; ordinary replacement quotes must leave an active main. Entrant and captured maintenance budgets remain separate. |
 | [Strategy](src/ZZZStrategy.sol), [portfolio policy](src/ZZZPortfolioPolicy.sol), [confirmation](src/ZZZRebalanceConfirmation.sol) | Manual range/mode settings, exact human-price threshold, sampled confirmation and reviewed readiness. |
 | [Budget](src/ZZZMigrationBudget.sol), [Oracle](src/ZZZOracle.sol) | Fixed transaction valuations, independent USD sources, principal/reserve separation, operation and caller loss floors, compound timing and actual main-floor proof. |
 | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol) | Allocate actual harvested fees 80/10/5/5; individual shares and equal activated-NFT collective rights. |

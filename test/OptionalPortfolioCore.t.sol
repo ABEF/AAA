@@ -3,6 +3,7 @@ pragma solidity 0.8.26;
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
+import {Vm} from "forge-std/Vm.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {PoolManager} from "@uniswap/v4-core/src/PoolManager.sol";
@@ -249,9 +250,9 @@ contract OptionalPortfolioCoreTest is Test {
             assertEq(plan.amountIn,0);assertLt(plan.targetSqrtAfter,TickMath.getSqrtPriceAtTick(lower));
         }
         uint256 next=positions.nextTokenId();uint256 beforeShares=vault.sharesOf(id);
-        // A selector-prefix witness proves the actual mint is reached. Amounts
-        // include real already-earned compound, so no guessed input is supplied.
-        vm.expectCall(manager.positionOperator(),abi.encodePacked(ZZZLPPositionExecutor.mint.selector));
+        // Ordinary planning now rejects the inactive destination before mint.
+        // The actual call still unwinds atomically and must restore old backing.
+        vm.expectCall(address(manager.balancingRouter()),abi.encodePacked(ZZZLPBalancer.planReplacement.selector));
         vm.expectRevert(ZZZModule.Slippage.selector);vault.rebalance(bucket,1,block.timestamp+100);
         assertEq(vault.group(bucket).lpTokenId,beforePosition.lpTokenId);
         assertEq(positions.getPositionLiquidity(beforePosition.lpTokenId),originalL);
@@ -285,7 +286,7 @@ contract OptionalPortfolioCoreTest is Test {
         uint256 total=1000 ether;uint256 scarce=total*60005*u1/(100000*(u0+u1));
         uint256[4] memory marks=[uint256(1 ether),1 ether,1 ether,1 ether];
         ZZZLPBalancer router=manager.balancingRouter();
-        vm.prank(address(manager));ZZZLPBalancer.Plan memory p=router.planPartial(pool,lower,upper,total-scarce,scarce,6001,marks);
+        vm.prank(address(manager));ZZZLPBalancer.Plan memory p=router.planReplacement(pool,lower,upper,total-scarce,scarce,6000,marks);
         assertEq(p.amountIn,0);assertEq(p.poolId,bytes32(0));
     }
     function testActualCoreHybridAtInsideRangeTriggerProvesBothLegsAndSixtyPercentFloor()public{
@@ -719,4 +720,73 @@ contract OptionalPortfolioCoreTest is Test {
     function testResidualCallbackModeChangeRollsBackBurnFeesAndPrincipal()public{_assertResidualCallbackRollback(1);}
     function testResidualCallbackNonceChangeRollsBackBurnFeesAndPrincipal()public{_assertResidualCallbackRollback(2);}
     function testResidualCallbackUnpauseRollsBackBurnFeesAndPrincipal()public{_assertResidualCallbackRollback(3);}
+
+    function _allocationBefore(uint256 bucket,address asset) private view returns(uint256[4] memory b){
+        return [fees.dust(bucket,asset),fees.compoundBalance(bucket,asset),fees.buybackBalance(asset),rewards.liabilities(asset)];
+    }
+    function _assertAllocation(uint256 bucket,address asset,uint256 receipt,uint256[4] memory b) private view {
+        uint256 units=(b[0]+receipt)/20;
+        assertEq(fees.dust(bucket,asset),(b[0]+receipt)%20,"carried raw fee dust");
+        assertEq(fees.compoundBalance(bucket,asset),b[1]+units,"5 percent compound reserve");
+        assertEq(fees.buybackBalance(asset),b[2]+units,"5 percent buyback reserve");
+        assertEq(rewards.liabilities(asset),b[3]+18*units,"funded80 plus10 holder liabilities");
+    }
+    function _auditHarvestAllocation(uint256 bucket) private {
+        uint256[4] memory beforeETH=_allocationBefore(bucket,address(0));
+        uint256[4] memory beforeZZZ=_allocationBefore(bucket,address(token));
+        vm.recordLogs();vault.collectFees(bucket,block.timestamp+100);Vm.Log[] memory logs=vm.getRecordedLogs();
+        uint256 count;uint256 receivedETH;uint256 receivedZZZ;
+        for(uint256 i;i<logs.length;++i){
+            if(logs[i].emitter==address(vault) && logs[i].topics.length==2 &&
+                logs[i].topics[0]==keccak256("FeesCollected(uint256,uint256,uint256)") && uint256(logs[i].topics[1])==bucket){
+                ++count;(receivedETH,receivedZZZ)=abi.decode(logs[i].data,(uint256,uint256));
+            }
+        }
+        assertEq(count,1,"one logical-bucket receipt for both physical legs");
+        assertGt(receivedETH+receivedZZZ,0,"actual funded core fees were reached");
+        _assertAllocation(bucket,address(0),receivedETH,beforeETH);
+        _assertAllocation(bucket,address(token),receivedZZZ,beforeZZZ);
+    }
+    function _claimExactly(uint256 id,address owner,address asset) private returns(uint256 amount){
+        amount=rewards.claimable(id,asset);uint256 liability=rewards.liabilities(asset);
+        uint256 beforeBalance=asset==address(0)?owner.balance:token.balanceOf(owner);
+        vm.prank(owner);assertEq(rewards.claim(id,asset),amount);
+        assertEq((asset==address(0)?owner.balance:token.balanceOf(owner))-beforeBalance,amount);
+        assertEq(rewards.liabilities(asset),liability-amount);assertEq(rewards.claimable(id,asset),0);
+    }
+    function testLifecycleModeOffPreservesBothLegFeesAndOtherHolderAfterPartialClaims() public {
+        (uint256 alice,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
+        uint256 bob=_mint(BOB);_contribute(BOB,bob,1000 ether,false);
+        uint128 mainL=positions.getPositionLiquidity(main);uint128 auxL=positions.getPositionLiquidity(aux);
+        policy.setMode(pool,false,keccak256("TEST ONLY DESIRED SINGLE"));
+        assertTrue(policy.configurationPending(bucket));assertEq(manager.secondaryId(main),aux);
+        assertTrue(membership.eligible(alice));assertTrue(membership.eligible(bob));assertEq(membership.totalEligible(),2);
+        core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+        uint256 bobETH=rewards.claimable(bob,address(0));uint256 bobZZZ=rewards.claimable(bob,address(token));
+        assertGt(bobETH+bobZZZ,0);_claimExactly(alice,ALICE,address(0));_claimExactly(alice,ALICE,address(token));
+        assertEq(rewards.claimable(bob,address(0)),bobETH);assertEq(rewards.claimable(bob,address(token)),bobZZZ);
+        assertEq(_claimExactly(alice,ALICE,address(0)),0);assertEq(positions.getPositionLiquidity(main),mainL);
+        assertEq(positions.getPositionLiquidity(aux),auxL);
+        core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+        assertGt(rewards.claimable(bob,address(0)),bobETH);
+        vm.warp(block.timestamp+43200);_prices();vault.rebalance(bucket,1,block.timestamp+100);
+        uint256 replacement=vault.group(bucket).lpTokenId;
+        assertFalse(policy.enabled(pool));assertFalse(policy.configurationPending(bucket));
+        assertEq(manager.secondaryId(replacement),0);assertEq(manager.activeSecondaryCount(),0);
+        assertGe(rewards.claimable(bob,address(0)),bobETH);assertGe(rewards.claimable(bob,address(token)),bobZZZ);
+        _claimExactly(bob,BOB,address(0));_claimExactly(bob,BOB,address(token));
+        assertEq(membership.totalEligible(),2);assertTrue(membership.eligible(alice));assertTrue(membership.eligible(bob));
+    }
+    function testLifecycleEnableDisableEnableAcknowledgesGeometryWithoutForcingFortyPercent() public {
+        uint256 id=_mint(ALICE);_contribute(ALICE,id,1000 ether,false);uint256 bucket=vault.nftBucket(id);
+        uint256 previous=vault.group(bucket).lpTokenId;uint256 shares=vault.sharesOf(id);
+        policy.setMode(pool,true,keccak256("TEST ENABLE"));policy.setMode(pool,false,keccak256("TEST DISABLE"));
+        policy.setMode(pool,true,keccak256("TEST ENABLE AGAIN"));
+        assertEq(vault.group(bucket).lpTokenId,previous);assertEq(manager.secondaryId(previous),0);
+        assertTrue(policy.configurationPending(bucket));vm.warp(block.timestamp+43200);_prices();
+        vault.rebalance(bucket,1,block.timestamp+100);uint256 current=vault.group(bucket).lpTokenId;
+        assertTrue(current!=previous);assertTrue(policy.enabled(pool));assertFalse(policy.configurationPending(bucket));
+        assertEq(manager.secondaryId(current),0,"balanced main needs no manufactured residual");
+        assertEq(manager.activeSecondaryCount(),0);assertEq(vault.sharesOf(id),shares);assertTrue(membership.eligible(id));
+    }
 }

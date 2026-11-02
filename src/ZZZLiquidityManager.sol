@@ -258,14 +258,14 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         if(emergency) {
             p.poolId = request.swapPool; p.zeroForOne = request.zeroForOne;
             p.amountIn = request.amountIn; p.minimumOut = request.minimumOut;
-        } else if(existingLpId==0 && _hybridReplacement(targetPool)) {
+        } else if(existingLpId==0 && _ordinaryReplacement()) {
             // The router adds sizing headroom only when a trade is needed.
             // Actual final allocation retains the captured governed floor.
             uint256[4] memory marks;
             (marks[0],marks[1],marks[2],marks[3])=
                 IPortfolioBudget(IPortfolioVault(access.module(Ids.VAULT)).migrationBudget()).maintenancePrices();
-            p=balancingRouter.planPartial(targetPool,lower,upper,amount0,amount1,
-                _portfolioPolicy().minimumMainBps(targetPool),marks);
+            p=balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,
+                _portfolioPolicy().enabled(targetPool)?_portfolioPolicy().minimumMainBps(targetPool):10000,marks);
         } else p = balancingRouter.plan(targetPool,lower,upper,amount0,amount1);
         balanced0 = amount0; balanced1 = amount1;
         uint256 refund0 = amount0; uint256 refund1 = amount1;

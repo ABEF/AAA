@@ -259,19 +259,18 @@ A saved pending transaction is recovered before new LP-router metadata checks;
 an unavailable router never permits a new balance operation. Runtime, signer,
 accounting and nonce/receipt guards remain; due fee harvesting stays independent.
 
-**If the selected route fails the final active-main check:** do not loosen that
-check or retry a known failing transaction. The bounded planner can rank an
-own-pool quote that moves the destination outside the new main range, even when
-another reviewed venue could work. Inspect the full post-close simulation and
-exact ticks, candidate list, fees and loss margins. Governance may review and
-replace the complete execution list above to exclude the problematic venue while
-retaining a qualified compatible alternative. Re-simulate the whole operation,
-then reconcile existing pending work before submitting anything new. This changes
-the swap list, not the contribution destination, Entry routes or explicit
-conversion/buyback requests. It is a conditional workaround, not a guaranteed
-solution or an automatic retry. An empty list disables swaps; no viable admitted
-venue means the operation remains blocked. Candidate viability filtering is still
-owned by [LP execution routing](../TODO.md#task-lp-execution-routing).
+**If a reviewed replacement still fails:** do not loosen the final active-main
+guard or repeat a known failing transaction. Fresh ordinary single/hybrid planning
+now filters actual stored-tick activity before ranking, including initialized
+downward crossings. Residual gap/rounding, bounded search, fees, depth, quote gas
+and other financial/context checks can still block placement. Inspect the whole
+post-close simulation, exact ticks, candidate list and each margin. Governance
+may review and replace the complete execution list above with qualified compatible
+alternatives, then re-simulate and reconcile pending work before a new submission.
+This changes the swap list, not the LP destination, Entry routes or explicit
+conversion/buyback requests. No global optimum or automatic fallback is promised.
+An empty list disables swaps; no viable admitted venue leaves the operation
+blocked. [Implemented repair and remaining qualification](../reports/lp-lifecycle-audit-20261102/REVIEW.md).
 
 Governance can tune `configureSolver(iterations,gasLimit,reviewHash)` within 4-12
 iterations and 100000-300000 gas per attempted quote; defaults8/200000. More search
@@ -417,7 +416,10 @@ simulation error, or replace raw need with sampled readiness.
 
 For `harvest_custody_unavailable`, compare the pinned Manager `ticks(lpId)` and
 PosM `getPoolAndPositionInfo(lpId)`/owner for both actual legs. Stored geometry
-must agree; no price feed or active-range condition is required merely to harvest.
+must agree; Manager/child ticks forward to the same packed PosM record, so
+`geometry_sources_independent:false` is deliberate. This is custody/geometry
+coherence, not an independent stored ledger. No price feed or active-range
+condition is required merely to harvest.
 The report exposes validated main/per-leg ticks and its ProtocolPolicy version.
 Keep the journal and current profiles intact; a report is not a transaction or an
 instruction to alter geometry. [Exact diagnostic scope](KEEPER_COORDINATION.md#read-only-operation-review).
@@ -1699,6 +1701,43 @@ A successful same-chain handoff does not qualify cross-chain finality, transport
 | `Migration.invalidateParking(bucket)` | An unused parking authorization at its current nonce | No funds move. Collective exit has no cancel/recover/reopen path; failed individual payments stay backed for retry or owner fallback. |
 
 There is no independent pause for every individual feature/asset payout. Do not invent one in an incident. Source: [module guards](../src/base/ZZZModule.sol), [controller](../src/ZZZAccessController.sol), [recovery matrix](CHANGE_AND_RECOVERY.md).
+
+<a id="portfolio-mode-states-and-reward-effects"></a>
+
+### Portfolio mode states and reward effects
+
+These are two LP positions in one ETH/ZZZ pool, not two independently activated
+NFTs or two contribution pools. Read `PortfolioPolicy.enabled(pool)`,
+`configurationPending(bucket)`, `Vault.group(bucket).lpTokenId` and
+`Manager.secondaryId(mainId)` at one confirmed block. Desired mode and actual
+physical inventory can legitimately differ.
+
+| Confirmed state / intent | Call, caller and inputs | Expected result and next step |
+| --- | --- | --- |
+| Enable optional residual management | Governance `PortfolioPolicy.setMode(pool,true,reviewHash)` using the admitted pool bytes32 and source-bound nonzero reviewed bytes32 hash. Reconcile pending transactions first. | No immediate trade or new leg. Pending geometry waits for cooldown and guarded `Vault.rebalance(bucket,minimumLiquidity,deadline)` by a permitted keeper. Normal sampled price-trigger requirements have their documented manual-geometry exception; execution guards still apply. |
+| Mode enabled, residual ID0 | Read applied/pending revisions and actual main. | This can be a valid completed adjustment: natural main allocation already meets the governed floor. Do not force a40% residual, repeat adjustments or fabricate a missing leg. |
+| Disable while a residual exists | Governance `setMode(pool,false,reviewHash)`; later permitted keeper `Vault.rebalance(bucket,minimumLiquidity,deadline)`. | Both legs stay owned/valued/harvested until atomic guarded merge creates one active main. Failure preserves both old legs and rights; desired false remains pending. Do not mark the residual closed or the NFT dormant. |
+| Enable-disable-enable before adjustment | Read current geometry/applied revisions after each confirmed setter. | Revision advances even when the final bool repeats its original value; pending replacement and invalidated samples are not cancelled by restoring the bool. Re-review exact current policy. |
+| Close residual without changing main | Paused governance `Migration.closeResidual(ParkingRequest)` with exact physical/control snapshot, nonce/epoch and raw minima. Set modefalse first if future residuals are unwanted. | Both legs harvest; only residual closes to attributed Vault idle. Main/shares/clock stay. No swap, payout or automatic idle redeployment. Unpause separately; idle limits can still block contributions until guarded recovery. |
+| Urgently force one main | Set modefalse if intended, pause, then governance `Migration.emergencyRebalance(request)` with exact manifest and deliberately selected financial safeguards. | Both legs close and one main is deployed at its actual range ratio; no guaranteed50/50 USD split. This does not change desired mode. Verify outputs and unpause explicitly. Optional bypass can lose nearly all principal; never automate it as fallback. |
+
+`minimumLiquidity` is the reviewed raw main liquidity minimum, not USD or a sum
+of raw L across different ticks; `deadline` is the reviewed future Unix timestamp.
+Use [review preparation](#prepare-and-check-an-offline-reviewhash) and the
+[callable reference](CONTRACT_FUNCTIONS.md) for exact manifest tuples/permissions.
+The helper prepares a source-bound hash, not live simulation or authorization.
+
+Mode changes create no new NFT membership and remove none. Current owners retain
+previously accrued rewards and future royalty rights. Hourly harvest still
+collects both actual legs, allocating actual ETH/ZZZ receipts80/10/5/5 once per
+asset with carried dust. Claims spend only funded liabilities; they do not merge,
+compound, burn or redistribute other holders' balances. A failed all-in-one
+replacement rolls back its closes/harvest/mint, while earlier separately mined
+policy/pause transactions remain in effect. [Lifecycle evidence](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
+
+The fresh internal `planReplacement`/quote ABI change requires new runtime and
+constructor pins for a reviewed deployment. It changes no operator call and
+cannot upgrade an old deployment, service, receipt or journal by relabelling it.
 
 ### Common stop and restart sequences
 

@@ -6726,9 +6726,10 @@
           },
           "outputs": {
             "0": "Actual quoted raw output after directional LP/protocol fees and impact.",
-            "1": "Quoted post-swap sqrtPriceX96."
+            "1": "Quoted post-swap sqrtPriceX96.",
+            "2": "Actual quoted stored post-swap int24 tick, not recomputed from sqrt price; exact initialized downward crossings may be one tick lower."
           },
-          "notes": "Quotes hold/transfer no principal and settle no deltas. Gas is spent even though core changes revert."
+          "notes": "QuoteResult carries output,sqrtPriceX96,stored tick with exact100-byte custom-error shape and tick-domain checks. All core price/tick/fee/transient effects revert; no funds settle or change recipient."
         },
         "quoteGasLimit()": {
           "purpose": "Read current per-quote gas budget.",
@@ -6752,7 +6753,7 @@
           }
         },
         "unlockCallback(bytes)": {
-          "purpose": "Authenticate pending quote payload/core, execute exact-input simulated swap and deliberately revert QuoteResult(output,sqrtAfter).",
+          "purpose": "Authenticate pending quote payload/core, execute exact-input simulated swap and deliberately revert QuoteResult(output,sqrtAfter,tickAfter).",
           "access": "Only immutable PoolManager with the exact active pending payload. Not callable by operator/user.",
           "inputs": {
             "0": "Exact internally armed typed key/direction/input encoding."
@@ -6815,22 +6816,8 @@
             "0": "LPBalanceMath created by this Balancer; its balancer() must match."
           }
         },
-        "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool)": {
-          "purpose": "Evaluate one reviewed same-pair venue using bounded actual-core quotes and full/partial objective.",
-          "access": "Balancer self-call only; external callers revert.",
-          "inputs": {
-            "0": "Context(target PoolId,Q64.96 target spot and sqrt bounds,exact ETH/ZZZ budgets,independent price bounds/scales/reference/additional-loss policy,mainFloor bps,marks[price0,price1,scale0,scale1]). Partial allocation uses captured marks only; fresh trading-price guards remain separate.",
-            "1": "One admitted execution PoolId.",
-            "2": "True ETH to ZZZ, false ZZZ to ETH."
-          },
-          "outputs": {
-            "0": "Plan(executionPool zero for no swap,direction,raw input/quoted output/minimum,route/target post-swap Q64.96 prices,execution revision,policy fingerprint). Not a transaction or guaranteed future fill.",
-            "1": "Useful main USD18 value at selected fixed valuation basis."
-          },
-          "notes": "Partial chooses smallest qualifying sampled input; full chooses largest useful deployment. Fees/output floors, spot bounds and actual post-withdrawal depth remain guarded; no global optimum promise."
-        },
-        "planPartial(bytes32,int24,int24,uint256,uint256,uint16,uint256[4])": {
-          "purpose": "Plan minimum bounded trade for qualifying post-cost main allocation during hybrid replacement.",
+        "planReplacement(bytes32,int24,int24,uint256,uint256,uint16,uint256[4])": {
+          "purpose": "Plan a bounded ordinary single or hybrid replacement whose main is physically active at the quoted stored pool tick.",
           "access": "Sealed controller-bound Manager only; nonpayable integration surface.",
           "inputs": {
             "0": "Exact admitted native ETH/fixed-ZZZ v4 PoolKey hash, not a pool contract address.",
@@ -6838,13 +6825,28 @@
             "2": "New main upper tick.",
             "3": "Available attributed ETH wei,uint128 bounded.",
             "4": "Available attributed ZZZ raw units,uint128 bounded.",
-            "5": "Exact current per-pool main allocation bps,6000..9999. Balancer applies up to1bp sizing headroom only to a needed partial trade.",
+            "5": "10000 selects single main;6000..9999 selects the captured hybrid main floor. Needed partial trades retain rounding headroom; an already sufficient active main needs no swap.",
             "6": "Captured Budget[price0,price1,scale0,scale1]; USD18 prices/raw decimal scales for allocation only."
           },
           "outputs": {
             "0": "Plan(executionPool zero for no swap,direction,raw input/quoted output/minimum,route/target post-swap Q64.96 prices,execution revision,policy fingerprint). Not a transaction or guaranteed future fill."
           },
-          "notes": "Naturally sufficient main at the configured floor requires no venue/trade just to chase headroom. Otherwise select one qualifying reviewed candidate or revert; independent reference,fee/additional-loss/impact and final actual NAV checks remain."
+          "notes": "Ordinary replacement only, with no permissionless/keeper entry to this helper. Candidates leaving the main inactive are excluded before ranking; final mint/retention guards remain. Initial/growth use plan; paused emergency stays separate."
+        },
+        "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)": {
+          "purpose": "Evaluate one reviewed same-pair venue using bounded actual-core quotes and full/partial objective.",
+          "access": "Balancer self-call only; external callers revert.",
+          "inputs": {
+            "0": "Context(target PoolId,Q64.96 target spot and sqrt bounds,exact ETH/ZZZ budgets,independent price bounds/scales/reference/additional-loss policy,mainFloor bps,marks[price0,price1,scale0,scale1]). Partial allocation uses captured marks only; fresh trading-price guards remain separate.",
+            "1": "One admitted execution PoolId.",
+            "2": "True ETH to ZZZ, false ZZZ to ETH.",
+            "3": "True only for ordinary replacement planning: require a physically active target using actual stored ticks, including exact downward boundaries."
+          },
+          "outputs": {
+            "0": "Plan(executionPool zero for no swap,direction,raw input/quoted output/minimum,route/target post-swap Q64.96 prices,execution revision,policy fingerprint). Not a transaction or guaranteed future fill.",
+            "1": "Useful main USD18 value at selected fixed valuation basis."
+          },
+          "notes": "Full objective ranks useful main value; hybrid minimizes sampled qualifying input. Stored-tick activity is required only for ordinary replacement. A target-pool overshoot shrinks the bracket; a trade not yet entering the range increases it. Another venue cannot repair an already inactive target. Bounded search remains non-global; no fallback or financial limit is relaxed."
         }
       },
       "constructor": {

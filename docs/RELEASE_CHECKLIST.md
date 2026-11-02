@@ -35,13 +35,14 @@ runtime, simulation, gas and operating/marketplace rehearsal remain release gate
 
 ## Current candidate and evidence limits
 
-[Ten-report reconciliation](../reports/ten-audit-consolidation-20261102/VERIFICATION.md)
-preserves original scopes and strengthens independent harvest identity diagnostics
-for both physical legs. Earlier health/profile repairs remain. Ordinary route
-candidate viability and lifetime history scaling remain open; no financial guards
-are weakened. Production Solidity is unchanged; normal gates and static review
-are reused only at exact pins. This is not a frozen full suite, CI, actual
-service/gas rehearsal or independent approval.
+[LP lifecycle verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
+repairs ordinary single/hybrid quote viability before final active-main guards,
+verifies mode/reward composition and refreshes43 normal gates plus475-record
+internal static disposition. It corrects the earlier claim of independent harvest
+geometry sources: Manager/child getters forward to packed PosM data. Scoped
+execution and corrected fixture reuse are explicit. Lifetime history scaling,
+actual venue/residual economics and independent release qualification remain open.
+No policy, service/site/journal or deployed behavior changed.
 
 | Boundary | Current requirement |
 | --- | --- |
@@ -51,10 +52,10 @@ service/gas rehearsal or independent approval.
 | Timing |85% centre-to-boundary threshold with independent same-side corroboration,600-second sampled window/maxgap300,240-second source checks, hard initial12hours and service60–300 jitter. Actual inclusion and liveness remain unqualified. |
 | Accounting | Entrant-only swap/deploy and actual marginal LP; combined fees allocated80/10/5/5 once per asset; separate rewards, royalties, compound, buyback and principal-return backing. Current owner gets old unclaimed rights. |
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
-| Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Vault635/Budget237/Migration20 at final0a source pins; none qualifies target gas or future edits. |
+| Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration20 at final-a8e7dc7cc5 source pins; none qualifies target gas or future edits. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
 | Services/site | Schema8 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
-| Security | Earlier static triage retains its old source scope; refresh analysis and independently audit/remediate the frozen candidate and recovery composition. Maximum populated gas/dynamic URI, upstream behavior and narrow route-ranking liveness remain qualification limits. Internal passes are not safety guarantees. |
+| Security | Current475-record static disposition is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and narrow route-ranking liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 ## Release identity
 

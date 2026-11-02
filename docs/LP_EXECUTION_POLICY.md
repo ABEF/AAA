@@ -133,10 +133,14 @@ In both single and hybrid ordinary replacement, the actual stored pool tick
 must place the new main in range before and after mint/refund callbacks. An
 inactive main rejects and rolls back the whole replacement even if its USD value
 passes. Initial activation/growth and explicit emergency have separate policies.
-For very narrow bands, bounded route ranking may choose a candidate that the
-final active-main guard rejects even when another reviewed venue could work.
-This remaining liveness qualification is not permission to weaken the guard.
-[Current audit](../reports/day-audit-20261031/REVIEW.md).
+Ordinary `planReplacement` checks the actual stored post-swap core tick before
+ranking, for single and hybrid mode. Exact downward crossings cannot be inferred
+from sqrt alone. A no-swap baseline must be active; another venue cannot fix an
+already-inactive destination. Target-pool quotes bracket range entry/overshoot
+as well as existing price/output/main-floor checks. Final mint guards remain.
+Bounded search, residual gap/rounding feasibility and actual venue/depth/gas still
+require qualification; no global optimum or unsafe fallback is claimed.
+[Current audit](../reports/lp-lifecycle-audit-20261102/REVIEW.md).
 
 One excess asset may fund one residual range on the corresponding side of the
 new main, leaving at least one tick-spacing beyond spot. Policy

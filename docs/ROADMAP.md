@@ -12,14 +12,16 @@ rehearse actual authority/wallet/host/dependency workflows before production.
 
 ## LP execution next steps
 
-The [ten-report consolidation](../reports/ten-audit-consolidation-20261102/REVIEW.md)
-retains the earlier custody/admission/health repairs and strengthens independent
-both-leg harvest diagnostics. Next address ordinary route-candidate viability
-without weakening the active-main guard; the conditional operator workaround is
-not a solver fix. Design measured integrity-preserving lifetime archive/read-model
-evolution before complete replay outgrows finite budgets. Qualify real venues,
-providers and operating budgets alongside this work. Review matching policy/API
-source before any authorized rollout; no journal rewrite or service update is implied.
+The [LP lifecycle repair](../reports/lp-lifecycle-audit-20261102/REVIEW.md)
+filters inactive ordinary single/hybrid candidates before ranking while retaining
+final mint guards. Scope-limited composed checks preserve both-leg fees, shares
+and claims through mode changes and a merge. Harvest getter coherence is not an
+independent range ledger; current reports make that boundary explicit.
+Next qualify bounded routing and residual placement using real venues/depth/gas,
+and design measured authenticated lifetime archive/read-model evolution before
+complete replay outgrows finite budgets. No global search optimum or unsafe
+fallback is claimed. Qualify actual providers and operating budgets alongside
+this work; matching source6 rollout must preserve old profiles/journals.
 
 [Bounded adaptable settings](ADAPTABLE_POLICY.md) are implemented in source6 with
 unchanged defaults and explicit schema8/Entry2/canonicalV6 boundaries. Qualify

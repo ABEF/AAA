@@ -27,11 +27,12 @@ null and browser signing Anvil-only. The user-paused heartbeat stays paused.
 
 ## Evidence to reuse, with limits
 
-[Current verification](../reports/adaptable-policy-20261031/VERIFICATION.md) binds
-52 production sources and31 dependencies to normal-final-0a0cac9f06:43 normal
+[Current verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
+binds52 production sources and31 dependencies to normal-final-a8e7dc7cc5:43 normal
 EIP170/EIP3860 gates, unchanged0.8.26/Cancun/viaIR/optimizer1/Yulfalse.
-Vault23941runtime(635margin), Budget24339(237), Migration24556(20), NFT22192(2384).
-Changes require new exact-source gates; these are not target-chain gas estimates.
+Balancer24216runtime(360margin), Vault23941(635), Budget24339(237), Migration24556(20).
+The initial24953-byte Balancer attempt failed and remains recorded. New source
+changes require exact-source gates; these are not target-chain gas estimates.
 
 The reference has37concrete contracts/826function rows/37constructors/14receivers,
 zero explanation/input/output gaps. Scope-limited EVM/backend executions, fixture
@@ -49,15 +50,24 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
-The [ten-report consolidation](../reports/ten-audit-consolidation-20261102/REVIEW.md)
-maps75 grouped findings/boundaries and repairs independent stored main/residual
-identity proofs in read-only harvest diagnostics. Its [evidence](../reports/ten-audit-consolidation-20261102/VERIFICATION.md)
-retains failures, affected checks and unchanged final0a build/static reuse. Next:
-ordinary candidate viability retaining final active-main guards, and measured
-integrity-preserving lifetime archive/read-model design. Conditional route triage
-is not a solver fix; unsigned cached totals are not verified history. Complete
-schema8 with reviewed current buyback_maximum_usd18, preserving constructor
-provenance, old journals/services and exact staged/committed import checks.
+The [LP lifecycle repair](../reports/lp-lifecycle-audit-20261102/REVIEW.md)
+fixes ordinary single/hybrid candidate activity before ranking. Exact stored
+quote ticks distinguish initialized downward boundaries; final mint activity,
+financial/custody checks and initial/growth policy remain.65 distinct successful
+selected EVM methods across recorded stages,5 backend checks,43 normal gates and
+fresh475-record internal static disposition have explicit limits. Two corrected
+fixture expectations and the first oversized implementation remain in evidence.
+Source API/runtime pins changed; existing Anvil/services/journals were untouched.
+
+Current guides correct a previous ten-report claim: Manager/child ticks forward
+to the same packed PosM source; getter coherence is not independent stored-range
+proof. Keep geometry_sources_independent:false and custody/price-outage checks.
+Next qualify bounded sizing/residual placement using actual venues/depth/gas;
+design measured authenticated lifetime archive/read-model evolution. No global
+solver optimum or unsafe fallback is claimed. Complete reviewed schema8 current
+buyback_maximum_usd18 and matching source6 rollout without constructor/journal
+rewrites. Current evidence root is the external lp-lifecycle-audit-20261102
+directory beside the older archives above; original reports stay unchanged.
 
 1. Establish publication state from exact local/remote main heads. Git publication
    is not deployment or qualification. Keep source, docs and linked evidence

@@ -45,8 +45,8 @@ remains part of the bounded portfolio until the next whole adjustment.
 1. Preserve the eight-word Position wire record and its actual main LP ID. Expose
    auxiliary identity explicitly, without adding raw liquidity across ranges.
    Vault owns both NFTs; a fixed Manager association rejects duplicates/orphans.
-2. Introduce explicit fresh accounting5 / portfolio1 / maintenance3 /
-   confirmation3 capabilities. Historical accounting4 and older readers, profiles
+2. Use fresh accounting6 / portfolio2 / maintenance3 /
+   confirmation3 / compound4 capabilities and ProtocolPolicy1. Historical accounting5/4 and older readers, profiles
    and pending records retain their meanings. Current deployed code is unchanged.
 3. Keep physical `amounts(actualId)` separate from aggregate portfolio valuation.
    NAV/share pricing, metadata and all read services use both authenticated legs.
@@ -66,10 +66,23 @@ remains part of the bounded portfolio until the next whole adjustment.
 | Policy and confirmation | Strategy, Confirmation, new fixed PortfolioPolicy | Exact inverse-price math, threshold sides, sampled condition versus cooldown readiness, mode pending, policy revisions, full physical identity. |
 | Execution | LiquidityManager, LPBalancer and typed helpers | Minimum-to-main-floor sizing, exact one-sided mint, at most two IDs, per-NFT approval, actual balances, core quotes, atomic all-leg collection/close. |
 | Accounting | Vault, MigrationBudget, ContributionPricing, metadata | Aggregate NAV and incumbent checkpoints; entrant increases main only; separate reserves; actual post-cost utilization proof without weakening loss/idle limits. |
-| Recovery | Migration, canonical companions, emergency manifests | Both legs close for parking/pool move/holder return; full identity in manifests; no residual survives parked export; same-chain V5 wire only if these conditions are proved. |
+| Recovery | Migration, canonical companions, emergency manifests | Both legs close for parking/pool move/holder return; full identity in manifests; no residual survives parked export; same-chain V6 wire only if these conditions are proved, with zero live residuals. |
 | Keeper | monitor, confirmation, compound policy, health and operation report | Fresh profile, cooldown observations, 600/300 sampled evidence, durable 60-300 jitter, reset/restart/pending recovery, desired single mode with live residual. |
 | Readers and preparation | zzz_ops, frontend API, observers/preflight/config | Exact fresh capabilities and aggregate physical observations; historical codecs stay separate; complete unsigned reviews include new policy/portfolio identity. |
 | Documentation | Operator, callable reference, features, roadmap, Todo, context/handoff | Exact inputs/outputs/permissions, enable/disable/merge steps, rollback and known qualification limits. |
+
+## Current ordinary execution and mode lifecycle
+
+Ordinary single/hybrid planning now filters quotes using actual stored post-swap
+ticks before ranking; final active-main and financial guards remain. This repairs
+a demonstrated liveness gap without changing entrant or explicit emergency rules.
+See [source-scoped findings and verification](../reports/lp-lifecycle-audit-20261102/REVIEW.md).
+Enabling mode permits a residual but never forces one when natural main allocation
+is sufficient. Disabling records a pending guarded merge; it changes no NFT's
+activation, royalty eligibility, membership or previously accrued claims. Both
+physical legs remain valued/harvested until the merge actually succeeds.
+Exact calls and failure handling have one owner: the
+[operator lifecycle table](OPERATOR_MANUAL.md#portfolio-mode-states-and-reward-effects).
 
 ## Verification and completion
 
