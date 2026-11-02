@@ -1,0 +1,12 @@
+{
+  "scope": "This report only; self excluded. Prior reports unchanged.",
+  "files": {
+    "CASE_MATRIX.md": "664e91d8872d3ce63ebdd3b8439cc2c04e75d31c254a6f245a606762d0d5409e",
+    "documentation-links.json": "b498845adc61becf782d234cda99eb65eef528f16a0e29b044b210606ca02715",
+    "FINAL_CHECKS.json": "0c96efb6f70c4ad067337c9518ce19faf50eaf829820b61cf0c3f1c277b66dd9",
+    "REVIEW.md": "decc3f4475e9f3bd3923b4548bf784228cbc18d4de804ef9f2cb5108cade05e0",
+    "source-preservation.json": "417dc82198c648d0fa08a08b0c60666da32e7967078f8f65f8c25927a2c47de6",
+    "tests.json": "481e06b45fc20978146b2a21ca0b167b60a37b1cd7fc4c2184417896af0b00a8",
+    "VERIFICATION.md": "f0e60a7cfbe16f7f321fe104f873eed82cb83991a756070e2ebe6ac7df99c98e"
+  }
+}

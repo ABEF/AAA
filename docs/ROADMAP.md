@@ -12,6 +12,13 @@ rehearse actual authority/wallet/host/dependency workflows before production.
 
 ## LP execution next steps
 
+[Multi-day contract journeys](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
+now exercise repeated modes, entry, rewards and compound over virtual days. Their
+controlled caller/time/feed substitutes do not close sustained source6 keeper,
+RPC/browser concurrency, real pricing/depth or gas qualification. Use the
+[case matrix](../reports/portfolio-long-horizon-20261102/CASE_MATRIX.md) for the
+next authorized operating campaign without repeating unchanged contract tests.
+
 The [LP lifecycle repair](../reports/lp-lifecycle-audit-20261102/REVIEW.md)
 filters inactive ordinary single/hybrid candidates before ranking while retaining
 final mint guards. Scope-limited composed checks preserve both-leg fees, shares

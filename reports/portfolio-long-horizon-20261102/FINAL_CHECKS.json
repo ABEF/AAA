@@ -1,0 +1,59 @@
+{
+  "todo": {
+    "pass": true,
+    "stdout_sha256": "84da3985b677083ac5dbd5a81b35925d8966cf6a0d6fc610df91cb30dce624ee",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "callable_reference": {
+    "pass": true,
+    "stdout_sha256": "9e00cee1f3531ff0db0e24358246a4f15301a752c045281d03a9efd720edd433",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "unchanged_static_review": {
+    "pass": true,
+    "stdout_sha256": "e371f6273e3cba08937f19e115e4ae55f53fe74154a0d2f52a657cf5635d2734",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "whitespace": {
+    "pass": true,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "protected": {
+    "unchanged": true,
+    "count": 4
+  },
+  "historical_reports": {
+    "unchanged": true,
+    "count": 2580
+  },
+  "production_sources": {
+    "unchanged": true,
+    "count": 52
+  },
+  "task_identity_status_and_order_preserved": true,
+  "normal_gates_reused": {
+    "count": 43,
+    "exact_current_production_and_dependency_pins": true,
+    "report_sha256": "31596d22ae0c5d00ad857daa8f3ed4b45742d45b5b25ed38839179fa43d6ef20",
+    "fresh_compilation": false
+  },
+  "no_deployment_service_site_anvil_journal_signer_heartbeat_change": true,
+  "documentation_links": {
+    "scope": "all changed/new consolidation Markdown plus inbound links from tracked non-report Markdown; old unrelated report bytes untouched",
+    "changed_markdown_count": 12,
+    "new_markdown_count": 3,
+    "checked_documents": 15,
+    "links_checked": 1321,
+    "inbound_checked": 198,
+    "introduced_or_unclassified_failures": [],
+    "preexisting_head_failures": []
+  },
+  "staged_python_publication": {
+    "successful": true,
+    "errors": [],
+    "modules": 283,
+    "external_receipt_sha256": "845aab23f3bd465c0802306af26552ca653959966a0725cbd67cc669f33658d1",
+    "scope": "Exact staged import closure; no Python source changed. Committed revision and remote publication verified separately."
+  }
+}

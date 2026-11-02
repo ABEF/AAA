@@ -1,0 +1,10 @@
+{
+  "scope": "all changed/new consolidation Markdown plus inbound links from tracked non-report Markdown; old unrelated report bytes untouched",
+  "changed_markdown_count": 12,
+  "new_markdown_count": 3,
+  "checked_documents": 15,
+  "links_checked": 1321,
+  "inbound_checked": 198,
+  "introduced_or_unclassified_failures": [],
+  "preexisting_head_failures": []
+}

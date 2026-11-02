@@ -1739,6 +1739,52 @@ The fresh internal `planReplacement`/quote ABI change requires new runtime and
 constructor pins for a reviewed deployment. It changes no operator call and
 cannot upgrade an old deployment, service, receipt or journal by relabelling it.
 
+<a id="multi-day-mainresidual-operation"></a>
+
+### Multi-day main/residual operation
+
+Activation/growth funds only the current main, then buys NFT shares of aggregate
+main+residual+attributed idle/compound NAV. It does not give that NFT exclusively
+main-leg rights. Entrant swaps can change both legs' token mix/value even though
+residual L, IDs, centre and rebalance clock stay unchanged. Never substitute the
+new target range ratio for the existing main ratio in an entry review.
+
+Residual ticks are contained within main ticks. An active residual therefore
+implies an active main under this geometry. If price exits the main, both legs
+are outside on the same asset side. A mixed or fully crossed residual remains
+live inventory; do not delete it, force another residual or infer a missing ID
+from desired mode.60/40 is enforced at replacement, not maintained continuously.
+
+At each operating cycle, reconcile pending receipts first; read actual IDs,
+aggregate amounts, desired/applied revisions, both range states, idle/reserves,
+liabilities and price health at a consistent confirmed block. Harvest both when
+due. Compound uses existing main only and waits for the service's in-range,
+below-threshold/no-pending-geometry policy. Ordinary adjustment retains its hard
+cooldown, sampled evidence, service jitter and financial gates. Do not repeatedly
+rebuild just to restore an exact60/40 ratio or respond to residual fill alone.
+
+Review daily realized execution costs, gas, inactive time and unprocessed idle
+separately from market-value changes and earned fees. After an outage, resume
+from confirmed chain state and the preserved nonce/receipt journal. Mode off
+requests a later whole merge; urgent residual-only close returns attributed idle
+and may block entry until guarded reinvestment. A failed step never authorizes
+deleting backing, resetting journals or using the manual emergency automatically.
+Required feed/token/venue failures can still prevent recovery; stop affected work
+and retain the exact failing evidence.
+
+The effective growth floor is max(ProtocolPolicy growth minimum,pool minDepositUSD).
+For the default5USD flow the pool must also admit5USD; see
+[configuration inputs](#contribution-minimums). Read current settings rather than
+assuming a5USD action floor overrides a higher pool minimum. A separately mined
+approval may remain after a failed contribution; inspect it before asking again.
+
+The [case matrix](../reports/portfolio-long-horizon-20261102/CASE_MATRIX.md) covers
+trends, reversals, ordering, repeated one/two-leg transitions and recovery.
+[Virtual-time contract evidence](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
+does not qualify live keeper cadence, browser/RPC concurrency or target gas.
+On-chain setting changes need no host restart; installing matching service/config
+still uses the controlled restart and pending-recovery procedure below.
+
 ### Common stop and restart sequences
 
 | Intended outcome | Ordered calls and caller | Restart and failed-step handling |

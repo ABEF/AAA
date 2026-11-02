@@ -20,6 +20,11 @@ claim. [Evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md) records t
 actual negative cases, scoped EVM/backend checks, fresh normal sizes and internal
 static review. Original reports retain their historical scope.
 
+The [multi-day portfolio study](reports/portfolio-long-horizon-20261102/REVIEW.md)
+extends that evidence through six virtual days, repeated one/two-leg transitions,
+ETH/ZZZ entries, compounding, claims and serialized user/keeper ordering. It
+changes no production contract; real service/market qualification remains open.
+
 ## Project navigation
 
 | Purpose | Start here |

@@ -1,5 +1,13 @@
 # Verification evidence
 
+[Multi-day portfolio review](portfolio-long-horizon-20261102/REVIEW.md) and
+[case matrix](portfolio-long-horizon-20261102/CASE_MATRIX.md) study entries,
+growth, markets, modes and recovery. Four new scoped actual-core journeys succeed
+across recorded stages, including six virtual days; original fixture-minimum
+failures/correction and one reused successful body are explicit in
+[verification](portfolio-long-horizon-20261102/VERIFICATION.md). Production sources
+and prior size/static scope remain unchanged; no live-service qualification.
+
 [Current LP lifecycle review](lp-lifecycle-audit-20261102/REVIEW.md) repairs
 ordinary single/hybrid quote viability before ranking and verifies composed
 mode/entry/harvest/claim/merge behavior. Its [evidence](lp-lifecycle-audit-20261102/VERIFICATION.md)

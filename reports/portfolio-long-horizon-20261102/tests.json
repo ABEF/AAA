@@ -1,0 +1,89 @@
+{
+  "base_head": "d00201fc3005167be37e991e0c222b7d6f69e74f",
+  "production_source_files_unchanged": 52,
+  "stages": {
+    "long-horizon-initial": {
+      "exit_code": 1,
+      "elapsed_seconds": 186.406,
+      "methods": {
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLongHorizonResidualMixedAndBothLegsOutsideStayBackedThenMerge()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLongHorizonSameBlockRebalanceBeforeUsers()": "Failure",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLongHorizonSameBlockUsersBeforeRebalance()": "Failure",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLongHorizonSixDayModesEntryGrowthHarvestCompoundAndClaims()": "Failure"
+      },
+      "successful": false,
+      "source_unchanged": true,
+      "reasons": {
+        "testLongHorizonResidualMixedAndBothLegsOutsideStayBackedThenMerge()": null,
+        "testLongHorizonSameBlockRebalanceBeforeUsers()": "InvalidAmount()",
+        "testLongHorizonSameBlockUsersBeforeRebalance()": "InvalidAmount()",
+        "testLongHorizonSixDayModesEntryGrowthHarvestCompoundAndClaims()": "InvalidAmount()"
+      },
+      "artifacts_sha256": {
+        "command.json": "fe14781ca02e2684e3bdf5c6bdd1c9c4407d15c9fab376bf9463c4211595d1c3",
+        "stdout.json": "04080d2559ce78e52f8016e0ee748d45388460bc1ed453a87d6591e7be084997",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status.json": "a1eb95f321a0bf79c35050faf492d304d4b26a58e9d1c67c613713d7c5a80588"
+      }
+    },
+    "long-horizon-admitted-minimum": {
+      "exit_code": 0,
+      "elapsed_seconds": 176.844,
+      "methods": {
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLongHorizonSameBlockRebalanceBeforeUsers()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLongHorizonSameBlockUsersBeforeRebalance()": "Success",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testLongHorizonSixDayModesEntryGrowthHarvestCompoundAndClaims()": "Success"
+      },
+      "successful": true,
+      "source_unchanged": true,
+      "reasons": {
+        "testLongHorizonSameBlockRebalanceBeforeUsers()": null,
+        "testLongHorizonSameBlockUsersBeforeRebalance()": null,
+        "testLongHorizonSixDayModesEntryGrowthHarvestCompoundAndClaims()": null
+      },
+      "artifacts_sha256": {
+        "command.json": "4310c32fd7cba43dd905068b4061015faf1d7ab0a169beea868ca4d543c26774",
+        "stdout.json": "eed7f4884e742c892e5b1cf4fcdc2585d58c6434c0e4dfbb542fab98c31ebe88",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status.json": "3b605bb7c631134f49fe6d73f756eaf0f15966fa0cffd8cb48bd612d63e60658"
+      }
+    }
+  },
+  "distinct_successful_new_methods": 4,
+  "final_stage_fresh_methods": 3,
+  "unchanged_successful_method_reused": "testLongHorizonResidualMixedAndBothLegsOutsideStayBackedThenMerge",
+  "reused_body_and_transitive_fixture_hashes_lf": {
+    "testLongHorizonResidualMixedAndBothLegsOutsideStayBackedThenMerge": "e7a2faaf2c5400414ac21c60f842e8174984ddccd9cbd6aa7423190c610c99bb",
+    "setUp": "5036267ddba9efe25c33d1d7c76b5a59488b2b833385f21d44dd5a0e6fb3a4b8",
+    "_hybrid": "77dbd2c0d261aed5ccfe95dcb034c57773a0f9a8e4282e91c17a2744eecbdddd",
+    "_move": "17df2de1bd0e2b3ce7069842b19ebfea63373db4fee902a308dba057d3ce0fcf",
+    "_prices": "b7baf9e85dd8698ef4e6de9acf51d59c342618a74965443cee7102274f211e3b",
+    "_mint": "f0626caf1e6af04343b108f99d15fc31ec5ddacf0926491d64f0a8b7e8b435fb",
+    "_longPortfolio": "8689614c30a6595100f088cdba35c66caaa8224c99d1e82981b686108513ee56",
+    "_longMainOnlyEntry": "00143709ebb47cd3448e81b6f20b701f98d1cc2c8e62974122001a1c0c098644",
+    "_longEntry": "254f319dac5505f44a7ab8bee9042de9e4c398f2c49540ba81b2b285533919d3",
+    "_claimExactly": "ed4c150cd60419c55ea91766a2614491e87fb374ffd352287319b30b6b523300",
+    "_settle": "60494c822f2b7c0126d95a1ee4f3f0cbb05d19d2e7cc5ff59d2ad0718a2c3fdc",
+    "unlockCallback": "1653c64f682c8ae4dd71f69c2d2a8be4d15410a491b297ab8ab015d62db5f834"
+  },
+  "test_compiler_metadata_keccak256_lf": {
+    "long-horizon-initial": "0x3be4608c322b33a1c633f03194ccb9911160cc29e01858d0a542b6cc86515b39",
+    "long-horizon-admitted-minimum": "0x2fb0bd062f64c744decff57a03be24129cdca776972cd306c718087d5e2add3a"
+  },
+  "final_raw_test_sha256": "dbecc6f5b7ccd42904462e252a3f855ec901b28d9b8809ad325d1ebecac43d64",
+  "first_failure_trace_sha256": "88a292dfa1f1adc58c107c0b3f5a093a184ef16308d472ec8008c61b416635a5",
+  "fixture_correction": "Existing fixture pool minDepositUSD100USD correctly rejected25USD growth. Explicit new test-only setMinimum5USD admits the desired5USD flow. The final ordering tests also verify the stronger100USD floor rejects atomically. No production policy or guard changed.",
+  "normal_gate_reuse": {
+    "report": "reports/lp-lifecycle-audit-20261102/production-size-gates.json",
+    "sha256": "31596d22ae0c5d00ad857daa8f3ed4b45742d45b5b25ed38839179fa43d6ef20",
+    "gates": 43,
+    "production_sources": 52,
+    "dependencies": 31,
+    "all_current_pins_match": true
+  },
+  "no_rpc_signing_anvil_reset_service_or_site_change": true,
+  "real_market_backtest": false,
+  "continuous_keeper_rehearsal": false,
+  "browser_or_rpc_load_test": false,
+  "independent_audit": false
+}

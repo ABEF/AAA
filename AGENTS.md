@@ -139,6 +139,13 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
+- [Multi-day portfolio study](reports/portfolio-long-horizon-20261102/REVIEW.md)
+  adds four scoped actual-core journeys across recorded stages without production
+  source/policy changes. Preserve its100USD-fixture rejection, explicit5USD
+  admission correction and unchanged-method reuse. Main-only entry buys aggregate
+  NAV shares; residual geometry is nested inside main. Virtual days/serialized
+  EVM calls do not qualify live keeper uptime, browser load, jitter or target gas.
+
 - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
   ordinary single/hybrid candidate activity before ranking, retaining final
   pre/post-mint checks and separate initial/growth/emergency policies. Quotes

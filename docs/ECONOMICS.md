@@ -62,6 +62,14 @@ Shares are nonredeemable during normal operation. They are priced against the po
 
 [Governed paused parking](CUSTODY_PARKING.md) closes LP into bucket-attributed Vault balances without holder redemption or a USD price read. Independently reviewed raw-token minimums bound only actual LP-close proceeds. NFT shares, equal membership, royalty eligibility and funded claims persist; no ongoing LP revenue is fabricated while closed. Resume restores ordinary valuation/deployment guards, and parked migration retains authenticated funding and classified-liability barriers.
 
+An NFT's principal shares cover main, residual and attributed idle/compound,
+even though incoming liquidity increases only the main. Entry swaps can reprice
+both incumbent legs; the share issue uses repriced aggregate NAV.60/40 is a
+replacement constraint, not an individual NFT's fixed allocation or maintained
+yield target. Mixed/filled residual inventory stays valued and fee-eligible where
+physically in range. [Composed multi-day evidence](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
+is scoped contract execution, not a profit forecast or live-service rehearsal.
+
 ## Collected local LP fees
 
 | Purpose | Share | Weight or destination |

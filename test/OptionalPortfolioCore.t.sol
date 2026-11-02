@@ -46,6 +46,7 @@ import {MockVRF} from "./mocks/MockVRF.sol";
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 import {EmergencyRebalance} from "../src/interfaces/IZZZEmergency.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
+import {ZZZCompounder} from "../src/ZZZCompounder.sol";
 interface IOptionalResidualBurnCallback { function residualBurnCallback(uint8) external; }
 
 contract OptionalToken is ERC20 {
@@ -106,6 +107,7 @@ contract OptionalRegistry {
     function setRange(uint16 width)external{c.rangeBps=width;++configurationRevision;}
     function setSpotDeviation(uint16 deviation)external{c.maxSpotDeviationBps=deviation;++configurationRevision;}
     function setOperations(bool enabled)external{c.operationsEnabled=enabled;++configurationRevision;}
+    function setMinimum(uint256 amount)external{c.minDepositUSD=amount;++configurationRevision;}
     function contributionValue(bytes32 id,uint256 a0,uint256 a1)external view returns(uint256){
         require(id==pool);uint256 original=activationEntry.sourceValue(id,a0,a1);
         return original!=0?original:oracle.value(address(0),a0)+oracle.value(c.key.currency1,a1);
@@ -788,5 +790,174 @@ contract OptionalPortfolioCoreTest is Test {
         assertTrue(current!=previous);assertTrue(policy.enabled(pool));assertFalse(policy.configurationPending(bucket));
         assertEq(manager.secondaryId(current),0,"balanced main needs no manufactured residual");
         assertEq(manager.activeSecondaryCount(),0);assertEq(vault.sharesOf(id),shares);assertTrue(membership.eligible(id));
+    }
+
+    event LongHorizonCheckpoint(uint256 step,uint256 main,uint256 residual,uint256 deployed,uint256 idle,uint256 shares);
+    /// @dev Test-only USD feeds deliberately follow the real core spot. This
+    /// proves lifecycle accounting, not oracle independence or market profits.
+    function _longEntry(address owner,uint256 id,address source,uint256 usd,bool grow) private {
+        ZZZActivationEntry entry=registry.activationEntry();
+        uint256 price=oracle.price(source);uint256 amount=(usd*1e18+price-1)/price;
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(
+            id,pool,source,amount,bytes32(0),0,1,block.timestamp+100,grow);
+        bytes32 reviewed=ProtocolPolicyFixture.bind(address(access)).entryFingerprint();
+        vm.startPrank(owner);
+        if(source!=address(0))token.approve(address(entry),amount);
+        entry.executeReviewed{value:source==address(0)?amount:0}(request,200,reviewed);
+        vm.stopPrank();
+        if(source!=address(0))assertEq(token.allowance(owner,address(entry)),0,"exact source approval consumed");
+        assertEq(address(entry).balance,0);assertEq(token.balanceOf(address(entry)),0);
+        assertEq(token.allowance(address(entry),address(vault)),0);
+    }
+    function _longReady(uint256 bucket) private {
+        uint256 earliest=uint256(vault.group(bucket).lastRebalance)+43200;
+        if(block.timestamp<earliest)vm.warp(earliest);
+        _prices();(,bool manual)=strategy.rebalanceCondition(bucket);
+        if(!manual){
+            strategy.rebalanceConfirmation().observe(bucket);
+            for(uint256 i;i<3;++i){vm.warp(block.timestamp+240);_prices();strategy.rebalanceConfirmation().observe(bucket);}
+        }
+        assertTrue(strategy.rebalanceConfirmation().ready(bucket));
+    }
+    function _longPortfolio(uint256 bucket,uint256 alice,uint256 bob,uint256 step) private {
+        Position memory p=vault.group(bucket);uint256 aux=manager.secondaryId(p.lpTokenId);
+        assertEq(positions.ownerOf(p.lpTokenId),address(vault));assertGt(positions.getPositionLiquidity(p.lpTokenId),0);
+        (uint256 a0,uint256 a1)=manager.amounts(p.lpTokenId);
+        if(aux!=0){
+            assertTrue(aux!=p.lpTokenId);assertEq(positions.ownerOf(aux),address(vault));
+            assertGt(positions.getPositionLiquidity(aux),0);
+            (uint256 b0,uint256 b1)=manager.amounts(aux);a0+=b0;a1+=b1;
+        }
+        (uint256 all0,uint256 all1)=manager.portfolioAmounts(p.lpTokenId);assertEq(all0,a0);assertEq(all1,a1);
+        assertEq(manager.activeSecondaryCount(),aux==0?0:1);
+        assertEq(vault.sharesOf(alice)+vault.sharesOf(bob),vault.bucketTotalShares(bucket));
+        assertEq(membership.totalEligible(),bob==0?1:2);assertTrue(membership.eligible(alice));
+        if(bob!=0)assertTrue(membership.eligible(bob));
+        (uint256 deployed,uint256 idle)=vault.migrationBudget().nav(bucket);
+        assertEq(deployed,oracle.value(address(0),a0)+oracle.value(address(token),a1));
+        assertEq(idle,oracle.value(address(0),p.idle0)+oracle.value(address(token),p.idle1));
+        assertGe(address(vault).balance,vault.totalIdle(address(0)));assertGe(token.balanceOf(address(vault)),vault.totalIdle(address(token)));
+        assertGe(address(rewards).balance,rewards.liabilities(address(0)));assertGe(token.balanceOf(address(rewards)),rewards.liabilities(address(token)));
+        assertGe(address(fees).balance,fees.accounted(address(0)));assertGe(token.balanceOf(address(fees)),fees.accounted(address(token)));
+        emit LongHorizonCheckpoint(step,p.lpTokenId,aux,deployed,idle,vault.bucketTotalShares(bucket));
+    }
+    function _longMainOnlyEntry(address owner,uint256 id,address source,uint256 usd,bool grow) private {
+        uint256 bucket=grow?vault.nftBucket(id):vault.poolBucket(pool);Position memory beforePosition=vault.group(bucket);
+        uint256 main=beforePosition.lpTokenId;uint256 aux=manager.secondaryId(main);
+        uint128 mainL=positions.getPositionLiquidity(main);uint128 auxL=aux==0?0:positions.getPositionLiquidity(aux);
+        bytes32 geometry=manager.portfolioFingerprint(main);uint256 supply=vault.bucketTotalShares(bucket);
+        uint256 shares=vault.sharesOf(id);_longEntry(owner,id,source,usd,grow);
+        assertEq(vault.group(bucket).lpTokenId,main);assertEq(manager.secondaryId(main),aux);
+        assertGt(positions.getPositionLiquidity(main),mainL);
+        if(aux!=0)assertEq(positions.getPositionLiquidity(aux),auxL);
+        assertEq(manager.portfolioFingerprint(main),geometry);assertEq(vault.group(bucket).lastRebalance,beforePosition.lastRebalance);
+        assertEq(vault.group(bucket).centerX96,beforePosition.centerX96);
+        assertGt(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket)-supply,vault.sharesOf(id)-shares);
+    }
+    function testLongHorizonSixDayModesEntryGrowthHarvestCompoundAndClaims() public {
+        // Explicit test-only bootstrap of the real typed Compounder before any
+        // user state. Production has no unseal/rebind function.
+        access.beginBootstrap();ZZZCompounder compounder=new ZZZCompounder(address(access));
+        access.bind(Ids.COMPOUNDER,address(compounder));access.seal();
+        // Match the fresh example's admitted5USD floor. The older fixture's
+        // 100USD pool floor correctly rejects smaller growth independently of
+        // ProtocolPolicy's5USD default; no production guard is bypassed.
+        registry.setMinimum(5e18);
+        (uint256 alice,uint256 bucket,,)=_hybrid();uint256 bob=_mint(BOB);uint256 start=block.timestamp;
+        _longMainOnlyEntry(BOB,bob,address(0),150e18,false);
+        assertEq(rewards.claimable(bob,address(0)),0);assertEq(rewards.claimable(bob,address(token)),0);
+        for(uint256 day;day<6;++day){
+            vm.warp(block.timestamp+1 days);_prices();
+            if(day==1 || day==4)policy.setMode(pool,false,keccak256(abi.encode("TEST MERGE",day)));
+            if(day==2 || day==5)policy.setMode(pool,true,keccak256(abi.encode("TEST ENABLE",day)));
+            uint160 center=vault.group(bucket).centerX96;
+            _move(uint160(uint256(center)*(day%2==0?83:135)/100));_longReady(bucket);
+            uint256 oldMain=vault.group(bucket).lpTokenId;uint256 oldAux=manager.secondaryId(oldMain);
+            vault.rebalance(bucket,1,block.timestamp+100);_prices();
+            vm.expectRevert();positions.ownerOf(oldMain);
+            if(oldAux!=0){vm.expectRevert();positions.ownerOf(oldAux);}
+            assertEq(manager.secondaryId(oldMain),0);assertFalse(policy.configurationPending(bucket));
+            if(!policy.enabled(pool))assertEq(manager.secondaryId(vault.group(bucket).lpTokenId),0);
+            if(day==2 || day==5)assertGt(manager.secondaryId(vault.group(bucket).lpTokenId),0);
+            for(uint256 hour;hour<3;++hour){
+                vm.warp(block.timestamp+1 hours);_prices();core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+            }
+            uint256 bobETH=rewards.claimable(bob,address(0));uint256 bobZZZ=rewards.claimable(bob,address(token));
+            _longMainOnlyEntry(ALICE,alice,day%2==0?address(0):address(token),5e18,true);
+            assertGe(rewards.claimable(bob,address(0)),bobETH);assertGe(rewards.claimable(bob,address(token)),bobZZZ);
+            uint256 main=vault.group(bucket).lpTokenId;uint256 aux=manager.secondaryId(main);
+            uint128 auxL=aux==0?0:positions.getPositionLiquidity(aux);uint256 supply=vault.bucketTotalShares(bucket);
+            assertTrue(vault.migrationBudget().compoundReady(bucket));compounder.compound(bucket,1,block.timestamp+100);
+            assertEq(vault.group(bucket).lpTokenId,main);assertEq(manager.secondaryId(main),aux);
+            if(aux!=0)assertEq(positions.getPositionLiquidity(aux),auxL);
+            assertEq(vault.bucketTotalShares(bucket),supply);assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
+            _claimExactly(day%2==0?alice:bob,day%2==0?ALICE:BOB,address(0));
+            _claimExactly(day%2==0?bob:alice,day%2==0?BOB:ALICE,address(token));
+            _longPortfolio(bucket,alice,bob,day);
+        }
+        assertGe(block.timestamp-start,6 days);
+    }
+    function _longOrdering(bool usersFirst) private {
+        (uint256 alice,uint256 bucket,,)=_hybrid();uint256 bob=_mint(BOB);
+        _longRejectedGrowthAtPoolFloor(alice,bucket);registry.setMinimum(5e18);
+        vm.warp(block.timestamp+1 days);_prices();_move(uint160(uint256(vault.group(bucket).centerX96)*83/100));
+        _longReady(bucket);bytes32 observationBefore;uint64 firstBefore;uint64 lastBefore;uint8 sideBefore;
+        (observationBefore,firstBefore,lastBefore,sideBefore)=strategy.rebalanceConfirmation().observations(bucket);
+        uint256 oldMain=vault.group(bucket).lpTokenId;
+        if(!usersFirst){vault.rebalance(bucket,1,block.timestamp+100);_prices();}
+        // Both orders execute at one timestamp/block: EVM transactions are
+        // serialized, never simultaneous writes to the shared bucket.
+        _longMainOnlyEntry(BOB,bob,address(token),150e18,false);
+        assertEq(rewards.claimable(bob,address(0)),0);assertEq(rewards.claimable(bob,address(token)),0);
+        _longMainOnlyEntry(ALICE,alice,address(0),5e18,true);
+        if(usersFirst){
+            (bytes32 identity,uint64 first,uint64 last,uint8 side)=strategy.rebalanceConfirmation().observations(bucket);
+            assertEq(identity,observationBefore);assertEq(first,firstBefore);assertEq(last,lastBefore);assertEq(side,sideBefore);
+            assertTrue(strategy.rebalanceConfirmation().ready(bucket));vault.rebalance(bucket,1,block.timestamp+100);_prices();
+        }
+        assertTrue(vault.group(bucket).lpTokenId!=oldMain);_longPortfolio(bucket,alice,bob,usersFirst?100:101);
+        core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+        _claimExactly(alice,ALICE,address(0));_claimExactly(bob,BOB,address(token));
+        _longPortfolio(bucket,alice,bob,102);
+    }
+    function testLongHorizonSameBlockUsersBeforeRebalance() public {_longOrdering(true);}
+    function testLongHorizonSameBlockRebalanceBeforeUsers() public {_longOrdering(false);}
+    function _longRejectedGrowthAtPoolFloor(uint256 id,uint256 bucket) private {
+        ZZZActivationEntry entry=registry.activationEntry();
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(
+            id,pool,address(0),25 ether,bytes32(0),0,1,block.timestamp+100,true);
+        bytes32 reviewed=ProtocolPolicyFixture.bind(address(access)).entryFingerprint();
+        Position memory p=vault.group(bucket);uint256 aux=manager.secondaryId(p.lpTokenId);
+        uint256 shares=vault.bucketTotalShares(bucket);uint256 balance=ALICE.balance;
+        assertEq(registry.get(pool).minDepositUSD,100e18);
+        vm.prank(ALICE);vm.expectRevert(ZZZModule.InvalidAmount.selector);
+        entry.executeReviewed{value:25 ether}(request,200,reviewed);
+        assertEq(vault.bucketTotalShares(bucket),shares);assertEq(ALICE.balance,balance);
+        assertEq(vault.group(bucket).lpTokenId,p.lpTokenId);assertEq(manager.secondaryId(p.lpTokenId),aux);
+        assertEq(address(entry).balance,0);assertEq(token.balanceOf(address(entry)),0);
+    }
+    function testLongHorizonResidualMixedAndBothLegsOutsideStayBackedThenMerge() public {
+        (uint256 alice,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
+        (int24 ml,int24 mu)=manager.ticks(main);(int24 al,int24 au)=manager.ticks(aux);
+        _move(TickMath.getSqrtPriceAtTick((al+au)/2));
+        (uint256 r0,uint256 r1)=manager.amounts(aux);assertGt(r0,0);assertGt(r1,0);
+        _longPortfolio(bucket,alice,0,200);
+        _move(TickMath.getSqrtPriceAtTick((mu>au?mu:au)+200));
+        (uint256 a0,)=manager.amounts(main);(r0,)=manager.amounts(aux);assertEq(a0+r0,0);
+        assertEq(manager.secondaryId(main),aux);_longPortfolio(bucket,alice,0,201);
+        _move(TickMath.getSqrtPriceAtTick((ml<al?ml:al)-200));
+        (,uint256 a1)=manager.amounts(main);(,r1)=manager.amounts(aux);assertEq(a1+r1,0);
+        uint256 claimBefore=rewards.claimable(alice,address(0));
+        uint256 bob=_mint(BOB);uint256 bobFunds=BOB.balance;uint256 supply=vault.bucketTotalShares(bucket);
+        // Missing required pricing rejects entrant atomically, without forgetting
+        // either physical leg. Raw funded claims do not require that price.
+        ethA.set(0,block.timestamp,block.timestamp);ethB.set(0,block.timestamp,block.timestamp);
+        vm.prank(BOB);vm.expectRevert();vault.activate{value:100 ether}(bob,pool,100 ether,0,1,block.timestamp+100);
+        assertEq(BOB.balance,bobFunds);assertEq(vault.nftBucket(bob),0);assertEq(vault.bucketTotalShares(bucket),supply);
+        assertEq(manager.secondaryId(main),aux);assertEq(_claimExactly(alice,ALICE,address(0)),claimBefore);
+        _prices();_longPortfolio(bucket,alice,0,202);
+        policy.setMode(pool,false,keccak256("TEST MERGE AFTER BOTH OUTSIDE"));vm.warp(block.timestamp+2 days);_prices();
+        vault.rebalance(bucket,1,block.timestamp+100);_prices();assertEq(manager.activeSecondaryCount(),0);
+        _longMainOnlyEntry(BOB,bob,address(0),150e18,false);_longPortfolio(bucket,alice,bob,203);
     }
 }

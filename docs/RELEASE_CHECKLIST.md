@@ -35,6 +35,11 @@ runtime, simulation, gas and operating/marketplace rehearsal remain release gate
 
 ## Current candidate and evidence limits
 
+[Multi-day portfolio execution](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
+adds scoped virtual-time contract evidence at unchanged production source pins.
+It does not sign off uninterrupted keeper operation, actual service jitter,
+browser/RPC concurrency, target gas or profitable portfolio policy.
+
 [LP lifecycle verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
 repairs ordinary single/hybrid quote viability before final active-main guards,
 verifies mode/reward composition and refreshes43 normal gates plus475-record

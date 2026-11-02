@@ -153,6 +153,14 @@ whether a useful residual can exist. Tiny leftovers stay attributed idle; there
 is no third position to absorb them. A filled/mixed residual remains accounted
 until the next whole adjustment, including on reversals.
 
+The residual range is contained within the main range. An active residual with
+an inactive main is not a normal reachable state; price outside the main leaves
+both legs outside on the same asset side. Fill/reversal changes token composition,
+not registered L or the two-ID bound. Entry and compound increase main only;
+NFT shares retain proportional economic rights in aggregate attributed NAV,
+not isolated main inventory or a normal principal-withdrawal right.
+[Multi-day and ordering cases](../reports/portfolio-long-horizon-20261102/CASE_MATRIX.md).
+
 Disable with `setMode(pool,false,reviewHash)`. Continue valuing, harvesting and
 closing both actual IDs until successful atomic merge into a single main. A
 failed merge leaves the old portfolio and rights intact; never remove a live

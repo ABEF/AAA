@@ -98,6 +98,15 @@ claims without rewriting that historical evidence. Lifetime history scaling,
 residual feasibility/bounded-search qualification and actual source6 rollout
 remain open.
 
+The [multi-day portfolio study](reports/portfolio-long-horizon-20261102/REVIEW.md)
+adds four scoped journeys across recorded stages; three final methods pass after
+an explicit fixture minimum correction, one unchanged successful method is reused.
+Six virtual days exercise repeated mode cycles, main-only ETH/ZZZ Entry/growth,
+harvest, compound, claims and both same-block orderings. Production52/dependency31
+pins remain unchanged; reuse prior43 gates/static scope. Residual geometry is
+nested inside main: an active residual implies active main; both outside means
+the same asset side. This is not a live keeper/browser/load/profit qualification.
+
 ## What remains
 
 Production NOT APPROVED. Actual dual feeds/routes/VRF/authorities/OpenSea,

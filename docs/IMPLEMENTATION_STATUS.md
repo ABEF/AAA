@@ -66,6 +66,14 @@ change to the website is part of this contract implementation.
 
 ## Current evidence and limits
 
+[Multi-day portfolio evidence](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
+adds four scoped actual-core journeys across stages: six virtual days, repeated
+one/two-leg transitions, both Entry assets,5USD growth, hourly collections,
+compound, partial claims, serialized user/keeper ordering and both-outside recovery.
+Retain three initial stronger-pool-minimum failures and explicit fixture correction.
+All52 production sources remain unchanged; this does not qualify running source6
+services, browser/RPC load, target gas, strategy profitability or independent audit.
+
 [LP lifecycle review](../reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
 ordinary candidate selection before final active-main checks in single/hybrid
 mode and verifies enable/disable/entry/harvest/claim/merge composition. Earlier

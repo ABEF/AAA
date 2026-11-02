@@ -50,6 +50,12 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
+The [multi-day portfolio study](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
+adds four scoped contract journeys, including six virtual days and both serialized
+user/keeper orderings.52 production/31dependency pins remain unchanged; normal
+gates/static scope below are reused. Retain first fixture-minimum failures and
+corrected5USD flow. Actual service cadence/jitter/load/economics remain open.
+
 The [LP lifecycle repair](../reports/lp-lifecycle-audit-20261102/REVIEW.md)
 fixes ordinary single/hybrid candidate activity before ranking. Exact stored
 quote ticks distinguish initialized downward boundaries; final mint activity,
