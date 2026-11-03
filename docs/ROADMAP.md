@@ -12,6 +12,14 @@ rehearse actual authority/wallet/host/dependency workflows before production.
 
 ## LP execution next steps
 
+[Contract/LP review](../reports/smart-contract-lp-audit-20261103/REVIEW.md) confirms
+safe rollback/recovery for the two new local scenarios; actual residual geometry,
+depth, prices, gas and service behavior still need qualification. Resolve optional
+Entry-layer simplification with an explicit fresh profile before changing its
+consumers; do not remove valid reward/royalty conversion or relabel old journals.
+Refresh the [compiler assessment](../reports/smart-contract-lp-audit-20261103/compiler-assessment.json)
+at the frozen release, not just the originally tagged compiler documentation.
+
 [Three-audit consolidation](../reports/consolidation-20261103/REVIEW.md) hardens
 shared RPC input/budget boundaries and simplifies strict keeper validation.
 It closes no live-market, host, history-scaling or independent-release gate;

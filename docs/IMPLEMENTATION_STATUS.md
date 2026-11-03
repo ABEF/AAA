@@ -72,6 +72,14 @@ change to the website is part of this contract implementation.
 
 ## Current evidence and limits
 
+[Current contract/LP review](../reports/smart-contract-lp-audit-20261103/REVIEW.md)
+maps the source/function/operation boundary and six current compiler disclosures.
+Two new scoped actual-core methods establish infeasible residual-gap rollback
+and price-outage harvest/claim/raw residual-close recovery followed by guarded
+merge. No production Solidity changed; [evidence](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
+reuses exact43 normal gates/475 static records rather than claiming a new full
+suite. Entry-layer simplification and actual services/independent audit remain open.
+
 [Action resilience evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md)
 records RPC body progress checks, exact maintenance-name validation and paid
 recovery before new maintenance work.176 distinct selected Python methods succeed

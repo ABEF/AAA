@@ -13,14 +13,15 @@ The prior [source audit](reports/day-audit-20261031/REVIEW.md) fixes physical-re
 availability, activation bindings and ordinary replacement activity. Source changes do not update existing
 Anvil contracts, journals, workers or websites. Public signing remains disabled.
 
-The [current consolidation](reports/consolidation-20261103/REVIEW.md) reconciles
-the latest three audits and hardens shared RPC configuration/read budgets and
-strict keeper validation. [Verification](reports/consolidation-20261103/VERIFICATION.md)
-preserves the exact contract [LP lifecycle scope](reports/lp-lifecycle-audit-20261102/VERIFICATION.md),
-[multi-day study](reports/portfolio-long-horizon-20261102/VERIFICATION.md) and
-[action/output boundaries](reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
-Real service/market qualification and independent review remain open. Source
-publication changes neither contract policy nor running services.
+The [smart-contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
+reviews the current operation and function map, residual recovery, fee/share
+accounting and current compiler disclosures. Two new actual-core journeys verify
+infeasible-geometry rollback and price-outage harvest/claim/residual recovery;
+no production Solidity changed. [Verification](reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
+separates new checks from exact prior build/static reuse. The earlier
+[backend consolidation](reports/consolidation-20261103/REVIEW.md) retains its own
+scope. Real qualification and independent review remain open; source publication
+does not update running contracts, sites or services.
 
 ## Project navigation
 
@@ -30,7 +31,7 @@ publication changes neither contract policy nor running services.
 | Operate the protocol | **[Operator manual and management procedures](docs/OPERATOR_MANUAL.md)**; [callable inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Current LP lifecycle evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Current contract audit/evidence](reports/smart-contract-lp-audit-20261103/VERIFICATION.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview

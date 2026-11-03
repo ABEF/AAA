@@ -7,6 +7,13 @@ authorized by documentation or source publication.
 
 ## Evidence and approval boundary
 
+[Current contract/LP evidence](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
+adds two scoped recovery/rollback journeys and current compiler-bug applicability
+review without production source changes.795 enumerated project bodies are not
+795 tests;43 normal gates and475 static records are exact-source reuse. Require
+fresh compiler-disclosure review and actual release/runtime/provider qualification
+before approval; no absence-of-vulnerability or live readiness is established.
+
 [Shared-client consolidation](../reports/consolidation-20261103/VERIFICATION.md)
 records focused backend checks and unchanged contract evidence. Endpoint input
 isolation and metered contract-read shortcuts do not qualify actual providers,

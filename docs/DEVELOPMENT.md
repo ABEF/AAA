@@ -86,6 +86,12 @@ test counts as new coverage or waive a test by changing the production safeguard
 
 Dependencies use the committed lockfile and no npm lifecycle scripts. Review
 resolved versions and integrity; custom code does not inherit upstream audits.
+At release and after source/dependency/compiler/settings changes, consult the
+current official compiler-bug list as well as version-tagged documentation.
+The [November3 assessment](../reports/smart-contract-lp-audit-20261103/compiler-assessment.json)
+pins six disclosures for0.8.26 and the exact AST/settings applicability; it does
+not prove future source or compiler lowering safe. Preserve the pinned build
+unless a reviewed, verified toolchain change is separately made.
 For the separate Python3.12 static-analysis environment:
 
 ```bash

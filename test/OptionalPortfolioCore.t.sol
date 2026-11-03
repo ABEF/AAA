@@ -936,6 +936,65 @@ contract OptionalPortfolioCoreTest is Test {
         assertEq(vault.group(bucket).lpTokenId,p.lpTokenId);assertEq(manager.secondaryId(p.lpTokenId),aux);
         assertEq(address(entry).balance,0);assertEq(token.balanceOf(address(entry)),0);
     }
+    function testAuditInfeasibleResidualGapRollsBackThenSingleModeRecovers() public {
+        (uint256 alice,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
+        policy.configureResidualGap(pool,4000,keccak256("TEST ADMITTED BUT UNPLACEABLE GAP"));
+        _longReady(bucket);
+        (int24 lower,int24 upper,)=strategy.target(pool);uint160 q=manager.spot(pool);
+        vm.expectRevert(ZZZModule.InvalidState.selector);policy.residualRange(pool,q,lower,upper,true);
+        vm.expectRevert(ZZZModule.InvalidState.selector);policy.residualRange(pool,q,lower,upper,false);
+        ResidualSnapshot memory beforeState=_residualSnapshot(alice,bucket,main,aux);
+        uint256 feeETH=rewards.liabilities(address(0));uint256 feeZZZ=rewards.liabilities(address(token));
+        vm.expectRevert(ZZZModule.InvalidState.selector);vault.rebalance(bucket,1,block.timestamp+100);
+        _assertSameMain(beforeState.position,bucket,beforeState.mainL);
+        assertEq(manager.portfolioFingerprint(main),beforeState.fingerprint);
+        assertEq(positions.getPositionLiquidity(aux),beforeState.auxL);
+        assertEq(vault.sharesOf(alice),beforeState.shares);assertEq(vault.bucketTotalShares(bucket),beforeState.total);
+        assertEq(rewards.liabilities(address(0)),feeETH);assertEq(rewards.liabilities(address(token)),feeZZZ);
+        assertEq(vault.group(bucket).idle0,beforeState.position.idle0);assertEq(vault.group(bucket).idle1,beforeState.position.idle1);
+        // An impossible optional geometry cannot prevent the independently
+        // governed single-position recovery; no limit or financial guard changes.
+        policy.setMode(pool,false,keccak256("TEST RECOVER SINGLE WITHOUT LOOSENING LOSS"));
+        assertTrue(strategy.rebalanceConfirmation().ready(bucket));
+        vault.rebalance(bucket,1,block.timestamp+100);
+        uint256 replacement=vault.group(bucket).lpTokenId;
+        assertTrue(replacement!=main);assertEq(manager.secondaryId(replacement),0);assertEq(manager.activeSecondaryCount(),0);
+        vm.expectRevert();positions.ownerOf(main);vm.expectRevert();positions.ownerOf(aux);
+        assertEq(vault.sharesOf(alice),beforeState.shares);assertEq(membership.totalEligible(),1);
+    }
+
+    function testAuditMinutePriceOutagePreservesHarvestClaimsAndResidualMergeRecovery() public {
+        (uint256 alice,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
+        uint256 bob=_mint(BOB);_contribute(BOB,bob,1000 ether,false);
+        uint256 shares=vault.bucketTotalShares(bucket);Position memory beforePosition=vault.group(bucket);
+        ZZZMigrationBudget budget=vault.migrationBudget();
+        uint128 mainL=positions.getPositionLiquidity(main);
+        core.unlock(abi.encode(uint8(2),Q96));
+        ethA.set(0,block.timestamp,block.timestamp);ethB.set(0,block.timestamp,block.timestamp);
+        zzzA.set(0,block.timestamp,block.timestamp);zzzB.set(0,block.timestamp,block.timestamp);
+        vm.expectRevert();budget.nav(bucket);
+        _auditHarvestAllocation(bucket);
+        assertGt(rewards.claimable(alice,address(0)),0);assertGt(rewards.claimable(bob,address(token)),0);
+        _claimExactly(alice,ALICE,address(0));uint256 bobETH=rewards.claimable(bob,address(0));
+        uint256 bobZZZ=rewards.claimable(bob,address(token));
+        policy.setMode(pool,false,keccak256("TEST OUTAGE STOP RESIDUAL"));
+        ZZZMigration.ParkingRequest memory request=_residualReview(bucket);
+        access.setPaused(true);migration.closeResidual(request);
+        _assertSameMain(beforePosition,bucket,mainL);assertEq(manager.secondaryId(main),0);
+        assertEq(vault.bucketTotalShares(bucket),shares);assertEq(membership.totalEligible(),2);
+        assertEq(_claimExactly(bob,BOB,address(0)),bobETH);assertEq(_claimExactly(bob,BOB,address(token)),bobZZZ);
+        // Price-dependent valuation recovers after one minute. Replacing the
+        // LP still waits for the originally approved hard cooldown.
+        vm.warp(block.timestamp+60);_prices();access.setPaused(false);
+        (uint256 deployed,uint256 idle)=vault.migrationBudget().nav(bucket);assertGt(deployed,0);assertGt(idle,0);
+        assertFalse(strategy.rebalanceConfirmation().ready(bucket));
+        _longReady(bucket);vault.rebalance(bucket,1,block.timestamp+100);
+        uint256 replacement=vault.group(bucket).lpTokenId;assertTrue(replacement!=main);
+        assertEq(manager.activeSecondaryCount(),0);assertEq(vault.bucketTotalShares(bucket),shares);
+        assertEq(nft.ownerOf(alice),ALICE);assertEq(nft.ownerOf(bob),BOB);
+        vm.expectRevert();positions.ownerOf(main);vm.expectRevert();positions.ownerOf(aux);
+    }
+
     function testLongHorizonResidualMixedAndBothLegsOutsideStayBackedThenMerge() public {
         (uint256 alice,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
         (int24 ml,int24 mu)=manager.ticks(main);(int24 al,int24 au)=manager.ticks(aux);

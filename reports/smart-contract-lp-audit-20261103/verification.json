@@ -1,0 +1,132 @@
+{
+  "reviewed": "2026-11-03",
+  "base_head": "e0ea4dcd4762c1c4016b7861bbacc42c2c1d72dd",
+  "production_solidity_changed": false,
+  "fresh_evm_unique_successful_methods": 2,
+  "full_suite_executed": false,
+  "independent_audit": false,
+  "production_approved": false,
+  "test_stages": [
+    {
+      "label": "operating-boundaries",
+      "test_source": "test/OptionalPortfolioCore.t.sol",
+      "line_endings": "LF",
+      "source_sha256": "49a58da5189601917163e8b28a3908962b2cdf519858c96d3c88f20338570360",
+      "compiler_metadata_keccak256": "0x98f230b47821aaa8de2230cdc9358ff9f46b8ec3f40d362b8aeea49ce31103da",
+      "artifact_sha256": "84282e8e4550dede8abf3a14704c6707ed69d542e6da1da9963775cfb82a5d4f",
+      "raw_result_sha256": "2412d865e64ac0e0a8d978d4a8f4d18b79d5b5b2ae1cc3bb9e49de22ecf0f5e9"
+    },
+    {
+      "label": "operating-boundaries-corrected",
+      "test_source": "test/OptionalPortfolioCore.t.sol",
+      "line_endings": "LF",
+      "source_sha256": "ad8f77d0ff6dec3135ec947e79385e794e58705c83100477433b3d01f241fc56",
+      "compiler_metadata_keccak256": "0x1c6d06684ce538fbcd256a9a21f3f576865b2cfcf85bac4df28cd2ff481332ff",
+      "artifact_sha256": "d4c8825100bf59d5b3c017271dc2523f2f0e54108ab910caee712d40ad6d904b",
+      "raw_result_sha256": "fe412034f1966dc47df680205b914ca6466375f3783209e376f6af98e012ea0d"
+    }
+  ],
+  "original_stage_results": {
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testAuditInfeasibleResidualGapRollsBackThenSingleModeRecovers()": "Success",
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testAuditMinutePriceOutagePreservesHarvestClaimsAndResidualMergeRecovery()": "Failure"
+  },
+  "corrected_stage_results": {
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testAuditInfeasibleResidualGapRollsBackThenSingleModeRecovers()": "Success",
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testAuditMinutePriceOutagePreservesHarvestClaimsAndResidualMergeRecovery()": "Success"
+  },
+  "raw_evidence_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\smart-contract-lp-audit-20261103",
+  "baseline_sha256": "ed808294762c8075ca1eeb9e461c93819ebaa2b0ff2d9964cf762a065f7ef23e",
+  "evidence_sha256": {
+    "compiler-bugs-selected.json": "c9e69e5ecd2bb7fb914028b131379baf53ebc2729211f6a200c8634edc94997e",
+    "compiler-constructs.json": "4907cde10d41b6b20c50a0b9a8da09df08f8bdfc0dcb20fe8171c15c086a2e8c",
+    "function-inventory.json": "b6077a03a196a627f105d54e9c2d7c387e1268b3e46f5f1bc90451a4dccc8272",
+    "test-stages.json": "1154c7df1939ed3d81f155719fc17cc0bbe30d51e0bfd9d519e7e76e402b9517",
+    "source-consistency.json": "8238182e4b5372f92484d36a84538b6b801d0dc3da7d8ab8f16513f2fca53ff4",
+    "prepare-report-records.py": "5dc9767b84be1cd90ff3dd962cc73cb3e48fa33678363a49ae10e436cbae9854",
+    "inspect-compiler-constructs.py": "a1564568b3fff5f4a1de8de18b32887e27a45b444e28128d9912d6256ca09169",
+    "inventory.py": "0ec107cbe5d5bb7d0673c012f09b9b196a8337a7ca2aac2a5523c6cab0bc5579"
+  },
+  "checks": {
+    "protected": {
+      "unchanged": true,
+      "count": 4
+    },
+    "production": {
+      "unchanged": true,
+      "count": 52
+    },
+    "dependencies": {
+      "unchanged": true,
+      "count": 31
+    },
+    "historical_reports": {
+      "unchanged": true,
+      "count": 2670
+    },
+    "archived_current_originals": {
+      "count": 271,
+      "unchanged": true
+    },
+    "todo_ids_statuses_order_unrelated_fields_preserved": true,
+    "todo": {
+      "pass": true,
+      "exit_code": 0,
+      "stdout_sha256": "84da3985b677083ac5dbd5a81b35925d8966cf6a0d6fc610df91cb30dce624ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "callable_reference": {
+      "pass": true,
+      "exit_code": 0,
+      "stdout_sha256": "9e00cee1f3531ff0db0e24358246a4f15301a752c045281d03a9efd720edd433",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "unchanged_static_review": {
+      "pass": true,
+      "exit_code": 0,
+      "stdout_sha256": "e371f6273e3cba08937f19e115e4ae55f53fe74154a0d2f52a657cf5635d2734",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "whitespace": {
+      "pass": true,
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiled_final_test_source": {
+      "raw_working_sha256": "8749ef0bdcd18ddf8fe8cef9b1a511b9a6c2c4a863956cdfb6401e49e674a637",
+      "compiler_lf_sha256": "ad8f77d0ff6dec3135ec947e79385e794e58705c83100477433b3d01f241fc56",
+      "metadata_keccak256": "0x1c6d06684ce538fbcd256a9a21f3f576865b2cfcf85bac4df28cd2ff481332ff",
+      "line_endings_normalized_for_compiler_binding": true
+    },
+    "normal_gate_reuse": {
+      "count": 43,
+      "sources": 52,
+      "dependencies": 31,
+      "report_sha256": "31596d22ae0c5d00ad857daa8f3ed4b45742d45b5b25ed38839179fa43d6ef20",
+      "fresh_compile": false
+    },
+    "static_reuse": {
+      "records": 475,
+      "fresh_analysis": false,
+      "strict_source_bound_review_pass": true
+    },
+    "no_deployment_service_site_anvil_journal_signer_heartbeat_change": true,
+    "documentation_links": {
+      "pass": true,
+      "checked": 1418,
+      "changed_markdown": 12,
+      "new_markdown": 5,
+      "evidence_sha256": "7eb2b2b97d52a2748af561e3f302ec2bfca2327e3fca3dfe7531ac4728ff9a3e"
+    }
+  },
+  "publication": "Source publication checked separately; no deployment or service update.",
+  "audit_artifacts_sha256": {
+    "AUDIT_PROMPT.md": "f4dbfec38031629dc763f955cc2371f1c6f4c017efd3e17fc9534a97f0e46e97",
+    "compiler-assessment.json": "9f7b3c4696d25f8cbf01be3abe5001b36d65fa4a377d74d39a0319aea7ba45e6",
+    "COVERAGE.md": "9da5e08b9cb56cce67855004811f69bb05595d267012313b7edf98cfa59274e5",
+    "functions.json": "e86020499b4574296765f3bd4286ec9201bb0733e5e577d8e7b9b27e3011d365",
+    "KNOWLEDGE.md": "4a391fc46459b02ac1bce5a556578c564efa1250016c77e81d7f98d332df6a2f",
+    "REVIEW.md": "179a3813a51bb07bbd104e8a3491f72df746b6b1c7b96975938f456a2772ba75",
+    "VERIFICATION.md": "dbb9c3476f3eb76aff25cf298cffb22eef2f50cfafe4e83758a87e4aedd59b79"
+  }
+}

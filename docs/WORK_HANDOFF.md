@@ -50,6 +50,18 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
+Use the [November3 contract/LP audit](../reports/smart-contract-lp-audit-20261103/REVIEW.md)
+and [verification](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md).
+Two new actual-core journeys pass; retain the first fixture failure and metadata-
+authenticated correction.795 body records are review inventory, not tests.
+Production52/dependency31 pins are unchanged;43normal gates/475static records are
+exact-source reuse. The six current compiler disclosures have conditional source/
+settings assessments; refresh before release/changes. Entry-layer simplification
+awaits an explicit fresh-profile/consumer decision; separate reward/royalty
+conversion remains useful. The report's operator recovery guidance changes no
+contract behavior or environment. Raw evidence/originals live under external
+`smart-contract-lp-audit-20261103`; four unrelated dirty files remain untouched.
+
 The [three-audit consolidation](../reports/consolidation-20261103/VERIFICATION.md)
 fixes mutable endpoint aliases, meters eth_call through the wrapper and bounds
 override IDs. Maintenance validators are always strict; explicit constructor

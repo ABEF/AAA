@@ -109,6 +109,14 @@ the same asset side. This is not a live keeper/browser/load/profit qualification
 
 ## What remains
 
+[Current contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
+reviews795 project bodies in component context and six current compiler
+disclosures. Two new actual-core journeys verify infeasible residual-gap
+rollback/recovery and USD-outage harvest/partial claims/raw close/later merge.
+No production Solidity changed or new exploitable defect was established;
+reuse exact52/31-source43-gate/475-static scope. Optional Entry conversion removal
+awaits a fresh-profile/consumer decision; real qualification remains open.
+
 [Current consolidation](reports/consolidation-20261103/REVIEW.md) reconciles the
 three latest audits without changing contract policy. RPC clients snapshot their
 reviewed endpoints; metered eth_call cannot delegate around count/expiry checks.

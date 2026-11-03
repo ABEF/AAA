@@ -1,5 +1,15 @@
 # Verification evidence
 
+[Smart-contract and LP audit](smart-contract-lp-audit-20261103/REVIEW.md) executes
+the researched, twice-challenged [brief](smart-contract-lp-audit-20261103/AUDIT_PROMPT.md).
+[Coverage](smart-contract-lp-audit-20261103/COVERAGE.md) maps795 implemented project
+bodies/modifiers without counting enumeration as testing. Two new actual-core
+journeys verify infeasible geometry rollback/recovery and price-outage harvest,
+claims and residual close/merge. Current compiler disclosures are conditionally
+assessed; [verification](smart-contract-lp-audit-20261103/VERIFICATION.md) retains
+fixture failure/correction and exact prior build/static reuse. No new production
+exploit was established; no production Solidity, deployment or service changed.
+
 [Three-audit consolidation](consolidation-20261103/REVIEW.md) reconciles the
 following three reports and their open gates. It snapshots reviewed RPC endpoint
 configuration, meters convenience contract reads, removes permissive maintenance

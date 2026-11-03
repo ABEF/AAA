@@ -21,7 +21,15 @@ Historical internal reports retain their original source scope and do not
 provide independent release approval. The seven workstreams below map to
 [the security Todo](../TODO.md#security--audit).
 
-[Current whole-project audit execution](../reports/whole-project-execution-20261029/REVIEW.md) includes
+[Current contract/LP audit](../reports/smart-contract-lp-audit-20261103/REVIEW.md)
+uses a researched, twice-challenged [prompt](../reports/smart-contract-lp-audit-20261103/AUDIT_PROMPT.md),
+current function/operation coverage and six-disclosure compiler applicability
+review. Two scoped actual-core recovery/rollback journeys complement exact
+unchanged-source normal/static evidence; no production defect or absence proof
+is established by counting source bodies. Actual qualification and independent
+audit remain open.
+
+The earlier [whole-project audit execution](../reports/whole-project-execution-20261029/REVIEW.md) includes
 two prompt challenges, exact handwritten/dependency body coverage, keeper/backend/
 tooling/artwork repairs and completed callable outputs. Its scoped verification
 and unresolved live/independent gates supersede no historical report bytes.

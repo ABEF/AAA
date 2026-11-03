@@ -139,6 +139,16 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
+- [November3 contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
+  adds two actual-core recovery/rollback journeys and a current six-disclosure
+  compiler assessment.795 project bodies are source/component review inventory,
+  not795 tests. Production52/dependency31 sources remain unchanged; reuse exact
+  43normal gates/475static scope. Retain fixture failures/corrections and refresh
+  applicability before release/source/settings changes. Optional Entry-layer
+  removal awaits an explicit fresh-profile/consumer decision; keep valid separate
+  reward/royalty conversion and historical profiles/journals. No production
+  exploit or live readiness is established by this pass; no environment changed.
+
 - [Three-audit consolidation](reports/consolidation-20261103/REVIEW.md) retains
   all three source scopes/open gates. RPC endpoints are an immutable reviewed
   snapshot; BudgetedRPC.eth_call uses the same count/expiry path as call.

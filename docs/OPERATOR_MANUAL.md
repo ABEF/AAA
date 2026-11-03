@@ -981,6 +981,21 @@ or future fee income.
   spacing gap can make a narrow configured width unmintable. Configuration
   acceptance is not execution readiness; review a feasible width or disable
   optional mode rather than removing the geometry guard.
+  The same applies to an excessive configured gap: setter admission alone does
+  not prove either side can be placed. Reverting adjustment preserves the old
+  portfolio. To return to one main, call `setMode(pool,false,reviewHash)` from
+  governance and simulate the later guarded whole rebalance; it still needs
+  cooldown, healthy prices/routes and execution floors. Changing policy does
+  not move liquidity or restart the clock.
+- During a USD-feed outage, do not invent NAV or force an ordinary swap. If the
+  native pool/core/fixed token remain usable, permissionless
+  `Vault.collectFees(bucketId,deadline)` can collect both legs while live, and
+  current owners can claim funded raw currencies. This is not available through
+  a global pause. Paused governance can instead use the reviewed raw
+  `Migration.closeResidual(request)` path, which harvests internally and retains
+  proceeds as attributed idle. Restore valid feeds and independently verify
+  valuation before guarded deployment; unpause does not skip cooldown or merge
+  automatically. A failed core or token may still block raw movement.
 - Changing pool or fee tier uses [same-pair movement](GOVERNED_CUSTODY_HANDOFF.md),
   including both legs. Destination desired policy is separately reviewed; do not
   assume source mode or geometry automatically applies to another pool.
@@ -997,6 +1012,10 @@ Current local tests establish their recorded source scope, not uninterrupted
 operation, manipulation immunity, maximum-holder gas or production approval.
 See the [residual-operation verification](../reports/residual-operations-20261031/VERIFICATION.md)
 for actual executed cases and exact source boundaries.
+The [November3 journeys](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
+exercise infeasible-gap rollback/single-mode recovery and minute-long synthetic
+USD outage with harvest/partial claims/raw close/later merge. They do not qualify
+the actual operator wallet, provider, token, market depth or recovery host.
 
 ### Independent-reference and manual emergency controls
 
