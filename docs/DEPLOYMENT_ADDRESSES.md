@@ -123,7 +123,7 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and factory registry/NFT outputs. |
 | Registry construction | Fixed `ZZZActivationAssets` through the factory and `ZZZActivationEntry`; Registry/Access/source-policy1 and one fixed ZZZ. |
 | NFT construction | `ZZZRoyaltyRewards`, `ZZZClaimRouter`, `ZZZNFTMetadata`; exact NFT/controller/ledger relationships. |
-| Oracle construction | `ZZZContributionPricing`; exact Oracle/Access, pricing2 and reviewed Entry2 bindings; inactive capture context at anchor. |
+| Oracle construction | `ZZZContributionPricing`; exact Oracle/Access, pricing2 and entry-review-policy2 bindings; inactive capture context at anchor. |
 | Separate Budget | `ZZZMigrationBudget(controller)` is supplied to Vault. Verify actual Vault getter, Access-resolved `vault()` parent, compound4/confirmation3/emergency2 and runtime. It owns no custody. |
 | Separate LP Balancer | `ZZZLPBalancer(controller,core,state)` is supplied to Manager; sealed parent, core/state, LP routing2/quality1 and exact runtime. Inventory actual execution pools/solver/quality separately. |
 | Balancer arithmetic child | `ZZZLPBalanceMath`; `Balancer.balanceMath()`, immutable `balancer()` parent, version1 and runtime. |

@@ -1,93 +1,73 @@
 # Engineering roadmap
 
-Reviewed2026-11-03. [Todo](../TODO.md) alone owns status; this page gives sequence.
-The [optional portfolio implementation](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)
-is local source, not rollout. [Current adaptable-policy evidence](../reports/adaptable-policy-20261031/VERIFICATION.md)
-keeps scoped new checks and43normal gates separate from staged reuse and the older
-manual/static records. The [October31 follow-up](../reports/today-audit-20261031/VERIFICATION.md)
-refreshes source6 static contexts, publication closure and affected accounting/API
-checks. It does not qualify live services or independent release approval.
-The offline review helper is not yet a live operation planner or simulator;
-rehearse actual authority/wallet/host/dependency workflows before production.
+Reviewed3November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
+work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
+and unresolved risks. Production **NOT APPROVED**. Source publication is separate
+from deployment, services, websites and public transactions.
 
-## LP execution next steps
+## 1. Freeze the correct source and integration boundary
 
-[Direct Entry3](../reports/direct-entry-v3-20261103/REVIEW.md) completes the
-approved preliminary-conversion removal. Qualify schema9/direct routing3 with
-actual runtime/helpers, feeds, balancing venues, source7 API/site and wallet
-behavior before rollout; do not relabel old schema8, source6 or journals. Vault
-balancing and separate reward/royalty conversion remain. Retain current normal
-size/static evidence and refresh compiler disclosures for the frozen release.
+Use [accounting6/Entry3/schema9](POSITION_V6.md) and exact runtime/helper/dependency
+pins. Direct Entry removal, residual management, active-main candidate filtering,
+cooldown observation and authenticated harvest coalescing are implemented; do not
+reopen them as proposals or revive retired bridges/creator inboxes/third inputs.
+The [current evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) has exact
+source scope, retained failed attempts and explicit reuse. Normal Migration has
+20bytes runtime headroom; further code changes need new exact-source gates.
 
-[Three-audit consolidation](../reports/consolidation-20261103/REVIEW.md) hardens
-shared RPC input/budget boundaries and simplifies strict keeper validation.
-It closes no live-market, host, history-scaling or independent-release gate;
-use the reconciled three-report boundaries for the next qualification campaign.
+Owning work: [release freeze/audit](../TODO.md#task-audit-release),
+[deployment size/gas](../TODO.md#task-deployment-initcode),
+[reviewed contributions](../TODO.md#task-reviewed-contribution-policy).
 
-[Action resilience fixes](../reports/action-resilience-audit-20261102/REVIEW.md)
-now bound RPC body progress, reject unknown maintenance names and preserve paid
-recovery before new-job validation. Qualify actual DNS/header/provider/watchdog
-behavior, Unix permissions and source6 consumer rollout; local process/fault
-tests do not close those operating gates or long-lived history scaling.
+## 2. Qualify real dependencies and market execution
 
-[Multi-day contract journeys](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
-now exercise repeated modes, entry, rewards and compound over virtual days. Their
-controlled caller/time/feed substitutes do not close sustained source6 keeper,
-RPC/browser concurrency, real pricing/depth or gas qualification. Use the
-[case matrix](../reports/portfolio-long-horizon-20261102/CASE_MATRIX.md) for the
-next authorized operating campaign without repeating unchanged contract tests.
+Select and authenticate independent ETH/ZZZ USD sources, feed/proxy/update controls,
+actual fixed token/burn behavior, reviewed balancing/conversion venues, RPC tracing,
+VRF and authorities. Test usable depth/cost without substituting demo values or
+widening captured user limits. Actual cheap ETH conversion remains necessary at
+the default1% budget; bounded routing is not a universal best-route guarantee.
+Qualify OpenSea primary mint/drop, gross buyer price and actual platform fee.
 
-The [LP lifecycle repair](../reports/lp-lifecycle-audit-20261102/REVIEW.md)
-filters inactive ordinary single/hybrid candidates before ranking while retaining
-final mint guards. Scope-limited composed checks preserve both-leg fees, shares
-and claims through mode changes and a merge. Harvest getter coherence is not an
-independent range ledger; current reports make that boundary explicit.
-Next qualify bounded routing and residual placement using real venues/depth/gas,
-and design measured authenticated lifetime archive/read-model evolution before
-complete replay outgrows finite budgets. No global search optimum or unsafe
-fallback is claimed. Qualify actual providers and operating budgets alongside
-this work; matching source7 rollout must preserve old profiles/journals.
+Owning work: [dual feeds](../TODO.md#task-dual-price-qualification),
+[ZZZ-team questions](../TODO.md#creator-tasks--zzz-team),
+[routing](../TODO.md#task-lp-execution-routing),
+[draw](../TODO.md#task-fair-draw), [OpenSea](../TODO.md#task-opensea-mint).
 
-[Bounded adaptable settings](ADAPTABLE_POLICY.md) are implemented in source6 with
-unchanged defaults and explicit schema8/Entry2/canonicalV6 boundaries. Qualify
-economics, policy-change wallet reviews, provider drain/rotation, gas and exact
-worker/runtime rollout; current source work does not close those release gates.
+## 3. Integrate matching services and site without changing old profiles
 
+Build reviewed schema9/source7 configs for API/indexer/keeper/health writer-checker
+and a matching accounting6/direct Entry3 website consumer on poplint. Popldemo
+remains simulation; served current3 and historical Anvil/journals remain their
+original profiles. Public DEPLOYMENT stays null and signing Anvil-only.
 
-Qualify optional geometry/main-floor economics using real market depth, fees,
-ordering and target gas. A60% placement floor is an approved operating tradeoff,
-not a demonstrated optimum; a residual can remain idle, become mixed or suffer
-inventory loss. A failed safe adjustment remains atomic and may need reviewed
-configuration, parking or terminal holder return rather than wider automatic loss.
+Qualify actual preparation/trace/approval/claims and truthful complete holdings/
+history, unavailable states, account changes and pending recovery. Design measured
+long-lived archive/read-model evolution before bounded replay becomes insufficient.
+A new service/config rollout needs stop/reconcile/dry-run/restart, not a version edit.
 
-## 1. Close immutable integration boundaries
+Owning work: [preflight](../TODO.md#task-native-production-preflight),
+[hosting](../TODO.md#task-host-services), [wallet](../TODO.md#task-wallet),
+[history](../TODO.md#task-financial-history),
+[operating recovery](../TODO.md#task-keeper-recovery),
+[metadata](../TODO.md#task-metadata-ops).
 
-Freeze accounting6/portfolio2 and its exact helper graph, constructors, dependencies
-and normal build settings. Retain source-bound static triage, refresh after changes, and independently audit
-both-leg accounting, approvals/callbacks, incoming share pricing and all recovery
-paths. Parked canonical V6 compatibility requires zero live residuals; old codec
-identity alone is insufficient. No implementation changes after sealing.
+## 4. Rehearse operations and qualify the frozen release
 
-## 2. Qualify real dependencies alongside integration
+Use three layers: meaningful local checks, actual Robinhood mainnet fork, then
+Robinhood Testnet wallet/keeper/deployment rehearsal with explicit supported chain
+bindings. A mainnet-pinned admission cannot be qualified by relabelling mocks.
+Measure maximum-state/two-leg harvest/entry/close/holder batches and constructor
+arguments, inclusion/reset/jitter, outages, Unix storage/watchdog, backups and
+same-key receipt recovery. Virtual time and two local wallets are not a live load
+or uptime result. The broader capacity campaign remains deferred, not passed.
 
-Select two defensible independent USD sources per priced asset, actual approved
-swap venues/routes, RPCs, VRF, governance/guardian/keeper and OpenSea primary mint.
-Mainnet native admission is chain/runtime pinned: testnet needs an explicit
-reviewed test binding, not relabelled production qualification.
+Review manipulation and residual inventory economics.60/40 is an approved
+placement tradeoff, not an optimum; unused or unsafe execution remains blocked.
+Independent audit/remediation, exact accepted risks and named release sign-off
+complete the [approval record](RELEASE_CHECKLIST.md). Terminal holder return is
+irreversible; pre-exit same-chain replacement and post-halt recovery are distinct.
 
-## 3. Integrate the exact current deployment profile
-
-Qualify matching schema9 observer, API/indexer/keeper/health writer-checker and
-direct Entry3/accounting6 website read/unsigned consumer on poplint. Keep popldemo unchanged,
-public signing disabled and old local Anvil/journals separate. Rehearse600/240/300
-confirmation, near-eligibility paid enrollment,60–300jitter, cooldown changes,
-pending recovery, crashes and Linux atomic storage without guessing journal truth.
-
-## 4. Freeze and approve a complete release
-
-Use the three testing layers: useful local tests, actual Robinhood mainnet fork,
-then Robinhood Testnet wallet/keeper/deployment rehearsal. Measure worst-case
-two-leg mint/harvest/close/holder batches and exact constructor initcode/gas.
-Finish metadata hosting/refresh, operating recovery, independent remediation and
-explicit configuration/sign-off in the [release record](RELEASE_CHECKLIST.md).
-Source publication does not authorize deployment, sealing or transactions.
+Owning work: [fork](../TODO.md#task-mainnet-fork),
+[testnet rehearsal](../TODO.md#task-testnet-rehearsal),
+[keeper safeguards](../TODO.md#task-keeper-guardrails),
+[independent approval](../TODO.md#task-audit-release).

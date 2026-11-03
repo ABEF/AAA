@@ -125,7 +125,7 @@ entry and maintenance idle,180k payout/500k source/250k optional royalty sync ga
 [policy](docs/ADAPTABLE_POLICY.md) and [operator](docs/OPERATOR_MANUAL.md#future-operating-settings).
 Future minima>=1USD; lowering changes future participant economics. Mint payee
 propose/accept changes future payments only. New mint binds sale+VRF fingerprint;
-Entry2 binds exact entry fingerprint before callbacks. Scoped revisions prevent
+Direct Entry3/review-policy2 binds exact entry fingerprint before callbacks. Scoped revisions prevent
 restore-to-revive reviews and avoid cosmetic/gas/mint changes resetting LP samples.
 Portfolio2 main floor6000–9999bps; hard6000 stays because lowering was not approved.
 Gas bounds100k–1m are engineering limits, not provider/chain qualification.
@@ -139,132 +139,56 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
-Direct Entry3 verification records28 distinct selected EVM successes across
-explicit stages and314 Python successes across two selected scopes, not a full
-suite. Fresh52/31-source43normal gates and471static records are bound to the
-new compiler output; callable reference37/818/37/13 has no note gaps. Entry
-runtime18581→9863; Registry creation42736→22526. Vault635/Budget237/Migration20
-headroom remains. Failure/empty-selection history and19unchanged-body reuse
-are explicit in reports/direct-entry-v3-20261103/VERIFICATION.md. Source7
-website/services and actual dependency/release qualification remain open.
-
-
-- Direct Entry3 is the fresh source7/schema9 candidate: seven-field ETH/fixedZZZ
-  request, no pre-Vault conversion/catalogue/receiver/Entry v4 child. Review-policy2,
-  pricing2 and the accounting6/canonicalV6 wire remain unchanged. Historical
-  routing2/schema8 APIs and journals retain their explicit profiles; no runtime
-  is relabelled. LP/royalty converters keep separate v3/v4 conversion. Use the
-  [current change](reports/direct-entry-v3-20261103/REVIEW.md) and exact verification.
-  Older audit pins/counts below retain their original source scope, not this edit.
-
-- [November3 contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
-  adds two actual-core recovery/rollback journeys and a current six-disclosure
-  compiler assessment.795 project bodies are source/component review inventory,
-  not795 tests. Production52/dependency31 sources remain unchanged; reuse exact
-  43normal gates/475static scope. Retain fixture failures/corrections and refresh
-  applicability before release/source/settings changes. The later approved direct Entry3 removal supersedes that open decision; keep valid separate
-  reward/royalty conversion and historical profiles/journals. No production
-  exploit or live readiness is established by this pass; no environment changed.
-
-- [Three-audit consolidation](reports/consolidation-20261103/REVIEW.md) retains
-  all three source scopes/open gates. RPC endpoints are an immutable reviewed
-  snapshot; BudgetedRPC.eth_call uses the same count/expiry path as call.
-  Maintenance validators are always strict; only constructor scheduling-value
-  validation waits for a validated pending intent. Override IDs fit uint256.
-  Current182 distinct selected Python successes/one Unix skip remain scoped;
-  858-method inventory executes zero bodies. Prior reports retain original pins.
-  No Solidity/economic/profile change or deployment/service/journal adoption.
-
-- [Action resilience review](reports/action-resilience-audit-20261102/REVIEW.md)
-  adds bounded RPC body progress, strict maintenance names and maintenance-value
-  deferral only for validated saved-intent recovery. Identity/receipt/nonce/fees
-  still bind; after recovery invalid settings halt before new work.176 distinct
-  selected Python methods succeed across recorded stages, one Unix skip;851
-  inventory entries execute zero bodies. Keep driver/fixture failures explicit.
-  Production52/dependency31 pins stay unchanged; no source6 site/service/journal
-  adoption. Do not confuse a post-action read outage with failed execution or
-  Compounded reserve-release events with total actual LP deployment.
-
-- [Multi-day portfolio study](reports/portfolio-long-horizon-20261102/REVIEW.md)
-  adds four scoped actual-core journeys across recorded stages without production
-  source/policy changes. Preserve its100USD-fixture rejection, explicit5USD
-  admission correction and unchanged-method reuse. Main-only entry buys aggregate
-  NAV shares; residual geometry is nested inside main. Virtual days/serialized
-  EVM calls do not qualify live keeper uptime, browser load, jitter or target gas.
-
-- [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
-  ordinary single/hybrid candidate activity before ranking, retaining final
-  pre/post-mint checks and separate initial/growth/emergency policies. Quotes
-  expose actual stored post-swap ticks, including initialized downward boundaries.
-  Desired mode changes preserve physical backing and reward membership until
-  guarded replacement. Enabling does not force a residual. Harvest getter paths
-  share the same PosM source; geometry_sources_independent:false corrects the
-  prior ten-report independence claim. Preserve original historical report bytes.
-
-- [Current improvement audit](reports/improvement-audit-20261102/REVIEW.md) unifies
-  detail/chunk custody proof, separates current governed buyback caps from
-  constructor provenance, validates maintenance health evidence and makes missing
-  idle-policy diagnostics explicit. Fresh schema8 now requires reviewed current
-  buyback_maximum_usd18; never fill it from constructor history or alter journals.
-  Focused keeper selection includes current policy/portfolio cases; inventory
-  executes zero bodies. Required source classes and Python package-scope checks
-  are verification safeguards, not compiler/security or operating acceptance.
-  Before Python publication check exact staged Git blobs with
-  `python scripts/check-python-publication.py --index`, then the committed revision.
-  Local imports are insufficient. Keep protocol identities distinct, exact runtime
-  pins/history proof and old deployment/journal profiles. No production Solidity
-  or economic policy changed; use the audit's fresh/reused evidence boundaries.
-
-- Prior source-scoped [LP lifecycle evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
-  binds52 production sources/31 dependencies and43 normal gates at final-a8e7dc7cc5.
-  Balancer360/Vault635/Budget237/Migration20 runtime headroom is exact-source evidence, not
-  future edit capacity or target-chain gas qualification. Its callable
-  reference was37contracts/826functions/37constructors/14receivers, zero gaps.
-- Scoped EVM/backend campaigns retain original failures, empty attempts, corrected
-  retries and body-based reuse. They are not a current full suite, published CI,
-  provider/operating acceptance or independent audit. Older42-gate/778-callable/
-  463-static reports are historical; refresh analysis before release approval.
+- Current source/evidence: [profile identities](docs/POSITION_V6.md),
+  [features](docs/IMPLEMENTATION_STATUS.md), [consolidated findings](docs/AUDIT_FINDINGS.md),
+  [report map](reports/README.md) and [release approval](docs/RELEASE_CHECKLIST.md).
+  Historical report bytes/source scopes remain immutable; do not sum overlapping
+  tests or describe old analysis as current. The consolidation is not a new audit pass.
+- [Direct Entry3 evidence](reports/direct-entry-v3-20261103/VERIFICATION.md) binds
+  52 production sources/31 dependencies,43 normal gates and471 source-bound static
+  records.28 distinct selected EVM/314 Python successes span explicit scopes;
+  neither is a full suite. Reference37contracts/818functions/37constructors/13receivers
+  has no note gaps. Runtime headroom: Vault635/Budget237/Migration20/Balancer360.
+  Reuse only matching pins; refresh compiler advisories/static applicability before release.
+- Before Python publication run `python scripts/check-python-publication.py --index`
+  against exact staged blobs, then the committed revision. Local untracked imports
+  never establish published closure. Main only; verify exact local/remote heads.
 - Offline operator-review tooling only hashes a strict source-bound manifest and
   orders explorer inputs. No live authority/snapshot/simulation/signing is implied.
-  Preserve false readiness flags, exact integer/hash inputs and saved journals.
-- Matching source6 APIs authenticate both LP legs while retaining price-outage
-  ownership/raw-claim availability. USD/NAV can remain unavailable. Never infer
-  keeper readiness from physical-only data or relabel old services/journals.
-- Actual dual feeds/routes/VRF/authorities/OpenSea, source6 site/services, target
-  gas/economics, storage/recovery and independent audit/remediation remain open.
-- Management has one maintained Operator manual; PORTFOLIO_OPERATIONS is only
-  a compatibility pointer. Update exact procedure/input/permission/rollback and
-  callable notes with behavior changes; no background synchronization is implied.
-- One ledger docs/project-todo.json generates TODO.md. Preserve stable IDs/status
-  evidence and Contract/Backend/Frontend ordering; follow docs/TODO_WORKFLOW.md.
-  Check feature/evidence, roadmap, release, current context and operator guidance.
-- Preserve historical report bytes/source scopes, unrelated dirty files and all
-  services/sites/Anvil/journals/signing. Use exclusive evidence paths and exact
-  source pins; do not rerun unchanged contract suites for documentation sync.
-- Main only. Verify exact local/remote heads before reporting publication. Git
-  publication is separate from deployment; source6 code does not update old sites.
-- Current guides replace stale prose. Scoped history belongs in reports/Git;
-  archive original dirty docs first. Repo memory is not global personal memory.
+  Preserve false readiness flags, exact integers/hashes and saved journals.
+- Matching current APIs authenticate both LP legs while preserving ownership/raw
+  funded claims through price outages. USD/NAV can remain unavailable. Never infer
+  keeper readiness from physical-only data or relabel an old service/journal.
+- Actual dual feeds/routes/VRF/authorities/OpenSea, matching source7 services/site,
+  target gas/economics, storage/recovery, long-lived history and independent
+  audit/remediation remain open. Source publication is not operating acceptance.
+- One maintained [Operator manual](docs/OPERATOR_MANUAL.md); PORTFOLIO_OPERATIONS
+  is only a compatibility pointer. Update procedure/input/permission/reverse steps,
+  restart/irreversible boundaries and callable notes with behavior changes.
+- One ledger docs/project-todo.json generates TODO.md. Preserve stable IDs/statuses,
+  evidence and Contract/Backend/Frontend order; follow docs/TODO_WORKFLOW.md. Review
+  feature/evidence, roadmap, release, context and operator guidance together.
+- Archive original dirty documentation before consolidation. Replace stale current
+  prose rather than append another timeline. History belongs in reports/Git;
+  repository memory is not global personal memory or a background sync service.
+- Use exclusive evidence paths; retain failures/skips/empty attempts. Do not rerun
+  unchanged contract suites for a documentation change. Preserve unrelated dirty
+  files and every existing service/site/Anvil/journal/signer/heartbeat boundary.
 
-## Manual portfolio management follow-up
+<a id="manual-portfolio-management-follow-up"></a>
 
-Additional RESIDUAL_EXIT_VERSION1 on Migration/Vault/Manager/position child,
-same accounting6/custody4 wire and no new modules. Paused governance can call
-Migration.closeResidual(ParkingRequest): harvest both, close only associated
-residual into attributed Vault idle, preserve main/shares/clock/configuration.
-Raw minima, physical/control fingerprint, current governance/pause and shared
-parking nonce/custody epoch are enforced. No implicit setMode/recordApplied,
-swap, external recipient, holder payout or compound release. To stay single,
-setMode(false) first. Mode(true) enables future guarded adjustment; an alreadyON
-geometry can be re-reviewed with same-value configureResidualSide after cooldown.
-EmergencyRebalance already forces one main at its actual required token ratio,
-not necessarily50/50USD. [Complete controls](docs/OPERATOR_MANUAL.md#portfolio-management-controls).
-Large idle is intentional recovery state; do not bypass later entrant/deployment
-guards. Existing both-leg park/holder-return remain fallbacks.
-Behavior-preserving private terminal-check dedup and read-only holder-exit
-validation extraction preserve normal limits. Prior source6 gates are
-43 at exact final-a8e7dc7cc5 pins, with Balancer360/Vault635/Budget237 margins; old905/286
-margins remain historical.
-Preserve exact pre/post checks and caller/error semantics. No existing deployment,
-service/site/Anvil/journal/signer/heartbeat was changed. Source publication is
-separate from deployment; the candidate remains undeployed.
+## Manual portfolio control invariants
+
+RESIDUAL_EXIT_VERSION1 on Migration/Vault/Manager/position child retains
+accounting6/custody4 wire. Paused governance `Migration.closeResidual(ParkingRequest)`
+harvests both then closes only the registered residual into attributed Vault idle;
+main/shares/clock/configuration remain. Raw minima, physical/control fingerprint,
+current governance/pause and shared parking nonce/custody epoch remain enforced.
+No implicit mode change, swap, payout, external recipient or compound release.
+Set modefalse first to remain single; modetrue permits the next guarded adjustment.
+Already-ON geometry can be re-reviewed with same-value configureResidualSide after
+cooldown. Emergency consolidation creates one main at its required ratio, not
+necessarily50/50USD. Large idle can be intentional recovery state; never bypass
+later entrant/deployment floors. Both-leg park/holder return remain fallbacks.
+Preserve exact pre/post checks and caller/error semantics. See the [complete
+controls](docs/OPERATOR_MANUAL.md#portfolio-management-controls).

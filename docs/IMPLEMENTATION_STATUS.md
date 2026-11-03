@@ -15,12 +15,10 @@ Production inventory is schema9 with20 helper pins. Historical schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
-The [October31 change audit](../reports/today-audit-20261031/REVIEW.md) repairs
-published reader omissions and same-chain lineage admission for shared Uniswap
-dependencies, corrects recovery-profile guidance and repairs affected accounting
-fixtures. [Evidence](../reports/today-audit-20261031/VERIFICATION.md) separates new
-affected execution, current static contexts and unchanged normal build reuse.
-No economic rules, deployed contracts or operating services changed.
+Use [consolidated findings](AUDIT_FINDINGS.md) for historical dispositions and
+[the report map](../reports/README.md) for exact source-scoped evidence. A source
+mechanism, test pass, configured service and approved production release are
+separate milestones.
 
 ## Smart contracts
 
@@ -43,11 +41,9 @@ No economic rules, deployed contracts or operating services changed.
 
 ## Backend and operations
 
-The [current consolidation](../reports/consolidation-20261103/REVIEW.md) adds
-immutable validated RPC endpoints and budgeted convenience contract reads,
-removes permissive maintenance-validation switches and bounds override IDs.
-Pending receipt recovery remains separate from strict new-work validation.
-No contract ABI/policy, API schema, signing or running service changed.
+Confirmed-read and preparation boundaries remain explicit. RPC endpoints are a
+validated immutable snapshot, budgeted convenience calls use the metered path,
+and strict new-work validation does not discard a valid pending recovery intent.
 
 | Capability | Implemented source boundary |
 | --- | --- |
@@ -73,86 +69,34 @@ change to the website is part of this contract implementation.
 
 ## Current evidence and limits
 
-[Direct Entry3 cleanup](../reports/direct-entry-v3-20261103/REVIEW.md) removes
-pre-Vault route management/conversion/receiver/child, retains the captured financial
-and owner/callback checks, and updates direct API tuple/config/trace and schema9
-inventory/observer. Historical schema8/routing2 remains explicit. Separate earned
-LP/royalty conversions and Vault balancing stay. [Current verification](../reports/direct-entry-v3-20261103/VERIFICATION.md)
-records fresh normal/static/affected checks, corrected fixtures and unqualified
-external requirements; it is not a deployment or independent release approval.
+| Evidence | Source scope | What it does not establish |
+| --- | --- | --- |
+| [Direct Entry3 normal/static record](../reports/direct-entry-v3-20261103/VERIFICATION.md) | Current52production/31dependency sources;43normal gates,471triaged static records; reference37contracts/818functions/37constructors/13receivers without note gaps. Entry runtime9863; Vault635/Budget237/Migration20/Balancer360headroom. | Full regression, published CI, independent audit, deployment gas, future edit capacity or production approval. |
+| [Entry/native regressions](../reports/direct-entry-v3-20261103/test-stages.json) |28distinct selected successes across recorded scopes;19unchanged successful bodies reused after one assertion correction. Failures and empty selection retained. |28fresh final-source tests in one run, actual target-chain feeds/venues or browser/keeper operating acceptance. |
+| [Backend/profile tooling](../reports/direct-entry-v3-20261103/python-verification.json) |314selected Python successes across two scopes; explicit direct/historical tuple, config/helper/observer and operator/reference/publication boundaries. |Actual tracing-provider or matching website acceptance. |
+| [LP lifecycle](../reports/lp-lifecycle-audit-20261102/REVIEW.md), [multi-day journeys](../reports/portfolio-long-horizon-20261102/VERIFICATION.md) | Ordinary active-main candidate selection and composed main/residual/entry/reward/recovery behavior at recorded source/test pins. Relevant unchanged code can support reuse. | All market paths, profitable60/40 strategy, maximum populated gas or live uptime. Geometry getter coherence is not independent source proof. |
+| [Backend/action consolidation](../reports/consolidation-20261103/VERIFICATION.md), [fault boundaries](../reports/action-resilience-audit-20261102/ACTION_MATRIX.md) | Scoped endpoint, budget, validation, receipt and availability corrections. | Honest providers, hard DNS/header timeouts, Linux host/storage/off-host recovery or source rollout. |
+| [Documentation/findings consolidation](../reports/project-consolidation-20261103/REVIEW.md) | Current procedures/navigation/finding provenance and exact unchanged-source/evidence checks. | New contract execution, new independent security opinion or closure of external release gates. |
 
-[Current contract/LP review](../reports/smart-contract-lp-audit-20261103/REVIEW.md)
-maps the source/function/operation boundary and six current compiler disclosures.
-Two new scoped actual-core methods establish infeasible residual-gap rollback
-and price-outage harvest/claim/raw residual-close recovery followed by guarded
-merge. No production Solidity changed; [evidence](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
-reuses exact43 normal gates/475 static records rather than claiming a new full
-suite. The later direct Entry3 change resolves Entry-layer removal; actual services/independent audit remain open.
-
-[Action resilience evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md)
-records RPC body progress checks, exact maintenance-name validation and paid
-recovery before new maintenance work.176 distinct selected Python methods succeed
-across retained stages, with one Unix permission skip. Actual spawned API worker
-containment and price-outage projections are scoped local evidence; live provider/
-OS/keeper and website qualification remain open. No Solidity or economic change.
-
-[Multi-day portfolio evidence](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
-adds four scoped actual-core journeys across stages: six virtual days, repeated
-one/two-leg transitions, both Entry assets,5USD growth, hourly collections,
-compound, partial claims, serialized user/keeper ordering and both-outside recovery.
-Retain three initial stronger-pool-minimum failures and explicit fixture correction.
-All52 production sources remain unchanged; this does not qualify running source6
-services, browser/RPC load, target gas, strategy profitability or independent audit.
-
-[LP lifecycle review](../reports/lp-lifecycle-audit-20261102/REVIEW.md) repairs
-ordinary candidate selection before final active-main checks in single/hybrid
-mode and verifies enable/disable/entry/harvest/claim/merge composition. Earlier
-custody/admission, health/profile and publication repairs remain implemented.
-Harvest diagnostics validate geometry/custody coherence; Manager ticks forward
-to the same packed PosM source and are not independent evidence. Report
-geometry_sources_independent:false, preserve price-outage availability and
-ProtocolPolicy version metadata. Lifetime history and real venue/residual
-feasibility qualification remain open.
-
-[Current verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
-binds52production sources/31dependencies,43normal gates at final-a8e7dc7cc5 and
-fresh475-record internal static disposition.65 distinct selected EVM methods
-succeeded across recorded stages and5 backend methods pass; original failures,
-two fixture corrections and body reuse remain explicit. The reference explains
-37contracts/826functions/37constructors/14receivers with zero recorded gaps.
-This is not a fresh full-suite/CI, live qualification or independent approval.
-
-The [earlier manual-operation audit](../reports/manual-operations-20261031/REVIEW.md),
-[earlier source audit](../reports/day-audit-20261031/REVIEW.md) and
-[residual management follow-up](../reports/residual-operations-20261031/REVIEW.md)
-retain their original source scopes, failures and metrics. Their50-source/42-gate/
-778-function/463-static records do not audit the later policy implementation.
-The old internal static triage must be refreshed against a frozen current release;
-independent review, target gas and economic/market/operating qualification remain open.
-
-The [historical reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
-maps earlier findings to mechanisms or remaining tasks without rewriting old
-reports. Candidate-ranking liveness, maximum populated gas/dynamic URI and actual
-provider behavior remain qualification work.
+Older source/ABI/size/static/test counts remain in immutable reports and are not
+combined into a current pass. Refresh applicability after code/settings/dependency
+changes. The [compiler assessment](../reports/direct-entry-v3-20261103/compiler-assessment.json)
+uses an explicitly captured official snapshot with source graph/layout limitations;
+refresh advisories for the frozen release.
 
 ## Current selected-pool fork scope
 
-The [selected-pool fork record](../reports/current-pool-fork-20261026/VERIFICATION.md)
-is historical to its source/fixture/block. It verifies real-venue paths at those
-pins using explicit mock services; it does not verify the new two-position
-portfolio, live feeds/VRF, target gas, actual market depth or sustainable revenue.
-Retain that evidence and qualify the exact fresh profile before release.
+[Prior fork evidence](../reports/current-pool-fork-20261026/VERIFICATION.md) is historical.
+The current harness is source preparation, not a newly executed fresh portfolio/
+Entry3 fork. Qualify actual pool state/depth, feeds, original-input execution,
+burn ABI, market cost and target gas before approval. Do not lower policy or
+label mocked prices a production feed to turn an infeasible quote into a pass.
 
 ## Bounded post-seal flexibility
 
-[ProtocolPolicy1](ADAPTABLE_POLICY.md) is implemented for future mint price/payee,
-activation/growth minima, scoped entry/maintenance idle and bounded read/payout/
-optional-sync gas, display tiers and fully drained VRF rotation. Portfolio2 adds
-per-pool6000–9999bps main floor and positive tick-spacing gap; manual geometry can
-extend below100% subject to Registry/tick bounds. Buyback maximum is reviewed and
-changeable. Defaults remain0.05ETH/100USD/5USD,60/40,5%idle and original gas/stages.
-New mint/Entry2 reviews bind scoped fingerprints; callback policy changes revert.
-Fresh source7/schema9/Entry-routing3/canonicalV6 is explicit; old deployed source6/schema8 profiles remain unchanged.
-[Current evidence](../reports/adaptable-policy-20261031/VERIFICATION.md) records fresh
-normal gates, actual selected executions and limitations; it is not deployment,
-whole-suite/CI/live qualification or independent audit approval.
+[ProtocolPolicy1](ADAPTABLE_POLICY.md) governs approved future terms within fixed
+bounds; Entry3/review-policy2 binds scoped contribution terms before callbacks.
+[Manual controls](OPERATOR_MANUAL.md#future-operating-settings) distinguish a chain
+setter from a new runtime/worker/site rollout. Retired architecture and old
+journals remain separate. Real providers/authorities/OpenSea, source7 services/
+website, storage/operations, economics/gas and independent audit remain open.

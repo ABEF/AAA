@@ -70,6 +70,10 @@ There is no holder-facing principal withdrawal in either sequence.
 
 ## Find the right procedure
 
+Use [current profile identities](POSITION_V6.md) and [consolidated findings](AUDIT_FINDINGS.md)
+when an older report conflicts with a procedure. Source publication does not
+upgrade old services/sites or make an offline reviewHash a simulated transaction.
+
 Production minting is intended for OpenSea; the website Mint page is a demo.
 Qualify the exact mint product, chain, contract integration and collection URL
 before sealing, following [mint integration qualification](MINT_INTEGRATION_QUALIFICATION.md).
@@ -113,7 +117,7 @@ emergency2, Access.GOVERNANCE_VERSION2 and
 `SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V6.md).
 Normal size/runtime gates, scoped offline checks and local actual-v4-core
-integration pass within their [recorded source scope](../reports/adaptable-policy-20261031/VERIFICATION.md).
+integration pass within their [current Entry3 source scope](../reports/direct-entry-v3-20261103/VERIFICATION.md).
 Live dependency/operating qualification and independent review remain open.
 Eight Position words remain; statuses are None0/Active1/Outbound2/Dormant3/
 Parked4/Exited5. Historical profiles/Anvil/journals keep their own meanings.
@@ -165,10 +169,10 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema9 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/20 helpers; schema6 and older profiles are inspection-only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema9 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/20 helpers; schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
-| Website read/unsigned review | [Served current3/fresh4 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Actual consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
+| Website read/unsigned review | [Served current3/fresh Entry3/accounting6 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Matching Entry3 website consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
 | RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
 
 Source-scoped audit results belong to [reports](../reports/README.md), not to a
@@ -1185,22 +1189,52 @@ Use `scripts/verify-hookless-pool.py --block <confirmed-number> --expected-hash 
 
 ## Activation assets and routes
 
-An **activation route** converts a user's contribution into the LP pair. It is distinct from moving the Vault's already-held LP to another pool. Changing an ETH/ZZZ source conversion route does not migrate attached LP or change its owners.
+Fresh Entry3 accepts only native ETH or fixed ZZZ and forwards the exact input to
+Vault balancing; it has **no input conversion route, route toggle or executor
+child**. Three separate controls must not be confused:
+
+| What changes | Correct target | Effect |
+| --- | --- | --- |
+| Accept/stop ETH or fixed ZZZ as new contribution input | `ActivationAssets.setAsset` | Changes source admission; no swap or movement of existing principal. |
+| Where Vault balances ETH/ZZZ for entry or maintenance | `Balancer.configureExecutionPools` | Changes the bounded reviewed venue list; LP destination/ownership remain separate. See [execution venue admission](#add-or-remove-an-execution-pool-after-sealing). |
+| How already-earned LP rewards or royalties convert to ETH | The specific LP or royalty converter's route functions | Converts that ledger's existing funded credits; does not add an Entry route or new principal input. |
+
+The exact fresh Request and policy inputs are in [direct Entry](ACTIVATION_ENTRY.md).
+Changing one control never implicitly re-enables another stopped source/pool/route.
 
 ### Add or re-enable an input token
 
 1. Only ETH and the reviewed ZZZ identity are contribution inputs. Do not add USDC, USDG or WETH as user sources. Marketplace royalty currencies are a separate policy.
-2. Bind the initial ZZZ identity once before sealing using `ActivationAssets.configureZZZ(token,codeHash,reviewHash)` after reviewing its exact runtime, decimals, transfer behavior and two independent USD sources. The deployed identity cannot be replaced. An issuer migration uses custody exit and a fresh deployment; old ownership/reward records are not erased.
+2. Bind the initial ZZZ identity once before sealing using `ActivationAssets.configureZZZ(token,codeHash,reviewHash)` after reviewing its exact runtime, decimals, transfer behavior and two independent USD sources. The deployed identity cannot be replaced. An issuer migration uses terminal collective holder return and a fresh deployment; old ownership/reward records are not erased.
 3. To stop either input, append its disabled `setAsset` policy; this stop requires no healthy token/feed. Re-enabling requires full review/validation. The helper cannot enable a third contribution currency.
 4. Current principal destinations remain native ETH/fixedZZZ only. A new execution venue does not admit another input or target pair. Pin its exact venue/code/prices, simulate the complete direct/native operation and verify captured contribution floors before admission. Optional royalty conversions have their separate routes and permissions. Pool/route reconfiguration does not reopen a disabled source.
 
-Current native accounting uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Only native ETH and the explicitly reviewed ZZZ identity may be user inputs. Actual ETH/ZZZ routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
+Current native accounting uses explicitly admitted ETH at `address(0)`, reviewed two-source USD pricing and exact call value. It is never an ERC20 approval target. Re-enabling either existing input does not admit a new LP or royalty currency. Only native ETH and the fixed reviewed ZZZ may be user inputs. Actual Vault venues, prices and preparation remain subject to [qualification](ACTIVATION_PREPARATION.md).
 
 ### Replace a swap route when market liquidity moves
 
-Read/review the new route, append it with `addRoute`, qualify it, switch the backend's selected route, and use `setRouteEnabled(oldId,false)` to stop the old route. Route contents/identities are immutable; do not overwrite one in a manifest under the old hash. There is no time delay. Concurrent user quotes may revert after disablement and must be rebuilt. Already mined operations cannot be undone.
+Choose the actual target first; there is no Entry3 `addRoute` call.
 
-To stop an input immediately, use `ActivationAssets.setAsset(token,false,expectedCodeHash,reviewHash)` with the exact ETH-zero or fixed-ZZZ token and nonzero review hash,; fresh Entry3 has no routes to disable. Disable paths deliberately avoid dependency calls needed for enabling; they can help when a token/feed is broken. Previously attached LP, shares and claims are not erased. Re-enabling requires valid current token/feed/code checks and new quotes. Pool configuration cannot silently re-enable an explicitly disabled source. See [Entry and source policy](ACTIVATION_ENTRY.md) and [routing](ACTIVATION_ROUTING.md).
+- **Vault balancing venue:** review/qualify the same-pair pool and its exact key,
+  runtime, prices, fees, depth and execution parameters; follow [execution pool
+  admission](#add-or-remove-an-execution-pool-after-sealing) and call
+  `Balancer.configureExecutionPools(bytes32[] pools,bytes32 reviewHash)` from
+  governance. The supplied list is the reviewed bounded list; an empty list
+  disables swaps, with no unsafe fallback. This does not migrate the LP.
+- **Earned LP or royalty conversion:** use that specific converter's
+  `addRoute(RoutePolicy)` or `addV4Route(Policy)`, qualify the returned immutable
+  route ID, then update the matching converter worker's selected route and
+  `setRouteEnabled(oldId,false)` when appropriate. Follow [typed conversion](TYPED_V4_ROUTES.md)
+  and the ledger's [LP](LP_ETH_SETTLEMENT.md) / [royalty](ROYALTY_SETTLEMENT.md) procedure.
+  Entry3 API source rows carry no route ID or Entry executor pin.
+
+Immediate governance authorization has no timelock. Chain policy setters are
+read dynamically only by matching reviewed consumers; a changed worker route or
+runtime/configuration requires the documented journal-preserving reviewed rollout.
+Old concurrent quotes can become invalid and need new review; a confirmed
+approval is not repeated blindly. Already mined operations cannot be undone.
+
+To stop an input immediately, use `ActivationAssets.setAsset(token,false,expectedCodeHash,reviewHash)` with the exact ETH-zero or fixed-ZZZ token and nonzero review hash; fresh Entry3 has no routes to disable. Disable paths deliberately avoid dependency calls needed for enabling; they can help when a token/feed is broken. Previously attached LP, shares and claims are not erased. Re-enabling requires valid current token/feed/code checks and new quotes. Pool configuration cannot silently re-enable an explicitly disabled source. See [Entry and source policy](ACTIVATION_ENTRY.md) and [routing](ACTIVATION_ROUTING.md).
 
 ## Pool admission and retirement
 
@@ -2147,8 +2181,8 @@ current production integration.
 | Randomness provider/lane/subscription/payment | Planned ProtocolPolicy rotation requires every draw finalized; pending requests cannot change or reroll. |
 | Canonical artwork base, module/helper implementations, core strategy/adapter identity | Fixed after sealing. Bounded policy/geometry changes are not a replacement algorithm or arbitrary proxy upgrade. |
 | Future activation/growth minima | ProtocolPolicy allows reviewed USD18 minima>=1USD, growth<=activation; defaults100/5USD. Stronger pool minima and marginal LP floors remain. A smaller minimum changes future participation economics; no deployment/test action is implied. |
-| Exceed normal10% loss ceilings or lower hybrid main below60% | No such configured path. Defaults2%/1%/3% loss; main floor may rise6000–9999bps or choose single mode. |
-| Redeem principal, reroll rarity, overwrite owners/reward balances, sweep liabilities | Not supported. Governance configuration is not permission to manufacture those operations. |
+| Exceed normal10% loss ceilings or lower hybrid main below60% | No ordinary configurable path. Defaults2%/1%/3%; main floor6000–9999bps or single mode. Separate paused-governance emergency manifests may explicitly bypass selected financial checks; they are not a way to raise normal caps and can lose nearly all principal. |
+| Holder withdrawal during normal operation, reroll rarity, overwrite owners/reward balances, sweep liabilities | Not supported. Governance terminal collective return is a separate irreversible procedure, not a holder-facing withdrawal or custody sweep. |
 | Add arbitrary pair conversion, hooks, chains, cross-chain canonical replacement or post-halt recovery | Not made functional just by adding an address. Complete missing design, source support, independent review and rehearsals before relying on it. |
 
 Future changes must preserve this distinction: what can be configured now, what requires new compatible code, what has actually been qualified, and what cannot be recovered. Do not describe a possible new deployment as a repair guaranteed to work with every already sealed predecessor.
@@ -2558,7 +2592,7 @@ A reviewHash is provenance, not an execution fingerprint or on-chain permission.
 
 Fresh direct mint calls `Vault.mintDormant(expectedMintPolicy)` with the exact
 current price; read Vault.mintPolicyFingerprint **before** the wallet review.
-Entry2 calls `executeReviewed(request,maximumLossBps,expectedContributionPolicy)`
+Direct Entry3/review-policy2 calls `executeReviewed(request,maximumLossBps,expectedContributionPolicy)`
 using ProtocolPolicy.entryFingerprint. Stale reviews or mid-call policy changes
 revert atomically. No local/public signer extension is included. Old Anvil selectors,
 services, transaction hashes and recovery codecs remain historical and unchanged.

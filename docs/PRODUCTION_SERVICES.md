@@ -1,6 +1,6 @@
 # Production service decisions
 
-Reviewed2026-10-29. This records required capabilities and actual selection limits;
+Reviewed2026-11-03. This records required capabilities and actual selection limits;
 [Todo](../TODO.md) alone owns status. **No production deployment is approved.**
 
 ## Dependency inventory
@@ -9,7 +9,7 @@ Reviewed2026-10-29. This records required capabilities and actual selection limi
 | --- | --- | --- |
 | ETH and fixedZZZ USD prices | Two independently reviewed sources per asset, exact decimals/original timestamps, source runtime/proxy/upgrade controls, age/round agreement 3%, sequencer policy. No qualified live pair or automatic fallback. | [Price security](PRICE_SECURITY.md), [dated references](../reports/price-reference-20261025/OBSERVATION.md) |
 | Optional Pyth reader | Immutable bounded price-ID/confidence/time/exponent reader is implemented. Actual product/updater/source independence and operating cost remain unqualified; reader code is not a live feed selection. | [Reader policy](PYTH_PRICE_SOURCE.md) |
-| Contribution/conversion markets | ETH/fixedZZZ only for user input. Review actual single-hop v3/v4 routes, depth/fees, exact LP placement and independent prices. Default 1% reward conversion needs cheaper actual routing than the selected pool's recorded effective fee. | [Routing](TYPED_V4_ROUTES.md), [pool](POOL_SELECTION.md), [preparation](ACTIVATION_PREPARATION.md) |
+| Contribution/conversion markets | Entry3 forwards ETH/fixedZZZ pair inputs directly. Review actual Vault balancing venues/depth/fees, exact LP placement and independent prices; separate earned-reward v3/v4 converters retain their own routes. Default 1% reward conversion needs cheaper actual routing than the selected pool's recorded effective fee. | [Routing](TYPED_V4_ROUTES.md), [pool](POOL_SELECTION.md), [preparation](ACTIVATION_PREPARATION.md) |
 | RPC/archive | Same-block/hash canonical reads, authentic complete logs, trace/simulation/gas capabilities, bounded latency, reorg and backup provider behavior. Read-only probe success is not independent production approval. | [RPC qualification](RPC_PREPARATION_QUALIFICATION.md), [history audit](HISTORY_AUDIT.md) |
 | Randomness | Exact original subscription-v2.5 two-word request, proof-verifying actual coordinator, immutable lane/subscription/payment policy, funded consumer, same-request recovery/no reroll. No qualified provider yet. | [Mint/provider qualification](MINT_INTEGRATION_QUALIFICATION.md) |
 | OpenSea | Intended primary mint gross buyer0.05ETH, recipient net after actual platform fee, gas separate; canonical buyer/NFT/reveal integration. Current direct mint does not implement this. Secondary listing support is different evidence. | [Marketplace qualification](MINT_INTEGRATION_QUALIFICATION.md) |

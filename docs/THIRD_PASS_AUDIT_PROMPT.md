@@ -1,5 +1,7 @@
 # Whole-project PoPL audit and improvement prompt
 
+Scope note: this page retains research or audit-methodology history. Current behavior, versions and operator actions are defined by [profile identities](POSITION_V6.md), [features/evidence](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md) and the [Operator manual](OPERATOR_MANUAL.md). Revalidate old numeric assumptions against those owners; this page is not deployment or execution approval.
+
 This is the canonical whole-project brief at its stable filename. The
 [current campaign](../reports/comprehensive-popl-20261029/REVIEW.md) records
 understanding, two sequential prompt critiques, implementation and evidence.

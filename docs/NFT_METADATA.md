@@ -1,10 +1,6 @@
 # NFT traits, royalties and live artwork
 
-Fresh accounting6 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
-After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
-rewards and future royalty eligibility. Direct payouts are separate from income;
-no holder principal withdrawal exists during normal operation. LP cannot reopen
-after exit starts. Historical deployments keep their original rules.
+Current [profile identities](POSITION_V6.md) and [holder-return rights](HOLDER_COLLECTIVE_EXIT.md) apply; historical deployments retain their own rules.
 
 
 ## Fixed royalty trait versus activation

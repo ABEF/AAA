@@ -53,7 +53,7 @@
           "id": "price-security",
           "status": "done",
           "title": "Dual-source USD checks and factual LP contribution security",
-          "text": "Undeployed pricing-V2 implementation requires two reviewed USD sources per priced asset. Entry freezes source/pair prices and contribution/venue limits before transfers/conversion; a fixed Oracle-created companion checks consistent NAV, conservative upper-input/lower-LP execution floors and unchanged final fingerprints/spot alongside exact physical LP/balance checks. Live source qualification and independent audit remain open. User-selected source disagreement tolerance is 3% (300 bps); the separate default 2% contribution execution floor still applies.",
+          "text": "Undeployed pricing-V2 implementation requires two reviewed USD sources per priced asset. Entry freezes source/pair prices and contribution/venue limits before source transfers and Vault balancing; a fixed Oracle-created companion checks consistent NAV, conservative upper-input/lower-LP execution floors and unchanged final fingerprints/spot alongside exact physical LP/balance checks. Live source qualification and independent audit remain open. User-selected source disagreement tolerance is 3% (300 bps); the separate default 2% contribution execution floor still applies.",
           "href": "docs/PRICE_SECURITY.md",
           "acceptance": [
             "[Implementation and source-scoped verification](reports/price-security/VERIFICATION.md), [internal review](reports/price-security/REVIEW.md): distinct sources/runtime pins/declared independence, valid rounds/decimals/ages, bounded disagreement and no single-source/spot/peg fallback. Declared independence and matching answers do not prove market/provider independence.",
@@ -236,7 +236,7 @@
           "id": "post-seal-configuration",
           "status": "progress",
           "title": "Keep operational settings configurable after sealing",
-          "text": "Fresh accounting6/ProtocolPolicy1/Portfolio2 implements bounded future mint/entry terms, separate idle/gas/display settings, planned VRF rotation after all old draws finalize, per-pool main-floor/gap and a reviewed buyback maximum. Defaults and fixed rights remain. Schema8 inventory/accounting6 readers and Entry2 policy-bound reviews are local; real economics/provider/operating/independent qualification stays open.",
+          "text": "Fresh accounting6/ProtocolPolicy1/Portfolio2 implements bounded future mint/entry terms, separate idle/gas/display settings, planned VRF rotation after all old draws finalize, per-pool main-floor/gap and a reviewed buyback maximum. Defaults and fixed rights remain. Schema9/20-helper inventory, accounting6 readers and direct Entry3/review-policy2 reviews are implemented in source; real economics/provider/operating/independent qualification stays open.",
           "href": "docs/POST_SEAL_POLICY.md#configuration-boundary",
           "acceptance": [
             "Inventory every fixed setting and setter. Preserve ETH/fixed-ZZZ source enable/disable, separate royalty-asset admission, reviewed route/feed/pool/role/range changes after sealing, exact authorization/events/bounds, dependency checks, pending-operation handling and canonical locks. No new contribution currency, post-seal ZZZ identity replacement or governance waiting period is introduced.",
@@ -254,8 +254,8 @@
         {
           "id": "typed-v4-conversion",
           "status": "done",
-          "title": "Typed v4 contribution and reward-conversion routes",
-          "text": "Parent-bound static hookless single-hop conversion is implemented for Entry and earned LP/royalty balances, with actual native settlement, exact prefunds/callback guards and explicit backend/keeper profiles. Real market, feed and operating qualification remain under the existing input/service tasks.",
+          "title": "Typed v4 earned LP and royalty conversion routes",
+          "text": "Parent-bound static hookless single-hop conversion remains implemented for already-earned LP/royalty balances, with actual native settlement, exact prefund/callback guards and explicit converter/keeper profiles. Fresh Entry3 has no preliminary conversion routes or executor child; Vault balancing is a separate reviewed path. Actual market, feed and operating qualification remain open under the linked settlement/service tasks.",
           "href": "docs/TYPED_V4_ROUTES.md",
           "acceptance": [
             "[Scoped evidence](reports/typed-v4-routes/VERIFICATION.md) separates actual installed-core conversion and real Vault/ledger flows from LP/feed/VRF/provider substitutes. No arbitrary executor, hooks, sweep, public signing or live route approval."
@@ -277,7 +277,7 @@
           "id": "reviewed-contribution-policy",
           "status": "progress",
           "title": "Qualify caller-bound activation review policy",
-          "text": "Fresh reviewedEntry2/Pricing bind both caller loss maximum and exact scoped entry fingerprint (minima/idle/revision), with matching accounting6 read/unsigned preparation. Stale/callback-mutated terms fail; actual website/deployment/route/provider qualification remains through poplint, with public signing disabled and old profiles preserved.",
+          "text": "Fresh direct Entry3/review-policy2/Pricing2 bind both caller loss maximum and exact scoped entry fingerprint (minima/idle/revision), with matching accounting6 read/unsigned preparation. Stale/callback-mutated terms fail; actual website/deployment/route/provider qualification remains through poplint, with public signing disabled and old profiles preserved.",
           "href": "docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding",
           "acceptance": [
             "[Implementation and scoped verification](reports/comprehensive-improvement-20261025/VERIFICATION.md): executeReviewed(Request,uint16), 0..1000bps caller maximum, captured governed cap <= caller maximum before pulls/conversion; tighter governance may apply, wider policy rejects. Existing final callback/price/physical-LP checks remain.",
@@ -390,7 +390,7 @@
           "status": "done",
           "title": "Bounded optional main-plus-residual LP adjustment",
           "href": "docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md",
-          "text": "Implemented locally in explicit accounting6: default main-only, optional active main>=60% and one residual<=40%, latest half-side width default5000bps,85%centre-to-boundary trigger,600/240/300sampled confirmation,60–300service jitter and hard initial12hours. Both-leg accounting/recovery/readers/keeper/schema8 are integrated; actual release qualification remains separate.",
+          "text": "Implemented locally in explicit accounting6: default main-only, optional active main>=60% and one residual<=40%, latest half-side width default5000bps,85%centre-to-boundary trigger,600/240/300sampled confirmation,60–300service jitter and hard initial12hours. Both-leg accounting/recovery/readers/keeper/schema9 are integrated; actual release qualification remains separate.",
           "acceptance": [
             "[Source implementation and evidence](reports/optional-portfolio-20261030/VERIFICATION.md) retain exact stage pins, failures and normal compiler limits. Actual local v4 execution covers two-leg mint/harvest/merge/growth/entrant/reward/transfer/parking/move/holder return and rollback. Policy/accounting/API/keeper checks are distinct source scopes, not a fresh full regression or independent approval.",
             "Both physical NFTs remain Vault-owned; at most one main plus one residual per bucket. Aggregate NAV, metadata, share pricing, fees and recovery include both; main-only entrants do not spend incumbent inventory or reset geometry/clocks. Canonical parked V6 requires zero live residuals.",
@@ -483,7 +483,8 @@
             "Actual selected-pool fork exposed an unfillable100-growth swap floor in the captured post-entry state: output was below the reviewed minimum, so the transaction reverted. The [witness](reports/current-pool-fork-20261026/growth-slippage-witness.json) and negative rollback case preserve this limitation. Native100activation/5growth and ZZZ100activation pass under the separately stated5pool minimum, without lowering the global100activation/5growth rules. Qualify actual quotes/independent prices/market state; full simulation must reject an unfillable review instead of widening limits or sending a knowingly failing wallet transaction.",
             "[October31 audit](reports/day-audit-20261031/REVIEW.md): actual ActivationConfig.verify passes/authenticates the LP-routing2 typed executor, not merely its configured address. Complete-graph regression rejects missing/wrong/historical helper/runtime/parent bindings. Actual provider tracing, route execution, wallet/site acceptance and public-signing approval remain separate gates.",
             "[Source6 adaptable policy](docs/ADAPTABLE_POLICY.md) adds scoped runtime/policy observation, exact fresh mint/Entry2 expected fingerprints, per-pool Portfolio2 allocation/gap and captured idle/maintenance controls. [Verification](reports/adaptable-policy-20261031/VERIFICATION.md) is local and source-scoped; real provider/market/gas/worker/site/release qualification remains open. Preserve historical profiles/receipts and fixed economic rights.",
-            "[Direct Entry3 verification](reports/direct-entry-v3-20261103/VERIFICATION.md) covers seven-field encoding, exact helper/version/runtime checks, trace selector binding and historical ABI rejection.20 distinct selected Entry behaviors plus8 actual-core regressions succeed across recorded stages;314 selected Python methods pass across two source scopes. These counts do not establish current full-suite, actual-provider, website or production qualification."
+            "[Direct Entry3 verification](reports/direct-entry-v3-20261103/VERIFICATION.md) covers seven-field encoding, exact helper/version/runtime checks, trace selector binding and historical ABI rejection.20 distinct selected Entry behaviors plus8 actual-core regressions succeed across recorded stages;314 selected Python methods pass across two source scopes. These counts do not establish current full-suite, actual-provider, website or production qualification.",
+            "The maintained [operator route procedure](docs/OPERATOR_MANUAL.md#activation-assets-and-routes) no longer instructs Entry3 addRoute calls. Direct ETH/ZZZ admission, Vault balancing venues and already-earned reward conversion are separate controls. Matching source7 website/config/trace-provider qualification remains open."
           ]
         },
         {
@@ -576,7 +577,7 @@
           "id": "native-production-preflight",
           "status": "progress",
           "title": "Qualify the accounting6 production inventory and preflight",
-          "text": "Fresh schema8 validates accounting6/ProtocolPolicy1/Portfolio2,21helper bindings and both physical LP legs; schemas7/6 remain explicit historical inspection. Actual source/runtime/address/policy observations, provider services and deployment qualification remain open.",
+          "text": "Fresh schema9 validates accounting6/ProtocolPolicy1/Portfolio2/direct Entry3,20helper bindings and both physical LP legs. Historical schema8/routed Entry2 and schemas7/6 require explicit inspection profiles. Actual source/runtime/address/policy observations, provider services and deployment qualification remain open.",
           "href": "docs/PRODUCTION_PREFLIGHT.md",
           "acceptance": [
             "Observe actual fresh schema8/accounting6/ProtocolPolicy1/Portfolio2,17modules/21helpers, exact chain/genesis/final block/time, reviewed code hashes/versions and reciprocal sealed Access/parent/core/periphery bindings. Scoped policy fingerprints, actual dynamic terms, both physical legs and exact canonicalV6 admission must match. Distinct read/activation/inventory schemas are not interchangeable. [Preflight](docs/PRODUCTION_PREFLIGHT.md).",
@@ -604,7 +605,8 @@
             "[Keeper coordination](reports/keeper-coordination-20261029/VERIFICATION.md): Source-only bounded LP report distinguishes timing waits, known blockers, unconfigured and unavailable data; fixed simulations never fabricate a cause from opaque RPC failure. Qualify actual host/provider/runtime/gas and add remaining typed adapters before calling it a universal report.",
             "[November2 report correction](reports/improvement-audit-20261102/REVIEW.md): maintenance_idle_policy_unavailable explicitly prevents an eligible/simulated principal result when the required current idle ceiling could not be read, while independently valid harvest is evaluated. This adds no scheduling, signing, write or financial authority.",
             "[LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md) corrects the previous independence claim: Manager/child ticks forward to the same packed PosM source. Preserve custody/shape/coherence checks for both legs and price-outage availability; expose geometry_sources_independent:false. Five focused backend methods pass. This does not prove provider honesty or an independent stored ledger; matching reader rollout and broader operation adapters remain open.",
-            "[Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): The action/output matrix explains each major write receipt, post-state and fault boundary. It is reviewed documentation, not implementation of missing automated operation adapters. Compounded reserve-release amounts are not total actual LP deployed; API unavailability after confirmation must not trigger a duplicate action."
+            "[Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): The action/output matrix explains each major write receipt, post-state and fault boundary. It is reviewed documentation, not implementation of missing automated operation adapters. Compounded reserve-release amounts are not total actual LP deployed; API unavailability after confirmation must not trigger a duplicate action.",
+            "Operator guidance now distinguishes direct Entry3 input admission, Balancer.configureExecutionPools and separate LP/royalty converter route methods. A reviewHash is offline provenance, not an executed simulation; ordinary caps and explicit paused-governance emergency bypass remain separate. See [consolidated operator corrections](reports/project-consolidation-20261103/REVIEW.md). Actual live planning/simulation, source rollout and operating acceptance stay open."
           ]
         }
       ]
@@ -1152,7 +1154,8 @@
             "[Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): Three backend availability/recovery gaps are repaired without Solidity/economic changes. Also review one admitted token/venue failing while both LP legs need close/return: exact atomic accounting can retain backing yet movement can remain unavailable. Qualify actual issuer/transfer/periphery behavior and documented incident paths; no arbitrary recipient/executor/sweep is approved.",
             "[Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): Three-report reconciliation preserves both-leg accounting/atomic safeguards and all real service, market, history and independent-review gates. No Solidity or economic policy changed.",
             "[November3 audit](reports/smart-contract-lp-audit-20261103/VERIFICATION.md) adds two new local actual-core recovery journeys and current compiler applicability review without changing production Solidity. It establishes no new exploitable defect and no blanket absence proof. Exact source-bound prior43size gates/475static records are reused; actual services/providers, maximum-holder gas, governance/emergency operations and independent audit stay open.",
-            "[Direct Entry3 campaign](reports/direct-entry-v3-20261103/VERIFICATION.md) retains owner/input/approval/callback/captured-price/rollback and transfer-right checks while removing only preliminary conversion. Fixed event wire preserves contribution history. Historical Entry2/schema8 remains inspection-only through explicit tools; source7 website/runtime/provider rollout is still open."
+            "[Direct Entry3 campaign](reports/direct-entry-v3-20261103/VERIFICATION.md) retains owner/input/approval/callback/captured-price/rollback and transfer-right checks while removing only preliminary conversion. Fixed event wire preserves contribution history. Historical Entry2/schema8 remains inspection-only through explicit tools; source7 website/runtime/provider rollout is still open.",
+            "[Documentation/findings reconciliation](reports/project-consolidation-20261103/VERIFICATION.md) checks current profile, callable/Todo/link consistency and exact unchanged source/evidence. It does not rerun unchanged contract suites, change economic rights or close actual host/provider/marketplace/independent security gates."
           ]
         },
         {
@@ -1160,7 +1163,7 @@
           "status": "done",
           "title": "Reconcile historical findings against the current implementation",
           "href": "reports/historical-reconciliation-completion-20261029/REVIEW.md",
-          "text": "Completed inventory-scoped reconciliation of352 original report narratives/91current guides into235 overlapping material groups. Implemented strict frontend/indexer CLI admission, preserved original reports and corrected current provenance/cadence/static-analysis guidance.15 new affected Python methods pass; external qualification and independent audit remain open.",
+          "text": "Historical report findings are reconciled with the current accounting6/direct Entry3 release. One maintained findings overview separates current mechanisms, superseded requirements, accepted risks and remaining qualification; original source-scoped reports are preserved. This documentation closure does not close independent audit or live-service requirements.",
           "acceptance": [
             "Every original report narrative is accounted in the [reading inventory](reports/historical-reconciliation-completion-20261029/READING_INVENTORY.json); material groups carry original sections, current mechanisms, dispositions and stable owning tasks in the [finding ledger](reports/historical-reconciliation-completion-20261029/FINDINGS.json).235groups are not235bugs or tests.",
             "Original report bytes/failures/skips/revisions and both published partial-checkpoint reports remain unchanged, apart from the navigation index. Two local-only draft reports are inventoried but not published as originals. Retired bridges/creator inboxes/external custody stay historical; old deployment codecs remain.",
@@ -1168,7 +1171,8 @@
             "Strict frontend/indexer configuration/request object admission precedes resource creation. Current procedures explain fixed errors, matching reviewed source rollout,240-second cadence versus selected300-second maximum and actual claim-preparation scope; no financial or timing policy changed.",
             "Reconciliation complete does not mean every risk solved. Feeds/routes/VRF, authorities, OpenSea, fresh4 browser/services, target gas/economics, real operating rehearsals and independent audit remain in their owning tasks. Deferred early observations/idle scheduling/no-swap exception/Entry-v3 cleanup remain explicit proposals rather than silently implemented features.",
             "[Ten-report consolidation](reports/ten-audit-consolidation-20261102/REVIEW.md) expands the previous five-report reconciliation into75 grouped dispositions linked to existing task owners.222 original/previous-consolidation files stay byte-identical;172 checked artifact entries match. Earlier proposals already implemented (cooldown observation enrollment/current source6 static review) are superseded, not resold as work. This is not ten fresh audits,352 new readings or a full-suite/operating approval.",
-            "[LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Preserve2568 historical report hashes and four unrelated dirty files. Current review explicitly supersedes the ten-report independence claim and ordinary candidate status; old report bytes/scopes remain intact. Current guides, operator, callable reference and task ledger reflect the correction. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md)."
+            "[LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Preserve2568 historical report hashes and four unrelated dirty files. Current review explicitly supersedes the ten-report independence claim and ordinary candidate status; old report bytes/scopes remain intact. Current guides, operator, callable reference and task ledger reflect the correction. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).",
+            "[Current consolidation](reports/project-consolidation-20261103/REVIEW.md) inventories401baseline report Markdown files, preserves351prior reading scopes and indexes49later narratives.310overlapping imported finding rows plus5later explicit findings map into22current topics with original IDs/JSON pointers and existing task ownership. It is documentation/source-applicability work, not310new bugs/tests or a fresh security audit. [Current findings](docs/AUDIT_FINDINGS.md) supersede stale active-guide conclusions; original reports remain byte-preserved."
           ]
         }
       ]
@@ -1362,7 +1366,7 @@
           "id": "destination-slots",
           "status": "progress",
           "title": "Qualify destination LP capacity and contribution cutover",
-          "text": "Permanent bucket reservations and one contribution pool at a time are implemented. Qualify actual destination LP, available capacity, preserved bucket shares and deliberate contribution/input-route switches after movement.",
+          "text": "Permanent bucket reservations and one contribution pool at a time are implemented. Qualify actual destination LP, available capacity, preserved bucket shares and deliberate contribution-destination cutover, direct Entry source policies and reviewed Vault balancing venues after movement.",
           "href": "docs/GOVERNED_CUSTODY_HANDOFF.md",
           "acceptance": [
             "Before collective exit, use reviewed native ETH/fixedZZZ same-pair moves or pause-only parking/resume. Historical bucket reservations retain their bounds. Collective holder return is terminal and creates no operator destination slot or funded return/completion route. [Procedure](docs/HOLDER_COLLECTIVE_EXIT.md).",

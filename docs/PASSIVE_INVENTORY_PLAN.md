@@ -1,5 +1,7 @@
 # Bounded passive inventory research and design rationale
 
+Scope note: this page retains research or audit-methodology history. Current behavior, versions and operator actions are defined by [profile identities](POSITION_V6.md), [features/evidence](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md) and the [Operator manual](OPERATOR_MANUAL.md). Revalidate old numeric assumptions against those owners; this page is not deployment or execution approval.
+
 This page preserves the earlier research/design discussion; its unresolved choices
 and no-swap examples are historical alternatives, not current implementation.
 The approved [implementation plan](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md),

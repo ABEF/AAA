@@ -1,6 +1,6 @@
 # Documentation map
 
-Reviewed2026-10-31. [README](../README.md) explains the project; [sole Todo](../TODO.md)
+Reviewed2026-11-03. [README](../README.md) explains the project; [sole Todo](../TODO.md)
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**
 
@@ -12,11 +12,12 @@ preparation and scoped verification. The earlier source audit retains its
 three corrections, normal gates and static-triage scope. The former portfolio guide is a compatibility
 pointer; all maintained management procedures are in the Operator manual.
 
-Start with the [optional portfolio implementation](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md),
-[profile6](POSITION_V6.md), [current management review](../reports/residual-operations-20261031/REVIEW.md)
-and [verification](../reports/residual-operations-20261031/VERIFICATION.md).
+Start with [current profile identities](POSITION_V6.md),
+[features/evidence](IMPLEMENTATION_STATUS.md), [consolidated findings](AUDIT_FINDINGS.md)
+and the [operator manual](OPERATOR_MANUAL.md). The optional portfolio plan and
+original management reviews retain their exact implementation history.
 Default single main, optional main/residual, explicit fresh accounting6 capabilities
-and schema9 inventory are source-only; historical profiles and existing sites,
+and schema9/direct Entry3 inventory are source-only; historical profiles and existing sites,
 workers, Anvil and journals retain their meanings.
 
 The [research plan](PASSIVE_INVENTORY_PLAN.md) explains earlier alternatives and
@@ -61,7 +62,7 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | Topic | Scope |
 | --- | --- |
 | Demo versus integration release targets | [Environment map](SITE_ENVIRONMENTS.md): popldemo remains the existing simulation; served poplint has its own unconfigured current3 build/root and no demo fallback. |
-| Website read/review compatibility | [Served current3 and fresh4 gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting6/custody4 backend reads/unsigned preparation are implemented locally; matching website consumption remains open; public signing remains disabled. |
+| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting6/custody4 backend reads/unsigned preparation are implemented in source with direct Entry3; matching website consumption remains open; public signing remains disabled. |
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 local build](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 
@@ -82,8 +83,8 @@ from accepted limits and externally blocked qualification.
 | Actual service/deployment qualification | [Service decisions](PRODUCTION_SERVICES.md), [address inventory](DEPLOYMENT_ADDRESSES.md), [versioned preflight](PRODUCTION_PREFLIGHT.md), [RPC probes](RPC_PREPARATION_QUALIFICATION.md) |
 | Minting, randomness and content hosting | [OpenSea/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md), [artwork bundle/publication](ARTWORK_PUBLICATION.md) |
 | Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [frozen review export](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
-| Latest confirmation follow-up | [Review](../reports/confirmation-followup-20261028/REVIEW.md), [verification](../reports/confirmation-followup-20261028/VERIFICATION.md): keeper resets, physical LP/pool binding, policy health and custody totals; no Solidity or operating rollout. |
-| Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [latest fee-integrity evidence](../reports/backend-remediation-20261026/VERIFICATION.md) |
+| Current consolidated findings | [Mechanisms, historical corrections and remaining limits](AUDIT_FINDINGS.md); task status stays in the sole Todo. |
+| Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [current evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) and [source-scoped historical catalogue](../reports/project-consolidation-20261103/REPORT_CATALOG.md) |
 
 ## Historical references
 

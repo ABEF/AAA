@@ -5,7 +5,12 @@ undeployed; local/staging deployments are separate fixtures. No public signing o
 
 ## Repeatable isolated rehearsal
 
-Fresh rehearsal/new-only staging setup now selects explicit accounting3/fee1,
+This fixture is historical: the fresh release is accounting6/Entry3/schema9.
+Passing it does not qualify the fresh helper graph or authorize replacing an
+existing service/journal. Current operating requirements remain in [operations](OPERATIONS.md)
+and [the release record](RELEASE_CHECKLIST.md).
+
+The historical rehearsal setup below selects explicit accounting3/fee1,
 8word native-zero fixture. Old installed services retain their old code/config
 and are not upgraded by this source release. The updated fixture's actual getters
 and current Keeper reader pass disposable-local checks; its full Unix process

@@ -220,17 +220,17 @@ verified at Entry-to-Vault and Vault-to-manager boundaries, not only outside.
 | Field | Fresh source7/direct Entry3 contents |
 | --- | --- |
 | `schema` | Integer1. Missing/unknown/boolean versions and extra fields fail closed. |
-| `routing_version`, `pricing_version`, `review_policy_version` | Explicit integers2,2,2. Reviewed Entry2 calldata includes `expectedContributionPolicy`. |
+| `routing_version`, `pricing_version`, `review_policy_version` | Explicit integers3,2,2. Direct Entry3/review-policy2 calldata includes `expectedContributionPolicy`. |
 | `lp_routing_version` | Explicit2: authenticate Manager/Balancer, arithmetic and typed physical execution helpers and entrant-capped trace. |
 | `portfolio_version` | Explicit2: authenticate PortfolioPolicy2 and configured main floor/gap with both physical legs. |
 | `execution_quality_version` | Explicit1: authenticate Strategy ownership, additional-loss cap/MAX and monotonic revision. |
 | `maintenance_policy_version` | Explicit3: configured85%-of-centre-to-boundary physical/reference condition or deliberate operator geometry update, with Strategy3/Budget4. |
 | `rebalance_confirmation_version` | Explicit3: pinned matching confirmation child, range1/maintenance3/quality1, sampled600-second window/strict300-second maximum gap as selected policy; actual values are observed, not invented defaults. |
 | `range_policy_version`, `range_policies` | Explicit1 plus a required list of `{pool_id,orientation,keeper}` covering every source pool. Manual ZZZ-in-ETH orientation and exact optional keeper policy are reviewed separately. |
-| `contracts` | Exactly18 roles, each `{address,code_hash}`: `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `v4_executor`, `contribution_pricing`, `balancing_router`, `portfolio_policy`, `lp_balance_math`, `lp_position_executor`, `protocol_policy`, `rebalance_confirmation`. Shared pins must equal the parent read configuration. |
+| `contracts` | Exactly17 roles, each `{address,code_hash}`: `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `contribution_pricing`, `balancing_router`, `portfolio_policy`, `lp_balance_math`, `lp_position_executor`, `protocol_policy`, `rebalance_confirmation`. Shared pins must equal the parent read configuration. |
 | `tokens` |2..33 reviewed currency descriptors, at most32 ERC20s plus ETH. Fields: `address`, `code_hash`, `decimals`, `price_policy`; original input, pair currencies and required historical backing must be covered. This inventory does not admit new contribution inputs. `price_policy` has `policy_id`, `ordinal`, `policy`; policy fields are `token`, `primary`, `secondary`, `maxDeviationBps`, `assetDecimals`, `reviewHash`. Each source has `source`, `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`; decimals0..18 and age1..86400seconds. Native code hash is null/decimals18; no single-feed fallback. |
 | `dependencies` |1..64 `{address,code_hash}` entries covering PositionManager, PoolManager, StateView, Permit2 and every applicable conversion router/factory/pool, sequencer, implementation or other reviewed dependency. The four venue pins must equal the parent's exact dependencies. |
-| `sources` |1..64 `{pool_id,source_asset,route_id,asset_policy_id,route_kind}` entries; one route per input/pool. Kind0 direct,1 v3,2 v4. Inputs must contain only native ETH and exactly the fixed reviewed ZZZ. Zero route is direct; nonzero native-source conversion requires v4. |
+| `sources` |1..64 `{pool_id,source_asset,asset_policy_id}` entries, unique per input/pool. Only native ETH and the fixed reviewed ZZZ are sources and already pair currencies. No route_id/route_kind fields or Entry executor pin are accepted; Vault balancing is separate. |
 | `sequencer` | `{address,policy_id}` exactly matching Oracle. Explicit zero/zero only when that absence was reviewed; no implicit omission. Nonzero sequencer needs its dependency code pin. |
 | `call_pins` | Up to128 `{target,data,expected}` exact getter checks on reviewed contracts, tokens, feeds or dependencies. Include applicable implementation/admin policy. |
 | `storage_pins` | Up to64 `{target,slot,expected}` exact32-byte storage checks. Include applicable proxy implementation/admin/beacon slots and implementation code pins. |
@@ -337,15 +337,16 @@ and [hash-selected debug calls](https://geth.ethereum.org/docs/interacting-with-
 Local compatibility evidence is in the [scoped verification](../reports/activation-preparation/VERIFICATION.md);
 it does not qualify a hosted production RPC or an actual ETH/ZZZ route. Current
 feature evidence and remaining gates are maintained in the [feature reference](IMPLEMENTATION_STATUS.md)
-and [sole Todo](../TODO.md). The fresh confirmation/schema6 additions have
-[separate scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md);
-they do not requalify those historical providers or the served poplint artifact.
+and [sole Todo](../TODO.md). The older confirmation/schema6 additions have
+[historical scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+Use [Entry3 evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) for the
+fresh source profile; neither record qualifies actual providers or upgrades poplint.
 
 ## Accounting6 policy binding
 
 Projection requires protocol_policy_version1 and its reviewed helper/runtime.
 The activation subsection pins the same helper but does not accept a duplicate
-protocol_policy_version key. Entry2 calldata includes the exact captured
+protocol_policy_version key. Direct Entry3/review-policy2 calldata includes the exact captured
 entryFingerprint after the maximum loss field; source minima and entrant idle cap
 are dynamic at the pinned block. Stale policy or mid-call changes revert; no
 legacy Entry selector is substituted. [Policy semantics](ADAPTABLE_POLICY.md).

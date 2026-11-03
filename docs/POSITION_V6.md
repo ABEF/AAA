@@ -43,3 +43,20 @@ shape: source/destination must support policy commitments and visual-threshold
 compatibility before migration starts. Old profiles and receipt recovery remain
 explicitly historical. There is no automatic deployment, journal migration,
 public signing, site rollout or readiness approval.
+
+## Version names are different boundaries
+
+| Name | Current meaning |
+| --- | --- |
+| Accounting6 / PositionV6 | Eight-word local Position and current policy/portfolio-aware accounting semantics; not a deployed instance. |
+| Entry routing3 | Seven-field direct ETH/ZZZ Request; no pre-Vault conversion. Review-policy2 and pricing2 remain separate. |
+| LP routing2 | Vault balancing/router/math/typed physical-executor semantics; not Entry routing. |
+| Inventory schema9 | Fresh17module/20helper release observation. Schema8 keeps the routed Entry2 graph for historical inspection only. |
+| Canonical V6 | Explicit same-chain handoff schema and matching policy/backing rules; not permission to import an arbitrary old runtime. |
+| Read API schema2 / activation config schema1 | Existing envelope/config schema families with separately explicit capability versions and runtime pins. |
+| Source7 | Shorthand for this fresh direct Entry3 source generation; there is no ACCOUNTING_VERSION7 implied. |
+| Served current3 | Older separate poplint website reader/unsigned profile. It is not the current contract generation or a source7 rollout. |
+
+Use exact getters, code/config/dependency hashes and the [current preflight](PRODUCTION_PREFLIGHT.md),
+not a shared numeric suffix, to establish compatibility. [Current findings](AUDIT_FINDINGS.md)
+and [environment map](SITE_ENVIRONMENTS.md) explain evidence and serving boundaries.

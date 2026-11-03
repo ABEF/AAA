@@ -23,7 +23,7 @@ handoff remains pre-exit only and requires no live residual during parked export
 
 Schema9 explicitly requires accounting6, custody4, governance2, fee intake1,
 Strategy maintenance3, confirmation3, portfolio2, Budget compound4, emergency2,
-LP routing2, quality1, Entry routing3, pricing2 and reviewed Entry2. A matching
+LP routing2, quality1, Entry routing3, pricing2 and entry-review-policy2. A matching
 canonical V6 wire does not make an old accounting profile current. Unknown,
 missing, boolean and inconsistent versions fail closed.
 

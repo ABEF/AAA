@@ -24,6 +24,10 @@ and independent audit remain open; no deployment or service rollout occurred.
 
 ## Project navigation
 
+[Consolidated audit findings](docs/AUDIT_FINDINGS.md) explains past findings against
+the current code; [the report map](reports/README.md) separates current evidence
+from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
+
 | Purpose | Start here |
 | --- | --- |
 | Remaining work | **[Sole Project Todo](TODO.md)**, beside the [feature/evidence reference](docs/IMPLEMENTATION_STATUS.md) |
@@ -176,10 +180,15 @@ Host restart, RPC inclusion, gas and writer/checker rollout remain qualification
 
 ### Find the relevant evidence
 
-The [current verification record](reports/adaptable-policy-20261031/VERIFICATION.md)
-separates actual local v4 execution, policy/accounting and keeper/API checks,
-failed attempts, source stages and normal compiler limits. Older reports retain
-their original pins; their counts are not a current full-regression pass.
+| Need | Reference |
+| --- | --- |
+| Current capabilities, source pins and limits | [Feature/evidence reference](docs/IMPLEMENTATION_STATUS.md), [Entry3 verification](reports/direct-entry-v3-20261103/VERIFICATION.md) |
+| Historical findings applied to the current code | [Consolidated findings](docs/AUDIT_FINDINGS.md), [report map](reports/README.md) |
+| Exact management action, inputs, stop/restart and recovery | [Operator manual](docs/OPERATOR_MANUAL.md), [callable reference](docs/CONTRACT_FUNCTIONS.md) |
+| What remains and final approval | [Sole Todo](TODO.md), [roadmap](docs/ROADMAP.md), [release record](docs/RELEASE_CHECKLIST.md) |
+
+Local checks, scoped source review and documentation reconciliation do not imply
+published CI, target-chain operation, independent audit or production approval.
 
 ### Production approval
 

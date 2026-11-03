@@ -1,9 +1,9 @@
-# Served current3 website profile and fresh6 boundary
+# Served current3 website profile and fresh contract boundary
 
 The separately served [poplint integration target](SITE_ENVIRONMENTS.md) uses the
 explicit current3 reader/unsigned-review profile below. Its reviewed deployment
 configuration remains absent. The fresh contract candidate is now
-[accounting6/custody4/portfolio2/canonical V6](POSITION_V6.md), which this website profile
+[accounting6/custody4/Portfolio2/direct Entry3/schema9](POSITION_V6.md), which this website profile
 does not support. Neither source publication nor changing a manifest's version
 upgrades the served build, a schema1/native2 deployment or an existing journal.
 Public signing remains disabled.

@@ -9,7 +9,7 @@ unavailable, and the shared signer remains Anvil-only.
 | Profile | Scope |
 | --- | --- |
 | Historical schema 1 | Wrapped-asset/single-feed local deployments, original 1% contribution policy and original journals |
-| Historical schema2/native2 | Accounting2, dual pricing2, routing2 and reviewed Entry2; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
+| Historical schema2/native2 | Accounting2, dual pricing2, routing2 and review-policy1; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
 | Served schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified |
 | Fresh accounting6/custody4/portfolio2/canonical V6 contracts | Backend read/unsigned adapters authenticate both physical legs and full helper/core graph. A compatible deployed website consumer is still pending; add/review its explicit profile before connecting these contracts, never relabel schema3 or old journals |
 

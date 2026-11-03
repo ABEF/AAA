@@ -1,0 +1,27 @@
+{
+  "scope": "Documentation/schema/provenance QA only; no contract suite, actual RPC, service, signer or wallet execution. Offline existing fixture supplies dummy addresses/runtime pins, not a production configuration.",
+  "documented_versions": [
+    3,
+    2,
+    2
+  ],
+  "documented_activation_contract_roles": 17,
+  "documented_source_fields": [
+    "asset_policy_id",
+    "pool_id",
+    "source_asset"
+  ],
+  "constructor_accepts_documented_current_shape_without_rpc": true,
+  "direct_entry_fields": [
+    "nftId",
+    "poolId",
+    "sourceAsset",
+    "amountIn",
+    "minimumLiquidity",
+    "deadline",
+    "increase"
+  ],
+  "original_finding_pointer_checks": 310,
+  "new_contract_tests": 0,
+  "changed_runtime_code": false
+}

@@ -107,3 +107,6 @@ reports/keeper-coordination-20261029/*.log whitespace=cr-at-eol,-blank-at-eol,-b
 
 # Preserve exact direct Entry3 verification receipts.
 reports/direct-entry-v3-20261103/** -text whitespace=cr-at-eol
+
+# Preserve exact current-documentation reconciliation receipts.
+reports/project-consolidation-20261103/** -text whitespace=cr-at-eol

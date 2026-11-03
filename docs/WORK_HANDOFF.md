@@ -1,168 +1,69 @@
 # Work handoff
 
-Reviewed3November2026, Europe/Paris. Read [instructions](../AGENTS.md),
-[context](../PROJECT_CONTEXT.md), [README](../README.md), [sole Todo](../TODO.md)
-and the relevant [operator procedure](OPERATOR_MANUAL.md).
+Reviewed3November2026. Current contract-source base is main
+`3f879da74a3573ffde4578482835b24a73192930`; publication status must be verified
+against actual local/remote Git heads. Read [instructions](../AGENTS.md),
+[context](../PROJECT_CONTEXT.md), [README](../README.md), [sole Todo](../TODO.md),
+[findings](AUDIT_FINDINGS.md) and the relevant [operator procedure](OPERATOR_MANUAL.md).
 
 ## Current source and preserved environments
 
-The earlier source6 candidate used [accounting6](POSITION_V6.md), ProtocolPolicy1,
-Portfolio2, Entry-routing2/review2, maintenance3/confirmation3/compound4,
-custody4/emergency2/LP-routing2, schema8 inventory and canonicalV6. Fresh source7
-uses schema9/20 helpers and direct Entry3 over the same accounting6/portfolio2
-wire; historical schema8 remains separate. No Entry conversion child exists.
-[Policy controls](ADAPTABLE_POLICY.md) and [exact operator inputs](OPERATOR_MANUAL.md#future-operating-settings)
-explain future mint/entry terms, scoped idle/gas/display settings, drained VRF
-rotation, per-pool main allocation/gap and reviewed buyback maximum.
+[Accounting6 profile](POSITION_V6.md), direct Entry3/review-policy2/pricing2,
+ProtocolPolicy1/Portfolio2, maintenance3/confirmation3/compound4/custody4/emergency2/
+LP-routing2; schema9 inventory17modules/20helpers. Same eight-word Position and
+canonical V6 do not identify runtime compatibility. No Entry conversion child,
+route catalogue or receiver remains. Separate earned-reward converters stay.
 
-Defaults remain0.05ETH direct mint,100USD activation/5USD growth,60%minimum main,
-half-side residual with one-spacing gap and existing loss/gas settings. Main floor
-may rise6000–9999bps; lowering below60% was not authorized. Fixed ETH/ZZZ,80/10/5/5,
-rarity weights, original ownership/rewards/backing and terminal holder return remain.
-Fresh reviews bind exact scoped policy; callback changes cannot weaken them.
+Default single main or optional one residual in the same ETH/fixed-ZZZ pool;
+entrant-only main growth and both-leg accounting remain. Normal600/240/300
+confirmation,85% threshold, initial12hours and60–300jitter remain. Hourly harvest
+is separate from compound/burn/claim. See current context/manual for all defaults
+and governed bounds; do not reconstruct settings from old audit prose.
 
-No deployment, sealing, service/site/Anvil/journal/signing or heartbeat change.
-Existing Anvil8902 and its NFTs/LP/balances/transaction recovery remain untouched.
-Popldemo keeps its simulation; poplint keeps the separately served current3
-read/unsigned build. Source7 is not an upgrade to either. Public DEPLOYMENT stays
-null and browser signing Anvil-only. The user-paused heartbeat stays paused.
+No deployment, sealing, site/service/Anvil/journal/signing/heartbeat change.
+Keep Anvil8902 and its NFTs/LP/balances/recovery records. Popldemo remains its
+simulation; poplint remains separately served current3/read-and-prepare, not the
+fresh source7 consumer. DEPLOYMENT null, browser signer Anvil-only, heartbeat paused.
 
 ## Evidence to reuse, with limits
 
-[Current verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
-binds52 production sources and31 dependencies to normal-final-a8e7dc7cc5:43 normal
-EIP170/EIP3860 gates, unchanged0.8.26/Cancun/viaIR/optimizer1/Yulfalse.
-Balancer24216runtime(360margin), Vault23941(635), Budget24339(237), Migration24556(20).
-The initial24953-byte Balancer attempt failed and remains recorded. New source
-changes require exact-source gates; these are not target-chain gas estimates.
+Use [Direct Entry3](../reports/direct-entry-v3-20261103/VERIFICATION.md):52 production
+sources/31dependencies,43normal EIP170/EIP3860 gates,0.8.26/Cancun/viaIR/optimizer1/
+Yulfalse.471static records,37contracts/818function rows/37constructors/13receivers
+with no note gaps.28 distinct selected EVM and314 Python successes span explicit
+stages; fixture failures, empty selection and19unchanged-body reuse stay recorded.
+Not a full suite, published CI, actual provider/gas/operation qualification or audit.
 
-The prior reference had37concrete contracts/826function rows/37constructors/14receivers;
-current Entry3 reference has37/818/37/13 with zero gaps,
-zero explanation/input/output gaps. Scope-limited EVM/backend executions, fixture
-failures, corrected retries, empty attempts and reused bodies are recorded in the
-report, not combined into a fictional full current suite. Earlier42-gate/778-callable/
-463-static reports remain historical and do not verify later policy changes.
-No full-suite/CI/live qualification or independent production approval is implied.
-
-Raw source/evidence/archive root:
-`C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/adaptable-policy-20261031`.
-It preserves365 original files and49 prior report artifacts. The later final
-sync archive is `documentation-sync-20261031-47ead73e` under the same external
-visualization root; it preserves105 current documents and1795 report hashes.
-Documentation sync reuses unchanged code evidence and does not rerun contracts.
+Entry runtime9863; unchanged Vault23941(635margin), Budget24339(237),
+Migration24556(20), Balancer24216(360). The [consolidation](../reports/project-consolidation-20261103/REVIEW.md)
+reuses matching evidence and changes documentation only. Older reports retain
+all original scopes and measurements; never combine their test counts.
 
 ## Continue next
 
-Direct Entry3 verification records28 distinct selected EVM successes across
-explicit stages and314 Python successes across two selected scopes, not a full
-suite. Fresh52/31-source43normal gates and471static records are bound to the
-new compiler output; callable reference37/818/37/13 has no note gaps. Entry
-runtime18581→9863; Registry creation42736→22526. Vault635/Budget237/Migration20
-headroom remains. Failure/empty-selection history and19unchanged-body reuse
-are explicit in reports/direct-entry-v3-20261103/VERIFICATION.md. Source7
-website/services and actual dependency/release qualification remain open.
+Use the [roadmap](ROADMAP.md) and owning Todo tasks. Real feeds/routes/VRF,
+authorities, OpenSea, fresh current-profile services/site, economics/target gas,
+storage/recovery, long-lived history and independent audit remain open. Prior
+recommendations now implemented include cooldown observation, harvest coalescing,
+active-main candidate filtering, residual-only close and direct Entry removal.
+Do not reopen retired creator/bridge/third-input/external-custody requirements.
 
+Operator changes must update exact procedure, fields, authority, effect,
+verification, stop/restart/reverse and irreversible limits in the same change.
+Source publication never upgrades running services or reinterprets pending intents.
 
-Use [direct Entry3](../reports/direct-entry-v3-20261103/REVIEW.md) and its exact
-verification for the current source. The user approved removing the old optional
-whole-input conversion: seven-field request/selector, ENTRY_ROUTING_VERSION3,
-unchanged review-policy2/pricing2, no Entry routes/receiver/v4 child. New schema9
-and20-helper observation/validation do not rewrite old schema8 records. LP and
-royalty converters retain their independent helpers/routes. Fresh API config
-routing3 has no route fields or Entry executor pin. Existing website/signing,
-Anvil/NFT/LP balances and journals remain unchanged; matching fresh rollout and
-real services remain open. Preserve source-bound failures/corrections and the
-four unrelated dirty files. Raw archive/evidence: external direct-entry-v3-20261103.
+## Archives and unrelated work
 
-Use the [November3 contract/LP audit](../reports/smart-contract-lp-audit-20261103/REVIEW.md)
-and [verification](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md).
-Two new actual-core journeys pass; retain the first fixture failure and metadata-
-authenticated correction.795 body records are review inventory, not tests.
-Production52/dependency31 pins are unchanged;43normal gates/475static records are
-exact-source reuse. The six current compiler disclosures have conditional source/
-settings assessments; refresh before release/changes. The later user-approved direct Entry3 implementation resolves that decision; separate reward/royalty
-conversion remains useful. The report's operator recovery guidance changes no
-contract behavior or environment. Raw evidence/originals live under external
-`smart-contract-lp-audit-20261103`; four unrelated dirty files remain untouched.
-
-The [three-audit consolidation](../reports/consolidation-20261103/VERIFICATION.md)
-fixes mutable endpoint aliases, meters eth_call through the wrapper and bounds
-override IDs. Maintenance validators are always strict; explicit constructor
-deferral preserves paid recovery. Production52/dependency31 pins are unchanged.
-Use exact staged/committed publication checks; no existing journal/runtime/site
-is upgraded. Provider/watchdog/market/history/independent gates remain open.
-
-The [action resilience review](../reports/action-resilience-audit-20261102/VERIFICATION.md)
-fixes RPC body progress/maintenance validation and preserves exact paid recovery
-before new-job validation.176 distinct selected Python successes across stages,
-one Unix skip;851-method selection is inventory only. No production Solidity
-change; prior exact-source size/static evidence below remains applicable. Real
-provider/header/DNS/watchdog, source6 service/site and long-term history gates
-stay open; do not alter old journals or repeat confirmed actions after API failure.
-
-The [multi-day portfolio study](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
-adds four scoped contract journeys, including six virtual days and both serialized
-user/keeper orderings.52 production/31dependency pins remain unchanged; normal
-gates/static scope below are reused. Retain first fixture-minimum failures and
-corrected5USD flow. Actual service cadence/jitter/load/economics remain open.
-
-The [LP lifecycle repair](../reports/lp-lifecycle-audit-20261102/REVIEW.md)
-fixes ordinary single/hybrid candidate activity before ranking. Exact stored
-quote ticks distinguish initialized downward boundaries; final mint activity,
-financial/custody checks and initial/growth policy remain.65 distinct successful
-selected EVM methods across recorded stages,5 backend checks,43 normal gates and
-fresh475-record internal static disposition have explicit limits. Two corrected
-fixture expectations and the first oversized implementation remain in evidence.
-Source API/runtime pins changed; existing Anvil/services/journals were untouched.
-
-Current guides correct a previous ten-report claim: Manager/child ticks forward
-to the same packed PosM source; getter coherence is not independent stored-range
-proof. Keep geometry_sources_independent:false and custody/price-outage checks.
-Next qualify bounded sizing/residual placement using actual venues/depth/gas;
-design measured authenticated lifetime archive/read-model evolution. No global
-solver optimum or unsafe fallback is claimed. Complete reviewed schema9 current
-buyback_maximum_usd18 and matching source7 rollout without constructor/journal
-rewrites. Current evidence root is the external lp-lifecycle-audit-20261102
-directory beside the older archives above; original reports stay unchanged.
-
-1. Establish publication state from exact local/remote main heads. Git publication
-   is not deployment or qualification. Keep source, docs and linked evidence
-   together; preserve the unrelated dirty files and drafts below.
-2. Qualify actual independent dual feeds, reviewed swap/conversion routes, RPC,
-   VRF provider/subscription/funding and governance/guardian/keeper/payee addresses.
-   Pending draws must drain before planned VRF rotation; no reroll fallback.
-3. Build reviewed source7 service configurations and a fresh indexer contract
-   inventory/database including ProtocolPolicy. Enabled conversion jobs require
-   an explicit profile. Preserve pending recovery first and old journals; a
-   JSON edit or runtime label cannot upgrade installed code or adopt old state.
-4. Complete source7 poplint read/unsigned consumer integration, keeping popldemo
-   and public signing unchanged. OpenSea primary-mint integration remains open;
-   direct mint does not implement marketplace buyer/payment semantics.
-5. Qualify target gas/constructor arguments, liquidity/strategy economics,
-  600/240/300 sampled timing, jitter, Linux storage/restart/recovery and exact
-   authorities. Migration's20-byte runtime margin needs care in any future edit.
-6. Retain exact source-bound static evidence, refresh after relevant changes,
-   and complete independent audit/remediation for
-   this candidate; complete metadata hosting, operating rehearsals and release
-   sign-off. Production remains NOT APPROVED.
-
-## Preservation and ongoing documentation
-
-Four unrelated tracked dirty files stay byte-identical:
+External evidence root:
+`C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9`.
+Current `project-consolidation-20261103` holds110 original current files,
+2626 prior report hashes and485 code/config/test/build pins. Its BASELINE.json
+also binds four unrelated dirty files; preserve/exclude them:
 reports/source-checks.json, scripts/run-fork-checks.py,
 tests_python/test_fork_runner.py, tests_python/test_frontend_history.py.
-Original hashes are in the external baseline. Do not stage them, design drafts,
-cache/out directories or unrelated old operational artifacts.
+Do not stage unrelated untracked design/cache/old report drafts.
 
-Historical [portfolio](../reports/optional-portfolio-20261030/VERIFICATION.md),
-[residual operation](../reports/residual-operations-20261031/VERIFICATION.md),
-[day audit](../reports/day-audit-20261031/VERIFICATION.md) and
-[manual-operation](../reports/manual-operations-20261031/VERIFICATION.md) records
-retain original bytes/source scopes; use the report index instead of copying
-old checkpoints into current memory. Older documentation originals also remain
-at the archive recorded by [cleanup publication](../reports/documentation-cleanup-20261026/PUBLICATION.md).
-
-Maintain one ledger → generated Todo. Keep features, roadmap, release scope,
-operator procedures, callable reference and repo context consistent. Check links,
-generated artifacts and exact unchanged code pins for docs-only changes; do not
-claim new implementation/release completion merely from documentation.
+Prior `direct-entry-v3-20261103` retains585 original files,2678 prior report
+hashes and raw compiler/analyzer/EVM/Python stages. Earlier archive roots are
+linked from their immutable verification records. They are history, not another
+current instruction set. Check exact archived and live hashes before evidence reuse.

@@ -7,72 +7,28 @@ authorized by documentation or source publication.
 
 ## Evidence and approval boundary
 
-[Direct Entry3 source/evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md)
-supersedes the prior Entry2 source scope: fresh schema9/20-helper inventory,
-direct seven-field ABI and retained accounting6/review2/pricing2. Old source
-audits below do not verify later bytecode. No public signing, deployment, source7
-site/service/provider qualification or independent approval is granted here.
+Source base: main `3f879da74a3573ffde4578482835b24a73192930` before this documentation
+consolidation. There is no approved deployment or release-specific configuration.
+[Profile identities](POSITION_V6.md), [features/evidence](IMPLEMENTATION_STATUS.md),
+[consolidated findings](AUDIT_FINDINGS.md) and the [sole Todo](../TODO.md) separate
+implemented source from qualification and approval.
 
-[Current contract/LP evidence](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
-adds two scoped recovery/rollback journeys and current compiler-bug applicability
-review without production source changes.795 enumerated project bodies are not
-795 tests;43 normal gates and475 static records are exact-source reuse. Require
-fresh compiler-disclosure review and actual release/runtime/provider qualification
-before approval; no absence-of-vulnerability or live readiness is established.
+The current [Entry3 record](../reports/direct-entry-v3-20261103/VERIFICATION.md)
+binds52production/31dependency sources,43normal gates,471static records and
+reference37/818/37/13 without note gaps.28distinct selected EVM and314Python
+successes span explicit scopes; they are not a full frozen-release regression,
+published CI or independent audit. Unchanged-source reuse is checked by the
+[documentation consolidation](../reports/project-consolidation-20261103/VERIFICATION.md).
+Older reports retain their original sources, failures, skips and measurements.
 
-[Shared-client consolidation](../reports/consolidation-20261103/VERIFICATION.md)
-records focused backend checks and unchanged contract evidence. Endpoint input
-isolation and metered contract-read shortcuts do not qualify actual providers,
-Unix watchdog/storage, target gas or sustained operations. Production stays
-NOT APPROVED; earlier reports keep their original source scopes.
-
-Current [accounting6 policy verification](../reports/adaptable-policy-20261031/VERIFICATION.md)
-adds fresh43 normal gates and scoped new runtime/backend checks. Old42-gate/463
-static records below retain their original source and do not audit the new policy.
-Freeze and re-review the actual release, dynamic controls, wallet/service/market
-providers and independent findings before approval. No deployment is authorized.
-
-The [October31 follow-up](../reports/today-audit-20261031/VERIFICATION.md) refreshes
-source6 static context review, verifies staged publication closure and repairs
-affected accounting/lineage checks. It leaves the production Solidity/build
-unchanged and does not establish a fresh full suite, published CI or live rollout.
-
-
-The [earlier source audit](../reports/day-audit-20261031/REVIEW.md) reviews the
-bounded main/residual portfolio and management controls. [Verification](../reports/day-audit-20261031/VERIFICATION.md)
-records scoped EVM/Python fixes,42 fresh normal gates and source-bound463-finding
-internal static triage. Original implementation reports preserve their stages,
-explicit substitutes and failures.
-It is not a frozen full regression, published CI, live-market/host qualification
-or independent audit. Older [reports](../reports/README.md) retain original pins.
-
-The [manual-operation review](../reports/manual-operations-20261031/REVIEW.md)
-adds exact input/recovery procedures, an offline provenance helper,16 scoped
-Python methods and one new local-v4 journey. It changes no production Solidity.
-The helper always reports not ready for submission; actual authority, snapshot,
-runtime, simulation, gas and operating/marketplace rehearsal remain release gates.
+Current local actual-core/multi-day tests do not sign off sustained keeper uptime,
+actual oracle/RPC behavior, Linux ownership/watchdogs/backups, source7 services/site,
+market economics, maximum populated gas or primary OpenSea minting. Funded claims
+can remain available during USD outages; missing post-action reads never justify
+resubmitting a confirmed operation. Final independent audit/remediation and the
+actual release record below remain required.
 
 ## Current candidate and evidence limits
-
-[Action resilience verification](../reports/action-resilience-audit-20261102/VERIFICATION.md)
-adds scoped Python fault/transport/recovery fixes at unchanged Solidity pins.
-One Unix ownership/permission method remains skipped; actual provider/OS/watchdog
-and sustained source6 operating acceptance are not signed off. A post-action
-API outage must not trigger duplicate submission or guessed balances.
-
-[Multi-day portfolio execution](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
-adds scoped virtual-time contract evidence at unchanged production source pins.
-It does not sign off uninterrupted keeper operation, actual service jitter,
-browser/RPC concurrency, target gas or profitable portfolio policy.
-
-[LP lifecycle verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
-repairs ordinary single/hybrid quote viability before final active-main guards,
-verifies mode/reward composition and refreshes43 normal gates plus475-record
-internal static disposition. It corrects the earlier claim of independent harvest
-geometry sources: Manager/child getters forward to packed PosM data. Scoped
-execution and corrected fixture reuse are explicit. Lifetime history scaling,
-actual venue/residual economics and independent release qualification remain open.
-No policy, service/site/journal or deployed behavior changed.
 
 | Boundary | Current requirement |
 | --- | --- |
@@ -82,10 +38,10 @@ No policy, service/site/journal or deployed behavior changed.
 | Timing |85% centre-to-boundary threshold with independent same-side corroboration,600-second sampled window/maxgap300,240-second source checks, hard initial12hours and service60–300 jitter. Actual inclusion and liveness remain unqualified. |
 | Accounting | Entrant-only swap/deploy and actual marginal LP; combined fees allocated80/10/5/5 once per asset; separate rewards, royalties, compound, buyback and principal-return backing. Current owner gets old unclaimed rights. |
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
-| Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration20 at final-a8e7dc7cc5 source pins; none qualifies target gas or future edits. |
+| Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration20 at the current direct Entry3 compiler-output pins; none qualifies target gas or future edits. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
 | Services/site | Schema9/direct Entry3 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
-| Security | Current471-record static disposition is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and narrow route-ranking liveness remain qualification limits. Internal passes are not safety guarantees. |
+| Security | Current471-record static disposition is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 ## Release identity
 

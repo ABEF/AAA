@@ -1,0 +1,85 @@
+{
+  "reviewed": "2026-11-03",
+  "base_commit": "3f879da74a3573ffde4578482835b24a73192930",
+  "scope": "Current documentation/provenance and unchanged-source applicability only. No new contract suite, analyzer execution or operating qualification.",
+  "production_approved": false,
+  "independent_audit": false,
+  "new_contract_tests": 0,
+  "new_solidity_or_backend_changes": false,
+  "checks": {
+    "protected": {
+      "unchanged": true,
+      "files": 4
+    },
+    "historical_reports": {
+      "unchanged": true,
+      "files": 2626
+    },
+    "code_config_test_build": {
+      "unchanged": true,
+      "files": 485
+    },
+    "archived_originals": {
+      "unchanged": true,
+      "files": 110
+    },
+    "callable_reference_and_notes_byte_identical": true,
+    "todo_ids_statuses_order_unrelated_fields_preserved": true,
+    "current_normal_evidence_reuse": {
+      "report_sha256": "28d67439b8474a7e07b25641fc19b0e635105f70ed9803f2b9141dd293ef9d4d",
+      "current_production_sources": 52,
+      "current_dependencies": 31,
+      "gates": 43,
+      "exact_source_dependency_build_pins_match": true,
+      "new_compile": false
+    },
+    "tracked_changes_documentation_only": true,
+    "todo": {
+      "successful": true,
+      "exit_code": 0,
+      "stdout_sha256": "84da3985b677083ac5dbd5a81b35925d8966cf6a0d6fc610df91cb30dce624ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "callable": {
+      "successful": true,
+      "exit_code": 0,
+      "stdout_sha256": "f93fe1eee7d621fcd835636d62c0051111317fdd3459ee43d994ca60685bbeb2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "static_coverage": {
+      "successful": true,
+      "exit_code": 0,
+      "stdout_sha256": "e371f6273e3cba08937f19e115e4ae55f53fe74154a0d2f52a657cf5635d2734",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "whitespace": {
+      "successful": true,
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finding_map": {
+      "imported_overlapping_rows": 310,
+      "later_explicit_findings": 5,
+      "current_topics": 22,
+      "new_defects_or_test_count": false,
+      "pointer_validation_record_sha256": "12db1bebb6c194457899071d9740a5d8d685b7665c4b2d5074c8cb76ca4ff62f"
+    },
+    "no_deployment_services_sites_anvil_journals_signer_heartbeat_change": true
+  },
+  "raw_evidence_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\project-consolidation-20261103",
+  "baseline_sha256": "866325e2f280b280f62055ffe9606f82f927ce765c31f34ae0399b210f302799",
+  "record_sha256": {
+    "FINDINGS.json": "a1e622ec664d7a528508686fa9501eb4eb1a2b0bfb56f98b480e299118bbfbf1",
+    "READING_INVENTORY.json": "093cbd2e62088fcf4170eb119347ebbcde41e2c63e00006aeefd3612c530c7e8",
+    "DOCUMENTATION_QA.json": "12db1bebb6c194457899071d9740a5d8d685b7665c4b2d5074c8cb76ca4ff62f"
+  },
+  "links": {
+    "checked": 2231,
+    "inbound_from_other_tracked_documents": 376,
+    "introduced_or_preexisting_failures": 0,
+    "record": "DOCUMENT_LINKS.json",
+    "sha256": "adee91b36927d3964c1a722aa66696a785c9af56ccfc62100b1424fe7842b6b9"
+  },
+  "publication": "Verified separately against exact stage/commit/remote; source publication is not deployment."
+}

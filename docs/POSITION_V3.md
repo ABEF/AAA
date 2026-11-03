@@ -1,5 +1,7 @@
 # Local Position and direct governance profile
 
+Historical versioned interface reference. The fresh release uses [accounting6/Entry3/schema9](POSITION_V6.md). Existing deployments/readers/journals retain this older profile; do not relabel or execute a current procedure from this page.
+
 Historical accounting3 codec. Fresh source uses [accounting4](POSITION_V4.md);
 never relabel existing deployments or journals.
 

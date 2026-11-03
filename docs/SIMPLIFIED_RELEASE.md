@@ -1,6 +1,6 @@
 # Simplified release boundary
 
-The fresh undeployed [accounting4/custody3 profile](POSITION_V4.md) accepts only
+The fresh undeployed [accounting6/custody4/direct Entry3 profile](POSITION_V6.md) accepts only
 native ETH and one fixed ZZZ for contributions and LP custody. It replaces
 external custody exits with [collective principal return to NFT holders](HOLDER_COLLECTIVE_EXIT.md).
 Production is **NOT APPROVED**; existing deployments and journals are unchanged.
@@ -16,6 +16,7 @@ Production is **NOT APPROVED**; existing deployments and journals are unchanged.
 | Canonical handoff | Same-chain ownership/accounting/backing replacement with funded abort, only before collective LP exit. |
 | External principal and royalty custody exits | Removed, including all-ZZZ consolidation, chosen custody recipients, return/completion ingress and royalty drains. |
 | Generic ERC20 LP pools | Removed from production admission so every funded bucket can return ETH+ZZZ. Separate ERC20 conversion venues/royalty currencies remain. |
+| Preliminary Entry conversion | Removed from fresh Entry3, including its route catalogue/setters, receiver and executor child. Vault ratio balancing and earned-reward conversion remain. |
 | Creator inboxes, bridges and remote ledgers | Removed; the hookless LP earns actual venue fees directly. No remote transport, synthetic LP or bridge operator is configured. |
 
 Separate ledgers and bounded helpers preserve economic domains and deployment
@@ -58,7 +59,7 @@ Use [post-seal policy](POST_SEAL_POLICY.md) and the [operator manual](OPERATOR_M
 ## Explicit compatibility boundary
 
 The source requires accounting6, ProtocolPolicy1, Portfolio2, custody4, governance2,
-fee intake1, pricing2, routing2, reviewed Entry2 and canonical
+fee intake1, pricing2, direct Entry-routing3/review-policy2, LP-routing2 and canonical
 `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Position remains eight words; statuses
 are None0, Active1, reserved Outbound2, Dormant3, Parked4, Exited5. Canonical group
 rows retain twelve words; V6 peers must match exactly and cannot hand off after
