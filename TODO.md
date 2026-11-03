@@ -125,6 +125,7 @@ Custody, ownership and reward accounting.
   - Run affected adversarial execution/normal size checks and review receipts. Real target-chain closure/payout gas, failed token/venue recovery, operator batching, service acceptance and independent audit/remediation remain required.
   - Optional keeper principal_distribution automates only post-close allocation/direct delivery, with reviewed NFT/module/runtime pins, existing signer/journal/gas/day limits and on-chain paid truth. Governance alone starts/closes LP. Source job is disabled by default; qualify actual funded service rollout and timing. No holder action is required for successful normal delivery.
   - Fresh custody5/schema10 permission tightening preserves owner reward claims, fixed splits, per-NFT rights, backing and old profiles. [Authority review/evidence](reports/authority-audit-20261103/VERIFICATION.md) includes approved governance-only batches and explicit API/keeper/lineage versions; no rollout or production approval.
+  - [Focused scale/mixed-wallet assurance](reports/holder-exit-assurance-20261103/REVIEW.md):10distinct selected behaviors across explicit scopes, including1000fuzz inputs,1000distinct synthetic holders,1000NFTs/37mixed wallets and real NFT rarity/tier/growth/prior-claim/transfer composition; actual local v4 both legs close and royalties survive. Old missing-Manager model failures are preserved and repaired without a production change. Per-NFT exact shares, grouped-wallet sums and duplicate-payout prevention pass; real maximum target gas/services and independent review remain open.
 
   </details>
 
@@ -1048,6 +1049,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Contract-owner callback review](reports/system-adversarial-20261026/RIGHTS.md) confirms that a payout can legitimately fund pending royalties or consume another owned ledger before later router entries. Do not impose unconditional initial-view/payout equality or reinterpret a valid callback change as fabricated income; current-owner/atomic liability rules remain.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Composed tests verify that partial claiming by one holder preserves another holder's accrued rights, and guarded mode merge does not reset shares or collective membership. Existing economic allocation remains fixed; broader frozen-release adversarial/independent review remains open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
+  - [Mixed-holder exit assurance](reports/holder-exit-assurance-20261103/REVIEW.md) confirms perNFT principal, current-owner transfers after allocation, independent prior/remaining LP/royalty claims and wallet aggregation across dormant/activated/rarity/tier differences. Production remains e26fc74; this supplements scoped evidence, not full independent approval.
 
   </details>
 
@@ -1425,4 +1427,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8eddb2393ad7acdfe3101480b3d2f96a11ca1f11893181239b7b409df4d1f7fc`.
+Snapshot SHA-256: `2a35c4fbc46f85d6c19a7358af08b558032be584a53adaaa111d701afeead953`.

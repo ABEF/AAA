@@ -72,6 +72,16 @@ signing stays Anvil-only; public DEPLOYMENT stays null. No source/build/server
 change to the website is part of this contract implementation.
 [Environment map](SITE_ENVIRONMENTS.md), [website profile](CURRENT_WEBSITE_PROFILE.md).
 
+## Collective exit scale and mixed-wallet evidence
+
+[Focused assurance](../reports/holder-exit-assurance-20261103/REVIEW.md) adds corrected
+1000-NFT enumeration, distinct-address and37-wallet mixed-holdings checks plus
+real NFT rarity/tier/growth/prior-claim/transfer composition and local real-v4
+both-leg exit.10distinct selected methods span explicit stages, including one
+1000-case fuzz method. Production source/policy/profile are unchanged; normal
+size/static evidence is reused at matching pins. Failed stale-fixture attempts
+remain recorded. This is not target-chain gas, full-suite or independent approval.
+
 ## Current evidence and limits
 
 | Evidence | Source scope | What it does not establish |

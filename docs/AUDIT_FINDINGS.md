@@ -46,6 +46,17 @@ security guarantee is implied by consolidation.
 | One residual must be left open or closed with all principal | Paused governance can close only the residual into attributed idle; modefalse/merge/park/emergency/terminal exit remain distinct. | [Management](OPERATOR_MANUAL.md#portfolio-management-controls) |
 | Old Vault size, helper counts, outside-only triggers or15-minute windows are current | Fresh identity and source-bound evidence below replace those labels. Original results remain valid only at their original source scope. | [Identity table](POSITION_V6.md), [Entry3 verification](../reports/direct-entry-v3-20261103/VERIFICATION.md) |
 
+## Per-NFT exit assurance supplement
+
+The [focused exit review](../reports/holder-exit-assurance-20261103/REVIEW.md)
+repairs a missing Manager binding in the old1000-NFT test model, retains the
+production residual guard, and adds per-recipient/mixed-wallet checks. Rarity,
+evolution and wallet grouping do not change principal shares; previous reward
+claims and one NFT's transfer cannot consume another NFT's principal.10distinct
+selected successes include1000model NFTs,37mixed wallets, real NFT tier/rarity
+composition and actual local v4 both-leg exit. Source remains e26fc74; actual
+maximum gas, rejecting recipients/dependency liveness and independent review stay open.
+
 ## Evidence that can be reused now
 
 Use [authority verification](../reports/authority-audit-20261103/VERIFICATION.md)

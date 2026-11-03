@@ -302,6 +302,60 @@ contract HolderCollectiveExitTest is Test {
         assertEq(address(migration).balance,7 ether);assertEq(token.balanceOf(address(migration)),9 ether);
         assertEq(address(vault).balance,11 ether);assertEq(token.balanceOf(address(vault)),13 ether);
     }
+    function _mintExitRarity(address who,uint8 rarity) private returns(uint256 id) {
+        bytes32 fingerprint=vault.mintPolicyFingerprint();vm.prank(who);id=vault.mintDormant{value:0.05 ether}(fingerprint);
+        uint256 word=rarity==0?0:rarity==1?uint256(nft.rarityRemaining(0)):
+            uint256(nft.rarityRemaining(0))+nft.rarityRemaining(1);
+        vrf.fulfill(nft.requestOf(id),word,0);nft.finalizeTraits(id);assertEq(nft.rarityOf(id),rarity);
+    }
+    function _activateExitRarity(address who,uint256 amount,uint8 rarity) private returns(uint256 id) {
+        id=_mintExitRarity(who,rarity);vm.prank(who);vault.activate{value:amount}(id,poolId,amount,amount,1,block.timestamp+100);
+    }
+    function testMixedWalletsTiersRaritiesGrowthAndPriorClaimsReceiveOnlyTheirNFTPrincipal() public {
+        uint256[] memory ids=new uint256[](5);
+        ids[0]=_mintExitRarity(alice,2); // Dormant Legendary: no principal or royalty eligibility.
+        ids[1]=_activateExitRarity(alice,100 ether,0);
+        ids[2]=_activateExitRarity(alice,600 ether,1);
+        ids[3]=_activateExitRarity(alice,6000 ether,2);
+        ids[4]=_activateExitRarity(bob,200 ether,1);
+        vm.prank(alice);vault.increase{value:50 ether}(ids[1],50 ether,50 ether,1,block.timestamp+100);
+        for(uint256 i;i<4;++i){(bool available,uint8 stage)=nft.evolution(ids[i]);assertTrue(available);assertEq(stage,i);}
+        ZZZRoyaltyRewards royalty=nft.royaltyRewards();assertEq(royalty.weightOf(ids[0]),0);
+        uint256 bucket=vault.nftBucket(ids[1]);venue.setFees(100 ether,100 ether);vault.collectFees(bucket,block.timestamp+100);
+        (bool sent,)=address(royalty).call{value:8 ether}("");assertTrue(sent);
+        vm.prank(alice);assertGt(rewards.claim(ids[1],address(0)),0);
+        vm.prank(alice);assertGt(royalty.claim(ids[1],address(0)),0);
+        _ready(bucket);
+        // Selling just the Rare after allocation moves only that NFT's unpaid
+        // principal/rewards; the owner's other NFTs keep their own rights.
+        vm.prank(alice);nft.transferFrom(alice,bob,ids[2]);
+        uint256 totalETH=migration.remainingETH();uint256 totalZZZ=migration.remainingZZZ();
+        uint256 supply=vault.bucketTotalShares(bucket);uint256 cumulative;uint256 lastETH;uint256 lastZZZ;
+        uint256 aliceETH;uint256 aliceZZZ;uint256 bobETH;uint256 bobZZZ;
+        uint256[5] memory lpOwed;uint256[5] memory royaltyOwed;
+        for(uint256 i;i<ids.length;++i){
+            uint256 id=ids[i];cumulative+=vault.sharesOf(id);
+            uint256 ethFloor=totalETH*cumulative/supply;uint256 zzzFloor=totalZZZ*cumulative/supply;
+            (uint256 ethAmount,uint256 zzzAmount,bool allocated,bool paid)=migration.principalOf(id);
+            assertTrue(allocated);assertFalse(paid);assertEq(ethAmount,ethFloor-lastETH);assertEq(zzzAmount,zzzFloor-lastZZZ);
+            lastETH=ethFloor;lastZZZ=zzzFloor;
+            if(nft.ownerOf(id)==alice){aliceETH+=ethAmount;aliceZZZ+=zzzAmount;}
+            else {bobETH+=ethAmount;bobZZZ+=zzzAmount;}
+            lpOwed[i]=rewards.claimable(id,address(0));royaltyOwed[i]=royalty.claimable(id,address(0));
+        }
+        uint256 beforeAlice=alice.balance;uint256 beforeBob=bob.balance;
+        uint256 beforeAliceZZZ=token.balanceOf(alice);uint256 beforeBobZZZ=token.balanceOf(bob);
+        assertEq(migration.distributePrincipal(ids),4);
+        assertEq(alice.balance-beforeAlice,aliceETH);assertEq(bob.balance-beforeBob,bobETH);
+        assertEq(token.balanceOf(alice)-beforeAliceZZZ,aliceZZZ);assertEq(token.balanceOf(bob)-beforeBobZZZ,bobZZZ);
+        assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+        for(uint256 i;i<ids.length;++i){
+            assertEq(rewards.claimable(ids[i],address(0)),lpOwed[i]);assertEq(royalty.claimable(ids[i],address(0)),royaltyOwed[i]);
+            if(i==0){assertEq(lpOwed[i],0);assertEq(royaltyOwed[i],0);continue;}
+            address recipient=nft.ownerOf(ids[i]);vm.prank(recipient);assertEq(rewards.claim(ids[i],address(0)),lpOwed[i]);
+            vm.prank(recipient);assertEq(royalty.claim(ids[i],address(0)),royaltyOwed[i]);
+        }
+    }
     function testExitWithoutHealthyPricesOrEnabledPoolAndRawMinimumRollback() public {
         uint256 a=_activate(alice,100 ether);uint256 bucket=vault.nftBucket(a);PoolConfig memory c=pools.get(poolId);
         c.operationsEnabled=false;c.depositsEnabled=false;pools.set(poolId,c);vm.warp(block.timestamp+4000);_start();
@@ -400,11 +454,21 @@ contract ExitScaleVault {
         ExactAsset.push(address(0),msg.sender,a);ExactAsset.push(address(token),msg.sender,b);
     }
     function corruptShares(uint256 id,uint256 shares) external {sharesOf[id]=shares;}
+    function makeDormant(uint256 id) external {
+        uint256 bucket=nftBucket[id];require(bucket!=0);bucketTotalShares[bucket]-=sharesOf[id];
+        delete sharesOf[id];delete nftBucket[id];
+    }
     function corruptCurrency(MockPools pools,uint256 id,address wrong) external {
         PoolConfig memory c=pools.accounting(p[id].poolId);c.key.currency1=wrong;pools.set(p[id].poolId,c);
     }
 }
 contract ExitScaleAssets {function isAsset(address) external pure returns(bool){return true;}}
+/// @dev The scale model starts parked, with no physical residuals. Preserve
+/// Migration's real final-close guard rather than omitting its Manager binding.
+contract ExitScaleLiquidity {
+    uint256 public activeSecondaryCount;
+    function setSecondaryCount(uint256 count) external {activeSecondaryCount=count;}
+}
 contract HolderExitScaleTest is Test {
     MockAccess ac;MockToken token;MockPools pools;ExitScaleVault vault;ExitScaleNFT nft;ZZZMigration migration;
     bytes32 review=keccak256("scale model only");address owner=address(0xA11CE);
@@ -412,6 +476,7 @@ contract HolderExitScaleTest is Test {
         vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));token=new MockToken(18);pools=new MockPools();
         vault=new ExitScaleVault(ac,token,pools,zeroFourth);nft=new ExitScaleNFT(owner);migration=new ZZZMigration(address(ac));
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.POOLS,address(pools));
+        ac.bind(Ids.LIQUIDITY,address(new ExitScaleLiquidity()));
         ac.bind(Ids.MIGRATION,address(migration));ac.bind(Ids.REWARDS,address(new ExitScaleAssets()));
         address identity=address(new HolderExitIdentity(address(token)));pools.setActivationAssets(identity);ac.bind(Ids.BUYBACK,identity);
         migration.configureZZZ(address(token),address(token).codehash,review);ac.seal();ac.setPaused(true);
@@ -435,6 +500,86 @@ contract HolderExitScaleTest is Test {
         // need no transaction and cannot absorb unrelated prefunds.
         for(uint256 first=1;first<=1000;first+=32){uint256 end=first+32>1001?1001:first+32;
             ids=new uint256[](end-first);for(uint256 j=first;j<end;++j)ids[j-first]=j;migration.distributePrincipal(ids);}
+        assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+    }
+    function testAll1000DistinctOwnersReceiveTheirExactShareWithoutHolderAction() public {
+        _setup(false);
+        uint256[5] memory ethTotals;uint256[5] memory zzzTotals;
+        for(uint256 bucket=1;bucket<=4;++bucket){
+            Position memory p=vault.group(bucket);ethTotals[bucket]=p.idle0;zzzTotals[bucket]=p.idle1;
+        }
+        // Includes one dormant NFT and999 active NFTs; all1000 owners differ.
+        // This is an allocation/recipient model, not1000 real on-chain wallets.
+        for(uint256 id=1;id<=1000;++id)nft.transfer(id,address(uint160(0x100000+id)));
+        migration.beginCollectiveExit(review);
+        for(uint256 bucket=1;bucket<=4;++bucket)migration.closeBucket(bucket,0,0,block.timestamp+100);
+        while(uint256(migration.exitPhase())==uint256(ZZZMigration.ExitPhase.Allocating))migration.allocatePrincipal(32);
+        uint256[5] memory cumulativeShares;uint256[5] memory ethFloors;uint256[5] memory zzzFloors;
+        for(uint256 id=1;id<=1000;++id){
+            (uint256 ethAmount,uint256 zzzAmount,bool allocated,bool paid)=migration.principalOf(id);
+            assertTrue(allocated);assertFalse(paid);
+            uint256 shares=vault.sharesOf(id);uint256 bucket=vault.nftBucket(id);
+            if(shares==0){assertEq(ethAmount,0);assertEq(zzzAmount,0);continue;}
+            cumulativeShares[bucket]+=shares;
+            // Independent integer calculation at the scale fixture's bounded
+            // values; compare each NFT, not just the sum of all allocations.
+            uint256 ethFloor=ethTotals[bucket]*cumulativeShares[bucket]/vault.bucketTotalShares(bucket);
+            uint256 zzzFloor=zzzTotals[bucket]*cumulativeShares[bucket]/vault.bucketTotalShares(bucket);
+            assertEq(ethAmount,ethFloor-ethFloors[bucket]);assertEq(zzzAmount,zzzFloor-zzzFloors[bucket]);
+            ethFloors[bucket]=ethFloor;zzzFloors[bucket]=zzzFloor;
+        }
+        for(uint256 first=1;first<=1000;first+=32){
+            uint256 end=first+32>1001?1001:first+32;uint256[] memory ids=new uint256[](end-first);
+            for(uint256 id=first;id<end;++id)ids[id-first]=id;
+            assertEq(migration.distributePrincipal(ids),end-first-(first==1?1:0));
+            for(uint256 id=first;id<end;++id){
+                (uint256 ethAmount,uint256 zzzAmount,,bool paid)=migration.principalOf(id);address recipient=nft.ownerOf(id);
+                assertEq(recipient.balance,ethAmount);assertEq(token.balanceOf(recipient),zzzAmount);
+                assertEq(paid,ethAmount!=0||zzzAmount!=0);
+            }
+        }
+        assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+        for(uint256 bucket=1;bucket<=4;++bucket){assertEq(ethFloors[bucket],ethTotals[bucket]);assertEq(zzzFloors[bucket],zzzTotals[bucket]);}
+    }
+    function testFinalBucketCannotCommitWhileAnyResidualRemains() public {
+        _setup(false);migration.beginCollectiveExit(review);
+        for(uint256 bucket=1;bucket<=3;++bucket)migration.closeBucket(bucket,0,0,block.timestamp+100);
+        ExitScaleLiquidity manager=ExitScaleLiquidity(ac.module(Ids.LIQUIDITY));manager.setSecondaryCount(1);
+        uint256 ethBefore=migration.remainingETH();uint256 zzzBefore=migration.remainingZZZ();
+        vm.expectRevert();migration.closeBucket(4,0,0,block.timestamp+100);
+        assertEq(migration.remainingETH(),ethBefore);assertEq(migration.remainingZZZ(),zzzBefore);
+        assertEq(migration.remainingBuckets(),1);assertEq(uint256(vault.group(4).status),uint256(PositionStatus.Parked));
+        manager.setSecondaryCount(0);migration.closeBucket(4,0,0,block.timestamp+100);
+        assertEq(uint256(migration.exitPhase()),uint256(ZZZMigration.ExitPhase.Allocating));
+    }
+    function testAll1000MixedWalletHoldingsSumOnlyTheirIndividualNFTAllocations() public {
+        _setup(false);uint256[37] memory expectedETH;uint256[37] memory expectedZZZ;
+        for(uint256 id=1;id<=1000;++id){
+            nft.transfer(id,address(uint160(0x200000+id%37)));
+            if(id%5==0)vault.makeDormant(id);
+        }
+        migration.beginCollectiveExit(review);
+        for(uint256 bucket=1;bucket<=4;++bucket)migration.closeBucket(bucket,0,0,block.timestamp+100);
+        while(uint256(migration.exitPhase())==uint256(ZZZMigration.ExitPhase.Allocating))migration.allocatePrincipal(32);
+        uint256 totalETH=migration.remainingETH();uint256 totalZZZ=migration.remainingZZZ();
+        for(uint256 id=1;id<=1000;++id){
+            (uint256 ethAmount,uint256 zzzAmount,bool allocated,)=migration.principalOf(id);assertTrue(allocated);
+            if(vault.sharesOf(id)==0){assertEq(ethAmount,0);assertEq(zzzAmount,0);}
+            expectedETH[id%37]+=ethAmount;expectedZZZ[id%37]+=zzzAmount;
+        }
+        for(uint256 first=1;first<=1000;first+=32){
+            uint256 end=first+32>1001?1001:first+32;uint256[] memory ids=new uint256[](end-first);
+            for(uint256 id=first;id<end;++id)ids[id-first]=id;migration.distributePrincipal(ids);
+            // Repeating any successful batch must not pay a wallet twice.
+            assertEq(migration.distributePrincipal(ids),0);
+        }
+        uint256 actualETH;uint256 actualZZZ;
+        for(uint256 wallet;wallet<37;++wallet){
+            address recipient=address(uint160(0x200000+wallet));
+            assertEq(recipient.balance,expectedETH[wallet]);assertEq(token.balanceOf(recipient),expectedZZZ[wallet]);
+            actualETH+=recipient.balance;actualZZZ+=token.balanceOf(recipient);
+        }
+        assertEq(actualETH,totalETH);assertEq(actualZZZ,totalZZZ);
         assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
     }
     function testAllBucketsValidatedBeforeIrreversibleStart() public {

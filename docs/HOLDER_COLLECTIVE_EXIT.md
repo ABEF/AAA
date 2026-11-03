@@ -31,6 +31,24 @@ and royalty eligibility remain recorded to preserve old entitlements. Each
 bucket stops earning LP fees when closed; all LP earnings end after the last
 close. Paying old rewards or converting their currency is not new LP income.
 
+## One wallet can own several different NFTs
+
+The settlement ledger is per **NFT ID**, not per wallet, rarity or visual tier.
+A wallet can own dormant and activated NFTs at different tiers/rarities, with
+different contribution/top-up histories. Its received principal is the sum of
+its NFTs' exact ETH and ZZZ allocations. Dormant NFTs with zero shares receive
+no principal. Rarity affects the separate royalty ledger, never this allocation;
+evolution is a display of LP value, not a different principal multiplier.
+
+A prior reward claim does not reduce that NFT's principal. A transfer moves that
+NFT's unpaid principal and unclaimed reward rights to its current owner; it does
+not move another NFT's rights. Paid status is per NFT, so repeat batches do not
+pay again even when many listed IDs have the same beneficiary.
+
+Governance must complete all closing, allocation and payout batches. Normal
+accepted payments need no holder transaction. A rejecting receiver remains
+backed for retry/owner fallback; this is not a universal delivery guarantee.
+
 ## Operator procedure
 
 1. Verify accounting6/custody5/portfolio2 runtime pins, fixed ZZZ, chain, governance and

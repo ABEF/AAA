@@ -43,6 +43,20 @@ are explicit; disable keeper principal_distribution on5. Old custody4/schema9
 and pending records retain their original behavior. See [permissions](ACCESS_PERMISSIONS.md).
 Earlier Entry3/consolidation evidence retains its source scope.
 
+## Collective exit assurance supplement
+
+[Exit assurance](../reports/holder-exit-assurance-20261103/REVIEW.md) changes tests
+and guidance only; production remains exact e26fc74.10distinct selected EVM
+behaviors across explicit scopes, including1000fuzz cases, corrected1000-NFT
+model,1000distinct owners,37mixed wallets and actual local v4 two-leg closure.
+Initial missing-Manager model failures remain recorded; no production guard was
+removed. Mixed real NFTs cover dormant/three tiers/three rarities, top-ups,
+previous claims and transfer after allocation. Normal43gate/static471/callable
+records still match source; no full repeat, live rehearsal or rollout. Existing
+receiver/dependency/gas/authority/independent-audit limits remain. Operator guide
+now explains grouped per-NFT reconciliation rather than per-wallet entitlement.
+External assurance root preserves the original test/docs and all run stages.
+
 ## Continue next
 
 Use the [roadmap](ROADMAP.md) and owning Todo tasks. Real feeds/routes/VRF,

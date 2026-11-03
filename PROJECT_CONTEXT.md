@@ -96,6 +96,17 @@ Entry runtime18581→9863 and Registry creation42736→22526. Vault635/Budget237
 Migration20/Balancer360 were the prior custody4 exact-source margins. All earlier
 counts/measurements are historical. Recheck source pins/advisories before reuse.
 
+## Exit assurance and mixed holdings
+
+[Source-unchanged verification](reports/holder-exit-assurance-20261103/REVIEW.md)
+covers1000distinct synthetic holders and1000NFTs across37mixed wallets, plus actual
+NFT dormant/tier/rarity/top-up/prior-claim/transfer composition and local v4 both-leg
+exit.10distinct selected methods include1000fuzz cases across explicit scopes;
+no fresh full suite, actual target gas or independent approval. The old scale
+fixture's missing Manager binding was repaired; no production exit guard changed.
+Principal remains perNFT; repeated wallet recipients receive the sum owed by
+their NFTs. Source remains e26fc74 and all old runtime/journal/site boundaries hold.
+
 ## What remains
 
 Actual independent feeds, routes/depth, supported VRF, authorities, OpenSea primary

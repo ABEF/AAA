@@ -1,0 +1,8 @@
+{
+  "production_and_dependency_pins_match": true,
+  "normal_gates_reused": "reports/authority-audit-20261103/production-size-gates.json",
+  "fuzz_body_unchanged": true,
+  "fuzz_runs": 1000,
+  "fuzz_production_fixture": "Real Vault/NFT/Rewards/Migration with deterministic fake venue/feeds/VRF and MockAccess; not target-market qualification.",
+  "changes": "Test model binding corrected; new scale and mixed-holder regressions only. Production/API/keeper/site/service/chain unchanged."
+}

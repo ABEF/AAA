@@ -158,6 +158,12 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
   Disable keeper principal_distribution on5; never put governance key on its host.
   No deployment/journal/service is upgraded by publication. Current wire remains
   accounting6/custody4-format/canonicalV6; see [permissions](docs/ACCESS_PERMISSIONS.md).
+- [Exit assurance supplement](reports/holder-exit-assurance-20261103/REVIEW.md)
+  changes tests/guidance only; production pins remain e26fc74.10distinct selected
+  successes across explicit stages include1000fuzz inputs,1000distinct holders,
+  37mixed wallets, actual NFT tiers/rarities/claims/transfers and local real-v4
+  both-leg closure. Retain missing-Manager model failures; guard was not relaxed.
+  No target gas/actual-wallet/independent approval or runtime/site/journal rollout.
 - Before Python publication run `python scripts/check-python-publication.py --index`
   against exact staged blobs, then the committed revision. Local untracked imports
   never establish published closure. Main only; verify exact local/remote heads.

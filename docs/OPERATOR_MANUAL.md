@@ -1355,6 +1355,24 @@ Whole-collection handoff after exit is blocked because its importer does not
 carry terminal principal settlement. Follow the complete runbook for exact
 phases, minima, rounding, failure recovery and receipt reconciliation.
 
+### Reconcile holders with several NFTs
+
+Build payout batches from actual NFT IDs, not wallet addresses or mint ordinals.
+A wallet may appear repeatedly and own a mix of dormant/activated NFTs with
+unrelated tiers, rarity and LP shares. Allocate all captured ordinals first;
+then total each payable ID's raw ETH/ZZZ for its current owner. Dormant/zero
+allocations do not need delivery and may retain paid=false with nothing owed.
+Rarity/visual tier are never payout multipliers. Old reward claims are separate.
+
+Read principalOf(id), claimablePrincipal(id), remainingETH/remainingZZZ and
+receipt PrincipalPaid/PrincipalDeferred for each submitted batch. Do not infer
+all IDs succeeded from one successful receipt. Verify the actual paid owner in
+the receipt if NFTs transferred since preview; other NFTs in either wallet must
+retain their own rights. Retry only unpaid nonzero allocations. Group transfers
+by wallet for reconciliation, accounting separately for network gas and other
+transactions when comparing wallet ETH balances. No service restart or protocol
+setting change is required for multiple NFTs per wallet.
+
 ## Dependencies and pricing
 
 | Change/problem | Control and checks | Fallback/limit |

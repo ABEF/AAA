@@ -1,0 +1,52 @@
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [1010] MockAccess::lpExitStarted() [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [750] MockAccess::paused() [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [1292] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   └─ ← [Return] ExitScaleVault: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   ├─ [786] ExitScaleVault::bucketTotalShares(4) [staticcall]
+    │   │   └─ ← [Return] 1000
+    │   ├─ [1011] MockToken::balanceOf(ZZZMigration: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   └─ ← [Return] 12999 [1.299e4]
+    │   ├─ [1292] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   └─ ← [Return] ExitScaleVault: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   ├─ [8478] ExitScaleVault::exitBucketToHolders(4, 0, 0, 1000100 [1e6])
+    │   │   ├─ [1292] MockAccess::module(0xc470a453866446f6c45d7459b498fbe539d5cd72f9875c1ee19f3fecaa74ec7c) [staticcall]
+    │   │   │   └─ ← [Return] ZZZMigration: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   ├─ [1010] MockAccess::lpExitStarted() [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   └─ ← [Return] 0, 0
+    │   ├─ [1011] MockToken::balanceOf(ZZZMigration: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   └─ ← [Return] 12999 [1.299e4]
+    │   ├─ [1292] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   └─ ← [Return] ExitScaleVault: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   ├─ [3543] ExitScaleVault::group(4) [staticcall]
+    │   │   └─ ← [Return] Position({ poolId: 0x5a6b2580de03179472a23ce70ee1016687c40bf5d0ba1286d4156fab4ce6c3d3, lpTokenId: 0, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 5 })
+    │   ├─ [1292] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   └─ ← [Return] ExitScaleVault: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   ├─ [786] ExitScaleVault::bucketTotalShares(4) [staticcall]
+    │   │   └─ ← [Return] 1000
+    │   ├─ [3292] MockAccess::module(0xfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4) [staticcall]
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    │   ├─ [0] 0x0000000000000000000000000000000000000000::activeSecondaryCount() [staticcall]
+    │   │   └─ ← [Stop]
+    │   └─ ← [Revert] call to non-contract address 0x0000000000000000000000000000000000000000
+    └─ ← [Revert] call to non-contract address 0x0000000000000000000000000000000000000000
+
+Backtrace:
+  at ZZZMigration.closeBucket
+  at HolderExitScaleTest.testAll1000OrdinalsFourBucketsAndZeroOutputConserveExactPrincipal
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 22.53ms (21.29ms CPU time)
+
+Ran 1 test suite in 39.31ms (22.53ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/HolderCollectiveExit.t.sol:HolderExitScaleTest
+[FAIL: call to non-contract address 0x0000000000000000000000000000000000000000] testAll1000OrdinalsFourBucketsAndZeroOutputConserveExactPrincipal() (gas: 91072937)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
