@@ -21,7 +21,7 @@
       "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
       "src/ZZZLiquidityManager.sol": "12873c25305934e8efd4c0f037221946030cba1f68e46815c0420fa5b7fc88a3",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
-      "src/ZZZMigration.sol": "8c5faa68d88a320fcfef2339de891e67103ee1369893970ba4bd9827e11a703d",
+      "src/ZZZMigration.sol": "2d0577a01c1cd5ed13b0ba4753fdcc20293f4f7fe8b5b8551580873534ee3dd7",
       "src/ZZZMigrationBudget.sol": "ee057e36f4179b9a2b541ebb16772cf53c8279e77ac603d8073bb79c2e01101a",
       "src/ZZZNFT.sol": "9f673b4e441c449c45ffe71537565ff4c73a32cf75df88f78fb3f03af206c829",
       "src/ZZZNFTCanonical.sol": "40be978cdc4764ae01e9c06fc5350dbfca755ef6d6309ae18b7bef48f159714b",
@@ -221,9 +221,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "c402c30b7ad5f5c1803a937a8bf763041ce66b6d91e91cde9fd980a65562176f",
-    "compiler_output_sha256": "dc98e3ee1a7116c93d1d9b47cbeba45f4ca7931c4adf2f03fe56d5ed8b5af03a",
-    "size_evidence_sha256": "28d67439b8474a7e07b25641fc19b0e635105f70ed9803f2b9141dd293ef9d4d",
+    "compiler_input_sha256": "7ddc4fc176f97f54f046243f23b160810b76caae83e205dd7e343d2c122ae3af",
+    "compiler_output_sha256": "41a5346a93c8728e5216e902ccdabcdc6521ae553ebe8f28a826b1e5946885a5",
+    "size_evidence_sha256": "4e1f4b9cd1fc52765e7db13b364556fc68934f6e85ddc1265246ac9e641a88c4",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -24025,7 +24025,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "d20f16e48841c31080e55cd7341f27f95481365b225591e2659dd89b0b513c15",
+  "notes_sha256": "4589c39f5ff918ae1d8051349e1df6747146b1ca41840c8740158d2911c7e806",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -35963,7 +35963,7 @@
     {
       "name": "ZZZMigration",
       "source": "src/ZZZMigration.sol",
-      "purpose": "Governed same-pair movement/local parking while operating, or irreversible collective ETH+ZZZ principal settlement to current NFT holders. No external custody address, consolidation exit or sweep. Separate manual paused-governance emergency rebalance retains explicit checks; disabled financial guards can permit near-total economic loss without changing recipients or NFT shares.",
+      "purpose": "Same-pair custody movement and terminal holder principal return. Fresh custody5 requires governance for allocation/push batches; current owners keep reward claims and optional principal fallback.",
       "category": "Project contract",
       "functions": [
         {
@@ -35994,7 +35994,7 @@
           "kind": "function",
           "name": "CUSTODY_VERSION",
           "state_mutability": "view",
-          "purpose": "Read two-leg-aware governed custody/holder-settlement compatibility.",
+          "purpose": "Read the explicit custody and principal-payout authorization capability.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -36006,7 +36006,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": "4; parking appends portfolioHash. Older custody3 calldata/runtimes remain historical."
+              "explanation": "5: same custody4 principal/parking wire and rights, but collective-exit allocation/distribution are governance-only. Historical custody4 allowed permissionless progress."
             }
           ],
           "native_value": null,
@@ -36143,7 +36143,7 @@
           "name": "allocatePrincipal",
           "state_mutability": "nonpayable",
           "purpose": "Advance deterministic proportional principal apportionment over bounded captured mint ordinals.",
-          "access": "Anyone in canonical operating state, not preparing; requires Allocating phase.",
+          "access": "Governance only; after seal current governance via canConfigure, canonical operating/no preparation. Requires Allocating phase; ordinary pause does not block this governed terminal step.",
           "status": "documented",
           "inputs": [
             {
@@ -36671,7 +36671,7 @@
           "name": "distributePrincipal",
           "state_mutability": "nonpayable",
           "purpose": "Attempt automatic principal pushes to current NFT owners in isolated bounded subcalls.",
-          "access": "Anyone; Ready phase and canonical operating lifecycle, not preparing. Ordinary pause does not block payouts.",
+          "access": "Governance only; current governance rechecked after callbacks, canonical operating/no preparation. Requires Ready phase; ordinary pause does not block these owner payouts.",
           "status": "documented",
           "inputs": [
             {
@@ -36696,7 +36696,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Caller cannot choose recipients. Captures current ProtocolPolicy.payoutGas once per batch(default180000,governed100000..1000000) for each isolated atomic ETH+ZZZ payment. Receiver failure emits PrincipalDeferred and preserves entitlement; low outer gas stops before another attempt. No automatic retry or expiry."
+          "notes": "No holder or keeper signature is required or accepted for the batch. Fixed current-owner destination; isolated rejecting recipients remain backed. Holder-only claimPrincipal fallback and independent reward/royalty claims remain unchanged."
         },
         {
           "signature": "emergencyCustodyHash(uint256)",

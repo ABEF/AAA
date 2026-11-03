@@ -29,7 +29,7 @@ interface IExitTokenIdentity { function zzz() external view returns(address); }
 /// return to NFT owners. No external custody address, conversion exit or sweep.
 /// Reward ledgers and future royalty rights remain independent of principal.
 contract ZZZMigration is ZZZModule, ReentrancyGuard {
-    uint8 public constant CUSTODY_VERSION = 4;
+    uint8 public constant CUSTODY_VERSION = 5;
     uint256 public constant EMERGENCY_REBALANCE_VERSION = 2;
     uint256 public constant RESIDUAL_EXIT_VERSION = 1;
     uint256 public constant MAX_BATCH = 32;
@@ -219,10 +219,10 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         emit BucketClosed(bucket,s.totalShares,ethAmount,zzzAmount);
     }
 
-    /// @notice Permissionless bounded deterministic apportionment. Cumulative
+    /// @notice Governance-only bounded deterministic apportionment. Cumulative
     /// floors in immutable mint order allocate every raw unit without a sweep.
     /// Transfers do not change shares; unclaimed principal follows the NFT.
-    function allocatePrincipal(uint256 maximum) external operating nonReentrant {
+    function allocatePrincipal(uint256 maximum) external onlyGovernance operating nonReentrant {
         if(exitPhase != ExitPhase.Allocating || maximum == 0 || maximum > MAX_BATCH) revert InvalidState();
         IHolderExitNFT nft = _nft(); IHolderExitVault vault = _vault();
         uint256 end = Math.min(allocationCursor+maximum,exitMintedCount+1);
@@ -263,10 +263,10 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         if(exitPhase != ExitPhase.Ready || !p.allocated) revert NotReady();
         return p.paid ? (uint256(0),uint256(0)) : (p.ethAmount,p.zzzAmount);
     }
-    /// @notice Anyone may pay the CURRENT NFT owner. Each bounded inner call is
+    /// @notice Governance pays the CURRENT NFT owner. Each bounded inner call is
     /// isolated: a rejecting or gas-consuming owner cannot block other owners.
     /// A deferred NFT remains fully backed and can retry or use owner fallback.
-    function distributePrincipal(uint256[] calldata ids) external operating nonReentrant returns(uint256 paid) {
+    function distributePrincipal(uint256[] calldata ids) external onlyGovernance operating nonReentrant returns(uint256 paid) {
         if(exitPhase != ExitPhase.Ready || ids.length == 0 || ids.length > MAX_BATCH) revert InvalidState();
         uint256 payoutGas = IZZZProtocolPolicy(access.protocolPolicy()).payoutGas();
         for(uint256 i; i<ids.length; ++i) {
@@ -280,20 +280,23 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     /// @dev Self-only isolation boundary, never a caller-selected beneficiary.
     function payCurrentOwner(uint256 id) external {
         if(msg.sender != address(this)) revert Unauthorized();
-        _pay(id,_nft().ownerOf(id));
+        address owner = _nft().ownerOf(id);
+        _pay(id,owner,owner);
     }
     /// @notice Optional recovery for a receiver that rejects an automatic push.
     /// Only the actual current owner (not an ERC721 approval) chooses recipient.
     function claimPrincipal(uint256 id,address recipient) external operating nonReentrant {
-        if(_nft().ownerOf(id) != msg.sender) revert Unauthorized();
-        _pay(id,recipient);
+        address owner = _nft().ownerOf(id);
+        if(owner != msg.sender) revert Unauthorized();
+        _pay(id,recipient,owner);
     }
-    function _pay(uint256 id,address recipient) private {
+    function _pay(uint256 id,address recipient,address owner) private {
         Principal storage p = principalOf[id];
         if(exitPhase != ExitPhase.Ready || !p.allocated || p.paid || (p.ethAmount == 0 && p.zzzAmount == 0) ||
             recipient == address(0) || recipient == address(this))
             revert InvalidState();
-        address owner = _nft().ownerOf(id);
+        // The two private callers authenticate this owner immediately above,
+        // with no intervening external call; reuse it for the original-owner log.
         _backed();
         p.paid = true;
         remainingETH -= p.ethAmount; remainingZZZ -= p.zzzAmount;

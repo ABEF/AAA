@@ -43,6 +43,8 @@ class PrincipalDistribution:
                 raise ValueError('Disabled principal distribution accepts only its enable control')
             self.configured = True
             return
+        if getattr(keeper,'custody_version',0)==5:
+            raise ValueError('Custody5 principal allocation/distribution is governance-only; disable keeper principal_distribution')
         if (keeper.accounting_version not in (4,5,6) or
                 not {'enabled','batch_size','nft'} <= set(cfg) <=
                     {'enabled','batch_size','nft','retry_interval_seconds'}):

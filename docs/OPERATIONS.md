@@ -34,10 +34,10 @@ reader configuration alone does not invalidate a healthy window. Source updates
 need matching worker/checker rollout and a controlled journal-preserving restart.
 
 Use explicit accounting6, portfolio2, maintenance3, confirmation3, Budget4,
-LP routing2, fee intake1, governance2, custody4, pricing2, Entry routing3 and
+LP routing2, fee intake1, governance2, custody5, pricing2, Entry routing3 and
 `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` with actual bindings. The historical accounting4
 [holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
-not a working deployment. Review the distinct fresh accounting6/schema9 inventory,
+not a working deployment. Review the distinct fresh accounting6/schema10 inventory,
 its exact supported observer bindings, assets/routes/feeds/authorities and gas policy
 under [preflight](PRODUCTION_PREFLIGHT.md). Historical schema5/accounting3 records
 and schema6/accounting4 cannot be relabelled profile6; placeholder inventory remains blocked. LP routing2 additionally needs
@@ -249,7 +249,7 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 | Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting6 also requires the exact Budget pin, capability4 and `compoundReady` under policy3; all standalone compounds yield to range maintenance. Rebalance/guarded compound can reinvest the bucket's reserve; contributions only synchronize/release it into incumbent idle/NAV and deploy entrant funds. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
 | Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most 32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
-| Collective principal delivery | Opt-in accounting4/5/6 `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. Confirmed Ready batches have a separate default-hourly retry interval and durable first/last priority rotation so receiver deferrals cannot monopolize the transaction lane. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
+| Collective principal delivery | Historical custody4-or-earlier accounting4/5/6 only: opt-in `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. Fresh custody5 allocation/delivery is governance-only and the keeper job must remain disabled; holder reward claims are unchanged. Confirmed Ready batches have a separate default-hourly retry interval and durable first/last priority rotation so receiver deferrals cannot monopolize the transaction lane. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
 
 The historical policy2 accounting4 sample polls60 seconds and schedules independent standalone
 harvests every 3600 seconds (one hour). It disables standalone compounding and has
@@ -427,9 +427,10 @@ Pending compound joins principal; earned LP/royalty claims and designated buybac
 reserves remain separate. NFTs transfer and retain future royalty eligibility.
 `lp_exit_started` prevents all new LP/mint work even after unpause. Confirmed
 pending transaction recovery still runs; previously earned conversions and
-configured buybacks may continue. Optional automatic allocation/direct delivery
-is source-implemented but disabled by default; the keeper never initiates exit or
-closes buckets. No service was enabled here. See
+configured buybacks may continue. Fresh custody5 allocation/direct delivery
+is governance-only; keeper principal_distribution must remain disabled. Its
+historical custody4 implementation remains separate. The keeper never initiates
+exit or closes buckets. No service was enabled here. See
 [delivery configuration](KEEPER_RECOVERY.md#optional-automatic-principal-delivery).
 [Containment and exact management procedures](OPERATOR_MANUAL.md).
 

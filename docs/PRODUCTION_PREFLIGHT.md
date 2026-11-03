@@ -1,16 +1,23 @@
 # Current production inventory and read-only preflight
 
-Fresh source: [accounting6 / custody4 / portfolio2](POSITION_V6.md), canonical
+Fresh source: [accounting6 / custody5 / portfolio2](POSITION_V6.md), canonical
 same-chain adaptable-policy V6. **Undeployed; production NOT APPROVED.** Current
 normal size/runtime gates and scoped checks use the
-[direct-Entry source scope](../reports/direct-entry-v3-20261103/VERIFICATION.md).
+[authority-change source scope](../reports/authority-audit-20261103/VERIFICATION.md).
 Real dependencies, operating rehearsals and independent audit remain open.
 
-The [schema9 example](../config/production.example.json) is deliberately
+The [schema10 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route
 qualification and observations stay null. Intended settings and known Robinhood
 dependency references are not fresh on-chain evidence. No command below signs,
 deploys, seals, changes a service or authorizes spending.
+
+Fresh custody5 makes terminal principal allocation and distribution governance-only;
+NFT-owner reward claims and owner fallback remain unchanged. Schema9/custody4
+is retained verbatim in [the historical example](../config/production.direct-entry3.example.json)
+and only the explicit historical CLI mode can inspect it. Fresh read/keeper
+configs require custody_version5; new keeper principal_distribution must remain
+disabled. Runtime/config/receipt provenance is never upgraded by changing a label.
 
 ## Current release scope
 
@@ -21,7 +28,7 @@ Governance may move to another reviewed native ETH/ZZZ pool, park all legs, or
 permanently return actual principal to current NFT owners. Same-chain canonical
 handoff remains pre-exit only and requires no live residual during parked export.
 
-Schema9 explicitly requires accounting6, custody4, governance2, fee intake1,
+Schema10 explicitly requires accounting6, custody5, governance2, fee intake1,
 Strategy maintenance3, confirmation3, portfolio2, Budget compound4, emergency2,
 LP routing2, quality1, Entry routing3, pricing2 and entry-review-policy2. A matching
 canonical V6 wire does not make an old accounting profile current. Unknown,
@@ -38,21 +45,21 @@ Verify its Manager/core/state/PosM/Permit2/router wiring, the Balancer arithmeti
 child, actual runtime pins and every code-owned getter. Never assume all helpers
 have the same interface or expose `access()`.
 
-Historical schema8/routed Entry2 remains available only through explicit
+Historical schema9/custody4/direct Entry3 and schema8/routed Entry2 remain available only through explicit
 `--historical-consistency`, using its own observer and validator. The current
 example has no Entry conversion descriptor or child; it is never rewritten to
 schema8 to obtain a pass. Live qualification and actual rollout remain separate.
 
 ## Current buyback maximum and creation history
 
-Fresh schema9 requires `chains[].buyback_maximum_usd18`: the reviewed current
+Fresh schema10 requires `chains[].buyback_maximum_usd18`: the reviewed current
 `Buyback.maxTradeUSD()` in USD18, positive and at most uint128.max. It is matched
 to the exact pinned live getter. `operating_buyback_usd18` must not exceed it.
 `constructor.maximum_buyback_usd18` remains the original creation value; do not
 rewrite it after `setMaximumTradeUSD` or use it as a fallback for missing current
 configuration. Raise/lower ordering remains in the [operator procedure](OPERATOR_MANUAL.md#future-operating-settings).
 
-Older incomplete fresh9 records must be reviewed/completed and observed again;
+Incomplete fresh10 records must be reviewed/completed and observed again;
 missing/invalid current declarations and non-object chain records fail before
 RPC. The example remains null/unqualified. Historical profiles retain their own
 formats; neither this field nor an on-chain setting change upgrades a journal,
@@ -74,9 +81,9 @@ capacity, lifecycle and gas still need independent qualification. See the
 
 <a id="current-schema6-observation-and-offline-validation"></a>
 
-## Current schema9 observation and offline validation
+## Current schema10 observation and offline validation
 
-[Validator](../zzz_ops/production_v7.py) and [observer](../zzz_ops/production_observer_v7.py)
+[Validator](../zzz_ops/production_v8.py) and [observer](../zzz_ops/production_observer_v8.py)
 operate directly on the fresh layout; no manifest is rewritten as accounting4
 to obtain a historical pass. All contract/code/native-balance reads share one
 EIP-1898 block hash with `requireCanonical`. Genesis, confirmation depth, final

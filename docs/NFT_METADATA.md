@@ -50,7 +50,7 @@ display-only positive increasing USD18 values; losses or threshold changes may a
 
 Parked local custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate prices. Claims and collective principal return do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
 
-Fresh accounting6/custody4 uses canonical
+Fresh accounting6/custody5 uses canonical
 `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Confirmed collective closure marks
 Exited5 and `currentLPValue` returns available/zero without a price-feed read.
 `evolution` returns terminal stage4 and metadata labels `LP exited`; it reuses
@@ -61,9 +61,10 @@ NFT ownership separately from fees/royalties. Governance alone starts/closes
 retirement. Operator-submitted bounded batches directly pay current owners;
 holders take no action in the normal flow. A rejecting receiver can retry or
 use the exceptional owner-authorized fallback; universal receipt cannot be
-forced. Optional keeper `principal_distribution` implements bounded automatic
-allocation/direct delivery after governance closure; it is disabled by default,
-uses existing transaction/recovery limits and needs real operating qualification.
+forced. Fresh custody5 allocation/direct delivery requires governance; its
+wallet pays batch gas. Keep keeper principal_distribution disabled/rejected on5;
+historical custody4 jobs retain their original behavior. Current-owner reward
+claims remain independent; real full-collection operating qualification is open.
 Mint/activation/growth cannot restart, and canonical import/replacement is
 blocked permanently after exit begins. Historical profiles keep their old ABI.
 

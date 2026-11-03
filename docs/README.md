@@ -17,7 +17,7 @@ Start with [current profile identities](POSITION_V6.md),
 and the [operator manual](OPERATOR_MANUAL.md). The optional portfolio plan and
 original management reviews retain their exact implementation history.
 Default single main, optional main/residual, explicit fresh accounting6 capabilities
-and schema9/direct Entry3 inventory are source-only; historical profiles and existing sites,
+and schema10/direct Entry3 inventory are source-only; historical profiles and existing sites,
 workers, Anvil and journals retain their meanings.
 
 The [research plan](PASSIVE_INVENTORY_PLAN.md) explains earlier alternatives and
@@ -36,6 +36,7 @@ does not qualify later source or close external release gates.
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
 | LP execution and upkeep | [Policy3/Budget4, LP routing2 and confirmation3](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled85%-threshold confirmation. Distinguish source implementation from live operating qualification. |
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
+| Caller permissions | [Authority map](ACCESS_PERMISSIONS.md), [source-bound review](../reports/authority-audit-20261103/REVIEW.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
 | Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V5 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
 | Callable inputs/outputs/permissions | [Generated source-bound function reference](CONTRACT_FUNCTIONS.md) |
@@ -62,7 +63,7 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | Topic | Scope |
 | --- | --- |
 | Demo versus integration release targets | [Environment map](SITE_ENVIRONMENTS.md): popldemo remains the existing simulation; served poplint has its own unconfigured current3 build/root and no demo fallback. |
-| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting6/custody4 backend reads/unsigned preparation are implemented in source with direct Entry3; matching website consumption remains open; public signing remains disabled. |
+| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting6/custody5 backend reads/unsigned preparation are implemented in source with direct Entry3; matching website consumption remains open; public signing remains disabled. |
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 local build](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 

@@ -143,7 +143,7 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
 
 ## Exit, operations and remaining limits
 
-The current profile is accounting6/custody4/portfolio2/canonical
+The current profile is accounting6/custody5/portfolio2/canonical
 `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Governance starts collective retirement
 while paused. Every funded bucket must be actual native ETH/fixed ZZZ before the
 irreversible lock. Final collection classifies fees normally; pending 5% compound

@@ -9,16 +9,22 @@ saved transaction profile. Existing Anvil services and journals remain unchanged
 | Vault accounting / shared policy | `ACCOUNTING_VERSION()==6` / `PROTOCOL_POLICY_VERSION()==1` |
 | Strategy / Manager / PortfolioPolicy portfolio |2 /2 /2 |
 | Maintenance / confirmation / compound |3 /3 /4 |
-| Migration custody / emergency / residual close |4 /2 /1 |
+| Migration custody / emergency / residual close |5 /2 /1 |
 | LP routing / position child / math child |2 /1 /1 |
 | Pricing / Entry routing / reviewed Entry |2 /3 /2 |
 | Governance / fee intake / execution quality |2 /1 /1 |
-| Production inventory | Schema9,17 modules and20 helpers |
+| Production inventory | Schema10,17 modules and20 helpers |
 | Same-chain handoff admission | `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` |
 
 Entry-routing3 removes pre-Vault contribution conversion and its child. Read
 [the direct tuple](ACTIVATION_ENTRY.md). Historical schema8/Entry-routing2 remains
 a separate explicit runtime/configuration profile; review-policy2 is unchanged.
+
+Custody5 adds governance-only terminal allocation and push distribution; it
+retains custody4's principal/parking formats, account6 and canonical V6 wire.
+Owner reward/royalty claims and principal fallback are unchanged. Fresh APIs and
+keepers declare custody_version5; schema9/custody4 remains historical. See
+[authority boundaries](ACCESS_PERMISSIONS.md).
 
 Position still has eight words: `poolId,lpTokenId,idle0,idle1,depositUSD,centerX96,
 lastRebalance,status`. Status codes and physical main/residual ownership are
@@ -51,11 +57,11 @@ public signing, site rollout or readiness approval.
 | Accounting6 / PositionV6 | Eight-word local Position and current policy/portfolio-aware accounting semantics; not a deployed instance. |
 | Entry routing3 | Seven-field direct ETH/ZZZ Request; no pre-Vault conversion. Review-policy2 and pricing2 remain separate. |
 | LP routing2 | Vault balancing/router/math/typed physical-executor semantics; not Entry routing. |
-| Inventory schema9 | Fresh17module/20helper release observation. Schema8 keeps the routed Entry2 graph for historical inspection only. |
+| Inventory schema10 | Fresh17module/20helper release observation. Schema9/custody4/direct Entry3 and schema8/routed Entry2 remain historical inspection profiles. |
 | Canonical V6 | Explicit same-chain handoff schema and matching policy/backing rules; not permission to import an arbitrary old runtime. |
 | Read API schema2 / activation config schema1 | Existing envelope/config schema families with separately explicit capability versions and runtime pins. |
-| Source7 | Shorthand for this fresh direct Entry3 source generation; there is no ACCOUNTING_VERSION7 implied. |
-| Served current3 | Older separate poplint website reader/unsigned profile. It is not the current contract generation or a source7 rollout. |
+| Source8 | Shorthand for fresh custody5/direct Entry3 sources; ACCOUNTING_VERSION remains6. Historical source7 used custody4/schema9. |
+| Served current3 | Older separate poplint website reader/unsigned profile. It is not the current contract generation or a source8 rollout. |
 
 Use exact getters, code/config/dependency hashes and the [current preflight](PRODUCTION_PREFLIGHT.md),
 not a shared numeric suffix, to establish compatibility. [Current findings](AUDIT_FINDINGS.md)

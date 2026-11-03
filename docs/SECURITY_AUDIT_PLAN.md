@@ -1,6 +1,6 @@
 # Security audit plan
 
-Current fresh source: **accounting6 / custody4 / portfolio2 / canonical adaptable-policy V6**.
+Current fresh source: **accounting6 / custody5 / portfolio2 / canonical adaptable-policy V6**.
 [Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
 and royalty custody exits. Governance permanently ends LP and pays actual
 ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
@@ -11,7 +11,7 @@ See [profile6](POSITION_V6.md); new release qualification remains open.
 
 
 Current threat model: native ETH/fixedZZZ, accounting6/directgovernance2/fee1/
-custody4/portfolio2/holder-exitV5; fixed80/10/5/5 and separate eligible rarity royalties.
+custody5/portfolio2/holder-exitV5; fixed80/10/5/5 and separate eligible rarity royalties.
 Governance may irreversibly end LP and pay current holders proportionally. It
 cannot choose an external recipient through the removed custody APIs. Immediate
 configuration and reviewed replacement-code approval remain governance trust

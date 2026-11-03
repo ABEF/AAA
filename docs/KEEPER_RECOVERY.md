@@ -78,21 +78,30 @@ holder-exit interpretation. The new blocked
 independently reviewed `code_hashes.access` / `code_hashes.principal_exit`, in
 addition to Vault/Fees pins. No example upgrades an installed service.
 
-For fresh accounting6, verify `CUSTODY_VERSION()==4`; historical accounting4 requires 3.
+For fresh accounting6, explicitly configure `custody_version: 5` and verify
+`CUSTODY_VERSION()==5`; historical accounting6/5 uses4 and accounting4 uses3.
+Missing custody_version retains the historical default and cannot adopt runtime5.
 Check the fixed Migration/module/access
 binding, and consistent `Access.lpExitStarted()` / `Migration.exitPhase()`.
 Recovery of an already-saved transaction remains first. Once exit starts, the
 keeper schedules no range change, rebalance, compound or standalone harvest,
 even after ordinary unpause. It may still process previously earned LP/royalty
 conversion and separately configured buyback reserves while ordinary controls
-permit. Governance alone starts exit and closes every funded bucket. The optional
-`principal_distribution` worker then allocates and directly delivers principal
+permit. Governance alone starts exit and closes every funded bucket. On historical custody4 or earlier only, the optional
+`principal_distribution` worker allocates and directly delivers principal
 in bounded batches, including while paused; it never initiates or closes LP.
 It is disabled by default and is not enabled on any installed service here.
 Never restart LP as a recovery shortcut: retirement is irreversible. Metadata
 profiles4/5/6 accept terminal stage4; old metadata journals cannot be relabeled.
 
 ### Optional automatic principal delivery
+
+**Historical custody4-or-earlier only.** Fresh custody5 requires governance for
+`allocatePrincipal` and `distributePrincipal`; the keeper rejects enabling this job.
+Use the [governance batching procedure](HOLDER_COLLECTIVE_EXIT.md#operator-procedure),
+retain disabled configuration, and never place governance credentials on the keeper.
+Holder LP/royalty reward claims remain current-owner actions. Recover any old
+pending operation with its original profile before changing service configuration.
 
 For a reviewed accounting4/5/6 deployment, replace the disabled object in the keeper
 configuration with the following complete object, using the actual NFT runtime:

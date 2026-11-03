@@ -3,7 +3,7 @@
 The separately served [poplint integration target](SITE_ENVIRONMENTS.md) uses the
 explicit current3 reader/unsigned-review profile below. Its reviewed deployment
 configuration remains absent. The fresh contract candidate is now
-[accounting6/custody4/Portfolio2/direct Entry3/schema9](POSITION_V6.md), which this website profile
+[accounting6/custody5/Portfolio2/direct Entry3/schema10](POSITION_V6.md), which this website profile
 does not support. Neither source publication nor changing a manifest's version
 upgrades the served build, a schema1/native2 deployment or an existing journal.
 Public signing remains disabled.
@@ -33,7 +33,7 @@ claim is a payout, not new income or an artwork evolution.
 
 ## Fresh6 integration still required
 
-A new explicitly versioned frontend profile must verify accounting6/custody4/portfolio2,
+A new explicitly versioned frontend profile must verify accounting6/custody5/portfolio2,
 canonical `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`, Manager/typed LP child/Balancer/math/policy,
 execution-quality1/maintenance3/compound4/confirmation3 capabilities, exact runtimes
 and both physical LP IDs/owners/keys/ticks at one canonical block. Desired-disabled

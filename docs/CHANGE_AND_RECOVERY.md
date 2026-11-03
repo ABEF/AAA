@@ -1,6 +1,6 @@
 # Configuration changes and recovery boundaries
 
-The undeployed candidate uses [accounting6 / custody4 / portfolio2 / canonical V6](POSITION_V6.md).
+The undeployed candidate uses [accounting6 / custody5 / portfolio2 / canonical V6](POSITION_V6.md).
 Sealing fixes code, bindings and the single ZZZ identity. Governance changes
 supported policy directly, without a timelock; it cannot rewrite NFT rights or
 send principal/royalties to a custodian. Production is **NOT APPROVED**.

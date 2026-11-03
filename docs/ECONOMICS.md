@@ -7,7 +7,7 @@ no holder principal withdrawal exists during normal operation. LP cannot reopen
 after exit starts. Historical deployments keep their original rules.
 
 
-**Undeployed candidate; production NOT APPROVED.** Accounting6, custody4, portfolio2,
+**Undeployed candidate; production NOT APPROVED.** Accounting6, custody5, portfolio2,
 direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` retain
 the economic rights below. Historical profiles retain their own layouts and
 evidence; no existing local deployment is upgraded. See [profile boundaries](POSITION_V3.md)

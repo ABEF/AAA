@@ -44,10 +44,13 @@ class Lineage:
                       'history', 'retirement_transaction_hash'}
             if isinstance(item, dict) and ('accounting_version' in item or current.accounting_version in (2, 3, 4, 5, 6)):
                 fields.add('accounting_version')
+            if isinstance(item,dict) and ('custody_version' in item or
+                    getattr(current,'custody_version',0)==5):
+                fields.add('custody_version')
             _keys(item, fields, 'predecessor')
             # Do not inherit a successor's new ledger ABI/profile or converter
             # into an older deployment. Historical event replay needs no new getters.
-            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version')}
+            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version','custody_version')}
             previous_config['accounting_version'] = item.get('accounting_version', 1)
             if current.accounting_version in (3, 4, 5, 6) and previous_config['accounting_version'] != current.accounting_version:
                 raise ValueError('Local handoff requires identical explicit accounting and canonical profiles')

@@ -269,7 +269,7 @@ and a qualified independent reference remain release work.
 ## Operator configuration and verification
 
 Use [range instructions](RANGE_POLICY_UPDATES.md), [mode instructions](OPERATOR_MANUAL.md#optional-main-and-residual-mode)
-and [schema9 preflight](PRODUCTION_PREFLIGHT.md). On-chain setters normally need
+and [schema10 preflight](PRODUCTION_PREFLIGHT.md). On-chain setters normally need
 no host restart; local JSON/source/runtime/endpoint changes require a controlled
 matching rollout. Preserve submitted intents and original journals. Publication
 performs no deployment, live restart, website rollout or public transaction.

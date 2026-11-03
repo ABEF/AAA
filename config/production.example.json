@@ -1,5 +1,5 @@
 {
-  "schema_version": 9,
+  "schema_version": 10,
   "accounting_model": "shared-pools-native-v6",
   "accounting_version": 6,
   "routing_version": 3,
@@ -889,7 +889,7 @@
         },
         "keeper": {
           "status": "unqualified",
-          "profile": "accounting6_policy1_portfolio2_upkeep3_compound4_lp2_quality1_confirmation3",
+          "profile": "accounting6_policy1_portfolio2_upkeep3_compound4_lp2_quality1_confirmation3_custody5_governance_principal",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -897,7 +897,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting6_policy1_custody4_holder_exit_v6_portfolio2_confirmation3_entry3",
+          "profile": "accounting6_policy1_custody5_holder_exit_v6_portfolio2_confirmation3_entry3",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -1059,7 +1059,7 @@
   "mint_integration_version": 1,
   "fee_intake_version": 1,
   "governance_version": 2,
-  "custody_version": 4,
+  "custody_version": 5,
   "maintenance_policy_version": 3,
   "compound_capability_version": 4,
   "lp_routing_version": 2,

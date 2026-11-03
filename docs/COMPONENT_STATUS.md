@@ -1,6 +1,6 @@
 # Component boundaries and current status
 
-This map describes the undeployed [accounting6/custody4/portfolio2/canonical V6](POSITION_V6.md)
+This map describes the undeployed [accounting6/custody5/portfolio2/canonical V6](POSITION_V6.md)
 source, not installed contracts or service qualification. Production is **NOT
 APPROVED**. Use [features/evidence](IMPLEMENTATION_STATUS.md) for scoped checks,
 the [sole Todo](../TODO.md) for work and the [operator manual](OPERATOR_MANUAL.md)

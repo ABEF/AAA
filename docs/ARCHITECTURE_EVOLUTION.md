@@ -6,7 +6,7 @@ second roadmap. [Architecture](ARCHITECTURE.md) explains interactions,
 tracks unfinished work. Production is NOT APPROVED.
 
 The current profile is accounting6 / direct governance2 / fee-intake1 /
-custody4 / portfolio2 / `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Native ETH and one fixed ZZZ are the only contribution
+custody5 / portfolio2 / `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Native ETH and one fixed ZZZ are the only contribution
 inputs. The current contracts contain no integrated bridge, creator-payment
 inbox, remote reward intake, external-custodian exit or post-seal ZZZ replacement. Historical profiles
 retain their own codecs and evidence; changing a configuration version does

@@ -1,6 +1,6 @@
 # Local LP maintenance and collection preparation safety
 
-This guide covers fresh accounting6/custody4/portfolio2/canonicalV6. The removed bridge and
+This guide covers fresh accounting6/custody5/portfolio2/canonicalV6. The removed bridge and
 external custody executors are historical. Use [current movement/exit choices](GOVERNED_CUSTODY_HANDOFF.md),
 [loss policy](EXECUTION_LOSS_POLICY.md) and [same-chain handoff](CANONICAL_HANDOFF.md).
 

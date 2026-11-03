@@ -1,6 +1,6 @@
 # Accounting5: bounded main and residual LP
 
-Historical versioned interface reference. The fresh release uses [accounting6/Entry3/schema9](POSITION_V6.md). Existing deployments/readers/journals retain this older profile; do not relabel or execute a current procedure from this page.
+Historical versioned interface reference. The fresh release uses [accounting6/Entry3/schema10](POSITION_V6.md). Existing deployments/readers/journals retain this older profile; do not relabel or execute a current procedure from this page.
 
 Historical source profile, started30October2026; the current candidate is [accounting6](POSITION_V6.md). This page retains its original version boundaries; **production NOT APPROVED**.
 Normal size/runtime gates, focused offline reader/keeper checks and scoped local

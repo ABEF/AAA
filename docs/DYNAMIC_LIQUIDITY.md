@@ -272,7 +272,7 @@ operations are disabled. Parked custody and dependency failures
 stay unavailable, not zero or an invented historical price. Activation and its
 royalty weight persist through falling value and unavailable valuation.
 
-Fresh accounting6/custody4 uses canonical
+Fresh accounting6/custody5 uses canonical
 `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. After a bucket closes for holder return,
 Exited5 reports confirmed zero LP and terminal `lp_exited`/`LP exited`, while
 retaining royalty eligibility. Pending 5% compound joins returned principal;
@@ -280,12 +280,12 @@ earned LP/royalties, buyback reserves and unrelated funds do not. Principal
 allocations/payouts are never added to earnings or reward claim totals. All new
 mint/LP work and canonical replacement remain blocked once exit starts, even
 after ordinary unpause. Historical readers/journals keep their original profiles.
-Permissionless delivery calls cannot initiate exit or choose another beneficiary.
-The operator may submit batches or enable the reviewed optional keeper
-`principal_distribution` job. It uses the existing budgeted transaction/recovery
-path, allocates only after governance closes all buckets, and directly pays
-current owners without holder action. Source implementation is disabled by
-default; no actual service or production operating qualification is implied.
+Custody5 principal allocation/delivery is governance-only and cannot choose
+another beneficiary. The governance wallet pays/submits bounded batches after
+all buckets close. Keeper principal_distribution stays disabled/rejected on5;
+historical custody4 jobs retain their original behavior. Current-owner earned
+LP/royalty claims remain independent. No service rollout or production operating
+qualification is implied.
 
 `tokenURI` dynamically selects the artwork stage from current value. Market
 movement does not itself emit an event. The existing bounded ordinal refresh

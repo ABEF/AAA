@@ -110,3 +110,6 @@ reports/direct-entry-v3-20261103/** -text whitespace=cr-at-eol
 
 # Preserve exact current-documentation reconciliation receipts.
 reports/project-consolidation-20261103/** -text whitespace=cr-at-eol
+
+# Preserve exact custody5 authority verification receipts.
+reports/authority-audit-20261103/** -text whitespace=cr-at-eol

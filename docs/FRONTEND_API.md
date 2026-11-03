@@ -45,8 +45,8 @@ action is not evidence that the transaction failed; recover the same hash rather
 than prepare a duplicate. [Action output boundaries](../reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
 Source publication does not update the currently served older integration site.
 
-Fresh configuration uses explicit `accounting_version:6` and `fee_intake_version:1`
-with read schema2. It verifies Vault6, direct governance2, custody4 and the
+Fresh configuration uses explicit `accounting_version:6`, `custody_version:5` and `fee_intake_version:1`
+with read schema2. It verifies Vault6, direct governance2, custody5 and the
 explicit `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` admission domain. Position still has
 eight words; dormant/parked/exited states remain 3/4/5. The main physical LP ID is
 never replaced by an aggregate or virtual ID.
@@ -62,7 +62,7 @@ base contracts and `principal_exit`:
 | Reviewed v4 dependencies | `pool_manager`, `state_view`, `position_manager`, `permit2` |
 
 The service verifies runtime, sealed module, parent/child and dependency bindings.
-Capabilities are accounting6/maintenance3/confirmation3/compound4/custody4,
+Capabilities are accounting6/maintenance3/confirmation3/compound4/custody5,
 LP routing2/portfolio2/execution quality1 and emergency2. Math is noncustodial;
 the fixed PositionExecutor accepts only Manager's typed LP operations. No new
 wallet, signing authority, generic executor or custody recipient is introduced.
@@ -121,7 +121,7 @@ Entry v4 helper. Source rows carry only pool_id/source_asset/asset_policy_id.
 Read accounting6 semantics and the existing schema2 envelope are unchanged.
 Historical routing2 retains its exact old ABI; a runtime/profile mismatch fails.
 
-Production inventory schema9 is separate from read schema2 and activation schema1;
+Production inventory schema10 is separate from read schema2 and activation schema1;
 it authenticates the complete fresh helper graph. Historical schema8/7/6 stay tied
 to their recorded profiles. Actual provider/route/VRF/gas/service qualification is
 still open. The served poplint accounting3 artifact remains unconfigured;
@@ -436,4 +436,4 @@ helper/runtime. Dynamic sale/VRF mint provenance is `mint_policy`, separate from
 `claim_operations` (empty for mint). Entry minima/idle and cosmetic tier thresholds
 are read at the same confirmed block; missing policy never becomes guessed
 defaults. Stage1 means actual activation, not a persistent100USD value floor.
-Inventory is schema9; public signing remains disabled. [Exact profile](POSITION_V6.md).
+Inventory is schema10; public signing remains disabled. [Exact profile](POSITION_V6.md).

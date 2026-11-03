@@ -1,6 +1,6 @@
 # Confirmed collection positions and attached LP
 
-The backend supports explicit fresh accounting6/custody4/portfolio2/canonical adaptable-policy V6
+The backend supports explicit fresh accounting6/custody5/portfolio2/canonical adaptable-policy V6
 and reviewed historical codecs. The separately served poplint website remains
 accounting3/canonical V4; native2 and other local profiles remain historical.
 Fresh6 authenticates both actual main/residual legs and the complete fixed

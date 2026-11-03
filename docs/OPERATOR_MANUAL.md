@@ -35,6 +35,12 @@ guardian/governance wallet, preserve any pending hash, then reconcile its receip
 and gas. It adds no withdrawal power or economic-parameter change. See the
 [scoped review](../reports/manipulation-hardening-20261027/REVIEW.md).
 
+For the complete permission map, see [who can call each class of function](ACCESS_PERMISSIONS.md).
+Holder reward claims stay owner-controlled. Fresh custody5 restricts terminal
+principal allocation and direct distribution to your governance wallet, which
+pays each batch's gas. Keep keeper principal_distribution disabled; do not put
+the governance key on its server. Old custody4 jobs/journals remain historical.
+
 ## Pool, positions and pause: what each control means
 
 The main LP and optional one-sided residual are **two positions in the same
@@ -169,7 +175,7 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema9 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/20 helpers; schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema10 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/20 helpers; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
 | Website read/unsigned review | [Served current3/fresh Entry3/accounting6 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Matching Entry3 website consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
@@ -372,7 +378,7 @@ ZZZ/USD source as redundant coverage for both assets.
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
    policy remains in history. Never promote observed hashes to approved pins
    automatically or remove a safety check to make a price appear available.
-5. Refresh the schema9 release inventory with explicit `pricing_version: 2` and
+5. Refresh the schema10 release inventory with explicit `pricing_version: 2` and
    all20 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
    `access()` bindings. Update reviewed API/preparation/earnings configurations,
    source proxy pins and service alerts at one confirmed block. Keep old deployed
@@ -1305,7 +1311,7 @@ original ID; do not force it to the destination pool's newly derived ID.
 Do not execute destination reservations before canonical header import: the
 importer requires empty local sequence/buckets/aliases and later imports the
 authenticated source aliases. A planned inherited mapping is not permission to
-pre-populate the replacement. The current schema9 observer checks these facts;
+pre-populate the replacement. The current schema10 observer checks these facts;
 its narrow reservation status is not full transaction approval. A bad permanent
 reservation has no delete/relabel fix: assess remaining capacity/another reviewed
 pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
@@ -1327,7 +1333,7 @@ Both stop and re-enable are exact immediate governance operations; there is no n
 
 ## Custody and LP migration
 
-There is **no external handoff custody address** in accounting6/custody4.
+There is **no external handoff custody address** in accounting6/custody5.
 [Collective holder exit](HOLDER_COLLECTIVE_EXIT.md) replaces both principal and
 royalty-custody drains. Normal moves and parking remain reversible before exit.
 
@@ -1337,7 +1343,7 @@ royalty-custody drains. Normal moves and parking remain reversible before exit.
 | Temporarily park LP | Pause; use exact Migration.park(ParkingRequest), current nonce/epoch/LP/shares/currencies and raw minima. Principal remains attributed in the Vault. No USD oracle required; venue/token checks remain. |
 | Restart parked LP | Before collective exit, revalidate feeds/venue/limits, unpause and call Migration.resume(bucket,pool,minLP,deadline). Verify actual LP and unchanged shares. |
 | End collection LP | Pause and review irreversible shutdown. Governance beginCollectiveExit(reviewHash), then closeBucket for each bucket with raw ETH/ZZZ minima. No conversion or custody recipient. Pending compound joins principal; earned rewards and buyback backing remain separate. |
-| Deliver principal without holder action | Anyone runs allocatePrincipal(max32) to completion, then distributePrincipal(max32 IDs). Current owners receive exact allocated ETH+ZZZ. Inspect paid/deferred markers; low gas can leave later IDs unprocessed. |
+| Deliver principal without holder action | Governance calls allocatePrincipal(max32) to completion, then distributePrincipal(max32 IDs). Current owners receive exact allocated ETH+ZZZ. Inspect paid/deferred markers; low gas can leave later IDs unprocessed. |
 | Rejected owner payment | Other payouts continue. Retry unpaid IDs, or actual owner claimPrincipal(id,recipient). ERC721 approval/operator authority cannot redirect funds. Both assets stay backed on failure. |
 | Token/chain migration | Exit returns assets to holders; no protocol bridge, issuer exchange or external treasury custody remains. A fresh project/deployment does not inherit these principal rights automatically. |
 
@@ -1587,7 +1593,7 @@ Prepare a separately reviewed configuration with accounting6, protocol_policy_ve
 confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
-Schema9 production observation is separate from keeper live configuration.
+Schema10 production observation is separate from keeper live configuration.
 Leave live review/runtime pins unset and dry run enabled until real deployment
 bindings, gas/spend limits, providers and schedules are qualified. Enable
 compounding/conversions only with reviewed per-currency thresholds/routes, and
@@ -1892,7 +1898,7 @@ maintenance values halt further work; repair config and restart with the same
 journal/receipt/nonce history. Do not edit history to match a changed source hash.
 [Exact fields and recovery boundary](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
 
-Fresh schema9 preflight separates current `chains[].buyback_maximum_usd18` from
+Fresh schema10 preflight separates current `chains[].buyback_maximum_usd18` from
 `constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
 the actual pinned live getter as current policy, preserve creation provenance
 and observe/validate again. Do not invent a value or edit constructor history to
@@ -2006,7 +2012,7 @@ Record the cause, affected block/time/object, containment and exact state; verif
 governance permission or private key is needed. Wallet signatures and contracts
 authorize eventual payments/claims. Review the exact chain, anchor, base module
 pins plus the full accounting6 ProtocolPolicy1/Portfolio2 graph (historical profiles
-retain their declared sets), helper pins and admitted assets first. The schema9
+retain their declared sets), helper pins and admitted assets first. The schema10
 release inventory separately observes20 helpers. Bind the separate fee policy to
 `Projection.identity`; document full network-fee semantics, gas-price ceiling
 and maximum suggested-limit cost. Placeholder reviews are not qualification.
@@ -2422,12 +2428,12 @@ pending records or update an existing deployment automatically.
 
 | Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
 | --- | --- | --- |
-| `allocatePrincipal(uint256 maximum)` | Anyone in canonical operating state, not preparing; requires Allocating phase. | Advance deterministic proportional principal apportionment over bounded captured mint ordinals. Continue bounded cursor. Allocation is irreversible; complete every bucket before Ready. |
+| `allocatePrincipal(uint256 maximum)` | Governance only under custody5; canonical operating state, not preparing, Allocating phase; authority rechecked after calls. | Advance deterministic proportional principal apportionment over bounded captured mint ordinals. Continue bounded cursor. Allocation is irreversible; complete every bucket before Ready. |
 | `beginCollectiveExit(bytes32 reviewHash)` | Current governance through controller; sealed, paused, canonical operating and not preparing. | Validate every funded bucket and captured mint inventory, then irreversibly start collective principal return. Irreversible global principal retirement. Does not close or pay all holders in this first call. |
 | `closeBucket(uint256 bucket, uint256 minimumETH, uint256 minimumZZZ, uint256 deadline)` | Current governance; terminal exit in Closing, paused and canonical operating. | Final-harvest and close one captured bucket into exact ETH+ZZZ settlement backing. Continue remaining buckets. No swaps; preserve raw minima/phase/backing on failure. |
 | `closeResidual(ZZZMigration.ParkingRequest r)` | Selected governance only; sealed/globally paused, operating canonical lifecycle without preparation or terminal LP exit; nonreentrant. | Manually remove only the reviewed residual LP into Vault idle while preserving the main and all NFT rights. No reverse transfer to a recipient. Main remains; idle can be redeployed by guarded ordinary/emergency maintenance. |
 | `configureZZZ(address token, bytes32 codeHash, bytes32 reviewHash)` | B; unavailable after seal. Additional guards: nonReentrant, unset fixed ZZZ identity matching source admission, Rewards and immutable Buyback. | Bind the fixed ZZZ token once before sealing, matching source admission, Rewards admission and immutable Buyback. One-time fixed token. No replacement; issuer migration uses holder exit and a fresh deployment. |
-| `distributePrincipal(uint256[] ids)` | Anyone; Ready phase and canonical operating lifecycle, not preparing. Ordinary pause does not block payouts. | Attempt automatic principal pushes to current NFT owners in isolated bounded subcalls. Retry unpaid/deferred IDs only. Successful payment is never due again; ownership follows NFT until paid. |
+| `distributePrincipal(uint256[] ids)` | Governance only under custody5; Ready phase and canonical operating lifecycle, not preparing; post-callback authority recheck. Ordinary pause does not block payouts. | Attempt automatic principal pushes to current NFT owners in isolated bounded subcalls. Retry unpaid/deferred IDs only. Successful payment is never due again; ownership follows NFT until paid. |
 | `emergencyRebalance(EmergencyRebalance request)` | Current governance only; sealed/paused, operating, no canonical preparation/import/retirement or terminal LP exit. Nonreentrant; not a keeper fallback. | Manually close/optionally swap/redeploy one shared LP while globally paused, under an exact custody-bound manifest. No automatic retry/fallback. Paused governance explicitly reviews every retained financial check and final backing. |
 | `invalidateParking(uint256 id)` | Drain-authorized governance before irreversible LP exit. | Advance the shared bucket nonce to invalidate unused parking and residual-close reviews. Advances shared nonce; rebuild fresh park/residual review. Does not move funds or cancel mined custody. |
 | `moveFunds(uint256 id, bytes32 pool, uint128 minimum, uint256 deadline)` | Current governance; live and before irreversible LP exit. | Atomically move a live shared LP to an admitted native ETH/fixed-ZZZ pool with identical actual currencies. A later guarded move/park may reverse direction if occupancy/capacity permit; not an undo. |
@@ -2605,8 +2611,8 @@ aligned geometry and actual TickMath/execution feasibility. Width must exceed
 policy remains distinct. Changed geometry applies only on the next guarded full
 adjustment; it does not immediately remove LP or waive cooldown/confirmation.
 
-On-chain policy changes need no service restart only for a **matching** source7
-worker that reads them dynamically. Adopting direct Entry3/accounting6/schema9/new runtime pins
+On-chain policy changes need no service restart only for a **matching** source8
+worker that reads them dynamically. Adopting direct Entry3/accounting6/schema10/new runtime pins
 requires separate reviewed installation/configuration and controlled restart;
 editing this manual does not authorize one. Preserve pending hashes/journals and
 reconcile nonce/receipts/spend before any operating change. Requalify gas/load,

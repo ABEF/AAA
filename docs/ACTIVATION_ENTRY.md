@@ -1,7 +1,7 @@
 # Direct ETH/ZZZ activation Entry
 
 Fresh **Entry-routing3 / pricing2 / reviewed-policy2**, over unchanged accounting6,
-ProtocolPolicy1, Portfolio2 and canonical V6. The release inventory is schema9
+ProtocolPolicy1, Portfolio2 and canonical V6. The release inventory is schema10
 with20 helpers. This is undeployed source; historical routed Entry2 deployments,
 API configurations and signed/pending records retain their original ABI.
 

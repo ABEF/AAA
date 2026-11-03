@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed3November2026 against source main `3f879da74a3573ffde4578482835b24a73192930`.
+Reviewed3November2026; authority-change source base main `db8033ec5f193e472ff70ac82197d8ad1570461a`.
 [Instructions](AGENTS.md), [README](README.md), [sole Todo](TODO.md),
 [operator manual](docs/OPERATOR_MANUAL.md) and [findings](docs/AUDIT_FINDINGS.md)
 own current context. Exact publication status comes from Git, not this date.
@@ -9,16 +9,17 @@ own current context. Exact publication status comes from Git, not this date.
 ## Current source candidate
 
 Use the [identity table](docs/POSITION_V6.md): accounting6/Portfolio2/maintenance3/
-confirmation3/compound4/custody4/emergency2/LP-routing2; direct Entry-routing3,
-pricing2/review-policy2/governance2/fee1/ProtocolPolicy1. Inventory schema9 has
+confirmation3/compound4/custody5/emergency2/LP-routing2; direct Entry-routing3,
+pricing2/review-policy2/governance2/fee1/ProtocolPolicy1. Inventory schema10 has
 17modules and20helpers. Canonical V6/eight Position words do not imply runtime
-compatibility. Historical routed Entry2/schema8 remains explicit inspection only.
+compatibility. Historical custody4/schema9/direct Entry3 and routed Entry2/schema8
+remain explicit inspection only.
 
 Only native ETH and one deployment-fixed ZZZ enter principal. Entry has no
 pre-Vault conversion, route catalogue, receiver or conversion child; it forwards
 exact original input to Vault balancing and marginal main-LP verification.
-Separate LP/royalty converters retain their reviewed routes/helpers. Source7 is
-an integration label, not an accounting7 getter or a deployed upgrade.
+Separate LP/royalty converters retain their reviewed routes/helpers. Source8 is
+an integration label; ACCOUNTING_VERSION remains6, not8, and no deployment upgraded.
 
 Default one main; optional one residual in the same pool, both Vault-owned.
 Default main>=60%/residual<=40% at replacement, not continuously maintained weights.
@@ -41,6 +42,19 @@ Sampling is not continuous history or attack immunity. Compound has its own
 interval and keeper waits below the threshold/in-range/no pending geometry.
 
 <a id="manual-portfolio-controls"></a>
+
+## Current authority boundary
+
+Fresh custody5/schema10 keeps owner LP/royalty reward claims and owner principal
+fallback. Only governance allocates/distributes terminal principal; the submitting
+wallet pays batch gas. Keeper principal_distribution must stay disabled on5.
+Explicit API/keeper/lineage versions reject silent4→5 adoption; historical runtime,
+config and pending records remain separate. See [permissions](docs/ACCESS_PERMISSIONS.md).
+Current [verification](reports/authority-audit-20261103/VERIFICATION.md) binds52/31
+sources/dependencies,43normal gates,471static records (19current/452reuse),14distinct
+selected EVM successes across scopes and25corrected Python methods. Migration39
+runtime margin; other key sizes unchanged. Earlier direct-Entry measurements
+below retain custody4 source scope. No full suite/production approval is implied.
 
 ## Rights, management and recovery
 
@@ -72,20 +86,20 @@ all residuals closed; whole-chain/post-halt recovery is not implemented.
 
 [Feature/evidence reference](docs/IMPLEMENTATION_STATUS.md) owns capability detail;
 [consolidated findings](docs/AUDIT_FINDINGS.md) maps history to current mechanisms
-and remaining tasks. Original reports/failures/pins remain immutable. The latest
-[Entry3 evidence](reports/direct-entry-v3-20261103/VERIFICATION.md) has52 production /
+and remaining tasks. Original reports/failures/pins remain immutable. The prior
+custody4 [Entry3 evidence](reports/direct-entry-v3-20261103/VERIFICATION.md) has52 production /
 31dependency sources,43normal gates,471static records and reference37/818/37/13
 with no note gaps.28 distinct selected EVM and314 Python successes span recorded
 stages; no full current suite/CI/live operating approval is claimed.
 
 Entry runtime18581→9863 and Registry creation42736→22526. Vault635/Budget237/
-Migration20/Balancer360 runtime margins remain exact-source only. All earlier
+Migration20/Balancer360 were the prior custody4 exact-source margins. All earlier
 counts/measurements are historical. Recheck source pins/advisories before reuse.
 
 ## What remains
 
 Actual independent feeds, routes/depth, supported VRF, authorities, OpenSea primary
-mint, metadata hosting, source7 API/keeper/website configs and operations, target
+mint, metadata hosting, source8 API/keeper/website configs and operations, target
 gas/economics, history archive scaling and independent audit/remediation remain
 open under the [central Todo](TODO.md). Cumulative loss budgets and automatic
 volatility analysis were not selected.60/40 is an approved tradeoff, not an
@@ -94,12 +108,12 @@ optimized/proven profitable strategy. No manipulation/proxy/availability guarant
 ## Boundaries and preservation
 
 Main only. Popldemo is simulation; poplint is separately served current3/read-and-
-prepare with absent reviewed deployment config. Source7 does not update either.
+prepare with absent reviewed deployment config. Source8 does not update either.
 Public DEPLOYMENT stays null; signing Anvil-only. Preserve Anvil8902/NFTs/LP/
 balances/journals, website sources/builds/services and the user-paused heartbeat.
 
 Four unrelated dirty tracked files remain byte-identical and excluded:
 reports/source-checks.json, scripts/run-fork-checks.py,
 tests_python/test_fork_runner.py, tests_python/test_frontend_history.py.
-Current consolidation originals and exact hashes are external under
-`project-consolidation-20261103`, recorded in [handoff](docs/WORK_HANDOFF.md).
+Current authority-change originals and exact hashes are external under
+`authority-audit-20261103`, recorded in [handoff](docs/WORK_HANDOFF.md).

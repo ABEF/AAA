@@ -175,7 +175,7 @@ recovery promise is made for a broken or malicious token.
 
 ## Integration and qualification
 
-Fresh API/keeper profiles explicitly select accounting6, custody4, portfolio2,
+Fresh API/keeper profiles explicitly select accounting6, custody5, portfolio2,
 maintenance3/confirmation3/Budget4/LP routing2 and fee intake1,
 and verify `Vault.ACCOUNTING_VERSION()` plus reviewed runtime pins. Legacy WETH profiles and
 predecessor epochs retain their own currency/version interpretation; saved nonce,

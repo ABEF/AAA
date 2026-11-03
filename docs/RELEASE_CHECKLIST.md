@@ -7,22 +7,21 @@ authorized by documentation or source publication.
 
 ## Evidence and approval boundary
 
-Source base: main `3f879da74a3573ffde4578482835b24a73192930` before this documentation
-consolidation. There is no approved deployment or release-specific configuration.
-[Profile identities](POSITION_V6.md), [features/evidence](IMPLEMENTATION_STATUS.md),
-[consolidated findings](AUDIT_FINDINGS.md) and the [sole Todo](../TODO.md) separate
-implemented source from qualification and approval.
+Source base: main `db8033ec5f193e472ff70ac82197d8ad1570461a` before the authority
+change. No approved deployment or release-specific configuration exists.
+[Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
+and [sole Todo](../TODO.md) separate source from qualification.
 
-The current [Entry3 record](../reports/direct-entry-v3-20261103/VERIFICATION.md)
-binds52production/31dependency sources,43normal gates,471static records and
-reference37/818/37/13 without note gaps.28distinct selected EVM and314Python
-successes span explicit scopes; they are not a full frozen-release regression,
-published CI or independent audit. Unchanged-source reuse is checked by the
-[documentation consolidation](../reports/project-consolidation-20261103/VERIFICATION.md).
-Older reports retain their original sources, failures, skips and measurements.
+Current [authority verification](../reports/authority-audit-20261103/VERIFICATION.md)
+binds52production/31dependency sources,43normal gates and471static records
+(19current-context review/452exact unchanged reuse).14distinct selected EVM
+behaviors pass across recorded scopes;25corrected targeted Python checks pass.
+Current reference37/818/37/13 has no gaps. This is not a fresh full regression,
+published CI or independent audit. Earlier reports retain their original pins,
+failures, skips and measurements.
 
 Current local actual-core/multi-day tests do not sign off sustained keeper uptime,
-actual oracle/RPC behavior, Linux ownership/watchdogs/backups, source7 services/site,
+actual oracle/RPC behavior, Linux ownership/watchdogs/backups, source8 services/site,
 market economics, maximum populated gas or primary OpenSea minting. Funded claims
 can remain available during USD outages; missing post-action reads never justify
 resubmitting a confirmed operation. Final independent audit/remediation and the
@@ -32,15 +31,15 @@ actual release record below remain required.
 
 | Boundary | Current requirement |
 | --- | --- |
-| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody4/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; compatible parked canonical V6 only with both legs closed. [Profile](POSITION_V6.md). |
+| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; compatible parked canonical V6 only with both legs closed. [Profile](POSITION_V6.md). |
 | LP custody | Native ETH and one fixed ZZZ, both physical NFTs Vault-owned; one main plus at most one residual per logical bucket. No extra arbitrary executor/recipient, bridge or token substitution. |
 | Geometry | Default single; optional configured main floor6000–9999bps(default60%) with complementary residual maximum(default40%) after replacement. Default residual half corresponding main side and governed positive gap(default1 full tick-spacing). Weight is not maintained continuously; fill/mixed/outside states remain accounted. |
 | Timing |85% centre-to-boundary threshold with independent same-side corroboration,600-second sampled window/maxgap300,240-second source checks, hard initial12hours and service60–300 jitter. Actual inclusion and liveness remain unqualified. |
 | Accounting | Entrant-only swap/deploy and actual marginal LP; combined fees allocated80/10/5/5 once per asset; separate rewards, royalties, compound, buyback and principal-return backing. Current owner gets old unclaimed rights. |
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
-| Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration20 at the current direct Entry3 compiler-output pins; none qualifies target gas or future edits. |
+| Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration39 at the current custody5 compiler-output pins; none qualifies target gas or future edits. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema9/direct Entry3 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Services/site | Schema10/direct Entry3 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
 | Security | Current471-record static disposition is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 ## Release identity
@@ -72,7 +71,7 @@ Review completion is separate from authorization to submit public transactions.
 Holder principal remains nonredeemable during operation. Governance may move the
 whole portfolio to an admitted same-pair venue or park both legs with exact
 snapshot/raw minima. A collective exit permanently ends LP, includes designated
-compound and returns actual ETH+ZZZ by shares through bounded direct payouts;
+compound and returns actual ETH+ZZZ by shares through bounded governance-only allocation/direct payouts;
 failed recipients retain backed owner-controlled retry rights. Earned rewards,
 future royalties and NFT transfers continue. No external custodian or reopening
 path exists. Broken venues/tokens or lost governance may prevent completion.
@@ -98,7 +97,7 @@ recipient net after actual platform fee, gas separate; direct mint is not yet a
 qualified OpenSea drop. ERC-2981 does not guarantee royalty payment.
 
 Residual-only capability1 is a separate optional manual write surface within
-accounting6/custody4. Qualify exact four-module getters/runtimes and all callback,
+accounting6/custody5. Qualify exact four-module getters/runtimes and all callback,
 nonce, idle, reward and terminal-holder-return composition before release. Historical
 accounting5/4 binaries do not gain new source6 policy through a manifest label. Both old portfolio
 and current residual reports retain source/failure scope; neither is deployment approval.

@@ -30,6 +30,7 @@ Every entry contains exactly these fields:
 
 | Field | Required meaning |
 | --- | --- |
+| `custody_version` | Required for each predecessor when current custody_version is5. Declare its actual4 or5 capability with accounting6; never inherit successor permissions. Historical older accounting keeps its supported version. |
 | `accounting_version` | Fresh profile6/V6 requires6 for every predecessor; historical profile5/V5 requires5 and profile4/V5 requires4 and V4 requires 3. Other historical configurations retain their supported codec. |
 | `deployment_block`, `deployment_block_hash` | Reviewed sealed-deployment anchor, at or before its outgoing retirement; the destination anchor must also precede that handoff |
 | `contracts` | Complete fresh6 address/runtime graph, including `principal_exit` plus ProtocolPolicy1/Portfolio2/Manager/math/physical executor/core bindings. Historical accounting4 retains its nine base pins; accounting3 retains eight. Use the [API configuration format](FRONTEND_API.md#deployment-configuration). |
@@ -40,7 +41,8 @@ Every entry contains exactly these fields:
 The current deployment must also have its own complete `history` configuration.
 Predecessors inherit its chain, RPC endpoints, confirmation depth, freshness
 policy, fee-intake version and configuration schema. Their accounting version is
-explicit; they do not inherit the current optional royalty/earnings reporting
+explicit; custody_version is also per deployment and never inherited from the
+successor. They do not inherit the current optional royalty/earnings reporting
 configuration. They cannot override inherited fields or contain nested predecessor
 lists. Every protocol contract address must be distinct across deployments;
 repeated identities, cycles and asset/module collisions are rejected.

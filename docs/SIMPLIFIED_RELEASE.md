@@ -1,6 +1,6 @@
 # Simplified release boundary
 
-The fresh undeployed [accounting6/custody4/direct Entry3 profile](POSITION_V6.md) accepts only
+The fresh undeployed [accounting6/custody5/direct Entry3 profile](POSITION_V6.md) accepts only
 native ETH and one fixed ZZZ for contributions and LP custody. It replaces
 external custody exits with [collective principal return to NFT holders](HOLDER_COLLECTIVE_EXIT.md).
 Production is **NOT APPROVED**; existing deployments and journals are unchanged.
@@ -58,7 +58,7 @@ Use [post-seal policy](POST_SEAL_POLICY.md) and the [operator manual](OPERATOR_M
 
 ## Explicit compatibility boundary
 
-The source requires accounting6, ProtocolPolicy1, Portfolio2, custody4, governance2,
+The source requires accounting6, ProtocolPolicy1, Portfolio2, custody5, governance2,
 fee intake1, pricing2, direct Entry-routing3/review-policy2, LP-routing2 and canonical
 `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Position remains eight words; statuses
 are None0, Active1, reserved Outbound2, Dormant3, Parked4, Exited5. Canonical group

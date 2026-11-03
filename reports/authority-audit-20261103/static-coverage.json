@@ -1,0 +1,30 @@
+{
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "counts": {
+    "total": 471,
+    "current_context_reviewed": 19,
+    "exact_unchanged_context_reused": 452
+  },
+  "reviewed_indices": [
+    16,
+    88,
+    89,
+    182,
+    190,
+    226,
+    231,
+    241,
+    258,
+    267,
+    281,
+    313,
+    321,
+    322,
+    323,
+    360,
+    408,
+    426,
+    454
+  ]
+}

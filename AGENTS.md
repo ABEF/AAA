@@ -17,7 +17,7 @@ This file is current instructions, not a report timeline.
 - Popldemo is the existing simulation; poplint is separately built read/unsigned
   integration. Follow [environment map](docs/SITE_ENVIRONMENTS.md). Missing actual
   integration config is unavailable data, not demo data. Do not use demo roots,
-  installers or dist for poplint. Fresh source7/direct Entry3 is not the served current3 site.
+  installers or dist for poplint. Fresh source8/direct Entry3 is not the served current3 site.
 - Browser signing remains **Anvil-only**, public DEPLOYMENT null. Staging heartbeat
   was paused by the user; never restart it without explicit authorization.
 - Never print/log/commit keys, passwords, credentialed RPC endpoints or keystores.
@@ -30,10 +30,10 @@ This file is current instructions, not a report timeline.
 ## Fresh architecture and rules
 
 - Fresh [profile6](docs/POSITION_V6.md): accounting6/portfolio2/maintenance3/
-  confirmation3/compound4/custody4/emergency2/LP-routing2, pricing2/Entry-routing3/
+  confirmation3/compound4/custody5/emergency2/LP-routing2, pricing2/Entry-routing3/
   reviewedEntry2/directgovernance2/fee-intake1. Position remains eight words;
   compatible parked same-chain canonical V6 wire does not imply runtime compatibility.
-  Schema9 inventory has20helpers. Historical schema8/routed Entry2 and older inventories are inspection-only; historical
+  Schema10 inventory has20helpers. Historical schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
   codecs/readers/receipts/journals remain separate and explicit.
 - Only native ETH and one fixed deployment ZZZ are contribution/LP assets.
   Buyback/holder return use that same ZZZ. Token identity cannot change after
@@ -144,12 +144,20 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
   [report map](reports/README.md) and [release approval](docs/RELEASE_CHECKLIST.md).
   Historical report bytes/source scopes remain immutable; do not sum overlapping
   tests or describe old analysis as current. The consolidation is not a new audit pass.
-- [Direct Entry3 evidence](reports/direct-entry-v3-20261103/VERIFICATION.md) binds
-  52 production sources/31 dependencies,43 normal gates and471 source-bound static
-  records.28 distinct selected EVM/314 Python successes span explicit scopes;
-  neither is a full suite. Reference37contracts/818functions/37constructors/13receivers
-  has no note gaps. Runtime headroom: Vault635/Budget237/Migration20/Balancer360.
-  Reuse only matching pins; refresh compiler advisories/static applicability before release.
+- [Current authority evidence](reports/authority-audit-20261103/VERIFICATION.md)
+  binds52production/31dependencies and43normal gates.471static records:19current
+  contexts reviewed/452exact unchanged reuse.14distinct selected EVM successes
+  span explicit corrected stages;25corrected Python methods pass. No full suite,
+  public CI, actual gas/uptime or independent approval. Reference37/818/37/13 has
+  zero gaps; runtime headroom Vault635/Budget237/Migration39/Balancer360.
+- Custody5 makes terminal allocatePrincipal/distributePrincipal governance-only
+  with pre/post authority checks. Owner LP/royalty/fallback claims remain. Fresh
+  API/keeper configs explicitly select custody_version5; omission retains old4
+  and rejects actual5. Each fresh lineage peer states its own version. Schema10
+  observer/validator8 preserves old schema9/custody4 behind historical inspection.
+  Disable keeper principal_distribution on5; never put governance key on its host.
+  No deployment/journal/service is upgraded by publication. Current wire remains
+  accounting6/custody4-format/canonicalV6; see [permissions](docs/ACCESS_PERMISSIONS.md).
 - Before Python publication run `python scripts/check-python-publication.py --index`
   against exact staged blobs, then the committed revision. Local untracked imports
   never establish published closure. Main only; verify exact local/remote heads.
@@ -159,7 +167,7 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 - Matching current APIs authenticate both LP legs while preserving ownership/raw
   funded claims through price outages. USD/NAV can remain unavailable. Never infer
   keeper readiness from physical-only data or relabel an old service/journal.
-- Actual dual feeds/routes/VRF/authorities/OpenSea, matching source7 services/site,
+- Actual dual feeds/routes/VRF/authorities/OpenSea, matching source8 services/site,
   target gas/economics, storage/recovery, long-lived history and independent
   audit/remediation remain open. Source publication is not operating acceptance.
 - One maintained [Operator manual](docs/OPERATOR_MANUAL.md); PORTFOLIO_OPERATIONS
@@ -180,7 +188,7 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 ## Manual portfolio control invariants
 
 RESIDUAL_EXIT_VERSION1 on Migration/Vault/Manager/position child retains
-accounting6/custody4 wire. Paused governance `Migration.closeResidual(ParkingRequest)`
+accounting6 and the unchanged custody4-format wire under custody5. Paused governance `Migration.closeResidual(ParkingRequest)`
 harvests both then closes only the registered residual into attributed Vault idle;
 main/shares/clock/configuration remain. Raw minima, physical/control fingerprint,
 current governance/pause and shared parking nonce/custody epoch remain enforced.

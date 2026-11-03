@@ -122,6 +122,8 @@ class Projection:
             expected.add('fee_intake_version')
         if isinstance(config, dict) and 'protocol_policy_version' in config:
             expected.add('protocol_policy_version')
+        if isinstance(config, dict) and 'custody_version' in config:
+            expected.add('custody_version')
         if isinstance(config, dict) and 'history' in config:
             expected.add('history')
         if isinstance(config, dict) and 'predecessors' in config:
@@ -136,6 +138,11 @@ class Projection:
         self.accounting_version = config.get('accounting_version', 1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1, 2, 3, 4, 5, 6):
             raise ValueError('Unsupported deployment accounting version')
+        historical_custody = 4 if self.accounting_version in (5,6) else 3 if self.accounting_version==4 else 0
+        self.custody_version = config.get('custody_version',historical_custody)
+        allowed_custody = (4,5) if self.accounting_version==6 else (historical_custody,)
+        if type(self.custody_version) is not int or self.custody_version not in allowed_custody:
+            raise ValueError('Unsupported explicit custody authorization profile')
         self.protocol_policy_version=config.get('protocol_policy_version',0)
         if type(self.protocol_policy_version) is not int or self.protocol_policy_version!=(1 if self.accounting_version==6 else 0):
             raise ValueError('Accounting6 requires explicit protocol-policy1; historical profiles cannot adopt it')
@@ -330,7 +337,7 @@ class Projection:
             module_id = '0x' + keccak256(b'ZZZMigration').hex()
             if (self._addr('access', 'module(bytes32)', module_id, block=block) != self.contracts['principal_exit'].address or
                     self._addr('principal_exit', 'access()', block=block) != access or
-                    self._uint('principal_exit', 'CUSTODY_VERSION()', block=block) != (4 if self.accounting_version in (5,6) else 3)):
+                    self._uint('principal_exit', 'CUSTODY_VERSION()', block=block) != self.custody_version):
                 raise ProjectionError('Holder-exit module differs from the reviewed deployment')
         if self.accounting_version in (5,6):
             from frontend_api.portfolio_v5 import verify_profile as verify_v5

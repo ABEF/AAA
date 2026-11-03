@@ -132,6 +132,11 @@ class Keeper:
         self.accounting_version = config.get('accounting_version',1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6):
             raise ValueError('Unsupported keeper accounting version')
+        historical_custody = 4 if self.accounting_version in (5,6) else 3 if self.accounting_version==4 else 0
+        self.custody_version = config.get('custody_version',historical_custody)
+        allowed_custody = (4,5) if self.accounting_version==6 else (historical_custody,)
+        if type(self.custody_version) is not int or self.custody_version not in allowed_custody:
+            raise ValueError('Unsupported explicit custody authorization profile')
         self.protocol_policy_version=config.get('protocol_policy_version',0)
         if type(self.protocol_policy_version) is not int or self.protocol_policy_version!=(1 if self.accounting_version==6 else 0):
             raise ValueError('Accounting6 keeper requires explicit protocol-policy1')
@@ -1289,7 +1294,7 @@ class Keeper:
             module = '0x'+keccak256(b'ZZZMigration').hex()
             if (self.view('access','module(bytes32)',module) != int(self.contracts['principal_exit'],16) or
                     self.view('principal_exit','access()') != int(self.contracts['access'],16) or
-                    self.view('principal_exit','CUSTODY_VERSION()') != (4 if self.accounting_version in (5,6) else 3)):
+                    self.view('principal_exit','CUSTODY_VERSION()') != self.custody_version):
                 raise RpcError('Holder-exit module binding or capability differs')
         self._validate_upkeep_policy()
 

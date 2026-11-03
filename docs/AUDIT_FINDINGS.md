@@ -30,7 +30,7 @@ security guarantee is implied by consolidation.
 | OpenSea primary mint | Direct mint and ERC721/royalty metadata exist; they do not implement the requested OpenSea primary-drop path. Default gross buyer price0.05ETH, platform fee from that gross, network gas separate. Future policy affects future sales only. | Actual OpenSea/chain/drop integration and fee semantics remain unimplemented or unqualified; do not mark done from the demo Mint page or ERC2981. [opensea-mint](../TODO.md#task-opensea-mint) |
 | Read/unsigned API boundaries | Pinned same-block helper/runtime/lifecycle/owner/custody checks, exact unsigned preparation, complete holdings and unavailable data semantics remain. Rpc snapshots endpoint config; convenience calls obey wrapper budgets; strict new-work validation preserves pending recovery. | Endpoint honesty, actual tracing, ingress/proxy policy, authentication/resource economics and production deployment remain qualification. Body progress budgets are not hard DNS/header preemption. [read-api](../TODO.md#task-read-api), [unsigned-actions](../TODO.md#task-unsigned-actions), [api-client-admission](../TODO.md#task-api-client-admission), [host-services](../TODO.md#task-host-services), [operation-review](../TODO.md#task-operation-review) |
 | Keeper, journals, health and recovery | Pending-first canonical receipt/nonce/spend recovery, durable observations/jitter/reset acknowledgements, per-job retry isolation, current config/health evidence and bounded work remain. Exact same-key external actions require reconciliation. | Unix ownership/watchdog/backups/restore, real provider delays, off-host monitoring, current source rollout and long-term funding/keys remain open. Heartbeat stays paused. [keeper-recovery](../TODO.md#task-keeper-recovery), [keeper-guardrails](../TODO.md#task-keeper-guardrails), [host-services](../TODO.md#task-host-services) |
-| Demo, served integration and fresh consumer | Popldemo remains simulation. Poplint served current3/read-and-prepare is a separate older profile, without reviewed deployment config. Fresh source7/accounting6/Entry3 website consumption remains separate work. | No fake demo fallback, old-journal relabel or public signing. Actual matching wallet/approval/pending/recovery/concurrency and deployment acceptance remain open. [wallet](../TODO.md#task-wallet), [portfolio](../TODO.md#task-portfolio), [transaction-ui](../TODO.md#task-transaction-ui), [live-history-ui](../TODO.md#task-live-history-ui) |
+| Demo, served integration and fresh consumer | Popldemo remains simulation. Poplint served current3/read-and-prepare is a separate older profile, without reviewed deployment config. Fresh source8/accounting6/Entry3 website consumption remains separate work. | No fake demo fallback, old-journal relabel or public signing. Actual matching wallet/approval/pending/recovery/concurrency and deployment acceptance remain open. [wallet](../TODO.md#task-wallet), [portfolio](../TODO.md#task-portfolio), [transaction-ui](../TODO.md#task-transaction-ui), [live-history-ui](../TODO.md#task-live-history-ui) |
 | Artwork, metadata and hosting | Prepared fixed inventory, traits and four evolution mappings exist. Metadata reflects confirmed LP state; display/refresh does not itself prove value or deployment. | Permanent hosting/provider, actual publication hashes and marketplace refresh/caching/operations remain unqualified. [metadata-ops](../TODO.md#task-metadata-ops) |
 | Evidence integrity and current source scope | Latest Entry3 normal/static/reference records are source-bound. Failed/empty/skipped stages and prior-body reuse remain explicit. Historical matrices overlap and their counters are never summed into current coverage. Offline reviewHash is provenance, not approval/simulation. | Fresh frozen-release independent audit, compiler advisory refresh, exact deployment arguments and release-specific verification remain required. [local-verification](../TODO.md#task-local-verification), [audit-release](../TODO.md#task-audit-release), [callable-reference](../TODO.md#task-callable-reference), [operation-review](../TODO.md#task-operation-review), [deployment-initcode](../TODO.md#task-deployment-initcode) |
 | Release and external qualification | Current source remains undeployed and NOT APPROVED. Feeds, routes, VRF, authorities, OpenSea, current services/site, metadata, target gas/market economics and independent review remain explicit separate gates. | Local tests, old forks or documentation reconciliation do not close those gates. Public transactions/deployment/services require separate authorization. [authorities-prices](../TODO.md#task-authorities-prices), [mainnet-fork](../TODO.md#task-mainnet-fork), [testnet-rehearsal](../TODO.md#task-testnet-rehearsal), [audit-release](../TODO.md#task-audit-release), [native-production-preflight](../TODO.md#task-native-production-preflight) |
@@ -39,7 +39,7 @@ security guarantee is implied by consolidation.
 
 | Earlier statement | Current conclusion | Evidence |
 | --- | --- | --- |
-| Fresh Entry conversion removal is a proposal | Implemented direct Entry3,7-field Request/schema9/20helpers; Vault and earned-reward conversions stay. | [Entry3](../reports/direct-entry-v3-20261103/REVIEW.md) |
+| Fresh Entry conversion removal is a proposal | Implemented direct Entry3,7-field Request/then-schema9/20helpers; Vault and earned-reward conversions stay. | [Entry3](../reports/direct-entry-v3-20261103/REVIEW.md) |
 | Cooldown observation and internal-harvest coalescing remain missing | Implemented raw cooldown checks/near-eligibility paid enrollment and authenticated successful receipt coalescing. Actual scheduling inclusion remains unqualified. | [Coordination](KEEPER_COORDINATION.md), [portfolio source](../reports/optional-portfolio-20261030/REVIEW.md) |
 | Active-main rejection can hide an otherwise valid ordinary route candidate | Candidate activity is now checked before ranking using actual stored post-swap ticks; final mint checks remain. Bounded search is not a global optimum guarantee. | [LP lifecycle](../reports/lp-lifecycle-audit-20261102/REVIEW.md) |
 | Two geometry getter comparisons are independent proof | Both forward to the same packed PosM source. They prove coherence under that dependency; they are not independent stored-range sources. | [Correction](../reports/lp-lifecycle-audit-20261102/REVIEW.md) |
@@ -48,14 +48,21 @@ security guarantee is implied by consolidation.
 
 ## Evidence that can be reused now
 
-Use [Entry3 verification](../reports/direct-entry-v3-20261103/VERIFICATION.md) for
-52production/31dependency sources,43normal gates and471static records. Its28
-distinct selected EVM and314Python successes span explicit stages; they are not
-one full current suite. Current reference37/818/37/13 has no note gaps. Runtime
-headroom is Vault635/Budget237/Migration20/Balancer360 at those exact pins.
-Older ABI/size/test/static counts remain historical; fresh changes require new
-applicability checks. No current published CI, target gas or independent approval
-is inferred.
+Use [authority verification](../reports/authority-audit-20261103/VERIFICATION.md)
+for current52production/31dependency pins,43normal gates and471static records
+(19current contexts/452unchanged context reuse).14distinct selected EVM behaviors
+pass across recorded scopes;25corrected targeted Python methods pass. These are
+not a full suite or production qualification. Current reference37/818/37/13 has
+no note gaps; runtime headroom Vault635/Budget237/Migration39/Balancer360.
+
+Custody5 restricts terminal allocation/distribution to governance; old custody4
+was safe fixed-owner progress but permissionless. Owner reward/royalty claims
+remain unchanged. Explicit schema10/read/keeper/lineage versions preserve old
+journals, and keeper principal delivery must stay disabled on5. See [permissions](ACCESS_PERMISSIONS.md).
+[Prior Entry3 evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) retains
+its custody4 source scope, failures and earlier sizes; unchanged bodies may be
+reused explicitly, never relabelled. Frozen-release independent review, compiler
+advisory refresh, actual target gas/services and operating approval remain open.
 
 ## Provenance and unresolved findings
 

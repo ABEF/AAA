@@ -7,13 +7,13 @@ from deployment, services, websites and public transactions.
 
 ## 1. Freeze the correct source and integration boundary
 
-Use [accounting6/Entry3/schema9](POSITION_V6.md) and exact runtime/helper/dependency
+Use [accounting6/Entry3/schema10](POSITION_V6.md) and exact runtime/helper/dependency
 pins. Direct Entry removal, residual management, active-main candidate filtering,
 cooldown observation and authenticated harvest coalescing are implemented; do not
 reopen them as proposals or revive retired bridges/creator inboxes/third inputs.
-The [current evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) has exact
+The [current evidence](../reports/authority-audit-20261103/VERIFICATION.md) has exact
 source scope, retained failed attempts and explicit reuse. Normal Migration has
-20bytes runtime headroom; further code changes need new exact-source gates.
+39bytes runtime headroom; further code changes need new exact-source gates.
 
 Owning work: [release freeze/audit](../TODO.md#task-audit-release),
 [deployment size/gas](../TODO.md#task-deployment-initcode),
@@ -35,7 +35,7 @@ Owning work: [dual feeds](../TODO.md#task-dual-price-qualification),
 
 ## 3. Integrate matching services and site without changing old profiles
 
-Build reviewed schema9/source7 configs for API/indexer/keeper/health writer-checker
+Build reviewed schema10/source8 configs for API/indexer/keeper/health writer-checker
 and a matching accounting6/direct Entry3 website consumer on poplint. Popldemo
 remains simulation; served current3 and historical Anvil/journals remain their
 original profiles. Public DEPLOYMENT stays null and signing Anvil-only.

@@ -1,6 +1,6 @@
 # Deployment address inventory
 
-Fresh undeployed source: [accounting6 / custody4 / portfolio2 / canonical V6](POSITION_V6.md).
+Fresh undeployed source: [accounting6 / custody5 / portfolio2 / canonical V6](POSITION_V6.md).
 Governance can permanently close LP and return actual ETH+ZZZ to NFT holders;
 there is no external principal/royalty custody recipient. Production is **NOT APPROVED**.
 
@@ -36,7 +36,7 @@ only admitted LP pair; ERC20 conversion venues remain separate. See
 Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
-public addresses. Complete the [schema9 production manifest](../config/production.example.json)
+public addresses. Complete the [schema10 production manifest](../config/production.example.json)
 with actual chain IDs, confirmed blocks, code/immutable bindings and independent
 review evidence. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
@@ -130,7 +130,7 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Manager physical child | `ZZZLPPositionExecutor`; `Manager.positionOperator()`, immutable Manager/core/state/PosM/Permit2/router, version1 and runtime. Typed physical LP operations preserve Vault ownership; this is not another human operator. |
 | Separate Strategy companions | `ZZZPortfolioPolicy(controller)` and `ZZZRebalanceConfirmation(controller)` supplied to Strategy. Verify reciprocal Strategy/Access, portfolio2/confirmation3 and runtime. Read actual desired/applied geometry, trigger/revisions/reviews, half-side default 5000 and per-pool main floor6000–9999bps(default6000), complementary residual bound and positive gap spacings. |
 | Confirmation policy | Selected600 seconds/strict 300 second gap,240 second source checks and same-side 85% physical/reference threshold. Constructor gap 0 blocks ordinary readiness. Source late paid enrollment/jitter are separate service rules, not observed market history. |
-| Migration construction | `ZZZCustodyValidation`; exact Migration/Access parent, custody4 tuple including liquidity-sensitive portfolioHash and runtime. |
+| Migration construction | `ZZZCustodyValidation`; exact Migration/Access parent, unchanged custody4-format tuple under custody5, including liquidity-sensitive portfolioHash and runtime. |
 | Converter route children | Two distinct `ZZZV4RouteExecutor` instances: LP converter and royalty converter. Match each immutable `parent()` and owning `v4Executor()`. Direct Entry3 has no conversion child; pin its `ENTRY_ROUTING_VERSION()==3`. |
 | Separate converters | LP and royalty converters have distinct fixed ledgers/controller and explicit optional wrappers; bind their ledgers before sealing if required. |
 

@@ -7,11 +7,11 @@ Reviewed 2026-11-03. This records implemented source, not another task list.
 ## Current profile
 
 Fresh **accounting6 / portfolio2 / maintenance3 / confirmation3 / compound4 /
-custody4 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
+custody5 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
 policy2, direct governance2 and fee intake1. The eight-word Position and compatible
 parked same-chain canonical V6 wire remain; they do not imply old runtime compatibility.
 [Profile](POSITION_V6.md), [implementation plan](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md).
-Production inventory is schema9 with20 helper pins. Historical schema8 keeps
+Production inventory is schema10 with20 helper pins. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
@@ -36,7 +36,7 @@ separate milestones.
 | LP revenue | Combined actual fees from both legs allocated once per asset at80/10/5/5. Individual shares/equal active collective; no dormant dilution. Independent claims, compound and buyback reserves. | [Economics](ECONOMICS.md) |
 | Royalties | Actual received funds; separate ×1/×2/×3 weights, outage isolation and guarded batch conversion. Unclaimed rights follow current ownership. | [Royalties](ROYALTY_SETTLEMENT.md) |
 | Compounding | Existing range, both-leg NAV and separate interval after last compound/rebalance; keeper waits for in-range main below the adjustment threshold/no pending geometry. Entrants cannot spend incumbent idle/compound. | [Coordination](KEEPER_COORDINATION.md) |
-| Recovery | Both-leg same-pair movement, raw paused parking and collective ETH+ZZZ holder return. Pending compound follows shares; rewards/buyback backing remain separate. Pre-exit canonical export requires every residual closed. | [Parking](CUSTODY_PARKING.md), [holder return](HOLDER_COLLECTIVE_EXIT.md), [canonical](CANONICAL_HANDOFF.md) |
+| Recovery | Both-leg same-pair movement, raw paused parking and collective ETH+ZZZ holder return. Custody5 allocation/distribution is governance-only; holder LP/royalty/fallback claims remain. Pending compound follows shares; rewards/buyback backing remain separate. Pre-exit canonical export requires every residual closed. | [Parking](CUSTODY_PARKING.md), [holder return](HOLDER_COLLECTIVE_EXIT.md), [canonical](CANONICAL_HANDOFF.md) |
 | Emergency | Paused governance-only reviewed manifest; both-leg liquidity-sensitive fingerprint. Financial bypass is explicit and can lose nearly all principal; structural rights/ownership/settlement remain. | [Emergency](EMERGENCY_REBALANCE.md) |
 
 ## Backend and operations
@@ -50,9 +50,14 @@ and strict new-work validation does not discard a valid pending recovery intent.
 | Confirmed reads | Explicit accounting6 graph/runtime/version checks; both physical IDs/owners/keys/ticks/liquidity and aggregate principal authenticated at one confirmed block. Desired-disabled residuals remain included. Physical reads preserve owners/raw funded claims during price outages; valuations remain unavailable. No maintenance readiness inferred. Old profiles remain separate. |
 | Unsigned activation/growth | Fresh graph including actual typed-executor verification, control and portfolio review binding; exact Manager→typed child→PosM trace and entrant marginal main liquidity; no public signing added. |
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. |
-| Inventory | Schema9 validates20helpers, both physical legs and fresh capabilities. Schemas8/7/6 retain explicit historical inspection. Example is unqualified. |
+| Inventory | Schema10/custody5 validates20helpers, both physical legs and fresh capabilities. Schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | Source-bound current callable reference plus exact operating procedures; the historical90-entry inventory retains its original scope. Ordered named inputs, actual caller/reversal and full tuple links. Offline reviewHash helper validates strict source-bound ABI shapes and preserves exact decimal strings; no live reads, simulation, signing, transaction or readiness claim. [Operator guide](OPERATOR_MANUAL.md#prepare-and-check-an-offline-reviewhash). |
 | Earnings | Separate LP/collective/royalties, current-price USD, claimable versus earned/claimed, authenticated chronology and no duplicate income from claims/conversion/imports. Missing prices/data remain unavailable. |
+
+Explicit fresh read/keeper configs set custody_version5 and check actual runtime.
+Keeper principal_distribution is disabled/rejected on5; governance pays/submits
+terminal batches. Owner earned-reward claims remain available.
+[Full permissions](ACCESS_PERMISSIONS.md).
 
 See [API](FRONTEND_API.md), [unsigned preparation](ACTIVATION_PREPARATION.md),
 [operation report](KEEPER_COORDINATION.md) and [preflight](PRODUCTION_PREFLIGHT.md).
@@ -71,7 +76,8 @@ change to the website is part of this contract implementation.
 
 | Evidence | Source scope | What it does not establish |
 | --- | --- | --- |
-| [Direct Entry3 normal/static record](../reports/direct-entry-v3-20261103/VERIFICATION.md) | Current52production/31dependency sources;43normal gates,471triaged static records; reference37contracts/818functions/37constructors/13receivers without note gaps. Entry runtime9863; Vault635/Budget237/Migration20/Balancer360headroom. | Full regression, published CI, independent audit, deployment gas, future edit capacity or production approval. |
+| [Authority change normal/static record](../reports/authority-audit-20261103/VERIFICATION.md) | Current52production/31dependency sources;43normal gates/471static records,19current contexts reviewed and452unchanged reused.14distinct selected EVM passes across explicit corrected stages;25corrected Python methods. Reference37/818/37/13 has0gaps; Migration39/Vault635/Budget237/Balancer360runtime headroom. | No full suite/CI, independent review, deployment gas, service or production approval. |
+| [Direct Entry3 normal/static record](../reports/direct-entry-v3-20261103/VERIFICATION.md) | Prior custody4 source52production/31dependency sources;43normal gates,471triaged static records; reference37contracts/818functions/37constructors/13receivers without note gaps. Entry runtime9863; Vault635/Budget237/Migration20/Balancer360headroom. | Full regression, published CI, independent audit, deployment gas, future edit capacity or production approval. |
 | [Entry/native regressions](../reports/direct-entry-v3-20261103/test-stages.json) |28distinct selected successes across recorded scopes;19unchanged successful bodies reused after one assertion correction. Failures and empty selection retained. |28fresh final-source tests in one run, actual target-chain feeds/venues or browser/keeper operating acceptance. |
 | [Backend/profile tooling](../reports/direct-entry-v3-20261103/python-verification.json) |314selected Python successes across two scopes; explicit direct/historical tuple, config/helper/observer and operator/reference/publication boundaries. |Actual tracing-provider or matching website acceptance. |
 | [LP lifecycle](../reports/lp-lifecycle-audit-20261102/REVIEW.md), [multi-day journeys](../reports/portfolio-long-horizon-20261102/VERIFICATION.md) | Ordinary active-main candidate selection and composed main/residual/entry/reward/recovery behavior at recorded source/test pins. Relevant unchanged code can support reuse. | All market paths, profitable60/40 strategy, maximum populated gas or live uptime. Geometry getter coherence is not independent source proof. |
@@ -98,5 +104,5 @@ label mocked prices a production feed to turn an infeasible quote into a pass.
 bounds; Entry3/review-policy2 binds scoped contribution terms before callbacks.
 [Manual controls](OPERATOR_MANUAL.md#future-operating-settings) distinguish a chain
 setter from a new runtime/worker/site rollout. Retired architecture and old
-journals remain separate. Real providers/authorities/OpenSea, source7 services/
+journals remain separate. Real providers/authorities/OpenSea, source8 services/
 website, storage/operations, economics/gas and independent audit remain open.

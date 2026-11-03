@@ -111,7 +111,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-custody-composition"></a>
 
-- [ ] **[Qualify collective LP return to NFT holders](docs/HOLDER_COLLECTIVE_EXIT.md)** - In progress. Implemented fresh accounting6/custody4: irreversible governance LP shutdown closes main and optional residual, allocates actual ETH+ZZZ by shares and pays current owners through bounded isolated batches. NFTs retain transfers/future royalties/old rewards. Actual integration, target gas, operating recovery and independent review remain open.
+- [ ] **[Qualify collective LP return to NFT holders](docs/HOLDER_COLLECTIVE_EXIT.md)** - In progress. Implemented fresh accounting6/custody5: governance alone starts/closes terminal LP exit, allocates actual ETH+ZZZ by shares and submits isolated current-owner payout batches. Holders retain reward/royalty claims and exceptional principal fallback. Keeper principal_distribution is disabled on5; actual target gas/services and independent review remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -124,6 +124,7 @@ Custody, ownership and reward accounting.
   - Qualify accounting6/custody4/canonicalV6 read/preparation/website integration, explicit ProtocolPolicy1/Portfolio2 graph, events/metadata/history and separate principal balances. Preserve all historical codecs/Anvil/journals; never count principal payout as earned fees.
   - Run affected adversarial execution/normal size checks and review receipts. Real target-chain closure/payout gas, failed token/venue recovery, operator batching, service acceptance and independent audit/remediation remain required.
   - Optional keeper principal_distribution automates only post-close allocation/direct delivery, with reviewed NFT/module/runtime pins, existing signer/journal/gas/day limits and on-chain paid truth. Governance alone starts/closes LP. Source job is disabled by default; qualify actual funded service rollout and timing. No holder action is required for successful normal delivery.
+  - Fresh custody5/schema10 permission tightening preserves owner reward claims, fixed splits, per-NFT rights, backing and old profiles. [Authority review/evidence](reports/authority-audit-20261103/VERIFICATION.md) includes approved governance-only batches and explicit API/keeper/lineage versions; no rollout or production approval.
 
   </details>
 
@@ -383,7 +384,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-callable-reference"></a>
 
-- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Current source-bound reference covers33contracts/696functions,33constructors/13receivers with purpose, authority, inputs, all outputs and tuple fields.122previously absent output explanations are now filled without changing ABI/source/build. Historical counts retain their original scope.
+- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Current source-bound reference covers37contracts/818functions,37constructors/13receivers with purpose, access, inputs, outputs and tuples; zero gaps. Historical counts retain source scopes. Fresh custody5 authority guide distinguishes operator controls, holder claims, keeper and authenticated module/callback work.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -395,6 +396,7 @@ Custody, ownership and reward accounting.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
   - Snapshot3 now enforces independent bytecode/constructor limits, coherent raw artifact/status/freeze bindings and a closed stored compiler source inventory. 31 distinct affected methods pass across three scopes; actual matching75-source artifacts regenerate31contracts/608functions/13receive hooks without production recompilation. Dynamic actual release arguments remain unqualified; self-consistent metadata is not independent build/test authentication. Strict outer integer schemas and fixed-point ABI types are validated; the last source has three targeted passes, not a fresh31-method rerun.
   - [Whole-project execution](reports/whole-project-execution-20261029/VERIFICATION.md) fills122output annotations preserving all previous notes; zero purpose/input/output gaps with source-bound generator/check.33concrete contract ABI tables are not proof of security or independent provider qualification.
+  - [Authority inventory](reports/authority-audit-20261103/AUTHORITY_INVENTORY.json) resolves241mutable effective implementations and577reads; these are source counts, not executed tests. Owner reward claims remain available; terminal batches governance-only.
 
   </details>
 
@@ -530,7 +532,7 @@ The data and services behind the app.
 
 <a id="task-native-production-preflight"></a>
 
-- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema9 validates accounting6/ProtocolPolicy1/Portfolio2/direct Entry3,20helper bindings and both physical LP legs. Historical schema8/routed Entry2 and schemas7/6 require explicit inspection profiles. Actual source/runtime/address/policy observations, provider services and deployment qualification remain open.
+- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema10 validates accounting6/custody5/ProtocolPolicy1/Portfolio2/direct Entry3,20helpers and both physical LP legs. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -541,6 +543,7 @@ The data and services behind the app.
   - Example configuration and synthetic25-method inventory evidence do not supply actual providers, addresses, routes/fees, upgrade/control qualification, gas limits or operating acceptance. Qualify exact current source/host/writer-checker and [release inventory](docs/RELEASE_CHECKLIST.md) before approval.
   - Preserve original [native inventory evidence](reports/native-preflight/VERIFICATION.md), older schema6 observations and failures at their original source scope. New source publication neither deploys nor approves a mainnet/testnet binding.
   - [Current buyback admission](reports/improvement-audit-20261102/REVIEW.md): fresh schema8 requires chains[].buyback_maximum_usd18 matched to the pinned live getter. Constructor maximum remains immutable creation provenance, not the current policy or a missing-value fallback. Old incomplete fresh records require reviewed recollection; malformed object/value input fails before RPC. Historical profiles remain unchanged.
+  - New validator/observer8 and explicit custody5 read/keeper binding reject old or missing identities. Preserve per-peer lineage versions, history and pending records; keeper principal_distribution cannot be enabled on5. [Evidence](reports/authority-audit-20261103/VERIFICATION.md).
 
   </details>
 
@@ -563,6 +566,7 @@ The data and services behind the app.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md) corrects the previous independence claim: Manager/child ticks forward to the same packed PosM source. Preserve custody/shape/coherence checks for both legs and price-outage availability; expose geometry_sources_independent:false. Five focused backend methods pass. This does not prove provider honesty or an independent stored ledger; matching reader rollout and broader operation adapters remain open.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): The action/output matrix explains each major write receipt, post-state and fault boundary. It is reviewed documentation, not implementation of missing automated operation adapters. Compounded reserve-release amounts are not total actual LP deployed; API unavailability after confirmation must not trigger a duplicate action.
   - Operator guidance now distinguishes direct Entry3 input admission, Balancer.configureExecutionPools and separate LP/royalty converter route methods. A reviewHash is offline provenance, not an executed simulation; ordinary caps and explicit paused-governance emergency bypass remain separate. See [consolidated operator corrections](reports/project-consolidation-20261103/REVIEW.md). Actual live planning/simulation, source rollout and operating acceptance stay open.
+  - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
 
   </details>
 
@@ -938,6 +942,7 @@ Three required testing layers, with source-bound evidence.
   - [October31 audit](reports/day-audit-20261031/REVIEW.md): fresh final-source463 Slither findings all have contextual dispositions (164High/Medium tool labels plus299lower),42normal gates pass and scoped156Python/19EVM methods retain source stages/failures. This closes only this internal source-triage checkpoint. Independent frozen-source audit/remediation, full regression/CI, actual target gas and host/market qualification remain open; reanalyse changed source.
   - [October31 current-source review](reports/today-audit-20261031/VERIFICATION.md) refreshes source6 detector context disposition without recompilation or relaxing the source/finding checker. This internal assessment does not replace independent audit/remediation, target gas or actual operating/provider qualification.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Fresh475-record Slither analysis at final-a8e7dc7cc5;407 exact unchanged source/context dispositions reused and68 current contexts reviewed. Finding exit is not a clean run. Strict checker rules unchanged; new default record is source-bound. Independent audit/remediation and live-service qualification stay open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
+  - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
 
   </details>
 
@@ -1007,6 +1012,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Operator documentation must distinguish global pause from a custody freeze: approved pause-only principal/royalty exits remain possible. Loss defaults are not immutable: governance can set future categories up to10%, without weakening an original approved absolute custody floor. Independently review immediate-quorum and approved-recipient/replacement trust.
   - [Reviewed Entry2](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding) binds the caller loss maximum and exact expectedContributionPolicy fingerprint(minima/idle/revision) in contract/preparation/trace/inventory. Complete matching native website/wallet and real deployment/provider qualification before public activation/growth; historical clients remain incompatible, no silent fallback.
   - [Source6 adaptable policy](docs/ADAPTABLE_POLICY.md) adds scoped runtime/policy observation, exact fresh mint/Entry2 expected fingerprints, per-pool Portfolio2 allocation/gap and captured idle/maintenance controls. [Verification](reports/adaptable-policy-20261031/VERIFICATION.md) is local and source-scoped; real provider/market/gas/worker/site/release qualification remains open. Preserve historical profiles/receipts and fixed economic rights.
+  - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
 
   </details>
 
@@ -1041,6 +1047,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Fee-breakdown review](reports/backend-remediation-20261026/REVIEW.md): lifetime earnings are individual+collective+royalty income including earlier payouts, distinct from current claimable and lifetime claimed. Claims/conversions/imports are not new earnings; transfers and top-ups preserve past entitlements. Independent rarity/LP-weight example and final affected167methods pass; independent audit remains open.
   - [Contract-owner callback review](reports/system-adversarial-20261026/RIGHTS.md) confirms that a payout can legitimately fund pending royalties or consume another owned ledger before later router entries. Do not impose unconditional initial-view/payout equality or reinterpret a valid callback change as fabricated income; current-owner/atomic liability rules remain.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Composed tests verify that partial claiming by one holder preserves another holder's accrued rights, and guarded mode merge does not reset shares or collective membership. Existing economic allocation remains fixed; broader frozen-release adversarial/independent review remains open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
+  - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
 
   </details>
 
@@ -1333,6 +1340,7 @@ Decisions and rehearsals before real funds.
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Contract order tests preserve stable sampled geometry through contributions and resolve new main IDs after rebalance. No worker, signer, journal or service behavior changed. Real inclusion/cadence/gas/provider/load qualification remains open.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): Unknown maintenance names/defaults/overrides reject before new work. A validated saved intent can recover despite invalid new maintenance values; strict validation then halts before another job. Receipt/nonce/fee/deployment checks and existing journals remain intact; no signing or financial guard widened.
   - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): One immutable maintenance field set; always-strict validators with explicit constructor-only paid-intent deferral. Canonical bucket overrides must fit uint256; no retired scheduling or new stop bypass.
+  - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
 
   </details>
 
@@ -1417,4 +1425,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `c3c6e83edd4e8b0266a1926b9ab95b3786d6b64936d508c694c5a1160505b0a1`.
+Snapshot SHA-256: `8eddb2393ad7acdfe3101480b3d2f96a11ca1f11893181239b7b409df4d1f7fc`.

@@ -1,6 +1,6 @@
 # ETH/ZZZ routing boundaries
 
-Fresh **Entry-routing3 / pricing2 / review2 / accounting6**, schema9 inventory,
+Fresh **Entry-routing3 / pricing2 / review2 / accounting6**, schema10 inventory,
 accepts only native ETH and the one fixed ZZZ. Both already are LP currencies.
 The optional whole-input conversion before Vault balancing has been removed.
 

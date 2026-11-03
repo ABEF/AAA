@@ -100,7 +100,7 @@ Re-establish these against actual source and current repo instructions before
 execution. [Accounting6](POSITION_V6.md), [policy](ADAPTABLE_POLICY.md), the sole
 Todo and operator manual take precedence over old campaign assumptions.
 
-- Fresh accounting6/ProtocolPolicy1/Portfolio2/governance2/fee1/custody4/pricing2/
+- Fresh accounting6/ProtocolPolicy1/Portfolio2/governance2/fee1/custody5/pricing2/
   routing2/reviewedEntry2, LP-routing2/quality1/maintenance3/confirmation3/
   compound4/emergency2 and same-chain ADAPTABLE_POLICY_V6. Preserve historical
   codecs/Anvil/journals rather than silently migrating or relabelling them.

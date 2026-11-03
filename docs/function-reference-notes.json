@@ -4400,7 +4400,7 @@
       }
     },
     "ZZZMigration": {
-      "purpose": "Governed same-pair movement/local parking while operating, or irreversible collective ETH+ZZZ principal settlement to current NFT holders. No external custody address, consolidation exit or sweep. Separate manual paused-governance emergency rebalance retains explicit checks; disabled financial guards can permit near-total economic loss without changing recipients or NFT shares.",
+      "purpose": "Same-pair custody movement and terminal holder principal return. Fresh custody5 requires governance for allocation/push batches; current owners keep reward claims and optional principal fallback.",
       "functions": {
         "access()": {
           "purpose": "Read the fixed controller that supplies module, governance, keeper and lifecycle authorization.",
@@ -4410,10 +4410,10 @@
           }
         },
         "CUSTODY_VERSION()": {
-          "purpose": "Read two-leg-aware governed custody/holder-settlement compatibility.",
+          "purpose": "Read the explicit custody and principal-payout authorization capability.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "4; parking appends portfolioHash. Older custody3 calldata/runtimes remain historical."
+            "0": "5: same custody4 principal/parking wire and rights, but collective-exit allocation/distribution are governance-only. Historical custody4 allowed permissionless progress."
           }
         },
         "MAX_BATCH()": {
@@ -4620,7 +4620,7 @@
         },
         "allocatePrincipal(uint256)": {
           "purpose": "Advance deterministic proportional principal apportionment over bounded captured mint ordinals.",
-          "access": "Anyone in canonical operating state, not preparing; requires Allocating phase.",
+          "access": "Governance only; after seal current governance via canConfigure, canonical operating/no preparation. Requires Allocating phase; ordinary pause does not block this governed terminal step.",
           "inputs": {
             "0": "Maximum mint ordinals to process in this call,1..32; includes dormant ordinals."
           },
@@ -4628,14 +4628,14 @@
         },
         "distributePrincipal(uint256[])": {
           "purpose": "Attempt automatic principal pushes to current NFT owners in isolated bounded subcalls.",
-          "access": "Anyone; Ready phase and canonical operating lifecycle, not preparing. Ordinary pause does not block payouts.",
+          "access": "Governance only; current governance rechecked after callbacks, canonical operating/no preparation. Requires Ready phase; ordinary pause does not block these owner payouts.",
           "inputs": {
             "0": "1..32 actual NFT IDs. Already-paid, unallocated and zero-output entries are skipped; duplicates cannot pay twice."
           },
           "outputs": {
             "0": "Number of nonzero NFT allocations successfully paid by this call; a deferred/low-gas batch may pay fewer than requested."
           },
-          "notes": "Caller cannot choose recipients. Captures current ProtocolPolicy.payoutGas once per batch(default180000,governed100000..1000000) for each isolated atomic ETH+ZZZ payment. Receiver failure emits PrincipalDeferred and preserves entitlement; low outer gas stops before another attempt. No automatic retry or expiry."
+          "notes": "No holder or keeper signature is required or accepted for the batch. Fixed current-owner destination; isolated rejecting recipients remain backed. Holder-only claimPrincipal fallback and independent reward/royalty claims remain unchanged."
         },
         "payCurrentOwner(uint256)": {
           "purpose": "Self-only isolation boundary used by automatic distribution to pay the current owner.",

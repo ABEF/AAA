@@ -1,6 +1,6 @@
 # Accounting4: collective holder principal return
 
-Historical versioned interface reference. The fresh release uses [accounting6/Entry3/schema9](POSITION_V6.md). Existing deployments/readers/journals retain this older profile; do not relabel or execute a current procedure from this page.
+Historical versioned interface reference. The fresh release uses [accounting6/Entry3/schema10](POSITION_V6.md). Existing deployments/readers/journals retain this older profile; do not relabel or execute a current procedure from this page.
 
 **Historical profile4 reference.** The fresh source candidate now uses
 [accounting5 / optional bounded portfolio](POSITION_V5.md). Keep this profile,

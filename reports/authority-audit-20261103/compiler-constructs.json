@@ -1,0 +1,15 @@
+{
+  "compiler": "0.8.26",
+  "source_count": 83,
+  "implemented_functions_modifiers": 1011,
+  "source_output_sha256": "41a5346a93c8728e5216e902ccdabcdc6521ae553ebe8f28a826b1e5946885a5",
+  "named_error_requires": [],
+  "conservative_internal_cycles": [],
+  "unresolved_internal_calls": [],
+  "source_yul_functions": [],
+  "storage_layout_declarations": [],
+  "limitations": [
+    "Source AST conservative virtual dispatch, not proof of arbitrary compiler-generated behavior",
+    "Storage-end array bug needs source layout/bounds/manual review; absence of explicit layout declaration alone is not proof"
+  ]
+}

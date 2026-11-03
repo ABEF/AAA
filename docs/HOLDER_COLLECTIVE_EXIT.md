@@ -1,6 +1,6 @@
 # Collective LP exit to NFT holders
 
-Fresh undeployed candidate: accounting **6**, custody **4**, canonical adaptable-policy
+Fresh undeployed candidate: accounting **6**, custody **5**, canonical adaptable-policy
 **V6**. Production is **NOT APPROVED**. External principal and royalty custody
 exits are removed. Existing deployments are not upgraded or relabelled.
 
@@ -33,7 +33,7 @@ close. Paying old rewards or converting their currency is not new LP income.
 
 ## Operator procedure
 
-1. Verify accounting6/custody4/portfolio2 runtime pins, fixed ZZZ, chain, governance and
+1. Verify accounting6/custody5/portfolio2 runtime pins, fixed ZZZ, chain, governance and
    canonical operating state. Inventory all historical buckets and NFT ordinals.
    Stop/reconcile pending keeper work using its original journal; never reset
    or repeat an unresolved transaction. Review the permanent shutdown decision.
@@ -49,12 +49,12 @@ close. Paying old rewards or converting their currency is not new LP income.
    transaction leaves that bucket unchanged; earlier closes stay closed. Repair
    the dependency/minimum issue and review again. There is no aggregate 3% USD
    promise on this raw return. Deliberate zero minima accept zero returned value.
-4. Once `remainingBuckets=0`, anyone calls `allocatePrincipal(maximum)` for
+4. Once `remainingBuckets=0`, governance calls `allocatePrincipal(maximum)` for
    1-32 immutable mint ordinals per transaction until phase `Ready`. Dormant NFTs
    receive nothing. Cumulative share apportionment assigns every raw unit in
    deterministic order; final totals must reconcile every bucket's shares and
    outputs. Transfers do not change ordinal order or shares.
-5. Anyone submits `distributePrincipal(nftIds)` for 1-32 IDs per transaction.
+5. Governance submits `distributePrincipal(nftIds)` for 1-32 IDs per transaction.
    Each current owner is read on-chain; the caller cannot redirect funds. The
    operator can run these batches without holder action. Gas is separate.
    Each payout is isolated and gas-bounded. A low-gas batch may stop early:
@@ -68,13 +68,17 @@ close. Paying old rewards or converting their currency is not new LP income.
    backing. Unsolicited prefunds stay excluded and have no sweep. Continue NFT
    ownership, future royalty receipts and existing reward/royalty claims.
 
-The optional source keeper job `principal_distribution` can perform steps4-5
-once governance finishes all closes. It uses a separately funded keeper wallet,
-reviewed module/NFT pins and existing transaction budgets/journal/recovery;
-it cannot start exit or close LP. It is disabled until explicitly configured and
-qualified. Its ordinary polling/confirmation interval and batch/gas limits affect
-completion time. Ready-phase retries default hourly (configurable60 seconds-1 day), measured from canonical batch receipts; durable scheduling alternates delivery with other jobs. A successful batch is not proof that every receiver accepted payment. See [configuration/retry/restart](KEEPER_RECOVERY.md#optional-automatic-principal-delivery) and [operations](OPERATIONS.md). Manual delivery can also use
-the governance wallet; normal holders neither submit transactions nor pay gas.
+Fresh custody5 restricts both allocation and direct payout batches to governance,
+with authority rechecked after the batch's external calls. The governance wallet
+submitting each batch pays gas; holders need no action for accepted direct payouts.
+Keep `principal_distribution` disabled in the ordinary keeper. Custody5 source
+rejects an enabled keeper payout job; do not load the governance key onto its server.
+Historical custody4 deployments retain their original permissionless batching and
+keeper configuration. Existing journals must be recovered in their own profile.
+
+**Reward claims are separate.** Current owners may still call Rewards/RoyaltyRewards
+or the fixed ClaimRouter to claim their earned balances, before or after LP exit.
+Governance cannot claim another owner's rewards or redirect their principal fallback.
 
 ## Restore a reserve swap venue after exit
 

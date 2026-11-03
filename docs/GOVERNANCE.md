@@ -6,7 +6,7 @@ There is one human project operator: the user. That operator controls governance
 and runs the services. There is no separate operator role, committee or additional
 human approval. Keep the automated keeper's limited service key separate from the
 governance key; this does not imply another person. Production authorities remain
-unset. The fresh candidate is accounting6/custody4/portfolio2/canonicalV6, **NOT APPROVED**.
+unset. The fresh candidate is accounting6/custody5/portfolio2/canonicalV6, **NOT APPROVED**.
 
 The selected governance wallet calls target modules directly. Access authenticates
 it through `canConfigure(caller)`; Access does not schedule or forward calls.
@@ -17,8 +17,8 @@ same-chain replacement. Sealing fixes implementations and the ZZZ identity; it
 does not remove configuration or reviewed-successor trust.
 
 There is no operator-selected custody recipient. Collective exit returns actual
-ETH+ZZZ by NFT shares to current owners. Permissionless allocation/delivery callers
-cannot start exit or choose beneficiaries. Failed recipients stay backed for retry
+ETH+ZZZ by NFT shares to current owners. Custody5 also makes allocation/delivery
+governance-only; governance still cannot select another beneficiary. Failed recipients stay backed for retry
 or an owner-only fallback. No external custody exit, all-ZZZ consolidation,
 issuer-exchange executor or bridge remains.
 
@@ -82,7 +82,7 @@ supported; no new wallet or mandatory multi-person approval is imposed.
 | Stop a pool or minting only | `disablePool` clears selected capabilities without failing dependency reads; `setMintPaused` stops new mint requests. Full pool validation is needed to reopen. |
 | Move/park/resume LP | Governance uses guarded `moveFunds`, exact paused `park`, or fresh guarded `resume`; same native ETH/fixedZZZ pair only. |
 | Start/close collective exit | Paused governance calls `beginCollectiveExit(reviewHash)` then `closeBucket` for each captured bucket with reviewed raw minima. No chosen recipient. |
-| Allocate/deliver principal | After all buckets close, anyone advances bounded `allocatePrincipal`/`distributePrincipal`; actual current owners receive funds. Operator normally submits/pays gas. |
+| Allocate/deliver principal | After all buckets close, governance alone submits/pays bounded `allocatePrincipal`/`distributePrincipal` batches; actual current owners receive funds. Holder earned-reward claims remain owner-controlled. |
 | Manual emergency rebalance | Globally paused governance alone uses the reviewed retained-check manifest; optional financial bypass accepts near-total-loss risk. |
 | Preparation/parking/canonical handoff | Governance controls the exact lifecycle; complete records/backing and atomic same-chain retirement/activation or funded abort remain required. |
 | Replace sealed code | No generic in-place upgrade. Only implemented compatible pre-exit canonical handoff permits reviewed replacement code. |
@@ -111,7 +111,7 @@ identify bytes, not honest behavior. The user accepted reviewed different
 successor code; no identical-code restriction is added. Emergency financial
 bypass expands this trust further. [Change boundaries](CHANGE_AND_RECOVERY.md).
 
-Fresh accounting6/schema9 inventory binds governance2, actual governance and
+Fresh accounting6/schema10 inventory binds governance2, actual governance and
 pending-governance state, capability grants and their complete history. Actual
 wallet type, signers/threshold and recovery require qualification; no mandatory
 committee is implied. Historical manifests retain their own semantics and cannot

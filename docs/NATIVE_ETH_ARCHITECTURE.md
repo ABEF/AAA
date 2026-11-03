@@ -2,7 +2,7 @@
 
 <a id="adversarial-design-review---2026-10-24"></a>
 
-The fresh undeployed candidate uses `Vault.ACCOUNTING_VERSION()==6`, custody4,
+The fresh undeployed candidate uses `Vault.ACCOUNTING_VERSION()==6`, custody5,
 direct governance2 and canonical
 `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. [Profile6](POSITION_V6.md) is explicit;
 older native/wrapped deployments and journals are not upgraded. Production is
@@ -86,8 +86,8 @@ Principal return is neither a fee earning nor a previously claimed reward.
 ## Compatibility and remaining work
 
 Versioned API/keeper/inventory readers must explicitly select accounting6,
-custody4, portfolio2, LP routing2, maintenance3, confirmation3, Budget4 and
-canonical V6; production inventory is schema9 with20 helpers. Eight-word length alone does not select the profile.
+custody5, portfolio2, LP routing2, maintenance3, confirmation3, Budget4 and
+canonical V6; production inventory is schema10 with20 helpers. Eight-word length alone does not select the profile.
 Historical profiles, deployment addresses and receipt/pending journals keep their
 original semantics. The served accounting3 poplint artifact and existing local
 chains do not acquire new payout controls from source edits; popldemo stays a

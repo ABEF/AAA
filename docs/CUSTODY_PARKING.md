@@ -22,7 +22,7 @@ scheduler, executor or canceller role. Guardian can pause, but cannot park or
 receive assets. Reviewed parking may drain preparation while canonical freeze
 still blocks ordinary custody mutation.
 
-Custody4 uses the appended nonzero `portfolioHash` field: read
+Custody4 introduced, and fresh custody5 retains, the appended nonzero `portfolioHash` field: read
 `LiquidityManager.executionPortfolioFingerprint(mainId)` at the reviewed block.
 It binds both actual physical IDs, full keys/bounds, custody and current liquidity.
 Do not substitute stable `portfolioFingerprint`, a copied profile3 tuple or a

@@ -209,12 +209,43 @@ contract HolderCollectiveExitTest is Test {
         assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
         assertEq(fees.buybackBalance(address(0)),1 ether);assertEq(fees.buybackBalance(address(token)),2 ether);
     }
+    function testCustody5GovernanceAloneAllocatesPrincipalAndOthersCannotAdvanceCursor() public {
+        uint256 a=_activate(alice,100 ether);_start();
+        migration.closeBucket(vault.nftBucket(a),0,0,block.timestamp+100);
+        ac.setKeeper(bob,true);uint256 cursor=migration.allocationCursor();
+        vm.prank(alice);vm.expectRevert(bytes4(keccak256("Unauthorized()")));migration.allocatePrincipal(1);
+        vm.prank(bob);vm.expectRevert(bytes4(keccak256("Unauthorized()")));migration.allocatePrincipal(1);
+        assertEq(migration.allocationCursor(),cursor);(,,bool allocated,)=migration.principalOf(a);assertFalse(allocated);
+        migration.allocatePrincipal(1);assertEq(uint256(migration.exitPhase()),uint256(ZZZMigration.ExitPhase.Ready));
+        (,,allocated,)=migration.principalOf(a);assertTrue(allocated);assertEq(migration.CUSTODY_VERSION(),5);
+    }
+    function testCustody5GovernanceAloneDistributesPrincipalWithoutRedirectingOwners() public {
+        uint256 a=_activate(alice,100 ether);uint256 b=_activate(bob,200 ether);_ready(vault.nftBucket(a));
+        ac.setKeeper(bob,true);uint256 before=alice.balance;uint256 backing=migration.remainingETH();
+        vm.prank(alice);vm.expectRevert(bytes4(keccak256("Unauthorized()")));migration.distributePrincipal(_ids(a,b));
+        vm.prank(bob);vm.expectRevert(bytes4(keccak256("Unauthorized()")));migration.distributePrincipal(_ids(a,b));
+        vm.expectRevert(bytes4(keccak256("Unauthorized()")));migration.payCurrentOwner(a);
+        assertEq(alice.balance,before);assertEq(migration.remainingETH(),backing);
+        assertEq(migration.distributePrincipal(_ids(a,b)),2);assertGt(alice.balance,before);
+        assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+    }
+    function testCustody5GovernanceCannotClaimHoldersRewardsOrRedirectFallbackPrincipal() public {
+        uint256 a=_activate(alice,100 ether);_ready(vault.nftBucket(a));
+        vm.expectRevert(bytes4(keccak256("Unauthorized()")));rewards.claim(a,address(0));
+        ZZZRoyaltyRewards royalty=nft.royaltyRewards();
+        vm.expectRevert(bytes4(keccak256("Unauthorized()")));royalty.claim(a,address(0));
+        vm.expectRevert(bytes4(keccak256("Unauthorized()")));migration.claimPrincipal(a,address(this));
+        uint256 before=alice.balance;vm.prank(alice);migration.claimPrincipal(a,alice);
+        assertGt(alice.balance,before);assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+    }
     function testPrincipalIsProportionalNotEqualAndExactAfterAutomaticPayout() public {
         uint256 a=_activate(alice,100 ether);uint256 b=_activate(bob,300 ether);uint256 bucket=vault.nftBucket(a);
         uint256 aShares=vault.sharesOf(a);uint256 bShares=vault.sharesOf(b);assertEq(bShares,3*aShares);
         _ready(bucket);(uint256 x,uint256 y)=migration.claimablePrincipal(a);assertEq(x,100 ether);assertEq(y,100 ether);
         uint256 beforeA=alice.balance;uint256 beforeB=bob.balance;uint256 tokenA=token.balanceOf(alice);uint256 tokenB=token.balanceOf(bob);
-        vm.prank(address(0xCA11));assertEq(migration.distributePrincipal(_ids(a,b)),2);
+        vm.prank(address(0xCA11));vm.expectRevert(bytes4(keccak256("Unauthorized()")));
+        migration.distributePrincipal(_ids(a,b));
+        assertEq(migration.distributePrincipal(_ids(a,b)),2);
         assertEq(alice.balance-beforeA,100 ether);assertEq(bob.balance-beforeB,300 ether);
         assertEq(token.balanceOf(alice)-tokenA,100 ether);assertEq(token.balanceOf(bob)-tokenB,300 ether);
         assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);

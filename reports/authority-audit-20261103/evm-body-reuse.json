@@ -1,0 +1,24 @@
+{
+  "first_test_source_sha256": "076cfe776a6a6f5e17f8660015ac74b612bec368f12575f6f48e31efb1038010",
+  "corrected_test_source_sha256": "84d51e6cc869607f2779262f839f4a1a3b21bc9ee46f239277c7029d9f56fd72",
+  "exact_first_source_reconstructed_and_verified": true,
+  "only_test_change": "Cache royalty ledger getter before expectRevert in the one failed new test; all other source/test bytes match.",
+  "reused_successful_methods": [
+    "test/AccessController.t.sol:AccessControllerTest::testBootstrapCannotConfigureAfterSeal()",
+    "test/AccessController.t.sol:AccessControllerTest::testGuardianCanPauseNotUnpause()",
+    "test/AccessController.t.sol:AccessControllerTest::testSealErasesBootstrap()",
+    "test/DirectGovernance.t.sol:DirectGovernanceTest::testTwoStepGovernancePreservesCurrentAuthoritySupportsCancellationAndRejectsWrongAcceptors()",
+    "test/DirectGovernance.t.sol:DirectGovernanceTest::testUnauthorizedOrInvalidRoleUpdatesEmitNothingAndPreserveMappings()",
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testCustody5GovernanceAloneAllocatesPrincipalAndOthersCannotAdvanceCursor()",
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testCustody5GovernanceAloneDistributesPrincipalWithoutRedirectingOwners()",
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testDoubleClaimsDuplicateBatchAndReentrancyCannotPayTwice()",
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testFinalHarvestAndPendingCompoundPreserveEarnedClaimsAndBuyback()",
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testPrefundsNeverJoinPrincipalAndRemainAfterCompletePayout()",
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testPrincipalIsProportionalNotEqualAndExactAfterAutomaticPayout()",
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testRejectingRecipientDoesNotBlockOthersAndCanChooseFallback()",
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testUnpaidPrincipalAndPastRewardsFollowTransferAndFutureRoyaltiesContinue()"
+  ],
+  "corrected_successful_methods": [
+    "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest::testCustody5GovernanceCannotClaimHoldersRewardsOrRedirectFallbackPrincipal()"
+  ]
+}

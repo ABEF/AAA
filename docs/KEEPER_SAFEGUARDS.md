@@ -1,7 +1,7 @@
 # Keeper safeguards
 
 Fresh [accounting6 / portfolio2](POSITION_V6.md) source: Strategy maintenance3,
-confirmation3, Budget compound4, LP routing2, custody4 and emergency2. The
+confirmation3, Budget compound4, LP routing2, custody5 and emergency2. The
 [current source review](../reports/optional-portfolio-20261030/REVIEW.md) and
 [verification record](../reports/residual-operations-20261031/VERIFICATION.md)
 record passing normal gates, scoped offline checks and local actual-v4-core
@@ -41,7 +41,7 @@ read-only operation report does not sign, mutate journals or approve execution.
 - **Restricted venues.** LP execution supports admitted, static-fee, hookless ETH/ZZZ v4 pools with checked contract identities and wiring.
 - **Shared LP management.** Maintenance operates per shared bucket, avoiding 1,000 separate NFT rebalances.
 - **Bounded portfolio.** Default one main; optional one main plus one residual in the same ETH/ZZZ pool. Both are Vault-owned. Filled residuals remain accounted until a whole adjustment; no third position or indefinite stacking exists.
-- **Typed fixed companions.** Separately deployed Budget, Balancer and Strategy helpers resolve their sealed parent with reciprocal binding. The fixed physical position executor and arithmetic child expose narrow typed operations, not a generic executor or another human role. Schema9 checks the complete20-helper graph; there is no Entry conversion child.
+- **Typed fixed companions.** Separately deployed Budget, Balancer and Strategy helpers resolve their sealed parent with reciprocal binding. The fixed physical position executor and arithmetic child expose narrow typed operations, not a generic executor or another human role. Schema10 checks the complete20-helper graph; there is no Entry conversion child.
 - **No principal sweep or external custody recipient.** Routine maintenance cannot send everyone’s liquidity to an arbitrary address.
 
 ## 2. Deterministic routing and swap execution

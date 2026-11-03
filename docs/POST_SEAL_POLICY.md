@@ -2,7 +2,7 @@
 
 Sealing fixes core implementations, bindings and the one ZZZ identity. Immediate
 governance can change supported policy within guards, not rewrite NFT rights.
-The fresh source is [accounting6/custody4/portfolio2/canonical V6](POSITION_V6.md), undeployed
+The fresh source is [accounting6/custody5/portfolio2/canonical V6](POSITION_V6.md), undeployed
 and **NOT APPROVED**. The [sole Todo](../TODO.md#task-post-seal-configuration)
 owns qualification; the [operator manual](OPERATOR_MANUAL.md) owns exact procedures.
 
@@ -67,9 +67,9 @@ carry terminal holder-principal accounting or reopen an exited deployment.
 
 Native ETH remains the actual zero currency through LP, fees, principal and
 payouts. Only explicit conversion routes may use WETH. Current services/inventory
-must select accounting6, custody4, portfolio2, maintenance3, confirmation3,
+must select accounting6, custody5, portfolio2, maintenance3, confirmation3,
 compound4, LP routing2, fee1, governance2, pricing2, Entry routing3/review-policy2
-and exact adaptable-policy V6 schema/runtime/parent pins. Inventory is schema9/20 helpers. Position length alone
+and exact adaptable-policy V6 schema/runtime/parent pins. Inventory is schema10/20 helpers. Position length alone
 does not identify a profile. Historical accounting1/2/3 deployments and journals
 keep their own meanings. The served accounting3 poplint artifact is not a
 qualified accounting6 integration; public deployment stays null and browser

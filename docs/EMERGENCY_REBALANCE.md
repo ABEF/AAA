@@ -77,7 +77,7 @@ governance [residual-close procedure](OPERATOR_MANUAL.md#portfolio-management-co
 ## Operator procedure
 
 1. Verify the chain, sealed deployment, current governance and exact source/ABI/
-   runtime profile: accounting6/custody4, confirmation3 plus emergency capability2. Coordinate/stop the
+   runtime profile: accounting6/custody5, confirmation3 plus emergency capability2. Coordinate/stop the
    automated signer and reconcile every pending hash before manual work. Stopping
    a host does not cancel a broadcast transaction. Preserve journals.
 2. Governance pauses through `Access.setPaused(true)`. Read actual custody, shares,

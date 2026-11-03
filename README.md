@@ -80,7 +80,7 @@ before new work. [Read API](docs/FRONTEND_API.md) and [indexer](indexer/monitor.
 authenticate ownership, both LP legs, balances and earnings at pinned blocks.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
-Fresh inventory is schema9/direct Entry3; historical profiles remain separate.
+Fresh inventory is schema10/direct Entry3; historical profiles remain separate.
 
 <a id="frontend-components"></a>
 
@@ -121,6 +121,11 @@ Paused governance can instead close only the residual into the same bucket's
 attributed Vault idle, preserving the main and NFT shares. Existing emergency
 rebalancing consolidates into one main; desired mode must be disabled separately
 to keep future adjustments single. See [exact controls](docs/OPERATOR_MANUAL.md#portfolio-management-controls).
+
+Management permissions are listed in the [authority guide](docs/ACCESS_PERMISSIONS.md).
+Fresh custody5 makes terminal principal allocation/direct payout governance-only.
+**Holders still claim their earned LP rewards and royalties.** They do not need
+operator approval to claim; terminal principal payout is a separate operation.
 
 ## Revenue and claims
 

@@ -5,7 +5,7 @@ undeployed; local/staging deployments are separate fixtures. No public signing o
 
 ## Repeatable isolated rehearsal
 
-This fixture is historical: the fresh release is accounting6/Entry3/schema9.
+This fixture is historical: the fresh release is accounting6/Entry3/schema10.
 Passing it does not qualify the fresh helper graph or authorize replacing an
 existing service/journal. Current operating requirements remain in [operations](OPERATIONS.md)
 and [the release record](RELEASE_CHECKLIST.md).

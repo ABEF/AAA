@@ -1,0 +1,83 @@
+{
+  "reference": {
+    "exit_code": 0,
+    "expected_exit": 0,
+    "pass": true
+  },
+  "todo": {
+    "exit_code": 0,
+    "expected_exit": 0,
+    "pass": true
+  },
+  "static": {
+    "exit_code": 0,
+    "expected_exit": 0,
+    "pass": true
+  },
+  "whitespace": {
+    "exit_code": 0,
+    "expected_exit": 0,
+    "pass": true
+  },
+  "fresh10": {
+    "exit_code": 1,
+    "expected_blocked": true,
+    "schema": 10,
+    "current_release_gate": true,
+    "issues": 970
+  },
+  "old9-reject": {
+    "exit_code": 1,
+    "expected_blocked": true,
+    "schema": 10,
+    "current_release_gate": true,
+    "issues": 1
+  },
+  "old9-inspect": {
+    "exit_code": 1,
+    "expected_blocked": true,
+    "schema": 9,
+    "current_release_gate": false,
+    "issues": 970
+  },
+  "preservation": {
+    "protected_dirty": {
+      "reports/source-checks.json": true,
+      "scripts/run-fork-checks.py": true,
+      "tests_python/test_fork_runner.py": true,
+      "tests_python/test_frontend_history.py": true
+    },
+    "changed_immutable_reports": [],
+    "report_baseline_key": "reports",
+    "report_artifact_count": 2634
+  },
+  "checks_successful": true,
+  "actual_static_cli": {
+    "review_coverage_pass": true,
+    "independent_audit": false,
+    "errors": []
+  },
+  "publication_index": {
+    "successful": true,
+    "files": 291,
+    "report_sha256": "6521440e47c55f002c0e2da24373f67c49f08ddcbfe08f5b3e9ea28ce0bf7e50"
+  },
+  "staged_working_bytes_match": true,
+  "documentation": {
+    "scope": "all changed/new custody5 Markdown plus inbound links from tracked non-report Markdown; old unrelated report bytes untouched",
+    "changed_markdown_count": 58,
+    "new_markdown_count": 3,
+    "checked_documents": 61,
+    "links_checked": 2088,
+    "inbound_checked": 152,
+    "introduced_or_unclassified_failures": [],
+    "preexisting_head_failures": []
+  },
+  "compiler_ast": {
+    "implemented_functions_modifiers": 1011,
+    "conservative_internal_cycles": 0,
+    "unresolved_internal_calls": 0,
+    "named_error_requires": 0,
+    "limitations": "AST snapshot only; not whole compiler generated-code proof or refreshed advisory qualification"
+  }
+}
