@@ -1,16 +1,16 @@
 # Typed Uniswap v4 conversion routes
 
 The undeployed candidate supports reviewed, static-fee, hookless, single-hop
-exact-input conversion for Entry contributions and earned LP/royalty ERC20
-balances. Native ETH is currency zero, with explicit value handling and no WETH
+exact-input conversion for earned LP/royalty ERC20 balances. Fresh Entry3
+has no pre-Vault conversion route or executor. Native ETH is currency zero, with explicit value handling and no WETH
 dependency for v4. These routes are separate from the registry's principal LP
 pools. Adding one does not admit another NFT contribution pool or reward currency.
 No real route, RPC or oracle is qualified by the local tests.
 
 ## Contract boundary
 
-Each `ZZZActivationEntry`, `ZZZRoyaltyConverter` and inherited
-`ZZZLPRewardConverter` creates its own immutable `ZZZV4RouteExecutor`. Only that
+Each `ZZZRoyaltyConverter` and inherited `ZZZLPRewardConverter` creates its own
+immutable `ZZZV4RouteExecutor`; these are two distinct ledger-bound children. Only that
 parent can record, enable or execute a route; output always returns to the parent.
 The parent retains owner/ledger authentication, governance, lifecycle and loss
 checks. There is no arbitrary calldata, router, output recipient, sweep, hook,
@@ -60,30 +60,27 @@ Prefunded assets and forced ETH cannot subsidize input or masquerade as output.
 Partial fills, mismatched callbacks, short/extra credit or failed forwarding
 revert the entire operation. Input/output are bounded by signed int128 settlement.
 
-## Add or rotate an input route
+<a id="add-or-rotate-an-input-route"></a>
+## Add or rotate an earned-conversion route
 
-1. Qualify the actual assets, independently priced feeds, pool liquidity,
-   directional fees, manager and StateView runtime hashes/binding. A UI ticker or
-   low nominal LP fee does not establish an executable route.
-2. Verify native ETH or fixed ZZZ source admission through the existing policy;
-   no third contribution currency can be added. Call
-   `Entry.addV4Route(policy)` through governance with the exact immutable policy.
-   The output must be one actual currency of the selected contribution pool.
-   Direct pair input still uses route zero; token approvals remain exact amounts.
-3. Add a reviewed activation configuration with accounting4 / custody3 /
-   canonicalV6 / fee-intake1 in its parent, explicit routing2 / pricing2 / review2 and
-   `contracts.v4_executor: {address,code_hash}` plus the fixed pricing companion. Every source entry declares
-   `route_kind` (0 direct, 1 v3 or 2 v4). Include reviewed token/feed and conversion
-   manager/StateView dependency pins. No automatic v3/native fallback exists.
-4. Preparation verifies helper/parent, domain/policy, actual pool state and current
-   governed contribution cap at one canonical hash. The complete trace must show
-   the exact Entry-to-helper call/value/output, packed Budget result, share event
-   and actual LP-unit increase. Internal probes are never wallet transactions.
-5. Simulate approval if needed, then reprepare the full operation after it confirms.
-   Caller output/liquidity minima remain additional protections. Wait for the
-   confirmed Entry event and actual active LP before changing NFT values/artwork.
-6. Disable an obsolete route explicitly and reconcile pending reviews; disabling
-   does not rewrite route identity, refund prior approvals or resend transactions.
+1. Select the LP-reward or royalty converter, its fixed ledger and exact
+   parent-bound executor. Qualify source currency, independent prices, actual
+   venue depth/directional fees and core/StateView runtime/behavior.
+2. Governance calls that converter's `addV4Route(policy)` with the exact tuple
+   above. Source is a nonzero admitted earned ERC20 and output is native ETH.
+   This cannot admit a contribution currency or move principal.
+3. Record the returned immutable ID and exact observed tuple/parent/runtime in
+   the matching conversion worker configuration. Complete the ledger's guarded
+   converter enablement, and simulate the full entitlement debit/output credit.
+   The default conversion cap remains1%, gas separate; a cheap nominal fee is
+   insufficient qualification.
+4. Stop an obsolete route with that converter's
+   `setRouteEnabled(id,false)`, reconcile saved pending work, then qualify any
+   replacement. Do not edit old route IDs, runtime pins or journals to adopt it.
+
+Fresh Entry3 does not expose `addRoute`, `addV4Route`, `setRouteEnabled` or
+`v4Executor`; the above is exclusively earned conversion. Historical routed
+Entry1/2 keeps its explicit old readers/runtime and cannot be relabelled.
 
 ## Settle earned balances into ETH
 

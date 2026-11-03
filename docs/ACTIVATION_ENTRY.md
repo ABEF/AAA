@@ -1,124 +1,74 @@
-# Atomic source activation
+# Direct ETH/ZZZ activation Entry
 
-`ZZZActivationEntry` is the immutable PoolRegistry-created contribution entry,
-paired with `ZZZActivationAssets`. The current undeployed profile is accounting
-6 / fee-intake1 / routing2 / pricing2 / reviewed policy2 / ProtocolPolicy1, with direct
-governance2, custody4 and local canonical adaptable-policy V6. It accepts **native ETH or the one fixed
-ZZZ only**. USDC, USDG and WETH are not user contribution inputs.
+Fresh **Entry-routing3 / pricing2 / reviewed-policy2**, over unchanged accounting6,
+ProtocolPolicy1, Portfolio2 and canonical V6. The release inventory is schema9
+with20 helpers. This is undeployed source; historical routed Entry2 deployments,
+API configurations and signed/pending records retain their original ABI.
 
-Entry never owns the NFT or grants principal redemption. It authenticates one
-owner-funded operation, optionally converts the source through a reviewed typed
-route and calls the fixed Vault. [Preparation](ACTIVATION_PREPARATION.md) returns
-an unsigned review; source support does not qualify a live deployment or service.
+`ZZZActivationEntry` accepts native ETH or the one fixed ZZZ, already one of the
+selected pool's currencies. It forwards that exact input to the fixed Vault.
+**There is no pre-Vault conversion, route catalogue, route toggle or Entry-owned
+v4 executor.** The Vault still performs reviewed ratio balancing and actual LP
+placement. Separate earned-LP and royalty converters remain.
 
-## Request and wallet call
+## Exact owner transaction
 
-The current owner calls `executeReviewed(Request,uint16 maximumLossBps,bytes32 expectedContributionPolicy)`.
-The old `execute` selector is absent from the current Entry; historical deployments
-keep their original ABI. The request has these nine fields, in ABI order:
+Call `executeReviewed(Request,uint16 maximumLossBps,bytes32 expectedContributionPolicy)`
+from the NFT's current owner, with this seven-field static tuple:
 
 | Field | Type and meaning |
 | --- | --- |
-| `nftId` | `uint256`: actual hashed NFT ID, not mint ordinal. |
-| `poolId` | `bytes32`: current reviewed contribution pool; growth must use this NFT's existing bucket/pool. |
-| `sourceAsset` | `address`: zero for native ETH, otherwise the fixed ZZZ. |
-| `amountIn` | `uint256`: exact positive source amount in raw units. The preparer bounds it below `2**128`. |
-| `routeId` | `bytes32`: zero for direct accounting-currency input; otherwise the reviewed route identity. |
-| `minimumOut` | `uint256`: zero for direct input, positive raw output minimum for conversion. |
-| `minimumLiquidity` | `uint128`: positive actual shared-LP liquidity-unit minimum, not USD or NFT shares. |
-| `deadline` | `uint256`: Unix time, current and at most ten minutes ahead. Prepared reviews expire sooner. |
-| `increase` | `bool`: false for first activation, true for growing an already active NFT. |
+| `nftId` | `uint256`: canonical hashed NFT ID, not its ordinal. |
+| `poolId` | `bytes32`: exact selected contribution pool; growth uses the NFT's existing pool. |
+| `sourceAsset` | `address`: zero for native ETH, otherwise the fixed ZZZ. Must already be a pool currency. |
+| `amountIn` | `uint256`: exact positive raw source units/wei. Preparation bounds it below2**128. |
+| `minimumLiquidity` | `uint128`: positive marginal LP-unit minimum, not USD or NFT shares. |
+| `deadline` | `uint256`: Unix seconds, now through now+600. Reviews expire sooner. |
+| `increase` | `bool`: false activation, true growth of an activated NFT. |
 
-`expectedContributionPolicy` must equal the reviewed ProtocolPolicy.entryFingerprint,
-covering action minima, idle ceiling and revision; stale/callback-mutated terms revert.
-`maximumLossBps` is the caller's reviewed cap, at most 1000 bps. The captured
-contribution policy must not exceed it. Governance can tighten future execution;
-a widening beyond that signed review requires a new review. ERC20 allowance is
-to Entry for exactly the chosen source amount; native input requires exactly
-`msg.value == amountIn`, with no token approval. Gas is separate.
+There is no `routeId` or `minimumOut`. The selector differs from the old
+nine-field tuple. `ENTRY_ROUTING_VERSION()` returns3; `REVIEW_POLICY_VERSION()`
+and Pricing's `ENTRY_REVIEW_VERSION()` remain2 because captured review semantics
+are unchanged. Old selectors/getters do not have a compatibility fallback.
 
-## One source value and one execution budget
+`maximumLossBps` captures the caller's allowed contribution budget,0..1000.
+The governed policy may tighten before execution but cannot widen beyond that
+review. `expectedContributionPolicy` is the nonzero exact
+`ProtocolPolicy.entryFingerprint()` at the reviewed snapshot; revisions before
+or during callbacks reject. It is not an arbitrary operator reviewHash.
 
-Activation defaults to **$100 original source value** and growth **$5**;
-ProtocolPolicy may set future USD18 minima, each>=1USD and growth<=activation, with any higher configured pool minimum also enforced. Entry freezes
-two-source source/pair price bounds, policy identities and limits through
-`ContributionPricing.beginEntryReviewed` before token pulls, approvals or
-conversion. The selected source-agreement tolerance is 3%, distinct from the
-contribution loss allowance. Source prices are not caller-supplied USD values.
+Native ETH requires exactly `msg.value=amountIn`, with no approval. ZZZ requires
+`msg.value=0` and only the chosen amount approved to Entry. Entry approves the
+fixed Vault for exactly that amount, clears approval afterward and preserves
+pre-existing balances. Unsolicited plain ETH transfers are rejected; forced ETH
+is not caller input or spendable surplus. No sweep, rescue or arbitrary recipient.
 
-After direct input or a typed route, Entry makes exactly one Vault `activate`
-or `increase` call. A temporary context binds owner, NFT, pool, exact raw pair
-amounts, original measured source USD and `keccak256` of the Vault calldata.
-Vault and Registry authenticate this context. An active mismatch reverts rather
-than falling back to the smaller post-conversion pair valuation.
+## Preserved economic and callback checks
 
-Conversion plus balancing plus deployment consume one captured contribution
-budget: default **2%**, governed up to **10%**, with stronger caller/venue minima
-still binding. Both net new backing and marginal deployed LP must satisfy the
-floor; at default the new LP must cover at least 98% of conservative upper input
-value, valued at the frozen lower pair prices. Incumbent LP, idle, historical
-compound, fees or donations cannot subsidize it. Idle is not deployed LP. See
-[price security](PRICE_SECURITY.md) and [execution policy](EXECUTION_LOSS_POLICY.md).
+Default source-value minima remain100USD activation/5USD growth, future-governed
+within policy bounds and subject to stronger pool minima. Dual-source agreement
+defaults3%. Source/pair USD bounds and operation limits freeze before token pulls
+or approvals can call external code. Original source value is never supplied by
+the caller or inferred from an intermediate conversion.
 
-Current ownership is checked before custody, after conversion and after the
-complete Vault operation. Token/operator NFT approval is not authority to add
-LP for another owner. Callback transfers or inconsistent context revert the
-whole operation. Optional royalty-currency isolation remains a separate ledger
-rule: a failed currency can defer its eligibility without undoing otherwise
-valid activation or giving newcomers older royalties.
+Vault checkpoints incumbents, balances only entrant funds, harvests fees generated
+by that swap, increases MAIN only, verifies marginal physical deployed LP/net
+NAV and issues shares. It neither changes residual liquidity nor recentres or
+resets the rebalance clock. Default contribution loss2%, ceiling10%, gas separate;
+idle, known fees, additional loss and stronger caller/venue minima remain distinct.
+Direct input can still require a guarded balancing swap and can still fail.
 
-## Route policy
+Entry's temporary context binds owner/NFT/pool, exact pair amounts, original USD
+and exact Vault calldata. It is inactive during initial approval and cleared
+before reset callbacks. Current-owner, captured policy/price and exact baseline
+checks survive the complete operation. Failure reverts the input transfer,
+balancing and LP changes together; network gas is still spent. A prior separately
+confirmed wallet approval remains an approval, not activation.
 
-For the selected ETH/ZZZ pool, either original input is already an accounting
-currency and can use route zero. Vault still performs guarded ratio balancing;
-route zero does not promise a cost-free or swap-free contribution.
+`SourceContributed` retains its event wire for history: output equals sourceAsset
+and outputAmount equals amountIn in routing3. These fields no longer imply an
+Entry conversion. [Preparation](ACTIVATION_PREPARATION.md), [routing boundaries](ACTIVATION_ROUTING.md),
+[current change/evidence](../reports/direct-entry-v3-20261103/REVIEW.md).
 
-Optional pre-Vault routes are typed, single-hop v3 or static hookless v4. Output
-must be one actual currency of the selected pool. They cannot add another input
-identity, choose a payout recipient, call arbitrary code or perform a bridge.
-Native v4 uses actual ETH; v3 requires ERC20 source and output. A reviewed future
-ERC20 accounting pool does not make WETH an additional original source.
-
-The Entry v3 `RoutePolicy` has twelve fields, in order:
-`source`, `output`, `router`, `factory`, `pool`, `fee`, `routerCodeHash`,
-`factoryCodeHash`, `poolCodeHash`, `sourceCodeHash`, `outputCodeHash`, `reviewHash`.
-The first five are addresses, `fee` is `uint24`, and the remaining fields are
-`bytes32`. Route identity is `keccak256(abi.encode(policy))`.
-
-Entry validates runtime pins, factory pool mapping, token ordering, factory/fee
-and router factory. It emits only SwapRouter02's typed seven-field
-`exactInputSingle` call: recipient Entry, exact input and zero price limit.
-Policies are append-only. Direct governance records or toggles them; disabling
-requires no failing dependency read and re-enabling revalidates. See the separate
-[v4 policy tuple and executor](TYPED_V4_ROUTES.md) and [routing guide](ACTIVATION_ROUTING.md).
-
-## Custody and callbacks
-
-Exact router/Vault approvals are cleared after use. Measured source/output
-balance changes reject partial consumption, taxed transfers, invented output
-and prefund subsidy. Native/token balances return to their pre-operation
-baselines; donations are not a refund or operator surplus. There is no rescue
-or arbitrary-call path.
-
-Entry is nonreentrant. Vault approval occurs while contribution context is
-inactive; ownership is rechecked immediately before arming the one fixed Vault
-call. Context clears before final approval-reset callbacks. `validateOwner` is
-restricted to the fixed Vault, `sourceValue` to the immutable Registry, and
-`pricingContext` to the fixed pricing companion. Venue, approval, ownership,
-price, balance or LP-check failure rolls back that transaction. A separately
-confirmed allowance and spent network gas are not rolled back with it.
-
-## Qualification boundaries
-
-Use the [feature/evidence reference](IMPLEMENTATION_STATUS.md) for source-matched
-checks. Earlier [atomic integration](../reports/activation-preparation/VERIFICATION.md),
-[native-port](../reports/native-eth-port/VERIFICATION.md) and
-[liquidity operations](../reports/liquidity-operations-20261025/VERIFICATION.md)
-retain their own source, mocks and policy defaults. Old Pons/wrapped/99% examples
-are not current route qualification or a reason to relabel an existing deployment.
-
-Actual independent feeds, depth/routes, token/proxy behavior, wallet/API services,
-VRF, authorities, OpenSea, target gas, operating recovery and independent audit
-remain release work. Runtime hashes do not prove proxy administrators or source
-reporters are honest. No deployment, public signing or transaction is authorized
-by this guide. Production is NOT APPROVED.
+New runtimes/configuration require review and an authorized deployment/rollout;
+no existing contract, journal, service, site or public signer is upgraded here.

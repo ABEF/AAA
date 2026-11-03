@@ -7,6 +7,12 @@ authorized by documentation or source publication.
 
 ## Evidence and approval boundary
 
+[Direct Entry3 source/evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md)
+supersedes the prior Entry2 source scope: fresh schema9/20-helper inventory,
+direct seven-field ABI and retained accounting6/review2/pricing2. Old source
+audits below do not verify later bytecode. No public signing, deployment, source7
+site/service/provider qualification or independent approval is granted here.
+
 [Current contract/LP evidence](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
 adds two scoped recovery/rollback journeys and current compiler-bug applicability
 review without production source changes.795 enumerated project bodies are not
@@ -70,7 +76,7 @@ No policy, service/site/journal or deployed behavior changed.
 
 | Boundary | Current requirement |
 | --- | --- |
-| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody4/emergency2/LP-routing2; Entry routing2/pricing2/review2/governance2/fee1. Eight-word Position; compatible parked canonical V6 only with both legs closed. [Profile](POSITION_V6.md). |
+| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody4/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; compatible parked canonical V6 only with both legs closed. [Profile](POSITION_V6.md). |
 | LP custody | Native ETH and one fixed ZZZ, both physical NFTs Vault-owned; one main plus at most one residual per logical bucket. No extra arbitrary executor/recipient, bridge or token substitution. |
 | Geometry | Default single; optional configured main floor6000–9999bps(default60%) with complementary residual maximum(default40%) after replacement. Default residual half corresponding main side and governed positive gap(default1 full tick-spacing). Weight is not maintained continuously; fill/mixed/outside states remain accounted. |
 | Timing |85% centre-to-boundary threshold with independent same-side corroboration,600-second sampled window/maxgap300,240-second source checks, hard initial12hours and service60–300 jitter. Actual inclusion and liveness remain unqualified. |
@@ -78,8 +84,8 @@ No policy, service/site/journal or deployed behavior changed.
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
 | Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration20 at final-a8e7dc7cc5 source pins; none qualifies target gas or future edits. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema8 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
-| Security | Current475-record static disposition is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and narrow route-ranking liveness remain qualification limits. Internal passes are not safety guarantees. |
+| Services/site | Schema9/direct Entry3 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Security | Current471-record static disposition is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and narrow route-ranking liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 ## Release identity
 

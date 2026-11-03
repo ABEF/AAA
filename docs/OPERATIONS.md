@@ -34,10 +34,10 @@ reader configuration alone does not invalidate a healthy window. Source updates
 need matching worker/checker rollout and a controlled journal-preserving restart.
 
 Use explicit accounting6, portfolio2, maintenance3, confirmation3, Budget4,
-LP routing2, fee intake1, governance2, custody4, pricing2, Entry routing2 and
+LP routing2, fee intake1, governance2, custody4, pricing2, Entry routing3 and
 `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` with actual bindings. The historical accounting4
 [holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
-not a working deployment. Review the distinct fresh accounting6/schema8 inventory,
+not a working deployment. Review the distinct fresh accounting6/schema9 inventory,
 its exact supported observer bindings, assets/routes/feeds/authorities and gas policy
 under [preflight](PRODUCTION_PREFLIGHT.md). Historical schema5/accounting3 records
 and schema6/accounting4 cannot be relabelled profile6; placeholder inventory remains blocked. LP routing2 additionally needs

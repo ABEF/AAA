@@ -6,9 +6,11 @@ and the relevant [operator procedure](OPERATOR_MANUAL.md).
 
 ## Current source and preserved environments
 
-Fresh [accounting6](POSITION_V6.md), ProtocolPolicy1, Portfolio2, Entry2,
-maintenance3/confirmation3/compound4, custody4/emergency2/LP-routing2, schema8
-inventory and canonicalV6 are the current undeployed source candidate.
+The earlier source6 candidate used [accounting6](POSITION_V6.md), ProtocolPolicy1,
+Portfolio2, Entry-routing2/review2, maintenance3/confirmation3/compound4,
+custody4/emergency2/LP-routing2, schema8 inventory and canonicalV6. Fresh source7
+uses schema9/20 helpers and direct Entry3 over the same accounting6/portfolio2
+wire; historical schema8 remains separate. No Entry conversion child exists.
 [Policy controls](ADAPTABLE_POLICY.md) and [exact operator inputs](OPERATOR_MANUAL.md#future-operating-settings)
 explain future mint/entry terms, scoped idle/gas/display settings, drained VRF
 rotation, per-pool main allocation/gap and reviewed buyback maximum.
@@ -22,7 +24,7 @@ Fresh reviews bind exact scoped policy; callback changes cannot weaken them.
 No deployment, sealing, service/site/Anvil/journal/signing or heartbeat change.
 Existing Anvil8902 and its NFTs/LP/balances/transaction recovery remain untouched.
 Popldemo keeps its simulation; poplint keeps the separately served current3
-read/unsigned build. Source6 is not an upgrade to either. Public DEPLOYMENT stays
+read/unsigned build. Source7 is not an upgrade to either. Public DEPLOYMENT stays
 null and browser signing Anvil-only. The user-paused heartbeat stays paused.
 
 ## Evidence to reuse, with limits
@@ -34,7 +36,8 @@ Balancer24216runtime(360margin), Vault23941(635), Budget24339(237), Migration245
 The initial24953-byte Balancer attempt failed and remains recorded. New source
 changes require exact-source gates; these are not target-chain gas estimates.
 
-The reference has37concrete contracts/826function rows/37constructors/14receivers,
+The prior reference had37concrete contracts/826function rows/37constructors/14receivers;
+current Entry3 reference has37/818/37/13 with zero gaps,
 zero explanation/input/output gaps. Scope-limited EVM/backend executions, fixture
 failures, corrected retries, empty attempts and reused bodies are recorded in the
 report, not combined into a fictional full current suite. Earlier42-gate/778-callable/
@@ -50,14 +53,34 @@ Documentation sync reuses unchanged code evidence and does not rerun contracts.
 
 ## Continue next
 
+Direct Entry3 verification records28 distinct selected EVM successes across
+explicit stages and314 Python successes across two selected scopes, not a full
+suite. Fresh52/31-source43normal gates and471static records are bound to the
+new compiler output; callable reference37/818/37/13 has no note gaps. Entry
+runtime18581→9863; Registry creation42736→22526. Vault635/Budget237/Migration20
+headroom remains. Failure/empty-selection history and19unchanged-body reuse
+are explicit in reports/direct-entry-v3-20261103/VERIFICATION.md. Source7
+website/services and actual dependency/release qualification remain open.
+
+
+Use [direct Entry3](../reports/direct-entry-v3-20261103/REVIEW.md) and its exact
+verification for the current source. The user approved removing the old optional
+whole-input conversion: seven-field request/selector, ENTRY_ROUTING_VERSION3,
+unchanged review-policy2/pricing2, no Entry routes/receiver/v4 child. New schema9
+and20-helper observation/validation do not rewrite old schema8 records. LP and
+royalty converters retain their independent helpers/routes. Fresh API config
+routing3 has no route fields or Entry executor pin. Existing website/signing,
+Anvil/NFT/LP balances and journals remain unchanged; matching fresh rollout and
+real services remain open. Preserve source-bound failures/corrections and the
+four unrelated dirty files. Raw archive/evidence: external direct-entry-v3-20261103.
+
 Use the [November3 contract/LP audit](../reports/smart-contract-lp-audit-20261103/REVIEW.md)
 and [verification](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md).
 Two new actual-core journeys pass; retain the first fixture failure and metadata-
 authenticated correction.795 body records are review inventory, not tests.
 Production52/dependency31 pins are unchanged;43normal gates/475static records are
 exact-source reuse. The six current compiler disclosures have conditional source/
-settings assessments; refresh before release/changes. Entry-layer simplification
-awaits an explicit fresh-profile/consumer decision; separate reward/royalty
+settings assessments; refresh before release/changes. The later user-approved direct Entry3 implementation resolves that decision; separate reward/royalty
 conversion remains useful. The report's operator recovery guidance changes no
 contract behavior or environment. Raw evidence/originals live under external
 `smart-contract-lp-audit-20261103`; four unrelated dirty files remain untouched.
@@ -97,8 +120,8 @@ to the same packed PosM source; getter coherence is not independent stored-range
 proof. Keep geometry_sources_independent:false and custody/price-outage checks.
 Next qualify bounded sizing/residual placement using actual venues/depth/gas;
 design measured authenticated lifetime archive/read-model evolution. No global
-solver optimum or unsafe fallback is claimed. Complete reviewed schema8 current
-buyback_maximum_usd18 and matching source6 rollout without constructor/journal
+solver optimum or unsafe fallback is claimed. Complete reviewed schema9 current
+buyback_maximum_usd18 and matching source7 rollout without constructor/journal
 rewrites. Current evidence root is the external lp-lifecycle-audit-20261102
 directory beside the older archives above; original reports stay unchanged.
 
@@ -108,11 +131,11 @@ directory beside the older archives above; original reports stay unchanged.
 2. Qualify actual independent dual feeds, reviewed swap/conversion routes, RPC,
    VRF provider/subscription/funding and governance/guardian/keeper/payee addresses.
    Pending draws must drain before planned VRF rotation; no reroll fallback.
-3. Build reviewed source6 service configurations and a fresh indexer contract
+3. Build reviewed source7 service configurations and a fresh indexer contract
    inventory/database including ProtocolPolicy. Enabled conversion jobs require
    an explicit profile. Preserve pending recovery first and old journals; a
    JSON edit or runtime label cannot upgrade installed code or adopt old state.
-4. Complete source6 poplint read/unsigned consumer integration, keeping popldemo
+4. Complete source7 poplint read/unsigned consumer integration, keeping popldemo
    and public signing unchanged. OpenSea primary-mint integration remains open;
    direct mint does not implement marketplace buyer/payment semantics.
 5. Qualify target gas/constructor arguments, liquidity/strategy economics,

@@ -204,8 +204,8 @@ mechanism and manipulation assessment.
 ## One contribution, one frozen price basis
 
 [Activation Entry](../src/ZZZActivationEntry.sol) calls
-`ZZZContributionPricing.beginEntryReviewed` before pulling tokens, approving routers or
-converting assets. The caller supplies `maximumLossBps` through
+`ZZZContributionPricing.beginEntryReviewed` before pulling tokens or approving
+the fixed Vault; no Entry conversion remains. The caller supplies `maximumLossBps` through
 `Entry.executeReviewed(Request,maximumLossBps,expectedContributionPolicy)`. The captured governed cap must
 not exceed that signed maximum before funds move. The expectedContributionPolicy
 argument must equal the reviewed helper.entryFingerprint, including future
@@ -217,7 +217,7 @@ sweep path.
 
 The original source and both LP currencies receive cached lower/upper prices,
 decimal scales and fingerprints. Contribution and venue limits are captured before
-the original source transfer/conversion as well. Budget adoption must match those
+the original source transfer and all Entry/Vault approval callbacks as well. Budget adoption must match those
 exact limits; a callback cannot substitute a later wider or tighter setting. Source admission remains governed through
 [Activation Assets](../src/ZZZActivationAssets.sol). A direct Vault contribution
 captures the corresponding basis before receiving assets. The Budget authenticates

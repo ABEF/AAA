@@ -112,6 +112,11 @@ deployments/journals keep their original semantics.
 
 ### Review-time policy binding
 
+Direct Entry-routing3 uses a seven-field input tuple and no preliminary conversion.
+The caller loss maximum and exact ProtocolPolicy fingerprint retain review-policy2
+semantics; Vault balancing/placement are still inside the captured contribution
+budget. Historical routed Entry2 has a distinct selector/profile and no fallback.
+
 The undeployed candidate adds `REVIEW_POLICY_VERSION()==2` on Entry and
 `ENTRY_REVIEW_VERSION()==2` on its fixed Pricing helper. The owner calls
 `executeReviewed(Request,uint16 maximumLossBps,bytes32 expectedContributionPolicy)`; the original nine-field Request
@@ -131,7 +136,7 @@ governance can still approve dangerous dependencies; this guard does not remove
 that accepted trust. Direct owner-to-Vault calls do not acquire a reviewed-Entry
 guarantee, and the preparer never silently falls back to them.
 
-Current pricing-V2 activation preparation and schema8/accounting6 release inventory require
+Current pricing-V2 activation preparation and schema9/accounting6/Entry-routing3 release inventory require
 explicit `review_policy_version: 2`, matching getters, runtime pins and exact new
 selector/trace. The response carries `reviewed_maximum_loss_bps` separately from
 the captured `execution_limit_bps`; provenance includes the policy version.
@@ -140,6 +145,6 @@ activation configurations require an explicit source-matched replacement profile
 never mean legacy support. Read-only historical profiles remain separate.
 
 The historical Anvil profile retains its original policy and runtime; never
-reinterpret saved journals. The current read/unsigned integration must explicitly require accounting6/ProtocolPolicy1/Portfolio2/Entry2, the
+reinterpret saved journals. The current read/unsigned integration must explicitly require accounting6/ProtocolPolicy1/Portfolio2/Entry-routing3/review2, the
 reviewed selector and current limit checks; actual wallet/provider
 acceptance and public signing remain [open](../TODO.md#task-reviewed-contribution-policy). [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).

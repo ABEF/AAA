@@ -1,0 +1,66 @@
+{
+  "before_report": "../lp-lifecycle-audit-20261102/production-size-gates.json",
+  "after_report": "production-size-gates.json",
+  "gates": [
+    {
+      "contract": "ZZZActivationEntry",
+      "before_runtime": 18581,
+      "after_runtime": 9863,
+      "runtime_saved": 8718,
+      "before_creation": 31139,
+      "after_creation": 10929,
+      "creation_saved": 20210,
+      "runtime_margin": 14713
+    },
+    {
+      "contract": "ZZZPoolRegistry",
+      "before_runtime": 10719,
+      "after_runtime": 10719,
+      "runtime_saved": 0,
+      "before_creation": 42736,
+      "after_creation": 22526,
+      "creation_saved": 20210,
+      "runtime_margin": 13857
+    },
+    {
+      "contract": "ZZZVault",
+      "before_runtime": 23941,
+      "after_runtime": 23941,
+      "runtime_saved": 0,
+      "before_creation": 25339,
+      "after_creation": 25339,
+      "creation_saved": 0,
+      "runtime_margin": 635
+    },
+    {
+      "contract": "ZZZMigrationBudget",
+      "before_runtime": 24339,
+      "after_runtime": 24339,
+      "runtime_saved": 0,
+      "before_creation": 25177,
+      "after_creation": 25177,
+      "creation_saved": 0,
+      "runtime_margin": 237
+    },
+    {
+      "contract": "ZZZMigration",
+      "before_runtime": 24556,
+      "after_runtime": 24556,
+      "runtime_saved": 0,
+      "before_creation": 34404,
+      "after_creation": 34404,
+      "creation_saved": 0,
+      "runtime_margin": 20
+    },
+    {
+      "contract": "ZZZLPBalancer",
+      "before_runtime": 24216,
+      "after_runtime": 24216,
+      "runtime_saved": 0,
+      "before_creation": 33555,
+      "after_creation": 33555,
+      "creation_saved": 0,
+      "runtime_margin": 360
+    }
+  ]
+}

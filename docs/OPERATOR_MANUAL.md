@@ -165,7 +165,7 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema8 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/21 helpers; schema6 and older profiles are inspection-only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema9 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/20 helpers; schema6 and older profiles are inspection-only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
 | Website read/unsigned review | [Served current3/fresh4 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Actual consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
@@ -229,7 +229,7 @@ Anvil/old releases are not upgraded by changing configuration or this runbook.
 This changes the swap venue, not the LP contribution destination. Use the fresh
 Manager `LP_ROUTING_VERSION()==2`, fixed `balancingRouter()` and typed
 position/arithmetic children;
-Entry routing2 is a separate capability. Historical deployments are unchanged.
+Entry routing3 is direct ETH/ZZZ input with no pre-Vault conversion child; LP routing2 remains separate. Historical deployments are unchanged.
 
 1. Review the future pool's full native ETH/fixed-ZZZ static hookless key,
    initialized state, pinned dependencies, actual fees/depth, independent prices
@@ -267,7 +267,7 @@ and other financial/context checks can still block placement. Inspect the whole
 post-close simulation, exact ticks, candidate list and each margin. Governance
 may review and replace the complete execution list above with qualified compatible
 alternatives, then re-simulate and reconcile pending work before a new submission.
-This changes the swap list, not the LP destination, Entry routes or explicit
+This changes the swap list, not the LP destination, original ETH/ZZZ input or explicit
 conversion/buyback requests. No global optimum or automatic fallback is promised.
 An empty list disables swaps; no viable admitted venue leaves the operation
 blocked. [Implemented repair and remaining qualification](../reports/lp-lifecycle-audit-20261102/REVIEW.md).
@@ -368,8 +368,8 @@ ZZZ/USD source as redundant coverage for both assets.
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
    policy remains in history. Never promote observed hashes to approved pins
    automatically or remove a safety check to make a price appear available.
-5. Refresh the schema8 release inventory with explicit `pricing_version: 2` and
-   all21 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
+5. Refresh the schema9 release inventory with explicit `pricing_version: 2` and
+   all20 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
    `access()` bindings. Update reviewed API/preparation/earnings configurations,
    source proxy pins and service alerts at one confirmed block. Keep old deployed
    epochs and wallet journals on their original profiles.
@@ -1200,7 +1200,7 @@ Current native accounting uses explicitly admitted ETH at `address(0)`, with an 
 
 Read/review the new route, append it with `addRoute`, qualify it, switch the backend's selected route, and use `setRouteEnabled(oldId,false)` to stop the old route. Route contents/identities are immutable; do not overwrite one in a manifest under the old hash. There is no time delay. Concurrent user quotes may revert after disablement and must be rebuilt. Already mined operations cannot be undone.
 
-To stop an input immediately, use `ActivationAssets.setAsset(token,false,expectedCodeHash,reviewHash)` with the exact ETH-zero or fixed-ZZZ token and nonzero review hash, and disable affected Entry routes. Disable paths deliberately avoid dependency calls needed for enabling; they can help when a token/feed is broken. Previously attached LP, shares and claims are not erased. Re-enabling requires valid current token/feed/code checks and new quotes. Pool configuration cannot silently re-enable an explicitly disabled source. See [Entry and source policy](ACTIVATION_ENTRY.md) and [routing](ACTIVATION_ROUTING.md).
+To stop an input immediately, use `ActivationAssets.setAsset(token,false,expectedCodeHash,reviewHash)` with the exact ETH-zero or fixed-ZZZ token and nonzero review hash,; fresh Entry3 has no routes to disable. Disable paths deliberately avoid dependency calls needed for enabling; they can help when a token/feed is broken. Previously attached LP, shares and claims are not erased. Re-enabling requires valid current token/feed/code checks and new quotes. Pool configuration cannot silently re-enable an explicitly disabled source. See [Entry and source policy](ACTIVATION_ENTRY.md) and [routing](ACTIVATION_ROUTING.md).
 
 ## Pool admission and retirement
 
@@ -1271,7 +1271,7 @@ original ID; do not force it to the destination pool's newly derived ID.
 Do not execute destination reservations before canonical header import: the
 importer requires empty local sequence/buckets/aliases and later imports the
 authenticated source aliases. A planned inherited mapping is not permission to
-pre-populate the replacement. The current schema8 observer checks these facts;
+pre-populate the replacement. The current schema9 observer checks these facts;
 its narrow reservation status is not full transaction approval. A bad permanent
 reservation has no delete/relabel fix: assess remaining capacity/another reviewed
 pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
@@ -1553,7 +1553,7 @@ Prepare a separately reviewed configuration with accounting6, protocol_policy_ve
 confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
-Schema8 production observation is separate from keeper live configuration.
+Schema9 production observation is separate from keeper live configuration.
 Leave live review/runtime pins unset and dry run enabled until real deployment
 bindings, gas/spend limits, providers and schedules are qualified. Enable
 compounding/conversions only with reviewed per-currency thresholds/routes, and
@@ -1709,7 +1709,7 @@ A successful same-chain handoff does not qualify cross-chain finality, transport
 | Hide a frontend action | That UI path only | Direct contract calls continue. Restore UI only after real backend/on-chain readiness. |
 | Stop an API/indexer/keeper process | That service's new work | On-chain custody/rights persist; another authorized keeper/direct caller may operate. Recover durable state before restart. |
 | Revoke keeper | New authorized keeper actions from that address | Permissionless claims, transfers and allowed fee synchronization remain. Governance must authorize a reviewed replacement. |
-| Disable source asset / Entry route | Affected contributions | Existing LP/funded claims remain. Reward/royalty conversion routes are separate controls; this stop does not disable them. Re-enable only after validation and fresh quotes. |
+| Disable source asset | Affected contributions | Existing LP/funded claims remain. Reward/royalty conversion routes are separate controls; this stop does not disable them. Re-enable only after validation and fresh quotes. |
 | Converter `setEnabled(false)` / `setRouteEnabled(id,false)` | New conversion through that converter/route | Existing earned currencies/credits stay backed; receipts and source claims keep their separate permissions. Review routes/runtime/prices and full simulation before re-enabling; an enabled getter alone is no qualification. |
 | `NFT.setMintPaused(true)` | New NFT mints and new randomness requests | Governance only. Original fulfillment/finalize, existing NFT rights and LP work retain their own guards. Resume with `false`; global/lifecycle controls remain. |
 | `Buyback.setOperatingTradeUSD(0)` | New buyback executions only | Immediate governance; no price/reserve query. Resize/remove keeper buyback tasks to avoid deliberate simulation failures. Accrued reserves stay classified; reopen with a reviewed positive limit no higher than `maxTradeUSD`. Preparation/canonical locks still apply. |
@@ -1858,13 +1858,13 @@ maintenance values halt further work; repair config and restart with the same
 journal/receipt/nonce history. Do not edit history to match a changed source hash.
 [Exact fields and recovery boundary](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
 
-Fresh schema8 preflight separates current `chains[].buyback_maximum_usd18` from
+Fresh schema9 preflight separates current `chains[].buyback_maximum_usd18` from
 `constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
 the actual pinned live getter as current policy, preserve creation provenance
 and observe/validate again. Do not invent a value or edit constructor history to
 make it pass. [Exact input and recovery](PRODUCTION_PREFLIGHT.md#current-buyback-maximum-and-creation-history).
 
-For source6 confirmation health,
+For the unchanged confirmation3 policy,
 `confirmation_observation_maintenance_policy_invalid` means the stored policy
 record is missing, malformed, misbound or inconsistent. Preserve the original
 evidence/config and collect a fresh matching observation; do not rewrite a
@@ -1972,8 +1972,8 @@ Record the cause, affected block/time/object, containment and exact state; verif
 governance permission or private key is needed. Wallet signatures and contracts
 authorize eventual payments/claims. Review the exact chain, anchor, base module
 pins plus the full accounting6 ProtocolPolicy1/Portfolio2 graph (historical profiles
-retain their declared sets), helper pins and admitted assets first. The schema8
-release inventory separately observes21 helpers. Bind the separate fee policy to
+retain their declared sets), helper pins and admitted assets first. The schema9
+release inventory separately observes20 helpers. Bind the separate fee policy to
 `Projection.identity`; document full network-fee semantics, gas-price ceiling
 and maximum suggested-limit cost. Placeholder reviews are not qualification.
 
@@ -2304,13 +2304,26 @@ The historical manual-operation audit classified231 mutable ABI functions and90 
 
 ### ZZZActivationEntry
 
-[Procedure](#activation-assets-and-routes) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzactivationentry)
+[Procedure](#activation-assets-and-routes) · [Exact seven-field ABI](ACTIVATION_ENTRY.md)
+· [Callable reference](CONTRACT_FUNCTIONS.md#zzzactivationentry)
 
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `addRoute(ZZZActivationEntry.RoutePolicy policy)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Append and enable an immutable typed-v3 route whose original source is the fixed reviewed ZZZ. Append-only identity. Disable the route; do not overwrite it under the old ID. |
-| `addV4Route(ZZZV4RouteExecutor.Policy policy)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Append and enable a reviewed hookless typed-v4 route for an original ETH/ZZZ source. Append-only typed route. Disable it to stop; no generic callback/recipient authority. |
-| `setRouteEnabled(bytes32 id, bool enabled)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Enable a reviewed route only for an allowed ETH/ZZZ source, or disable it without calling a failing token/router/pool. False stops without upstream checks; true fully revalidates. Mined executions stay final. |
+Fresh Entry3 has no governance route setters, route catalogue, conversion
+executor or native swap receiver. To stop an input, governance uses
+`ActivationAssets.setAsset`; to change balancing venues, use the separately
+reviewed LP Balancer policy. Existing earned conversions retain their own stops.
+
+The NFT's current owner calls
+`executeReviewed(request,maximumLossBps,expectedContributionPolicy)` with ordered
+request fields `nftId,poolId,sourceAsset,amountIn,minimumLiquidity,deadline,increase`.
+Source is native ETH(address0) or fixed ZZZ already in the pool. For ETH send
+exactly amountIn as value; for ZZZ send0 and approve only that amount to Entry.
+Use the positive LP-unit floor, Unix deadline<=now+600, caller loss maximum0–1000bps
+and exact nonzero ProtocolPolicy.entryFingerprint. This is not an operator
+reviewHash. No routeId/minimumOut exists. Entry forwards input to Vault balancing;
+actual marginal LP must pass the retained financial/owner/callback guards before
+success. A separately confirmed approval is not LP and should not be repeated
+after ambiguous transaction status. New ABI/runtime profiles never adopt old
+pending records or update an existing deployment automatically.
 
 ### ZZZBuyback
 
@@ -2558,8 +2571,8 @@ aligned geometry and actual TickMath/execution feasibility. Width must exceed
 policy remains distinct. Changed geometry applies only on the next guarded full
 adjustment; it does not immediately remove LP or waive cooldown/confirmation.
 
-On-chain policy changes need no service restart only for a **matching** source6
-worker that reads them dynamically. Adopting accounting6/schema8/new runtime pins
+On-chain policy changes need no service restart only for a **matching** source7
+worker that reads them dynamically. Adopting direct Entry3/accounting6/schema9/new runtime pins
 requires separate reviewed installation/configuration and controlled restart;
 editing this manual does not authorize one. Preserve pending hashes/journals and
 reconcile nonce/receipts/spend before any operating change. Requalify gas/load,

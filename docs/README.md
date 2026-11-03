@@ -16,7 +16,7 @@ Start with the [optional portfolio implementation](OPTIONAL_PORTFOLIO_IMPLEMENTA
 [profile6](POSITION_V6.md), [current management review](../reports/residual-operations-20261031/REVIEW.md)
 and [verification](../reports/residual-operations-20261031/VERIFICATION.md).
 Default single main, optional main/residual, explicit fresh accounting6 capabilities
-and schema8 inventory are source-only; historical profiles and existing sites,
+and schema9 inventory are source-only; historical profiles and existing sites,
 workers, Anvil and journals retain their meanings.
 
 The [research plan](PASSIVE_INVENTORY_PLAN.md) explains earlier alternatives and

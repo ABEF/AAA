@@ -299,8 +299,15 @@ class Observer(O.Observer):
 
 
 def observe(config,rpc):
+    return _observe(config,rpc,profile=P,observer_class=Observer)
+
+
+def _observe(config,rpc,*,profile,observer_class):
+    # Shared read-only mechanics; the caller selects a fixed code-owned profile.
+    # The input schema and every declared capability are checked without rewriting.
+    P=profile
     if not isinstance(config,dict) or any(type(config.get(k)) is not int or config.get(k)!=v for k,v in P.VERSIONS.items()) or config.get('canonical_schema')!=P.SCHEMA_NAME:
-        raise ValueError('Use explicit schema8/accounting6/custody4/portfolio2/V6 capabilities')
+        raise ValueError('Use the exact selected inventory/Entry capability profile')
     if not isinstance(config.get('chains'),list) or len(config['chains'])!=1:raise ValueError('Use one canonical chain inventory')
     output=copy.deepcopy(config);chain=output['chains'][0]
     if not isinstance(chain,dict):raise ValueError('Use one canonical chain inventory object')
@@ -314,7 +321,7 @@ def observe(config,rpc):
         if not isinstance(value,dict if key=='dependencies' else list) or len(value)>maximum:raise ValueError('Unbounded declared inventory')
     for key in ('holder_exit','lp_execution','maintenance','rebalance_confirmation','portfolio','protocol_policy'):
         if not isinstance(chain.get(key),dict):raise ValueError('Missing current-profile observation section')
-    observer=Observer(rpc,chain);chain_id,genesis=observer.anchor()
+    observer=observer_class(rpc,chain);chain_id,genesis=observer.anchor()
     observer.records(P.expected_bindings(chain));observer.dependencies();observer.tokens();observer.sequencer()
     observer.governance();observer.protocol_policy();observer.pools();observer.sources();observer.ledgers();observer.nft()
     observer.wrappers();observer.routes();observer.maintenance();observer.execution();observer.holder_exit();observer.contribution_reservation();observer.portfolio();observer.confirmation();observer.finish()

@@ -12,7 +12,7 @@ HELPERS=['ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAss
 'ZZZMigrationBudget','ZZZCustodyValidation','ZZZRoyaltyFactory','ZZZActivationAssetsFactory','ZZZRoyaltyConverter','ZZZLPRewardConverter',
 'ZZZV4RouteExecutor','ZZZContributionPricing','ZZZLPBalancer','ZZZRebalanceConfirmation','ZZZPortfolioPolicy',
 'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZProtocolPolicy','ZZZPythPriceFeed']
-# Required source classes, not the count of deployed helper addresses: three
+# Required source classes, not the count of deployed helper addresses: two
 # runtime route helpers share ZZZV4RouteExecutor, and Pyth is optional to deploy.
 def sanitized(text):
     return re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',

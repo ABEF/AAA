@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Direct Entry3](direct-entry-v3-20261103/REVIEW.md) removes the approved redundant
+pre-Vault conversion, with explicit fresh request/API/inventory profiles and
+preserved owner/price/budget/LP safeguards. [Verification](direct-entry-v3-20261103/VERIFICATION.md)
+retains fixture failures/corrections, fresh normal/static and affected executions;
+older audits below keep their source scopes. No existing environment changed.
+
 [Smart-contract and LP audit](smart-contract-lp-audit-20261103/REVIEW.md) executes
 the researched, twice-challenged [brief](smart-contract-lp-audit-20261103/AUDIT_PROMPT.md).
 [Coverage](smart-contract-lp-audit-20261103/COVERAGE.md) maps795 implemented project

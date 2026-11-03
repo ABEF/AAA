@@ -151,8 +151,7 @@ contract ContributionSourcePolicyTest is Test {
         ZZZActivationEntry entry=registry.activationEntry();
         _configure();stable.mint(address(this),100e6);
         stable.approve(address(entry),100e6);access.seal();
-        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(
-            1,bytes32(uint256(42)),address(stable),100e6,bytes32(0),0,1,block.timestamp+100,false);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(1,bytes32(uint256(42)),address(stable),100e6,1,block.timestamp+100,false);
         bytes32 reviewedPolicy1 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.expectRevert();entry.executeReviewed(request,200,reviewedPolicy1);
         assertEq(stable.balanceOf(address(this)),100e6);
         assertEq(stable.balanceOf(address(registry.activationEntry())),0);

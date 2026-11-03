@@ -43,7 +43,7 @@ is separate from increasing Oracle's outer source-call budget.
 
 ## Scoped reviews and callbacks
 
-Entry2 uses `executeReviewed(request,maximumLossBps,expectedContributionPolicy)`.
+Entry-routing3 retains review-policy2 and uses `executeReviewed(request,maximumLossBps,expectedContributionPolicy)`.
 Read `ProtocolPolicy.entryFingerprint()` for the unsigned review. The full
 operation captures the policy before token callbacks and checks it through final
 Entry allowance reset. Contributions still spend only entrant funds, prove

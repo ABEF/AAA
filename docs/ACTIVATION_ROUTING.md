@@ -1,81 +1,55 @@
-# Current ETH/ZZZ contribution routing
+# ETH/ZZZ routing boundaries
 
-The current candidate accepts only **native ETH or one fixed ZZZ**. Its profile
-is accounting 4 / fee-intake 1 / routing 2 / pricing 2 / review 1, with direct
-governance 2, custody 3 and local canonical adaptable-policy V6. A route is a reviewed conversion path,
-not the NFT's liquidity ownership or a new accepted currency.
+Fresh **Entry-routing3 / pricing2 / review2 / accounting6**, schema9 inventory,
+accepts only native ETH and the one fixed ZZZ. Both already are LP currencies.
+The optional whole-input conversion before Vault balancing has been removed.
 
-## Three distinct routing jobs
-
-| Stage | Purpose | Current boundary |
-| --- | --- | --- |
-| Original contribution through Entry | Convert ETH or fixed ZZZ into one actual pool accounting currency when necessary | For the selected native ETH/ZZZ pool, both inputs can be direct (`routeId=0`, `route_kind=0`). No external input swap is required merely to enter. |
-| Vault ratio balancing and LP placement | Acquire the amounts appropriate to the actual concentrated range and add real LP | Guarded swaps may still be needed for a direct one-sided contribution. Full operation must meet the captured original-source deployed-LP floor. |
-| Later reward conversion | Convert already-earned ZZZ or an admitted royalty currency into ETH | Separate ledger/converter/routes and default 1% conversion cap. This never adds a contribution input or uses principal. |
-
-A direct contribution is not a promise of a literal half-and-half split. Actual
-range and pool price determine token requirements. Balancing, unused input and
-execution costs are included in the contribution checks; NFT values/artwork
-change only after confirmed actual LP addition.
-
-## Admission and route identities
-
-`ActivationAssets` binds the fixed ZZZ once before seal and admits only that
-source or native ETH. Source-policy disable/re-enable, approved routes and the
-sole contribution-pool selection remain separately controlled. There is no
-post-seal token replacement, USDC/USDG/WETH input option or symbol-based fallback.
-
-The selected [hookless native ETH/ZZZ pool](POOL_SELECTION.md) is one contribution
-pool at a time. Historical buckets, owed currencies and local pool migrations
-retain their accounting identities. Admitting another supported pool does not
-move principal, select a route or reopen contributions automatically.
-
-When a pre-Vault route is needed, Entry supports these explicit kinds:
-
-| `route_kind` | Identity and requirements |
+| Operation | Actual responsibility |
 | --- | --- |
-| `0` | Zero route ID, source already equals one actual accounting currency; `minimumOut=0`. |
-| `1` | Reviewed typed single-hop v3 policy, ERC20 source/output and exact SwapRouter02/factory/pool bindings. |
-| `2` | Reviewed typed hookless static-fee v4 policy and immutable parent executor; native source/output use explicit ETH settlement. |
+| Entry input | Authenticate the current owner and exact admitted ETH/ZZZ amount; freeze pricing/review terms; forward directly to the fixed Vault. No Entry route/executor. |
+| Vault balancing | Use only entrant funds to acquire the ratio required by the existing concentrated range, then prove actual marginal MAIN LP and issue aggregate-NAV shares. |
+| Maintenance balancing | After closing the existing portfolio, compare bounded actual-core quotes from reviewed ETH/ZZZ execution venues independently of the LP destination. |
+| Earned reward conversion | Separate LP/royalty ledgers/converters settle funded ERC20 entitlement into ETH. Their reviewed v3/v4 routes remain. |
 
-Policy IDs are append-only. Direct governance can add/disable routes after
-sealing; no protocol timelock applies. Disabling avoids failing dependencies;
-re-enabling validates them. Route changes do not change fixed input identity,
-sealed algorithms, owner authorization or current signed caller maxima. A new
-unsupported venue/algorithm requires compatible reviewed code, not a new URL.
+A direct contribution is not a promise of no swap or a literal50/50 ratio. The
+actual range and pool price determine token requirements. Entry no longer adds
+a redundant preliminary round trip. Vault uses at most one reviewed balancing
+swap; an unsafe/unfillable placement reverts without an automatic weaker fallback.
 
-## Value, execution and wallet review
+## Operator controls
 
-Two independent reviewed USD observations are required for each priced asset;
-the selected disagreement tolerance is **3%**. Contribution loss defaults to
-**2%**, governed up to 10%, with gas separate and stronger caller/venue minima
-retained. At default, conservative upper source value must produce at least 98%
-as actual marginal LP valued at frozen lower pair prices. Price disagreement
-and conversion/placement costs share the available margin; they do not create
-extra allowances per stage.
+`ActivationAssets.configureZZZ` fixes the one ZZZ before sealing.
+`setAsset(token,false,codeHash,reviewHash)` stops future contributions in that
+currency without querying a failed token/feed. Re-enable with validated code,
+decimals and dual pricing; pool configuration cannot silently reopen it.
+There is no `Entry.addRoute`, `addV4Route`, `setRouteEnabled`, or `v4Executor`.
+Do not call these old interfaces against a fresh Entry3.
 
-The backend validates source policy, route identity, real dependencies, balances,
-exact allowance, canonical state and the complete operation. It returns only an
-unsigned approval or exact Entry transaction, never a conversion-only wallet
-shortcut that loses original-source provenance. After approval confirms, prepare
-again. See [Entry tuple/guards](ACTIVATION_ENTRY.md), [preparation configuration](ACTIVATION_PREPARATION.md)
-and [typed v4 routes](TYPED_V4_ROUTES.md).
+Governance can still update the bounded reviewed swap-venue list through
+`LPBalancer.configureExecutionPools(ids,reviewHash)` after qualification. This
+changes Vault balancing choices, not the one contribution destination, token
+identity, existing liquidity or earned-conversion routes. An empty list stops
+swaps with no fallback; an already suitable inventory may need no swap.
 
-Qualification must examine actual depth, directional LP/protocol fees, token
-behavior, independent prices, full trace/gas and pending-state handling. A cheap
-quoted source swap alone cannot qualify the complete activation. Native ETH and
-WETH stay distinct; an optional wrapper-dependent reward route does not make
-native principal depend on WETH.
+Contributions default100USD activation/5USD growth and a2% total execution budget,
+with policy bounds/caller maxima/stronger venue limits and gas separate. Dual
+source agreement3%, additional execution-loss1%, idle ceilings and known trading
+fees remain different controls. At default, marginal deployed LP must cover98%
+of conservative source value. Incumbent LP/idle/compound cannot subsidize it.
 
-## Historical research and release boundary
+## Profiles and wallet review
 
-USDC/USDG activation research, old addresses/quotes, the standalone route reader
-and its CLI commands are retired. They are not supported contribution options
-or present-day price/liquidity evidence. Their committed source and unpublished
-draft identities remain in the [retirement record](../reports/architecture-pruning-20261025/retired-tools/stable-research-retirement.json).
-Optional admitted stablecoin/WETH royalties remain a separate [settlement duty](ROYALTY_SETTLEMENT.md).
+Fresh activation configuration explicitly selects routing_version3, pricing2,
+review_policy_version2 and matching accounting6/Portfolio2 read bindings. Source
+rows contain only pool_id,source_asset,asset_policy_id; old route fields and
+contracts.v4_executor are rejected. The shorter seven-field Entry request has a
+new selector. Exact ZZZ approval remains a separate transaction; reprepare after
+it confirms. ETH needs one Entry transaction. Values/artwork update after actual
+confirmed LP execution, not approval or submission.
 
-Actual ETH/ZZZ feeds, swaps, API/provider traces, wallet services and target-chain
-operations still require qualification in the [sole Todo](../TODO.md#task-activation-assets).
-Source edits do not update running contracts, journals, the website server or its
-null public deployment. Signing remains Anvil-only; production is NOT APPROVED.
+Historical routing1/2 API readers retain their exact old tuples and runtime pins;
+they cannot reinterpret or upgrade a deployment by changing a version number.
+The public website remains simulated and signing Anvil-only. Matching fresh
+site/services, actual feeds/venues/token/gas/operating qualification and independent
+audit remain open. [Entry inputs](ACTIVATION_ENTRY.md), [preparation](ACTIVATION_PREPARATION.md),
+[earned conversions](TYPED_V4_ROUTES.md), [execution policy](LP_EXECUTION_POLICY.md).

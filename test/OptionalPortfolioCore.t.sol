@@ -798,8 +798,7 @@ contract OptionalPortfolioCoreTest is Test {
     function _longEntry(address owner,uint256 id,address source,uint256 usd,bool grow) private {
         ZZZActivationEntry entry=registry.activationEntry();
         uint256 price=oracle.price(source);uint256 amount=(usd*1e18+price-1)/price;
-        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(
-            id,pool,source,amount,bytes32(0),0,1,block.timestamp+100,grow);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,pool,source,amount,1,block.timestamp+100,grow);
         bytes32 reviewed=ProtocolPolicyFixture.bind(address(access)).entryFingerprint();
         vm.startPrank(owner);
         if(source!=address(0))token.approve(address(entry),amount);
@@ -924,8 +923,7 @@ contract OptionalPortfolioCoreTest is Test {
     function testLongHorizonSameBlockRebalanceBeforeUsers() public {_longOrdering(false);}
     function _longRejectedGrowthAtPoolFloor(uint256 id,uint256 bucket) private {
         ZZZActivationEntry entry=registry.activationEntry();
-        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(
-            id,pool,address(0),25 ether,bytes32(0),0,1,block.timestamp+100,true);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,pool,address(0),25 ether,1,block.timestamp+100,true);
         bytes32 reviewed=ProtocolPolicyFixture.bind(address(access)).entryFingerprint();
         Position memory p=vault.group(bucket);uint256 aux=manager.secondaryId(p.lpTokenId);
         uint256 shares=vault.bucketTotalShares(bucket);uint256 balance=ALICE.balance;

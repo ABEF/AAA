@@ -227,7 +227,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         s.vrf.fulfill(s.nft.requestOf(id),0,0); s.nft.finalizeTraits(id);
     }
     function _entry(uint256 id,uint256 value,bool grow) private {
-        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,POOL,address(0),value,bytes32(0),0,1,block.timestamp+100,grow);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,POOL,address(0),value,1,block.timestamp+100,grow);
         ZZZActivationEntry entry=pools.activationEntry();
         bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); entry.executeReviewed{value:value}(request,200,reviewedPolicy2);
     }
@@ -248,7 +248,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         assertTrue(IERC20(ZZZ).transfer(ALICE,sourceAmount));
         ZZZActivationEntry entry=pools.activationEntry();
         vm.prank(ALICE); IERC20(ZZZ).approve(address(entry),sourceAmount);
-        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(b,POOL,ZZZ,sourceAmount,bytes32(0),0,1,block.timestamp+100,false);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(b,POOL,ZZZ,sourceAmount,1,block.timestamp+100,false);
         bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); entry.executeReviewed(request,200,reviewedPolicy3);
         assertEq(IERC20(ZZZ).allowance(ALICE,address(entry)),0);
         assertEq(IERC20(ZZZ).allowance(address(entry),address(s.vault)),0);
@@ -317,7 +317,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         bytes32 beforeState=_economicState(s,a,b);
         uint256 claimable=s.rewards.claimable(a,address(0)); assertGt(claimable,0);
         ZZZActivationEntry entry=pools.activationEntry();
-        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(a,POOL,address(0),0.05 ether,bytes32(0),0,1,block.timestamp+100,true);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(a,POOL,address(0),0.05 ether,1,block.timestamp+100,true);
         bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.expectRevert(bytes4(keccak256("Slippage()")));
         vm.prank(ALICE); entry.executeReviewed{value:0.05 ether}(request,200,reviewedPolicy4);
         assertEq(_economicState(s,a,b),beforeState);

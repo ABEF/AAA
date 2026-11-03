@@ -87,7 +87,7 @@ Principal return is neither a fee earning nor a previously claimed reward.
 
 Versioned API/keeper/inventory readers must explicitly select accounting6,
 custody4, portfolio2, LP routing2, maintenance3, confirmation3, Budget4 and
-canonical V6; production inventory is schema8 with 21 helpers. Eight-word length alone does not select the profile.
+canonical V6; production inventory is schema9 with20 helpers. Eight-word length alone does not select the profile.
 Historical profiles, deployment addresses and receipt/pending journals keep their
 original semantics. The served accounting3 poplint artifact and existing local
 chains do not acquire new payout controls from source edits; popldemo stays a

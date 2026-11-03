@@ -321,9 +321,9 @@ def _confirmation(g,chain,path):
         g.check(row.get('ready') is expected,rp,'confirmation.ready_view','Recompute sampled maturity AND hard cooldown, never uninterrupted-price proof.','bindings')
     V._bound_proof(g,c.get('review_evidence'),p+'.review_evidence',chain,kind='observed_rebalance_confirmation_qualification')
 
-def _contracts(g, chain, path):
-    expected = expected_bindings(chain); addresses = []
-    for group,roles in (('modules',MODULES),('helpers',HELPERS)):
+def _contracts(g, chain, path, *, helpers=HELPERS, binding_factory=expected_bindings):
+    expected = binding_factory(chain); addresses = []
+    for group,roles in (('modules',MODULES),('helpers',helpers)):
         records = g.obj(chain.get(group),path+'.'+group); g.keys(records,roles,path+'.'+group)
         for role in roles:
             rp = path+'.'+group+'.'+role; record = g.obj(records.get(role),rp)
@@ -461,7 +461,7 @@ def _holder_exit(g,chain,path):
     if phase==1:g.check(remaining_buckets==sum(1 for b in buckets if b.get('total_shares',0)>0)-closed,path+'.holder_exit','exit.remaining_buckets','Read exact remaining funded bucket count.')
     V._bound_proof(g,e.get('review_evidence'),path+'.holder_exit.review_evidence',chain,kind='collective_holder_return_qualification')
 
-def _release_records(g,chain,path,home,tokens):
+def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES):
     """Current authority/canonical/NFT/service qualification, without retired custody."""
     ctor=g.obj(chain.get('constructor'),path+'.constructor')
     recipient=g.hex(chain['protocol_policy']['sale'].get('recipient'),path+'.protocol_policy.sale.recipient',20)
@@ -498,8 +498,8 @@ def _release_records(g,chain,path,home,tokens):
     g.check(history.get('complete') is True,path+'.inventory_history','history.incomplete','Retain complete creation-to-anchor pools/routes/source/asset/role history.')
     V._bound_proof(g,history.get('evidence'),path+'.inventory_history.evidence',chain,kind='complete_deployment_inventory',exact_block=True)
     _nft(g,chain,path,tokens)
-    services=g.obj(chain.get('services'),path+'.services');g.keys(services,SERVICE_PROFILES,path+'.services')
-    for role,profile in SERVICE_PROFILES.items():
+    services=g.obj(chain.get('services'),path+'.services');g.keys(services,service_profiles,path+'.services')
+    for role,profile in service_profiles.items():
         sp=path+'.services.'+role;s=g.obj(services.get(role),sp)
         g.check(s.get('status')=='qualified' and s.get('profile')==profile and s.get('chain_id')==home and s.get('controller')==chain['modules']['access']['address'],sp,'service.'+role,'Qualify the exact current-profile real service and runtime/configuration.','services')
         digest=g.hex(s.get('configuration_sha256'),sp+'.configuration_sha256',prefix=False)
@@ -508,12 +508,19 @@ def _release_records(g,chain,path,home,tokens):
         if role=='keeper':g.check(all(p.get(k) is True for k in ('crash_recovery_tested','off_host_backup_tested','nonce_and_pending_recovery_tested')),sp,'service.keeper_recovery','Rehearse actual process/host/signing recovery.','services')
 
 def validate(config, *, expected_commit=None, now=None):
+    return _validate(config,expected_commit=expected_commit,now=now,versions=VERSIONS,
+        helpers=HELPERS,binding_factory=expected_bindings,service_profiles=SERVICE_PROFILES,
+        route_validator=lambda g,c,p,t,d,ps,limits: V._routes(g,c,p,t,d,ps,limits,1))
+
+
+def _validate(config, *, expected_commit, now, versions, helpers, binding_factory,
+              service_profiles, route_validator):
     """Current profile only. Unsupported OpenSea code always remains a blocker."""
     cfg=copy.deepcopy(config) if isinstance(config,dict) else {};g=V.Gate(cfg.get('release_commit'))
     g.commit=g.hex(g.commit,'release_commit',20,prefix=False)
-    for key,value in VERSIONS.items():g.check(type(cfg.get(key)) is int and cfg.get(key)==value,key,'schema.unsupported','Use the explicit schema8/accounting6/custody4/portfolio2/V6 current capabilities.')
+    for key,value in versions.items():g.check(type(cfg.get(key)) is int and cfg.get(key)==value,key,'schema.unsupported','Use the exact selected inventory/Entry capability profile.')
     g.check(cfg.get('canonical_schema')==SCHEMA_NAME,'canonical_schema','schema.canonical','Do not reinterpret an earlier canonical schema.')
-    g.check(set(cfg)-{'_notes'}==TOP_FIELDS,'config','schema.keys','Use exact schema8 fields; no removed custody recipient or bridge inventory.')
+    g.check(set(cfg)-{'_notes'}==TOP_FIELDS,'config','schema.keys','Use exact selected inventory fields; no removed custody recipient or bridge inventory.')
     if expected_commit is not None:g.check(g.commit==expected_commit,'release_commit','commit.mismatch','Use the exact independently reviewed source revision.')
     home=g.num(cfg.get('canonical_chain_id'),'canonical_chain_id',1)
     g.check(cfg.get('accounting_model')=='shared-pools-native-v6' and cfg.get('custody_architecture')=='collective-holder-return-v4',
@@ -538,7 +545,7 @@ def validate(config, *, expected_commit=None, now=None):
         chain=g.obj(item,f'chains[{index}]');path=f'chains[{index}]'
         g.check(set(chain)-{'_notes'}==CHAIN_FIELDS,path,'schema.keys','Use exact current chain fields; external custody is removed.')
         _safe(g,path+'.anchor',lambda:_anchor(g,chain,path,home,int(time.time()) if now is None else now))
-        addresses=_safe(g,path+'.contracts',lambda:_contracts(g,chain,path)) or []
+        addresses=_safe(g,path+'.contracts',lambda:_contracts(g,chain,path,helpers=helpers,binding_factory=binding_factory)) or []
         deps=_safe(g,path+'.dependencies',lambda:V._dependencies(g,chain,path,addresses)) or {}
         tokens=_safe(g,path+'.tokens',lambda:V._tokens(g,chain,path,now,addresses)) or {}
         pools=_safe(g,path+'.pools',lambda:_pools(g,chain,path,tokens,deps)) or {}
@@ -548,20 +555,20 @@ def validate(config, *, expected_commit=None, now=None):
             g.num(limits.get(name),path+'.execution_loss_policy.'+name,0,1000)
         g.check(limits.get('hard_maximum_bps')==1000 and limits.get('gas_separate') is True,path+'.execution_loss_policy','loss.policy','Retain hard1000bps ceilings and separate gas.')
         _safe(g,path+'.protocol_policy',lambda:_protocol_policy(g,chain,path))
-        _safe(g,path+'.routes',lambda:V._routes(g,chain,path,tokens,deps,pools,limits,1))
+        _safe(g,path+'.routes',lambda:route_validator(g,chain,path,tokens,deps,pools,limits))
         _safe(g,path+'.execution',lambda:_execution(g,chain,path,pools))
         _safe(g,path+'.holder_exit',lambda:_holder_exit(g,chain,path))
         reservation_status=_safe(g,path+'.contribution_reservation',lambda:_contribution_reservation(g,chain,path))
         _safe(g,path+'.portfolio',lambda:_portfolio(g,chain,path))
         _safe(g,path+'.rebalance_confirmation',lambda:_confirmation(g,chain,path))
-        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens))
+        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles))
         _safe(g,path+'.mint',lambda:V._mint_integration(g,chain,path))
     # A schema8 manifest cannot manufacture the missing primary-mint interface.
     if not any(i['code']=='mint.opensea_unsupported' for i in g.issues):
         g.check(False,'services.opensea','mint.opensea_unsupported','Current direct mint is not OpenSea primary-drop integration.','services')
     groups={}
     for issue in g.issues:groups.setdefault(issue['group'],[]).append(issue)
-    return dict(schema_version=8,status='blocked',ready=False,deployment_authorized=False,current_release_gate=True,
+    return dict(schema_version=versions['schema_version'],status='blocked',ready=False,deployment_authorized=False,current_release_gate=True,
         inventory_profile_supported=True,production_qualification_supported=False,release_commit=g.commit,
         inventory_consistent=not any(i['code']!='mint.opensea_unsupported' for i in g.issues),issues=g.issues,blockers=groups,
         contribution_reservation_status=reservation_status,

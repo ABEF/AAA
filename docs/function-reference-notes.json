@@ -577,7 +577,7 @@
       }
     },
     "ZZZActivationEntry": {
-      "purpose": "Atomically convert reviewed owner input into actual attached LP with exact allowance, price/context and signed-loss checks.",
+      "purpose": "Atomically forward exact owner-funded ETH/fixed-ZZZ input to Vault balancing and marginal LP verification; no pre-Vault conversion.",
       "functions": {
         "access()": {
           "purpose": "Read the immutable controller binding.",
@@ -605,91 +605,6 @@
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "Immutable source-admission helper bound to this Entry and Registry."
-          }
-        },
-        "v4Executor()": {
-          "purpose": "Read the fixed parent-bound typed-v4 conversion helper.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "Immutable parent-bound typed v4 single-hop executor; it cannot choose an arbitrary recipient."
-          }
-        },
-        "routeKind(bytes32)": {
-          "purpose": "Read a route discriminator: 0 unknown/direct sentinel, 1 typed v3, 2 typed v4.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
-          },
-          "outputs": {
-            "0": "0 unknown,1 typed v3,2 typed hookless v4; historical policies are not reinterpreted."
-          }
-        },
-        "routeExists(bytes32)": {
-          "purpose": "Check whether an immutable conversion route ID exists.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
-          },
-          "outputs": {
-            "0": "Whether an immutable v3 or v4 route record exists; existence does not imply it is enabled/executable."
-          }
-        },
-        "routeEnabled(bytes32)": {
-          "purpose": "Read whether an existing route is enabled for new conversions.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
-          },
-          "outputs": {
-            "0": "Recorded enabled state for the route kind; dependencies, prices and current source/pair still need execution-time validation."
-          }
-        },
-        "route(bytes32)": {
-          "purpose": "Read an immutable typed-v3 policy; unknown/non-v3 IDs revert.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
-          },
-          "outputs": {
-            "0": "Recorded typed v3 RoutePolicy, in ABI order:source/output ERC20 identities; router/factory/pool; fee in millionths; runtime hashes for router/factory/pool/source/output; nonzero reviewHash. Unknown v3 route IDs revert. Recording does not itself make a current native principal conversion feasible."
-          }
-        },
-        "v4Route(bytes32)": {
-          "purpose": "Read an immutable typed-v4 policy; unknown/non-v4 IDs revert.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact immutable typed conversion route ID. Zero is the direct-input sentinel, not a stored conversion route."
-          },
-          "outputs": {
-            "0": "Recorded v4 Policy:source/output identities; full ordered PoolKey(currency0,currency1,fee millionths,tickSpacing,hooks); PoolManager/StateView; source/output/manager/view runtime hashes; reviewHash. Native uses address zero and its explicit identity marker. Unknown IDs revert."
-          }
-        },
-        "addRoute((address,address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32))": {
-          "purpose": "Append and enable an immutable typed-v3 route whose original source is the fixed reviewed ZZZ. Native ETH uses direct/native-v4 paths; no stablecoin or WETH source is admitted by recording a target-pair route.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "inputs": {
-            "0": "RoutePolicy(source,output,router,factory,pool,fee,routerCodeHash,factoryCodeHash,poolCodeHash,sourceCodeHash,outputCodeHash,reviewHash). Fee is millionths; reviewHash nonzero."
-          },
-          "outputs": {
-            "0": "Content-derived immutable route ID."
-          }
-        },
-        "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": {
-          "purpose": "Append and enable a reviewed hookless typed-v4 route for an original ETH/ZZZ source. Target output may be an admitted accounting currency without becoming a third user input.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "inputs": {
-            "0": "Policy(source,output,key(currency0,currency1,fee,tickSpacing,hooks),poolManager,stateView,sourceCodeHash,outputCodeHash,poolManagerCodeHash,stateViewCodeHash,reviewHash)."
-          },
-          "outputs": {
-            "0": "Domain/chain/parent-bound immutable route ID."
-          }
-        },
-        "setRouteEnabled(bytes32,bool)": {
-          "purpose": "Enable a reviewed route only for an allowed ETH/ZZZ source, or disable it without calling a failing token/router/pool. This never changes immutable route contents.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "inputs": {
-            "0": "Existing immutable v3 or v4 route ID.",
-            "1": "False stops new uses without dependency reads; true revalidates and re-enables the same immutable policy."
           }
         },
         "validateOwner(uint256,bytes32)": {
@@ -725,31 +640,33 @@
             "0": "Boolean exact context/owner match; an unauthorized caller reverts."
           }
         },
-        "executeReviewed((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool),uint16,bytes32)": {
-          "purpose": "Atomically fund ETH/fixed-ZZZ activation or growth under captured Entry2 minima,idle policy,signed loss maximum and verified marginal LP.",
-          "access": "Current NFT owner only, sealed/live/operating and nonReentrant; current source policy, route, dual-price context and exact Vault call must all validate. ERC721 operator approval is not funding authority.",
+        "ENTRY_ROUTING_VERSION()": {
+          "purpose": "Read the explicit direct-input request ABI version.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "3: seven-field direct ETH/ZZZ request, with no routeId/minimumOut or conversion child. Historical routing2 ABI is incompatible."
+          }
+        },
+        "executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)": {
+          "purpose": "Atomically activate or grow attached LP from one exact pair asset under the captured caller loss cap and scoped policy.",
+          "access": "Current NFT owner only, sealed/live/operating and nonReentrant. Exact source policy, dual-price context and fixed Vault call must validate; NFT operator approval is not funding authority.",
           "inputs": {
-            "0": "Request tuple: nftId actual canonical NFT ID; poolId exact admitted PoolKey hash; sourceAsset zero for native ETH or approved ERC20; amountIn raw source units/wei; routeId zero only for direct accounting input; minimumOut raw converted output (must be zero for direct route); minimumLiquidity actual positive v4 liquidity units; deadline Unix seconds from now through +600; increase false activation / true growth.",
-            "1": "Signed maximum combined conversion/placement/undeployed-value loss in basis points, 0..1000. Captured execution policy may be tighter, never wider; gas excluded.",
+            "0": "Seven-field static Request: nftId actual canonical ID; poolId exact admitted pool; sourceAsset native zero or the fixed ZZZ, already a pool currency; amountIn raw units/wei; minimumLiquidity positive actual LP units; deadline Unix seconds through now+600; increase false activation / true growth. No pre-Vault route or conversion output minimum.",
+            "1": "Signed maximum Vault-balancing/placement/undeployed-value loss in basis points,0..1000; the captured governed policy may be tighter,never wider. Gas separate.",
             "2": "Exact current ProtocolPolicy.entryFingerprint() bytes32 from the reviewed snapshot; nonzero. Any scoped entry-policy revision/change before or during execution reverts. This is not an arbitrary reviewHash."
           },
-          "value": "Exact msg.value=amountIn when sourceAsset is zero/native ETH; exact msg.value=0 for ERC20 input. A mismatch reverts before execution. Internal conversion/native settlement is authenticated and exact, not an extra user payment. Network gas is separate.",
-          "notes": "Gross minimum is rejected before Pricing context writes or token pulls. Original source and pair prices freeze before external input movement; approval cleanup and final policy/owner/balance checks precede success. Multiply-invalid requests can now fail amount validation before a different pricing error."
+          "value": "Exact msg.value=amountIn for native ETH,otherwise0. Entry forwards only that input to the fixed Vault; it cannot route through another token or choose a recipient.",
+          "notes": "Routing3 changes the tuple/selector and removes route management/executor/receive. Review-policy2 and pricing2 still freeze original-source/pair prices and contribution terms before pulls/approvals; owner,exact allowance/balance cleanup and final context/policy checks remain."
         }
       },
       "constructor": {
-        "purpose": "Create the parent-bound Entry and its fixed typed-v4 executor.",
+        "purpose": "Create the Registry-bound direct Entry and bind its existing ActivationAssets; creates no conversion executor.",
         "access": "Fixed Registry constructor only; no arbitrary child replacement.",
         "inputs": {
           "0": "Same controller as Registry.",
           "1": "Creating Registry address; must equal msg.sender.",
           "2": "The Registry-created ActivationAssets with exact controller/parent bindings."
         }
-      },
-      "receive": {
-        "purpose": "Accept native swap output only from the temporarily armed v4 executor. Arbitrary transfers revert; this is not a user deposit endpoint.",
-        "access": "Temporarily armed fixed v4 executor only; use executeReviewed with its exact native input value.",
-        "value": "Accepts only ETH from the temporarily armed exact internal settlement sender; nativeReceived is reconciled with actual swap output. Arbitrary sender transfers revert; users supply native contributions via executeReviewed instead."
       }
     },
     "ZZZNFT": {

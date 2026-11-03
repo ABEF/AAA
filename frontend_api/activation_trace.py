@@ -9,6 +9,7 @@ import re
 from frontend_api.service import ProjectionError, ZERO, _address_word, _quantity
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 
+EXECUTE_DIRECT_V3 = 'executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)'
 EXECUTE = 'execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))'
 EXECUTE_REVIEWED_V2 = 'executeReviewed((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool),uint16,bytes32)'
 EXECUTE_REVIEWED = 'executeReviewed((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool),uint16)'
@@ -45,7 +46,12 @@ def words(raw, length):
 
 
 def request_data(identifier, pool, source, amount, route, minimum_out, minimum_lp, deadline, increase,
-                 *, review_policy_version=0, maximum_loss_bps=None,expected_contribution_policy=None):
+                 *, review_policy_version=0, maximum_loss_bps=None,expected_contribution_policy=None,routing_version=1):
+    if type(routing_version) is not int or routing_version not in (1,2,3):
+        raise ValueError('Unsupported Entry routing ABI')
+    if routing_version == 3 and (review_policy_version != 2 or route != '0x'+'0'*64 or
+            type(minimum_out) is not int or minimum_out != 0 or type(increase) is not bool):
+        raise ValueError('Direct Entry3 has no conversion route or minimum output')
     # One STATIC tuple has no dynamic offset. Zero source is native ETH.
     values = (identifier, int(pool, 16), int(source, 16), amount, int(route, 16),
               minimum_out, minimum_lp, deadline, int(increase))
@@ -59,6 +65,9 @@ def request_data(identifier, pool, source, amount, route, minimum_out, minimum_l
         if review_policy_version==2:
             if not isinstance(expected_contribution_policy,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',expected_contribution_policy) or int(expected_contribution_policy,16)==0:
                 raise ValueError('Reviewed Entry2 requires an exact nonzero contribution policy')
+            if routing_version == 3:
+                direct_values=(identifier,int(pool,16),int(source,16),amount,minimum_lp,deadline,int(increase))
+                return selector(EXECUTE_DIRECT_V3)+''.join(f'{x:064x}' for x in (*direct_values,maximum_loss_bps,int(expected_contribution_policy,16)))
             return selector(EXECUTE_REVIEWED_V2)+''.join(f'{x:064x}' for x in (*values,maximum_loss_bps,int(expected_contribution_policy,16)))
         if expected_contribution_policy is not None:raise ValueError('Historical Entry cannot adopt protocol policy')
         return selector(EXECUTE_REVIEWED) + ''.join(f'{x:064x}' for x in (*values,maximum_loss_bps))
@@ -296,7 +305,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     expected_data=request_data(req['id'],req['pool'],req['source'],req['amount'],req['route'],
         req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'],
         review_policy_version=reviewed,maximum_loss_bps=req.get('maximum_loss_bps'),
-        expected_contribution_policy=req.get('expected_contribution_policy'))
+        expected_contribution_policy=req.get('expected_contribution_policy'),routing_version=req.get('routing_version',1))
     if tx['data'].lower()!=expected_data:
         raise ProjectionError('Unsigned Entry selector or reviewed maximum differs from its explicit profile')
     native_profile = req.get('accounting_version', 1) in (2, 3, 4, 5, 6)
@@ -338,7 +347,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     if len(candidates)!=1 or candidates[0].get('type')!=('CALL' if dual_pricing else 'STATICCALL'):
         raise ProjectionError('Missing or ambiguous reviewed contribution result')
     check = successful(candidates[0])
-    configurable = req.get('routing_version',1)==2
+    configurable = req.get('routing_version',1) in (2,3)
     if configurable != (check['input'][:10].lower()==selector(CONFIGURABLE_RESULT)):
         raise ProjectionError('Contribution result differs from explicit execution-policy profile')
     current = check['input'][:10].lower()!=selector(LEGACY_RESULT)

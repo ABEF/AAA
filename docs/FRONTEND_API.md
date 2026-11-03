@@ -96,7 +96,7 @@ those percentages or make a residual mixed; the API must not call all capital
 active or continuously 60% active.
 
 The optional schema1 activation configuration explicitly declares range1,
-maintenance3, LP routing2, execution quality1, confirmation3, reviewed Entry2 and `portfolio_version:2`.
+maintenance3, LP routing2, execution quality1, confirmation3, direct Entry-routing3/review2 and `portfolio_version:2`.
 It pins ProtocolPolicy1/PortfolioPolicy2/Confirmation/BalanceMath/PositionExecutor
 as well as existing helpers. ProtocolPolicy version1 is explicit on the read
 configuration; the activation subsection inherits it rather than accepting a duplicate key. Shared read/preparation pins and venue dependency hashes must match.
@@ -115,8 +115,14 @@ are not rewritten. API6 predecessor history requires explicit accounting6 and ca
 throughout; the retained record shape does not authorize relabelling old V5
 accounting4/5 history. Historical accounting4 remains a separately pinned custody3 profile.
 
-Production inventory schema8 is separate from read schema2 and activation schema1;
-it authenticates the complete fresh helper graph. Historical schema7/6 stay tied
+Fresh direct Entry3 preparation explicitly selects routing_version3 and
+review_policy_version2; its seven-field tuple has no routeId/minimumOut and no
+Entry v4 helper. Source rows carry only pool_id/source_asset/asset_policy_id.
+Read accounting6 semantics and the existing schema2 envelope are unchanged.
+Historical routing2 retains its exact old ABI; a runtime/profile mismatch fails.
+
+Production inventory schema9 is separate from read schema2 and activation schema1;
+it authenticates the complete fresh helper graph. Historical schema8/7/6 stay tied
 to their recorded profiles. Actual provider/route/VRF/gas/service qualification is
 still open. The served poplint accounting3 artifact remains unconfigured;
 popldemo remains the separate simulation. Source changes do not deploy either
@@ -430,4 +436,4 @@ helper/runtime. Dynamic sale/VRF mint provenance is `mint_policy`, separate from
 `claim_operations` (empty for mint). Entry minima/idle and cosmetic tier thresholds
 are read at the same confirmed block; missing policy never becomes guessed
 defaults. Stage1 means actual activation, not a persistent100USD value floor.
-Inventory is schema8; public signing remains disabled. [Exact profile](POSITION_V6.md).
+Inventory is schema9; public signing remains disabled. [Exact profile](POSITION_V6.md).

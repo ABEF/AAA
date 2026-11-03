@@ -199,7 +199,7 @@ See [release preflight](PRODUCTION_PREFLIGHT.md) and [sole Todo](../TODO.md).
 
 Fresh source profile: accounting6/custody4/governance2/fee1/canonicalV6 with
 portfolio2/maintenance3/compound4/LP2/quality1/confirmation3 and separate manual
-emergency2. Inventory uses schema8/21 helpers; schema6/accounting4 and
+emergency2. Inventory uses schema9/20 helpers; schema6/accounting4 and
 schema5/accounting3 remain explicitly historical. Local actual-v4-core portfolio
 checks are source-scoped with mock external dependencies, not live qualification. Preserve actual historical
 Anvil profiles and immutable runtimes. The following local scaffolds remain

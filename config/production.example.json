@@ -1,11 +1,11 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "accounting_model": "shared-pools-native-v6",
   "accounting_version": 6,
-  "routing_version": 2,
+  "routing_version": 3,
   "custody_architecture": "collective-holder-return-v4",
   "_notes": [
-    "Fresh schema8/accounting6/ProtocolPolicy1/Portfolio2 candidate, never a deployed/runtime profile. Historical schema7 and earlier remain explicit inspection only.",
+    "Fresh schema9/accounting6/Entry-routing3/review2 candidate. Direct ETH/fixedZZZ input,20 helpers. No pre-Vault contribution conversion. Historical schema8/routed Entry2 uses production.policy-v6.example.json; no runtime or journal is upgraded.",
     "Only native ETH and one fixed ZZZ. Fixed80/10/5/5, separate received-only rarity royalties, terminal return to holders, no integrated bridge or external custody recipient.",
     "Operating defaults are source references, not observations. Two independent qualified USD sources with3% agreement; contribution2%, conversion1%, maintenance3% operating defaults and10% hard ceilings; gas separate.",
     "Current global activation/growth minima and idle/gas/sale/metadata terms must be declared with exact revisions/fingerprints and independently observed. Do not infer defaults from missing reads.",
@@ -262,8 +262,8 @@
             "access": null,
             "registry": null,
             "activationAssets": null,
-            "v4Executor": null,
-            "REVIEW_POLICY_VERSION": 1
+            "REVIEW_POLICY_VERSION": 1,
+            "ENTRY_ROUTING_VERSION": 3
           }
         },
         "migration_budget": {
@@ -378,17 +378,6 @@
             "MAX_LOSS_BPS": 1000,
             "conversionLossBps": 100,
             "enabled": true
-          }
-        },
-        "entry_v4_executor": {
-          "address": null,
-          "runtime_hash": null,
-          "observed_runtime_hash": null,
-          "immutable": true,
-          "review_evidence": null,
-          "observed_bindings": null,
-          "bindings": {
-            "parent": null
           }
         },
         "lp_v4_executor": {
@@ -908,7 +897,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting6_policy1_custody4_holder_exit_v6_portfolio2_confirmation3",
+          "profile": "accounting6_policy1_custody4_holder_exit_v6_portfolio2_confirmation3_entry3",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,

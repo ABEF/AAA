@@ -22,11 +22,17 @@ qualification or production approval. Never point public browsers at a developer
 
 ## Version and data boundaries
 
-The new website manifest is explicitly schema3: accounting3, direct governance2,
+The separately served historical website manifest is explicitly schema3: accounting3, direct governance2,
 fee intake1, pricing2, routing2, Entry review2 and canonical local V4. The HTTP
 API's envelope schema remains its own version; do not relabel it to match the
 website manifest. Existing schema1/native2 manifests, Anvil deployments and
 saved transaction journals retain their original meanings.
+
+The fresh contract/API source now adds direct Entry-routing3 over accounting6,
+with schema9/20-helper release inventory. This is not the served current3 site
+or an update to existing local wallet/nonce records. Matching source7 website
+and service rollout remains separately qualified/authorized; public DEPLOYMENT
+is null and browser signing Anvil-only.
 
 Current contribution inputs are native ETH and the fixed deployment ZZZ only.
 The default contribution budget is 2% (98% marginal deployed LP), conversion 1%

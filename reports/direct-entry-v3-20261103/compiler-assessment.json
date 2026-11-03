@@ -1,0 +1,107 @@
+{
+  "reviewed": "2026-11-03",
+  "compiler": "0.8.26",
+  "settings": {
+    "evmVersion": "cancun",
+    "viaIR": true,
+    "optimizer": true,
+    "runs": 1,
+    "yul": false
+  },
+  "source_manifest": "production-size-gates.json",
+  "compiler_output_sha256": "dc98e3ee1a7116c93d1d9b47cbeba45f4ca7931c4adf2f03fe56d5ed8b5af03a",
+  "official_list_snapshot_sha256": {
+    "bugs.json": "7766acac0c69aa152c98bc4fefa97679c19a56eac997e3043ea6738c764a23df",
+    "bugs_by_version.json": "42aede2095751ac858504786834ee6c0698f16782fb6470790c474ebae51ae08"
+  },
+  "official_sources": [
+    "https://docs.solidity.org/en/latest/bugs.html",
+    "https://raw.githubusercontent.com/argotorg/solidity/develop/docs/bugs.json",
+    "https://raw.githubusercontent.com/argotorg/solidity/develop/docs/bugs_by_version.json"
+  ],
+  "records": [
+    {
+      "id": "SOL-2026-7",
+      "name": "YulOptimizerKnowledgeBaseStaleBookkeeping",
+      "severity": "low",
+      "upstream_conditions": {
+        "yulOptimizer": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/10/22/yul-optimizer-knowledge-base-stale-bookkeeping-bug/",
+      "disposition": "setting_not_enabled",
+      "reason": "The accepted normal build explicitly disables Yul optimization. Reassess if that setting changes."
+    },
+    {
+      "id": "SOL-2026-6",
+      "name": "MisorderedNamedParametersInRequireWithCustomErrors",
+      "severity": "very low",
+      "upstream_conditions": {
+        "viaIR": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/09/10/misordered-named-parameters-in-require-with-custom-errors-bug/",
+      "disposition": "source_trigger_absent",
+      "reason": "No named-argument custom-error require in the exact source AST closure. Standalone named-error reverts are different constructs."
+    },
+    {
+      "id": "SOL-2026-5",
+      "name": "MemoryByteArrayElementDeleteClearsWholeWord",
+      "severity": "low/medium",
+      "upstream_conditions": {
+        "viaIR": false
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/09/10/memory-byte-array-element-delete-clears-whole-word-bug/",
+      "disposition": "pipeline_not_used",
+      "reason": "This disclosure requires evmasm; the accepted build uses viaIR."
+    },
+    {
+      "id": "SOL-2026-4",
+      "name": "SpillSlotCollisionAcrossMutualRecursion",
+      "severity": "low/medium",
+      "upstream_conditions": {
+        "viaIR": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/09/10/spill-slot-collision-across-mutual-recursion-bug/",
+      "disposition": "source_trigger_absent_with_limits",
+      "reason": "No conservative source internal-call cycle, including virtual overrides; no unresolved internal call or source Yul function. Compiler-generated behavior is not formally proved."
+    },
+    {
+      "id": "SOL-2026-2",
+      "name": "UnsoundSpillInMutualRecursion",
+      "severity": "medium",
+      "upstream_conditions": {
+        "viaIR": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/07/09/unsound-spill-in-mutual-recursion-bug/",
+      "disposition": "source_trigger_absent_with_limits",
+      "reason": "Same source call-graph result; this does not prove every compiler-generated spill correct."
+    },
+    {
+      "id": "SOL-2025-1",
+      "name": "LostStorageArrayWriteOnSlotOverflow",
+      "severity": "low",
+      "upstream_conditions": {},
+      "official_disclosure": "https://blog.soliditylang.org/2025/12/18/lost-storage-array-write-on-slot-overflow-bug/",
+      "disposition": "no_realistic_trigger_established",
+      "reason": "No chosen near-end storage layout or assembly storage-slot write found. Actual static arrays are small; operational dynamic arrays/cursors are bounded or append-only and hash-rooted. This conclusion relies on ordinary keccak storage assumptions; it is not an absolute exclusion for arbitrary future layouts or enormous arrays."
+    }
+  ],
+  "source_constructs": {
+    "compiler": "0.8.26",
+    "source_count": 83,
+    "implemented_functions_modifiers": 1011,
+    "source_output_sha256": "dc98e3ee1a7116c93d1d9b47cbeba45f4ca7931c4adf2f03fe56d5ed8b5af03a",
+    "named_error_requires": [],
+    "conservative_internal_cycles": [],
+    "unresolved_internal_calls": [],
+    "source_yul_functions": [],
+    "storage_layout_declarations": [],
+    "limitations": [
+      "Source AST conservative virtual dispatch, not proof of arbitrary compiler-generated behavior",
+      "Storage-end array bug needs source layout/bounds/manual review; absence of explicit layout declaration alone is not proof"
+    ]
+  },
+  "compiler_correctness_proved": false,
+  "upgrade_performed": false,
+  "reevaluate_on_source_dependency_or_settings_change": true,
+  "official_snapshot_reuse": "Reuses the2026-11-03 official six-disclosure snapshot from the immediately prior report; source applicability/AST refreshed for direct Entry3. No fresh network fetch or toolchain upgrade."
+}

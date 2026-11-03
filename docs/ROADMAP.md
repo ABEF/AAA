@@ -12,13 +12,12 @@ rehearse actual authority/wallet/host/dependency workflows before production.
 
 ## LP execution next steps
 
-[Contract/LP review](../reports/smart-contract-lp-audit-20261103/REVIEW.md) confirms
-safe rollback/recovery for the two new local scenarios; actual residual geometry,
-depth, prices, gas and service behavior still need qualification. Resolve optional
-Entry-layer simplification with an explicit fresh profile before changing its
-consumers; do not remove valid reward/royalty conversion or relabel old journals.
-Refresh the [compiler assessment](../reports/smart-contract-lp-audit-20261103/compiler-assessment.json)
-at the frozen release, not just the originally tagged compiler documentation.
+[Direct Entry3](../reports/direct-entry-v3-20261103/REVIEW.md) completes the
+approved preliminary-conversion removal. Qualify schema9/direct routing3 with
+actual runtime/helpers, feeds, balancing venues, source7 API/site and wallet
+behavior before rollout; do not relabel old schema8, source6 or journals. Vault
+balancing and separate reward/royalty conversion remain. Retain current normal
+size/static evidence and refresh compiler disclosures for the frozen release.
 
 [Three-audit consolidation](../reports/consolidation-20261103/REVIEW.md) hardens
 shared RPC input/budget boundaries and simplifies strict keeper validation.
@@ -47,7 +46,7 @@ Next qualify bounded routing and residual placement using real venues/depth/gas,
 and design measured authenticated lifetime archive/read-model evolution before
 complete replay outgrows finite budgets. No global search optimum or unsafe
 fallback is claimed. Qualify actual providers and operating budgets alongside
-this work; matching source6 rollout must preserve old profiles/journals.
+this work; matching source7 rollout must preserve old profiles/journals.
 
 [Bounded adaptable settings](ADAPTABLE_POLICY.md) are implemented in source6 with
 unchanged defaults and explicit schema8/Entry2/canonicalV6 boundaries. Qualify
@@ -78,8 +77,8 @@ reviewed test binding, not relabelled production qualification.
 
 ## 3. Integrate the exact current deployment profile
 
-Qualify matching schema8 observer, API/indexer/keeper/health writer-checker and
-accounting6 website read/unsigned consumer on poplint. Keep popldemo unchanged,
+Qualify matching schema9 observer, API/indexer/keeper/health writer-checker and
+direct Entry3/accounting6 website read/unsigned consumer on poplint. Keep popldemo unchanged,
 public signing disabled and old local Anvil/journals separate. Rehearse600/240/300
 confirmation, near-eligibility paid enrollment,60–300jitter, cooldown changes,
 pending recovery, crashes and Linux atomic storage without guessing journal truth.

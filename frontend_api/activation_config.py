@@ -38,7 +38,7 @@ class ActivationConfig:
             raise ValueError('Unsupported explicit activation pricing profile')
         if 'pricing_version' in config: fields.add('pricing_version')
         self.routing_version = config.get('routing_version', 1)
-        if type(self.routing_version) is not int or self.routing_version not in (1, 2):
+        if type(self.routing_version) is not int or self.routing_version not in (1, 2, 3):
             raise ValueError('Unsupported explicit activation routing profile')
         if 'routing_version' in config: fields.add('routing_version')
         self.review_policy_version = config.get('review_policy_version', 0)
@@ -101,13 +101,17 @@ class ActivationConfig:
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
-        if self.pricing_version == 2 and (self.routing_version != 2 or projection.accounting_version not in (2, 3, 4, 5, 6)):
+        if self.pricing_version == 2 and (self.routing_version not in (2,3) or projection.accounting_version not in (2, 3, 4, 5, 6)):
             raise ValueError('Dual pricing requires explicit native accounting and typed routing profiles')
-        if self.routing_version == 2 and projection.accounting_version not in (2, 3, 4, 5, 6):
+        if self.routing_version in (2,3) and projection.accounting_version not in (2, 3, 4, 5, 6):
             raise ValueError('Typed routing requires native accounting version 2')
-        if projection.accounting_version in (3, 4, 5, 6) and (self.routing_version != 2 or
+        if projection.accounting_version in (3, 4, 5, 6) and (self.routing_version not in (2,3) or
                 self.pricing_version != 2 or self.review_policy_version != (2 if projection.accounting_version==6 else 1)):
             raise ValueError('Local Position V3 requires typed routing, dual pricing and caller-bound review')
+        if self.routing_version == 3 and (projection.accounting_version != 6 or
+                self.pricing_version != 2 or self.review_policy_version != 2 or
+                getattr(projection,'fee_intake_version',0) != 1):
+            raise ValueError('Direct Entry3 requires explicit accounting6/pricing2/review2/fee1')
         _keys(config['contracts'], set(MODULES) | HELPERS |
               ({'v4_executor'} if self.routing_version == 2 else set()) |
               ({'balancing_router'} if self.lp_routing_version in (1,2) else set()) |
@@ -174,12 +178,14 @@ class ActivationConfig:
         self.sources = {}
         self.route_kinds = {}
         for item in bounded(config['sources'], 64, 'source routes', 1):
-            _keys(item, {'pool_id', 'source_asset', 'route_id', 'asset_policy_id'} |
+            direct = self.routing_version == 3
+            _keys(item, {'pool_id','source_asset','asset_policy_id'} if direct else
+                  {'pool_id', 'source_asset', 'route_id', 'asset_policy_id'} |
                   ({'route_kind'} if self.routing_version == 2 else set()), 'source route')
             pool = _hash(item['pool_id'])
             source = ZERO if item['source_asset'] == ZERO else address(item['source_asset'])
-            route = ZERO_HASH if item['route_id'] == ZERO_HASH else _hash(item['route_id'])
-            kind = item['route_kind'] if self.routing_version == 2 else (0 if route == ZERO_HASH else 1)
+            route = ZERO_HASH if direct or item['route_id'] == ZERO_HASH else _hash(item['route_id'])
+            kind = 0 if direct else item['route_kind'] if self.routing_version == 2 else (0 if route == ZERO_HASH else 1)
             if type(kind) is not int or kind not in (0, 1, 2) or ((kind == 0) != (route == ZERO_HASH)):
                 raise ValueError('Invalid explicit route kind')
             if ((pool, source) in self.sources or source != ZERO and source not in self.tokens or
@@ -253,6 +259,8 @@ class ActivationConfig:
                     ('budget','vault()','vault')]
         if self.routing_version == 2:
             bindings += [('entry', 'v4Executor()', 'v4_executor'), ('v4_executor', 'parent()', 'entry')]
+        if self.routing_version == 3 and int(read('entry','ENTRY_ROUTING_VERSION()')[0],16) != 3:
+            raise ProjectionError('Direct Entry ABI differs from explicit routing3; no routed fallback')
         for role, method, expected in bindings:
             if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Activation helper binding changed')
         if self.maintenance_policy_version in (2,3):

@@ -64,9 +64,9 @@ selected financial/timing checks. It cannot become a keeper fallback or arbitrar
 custody call and can cause near-total economic loss. Economic/gas/provider and
 actual operating qualification remain open.
 
-[Entry](../src/ZZZActivationEntry.sol) and the converter base share an internal
+The converter base retains an internal
 read-only [v3 venue validator](../src/libraries/ZZZV3VenueValidation.sol), while
-keeping their own admission and runtime-pin checks. The two concrete reward
+retaining per-ledger admission and runtime-pin checks. The two concrete reward
 converters inherit [one neutral implementation](../src/base/ZZZRewardConverter.sol)
 but retain separate immutable ledgers, storage and balances. No external linked library, shared funds or generic executor is introduced.
 The fixed LP PositionExecutor above has only typed Manager-controlled actions.
@@ -97,12 +97,12 @@ Stablecoins may be admitted separately as marketplace royalty currencies.
 
 ## Entry and membership
 
-Activation requires revealed traits and at least $100 original gross source value, with the captured contribution floor (at default 2%, at least 98%) actually deployed as marginal oracle-valued LP, excluding incumbent idle/compound value. The immutable Registry-created [Entry](ACTIVATION_ENTRY.md) accepts only reviewed ZZZ or native ETH, with exact native forwarding for the selected native pool, or reviewed typed single-hop v3/v4 conversion into one actual accounting currency. V4 native routes require no wrapper; v3/unwrap paths retain their explicit wrapper dependencies. It binds current ownership, exact Vault calldata and original measured source USD through a callback-safe context. Separate conversion and LP legs share one captured allowance; they cannot each consume a new loss budget. Actual routes, liquidity and feeds need qualification; arbitrary calldata/conversion is not supported. The same NFT may receive permanent additions from $5 in original gross source value at current share NAV, with the same aggregate bound; a higher configured pool minimum still applies. After placement no more than 5% measured principal NAV may remain idle. Pool limits, fresh valuation, minimum liquidity and deadline guards remain.
+Activation defaults to at least100USD original ETH/fixed-ZZZ source value (future-governed policy minima), with the captured contribution floor(default2%,at least98%) actually deployed as marginal oracle-valued MAIN LP. Registry-created direct [Entry3](ACTIVATION_ENTRY.md) forwards the exact pair input to the fixed Vault; no pre-Vault route/conversion child exists. Vault performs reviewed ratio balancing and LP placement within the one captured source budget. Owner/context, dual-price/policy, exact allowance/balance and actual marginal LP checks remain. Growth defaults5USD under the same rules and stronger pool minima; current governed idle limits remain independent. Separate earned-LP/royalty converters retain their own v3/v4 routes. Actual input/venue/token/feed/gas qualification remains open.
 
 Before share/membership changes, the Vault settles already-funded local dust
 and harvests both current bucket legs. Entrant-only swaps/deployment increase the
 existing main; incumbent residual, idle and compound remain in its aggregate NAV.
-Contributions do not recenter the portfolio or reset its rebalance clock. Sub-twenty-unit dust settles to existing owner shares. Entry swaps are followed by settlement so their fees belong to incumbents; old LP is revalued after balancing. Fresh 5% compounding belongs to incumbent NAV. Final LP updates, actual marginal deployed-LP and dust guards precede owner checkpoint and share issuance.
+Contributions do not recenter the portfolio or reset its rebalance clock. Sub-twenty-unit dust settles to existing owner shares. Vault entry-balancing swaps are followed by settlement so their fees belong to incumbents; old LP is revalued after balancing. Fresh 5% compounding belongs to incumbent NAV. Final LP updates, actual marginal deployed-LP and dust guards precede owner checkpoint and share issuance.
 
 First shares equal measured net principal USD; later shares round down as `supply * netNewUSD / (incumbentNAV + historicalCompoundValue)`. Historical non-current compounding stays incumbent backing and cannot subsidize the new contribution's captured deployed-LP floor. Zero-NAV/zero-share/cap violations revert. Donations, unclaimed rewards and buyback reserves do not buy shares. After successful issuance the Vault activates one `ZZZMembership` share for an initially dormant NFT and notifies the fixed NFT, which joins its separate rarity royalty ledger. Optional royalty-currency faults defer that currency's eligibility without undoing otherwise valid activation; the earlier cohort is protected. Other failed contribution checks roll back atomically. A top-up never adds collective/royalty weight.
 
@@ -150,7 +150,7 @@ create a sweep or new recipient. [Execution decisions](LP_EXECUTION_POLICY.md),
 [optional portfolio](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md). Pooling does not remove
 impermanent loss, fees, adverse selection or MEV.
 
-`Migration.moveFunds` atomically closes and deploys actual LP in another admitted pool with the same ordered accounting pair. Current native accounting preserves actual ETH identity and supports same-native-pair fee-tier changes. ETH/WETH atomic conversion is unsupported and rejected; WETH can be used only by separately reviewed conversion routes, not LP admission. One captured starting-price maintenance floor covers the complete move (3% loss by default, governed up to 10%), with gas separate; NFT shares and original bucket identity remain unchanged. Destination contributions and conversion routes are switched deliberately after verifying the resulting LP.
+`Migration.moveFunds` atomically closes and deploys actual LP in another admitted pool with the same ordered accounting pair. Current native accounting preserves actual ETH identity and supports same-native-pair fee-tier changes. ETH/WETH atomic conversion is unsupported and rejected; WETH can be used only by separately reviewed conversion routes, not LP admission. One captured starting-price maintenance floor covers the complete move (3% loss by default, governed up to 10%), with gas separate; NFT shares and original bucket identity remain unchanged. Destination contributions and reviewed Vault balancing venues are switched deliberately after verifying the resulting LP; earned-conversion routes remain separate.
 
 [Collective holder exit](HOLDER_COLLECTIVE_EXIT.md) replaces external custody
 release/consolidation/recovery and royalty drains. A paused governance action

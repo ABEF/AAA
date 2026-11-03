@@ -11,10 +11,14 @@ saved transaction profile. Existing Anvil services and journals remain unchanged
 | Maintenance / confirmation / compound |3 /3 /4 |
 | Migration custody / emergency / residual close |4 /2 /1 |
 | LP routing / position child / math child |2 /1 /1 |
-| Pricing / Entry routing / reviewed Entry |2 /2 /2 |
+| Pricing / Entry routing / reviewed Entry |2 /3 /2 |
 | Governance / fee intake / execution quality |2 /1 /1 |
-| Production inventory | Schema8,17 modules and21 helpers |
+| Production inventory | Schema9,17 modules and20 helpers |
 | Same-chain handoff admission | `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` |
+
+Entry-routing3 removes pre-Vault contribution conversion and its child. Read
+[the direct tuple](ACTIVATION_ENTRY.md). Historical schema8/Entry-routing2 remains
+a separate explicit runtime/configuration profile; review-policy2 is unchanged.
 
 Position still has eight words: `poolId,lpTokenId,idle0,idle1,depositUSD,centerX96,
 lastRebalance,status`. Status codes and physical main/residual ownership are

@@ -29,7 +29,7 @@ terminal LP exit. [Complete procedure and risk](EMERGENCY_REBALANCE.md).
 | Inputs | Enable/disable/re-enable native ETH and the fixed ZZZ with reviewed append-only source policies. | No third input or post-seal replacement ZZZ. Source, Buyback and settlement identities must match before seal. |
 | LP pools | Admit initialized pinned static hookless native ETH/fixedZZZ fee tiers; one contribution pool at a time. | No generic ERC20/WETH LP admission or arbitrary different-pair movement. Movement and deposit/route cutover are separate actions. |
 | LP swap selection | LP routing2 helper's complete reviewed list of 0-4 admitted ETH/ZZZ pools, solver4-12 iterations/100000-300000quote gas (defaults8/200000), and Registry venue slippage1-1000bps. | Empty list disables swaps with no target fallback. Tighter target/venue, caller and captured loss/price guards remain. Configuration is not LP movement or an automatic operating-limit increase. |
-| Conversion venues | Reviewed typed single-hop v3/v4 routes for contributions or already-earned LP/royalty balances. | Conversion admission does not add an LP currency or input. Explicit wrapper-dependent routes still need wrapper qualification. |
+| Conversion venues | Reviewed typed single-hop v3/v4 routes for already-earned LP/royalty balances; Entry3 inputs go directly to Vault balancing. | Conversion admission does not add an LP currency or input. Explicit wrapper-dependent routes still need wrapper qualification. |
 | Pricing | Reviewed two-source USD policies, source runtimes/independence, ages and 0-500bps agreement setting; selected tolerance300bps. Governed sequencer-source replacement. | Both feeds must pass; no peg/spot/missing-source fallback. Captured operation prices/policy cannot be replaced mid-call. |
 | Loss policy | Contribution 2%, conversion 1%, maintenance 3% defaults, each governance ceiling 10%; separate converter settings. | Stronger caller/venue minima and separate gas remain. Raw collective principal return uses raw minima, not a 3% USD guarantee. |
 | Randomness requests | Future confirmations3-200 and callback gas200,000-10,000,000 via `setRandomnessRequestSettings`. | ProtocolPolicy permits planned coordinator/lane/subscription/payment rotation only after all old draws finalize; no pending reroll/repair/retargeting. Actual provider bounds may be narrower. |
@@ -68,8 +68,8 @@ carry terminal holder-principal accounting or reopen an exited deployment.
 Native ETH remains the actual zero currency through LP, fees, principal and
 payouts. Only explicit conversion routes may use WETH. Current services/inventory
 must select accounting6, custody4, portfolio2, maintenance3, confirmation3,
-compound4, LP routing2, fee1, governance2, pricing2, Entry routing2/reviewed Entry2
-and exact adaptable-policy V6 schema/runtime/parent pins. Inventory is schema8/21 helpers. Position length alone
+compound4, LP routing2, fee1, governance2, pricing2, Entry routing3/review-policy2
+and exact adaptable-policy V6 schema/runtime/parent pins. Inventory is schema9/20 helpers. Position length alone
 does not identify a profile. Historical accounting1/2/3 deployments and journals
 keep their own meanings. The served accounting3 poplint artifact is not a
 qualified accounting6 integration; public deployment stays null and browser

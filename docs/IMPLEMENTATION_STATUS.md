@@ -7,11 +7,12 @@ Reviewed 2026-11-03. This records implemented source, not another task list.
 ## Current profile
 
 Fresh **accounting6 / portfolio2 / maintenance3 / confirmation3 / compound4 /
-custody4 / emergency2 / LP routing2**, with pricing2, Entry routing2, reviewed
-Entry2, direct governance2 and fee intake1. The eight-word Position and compatible
+custody4 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
+policy2, direct governance2 and fee intake1. The eight-word Position and compatible
 parked same-chain canonical V6 wire remain; they do not imply old runtime compatibility.
 [Profile](POSITION_V6.md), [implementation plan](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md).
-Production inventory is schema8 with21 helper pins. Historical accounting5/4 and inventory7/6
+Production inventory is schema9 with20 helper pins. Historical schema8 keeps
+its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
 The [October31 change audit](../reports/today-audit-20261031/REVIEW.md) repairs
@@ -53,7 +54,7 @@ No contract ABI/policy, API schema, signing or running service changed.
 | Confirmed reads | Explicit accounting6 graph/runtime/version checks; both physical IDs/owners/keys/ticks/liquidity and aggregate principal authenticated at one confirmed block. Desired-disabled residuals remain included. Physical reads preserve owners/raw funded claims during price outages; valuations remain unavailable. No maintenance readiness inferred. Old profiles remain separate. |
 | Unsigned activation/growth | Fresh graph including actual typed-executor verification, control and portfolio review binding; exact Manager→typed child→PosM trace and entrant marginal main liquidity; no public signing added. |
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. |
-| Inventory | Schema8 validates21helpers, both physical legs and fresh capabilities. Schemas7/6 retain explicit historical inspection. Example is unqualified. |
+| Inventory | Schema9 validates20helpers, both physical legs and fresh capabilities. Schemas8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | Source-bound current callable reference plus exact operating procedures; the historical90-entry inventory retains its original scope. Ordered named inputs, actual caller/reversal and full tuple links. Offline reviewHash helper validates strict source-bound ABI shapes and preserves exact decimal strings; no live reads, simulation, signing, transaction or readiness claim. [Operator guide](OPERATOR_MANUAL.md#prepare-and-check-an-offline-reviewhash). |
 | Earnings | Separate LP/collective/royalties, current-price USD, claimable versus earned/claimed, authenticated chronology and no duplicate income from claims/conversion/imports. Missing prices/data remain unavailable. |
 
@@ -72,13 +73,21 @@ change to the website is part of this contract implementation.
 
 ## Current evidence and limits
 
+[Direct Entry3 cleanup](../reports/direct-entry-v3-20261103/REVIEW.md) removes
+pre-Vault route management/conversion/receiver/child, retains the captured financial
+and owner/callback checks, and updates direct API tuple/config/trace and schema9
+inventory/observer. Historical schema8/routing2 remains explicit. Separate earned
+LP/royalty conversions and Vault balancing stay. [Current verification](../reports/direct-entry-v3-20261103/VERIFICATION.md)
+records fresh normal/static/affected checks, corrected fixtures and unqualified
+external requirements; it is not a deployment or independent release approval.
+
 [Current contract/LP review](../reports/smart-contract-lp-audit-20261103/REVIEW.md)
 maps the source/function/operation boundary and six current compiler disclosures.
 Two new scoped actual-core methods establish infeasible residual-gap rollback
 and price-outage harvest/claim/raw residual-close recovery followed by guarded
 merge. No production Solidity changed; [evidence](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
 reuses exact43 normal gates/475 static records rather than claiming a new full
-suite. Entry-layer simplification and actual services/independent audit remain open.
+suite. The later direct Entry3 change resolves Entry-layer removal; actual services/independent audit remain open.
 
 [Action resilience evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md)
 records RPC body progress checks, exact maintenance-name validation and paid
@@ -143,7 +152,7 @@ per-pool6000–9999bps main floor and positive tick-spacing gap; manual geometry
 extend below100% subject to Registry/tick bounds. Buyback maximum is reviewed and
 changeable. Defaults remain0.05ETH/100USD/5USD,60/40,5%idle and original gas/stages.
 New mint/Entry2 reviews bind scoped fingerprints; callback policy changes revert.
-Source6/schema8/canonicalV6 are explicit, old deployed profiles remain unchanged.
+Fresh source7/schema9/Entry-routing3/canonicalV6 is explicit; old deployed source6/schema8 profiles remain unchanged.
 [Current evidence](../reports/adaptable-policy-20261031/VERIFICATION.md) records fresh
 normal gates, actual selected executions and limitations; it is not deployment,
 whole-suite/CI/live qualification or independent audit approval.

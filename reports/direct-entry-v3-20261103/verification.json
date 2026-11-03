@@ -1,0 +1,119 @@
+{
+  "reviewed": "2026-11-03",
+  "base_main_revision": "8b8c6c3578f8deb7f9b76f2ff450ef8823410032",
+  "profile": "source7/direct Entry3/schema9/accounting6/portfolio2/pricing2/review-policy2",
+  "production_approved": false,
+  "independent_audit": false,
+  "full_suite_run": false,
+  "fresh_evm_distinct_selected_successes": 28,
+  "python_distinct_selected_successes": 314,
+  "raw_evidence_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\direct-entry-v3-20261103",
+  "checks": {
+    "protected": {
+      "unchanged": true,
+      "count": 4
+    },
+    "historical_reports": {
+      "unchanged": true,
+      "count": 2678
+    },
+    "archived_originals": {
+      "unchanged": true,
+      "count": 585
+    },
+    "compiler_closure": {
+      "sources": 52,
+      "dependencies": 31,
+      "normal_gates": 43,
+      "current_raw_source_pins_match": true,
+      "production_source_changed": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    "retired_fixtures_archived_byte_identically": true,
+    "historical_schema8_example_byte_identical": true,
+    "todo_stable_ids_status_order_unrelated_fields_preserved": true,
+    "post_python_edits": {
+      "changed_file": [
+        "scripts/source_checks.py"
+      ],
+      "comment_only": true,
+      "no_behavior_or_test_rerun_claim": true
+    },
+    "todo": {
+      "successful": true,
+      "exit_code": 0,
+      "stdout_sha256": "84da3985b677083ac5dbd5a81b35925d8966cf6a0d6fc610df91cb30dce624ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "callable_reference": {
+      "successful": true,
+      "exit_code": 0,
+      "stdout_sha256": "f93fe1eee7d621fcd835636d62c0051111317fdd3459ee43d994ca60685bbeb2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "current_static_review": {
+      "successful": true,
+      "exit_code": 0,
+      "stdout_sha256": "e371f6273e3cba08937f19e115e4ae55f53fe74154a0d2f52a657cf5635d2734",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "whitespace": {
+      "successful": true,
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "no_deployment_services_sites_anvil_journals_signing_heartbeat_changed": true
+  },
+  "source_consistency_result_sha256": "beac31e9e2ebffcaaf3011430c14c75a67b7d9a9b757b84b33db8952cd60d8eb",
+  "report_evidence_sha256": {
+    "production-size-gates.json": "28d67439b8474a7e07b25641fc19b0e635105f70ed9803f2b9141dd293ef9d4d",
+    "size-comparison.json": "4b1efdc433f0d6da37d9fe6ad8d2da2b67825381bbe15f0ddd946679d557c7c6",
+    "test-stages.json": "b6a3290bdb1ebbc3ddddc0f7b9a6e7272164c53b76eb4dd15253a2c7fdaac525",
+    "python-verification.json": "f32fa53d9b6b965d77187bb6e0f4c2cd6d2994b84197e7641ab0bad9f4b2b60d",
+    "static-review.json": "43abf80c24c2432e2204f6a839939d8474db13dd6ea257a2b0299a0c7b3c8b36",
+    "static-coverage.json": "09e4fcc8d0d07c1227ea96653d8695db197eab0178e314a61c00edffc9198fec",
+    "static-execution.json": "01bb518c47d11ed0b2c8c031c3ebcbce9c2afdbf2e08a6c06581d7789715333e",
+    "static-tool-provenance.json": "f73a4ee8f792bc3dfe045375707a2546cba182545046bdcd259a7809bae77130",
+    "compiler-assessment.json": "71082e1f061aa60e4ab3e4eaca417c4a968f51ae2e357e7604dcab48ddf875a3"
+  },
+  "publication": {
+    "staged_python_files": 288,
+    "static_import_closure_successful": true,
+    "record": "publication-check.json",
+    "source_publication_is_not_deployment": true
+  },
+  "document_links": {
+    "links_checked": 1907,
+    "introduced_failures": 0,
+    "record": "document-links.json",
+    "sha256": "2431c416fbd39acf3f7b6666cf7c78b1d2818e2d666ee04b5589b0f42b815896"
+  },
+  "cli_profile_checks": [
+    {
+      "label": "fresh-schema9",
+      "exit_code": 1,
+      "ready": false,
+      "schema": 9,
+      "issue_count": 970,
+      "output_sha256": "ba7796472f39c3d573051f10bc790c8eb94b82aee4a56783877cb8bdca6427a8"
+    },
+    {
+      "label": "old-schema8-default",
+      "exit_code": 1,
+      "ready": false,
+      "schema": 9,
+      "issue_count": 1,
+      "output_sha256": "35be2f3352733cfae1467824e8f47b91d1b8630650858bf4c67aa422366aa9f9"
+    },
+    {
+      "label": "old-schema8-explicit",
+      "exit_code": 1,
+      "ready": false,
+      "schema": 8,
+      "issue_count": 982,
+      "output_sha256": "90ff1005f4ee914b91d027fb4dd1f2adb832dadc5b28b932e4fe36ce3d01121c"
+    }
+  ]
+}

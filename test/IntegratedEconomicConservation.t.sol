@@ -200,7 +200,7 @@ contract IntegratedEconomicConservationTest is Test {
         vrf.fulfill(nft.requestOf(id),0,0);nft.finalizeTraits(id);
     }
     function _contribute(address owner,uint256 id,uint256 amount,bool increase) private {
-        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),amount,bytes32(0),0,1,block.timestamp+100,increase);
+        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),amount,1,block.timestamp+100,increase);
         bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(owner);entry.executeReviewed{value:amount}(r, 200,reviewedPolicy2);
     }
     function _balanced(address owner,uint256 id,uint256 half,bool increase) private {
@@ -415,7 +415,7 @@ contract IntegratedEconomicConservationTest is Test {
         // The second supported source currency must also grow an existing NFT.
         uint256 amount=(5e18*1e8+price-1)/price;
         vm.startPrank(ALICE);token.approve(address(entry),amount);
-        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); entry.executeReviewed(ZZZActivationEntry.Request(a,pool,address(token),amount,bytes32(0),0,1,block.timestamp+100,true),200,reviewedPolicy3);
+        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); entry.executeReviewed(ZZZActivationEntry.Request(a,pool,address(token),amount,1,block.timestamp+100,true),200,reviewedPolicy3);
         vm.stopPrank();_assertBacking();
         assertGt(vault.sharesOf(a),sharesA);assertEq(vault.sharesOf(b),sharesB);
         assertGe(rewards.claimable(b,address(0)),oldB0);assertGe(rewards.claimable(b,address(token)),oldB1);
@@ -509,7 +509,7 @@ contract IntegratedEconomicConservationTest is Test {
         uint256 id=_mint(ALICE);uint256 beforeETH=ALICE.balance;uint256 beforeToken=token.balanceOf(ALICE);
         vm.prank(ALICE);token.approve(address(entry),100 ether);
         token.arm(address(entry),2,address(this),abi.encodeCall(this.changePriceDuringFinalReset,()));
-        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(token),100 ether,bytes32(0),0,1,block.timestamp+100,false);
+        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(token),100 ether,1,block.timestamp+100,false);
         vm.expectCall(address(primary),abi.encodeCall(primary.set,(100_100_000,block.timestamp,block.timestamp)));
         bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.InvalidState.selector);entry.executeReviewed(r, 200,reviewedPolicy4);
         assertEq(ALICE.balance,beforeETH);assertEq(token.balanceOf(ALICE),beforeToken);
@@ -547,7 +547,7 @@ contract IntegratedEconomicConservationTest is Test {
         uint256 coreETH=address(core).balance;uint256 coreToken=token.balanceOf(address(core));
         (uint160 spotBefore,,uint24 protocol,uint24 lpFee)=state.getSlot0(PoolId.wrap(pool));
         assertEq(protocol,uint24(1000|(1000<<12)));assertEq(lpFee,10020);
-        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
+        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,1,block.timestamp+100,false);
         vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector));
         bytes32 reviewedPolicy5 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE);vm.expectRevert(bytes4(keccak256("Slippage()")));entry.executeReviewed{value:100 ether}(r, 200,reviewedPolicy5);
         assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);
@@ -573,7 +573,7 @@ contract IntegratedEconomicConservationTest is Test {
         bytes memory failure=abi.encodeWithSignature("BalancingUnavailable()");
         vm.mockCallRevert(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector),failure);
         vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector),uint64(1));
-        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
+        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,1,block.timestamp+100,false);
         bytes32 reviewedPolicy6 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE);vm.expectRevert(failure);entry.executeReviewed{value:100 ether}(r, 200,reviewedPolicy6);
         vm.clearMockedCalls();vm.getRecordedLogs();vm.recordLogs();
         assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);

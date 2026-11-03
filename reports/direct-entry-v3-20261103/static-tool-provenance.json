@@ -1,0 +1,16 @@
+{
+  "observed_utc": "2026-11-03T02:44:57.868760+00:00",
+  "scope": "Supplementary current offline installed metadata; original analyzer run pointers remain preserved and were absent. No installation or analyzer rerun.",
+  "packages": {
+    "slither-analyzer": {
+      "version": "0.11.6",
+      "record_sha256": "d61fbc526fd243c7c2175ecd3a171c3934a05eeb0ba612795653a132f411ef26",
+      "distribution_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\production-readiness-20261014\\slither-venv\\Lib\\site-packages\\slither_analyzer-0.11.6.dist-info"
+    },
+    "crytic-compile": {
+      "version": "0.4.2",
+      "record_sha256": "7c2a9a10375eaafb5770bb45e3775b049df3edf4c2f8e2202dfddeb8dc925e86",
+      "distribution_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\production-readiness-20261014\\slither-venv\\Lib\\site-packages\\crytic_compile-0.4.2.dist-info"
+    }
+  }
+}

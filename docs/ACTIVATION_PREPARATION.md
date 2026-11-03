@@ -17,9 +17,19 @@ the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 
 ## Current deployment and review profile
 
+Fresh Entry3 has a seven-field direct ETH/ZZZ request. Use `routing_version:3`,
+no `contracts.v4_executor`, and source rows containing only
+`pool_id,source_asset,asset_policy_id`. Removed route fields fail closed, rather
+than being ignored. Verify `ENTRY_ROUTING_VERSION()==3`, `REVIEW_POLICY_VERSION()==2`
+and Pricing `ENTRY_REVIEW_VERSION()==2` at the same pinned block. The unchanged
+read schema2/accounting6 and activation schema1 carry this explicit new capability;
+production inventory is separately schema9 with20 helpers. Historical routing2
+configs retain their exact routed ABI and cannot prepare against fresh Entry3.
+The separate old website profiles are not upgraded by this backend change.
+
 Fresh read configuration explicitly selects accounting6/fee-intake1 and the
 complete [portfolio graph](POSITION_V6.md). Unsigned activation selects Entry
-routing2/pricing2/review2, maintenance3/range1/LP-routing2/portfolio2/
+routing3/pricing2/review2, maintenance3/range1/LP-routing2/portfolio2/
 confirmation3/execution-quality1. Pin Policy, Confirmation, Budget, Balancer,
 math, typed LP child and actual core/periphery, including reciprocal module/parent
 bindings. Fresh pins must match their corresponding parent read configuration.
@@ -190,7 +200,7 @@ examples deliberately contain placeholders, not purported live addresses.
 Fresh activation uses a separate schema1 configuration with the exact fields below.
 The parent read configuration is schema2 and explicitly selects
 `accounting_version:6`, `fee_intake_version:1`, `protocol_policy_version:1` and the
-complete source6 contract graph. Its required base fields are `schema`, `chain_id`,
+complete source7 contract graph. Its required base fields are `schema`, `chain_id`,
 `rpc_urls`, `deployment_block`, `deployment_block_hash`, `confirmations`,
 `max_block_age_seconds`, `contracts`, `assets`; optional history/predecessor/royalty/
 earnings sections retain their own exact schemas. See [read configuration](FRONTEND_API.md#deployment-configuration).
@@ -200,14 +210,14 @@ inherits authenticated Policy1 from Projection; an extra key is rejected. Both
 configurations pin the same `protocol_policy` address/code hash and every other
 shared role. `activation.contracts.migration` must equal the parent's
 `contracts.principal_exit`. The parent has8 base roles, `principal_exit`, and14
-source6 portfolio/policy/dependency roles; its23 bindings are not interchangeable
-with the production inventory's17 modules/21 helpers.
+source7 portfolio/policy/dependency roles; its23 bindings are not interchangeable
+with the production inventory's17 modules/20 helpers.
 
 Native ETH has address zero, code hash null,18 decimals and its own two-source
 policy; on-chain admission uses `NATIVE_ASSET_CODE_HASH()`. Exact native value is
 verified at Entry-to-Vault and Vault-to-manager boundaries, not only outside.
 
-| Field | Fresh source6 contents |
+| Field | Fresh source7/direct Entry3 contents |
 | --- | --- |
 | `schema` | Integer1. Missing/unknown/boolean versions and extra fields fail closed. |
 | `routing_version`, `pricing_version`, `review_policy_version` | Explicit integers2,2,2. Reviewed Entry2 calldata includes `expectedContributionPolicy`. |
@@ -228,7 +238,7 @@ verified at Entry-to-Vault and Vault-to-manager boundaries, not only outside.
 
 Historical accounting4 keeps its explicit maintenance1/2, LP-routing0/1 and
 confirmation0/1/2 shapes; accounting5 keeps Portfolio1/Entry-review1 with its own
-pins. Those configurations are not source6 templates and are never promoted
+pins. Those configurations are not source7 templates and are never promoted
 by omitting fields, changing version labels or falling back after an error.
 
 Configuration hashes are returned in provenance. Runtime hashes alone cannot
@@ -246,7 +256,7 @@ compatibility. Suggested gas cost is an estimate, not a maximum final receipt fe
 
 ## Confirmed range and timing context
 
-Fresh source6 uses maintenance3/confirmation3/Portfolio2. The main may still be
+Fresh source7 keeps maintenance3/confirmation3/Portfolio2. The main may still be
 active when its configured centre-to-boundary threshold is crossed. Physical
 pool and independent reference must confirm the same threshold side; the
 600-second sampled window, strict300-second maximum gap and hard cooldown are
@@ -263,7 +273,7 @@ telemetry: no sampled countdown promises transaction inclusion. Deliberate
 operator geometry updates retain their explicit cooldown-gated exception.
 
 The following compatibility labels belong to explicitly historical profiles;
-they are not the source6 decision rule.
+they are not the fresh confirmation3 decision rule.
 
 ### Historical timing labels
 

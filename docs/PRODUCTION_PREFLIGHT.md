@@ -2,11 +2,11 @@
 
 Fresh source: [accounting6 / custody4 / portfolio2](POSITION_V6.md), canonical
 same-chain adaptable-policy V6. **Undeployed; production NOT APPROVED.** Current
-normal size/runtime gates and scoped checks
-pass within their [recorded source scope](../reports/adaptable-policy-20261031/VERIFICATION.md).
+normal size/runtime gates and scoped checks use the
+[direct-Entry source scope](../reports/direct-entry-v3-20261103/VERIFICATION.md).
 Real dependencies, operating rehearsals and independent audit remain open.
 
-The [schema8 example](../config/production.example.json) is deliberately
+The [schema9 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route
 qualification and observations stay null. Intended settings and known Robinhood
 dependency references are not fresh on-chain evidence. No command below signs,
@@ -21,15 +21,16 @@ Governance may move to another reviewed native ETH/ZZZ pool, park all legs, or
 permanently return actual principal to current NFT owners. Same-chain canonical
 handoff remains pre-exit only and requires no live residual during parked export.
 
-Schema8 explicitly requires accounting6, custody4, governance2, fee intake1,
+Schema9 explicitly requires accounting6, custody4, governance2, fee intake1,
 Strategy maintenance3, confirmation3, portfolio2, Budget compound4, emergency2,
-LP routing2, quality1, Entry routing2, pricing2 and reviewed Entry2. A matching
+LP routing2, quality1, Entry routing3, pricing2 and reviewed Entry2. A matching
 canonical V6 wire does not make an old accounting profile current. Unknown,
 missing, boolean and inconsistent versions fail closed.
 
-There are 17 modules including Access and 21 helpers. New helpers are
+There are 17 modules including Access and 20 helpers. New helpers are
 `portfolio_policy`, `lp_balance_math`, `lp_position_executor` and
-`protocol_policy`, alongside the prior17-helper graph. Budget, Balancer, PortfolioPolicy and Confirmation are
+`protocol_policy`; the old Entry conversion executor is removed. LP and royalty
+converters retain their own separate v4 executors. Budget, Balancer, PortfolioPolicy and Confirmation are
 standalone fixed-controller companions whose parent getters resolve the sealed
 Access module with reciprocal binding; no mutable parent setter is admitted.
 Manager's fixed typed physical executor is a contract, not a new human operator.
@@ -37,16 +38,21 @@ Verify its Manager/core/state/PosM/Permit2/router wiring, the Balancer arithmeti
 child, actual runtime pins and every code-owned getter. Never assume all helpers
 have the same interface or expose `access()`.
 
+Historical schema8/routed Entry2 remains available only through explicit
+`--historical-consistency`, using its own observer and validator. The current
+example has no Entry conversion descriptor or child; it is never rewritten to
+schema8 to obtain a pass. Live qualification and actual rollout remain separate.
+
 ## Current buyback maximum and creation history
 
-Fresh schema8 requires `chains[].buyback_maximum_usd18`: the reviewed current
+Fresh schema9 requires `chains[].buyback_maximum_usd18`: the reviewed current
 `Buyback.maxTradeUSD()` in USD18, positive and at most uint128.max. It is matched
 to the exact pinned live getter. `operating_buyback_usd18` must not exceed it.
 `constructor.maximum_buyback_usd18` remains the original creation value; do not
 rewrite it after `setMaximumTradeUSD` or use it as a fallback for missing current
 configuration. Raise/lower ordering remains in the [operator procedure](OPERATOR_MANUAL.md#future-operating-settings).
 
-Older incomplete fresh8 records must be reviewed/completed and observed again;
+Older incomplete fresh9 records must be reviewed/completed and observed again;
 missing/invalid current declarations and non-object chain records fail before
 RPC. The example remains null/unqualified. Historical profiles retain their own
 formats; neither this field nor an on-chain setting change upgrades a journal,
@@ -68,9 +74,9 @@ capacity, lifecycle and gas still need independent qualification. See the
 
 <a id="current-schema6-observation-and-offline-validation"></a>
 
-## Current schema8 observation and offline validation
+## Current schema9 observation and offline validation
 
-[Validator](../zzz_ops/production_v6.py) and [observer](../zzz_ops/production_observer_v6.py)
+[Validator](../zzz_ops/production_v7.py) and [observer](../zzz_ops/production_observer_v7.py)
 operate directly on the fresh layout; no manifest is rewritten as accounting4
 to obtain a historical pass. All contract/code/native-balance reads share one
 EIP-1898 block hash with `requireCanonical`. Genesis, confirmation depth, final

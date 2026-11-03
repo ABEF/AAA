@@ -153,7 +153,7 @@ contract NativeVaultFlowsTest is Test {
         vrf.fulfill(nft.requestOf(id),0,0); nft.finalizeTraits(id);
     }
     function _entry(address owner,uint256 id,uint256 amount,bool grow) private {
-        ZZZActivationEntry.Request memory r = ZZZActivationEntry.Request(id,poolId,address(0),amount,bytes32(0),0,1,block.timestamp+100,grow);
+        ZZZActivationEntry.Request memory r = ZZZActivationEntry.Request(id,poolId,address(0),amount,1,block.timestamp+100,grow);
         // Fixture's unchanged initial policy is captured before callers can arm
         // expectRevert; evaluating a view here would consume that expectation.
         vm.prank(owner); entry.executeReviewed{value:amount}(r,200,reviewedEntryPolicy);

@@ -187,7 +187,7 @@ class ActivationTransactions:
         pins,prices,price_bounds=cfg.verify(p,block,(source,req['token0'],req['token1']),include_bounds=True,timestamp=header['timestamp'],execution_observation=req['lp_execution'])
         req['reviewed_price_bounds']=price_bounds
         req['execution_loss_bps'] = 100
-        if cfg.routing_version == 2:
+        if cfg.routing_version in (2,3):
             maximum=int(p._call(pins['budget'],'MAX_LOSS_BPS()',block=block)[0],16)
             loss=int(p._call(pins['budget'],'contributionLossBps()',block=block)[0],16)
             if maximum != 1000 or not 0 <= loss <= maximum:
@@ -268,7 +268,7 @@ class ActivationTransactions:
                                             req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'],
                                             review_policy_version=cfg.review_policy_version,
                                             maximum_loss_bps=req.get('maximum_loss_bps'),
-                                            expected_contribution_policy=req.get('expected_contribution_policy'))}
+                                            expected_contribution_policy=req.get('expected_contribution_policy'),routing_version=cfg.routing_version)}
             # Probe is NEVER returned to the wallet. The actual contract's
             # current contribution floor also applies to internal simulation.
             initial=self._trace(tx(),pins,req,gross,int(account[10],16),block)
@@ -296,7 +296,7 @@ class ActivationTransactions:
                 **({'reviewed_maximum_loss_bps':req['maximum_loss_bps']} if cfg.review_policy_version in (1,2) else {}),
                 'minimum_deployed_usd_18':str(req['upper_input_usd']-req['upper_input_usd']*req['execution_loss_bps']//10000),
                 'minimum_liquidity_raw':str(req['minimum_lp']) if result else None,
-                'minimum_conversion_output_raw':str(req['minimum_out']) if result else None,
+                'minimum_conversion_output_raw':str(req['minimum_out']) if result and cfg.routing_version!=3 else None,
                 'network_gas':gas,'prepared_at':prepared,'expires_at':req['deadline'],
                 'onchain_deadline':req['deadline'] if result else None,
                 'provenance':{'block_number':header['number'],'block_hash':header['hash'],

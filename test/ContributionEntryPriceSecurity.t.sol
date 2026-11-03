@@ -1,134 +1,62 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
-
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {AtomicActivationIntegrationTest} from "./AtomicActivationIntegration.t.sol";
-import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
-import {IV3RouteRouter} from "../src/interfaces/IZZZV3Route.sol";
-import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
+import {DirectEntryFixture} from "./AtomicActivationIntegration.t.sol";
 import {MockToken,MockFeed} from "./mocks/Mocks.sol";
-import {PoolConfig,PositionStatus} from "../src/libraries/ZZZTypes.sol";
+import {PoolConfig} from "../src/libraries/ZZZTypes.sol";
 
-/// @dev TEST ONLY typed conversion with exact transfers and a hostile callback.
-/// This is not actual market execution or source/provider qualification.
-contract EntryPriceCallbackRouter is IV3RouteRouter {
-    address public immutable factory;
-    address public target;
-    bytes public data;
-    uint256 public outputBps=9900;
-    constructor(address factory_) { factory=factory_; }
-    function configure(address target_,bytes calldata data_,uint256 bps) external {
-        target=target_;data=data_;outputBps=bps;
+/// @dev Hostile source-token callback, replacing the removed route callback.
+/// Phase1=pull,2=Vault approval,3=approval reset; ordinary EOA approval is inert.
+contract DirectEntryCallbackToken is MockToken {
+    address public entry;address public target;bytes public data;uint8 public phase;bool private running;
+    constructor()MockToken(18){}
+    function configure(address e,address t,bytes calldata d,uint8 p)external {entry=e;target=t;data=d;phase=p;}
+    function _callback(uint8 p)private {
+        if(msg.sender!=entry || running || phase!=p)return;
+        running=true;(bool ok,bytes memory reason)=target.call(data);
+        if(!ok)assembly("memory-safe"){revert(add(reason,32),mload(reason))}
+        running=false;
     }
-    function exactInputSingle(ExactInputSingleParams calldata p) external payable returns(uint256 out) {
-        require(msg.value==0 && p.fee==500 && p.sqrtPriceLimitX96==0);
-        require(IERC20(p.tokenIn).transferFrom(msg.sender,address(this),p.amountIn));
-        out=p.amountIn*1e12*outputBps/10000;
-        require(out>=p.amountOutMinimum);require(IERC20(p.tokenOut).transfer(p.recipient,out));
-        if(target!=address(0)) {
-            (bool ok,bytes memory reason)=target.call(data);
-            if(!ok) assembly("memory-safe") { revert(add(reason,32),mload(reason)) }
-        }
+    function transferFrom(address from,address to,uint256 amount)public override returns(bool){
+        bool ok=super.transferFrom(from,to,amount);_callback(1);return ok;
+    }
+    function approve(address spender,uint256 amount)public override returns(bool){
+        bool ok=super.approve(spender,amount);_callback(amount==0?3:2);return ok;
     }
 }
 
-/// @dev TEST ONLY replacement runtime preserves inherited ERC20 storage. It
-/// changes a feed specifically at the Entry's final approval-reset boundary.
-contract EntryFinalResetToken is MockToken {
-    address private watched;
-    address private target;
-    bytes private data;
-    bool private entered;
-    constructor() MockToken(18) {}
-    function configure(address account,address target_,bytes calldata data_) external {
-        watched=account;target=target_;data=data_;
+contract ContributionEntryPriceSecurityTest is DirectEntryFixture {
+    function _armed(address target,bytes memory data,uint8 phase)private returns(DirectEntryCallbackToken token){
+        token=new DirectEntryCallbackToken();vm.etch(address(t0),address(token).code);
+        token=DirectEntryCallbackToken(address(t0));
+        assets.setAsset(address(t0),true,address(t0).codehash,REVIEW);
+        token.configure(address(entry),target,data,phase);
     }
-    function approve(address spender,uint256 amount) public override returns(bool) {
-        bool ok=super.approve(spender,amount);
-        if(!entered && msg.sender==watched && amount==0 && target!=address(0)) {
-            entered=true;(bool success,bytes memory reason)=target.call(data);
-            if(!success) assembly("memory-safe") { revert(add(reason,32),mload(reason)) }
-            entered=false;
-        }
-        return ok;
-    }
-}
-
-/// @notice Real Registry/Entry/Oracle/price companion/Vault/reward ledgers.
-/// Exact-token runtime callbacks, authority, feeds, LP venue and swap math are
-/// explicit local security fixtures; no live ZZZ exploit/provider is asserted.
-contract ContributionEntryPriceSecurityTest is AtomicActivationIntegrationTest {
-    function _callbackRoute() private returns(EntryPriceCallbackRouter selected,bytes32 id) {
-        selected=new EntryPriceCallbackRouter(address(factory));
-        id=entry.addRoute(ZZZActivationEntry.RoutePolicy(address(stable),address(t0),address(selected),
-            address(factory),address(conversionPool),500,address(selected).codehash,address(factory).codehash,
-            address(conversionPool).codehash,address(stable).codehash,address(t0).codehash,REVIEW));
-        t0.mint(address(selected),100000e18);
-    }
-    function _request(uint256 id,bytes32 route) private view returns(ZZZActivationEntry.Request memory) {
-        return ZZZActivationEntry.Request(id,poolId,address(stable),100e6,route,99e18,1,block.timestamp+100,false);
-    }
-    function _assertRollback(uint256 id,EntryPriceCallbackRouter selected,uint256 sourceBefore,uint256 outputBefore) private {
-        assertEq(stable.balanceOf(alice),sourceBefore);assertEq(stable.balanceOf(address(selected)),0);
-        assertEq(t0.balanceOf(address(selected)),outputBefore);assertEq(vault.sharesOf(id),0);
-        assertEq(vault.nftBucket(id),0);assertEq(vault.contributionUSD(id),0);
-        assertEq(uint256(vault.nftStatus(id)),uint256(PositionStatus.Dormant));
-        assertFalse(membership.eligible(id));assertEq(nft.royaltyRewards().weightOf(id),0);
-        assertEq(vault.bucketCount(),0);assertFalse(oracle.contributionPricing().active());
-        assertEq(stable.balanceOf(address(entry)),0);assertEq(t0.balanceOf(address(entry)),0);
-        assertEq(stable.allowance(address(entry),address(selected)),0);
-        assertEq(t0.allowance(address(entry),address(vault)),0);
-    }
-    function _policyMutation(uint16 contribution,uint256 outputBps) private {
-        (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();
-        ZZZMigrationBudget budget=vault.migrationBudget();
-        selected.configure(address(budget),abi.encodeCall(budget.setLossLimits,(contribution,300)),outputBps);
-        vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(selected))),abi.encode(true));
-        uint256 id=_mint(alice);uint256 beforeSource=stable.balanceOf(alice);uint256 beforeOutput=t0.balanceOf(address(selected));
-        bytes32 reviewedPolicy1 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100,reviewedPolicy1);
-        assertEq(budget.contributionLossBps(),100);_assertRollback(id,selected,beforeSource,beforeOutput);
-    }
-    function testEntryPriceCaptureRejectsWiderLossPolicyDuringSourceConversion() public realIntegration {
-        _policyMutation(1000,9900);
-    }
-    function testEntryPriceCaptureRejectsTighterLossPolicyDuringSourceConversion() public realIntegration {
-        _policyMutation(0,10000);
-    }
-    function testEntryPriceCaptureRejectsVenueFloorChangeDuringConversion() public realIntegration {
-        (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();
-        PoolConfig memory c=registry.get(poolId);c.maxSlippageBps=200;
-        selected.configure(address(registry),abi.encodeCall(registry.configure,(c)),9900);
-        vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(selected))),abi.encode(true));
-        uint256 id=_mint(alice);uint256 beforeSource=stable.balanceOf(alice);uint256 beforeOutput=t0.balanceOf(address(selected));
-        bytes32 reviewedPolicy2 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100,reviewedPolicy2);
-        assertEq(registry.get(poolId).maxSlippageBps,100);_assertRollback(id,selected,beforeSource,beforeOutput);
-    }
-    function testEntryPriceCaptureRejectsSourceRoundChangeDuringConversion() public realIntegration {
-        (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();
-        selected.configure(address(stableFeed),abi.encodeCall(stableFeed.set,(101e6,block.timestamp,block.timestamp)),9900);
-        uint256 id=_mint(alice);uint256 beforeSource=stable.balanceOf(alice);uint256 beforeOutput=t0.balanceOf(address(selected));
-        bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100,reviewedPolicy3);
-        assertEq(stableFeed.answer(),1e8);_assertRollback(id,selected,beforeSource,beforeOutput);
-    }
-    function testEntryPriceCaptureSurvivesUntilFinalApprovalReset() public realIntegration {
-        EntryFinalResetToken replacement=new EntryFinalResetToken();vm.etch(address(t0),address(replacement).code);
+    function _assertPriceRollback(uint256 id,uint8 phase)private {
         address source=oracle.policy(oracle.activePolicy(address(t0))).primary.source;
-        MockFeed feed=MockFeed(source);
-        EntryFinalResetToken(address(t0)).configure(address(entry),source,
-            abi.encodeCall(feed.set,(101e6,block.timestamp,block.timestamp)));
-        (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();
-        uint256 id=_mint(alice);uint256 beforeSource=stable.balanceOf(alice);uint256 beforeOutput=t0.balanceOf(address(selected));
-        bytes32 reviewedPolicy4 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);vm.expectRevert();entry.executeReviewed(_request(id,route), 100,reviewedPolicy4);
-        assertEq(feed.answer(),1e8);_assertRollback(id,selected,beforeSource,beforeOutput);
+        int256 original=MockFeed(source).answer();uint256 before=t0.balanceOf(alice);
+        _armed(source,abi.encodeCall(MockFeed.set,(original+1,block.timestamp,block.timestamp)),phase);
+        _reject(alice,_request(id,false));assertEq(MockFeed(source).answer(),original);_unspent(id,before);
     }
-    function testEntryPriceCaptureHonestReviewedRouteCommitsAndClearsBasis() public realIntegration {
-        (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();uint256 id=_mint(alice);
-        bytes32 reviewedPolicy5 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(alice);entry.executeReviewed(_request(id,route), 100,reviewedPolicy5);
-        assertEq(vault.contributionUSD(id),100e18);assertEq(vault.sharesOf(id),99e18);
-        assertTrue(membership.eligible(id));assertEq(nft.royaltyRewards().weightOf(id),1);
-        assertFalse(oracle.contributionPricing().active());assertEq(stable.balanceOf(address(selected)),100e6);
-        assertEq(t0.allowance(address(entry),address(vault)),0);
+    function testDirectPriceCaptureSurvivesPullCallback()public realIntegration {_assertPriceRollback(_mint(alice),1);}
+    function testDirectPriceCaptureSurvivesVaultApprovalCallback()public realIntegration {_assertPriceRollback(_mint(alice),2);}
+    function testDirectPriceCaptureSurvivesFinalResetCallback()public realIntegration {_assertPriceRollback(_mint(alice),3);}
+    function testDirectWiderAndTighterLossMutationRollback()public realIntegration {
+        uint256 id=_mint(alice);uint256 before=t0.balanceOf(alice);
+        for(uint16 next=0;next<=200;next+=200){
+            _armed(address(vault.migrationBudget()),abi.encodeWithSignature("setLossLimits(uint16,uint16)",next,uint16(300)),1);
+            vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(t0))),abi.encode(true));
+            _reject(alice,_request(id,false));assertEq(vault.migrationBudget().contributionLossBps(),100);_unspent(id,before);
+        }
+    }
+    function testDirectPoolControlMutationRollback()public realIntegration {
+        uint256 id=_mint(alice);uint256 before=t0.balanceOf(alice);PoolConfig memory c=registry.get(poolId);c.maxSlippageBps=200;
+        _armed(address(registry),abi.encodeCall(registry.configure,(c)),2);
+        vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(t0))),abi.encode(true));
+        _reject(alice,_request(id,false));assertEq(registry.get(poolId).maxSlippageBps,100);_unspent(id,before);
+    }
+    function testDirectOwnerTransferDuringPullRollsBackNFTAndFunds()public realIntegration {
+        uint256 id=_mint(alice);uint256 before=t0.balanceOf(alice);
+        _armed(address(nft),abi.encodeCall(nft.transferFrom,(alice,bob,id)),1);
+        vm.prank(alice);nft.approve(address(t0),id);_reject(alice,_request(id,false));_unspent(id,before);
     }
 }

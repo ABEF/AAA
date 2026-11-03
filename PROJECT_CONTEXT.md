@@ -7,11 +7,13 @@ points. This is a current snapshot, not a timeline or global personal memory.
 ## Current source candidate
 
 Fresh accounting6/portfolio2/maintenance3/confirmation3/compound4/custody4/
-emergency2/LP-routing2; pricing2/Entry-routing2/governance2/fee1 retained.
-ProtocolPolicy1 and reviewedEntry2 add new explicit policy interfaces.
+emergency2/LP-routing2; pricing2/Entry-routing3/governance2/fee1. Source7 uses schema9/20 helpers.
+ProtocolPolicy1 and review-policy2 retain captured terms; direct Entry3 removes
+whole-input pre-Vault conversion and its child/routes. The seven-field ABI is
+distinct from historical Entry2; fixed accounting6/canonical V6 wires remain.
 Read [profile](docs/POSITION_V6.md), [plan](docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md),
-[current review](reports/adaptable-policy-20261031/REVIEW.md) and
-[verification](reports/adaptable-policy-20261031/VERIFICATION.md).
+[current Entry review](reports/direct-entry-v3-20261103/REVIEW.md) and
+[verification](reports/direct-entry-v3-20261103/VERIFICATION.md).
 
 Default single main; manual optional main>=60% and one residual<=40% of post-cost
 principal at replacement. Both physical NFTs remain Vault-owned in the same
@@ -109,13 +111,29 @@ the same asset side. This is not a live keeper/browser/load/profit qualification
 
 ## What remains
 
+Direct Entry3 verification records28 distinct selected EVM successes across
+explicit stages and314 Python successes across two selected scopes, not a full
+suite. Fresh52/31-source43normal gates and471static records are bound to the
+new compiler output; callable reference37/818/37/13 has no note gaps. Entry
+runtime18581→9863; Registry creation42736→22526. Vault635/Budget237/Migration20
+headroom remains. Failure/empty-selection history and19unchanged-body reuse
+are explicit in reports/direct-entry-v3-20261103/VERIFICATION.md. Source7
+website/services and actual dependency/release qualification remain open.
+
+
+[Direct Entry3](reports/direct-entry-v3-20261103/REVIEW.md) implements the user's
+approved removal with explicit schema9/20-helper inventory and routing3 API
+calldata/config/trace validation. Review-policy2/pricing2 and all financial/owner
+guards remain; Vault balancing and separate LP/royalty conversion stay. Match
+fresh runtime/configuration before any authorized rollout. Existing sites,
+Anvil/journals, signing restrictions and historical schema8 are unchanged.
+
 [Current contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
 reviews795 project bodies in component context and six current compiler
 disclosures. Two new actual-core journeys verify infeasible residual-gap
 rollback/recovery and USD-outage harvest/partial claims/raw close/later merge.
 No production Solidity changed or new exploitable defect was established;
-reuse exact52/31-source43-gate/475-static scope. Optional Entry conversion removal
-awaits a fresh-profile/consumer decision; real qualification remains open.
+reuse exact52/31-source43-gate/475-static scope. The later direct Entry3 implementation resolves the removal decision; real qualification remains open.
 
 [Current consolidation](reports/consolidation-20261103/REVIEW.md) reconciles the
 three latest audits without changing contract policy. RPC clients snapshot their
@@ -148,7 +166,7 @@ Main only. Determine source-publication status from exact local/remote Git heads
 Public signing remains disabled, DEPLOYMENT null. Popldemo simulation and poplint
 read/unsigned site are separate. Served current3 website and historical Anvil8902
 must not be relabelled accounting6. New API reads/preparation support fresh6;
-fresh inventory schema8 has21helpers; historical schema7/6 remain explicit inspection paths.
+fresh inventory schema9 has20helpers; historical schema8/7/6 remain explicit inspection paths.
 
 Four unrelated dirty tracked files remain untouched: reports/source-checks.json,
 scripts/run-fork-checks.py, tests_python/test_fork_runner.py and

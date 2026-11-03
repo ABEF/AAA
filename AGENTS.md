@@ -17,7 +17,7 @@ This file is current instructions, not a report timeline.
 - Popldemo is the existing simulation; poplint is separately built read/unsigned
   integration. Follow [environment map](docs/SITE_ENVIRONMENTS.md). Missing actual
   integration config is unavailable data, not demo data. Do not use demo roots,
-  installers or dist for poplint. Current source6 is not the served current3 site.
+  installers or dist for poplint. Fresh source7/direct Entry3 is not the served current3 site.
 - Browser signing remains **Anvil-only**, public DEPLOYMENT null. Staging heartbeat
   was paused by the user; never restart it without explicit authorization.
 - Never print/log/commit keys, passwords, credentialed RPC endpoints or keystores.
@@ -30,10 +30,10 @@ This file is current instructions, not a report timeline.
 ## Fresh architecture and rules
 
 - Fresh [profile6](docs/POSITION_V6.md): accounting6/portfolio2/maintenance3/
-  confirmation3/compound4/custody4/emergency2/LP-routing2, pricing2/Entry-routing2/
+  confirmation3/compound4/custody4/emergency2/LP-routing2, pricing2/Entry-routing3/
   reviewedEntry2/directgovernance2/fee-intake1. Position remains eight words;
   compatible parked same-chain canonical V6 wire does not imply runtime compatibility.
-  Schema8 inventory has21helpers. Historical schema6 is inspection-only; historical
+  Schema9 inventory has20helpers. Historical schema8/routed Entry2 and older inventories are inspection-only; historical
   codecs/readers/receipts/journals remain separate and explicit.
 - Only native ETH and one fixed deployment ZZZ are contribution/LP assets.
   Buyback/holder return use that same ZZZ. Token identity cannot change after
@@ -139,13 +139,30 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
 
 ## Verification and records
 
+Direct Entry3 verification records28 distinct selected EVM successes across
+explicit stages and314 Python successes across two selected scopes, not a full
+suite. Fresh52/31-source43normal gates and471static records are bound to the
+new compiler output; callable reference37/818/37/13 has no note gaps. Entry
+runtime18581→9863; Registry creation42736→22526. Vault635/Budget237/Migration20
+headroom remains. Failure/empty-selection history and19unchanged-body reuse
+are explicit in reports/direct-entry-v3-20261103/VERIFICATION.md. Source7
+website/services and actual dependency/release qualification remain open.
+
+
+- Direct Entry3 is the fresh source7/schema9 candidate: seven-field ETH/fixedZZZ
+  request, no pre-Vault conversion/catalogue/receiver/Entry v4 child. Review-policy2,
+  pricing2 and the accounting6/canonicalV6 wire remain unchanged. Historical
+  routing2/schema8 APIs and journals retain their explicit profiles; no runtime
+  is relabelled. LP/royalty converters keep separate v3/v4 conversion. Use the
+  [current change](reports/direct-entry-v3-20261103/REVIEW.md) and exact verification.
+  Older audit pins/counts below retain their original source scope, not this edit.
+
 - [November3 contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
   adds two actual-core recovery/rollback journeys and a current six-disclosure
   compiler assessment.795 project bodies are source/component review inventory,
   not795 tests. Production52/dependency31 sources remain unchanged; reuse exact
   43normal gates/475static scope. Retain fixture failures/corrections and refresh
-  applicability before release/source/settings changes. Optional Entry-layer
-  removal awaits an explicit fresh-profile/consumer decision; keep valid separate
+  applicability before release/source/settings changes. The later approved direct Entry3 removal supersedes that open decision; keep valid separate
   reward/royalty conversion and historical profiles/journals. No production
   exploit or live readiness is established by this pass; no environment changed.
 
@@ -198,11 +215,11 @@ are unchanged. No deployment/service/site/Anvil/journal/signing change authorize
   pins/history proof and old deployment/journal profiles. No production Solidity
   or economic policy changed; use the audit's fresh/reused evidence boundaries.
 
-- Current source-scoped [LP lifecycle evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
+- Prior source-scoped [LP lifecycle evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
   binds52 production sources/31 dependencies and43 normal gates at final-a8e7dc7cc5.
   Balancer360/Vault635/Budget237/Migration20 runtime headroom is exact-source evidence, not
-  future edit capacity or target-chain gas qualification. Current callable
-  reference is37contracts/826functions/37constructors/14receivers, zero gaps.
+  future edit capacity or target-chain gas qualification. Its callable
+  reference was37contracts/826functions/37constructors/14receivers, zero gaps.
 - Scoped EVM/backend campaigns retain original failures, empty attempts, corrected
   retries and body-based reuse. They are not a current full suite, published CI,
   provider/operating acceptance or independent audit. Older42-gate/778-callable/
@@ -245,7 +262,7 @@ not necessarily50/50USD. [Complete controls](docs/OPERATOR_MANUAL.md#portfolio-m
 Large idle is intentional recovery state; do not bypass later entrant/deployment
 guards. Existing both-leg park/holder-return remain fallbacks.
 Behavior-preserving private terminal-check dedup and read-only holder-exit
-validation extraction preserve normal limits. Current source6 gates are
+validation extraction preserve normal limits. Prior source6 gates are
 43 at exact final-a8e7dc7cc5 pins, with Balancer360/Vault635/Budget237 margins; old905/286
 margins remain historical.
 Preserve exact pre/post checks and caller/error semantics. No existing deployment,

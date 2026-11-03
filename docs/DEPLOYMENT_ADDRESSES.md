@@ -36,7 +36,7 @@ only admitted LP pair; ERC20 conversion venues remain separate. See
 Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
-public addresses. Complete the [schema8 production manifest](../config/production.example.json)
+public addresses. Complete the [schema9 production manifest](../config/production.example.json)
 with actual chain IDs, confirmed blocks, code/immutable bindings and independent
 review evidence. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
@@ -131,7 +131,7 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Separate Strategy companions | `ZZZPortfolioPolicy(controller)` and `ZZZRebalanceConfirmation(controller)` supplied to Strategy. Verify reciprocal Strategy/Access, portfolio2/confirmation3 and runtime. Read actual desired/applied geometry, trigger/revisions/reviews, half-side default 5000 and per-pool main floor6000–9999bps(default6000), complementary residual bound and positive gap spacings. |
 | Confirmation policy | Selected600 seconds/strict 300 second gap,240 second source checks and same-side 85% physical/reference threshold. Constructor gap 0 blocks ordinary readiness. Source late paid enrollment/jitter are separate service rules, not observed market history. |
 | Migration construction | `ZZZCustodyValidation`; exact Migration/Access parent, custody4 tuple including liquidity-sensitive portfolioHash and runtime. |
-| Entry/converter route children | Three distinct `ZZZV4RouteExecutor` instances: Entry, LP converter and royalty converter. Match each immutable `parent()` and owning `v4Executor()`. |
+| Converter route children | Two distinct `ZZZV4RouteExecutor` instances: LP converter and royalty converter. Match each immutable `parent()` and owning `v4Executor()`. Direct Entry3 has no conversion child; pin its `ENTRY_ROUTING_VERSION()==3`. |
 | Separate converters | LP and royalty converters have distinct fixed ledgers/controller and explicit optional wrappers; bind their ledgers before sealing if required. |
 
 The royalty receiver is **`NFT.royaltyRewards()` (`ZZZRoyaltyRewards`)**, not an
@@ -241,7 +241,7 @@ helper has no custody of LP principal. The conversion limit defaults to 1%, gove
 Record `Vault.ACCOUNTING_VERSION() == 6` and `ProtocolPolicy.PROTOCOL_POLICY_VERSION() == 1` and the canonical coordinator's
 `SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6")` with their exact
 runtime pins. Current release inventory also declares `fee_intake_version: 1`,
-with the fresh21-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
+with the fresh20-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
 the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier
 accounting2/fee1 uses the distinct LP-only V3 schema. Neither historical codec
 nor V1 WETH accounting can be imported into this current

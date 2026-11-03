@@ -111,7 +111,7 @@ identify bytes, not honest behavior. The user accepted reviewed different
 successor code; no identical-code restriction is added. Emergency financial
 bypass expands this trust further. [Change boundaries](CHANGE_AND_RECOVERY.md).
 
-Fresh accounting6/schema8 inventory binds governance2, actual governance and
+Fresh accounting6/schema9 inventory binds governance2, actual governance and
 pending-governance state, capability grants and their complete history. Actual
 wallet type, signers/threshold and recovery require qualification; no mandatory
 committee is implied. Historical manifests retain their own semantics and cannot

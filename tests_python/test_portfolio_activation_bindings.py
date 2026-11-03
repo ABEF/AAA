@@ -14,7 +14,7 @@ from tests_python.test_lp_execution_profile import routing_service
 from zzz_ops.abi import keccak256
 
 
-def fresh_verifier():
+def fresh_verifier(*, return_configs=False):
     rpc,_old,_service=routing_service()
     cfg=copy.deepcopy(rpc.config)
     cfg.update(maintenance_policy_version=3,lp_routing_version=2,execution_quality_version=1,
@@ -49,7 +49,8 @@ def fresh_verifier():
     for method,value in (('thresholdBps()',8500),('revision()',1)):
         rpc.put(c['portfolio_policy'],method,values=(value,))
     p=Projection(read,rpc,clock=lambda:1000)
-    return rpc,p,ActivationConfig(cfg,p)
+    config=ActivationConfig(cfg,p)
+    return (rpc,p,config,read,cfg) if return_configs else (rpc,p,config)
 
 
 class PortfolioActivationBindingTests(unittest.TestCase):

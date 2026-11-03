@@ -13,15 +13,14 @@ The prior [source audit](reports/day-audit-20261031/REVIEW.md) fixes physical-re
 availability, activation bindings and ordinary replacement activity. Source changes do not update existing
 Anvil contracts, journals, workers or websites. Public signing remains disabled.
 
-The [smart-contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
-reviews the current operation and function map, residual recovery, fee/share
-accounting and current compiler disclosures. Two new actual-core journeys verify
-infeasible-geometry rollback and price-outage harvest/claim/residual recovery;
-no production Solidity changed. [Verification](reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
-separates new checks from exact prior build/static reuse. The earlier
-[backend consolidation](reports/consolidation-20261103/REVIEW.md) retains its own
-scope. Real qualification and independent review remain open; source publication
-does not update running contracts, sites or services.
+The [direct Entry3 cleanup](reports/direct-entry-v3-20261103/REVIEW.md) removes
+whole-input contribution conversion and its child/routes. ETH or fixed ZZZ goes
+directly to Vault balancing; captured prices, caller loss caps, ownership and
+marginal-LP checks remain. Fresh inventory/API profiles are explicit; old
+deployments/journals are unchanged. The prior [LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
+retains its original pins. Current [verification](reports/direct-entry-v3-20261103/VERIFICATION.md)
+separates actual checks/failures from reuse. Real service/market/website qualification
+and independent audit remain open; no deployment or service rollout occurred.
 
 ## Project navigation
 
@@ -31,7 +30,7 @@ does not update running contracts, sites or services.
 | Operate the protocol | **[Operator manual and management procedures](docs/OPERATOR_MANUAL.md)**; [callable inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Current contract audit/evidence](reports/smart-contract-lp-audit-20261103/VERIFICATION.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Current contract audit/evidence](reports/direct-entry-v3-20261103/VERIFICATION.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -76,8 +75,8 @@ maintenance and persists nonce/receipt recovery. Pending transactions recover
 before new work. [Read API](docs/FRONTEND_API.md) and [indexer](indexer/monitor.py)
 authenticate ownership, both LP legs, balances and earnings at pinned blocks.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
-routes, prices, policy, allowance and calldata; it does not sign public transactions.
-Fresh inventory is schema8; historical profiles remain separate.
+balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
+Fresh inventory is schema9/direct Entry3; historical profiles remain separate.
 
 <a id="frontend-components"></a>
 
