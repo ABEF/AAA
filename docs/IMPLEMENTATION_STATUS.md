@@ -106,6 +106,15 @@ actual credit events, not production reward-index getters. The operator
 profile sentence now correctly requires custody5. No new management call,
 policy, restart or economic right is introduced. See [coverage](../reports/market-lifecycle-20261104/COVERAGE.md).
 
+## Confirmation scheduling and recovery
+
+The [confirmation audit](../reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
+jitter deadlines and queued incident clears depending on unrelated router
+metadata.100focused Python methods pass, including14new regressions; causal
+negative failures are retained. Contracts/settings/journals are unchanged.
+A reviewed matching keeper source rollout remains required; no service was
+changed.600/240/300 and the hard12hours remain, with sampled/live limits.
+
 ## Current evidence and limits
 
 | Evidence | Source scope | What it does not establish |

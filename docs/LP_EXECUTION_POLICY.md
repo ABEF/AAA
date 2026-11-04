@@ -83,6 +83,13 @@ restart preserves it, while required recovery resets demand fresh evidence.
 Continue samples through the wait and recheck at submission. Jitter is service
 policy, not a contract restriction on a key running different code.
 
+Saved maturity/cooldown/jitter deadlines now cap the daemon's actual sleep.
+A recent validated head plus monotonic elapsed time estimates the wake-up only;
+fresh chain reads and on-chain guards remain authoritative. A15-minute initial
+enrollment lead is600+300seconds, not a15-minute confirmation window. See the
+[scoped timing audit](../reports/confirmation-audit-20261104/REVIEW.md) and
+[matching worker rollout](OPERATOR_MANUAL.md#configure-rebalance-confirmation).
+
 This is sampled evidence, not proof of every intervening price or MEV immunity.
 Public observations reveal candidate activity. Independent prices, post-close
 quotes, exact settlement and loss floors remain necessary. [Operator inputs](OPERATOR_MANUAL.md#configure-rebalance-confirmation).

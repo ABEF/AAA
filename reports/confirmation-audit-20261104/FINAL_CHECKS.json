@@ -1,0 +1,53 @@
+{
+  "stage": "index",
+  "head": "cf39b1402915c438b8278cf9c8b51c321922b98f",
+  "python_publication_files": 295,
+  "todo": "Project Todo verified.",
+  "reference": {
+    "checked": true,
+    "contracts": 37,
+    "functions": 818,
+    "constructors": 37,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "document_links": {
+    "checked_documents": 18,
+    "links_checked": 1705,
+    "introduced_failures": [],
+    "preexisting_failures": [],
+    "scope": "Changed/new maintained Markdown and incoming local links from all tracked Markdown in both repositories; remote URLs not fetched as a link checker."
+  },
+  "protected_files_preserved": true,
+  "tested_python_sources_preserved": true,
+  "staged": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "TODO.md",
+    "docs/AUDIT_FINDINGS.md",
+    "docs/IMPLEMENTATION_STATUS.md",
+    "docs/KEEPER_COORDINATION.md",
+    "docs/KEEPER_RECOVERY.md",
+    "docs/KEEPER_SAFEGUARDS.md",
+    "docs/LP_EXECUTION_POLICY.md",
+    "docs/OPERATOR_MANUAL.md",
+    "docs/RELEASE_CHECKLIST.md",
+    "docs/ROADMAP.md",
+    "docs/WORK_HANDOFF.md",
+    "docs/project-todo.json",
+    "keeper/monitor.py",
+    "reports/README.md",
+    "reports/confirmation-audit-20261104/COVERAGE.md",
+    "reports/confirmation-audit-20261104/REVIEW.md",
+    "reports/confirmation-audit-20261104/VERIFICATION.md",
+    "reports/confirmation-audit-20261104/evidence.json",
+    "reports/confirmation-audit-20261104/preservation.json",
+    "tests_python/test_keeper_confirmation_priority.py",
+    "tests_python/test_keeper_confirmation_wakeup.py",
+    "tests_python/test_keeper_watchdog.py"
+  ]
+}

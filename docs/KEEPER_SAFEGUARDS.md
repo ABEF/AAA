@@ -144,6 +144,13 @@ alone is separate from interrupted raw evidence. The reader/report stay pure,
 while the live caller uses existing durable resets. [Coordination](KEEPER_COORDINATION.md).
 [Exact policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
 
+The [timing audit](../reports/confirmation-audit-20261104/REVIEW.md) corrects
+outer-loop sleep ignoring saved deadlines and incident-clear dependence on
+unrelated router metadata. Local monotonic wake-up estimates never authorize
+execution; pending/global-error recovery remains. Actual source rollout and
+inclusion qualification stay open. Use the single maintained
+[operator procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation).
+
 ## 6. Deposit, accounting and callback protections
 
 - **Entrant-only execution.** Activation and growth cannot force existing holders’ idle funds or compound reserves through a swap.

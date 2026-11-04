@@ -1,7 +1,7 @@
 # Work handoff
 
 Reviewed4November2026. Current contract-source base is main
-`44f5fa7db5d8472e4cd8f3e1af13a4b9dc27fa09`; publication status must be verified
+`cf39b1402915c438b8278cf9c8b51c321922b98f`; publication status must be verified
 against actual local/remote Git heads. Read [instructions](../AGENTS.md),
 [context](../PROJECT_CONTEXT.md), [README](../README.md), [sole Todo](../TODO.md),
 [findings](AUDIT_FINDINGS.md) and the relevant [operator procedure](OPERATOR_MANUAL.md).
@@ -18,6 +18,13 @@ Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
 transitions, outages, transfers and terminal royalties/payouts are reconciled.
 Failed test-model/RPC-fixture attempts remain recorded; production code and
 operating settings are unchanged. No profit, uptime or release approval.
+
+The [confirmation audit](../reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
+jitter deadlines and queued incident clears depending on unrelated router
+metadata.100focused Python methods pass, including14new regressions; causal
+negative failures are retained. Contracts/settings/journals are unchanged.
+A reviewed matching keeper source rollout remains required; no service was
+changed.600/240/300 and the hard12hours remain, with sampled/live limits.
 
 ## Current source and preserved environments
 

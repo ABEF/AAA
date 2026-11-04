@@ -115,6 +115,25 @@ class KeeperConfirmationPriorityTests(unittest.TestCase):
         self.cycle().assert_called_once_with('rebalance_confirmation', 'resetObservation(uint256)',
             (7,), 'rebalance_reset:7')
 
+    def test_known_clear_does_not_depend_on_unrelated_swap_router_metadata(self):
+        self.tracked()
+        self.k.state[CONFIRMATION_RESETS] = {'7': True}
+        with patch.object(self.k, '_validate_lp_routing', side_effect=RpcError('inert router outage')):
+            self.cycle().assert_called_once_with('rebalance_confirmation', 'resetObservation(uint256)',
+                (7,), 'rebalance_reset:7')
+
+    def test_blocked_known_clear_never_renews_old_evidence_in_same_cycle(self):
+        self.tracked()
+        self.k.state[CONFIRMATION_RESETS] = {'7': True}
+        with patch.object(self.k, '_validate_lp_routing', side_effect=RpcError('inert router outage')), \
+                patch('keeper.monitor.time.time',return_value=self.rpc.now), \
+                patch.object(self.k,'submit',return_value=False) as submit:
+            self.k.cycle()
+        calls=[call for call in submit.call_args_list if call.args[0]=='rebalance_confirmation']
+        self.assertEqual(1,len(calls))
+        self.assertEqual('resetObservation(uint256)',calls[0].args[1])
+        self.assertTrue(self.k.state[CONFIRMATION_RESETS]['7'])
+
     def test_pending_first_performs_no_priority_reads_or_cursor_writes(self):
         self.tracked()
         self.rpc.now += 301
@@ -235,13 +254,16 @@ class KeeperConfirmationPriorityTests(unittest.TestCase):
                 if forced == 5:
                     raise _StopMain()
         watchdog = SimpleNamespace(enabled=False, pulse=pulse)
+        monotonic = [0.0]
+        def sleeping(seconds):monotonic[0] += seconds
         with patch('sys.argv', ['keeper.monitor', '--config', str(path)]), \
                 patch('keeper.monitor.signal.signal'), \
                 patch('keeper.monitor.process_lock', return_value=contextlib.nullcontext()), \
                 patch('keeper.monitor.ProgressWatchdog.from_environment', return_value=watchdog), \
                 patch('keeper.monitor.Keeper', return_value=self.k), \
                 patch.object(self.k, 'run_cycle', return_value=False), \
-                patch('keeper.monitor.time.sleep') as sleep, self.assertRaises(_StopMain):
+                patch('keeper.monitor.time.monotonic',side_effect=lambda:monotonic[0]), \
+                patch('keeper.monitor.time.sleep',side_effect=sleeping) as sleep, self.assertRaises(_StopMain):
             main()
         return sleep.call_count
 

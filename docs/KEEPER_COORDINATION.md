@@ -80,6 +80,14 @@ retain their own profiles. No automatic journal migration or pending deletion is
 provided. A fresh source/capability deployment requires separately reviewed
 configuration and recovery identity, not relabeling an old Anvil or live service.
 
+The outer loop honors the earliest saved maturity/cooldown/jitter deadline,
+subtracting elapsed work from a recent head using a local monotonic estimate.
+That estimate never grants readiness. Pending/global-error polling stays intact;
+known clear-only resets no longer wait for unrelated router metadata. See the
+[audit](../reports/confirmation-audit-20261104/REVIEW.md) and the maintained
+[configuration/rollout procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation).
+No running service or journal was updated.
+
 ## What idle means
 
 `Position.idle0/idle1` is ETH/ZZZ attributed to the shared bucket and its NFT

@@ -23,6 +23,9 @@ retains its historical custody4 scope. The [market/lifecycle campaign](reports/m
 adds receipt-modeled multi-holder LP/reward journeys and current API/worker
 recovery checks, with failed model attempts retained. Real service/market/website qualification
 and independent audit remain open; no deployment or service rollout occurred.
+The [confirmation audit](reports/confirmation-audit-20261104/REVIEW.md) corrects deadline-aware daemon wake-up
+and clear-only recovery ordering, with100focused Python passes and unchanged
+on-chain guards. The existing keeper has not been restarted or updated.
 
 ## Project navigation
 

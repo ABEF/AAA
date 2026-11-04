@@ -453,6 +453,20 @@ instruction to alter geometry. [Exact diagnostic scope](KEEPER_COORDINATION.md#r
 
 ### Configure rebalance confirmation
 
+The daemon now honors saved maturity/cooldown/jitter deadlines instead of
+always adding the full outer interval. A recent validated head plus
+monotonic elapsed time estimates local wake-up only; actual chain reads
+still decide eligibility. Unknown/expired local anchors use normal polling;
+overdue blocked candidates retry reads at most60seconds later without a
+one-second busy loop. Pending recovery/global-error backoff remain unchanged.
+Known incident clears precede unrelated router metadata checks; submission
+still validates reviewed runtimes/authority/lifecycle/simulation/cost/nonce.
+The15-minute initial enrollment lead is600+300seconds, not a15-minute window.
+This source change needs a reviewed matching stop/reconcile/install/restart
+through the existing recovery procedure. Keep deployment/profile/config and
+pending/nonce/spend journal; no journal migration, reseal or setter is needed.
+No running service was updated. [Audit](../reports/confirmation-audit-20261104/REVIEW.md).
+
 For fresh confirmation3, resolve `Strategy.rebalanceConfirmation()` from the
 sealed Access Strategy. Verify Strategy/helper/Budget capability3, Budget
 compound4 and exact parent/runtime bindings. The standalone helper resolves its

@@ -17,9 +17,16 @@ transitions, outages, transfers and terminal royalties/payouts are reconciled.
 Failed test-model/RPC-fixture attempts remain recorded; production code and
 operating settings are unchanged. No profit, uptime or release approval.
 
+The [confirmation audit](../reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
+jitter deadlines and queued incident clears depending on unrelated router
+metadata.100focused Python methods pass, including14new regressions; causal
+negative failures are retained. Contracts/settings/journals are unchanged.
+A reviewed matching keeper source rollout remains required; no service was
+changed.600/240/300 and the hard12hours remain, with sampled/live limits.
+
 ## Evidence and approval boundary
 
-Audit baseline: main `44f5fa7db5d8472e4cd8f3e1af13a4b9dc27fa09`; production Solidity
+Audit baseline: main `cf39b1402915c438b8278cf9c8b51c321922b98f`; production Solidity
 remains exact e26fc74. No approved deployment or release-specific configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.

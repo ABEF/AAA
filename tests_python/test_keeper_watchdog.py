@@ -205,6 +205,7 @@ class WatchdogMainTests(unittest.TestCase):
                 self.cycle_failures=0
                 if self.rpc is not None:self.rpc.call('eth_chainId')
             def run_cycle(self):events.append(('cycle',));return True
+            def poll_delay(self,interval):return interval
             def initialize_state(self):events.append(('initialize',))
             def resolve_pending(self,value):events.append(('resolve',value))
         @contextlib.contextmanager

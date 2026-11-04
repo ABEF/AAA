@@ -340,6 +340,14 @@ Known maturity/cooldown boundaries may wake earlier. Clock/configuration changes
 recompute enrollment, never erase submitted truth. Manual geometry updates keep
 their after-cooldown exception. Recover canonical receipts before new work.
 
+The deadline-aware worker does not persist its local head/monotonic wake-up
+anchor. After restart it reads fresh state; saved jitter and pending/nonce/spend
+records remain. Pending/global-error polling stays unchanged, and a queued clear
+does not depend on unrelated router metadata. Use the maintained
+[matching-source rollout procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation),
+not a journal reset or on-chain configuration change. No existing service was updated.
+[Scoped audit](../reports/confirmation-audit-20261104/REVIEW.md).
+
 Installed historical releases retain the following profile-specific schedules:
 
 Historical accounting4 service configuration explicitly selects maintenance_policy_version2

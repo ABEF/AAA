@@ -67,6 +67,11 @@ This file is current instructions, not a report timeline.
   Returning inside/fault/identity/control changes reset sampled evidence/jitter.
   Manual geometry changes apply after cooldown as an explicit exception.
   This is sampled evidence, not uninterrupted history or MEV immunity.
+- Confirmation deadline wake-ups use a recent head plus ephemeral monotonic
+  elapsed time; never use that estimate as readiness or persist it in journals.
+  Keep pending/global-error recovery polling intact. Known clear-only resets
+  precede router metadata reads but retain all submission/authority checks.
+  [Scoped audit](reports/confirmation-audit-20261104/REVIEW.md):100focused Python passes, no service rollout.
 - Raw checks can occur during cooldown. Paid enrollment starts near eligibility
   (earliest-duration-maxgap), avoiding many redundant nonce/gas writes. Preserve
   pending-first recovery, reset acknowledgements and receipt provenance. Main

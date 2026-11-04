@@ -9,6 +9,7 @@ import copy
 import datetime as dt
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -249,6 +250,9 @@ class Keeper:
         if not 60 <= self.retry_cooldown <= 86400: raise ValueError('Revert cooldown must be 60-86400 seconds')
         self.cycle_failures = 0
         self._cycle_error = False
+        # Ephemeral local wake-up anchor, never persisted or used as permission
+        # to sign. Fresh canonical reads/on-chain guards still authorize work.
+        self._poll_clock = None
         self.skipped_buckets = 0
         self.blocked_actions = 0
         self.confirmed_reverts = 0
@@ -555,7 +559,23 @@ class Keeper:
         known = (self.state.get(self._confirmation_namespace()) or self.state.get(CONFIRMATION_RESETS) or
             any(record['awaiting_healthy_read'] for record in self.state.get(CONFIRMATION_CLEARS,{}).values()))
         if self.rebalance_confirmation.version in (1,2,3) and known and not self._cycle_error:
-            return interval
+            # Saved confirmation maturity/jitter can be sooner than the outer
+            # interval. Count work since the latest validated head too; adding a
+            # full sleep after slow RPCs can otherwise miss the strict gap.
+            if self.state.get('pending') or self._poll_clock is None:return interval
+            stamp,captured = self._poll_clock
+            elapsed = time.monotonic()-captured
+            if not math.isfinite(elapsed) or not 0<=elapsed<=600:return interval
+            now = stamp+elapsed
+            delay = interval
+            for record in self.state.get(self._confirmation_namespace(),{}).values():
+                deadline = min(record['next_check_at'],record['last_checked_at']+CONFIRMATION_CHECK_SECONDS)
+                if record['execute_after']:deadline = min(deadline,record['execute_after'])
+                # An already-blocked job must not cause a one-second busy loop.
+                # Retrying a read adds no permission or paid observation itself.
+                remaining = 60 if deadline<=now else math.ceil(deadline-now)
+                delay = min(delay,remaining)
+            return max(1,delay)
         return min(interval * 2**min(self.cycle_failures,3),max(interval,3600))
 
     def save(self) -> None: atomic_json(self.path,self.state)
@@ -1386,6 +1406,7 @@ class Keeper:
         timestamp = rpc_quantity(head.get('timestamp'),'head timestamp',minimum=1)
         rpc_hash(head.get('hash'),'head block hash')
         if abs(time.time()-timestamp) > 600: raise RpcError('RPC head timestamp is stale or implausible')
+        self._poll_clock = (timestamp,time.monotonic())
         return number,timestamp
 
     def _receipt_harvest_bucket(self,pending: dict[str,Any],receipt: dict[str,Any]) -> int | None:
@@ -2212,6 +2233,14 @@ class Keeper:
                         if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):
                             return True
                     continue
+                if self.state.get(CONFIRMATION_RESETS,{}).get(key):
+                    # Clear-only evidence recovery has no swap or router
+                    # dependency. Its own submission still verifies the helper,
+                    # authority, lifecycle, simulation, costs and saved nonce.
+                    self._rebalance_reset_due=bucket
+                    if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):
+                        return True
+                    continue
                 self._validate_lp_routing(use_cache=True)
                 minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                 if self._rebalance_due(bucket,fields,fresh):
@@ -2431,10 +2460,11 @@ def main() -> None:
             if args.once and not success: raise SystemExit(1)
             if args.once: break
             delay = keeper.poll_delay(interval)
-            for _ in range(delay):
-                if stop: break
+            wake_at = time.monotonic()+delay
+            while not stop and time.monotonic()<wake_at:
                 watchdog.pulse()
-                time.sleep(1)
+                remaining = wake_at-time.monotonic()
+                if remaining>0:time.sleep(min(1,remaining))
 
 if __name__ == '__main__':
     try: main()

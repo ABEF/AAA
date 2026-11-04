@@ -16,6 +16,13 @@ receipt/NAV/cohort and current-profile recovery checks without changing
 production contracts. It does not replace the target-chain market, service
 or independent-review stages below.
 
+The [confirmation audit](../reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
+jitter deadlines and queued incident clears depending on unrelated router
+metadata.100focused Python methods pass, including14new regressions; causal
+negative failures are retained. Contracts/settings/journals are unchanged.
+A reviewed matching keeper source rollout remains required; no service was
+changed.600/240/300 and the hard12hours remain, with sampled/live limits.
+
 ## 1. Freeze the correct source and integration boundary
 
 Use [accounting6/Entry3/schema10](POSITION_V6.md) and exact runtime/helper/dependency
