@@ -20,12 +20,13 @@ Use [consolidated findings](AUDIT_FINDINGS.md) for historical dispositions and
 mechanism, test pass, configured service and approved production release are
 separate milestones.
 
-The [manual safeguard audit](../reports/manual-safeguard-audit-20261104/REVIEW.md)
-separates emergency sampled confirmation from its separately selected hard
-cooldown and permits explicit both-zero review-time floors on paused raw closes.
-Normal keeper/user guards and mandatory custody/accounting remain. Exact runtime
-pins change; ABI/storage and installed environments do not. See the
-[operator force/close/re-entry matrix](OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call).
+The [four-audit consolidation](../reports/four-report-consolidation-20261104/REVIEW.md)
+maps the latest manual, confirmation, market/lifecycle and indexer findings to
+current code without replacing their original evidence. It adds transactional
+indexer startup, failed-connection cleanup and strict durable-WAL admission,
+verified by93focused Python methods. Solidity, economic rights and installed
+environments are unchanged; actual service/market/website qualification and
+independent audit remain open.
 
 ## Smart contracts
 
@@ -89,43 +90,28 @@ both-leg exit.10distinct selected methods span explicit stages, including one
 size/static evidence is reused at matching pins. Failed stale-fixture attempts
 remain recorded. This is not target-chain gas, full-suite or independent approval.
 
-## Current whole-project supplement
+## Latest audit consolidation
 
-[November4 review](../reports/comprehensive-audit-20261104/REVIEW.md) fixes the
-indexer's borrowed configuration anchor and streams ownership replay.33affected
-Python methods pass, including6new regressions. Negative-control failures are
-retained. All production Solidity/dependency/build pins are unchanged; no EVM,
-static or size result is presented as a fresh rerun. Website documentation is
-aligned without changing its source behavior, signer, builds or served releases.
-Storage/lifetime replay and actual operating qualification remain open.
+The [four-report reconciliation](../reports/four-report-consolidation-20261104/RECONCILIATION.md)
+separates the indexer anchor/streaming, receipt-model, keeper-deadline and manual
+recovery corrections from their remaining release limits. It preserves original
+failure records, source scopes and distinct counts. Current contract evidence is
+the manual-safeguard source scope, not older whole-project unchanged-source prose.
 
-## Market/lifecycle assurance
+New startup safeguards in Indexer atomically admit schema/identity, close failed
+connections, reject SQLite integer overflow before filesystem work and require
+durable rollback/WAL. Valid restart retains history/cursor/ownership.93selected
+Python methods pass, including9new regressions. Table/index names/columns/keys and
+identity format are unchanged; no migration/rescan or operating rollout occurs.
+Actual storage/recovery qualification remains open.
 
-The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
-one affected six-day control and7new current-profile API/keeper methods.
-Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
-transitions, outages, transfers and terminal royalties/payouts are reconciled.
-Failed test-model/RPC-fixture attempts remain recorded; production code and
-operating settings are unchanged. No profit, uptime or release approval.
 
-The independent test ledger uses pre-operation participant snapshots and
-actual credit events, not production reward-index getters. The operator
-profile sentence now correctly requires custody5. No new management call,
-policy, restart or economic right is introduced. See [coverage](../reports/market-lifecycle-20261104/COVERAGE.md).
-
-## Confirmation scheduling and recovery
-
-The [confirmation audit](../reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
-jitter deadlines and queued incident clears depending on unrelated router
-metadata.100focused Python methods pass, including14new regressions; causal
-negative failures are retained. Contracts/settings/journals are unchanged.
-A reviewed matching keeper source rollout remains required; no service was
-changed.600/240/300 and the hard12hours remain, with sampled/live limits.
 
 ## Current evidence and limits
 
 | Evidence | Source scope | What it does not establish |
 | --- | --- | --- |
+| [Four-report follow-up](../reports/four-report-consolidation-20261104/VERIFICATION.md) |93focused Python successes,9new startup cases; four input reports and current Solidity/dependency/build pins preserved. | No fresh contract execution, live storage/host acceptance or independent approval. |
 | [Manual safeguard audit](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) | Two view fixes;85distinct selected EVM successes across retained stages,47focused Python passes,43fresh normal gates and471fresh static records(13current-context review/458exact referenced reuse). ABI/storage unchanged; callable37/818/37/13 has0gaps. | Not a full suite, installed-runtime upgrade, target gas/operating rehearsal or independent approval. |
 | [Authority change normal/static record](../reports/authority-audit-20261103/VERIFICATION.md) | Historical custody5 revision52production/31dependency sources;43normal gates/471static records,19current contexts reviewed and452unchanged reused.14distinct selected EVM passes across explicit corrected stages;25corrected Python methods. Reference37/818/37/13 has0gaps; Migration39/Vault635/Budget237/Balancer360runtime headroom. | No full suite/CI, independent review, deployment gas, service or production approval. |
 | [Direct Entry3 normal/static record](../reports/direct-entry-v3-20261103/VERIFICATION.md) | Prior custody4 source52production/31dependency sources;43normal gates,471triaged static records; reference37contracts/818functions/37constructors/13receivers without note gaps. Entry runtime9863; Vault635/Budget237/Migration20/Balancer360headroom. | Full regression, published CI, independent audit, deployment gas, future edit capacity or production approval. |

@@ -33,6 +33,7 @@ def _header_quantity(value:Any)->int:
     return number
 
 MAX_RAW_LOG = 131072
+_SQLITE_MAX = (1 << 63) - 1
 
 def _log_quantity(value:Any)->int:
     if not isinstance(value,str) or not re.fullmatch(r'0x(?:0|[1-9a-fA-F][0-9a-fA-F]{0,15})',value):
@@ -63,30 +64,50 @@ class Indexer:
         self.chunk=integer(config.get('block_chunk',100),'block_chunk',minimum=1)
         self.max_reorg=integer(config.get('max_reorg_depth',256),'max_reorg_depth',minimum=1)
         self.poll_seconds=integer(config.get('poll_seconds',15),'poll_seconds',minimum=1)
+        # Cursor advancement and LIMIT(max_reorg+1) require one spare unit.
+        # Reject unsupported identities before opening files or connections.
+        if self.chain>_SQLITE_MAX or self.start>=_SQLITE_MAX or self.max_reorg>=_SQLITE_MAX:
+            raise ValueError('Indexer integer configuration exceeds supported SQLite bounds')
         self.contracts=[address(a) for a in config['contracts']]
         if not self.contracts: raise ValueError('At least one contract is required')
         self.rpc=rpc or Rpc(config['rpc_urls'],self.chain)
+        identity=json.dumps({'contracts':sorted(self.contracts),'start':self.start,
+            'parent_hash':self.start_parent_hash},sort_keys=True)
         path=Path(config.get('database','var/indexer.sqlite'))
         path.parent.mkdir(parents=True,exist_ok=True)
         self.db=sqlite3.connect(path,timeout=10)
-        self.db.execute('PRAGMA journal_mode=WAL');self.db.execute('PRAGMA foreign_keys=ON')
-        self.db.executescript('''
-        CREATE TABLE IF NOT EXISTS cursors(chain INTEGER PRIMARY KEY,next_block INTEGER NOT NULL,config TEXT NOT NULL);
-        CREATE TABLE IF NOT EXISTS blocks(chain INTEGER,number INTEGER,hash TEXT NOT NULL,parent TEXT NOT NULL,timestamp INTEGER NOT NULL,
-          PRIMARY KEY(chain,number));
-        CREATE TABLE IF NOT EXISTS logs(chain INTEGER,block_number INTEGER,block_hash TEXT,transaction_hash TEXT,log_index INTEGER,
-          address TEXT,event TEXT,decoded TEXT,raw TEXT NOT NULL,PRIMARY KEY(chain,transaction_hash,log_index),
-          FOREIGN KEY(chain,block_number) REFERENCES blocks(chain,number) ON DELETE CASCADE);
-        CREATE INDEX IF NOT EXISTS event_lookup ON logs(chain,address,event,block_number);
-        CREATE INDEX IF NOT EXISTS block_log_lookup ON logs(chain,block_number,log_index);
-        ''')
-        identity=json.dumps({'contracts':sorted(self.contracts),'start':self.start,
-            'parent_hash':self.start_parent_hash},sort_keys=True)
-        cursor=self.db.execute('SELECT config FROM cursors WHERE chain=?',(self.chain,)).fetchone()
-        if cursor and cursor[0]!=identity:
+        try:
+            mode=self.db.execute('PRAGMA journal_mode').fetchone()
+            if mode is None or mode[0] not in ('delete','truncate','persist','wal'):
+                raise ValueError('Indexer startup requires a durable rollback-capable journal mode')
+            self.db.execute('PRAGMA foreign_keys=ON')
+            # executescript implicitly commits; use explicit statements in one
+            # transaction so rejected identities/DDL failures leave no repairs
+            # or partial schema behind. The writer lock also binds the check.
+            with self.db:
+                self.db.execute('BEGIN IMMEDIATE')
+                self.db.execute('''CREATE TABLE IF NOT EXISTS cursors(
+                    chain INTEGER PRIMARY KEY,next_block INTEGER NOT NULL,config TEXT NOT NULL)''')
+                self.db.execute('''CREATE TABLE IF NOT EXISTS blocks(
+                    chain INTEGER,number INTEGER,hash TEXT NOT NULL,parent TEXT NOT NULL,timestamp INTEGER NOT NULL,
+                    PRIMARY KEY(chain,number))''')
+                self.db.execute('''CREATE TABLE IF NOT EXISTS logs(
+                    chain INTEGER,block_number INTEGER,block_hash TEXT,transaction_hash TEXT,log_index INTEGER,
+                    address TEXT,event TEXT,decoded TEXT,raw TEXT NOT NULL,PRIMARY KEY(chain,transaction_hash,log_index),
+                    FOREIGN KEY(chain,block_number) REFERENCES blocks(chain,number) ON DELETE CASCADE)''')
+                self.db.execute('CREATE INDEX IF NOT EXISTS event_lookup ON logs(chain,address,event,block_number)')
+                self.db.execute('CREATE INDEX IF NOT EXISTS block_log_lookup ON logs(chain,block_number,log_index)')
+                cursor=self.db.execute('SELECT config FROM cursors WHERE chain=?',(self.chain,)).fetchone()
+                if cursor and cursor[0]!=identity:
+                    raise ValueError('Indexer identity changed; use a separate database or explicit rescan')
+                self.db.execute('INSERT OR IGNORE INTO cursors VALUES(?,?,?)',(self.chain,self.start,identity))
+            # Journal mode cannot change inside a transaction. Only a validated,
+            # committed identity may request this persistent mode change.
+            if self.db.execute('PRAGMA journal_mode=WAL').fetchone()!=('wal',):
+                raise ValueError('Indexer database did not enter required WAL journal mode')
+        except BaseException:
             self.db.close()
-            raise ValueError('Indexer identity changed; use a separate database or explicit rescan')
-        with self.db:self.db.execute('INSERT OR IGNORE INTO cursors VALUES(?,?,?)',(self.chain,self.start,identity))
+            raise
 
     @property
     def next_block(self)->int:

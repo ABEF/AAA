@@ -1,0 +1,14 @@
+{
+  "protected_fixture": "tests_python/test_frontend_history.py",
+  "head_sha256": "fc9028d56b41cbc03ea9161c19d775cc1edf1f831bf06dcd571e97ab42db6e20",
+  "local_sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+  "only_ast_changes_unselected_added_methods": [
+    "ConfirmedHistoryTests.test_slow_history_cannot_release_expired_nft_or_wallet_snapshot",
+    "ConfirmedHistoryTests.test_wallet_history_losing_confirmation_depth_is_not_returned"
+  ],
+  "all_existing_fixture_helpers_and_methods_equal_head": true,
+  "selected_fixture_extra_methods": false,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "sqlite": "3.53.1",
+  "scope": "93selected consumer tests use existing published helpers; two protected local added test methods are not selected or called. Protected file not edited/staged."
+}

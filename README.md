@@ -6,33 +6,19 @@ fees plus rarity-weighted NFT-sale royalties. Holders cannot redeem principal
 during normal operation. Governance can permanently end LP activity and return
 actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties remain.
 
-**Undeployed source candidate; production NOT APPROVED.** [Bounded operating policy](docs/ADAPTABLE_POLICY.md) adds future-only mint/entry terms, planned drained VRF rotation, scoped idle/gas controls and per-pool main/gap controls in [accounting6](docs/POSITION_V6.md). The prior
-[manual-operation audit](reports/manual-operations-20261031/REVIEW.md) documents
-exact controls, ordered inputs and recovery, and adds offline review preparation.
-The prior [source audit](reports/day-audit-20261031/REVIEW.md) fixes physical-read
-availability, activation bindings and ordinary replacement activity. Source changes do not update existing
-Anvil contracts, journals, workers or websites. Public signing remains disabled.
+**Undeployed source candidate; production NOT APPROVED.** Fresh
+[accounting6/direct Entry3/custody5](docs/POSITION_V6.md) implements
+[bounded operating policy](docs/ADAPTABLE_POLICY.md) and reviewed
+[manual recovery](docs/OPERATOR_MANUAL.md). Source publication does not update
+existing contracts, services, journals or websites. Public signing remains disabled.
 
-The [current authority verification](reports/authority-audit-20261103/VERIFICATION.md)
-binds custody5/schema10. [Exit assurance](reports/holder-exit-assurance-20261103/REVIEW.md)
-covers per-NFT/mixed-wallet payouts. The [whole-project supplement](reports/comprehensive-audit-20261104/REVIEW.md)
-fixes indexer anchor isolation and streaming ownership replay, repairs current
-cross-repository guidance, and separates fresh checks from unchanged contract
-evidence. The [direct Entry3 cleanup](reports/direct-entry-v3-20261103/REVIEW.md)
-retains its historical custody4 scope. The [market/lifecycle campaign](reports/market-lifecycle-20261104/REVIEW.md)
-adds receipt-modeled multi-holder LP/reward journeys and current API/worker
-recovery checks, with failed model attempts retained. Real service/market/website qualification
-and independent audit remain open; no deployment or service rollout occurred.
-The [confirmation audit](reports/confirmation-audit-20261104/REVIEW.md) corrects deadline-aware daemon wake-up
-and clear-only recovery ordering, with100focused Python passes and unchanged
-on-chain guards. The existing keeper has not been restarted or updated.
-
-The [manual safeguard audit](reports/manual-safeguard-audit-20261104/REVIEW.md)
-separates emergency sampled confirmation from its separately selected hard
-cooldown and permits explicit both-zero review-time floors on paused raw closes.
-Normal keeper/user guards and mandatory custody/accounting remain. Exact runtime
-pins change; ABI/storage and installed environments do not. See the
-[operator force/close/re-entry matrix](docs/OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call).
+The [four-audit consolidation](reports/four-report-consolidation-20261104/REVIEW.md)
+maps the latest manual, confirmation, market/lifecycle and indexer findings to
+current code without replacing their original evidence. It adds transactional
+indexer startup, failed-connection cleanup and strict durable-WAL admission,
+verified by93focused Python methods. Solidity, economic rights and installed
+environments are unchanged; actual service/market/website qualification and
+independent audit remain open.
 
 ## Project navigation
 

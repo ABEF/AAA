@@ -5,35 +5,17 @@ Reviewed2026-11-04. This approves one frozen release; it is not a second Todo.
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
 
-The [November4 whole-project supplement](../reports/comprehensive-audit-20261104/REVIEW.md)
-fixes indexer configuration isolation and replay memory use; it does not qualify
-providers, maximum history/target gas, services, OpenSea or an independent audit.
-Contract/runtime profiles, current sites and operating journals remain unchanged.
-
-The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
-one affected six-day control and7new current-profile API/keeper methods.
-Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
-transitions, outages, transfers and terminal royalties/payouts are reconciled.
-Failed test-model/RPC-fixture attempts remain recorded; production code and
-operating settings are unchanged. No profit, uptime or release approval.
-
-The [confirmation audit](../reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
-jitter deadlines and queued incident clears depending on unrelated router
-metadata.100focused Python methods pass, including14new regressions; causal
-negative failures are retained. Contracts/settings/journals are unchanged.
-A reviewed matching keeper source rollout remains required; no service was
-changed.600/240/300 and the hard12hours remain, with sampled/live limits.
-
-
-[Manual safeguard evidence](../reports/manual-safeguard-audit-20261104/VERIFICATION.md)
-updates two view routines and fresh normal compiler/callable/static scope.
-A matching runtime review and operating rehearsal are still required; an old
-capability version or prior gate pass does not establish compatibility.
+The [four-audit reconciliation](../reports/four-report-consolidation-20261104/REVIEW.md)
+adds verified indexer startup/recovery safeguards and consolidates earlier
+findings.93focused Python passes are distinct from reused contract evidence.
+Source/hosting/provider/market/independent approval remain separate. No operating
+rollout or release approval is supplied by these records.
 
 ## Evidence and approval boundary
 
-Manual safeguard baseline: main `0b14acaf5df696c7a32243b8ea7c315a8cd191ab`;
-two current production view routines differ from historical e26fc74. No approved
+Consolidation baseline: main `51079549c3e29c02082eaa863afebd3efc692513`;
+current Solidity pins match the latest manual-safeguard normal/static record.
+Those two views differ from historical authority e26fc74. No approved
 deployment or release-specific configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.

@@ -22,6 +22,12 @@ gas review diagnostics; local source hashes identify file bytes, not the running
 binary. The matching writer/checker must be rolled out together. See the
 [operator procedure](OPERATOR_MANUAL.md#qualify-current-routing-gas-and-telemetry).
 
+
+Indexer startup/restart uses the [single operator procedure](OPERATOR_MANUAL.md#indexer-startup-failure-and-durable-storage):
+atomic identity/schema admission, cleanup on failure, SQLite integer bounds and
+verified durable WAL. A successful local regression does not qualify production
+storage or authorize a service restart.
+
 ## Current deployment and configuration
 
 Current [keeper coordination](KEEPER_COORDINATION.md) adds service-only compound

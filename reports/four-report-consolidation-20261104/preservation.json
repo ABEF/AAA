@@ -1,0 +1,18 @@
+{
+  "protected_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "protected_dirty_unchanged": true,
+  "old_report_count": 2685,
+  "input36unchanged": true,
+  "normal_contract_dependency_build_pins_unchanged": true,
+  "source_behavior_changed": [
+    "indexer/monitor.py"
+  ],
+  "added_regression": "tests_python/test_indexer_startup_atomicity.py",
+  "boundary": "No deployment/service/site/Anvil/NFT/LP/balance/journal/signer/heartbeat command or mutation performed.",
+  "old_report_manifest_sha256": "1d04fa57db6238caffcc3ed2975f070f2e6938a40afc758ae77e9588d88fd82c"
+}

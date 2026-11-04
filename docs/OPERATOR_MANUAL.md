@@ -2048,6 +2048,42 @@ For host loss, fence the old host, restore exact release/config/state from authe
 
 The indexer needs complete confirmed logs, persistent SQLite/WAL handling and reorg recovery. Back up consistently, preserve deployment anchors and predecessor indexes, and rebuild into a separate validated database if required. Never substitute incomplete history for a zero balance or zero lifetime claims. After code/event-schema/canonical-address changes, update exact pins/config and qualify replay before serving results.
 
+### Indexer startup failure and durable storage
+
+The indexer validates SQLite-backed integer settings before creating directories
+or opening a database: `chain_id`1..2^63-1, `start_block`0..2^63-2 and
+`max_reorg_depth`1..2^63-2. These storage bounds are not sensible operating-size
+recommendations; use the reviewed deployment anchor and practical reorg depth.
+No CLI/config field, chain identity or event schema was added.
+
+Startup reads current journal mode and rejects `OFF`, `MEMORY` or unknown modes
+before schema writes. It performs schema/index setup, existing-identity check
+and initial cursor insertion in ONE writer transaction. A rejected identity or
+DDL/insert failure rolls that transaction back; its connection is closed.
+WAL is requested only after the validated identity commits, outside the
+transaction, and must actually return `wal`. A refused/failed WAL setup closes
+the connection and does not start ingestion. A new database can then contain
+coherently initialized empty tables/cursor for the SAME identity; this is not
+partial event ingestion and is safe to retry after fixing the storage fault.
+
+**Manage/restart:** use the existing service stop and consistent SQLite/WAL backup
+procedure; review the SAME database path, chain/start/parent/contracts and storage
+permissions/locking. Valid persistent databases require no schema migration or
+rescan. The indexer retains current owners, log history and cursor on restart.
+Installing source alone does not restart a process or repair its filesystem.
+
+**Failure/reverse:** if identity changed, correct a mistaken config or perform the
+already-reviewed separate database/rescan procedure for an intentional change.
+If journal/storage admission fails, inspect the preserved files, permissions,
+locks, free space and qualified WAL-capable local storage. Do not force OFF/
+MEMORY, delete database/WAL, edit cursor/config identity or guess history to
+obtain a successful startup. A previously used in-memory configuration is not a
+supported persistent-history service. Preserve evidence before any approved
+rebuild. Rollback of source does not undo an existing database or restore missing
+history. Actual crash/power-loss/Unix/off-host restore qualification stays open.
+
+[Consolidated findings and scoped verification](../reports/four-report-consolidation-20261104/VERIFICATION.md).
+
 ### Indexer anchor and ownership-history recovery
 
 `indexer/monitor.py` validates and snapshots `start_parent_hash` when constructed.

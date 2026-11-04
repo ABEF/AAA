@@ -159,19 +159,16 @@ the November3 authority report below remains historical for those contexts.
 
 ## Verification and records
 
-[Whole-project supplement](reports/comprehensive-audit-20261104/REVIEW.md) fixes indexer anchor snapshot/early
-validation and streaming ownership replay;33affected Python methods pass.
-Production Solidity/dependencies/build settings stay exact; normal/static/EVM
-evidence is reused, not rerun. Current website documents are aligned without
-source/build/service/journal/signing changes. Lifetime storage/provider/operating
-and independent-audit gates stay open.
+[Four-audit consolidation](reports/four-report-consolidation-20261104/REVIEW.md)
+maps the latest manual/confirmation/market/indexer reports to current source;
+original36files remain immutable. New indexer startup is transactionally admitted,
+failed connections close and durable rollback/WAL are required. SQLite chain ID
+<=2^63-1; start and max_reorg_depth<=2^63-2. Keep valid database identity/schema;
+no rescan, runtime or journal migration is implied.93focused Python passes include
+9new startup regressions; negatives retained. Current manual-safeguard normal/
+static/callable pins are exact unchanged reuse, not a fresh contract audit.
+No environment rollout or independent approval. See the single operator procedure.
 
-
-- [Market/lifecycle evidence](reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-v4 journeys plus one
-  affected six-day control and7new API/worker methods. Receipt-derived owner
-  and collective fractions remain separate; sum principal tokens before USD
-  rounding. Initial model/transcript failures are retained. Production sources,
-  settings, services and sites are unchanged; this is not market qualification.
 - Current source/evidence: [profile identities](docs/POSITION_V6.md),
   [features](docs/IMPLEMENTATION_STATUS.md), [consolidated findings](docs/AUDIT_FINDINGS.md),
   [report map](reports/README.md) and [release approval](docs/RELEASE_CHECKLIST.md).

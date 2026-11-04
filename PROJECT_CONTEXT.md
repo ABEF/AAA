@@ -1,40 +1,33 @@
 # PoPL current project context
 
-Reviewed4November2026; audit source baseline main `0b14acaf5df696c7a32243b8ea7c315a8cd191ab`.
-[Instructions](AGENTS.md), [README](README.md), [sole Todo](TODO.md),
-[operator manual](docs/OPERATOR_MANUAL.md) and [findings](docs/AUDIT_FINDINGS.md)
-own current context. Exact publication status comes from Git, not this date.
-**Undeployed; production NOT APPROVED.** This is repository memory, not a timeline.
+Reviewed4November2026; consolidation baseline main
+`51079549c3e29c02082eaa863afebd3efc692513`. Verify actual local/remote heads before
+claiming publication. Read [Instructions](AGENTS.md),
+[README](README.md), [sole Todo](TODO.md),
+[operator](docs/OPERATOR_MANUAL.md) and
+[findings](docs/AUDIT_FINDINGS.md). **Production NOT APPROVED.**
+Repository memory is not a timeline or background synchronization service.
 
-The [November4 audit supplement](reports/comprehensive-audit-20261104/REVIEW.md) fixes indexer anchor
-isolation and streams ownership replay;33affected Python methods pass with
-negative controls retained. Production Solidity/dependencies/build profiles
-remain unchanged; old EVM/static/size evidence is explicitly reused. Website
-documentation alignment is source/docs-only, with no runtime/site/journal rollout.
+The [four-report consolidation](reports/four-report-consolidation-20261104/REVIEW.md) preserves all36
+input report files and separates implemented corrections, test-model repairs,
+accepted constraints and external release gates. Current Solidity/dependency/
+build pins match the latest manual-safeguard record; it owns the current normal
+43gates/static/callable scope. Earlier unchanged-source claims remain historical.
+No unchanged contract suite/compiler/analyzer was rerun for this consolidation.
 
-The [market/lifecycle campaign](reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
-one affected six-day control and7new current-profile API/keeper methods.
-Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
-transitions, outages, transfers and terminal royalties/payouts are reconciled.
-Failed test-model/RPC-fixture attempts remain recorded; production code and
-operating settings are unchanged. No profit, uptime or release approval.
+New indexer source uses one explicit transaction for schema/identity admission,
+closes failed connections, rejects unsupported SQLite integers before files and
+requires durable rollback/WAL modes.93focused Python methods pass, including9new
+startup cases; causal negative controls are retained. Table/index names, columns,
+keys and stored config identity are unchanged. Valid file databases need no rescan.
+WAL failure can leave a coherently initialized same-identity schema; no history is
+processed until startup succeeds. Do not delete data or weaken journal policy.
 
-The [confirmation audit](reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
-jitter deadlines and queued incident clears depending on unrelated router
-metadata.100focused Python methods pass, including14new regressions; causal
-negative failures are retained. Contracts/settings/journals are unchanged.
-A reviewed matching keeper source rollout remains required; no service was
-changed.600/240/300 and the hard12hours remain, with sampled/live limits.
-
-The [manual safeguard audit](reports/manual-safeguard-audit-20261104/REVIEW.md) changes ONLY the Confirmation view
-and read-only custody validator: emergency bit16 no longer implicitly retains
-hard-cooldown bit1; paused parking/residual close can explicitly use both raw
-floors0. Positive floors, exact ownership/receipt/share/reserve/callback/lifecycle
-guards remain. Ordinary readiness and emergency authority are unchanged. Normal
-compiler/reference/static and focused regression evidence belongs to that report;
-old e26fc74 authority evidence is historical for these two changed contexts.
-No ABI/storage layout or advertised capability version changed; exact current
-runtime pins are required. Installed services/sites/Anvil/journals remain untouched.
+Keeper timing/recovery fixes and manual optional-policy fixes remain implemented;
+normal600/240/300, hard12hours,60–300jitter, fixed economics and NFT rights remain.
+Old service/site/Anvil/journal/signer/heartbeat boundaries are unchanged. Actual
+feeds/routes/VRF/authorities/OpenSea, source8 services/site, target gas, lifetime
+history/restore and independent audit remain open in the sole Todo.
 
 ## Current source candidate
 

@@ -5,29 +5,13 @@ work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.
 
-The [current audit supplement](../reports/comprehensive-audit-20261104/REVIEW.md)
-closes the borrowed-anchor/ownership-materialization defects. Actual indexer
-backup/restore, complete long-lived history and controlled current-profile service
-rollout remain prerequisites of [host-services](../TODO.md#task-host-services) and
-[financial-history](../TODO.md#task-financial-history); no rollout occurred.
-
-The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) strengthens independent
-receipt/NAV/cohort and current-profile recovery checks without changing
-production contracts. It does not replace the target-chain market, service
-or independent-review stages below.
-
-The [confirmation audit](../reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
-jitter deadlines and queued incident clears depending on unrelated router
-metadata.100focused Python methods pass, including14new regressions; causal
-negative failures are retained. Contracts/settings/journals are unchanged.
-A reviewed matching keeper source rollout remains required; no service was
-changed.600/240/300 and the hard12hours remain, with sampled/live limits.
-
-
-The [manual recovery audit](../reports/manual-safeguard-audit-20261104/REVIEW.md)
-closes two optional-policy coupling defects. Runtime adoption, actual emergency
-wallet simulations/gas and host recovery remain under the existing
-[manual recovery task](../TODO.md#task-manual-emergency-rebalance) and release gates.
+The [four-audit consolidation](../reports/four-report-consolidation-20261104/REVIEW.md)
+closes the reproduced indexer startup gap and maps prior corrections to current
+source. Adopt matching service source only through reviewed stop/backup/restart;
+actual lifetime ingestion, storage/restore and fresh-profile operating acceptance
+remain under [hosting](../TODO.md#task-host-services) and
+[history](../TODO.md#task-financial-history). Manual recovery remains current-pool
+only; financial bypass is never routine keeper fallback. No rollout occurred.
 
 ## 1. Freeze the correct source and integration boundary
 
@@ -35,7 +19,7 @@ Use [accounting6/Entry3/schema10](POSITION_V6.md) and exact runtime/helper/depen
 pins. Direct Entry removal, residual management, active-main candidate filtering,
 cooldown observation and authenticated harvest coalescing are implemented; do not
 reopen them as proposals or revive retired bridges/creator inboxes/third inputs.
-The [current evidence](../reports/authority-audit-20261103/VERIFICATION.md) has exact
+The [current evidence](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) has exact
 source scope, retained failed attempts and explicit reuse. Normal Migration has
 39bytes runtime headroom; further code changes need new exact-source gates.
 

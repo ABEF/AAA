@@ -1,37 +1,21 @@
 # Consolidated audit findings and evidence
 
-Reviewed4November2026; manual safeguard change based on main `0b14aca` changes two production views, with fresh scoped evidence. Production **NOT APPROVED**.
+Reviewed4November2026; consolidation baseline main5107954. Production
+**NOT APPROVED**. [Sole Todo](../TODO.md) owns work;
+[features](IMPLEMENTATION_STATUS.md) record source and
+[operator](OPERATOR_MANUAL.md) describes actions.
 
-[The sole Todo](../TODO.md) owns task status; this page explains how historical
-findings apply now. [Features](IMPLEMENTATION_STATUS.md) describe capabilities,
-[Operator manual](OPERATOR_MANUAL.md) describes exact actions, and
-[release approval](RELEASE_CHECKLIST.md) records sign-off. No new execution or
-security guarantee is implied by consolidation.
+The [four-audit reconciliation](../reports/four-report-consolidation-20261104/RECONCILIATION.md)
+maps past corrections, test-model repairs and remaining limits to exact current
+sources. It does not sum overlapping tests or replace immutable reports. Current
+normal/static pins belong to the manual-safeguard report; older authority e26fc74
+is historical where those two views changed.
 
-The [whole-project supplement](../reports/comprehensive-audit-20261104/REVIEW.md)
-adds scoped indexer corrections and current-document alignment. It is not a fresh
-full execution of every historical test or an independent audit.
-
-The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
-one affected six-day control and7new current-profile API/keeper methods.
-Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
-transitions, outages, transfers and terminal royalties/payouts are reconciled.
-Failed test-model/RPC-fixture attempts remain recorded; production code and
-operating settings are unchanged. No profit, uptime or release approval.
-
-The [confirmation audit](../reports/confirmation-audit-20261104/REVIEW.md) fixes daemon sleep ignoring saved maturity/
-jitter deadlines and queued incident clears depending on unrelated router
-metadata.100focused Python methods pass, including14new regressions; causal
-negative failures are retained. Contracts/settings/journals are unchanged.
-A reviewed matching keeper source rollout remains required; no service was
-changed.600/240/300 and the hard12hours remain, with sampled/live limits.
-
-The [manual safeguard audit](../reports/manual-safeguard-audit-20261104/REVIEW.md)
-separates emergency sampled confirmation from its separately selected hard
-cooldown and permits explicit both-zero review-time floors on paused raw closes.
-Normal keeper/user guards and mandatory custody/accounting remain. Exact runtime
-pins change; ABI/storage and installed environments do not. See the
-[operator force/close/re-entry matrix](OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call).
+The follow-up fixes rejected-startup schema/journal changes and leaked SQLite
+connections, adds early integer bounds and requires durable WAL success.
+93focused Python methods pass with retained negatives. No contract, economic,
+permission, service/site/journal or signing change. Real lifetime storage/restore,
+market/provider and independent qualification remain open.
 
 ## Current conclusions by project layer
 
@@ -80,17 +64,21 @@ production residual guard, and adds per-recipient/mixed-wallet checks. Rarity,
 evolution and wallet grouping do not change principal shares; previous reward
 claims and one NFT's transfer cannot consume another NFT's principal.10distinct
 selected successes include1000model NFTs,37mixed wallets, real NFT tier/rarity
-composition and actual local v4 both-leg exit. Source remains e26fc74; actual
+composition and actual local v4 both-leg exit. That report binds historical e26fc74; actual
 maximum gas, rejecting recipients/dependency liveness and independent review stay open.
 
 ## Evidence that can be reused now
 
-Use [authority verification](../reports/authority-audit-20261103/VERIFICATION.md)
-for current52production/31dependency pins,43normal gates and471static records
-(19current contexts/452unchanged context reuse).14distinct selected EVM behaviors
-pass across recorded scopes;25corrected targeted Python methods pass. These are
-not a full suite or production qualification. Current reference37/818/37/13 has
-no note gaps; runtime headroom Vault635/Budget237/Migration39/Balancer360.
+Use the [latest manual safeguard record](../reports/manual-safeguard-audit-20261104/VERIFICATION.md)
+for current52production/31dependency pins,43normal gates,471static contexts
+(13current/458exact referenced reuse),85selected EVM successes across its recorded
+stages and47targeted Python methods. Reference37/818/37/13 has0gaps; runtime
+headroom remains Vault635/Budget237/Migration39/Balancer360. The
+[consolidation verification](../reports/four-report-consolidation-20261104/VERIFICATION.md)
+proves unchanged contract/build/dependency pins and separately records new93method
+indexer/history execution. These are not added into one full-suite result.
+
+
 
 Custody5 restricts terminal allocation/distribution to governance; old custody4
 was safe fixed-owner progress but permissionless. Owner reward/royalty claims
