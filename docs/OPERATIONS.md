@@ -101,6 +101,10 @@ independent endpoint. Do not echo raw provider responses/credentials, reset a
 journal, resend a saved transaction or bypass strict decoding. Actual provider
 qualification remains open. [Review and evidence](../reports/system-adversarial-20261026/VERIFICATION.md).
 
+For indexer anchor changes, database preservation, streaming replay and controlled
+restart, use the [exact operator procedure](OPERATOR_MANUAL.md#indexer-anchor-and-ownership-history-recovery).
+No indexer schema or running service is changed by source publication.
+
 ## Maintenance configuration errors and paid recovery
 
 Each RPC client retains an immutable snapshot of its validated endpoint list.

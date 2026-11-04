@@ -13,13 +13,13 @@ The prior [source audit](reports/day-audit-20261031/REVIEW.md) fixes physical-re
 availability, activation bindings and ordinary replacement activity. Source changes do not update existing
 Anvil contracts, journals, workers or websites. Public signing remains disabled.
 
-The [direct Entry3 cleanup](reports/direct-entry-v3-20261103/REVIEW.md) removes
-whole-input contribution conversion and its child/routes. ETH or fixed ZZZ goes
-directly to Vault balancing; captured prices, caller loss caps, ownership and
-marginal-LP checks remain. Fresh inventory/API profiles are explicit; old
-deployments/journals are unchanged. The prior [LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md)
-retains its original pins. Current [verification](reports/direct-entry-v3-20261103/VERIFICATION.md)
-separates actual checks/failures from reuse. Real service/market/website qualification
+The [current authority verification](reports/authority-audit-20261103/VERIFICATION.md)
+binds custody5/schema10. [Exit assurance](reports/holder-exit-assurance-20261103/REVIEW.md)
+covers per-NFT/mixed-wallet payouts. The [whole-project supplement](reports/comprehensive-audit-20261104/REVIEW.md)
+fixes indexer anchor isolation and streaming ownership replay, repairs current
+cross-repository guidance, and separates fresh checks from unchanged contract
+evidence. The [direct Entry3 cleanup](reports/direct-entry-v3-20261103/REVIEW.md)
+retains its historical custody4 scope. Real service/market/website qualification
 and independent audit remain open; no deployment or service rollout occurred.
 
 ## Project navigation
@@ -34,7 +34,7 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | Operate the protocol | **[Operator manual and management procedures](docs/OPERATOR_MANUAL.md)**; [callable inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Current contract audit/evidence](reports/direct-entry-v3-20261103/VERIFICATION.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Current authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -187,7 +187,7 @@ Host restart, RPC inclusion, gas and writer/checker rollout remain qualification
 
 | Need | Reference |
 | --- | --- |
-| Current capabilities, source pins and limits | [Feature/evidence reference](docs/IMPLEMENTATION_STATUS.md), [Entry3 verification](reports/direct-entry-v3-20261103/VERIFICATION.md) |
+| Current capabilities, source pins and limits | [Feature/evidence reference](docs/IMPLEMENTATION_STATUS.md), [authority verification](reports/authority-audit-20261103/VERIFICATION.md), [whole-project supplement](reports/comprehensive-audit-20261104/REVIEW.md) |
 | Historical findings applied to the current code | [Consolidated findings](docs/AUDIT_FINDINGS.md), [report map](reports/README.md) |
 | Exact management action, inputs, stop/restart and recovery | [Operator manual](docs/OPERATOR_MANUAL.md), [callable reference](docs/CONTRACT_FUNCTIONS.md) |
 | What remains and final approval | [Sole Todo](TODO.md), [roadmap](docs/ROADMAP.md), [release record](docs/RELEASE_CHECKLIST.md) |

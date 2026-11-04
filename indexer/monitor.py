@@ -49,7 +49,14 @@ def _log_hash(value:Any)->str:
 
 class Indexer:
     def __init__(self,config:dict[str,Any],rpc:Rpc|None=None):
-        self.config=config
+        # Retain the reviewed boundary, not a borrowed mutable config object.
+        # A later caller edit must never authorize first ingestion or rollback
+        # onto a different chain parent than the persisted database identity.
+        self.start_parent_hash=config.get('start_parent_hash')
+        if self.start_parent_hash is not None:
+            try:_header_hash(self.start_parent_hash)
+            except IndexerSafetyError:
+                raise ValueError('Indexer start_parent_hash must be a full block hash or null') from None
         self.chain=integer(config['chain_id'],'chain_id',minimum=1)
         self.start=integer(config['start_block'],'start_block')
         self.confirmations=integer(config.get('confirmations',12),'confirmations',minimum=1)
@@ -74,7 +81,7 @@ class Indexer:
         CREATE INDEX IF NOT EXISTS block_log_lookup ON logs(chain,block_number,log_index);
         ''')
         identity=json.dumps({'contracts':sorted(self.contracts),'start':self.start,
-            'parent_hash':config.get('start_parent_hash')},sort_keys=True)
+            'parent_hash':self.start_parent_hash},sort_keys=True)
         cursor=self.db.execute('SELECT config FROM cursors WHERE chain=?',(self.chain,)).fetchone()
         if cursor and cursor[0]!=identity:
             self.db.close()
@@ -116,7 +123,7 @@ class Indexer:
             child_parent=remote['parentHash'];proof=remote
         if removed==0:return 0
         if ancestor is None:
-            anchor=self.config.get('start_parent_hash')
+            anchor=self.start_parent_hash
             if rows[-1][0]!=self.start or self.start==0 or anchor is None or proof['parentHash']!=_header_hash(anchor):
                 raise IndexerSafetyError('unproved_ancestor','No reviewed common ancestor was proved; preserve the database for operator reconciliation')
         boundary=ancestor if ancestor is not None else self.start
@@ -150,7 +157,7 @@ class Indexer:
         if not isinstance(logs,list):raise RpcError('Malformed eth_getLogs result')
         headers={}
         previous=self.db.execute('SELECT hash,parent,timestamp FROM blocks WHERE chain=? AND number=?',(self.chain,start-1)).fetchone()
-        parent=previous[0] if previous else self.config.get('start_parent_hash')
+        parent=previous[0] if previous else self.start_parent_hash
         parent_timestamp=previous[2] if previous else None
         for number in range(start,end+1):
             h=self.header(number)
@@ -232,12 +239,14 @@ class Indexer:
     def nft_owners(self,nft_contract:str)->dict[str,str]:
         owners={};contract=address(nft_contract)
         rows=self.db.execute("SELECT decoded FROM logs WHERE chain=? AND address=? AND event='Transfer' ORDER BY block_number,log_index",
-            (self.chain,contract)).fetchall()
-        for (decoded,) in rows:
-            if decoded:
-                item=json.loads(decoded)
-                if int(item['to'],16)==0:owners.pop(item['tokenId'],None)
-                else:owners[item['tokenId']]=item['to']
+            (self.chain,contract))
+        try:
+            for (decoded,) in rows:
+                if decoded:
+                    item=json.loads(decoded)
+                    if int(item['to'],16)==0:owners.pop(item['tokenId'],None)
+                    else:owners[item['tokenId']]=item['to']
+        finally:rows.close()
         return owners
     def close(self)->None:self.db.close()
 

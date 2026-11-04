@@ -1,9 +1,15 @@
 # Engineering roadmap
 
-Reviewed3November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
+Reviewed4November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
 work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.
+
+The [current audit supplement](../reports/comprehensive-audit-20261104/REVIEW.md)
+closes the borrowed-anchor/ownership-materialization defects. Actual indexer
+backup/restore, complete long-lived history and controlled current-profile service
+rollout remain prerequisites of [host-services](../TODO.md#task-host-services) and
+[financial-history](../TODO.md#task-financial-history); no rollout occurred.
 
 ## 1. Freeze the correct source and integration boundary
 

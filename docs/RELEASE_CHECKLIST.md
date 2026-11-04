@@ -1,14 +1,19 @@
 # Release approval record - NOT APPROVED
 
-Reviewed2026-11-03. This approves one frozen release; it is not a second Todo.
+Reviewed2026-11-04. This approves one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
 
+The [November4 whole-project supplement](../reports/comprehensive-audit-20261104/REVIEW.md)
+fixes indexer configuration isolation and replay memory use; it does not qualify
+providers, maximum history/target gas, services, OpenSea or an independent audit.
+Contract/runtime profiles, current sites and operating journals remain unchanged.
+
 ## Evidence and approval boundary
 
-Source base: main `db8033ec5f193e472ff70ac82197d8ad1570461a` before the authority
-change. No approved deployment or release-specific configuration exists.
+Audit baseline: main `e237aa72ec7fa09382d857ffab1a3fd96b286299`; production Solidity
+remains exact e26fc74. No approved deployment or release-specific configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.
 

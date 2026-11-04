@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed2026-11-03. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-04. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.
@@ -138,6 +138,14 @@ Current owner/rewards/quotas/ETH-ZZZ/fixed splits and terminal custody guarantee
 are unchanged. No deployment/service/site/Anvil/journal/signing change authorized.
 
 ## Verification and records
+
+[Whole-project supplement](reports/comprehensive-audit-20261104/REVIEW.md) fixes indexer anchor snapshot/early
+validation and streaming ownership replay;33affected Python methods pass.
+Production Solidity/dependencies/build settings stay exact; normal/static/EVM
+evidence is reused, not rerun. Current website documents are aligned without
+source/build/service/journal/signing changes. Lifetime storage/provider/operating
+and independent-audit gates stay open.
+
 
 - Current source/evidence: [profile identities](docs/POSITION_V6.md),
   [features](docs/IMPLEMENTATION_STATUS.md), [consolidated findings](docs/AUDIT_FINDINGS.md),

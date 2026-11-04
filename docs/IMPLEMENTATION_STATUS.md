@@ -1,6 +1,6 @@
 # Feature and evidence reference
 
-Reviewed 2026-11-03. This records implemented source, not another task list.
+Reviewed 2026-11-04. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 
@@ -81,6 +81,16 @@ both-leg exit.10distinct selected methods span explicit stages, including one
 1000-case fuzz method. Production source/policy/profile are unchanged; normal
 size/static evidence is reused at matching pins. Failed stale-fixture attempts
 remain recorded. This is not target-chain gas, full-suite or independent approval.
+
+## Current whole-project supplement
+
+[November4 review](../reports/comprehensive-audit-20261104/REVIEW.md) fixes the
+indexer's borrowed configuration anchor and streams ownership replay.33affected
+Python methods pass, including6new regressions. Negative-control failures are
+retained. All production Solidity/dependency/build pins are unchanged; no EVM,
+static or size result is presented as a fresh rerun. Website documentation is
+aligned without changing its source behavior, signer, builds or served releases.
+Storage/lifetime replay and actual operating qualification remain open.
 
 ## Current evidence and limits
 

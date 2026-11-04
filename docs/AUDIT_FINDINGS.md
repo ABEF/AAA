@@ -1,12 +1,16 @@
 # Consolidated audit findings and evidence
 
-Reviewed3November2026 against contract-source main `3f879da`. Production **NOT APPROVED**.
+Reviewed4November2026 from main `e237aa72`; production Solidity remains exact e26fc74. Production **NOT APPROVED**.
 
 [The sole Todo](../TODO.md) owns task status; this page explains how historical
 findings apply now. [Features](IMPLEMENTATION_STATUS.md) describe capabilities,
 [Operator manual](OPERATOR_MANUAL.md) describes exact actions, and
 [release approval](RELEASE_CHECKLIST.md) records sign-off. No new execution or
 security guarantee is implied by consolidation.
+
+The [whole-project supplement](../reports/comprehensive-audit-20261104/REVIEW.md)
+adds scoped indexer corrections and current-document alignment. It is not a fresh
+full execution of every historical test or an independent audit.
 
 ## Current conclusions by project layer
 
@@ -29,6 +33,7 @@ security guarantee is implied by consolidation.
 | Fixed artwork draw and provider liveness | Prepared artwork does not remove the need for fair verifiable assignment. Original requests finalize in order; planned provider rotation drains old draws, without rerolls or administrator-selected traits. | Supported live provider, funding, callback identity/proxy controls, request outage/drain and marketplace reveal remain open. Pool movement is independent of reveal. [fair-draw](../TODO.md#task-fair-draw), [nft-lifecycle](../TODO.md#task-nft-lifecycle) |
 | OpenSea primary mint | Direct mint and ERC721/royalty metadata exist; they do not implement the requested OpenSea primary-drop path. Default gross buyer price0.05ETH, platform fee from that gross, network gas separate. Future policy affects future sales only. | Actual OpenSea/chain/drop integration and fee semantics remain unimplemented or unqualified; do not mark done from the demo Mint page or ERC2981. [opensea-mint](../TODO.md#task-opensea-mint) |
 | Read/unsigned API boundaries | Pinned same-block helper/runtime/lifecycle/owner/custody checks, exact unsigned preparation, complete holdings and unavailable data semantics remain. Rpc snapshots endpoint config; convenience calls obey wrapper budgets; strict new-work validation preserves pending recovery. | Endpoint honesty, actual tracing, ingress/proxy policy, authentication/resource economics and production deployment remain qualification. Body progress budgets are not hard DNS/header preemption. [read-api](../TODO.md#task-read-api), [unsigned-actions](../TODO.md#task-unsigned-actions), [api-client-admission](../TODO.md#task-api-client-admission), [host-services](../TODO.md#task-host-services), [operation-review](../TODO.md#task-operation-review) |
+| Indexer configuration and history resources | The reviewed start anchor is validated/snapshotted before database creation and cannot drift through a borrowed configuration reference. Ownership replay streams transfers with guaranteed cursor closure. Existing database identity/schema remain. | [Current review](../reports/comprehensive-audit-20261104/REVIEW.md):33affected Python passes. This fixes accidental configuration drift and Python materialization, not RPC honesty, replay CPU/storage or complete long-lived ingestion. [host-services](../TODO.md#task-host-services), [financial-history](../TODO.md#task-financial-history) |
 | Keeper, journals, health and recovery | Pending-first canonical receipt/nonce/spend recovery, durable observations/jitter/reset acknowledgements, per-job retry isolation, current config/health evidence and bounded work remain. Exact same-key external actions require reconciliation. | Unix ownership/watchdog/backups/restore, real provider delays, off-host monitoring, current source rollout and long-term funding/keys remain open. Heartbeat stays paused. [keeper-recovery](../TODO.md#task-keeper-recovery), [keeper-guardrails](../TODO.md#task-keeper-guardrails), [host-services](../TODO.md#task-host-services) |
 | Demo, served integration and fresh consumer | Popldemo remains simulation. Poplint served current3/read-and-prepare is a separate older profile, without reviewed deployment config. Fresh source8/accounting6/Entry3 website consumption remains separate work. | No fake demo fallback, old-journal relabel or public signing. Actual matching wallet/approval/pending/recovery/concurrency and deployment acceptance remain open. [wallet](../TODO.md#task-wallet), [portfolio](../TODO.md#task-portfolio), [transaction-ui](../TODO.md#task-transaction-ui), [live-history-ui](../TODO.md#task-live-history-ui) |
 | Artwork, metadata and hosting | Prepared fixed inventory, traits and four evolution mappings exist. Metadata reflects confirmed LP state; display/refresh does not itself prove value or deployment. | Permanent hosting/provider, actual publication hashes and marketplace refresh/caching/operations remain unqualified. [metadata-ops](../TODO.md#task-metadata-ops) |

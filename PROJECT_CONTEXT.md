@@ -1,10 +1,16 @@
 # PoPL current project context
 
-Reviewed3November2026; authority-change source base main `db8033ec5f193e472ff70ac82197d8ad1570461a`.
+Reviewed4November2026; audit source baseline main `e237aa72ec7fa09382d857ffab1a3fd96b286299`.
 [Instructions](AGENTS.md), [README](README.md), [sole Todo](TODO.md),
 [operator manual](docs/OPERATOR_MANUAL.md) and [findings](docs/AUDIT_FINDINGS.md)
 own current context. Exact publication status comes from Git, not this date.
 **Undeployed; production NOT APPROVED.** This is repository memory, not a timeline.
+
+The [November4 audit supplement](reports/comprehensive-audit-20261104/REVIEW.md) fixes indexer anchor
+isolation and streams ownership replay;33affected Python methods pass with
+negative controls retained. Production Solidity/dependencies/build profiles
+remain unchanged; old EVM/static/size evidence is explicitly reused. Website
+documentation alignment is source/docs-only, with no runtime/site/journal rollout.
 
 ## Current source candidate
 

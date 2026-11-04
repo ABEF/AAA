@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-11-03 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-04 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -501,7 +501,7 @@ The data and services behind the app.
 
 <a id="task-host-services"></a>
 
-- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. Bounded workers, request budgets, per-client admission and a guarded proxy profile are implemented and locally verified. Current Pinax serialized archive reads served the pinned current-pool fork; earlier HTTP/transport/batch failures retain their dated source scope. Full production RPC/history capabilities, Linux/TLS API hosting, complete backfills/reorg recovery, quotas and off-host alerts remain unqualified. Poplint static HTTPS is separate from API/indexer hosting.
+- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. API/indexer source has bounded requests and confirmed ancestry. The November4 audit snapshots/validates the original indexer anchor and streams ownership replay;33affected Python checks pass. Actual current-profile installation, complete history, storage/backups/restore, ingress, off-host monitoring and sustained operating qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -528,6 +528,7 @@ The data and services behind the app.
   - Maintain [separate demo/integration environments](docs/SITE_ENVIRONMENTS.md): popldemo stays on /var/www/aaa-website, poplint uses /var/www/popl-integration, separate Nginx/certificate/release identity and explicit current3 config. Publishing an unconfigured static integration site does not close API/indexer/feed/operating qualification; never expose local Anvil or auto-select demo data.
   - [Poplint serving evidence](reports/current3-website-20261026/DEPLOYMENT.md): f23c559 is separately deployed with HTTPS/identity/blocked-path checks, unchanged demo release/config/content, active renewal timer and lineage-only reload hook. Website source/operating docs are published through77501ce. Current contract/API configuration is still null; static hosting does not close backend/service/provider qualification.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): Body-progress deadlines mitigate slow fragmented reads; DNS/headers/chunk metadata/in-progress reads still require qualified socket/provider/host containment. API workers retain separate process supervision. Qualify actual keeper progress watchdog/provider recovery before release; no service changed or heartbeat restarted.
+  - [Whole-project supplement](reports/comprehensive-audit-20261104/REVIEW.md): caller configuration edits cannot authorize another start parent or full-history rollback; malformed anchors fail before database creation. Streaming ownership replay avoids materializing every transfer. Existing database identity/schema are unchanged; actual lifetime latency/SQLite storage/restore remain qualification gates. Use the [operator procedure](docs/OPERATOR_MANUAL.md#indexer-anchor-and-ownership-history-recovery); no service restart occurred.
 
   </details>
 
@@ -1200,6 +1201,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [November3 audit](reports/smart-contract-lp-audit-20261103/VERIFICATION.md) adds two new local actual-core recovery journeys and current compiler applicability review without changing production Solidity. It establishes no new exploitable defect and no blanket absence proof. Exact source-bound prior43size gates/475static records are reused; actual services/providers, maximum-holder gas, governance/emergency operations and independent audit stay open.
   - [Direct Entry3 campaign](reports/direct-entry-v3-20261103/VERIFICATION.md) retains owner/input/approval/callback/captured-price/rollback and transfer-right checks while removing only preliminary conversion. Fixed event wire preserves contribution history. Historical Entry2/schema8 remains inspection-only through explicit tools; source7 website/runtime/provider rollout is still open.
   - [Documentation/findings reconciliation](reports/project-consolidation-20261103/VERIFICATION.md) checks current profile, callable/Todo/link consistency and exact unchanged source/evidence. It does not rerun unchanged contract suites, change economic rights or close actual host/provider/marketplace/independent security gates.
+  - [November4 project-wide review and scope](reports/comprehensive-audit-20261104/COVERAGE.md) separates current focused inspection, unchanged contract evidence and external qualification. It implements indexer anchor/replay corrections and repairs cross-repository guidance without changing economics, contracts, sites, signing or services. Not a new independent/full-suite approval.
 
   </details>
 
@@ -1427,4 +1429,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `2a35c4fbc46f85d6c19a7358af08b558032be584a53adaaa111d701afeead953`.
+Snapshot SHA-256: `c3af2160e2166c0f0a1c3703befbf34a9652a9cf6bcde017db0a045e5351fbfd`.

@@ -1,0 +1,16 @@
+{
+  "production_source_count": 52,
+  "dependency_source_count": 31,
+  "build_inputs": 4,
+  "production_mismatches": [],
+  "dependency_mismatches": [],
+  "build_mismatches": [],
+  "protected_dirty_mismatches": [],
+  "historical_report_mismatches": [],
+  "previous_normal_gates": 43,
+  "previous_normal_all_pass": true,
+  "evidence_reused": "reports/authority-audit-20261103/production-size-gates.json",
+  "normal_evm_static_rerun": false,
+  "limitation": "Hash-matched evidence reuse is not new compilation, analyzer execution, EVM testing or independent approval.",
+  "all_pins_match": true
+}

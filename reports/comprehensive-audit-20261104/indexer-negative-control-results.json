@@ -1,0 +1,25 @@
+{
+  "tests_run": 6,
+  "selected": 6,
+  "failures": 10,
+  "errors": 2,
+  "skipped": [],
+  "source_unchanged": true,
+  "passed": false,
+  "failure_ids": [
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_malformed_start_anchor_is_rejected_before_creating_a_database (anchor=True)",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_malformed_start_anchor_is_rejected_before_creating_a_database (anchor=1)",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_malformed_start_anchor_is_rejected_before_creating_a_database (anchor=[])",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_malformed_start_anchor_is_rejected_before_creating_a_database (anchor={})",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_malformed_start_anchor_is_rejected_before_creating_a_database (anchor='0x1')",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_malformed_start_anchor_is_rejected_before_creating_a_database (anchor='not-a-hash')",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_mutating_callers_anchor_cannot_authorize_full_history_deletion",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_mutating_callers_anchor_cannot_bypass_first_ingestion_boundary",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_ownership_replay_streams_history_and_preserves_latest_transfer_and_burn",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_unanchored_history_cannot_gain_an_anchor_from_a_later_config_edit"
+  ],
+  "error_ids": [
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_ownership_replay_streams_history_and_preserves_latest_transfer_and_burn",
+    "tests_python.test_indexer_anchor_integrity.IndexerAnchorIntegrityTests.test_snapshot_preserves_the_existing_database_identity_and_original_anchor"
+  ]
+}

@@ -1,10 +1,16 @@
 # Work handoff
 
-Reviewed3November2026. Current contract-source base is main
-`db8033ec5f193e472ff70ac82197d8ad1570461a`; publication status must be verified
+Reviewed4November2026. Current contract-source base is main
+`e237aa72ec7fa09382d857ffab1a3fd96b286299`; publication status must be verified
 against actual local/remote Git heads. Read [instructions](../AGENTS.md),
 [context](../PROJECT_CONTEXT.md), [README](../README.md), [sole Todo](../TODO.md),
 [findings](AUDIT_FINDINGS.md) and the relevant [operator procedure](OPERATOR_MANUAL.md).
+
+The [November4 audit supplement](../reports/comprehensive-audit-20261104/REVIEW.md) fixes indexer anchor
+isolation and streams ownership replay;33affected Python methods pass with
+negative controls retained. Production Solidity/dependencies/build profiles
+remain unchanged; old EVM/static/size evidence is explicitly reused. Website
+documentation alignment is source/docs-only, with no runtime/site/journal rollout.
 
 ## Current source and preserved environments
 

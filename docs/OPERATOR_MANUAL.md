@@ -1975,6 +1975,40 @@ For host loss, fence the old host, restore exact release/config/state from authe
 
 The indexer needs complete confirmed logs, persistent SQLite/WAL handling and reorg recovery. Back up consistently, preserve deployment anchors and predecessor indexes, and rebuild into a separate validated database if required. Never substitute incomplete history for a zero balance or zero lifetime claims. After code/event-schema/canonical-address changes, update exact pins/config and qualify replay before serving results.
 
+### Indexer anchor and ownership-history recovery
+
+`indexer/monitor.py` validates and snapshots `start_parent_hash` when constructed.
+An in-memory edit to the original configuration cannot move the running indexer's
+first-block boundary or authorize rollback against another parent. A missing/null
+anchor stays unanchored; it is not permission to erase all history after a reorg.
+The existing database identity and SQL schema are unchanged. Null, or an exact
+`0x` followed by 64 hexadecimal characters, are the accepted inputs; malformed values
+fail before database creation. Valid existing anchor spelling is retained in the
+stored identity, so changing its case is still a configuration change.
+
+**Change/restart:** stop the exact reviewed indexer unit, take a consistent SQLite
+backup including its WAL state, review chain/start/parent/contract identity, then
+restart the source with matching configuration. No new unit name is assumed.
+An intentional identity change needs a separately validated database/rescan;
+do not modify an active database's cursor identity to bypass its startup check.
+This source update does not restart any existing service automatically.
+
+**Failure/reverse:** on ancestry disagreement or missing headers, retain the
+database, cursor, logs and configuration. Retry a reviewed endpoint and prove the
+bounded common ancestor; never substitute a new anchor to force deletion. For
+rollback of this source-only update, stop the service first and use the previous
+reviewed release with the same database/configuration; no schema migration is
+required. Resume API earnings only after canonical coverage reconciles.
+
+`nft_owners` now streams transfers and closes its cursor even on error. It retains
+one current owner per surviving NFT rather than a Python list of every transfer.
+Replay still scans historical rows and SQLite may sort them: this is not a
+lifetime latency, maximum-scale or production-storage qualification. The public
+API's separate complete-history bounds/unavailable behavior remain unchanged.
+
+
+### API work and operating monitoring
+
 The API has a shared 25-second work budget, finite RPC counts and expiry checks; command-line HTTP servers use a separate request process with a 30-second supervisor deadline and bounded termination cleanup. A blocked request must not leave abandoned work running. Keep it behind authenticated/reviewed ingress as appropriate, TLS, request-size/rate/connection limits and monitoring; the loopback example is not public hosting approval. A timeout/stale quote means **retry from a new snapshot**, not increase slippage or return an old transaction. No API worker holds a signer. See [API](FRONTEND_API.md) and [activation preparation](ACTIVATION_PREPARATION.md).
 
 Watch independent heartbeat/backup age, stale heads, long-pending transactions, nonce drift, RPC failures, disk/permissions, gas balance, budget exhaustion, feed freshness, keeper authorization, range exposure, cumulative execution cost, randomness funding/latency and unexpected dependency changes. Record observation gaps honestly. The desktop chat monitor remains paused; finishing this manual does not restart it.
