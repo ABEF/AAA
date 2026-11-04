@@ -157,6 +157,19 @@ never apply these semantics to old runtimes or relabel journals. Fresh43normal
 gates/current callable/static evidence replaces only its changed source scope;
 the November3 authority report below remains historical for those contexts.
 
+## Historical obligation and static-default maintenance
+
+- The [whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md)
+  maps310original finding rows, deleted guides,162ledger versions and398old
+  unchecked lines. Use original pointers plus current decisions; never close a
+  finding just by age/topic or revive creator/bridge paths from old reports.
+- CI/check-slither-review now defaults to its full current strict471-record review.
+ 44focused Python methods verify that repair; no analyzer/contract rerun. Update
+  full review/default together after relevant source changes; preserve old pins.
+- Lifetime history archive/checkpoint/read-model remains open implementation.
+  OpenSea/fresh consumer, providers/authorities/gas/hosting/metadata/recovery and
+  independent approval remain open. Source publication changes no environment.
+
 ## Verification and records
 
 [Four-audit consolidation](reports/four-report-consolidation-20261104/REVIEW.md)

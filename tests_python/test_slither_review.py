@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,6 +10,14 @@ SPEC.loader.exec_module(reviewer)
 
 
 class SlitherReviewTests(unittest.TestCase):
+    def test_published_default_review_binds_current_sources_and_complete_descriptions(self):
+        # Detect a stale default even when CI's analyzer job has not run yet.
+        # This verifies record/source integrity; it does not rerun the analyzer.
+        review = json.loads(reviewer.DEFAULT_REVIEW.read_text(encoding="utf-8"))
+        self.assertTrue(review["findings"])
+        report = {"success": True, "error": None, "results": {"detectors": review["findings"]}}
+        self.assertEqual(reviewer.check(report, review), [])
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

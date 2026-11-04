@@ -5,15 +5,16 @@ Reviewed2026-11-04. This approves one frozen release; it is not a second Todo.
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
 
-The [four-audit reconciliation](../reports/four-report-consolidation-20261104/REVIEW.md)
-adds verified indexer startup/recovery safeguards and consolidates earlier
-findings.93focused Python passes are distinct from reused contract evidence.
-Source/hosting/provider/market/independent approval remain separate. No operating
-rollout or release approval is supplied by these records.
+The [whole-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
+maps historical findings, deleted guides and earlier task lists to current
+requirements. It repairs a stale CI static-review default without weakening its
+source/finding checks;44focused Python methods pass. Contract economics and
+installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
+integration, actual dependencies/operations and independent approval remain open.
 
 ## Evidence and approval boundary
 
-Consolidation baseline: main `51079549c3e29c02082eaa863afebd3efc692513`;
+Consolidation baseline: main `a915b6a12e42dac0685ff9cad5f0fa17bfd78e23`;
 current Solidity pins match the latest manual-safeguard normal/static record.
 Those two views differ from historical authority e26fc74. No approved
 deployment or release-specific configuration exists.

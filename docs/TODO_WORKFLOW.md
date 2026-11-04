@@ -51,3 +51,18 @@ historical pointer to its exact Git text. Before consolidating dirty Markdown,
 save and hash original drafts outside Git; do not stage unrelated code changes.
 Validate current links/anchors, generated Todo/reference and unchanged code pins;
 do not rerun contract suites for documentation-only edits.
+
+## Historical obligation reconciliation
+
+Use the [whole-history map](../reports/full-history-reconciliation-20261104/REVIEW.md)
+and original pointers when revisiting an old finding. Keep correction, changed
+architecture, accepted risk, open implementation and actual qualification
+separate. Removed creator/bridge tasks must not be revived without a new decision;
+their receipt-backing/recovery principles still apply. A topic-level match is not
+proof that every subfinding was fixed. Preserve unanswered evidence/decisions
+under their existing stable task IDs and original report scope.
+
+For Solidity/toolchain changes, check the actual static CI default as well as new
+analysis/report links. Update its full strict source-bound record with the same
+change; preserve old artifacts. The current-default regression should fail on
+unreviewed drift rather than silently accepting an old report.

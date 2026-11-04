@@ -20,13 +20,12 @@ Use [consolidated findings](AUDIT_FINDINGS.md) for historical dispositions and
 mechanism, test pass, configured service and approved production release are
 separate milestones.
 
-The [four-audit consolidation](../reports/four-report-consolidation-20261104/REVIEW.md)
-maps the latest manual, confirmation, market/lifecycle and indexer findings to
-current code without replacing their original evidence. It adds transactional
-indexer startup, failed-connection cleanup and strict durable-WAL admission,
-verified by93focused Python methods. Solidity, economic rights and installed
-environments are unchanged; actual service/market/website qualification and
-independent audit remain open.
+The [whole-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
+maps historical findings, deleted guides and earlier task lists to current
+requirements. It repairs a stale CI static-review default without weakening its
+source/finding checks;44focused Python methods pass. Contract economics and
+installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
+integration, actual dependencies/operations and independent approval remain open.
 
 ## Smart contracts
 

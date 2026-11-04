@@ -1,33 +1,33 @@
 # Work handoff
 
 Reviewed4November2026; consolidation baseline main
-`51079549c3e29c02082eaa863afebd3efc692513`. Verify actual local/remote heads before
+`a915b6a12e42dac0685ff9cad5f0fa17bfd78e23`. Verify actual local/remote heads before
 claiming publication. Read [instructions](../AGENTS.md),
 [README](../README.md), [sole Todo](../TODO.md),
 [operator](OPERATOR_MANUAL.md) and
 [findings](AUDIT_FINDINGS.md). **Production NOT APPROVED.**
 Repository memory is not a timeline or background synchronization service.
 
-The [four-report consolidation](../reports/four-report-consolidation-20261104/REVIEW.md) preserves all36
-input report files and separates implemented corrections, test-model repairs,
-accepted constraints and external release gates. Current Solidity/dependency/
-build pins match the latest manual-safeguard record; it owns the current normal
-43gates/static/callable scope. Earlier unchanged-source claims remain historical.
-No unchanged contract suite/compiler/analyzer was rerun for this consolidation.
+The [whole-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
+maps historical findings, deleted guides and earlier task lists to current
+requirements. It repairs a stale CI static-review default without weakening its
+source/finding checks;44focused Python methods pass. Contract economics and
+installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
+integration, actual dependencies/operations and independent approval remain open.
 
-New indexer source uses one explicit transaction for schema/identity admission,
-closes failed connections, rejects unsupported SQLite integers before files and
-requires durable rollback/WAL modes.93focused Python methods pass, including9new
-startup cases; causal negative controls are retained. Table/index names, columns,
-keys and stored config identity are unchanged. Valid file databases need no rescan.
-WAL failure can leave a coherently initialized same-identity schema; no history is
-processed until startup succeeds. Do not delete data or weaken journal policy.
+Current Solidity/build/dependency pins still match the manual-safeguard record;
+no unchanged compiler/analyzer/contract suite was rerun. Its43normal gates,
+471static contexts and selected EVM results retain their original scopes. The
+strict CI checker now selects the full source-matched reconciliation record,
+not the old authority record. A new default/source-integrity regression prevents
+that stale-pointer recurrence. Original reports and four protected dirty files
+remain unchanged; source publication is not a running-service update.
 
-Keeper timing/recovery fixes and manual optional-policy fixes remain implemented;
-normal600/240/300, hard12hours,60–300jitter, fixed economics and NFT rights remain.
-Old service/site/Anvil/journal/signer/heartbeat boundaries are unchanged. Actual
-feeds/routes/VRF/authorities/OpenSea, source8 services/site, target gas, lifetime
-history/restore and independent audit remain open in the sole Todo.
+The indexer anchor/streaming/transactional startup repairs and keeper deadline/
+clear-priority fixes remain implemented. Lifetime replay architecture remains
+OPEN IMPLEMENTATION, not merely provider selection. Actual idle scheduling and
+threshold economics remain an operating choice. Five removed creator/bridge
+task IDs are explicitly superseded; no retired architecture is revived.
 
 ## Current source and preserved environments
 

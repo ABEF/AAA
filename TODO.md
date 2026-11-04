@@ -356,7 +356,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-liquidity-placement-idle"></a>
 
-- [x] **[Bounded placement and attributed-idle reinvestment](docs/IDLE_AND_DUST.md)** - Implemented. Bounded placement and attributed-idle reinvestment are implemented. Fresh Budget capability3 uses an independent governed compound interval after the last LP replacement/compound and prioritizes due rebalance. Matching upkeep policy2 uses actual outside or explicit operator range change after the hard configured minimum. Hourly harvest and holder claims stay independent. Contribution2%/conversion1%/maintenance3% defaults remain; actual market/MEV/operating qualification remains open.
+- [x] **[Bounded placement and attributed-idle reinvestment](docs/IDLE_AND_DUST.md)** - Implemented. Bounded placement and attributed-idle reinvestment are implemented. Fresh Budget compound4/maintenance3 uses its own governed interval after max(lastCompound,lastRebalance). The worker waits below the main85%adjustment threshold with no pending geometry, including during rebalance cooldown. Hourly harvest/holder claims stay independent. Idle-only scheduling and actual-currency thresholds remain opt-in operating qualification; contribution2%/conversion1%/maintenance3% defaults remain.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -475,7 +475,7 @@ The data and services behind the app.
 
 <a id="task-financial-history"></a>
 
-- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Confirmed collection, NFT and complete current-holdings 24h/all-time earnings are implemented, with separate LP/collective/royalty attribution and current-price USD values. Qualify actual feeds, complete predecessor history, archive providers and production service budgets.
+- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Bounded confirmed collection/NFT/current-holdings24h/all-time earned amounts and today-price USD are implemented, separate from claimable/claimed balances. Long-lived authenticated archive/checkpoint/read-model evolution is still OPEN IMPLEMENTATION; actual feeds, complete predecessor history, provider/reorg and service/storage qualification remain separate.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -483,7 +483,7 @@ The data and services behind the app.
   - [Production earnings delta](reports/wallet-earnings/VERIFICATION.md): bounded same-block current-holdings history and collection holder allocations are implemented in the shared API/website profile. 86 affected Python, 89 distinct JS and six isolated production-profile browser cases pass. Claims/conversions are not income; missing prices/chunks never become zero. Actual feeds/history/hosting and independent qualification remain open.
   - Implemented exact processed-event attribution, carried fractions, deferred currency cohorts and complete configured same-chain lineage, with [scoped evidence](reports/earnings-history/VERIFICATION.md). Verify actual deployment-to-present ingestion of all seven emitters, provider/reorg behavior and load within the existing request budgets; never truncate history or infer zero from missing coverage.
   - User decision 2026-10-19: value all-time/24h earned original token amounts at today's confirmed prices, not historical USD. The implemented price profile verifies Oracle/feed/token/sequencer pins and storage; qualify actual providers, proxy/admin/wrapper assumptions and stale/recovery behavior. No guessed stablecoin peg; incomplete nonzero valuation is null.
-  - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Historical remote-profile credits do not prove remote gross revenue/reserves; current accounting3 has no remote ledger. The selected hookless pool has a static 1.002% LP fee; its observed approximately 1.101% total charge includes protocol fees that are not PoPL income. Demo 0.30% is illustrative.
+  - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Historical remote-profile credits do not prove remote gross revenue/reserves; current accounting6 has no remote ledger. The selected hookless pool has a static 1.002% LP fee; its observed approximately 1.101% total charge includes protocol fees that are not PoPL income. Demo 0.30% is illustrative.
   - Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui).
   - Implemented the read-only [history audit](docs/HISTORY_AUDIT.md): per configured current/predecessor epoch, compare exact raw logs and headers in windows of up to 128 blocks/10,000 logs, with shared work budgets and no database repair. [Scoped evidence](reports/history-audit/VERIFICATION.md) covers 41 distinct affected cases via new runs and exact-body reuse. Reconcile all contiguous windows through reviewed epoch cutoffs; a partial matched window or agreeing providers is not a completeness/finality proof.
   - NFT card totals now combine individual LP, equal collective and royalties; they exclude gross pool income and require complete same-snapshot priced components. Saved demo 24h net history remains unavailable. [Scoped evidence](reports/topup-and-reward-review/VERIFICATION.md) does not qualify live ingestion or prices.
@@ -954,6 +954,7 @@ Three required testing layers, with source-bound evidence.
   - [October31 current-source review](reports/today-audit-20261031/VERIFICATION.md) refreshes source6 detector context disposition without recompilation or relaxing the source/finding checker. This internal assessment does not replace independent audit/remediation, target gas or actual operating/provider qualification.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Fresh475-record Slither analysis at final-a8e7dc7cc5;407 exact unchanged source/context dispositions reused and68 current contexts reviewed. Finding exit is not a clean run. Strict checker rules unchanged; new default record is source-bound. Independent audit/remediation and live-service qualification stay open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
+  - [Whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md): recurring stale static CI default repaired with a full current471-record strict review and44focused Python passes. Preserve13current-context/458referenced-context reuse limits; no new analyzer/compiler/contract execution or green public CI is claimed. Keep review/default/current-source regression aligned after relevant changes; frozen-release independent audit/remediation remains open.
 
   </details>
 
@@ -1221,7 +1222,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
 <a id="task-historical-findings"></a>
 
-- [x] **[Reconcile historical findings against the current implementation](reports/historical-reconciliation-completion-20261029/REVIEW.md)** - Implemented. Historical report findings are reconciled with the current accounting6/direct Entry3 release. One maintained findings overview separates current mechanisms, superseded requirements, accepted risks and remaining qualification; original source-scoped reports are preserved. This documentation closure does not close independent audit or live-service requirements.
+- [x] **[Reconcile historical findings against the current implementation](reports/full-history-reconciliation-20261104/REVIEW.md)** - Implemented. Whole-history reconciliation preserves original finding provenance and maps current obligations, superseded architecture, deliberate deferrals and unanswered evidence to existing task owners. It covers all tracked report/guide main history, deleted guides, old ledgers and website narratives; it is not proof that all old findings are solved or a new full audit.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1234,6 +1235,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Ten-report consolidation](reports/ten-audit-consolidation-20261102/REVIEW.md) expands the previous five-report reconciliation into75 grouped dispositions linked to existing task owners.222 original/previous-consolidation files stay byte-identical;172 checked artifact entries match. Earlier proposals already implemented (cooldown observation enrollment/current source6 static review) are superseded, not resold as work. This is not ten fresh audits,352 new readings or a full-suite/operating approval.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Preserve2568 historical report hashes and four unrelated dirty files. Current review explicitly supersedes the ten-report independence claim and ordinary candidate status; old report bytes/scopes remain intact. Current guides, operator, callable reference and task ledger reflect the correction. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Current consolidation](reports/project-consolidation-20261103/REVIEW.md) inventories401baseline report Markdown files, preserves351prior reading scopes and indexes49later narratives.310overlapping imported finding rows plus5later explicit findings map into22current topics with original IDs/JSON pointers and existing task ownership. It is documentation/source-applicability work, not310new bugs/tests or a fresh security audit. [Current findings](docs/AUDIT_FINDINGS.md) supersede stale active-guide conclusions; original reports remain byte-preserved.
+  - [Whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md):310original rows retain exact pointers/records,16material specific reassessments,162ledger versions,398pre-ledger unchecked lines and five explicitly retired task IDs. Deleted guides/local-only drafts and233website narrative versions are inventoried without changing original reports or website code. No age/topic-based blanket closure or revival of retired architecture.
 
   </details>
 
@@ -1447,4 +1449,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `a1fe9d5d2bc92f64e55ec06814621de286ff263e7558a0f31068d0fcebf49230`.
+Snapshot SHA-256: `168c64d1470f55b3e0936c0f2a3efe4f423565566fcd24520ed8ae878babde2c`.

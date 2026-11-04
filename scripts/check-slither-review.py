@@ -11,6 +11,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_REVIEW = ROOT / "reports/full-history-reconciliation-20261104/static-review.json"
 sys.path.insert(0,str(ROOT))
 from zzz_ops.state import read_json
 
@@ -231,7 +232,7 @@ def check(report, review, root=ROOT):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("report", type=Path)
-    parser.add_argument("--review", type=Path, default=ROOT / "reports/authority-audit-20261103/static-review.json")
+    parser.add_argument("--review", type=Path, default=DEFAULT_REVIEW)
     args = parser.parse_args()
     try:
         report = read_json(args.report,encoding="utf-8")

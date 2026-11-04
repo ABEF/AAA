@@ -5,13 +5,12 @@ work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.
 
-The [four-audit consolidation](../reports/four-report-consolidation-20261104/REVIEW.md)
-closes the reproduced indexer startup gap and maps prior corrections to current
-source. Adopt matching service source only through reviewed stop/backup/restart;
-actual lifetime ingestion, storage/restore and fresh-profile operating acceptance
-remain under [hosting](../TODO.md#task-host-services) and
-[history](../TODO.md#task-financial-history). Manual recovery remains current-pool
-only; financial bypass is never routine keeper fallback. No rollout occurred.
+The [whole-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
+maps historical findings, deleted guides and earlier task lists to current
+requirements. It repairs a stale CI static-review default without weakening its
+source/finding checks;44focused Python methods pass. Contract economics and
+installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
+integration, actual dependencies/operations and independent approval remain open.
 
 ## 1. Freeze the correct source and integration boundary
 

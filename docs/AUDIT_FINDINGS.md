@@ -1,21 +1,28 @@
 # Consolidated audit findings and evidence
 
-Reviewed4November2026; consolidation baseline main5107954. Production
+Reviewed4November2026; consolidation baseline maina915b6a. Production
 **NOT APPROVED**. [Sole Todo](../TODO.md) owns work;
 [features](IMPLEMENTATION_STATUS.md) record source and
 [operator](OPERATOR_MANUAL.md) describes actions.
 
-The [four-audit reconciliation](../reports/four-report-consolidation-20261104/RECONCILIATION.md)
-maps past corrections, test-model repairs and remaining limits to exact current
-sources. It does not sum overlapping tests or replace immutable reports. Current
-normal/static pins belong to the manual-safeguard report; older authority e26fc74
-is historical where those two views changed.
+The [whole-history review](../reports/full-history-reconciliation-20261104/REVIEW.md)
+preserves310original finding records/pointers,398pre-ledger unchecked lines,
+162task-ledger versions and deleted-guide decisions. It distinguishes historical
+fixes, changed architecture, surviving limits and actual open implementation.
+Original reports remain immutable; counts are not independent defects/tests.
 
-The follow-up fixes rejected-startup schema/journal changes and leaked SQLite
-connections, adds early integer bounds and requires durable WAL success.
-93focused Python methods pass with retained negatives. No contract, economic,
-permission, service/site/journal or signing change. Real lifetime storage/restore,
-market/provider and independent qualification remain open.
+The actual CI static-review default had become stale after two manual-view edits.
+It now selects a full strict current-source record;44focused Python methods pass.
+No matching rules, contracts, economics or installed environments changed.
+The [provenance map](../reports/full-history-reconciliation-20261104/FINDINGS.json)
+records the recurring static issue and materially changed original dispositions.
+
+Lifetime archive/checkpoint/read-model evolution remains OPEN IMPLEMENTATION.
+OpenSea primary mint and the fresh source8 consumer also remain implementation
+and qualification work, not solved by old local tests. Idle job economics,
+actual feeds/routes/VRF/authorities/hosting/gas/storage/metadata and independent
+approval remain under the sole Todo. Five removed creator/bridge IDs are
+deliberately superseded; their funded-accounting/recovery principles survive.
 
 ## Current conclusions by project layer
 

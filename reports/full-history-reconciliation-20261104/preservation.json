@@ -1,0 +1,48 @@
+{
+  "baseline": "a915b6a12e42dac0685ff9cad5f0fa17bfd78e23",
+  "protected_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "protected_dirty_unchanged": true,
+  "original_report_files": 2692,
+  "original_report_manifest_sha256": "2415501b755755c2783a61e98d09e4e9d9b6833545dfd20e4eafc1957238bf23",
+  "original_reports_unchanged": true,
+  "original_archived_file_sha256": {
+    "AGENTS.md": "338404221109fc1d9e98aade951e208c25c67625c4025963036f433311f6599d",
+    "PROJECT_CONTEXT.md": "90733626a31a9f58a743f83d62916326b090b8798cdff8cf536cac91958fe333",
+    "README.md": "78e1c23cb9888355d956b2411b1ef6e26d3a7c4a816891d8c2e0b1888a6917f1",
+    "TODO.md": "11b52bc6f8f575a9b53953398acb77ab7835b3a9952678717c7fcd0949bfb675",
+    "docs/AUDIT_FINDINGS.md": "b481b1523e6085e38a2c8c5b2003420c10428649640558052c076dec6b6b1c2b",
+    "docs/DEVELOPMENT.md": "cdad13d2266d11ccb6d05df6b557193c37a6089ff522daa1ed53992e2e34cb3d",
+    "docs/IMPLEMENTATION_STATUS.md": "717f0d22e740e7d53a9697bbb57095facb49b25be4079acb55ed7b947d2acf3d",
+    "docs/OPERATOR_MANUAL.md": "bc25a21d2cafa42f4d1cf1bdb9f731ddb463a4b882768acca29c6468ea3fae0e",
+    "docs/project-todo.json": "a815c23c0e83e6dc4f35d567fb4cc83a159ba92b196d9e7e3a82957f8037c635",
+    "docs/RELEASE_CHECKLIST.md": "fa92097a62e2b1cdecce7cd468460079f5ca87997ec35ec673c06be93c037106",
+    "docs/ROADMAP.md": "973bd49b4c4c8eb70770f8eec0c0fbd4a2e07788dfc399a2c1ddd38173ef5a18",
+    "docs/TODO_WORKFLOW.md": "9fa3384a8da530f785b8b34569fdff31c0ff867fd98662b3ac4a7fb733a1f0cb",
+    "docs/WORK_HANDOFF.md": "ae430c6b2e399b6127e79b0cbe9c06146f5abfa5183365920b1add7583ce0657",
+    "reports/README.md": "322b562ce377e38ebf5f62f21cc1de47ece32954140966f199ce4958c27146ad",
+    "scripts/check-slither-review.py": "e9ff019e3f805d83e8e96ef6fd8fe8b3fbe3ec0116f6f13fcb13de8257fda1f0",
+    "tests_python/test_slither_review.py": "1149da43982a6dd9e425daa1c92af3deffd9f4e3a707eaa905794efb95901ca0"
+  },
+  "exact_contract_dependency_build_pins_unchanged": true,
+  "website_head_unchanged": "8ec453aced2ff0f5263d53a4eae917809105b798",
+  "current_website_narrative_hashes_unchanged": true,
+  "all73_task_ids_statuses_preserved": true,
+  "operating_boundary": "No deployment, public transaction, service/site/Anvil/NFT/LP/balance/journal/signer/heartbeat mutation.",
+  "local_untracked_drafts_preserved": [
+    {
+      "path": "reports/frontend-transactions/README.md",
+      "sha256": "e9dbfe7956b3c466a43f0534d09ba191324e4dcbeda7ae45276b2959512a1c5b",
+      "scope": "Untracked original draft read; preserved, not staged or promoted to published evidence."
+    },
+    {
+      "path": "reports/operations-hardening/README.md",
+      "sha256": "5865da5d222fccb9537137b37c93dccb254d155da3f8fa1bad14c73b872f4adb",
+      "scope": "Untracked original draft read; preserved, not staged or promoted to published evidence."
+    }
+  ]
+}

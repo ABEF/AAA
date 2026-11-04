@@ -115,11 +115,16 @@ actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-records19of47then-changed source pins. The [current LP lifecycle refresh](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
-records475 flags:407 exact unchanged detector/source contexts reused and68 current
-contexts reviewed, with a source-matched default
-[review record](../reports/lp-lifecycle-audit-20261102/static-review.json). Old records
-remain untouched; the checker still requires exact source/finding coverage.
+records19of47then-changed source pins. The [current strict default](../reports/full-history-reconciliation-20261104/static-review.json)
+binds471captured detector records to the latest manual-safeguard source:
+13changed-source contexts reviewed and458exact referenced-context dispositions
+reused, retaining their original transitive-review limits. The checker default
+is a real CI input, not just a documentation link. `SlitherReviewTests` checks its
+current source inventory/descriptions on every focused/full Python run.
+After relevant Solidity/toolchain changes, update the full source-bound review
+and default together, retain original raw analyzer output and run the checker
+against that output. Never alter old report pins or loosen comparison rules to
+hide drift. A default/source-integrity test is not a new analyzer run or green CI.
 Refresh after relevant changes and check exact-revision CI.
 Keep normal runtime/initcode/gas gates and exact constructor arguments.
 

@@ -2354,6 +2354,33 @@ current production integration.
 
 Future changes must preserve this distinction: what can be configured now, what requires new compatible code, what has actually been qualified, and what cannot be recovered. Do not describe a possible new deployment as a repair guaranteed to work with every already sealed predecessor.
 
+## Reviewing an old audit recommendation before operating
+
+Start with the [current reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
+and [sole Todo](../TODO.md), then the exact current procedure/profile and deployed
+runtime. Old wording such as “current”, “complete”, outside-only,15minutes,
+creator inbox, bridge or custody recipient describes that old revision. It does
+not authorize a current call or restore a removed feature. A past local incident
+permission does not authorize another pending-record reset.
+
+Read-only commands from the repository root verify the generated task ledger
+and the selected static-review gate:
+
+```bash
+python scripts/sync-project-todo.py --check
+python -m unittest tests_python.test_slither_review
+python scripts/check-slither-review.py /path/to/captured/slither-output.json
+```
+
+The last input must be actual complete successful analyzer JSON for the reviewed
+source. It is not reviewHash, a transaction or a simulation. Source/toolchain or
+unreviewed detector drift must fail; do not edit historical evidence to make it
+pass. [Development](DEVELOPMENT.md) explains a fresh analyzer run when justified.
+These checks need no wallet, gas, pause or service restart. They neither upgrade
+old deployments/services nor close external qualification. No reverse transaction
+is needed; restore a mistaken documentation/default change through reviewed Git,
+preserving its evidence. Never change a running journal to match a report label.
+
 <a id="callable-contract-reference"></a>
 
 ## Callable contract reference: reads, writes, inputs and outputs
