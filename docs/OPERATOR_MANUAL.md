@@ -1742,6 +1742,25 @@ if needed. Runtime drift requires review, not automatic acceptance of new pins.
 Actual hosting/consumer qualification remains open; no service is started by this
 code change. See the [scoped verification](../reports/royalty-reporting/VERIFICATION.md).
 
+### Prepare and rotate an earnings checkpoint
+
+Use [the exact checkpoint1 procedure](EARNINGS_CHECKPOINTS.md). The offline
+`scripts/build-earnings-checkpoint.py` takes a reviewed API `--config`, confirmed
+historical `--block` and new exclusive `--output`; optional offline budgets are
+bounded separately. It creates only a candidate, without keys or contract writes.
+Independently review its source/cutoff/raw-history evidence, then pin path/SHA-256
+in `earnings_history.checkpoint` through a separately authorized API config/restart.
+A served checkpoint must precede the complete24-hour window. It preserves exact
+fractions/cohorts, not merely rounded totals. This first profile supports fresh
+6/5/1without predecessors and accelerates earnings only; other readers stay raw.
+
+On fault, preserve the artifact/config/WAL-consistent raw archive. A checkpoint
+reorg, source change or malformed file is unavailable, never guessed zero. Restore
+approved bytes, rebuild through reviewed bounded stages, or deliberately remove
+the optional key/restart; full replay may still exceed its limits. No keeper,
+nonce journal, wallet signing, pause or on-chain role change is required. No
+installed service/configuration is changed by publishing this source.
+
 ### Serve processed earnings and current-price values
 
 Enable the optional `earnings_history` profile only after reviewing the

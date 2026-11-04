@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-05",
+  "sources": [
+    "https://docs.opensea.io/docs/seadrop",
+    "https://support.opensea.io/en/articles/8867082-which-blockchains-are-compatible-with-opensea",
+    "https://github.com/ProjectOpenSea/seadrop#deployments",
+    "https://github.com/ProjectOpenSea/seadrop/blob/main/src/interfaces/INonFungibleSeaDropToken.sol",
+    "https://github.com/ProjectOpenSea/seadrop/blob/main/src/SeaDrop.sol",
+    "https://docs.opensea.io/docs/part-4-edit-drop-settings"
+  ],
+  "scope": "Official mutable documentation/source; no Robinhood runtime or product qualification.",
+  "marketplace_support_observed": true,
+  "exact_primary_product_and_runtime_qualified": false,
+  "fee_selected": false,
+  "contract_or_mint_authority_changed": false
+}

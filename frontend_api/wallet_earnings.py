@@ -28,7 +28,7 @@ def read(engine, wallet_address, block_number, offset):
     block = {'blockHash': header['hash'], 'requireCanonical': True}
     life = p._verify_deployment(block)
     lp, royalties = p._admitted(block)
-    history = p._history_snapshot(header, block, lp, royalties)
+    history = engine.history_snapshot(p, header, block, lp, royalties)
     ids = sorted(i for i, owner in history.owners.items() if owner == wallet)
     count = p._uint('nft', 'balanceOf(address)', wallet, block=block)
     require(count == len(ids) and count <= 1000, 'Earnings inventory differs from canonical balance')
@@ -58,7 +58,7 @@ def read(engine, wallet_address, block_number, offset):
         emitters = engine.check_profile(peer, at)
         a, b = peer._admitted(at)
         model.begin(emitters, a, b, lower, fee_intake_version=peer.fee_intake_version)
-        replayed = peer._history_snapshot(cutoff, at, a, b, consumer=model, extra_emitters=tuple(emitters.values()))
+        replayed = engine.history_snapshot(peer, cutoff, at, a, b, consumer=model, extra_emitters=tuple(emitters.values()))
         model.finish()
         engine.reconcile(peer, model, at, a, b, replayed.provenance['minted_count'])
         for i in selected:
@@ -105,5 +105,6 @@ def read(engine, wallet_address, block_number, offset):
         completeness='Complete configured indexed history and pinned RPC reconciliation; not a log-completeness proof.'))
     for peer, cutoff, _ in epochs:
         require(p._header(hex(cutoff['number'])) == cutoff, 'Earnings epoch changed during replay')
+    engine.finish_checkpoint()
     p._finish(header)
     return result

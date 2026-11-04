@@ -144,6 +144,17 @@ claimable values are null. Paid allocations remain historical amounts with zero
 remaining principal. These amounts never enter rewards, earnings or previously
 claimed reward totals. No principal-payout transaction endpoint is implemented.
 
+## Optional reviewed earnings checkpoint
+
+The existing earnings schema1 may explicitly include checkpoint1 through
+`earnings_history.checkpoint:{path,sha256}`. It is a fixed reviewed local artifact,
+not an HTTP-supplied file or automatically trusted cached total. Fresh accounting6/
+custody5/fee-intake1 only; no predecessors. Earnings endpoints report checkpoint
+block/hash/digest and suffix counts while preserving all-time/24h fields and
+current-price semantics. Missing/corrupt/new-source/too-young checkpoints fail;
+default full replay remains unchanged. [Setup and recovery](EARNINGS_CHECKPOINTS.md).
+Other history/preparation consumers are not silently switched to checkpoints.
+
 ## Implemented endpoint
 
 | GET path | Purpose / optional configuration |

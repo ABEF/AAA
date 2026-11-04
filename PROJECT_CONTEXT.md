@@ -1,19 +1,21 @@
 # PoPL current project context
 
-Reviewed4November2026; consolidation baseline main
-`a915b6a12e42dac0685ff9cad5f0fa17bfd78e23`. Verify actual local/remote heads before
+Reviewed5November2026; consolidation baseline main
+`096fd2be4db514d5fd8930c672522ed1fc6c3ff0`. Verify actual local/remote heads before
 claiming publication. Read [Instructions](AGENTS.md),
 [README](README.md), [sole Todo](TODO.md),
 [operator](docs/OPERATOR_MANUAL.md) and
 [findings](docs/AUDIT_FINDINGS.md). **Production NOT APPROVED.**
 Repository memory is not a timeline or background synchronization service.
 
-The [whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md)
-maps historical findings, deleted guides and earlier task lists to current
-requirements. It repairs a stale CI static-review default without weakening its
-source/finding checks;44focused Python methods pass. Contract economics and
-installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
-integration, actual dependencies/operations and independent approval remain open.
+The [earnings checkpoint milestone](reports/earnings-checkpoints-20261104/REVIEW.md)
+adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
+fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
+claims and current ownership; no USD values or signing are cached.24new final
+cases pass, with147affected checks at their recorded earlier stage. General
+lineage/other history consumers, real workloads/rotation and production approval
+remain open. [OpenSea investigation](reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
+identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
 Current Solidity/build/dependency pins still match the manual-safeguard record;
 no unchanged compiler/analyzer/contract suite was rerun. Its43normal gates,
@@ -24,8 +26,8 @@ that stale-pointer recurrence. Original reports and four protected dirty files
 remain unchanged; source publication is not a running-service update.
 
 The indexer anchor/streaming/transactional startup repairs and keeper deadline/
-clear-priority fixes remain implemented. Lifetime replay architecture remains
-OPEN IMPLEMENTATION, not merely provider selection. Actual idle scheduling and
+clear-priority fixes remain implemented. Checkpoint1 is a first implemented milestone;
+lineage/other consumers, archival/rotation and operating qualification remain open. Actual idle scheduling and
 threshold economics remain an operating choice. Five removed creator/bridge
 task IDs are explicitly superseded; no retired architecture is revived.
 

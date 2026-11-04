@@ -9,6 +9,17 @@ retain their original deployment scope. The public demo
 remains a simulation; current-profile service, website and provider
 qualification remain open. See the [financial-history task](../TODO.md#task-financial-history).
 
+## Optional checkpoint1 milestone
+
+The fresh accounting6/custody5/fee-intake1 earnings path can use a reviewed,
+source/configuration-bound immutable checkpoint plus bounded raw suffix. It
+preserves scaled fractions, dust and eligibility rather than trusting a rounded
+total. The checkpoint must predate the complete24-hour window; USD still uses
+today's confirmed prices. This is opt-in for original deployments without
+predecessors. Other ownership/claim-history endpoints keep full replay.
+See [configuration, exact commands, trust and recovery](EARNINGS_CHECKPOINTS.md).
+No checkpoint is automatically approved, installed or promoted from an old source.
+
 ## Fee allocation integrity
 
 For explicit `fee_intake_version: 1`, the pinned actual FeeController must return
@@ -310,7 +321,9 @@ can still expose healthy current balances; no availability claim is made for the
 entire history endpoint during a token outage.
 
 History is operator-maintained evidence plus pinned RPC reconciliation, not a
-cryptographic proof that every log was ingested. Whole-history reads are bounded;
-large histories or many predecessor/assets can exceed the request budget and
-must fail without truncation. Production backfill, reorg/load rehearsals, archive
-providers, current feed policies and frontend display remain qualification work.
+cryptographic proof that every log was ingested. Default full replay and opt-in
+checkpoint suffixes both retain request limits and fail without truncation.
+Checkpoint1 addresses single-deployment earnings replay, not all ownership/claim
+consumers, predecessor checkpoints, unattended rotation or raw archival. Backfill,
+reorg/load/restore rehearsals, archive providers, current feeds and frontend
+display remain qualification work; the financial-history task is still in progress.

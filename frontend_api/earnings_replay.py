@@ -42,13 +42,16 @@ def require(condition, message):
 
 
 class Replay:
-    def __init__(self, timestamp, nft_id=None, *, selected=None):
+    def __init__(self, timestamp, nft_id=None, *, selected=None, track_all=False):
+        require(type(track_all) is bool and (not track_all or (nft_id is None and selected is None)),
+                'Invalid checkpoint earnings selection')
         require(selected is None or (nft_id is None and isinstance(selected, tuple) and
                 len(selected) <= 16 and len(set(selected)) == len(selected) and
                 all(type(i) is int and 0 < i < 2**256 for i in selected)), 'Invalid earnings selection')
         self.timestamp, self.nft_id = timestamp, nft_id
         self.selected = selected if selected is not None else (() if nft_id is None else (nft_id,))
-        self.group = selected is not None
+        self.group = selected is not None or track_all
+        self.track_all = track_all
         self.accounts = {i: defaultdict(int) for i in self.selected}
         self.account_totals = {i: defaultdict(int) for i in self.selected}
         self.mints = []
@@ -160,6 +163,10 @@ class Replay:
                 require(identifier not in self.minted and len(self.mints) < 1000 and recipient != ZERO,
                         'Duplicate/invalid earnings mint')
                 self.minted.add(identifier); self.mints.append(identifier)
+                if self.track_all:
+                    self.selected += (identifier,)
+                    self.accounts[identifier] = defaultdict(int)
+                    self.account_totals[identifier] = defaultdict(int)
             else:
                 require(identifier in self.minted and recipient != ZERO, 'Invalid earnings transfer')
         elif role == 'membership':

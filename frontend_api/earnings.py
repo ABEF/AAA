@@ -9,7 +9,7 @@ from zzz_ops.work_budget import checkpoint
 class Earnings:
     def __init__(self, config, projection):
         from frontend_api.service import _keys, _hash, Contract
-        _keys(config, {'schema', 'deployments', 'prices'}, 'earnings_history')
+        _keys(config, {'schema', 'deployments', 'prices'} | ({'checkpoint'} if 'checkpoint' in config else set()), 'earnings_history')
         if type(config['schema']) is not int or config['schema'] != 1 or projection.history is None:
             raise ValueError('Earnings requires schema 1 and complete configured history')
         self.p = projection
@@ -36,6 +36,22 @@ class Earnings:
             self.profiles[controller] = extra
         self.descriptors = projection.lineage.descriptors if projection.lineage else projection.assets
         self.prices = None if config['prices'] is None else Prices(config['prices'], projection, self.descriptors)
+        self.checkpoint = None
+        if 'checkpoint' in config:
+            from frontend_api.earnings_checkpoint import Checkpoint
+            self.checkpoint = Checkpoint(config['checkpoint'], self)
+
+    def history_snapshot(self, p, header, block, lp, royalties, **kwargs):
+        """Only earnings uses its explicitly reviewed checkpoint; other reads stay raw."""
+        if self.checkpoint is not None:
+            require(p is self.p and p.lineage is None, 'Checkpoint lineage is unsupported')
+            self.checkpoint.check_anchor(p)
+            kwargs['seed'] = self.checkpoint.seed()
+        return p._history_snapshot(header,block,lp,royalties,**kwargs)
+
+    def finish_checkpoint(self):
+        if self.checkpoint is not None:
+            self.checkpoint.check_anchor(self.p)
 
     def check_profile(self, p, block):
         extra = self.profiles[p.contracts['access'].address]
@@ -92,7 +108,7 @@ class Earnings:
         header,head,block=p._snapshot()
         life=p._verify_deployment(block)
         lp,royalties=p._admitted(block)
-        history=p._history_snapshot(header,block,lp,royalties)
+        history=self.history_snapshot(p,header,block,lp,royalties)
         owner=ordinal=None
         if identifier is not None:
             from frontend_api.service import UnknownNFT
@@ -119,7 +135,7 @@ class Earnings:
             emitters=self.check_profile(peer,at)
             a,b=peer._admitted(at)
             model.begin(emitters,a,b,lower,fee_intake_version=peer.fee_intake_version)
-            replayed=peer._history_snapshot(cutoff,at,a,b,consumer=model,extra_emitters=tuple(emitters.values()))
+            replayed=self.history_snapshot(peer,cutoff,at,a,b,consumer=model,extra_emitters=tuple(emitters.values()))
             model.finish()
             self.reconcile(peer,model,at,a,b,replayed.provenance['minted_count'])
             provenance.append({'controller':peer.contracts['access'].address,'history':dict(replayed.provenance),
@@ -136,6 +152,7 @@ class Earnings:
             'completeness':'Operator-maintained complete ingestion and pinned RPC; not a cryptographic log-completeness proof.'})
         for peer,cutoff,_ in epochs:
             require(p._header(hex(cutoff['number']))==cutoff,'Earnings epoch anchor changed during replay')
+        self.finish_checkpoint()
         p._finish(header)
         return result
 

@@ -1,16 +1,18 @@
 # Engineering roadmap
 
-Reviewed4November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
+Reviewed5November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
 work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.
 
-The [whole-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
-maps historical findings, deleted guides and earlier task lists to current
-requirements. It repairs a stale CI static-review default without weakening its
-source/finding checks;44focused Python methods pass. Contract economics and
-installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
-integration, actual dependencies/operations and independent approval remain open.
+The [earnings checkpoint milestone](../reports/earnings-checkpoints-20261104/REVIEW.md)
+adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
+fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
+claims and current ownership; no USD values or signing are cached.24new final
+cases pass, with147affected checks at their recorded earlier stage. General
+lineage/other history consumers, real workloads/rotation and production approval
+remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
+identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
 ## 1. Freeze the correct source and integration boundary
 
@@ -48,8 +50,9 @@ remains simulation; served current3 and historical Anvil/journals remain their
 original profiles. Public DEPLOYMENT stays null and signing Anvil-only.
 
 Qualify actual preparation/trace/approval/claims and truthful complete holdings/
-history, unavailable states, account changes and pending recovery. Design measured
-long-lived archive/read-model evolution before bounded replay becomes insufficient.
+history, unavailable states, account changes and pending recovery. Qualify the opt-in
+checkpoint1 implementation, then extend lineage/other full-history consumers and
+review long-lived archival/rotation/source-codec evolution.
 A new service/config rollout needs stop/reconcile/dry-run/restart, not a version edit.
 
 Owning work: [preflight](../TODO.md#task-native-production-preflight),

@@ -1,20 +1,22 @@
 # Release approval record - NOT APPROVED
 
-Reviewed2026-11-04. This approves one frozen release; it is not a second Todo.
+Reviewed2026-11-05. This approves one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
 
-The [whole-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
-maps historical findings, deleted guides and earlier task lists to current
-requirements. It repairs a stale CI static-review default without weakening its
-source/finding checks;44focused Python methods pass. Contract economics and
-installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
-integration, actual dependencies/operations and independent approval remain open.
+The [earnings checkpoint milestone](../reports/earnings-checkpoints-20261104/REVIEW.md)
+adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
+fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
+claims and current ownership; no USD values or signing are cached.24new final
+cases pass, with147affected checks at their recorded earlier stage. General
+lineage/other history consumers, real workloads/rotation and production approval
+remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
+identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
 ## Evidence and approval boundary
 
-Consolidation baseline: main `a915b6a12e42dac0685ff9cad5f0fa17bfd78e23`;
+Consolidation baseline: main `096fd2be4db514d5fd8930c672522ed1fc6c3ff0`;
 current Solidity pins match the latest manual-safeguard normal/static record.
 Those two views differ from historical authority e26fc74. No approved
 deployment or release-specific configuration exists.

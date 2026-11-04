@@ -12,12 +12,14 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 [manual recovery](docs/OPERATOR_MANUAL.md). Source publication does not update
 existing contracts, services, journals or websites. Public signing remains disabled.
 
-The [whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md)
-maps historical findings, deleted guides and earlier task lists to current
-requirements. It repairs a stale CI static-review default without weakening its
-source/finding checks;44focused Python methods pass. Contract economics and
-installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
-integration, actual dependencies/operations and independent approval remain open.
+The [earnings checkpoint milestone](reports/earnings-checkpoints-20261104/REVIEW.md)
+adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
+fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
+claims and current ownership; no USD values or signing are cached.24new final
+cases pass, with147affected checks at their recorded earlier stage. General
+lineage/other history consumers, real workloads/rotation and production approval
+remain open. [OpenSea investigation](reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
+identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
 ## Project navigation
 

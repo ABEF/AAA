@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-11-04 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-05 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -142,6 +142,7 @@ Custody, ownership and reward accounting.
   - Rehearse a supported marketplace mint, payment, receiver callback/rejection, reveal and pause/restart; record receipts and exact verified collection URL. Keep production website mint preparation disabled.
   - Official OpenSea Robinhood chain support is distinct from custom primary-mint/SeaDrop compatibility. [Current research](reports/real-service-readiness-20261025/RESEARCH.md) leaves actual product/contract/caller/recipient/royalty and random-draw integration unqualified; no marketplace mint authority or mint adapter was silently added.
   - Decision2026-10-25:0.05ETH is total buyer mint price; the recipient receives the remainder after the actual platform fee, gas separate. No actual fee is selected. [Current qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) is hardblocked by code-owned direct-mint capability; runtime presence/general chain support cannot implement SeaDrop or qualify primary mint.
+  - [November5 official-source investigation](reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md): exact mintSeaDrop/getMintStats, mint-recipient/payment, per-wallet issuance counts and nested NFT/Vault reentrancy must be designed on the canonical graph. General Robinhood marketplace support and a generic fee guide do not establish its actual primary-drop product, deployed runtime or accepted fee. No mint power, adapter or misleading readiness flag was added.
 
   </details>
 
@@ -475,7 +476,7 @@ The data and services behind the app.
 
 <a id="task-financial-history"></a>
 
-- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Bounded confirmed collection/NFT/current-holdings24h/all-time earned amounts and today-price USD are implemented, separate from claimable/claimed balances. Long-lived authenticated archive/checkpoint/read-model evolution is still OPEN IMPLEMENTATION; actual feeds, complete predecessor history, provider/reorg and service/storage qualification remain separate.
+- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Bounded complete replay and opt-in reviewed checkpoint1 plus raw suffix are implemented for collection/NFT/current-holdings earnings with today-price USD. Fresh6/5/1checkpointing preserves exact fractions/dust/cohorts/claims and the entire raw24-hour window. General lineage/other full-history consumers, source-codec evolution, raw archival, rotation/restore and actual long-lived workload qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -503,6 +504,7 @@ The data and services behind the app.
   - [Current lineage correction](reports/today-audit-20261031/REVIEW.md) removes a false rejection of reviewed shared Uniswap infrastructure without weakening retirement/history proof. Qualify actual complete accounting6 replacement ingestion, retention and today-price reporting; local constructor tests are not live history acceptance.
   - [Lifetime replay boundary](reports/ten-audit-consolidation-20261102/REVIEW.md): complete event/block/lineage replay will eventually meet finite service budgets. Design and qualify archive/checkpoint/read-model evolution with canonical ancestry, reorgs, lineage, today-price attribution, restore/restart, retention, unavailable-state handling and no duplicate income. Measure long-history latency/storage and reject unauthenticated cached totals; do not merely remove limits or claim this design is implemented.
   - [Four-audit follow-up](reports/four-report-consolidation-20261104/VERIFICATION.md): transactional schema/identity admission, failed-connection cleanup, early SQLite integer bounds and durable/WAL-mode verification implemented.93focused Python passes include9new startup cases with causal failures retained. Valid databases retain identity/history/cursor; no migration/rescan or host restart. Qualify actual Unix storage, consistent WAL backups, off-host restore, lifetime replay and service rollout independently.
+  - [Checkpoint1 milestone](reports/earnings-checkpoints-20261104/REVIEW.md): explicit immutable source/config/anchor/digest approval plus bounded suffix, all-NFT read-only candidate build/advance, atomic exclusive file publication, unchanged API budgets.24new final cases pass after147affected checks at the earlier source stage; overlapping counts are not added. Other ownership/claim/preparation readers remain full replay; no predecessor checkpoint, pruning, unattended approval/rotation or deployed service qualification is claimed. [Exact setup/recovery](docs/EARNINGS_CHECKPOINTS.md).
 
   </details>
 
@@ -1236,6 +1238,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Preserve2568 historical report hashes and four unrelated dirty files. Current review explicitly supersedes the ten-report independence claim and ordinary candidate status; old report bytes/scopes remain intact. Current guides, operator, callable reference and task ledger reflect the correction. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Current consolidation](reports/project-consolidation-20261103/REVIEW.md) inventories401baseline report Markdown files, preserves351prior reading scopes and indexes49later narratives.310overlapping imported finding rows plus5later explicit findings map into22current topics with original IDs/JSON pointers and existing task ownership. It is documentation/source-applicability work, not310new bugs/tests or a fresh security audit. [Current findings](docs/AUDIT_FINDINGS.md) supersede stale active-guide conclusions; original reports remain byte-preserved.
   - [Whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md):310original rows retain exact pointers/records,16material specific reassessments,162ledger versions,398pre-ledger unchecked lines and five explicitly retired task IDs. Deleted guides/local-only drafts and233website narrative versions are inventoried without changing original reports or website code. No age/topic-based blanket closure or revival of retired architecture.
+  - The [checkpoint follow-up](reports/earnings-checkpoints-20261104/REVIEW.md) partially implements historical later/C09; it does not close lifetime archival/lineage/operating requirements. Retain the immutable original reconciliation rather than editing old open findings into all-fixed claims.
 
   </details>
 
@@ -1449,4 +1452,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `168c64d1470f55b3e0936c0f2a3efe4f423565566fcd24520ed8ae878babde2c`.
+Snapshot SHA-256: `9783e75f94e822621847f7547464721b67752f69fa3dc0dfc0aac29beefe96e2`.

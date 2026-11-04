@@ -99,11 +99,20 @@ a fee refund supplies no randomness and does not refund the NFT mint price.
    not repair a request already submitted with insufficient gas.
 
 Planned provider rotation requires all old draws finalized and cannot bypass a
-stuck original request. Planned provider rotation requires all old draws finalized and cannot bypass a
 stuck original request. An unanswered draw can block later reveals, activation of unrevealed NFTs and
 whole-collection replacement. It does not block ordinary LP pool movement merely
 because randomness is pending. No promise of post-provider-failure recovery is
 made without a genuine still-valid original result.
+
+## Latest interface investigation
+
+The [November5 official-source investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
+confirms the absent NFT mint/stats interface, recipient-aware Vault issuance and
+distinct marketplace payment flow. Naïve NFT-to-Vault-to-NFT wrappers also need
+reentrancy/callback review. Robinhood marketplace support is not verified primary-
+drop support, and the inspected deployment list does not establish its actual
+SeaDrop address/runtime. The generic published platform-fee guide is not selected
+Robinhood fee evidence. No contract/mint-authority or readiness flag changed.
 
 ## Design and qualify the OpenSea path
 

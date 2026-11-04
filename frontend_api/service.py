@@ -451,7 +451,7 @@ class Projection:
         # retry or history replay. No partial result is returned on expiry.
         self._fresh(header)
 
-    def _history_snapshot(self, header, block, lp_assets, royalty_assets, *, consumer=None, extra_emitters=()):
+    def _history_snapshot(self, header, block, lp_assets, royalty_assets, *, consumer=None, extra_emitters=(), seed=None):
         if self.history is None:
             return None
         # The reviewed coverage start is the NFT's actual creation block, not
@@ -469,7 +469,7 @@ class Projection:
         history = self.history.read(block_number=header['number'], block_hash=header['hash'],
                                     block_timestamp=header['timestamp'], minted_count=count,
                                     lp_assets=set(lp_assets), royalty_assets=set(royalty_assets),
-                                    consumer=consumer, extra_emitters=extra_emitters)
+                                    consumer=consumer, extra_emitters=extra_emitters, seed=seed)
         if history.provenance['start_block_hash'] != created['hash']:
             raise HistoryError('Indexed creation block differs from its canonical RPC anchor')
         return history

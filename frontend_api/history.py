@@ -131,7 +131,11 @@ class History:
 
     def read(self, *, block_number: int, block_hash: str, block_timestamp: int,
              minted_count: int, lp_assets: set[str], royalty_assets: set[str], consumer=None,
-             extra_emitters=()) -> HistorySnapshot:
+             extra_emitters=(), seed=None) -> HistorySnapshot:
+        if seed is not None:
+            from frontend_api.earnings_checkpoint import Seed
+            if type(seed) is not Seed:
+                raise HistoryError('Unsupported earnings checkpoint seed')
         if type(block_number) is not int or not self.start <= block_number < 1 << 63:
             raise HistoryError('Confirmed history target precedes coverage or exceeds SQLite bounds')
         if type(block_timestamp) is not int or not 0 <= block_timestamp < 1 << 63:
@@ -160,7 +164,7 @@ class History:
                 connection.set_progress_handler(interrupted, 1000)
                 connection.execute('BEGIN')
                 result = self._read(connection, block_number, target_hash, block_timestamp,
-                                    minted_count, lp_assets, royalty_assets, consumer, emitters)
+                                    minted_count, lp_assets, royalty_assets, consumer, emitters, seed)
                 connection.rollback()
                 return result
             finally:
@@ -168,7 +172,7 @@ class History:
         except (sqlite3.Error, OSError, ValueError, KeyError, TypeError, RecursionError) as exc:
             raise HistoryError('Confirmed indexer history is unavailable or malformed') from exc
 
-    def _read(self, db, target, target_hash, target_timestamp, minted_count, lp_assets, royalty_assets, consumer, emitters):
+    def _read(self, db, target, target_hash, target_timestamp, minted_count, lp_assets, royalty_assets, consumer, emitters, seed=None):
         row = db.execute('SELECT next_block,config FROM cursors WHERE chain=?', (self.chain,)).fetchone()
         if row is None or type(row[0]) is not int or row[0] <= target:
             raise HistoryError('Indexer has not completely processed the confirmed target block')
@@ -176,9 +180,14 @@ class History:
         expected_identity = {'contracts': self.contracts, 'start': self.start, 'parent_hash': self.parent}
         if identity != expected_identity:
             raise HistoryError('Indexer chain/start/parent/contract identity differs from reviewed history configuration')
+        boundary = self.start
+        if seed is not None:
+            boundary = seed.validate_history(self, db, target, target_timestamp, lp_assets, royalty_assets)
+            if consumer is not None:
+                seed.restore(consumer)
         bounds = db.execute('SELECT COUNT(*),MIN(number),MAX(number) FROM blocks WHERE chain=? AND number BETWEEN ? AND ?',
-                            (self.chain, self.start, target)).fetchone()
-        if bounds != (target - self.start + 1, self.start, target):
+                            (self.chain, boundary, target)).fetchone()
+        if bounds != (target - boundary + 1, boundary, target):
             raise HistoryError('Indexer block history has gaps')
         first = db.execute('SELECT hash,parent,timestamp FROM blocks WHERE chain=? AND number=?', (self.chain, self.start)).fetchone()
         last = db.execute('SELECT hash,timestamp FROM blocks WHERE chain=? AND number=?', (self.chain, target)).fetchone()
@@ -191,7 +200,7 @@ class History:
         broken = db.execute('''SELECT 1 FROM blocks c JOIN blocks p ON p.chain=c.chain AND p.number=c.number-1
             WHERE c.chain=? AND c.number>? AND c.number<=? AND
               (c.parent!=p.hash OR typeof(c.timestamp)!='integer' OR c.timestamp<p.timestamp) LIMIT 1''',
-                            (self.chain, self.start, target)).fetchone()
+                            (self.chain, boundary, target)).fetchone()
         if broken:
             raise HistoryError('Indexer stored block ancestry or timestamps are inconsistent')
         # Raw event/emitter filters are enforced below. Do not filter by the
@@ -200,18 +209,18 @@ class History:
             FROM logs l JOIN blocks b ON b.chain=l.chain AND b.number=l.block_number
             WHERE l.chain=? AND l.block_number>=? AND l.block_number<=? AND l.address IN ('''
             + ','.join('?' for _ in emitters) + ') ORDER BY l.block_number,l.log_index LIMIT ?',
-                          (self.chain, self.start, target, *emitters, self.max_events + 1))
-        owners = {}
-        claims = {}
-        conversions = {}
-        lp_conversions = {}
+                          (self.chain, self.start if seed is None else boundary+1, target, *emitters, self.max_events + 1))
+        owners = {} if seed is None else dict(seed.history.owners)
+        claims = {} if seed is None else dict(seed.history.claims)
+        conversions = {} if seed is None else dict(seed.history.conversions)
+        lp_conversions = {} if seed is None else dict(seed.history.lp_conversions)
         seen_logs = set()
         transaction_blocks = {}
         chronology = OrderedTransactions()
         examined = 0
-        claim_events = 0
-        conversion_events = 0
-        lp_conversion_events = 0
+        claim_events = 0 if seed is None else seed.history.provenance['claim_events']
+        conversion_events = 0 if seed is None else seed.history.provenance['royalty_conversion_events']
+        lp_conversion_events = 0 if seed is None else seed.history.provenance['lp_conversion_events']
         for number, block_hash, transaction_hash, log_index, emitter, raw, stored_hash, timestamp in rows:
             checkpoint()
             examined += 1
@@ -225,6 +234,14 @@ class History:
             seen_logs.add((number, log_index))
             if transaction_hash in transaction_blocks and transaction_blocks[transaction_hash] != number:
                 raise HistoryError('Stored transaction appears in multiple blocks')
+            if seed is not None and transaction_hash not in transaction_blocks:
+                # Use the existing (chain,transaction_hash,log_index) PK index;
+                # never scan the lifetime prefix for each suffix transaction.
+                previous = db.execute('''SELECT 1 FROM logs INDEXED BY sqlite_autoindex_logs_1
+                    WHERE chain=? AND transaction_hash=? AND block_number<=? LIMIT 1''',
+                    (self.chain, transaction_hash, boundary)).fetchone()
+                if previous:
+                    raise HistoryError('Suffix transaction repeats checkpoint-prefix history')
             transaction_blocks[transaction_hash] = number
             item = _stored_json(raw)
             if not isinstance(item, dict) or item.get('removed') is not False or address(item['address']) != emitter:
@@ -310,9 +327,14 @@ class History:
             raise HistoryError('Transfer mint inventory differs from canonical mintedCount')
         provenance = {'available': True, 'from_block': self.start, 'start_block_hash': first[0], 'start_parent_hash': self.parent,
                       'through_block': target, 'block_hash': target_hash, 'indexer_next_block': row[0],
-                      'logs_examined': examined, 'claim_events': claim_events, 'royalty_conversion_events': conversion_events,
+                      'logs_examined': examined if seed is None else seed.history.provenance['logs_examined']+examined,
+                      'claim_events': claim_events, 'royalty_conversion_events': conversion_events,
                       'lp_conversion_events': lp_conversion_events, 'minted_count': minted_count,
                       'scope': 'All owners and all prior claims through the exact confirmed block, per NFT and asset.',
                       'completeness': 'Operator-maintained complete indexer ingestion; SQLite is not a cryptographic log-completeness proof.'}
+        if seed is not None:
+            provenance.update(checkpoint={'block_number':boundary,'block_hash':seed.anchor['hash'],
+                'sha256':seed.digest,'trust':'Explicitly reviewed configuration pin; not a log-completeness proof.'},
+                suffix_logs_examined=examined)
         return HistorySnapshot(MappingProxyType(owners), MappingProxyType(claims), MappingProxyType(provenance),
                                MappingProxyType(conversions), MappingProxyType(lp_conversions))

@@ -1,6 +1,6 @@
 # Feature and evidence reference
 
-Reviewed 2026-11-04. This records implemented source, not another task list.
+Reviewed 2026-11-05. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 
@@ -20,12 +20,14 @@ Use [consolidated findings](AUDIT_FINDINGS.md) for historical dispositions and
 mechanism, test pass, configured service and approved production release are
 separate milestones.
 
-The [whole-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
-maps historical findings, deleted guides and earlier task lists to current
-requirements. It repairs a stale CI static-review default without weakening its
-source/finding checks;44focused Python methods pass. Contract economics and
-installed environments are unchanged. Lifetime history, OpenSea, fresh-profile
-integration, actual dependencies/operations and independent approval remain open.
+The [earnings checkpoint milestone](../reports/earnings-checkpoints-20261104/REVIEW.md)
+adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
+fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
+claims and current ownership; no USD values or signing are cached.24new final
+cases pass, with147affected checks at their recorded earlier stage. General
+lineage/other history consumers, real workloads/rotation and production approval
+remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
+identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
 ## Smart contracts
 

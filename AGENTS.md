@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed2026-11-04. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-05. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.
@@ -166,9 +166,25 @@ the November3 authority report below remains historical for those contexts.
 - CI/check-slither-review now defaults to its full current strict471-record review.
  44focused Python methods verify that repair; no analyzer/contract rerun. Update
   full review/default together after relevant source changes; preserve old pins.
-- Lifetime history archive/checkpoint/read-model remains open implementation.
+- Checkpoint1 is an implemented first milestone; general lifetime history remains open.
   OpenSea/fresh consumer, providers/authorities/gas/hosting/metadata/recovery and
   independent approval remain open. Source publication changes no environment.
+
+## Earnings checkpoint source boundary
+
+- [Checkpoint1](docs/EARNINGS_CHECKPOINTS.md) is opt-in fresh accounting6/custody5/
+  fee-intake1, without predecessors, for earnings endpoints only. Operator-pinned
+  immutable bytes/source/config/anchor plus bounded suffix; never automatic cache
+  approval or fabricated zero. The full24-hour window remains raw; preserve
+  scaled NFT fractions, dust/cohorts, ownership/claims/conversions and today prices.
+- Offline builder uses explicit bounded read-only work, all-NFT reconciliation
+  and exclusive atomic candidate creation. API budgets remain unchanged. Retain
+  raw/WAL backups and old artifacts; source/profile/reorg changes require reviewed
+  rebuild/re-pin. No pruning, running config, signer or journal change is implied.
+- Current evidence: final24new cases, broader147affected at its recorded earlier
+  source stage. Do not sum overlaps. Lineage/other readers, actual workload/
+  archive/rotation/restore and independent approval stay open. OpenSea research
+  does not implement or approve its exact Robinhood drop caller/payment path.
 
 ## Verification and records
 

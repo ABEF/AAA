@@ -1,6 +1,6 @@
 # Consolidated audit findings and evidence
 
-Reviewed4November2026; consolidation baseline maina915b6a. Production
+Reviewed5November2026; consolidation baseline main096fd2b. Production
 **NOT APPROVED**. [Sole Todo](../TODO.md) owns work;
 [features](IMPLEMENTATION_STATUS.md) record source and
 [operator](OPERATOR_MANUAL.md) describes actions.
@@ -17,12 +17,18 @@ No matching rules, contracts, economics or installed environments changed.
 The [provenance map](../reports/full-history-reconciliation-20261104/FINDINGS.json)
 records the recurring static issue and materially changed original dispositions.
 
-Lifetime archive/checkpoint/read-model evolution remains OPEN IMPLEMENTATION.
-OpenSea primary mint and the fresh source8 consumer also remain implementation
-and qualification work, not solved by old local tests. Idle job economics,
-actual feeds/routes/VRF/authorities/hosting/gas/storage/metadata and independent
-approval remain under the sole Todo. Five removed creator/bridge IDs are
-deliberately superseded; their funded-accounting/recovery principles survive.
+Checkpoint1 now implements an opt-in first milestone for fresh6/5/1 earnings:
+externally pinned immutable state plus bounded raw suffix, exact fractions/dust/
+cohorts and complete rolling-day replay. [Current review](../reports/earnings-checkpoints-20261104/REVIEW.md)
+records final24new cases and earlier147affected methods without summing stages.
+Other full-history consumers, lineage checkpoints, source-codec migration,
+unattended rotation, raw archival and real workload/host qualification remain open.
+
+OpenSea primary-mint implementation still needs the exact supported caller/
+deployment/payment integration. Current official-source research identifies the
+interface, wallet-statistics and nested reentrancy constraints; no guessed mint
+authority was added. Actual providers, authorities, routes/VRF, maximum gas,
+metadata, operating recovery and independent approval remain under the sole Todo.
 
 ## Current conclusions by project layer
 
