@@ -142,6 +142,21 @@ threshold VALUES must match during source/import lifecycle, not local revisions.
 Current owner/rewards/quotas/ETH-ZZZ/fixed splits and terminal custody guarantees
 are unchanged. No deployment/service/site/Anvil/journal/signing change authorized.
 
+## Manual safeguards: current source follow-up
+
+See [manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md).
+Emergency bit16 checks retained live sampled evidence independently of bit1
+hard cooldown/raw eligibility. Ordinary ready still retains that clock. Bit4
+needs USD data even when bit2 is off. Paused governance park/closeResidual may
+explicitly use minimum0=minimum1=0; positive caller floors, current physical
+principal proof, custody/receipt/share/reserve/nonce/epoch/lifecycle checks remain.
+Raw emergency checks0 works from Active/Parked into the CURRENT pool, not an
+unreviewed new destination. Force cannot fix broken tokens/core or reopen terminal
+exit. Exact runtime pins changed with unchanged ABI/storage/capability versions;
+never apply these semantics to old runtimes or relabel journals. Fresh43normal
+gates/current callable/static evidence replaces only its changed source scope;
+the November3 authority report below remains historical for those contexts.
+
 ## Verification and records
 
 [Whole-project supplement](reports/comprehensive-audit-20261104/REVIEW.md) fixes indexer anchor snapshot/early
@@ -162,7 +177,7 @@ and independent-audit gates stay open.
   [report map](reports/README.md) and [release approval](docs/RELEASE_CHECKLIST.md).
   Historical report bytes/source scopes remain immutable; do not sum overlapping
   tests or describe old analysis as current. The consolidation is not a new audit pass.
-- [Current authority evidence](reports/authority-audit-20261103/VERIFICATION.md)
+- [Historical authority evidence](reports/authority-audit-20261103/VERIFICATION.md)
   binds52production/31dependencies and43normal gates.471static records:19current
   contexts reviewed/452exact unchanged reuse.14distinct selected EVM successes
   span explicit corrected stages;25corrected Python methods pass. No full suite,

@@ -346,7 +346,9 @@ contract NativeVaultFlowsTest is Test {
         uint64 revision=policy.rebalanceConfirmation().policyRevision();
         uint256 claimable=rewards.claimable(id,address(0)); uint256 buybackReserve=fees.buybackBalance(address(0));
         bytes memory callback=abi.encodeCall(this.changeEmergencyConfirmationPolicy,());
-        token.callbackOnTransfer(address(core),access.module(Ids.LIQUIDITY),address(this),callback);
+        // Pool receipts now pass through the typed LP child, not its Manager parent.
+        address receiver=ZZZLiquidityManager(payable(access.module(Ids.LIQUIDITY))).positionOperator();
+        token.callbackOnTransfer(address(core),receiver,address(this),callback);
         vm.expectCall(address(this),callback);
         vm.expectRevert(ZZZModule.InvalidState.selector); migration.emergencyRebalance(r);
         assertEq(policy.rebalanceConfirmation().policyRevision(),revision);

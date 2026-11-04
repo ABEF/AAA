@@ -1,7 +1,7 @@
 # Work handoff
 
 Reviewed4November2026. Current contract-source base is main
-`cf39b1402915c438b8278cf9c8b51c321922b98f`; publication status must be verified
+`0b14acaf5df696c7a32243b8ea7c315a8cd191ab`; publication status must be verified
 against actual local/remote Git heads. Read [instructions](../AGENTS.md),
 [context](../PROJECT_CONTEXT.md), [README](../README.md), [sole Todo](../TODO.md),
 [findings](AUDIT_FINDINGS.md) and the relevant [operator procedure](OPERATOR_MANUAL.md).
@@ -26,6 +26,16 @@ negative failures are retained. Contracts/settings/journals are unchanged.
 A reviewed matching keeper source rollout remains required; no service was
 changed.600/240/300 and the hard12hours remain, with sampled/live limits.
 
+The [manual safeguard audit](../reports/manual-safeguard-audit-20261104/REVIEW.md) changes ONLY the Confirmation view
+and read-only custody validator: emergency bit16 no longer implicitly retains
+hard-cooldown bit1; paused parking/residual close can explicitly use both raw
+floors0. Positive floors, exact ownership/receipt/share/reserve/callback/lifecycle
+guards remain. Ordinary readiness and emergency authority are unchanged. Normal
+compiler/reference/static and focused regression evidence belongs to that report;
+old e26fc74 authority evidence is historical for these two changed contexts.
+No ABI/storage layout or advertised capability version changed; exact current
+runtime pins are required. Installed services/sites/Anvil/journals remain untouched.
+
 ## Current source and preserved environments
 
 [Accounting6 profile](POSITION_V6.md), direct Entry3/review-policy2/pricing2,
@@ -45,17 +55,17 @@ Keep Anvil8902 and its NFTs/LP/balances/recovery records. Popldemo remains its
 simulation; poplint remains separately served current3/read-and-prepare, not the
 fresh source8 consumer. DEPLOYMENT null, browser signer Anvil-only, heartbeat paused.
 
-## Evidence to reuse, with limits
+## Earlier authority evidence to reuse, with limits
 
 Use [authority verification](../reports/authority-audit-20261103/VERIFICATION.md):
-52production/31dependencies,43normal EIP170/EIP3860 gates,0.8.26/Cancun/viaIR/
+52production/31dependencies,43normal EIP170/EIP3860 gates at that historical revision,0.8.26/Cancun/viaIR/
 optimizer1/Yulfalse.471static records:19current contexts and452exact unchanged
 reuse;37contracts/818functions/37constructors/13receivers without gaps.
 14distinct selected EVM successes span two recorded stages;25corrected Python
 methods pass. Initial size/test/observer/reference failures remain preserved.
 No full suite, published CI, target gas/uptime or independent approval is implied.
 
-Migration now24537(39margin), unchanged Vault23941(635), Budget24339(237),
+That authority revision: Migration24537(39margin), Vault23941(635), Budget24339(237),
 Balancer24216(360); Entry9863. Only production Migration changed: custody5 plus
 governance-only allocation/distribution and authenticated owner-read reuse.
 Holder LP/royalty/fallback claims remain. Fresh schema10/read/keeper versions
@@ -66,13 +76,13 @@ Earlier Entry3/consolidation evidence retains its source scope.
 ## Collective exit assurance supplement
 
 [Exit assurance](../reports/holder-exit-assurance-20261103/REVIEW.md) changes tests
-and guidance only; production remains exact e26fc74.10distinct selected EVM
+and guidance only at historical e26fc74.10distinct selected EVM
 behaviors across explicit scopes, including1000fuzz cases, corrected1000-NFT
 model,1000distinct owners,37mixed wallets and actual local v4 two-leg closure.
 Initial missing-Manager model failures remain recorded; no production guard was
 removed. Mixed real NFTs cover dormant/three tiers/three rarities, top-ups,
-previous claims and transfer after allocation. Normal43gate/static471/callable
-records still match source; no full repeat, live rehearsal or rollout. Existing
+previous claims and transfer after allocation. Those normal43gate/static471/callable
+records retain their historical source scope; no full repeat, live rehearsal or rollout. Existing
 receiver/dependency/gas/authority/independent-audit limits remain. Operator guide
 now explains grouped per-NFT reconciliation rather than per-wallet entitlement.
 External assurance root preserves the original test/docs and all run stages.

@@ -23,6 +23,12 @@ negative failures are retained. Contracts/settings/journals are unchanged.
 A reviewed matching keeper source rollout remains required; no service was
 changed.600/240/300 and the hard12hours remain, with sampled/live limits.
 
+
+The [manual recovery audit](../reports/manual-safeguard-audit-20261104/REVIEW.md)
+closes two optional-policy coupling defects. Runtime adoption, actual emergency
+wallet simulations/gas and host recovery remain under the existing
+[manual recovery task](../TODO.md#task-manual-emergency-rebalance) and release gates.
+
 ## 1. Freeze the correct source and integration boundary
 
 Use [accounting6/Entry3/schema10](POSITION_V6.md) and exact runtime/helper/dependency

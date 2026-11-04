@@ -27,6 +27,13 @@ The [confirmation audit](reports/confirmation-audit-20261104/REVIEW.md) corrects
 and clear-only recovery ordering, with100focused Python passes and unchanged
 on-chain guards. The existing keeper has not been restarted or updated.
 
+The [manual safeguard audit](reports/manual-safeguard-audit-20261104/REVIEW.md)
+separates emergency sampled confirmation from its separately selected hard
+cooldown and permits explicit both-zero review-time floors on paused raw closes.
+Normal keeper/user guards and mandatory custody/accounting remain. Exact runtime
+pins change; ABI/storage and installed environments do not. See the
+[operator force/close/re-entry matrix](docs/OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call).
+
 ## Project navigation
 
 [Consolidated audit findings](docs/AUDIT_FINDINGS.md) explains past findings against

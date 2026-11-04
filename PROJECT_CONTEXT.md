@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed4November2026; audit source baseline main `cf39b1402915c438b8278cf9c8b51c321922b98f`.
+Reviewed4November2026; audit source baseline main `0b14acaf5df696c7a32243b8ea7c315a8cd191ab`.
 [Instructions](AGENTS.md), [README](README.md), [sole Todo](TODO.md),
 [operator manual](docs/OPERATOR_MANUAL.md) and [findings](docs/AUDIT_FINDINGS.md)
 own current context. Exact publication status comes from Git, not this date.
@@ -25,6 +25,16 @@ metadata.100focused Python methods pass, including14new regressions; causal
 negative failures are retained. Contracts/settings/journals are unchanged.
 A reviewed matching keeper source rollout remains required; no service was
 changed.600/240/300 and the hard12hours remain, with sampled/live limits.
+
+The [manual safeguard audit](reports/manual-safeguard-audit-20261104/REVIEW.md) changes ONLY the Confirmation view
+and read-only custody validator: emergency bit16 no longer implicitly retains
+hard-cooldown bit1; paused parking/residual close can explicitly use both raw
+floors0. Positive floors, exact ownership/receipt/share/reserve/callback/lifecycle
+guards remain. Ordinary readiness and emergency authority are unchanged. Normal
+compiler/reference/static and focused regression evidence belongs to that report;
+old e26fc74 authority evidence is historical for these two changed contexts.
+No ABI/storage layout or advertised capability version changed; exact current
+runtime pins are required. Installed services/sites/Anvil/journals remain untouched.
 
 ## Current source candidate
 
@@ -125,7 +135,8 @@ exit.10distinct selected methods include1000fuzz cases across explicit scopes;
 no fresh full suite, actual target gas or independent approval. The old scale
 fixture's missing Manager binding was repaired; no production exit guard changed.
 Principal remains perNFT; repeated wallet recipients receive the sum owed by
-their NFTs. Source remains e26fc74 and all old runtime/journal/site boundaries hold.
+their NFTs. That report binds historical e26fc74; the manual safeguard follow-up
+changes two current source views. All installed runtime/journal/site boundaries hold.
 
 ## What remains
 

@@ -61,6 +61,8 @@ contract ZZZCustodyValidation {
             ICustodyRegistryRevision(access.module(Ids.POOLS)).configurationRevision(),
             IResidualPolicyControl(IZZZStrategy(access.module(Ids.STRATEGY)).portfolioPolicy()).controlFingerprint(p.poolId)));
     }
+    /// @notice Paused governance may accept both raw receipt floors as zero;
+    /// custody, actual receipt accounting and every supplied positive floor remain binding.
     function validateParking(bytes calldata encoded) external view {
         if(msg.sender!=migration) revert Unauthorized();
         Parking memory r=abi.decode(encoded,(Parking));
@@ -68,7 +70,7 @@ contract ZZZCustodyValidation {
         PoolConfig memory c=IZZZPools(access.module(Ids.POOLS)).accounting(r.poolId);
         ILocalParkingState state=ILocalParkingState(migration);
         if(!access.isSealed() || !access.paused() || access.lpExitStarted() || r.reviewHash==bytes32(0) ||
-            (r.minimum0==0 && r.minimum1==0) || r.lpTokenId==0 || r.nonce!=state.parkingNonce(r.bucketId) ||
+            r.lpTokenId==0 || r.nonce!=state.parkingNonce(r.bucketId) ||
             r.custodyEpoch!=state.custodyEpoch(r.bucketId) || p.status!=PositionStatus.Active || p.poolId!=r.poolId ||
             p.lpTokenId!=r.lpTokenId || p.depositUSD!=r.depositUSD || r.portfolioHash==bytes32(0) ||
             ICustodyExecutionFingerprint(access.module(Ids.LIQUIDITY)).executionPortfolioFingerprint(r.lpTokenId)!=r.portfolioHash ||

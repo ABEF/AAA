@@ -20,6 +20,13 @@ Use [consolidated findings](AUDIT_FINDINGS.md) for historical dispositions and
 mechanism, test pass, configured service and approved production release are
 separate milestones.
 
+The [manual safeguard audit](../reports/manual-safeguard-audit-20261104/REVIEW.md)
+separates emergency sampled confirmation from its separately selected hard
+cooldown and permits explicit both-zero review-time floors on paused raw closes.
+Normal keeper/user guards and mandatory custody/accounting remain. Exact runtime
+pins change; ABI/storage and installed environments do not. See the
+[operator force/close/re-entry matrix](OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call).
+
 ## Smart contracts
 
 | Capability | Implemented behavior | Reference |
@@ -119,7 +126,8 @@ changed.600/240/300 and the hard12hours remain, with sampled/live limits.
 
 | Evidence | Source scope | What it does not establish |
 | --- | --- | --- |
-| [Authority change normal/static record](../reports/authority-audit-20261103/VERIFICATION.md) | Current52production/31dependency sources;43normal gates/471static records,19current contexts reviewed and452unchanged reused.14distinct selected EVM passes across explicit corrected stages;25corrected Python methods. Reference37/818/37/13 has0gaps; Migration39/Vault635/Budget237/Balancer360runtime headroom. | No full suite/CI, independent review, deployment gas, service or production approval. |
+| [Manual safeguard audit](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) | Two view fixes;85distinct selected EVM successes across retained stages,47focused Python passes,43fresh normal gates and471fresh static records(13current-context review/458exact referenced reuse). ABI/storage unchanged; callable37/818/37/13 has0gaps. | Not a full suite, installed-runtime upgrade, target gas/operating rehearsal or independent approval. |
+| [Authority change normal/static record](../reports/authority-audit-20261103/VERIFICATION.md) | Historical custody5 revision52production/31dependency sources;43normal gates/471static records,19current contexts reviewed and452unchanged reused.14distinct selected EVM passes across explicit corrected stages;25corrected Python methods. Reference37/818/37/13 has0gaps; Migration39/Vault635/Budget237/Balancer360runtime headroom. | No full suite/CI, independent review, deployment gas, service or production approval. |
 | [Direct Entry3 normal/static record](../reports/direct-entry-v3-20261103/VERIFICATION.md) | Prior custody4 source52production/31dependency sources;43normal gates,471triaged static records; reference37contracts/818functions/37constructors/13receivers without note gaps. Entry runtime9863; Vault635/Budget237/Migration20/Balancer360headroom. | Full regression, published CI, independent audit, deployment gas, future edit capacity or production approval. |
 | [Entry/native regressions](../reports/direct-entry-v3-20261103/test-stages.json) |28distinct selected successes across recorded scopes;19unchanged successful bodies reused after one assertion correction. Failures and empty selection retained. |28fresh final-source tests in one run, actual target-chain feeds/venues or browser/keeper operating acceptance. |
 | [Backend/profile tooling](../reports/direct-entry-v3-20261103/python-verification.json) |314selected Python successes across two scopes; explicit direct/historical tuple, config/helper/observer and operator/reference/publication boundaries. |Actual tracing-provider or matching website acceptance. |

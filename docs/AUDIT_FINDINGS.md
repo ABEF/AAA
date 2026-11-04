@@ -1,6 +1,6 @@
 # Consolidated audit findings and evidence
 
-Reviewed4November2026 from main `cf39b140`; production Solidity remains exact e26fc74. Production **NOT APPROVED**.
+Reviewed4November2026; manual safeguard change based on main `0b14aca` changes two production views, with fresh scoped evidence. Production **NOT APPROVED**.
 
 [The sole Todo](../TODO.md) owns task status; this page explains how historical
 findings apply now. [Features](IMPLEMENTATION_STATUS.md) describe capabilities,
@@ -25,6 +25,13 @@ metadata.100focused Python methods pass, including14new regressions; causal
 negative failures are retained. Contracts/settings/journals are unchanged.
 A reviewed matching keeper source rollout remains required; no service was
 changed.600/240/300 and the hard12hours remain, with sampled/live limits.
+
+The [manual safeguard audit](../reports/manual-safeguard-audit-20261104/REVIEW.md)
+separates emergency sampled confirmation from its separately selected hard
+cooldown and permits explicit both-zero review-time floors on paused raw closes.
+Normal keeper/user guards and mandatory custody/accounting remain. Exact runtime
+pins change; ABI/storage and installed environments do not. See the
+[operator force/close/re-entry matrix](OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call).
 
 ## Current conclusions by project layer
 

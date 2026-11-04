@@ -287,3 +287,12 @@ Shared terminal-lock checks are privately deduplicated with identical pre/post
 semantics; [current source evidence](../reports/residual-operations-20261031/VERIFICATION.md)
 is separate from the earlier portfolio build. Reconcile manual transactions and
 fresh physical observations before restarting a worker; never rewrite journals.
+
+## Manual recovery does not weaken normal upkeep
+
+The [manual safeguard audit](../reports/manual-safeguard-audit-20261104/SAFEGUARD_MATRIX.md)
+separates optional paused-governance policies from mandatory custody/accounting.
+Emergency sample bit16 no longer silently retains hard cooldown bit1. Explicit
+zero review-time close floors permit raw parking/residual closure. Ordinary
+keeper/user timing, sampled prices, captured loss/idle floors and callbacks remain
+unchanged. The keeper never switches to a weaker emergency mask automatically.

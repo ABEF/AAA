@@ -555,7 +555,7 @@ contract OptionalPortfolioCoreTest is Test {
         (,uint256 bucket,uint256 main,uint256 aux)=_hybrid();ZZZMigration.ParkingRequest memory request=_residualReview(bucket);
         access.setPaused(true);request.portfolioHash=bytes32(uint256(123));vm.expectRevert();migration.closeResidual(request);
         request=_residualReview(bucket);request.nonce+=1;vm.expectRevert();migration.closeResidual(request);
-        request=_residualReview(bucket);request.minimum0=0;request.minimum1=0;vm.expectRevert();migration.closeResidual(request);
+        request=_residualReview(bucket);request.portfolioHash=bytes32(0);vm.expectRevert();migration.closeResidual(request);
         request=_residualReview(bucket);request.reviewHash=bytes32(0);vm.expectRevert();migration.closeResidual(request);
         request=_residualReview(bucket);request.deadline=block.timestamp-1;vm.expectRevert();migration.closeResidual(request);
         assertEq(manager.secondaryId(main),aux);
@@ -1294,5 +1294,68 @@ contract OptionalPortfolioCoreTest is Test {
         uint256 recipientBefore=BOB.balance;vm.prank(BOB);royalties.claim(alice,address(0));assertEq(BOB.balance-recipientBefore,6 ether);
         assertEq(membership.totalEligible(),2);assertEq(royalties.totalWeight(),4);
         (bool available,uint256 value)=nft.currentLPValue(alice);assertTrue(available);assertEq(value,0);
+    }
+    function _manualAuditRawRequest(uint256 bucket) private view returns(EmergencyRebalance memory r){
+        int24 tick=TickMath.getTickAtSqrtPrice(manager.spot(pool));int24 aligned=tick/200*200;
+        r.bucket=bucket;r.custodyHash=migration.emergencyCustodyHash(bucket);r.checks=0;
+        r.lower=aligned-4000;r.upper=aligned+4000;r.minimumLiquidity=1;
+        r.deadline=block.timestamp+100;r.reviewHash=keccak256("TEST ONLY EXPLICIT RAW RECOVERY");
+    }
+    function _manualAuditDisableFinancialDependencies() private {
+        registry.setOperations(false);bytes32[] memory empty=new bytes32[](0);
+        manager.balancingRouter().configureExecutionPools(empty,keccak256("TEST DISABLED AUTOMATIC SWAPS"));
+        strategy.rebalanceConfirmation().configure(600,0,keccak256("TEST STOPPED ORDINARY WINDOW"));
+        vault.migrationBudget().setLossLimits(0,0);
+        ethA.set(0,block.timestamp,block.timestamp);ethB.set(0,block.timestamp,block.timestamp);
+        zzzA.set(0,block.timestamp,block.timestamp);zzzB.set(0,block.timestamp,block.timestamp);
+    }
+    function testManualAuditRawParkAndReenterIgnorePolicyOutagesWithoutLosingRights() public {
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
+        policy.setMode(pool,false,keccak256("TEST RAW RECOVERY STAY SINGLE"));
+        core.unlock(abi.encode(uint8(2),Q96));uint256 shares=vault.sharesOf(id);
+        ZZZMigration.ParkingRequest memory parking=_residualReview(bucket);parking.minimum0=0;parking.minimum1=0;
+        access.setPaused(true);_manualAuditDisableFinancialDependencies();
+        uint256 operatorETH=address(this).balance;uint256 operatorZZZ=token.balanceOf(address(this));
+        migration.park(parking);assertEq(uint256(vault.group(bucket).status),uint256(PositionStatus.Parked));
+        assertEq(manager.activeSecondaryCount(),0);assertEq(vault.sharesOf(id),shares);
+        vm.expectRevert();positions.ownerOf(main);vm.expectRevert();positions.ownerOf(aux);
+        uint256 oldClaim=rewards.claimable(id,address(0));uint256 burn=fees.buybackBalance(address(0));
+        assertGt(oldClaim,0);assertGt(burn,0);
+        vm.expectRevert();migration.resume(bucket,pool,1,block.timestamp+100);
+        access.setPaused(false);vm.expectRevert();migration.resume(bucket,pool,1,block.timestamp+100);
+        access.setPaused(true);EmergencyRebalance memory r=_manualAuditRawRequest(bucket);
+        migration.emergencyRebalance(r);Position memory p=vault.group(bucket);
+        assertEq(uint256(p.status),uint256(PositionStatus.Active));assertGt(p.lpTokenId,0);
+        assertEq(positions.ownerOf(p.lpTokenId),address(vault));assertEq(manager.secondaryId(p.lpTokenId),0);
+        assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),shares);
+        assertEq(rewards.claimable(id,address(0)),oldClaim);assertEq(fees.buybackBalance(address(0)),burn);
+        assertEq(address(this).balance,operatorETH);assertEq(token.balanceOf(address(this)),operatorZZZ);
+        assertTrue(membership.eligible(id));assertFalse(vault.migrationBudget().emergencyActive());
+        assertTrue(access.paused());_claimExactly(id,ALICE,address(0));
+        registry.setOperations(true);_prices();access.setPaused(false);
+        vm.expectRevert();vault.rebalance(bucket,1,block.timestamp+100);
+    }
+    function testManualAuditRawResidualCloseSurvivesInventoryReversalAndUnavailablePrices() public {
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
+        ZZZMigration.ParkingRequest memory r=_residualReview(bucket);r.minimum0=0;r.minimum1=0;
+        (int24 lower,int24 upper)=manager.ticks(aux);_move(TickMath.getSqrtPriceAtTick(upper+200));
+        (uint256 expected0,uint256 expected1)=manager.amounts(aux);assertGt(expected0+expected1,0);
+        uint128 mainL=positions.getPositionLiquidity(main);Position memory p=vault.group(bucket);
+        uint256 shares=vault.sharesOf(id);access.setPaused(true);_manualAuditDisableFinancialDependencies();
+        migration.closeResidual(r);_assertSameMain(p,bucket,mainL);assertEq(manager.secondaryId(main),0);
+        assertEq(vault.sharesOf(id),shares);assertEq(manager.activeSecondaryCount(),0);
+        assertEq(vault.group(bucket).idle0-p.idle0,expected0);assertEq(vault.group(bucket).idle1-p.idle1,expected1);
+        vm.expectRevert();positions.ownerOf(aux);assertTrue(access.paused());assertTrue(policy.enabled(pool));
+        assertLt(lower,upper);
+    }
+    function testManualAuditRawActiveRebalanceDoesNotNeedPendingGeometryOrConfiguredRouter() public {
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();uint256 shares=vault.sharesOf(id);
+        policy.configureResidualGap(pool,4000,keccak256("TEST INFEASIBLE OPTIONAL GEOMETRY"));
+        access.setPaused(true);_manualAuditDisableFinancialDependencies();
+        EmergencyRebalance memory r=_manualAuditRawRequest(bucket);migration.emergencyRebalance(r);
+        uint256 replacement=vault.group(bucket).lpTokenId;assertTrue(replacement!=main);
+        assertEq(manager.secondaryId(replacement),0);assertEq(manager.activeSecondaryCount(),0);
+        assertEq(vault.sharesOf(id),shares);assertTrue(policy.enabled(pool));assertTrue(access.paused());
+        vm.expectRevert();positions.ownerOf(main);vm.expectRevert();positions.ownerOf(aux);
     }
 }

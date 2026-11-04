@@ -168,11 +168,11 @@ contract ZZZRebalanceConfirmation is ZZZModule, ReentrancyGuard {
     }
     /// @notice Optional manual-emergency check of still-fresh existing evidence.
     /// Does not record observations while paused or authorize ordinary execution.
+    /// The independent raw-trigger/cooldown option is enforced by the Budget.
     function emergencyReady(uint256 bucket) external view returns(bool) {
         address budget = IZZZEmergencyVault(access.module(Ids.VAULT)).migrationBudget();
         if(msg.sender != budget || !access.paused()) revert Unauthorized();
         IZZZEmergencyBudget(budget).validateEmergency(bucket);
-        if(!IConfirmationStrategy(strategy()).needsRebalance(bucket)) return false;
         (uint8 side,bytes32 identity,bool manual) = _condition(bucket,true);
         return manual || _ready(observations[bucket],side,identity);
     }

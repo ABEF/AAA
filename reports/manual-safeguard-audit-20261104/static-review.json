@@ -1,0 +1,4656 @@
+{
+  "analyzer": "slither0.11.6/crytic-compile0.4.2",
+  "independent_audit": false,
+  "total": 471,
+  "current_changed_contexts": 13,
+  "unchanged_referenced_contexts_reused": 458,
+  "matching": "Exact detector/check and description line multiset retaining original source line numbers for unchanged referenced sources; changed-source review matches omit line numbers. Exact referenced source bytes are required for reuse. Duplicate/missing matches reject.",
+  "transitive_review": "Both changed routines are view-only, retain existing caller/lifecycle/context validation, and remove only explicit optional policy gates. Budget/Migration callers and guarded normal paths were reviewed. Referenced-source reuse is not proof of every transitive execution.",
+  "scope": "Current changed source contexts plus exact referenced-context reuse; detector alerts are not confirmed vulnerabilities or exploit-absence proof.",
+  "source_sha256": {
+    "src/ZZZAccessController.sol": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+    "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+    "src/ZZZCanonicalHandoff.sol": "f1a38365013d839a28badf7a4b2a503b07878608cae94659ecdbf0bed50ded06",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+    "src/ZZZContributionPricing.sol": "c53160a273a50b28c4aa27b856a6ae0962124e421bb652b8f2fb4fe19c023bb6",
+    "src/ZZZCustodyValidation.sol": "951284cdbea10587f611027549dd67029c2dc3533a9dcf3ef1323a4557aa5b9c",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+    "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
+    "src/ZZZLPBalancer.sol": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
+    "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
+    "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+    "src/ZZZLiquidityManager.sol": "12873c25305934e8efd4c0f037221946030cba1f68e46815c0420fa5b7fc88a3",
+    "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+    "src/ZZZMigration.sol": "2d0577a01c1cd5ed13b0ba4753fdcc20293f4f7fe8b5b8551580873534ee3dd7",
+    "src/ZZZMigrationBudget.sol": "ee057e36f4179b9a2b541ebb16772cf53c8279e77ac603d8073bb79c2e01101a",
+    "src/ZZZNFT.sol": "9f673b4e441c449c45ffe71537565ff4c73a32cf75df88f78fb3f03af206c829",
+    "src/ZZZNFTCanonical.sol": "40be978cdc4764ae01e9c06fc5350dbfca755ef6d6309ae18b7bef48f159714b",
+    "src/ZZZNFTMetadata.sol": "7dc7d9e8a82e9256004163ac5375c64abe34a7a02d96de6b2a01eeb41b897328",
+    "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
+    "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+    "src/ZZZPortfolioPolicy.sol": "81a6030c9e70c061ec2d320510f6ec0f8b5965af9a9aba7d42ed0e9b47bd732d",
+    "src/ZZZProtocolPolicy.sol": "312d944c92829a755a7b2f0276f0ef26d08266cbd33262954a8dfd01445b6182",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "235e3f175cdb7347a8a7db05ae682d24cb8496342b95015729eb9dd6746448f0",
+    "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
+    "src/ZZZVaultCanonical.sol": "2377ffc5adf74cde1cc1d4aebaac5aeca0d3dc1f0042870032855c850d3f8300",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "src/interfaces/IZZZ.sol": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+    "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+    "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2"
+  },
+  "execution": {
+    "kind": "Fresh actual offline Slither detector execution using exact final closed compiler output",
+    "started_utc": "2026-11-04T20:37:39.643742+00:00",
+    "command": [
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\production-readiness-20261014\\slither-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "slither",
+      ".",
+      "--foundry-ignore-compile",
+      "--foundry-out-directory",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-safeguard-audit-20261104\\static-attempt-05bb7f876b\\out",
+      "--foundry-build-info-directory",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-safeguard-audit-20261104\\static-attempt-05bb7f876b\\build-info",
+      "--config-file",
+      "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\slither.config.json",
+      "--json",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-safeguard-audit-20261104\\static-attempt-05bb7f876b\\slither.json",
+      "--json-types",
+      "detectors,compilations",
+      "--disable-color"
+    ],
+    "normal_build_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-safeguard-audit-20261104\\normal-final-ea6ed8f5dc",
+    "compiler_input_sha256": "5781031ff908f078c25c6cdd8318f37108112ce05822019832c707006bc432ef",
+    "compiler_output_sha256": "7fab4dbb9524d37fd8417c71e89fc0e69aae7ebf562eda81fa7055c00de9c057",
+    "build_info_sha256": "c59a170d9b0ceac30f508cdd09331b417d257a0f3141325d897b6467f23501bb",
+    "source_before": {
+      "src/ZZZAccessController.sol": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "src/ZZZCanonicalHandoff.sol": "f1a38365013d839a28badf7a4b2a503b07878608cae94659ecdbf0bed50ded06",
+      "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "src/ZZZContributionPricing.sol": "c53160a273a50b28c4aa27b856a6ae0962124e421bb652b8f2fb4fe19c023bb6",
+      "src/ZZZCustodyValidation.sol": "951284cdbea10587f611027549dd67029c2dc3533a9dcf3ef1323a4557aa5b9c",
+      "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
+      "src/ZZZLPBalancer.sol": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
+      "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
+      "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "src/ZZZLiquidityManager.sol": "12873c25305934e8efd4c0f037221946030cba1f68e46815c0420fa5b7fc88a3",
+      "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "src/ZZZMigration.sol": "2d0577a01c1cd5ed13b0ba4753fdcc20293f4f7fe8b5b8551580873534ee3dd7",
+      "src/ZZZMigrationBudget.sol": "ee057e36f4179b9a2b541ebb16772cf53c8279e77ac603d8073bb79c2e01101a",
+      "src/ZZZNFT.sol": "9f673b4e441c449c45ffe71537565ff4c73a32cf75df88f78fb3f03af206c829",
+      "src/ZZZNFTCanonical.sol": "40be978cdc4764ae01e9c06fc5350dbfca755ef6d6309ae18b7bef48f159714b",
+      "src/ZZZNFTMetadata.sol": "7dc7d9e8a82e9256004163ac5375c64abe34a7a02d96de6b2a01eeb41b897328",
+      "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
+      "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "src/ZZZPortfolioPolicy.sol": "81a6030c9e70c061ec2d320510f6ec0f8b5965af9a9aba7d42ed0e9b47bd732d",
+      "src/ZZZProtocolPolicy.sol": "312d944c92829a755a7b2f0276f0ef26d08266cbd33262954a8dfd01445b6182",
+      "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "src/ZZZRoyaltyRewards.sol": "235e3f175cdb7347a8a7db05ae682d24cb8496342b95015729eb9dd6746448f0",
+      "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
+      "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
+      "src/ZZZVaultCanonical.sol": "2377ffc5adf74cde1cc1d4aebaac5aeca0d3dc1f0042870032855c850d3f8300",
+      "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "src/interfaces/IZZZ.sol": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+      "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "node_modules/@openzeppelin/contracts/utils/Base64.sol": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "node_modules/@openzeppelin/contracts/utils/Context.sol": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "node_modules/@openzeppelin/contracts/utils/Panic.sol": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "node_modules/@openzeppelin/contracts/utils/Strings.sol": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "node_modules/@openzeppelin/contracts/utils/math/Math.sol": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5"
+    },
+    "slither_config_sha256": "60d1763e090e182dca4a996b92770b9f9ff40ce0dfa8873fdb93fdf626eaee0f",
+    "python_sha256": "82264b3fe4248d1ff3564a0296cbb4a266ef968799bd85902ab5eaaf3e17eb62",
+    "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+    "tool_metadata": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\direct-entry-v3-20261103\\static-tool-provenance.json",
+    "tool_record_collisions": null,
+    "environment": "Minimal process-local Windows/tool environment; no credentials, custom Python path or global config inherited. Fresh empty pycache namespace plus no bytecode writes.",
+    "compiler_invoked": false,
+    "normal_limits_relaxed": false,
+    "production_approved": false,
+    "analyzer_exit_code": 4294967295,
+    "elapsed_seconds": 30.203,
+    "source_after": {
+      "src/ZZZAccessController.sol": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "src/ZZZCanonicalHandoff.sol": "f1a38365013d839a28badf7a4b2a503b07878608cae94659ecdbf0bed50ded06",
+      "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "src/ZZZContributionPricing.sol": "c53160a273a50b28c4aa27b856a6ae0962124e421bb652b8f2fb4fe19c023bb6",
+      "src/ZZZCustodyValidation.sol": "951284cdbea10587f611027549dd67029c2dc3533a9dcf3ef1323a4557aa5b9c",
+      "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
+      "src/ZZZLPBalancer.sol": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
+      "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
+      "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "src/ZZZLiquidityManager.sol": "12873c25305934e8efd4c0f037221946030cba1f68e46815c0420fa5b7fc88a3",
+      "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "src/ZZZMigration.sol": "2d0577a01c1cd5ed13b0ba4753fdcc20293f4f7fe8b5b8551580873534ee3dd7",
+      "src/ZZZMigrationBudget.sol": "ee057e36f4179b9a2b541ebb16772cf53c8279e77ac603d8073bb79c2e01101a",
+      "src/ZZZNFT.sol": "9f673b4e441c449c45ffe71537565ff4c73a32cf75df88f78fb3f03af206c829",
+      "src/ZZZNFTCanonical.sol": "40be978cdc4764ae01e9c06fc5350dbfca755ef6d6309ae18b7bef48f159714b",
+      "src/ZZZNFTMetadata.sol": "7dc7d9e8a82e9256004163ac5375c64abe34a7a02d96de6b2a01eeb41b897328",
+      "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
+      "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "src/ZZZPortfolioPolicy.sol": "81a6030c9e70c061ec2d320510f6ec0f8b5965af9a9aba7d42ed0e9b47bd732d",
+      "src/ZZZProtocolPolicy.sol": "312d944c92829a755a7b2f0276f0ef26d08266cbd33262954a8dfd01445b6182",
+      "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
+      "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "src/ZZZRoyaltyRewards.sol": "235e3f175cdb7347a8a7db05ae682d24cb8496342b95015729eb9dd6746448f0",
+      "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
+      "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
+      "src/ZZZVaultCanonical.sol": "2377ffc5adf74cde1cc1d4aebaac5aeca0d3dc1f0042870032855c850d3f8300",
+      "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "src/interfaces/IZZZ.sol": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+      "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "node_modules/@openzeppelin/contracts/utils/Base64.sol": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "node_modules/@openzeppelin/contracts/utils/Context.sol": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "node_modules/@openzeppelin/contracts/utils/Panic.sol": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "node_modules/@openzeppelin/contracts/utils/Strings.sol": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "node_modules/@openzeppelin/contracts/utils/math/Math.sol": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5"
+    },
+    "finished_utc": "2026-11-04T20:38:10.129259+00:00",
+    "source_unchanged": true,
+    "analyzer_success": true,
+    "analyzer_error": null,
+    "detector_count": 471,
+    "by_impact": {
+      "High": 73,
+      "Medium": 92,
+      "Low": 209,
+      "Informational": 76,
+      "Optimization": 21
+    },
+    "by_detector": {
+      "arbitrary-send-erc20": 1,
+      "arbitrary-send-eth": 4,
+      "reentrancy-balance": 37,
+      "reentrancy-eth": 31,
+      "divide-before-multiply": 4,
+      "incorrect-equality": 5,
+      "reentrancy-no-eth": 14,
+      "uninitialized-local": 30,
+      "unused-return": 38,
+      "write-after-write": 1,
+      "shadowing-local": 3,
+      "events-maths": 10,
+      "missing-zero-check": 2,
+      "calls-loop": 141,
+      "reentrancy-benign": 32,
+      "reentrancy-events": 9,
+      "timestamp": 12,
+      "assembly": 5,
+      "costly-loop": 1,
+      "cyclomatic-complexity": 11,
+      "low-level-calls": 12,
+      "missing-inheritance": 28,
+      "naming-convention": 4,
+      "too-many-digits": 15,
+      "cache-array-length": 20,
+      "var-read-using-this": 1
+    },
+    "raw_report_sha256": "e30be4d84f478d7c915d4c647f39a0ca072f361741d62e828102d903df1e2ade",
+    "raw_log_sha256": "aefed6fb55065cadbaa8a13dad184caf1058a0de66e6722957492668814829c9",
+    "raw_report_bytes": 93916394
+  },
+  "records": [
+    {
+      "index": 0,
+      "check": "arbitrary-send-erc20",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 1,
+      "check": "arbitrary-send-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 2,
+      "check": "arbitrary-send-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 3,
+      "check": "arbitrary-send-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 4,
+      "check": "arbitrary-send-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 5,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 6,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 7,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 8,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 9,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 10,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 11,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 12,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 13,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 14,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 15,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 16,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 17,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 18,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 19,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 20,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 21,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 22,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 23,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 24,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 25,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 26,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 27,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 28,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 29,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 30,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 31,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 32,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 33,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 34,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 35,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 36,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 37,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 38,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 39,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 40,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 41,
+      "check": "reentrancy-balance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 42,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 43,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 44,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 45,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 46,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 47,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 48,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 49,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 50,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 51,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 52,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 53,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 54,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 55,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 56,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 57,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 58,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 59,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 60,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 61,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 62,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 63,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 64,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 65,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 66,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 67,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 68,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 69,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 70,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 71,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 72,
+      "check": "reentrancy-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 73,
+      "check": "divide-before-multiply",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 74,
+      "check": "divide-before-multiply",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 75,
+      "check": "divide-before-multiply",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 76,
+      "check": "divide-before-multiply",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 77,
+      "check": "incorrect-equality",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 78,
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "description": "ZZZRebalanceConfirmation.observe(uint256) (src/ZZZRebalanceConfirmation.sol#192-213) uses a dangerous strict equality:\n\t- block.timestamp == 0 || block.timestamp > type()(uint64).max (src/ZZZRebalanceConfirmation.sol#199)\n",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "false_positive"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Intentional observation identity/side and strict boundary comparisons. Same-block repeats cannot create elapsed time; future or stale records reset. Ordinary ready still gates hard cooldown. Emergency16 evaluates live condition and matching samples without implicitly selecting bit1. New early-cooldown, reference re-entry and expiry regressions exercise this distinction."
+    },
+    {
+      "index": 79,
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "description": "ZZZRebalanceConfirmation._ready(ZZZRebalanceConfirmation.Observation,uint8,bytes32) (src/ZZZRebalanceConfirmation.sol#179-183) uses a dangerous strict equality:\n\t- maxObservationGap != 0 && side != 0 && old.identity == identity && old.side == side && old.firstSeen != 0 && old.firstSeen <= old.lastSeen && old.lastSeen <= block.timestamp && block.timestamp - old.lastSeen <= maxObservationGap && block.timestamp - old.firstSeen >= duration (src/ZZZRebalanceConfirmation.sol#180-182)\n",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "false_positive"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Intentional observation identity/side and strict boundary comparisons. Same-block repeats cannot create elapsed time; future or stale records reset. Ordinary ready still gates hard cooldown. Emergency16 evaluates live condition and matching samples without implicitly selecting bit1. New early-cooldown, reference re-entry and expiry regressions exercise this distinction."
+    },
+    {
+      "index": 80,
+      "check": "incorrect-equality",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 81,
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "description": "ZZZRebalanceConfirmation.observe(uint256) (src/ZZZRebalanceConfirmation.sol#192-213) uses a dangerous strict equality:\n\t- restart = old.identity != identity || old.side != side || old.lastSeen > block.timestamp || old.firstSeen == 0 || block.timestamp - old.lastSeen > maxObservationGap (src/ZZZRebalanceConfirmation.sol#201-202)\n",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "false_positive"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Intentional observation identity/side and strict boundary comparisons. Same-block repeats cannot create elapsed time; future or stale records reset. Ordinary ready still gates hard cooldown. Emergency16 evaluates live condition and matching samples without implicitly selecting bit1. New early-cooldown, reference re-entry and expiry regressions exercise this distinction."
+    },
+    {
+      "index": 82,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 83,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 84,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 85,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 86,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 87,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 88,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 89,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 90,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 91,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 92,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 93,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 94,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 95,
+      "check": "reentrancy-no-eth",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 96,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 97,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 98,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 99,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 100,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 101,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 102,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 103,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 104,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 105,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 106,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 107,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 108,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 109,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 110,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 111,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 112,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 113,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 114,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 115,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 116,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 117,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 118,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 119,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 120,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 121,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 122,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 123,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 124,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 125,
+      "check": "uninitialized-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 126,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 127,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 128,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 129,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 130,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 131,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 132,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 133,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 134,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 135,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 136,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 137,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 138,
+      "check": "unused-return",
+      "impact": "Medium",
+      "description": "ZZZCustodyValidation.emergencyFingerprint(EmergencyRebalance) (src/ZZZCustodyValidation.sol#36-47) ignores return value by (None,None,a) = oracle.priceBounds(c.key.currency0) (src/ZZZCustodyValidation.sol#44)\n",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "false_positive"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Custody fingerprint uses validated Oracle policy fingerprints; priceBounds itself validates the configured sources. Other numerical prices are enforced where retained price/value guards require them. marketSides is a diagnostic, not readiness: ordinary Strategy validates physical slot/tick/fees and Confirmation corroborates reference before execution. No discarded value is replaced with an invented executable price."
+    },
+    {
+      "index": 139,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 140,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 141,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 142,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 143,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 144,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 145,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 146,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 147,
+      "check": "unused-return",
+      "impact": "Medium",
+      "description": "ZZZCustodyValidation.emergencyFingerprint(EmergencyRebalance) (src/ZZZCustodyValidation.sol#36-47) ignores return value by (None,None,b) = oracle.priceBounds(c.key.currency1) (src/ZZZCustodyValidation.sol#44)\n",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "false_positive"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Custody fingerprint uses validated Oracle policy fingerprints; priceBounds itself validates the configured sources. Other numerical prices are enforced where retained price/value guards require them. marketSides is a diagnostic, not readiness: ordinary Strategy validates physical slot/tick/fees and Confirmation corroborates reference before execution. No discarded value is replaced with an invented executable price."
+    },
+    {
+      "index": 148,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 149,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 150,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 151,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 152,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 153,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 154,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 155,
+      "check": "unused-return",
+      "impact": "Medium",
+      "description": "ZZZRebalanceConfirmation.marketSides(uint256) (src/ZZZRebalanceConfirmation.sol#119-130) ignores return value by (price,None,None,None) = IConfirmationLiquidity(manager).stateView().getSlot0(p.poolId) (src/ZZZRebalanceConfirmation.sol#126)\n",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "false_positive"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Custody fingerprint uses validated Oracle policy fingerprints; priceBounds itself validates the configured sources. Other numerical prices are enforced where retained price/value guards require them. marketSides is a diagnostic, not readiness: ordinary Strategy validates physical slot/tick/fees and Confirmation corroborates reference before execution. No discarded value is replaced with an invented executable price."
+    },
+    {
+      "index": 156,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 157,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 158,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 159,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 160,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 161,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 162,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 163,
+      "check": "unused-return",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 164,
+      "check": "write-after-write",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 165,
+      "check": "shadowing-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 166,
+      "check": "shadowing-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 167,
+      "check": "shadowing-local",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 168,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 169,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 170,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 171,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 172,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 173,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 174,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 175,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 176,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 177,
+      "check": "events-maths",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 178,
+      "check": "missing-zero-check",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 179,
+      "check": "missing-zero-check",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 180,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 181,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 182,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 183,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 184,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 185,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 186,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 187,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 188,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 189,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 190,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 191,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 192,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 193,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 194,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 195,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 196,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 197,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 198,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 199,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 200,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 201,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 202,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 203,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 204,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 205,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 206,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 207,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 208,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 209,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 210,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 211,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 212,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 213,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 214,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 215,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 216,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 217,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 218,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 219,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 220,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 221,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 222,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 223,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 224,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 225,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 226,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 227,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 228,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 229,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 230,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 231,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 232,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 233,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 234,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 235,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 236,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 237,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 238,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 239,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 240,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 241,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 242,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 243,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 244,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 245,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 246,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 247,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 248,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 249,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 250,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 251,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 252,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 253,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 254,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 255,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 256,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 257,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 258,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 259,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 260,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 261,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 262,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 263,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 264,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 265,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 266,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 267,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 268,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 269,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 270,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 271,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 272,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 273,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 274,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 275,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 276,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 277,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 278,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 279,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 280,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 281,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 282,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 283,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 284,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 285,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 286,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 287,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 288,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 289,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 290,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 291,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 292,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 293,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 294,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 295,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 296,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 297,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 298,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 299,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 300,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 301,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 302,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 303,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 304,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 305,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 306,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 307,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 308,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 309,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 310,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 311,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 312,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 313,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 314,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 315,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 316,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 317,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 318,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 319,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 320,
+      "check": "calls-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 321,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 322,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 323,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 324,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 325,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 326,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 327,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 328,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 329,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 330,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 331,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 332,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 333,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 334,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 335,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 336,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 337,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 338,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 339,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 340,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 341,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 342,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 343,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 344,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 345,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 346,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 347,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 348,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 349,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 350,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 351,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 352,
+      "check": "reentrancy-benign",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 353,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 354,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 355,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 356,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 357,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 358,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 359,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 360,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 361,
+      "check": "reentrancy-events",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 362,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 363,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 364,
+      "check": "timestamp",
+      "impact": "Low",
+      "description": "ZZZRebalanceConfirmation._ready(ZZZRebalanceConfirmation.Observation,uint8,bytes32) (src/ZZZRebalanceConfirmation.sol#179-183) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- maxObservationGap != 0 && side != 0 && old.identity == identity && old.side == side && old.firstSeen != 0 && old.firstSeen <= old.lastSeen && old.lastSeen <= block.timestamp && block.timestamp - old.lastSeen <= maxObservationGap && block.timestamp - old.firstSeen >= duration (src/ZZZRebalanceConfirmation.sol#180-182)\n",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "accepted_risk"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Time is an explicit on-chain policy input, not randomness or uninterrupted market history. Ordered firstSeen/lastSeen/current timestamp, inclusive maxgap and duration remain. Emergency16 intentionally omits cooldown unless bit1 retained; expiration still advances during pause. Inclusion latency/chain timestamp assumptions remain operating limits."
+    },
+    {
+      "index": 365,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 366,
+      "check": "timestamp",
+      "impact": "Low",
+      "description": "ZZZRebalanceConfirmation.emergencyReady(uint256) (src/ZZZRebalanceConfirmation.sol#172-178) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- manual || _ready(observations[bucket],side,identity) (src/ZZZRebalanceConfirmation.sol#177)\n",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "accepted_risk"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Time is an explicit on-chain policy input, not randomness or uninterrupted market history. Ordered firstSeen/lastSeen/current timestamp, inclusive maxgap and duration remain. Emergency16 intentionally omits cooldown unless bit1 retained; expiration still advances during pause. Inclusion latency/chain timestamp assumptions remain operating limits."
+    },
+    {
+      "index": 367,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 368,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 369,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 370,
+      "check": "timestamp",
+      "impact": "Low",
+      "description": "ZZZRebalanceConfirmation.observe(uint256) (src/ZZZRebalanceConfirmation.sol#192-213) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- block.timestamp == 0 || block.timestamp > type()(uint64).max (src/ZZZRebalanceConfirmation.sol#199)\n\t- restart = old.identity != identity || old.side != side || old.lastSeen > block.timestamp || old.firstSeen == 0 || block.timestamp - old.lastSeen > maxObservationGap (src/ZZZRebalanceConfirmation.sol#201-202)\n",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "accepted_risk"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Time is an explicit on-chain policy input, not randomness or uninterrupted market history. Ordered firstSeen/lastSeen/current timestamp, inclusive maxgap and duration remain. Emergency16 intentionally omits cooldown unless bit1 retained; expiration still advances during pause. Inclusion latency/chain timestamp assumptions remain operating limits."
+    },
+    {
+      "index": 371,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 372,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 373,
+      "check": "timestamp",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 374,
+      "check": "assembly",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 375,
+      "check": "assembly",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 376,
+      "check": "assembly",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 377,
+      "check": "assembly",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 378,
+      "check": "assembly",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 379,
+      "check": "costly-loop",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 380,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 381,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 382,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 383,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 384,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 385,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 386,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 387,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 388,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 389,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 390,
+      "check": "cyclomatic-complexity",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 391,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 392,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 393,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 394,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 395,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 396,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 397,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 398,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 399,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 400,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 401,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "false_positive"
+      ]
+    },
+    {
+      "index": 402,
+      "check": "low-level-calls",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "accepted_risk"
+      ]
+    },
+    {
+      "index": 403,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 404,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 405,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 406,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 407,
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "description": "ZZZLPPositionExecutor (src/ZZZLPPositionExecutor.sol#26-331) should inherit from IConfirmationPortfolio (src/ZZZRebalanceConfirmation.sol#28)\n",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "informational"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Locally declared read interfaces are structural ABI views over the pinned implementations. Adding nominal inheritance is unnecessary and would not grant security. Exact parent/module bindings and runtime/configuration admission remain mandatory; no interface check is treated as identity proof."
+    },
+    {
+      "index": 408,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 409,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 410,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 411,
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "description": "ZZZPortfolioPolicy (src/ZZZPortfolioPolicy.sol#18-280) should inherit from IResidualPolicyControl (src/ZZZCustodyValidation.sol#12)\n",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "informational"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Locally declared read interfaces are structural ABI views over the pinned implementations. Adding nominal inheritance is unnecessary and would not grant security. Exact parent/module bindings and runtime/configuration admission remain mandatory; no interface check is treated as identity proof."
+    },
+    {
+      "index": 412,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 413,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 414,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 415,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 416,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 417,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 418,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 419,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 420,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 421,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 422,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 423,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 424,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 425,
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "description": "ZZZRebalanceConfirmation (src/ZZZRebalanceConfirmation.sol#32-225) should inherit from IResidualPolicyControl (src/ZZZCustodyValidation.sol#12)\n",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "informational"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "Locally declared read interfaces are structural ABI views over the pinned implementations. Adding nominal inheritance is unnecessary and would not grant security. Exact parent/module bindings and runtime/configuration admission remain mandatory; no interface check is treated as identity proof."
+    },
+    {
+      "index": 426,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 427,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 428,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 429,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 430,
+      "check": "missing-inheritance",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 431,
+      "check": "naming-convention",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 432,
+      "check": "naming-convention",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 433,
+      "check": "naming-convention",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 434,
+      "check": "naming-convention",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 435,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 436,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 437,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 438,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 439,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 440,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 441,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 442,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 443,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 444,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 445,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 446,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 447,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 448,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 449,
+      "check": "too-many-digits",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 450,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 451,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 452,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 453,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 454,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 455,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 456,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 457,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 458,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 459,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 460,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 461,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 462,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 463,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 464,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 465,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 466,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 467,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 468,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 469,
+      "check": "cache-array-length",
+      "review_kind": "exact_referenced_source_and_normalized_detector_line_multiset_reuse",
+      "prior_report": "reports/authority-audit-20261103/static-review.json",
+      "prior_dispositions": [
+        "informational"
+      ]
+    },
+    {
+      "index": 470,
+      "check": "var-read-using-this",
+      "impact": "Optimization",
+      "description": "The function ZZZRebalanceConfirmation.observe(uint256) (src/ZZZRebalanceConfirmation.sol#192-213) reads (side,identity,manual) = this.condition(bucket) (src/ZZZRebalanceConfirmation.sol#193-212) with `this` which adds an extra STATICCALL.\n",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "matching_prior_contexts": 1,
+      "current_source_context": true,
+      "prior_dispositions": [
+        "accepted_risk"
+      ],
+      "review_kind": "current_changed_source_context_review",
+      "rationale": "The external self STATICCALL to condition is intentional: observe catches an external-read fault, clears evidence in a successful transaction and emits reset. Replacing it with an internal call would propagate revert and resurrect the old record. No other sender gets observation-write authority."
+    }
+  ],
+  "limitations": [
+    "Nonzero analyzer CLI status is retained; tool JSON reports success with471 alerts, not a clean zero-alert exit.",
+    "No independent approval, exhaustive path proof, live feed/venue/provider/gas or host qualification."
+  ]
+}

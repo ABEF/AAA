@@ -78,7 +78,7 @@ contract CustodyParkingTest is PooledVaultFixture {
             else if (i == 9) r.reviewHash = bytes32(0);
             else if (i == 10) r.deadline = block.timestamp - 1;
             else if (i == 11) r.deadline = block.timestamp + 601;
-            else { r.minimum0 = 0; r.minimum1 = 0; }
+            else r.portfolioHash = bytes32(0);
             vm.expectRevert(); migration.park(r);
             assertEq(migration.parkingNonce(_bucket()), 0);
             assertEq(uint8(vault.group(_bucket()).status), uint8(PositionStatus.Active));

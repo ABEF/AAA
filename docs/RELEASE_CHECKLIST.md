@@ -24,14 +24,21 @@ negative failures are retained. Contracts/settings/journals are unchanged.
 A reviewed matching keeper source rollout remains required; no service was
 changed.600/240/300 and the hard12hours remain, with sampled/live limits.
 
+
+[Manual safeguard evidence](../reports/manual-safeguard-audit-20261104/VERIFICATION.md)
+updates two view routines and fresh normal compiler/callable/static scope.
+A matching runtime review and operating rehearsal are still required; an old
+capability version or prior gate pass does not establish compatibility.
+
 ## Evidence and approval boundary
 
-Audit baseline: main `cf39b1402915c438b8278cf9c8b51c321922b98f`; production Solidity
-remains exact e26fc74. No approved deployment or release-specific configuration exists.
+Manual safeguard baseline: main `0b14acaf5df696c7a32243b8ea7c315a8cd191ab`;
+two current production view routines differ from historical e26fc74. No approved
+deployment or release-specific configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.
 
-Current [authority verification](../reports/authority-audit-20261103/VERIFICATION.md)
+Historical [authority verification](../reports/authority-audit-20261103/VERIFICATION.md)
 binds52production/31dependency sources,43normal gates and471static records
 (19current-context review/452exact unchanged reuse).14distinct selected EVM
 behaviors pass across recorded scopes;25corrected targeted Python checks pass.

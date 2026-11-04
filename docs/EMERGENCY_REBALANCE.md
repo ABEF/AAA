@@ -57,13 +57,35 @@ across callbacks even if bit4 financial checks are disabled.
 | `2` | Fresh independent prices and spot/reference agreement before/after execution. |
 | `4` | Captured aggregate maintenance retention, venue/fee-adjusted output floors and idle ceilings. Valuing these limits still requires healthy USD prices even if bit2 is off. |
 | `8` | Pool `operationsEnabled` admission for deployment/swapping. |
-| `16` | Existing sampled confirmation, still fresh at inclusion. Pause does not create observations or stop their expiry. An absent/stale/stopped window rejects if this bit is selected. The established deliberate-range exception remains. |
+| `16` | Existing sampled confirmation, still fresh at inclusion; does not implicitly retain bit1 cooldown/raw eligibility. Its live condition/prices/identity still must validate. Pause does not create observations or stop their expiry. An absent/stale/stopped window rejects if this bit is selected. The established deliberate-range exception remains. |
 
 For example, retaining `2+4+8` keeps financial/venue checks while bypassing timing
 and sampled-trigger requirements. Zero explicitly disables all five optional
 groups; it does not disable the structural requirements above. Never retry with
 fewer checks automatically. Deliberately lowering protection needs a fresh human
 review and exact simulation.
+
+## Safeguard dependencies and full recovery scope
+
+Bit1 and bit16 are independent emergency choices. `emergencyReady` checks the
+existing condition/record; Budget alone applies the hard clock when bit1 is
+retained. Ordinary `ready` still always requires that clock. No observations can
+be created or extended during pause. Retaining samples therefore can reject
+after expiry, reference re-entry or policy/physical-identity changes.
+
+Bit1's raw Strategy read and bit16's sampled condition need their underlying
+price/control data. Bit4 needs USD prices to measure loss even when bit2 spot
+agreement is disabled. These are necessary data dependencies, not a promise
+that all32 masks can execute during a price outage. `checks=0` is the reviewed
+no-price/no-policy force route from Active OR Parked custody. The automatic
+Balancer venue list is not used to select its explicit swap.
+
+For close-only recovery, use paused `park` or `closeResidual`, with both optional
+raw receipt floors zero if explicitly accepted. Follow the
+[operator call matrix](OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call)
+and [source-scoped audit](../reports/manual-safeguard-audit-20261104/REVIEW.md).
+This source fix changes runtime pins, not request/storage layout; installed old
+contracts and journals are unchanged.
 
 ## Consolidating to one position
 

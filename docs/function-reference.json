@@ -12,7 +12,7 @@
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
       "src/ZZZContributionPricing.sol": "c53160a273a50b28c4aa27b856a6ae0962124e421bb652b8f2fb4fe19c023bb6",
-      "src/ZZZCustodyValidation.sol": "a6792006ea82ee4303e77d6374edb8b0bf05fdbe851c3960e1b41de161cb38fe",
+      "src/ZZZCustodyValidation.sol": "951284cdbea10587f611027549dd67029c2dc3533a9dcf3ef1323a4557aa5b9c",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
       "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
@@ -31,7 +31,7 @@
       "src/ZZZPortfolioPolicy.sol": "81a6030c9e70c061ec2d320510f6ec0f8b5965af9a9aba7d42ed0e9b47bd732d",
       "src/ZZZProtocolPolicy.sol": "312d944c92829a755a7b2f0276f0ef26d08266cbd33262954a8dfd01445b6182",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
-      "src/ZZZRebalanceConfirmation.sol": "e60cc180122e8f773c64c67542f524cb308105efe58b8483f19f781d8f9d61d8",
+      "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
       "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
@@ -221,9 +221,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "7ddc4fc176f97f54f046243f23b160810b76caae83e205dd7e343d2c122ae3af",
-    "compiler_output_sha256": "41a5346a93c8728e5216e902ccdabcdc6521ae553ebe8f28a826b1e5946885a5",
-    "size_evidence_sha256": "4e1f4b9cd1fc52765e7db13b364556fc68934f6e85ddc1265246ac9e641a88c4",
+    "compiler_input_sha256": "5781031ff908f078c25c6cdd8318f37108112ce05822019832c707006bc432ef",
+    "compiler_output_sha256": "7fab4dbb9524d37fd8417c71e89fc0e69aae7ebf562eda81fa7055c00de9c057",
+    "size_evidence_sha256": "8ea013e9594b96ff4d7d07da9d0bd7e1cd9ee724a997f9650ee2f86e965c30ac",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -24025,7 +24025,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "4589c39f5ff918ae1d8051349e1df6747146b1ca41840c8740158d2911c7e806",
+  "notes_sha256": "5406bbf7b5d00f7cae2f406df40f81550883c605d41988eb0c080590feb4e2e9",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -28987,7 +28987,7 @@
               "type": "bytes",
               "canonical_type": "bytes",
               "internal_type": "bytes",
-              "explanation": "ABI-encoded Parking(bucketId,poolId,lpTokenId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash). Minima are raw close proceeds; native token0 uses wei. reviewHash must be nonzero."
+              "explanation": "ABI-encoded Parking(bucketId,poolId,lpTokenId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Both raw floors may explicitly be zero; positive floors still bind. Minima are raw close proceeds; native token0 uses wei. reviewHash must be nonzero."
             }
           ],
           "outputs": [],
@@ -36433,7 +36433,7 @@
               "type": "tuple",
               "canonical_type": "(uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32)",
               "internal_type": "struct ZZZMigration.ParkingRequest",
-              "explanation": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,parkingNonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Exact current main/associated residual, shares and L-sensitive Manager.executionPortfolioFingerprint; token0 native ETH and token1 fixed ZZZ. Minima cover residual principal receipts ONLY (wei/raw ZZZ), at least one positive; deadline now..now+600; nonzero review commitment.",
+              "explanation": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,parkingNonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Exact current main/associated residual, shares and L-sensitive Manager.executionPortfolioFingerprint; token0 native ETH and token1 fixed ZZZ. Minima cover residual principal receipts ONLY (wei/raw ZZZ), both may explicitly be zero for a raw paused-governance close; positive submitted floors still bind; deadline now..now+600; nonzero review commitment.",
               "components": [
                 {
                   "position": 0,
@@ -37233,7 +37233,7 @@
               "type": "tuple",
               "canonical_type": "(uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32)",
               "internal_type": "struct ZZZMigration.ParkingRequest",
-              "explanation": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). portfolioHash equals current Manager.executionPortfolioFingerprint(main), including BOTH L values. Minima are combined raw close proceeds; ETH uses wei; deadline fresh/reviewHash nonzero.",
+              "explanation": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). portfolioHash equals current Manager.executionPortfolioFingerprint(main), including BOTH L values. Minima are combined raw close proceeds; ETH uses wei. Paused governance may explicitly set both to zero; any positive submitted floor remains binding. Deadline fresh/reviewHash nonzero.",
               "components": [
                 {
                   "position": 0,
@@ -47182,7 +47182,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": "True for retained still-fresh threshold samples or deliberate geometry exception after hard-clock/raw guards. Records nothing; pause does not stop expiry."
+              "explanation": "True for still-fresh threshold samples or deliberate geometry exception. Emergency bit16 does not implicitly retain hard cooldown/raw eligibility; Budget separately enforces those when bit1 is selected. Records nothing; pause does not stop expiry."
             }
           ],
           "native_value": null,

@@ -50,6 +50,12 @@ compatibility before migration starts. Old profiles and receipt recovery remain
 explicitly historical. There is no automatic deployment, journal migration,
 public signing, site rollout or readiness approval.
 
+The [manual safeguard follow-up](../reports/manual-safeguard-audit-20261104/REVIEW.md)
+changes runtime pins without changing ABI/storage or these capability getters.
+Emergency bit16 no longer implies bit1 cooldown, and paused raw close accepts
+explicit both-zero review floors. Verify exact current code pins; old instances
+do not acquire this behavior. Ordinary safeguards and ownership remain.
+
 ## Version names are different boundaries
 
 | Name | Current meaning |

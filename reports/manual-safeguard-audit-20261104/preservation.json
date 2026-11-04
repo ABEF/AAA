@@ -1,0 +1,18 @@
+{
+  "protected_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "protected_dirty_unchanged": true,
+  "prior_tracked_report_diffs": [
+    "reports/README.md",
+    "reports/source-checks.json"
+  ],
+  "prior_report_content_changes_excluding_preserved_dirty_and_map": [],
+  "website_head": "8ec453aced2ff0f5263d53a4eae917809105b798",
+  "website_tracked_clean": true,
+  "normal_source_pins_current": true,
+  "boundaries": "No operations against sites/services/Anvil/journals/heartbeat or signing were performed."
+}

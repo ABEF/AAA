@@ -59,6 +59,24 @@ close deltas with the reviewed raw minima. Prior idle, Vault donations and
 compound held in Fees cannot fill a close shortfall. Fees are not relabelled as
 principal. Any failed token transfer, settlement or callback reverts the operation.
 
+## Explicit raw floors and forced re-entry
+
+Fresh source permits paused governance to set BOTH `minimum0` and `minimum1`
+to zero, including for residual-only close. This deliberately accepts the actual
+returned token mix; it is not a safe default recommendation. A positive submitted
+floor still binds exactly. Market movement can turn a formerly two-sided LP
+wholly into one currency without changing its fingerprint. All custody, current
+physical-principal, actual receipt, nonce/epoch, deadline and reserve checks stay.
+
+To put parked funds back into the CURRENT pool without optional price/timing/
+loss policy, remain paused and prepare a fresh
+`Migration.emergencyRebalance(request)` with `checks=0`, explicit valid ticks,
+optional exact admitted swap and positive raw output/LP floors. See the
+[force procedure](OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call).
+Ordinary `resume` remains guarded and may choose another reviewed same-pair pool.
+Old runtimes may reject both-zero floors despite sharing the same ABI/version;
+verify exact source/runtime pins rather than relabeling installed contracts.
+
 ## Resume or choose another action
 
 While parked, activation into the bucket, top-ups, compounding and keeper

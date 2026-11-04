@@ -346,4 +346,28 @@ contract RebalanceConfirmationTest is Test {
         confirmation.resetObservation(BUCKET);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector); budget.checkpoint(BUCKET,2);
     }
+    function testManualAuditSampleOnlyEmergencyDoesNotInheritOptionalHardCooldown() public {
+        _configure();position.lastRebalance=uint64(block.timestamp);
+        confirmation.observe(BUCKET);_observeAfter(300);_observeAfter(300);
+        assertFalse(strategy.needsRebalance(BUCKET));assertFalse(strategy.rebalanceReady(BUCKET));
+        // TEST ONLY module binding; production's sealed registry cannot rebind.
+        access.bind(Ids.MIGRATION,address(this));access.setPaused(true);budget.beginEmergency(BUCKET,16);
+        vm.prank(address(budget));assertTrue(confirmation.emergencyReady(BUCKET));
+        budget.validateRebalance(BUCKET,1);budget.endEmergency();
+        budget.beginEmergency(BUCKET,1+16);
+        vm.expectRevert(ZZZMigrationBudget.InvalidState.selector);budget.validateRebalance(BUCKET,1);
+        budget.endEmergency();access.setPaused(false);
+        assertFalse(strategy.rebalanceReady(BUCKET)); // no ordinary-path bypass leaked
+    }
+    function testManualAuditRetainedSampleStillRejectsExpiryAndReferenceReentry() public {
+        _configure();position.lastRebalance=uint64(block.timestamp);
+        confirmation.observe(BUCKET);_observeAfter(300);_observeAfter(300);
+        access.bind(Ids.MIGRATION,address(this));access.setPaused(true);budget.beginEmergency(BUCKET,16);
+        vm.prank(address(budget));assertTrue(confirmation.emergencyReady(BUCKET));
+        oracle.setReference(TickMath.getSqrtPriceAtTick(_insideLowerThreshold()));
+        vm.prank(address(budget));assertFalse(confirmation.emergencyReady(BUCKET));
+        _below();vm.warp(block.timestamp+301);
+        vm.prank(address(budget));assertFalse(confirmation.emergencyReady(BUCKET));
+        budget.endEmergency();
+    }
 }

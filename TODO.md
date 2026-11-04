@@ -156,6 +156,7 @@ Custody, ownership and reward accounting.
   - Qualify per-recipient gas, callback/rejection/token fault isolation, current-owner fallback and complete backing/remaining balances on the target chain.
   - Old native-custody reports remain historical; qualify the current accounting6/custody4 code independently before approval.
   - After principal allocation, reserve-only venue recovery remains available without reopening custody or changing unpaid owner allocations. Keep buyback reserve, allocated principal and old reward liabilities separate; qualify pending payouts and actual venue re-admission on the target chain.
+  - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
 
   </details>
 
@@ -400,6 +401,7 @@ Custody, ownership and reward accounting.
   - Snapshot3 now enforces independent bytecode/constructor limits, coherent raw artifact/status/freeze bindings and a closed stored compiler source inventory. 31 distinct affected methods pass across three scopes; actual matching75-source artifacts regenerate31contracts/608functions/13receive hooks without production recompilation. Dynamic actual release arguments remain unqualified; self-consistent metadata is not independent build/test authentication. Strict outer integer schemas and fixed-point ABI types are validated; the last source has three targeted passes, not a fresh31-method rerun.
   - [Whole-project execution](reports/whole-project-execution-20261029/VERIFICATION.md) fills122output annotations preserving all previous notes; zero purpose/input/output gaps with source-bound generator/check.33concrete contract ABI tables are not proof of security or independent provider qualification.
   - [Authority inventory](reports/authority-audit-20261103/AUTHORITY_INVENTORY.json) resolves241mutable effective implementations and577reads; these are source counts, not executed tests. Owner reward claims remain available; terminal batches governance-only.
+  - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
 
   </details>
 
@@ -415,6 +417,7 @@ Custody, ownership and reward accounting.
   - Temporary context is parent/caller/bucket/governance scoped and cleared atomically; failed close/swap/deployment reverts all state except paid network gas. Retained sampled policy/raw records remain pinned even if the value guard is disabled. Parked custody may recover; terminal exit cannot reopen. Source-scoped tests/build gates and limits are in [verification](reports/independent-rebalance-20261029/VERIFICATION.md).
   - Local implementation is not production approval. Qualify actual full-operation simulations, post-withdraw depth, floor selection, cold/maximal target gas, key/recovery procedures and independent audit before enabling a deployment. No service/site/Anvil/public transaction/deployment was performed.
   - [Manual-operation audit](reports/manual-operations-20261031/REVIEW.md): exact EmergencyRebalance inputs/retained bits, current-pool-only recovery, mode-off persistence, temporary pause/unpause and failed-step handling are indexed. Emergency swapPool is an explicit admitted venue, independent of the ordinary Balancer list. No new live authority or service fallback; actual full-call simulation/gas/operating rehearsal remains required.
+  - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
 
   </details>
 
@@ -972,6 +975,7 @@ Three required testing layers, with source-bound evidence.
   - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): New defect controls and affected consumer checks are source-scoped. Earlier three reports/normal gates retain exact scopes; inventory listing is not execution, and Unix permissions remain unqualified.
   - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
   - [Confirmation timing/recovery audit](reports/confirmation-audit-20261104/VERIFICATION.md):100distinct selected Python methods pass, including14new wake-up/clear-priority regressions. Actual daemon sleep now honors saved maturity/cooldown/jitter deadlines and accounts for elapsed work; queued incident clear precedes unrelated router metadata. Existing guards, journals, pending/global-error polling and normal600/240/300 policy remain. Retain negative controls; actual matching service rollout, receipt latency/cost and independent qualification remain open.
+  - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
 
   </details>
 
@@ -1354,6 +1358,7 @@ Decisions and rehearsals before real funds.
   - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
   - [Current-profile recovery composition](reports/market-lifecycle-20261104/VERIFICATION.md): compound waits through pending geometry, threshold and outside states across a restart; a price fault blocks compound while raw both-leg harvest review survives; pending recovery precedes broken fresh reads. These are inert worker tests, not sustained Unix operation.
   - [Confirmation timing/recovery audit](reports/confirmation-audit-20261104/VERIFICATION.md):100distinct selected Python methods pass, including14new wake-up/clear-priority regressions. Actual daemon sleep now honors saved maturity/cooldown/jitter deadlines and accounts for elapsed work; queued incident clear precedes unrelated router metadata. Existing guards, journals, pending/global-error polling and normal600/240/300 policy remain. Retain negative controls; actual matching service rollout, receipt latency/cost and independent qualification remain open.
+  - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
 
   </details>
 
@@ -1439,4 +1444,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8e0efbf289c42fb2de78b5d6390b117513e201642eedeae61c182aecdfe5eb2e`.
+Snapshot SHA-256: `319dbe7f3c1b11ecc4d6b878ea143377a28e881c7b6684f443dff716e6717c54`.

@@ -4736,7 +4736,7 @@
           "purpose": "Harvest/close both exactly reviewed LP legs into Vault idle without releasing custody.",
           "access": "Drain-authorized governance while globally paused,before terminal exit; nonreentrant.",
           "inputs": {
-            "0": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). portfolioHash equals current Manager.executionPortfolioFingerprint(main), including BOTH L values. Minima are combined raw close proceeds; ETH uses wei; deadline fresh/reviewHash nonzero."
+            "0": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). portfolioHash equals current Manager.executionPortfolioFingerprint(main), including BOTH L values. Minima are combined raw close proceeds; ETH uses wei. Paused governance may explicitly set both to zero; any positive submitted floor remains binding. Deadline fresh/reviewHash nonzero."
           },
           "notes": "Custody4 appends portfolioHash; old custody3 calldata incompatible. Compounding can invalidate review. No USD-oracle prerequisite,external recipient or holder distribution."
         },
@@ -4751,7 +4751,7 @@
           "purpose": "Manually remove only the reviewed residual LP into Vault idle while preserving the main and all NFT rights.",
           "access": "Selected governance only; sealed/globally paused, operating canonical lifecycle without preparation or terminal LP exit; nonreentrant.",
           "inputs": {
-            "0": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,parkingNonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Exact current main/associated residual, shares and L-sensitive Manager.executionPortfolioFingerprint; token0 native ETH and token1 fixed ZZZ. Minima cover residual principal receipts ONLY (wei/raw ZZZ), at least one positive; deadline now..now+600; nonzero review commitment."
+            "0": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,parkingNonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Exact current main/associated residual, shares and L-sensitive Manager.executionPortfolioFingerprint; token0 native ETH and token1 fixed ZZZ. Minima cover residual principal receipts ONLY (wei/raw ZZZ), both may explicitly be zero for a raw paused-governance close; positive submitted floors still bind; deadline now..now+600; nonzero review commitment."
           },
           "notes": "Shares the parking review nonce/custody epoch, both advanced on success. Harvested fees are allocated80/10/5/5 before burning residual principal. Requires unchanged main owner/key/ticks/L, bucket fields except idle, Registry/policy controls and governance/pause through callbacks. Desired mode remains unchanged; setMode(false) first to keep future adjustments single. Mixed residuals are accepted. Failure/minima/late callback rolls back all effects; no USD/swap/operations-enabled dependency or keeper automation."
         }
@@ -5285,7 +5285,7 @@
           "purpose": "Validate the exact local parking tuple against active LP, shares, deposit mark, pair, epoch and nonce.",
           "access": "Only its deploying fixed Migration; read-only.",
           "inputs": {
-            "0": "ABI-encoded Parking(bucketId,poolId,lpTokenId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash). Minima are raw close proceeds; native token0 uses wei. reviewHash must be nonzero."
+            "0": "ABI-encoded Parking(bucketId,poolId,lpTokenId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Both raw floors may explicitly be zero; positive floors still bind. Minima are raw close proceeds; native token0 uses wei. reviewHash must be nonzero."
           },
           "notes": "Requires sealed, paused, nonterminal LP operation. Does not transfer principal or query USD prices."
         },
@@ -6960,7 +6960,7 @@
             "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
           },
           "outputs": {
-            "0": "True for retained still-fresh threshold samples or deliberate geometry exception after hard-clock/raw guards. Records nothing; pause does not stop expiry."
+            "0": "True for still-fresh threshold samples or deliberate geometry exception. Emergency bit16 does not implicitly retain hard cooldown/raw eligibility; Budget separately enforces those when bit1 is selected. Records nothing; pause does not stop expiry."
           }
         },
         "observationFingerprint(uint256,bytes32)": {

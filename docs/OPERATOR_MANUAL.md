@@ -877,7 +877,7 @@ accounting label does not add a new write capability to historical deployments.
 | Stay single after emergency consolidation | Governance sets modefalse **before** preparing/signing the emergency review. | Prevents a later ordinary adjustment from creating another residual. |
 | Re-enable after closing it | Governance sets modetrue; use the next eligible guarded whole adjustment. | Existing unused principal remains included; a new residual can be created with actual inventory and approved geometry. |
 | Reapply geometry when mode is already enabled | Governance → `configureResidualSide(pool,currentSideBps,reviewHash)`. | Same-value width review intentionally advances enabled geometry so the next guarded whole adjustment after cooldown can rebuild it. No artificial mode toggle or cooldown bypass. |
-| Stop all LP without a swap | Governance → paused [parking](CUSTODY_PARKING.md). | Closes both legs into Vault-attributed idle. Resume requires separate guarded deployment. |
+| Stop all LP without a swap | Governance → paused [parking](CUSTODY_PARKING.md). | Closes both legs into Vault-attributed idle; both optional raw floors may be zero. Later ordinary resume is guarded; paused emergency redeployment can bypass optional guards. |
 | Permanently end LP and return principal | Governance → [collective holder exit](HOLDER_COLLECTIVE_EXIT.md). | Irreversible; closes both legs and returns actual ETH/ZZZ to NFT holders, while old rewards, future royalties and transfers remain. |
 
 Every governance write requires a fresh nonzero review commitment where specified.
@@ -916,7 +916,7 @@ restrict the returned assets.
 | `totalShares`, `depositUSD` | Exact current bucket shares and recorded contribution value. These are identity checks, not a request to rewrite either. |
 | `custodyEpoch`, `nonce` | Current `Migration.custodyEpoch(bucket)` and shared `parkingNonce(bucket)`. |
 | `token0`, `token1` | Native ETH zero address and the deployment's fixed ZZZ, matching the actual admitted ordered pair. |
-| `minimum0`, `minimum1` | Raw minimum principal receipts from closing **only the residual**, excluding existing idle and harvested fees. ETH uses wei; ZZZ uses its reviewed decimals. At least one minimum must be positive; a genuinely absent side can be zero. |
+| `minimum0`, `minimum1` | Raw minimum principal receipts from closing **only the residual**, excluding existing idle and harvested fees. ETH uses wei; ZZZ uses its reviewed decimals. Both may deliberately be zero for a raw governance close. Any positive floor remains binding; use fresh simulation when retaining output protection. |
 | `deadline` | Unix seconds; inclusion must satisfy `now <= deadline <= now+600`. |
 | `reviewHash` | Nonzero hash of the reviewed exact operation and supporting evidence. A hash records review intent, not review quality. |
 | `portfolioHash` | Current `Manager.executionPortfolioFingerprint(main)`, including both physical IDs/ticks/liquidity. |
@@ -946,8 +946,9 @@ rescue or permission to bypass custody.
 
 Market movement can change the residual's token mix without changing its LP
 identity. A raw minimum for a side that has since fully converted can therefore
-reject the request. Re-read and simulate the actual mix; never substitute guessed
-zero minimums simply to get an old request through.
+reject the request. Re-read and simulate the actual mix. Governance may instead
+review a NEW request explicitly accepting both zero floors; this gives up
+review-time token-output protection, not custody or exact settlement checks.
 
 #### Returned idle and restarting deployment
 
@@ -1084,6 +1085,47 @@ legs and mints one emergency target, without independently creating a residual.
 No principal goes to governance; financial bypass can still destroy nearly all
 value. Simulate the whole operation, reconcile pending hashes and verify cleared
 emergency state before separately authorized unpause/service restart.
+
+### Force, close and redeploy: choose the correct call
+
+An ordinary manual call is not a force call. Use the following recovery sequence
+when deliberately bypassing optional policy; do not weaken the automated keeper.
+The [audited safeguard matrix](../reports/manual-safeguard-audit-20261104/SAFEGUARD_MATRIX.md)
+maps every operation and dependency.
+
+| Intent | Governance transaction / inputs | Timing and financial policy |
+| --- | --- | --- |
+| Rebalance now, including before cooldown | Pause via `Access.setPaused(true)`; fresh `Migration.emergencyRebalance(request)` with explicit ticks, current custody hash, chosen swap and `checks=0`. | No sampled window, hard cooldown, service jitter, independent-price, USD-loss, idle-ceiling or enabled-operation policy. Positive explicit swap-output/LP floors still bind. |
+| Close all LP temporarily | Paused `Migration.park(ParkingRequest)`; exact current main/both-leg fingerprint, shares/epoch/nonce, fresh deadline/reviewHash. | No trigger, timer, USD source or swap. `minimum0=minimum1=0` is an explicit raw-close choice; positive floors remain binding. Principal remains attributed in Vault. |
+| LP again after parking, despite optional policy failure | Stay paused; recompute `emergencyCustodyHash(bucket)` from PARKED state; new `emergencyRebalance` with `checks=0`. | Uses current pool, explicit raw ticks/optional one swap, and attributed idle/designated compound. No stale Active review or old sample can be reused. |
+| Close residual only | Paused `Migration.closeResidual(ParkingRequest)`; same exact review fields, minima apply ONLY to residual. | No timing, USD or swap dependency; both raw floors may be zero. Main/shares/clock remain; desired mode does not change. |
+| Consolidate and remain single | Set desired modefalse BEFORE reviewing; paused emergency replacement into one main. | Same selectable emergency mask; emergency never creates a second position. |
+| Deploy normally or select a different reviewed ETH/ZZZ pool | Unpaused `Migration.resume` or `moveFunds`, positive LP floor and deadline. | Ordinary pricing/admission/execution guards remain. Emergency targets the bucket's CURRENT pool; it does not admit arbitrary new pools. |
+| Permanently return LP to holders | Paused collective-exit procedure and governed bounded batches. | Terminal. No emergency can reopen LP or bypass NFT-owner allocations. |
+
+Emergency bits are RETAINED checks, not bypass bits. Bit1 retains raw trigger/
+cooldown; bit16 retains existing samples independently of that clock. Selecting
+16 without1 still needs fresh matching samples and their live price/control
+dependencies. Bit4 still needs USD valuation even without2. Select zero only
+after reviewing the loss of all optional economic protections. Review hashes
+are audit references, not attestations that the trade is safe.
+
+All these calls retain current authority/pause/lifecycle, exact fixed assets,
+Vault ownership, actual receipts/shares/reserves, typed callbacks, bounded
+deadline and structurally valid ticks/liquidity. The core's current-transaction
+principal proof remains even when review-time output floors are zero. Broken
+tokens/core, unavailable liquidity, invalid raw amounts/ticks or insufficient gas
+can still prevent execution. Never invent a recipient, relabel a runtime or
+automatically retry with weaker protection.
+
+After successful emergency/parking/close, the protocol REMAINS PAUSED. Check
+receipt, both LP IDs, attributed idle, shares, old rewards/reserves and cleared
+emergency state. Restore healthy normal settings and separately unpause when
+ready. New LP replacement starts a new rebalance clock; unpause alone does not
+deploy parked assets. On-chain policy changes alone need no keeper restart;
+new source/runtime adoption and out-of-band signer activity require the existing
+stop, reconcile, dry-run and reviewed rollout procedure. No rollout is performed
+by this documentation or source publication.
 
 ### Manual rebalance at a chosen time
 
