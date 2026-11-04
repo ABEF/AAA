@@ -74,6 +74,23 @@ ordinary rebalance → verify one active main**. Immediate exceptional return is
 **set mode false → pause → reviewed emergency consolidation → inspect → unpause**.
 There is no holder-facing principal withdrawal in either sequence.
 
+## Reconcile principal and reward rounding
+
+For each NFT, value its shares of the actual main+residual holdings plus
+attributed idle/designated compound. Sum each token amount before applying
+its USD price; independently rounded subtotals may differ by a raw USD unit.
+Never add liquidity units from different ranges or use historical deposits
+as current LP value. Both legs remain counted while mode-off awaits merge.
+
+LP rewards keep separate individual and collective sub-unit fractions. Do
+not combine those fractions into a spendable unit or sweep the difference
+between total liabilities and current claims. Claim only the exact funded
+contract amount; failed USD reads do not prove a zero reward balance. Claims
+and terminal principal payouts are not additional fee generation. See the
+[receipt-model campaign](../reports/market-lifecycle-20261104/REVIEW.md). No new call or restart is required;
+fresh custody5 still keeps terminal batches governance-only and holder reward
+claims owner-controlled.
+
 ## Find the right procedure
 
 Use [current profile identities](POSITION_V6.md) and [consolidated findings](AUDIT_FINDINGS.md)
@@ -117,7 +134,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 
 ## Current accounting6 deployment boundary
 
-Fresh source uses Vault.ACCOUNTING_VERSION6, ProtocolPolicy1, Migration.CUSTODY_VERSION4,
+Fresh source uses Vault.ACCOUNTING_VERSION6, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
 Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing2,
 emergency2, Access.GOVERNANCE_VERSION2 and
 `SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6")`.

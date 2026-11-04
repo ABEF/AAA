@@ -147,6 +147,11 @@ source/build/service/journal/signing changes. Lifetime storage/provider/operatin
 and independent-audit gates stay open.
 
 
+- [Market/lifecycle evidence](reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-v4 journeys plus one
+  affected six-day control and7new API/worker methods. Receipt-derived owner
+  and collective fractions remain separate; sum principal tokens before USD
+  rounding. Initial model/transcript failures are retained. Production sources,
+  settings, services and sites are unchanged; this is not market qualification.
 - Current source/evidence: [profile identities](docs/POSITION_V6.md),
   [features](docs/IMPLEMENTATION_STATUS.md), [consolidated findings](docs/AUDIT_FINDINGS.md),
   [report map](reports/README.md) and [release approval](docs/RELEASE_CHECKLIST.md).

@@ -19,7 +19,9 @@ covers per-NFT/mixed-wallet payouts. The [whole-project supplement](reports/comp
 fixes indexer anchor isolation and streaming ownership replay, repairs current
 cross-repository guidance, and separates fresh checks from unchanged contract
 evidence. The [direct Entry3 cleanup](reports/direct-entry-v3-20261103/REVIEW.md)
-retains its historical custody4 scope. Real service/market/website qualification
+retains its historical custody4 scope. The [market/lifecycle campaign](reports/market-lifecycle-20261104/REVIEW.md)
+adds receipt-modeled multi-holder LP/reward journeys and current API/worker
+recovery checks, with failed model attempts retained. Real service/market/website qualification
 and independent audit remain open; no deployment or service rollout occurred.
 
 ## Project navigation

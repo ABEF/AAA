@@ -6,6 +6,7 @@ import {Test} from "forge-std/Test.sol";
 import {Vm} from "forge-std/Vm.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {PoolManager} from "@uniswap/v4-core/src/PoolManager.sol";
 import {IPoolManager} from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
 import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
@@ -733,10 +734,10 @@ contract OptionalPortfolioCoreTest is Test {
         assertEq(fees.buybackBalance(asset),b[2]+units,"5 percent buyback reserve");
         assertEq(rewards.liabilities(asset),b[3]+18*units,"funded80 plus10 holder liabilities");
     }
-    function _auditHarvestAllocation(uint256 bucket) private {
+    function _auditHarvestAllocation(uint256 bucket) private returns(Vm.Log[] memory logs) {
         uint256[4] memory beforeETH=_allocationBefore(bucket,address(0));
         uint256[4] memory beforeZZZ=_allocationBefore(bucket,address(token));
-        vm.recordLogs();vault.collectFees(bucket,block.timestamp+100);Vm.Log[] memory logs=vm.getRecordedLogs();
+        vm.recordLogs();vault.collectFees(bucket,block.timestamp+100);logs=vm.getRecordedLogs();
         uint256 count;uint256 receivedETH;uint256 receivedZZZ;
         for(uint256 i;i<logs.length;++i){
             if(logs[i].emitter==address(vault) && logs[i].topics.length==2 &&
@@ -1016,5 +1017,282 @@ contract OptionalPortfolioCoreTest is Test {
         policy.setMode(pool,false,keccak256("TEST MERGE AFTER BOTH OUTSIDE"));vm.warp(block.timestamp+2 days);_prices();
         vault.rebalance(bucket,1,block.timestamp+100);_prices();assertEq(manager.activeSecondaryCount(),0);
         _longMainOnlyEntry(BOB,bob,address(0),150e18,false);_longPortfolio(bucket,alice,bob,203);
+    }
+
+    // Independent test ledger: replay actual funded-credit events against the
+    // PRE-operation ownership of shares and collective membership. No production
+    // reward index, paid index, fraction or accrued getter supplies this model.
+    mapping(uint256=>uint256[2]) private marketScaled;
+    mapping(uint256=>uint256[2]) private marketCollectiveScaled;
+    mapping(uint256=>uint256[2]) private marketClaimed;
+    struct MarketMembers { uint256[] shares; bool[] eligible; uint256 supply; uint256 count; }
+    function _marketMembers() private view returns(MarketMembers memory m) {
+        uint256 count=nft.mintedCount();m.shares=new uint256[](count);m.eligible=new bool[](count);
+        for(uint256 i;i<count;++i){uint256 id=nft.tokenAtOrdinal(i+1);
+            m.shares[i]=vault.sharesOf(id);m.eligible[i]=membership.eligible(id);
+            m.supply+=m.shares[i];if(m.eligible[i])++m.count;
+        }
+    }
+    function _marketReplay(Vm.Log[] memory logs,MarketMembers memory m) private {
+        bytes32 signature=keccak256("PoolRewardsCredited(uint256,address,uint256,uint256)");
+        for(uint256 j;j<logs.length;++j){Vm.Log memory log=logs[j];
+            if(log.emitter!=address(rewards) || log.topics.length!=3 || log.topics[0]!=signature)continue;
+            assertEq(uint256(log.topics[1]),vault.poolBucket(pool));
+            address asset=address(uint160(uint256(log.topics[2])));assertTrue(asset==address(0)||asset==address(token));
+            (uint256 personal,uint256 shared)=abi.decode(log.data,(uint256,uint256));
+            assertGt(m.supply,0);assertGt(m.count,0);
+            uint256 ownerDelta=Math.mulDiv(personal,1e36,m.supply);
+            uint256 equalDelta=Math.mulDiv(shared,1e36,m.count);uint256 k=asset==address(0)?0:1;
+            for(uint256 i;i<m.shares.length;++i){uint256 id=nft.tokenAtOrdinal(i+1);
+                marketScaled[id][k]+=m.shares[i]*ownerDelta;
+                marketCollectiveScaled[id][k]+=m.eligible[i]?equalDelta:0;
+            }
+        }
+    }
+    function _marketAssert(uint256 bucket) private {
+        Position memory p=vault.group(bucket);MarketMembers memory m=_marketMembers();
+        assertEq(m.supply,vault.bucketTotalShares(bucket));assertEq(m.count,membership.totalEligible());
+        uint256 main=p.lpTokenId;uint256 aux=manager.secondaryId(main);
+        assertEq(positions.ownerOf(main),address(vault));assertGt(positions.getPositionLiquidity(main),0);
+        (uint256 a0,uint256 a1)=manager.amounts(main);
+        if(aux!=0){assertEq(positions.ownerOf(aux),address(vault));assertGt(positions.getPositionLiquidity(aux),0);
+            assertEq(manager.secondaryId(aux),0,"no residual tree");
+            (uint256 b0,uint256 b1)=manager.amounts(aux);a0+=b0;a1+=b1;
+            (int24 ml,int24 mu)=manager.ticks(main);(int24 al,int24 au)=manager.ticks(aux);
+            assertGe(al,ml);assertLe(au,mu);
+        }
+        assertEq(manager.activeSecondaryCount(),aux==0?0:1);
+        (uint256 all0,uint256 all1)=manager.portfolioAmounts(main);assertEq(a0,all0);assertEq(a1,all1);
+        (uint256 deployed,uint256 idle)=vault.migrationBudget().nav(bucket);
+        assertEq(deployed,oracle.value(address(0),a0)+oracle.value(address(token),a1));
+        assertEq(idle,oracle.value(address(0),p.idle0)+oracle.value(address(token),p.idle1));
+        // Combine each asset BEFORE USD rounding, as an independent inventory
+        // mark; separately rounded classifications can differ by one raw unit.
+        uint256 nav=oracle.value(address(0),a0+p.idle0+fees.compoundBalance(bucket,address(0)))
+            +oracle.value(address(token),a1+p.idle1+fees.compoundBalance(bucket,address(token)));
+        uint256 marked;uint256 royaltyWeights;uint256[2] memory claims;
+        for(uint256 i;i<m.shares.length;++i){uint256 id=nft.tokenAtOrdinal(i+1);
+            (bool available,uint256 value)=nft.currentLPValue(id);assertTrue(available);
+            uint256 expected=m.supply==0?0:Math.mulDiv(nav,m.shares[i],m.supply);
+            assertEq(value,expected,"per-NFT aggregate principal mark");marked+=value;
+            uint256 weight=nft.royaltyRewards().weightOf(id);
+            assertEq(weight,m.eligible[i]?uint256(nft.rarityOf(id))+1:0);royaltyWeights+=weight;
+            for(uint256 k;k<2;++k){address asset=k==0?address(0):address(token);
+                uint256 claim=_marketExpectedClaim(id,k);
+                assertEq(rewards.claimable(id,asset),claim,"independent receipt model");claims[k]+=claim;
+            }
+        }
+        assertLe(marked,nav);assertLt(nav-marked,nft.mintedCount());
+        assertEq(nft.royaltyRewards().totalWeight(),royaltyWeights);
+        for(uint256 k;k<2;++k){address asset=k==0?address(0):address(token);
+            assertLe(claims[k],rewards.liabilities(asset));
+            uint256 rewardBalance=k==0?address(rewards).balance:token.balanceOf(address(rewards));
+            uint256 feeBalance=k==0?address(fees).balance:token.balanceOf(address(fees));
+            uint256 vaultBalance=k==0?address(vault).balance:token.balanceOf(address(vault));
+            assertGe(rewardBalance,rewards.liabilities(asset));assertGe(feeBalance,fees.accounted(asset));
+            assertGe(vaultBalance,vault.totalIdle(asset));
+        }
+    }
+    function _marketMint(address owner,uint8 rarity) private returns(uint256 id){
+        uint256 word=rarity==0?0:uint256(nft.rarityRemaining(0))+(rarity==2?nft.rarityRemaining(1):0);
+        bytes32 review=vault.mintPolicyFingerprint();vm.prank(owner);id=vault.mintDormant{value:0.05 ether}(review);
+        vrf.fulfill(nft.requestOf(id),word,nft.mintedCount());nft.finalizeTraits(id);assertEq(nft.rarityOf(id),rarity);
+    }
+    function _marketEntry(address owner,uint256 id,address asset,uint256 usd,bool grow) private {
+        uint256 bucket=vault.poolBucket(pool);Position memory p=vault.group(bucket);
+        uint256 aux=p.lpTokenId==0?0:manager.secondaryId(p.lpTokenId);
+        uint128 oldL=p.lpTokenId==0?0:positions.getPositionLiquidity(p.lpTokenId);
+        uint128 auxL=aux==0?0:positions.getPositionLiquidity(aux);
+        bytes32 geometry=p.lpTokenId==0?bytes32(0):manager.portfolioFingerprint(p.lpTokenId);
+        uint256 oldShares=vault.sharesOf(id);MarketMembers memory members=_marketMembers();
+        vm.recordLogs();_longEntry(owner,id,asset,usd,grow);Vm.Log[] memory logs=vm.getRecordedLogs();
+        _marketReplay(logs,members);bucket=vault.nftBucket(id);
+        uint256 net;uint256 marginal;uint256 upper;uint256 verified;
+        bytes32 signature=keccak256("ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)");
+        for(uint256 i;i<logs.length;++i)if(logs[i].emitter==address(oracle.contributionPricing()) &&
+            logs[i].topics.length==3 && logs[i].topics[0]==signature){
+            assertEq(uint256(logs[i].topics[1]),id);assertEq(uint256(logs[i].topics[2]),bucket);
+            (,upper,marginal,net,,)=abi.decode(logs[i].data,(uint256,uint256,uint256,uint256,uint160,bytes32));++verified;
+        }
+        assertEq(verified,1,"one independently measured contribution");
+        assertGe(marginal,upper-Math.mulDiv(upper,200,10000));
+        (uint256 deployed,uint256 idle)=vault.migrationBudget().nav(bucket);
+        uint256 issued=members.supply==0?net:Math.mulDiv(members.supply,net,deployed+idle-net);
+        assertEq(vault.sharesOf(id)-oldShares,issued,"fair shares at post-swap incumbent NAV");
+        assertEq(vault.bucketTotalShares(bucket),members.supply+issued);
+        if(p.lpTokenId!=0){Position memory afterPosition=vault.group(bucket);
+            assertEq(afterPosition.lpTokenId,p.lpTokenId);assertEq(manager.secondaryId(p.lpTokenId),aux);
+            assertGt(positions.getPositionLiquidity(p.lpTokenId),oldL);
+            if(aux!=0)assertEq(positions.getPositionLiquidity(aux),auxL);
+            assertEq(manager.portfolioFingerprint(p.lpTokenId),geometry);
+            assertEq(afterPosition.lastRebalance,p.lastRebalance);assertEq(afterPosition.centerX96,p.centerX96);
+        }
+        _marketAssert(bucket);
+    }
+    function _marketHarvest(uint256 bucket) private {
+        MarketMembers memory m=_marketMembers();_marketReplay(_auditHarvestAllocation(bucket),m);_marketAssert(bucket);
+    }
+    function _marketRebalance(uint256 bucket) private {
+        _longReady(bucket);MarketMembers memory m=_marketMembers();
+        uint256 oldMain=vault.group(bucket).lpTokenId;uint256 oldAux=manager.secondaryId(oldMain);
+        vm.recordLogs();vault.rebalance(bucket,1,block.timestamp+100);_marketReplay(vm.getRecordedLogs(),m);
+        vm.expectRevert();positions.ownerOf(oldMain);
+        if(oldAux!=0){vm.expectRevert();positions.ownerOf(oldAux);}
+        assertEq(manager.secondaryId(oldMain),0);assertFalse(policy.configurationPending(bucket));_marketAssert(bucket);
+    }
+    function _marketClaim(uint256 id,uint256 k) private {
+        uint256 expected=_marketExpectedClaim(id,k);
+        assertEq(_claimExactly(id,nft.ownerOf(id),k==0?address(0):address(token)),expected);
+        marketClaimed[id][k]+=expected;
+    }
+    function _marketExpectedClaim(uint256 id,uint256 k) private view returns(uint256){
+        // Individual and equal-collective fractions are distinct entitlements;
+        // joining their sub-unit remainders would invent a spendable raw unit.
+        return marketScaled[id][k]/1e36+marketCollectiveScaled[id][k]/1e36-marketClaimed[id][k];
+    }
+    function _marketJourney(bool rising) private {
+        access.beginBootstrap();ZZZCompounder compounder=new ZZZCompounder(address(access));
+        access.bind(Ids.COMPOUNDER,address(compounder));access.seal(); // test-only before all user state
+        registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,0);_marketMint(ALICE,2); // remains dormant
+        _marketEntry(ALICE,alice,address(0),1000e18,false);uint256 bucket=vault.nftBucket(alice);
+        for(uint256 phase;phase<4;++phase){
+            bool hybrid=phase%2==0;policy.setMode(pool,hybrid,keccak256(abi.encode("CAMPAIGN MODE",phase)));
+            uint160 center=vault.group(bucket).centerX96;
+            _move(uint160(uint256(center)*(rising?83:135)/100));_marketAssert(bucket);
+            // Two new NFTs may have the same owner; each joins independently.
+            address owner=phase%2==0?BOB:ALICE;uint256 entrant=_marketMint(owner,uint8(phase%3));
+            _marketEntry(owner,entrant,address(token),150e18,false);
+            _marketEntry(ALICE,alice,address(0),5e18,true);
+            _marketRebalance(bucket);uint256 main=vault.group(bucket).lpTokenId;
+            if(!hybrid)assertEq(manager.secondaryId(main),0);
+            else assertGt(manager.secondaryId(main),0,"trend supplies useful residual");
+            _marketEntry(owner,entrant,address(0),8e18,true);
+            uint256 afterId=_marketMint(owner,uint8((phase+1)%3));
+            _marketEntry(owner,afterId,address(token),100e18,false);
+            for(uint256 hour;hour<2;++hour){vm.warp(block.timestamp+1 hours);_prices();
+                core.unlock(abi.encode(uint8(2),Q96));_marketHarvest(bucket);
+            }
+            MarketMembers memory members=_marketMembers();uint256 aux=manager.secondaryId(main);
+            uint128 auxL=aux==0?0:positions.getPositionLiquidity(aux);
+            assertTrue(vault.migrationBudget().compoundReady(bucket));vm.recordLogs();
+            compounder.compound(bucket,1,block.timestamp+100);_marketReplay(vm.getRecordedLogs(),members);
+            assertEq(vault.bucketTotalShares(bucket),members.supply);assertEq(vault.group(bucket).lpTokenId,main);
+            assertEq(manager.secondaryId(main),aux);if(aux!=0)assertEq(positions.getPositionLiquidity(aux),auxL);
+            _marketClaim(alice,phase%2);_marketClaim(entrant,(phase+1)%2);_marketAssert(bucket);
+            rising=!rising;
+        }
+        assertEq(nft.mintedCount(),10);assertEq(membership.totalEligible(),9);
+        for(uint256 i=1;i<=nft.mintedCount();++i){uint256 id=nft.tokenAtOrdinal(i);_marketClaim(id,0);_marketClaim(id,1);}
+        _marketAssert(bucket);
+    }
+    function testMarketCampaignBullBearCohortsThroughRepeatedOneTwoOneModes() public {_marketJourney(true);}
+    function testMarketCampaignBearBullCohortsThroughRepeatedOneTwoOneModes() public {_marketJourney(false);}
+
+    function testMarketCampaignOrdinarySamplesSurviveEntryAndGrowWithoutClockReset() public {
+        registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,0);_marketEntry(ALICE,alice,address(0),1000e18,false);
+        uint256 bucket=vault.nftBucket(alice);uint256 main=vault.group(bucket).lpTokenId;
+        uint256 earliest=uint256(vault.group(bucket).lastRebalance)+43200;
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));
+        vm.warp(earliest-600);_prices();assertFalse(strategy.rebalanceConfirmation().observe(bucket));
+        (bytes32 identity,uint64 first,,uint8 side)=strategy.rebalanceConfirmation().observations(bucket);
+        uint256 bob=_marketMint(BOB,1);_marketEntry(BOB,bob,address(token),100e18,false);
+        _marketEntry(ALICE,alice,address(0),5e18,true);
+        for(uint256 i;i<3;++i){vm.warp(block.timestamp+(i==2?120:240));_prices();strategy.rebalanceConfirmation().observe(bucket);}
+        (bytes32 afterIdentity,uint64 afterFirst,,uint8 afterSide)=strategy.rebalanceConfirmation().observations(bucket);
+        assertEq(afterIdentity,identity);assertEq(afterFirst,first);assertEq(afterSide,side);
+        assertTrue(strategy.rebalanceConfirmation().ready(bucket));
+        MarketMembers memory members=_marketMembers();vm.recordLogs();vault.rebalance(bucket,1,block.timestamp+100);
+        _marketReplay(vm.getRecordedLogs(),members);assertTrue(vault.group(bucket).lpTokenId!=main);
+        _marketAssert(bucket);
+    }
+
+    function testMarketCampaignMixedResidualPendingMergeTransferAndNewEntries() public {
+        registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,1);_marketEntry(ALICE,alice,address(token),1000e18,false);
+        uint256 bucket=vault.nftBucket(alice);policy.setMode(pool,true,keccak256("CAMPAIGN ON"));
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_marketRebalance(bucket);
+        uint256 aux=manager.secondaryId(vault.group(bucket).lpTokenId);assertGt(aux,0);
+        (int24 lower,int24 upper)=manager.ticks(aux);_move(TickMath.getSqrtPriceAtTick((lower+upper)/2));
+        (uint256 r0,uint256 r1)=manager.amounts(aux);assertGt(r0,0);assertGt(r1,0);
+        policy.setMode(pool,false,keccak256("CAMPAIGN PENDING MERGE"));
+        uint256 bob=_marketMint(BOB,2);_marketEntry(BOB,bob,address(0),100e18,false);
+        _marketEntry(ALICE,alice,address(token),5e18,true);assertEq(manager.secondaryId(vault.group(bucket).lpTokenId),aux);
+        core.unlock(abi.encode(uint8(2),Q96));_marketHarvest(bucket);
+        uint256 oldClaim=rewards.claimable(alice,address(0));assertGt(oldClaim,0);
+        vm.prank(ALICE);nft.transferFrom(ALICE,BOB,alice);
+        vm.prank(ALICE);vm.expectRevert(ZZZModule.Unauthorized.selector);rewards.claim(alice,address(0));
+        _marketClaim(alice,0);_marketRebalance(bucket);assertEq(manager.activeSecondaryCount(),0);
+        _marketEntry(BOB,alice,address(0),5e18,true);_marketAssert(bucket);
+    }
+
+    function testMarketCampaignBothOutsideInputsStayInMainWithoutRecentering() public {
+        registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,0);_marketEntry(ALICE,alice,address(0),1000e18,false);
+        uint256 bucket=vault.nftBucket(alice);policy.setMode(pool,true,keccak256("CAMPAIGN OUTSIDE ON"));
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_marketRebalance(bucket);
+        uint256 main=vault.group(bucket).lpTokenId;uint256 aux=manager.secondaryId(main);assertGt(aux,0);
+        (int24 lower,int24 upper)=manager.ticks(main);
+        _move(TickMath.getSqrtPriceAtTick(upper+200));_marketAssert(bucket);
+        uint256 bob=_marketMint(BOB,1);_marketEntry(BOB,bob,address(token),100e18,false);
+        _marketEntry(ALICE,alice,address(token),5e18,true);
+        _move(TickMath.getSqrtPriceAtTick(lower-200));_marketAssert(bucket);
+        uint256 next=_marketMint(ALICE,2);_marketEntry(ALICE,next,address(0),100e18,false);
+        _marketEntry(BOB,bob,address(0),5e18,true);
+        assertEq(vault.group(bucket).lpTokenId,main);assertEq(manager.secondaryId(main),aux);
+        policy.setMode(pool,false,keccak256("CAMPAIGN RECOVER BOTH OUTSIDE"));_marketRebalance(bucket);
+    }
+
+    function testMarketCampaignFeedDisagreementRejectsEntryThenRecoversWithoutLostRights() public {
+        registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,0);_marketEntry(ALICE,alice,address(0),1000e18,false);
+        uint256 bucket=vault.nftBucket(alice);policy.setMode(pool,true,keccak256("CAMPAIGN FAULT ON"));
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_marketRebalance(bucket);
+        uint256 bob=_marketMint(BOB,2);ZZZActivationEntry entry=registry.activationEntry();
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(bob,pool,address(0),100 ether,1,block.timestamp+100,false);
+        bytes32 reviewed=ProtocolPolicyFixture.bind(address(access)).entryFingerprint();
+        bytes32 physical=manager.executionPortfolioFingerprint(vault.group(bucket).lpTokenId);
+        uint256 supply=vault.bucketTotalShares(bucket);uint256 balance=BOB.balance;
+        ethB.set(2e18,block.timestamp,block.timestamp);
+        vm.prank(BOB);vm.expectRevert();entry.executeReviewed{value:100 ether}(request,200,reviewed);
+        assertEq(BOB.balance,balance);assertEq(vault.sharesOf(bob),0);assertEq(vault.bucketTotalShares(bucket),supply);
+        assertEq(manager.executionPortfolioFingerprint(vault.group(bucket).lpTokenId),physical);
+        (bool available,)=nft.currentLPValue(alice);assertFalse(available);
+        core.unlock(abi.encode(uint8(2),Q96));_marketHarvestWithoutPrice(bucket);_marketClaim(alice,0);
+        vm.warp(block.timestamp+60);_prices();_marketEntry(BOB,bob,address(0),100e18,false);_marketAssert(bucket);
+    }
+    function _marketHarvestWithoutPrice(uint256 bucket) private {
+        MarketMembers memory m=_marketMembers();_marketReplay(_auditHarvestAllocation(bucket),m);
+        for(uint256 i=1;i<=nft.mintedCount();++i){uint256 id=nft.tokenAtOrdinal(i);
+            for(uint256 k;k<2;++k)assertEq(rewards.claimable(id,k==0?address(0):address(token)),_marketExpectedClaim(id,k));
+        }
+    }
+
+    function testMarketCampaignRoyaltyEntitlementsStaySeparateThroughLPModeChangesAndExit() public {
+        registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,0);uint256 bob=_marketMint(BOB,2);
+        _marketEntry(ALICE,alice,address(0),1000e18,false);uint256 bucket=vault.nftBucket(alice);
+        ZZZRoyaltyRewards royalties=nft.royaltyRewards();
+        (bool funded,)=address(royalties).call{value:4 ether}("");assertTrue(funded);royalties.sync(address(0));
+        assertEq(royalties.claimable(alice,address(0)),4 ether);assertEq(royalties.claimable(bob,address(0)),0);
+        _marketEntry(BOB,bob,address(token),100e18,false);
+        policy.setMode(pool,true,keccak256("CAMPAIGN ROYALTY ON"));
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_marketRebalance(bucket);
+        (funded,)=address(royalties).call{value:4 ether}("");assertTrue(funded);royalties.sync(address(0));
+        assertEq(royalties.claimable(alice,address(0)),5 ether);assertEq(royalties.claimable(bob,address(0)),3 ether);
+        core.unlock(abi.encode(uint8(2),Q96));_marketHarvest(bucket);
+        uint256 claimETH=rewards.claimable(alice,address(0));uint256 burnETH=fees.buybackBalance(address(0));
+        MarketMembers memory m=_marketMembers();access.setPaused(true);
+        vm.recordLogs();migration.beginCollectiveExit(keccak256("CAMPAIGN TERMINAL"));migration.closeBucket(bucket,0,0,block.timestamp+100);
+        _marketReplay(vm.getRecordedLogs(),m);assertEq(manager.activeSecondaryCount(),0);
+        assertGe(rewards.claimable(alice,address(0)),claimETH);assertGe(fees.buybackBalance(address(0)),burnETH);
+        migration.allocatePrincipal(32);uint256[] memory ids=new uint256[](2);ids[0]=alice;ids[1]=bob;
+        uint256[2] memory e;uint256[2] memory z;uint256 beforeETH=ALICE.balance;uint256 beforeZZZ=token.balanceOf(ALICE);
+        (e[0],z[0])=migration.claimablePrincipal(alice);(e[1],z[1])=migration.claimablePrincipal(bob);
+        assertGt(e[0]+z[0],0);assertEq(migration.distributePrincipal(ids),2);
+        assertEq(ALICE.balance-beforeETH,e[0]);assertEq(token.balanceOf(ALICE)-beforeZZZ,z[0]);
+        assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+        _marketClaim(alice,0);_marketClaim(bob,1);
+        vm.prank(ALICE);nft.transferFrom(ALICE,BOB,alice);
+        (funded,)=address(royalties).call{value:4 ether}("");assertTrue(funded);royalties.sync(address(0));
+        assertEq(royalties.claimable(alice,address(0)),6 ether);assertEq(royalties.claimable(bob,address(0)),6 ether);
+        uint256 recipientBefore=BOB.balance;vm.prank(BOB);royalties.claim(alice,address(0));assertEq(BOB.balance-recipientBefore,6 ether);
+        assertEq(membership.totalEligible(),2);assertEq(royalties.totalWeight(),4);
+        (bool available,uint256 value)=nft.currentLPValue(alice);assertTrue(available);assertEq(value,0);
     }
 }

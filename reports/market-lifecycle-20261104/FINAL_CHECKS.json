@@ -1,0 +1,51 @@
+{
+  "stage": "index",
+  "python_publication_files": 294,
+  "todo": "Project Todo verified.",
+  "callable_reference": {
+    "checked": true,
+    "contracts": 37,
+    "functions": 818,
+    "constructors": 37,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "protected_files_preserved": true,
+  "final_evm_source_unchanged": true,
+  "document_links": {
+    "checked_documents": 17,
+    "links_checked": 1702,
+    "introduced_failures": [],
+    "preexisting_failures": [],
+    "scope": "Changed/new maintained Markdown and incoming local links from all tracked Markdown in both repositories; remote URLs not fetched as a link checker."
+  },
+  "head": "44f5fa7db5d8472e4cd8f3e1af13a4b9dc27fa09",
+  "staged": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "TODO.md",
+    "docs/AUDIT_FINDINGS.md",
+    "docs/ECONOMICS.md",
+    "docs/IMPLEMENTATION_STATUS.md",
+    "docs/OPERATOR_MANUAL.md",
+    "docs/README.md",
+    "docs/RELEASE_CHECKLIST.md",
+    "docs/ROADMAP.md",
+    "docs/WORK_HANDOFF.md",
+    "docs/project-todo.json",
+    "reports/README.md",
+    "reports/market-lifecycle-20261104/COVERAGE.md",
+    "reports/market-lifecycle-20261104/PLAN.md",
+    "reports/market-lifecycle-20261104/REVIEW.md",
+    "reports/market-lifecycle-20261104/VERIFICATION.md",
+    "reports/market-lifecycle-20261104/campaigns.json",
+    "reports/market-lifecycle-20261104/preservation.json",
+    "test/OptionalPortfolioCore.t.sol",
+    "tests_python/test_market_lifecycle_keeper.py",
+    "tests_python/test_market_lifecycle_projection.py"
+  ]
+}

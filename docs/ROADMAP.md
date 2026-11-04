@@ -11,6 +11,11 @@ backup/restore, complete long-lived history and controlled current-profile servi
 rollout remain prerequisites of [host-services](../TODO.md#task-host-services) and
 [financial-history](../TODO.md#task-financial-history); no rollout occurred.
 
+The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) strengthens independent
+receipt/NAV/cohort and current-profile recovery checks without changing
+production contracts. It does not replace the target-chain market, service
+or independent-review stages below.
+
 ## 1. Freeze the correct source and integration boundary
 
 Use [accounting6/Entry3/schema10](POSITION_V6.md) and exact runtime/helper/dependency

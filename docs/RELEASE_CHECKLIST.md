@@ -10,9 +10,16 @@ fixes indexer configuration isolation and replay memory use; it does not qualify
 providers, maximum history/target gas, services, OpenSea or an independent audit.
 Contract/runtime profiles, current sites and operating journals remain unchanged.
 
+The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
+one affected six-day control and7new current-profile API/keeper methods.
+Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
+transitions, outages, transfers and terminal royalties/payouts are reconciled.
+Failed test-model/RPC-fixture attempts remain recorded; production code and
+operating settings are unchanged. No profit, uptime or release approval.
+
 ## Evidence and approval boundary
 
-Audit baseline: main `e237aa72ec7fa09382d857ffab1a3fd96b286299`; production Solidity
+Audit baseline: main `44f5fa7db5d8472e4cd8f3e1af13a4b9dc27fa09`; production Solidity
 remains exact e26fc74. No approved deployment or release-specific configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.

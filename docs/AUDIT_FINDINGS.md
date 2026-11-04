@@ -1,6 +1,6 @@
 # Consolidated audit findings and evidence
 
-Reviewed4November2026 from main `e237aa72`; production Solidity remains exact e26fc74. Production **NOT APPROVED**.
+Reviewed4November2026 from main `44f5fa7d`; production Solidity remains exact e26fc74. Production **NOT APPROVED**.
 
 [The sole Todo](../TODO.md) owns task status; this page explains how historical
 findings apply now. [Features](IMPLEMENTATION_STATUS.md) describe capabilities,
@@ -11,6 +11,13 @@ security guarantee is implied by consolidation.
 The [whole-project supplement](../reports/comprehensive-audit-20261104/REVIEW.md)
 adds scoped indexer corrections and current-document alignment. It is not a fresh
 full execution of every historical test or an independent audit.
+
+The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
+one affected six-day control and7new current-profile API/keeper methods.
+Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
+transitions, outages, transfers and terminal royalties/payouts are reconciled.
+Failed test-model/RPC-fixture attempts remain recorded; production code and
+operating settings are unchanged. No profit, uptime or release approval.
 
 ## Current conclusions by project layer
 

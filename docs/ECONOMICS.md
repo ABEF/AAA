@@ -10,7 +10,7 @@ after exit starts. Historical deployments keep their original rules.
 **Undeployed candidate; production NOT APPROVED.** Accounting6, custody5, portfolio2,
 direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` retain
 the economic rights below. Historical profiles retain their own layouts and
-evidence; no existing local deployment is upgraded. See [profile boundaries](POSITION_V3.md)
+evidence; no existing local deployment is upgraded. See [current profile boundaries](POSITION_V6.md)
 and [pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
 
 Governance configures contribution/conversion/maintenance loss limits within
@@ -127,7 +127,7 @@ see [operating schedule](OPERATIONS.md#reward-timing-and-maintenance-schedule).
 An off/failed keeper leaves funded rights and purpose reserves on-chain, but does
 not promise timely reinvestment, conversion or burn.
 
-Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global index dust stays reserved; per-NFT fractions carry. No administrator can sweep reward or orphan reserves. Collection allocation
+Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global index dust stays reserved; per-NFT fractions carry separately for individual and collective rewards. Do not add their sub-unit fractions into an extra spendable raw unit. Mark principal by summing each asset across LP/idle/designated compound before USD rounding; separately rounded subtotals can differ by one raw unit. The [independent receipt model](../reports/market-lifecycle-20261104/REVIEW.md) verifies these distinctions across composed journeys. No administrator can sweep reward or orphan reserves. Collection allocation
 accumulators may include carried/index rounding amounts; they are not the exact
 sum of all NFT claimable balances.
 

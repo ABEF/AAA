@@ -311,6 +311,7 @@ Custody, ownership and reward accounting.
   - [Actual-v4 outage proof](reports/reward-resilience-20261026/VERIFICATION.md) collects real swap fees and pays both owners while fixture prices are stale, with no LP/share/reserve loss. No production Solidity/rate/right changed; unchanged allocation/claim-order evidence is reused with exact source pins. Actual token/feed/route/burn behavior and independent qualification remain open.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Exact ETH/ZZZ actual-receipt80/10/5/5, split dust, reward liabilities and compound/buyback reserve conservation verified across hybrid entry, mode disable, partial claims, merge and later claims. Membership remains2; no duplicate income or NFT deactivation caused by mode controls. This is scoped verification of existing economics, not a policy change. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Multi-day Entry/growth/harvest/compound/partial-claim composition preserves exact80/10/5/5 receipts, carried split dust, shares, membership and funded reserves. Newly activated NFTs earn subsequent receipts, not old funded balances. Existing economics unchanged.
+  - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
 
   </details>
 
@@ -432,6 +433,7 @@ Custody, ownership and reward accounting.
   - [Source6 adaptable policy](docs/ADAPTABLE_POLICY.md) adds scoped runtime/policy observation, exact fresh mint/Entry2 expected fingerprints, per-pool Portfolio2 allocation/gap and captured idle/maintenance controls. [Verification](reports/adaptable-policy-20261031/VERIFICATION.md) is local and source-scoped; real provider/market/gas/worker/site/release qualification remains open. Preserve historical profiles/receipts and fixed economic rights.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Enable-disable-enable retains monotonic pending geometry; applied enabled mode may validly have no residual when natural main allocation is sufficient. Disable keeps both legs harvested/valued and NFTs activated until guarded merge. Exact operator lifecycle states and failure handling are documented; composed local EVM sequences pass. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Four new actual-core journeys succeed across recorded stages: six virtual days, repeated one/two-leg mode cycles, trends/reversals, filled/mixed/both-outside inventory and guarded recovery. Residual geometry is nested in main; enabled mode does not force a40% allocation. Production sources unchanged.
+  - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
 
   </details>
 
@@ -594,6 +596,7 @@ The data and services behind the app.
   - [November2 custody consolidation](reports/improvement-audit-20261102/REVIEW.md): collection and wallet chunks now share NFT-detail local custody/share proof, with per-request bucket caching, per-NFT numerator checks and a distinct-NFT partial-share sum bound without extra RPC. Contradictory parked/exited/active evidence rejects; healthy ownership/raw claims survive price outages. Additional required reads stay bounded; actual latency/service rollout remains unqualified.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): RPC bodies use bounded available fragments with attempt/request progress checks. Chain/envelope/size validation remains. Affected price-outage projections preserve ownership/raw claims without fabricated zero valuations. Source publication is not source6 service/site rollout.
   - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): Shared RPC snapshots validated endpoints; convenience contract reads consume the same call/expiry budget. Injected-transport hardening does not qualify actual providers or rollout.
+  - [Current-profile lifecycle reads](reports/market-lifecycle-20261104/COVERAGE.md): four new accounting6/portfolio2/custody5 Projection methods follow changing main/residual inventory, unavailable USD and restored reads. Three worker decision/restart/pending-first methods pass with inert RPCs and temporary journals. Not browser or deployed-service acceptance.
 
   </details>
 
@@ -950,7 +953,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-local-verification"></a>
 
-- [x] **[Local contract and integration tests](reports/preproduction-audit-20261025/VERIFICATION.md)** - Implemented. Source-scoped local unit/invariant/integration evidence is recorded, including the October25 installed-v4 composition harness and repaired non-vacuous growth invariant. Keeper audit records199 distinct scoped passes and one Unix-only skip. Earlier receipts retain their source scope; these are not a fresh full regression, actual providers or production approval.
+- [x] **[Local contract and integration tests](reports/market-lifecycle-20261104/VERIFICATION.md)** - Implemented. Source-scoped local unit/invariant/integration evidence is recorded, including the October25 installed-v4 composition harness and repaired non-vacuous growth invariant. Keeper audit records199 distinct scoped passes and one Unix-only skip. Earlier receipts retain their source scope; these are not a fresh full regression, actual providers or production approval.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -966,6 +969,7 @@ Three required testing layers, with source-bound evidence.
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Retain three initial InvalidAmount failures and a trace identifying the100USD test-pool floor. Explicitly admit5USD for corrected journeys and preserve the stronger-floor rejection test; no production guard loosened. Three corrected methods pass; one earlier unchanged successful method/body/helpers is reused. No broad unchanged suite repeated.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): 176 distinct successful selected Python methods across retained stages plus one explicit Unix skip. Register9 new regressions;851-method selection executes zero bodies. Preserve initial negative fixture omission, corrected causal reproduction, Windows driver errors/corrections and exact inventory update. No unchanged Solidity suite repeated.
   - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): New defect controls and affected consumer checks are source-scoped. Earlier three reports/normal gates retain exact scopes; inventory listing is not execution, and Unix permissions remain unqualified.
+  - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
 
   </details>
 
@@ -1031,6 +1035,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Full principal review](reports/full-audit-20261025/PRINCIPAL.md) traces old compound/fees, marginal deployedLP, exact prefunds/native callbacks, share issuance and captured price/loss marks. No new unprivileged dilution path confirmed in inspected code.3%feed agreement does not guarantee2%execution feasibility; real depth/source quality/economics and independent review remain required.
   - [Reporting conservation review](reports/backend-remediation-20261026/REVIEW.md): replay separates gross LP intake, holder/collective credits, carried dust and compound/buyback reserves. This repairs reporting integrity without changing share issuance or on-chain economics; final167Python methods do not requalify real venue economics.
   - [Actual-v4 market cases](reports/market-adversarial-20261026/VERIFICATION.md) cover ETH activation and fixed-ZZZ growth entirely above/below the old range, then rebalance/claims, plus real PoolManager donations before a newcomer.15affected shared-fixture methods pass; original missing-ZZZ-identity fixture failures are retained, not hidden. No production contract/economic change.
+  - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
 
   </details>
 
@@ -1345,6 +1350,7 @@ Decisions and rehearsals before real funds.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): Unknown maintenance names/defaults/overrides reject before new work. A validated saved intent can recover despite invalid new maintenance values; strict validation then halts before another job. Receipt/nonce/fee/deployment checks and existing journals remain intact; no signing or financial guard widened.
   - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): One immutable maintenance field set; always-strict validators with explicit constructor-only paid-intent deferral. Canonical bucket overrides must fit uint256; no retired scheduling or new stop bypass.
   - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
+  - [Current-profile recovery composition](reports/market-lifecycle-20261104/VERIFICATION.md): compound waits through pending geometry, threshold and outside states across a restart; a price fault blocks compound while raw both-leg harvest review survives; pending recovery precedes broken fresh reads. These are inert worker tests, not sustained Unix operation.
 
   </details>
 
@@ -1429,4 +1435,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `c3af2160e2166c0f0a1c3703befbf34a9652a9cf6bcde017db0a045e5351fbfd`.
+Snapshot SHA-256: `4ff3fe895abe6f8ecc800e27ec5745c5b96b3f5c4351580f44c77690797453ad`.

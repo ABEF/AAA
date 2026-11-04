@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed4November2026; audit source baseline main `e237aa72ec7fa09382d857ffab1a3fd96b286299`.
+Reviewed4November2026; audit source baseline main `44f5fa7db5d8472e4cd8f3e1af13a4b9dc27fa09`.
 [Instructions](AGENTS.md), [README](README.md), [sole Todo](TODO.md),
 [operator manual](docs/OPERATOR_MANUAL.md) and [findings](docs/AUDIT_FINDINGS.md)
 own current context. Exact publication status comes from Git, not this date.
@@ -11,6 +11,13 @@ isolation and streams ownership replay;33affected Python methods pass with
 negative controls retained. Production Solidity/dependencies/build profiles
 remain unchanged; old EVM/static/size evidence is explicitly reused. Website
 documentation alignment is source/docs-only, with no runtime/site/journal rollout.
+
+The [market/lifecycle campaign](reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
+one affected six-day control and7new current-profile API/keeper methods.
+Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
+transitions, outages, transfers and terminal royalties/payouts are reconciled.
+Failed test-model/RPC-fixture attempts remain recorded; production code and
+operating settings are unchanged. No profit, uptime or release approval.
 
 ## Current source candidate
 

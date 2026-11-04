@@ -92,6 +92,20 @@ static or size result is presented as a fresh rerun. Website documentation is
 aligned without changing its source behavior, signer, builds or served releases.
 Storage/lifetime replay and actual operating qualification remain open.
 
+## Market/lifecycle assurance
+
+The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
+one affected six-day control and7new current-profile API/keeper methods.
+Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
+transitions, outages, transfers and terminal royalties/payouts are reconciled.
+Failed test-model/RPC-fixture attempts remain recorded; production code and
+operating settings are unchanged. No profit, uptime or release approval.
+
+The independent test ledger uses pre-operation participant snapshots and
+actual credit events, not production reward-index getters. The operator
+profile sentence now correctly requires custody5. No new management call,
+policy, restart or economic right is introduced. See [coverage](../reports/market-lifecycle-20261104/COVERAGE.md).
+
 ## Current evidence and limits
 
 | Evidence | Source scope | What it does not establish |

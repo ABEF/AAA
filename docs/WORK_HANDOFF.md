@@ -1,7 +1,7 @@
 # Work handoff
 
 Reviewed4November2026. Current contract-source base is main
-`e237aa72ec7fa09382d857ffab1a3fd96b286299`; publication status must be verified
+`44f5fa7db5d8472e4cd8f3e1af13a4b9dc27fa09`; publication status must be verified
 against actual local/remote Git heads. Read [instructions](../AGENTS.md),
 [context](../PROJECT_CONTEXT.md), [README](../README.md), [sole Todo](../TODO.md),
 [findings](AUDIT_FINDINGS.md) and the relevant [operator procedure](OPERATOR_MANUAL.md).
@@ -11,6 +11,13 @@ isolation and streams ownership replay;33affected Python methods pass with
 negative controls retained. Production Solidity/dependencies/build profiles
 remain unchanged; old EVM/static/size evidence is explicitly reused. Website
 documentation alignment is source/docs-only, with no runtime/site/journal rollout.
+
+The [market/lifecycle campaign](../reports/market-lifecycle-20261104/REVIEW.md) adds7new actual-core journeys plus
+one affected six-day control and7new current-profile API/keeper methods.
+Separate receipt-derived reward fractions, fair shares, both-leg NAV, mode
+transitions, outages, transfers and terminal royalties/payouts are reconciled.
+Failed test-model/RPC-fixture attempts remain recorded; production code and
+operating settings are unchanged. No profit, uptime or release approval.
 
 ## Current source and preserved environments
 
