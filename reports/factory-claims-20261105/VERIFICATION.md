@@ -97,6 +97,14 @@ Callable reference:37 concrete contract classes,820 functions,37 constructors,
 The data constructor has no callable runtime methods.93 focused reference,
 operator and strict-review methods pass. Historical counts are not added.
 
+The final source-inventory follow-up adds CodeData as an explicitly required
+inert source class, separate from callable helpers, and adapts its isolated
+tiny-source fixture. The earlier inventory mismatch and fixture failure remain
+in the logs.19 distinct source/evidence-ownership methods pass across the two
+recorded corrected stages; two symlink cases skip on this host. The actual
+53-source consistency scan succeeds. This is a parser/inventory check, not a
+new Solidity compilation or security audit. Production source pins are unchanged.
+
 Final preservation/publication records verify protected dirty files, original
 reports, website/signer and unrelated drafts. Existing Anvil/services/journals
 were not reset, relabelled, inspected as new deployments or rolled out.

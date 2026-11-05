@@ -17,13 +17,15 @@ subject=importlib.util.module_from_spec(spec);spec.loader.exec_module(subject)
 class SourceInventoryTests(unittest.TestCase):
     def test_required_source_classes_match_compiler_bound_callable_inventory(self):
         reference=json.loads((ROOT/'docs/function-reference.json').read_text(encoding='utf-8'))
-        self.assertEqual({c['name'] for c in reference['contracts']},set(subject.EXPECTED+subject.HELPERS))
+        self.assertEqual({c['name'] for c in reference['contracts']},set(subject.EXPECTED+subject.HELPERS+subject.CODE_DATA))
+        self.assertEqual(subject.CODE_DATA,['ZZZRoyaltyCodeData'])
+        self.assertNotIn('ZZZRoyaltyCodeData',subject.HELPERS)
 
     def test_new_standalone_policy_sources_cannot_silently_disappear(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp);shutil.copytree(ROOT/'src',root/'src')
             for name in ('ZZZProtocolPolicy','ZZZPortfolioPolicy','ZZZRebalanceConfirmation',
-                         'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZPythPriceFeed'):
+                         'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZPythPriceFeed','ZZZRoyaltyCodeData'):
                 path=root/'src'/(name+'.sol');original=path.read_bytes();path.unlink()
                 output=root/(name+'.json')
                 try:

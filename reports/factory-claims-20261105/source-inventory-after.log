@@ -1,0 +1,34 @@
+test_new_standalone_policy_sources_cannot_silently_disappear (tests_python.test_source_inventory.SourceInventoryTests.test_new_standalone_policy_sources_cannot_silently_disappear) ... ok
+test_required_source_classes_match_compiler_bound_callable_inventory (tests_python.test_source_inventory.SourceInventoryTests.test_required_source_classes_match_compiler_bound_callable_inventory) ... ok
+test_existing_json_or_log_or_directory_refuses_all_work (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_existing_json_or_log_or_directory_refuses_all_work) ... ok
+test_failed_check_is_complete_evidence_and_never_becomes_a_pass (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_failed_check_is_complete_evidence_and_never_becomes_a_pass) ... ok
+test_final_writes_never_clobber_a_replacement_path (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_final_writes_never_clobber_a_replacement_path) ... skipped 'Host prohibits replacing an open evidence file'
+test_interrupted_producer_retains_partial_log_and_a_nonpass_marker (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_interrupted_producer_retains_partial_log_and_a_nonpass_marker) ... ok
+test_live_and_dangling_symlinks_are_refused_without_following_them (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_live_and_dangling_symlinks_are_refused_without_following_them) ... skipped 'Symlink creation unavailable on this host'
+test_log_reservation_race_preserves_the_winner_and_marks_owned_json_failed (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_log_reservation_race_preserves_the_winner_and_marks_owned_json_failed) ... ok
+test_missing_final_report_or_zero_system_exit_cannot_return_success (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_missing_final_report_or_zero_system_exit_cannot_return_success) ... ok
+test_nonfinite_final_payload_is_not_written_as_successful_evidence (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_nonfinite_final_payload_is_not_written_as_successful_evidence) ... ok
+test_reserved_marker_is_synced_before_work_and_utf8_success_is_owned (tests_python.test_verification_output_ownership.EvidenceAdmissionTests.test_reserved_marker_is_synced_before_work_and_utf8_success_is_owned) ... ok
+test_import_failure_leaves_nonpass_marker_without_running_a_test (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_import_failure_leaves_nonpass_marker_without_running_a_test) ... ok
+test_keeper_existing_output_is_preserved_before_import_or_test_work (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_existing_output_is_preserved_before_import_or_test_work) ... ok
+test_keeper_fresh_admission_and_order_are_visible_to_inert_module_imports (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_fresh_admission_and_order_are_visible_to_inert_module_imports) ... ok
+test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_import_time_source_change_is_not_pinned_as_an_unchanged_pass) ... ok
+test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_inventory_pins_lazy_script_helpers_outside_loaded_module_names) ... ok
+test_keeper_selector_rejects_unreviewed_custom_loader (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_keeper_selector_rejects_unreviewed_custom_loader) ... ok
+test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_import_time_source_change_is_not_pinned_as_an_unchanged_pass) ... ok
+test_python_runner_reserves_nonpass_pair_before_test_module_discovery (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_python_runner_reserves_nonpass_pair_before_test_module_discovery) ... ok
+test_source_checks_refuse_existing_output_before_scanning (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_source_checks_refuse_existing_output_before_scanning) ... ok
+test_source_default_creates_distinct_outputs_and_preserves_legacy_file (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_source_default_creates_distinct_outputs_and_preserves_legacy_file) ... FAIL
+
+======================================================================
+FAIL: test_source_default_creates_distinct_outputs_and_preserves_legacy_file (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_source_default_creates_distinct_outputs_and_preserves_legacy_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_output_ownership.py", line 135, in test_source_default_creates_distinct_outputs_and_preserves_legacy_file
+    self.assertFalse(runner.main([]))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 21 tests in 2.468s
+
+FAILED (failures=1, skipped=2)

@@ -1,0 +1,6 @@
+test_source_default_creates_distinct_outputs_and_preserves_legacy_file (tests_python.test_verification_output_ownership.VerificationOutputOwnershipTests.test_source_default_creates_distinct_outputs_and_preserves_legacy_file) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.050s
+
+OK

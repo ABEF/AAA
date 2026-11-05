@@ -12,8 +12,9 @@ HELPERS=['ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAss
 'ZZZMigrationBudget','ZZZCustodyValidation','ZZZRoyaltyFactory','ZZZActivationAssetsFactory','ZZZLPRewardConverter',
 'ZZZV4RouteExecutor','ZZZContributionPricing','ZZZLPBalancer','ZZZRebalanceConfirmation','ZZZPortfolioPolicy',
 'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZProtocolPolicy','ZZZPythPriceFeed']
-# Required source classes, not the count of deployed helper addresses: two
-# runtime route helpers share ZZZV4RouteExecutor, and Pyth is optional to deploy.
+CODE_DATA=['ZZZRoyaltyCodeData']
+# Required source classes, not deployed instance counts. Pyth is optional;
+# one CodeData source class produces two inert Factory data children.
 def sanitized(text):
     return re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
         lambda m:'\n'*m.group(0).count('\n')+' '*len(m.group(0)),text)
@@ -25,7 +26,7 @@ def main(argv=None):
     output=args.output or ROOT/'reports'/f'source-checks-{stamp}-{secrets.token_hex(4)}.json'
     with Evidence(output,kind='source_consistency_only') as evidence:
         errors=[];external=set();inventory=[]
-        for name in EXPECTED+HELPERS:
+        for name in EXPECTED+HELPERS+CODE_DATA:
             p=ROOT/'src'/f'{name}.sol'
             if not p.exists():errors.append(f'Missing required contract {name}')
         sources=sorted((ROOT/'src').rglob('*.sol'))
@@ -44,7 +45,7 @@ def main(argv=None):
                 else:external.add(target)
             inventory.append({'file':p.relative_to(ROOT).as_posix(),'lines':len(text.splitlines())})
         report={'kind':'source_consistency_only','solidity_compiled':False,'security_audit_pass':False,'successful':not errors,
-      'modules':len(EXPECTED),'standalone_helpers':HELPERS,'source_files':inventory,'external_imports':sorted(external),'errors':errors,
+      'modules':len(EXPECTED),'standalone_helpers':HELPERS,'inert_data_source_classes':CODE_DATA,'source_files':inventory,'external_imports':sorted(external),'errors':errors,
       'limitations':['Balanced delimiters do not prove valid Solidity','No type checking, EVM execution or exploit analysis']}
         evidence.finish(report)
     print(json.dumps({'source_files':len(sources),'errors':errors,'scope':'consistency only','output':str(output)}))

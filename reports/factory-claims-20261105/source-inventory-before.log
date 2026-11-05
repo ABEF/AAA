@@ -1,0 +1,16 @@
+test_new_standalone_policy_sources_cannot_silently_disappear (tests_python.test_source_inventory.SourceInventoryTests.test_new_standalone_policy_sources_cannot_silently_disappear) ... ok
+test_required_source_classes_match_compiler_bound_callable_inventory (tests_python.test_source_inventory.SourceInventoryTests.test_required_source_classes_match_compiler_bound_callable_inventory) ... FAIL
+
+======================================================================
+FAIL: test_required_source_classes_match_compiler_bound_callable_inventory (tests_python.test_source_inventory.SourceInventoryTests.test_required_source_classes_match_compiler_bound_callable_inventory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_source_inventory.py", line 20, in test_required_source_classes_match_compiler_bound_callable_inventory
+    self.assertEqual({c['name'] for c in reference['contracts']},set(subject.EXPECTED+subject.HELPERS))
+AssertionError: Items in the first set but not the second:
+'ZZZRoyaltyCodeData'
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.378s
+
+FAILED (failures=1)

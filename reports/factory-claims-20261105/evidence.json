@@ -55,7 +55,13 @@
     "static_current_individual_review": 20,
     "static_unique_exact_source_reuse": 469,
     "full_suite_claimed": false,
-    "counts_must_not_be_added_as_unique_protocol_behaviors": true
+    "counts_must_not_be_added_as_unique_protocol_behaviors": true,
+    "source_inventory_followup": {
+      "distinct_successful_methods": 19,
+      "host_symlink_skips": 2,
+      "failed_stages_retained": true,
+      "unchanged_production_pins": true
+    }
   },
   "exact_normal_inner_create_gas": {
     "access_old": 21743406,
@@ -139,6 +145,7 @@
     "claim-planner-tests.log": "f8787df21ed03c4a2092a61b810f286d71916985f4f0fae321c2eefb203411f7",
     "claim-planning.json": "058d772e1a97f9028076a26620b74fa6283e81d921b6f98b3e993fed7f4fc477",
     "compiler-families.json": "22d44e0e5d0d2ab15390a844638383ab485c2558039ea91090465514778de189",
+    "current-source-inventory.json": "932f9a0839235c72f277b762fc704c64a2a5f37939f22417ca6ab999218a7e22",
     "docs-format-proof.json": "ef5074c3f1b81a2ad12c07a683ddfeb3a18633325aea07536c91b4c879d24679",
     "exact-normal-gas-inputs.json": "563fde0b6c67859f1f623db466650f848c7868f8b61b401877456466cee631d2",
     "exact-normal-gas-tests.json": "6ba05ca76577588eb4175db348aabf536bb9bc0f6f47664f4c34b7449b25ebd5",
@@ -160,8 +167,16 @@
     "python-publication-index.json": "15fe4e097d3ff79858b0af33e9342430fe0615947a276eeeabe3279002a352fd",
     "reference-tests.log": "8272be730f71304262e981765f8781e9d5d3b91ff8dfbc64ad1e59baef308677",
     "REVIEW.md": "5a92bce2e02df4254cafa0c3fc66679b6d45ee0627c646c3426e2f4684bcfd44",
+    "source-inventory-after.log": "b474b79d24ccd256135635f2f43176b276c3f8a7e7f9f24c9e6d88ab0bd9776d",
+    "source-inventory-before.log": "d1a1353c7559ad3ee834fb6f35ffbbf7de824f3226eb6592296aac635e94a4f9",
+    "source-inventory-final.log": "cacad40a5f947777f0e283b27f67f54d7a8f77a42b5f002a4400d42689bd36bf",
     "static-execution.json": "bf7fa2ea1c39cd20791ae6d6d3a3675aec1f02c7b1fe5aaf1cb5a176ca9fbf09",
     "static-review.json": "e1e6924b42fa5e4fc29fa95eedbc3920f1d971dae6fe1ff5d92e5927ba651803",
-    "VERIFICATION.md": "eb19c78b40eb4b0a9a91cd4f36e67105aaafbe80f44c23f056cf2dae44f77001"
+    "VERIFICATION.md": "607e6b2a5b7c99e96eb70d964c9c8622700e51f33076c3d1cf80dab63cedb5a5"
+  },
+  "inventory_followup_source_sha256": {
+    "scripts/source_checks.py": "b19e34441a42654af94c0010f7ef56f86632bbde693e2bdefcb5fd13c4936fca",
+    "tests_python/test_source_inventory.py": "4b16bae3c47f18078557a22934e79db74f05a410d52e1fdd655ceb8aa0171d43",
+    "tests_python/test_verification_output_ownership.py": "d86441db409a74e1d91be0dfb7f99de40c0aaa3d1f384af5ea6118c68dfb1709"
   }
 }

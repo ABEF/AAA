@@ -131,7 +131,7 @@ class VerificationOutputOwnershipTests(unittest.TestCase):
         (self.directory/'src').mkdir()
         (self.directory/'src/Tiny.sol').write_text('pragma solidity 0.8.26; contract Tiny {}', encoding='utf-8')
         with patch.object(runner, 'ROOT', self.directory), patch.object(runner, 'EXPECTED', []), \
-                patch.object(runner, 'HELPERS', []), redirect_stdout(io.StringIO()):
+                patch.object(runner, 'HELPERS', []), patch.object(runner, 'CODE_DATA', []), redirect_stdout(io.StringIO()):
             self.assertFalse(runner.main([]))
             self.assertFalse(runner.main([]))
         self.assertEqual(b'KEEP ORIGINAL DIRTY REPORT\n', old.read_bytes())
